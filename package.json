@@ -83,6 +83,7 @@
   "dependencies": {
     "chrome-storage-local": "^0.1.1",
     "crossmessaging": "^0.1.1",
+    "lodash": "^3.10.1",
     "react": "^0.14.5",
     "react-dom": "^0.14.5",
     "react-redux": "^4.0.6",
