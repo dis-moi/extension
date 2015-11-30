@@ -1,0 +1,2 @@
+- Create an offers updater
+- Remove corresponding alternatives when a tab is closed
