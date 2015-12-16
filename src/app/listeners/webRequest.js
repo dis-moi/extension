@@ -1,6 +1,6 @@
 import { webRequestLaunched } from '../actions/browsing';
 
-class webRequest {
+class WebRequestListener {
 
     constructor(vAPI) {
         this.vAPI = vAPI;
@@ -14,10 +14,12 @@ class webRequest {
             ],
             extra: ['requestBody'],
             types: ['main_frame', 'xmlhttprequest'],
-            callback: (details) => store.dispatch(webRequestLaunched(details))
+            callback: (details) => {
+                store.dispatch(webRequestLaunched(details))
+            }
         };
     }
 
 }
 
-export default webRequest;
+export default WebRequestListener;

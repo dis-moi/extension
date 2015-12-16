@@ -6,6 +6,17 @@ const vAPI = {};
 /******************************************************************************/
 
 vAPI.net = {};
+vAPI.tabs = {};
+
+var toChromiumTabId = function(tabId) {
+    if ( typeof tabId === 'string' ) {
+        tabId = parseInt(tabId, 10);
+    }
+    if ( typeof tabId !== 'number' || isNaN(tabId) || tabId === -1 ) {
+        return 0;
+    }
+    return tabId;
+};
 
 /******************************************************************************/
 
@@ -60,6 +71,25 @@ vAPI.net.registerListeners = function() {
     }).bind(this);
 
     installListeners();
+};
+
+/******************************************************************************/
+
+vAPI.tabs.injectScript = function(tabId, details, callback) {
+    var onScriptExecuted = function() {
+        // https://code.google.com/p/chromium/issues/detail?id=410868#c8
+        if ( chrome.runtime.lastError ) {
+            /* noop */
+        }
+        if ( typeof callback === 'function' ) {
+            callback();
+        }
+    };
+    if ( tabId ) {
+        chrome.tabs.executeScript(toChromiumTabId(tabId), details, onScriptExecuted);
+    } else {
+        chrome.tabs.executeScript(details, onScriptExecuted);
+    }
 };
 
 export default vAPI;

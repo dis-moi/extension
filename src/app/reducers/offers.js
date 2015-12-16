@@ -1,7 +1,8 @@
 import Immutable from 'immutable';
 
-const initialState = Immutable.fromJS({
-    'framasoft.net': {
+const initialState = [
+    {
+        match: /framasoft.net/,
         alternatives: [
             {
                 url: 'alternative.to',
@@ -10,7 +11,7 @@ const initialState = Immutable.fromJS({
         ],
         description: 'Framasoft est le leader des annuaires open sources français, vous feriez bien de rester sur ce site'
     }
-});
+];
 
 export default function offers(state = initialState, action) {
     switch (action.type) {
