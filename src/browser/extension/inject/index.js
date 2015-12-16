@@ -4,7 +4,6 @@ import Root from 'app/containers/Root';
 import configureStore from 'app/store/configureStore';
 
 configureStore(store => {
-
   window.addEventListener('load', () => {
     let injectDiv = document.createElement('div');
     injectDiv.style.margin = '0 auto';

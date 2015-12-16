@@ -1,8 +1,8 @@
-import webRequest from './webRequest'
+import WebRequestListener from './webRequest'
 
 export default {
     init: function(vAPI, store) {
-        new webRequest(vAPI).listen(store);
+        new WebRequestListener(vAPI).listen(store);
 
         vAPI.net.registerListeners();
     }

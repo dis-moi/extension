@@ -2,7 +2,7 @@
 The current application is based on https://github.com/zalmoxisus/browser-redux.
 You can learn more about redux on this article : https://medium.com/@Lilobase/the-just-enough-redux-reading-list-74c954e1941
 
-# Initialization
+## Initialization
 
 The main initialization points are located in `/src/browser/extension`.
 
@@ -11,13 +11,15 @@ Specific listeners are registered from `src/app/listener`:
 
 The browser specifics API are virtualized through the `vAPI` localized in the `src/vapi` which are injected in the listeners.
 
-# Architecture
+## Architecture & main concepts
+
+The extension moves offers to alternatives
 
 States are stored in the `/src/app/reducers` :
   - Offers contains static offers
   - Alternatives contains matching offers for the current browsing context
 
-# Flow
+## Flow
 
 The initial flow is handled by a series of actions (stored in `/src/actions`) :
   - when the webRequest listener handle a request, it call the `browsing/webRequestLaunched` which call the `alternatives/findAlternatives`.

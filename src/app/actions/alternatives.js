@@ -1,12 +1,18 @@
 import { ALTERNATIVES_FOUND } from './../constants/ActionTypes';
+import * as _ from 'lodash'
 
 export function findAlternatives(details) {
     return (dispatch, getState) => {
+        //if ajax request, we reject it
+        if(details.type !== "main_frame") return;
+
         //we find matches
-        const alternatives = getState().offers.filter((v, k)=>(new RegExp(k, 'i').test(details.url)));
+        const alternatives = _.filter(getState().offers, (item) => {
+            return (item.match.test(details.url));
+        });
 
         //if no matching offers, we stop the dispatching
-        if(alternatives.size == 0) return;
+        if(alternatives.length == 0) return;
 
         dispatch(alternativesFound({
             context: {
