@@ -4,7 +4,7 @@ import Alternative from '../components/Alternatives';
 import * as alternativesActions from '../actions/alternatives';
 
 function mapStateToProps(state) {
-  return { state: state };
+  return { state };
 }
 
 const mapDispatchToProps = alternativesActions; // { ...counterActions, ...};
