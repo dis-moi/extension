@@ -4,6 +4,7 @@ const arrowURLs = ['^https://github\\.com'];
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
   return;
+
   if (changeInfo.status !== 'loading' || !tab.url.match(arrowURLs.join('|'))) return;
 
   chrome.tabs.executeScript(tabId, {
