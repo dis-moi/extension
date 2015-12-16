@@ -67,6 +67,8 @@
     "gulp-util": "^3.0.7",
     "gulp-zip": "^3.0.2",
     "mocha": "^2.3.4",
+    "legit-tests": "^0.6.1",
+    "lodash": "^3.10.1",
     "raw-loader": "^0.5.1",
     "react-addons-test-utils": "^0.14.3",
     "react-transform-catch-errors": "^1.0.0",
