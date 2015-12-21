@@ -4,7 +4,12 @@ class Alternatives extends Component {
 
     styles() {
         return {
-            position: "fixed"
+            position: "fixed",
+            bottom: "0px",
+            backgroundColor: "orange",
+            width: "100%",
+            padding: "20px",
+            zIndex: 99999
         }
     }
 
@@ -12,14 +17,15 @@ class Alternatives extends Component {
         return (
             <div style={this.styles()}>
                 <h2>LMEM a une alternative à vous proposer</h2>
+                <p>{this.props.alternative.description}</p>
+                <a href={this.props.alternative.alternatives[0].url}>{this.props.alternative.alternatives[0].title}</a>
             </div>
         );
     }
 }
 
-Counter.propTypes = {
-    state: PropTypes.object.isRequired,
-    tabId: PropTypes.number.isRequired
+Alternatives.propTypes = {
+    alternative: PropTypes.object.isRequired,
 };
 
 export default Alternatives;

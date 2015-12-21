@@ -1,32 +1,49 @@
+import * as _ from 'lodash';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import Root from 'app/containers/Root';
+
+import Alternative from 'app/components/Alternatives';
 
 class AlternativesInjector {
 
-    construct(vAPI) {
+    constructor(vAPI) {
         this.vAPI = vAPI;
     }
 
     listen(store) {
-        store.subscribe((store) => {
-            console.log(this.renderReact());
-            //this.vAPI.tabs.injectScript()
+        store.subscribe(() => {
+            this.renderForEachTab(store.getState());
         });
     }
 
-    buildDom() {
-        window.addEventListener('load', () => {
-
-        });
+    buildDom(component) {
+        return  "console.log('Prepare to inject');\
+                function ready(f){ /in/.test(document.readyState) ? setTimeout(ready,90,f):f() }; \
+                 ready(function() {\
+                    console.log('LMEM injection'); \
+                    var div = document.createElement('div'); \
+                    div.innerHTML = '"+ component +"'; \
+                    document.body.appendChild(div); \
+                });";
     }
 
-    renderReact(tabId) {
+    renderForEachTab(state) {
+        setTimeout(()=>{
+            _.forIn(state.alternatives, (value, key) => {
+                this.vAPI.tabs.injectScript(key, {
+                    code: this.buildDom(this.renderForTab(key, value)),
+                    runAt: 'document_start'
+                });
+            });
+        }, 1500); //we wait for the Dom to be built
+    }
+
+    renderForTab(tabId, alternative) {
+        var alternativeTo = alternative.alternatives[0];
         return renderToStaticMarkup(
-            <Root store={store} tabId={tabId} />
-        );
+            <Alternative alternative={alternativeTo} />
+        )
     }
-
 }
 
 export default AlternativesInjector;
