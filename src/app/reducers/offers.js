@@ -1,22 +1,26 @@
-import Immutable from 'immutable';
-
 const initialState = [
     {
-        match: "/framasoft.net/",
+        matchingContext: {
+            url: "/framasoft.net/",
+        },
         alternatives: [
             {
                 url: 'http://alternativeto.net',
-                title: 'D\'autre alternatives bien cool'
+                title: 'D\'autre alternatives bien cool',
+                description: "Alternative To est un annuaire d'alternatives"
             }
         ],
         description: 'Framasoft est le leader des annuaires open sources fran&ccedil;ais, vous feriez bien de rester sur ce site'
     },
     {
-        match: "/alternativeto.net/",
+        matchingContext: {
+            url: "/alternativeto.net/"
+        },
         alternatives: [
             {
                 url: 'http://framasoft.net',
-                title: 'Aller chez framasoft'
+                title: 'Aller chez framasoft',
+                description: "Alternatives open source"
             }
         ],
         description: 'Allez voir des trucs open source'

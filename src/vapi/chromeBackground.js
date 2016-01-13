@@ -53,13 +53,18 @@ vAPI.net.registerListeners = function() {
         return onBeforeRequestClient(details);
     };
 
+    //var onCompletedClient = this.onCompleted.callback;
+
+    var onCompleted = function(details) {
+        return onCompletedClient(details);
+    };
+
     var installListeners = (function() {
         var crapi = chrome.webRequest;
-        var listener = onBeforeRequest;
 
-        if ( crapi.onBeforeRequest.hasListener(listener) === false ) {
+        if ( crapi.onBeforeRequest.hasListener(onBeforeRequest) === false ) {
             crapi.onBeforeRequest.addListener(
-                listener,
+                onBeforeRequest,
                 {
                     'urls': this.onBeforeRequest.urls || ['<all_urls>'],
                     'types': this.onBeforeRequest.types || undefined
@@ -67,6 +72,17 @@ vAPI.net.registerListeners = function() {
                 this.onBeforeRequest.extra
             );
         }
+
+        /*if ( crapi.onCompleted.hasListener(onCompleted) === false) {
+            crapi.onCompleted.addListener(
+                onCompleted,
+                {
+                    'urls': this.onBeforeRequest.urls || ['<all_urls>'],
+                    'types': this.onBeforeRequest.types || undefined
+                },
+                this.onCompleted.extra
+            );
+        }*/
 
     }).bind(this);
 

@@ -29,7 +29,7 @@ class AlternativesInjector {
 
     renderForEachTab(state) {
         setTimeout(()=>{
-            _.forIn(state.alternatives, (value, key) => {
+            _.forIn(state.matchingTabs, (value, key) => {
                 this.vAPI.tabs.injectScript(key, {
                     code: this.buildDom(this.renderForTab(key, value)),
                     runAt: 'document_start'
@@ -39,7 +39,7 @@ class AlternativesInjector {
     }
 
     renderForTab(tabId, alternative) {
-        var alternativeTo = alternative.alternatives[0];
+        var alternativeTo = alternative.matchingOffers[0];
         return renderToStaticMarkup(
             <Alternative alternative={alternativeTo} />
         )

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Alternative from '../components/Alternatives';
-import * as alternativesActions from '../actions/alternatives';
+import * as alternativesActions from '../actions/offers';
 
 function mapStateToProps(state) {
   return { state };

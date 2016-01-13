@@ -1,24 +1,24 @@
-import { ALTERNATIVES_FOUND } from './../constants/ActionTypes';
+import { MATCHING_OFFERS_FOUND } from './../constants/ActionTypes';
 import * as _ from 'lodash'
 
-export function findAlternatives(details) {
+export function findMatchingOffers(details) {
     return (dispatch, getState) => {
         //if ajax request, we reject it
         if(details.type !== "main_frame") return;
 
         //we find matches
-        const alternatives = _.filter(getState().offers, (item) => {
+        const matching_offers = _.filter(getState().offers, (item) => {
             return (new RegExp(item.matchingContext.url).test(details.url));
         });
 
         //if no matching offers, we stop the dispatching
-        if(alternatives.length == 0) return;
+        if(matching_offers.length == 0) return;
 
-        dispatch(alternativesFound({
+        dispatch(matchingOffersFound({
             context: {
                 request: details
             },
-            alternatives: alternatives
+            matchingOffers: matching_offers
         }));
     };
 }
@@ -29,14 +29,14 @@ export function findAlternatives(details) {
  *      context: {
  *          request: RequestDetails
  *      },
- *      alternatives: [offer]
+ *      matchingTabs: [offer]
  * }
  * @param details
  * @returns {{type, payload: *}}
  */
-export function alternativesFound(details) {
+export function matchingOffersFound(details) {
     return {
-        type: ALTERNATIVES_FOUND,
+        type: MATCHING_OFFERS_FOUND,
         payload: details
     };
 }
