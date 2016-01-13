@@ -8,7 +8,7 @@ export function findAlternatives(details) {
 
         //we find matches
         const alternatives = _.filter(getState().offers, (item) => {
-            return (new RegExp(item.match).test(details.url));
+            return (new RegExp(item.matchingContext.url).test(details.url));
         });
 
         //if no matching offers, we stop the dispatching
