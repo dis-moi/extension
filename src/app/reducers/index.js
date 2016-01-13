@@ -4,4 +4,8 @@ import alternatives from './alternatives'
 import counter from './counter';
 import extension from './extension';
 
-export default combineReducers({ counter, extension, offers, alternatives});
+export default (
+  typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.id ?
+    combineReducers({ counter, offers, alternatives, extension }) :
+    combineReducers({ counter, offers, alternatives, })
+);

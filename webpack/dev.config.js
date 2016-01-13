@@ -7,8 +7,16 @@ const entry = [
   `webpack-dev-server/client?http://localhost:${port}`,
   'webpack/hot/only-dev-server'
 ];
+const srcPath = path.join(__dirname, '../src/browser/');
 
-export default baseConfig({
+const config = baseConfig({
+  input: {
+    background: [`${srcPath}extension/background/index`, ...entry],
+    window: [`${srcPath}window/index`, ...entry],
+    popup: [`${srcPath}extension/popup/index`, ...entry],
+    inject: [`${srcPath}extension/inject/index`, ...entry],
+    app: [path.join(__dirname, '../src/web/index'), ...entry]
+  },
   output: {
     path: path.join(__dirname, '../dev/js'),
     publicPath: `http://localhost:${port}/js/`
@@ -44,3 +52,7 @@ export default baseConfig({
   }],
   entry
 });
+
+config.devtool = 'eval';
+
+export default config;

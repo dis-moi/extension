@@ -20,4 +20,4 @@ configureStore(store => {
     );
   });
 
-});
+}, false);
