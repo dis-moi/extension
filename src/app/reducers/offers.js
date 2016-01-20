@@ -1,3 +1,6 @@
+import * as _ from 'lodash'
+import { ADD_OFFERS } from './../constants/ActionTypes'
+
 const initialState = [
     {
         matchingContext: {
@@ -29,6 +32,8 @@ const initialState = [
 
 export default function offers(state = initialState, action) {
     switch (action.type) {
+        case ADD_OFFERS:
+            return _.concat(state, action.payload);
         default:
             return state;
     }
