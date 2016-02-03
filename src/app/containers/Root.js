@@ -5,7 +5,7 @@ import App from './App';
 export default class Root extends Component {
   static propTypes = {
     store: PropTypes.object.isRequired,
-    tabId: PropTypes.number.isRequired
+    tabId: PropTypes.number.isRequired,
   };
 
   render() {
