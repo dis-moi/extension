@@ -3,6 +3,7 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 import Alternative from 'app/components/Alternatives';
+import { STYLES_URL, IMAGES_URL } from 'app/constants/assetsUrls';
 
 class AlternativesInjector {
 
@@ -40,8 +41,9 @@ class AlternativesInjector {
 
     renderForTab(tabId, alternative) {
         var alternativeTo = alternative.matchingOffers[0];
+        var stylesUrl = STYLES_URL + 'main.css';
         return renderToStaticMarkup(
-            <Alternative alternative={alternativeTo} />
+            <Alternative alternative={alternativeTo} stylesUrl={stylesUrl} imagesUrl={IMAGES_URL} />
         )
     }
 }

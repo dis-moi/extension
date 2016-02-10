@@ -108,4 +108,8 @@ vAPI.tabs.injectScript = function(tabId, details, callback) {
     }
 };
 
+/******************************************************************************/
+
+vAPI.getURL = chrome.runtime.getURL;
+
 export default vAPI;

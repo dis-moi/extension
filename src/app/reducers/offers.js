@@ -10,10 +10,11 @@ const initialState = [
             {
                 url: 'http://alternativeto.net',
                 title: 'D\'autre alternatives bien cool',
-                description: "Alternative To est un annuaire d'alternatives"
+                description: "Alternative To est un annuaire d'alternatives",
+                contributor: "pepe",
             }
         ],
-        description: 'Framasoft est le leader des annuaires open sources fran&ccedil;ais, vous feriez bien de rester sur ce site'
+        description: 'Framasoft est le leader des annuaires open sources francais, vous feriez bien de rester sur ce site'
     },
     {
         matchingContext: {
@@ -23,7 +24,8 @@ const initialState = [
             {
                 url: 'http://framasoft.net',
                 title: 'Aller chez framasoft',
-                description: "Alternatives open source"
+                description: "Alternatives open source",
+                contributor: "bibi",
             }
         ],
         description: 'Allez voir des trucs open source'

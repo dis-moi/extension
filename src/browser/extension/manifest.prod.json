@@ -35,5 +35,10 @@
     "http://*/*",
     "https://*/*"
   ],
-  "content_security_policy": "script-src 'self'; object-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:;"
+  "content_security_policy": "script-src 'self'; object-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:;",
+  "web_accessible_resources": [
+    "img/*",
+    "styles/*",
+    "fonts/*"
+  ]
 }
