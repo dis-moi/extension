@@ -43,7 +43,7 @@ class AlternativesInjector {
         var alternativeTo = alternative.matchingOffers[0];
         var stylesUrl = STYLES_URL + 'main.css';
         return renderToStaticMarkup(
-            <Alternative alternative={alternativeTo} stylesUrl={stylesUrl} imagesUrl={IMAGES_URL} />
+            <Alternative matching={alternativeTo} stylesUrl={stylesUrl} imagesUrl={IMAGES_URL} />
         )
     }
 }

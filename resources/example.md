@@ -4,7 +4,8 @@
       {
         "description": "Alternative To est un annuaire d'alternatives",
         "title": "D'autre alternatives bien cool",
-        "url": "http://alternativeto.net"
+        "url": "http://alternativeto.net",
+        "contributor": "maarten"
       }
     ],
     "description": "Framasoft est le leader des annuaires open sources fran&ccedil;ais, vous feriez bien de rester sur ce site",
@@ -17,7 +18,8 @@
       {
         "description": "Alternatives open source",
         "title": "Aller chez framasoft",
-        "url": "http://framasoft.net"
+        "url": "http://framasoft.net",
+        "contributor": "maarten"
       }
     ],
     "description": "Allez voir des trucs open source",
@@ -30,7 +32,8 @@
       {
         "description": "DuckDuckGo garde votre vie privée",
         "title": "Découvrir DuckDuckGo",
-        "url": "https://duckduckgo.com"
+        "url": "https://duckduckgo.com",
+        "contributor": "maarten"
       }
     ],
     "description": "Les moteurs de recherche, il n'y en a pas beaucoup",
@@ -43,7 +46,8 @@
         {
           "description": "Gitlab est un github open source",
           "title": "Aller chez Gitlab",
-          "url": "http://gitlab.com"
+          "url": "http://gitlab.com",
+          "contributor": "maarten"
         }
       ],
       "description": "Github est sympa mais payant",
