@@ -9,12 +9,17 @@ const initialState = [
         alternatives: [
             {
                 url: 'http://alternativeto.net',
-                title: 'D\'autre alternatives bien cool',
-                description: "Alternative To est un annuaire d'alternatives",
-                contributor: "pepe",
+                call_to_action: 'Voir le guide',
+                tags: [
+                    'quality',
+                ],
+                description: "Alternative To est un annuaire d’alternatives",
+                contributor: {
+                    id: "quechoisir",
+                    description: "L’UFC-Que Choisir est une association à but non lucratif, au service des consommateurs.",
+                }
             }
         ],
-        description: 'Framasoft est le leader des annuaires open sources francais, vous feriez bien de rester sur ce site'
     },
     {
         matchingContext: {
@@ -23,12 +28,18 @@ const initialState = [
         alternatives: [
             {
                 url: 'http://framasoft.net',
-                title: 'Aller chez framasoft',
-                description: "Alternatives open source",
-                contributor: "bibi",
+                call_to_action: 'Aller sur Framasoft',
+                description: "Alternatives libres et ouvertes",
+                tags: [
+                    'price',
+                    'ecology',
+                ],
+                contributor: {
+                    id: "backmarket",
+                    description: "Spécialiste français de l’électronique d’occasion.",
+                },
             }
         ],
-        description: 'Allez voir des trucs open source'
     },
     {
         matchingContext: {

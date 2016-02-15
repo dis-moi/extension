@@ -21,6 +21,17 @@ class Alternatives extends Component {
 
                 <div className="main">
                     <div className="wrapperframe">
+                        <header className="sideframe lmem-header">
+                            <div className="query-summary">
+                                <div className="summary-entry">
+                                    <div className="summary-entry-title">Résultats proposés par</div>
+                                    <div className="summary-entry-content">
+                                        <img src={ this.props.imagesUrl + "contributors/" + this.props.alternatives[0].contributor.id + '.jpg' } />
+                                        <p>{ this.props.alternatives[0].contributor.description }</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </header>
                         <div className="mainframe"><div className="mainframe-inner">
                             <div className="highlight">
                                 <p className="reco">{this.props.alternative.description}</p>
