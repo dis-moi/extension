@@ -1,5 +1,5 @@
 import * as _ from 'lodash'
-import { ADD_OFFERS } from './../constants/ActionTypes'
+import { ADD_OFFERS, REMOVE_ALL_OFFERS } from './../constants/ActionTypes'
 
 const initialState = [
     {
@@ -66,7 +66,10 @@ const initialState = [
 export default function offers(state = initialState, action) {
     switch (action.type) {
         case ADD_OFFERS:
-            return _.concat(state, action.payload);
+            if(action.payload == null || action.payload == '') return state;
+            return _.concat(state, JSON.parse(action.payload));
+        case REMOVE_ALL_OFFERS:
+            return [];
         default:
             return state;
     }
