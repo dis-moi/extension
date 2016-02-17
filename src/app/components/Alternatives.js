@@ -7,22 +7,43 @@ const styles = {
     right: 0,
     minHeight: '225px',
     zIndex: 99999,
+    boxShadow: '0 0 15px rgb(136, 136, 136)',
 };
 
 const Alternatives = ({matching, stylesUrl, imagesUrl}) => (
     <section id="lmem--alternatives--root" style={styles}>
         <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css' />
         <link rel="stylesheet" href={stylesUrl} />
+
         <div className="main">
             <div className="wrapperframe">
+                <header className="sideframe lmem-header">
+                    <div className="query-summary summary-contributor">
+                        <div className="summary-detail-title">{ 'R' + String.fromCharCode(233) + 'sultats propos' + String.fromCharCode(233) + 's par' }</div>
+                        <div>
+                            <img src={ imagesUrl + "contributors/" + matching.alternatives[0].contributor[0].id + '.png' } />
+                            <p>{ matching.alternatives[0].contributor[0].description }</p>
+                        </div>
+                    </div>
+                </header>
                 <div className="mainframe"><div className="mainframe-inner">
                     <div className="highlight">
-                        <p className="reco">{matching.description}</p>
-                        <div className="button-directive">
-                            <a href={matching.alternatives[0].url} target="_blank" className="button with-image reco-button">
-                                <img src={ imagesUrl + 'arrow.svg' } className="reco-picto" />
-                                <span className="button-label">{matching.alternatives[0].title}</span>
-                            </a>
+                        <ul className="summary-tags">
+                            { matching.alternatives[0].tags.some((item) => item === 'price') ? <li><b className="tag tag-price">prix</b></li> : null }
+                            { matching.alternatives[0].tags.some((item) => item === 'quality') ? <li><b className="tag tag-quality">{ "qualit" + String.fromCharCode(233) }</b></li> : null }
+                            { matching.alternatives[0].tags.some((item) => item === 'ecology') ? <li><b className="tag tag-ecology">{ String.fromCharCode(233) + "cologie" }</b></li> : null }
+                            { matching.alternatives[0].tags.some((item) => item === 'local') ? <li><b className="tag tag-local">local</b></li> : null }
+                        </ul>
+                        <div className="summary-reco-description">
+                            { matching.alternatives[0].description }
+                            <div className="button-directive">
+                                <a className="button with-image" target="_blank" href={ matching.alternatives[0].url } >
+                                   <img src={ imagesUrl + 'arrow.svg' } className="picto" />
+                                   <span className="button-label">
+                                       { matching.alternatives[0].call_to_action }
+                                   </span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div></div>
@@ -34,8 +55,7 @@ const Alternatives = ({matching, stylesUrl, imagesUrl}) => (
                     <div className="mainframe">
                         <div className="mainframe-inner">
                             <h1 className="lmem-topbar-title">
-                                { 'Le M' + String.fromCharCode(234) + 'me en Mieux selon ' }
-                                <strong>{matching.alternatives[0].contributor }</strong>
+                                { 'Le M' + String.fromCharCode(234) + 'me en Mieux' }
                             </h1>
                         </div>
                     </div>
@@ -52,29 +72,12 @@ const Alternatives = ({matching, stylesUrl, imagesUrl}) => (
 
                 <a className="lmem-topbar-logo with-tooltip" href="">
                     <img src={ imagesUrl + 'logo-lmem.svg' } alt="" />
-                            <span className="tooltip tooltip-right"><span>
-                                { 'R' + String.fromCharCode(233) + 'duire le panneau comparatif' }
-                            </span></span>
+                    <span className="tooltip tooltip-right"><span>
+                        { 'R' + String.fromCharCode(233) + 'duire le panneau comparatif' }
+                    </span></span>
                 </a>
             </aside>
 
-            <footer className="lmem-footer sideframe fixed">
-                <div className="lmem-footer-wrapper">
-                    <a className="lmem-footer-logo with-tooltip" href="">
-                        <img src={ imagesUrl + 'logo-lmem.svg' } alt="" />
-                                <span className="tooltip tooltip-right"><span>
-                                    { 'R' + String.fromCharCode(233) + 'duire le panneau comparatif' }
-                                </span></span>
-                    </a>
-
-                    <div className="lmem-disclaimer">
-                        <a className="no-visited with-tooltip" href="http://www.lmem.net/" target="_blank">{ 'Le M' + String.fromCharCode(234) + 'me en Mieux' }</a>
-                        { ', service ind' + String.fromCharCode(233) + 'pendant du site Web consult' + String.fromCharCode(233) + ' ' }
-                        (<a target="_blank" href="http://cgu.lmem.net/">
-                        { 'conditions g' + String.fromCharCode(233) + 'n' + String.fromCharCode(233) + 'rales d' + String.fromCharCode(8217) + 'utilisation' }</a>).
-                    </div>
-                </div>
-            </footer>
         </div>
     </section>
 );

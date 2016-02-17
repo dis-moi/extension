@@ -4,17 +4,22 @@ import { ADD_OFFERS, REMOVE_ALL_OFFERS } from './../constants/ActionTypes'
 const initialState = [
     {
         matchingContext: {
-            url: "/framasoft.net/",
+            url: "localhost",
         },
         alternatives: [
             {
                 url: 'http://alternativeto.net',
-                title: 'D\'autre alternatives bien cool',
+                call_to_action: 'Voir le guide',
+                tags: [
+                    'quality',
+                ],
                 description: "Alternative To est un annuaire d'alternatives",
-                contributor: "pepe",
+                contributor: [{
+                    id: "quechoisir",
+                    description: "L'UFC-Que Choisir est une association a but non lucratif, au service des consommateurs.",
+                }]
             }
         ],
-        description: 'Framasoft est le leader des annuaires open sources francais, vous feriez bien de rester sur ce site'
     },
     {
         matchingContext: {
@@ -23,13 +28,39 @@ const initialState = [
         alternatives: [
             {
                 url: 'http://framasoft.net',
-                title: 'Aller chez framasoft',
-                description: "Alternatives open source",
-                contributor: "bibi",
+                call_to_action: 'Aller sur Framasoft',
+                description: "Alternatives libres et ouvertes",
+                tags: [
+                    'price',
+                    'ecology',
+                ],
+                contributor: [{
+                    id: "backmarket",
+                    description: "Specialiste francais de l'electronique d'occasion.",
+                }],
             }
         ],
-        description: 'Allez voir des trucs open source'
-    }
+    },
+    {
+        matchingContext: {
+            url: "http://www.amazon.fr/Beko-WML-15106-NE-linge/dp/B006MHD5QG",
+        },
+        alternatives: [
+            {
+                url: "http://www.amazon.fr/Beko-WML-15106-NE-linge/dp/B006MHD5QG",
+                call_to_action: "Voir le classement et les alternatives",
+                description: "Dans notre classement du 2 fevrier 2016, le lave-linge Beko WML 15106 NE a termine 134eme sur 134 lave-linges testes. Beaucoup d'alternatives moins cheres ont eu une bien meilleure evaluation lors de nos tests.",
+                tags: [
+                    "price",
+                    "quality",
+                ],
+                contributor: [{
+                    id: 'quechoisir',
+                    description: "L'UFC-Que Choisir est une association a but non lucratif, au service des consommateurs.",
+                }],
+            },
+        ],
+    },
 ];
 
 export default function offers(state = initialState, action) {
