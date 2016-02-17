@@ -455,8 +455,57 @@
   #lmem--alternatives--root .sideframe {
     flex: 0 1 auto;
     width: 313.33333px; }
+  #lmem--alternatives--root .mainframe {
+    flex: 20 1 0; }
+  #lmem--alternatives--root .mainframe-inner {
+    display: block;
+    margin-left: 14px;
+    padding-left: 15px;
+    border-left: 1px solid #EEE8D5; }
   #lmem--alternatives--root .wrapperframe {
+    display: flex;
+    justify-content: flex-end;
     margin: 15px 15px 0; }
+  #lmem--alternatives--root .summary-tags {
+    display: flex; }
+    #lmem--alternatives--root .summary-tags li {
+      display: inline-flex;
+      height: 30px;
+      flex-direction: column;
+      justify-content: center;
+      margin-right: 7px; }
+  #lmem--alternatives--root .tag {
+    border-radius: 2px;
+    color: #FDF6E3;
+    padding: 0 1ex;
+    line-height: 20px;
+    text-transform: capitalize;
+    display: inherit; }
+  #lmem--alternatives--root .tag-local {
+    background-color: #2aa198; }
+  #lmem--alternatives--root .tag-quality {
+    background-color: #4c99d2; }
+  #lmem--alternatives--root .tag-ecology {
+    background-color: #859900; }
+  #lmem--alternatives--root .tag-price {
+    background-color: #d33682; }
+  #lmem--alternatives--root .summary-reco-description {
+    font-size: 15px;
+    line-height: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+    #lmem--alternatives--root .summary-reco-description .button-directive {
+      display: inline-flex;
+      align-self: flex-start; }
+    #lmem--alternatives--root .summary-reco-description .button {
+      text-decoration: none !important; }
+      #lmem--alternatives--root .summary-reco-description .button img {
+        margin: 0 1ex 0 0;
+        transform: rotate(-90deg); }
+    #lmem--alternatives--root .summary-reco-description .button-label {
+      line-height: 30px; }
   #lmem--alternatives--root .query-summary {
     font-size: 13px;
     margin-top: 8px; }
@@ -559,6 +608,14 @@
       border-left-width: 0; }
     #lmem--alternatives--root .summary-reminders .summary-reminder-empty:last-child {
       border-right-width: 0; }
+  #lmem--alternatives--root .summary-contributor .summary-detail-title {
+    display: inline-block;
+    font-size: 18px;
+    line-height: 30px; }
+  #lmem--alternatives--root .summary-contributor img {
+    display: block;
+    height: 45px;
+    margin: 15px 0 7px; }
   #lmem--alternatives--root .alternatives-wrapper {
     display: flex; }
     #lmem--alternatives--root .alternatives-wrapper .alternatives {

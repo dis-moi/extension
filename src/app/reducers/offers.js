@@ -4,7 +4,7 @@ import { ADD_OFFERS } from './../constants/ActionTypes'
 const initialState = [
     {
         matchingContext: {
-            url: "/framasoft.net/",
+            url: "localhost",
         },
         alternatives: [
             {
@@ -13,11 +13,11 @@ const initialState = [
                 tags: [
                     'quality',
                 ],
-                description: "Alternative To est un annuaire d’alternatives",
-                contributor: {
+                description: "Alternative To est un annuaire d'alternatives",
+                contributor: [{
                     id: "quechoisir",
-                    description: "L’UFC-Que Choisir est une association à but non lucratif, au service des consommateurs.",
-                }
+                    description: "L'UFC-Que Choisir est une association a but non lucratif, au service des consommateurs.",
+                }]
             }
         ],
     },
@@ -34,10 +34,10 @@ const initialState = [
                     'price',
                     'ecology',
                 ],
-                contributor: {
+                contributor: [{
                     id: "backmarket",
-                    description: "Spécialiste français de l’électronique d’occasion.",
-                },
+                    description: "Specialiste francais de l'electronique d'occasion.",
+                }],
             }
         ],
     },
@@ -49,15 +49,15 @@ const initialState = [
             {
                 url: "http://www.amazon.fr/Beko-WML-15106-NE-linge/dp/B006MHD5QG",
                 call_to_action: "Voir le classement et les alternatives",
-                description: "Dans notre classement du 2 février 2016, le lave-linge Beko WML 15106 NE a terminé 134ème sur 134 lave-linges testés. Beaucoup d’alternatives moins chères ont eu une bien meilleure évaluation lors de nos tests.",
+                description: "Dans notre classement du 2 fevrier 2016, le lave-linge Beko WML 15106 NE a termine 134eme sur 134 lave-linges testes. Beaucoup d'alternatives moins cheres ont eu une bien meilleure evaluation lors de nos tests.",
                 tags: [
                     "price",
                     "quality",
                 ],
-                contributor: {
+                contributor: [{
                     id: 'quechoisir',
-                    description: 'L’UFC-Que Choisir est une association à but non lucratif, au service des consommateurs.',
-                },
+                    description: "L'UFC-Que Choisir est une association a but non lucratif, au service des consommateurs.",
+                }],
             },
         ],
     },
