@@ -10,6 +10,7 @@ class Alternatives extends Component {
             right: 0,
             minHeight: '225px',
             zIndex: 99999,
+            boxShadow: '0 0 15px rgb(136, 136, 136)',
         }
     }
 
@@ -22,24 +23,32 @@ class Alternatives extends Component {
                 <div className="main">
                     <div className="wrapperframe">
                         <header className="sideframe lmem-header">
-                            <div className="query-summary">
-                                <div className="summary-entry">
-                                    <div className="summary-entry-title">Résultats proposés par</div>
-                                    <div className="summary-entry-content">
-                                        <img src={ this.props.imagesUrl + "contributors/" + this.props.alternatives[0].contributor.id + '.jpg' } />
-                                        <p>{ this.props.alternatives[0].contributor.description }</p>
-                                    </div>
+                            <div className="query-summary summary-contributor">
+                                <div className="summary-detail-title">{ 'R' + String.fromCharCode(233) + 'sultats propos' + String.fromCharCode(233) + 's par' }</div>
+                                <div>
+                                    <img src={ this.props.imagesUrl + "contributors/" + this.props.alternative.alternatives[0].contributor[0].id + '.png' } />
+                                    <p>{ this.props.alternative.alternatives[0].contributor[0].description }</p>
                                 </div>
                             </div>
                         </header>
                         <div className="mainframe"><div className="mainframe-inner">
                             <div className="highlight">
-                                <p className="reco">{this.props.alternative.description}</p>
-                                <div className="button-directive">
-                                    <a href={this.props.alternative.alternatives[0].url} target="_blank" className="button with-image reco-button">
-                                        <img src={ this.props.imagesUrl + 'arrow.svg' } className="reco-picto" />
-                                        <span className="button-label">{this.props.alternative.alternatives[0].title}</span>
-                                    </a>
+                                <ul className="summary-tags">
+                                    { this.props.alternative.alternatives[0].tags.some((item) => item === 'price') ? <li><b className="tag tag-price">prix</b></li> : null }
+                                    { this.props.alternative.alternatives[0].tags.some((item) => item === 'quality') ? <li><b className="tag tag-quality">{ "qualit" + String.fromCharCode(233) }</b></li> : null }
+                                    { this.props.alternative.alternatives[0].tags.some((item) => item === 'ecology') ? <li><b className="tag tag-ecology">{ String.fromCharCode(233) + "cologie" }</b></li> : null }
+                                    { this.props.alternative.alternatives[0].tags.some((item) => item === 'local') ? <li><b className="tag tag-local">local</b></li> : null }
+                                </ul>
+                                <div className="summary-reco-description">
+                                    { this.props.alternative.alternatives[0].description }
+                                    <div className="button-directive">
+                                        <a className="button with-image" target="_blank" href={ this.props.alternative.alternatives[0].url } >
+                                           <img src={ this.props.imagesUrl + 'arrow.svg' } className="picto" />
+                                           <span className="button-label">
+                                               { this.props.alternative.alternatives[0].call_to_action }
+                                           </span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div></div>
@@ -51,8 +60,7 @@ class Alternatives extends Component {
                             <div className="mainframe">
                                 <div className="mainframe-inner">
                                     <h1 className="lmem-topbar-title">
-                                        { 'Le M' + String.fromCharCode(234) + 'me en Mieux selon ' }
-                                        <strong>{ this.props.alternative.alternatives[0].contributor }</strong>
+                                        { 'Le M' + String.fromCharCode(234) + 'me en Mieux' }
                                     </h1>
                                 </div>
                             </div>
@@ -75,23 +83,6 @@ class Alternatives extends Component {
                         </a>
                     </aside>
 
-                    <footer className="lmem-footer sideframe fixed">
-                        <div className="lmem-footer-wrapper">
-                            <a className="lmem-footer-logo with-tooltip" href="">
-                                <img src={ this.props.imagesUrl + 'logo-lmem.svg' } alt="" />
-                                <span className="tooltip tooltip-right"><span>
-                                    { 'R' + String.fromCharCode(233) + 'duire le panneau comparatif' }
-                                </span></span>
-                            </a>
-
-                            <div className="lmem-disclaimer">
-                                <a className="no-visited with-tooltip" href="http://www.lmem.net/" target="_blank">{ 'Le M' + String.fromCharCode(234) + 'me en Mieux' }</a>
-                                { ', service ind' + String.fromCharCode(233) + 'pendant du site Web consult' + String.fromCharCode(233) + ' ' }
-                                (<a target="_blank" href="http://cgu.lmem.net/">
-                                    { 'conditions g' + String.fromCharCode(233) + 'n' + String.fromCharCode(233) + 'rales d' + String.fromCharCode(8217) + 'utilisation' }</a>).
-                            </div>
-                        </div>
-                    </footer>
                 </div>
             </section>
         );
