@@ -41,7 +41,7 @@ class AlternativesInjector {
 
     renderForTab(tabId, alternative) {
         var alternativeTo = alternative.matchingOffers[0];
-        var stylesUrl = STYLES_URL + 'main.css';
+        var stylesUrl = STYLES_URL + 'alt.css';
         return renderToStaticMarkup(
             <Alternative matching={alternativeTo} stylesUrl={stylesUrl} imagesUrl={IMAGES_URL} />
         )
