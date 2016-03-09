@@ -16,13 +16,6 @@
   "background": {
     "page": "background.html"
   },
-  "content_scripts": [
-    {
-      "matches": ["*://github.com/*"],
-      "js": ["js/inject.bundle.js"],
-      "run_at": "document_end"
-    }
-  ],
   "permissions": [
     "contextMenus",
     "privacy",
