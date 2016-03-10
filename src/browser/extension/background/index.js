@@ -16,5 +16,4 @@ configureStore(store => {
   if (process.env.NODE_ENV !== 'production') {
     require('./inject');
   }
-
 }, true);
