@@ -18,13 +18,24 @@ class AlternativesInjector {
     }
 
     buildDom(component) {
-        return  "console.log('Prepare to inject');\
+        return  "console.log('Prepare to inject'); \
                 function ready(f){ /in/.test(document.readyState) ? setTimeout(ready,90,f):f() }; \
-                 ready(function() {\
+                 ready(function() { \
                     console.log('LMEM injection'); \
-                    var div = document.createElement('div'); \
-                    div.innerHTML = '"+ component +"'; \
-                    document.body.appendChild(div); \
+                    var iframe = document.createElement('iframe'); \
+                    iframe.id = 'lmemFrame'; \
+                    iframe.width = '100%'; \
+                    iframe.height = '225px'; \
+                    iframe.style.position = 'fixed'; \
+                    iframe.style.bottom = '0px'; \
+                    iframe.style.zIndex = '999999999'; \
+                    iframe.onload = function() { \
+                      var doc = iframe.contentDocument || iframe.contentWindow.document; \
+                      var div = document.createElement('div'); \
+                      div.innerHTML = '"+ component +"'; \
+                      doc.body.appendChild(div); \
+                    }; \
+                    document.body.appendChild(iframe); \
                 });";
     }
 
