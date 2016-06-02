@@ -1,4 +1,4 @@
-import { MATCHING_OFFERS_FOUND, ADD_OFFERS, REMOVE_ALL_OFFERS, REMOVE_ALL_MATCHING_OFFERS } from './../constants/ActionTypes';
+import { MATCHING_OFFERS_FOUND, REMOVE_ALL_OFFERS, REMOVE_ALL_MATCHING_OFFERS } from './../constants/ActionTypes';
 import * as _ from 'lodash'
 
 export function findMatchingOffers(details) {
@@ -8,7 +8,7 @@ export function findMatchingOffers(details) {
 
         //we find matches
         const matching_offers = _.filter(getState().offers, (item) => {
-            return (new RegExp(item.matchingContext.url).test(details.url));
+            return (new RegExp(item.url_regex).test(details.url));
         });
 
         //if no matching offers, we stop the dispatching
@@ -33,13 +33,6 @@ export function matchingOffersFound(details) {
 export function flushMatchingOffers(){
     return {
         type: REMOVE_ALL_MATCHING_OFFERS
-    };
-}
-
-export function addOffers(details) {
-    return {
-        type: ADD_OFFERS,
-        payload: details
     };
 }
 

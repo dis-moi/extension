@@ -9,7 +9,7 @@ const styles = {
     zIndex: 99999,
 };
 
-const Alternatives = ({matching, stylesUrl, imagesUrl}) => (
+const Alternatives = ({recommendation, stylesUrl, imagesUrl}) => (
     <section id="lmem--alternatives--root" style={styles}>
         <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css' />
         <link rel="stylesheet" href={stylesUrl} />
@@ -17,11 +17,11 @@ const Alternatives = ({matching, stylesUrl, imagesUrl}) => (
             <div className="wrapperframe">
                 <div className="mainframe"><div className="mainframe-inner">
                     <div className="highlight">
-                        <p className="reco">{matching.description}</p>
+                        <p className="reco">{recommendation.description}</p>
                         <div className="button-directive">
-                            <a href={matching.alternatives[0].url} target="_blank" className="button with-image reco-button">
+                            <a href={recommendation.alternatives[0].url_to_redirect} target="_blank" className="button with-image reco-button">
                                 <img src={ imagesUrl + 'arrow.svg' } className="reco-picto" />
-                                <span className="button-label">{matching.alternatives[0].title}</span>
+                                <span className="button-label">{recommendation.alternatives[0].label}</span>
                             </a>
                         </div>
                     </div>
@@ -35,7 +35,7 @@ const Alternatives = ({matching, stylesUrl, imagesUrl}) => (
                         <div className="mainframe-inner">
                             <h1 className="lmem-topbar-title">
                                 { 'Le M' + String.fromCharCode(234) + 'me en Mieux selon ' }
-                                <strong>{matching.alternatives[0].contributor }</strong>
+                                <strong>Maarten Samson}</strong>
                             </h1>
                         </div>
                     </div>
@@ -80,7 +80,7 @@ const Alternatives = ({matching, stylesUrl, imagesUrl}) => (
 );
 
 Alternatives.propTypes = {
-    alternative: PropTypes.object.isRequired,
+    recommendation: PropTypes.object.isRequired,
     stylesUrl: PropTypes.string.isRequired,
     imagesUrl: PropTypes.string.isRequired,
 };

@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import SeeCurrentOffers from '../../components/Editor/SeeCurrentOffers';
-import AddOffers from '../../components/Editor/AddOffers';
 
 import * as alternativesActions from '../../actions/offers';
 
@@ -19,7 +18,6 @@ const mapDispatchToProps = (dispatch) => {
 
 const PopupApp = ({ store, actions }) => (
     <div style={{width: "600px"}}>
-        <AddOffers addOffers={actions.addOffers} />
         <SeeCurrentOffers store={store} actions={actions}  />
     </div>
 );

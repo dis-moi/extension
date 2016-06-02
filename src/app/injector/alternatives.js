@@ -51,10 +51,10 @@ class AlternativesInjector {
     }
 
     renderForTab(tabId, alternative) {
-        var alternativeTo = alternative.matchingOffers[0];
+        var recommendation = alternative.matchingOffers[0].recommendation;
         var stylesUrl = STYLES_URL + 'alt.css';
         return renderToStaticMarkup(
-            <Alternative matching={alternativeTo} stylesUrl={stylesUrl} imagesUrl={IMAGES_URL} />
+            <Alternative recommendation={recommendation} stylesUrl={stylesUrl} imagesUrl={IMAGES_URL} />
         )
     }
 }
