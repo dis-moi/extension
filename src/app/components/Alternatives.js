@@ -19,31 +19,44 @@ const Alternatives = ({recommendation, stylesUrl, imagesUrl}) => (
                 <div className="wrapperframe">
                     <header className="sideframe lmem-header">
                         <div className="query-summary summary-contributor">
-                            <div className="summary-detail-title">{ 'R' + String.fromCharCode(233) + 'sultats propos' + String.fromCharCode(233) + 's par' }</div>
-                            <div>
-                                <img src={ imagesUrl + "contributors/" + 1 + '.png' } />
-                                <p>Maarten Samson</p>
+                            <h2 className="reco-contributor-title">{ 'Recommandation propos' + String.fromCharCode(233) + 'e par' }</h2>
+                            <div className="reco-contributor-content">
+                                <img src={ imagesUrl + "contributors/maarten.jpg" } />
+                                <p>
+                                    <strong>Maarten Samson</strong>
+                                    <span>{ 'co-fondateur Le M' + String.fromCharCode(234) + 'me en Mieux.' }</span>
+                                </p>
                             </div>
                         </div>
                     </header>
-                    <div className="mainframe"><div className="mainframe-inner">
-                        <div className="highlight">
-                            <ul className="summary-tags">
-                                {recommendation.filters.map(filter => <li><b> {filter.label}</b></li>)}
-                            </ul>
-                            <div className="summary-reco-description">
-                                { recommendation.alternatives[0].description }
-                                <div className="button-directive">
-                                    <a className="button with-image" target="_blank" href={ recommendation.alternatives[0].url_to_redirect } >
-                                       <img src={ imagesUrl + 'arrow.svg' } className="picto" />
+                    <div className="mainframe"><section className="mainframe-inner">
+                        <a className="reco-summary-wrapper highlight" target="_blank" href={ recommendation.alternatives[0].url_to_redirect } >
+                            <header className="summary-header reco-summary-header">
+                               <h3 className="reco-summary-title">{ recommendation.title }</h3>
+                               <ul className="summary-tags">
+                                   {recommendation.filters.map(filter => <li><b className="tag"> {filter.label} </b></li>)}
+                               </ul>
+                            </header>
+                            <div className="reco-summary-content">
+                                <div className="reco-summary-content-innerwrapper">
+                                    <div className="reco-summary-description summary-description">
+                                        <p>{ recommendation.description }</p>
+                                    </div>
+                                    <div className="reco-summary-link-referral">
+                                        <img src={ imagesUrl + "logo-lmem-new.svg" } />
+                                        <span>{ recommendation.alternatives[0].url_to_redirect.replace(/^https?:\/\/(www.)?/, '') }</span>
+                                    </div>
+                                </div>
+                                <div className="summary-link-checkout-wrapper">
+                                    <a className="button summary-link-checkout with-right-arrow" target="_blank" href={ recommendation.alternatives[0].url_to_redirect } >
                                        <span className="button-label">
                                            { recommendation.alternatives[0].label }
                                        </span>
                                     </a>
                                 </div>
                             </div>
-                        </div>
-                    </div></div>
+                        </a>
+                    </section></div>
                 </div>
 
                 <aside className="lmem-topbar fixed">

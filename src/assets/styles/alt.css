@@ -1137,3 +1137,165 @@
       margin-left: 1ex; }
     #lmem--alternatives--root .with-image.button-compact img {
       margin-left: .5ex; }
+
+/*! Benjamin Menant | WTFPL */
+/*! Benjamin Menant | WTFPL */
+/**
+ * Libraries Imports
+ *
+ * =import
+ */
+/*! https://github.com/jjt/bower-solarized */
+/**
+ * Main Sizes
+ *
+ * =size
+ */
+/**
+ * Compute size with rem unit, relying upon
+ * the root font size without unit.
+ *
+ * @param   {number}    size    Size without unit.
+ * @return  {number}    Size in rem unit.
+ */
+/**
+ * Colors
+ *
+ * Use `$font-color` on `$background-color` for primary content.
+ * Use `$font-em-color` on `$background-em-color` for emphasized content.
+ * Use `$font-quiet-color` on `$background-color` for secondary content.
+ *
+ * =color
+ */
+/*! Benjamin Menant | WTFPL */
+/**
+ * Helpers
+ *
+ * =help
+ */
+#lmem--alternatives--root .tooltip-top > ::after, #lmem--alternatives--root .tooltip-bottom > ::after, #lmem--alternatives--root .tooltip-right > ::after, #lmem--alternatives--root .tooltip-left > ::after, #lmem--alternatives--root .tooltip-bottom-right > ::after, #lmem--alternatives--root .tooltip-bottom-left > ::after, #lmem--alternatives--root .tooltip-top-right > ::after, #lmem--alternatives--root .tooltip-top-left > ::after, #lmem--alternatives--root .summary-details tr:last-child .pane-opened::after, #lmem--alternatives--root .lmem-controls-tooltip > ::after, #lmem--alternatives--root .with-right-arrow::after, #lmem--alternatives--root .with-pane::after, #lmem--alternatives--root .with-double-pane::after, #lmem--alternatives--root .with-double-pane::before {
+  border-style: solid;
+  content: "";
+  display: block;
+  height: 0;
+  position: absolute;
+  width: 0; }
+
+/**
+ * Create an isoscele rectangular triangle.
+ *
+ * @param   {string.<'to top'|'to right'|'to bottom'|'to left'>}    $direction.
+ * @param   {lenght}    $size   Size of the two shortest sides of the triangle.
+ * @param   {color}     $color.
+ */
+.fixed {
+  position: fixed; }
+
+.hidden {
+  display: none !important;
+  visibility: hidden; }
+
+.visually-hidden, #lmem--alternatives--root .with-tooltip:not(:hover) .tooltip, #lmem--alternatives--root .with-tooltip.active .tooltip {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px; }
+  .visually-hidden.focusable:active, #lmem--alternatives--root .with-tooltip:not(:hover) .focusable.tooltip:active, #lmem--alternatives--root .with-tooltip.active .focusable.tooltip:active, .visually-hidden.focusable:focus, #lmem--alternatives--root .with-tooltip:not(:hover) .focusable.tooltip:focus, #lmem--alternatives--root .with-tooltip.active .focusable.tooltip:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto; }
+
+#lmem--alternatives--root .alternatives-searching-title, #lmem--alternatives--root .lmem-popup-title, #lmem--alternatives--root .lmem-noalt-title, #lmem--alternatives--root .lmem-popup-content h1, #lmem--alternatives--root .lmem-noalt-content h1, #lmem--alternatives--root .lmem-topbar-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.875rem;
+  margin-bottom: 0.9375rem; }
+
+#lmem--alternatives--root .reco-summary-wrapper.highlight, #lmem--alternatives--root .reco-summary-wrapper.popup-highlight {
+  display: block;
+  margin: -0.0625rem;
+  text-decoration: none;
+  line-height: 1.25rem;
+  border: solid 0.0625rem #FFFDF9; }
+  #lmem--alternatives--root .reco-summary-wrapper.highlight:hover, #lmem--alternatives--root .reco-summary-wrapper.popup-highlight:hover, #lmem--alternatives--root .reco-summary-wrapper.highlight:focus, #lmem--alternatives--root .reco-summary-wrapper.popup-highlight:focus, #lmem--alternatives--root .reco-summary-wrapper.highlight:active, #lmem--alternatives--root .reco-summary-wrapper.popup-highlight:active {
+    color: #586E75;
+    border-color: #4c99d2; }
+#lmem--alternatives--root .reco-summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline; }
+#lmem--alternatives--root .reco-summary-title {
+  font-size: 1.125rem;
+  font-weight: 500; }
+#lmem--alternatives--root .summary-tags {
+  display: flex; }
+#lmem--alternatives--root .tag {
+  border-radius: 0.125rem;
+  margin-left: 0.4375rem;
+  color: #FFFDF9;
+  display: inline-block;
+  padding: 0 1ex; }
+#lmem--alternatives--root .tag-health {
+  background-color: #2aa198; }
+#lmem--alternatives--root .tag-quality {
+  background-color: #4c99d2; }
+#lmem--alternatives--root .tag-ecology {
+  background-color: #859900; }
+#lmem--alternatives--root .tag-alert {
+  background-color: #f14621; }
+#lmem--alternatives--root .tag-local {
+  background-color: #f68714; }
+#lmem--alternatives--root .tag-price {
+  background-color: #d33682; }
+#lmem--alternatives--root .tag-ethics {
+  background-color: #002B36; }
+#lmem--alternatives--root .reco-summary-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end; }
+#lmem--alternatives--root .reco-summary-content-innerwrapper {
+  overflow: hidden; }
+#lmem--alternatives--root .reco-summary-link-referral {
+  display: flex;
+  align-items: center;
+  color: #93A1A1;
+  text-decoration: underline; }
+  #lmem--alternatives--root .reco-summary-link-referral:hover {
+    color: #4c99d2; }
+  #lmem--alternatives--root .reco-summary-link-referral span {
+    overflow: hidden;
+    margin-right: 0.9375rem;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+    @media (max-width: 84.9375rem) {
+      #lmem--alternatives--root .reco-summary-link-referral span {
+        max-width: 30rem; } }
+  #lmem--alternatives--root .reco-summary-link-referral img {
+    height: 1.25rem;
+    margin-right: 1ex; }
+#lmem--alternatives--root .summary-link-checkout-wrapper {
+  flex: 0 0 auto;
+  line-height: 1.875rem;
+  align-self: flex-end; }
+#lmem--alternatives--root .summary-link-checkout {
+  padding-right: 4ex; }
+#lmem--alternatives--root .with-right-arrow::after {
+  top: 25%; }
+#lmem--alternatives--root .reco-contributor-title {
+  font-weight: 600;
+  margin-bottom: 0.4375rem; }
+#lmem--alternatives--root .reco-contributor-content img {
+  float: left;
+  margin: 0 0.4375rem 0.4375rem 0;
+  max-height: 3.75rem;
+  max-width: 5.625rem;
+  border-radius: 0.125rem;
+  box-shadow: 0 0 0.625rem -0.3125rem #002B36; }
