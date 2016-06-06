@@ -34,7 +34,7 @@ const Alternatives = ({recommendation, stylesUrl, imagesUrl}) => (
                             <header className="summary-header reco-summary-header">
                                <h3 className="reco-summary-title">{ recommendation.title }</h3>
                                <ul className="summary-tags">
-                                   {recommendation.filters.map(filter => <li><b className="tag"> {filter.label} </b></li>)}
+                                   {recommendation.filters.map(filter => <li><b className={ 'tag tag-' + filter.label }> {filter.description} </b></li>)}
                                </ul>
                             </header>
                             <div className="reco-summary-content">
@@ -65,7 +65,7 @@ const Alternatives = ({recommendation, stylesUrl, imagesUrl}) => (
                         <div className="mainframe">
                             <div className="mainframe-inner">
                                 <h1 className="lmem-topbar-title">
-                                    { 'Le M' + String.fromCharCode(234) + 'me en Mieux' }
+                                    <strong>{ 'Le M' + String.fromCharCode(234) + 'me en Mieux' }</strong>
                                 </h1>
                             </div>
                         </div>
