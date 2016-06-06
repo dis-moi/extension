@@ -928,8 +928,8 @@
     flex: 1 1 auto;
     margin-left: 3.75rem; }
   #lmem--alternatives--root .lmem-topbar-title {
-    line-height: inherit;
-    margin-bottom: inherit; }
+    line-height: inherit !important;
+    margin-bottom: inherit !important; }
     #lmem--alternatives--root .lmem-topbar-title strong {
       color: #f68714; }
   #lmem--alternatives--root .lmem-topbar {

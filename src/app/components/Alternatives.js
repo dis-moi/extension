@@ -48,11 +48,11 @@ const Alternatives = ({recommendation, stylesUrl, imagesUrl}) => (
                                     </div>
                                 </div>
                                 <div className="summary-link-checkout-wrapper">
-                                    <a className="button summary-link-checkout with-right-arrow" target="_blank" href={ recommendation.alternatives[0].url_to_redirect } >
+                                    <span className="button summary-link-checkout with-right-arrow" target="_blank" href={ recommendation.alternatives[0].url_to_redirect } >
                                        <span className="button-label">
                                            { recommendation.alternatives[0].label }
                                        </span>
-                                    </a>
+                                    </span>
                                 </div>
                             </div>
                         </a>
