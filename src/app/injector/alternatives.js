@@ -28,6 +28,8 @@ class AlternativesInjector {
                     iframe.height = '225px'; \
                     iframe.style.position = 'fixed'; \
                     iframe.style.bottom = '0px'; \
+                    iframe.style.left = '0px'; \
+                    iframe.style.right = '0px'; \
                     iframe.style.zIndex = '999999999'; \
                     iframe.onload = function() { \
                       var doc = iframe.contentDocument || iframe.contentWindow.document; \
