@@ -1,16 +1,16 @@
 import React, { Component, PropTypes } from 'react';
-
+import Loader from './Loader';
 
 const styles = {
-    position: "fixed",
+    position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    minHeight: '225px',
-    zIndex: 99999,
+    top: 0
 };
 
 const Alternatives = ({recommendation, stylesUrl, imagesUrl}) => (
+    <div>
         <section id="lmem--alternatives--root" style={styles}>
             <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css' />
             <link rel="stylesheet" href={stylesUrl} />
@@ -90,7 +90,9 @@ const Alternatives = ({recommendation, stylesUrl, imagesUrl}) => (
 
             </div>
         </section>
-    );
+        <Loader imagesUrl={ imagesUrl } />
+    </div>
+);
 
 Alternatives.propTypes = {
     recommendation: PropTypes.object.isRequired,
