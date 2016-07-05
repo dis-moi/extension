@@ -28,7 +28,7 @@
     "http://*/*",
     "https://*/*"
   ],
-  "content_security_policy": "default-src 'self'; script-src 'self' http://localhost:3000 'unsafe-eval'; connect-src http://app-71135a26-848c-4d68-8f41-a8045a5aac11.cleverapps.io http://localhost:3000 ws://localhost:3000 ws://localhost:35729; style-src * 'unsafe-inline'; img-src 'self' data:;",
+  "content_security_policy": "default-src 'self'; script-src 'self' http://localhost:3000 'unsafe-eval'; connect-src http://lmem-craft-backend.cleverapps.io http://localhost:3000 ws://localhost:3000 ws://localhost:35729; style-src * 'unsafe-inline'; img-src 'self' data:;",
   "web_accessible_resources": [
     "img/*",
     "styles/*",
