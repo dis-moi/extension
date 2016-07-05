@@ -9,3 +9,5 @@ www/**.*
 !www/.gitkeep
 plugins/
 platforms/
+.floo
+.flooignore
