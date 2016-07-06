@@ -11,6 +11,7 @@ export default baseConfig({
   },
   output: {
     path: path.join(__dirname, '../build/extension'),
+    publicPath: 'https://ui.lmem.net',
     sftp: {
       host: 'sftp.dc0.gpaas.net',
       user: '3249456',

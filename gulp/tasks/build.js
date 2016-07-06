@@ -1,7 +1,8 @@
 import gulp from 'gulp';
 import gutil from 'gulp-util';
 import webpack from 'webpack';
-import prodConfig from '../../webpack/extension.config';
+
+import extConfig from '../../webpack/extension.config';
 import appConfig from '../../webpack/app.config';
 import electronConfig from '../../webpack/electron.config';
 import webConfig from '../../webpack/web.config';
@@ -19,7 +20,7 @@ const build = (config, callback) => {
 };
 
 gulp.task('webpack:build:extension', (callback) => {
-  build(prodConfig, callback);
+  build(extConfig, callback);
 });
 gulp.task('webpack:build:app', (callback) => {
   build(appConfig, callback);
