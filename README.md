@@ -91,7 +91,6 @@ npm run build:extension
 npm run deploy:extension
 ```
 
-
 ## Build Firefox extension
 
 ```bash
