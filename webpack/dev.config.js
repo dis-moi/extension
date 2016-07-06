@@ -2,9 +2,11 @@ import path from 'path';
 import webpack from 'webpack';
 import baseConfig from './base.config';
 
+const host = 'localhost'
 const port = 3000;
+
 const entry = [
-  `webpack-dev-server/client?http://localhost:${port}`,
+  `webpack-dev-server/client?${host}:${port}`,
   'webpack/hot/only-dev-server'
 ];
 const srcPath = path.join(__dirname, '../src/browser/');
@@ -19,7 +21,11 @@ const config = baseConfig({
   },
   output: {
     path: path.join(__dirname, '../dev'),
-    publicPath: `http://localhost:${port}/`
+    publicPath: `http://${host}:${port}/`
+  },
+  globals: {
+    host: host,
+    port: port
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

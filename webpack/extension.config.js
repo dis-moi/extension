@@ -10,7 +10,12 @@ export default baseConfig({
     inject: [`${srcPath}extension/inject/`]
   },
   output: {
-    path: path.join(__dirname, '../build/extension')
+    path: path.join(__dirname, '../build/extension'),
+    sftp: {
+      host: 'sftp.dc0.gpaas.net',
+      user: '3249456',
+      remotePath: '/lamp0/web/vhosts/ui.lmem.net/htdocs/'
+    }
   },
   globals: {
     'process.env': {
