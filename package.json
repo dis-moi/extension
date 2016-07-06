@@ -19,7 +19,8 @@
     "lint": "eslint .",
     "test:app": "mocha --require test/app/setup.js --recursive test/app",
     "test:chrome": "npm run build:app && npm run build:extension && gulp test-chrome",
-    "test": "npm run test:app && npm run test:chrome"
+    "test": "npm run test:app && npm run test:chrome",
+    "deploy:extension": "gulp deploy:extension"
   },
   "bin": {
     "electron": "./node_modules/.bin/electron"
@@ -79,6 +80,7 @@
     "gulp-jade": "1.1.0",
     "gulp-mocha": "^2.2.0",
     "gulp-rename": "^1.2.2",
+    "gulp-sftp": "^0.1.5",
     "gulp-util": "^3.0.7",
     "gulp-zip": "^3.2.0",
     "jsdom": "^8.1.0",

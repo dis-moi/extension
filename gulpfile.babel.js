@@ -14,3 +14,4 @@ gulp.task('build:extension',
 gulp.task('build:app', ['webpack:build:app', 'views:build:app', 'copy:build:app']);
 gulp.task('build:firefox', ['copy:build:firefox']);
 gulp.task('test-chrome', ['chrome:test']);
+gulp.task('deploy:extension', ['sftp:deploy:extension']);

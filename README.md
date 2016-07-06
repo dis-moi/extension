@@ -83,6 +83,15 @@ npm run build:app
 npm run build:extension
 ```
 
+## Deploy Chrome extension to SFTP server
+
+```bash
+# deploys files from './build/extension' to the SFTP server
+# requires your ssh privatekey set up on the SFTP server side
+npm run deploy:extension
+```
+
+
 ## Build Firefox extension
 
 ```bash
