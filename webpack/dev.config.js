@@ -21,11 +21,9 @@ const config = baseConfig({
   },
   output: {
     path: path.join(__dirname, '../dev'),
-    publicPath: `http://${host}:${port}`
-  },
-  globals: {
     host: host,
-    port: port
+    port: port,
+    publicPath: `http://${host}:${port}`
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

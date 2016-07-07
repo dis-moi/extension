@@ -20,7 +20,8 @@ export default baseConfig({
   },
   globals: {
     'process.env': {
-      NODE_ENV: '"production"'
+      NODE_ENV: '"production"',
+      BACKEND_URL: 'http://lmem-craft-backend.cleverapps.io'
     }
   }
 });
