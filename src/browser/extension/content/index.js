@@ -13,14 +13,26 @@ import notify from 'redux-notify';
 import rootReducer from '../../../app/content/reducers';
 
 // reach back to background script
-//const backgroundPort = chrome.runtime.connect();
-//backgroundPort.onMessage.addListener( msg => console.log('message from background', msg))
+chrome.runtime.onConnect.addListener(function listener(portToBackground) {
+  portToBackground.onMessage.addListener(msg => {
+    console.log('message from background', msg);
+
+    const alternative = msg;
+    const recommendation = alternative.matchingOffers[0].recommendation;
+
+    console.log('recommandation in content', recommendation);
+    return true;
+  });
+
+
+
+  // only one connection is expected to happen
+  //chrome.runtime.onConnect.removeListener(listener);
+});
 
 
 // create redux store
 const store = createStore(rootReducer);
-
-console.log('YOYOYO lmem from content context');
 
 const styleURL = STYLES_URL + 'alt.css';
 const lmemContentContainerP = new Promise(resolve => {

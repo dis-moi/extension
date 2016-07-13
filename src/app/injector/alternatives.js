@@ -43,23 +43,36 @@ class AlternativesInjector {
     }*/
 
     renderForEachTab(state) {
-        setTimeout(()=>{
-            _.forIn(state.matchingTabs, (value, key) => {
-                this.vAPI.tabs.injectScript(key, {
+        console.log('renderForEachTab');
+
+        _.forIn(state.matchingTabs, (alternative, tabId) => {
+            tabId = Number(tabId);
+
+            chrome.tabs.get(tabId, (tab) => {
+                console.log('before execute', tabId, tab.url);
+                this.vAPI.tabs.injectScript(tabId, {
                     code: this.contentCode,
                     runAt: 'document_end'
+                }, function(){
+                    const tabPort = chrome.tabs.connect(tabId);
+                    tabPort.onDisconnect.addListener(() => {
+                        console.log('port in background was disconnected for tab', tabId);
+                    })
+                    tabPort.postMessage(alternative);
                 });
-            });
-        }, 1500); //we wait for the Dom to be built
+            })
+            
+        });
+        
     }
 
-    renderForTab(tabId, alternative) {
+    /*renderForTab(tabId, alternative) {
         var recommendation = alternative.matchingOffers[0].recommendation;
         var stylesUrl = STYLES_URL + 'alt.css';
         return renderToStaticMarkup(
             <Alternative recommendation={recommendation} stylesUrl={stylesUrl} imagesUrl={IMAGES_URL} />
         )
-    }
+    }*/
 }
 
 export default AlternativesInjector;
