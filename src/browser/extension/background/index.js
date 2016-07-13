@@ -33,7 +33,7 @@ configureStore(store => {
   injector.init(vAPI, store);
 
   store.dispatch(dispatchInitialStateFromBackend()); //store initialization from the kraft server
-
+  
   if (process.env.NODE_ENV !== 'production') {
     require('./inject');
   }
