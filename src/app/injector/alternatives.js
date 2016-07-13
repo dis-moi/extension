@@ -45,6 +45,15 @@ class AlternativesInjector {
                 });";
     }*/
 
+    injectHeap(){
+         return 'console.log("Injecting heap analytics"); \
+                let injectScript= document.createElement("script"); \
+                injectScript.type = "text/javascript"; \
+                injectScript.async = true; \
+                injectScript.src = "https://ui.lmem.net/js/heap.js"; \
+                document.getElementsByTagName("head")[0].appendChild(injectScript);';
+    }
+
     renderForEachTab(state) {
         console.log('renderForEachTab');
 
@@ -59,13 +68,13 @@ class AlternativesInjector {
 
                 let tabPort = this.tabIdToPort.get(tabId);
                 console.log('tabPort for', tabId, tabPort);
-               
+
                 // Currently, renderForEachTab is called on every HTTP request
                 // On Chrome, when the user clicks, the HTTP request is triggered
                 // before the document unloads (and before the next loads obviously)
-                // Without this setTimeout, the script would be injected to the 
+                // Without this setTimeout, the script would be injected to the
                 // to-be-unloaded.
-                // See https://github.com/insitu-project/proto-ext/issues/14 for a 
+                // See https://github.com/insitu-project/proto-ext/issues/14 for a
                 // potentially more robust solution
                 setTimeout(() => {
                     console.log('before execute', tabId, tab.url);
@@ -84,12 +93,16 @@ class AlternativesInjector {
                         tabPort.postMessage({type: 'init', style: this.style});
                         tabPort.postMessage({type: 'alternative', alternative});
                     });
+                    this.vAPI.tabs.injectScript(tabId, {
+                        code: this.injectHeap(),
+                        runAt: 'document_end'
+                    });
                 }, 1500);
-                
+
             })
-            
+
         });
-        
+
     }
 
     /*renderForTab(tabId, alternative) {
