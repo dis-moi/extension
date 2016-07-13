@@ -6,7 +6,7 @@ const host = 'localhost'
 const port = 3000;
 
 const entry = [
-  `webpack-dev-server/client?${host}:${port}`,
+  `webpack-dev-server/client?$http://{host}:${port}`,
   'webpack/hot/only-dev-server'
 ];
 const srcPath = path.join(__dirname, '../src/browser/');
