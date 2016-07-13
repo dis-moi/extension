@@ -12,28 +12,40 @@ import thunk from 'redux-thunk';
 import notify from 'redux-notify';
 import rootReducer from '../../../app/content/reducers';
 
+// reach back to background script
+//const backgroundPort = chrome.runtime.connect();
+//backgroundPort.onMessage.addListener( msg => console.log('message from background', msg))
+
+
 // create redux store
 const store = createStore(rootReducer);
 
-
 console.log('YOYOYO lmem from content context');
 
+const styleURL = STYLES_URL + 'alt.css';
+const lmemContentContainerP = new Promise(resolve => {
+  const iframe = document.createElement('iframe');
+  iframe.id = 'lmemFrame';
+  iframe.width = '100%';
+  iframe.height = '255px';
+  iframe.style.position = 'fixed';
+  iframe.style.bottom = '0px';
+  iframe.style.left = '0px';
+  iframe.style.right = '0px';
+  iframe.style.zIndex = '999999999';
+  iframe.srcdoc = '<!doctype><html><head><meta charset="utf-8"><link rel=stylesheet src='+styleURL+'></head><body/></html>';
+  iframe.onload = function() {
+    resolve(iframe.contentDocument.body)
+  };
+  document.body.appendChild(iframe);
+})
 
 configureStore(store => {
 
-  window.addEventListener('load', () => {
-    let injectDiv = document.createElement('div');
-    injectDiv.style.margin = '0 auto';
-    injectDiv.style.padding = '10px 0';
-    injectDiv.style.width = '210px';
-    injectDiv.style.border = '1px solid #ccc';
-    injectDiv.style.textAlign = 'center';
-    injectDiv.className = 'crossbuilder';
-    document.body.appendChild(injectDiv);
-
+  lmemContentContainerP.then( lmemContentContainer => {
     render(
       <Root store={store} />,
-      injectDiv
+      lmemContentContainer
     );
   });
 

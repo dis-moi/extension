@@ -4,6 +4,7 @@ import matchingTabs from './matchingTabs'
 import counter from './counter';
 import extension from './extension';*/
 
-export default (
-    combineReducers({ })
-);
+export default function (state){
+    return state;
+    //combineReducers({ })
+};
