@@ -7,6 +7,11 @@ import listener from './../../../app/listeners';
 import injector from './../../../app/injector';
 import { dispatchInitialStateFromBackend } from './../../../app/actions/kraftBackend';
 
+// Load content code when the extension is loaded
+const contentCodeP = fetch('http://localhost:3000/js/content.bundle.js')
+.then( resp => resp.text() )
+
+
 configureStore(store => {
   window.store = store;
   // Expose the store to extension's windows
@@ -30,7 +35,7 @@ configureStore(store => {
   //createMenu();
   //initBadge(store.getState().counter.count);
   listener.init(vAPI, store);
-  injector.init(vAPI, store);
+  contentCodeP.then( contentCode => injector.init(vAPI, contentCode, store) );
 
   store.dispatch(dispatchInitialStateFromBackend()); //store initialization from the kraft server
 

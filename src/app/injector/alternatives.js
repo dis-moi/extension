@@ -7,8 +7,9 @@ import { STYLES_URL, IMAGES_URL } from 'app/constants/assetsUrls';
 
 class AlternativesInjector {
 
-    constructor(vAPI) {
+    constructor(vAPI, contentCode) {
         this.vAPI = vAPI;
+        this.contentCode = contentCode;
     }
 
     listen(store) {
@@ -17,7 +18,7 @@ class AlternativesInjector {
         });
     }
 
-    buildDom(component) {
+    /*buildDom(component) {
         return  "console.log('Prepare to inject'); \
                 function ready(f){ /in/.test(document.readyState) ? setTimeout(ready,90,f):f() }; \
                  ready(function() { \
@@ -39,14 +40,14 @@ class AlternativesInjector {
                     }; \
                     document.body.appendChild(iframe); \
                 });";
-    }
+    }*/
 
     renderForEachTab(state) {
         setTimeout(()=>{
             _.forIn(state.matchingTabs, (value, key) => {
                 this.vAPI.tabs.injectScript(key, {
-                    code: this.buildDom(this.renderForTab(key, value)),
-                    runAt: 'document_start'
+                    code: this.contentCode,
+                    runAt: 'document_end'
                 });
             });
         }, 1500); //we wait for the Dom to be built
