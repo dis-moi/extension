@@ -15,6 +15,7 @@ export default baseConfig({
     sftp: {
       host: 'sftp.dc0.gpaas.net',
       user: '3249456',
+      //keyLocation: "<path_to_my_custom_rsa_key>",
       remotePath: '/lamp0/web/vhosts/ui.lmem.net/htdocs/'
     }
   },

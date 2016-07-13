@@ -5,7 +5,7 @@ const serverUrl = 'http://lmem-craft-backend.cleverapps.io';
 
 function fetchAllMatchingContexts() {
     console.log('fetch');
-    return fetch(serverUrl + 'api/v1/matchingcontexts').then(response => {
+    return fetch(serverUrl + '/api/v1/matchingcontexts').then(response => {
         if (response.status >= 400) {
             throw new Error("Bad response from server");
         }
