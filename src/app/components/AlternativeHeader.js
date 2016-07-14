@@ -6,8 +6,6 @@ const AlternativeHeader = ({imagesUrl, reduced, onExtend, onReduce}) => {
         "lmem-controls-picto",
         reduced ? "lmem-controls-open" : "lmem-controls-close"
     ].join(' ');
-     
-        
 
     return (
     <header className="lmem-topbar fixed">
