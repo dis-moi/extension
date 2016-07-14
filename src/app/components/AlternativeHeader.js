@@ -1,6 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 
-const AlternativeHeader = ({imagesUrl}) => (
+const AlternativeHeader = ({imagesUrl, reduced, onExtend, onReduce}) => {
+    const buttonText = reduced ? 'Agrandir' : 'Réduire';
+    const buttonStyle = reduced ? {transform: 'scale(1, -1)'} : {};
+
+    return (
     <header className="lmem-topbar fixed">
         <div className="lmem-topbar-notification">
 
@@ -15,9 +19,9 @@ const AlternativeHeader = ({imagesUrl}) => (
 
         <div className="button-wrapper">
             <div className="button-directive">
-                <button title="Réduire" className="button button-compact with-image">
-                    <img src={ imagesUrl + 'arrow.svg' } className="lmem-controls-picto lmem-controls-close" />
-                    <span className="button-label">{ 'Réduire' }</span>
+                <button title={buttonText} className="button button-compact with-image" onClick={reduced ? onExtend : onReduce}>
+                    <img src={ imagesUrl + 'arrow.svg' } className="lmem-controls-picto lmem-controls-close" style={ buttonStyle }/>
+                    <span className="button-label">{buttonText}</span>
                 </button>
             </div>
         </div>
@@ -29,7 +33,7 @@ const AlternativeHeader = ({imagesUrl}) => (
             </span></span>
         </a>
     </header>
-);
+)};
 
 AlternativeHeader.propTypes = {
     stylesUrl: PropTypes.string.isRequired,

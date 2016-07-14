@@ -11,11 +11,11 @@ const styles = {
     top: 0
 };
 
-const Alternatives = ({recommendation, imagesUrl}) => recommendation ? (
+const Alternatives = ({recommendation, imagesUrl, reduced, onExtend, onReduce}) => recommendation ? (
     <div>
         <section id="lmem--alternatives--root" style={styles}>
-            <AlternativeHeader imagesUrl={imagesUrl} />
-            <AlternativeMain imagesUrl={imagesUrl} recommendation={recommendation}/>
+            <AlternativeHeader imagesUrl={imagesUrl} reduced={reduced} onExtend={onExtend} onReduce={onReduce} />
+            <AlternativeMain imagesUrl={imagesUrl} recommendation={recommendation} />
         </section>
     </div>
 ) : (<Loader imagesUrl={ imagesUrl } />);

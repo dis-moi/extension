@@ -1,17 +1,22 @@
 import { connect } from 'react-redux';
 
 import Alternative from '../components/Alternatives';
+import { reduce, extend } from '../content/actions/ui.js';
 
 import { IMAGES_URL } from 'app/constants/assetsUrls';
 
 function mapStateToProps(state) {
-
   return {
-    recommendation: state.alternative && state.alternative.matchingOffers[0].recommendation,
-    imagesUrl: IMAGES_URL
+    recommendation: state.get('alternative') && state.alternative.matchingOffers[0].recommendation,
+    imagesUrl: IMAGES_URL,
+    reduced: state.get('reduced')
   };
 }
+function mapDispatchToProps(dispatch){
+  return {
+    onReduce(){ dispatch(reduce()) },
+    onExtend(){ dispatch(extend()) }
+  }
+}
 
-//const mapDispatchToProps = alternativesActions; // { ...counterActions, ...};
-
-export default connect(mapStateToProps)(Alternative);
+export default connect(mapStateToProps, mapDispatchToProps)(Alternative);

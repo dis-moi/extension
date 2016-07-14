@@ -1,4 +1,4 @@
-import { ALTERNATIVE_FOUND } from '../../constants/ActionTypes';
+import { ALTERNATIVE_FOUND, REDUCE_ALTERNATIVE_IFRAME, EXTEND_ALTERNATIVE_IFRAME } from '../../constants/ActionTypes';
 
 export default function(state = {}, action) {
     const {type} = action 
@@ -6,8 +6,13 @@ export default function(state = {}, action) {
     switch (type) {
         case ALTERNATIVE_FOUND:
             const {alternative} = action;
-            state.alternative = alternative;
-            return state;
+            return state.set('alternative', alternative);
+
+        case REDUCE_ALTERNATIVE_IFRAME:
+            return state.set('reduced', true);
+
+        case EXTEND_ALTERNATIVE_IFRAME:
+            return state.set('reduced', false);
 
         default:
             return state;
