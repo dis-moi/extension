@@ -12,6 +12,9 @@ import thunk from 'redux-thunk';
 import notify from 'redux-notify';
 import rootReducer from '../../../app/content/reducers';
 
+console.log('Yo from content')
+
+
 // reach back to background script
 chrome.runtime.onConnect.addListener(function listener(portToBackground) {
   portToBackground.onMessage.addListener(msg => {
@@ -62,5 +65,4 @@ configureStore(store => {
   });
 
 }, false);
-
 

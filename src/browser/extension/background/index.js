@@ -8,7 +8,7 @@ import injector from './../../../app/injector';
 import { dispatchInitialStateFromBackend } from './../../../app/actions/kraftBackend';
 
 // Load content code when the extension is loaded
-const contentCodeP = fetch('http://localhost:3000/js/content.bundle.js')
+const contentCodeP = fetch('./js/content.bundle.js')
 .then( resp => resp.text() )
 
 

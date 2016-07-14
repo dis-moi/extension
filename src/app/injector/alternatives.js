@@ -10,6 +10,8 @@ class AlternativesInjector {
     constructor(vAPI, contentCode) {
         this.vAPI = vAPI;
         this.contentCode = contentCode;
+        console.log('contentCode', contentCode.length);
+        this.tabIdToPort = new Map();
     }
 
     listen(store) {
@@ -49,17 +51,37 @@ class AlternativesInjector {
             tabId = Number(tabId);
 
             chrome.tabs.get(tabId, (tab) => {
-                console.log('before execute', tabId, tab.url);
-                this.vAPI.tabs.injectScript(tabId, {
-                    code: this.contentCode,
-                    runAt: 'document_end'
-                }, function(){
-                    const tabPort = chrome.tabs.connect(tabId);
-                    tabPort.onDisconnect.addListener(() => {
-                        console.log('port in background was disconnected for tab', tabId);
-                    })
+                if(!tab){
+                    this.tabIdToPort.delete(tabId);
+                    return;
+                }
+
+                let tabPort = this.tabIdToPort.get(tabId);
+                console.log('tabPort for', tabId, tabPort);
+
+                if(tabPort){
                     tabPort.postMessage(alternative);
-                });
+                }
+                else{
+                    console.log('before execute', tabId, tab.url);
+                    this.vAPI.tabs.injectScript(tabId, {
+                        code: this.contentCode,
+                        runAt: 'document_end'
+                    }, () => {
+                        console.log('after execute');
+                        const tabPort = chrome.tabs.connect(tabId);
+                        tabPort.onDisconnect.addListener(() => {
+                            console.log('port in background was disconnected for tab', tabId);
+                            this.tabIdToPort.delete(tabId, tabPort);
+                        });
+
+                        this.tabIdToPort.set(tabId, tabPort);
+                        tabPort.postMessage(alternative);
+                    });
+                }
+
+
+                
             })
             
         });
