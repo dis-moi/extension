@@ -17,12 +17,12 @@ const Alternatives = ({recommendation, imagesUrl}) => !recommendation ? (<Loader
                 <div className="wrapperframe">
                     <header className="sideframe lmem-header">
                         <div className="query-summary summary-contributor">
-                            <h2 className="reco-contributor-title">{ 'Recommandation propos' + String.fromCharCode(233) + 'e par' }</h2>
+                            <h2 className="reco-contributor-title">{ 'Recommandation proposée par' }</h2>
                             <div className="reco-contributor-content">
                                 <img src={ imagesUrl + "contributors/maarten.jpg" } />
                                 <p>
                                     <strong>Maarten Samson</strong>
-                                    <span>{ 'co-fondateur Le M' + String.fromCharCode(234) + 'me en Mieux.' }</span>
+                                    <span>{ 'co-fondateur Le Même en Mieux.' }</span>
                                 </p>
                             </div>
                         </div>
@@ -63,7 +63,7 @@ const Alternatives = ({recommendation, imagesUrl}) => !recommendation ? (<Loader
                         <div className="mainframe">
                             <div className="mainframe-inner">
                                 <h1 className="lmem-topbar-title">
-                                    <strong>{ 'Le M' + String.fromCharCode(234) + 'me en Mieux' }</strong>
+                                    <strong>{ 'Le Même en Mieux' }</strong>
                                 </h1>
                             </div>
                         </div>
@@ -73,7 +73,7 @@ const Alternatives = ({recommendation, imagesUrl}) => !recommendation ? (<Loader
                         <div className="button-directive">
                             <a title="" target="" className="button button-compact with-image">
                                 <img src={ imagesUrl + 'arrow.svg' } className="lmem-controls-picto lmem-controls-close" />
-                                <span className="button-label">{ 'R' + String.fromCharCode(233) + 'duire' }</span>
+                                <span className="button-label">{ 'Réduire' }</span>
                             </a>
                         </div>
                     </div>
@@ -81,7 +81,7 @@ const Alternatives = ({recommendation, imagesUrl}) => !recommendation ? (<Loader
                     <a className="lmem-topbar-logo with-tooltip" href="">
                         <img src={ imagesUrl + 'logo-lmem.svg' } alt="" />
                         <span className="tooltip tooltip-right"><span>
-                            { 'R' + String.fromCharCode(233) + 'duire le panneau comparatif' }
+                            { 'Réduire le panneau comparatif' }
                         </span></span>
                     </a>
                 </aside>
