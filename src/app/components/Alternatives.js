@@ -9,7 +9,7 @@ const styles = {
     top: 0
 };
 
-const Alternatives = ({recommendation, stylesUrl, imagesUrl}) => (
+const Alternatives = ({recommendation, imagesUrl}) => !recommendation ? (<Loader imagesUrl={ imagesUrl } />) : (
     <div>
         <section id="lmem--alternatives--root" style={styles}>
 
@@ -88,7 +88,6 @@ const Alternatives = ({recommendation, stylesUrl, imagesUrl}) => (
 
             </div>
         </section>
-        <Loader imagesUrl={ imagesUrl } />
     </div>
 );
 

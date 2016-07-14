@@ -6,11 +6,10 @@ import configureStore from 'app/store/configureStore';
 import Alternative from 'app/components/Alternatives';
 import { STYLES_URL, IMAGES_URL } from 'app/constants/assetsUrls';
 
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore } from 'redux';
 
-import thunk from 'redux-thunk';
-import notify from 'redux-notify';
 import rootReducer from '../../../app/content/reducers';
+import alternativeFound from '../../../app/content/actions/alternatives';
 
 console.log('Yo from content');
 
@@ -60,9 +59,9 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
         break;
       case 'alternative':
         const {alternative} = msg;
-        const recommendation = alternative.matchingOffers[0].recommendation;
 
-        console.log('recommandation in content', recommendation);
+        console.log('alternative in content', alternative);
+        store.dispatch(alternativeFound(alternative));
         break;
       default:
         console.error('Content script: unrecognized message type from background', type, msg)
