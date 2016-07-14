@@ -7,9 +7,10 @@ import { STYLES_URL, IMAGES_URL } from 'app/constants/assetsUrls';
 
 class AlternativesInjector {
 
-    constructor(vAPI, contentCode) {
+    constructor(vAPI, contentCode, style) {
         this.vAPI = vAPI;
         this.contentCode = contentCode;
+        this.style = style;
         console.log('contentCode', contentCode.length);
         this.tabIdToPort = new Map();
     }
@@ -60,7 +61,7 @@ class AlternativesInjector {
                 console.log('tabPort for', tabId, tabPort);
 
                 if(tabPort){
-                    tabPort.postMessage(alternative);
+                    tabPort.postMessage({type: 'alternative', alternative});
                 }
                 else{
                     console.log('before execute', tabId, tab.url);
@@ -76,7 +77,8 @@ class AlternativesInjector {
                         });
 
                         this.tabIdToPort.set(tabId, tabPort);
-                        tabPort.postMessage(alternative);
+                        tabPort.postMessage({type: 'init', style: this.style});
+                        tabPort.postMessage({type: 'alternative', alternative});
                     });
                 }
 

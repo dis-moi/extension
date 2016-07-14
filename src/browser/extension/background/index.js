@@ -10,7 +10,8 @@ import { dispatchInitialStateFromBackend } from './../../../app/actions/kraftBac
 // Load content code when the extension is loaded
 const contentCodeP = fetch('./js/content.bundle.js')
 .then( resp => resp.text() )
-
+const styleP = fetch('./styles/alt.css')
+.then( resp => resp.text() )
 
 configureStore(store => {
   window.store = store;
@@ -35,7 +36,8 @@ configureStore(store => {
   //createMenu();
   //initBadge(store.getState().counter.count);
   listener.init(vAPI, store);
-  contentCodeP.then( contentCode => injector.init(vAPI, contentCode, store) );
+  Promise.all([contentCodeP, styleP])
+  .then( ([contentCode, style]) => injector.init(vAPI, contentCode, style, store) );
 
   store.dispatch(dispatchInitialStateFromBackend()); //store initialization from the kraft server
 

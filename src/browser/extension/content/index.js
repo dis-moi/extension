@@ -12,19 +12,62 @@ import thunk from 'redux-thunk';
 import notify from 'redux-notify';
 import rootReducer from '../../../app/content/reducers';
 
-console.log('Yo from content')
+console.log('Yo from content');
 
+// create redux store
+const store = createStore(rootReducer);
 
 // reach back to background script
 chrome.runtime.onConnect.addListener(function listener(portToBackground) {
   portToBackground.onMessage.addListener(msg => {
     console.log('message from background', msg);
+    const {type} = msg;
 
-    const alternative = msg;
-    const recommendation = alternative.matchingOffers[0].recommendation;
+    switch(type){
+      case 'init': 
+        const {style} = msg;
+        const lmemContentContainerP = new Promise(resolve => {
+        const iframe = document.createElement('iframe');
+        iframe.id = 'lmemFrame';
+        iframe.width = '100%';
+        iframe.height = '255px';
+        iframe.style.position = 'fixed';
+        iframe.style.bottom = '0px';
+        iframe.style.left = '0px';
+        iframe.style.right = '0px';
+        iframe.style.zIndex = '999999999';
+        iframe.srcdoc = `<!doctype html>
+          <html>
+            <head>
+              <meta charset="utf-8">
+              <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css' />
+              <style>`+style+`</style>
+            </head>
+            <body style="background: white;">
+          </html>`;
+        iframe.onload = function() {
+          resolve(iframe.contentDocument.body)
+        };
+        document.body.appendChild(iframe);
+      })
 
-    console.log('recommandation in content', recommendation);
-    return true;
+      lmemContentContainerP.then( lmemContentContainer => {
+        render(
+          <Root store={store} />,
+          lmemContentContainer
+        );
+      });
+        break;
+      case 'alternative':
+        const {alternative} = msg;
+        const recommendation = alternative.matchingOffers[0].recommendation;
+
+        console.log('recommandation in content', recommendation);
+        break;
+      default:
+        console.error('Content script: unrecognized message type from background', type, msg)
+    }
+
   });
 
 
@@ -34,35 +77,7 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
 });
 
 
-// create redux store
-const store = createStore(rootReducer);
 
-const styleURL = STYLES_URL + 'alt.css';
-const lmemContentContainerP = new Promise(resolve => {
-  const iframe = document.createElement('iframe');
-  iframe.id = 'lmemFrame';
-  iframe.width = '100%';
-  iframe.height = '255px';
-  iframe.style.position = 'fixed';
-  iframe.style.bottom = '0px';
-  iframe.style.left = '0px';
-  iframe.style.right = '0px';
-  iframe.style.zIndex = '999999999';
-  iframe.srcdoc = '<!doctype><html><head><meta charset="utf-8"><link rel=stylesheet src='+styleURL+'></head><body/></html>';
-  iframe.onload = function() {
-    resolve(iframe.contentDocument.body)
-  };
-  document.body.appendChild(iframe);
-})
 
-configureStore(store => {
 
-  lmemContentContainerP.then( lmemContentContainer => {
-    render(
-      <Root store={store} />,
-      lmemContentContainer
-    );
-  });
-
-}, false);
 
