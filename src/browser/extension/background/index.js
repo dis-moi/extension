@@ -4,7 +4,7 @@ import initBadge from './badge';
 
 import vAPI from './../../../vapi/chromeBackground'
 import listener from './../../../app/listeners';
-import injector from './../../../app/injector';
+import AlternativesInjector from './../../../app/injector';
 import { dispatchInitialStateFromBackend } from './../../../app/actions/kraftBackend';
 
 // Load content code when the extension is loaded
@@ -37,7 +37,7 @@ configureStore(store => {
   //initBadge(store.getState().counter.count);
   listener.init(vAPI, store);
   Promise.all([contentCodeP, styleP])
-  .then( ([contentCode, style]) => injector.init(vAPI, contentCode, style, store) );
+  .then( ([contentCode, style]) => new AlternativesInjector(vAPI, contentCode, style, store) );
 
   store.dispatch(dispatchInitialStateFromBackend()); //store initialization from the kraft server
 
