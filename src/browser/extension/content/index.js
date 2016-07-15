@@ -20,6 +20,8 @@ const IFRAME_REDUCED_HEIGHT = '60px';
 const store = createStore(
   rootReducer,
   new Record({
+    open: true,
+    keepClosedForSomeTime: false,
     reduced: false,
     alternative: undefined
   })(),
@@ -60,7 +62,19 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
         document.body.appendChild(iframe);
 
         store.subscribe(() => {
-          iframe.height = store.getState().get('reduced') ? IFRAME_REDUCED_HEIGHT : IFRAME_EXTENDED_HEIGHT;
+          const state = store.getState();
+
+          if(!state.get('open')){
+            iframe.remove();
+            if(state.get('keepClosedForSomeTime')){
+              console.log('keepClosedForSomeTime');
+            }
+          }
+          else{
+            iframe.height = state.get('reduced') ? IFRAME_REDUCED_HEIGHT : IFRAME_EXTENDED_HEIGHT;
+
+          }
+
         })
       })
 
