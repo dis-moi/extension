@@ -7,7 +7,7 @@ export default baseConfig({
     background: [`${srcPath}extension/background/`],
     window: [`${srcPath}window/`],
     popup: [`${srcPath}extension/popup/`],
-    inject: [`${srcPath}extension/inject/`]
+    content: [`${srcPath}extension/content/`]
   },
   output: {
     path: path.join(__dirname, '../build/extension'),

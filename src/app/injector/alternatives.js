@@ -7,8 +7,12 @@ import { STYLES_URL, IMAGES_URL } from 'app/constants/assetsUrls';
 
 class AlternativesInjector {
 
-    constructor(vAPI) {
+    constructor(vAPI, contentCode, style) {
         this.vAPI = vAPI;
+        this.contentCode = contentCode;
+        this.style = style;
+        console.log('contentCode', contentCode.length);
+        this.tabIdToPort = new Map();
     }
 
     listen(store) {
@@ -17,7 +21,7 @@ class AlternativesInjector {
         });
     }
 
-    buildDom(component) {
+    /*buildDom(component) {
         return  "console.log('Prepare to inject'); \
                 function ready(f){ /in/.test(document.readyState) ? setTimeout(ready,90,f):f() }; \
                  ready(function() { \
@@ -39,26 +43,60 @@ class AlternativesInjector {
                     }; \
                     document.body.appendChild(iframe); \
                 });";
-    }
+    }*/
 
     renderForEachTab(state) {
-        setTimeout(()=>{
-            _.forIn(state.matchingTabs, (value, key) => {
-                this.vAPI.tabs.injectScript(key, {
-                    code: this.buildDom(this.renderForTab(key, value)),
-                    runAt: 'document_start'
-                });
-            });
-        }, 1500); //we wait for the Dom to be built
+        console.log('renderForEachTab');
+
+        _.forIn(state.matchingTabs, (alternative, tabId) => {
+            tabId = Number(tabId);
+
+            chrome.tabs.get(tabId, (tab) => {
+                if(!tab){
+                    this.tabIdToPort.delete(tabId);
+                    return;
+                }
+
+                let tabPort = this.tabIdToPort.get(tabId);
+                console.log('tabPort for', tabId, tabPort);
+
+                if(tabPort){
+                    tabPort.postMessage({type: 'alternative', alternative});
+                }
+                else{
+                    console.log('before execute', tabId, tab.url);
+                    this.vAPI.tabs.injectScript(tabId, {
+                        code: this.contentCode,
+                        runAt: 'document_end'
+                    }, () => {
+                        console.log('after execute');
+                        const tabPort = chrome.tabs.connect(tabId);
+                        tabPort.onDisconnect.addListener(() => {
+                            console.log('port in background was disconnected for tab', tabId);
+                            this.tabIdToPort.delete(tabId, tabPort);
+                        });
+
+                        this.tabIdToPort.set(tabId, tabPort);
+                        tabPort.postMessage({type: 'init', style: this.style});
+                        tabPort.postMessage({type: 'alternative', alternative});
+                    });
+                }
+
+
+                
+            })
+            
+        });
+        
     }
 
-    renderForTab(tabId, alternative) {
+    /*renderForTab(tabId, alternative) {
         var recommendation = alternative.matchingOffers[0].recommendation;
         var stylesUrl = STYLES_URL + 'alt.css';
         return renderToStaticMarkup(
             <Alternative recommendation={recommendation} stylesUrl={stylesUrl} imagesUrl={IMAGES_URL} />
         )
-    }
+    }*/
 }
 
 export default AlternativesInjector;
