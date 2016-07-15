@@ -13,13 +13,7 @@ const baseConfig = ({ input, output = {}, globals = {}, plugins, loaders }) => (
     new webpack.DefinePlugin(globals),
     ...(plugins ||
     [
-      new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.UglifyJsPlugin({
-        comments: false,
-        compressor: {
-          warnings: false
-        }
-      })
+      new webpack.optimize.DedupePlugin()
     ])
   ],
   resolve: {

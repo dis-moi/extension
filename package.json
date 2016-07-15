@@ -11,6 +11,7 @@
     "build:extension": "gulp build:extension",
     "build:app": "gulp build:app",
     "build:firefox": "gulp build:firefox",
+    "build:dev": "gulp build:dev",
     "compress:electron": "npm run build:electron && gulp compress:electron",
     "compress:extension": "npm run build:extension && gulp compress:extension",
     "compress:app": "npm run build:app && gulp compress:app",
@@ -27,9 +28,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/zalmoxisus/browser-extension-boilerplate"
+    "url": "https://github.com/insitu-project/proto-ext"
   },
-  "homepage": "https://github.com/zalmoxisus/browser-extension-boilerplate",
+  "homepage": "http://www.lmem.net",
   "keywords": [
     "react",
     "reactjs",

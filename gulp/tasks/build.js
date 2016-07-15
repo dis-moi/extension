@@ -2,6 +2,7 @@ import gulp from 'gulp';
 import gutil from 'gulp-util';
 import webpack from 'webpack';
 
+import devConfig from '../../webpack/dev.config';
 import extConfig from '../../webpack/extension.config';
 import appConfig from '../../webpack/app.config';
 import electronConfig from '../../webpack/electron.config';
@@ -19,6 +20,9 @@ const build = (config, callback) => {
   });
 };
 
+gulp.task('webpack:build:dev', (callback) => {
+  build(devConfig, callback);
+});
 gulp.task('webpack:build:extension', (callback) => {
   build(extConfig, callback);
 });
@@ -34,3 +38,4 @@ gulp.task('webpack:build:web', (callback) => {
 gulp.task('webpack:build:cordova', (callback) => {
   build(cordovaConfig, callback);
 });
+

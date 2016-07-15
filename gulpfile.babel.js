@@ -2,9 +2,8 @@ import gulp from 'gulp';
 import requireDir from 'require-dir';
 requireDir('./gulp/tasks');
 
-gulp.task('default',
-  ['replace-webpack-code', 'webpack-dev-server', 'views:dev',
-    'copy:dev', 'views:watch', 'copy:watch']);
+gulp.task('default',['build:dev']);
+gulp.task('build:dev', ['webpack:build:dev', 'views:build:dev', 'copy:build:dev', 'copy:watch']);
 gulp.task('build:web', ['webpack:build:web', 'views:build:web', 'copy:build:web']);
 gulp.task('build:cordova', ['webpack:build:cordova', 'views:build:cordova', 'copy:build:cordova']);
 gulp.task('build:electron',

@@ -18,7 +18,7 @@ const compile = (dest, path, config = {}, env = 'prod') => () => {
     .pipe(gulp.dest(dest));
 };
 
-gulp.task('views:dev', compile('./dev', paths, devConfig, 'dev'));
+gulp.task('views:build:dev', compile('./dev', paths, devConfig, 'dev'));
 gulp.task('views:build:extension', compile('./build/extension', paths[0], extConfig));
 gulp.task('views:build:app', () => {
   compile('./build/app', paths[1], appConfig)();
