@@ -40,7 +40,10 @@ class AlternativeHeader extends Component {
         ) : undefined;
 
         const deactivateButtonOnClick = reduced ?
-            onDeactivateForSession :
+            e => onDeactivate({
+                where: DEACTIVATE_EVERYWHERE,
+                duration: SESSION_DEACTIVATE_DELAY
+            }) :
             e => this.setState({deactivateMenuOpen: !deactivateMenuOpen});
 
         return (

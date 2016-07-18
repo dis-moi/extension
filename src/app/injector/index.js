@@ -23,10 +23,17 @@ export default class AlternativesInjector {
     }
 
     renderForEachTab(state) {
-        let keepClosedUntil = state.preferences && new Date(Number(state.preferences.keepClosedUntil)) || Date.now();
+        const deactivatedEverywhereUntilPref =
+            state.preferences &&
+            state.preferences.deactivated &&
+            state.preferences.deactivated.deactivatedEverywhereUntil &&
+            new Date(state.preferences.deactivated.deactivatedEverywhereUntil);
+        const keepClosedUntil = deactivatedEverywhereUntilPref || Date.now();
+
+        const matchingTabs = state.matchingTabs || {};
 
         if(keepClosedUntil <= Date.now()){
-            _.forIn(state.matchingTabs, (alternative, tabId) => {
+            _.forIn(matchingTabs, (alternative, tabId) => {
                 tabId = Number(tabId);
 
                 chrome.tabs.get(tabId, (tab) => {
@@ -35,18 +42,7 @@ export default class AlternativesInjector {
                         return;
                     }
 
-                    let tabPort = this.tabIdToPort.get(tabId);
-                    console.log('tabPort for', tabId, tabPort);
-
-                    if(tabPort){
-                        // there is already a port for this tab, don't bother re-rendering
-                        return;
-                    }
-
-                    if(tabPort){
-                        tabPort.postMessage({type: 'alternative', alternative});
-                    }
-                    else{
+                    setTimeout(() => {
                         console.log('before execute', tabId, tab.url);
                         this.vAPI.tabs.injectScript(tabId, {
                             code: this.contentCode,
@@ -71,7 +67,8 @@ export default class AlternativesInjector {
                             tabPort.postMessage({type: 'init', style: this.style});
                             tabPort.postMessage({type: 'alternative', alternative});
                         });
-                    }
+                    }, 1500);
+                        
                 })
                 
             });
