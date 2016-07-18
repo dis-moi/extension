@@ -12,6 +12,7 @@ import { createStore } from 'redux';
 import rootReducer from '../../../app/content/reducers';
 import alternativeFound from '../../../app/content/actions/alternatives';
 import { deactivateForSomeTime } from '../../../app/content/actions/ui';
+import portCommunication from '../../../app/content/portCommunication';
 
 const IFRAME_EXTENDED_HEIGHT = '255px';
 const IFRAME_REDUCED_HEIGHT = '60px';
@@ -21,7 +22,6 @@ const store = createStore(
   rootReducer,
   new Record({
     open: true,
-    keepClosedForSomeTime: false,
     reduced: false,
     alternative: undefined
   })(),
@@ -29,6 +29,8 @@ const store = createStore(
 
 // reach back to background script
 chrome.runtime.onConnect.addListener(function listener(portToBackground) {
+  portCommunication.port = portToBackground;
+
   portToBackground.onMessage.addListener(msg => {
     // console.log('message from background', msg);
     const {type} = msg;
@@ -66,17 +68,9 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
 
           if(!state.get('open')){
             iframe.remove();
-            if(state.get('keepClosedForSomeTime')){
-              console.log('sending message')
-              portToBackground.postMessage({
-                type: 'redux-action',
-                action: deactivateForSomeTime()
-              })
-            }
           }
           else{
             iframe.height = state.get('reduced') ? IFRAME_REDUCED_HEIGHT : IFRAME_EXTENDED_HEIGHT;
-
           }
 
         })

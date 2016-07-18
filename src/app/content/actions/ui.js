@@ -1,4 +1,4 @@
-import { REDUCE_ALTERNATIVE_IFRAME, EXTEND_ALTERNATIVE_IFRAME, DEACTIVATE_FOR_SESSION, DEACTIVATE_FOR_SOME_TIME } from '../../constants/ActionTypes';
+import { REDUCE_ALTERNATIVE_IFRAME, EXTEND_ALTERNATIVE_IFRAME, DEACTIVATE } from '../../constants/ActionTypes';
 
 export function reduce() {
     return {
@@ -12,14 +12,14 @@ export function extend() {
     };
 }
 
-export function deactivateForSession() {
-    return {
-        type: DEACTIVATE_FOR_SESSION
-    };
-}
+export function deactivate(portCommunication) {
+    return details => {
+        const action = Object.assign(
+            { type: DEACTIVATE },
+            details
+        );
 
-export function deactivateForSomeTime() {
-    return {
-        type: DEACTIVATE_FOR_SOME_TIME
+        portCommunication.sendBackgroundReduxAction(action)
+        return action;
     };
 }
