@@ -12,7 +12,7 @@ const copy = (dest, manifest) => () => {
 
 const manifestDevSource = 'browser/extension/manifest.dev.json';
 
-gulp.task('copy:dev', copy('./dev', manifestDevSource));
+gulp.task('copy:build:dev', copy('./dev', manifestDevSource));
 gulp.task('copy:build:extension',
   copy('./build/extension', 'browser/extension/manifest.prod.json'));
 gulp.task('copy:build:app', copy('./build/app', 'chromeApp/manifest.json'));
@@ -34,5 +34,5 @@ gulp.task('copy:build:firefox', ['build:extension'], () => {
 });
 
 gulp.task('copy:watch', () => {
-  gulp.watch(`./src/${manifestDevSource}`, ['copy:dev']);
+  gulp.watch(`./src/${manifestDevSource}`, ['copy:build:dev']);
 });

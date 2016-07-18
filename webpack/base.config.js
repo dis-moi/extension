@@ -8,6 +8,7 @@ const baseConfig = ({ input, output = {}, globals = {}, plugins, loaders }) => (
     chunkFilename: 'js/[id].chunk.js',
     ...output
   },
+  globals: globals,
   plugins: [
     new webpack.DefinePlugin(globals),
     ...(plugins ||

@@ -83,6 +83,34 @@ npm run build:app
 npm run build:extension
 ```
 
+## Deploy Chrome extension to SFTP server
+
+### Set up your SSH keys
+
+First, set up your public ssh key on the SFTP server.
+Then, create a `.ftppass` config file as follow (using your own values,
+see [gulp-sftp](https://github.com/gtg092x/gulp-sftp) for details):
+
+```json
+{
+  "keyMain": {
+    "agent": "/run/user/1001/keyring/ssh",
+    "user": "jdoe",
+    "keyLocation": "/home/jdoe/.ssh/dev-rsa"
+  }
+}
+```
+
+Hint: to get the path of your ssh-agent’s socket,
+try something like `echo $SSH_AUTH_SOCK`.
+
+### Deploy
+
+```bash
+# deploys files from './build/extension' to the SFTP server
+npm run deploy:extension
+```
+
 ## Build Firefox extension
 
 ```bash

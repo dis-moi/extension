@@ -1,57 +1,17 @@
 import path from 'path';
-import webpack from 'webpack';
 import baseConfig from './base.config';
-
-const port = 3000;
-const entry = [
-  `webpack-dev-server/client?http://localhost:${port}`,
-  'webpack/hot/only-dev-server'
-];
 const srcPath = path.join(__dirname, '../src/browser/');
 
-const config = baseConfig({
+export default baseConfig({
   input: {
-    background: [`${srcPath}extension/background/`, ...entry],
-    window: [`${srcPath}window/`, ...entry],
-    popup: [`${srcPath}extension/popup/`, ...entry],
-    content: [`${srcPath}extension/content/`, ...entry],
-    app: [path.join(__dirname, '../src/app/'), ...entry]
+    background: [`${srcPath}extension/background/`],
+    window: [`${srcPath}window/`],
+    popup: [`${srcPath}extension/popup/`],
+    content: [`${srcPath}extension/content/`]
   },
+  plugins: {},
   output: {
     path: path.join(__dirname, '../dev'),
-    publicPath: `http://localhost:${port}/`
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
-  ],
-  loaders: [{
-    test: /\.js$/,
-    loader: 'babel',
-    exclude: /node_modules/,
-    query: {
-      presets: ['es2015', 'stage-0', 'react'],
-      plugins: [
-        'add-module-exports',
-        'transform-decorators-legacy',
-        [
-          'react-transform',
-          {
-            transforms: [{
-              transform: 'react-transform-hmr',
-              imports: ['react'],
-              locals: ['module']
-            }, {
-              transform: 'react-transform-catch-errors',
-              imports: ['react', 'redbox-react']
-            }]
-          }
-        ]
-      ]
-    }
-  }]
+    publicPath: '.'
+  }
 });
-
-config.devtool = 'eval';
-
-export default config;
