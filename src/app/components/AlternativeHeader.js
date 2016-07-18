@@ -1,4 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import { DEACTIVATE_EVERYWHERE, DEACTIVATE_WEBSITE_ALWAYS, SESSION_DEACTIVATE_DELAY } from '../constants/preferences';
+
+
 
 class AlternativeHeader extends Component {
 
@@ -11,7 +14,7 @@ class AlternativeHeader extends Component {
 
     render() {
         const {props, state} = this;
-        const {imagesUrl, reduced, onExtend, onReduce, onDeactivateForSession, onDeactivateForSomeTime} = props;
+        const {imagesUrl, reduced, onExtend, onReduce, onDeactivate} = props;
         const {deactivateMenuOpen} = state;
 
         const reduceButtonText = reduced ? 'Agrandir' : 'Réduire';
@@ -25,8 +28,14 @@ class AlternativeHeader extends Component {
 
         const deactivateMenu = deactivateMenuOpen ? (
             <div>
-                <button onClick={ onDeactivateForSomeTime }>Désactiver pour 30mins</button>
-                <button onClick={ onDeactivateForSession }>Désactiver pour la session</button>
+                <button onClick={ e => onDeactivate({
+                    where: DEACTIVATE_EVERYWHERE,
+                    duration: SESSION_DEACTIVATE_DELAY
+                }) }>Désactiver partout pour 30mins</button>
+                <button onClick={ e => onDeactivate({
+                    where: window.location && location.hostname,
+                    duration: DEACTIVATE_WEBSITE_ALWAYS
+                }) }>Désactiver pour ce site pour toujours</button>
             </div>
         ) : undefined;
 

@@ -11,7 +11,7 @@ const styles = {
     top: 0
 };
 
-const Alternatives = ({recommendation, imagesUrl, reduced, onExtend, onReduce, onDeactivateForSession, onDeactivateForSomeTime}) => recommendation ? (
+const Alternatives = ({recommendation, imagesUrl, reduced, onExtend, onReduce, onDeactivate}) => recommendation ? (
     <div>
         <section id="lmem--alternatives--root" style={styles}>
             <AlternativeHeader
@@ -19,8 +19,7 @@ const Alternatives = ({recommendation, imagesUrl, reduced, onExtend, onReduce, o
                 reduced={reduced} 
                 onExtend={onExtend} 
                 onReduce={onReduce} 
-                onDeactivateForSession={onDeactivateForSession} 
-                onDeactivateForSomeTime={onDeactivateForSomeTime}
+                onDeactivate={onDeactivate}
             />
             <AlternativeMain imagesUrl={imagesUrl} recommendation={recommendation} />
         </section>

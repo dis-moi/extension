@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 
 import Alternative from '../components/Alternatives';
-import { reduce, extend, deactivateForSession, deactivateForSomeTime } from '../content/actions/ui.js';
+import { reduce, extend, deactivate } from '../content/actions/ui.js';
 
 import { IMAGES_URL } from '../constants/assetsUrls';
+import portCommunication from 'app/content/portCommunication';
 
 function mapStateToProps(state) {
   return {
@@ -16,8 +17,7 @@ function mapDispatchToProps(dispatch){
   return {
     onReduce(){ dispatch(reduce()) },
     onExtend(){ dispatch(extend()) },
-    onDeactivateForSession(){ dispatch(deactivateForSession()) },
-    onDeactivateForSomeTime(){ dispatch(deactivateForSomeTime()) }
+    onDeactivate(details){ dispatch(deactivate(portCommunication)(details)) }
   }
 }
 
