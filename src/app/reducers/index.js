@@ -1,10 +1,9 @@
-import { MATCHING_OFFERS_FOUND, REMOVE_ALL_MATCHING_OFFERS, RECEIVED_MATCHING_CONTEXTS, DEACTIVATE_FOR_SOME_TIME } from '../constants/ActionTypes'
+import { MATCHING_OFFERS_FOUND, REMOVE_ALL_MATCHING_OFFERS, RECEIVED_MATCHING_CONTEXTS, DEACTIVATE } from '../constants/ActionTypes'
+import { DEACTIVATE_EVERYWHERE, DEACTIVATE_WEBSITE_ALWAYS } from '../constants/preferences'
 
 function tabIdForCurrentMatchingOffer(action) {
     return action.payload.context.request.tabId;
 }
-
-const DEACTIVATE_FOR_SOME_TIME_DELAY = 30*60*1000; // ms
 
 export default function(state = {}, action){
     const {type} = action;
@@ -27,14 +26,32 @@ export default function(state = {}, action){
             return Object.assign( {}, state, { matchingTabs: {} } );
         case RECEIVED_MATCHING_CONTEXTS:
             return Object.assign( {}, state, { offers: action.payload } );
-        case DEACTIVATE_FOR_SOME_TIME:
+        case DEACTIVATE:
+            const {where, duration} = action;
+            const deactivatedPref = state &&  state.preferences && state.preferences.deactivated || {};
+            let newDeactivatedPref;
+
+            if(where === DEACTIVATE_EVERYWHERE){
+                newDeactivatedPref = Object.assign(
+                    {}, deactivatedPref,
+                    {
+                        deactivatedEverywhereUntil: Date.now() + duration
+                    }
+                )
+            }
+            else{
+                deactivatedPref.deactivatedWebsites = new Set(deactivatedPref.deactivatedWebsites)
+                deactivatedPref.deactivatedWebsites.add(where);
+                newDeactivatedPref = deactivatedPref; // mutated
+            }
+
             return Object.assign(
                 {}, state,
                 { 
                     preferences: Object.assign(
                         {}, state.preferences,
                         {
-                            keepClosedUntil: Date.now() + DEACTIVATE_FOR_SOME_TIME_DELAY
+                            deactivated: newDeactivatedPref
                         }
                     )
                 }
