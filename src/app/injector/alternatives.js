@@ -59,11 +59,15 @@ class AlternativesInjector {
 
                 let tabPort = this.tabIdToPort.get(tabId);
                 console.log('tabPort for', tabId, tabPort);
-
-                if(tabPort){
-                    tabPort.postMessage({type: 'alternative', alternative});
-                }
-                else{
+               
+                // Currently, renderForEachTab is called on every HTTP request
+                // On Chrome, when the user clicks, the HTTP request is triggered
+                // before the document unloads (and before the next loads obviously)
+                // Without this setTimeout, the script would be injected to the 
+                // to-be-unloaded.
+                // See https://github.com/insitu-project/proto-ext/issues/14 for a 
+                // potentially more robust solution
+                setTimeout(() => {
                     console.log('before execute', tabId, tab.url);
                     this.vAPI.tabs.injectScript(tabId, {
                         code: this.contentCode,
@@ -80,9 +84,7 @@ class AlternativesInjector {
                         tabPort.postMessage({type: 'init', style: this.style});
                         tabPort.postMessage({type: 'alternative', alternative});
                     });
-                }
-
-
+                }, 1500);
                 
             })
             

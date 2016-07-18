@@ -11,8 +11,6 @@ import { createStore } from 'redux';
 import rootReducer from '../../../app/content/reducers';
 import alternativeFound from '../../../app/content/actions/alternatives';
 
-console.log('Yo from content');
-
 // create redux store
 const store = createStore(rootReducer);
 
