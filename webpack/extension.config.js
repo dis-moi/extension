@@ -13,9 +13,9 @@ export default baseConfig({
     path: path.join(__dirname, '../build/extension'),
     publicPath: 'https://ui.lmem.net',
     sftp: {
+      // See .ftppass https://github.com/gtg092x/gulp-sftp#authentication
+      auth: 'keyMain',
       host: 'sftp.dc0.gpaas.net',
-      user: '3249456',
-      //keyLocation: "<path_to_my_custom_rsa_key>",
       remotePath: '/lamp0/web/vhosts/ui.lmem.net/htdocs/'
     }
   },
