@@ -16,6 +16,8 @@ const contentCodeP = fetch('./js/content.bundle.js')
 const styleP = fetch('./styles/alt.css')
 .then( resp => resp.text() )
 
+import heap from './../../../lib/heap'
+
 configureStore(store => {
   window.store = store;
   // Expose the store to extension's windows
@@ -36,14 +38,12 @@ configureStore(store => {
     };
   };
 
-  //createMenu();
-  //initBadge(store.getState().counter.count);
   listener.init(vAPI, store);
   Promise.all([contentCodeP, styleP])
   .then( ([contentCode, style]) => injector.init(vAPI, contentCode, style, store) );
 
   store.dispatch(dispatchInitialStateFromBackend()); //store initialization from the kraft server
-  
+
   if (process.env.NODE_ENV !== 'production') {
     require('./inject');
   }

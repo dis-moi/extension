@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import notify from 'redux-notify';
 import rootReducer from '../reducers';
-import notifyEvents from '../events/notifyEvents';
+import trackEvents from '../events/trackEvents';
 
 export default function configureStore(callback, isBg) {
   let getState;
@@ -13,7 +13,7 @@ export default function configureStore(callback, isBg) {
     let enhancer;
     const middleware = [
       thunk,
-      notify(notifyEvents, { noReverse: true })
+      trackEvents
     ];
 
     if (process.env.NODE_ENV !== 'production') {
