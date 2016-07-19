@@ -7,6 +7,19 @@ const MAX_PAYLOAD_SIZE = 10000;
 
 /**
  * Logs all actions and states after they are dispatched.
+ * 
+ * We still have issues when the payload is too big and call to heap api returns:
+ * Failed to load resource: the server responded with a status of 414 (Request-URI Too Large)
+ *
+ * One solution could be to track specific events (with the trackSpecificEvents reducer).
+ *
+ * Another one could be to add try / catch block and just track the event in case the payload doesn't fit (still better than nothing).
+ *
+ * I tried to implement the try / catch in the reducer but it seems the API call itself is asynchronous and doesn't enter the catch block.
+ * 
+ * The solution I found for the moment is to check for the payload size before doing the API call, and if too big (arbitrary limit set) just send the event.
+ *
+ * Could be implemented in a much nicer way though.
  */
 const events = store => next => action => {
     // Check payload size to avoid HTTP 414 Request-URI Too Large url
