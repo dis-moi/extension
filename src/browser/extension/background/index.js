@@ -7,6 +7,9 @@ import listener from './../../../app/listeners';
 import injector from './../../../app/injector';
 import { dispatchInitialStateFromBackend } from './../../../app/actions/kraftBackend';
 
+import test from '../../../../test/integration/index.js';
+window.integrationTest = test;
+
 // Load content code when the extension is loaded
 const contentCodeP = fetch('./js/content.bundle.js')
 .then( resp => resp.text() )

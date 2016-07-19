@@ -3,4 +3,7 @@ doctype html
 html
   head
     include ./includes/devtools.jade
+
+    script(src='test/infrastructure/mocha/mocha.js')
+    script(src='test/infrastructure/WebConsole-mocha-reporter.js')
     script(src=config.output.publicPath + '/js/background.bundle.js')
