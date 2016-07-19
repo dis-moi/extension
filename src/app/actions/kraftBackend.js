@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import { RECEIVED_MATCHING_CONTEXTS } from '../constants/ActionTypes';
 
-const serverUrl = (false && process.env.NODE_ENV !== 'production') ? 'http://localhost:8000' : 'http://lmem-craft-backend.cleverapps.io';
+const serverUrl = 'http://lmem-craft-backend.cleverapps.io';
 
 function fetchAllMatchingContexts() {
     console.log('fetch');

@@ -1,3 +1,4 @@
+import { Record } from 'immutable';
 import React from 'react';
 import { render } from 'react-dom';
 import Root from 'app/containers/Root';
@@ -10,26 +11,35 @@ import { createStore } from 'redux';
 
 import rootReducer from '../../../app/content/reducers';
 import alternativeFound from '../../../app/content/actions/alternatives';
+import { REDUCE_ALTERNATIVE_IFRAME, EXTEND_ALTERNATIVE_IFRAME } from '../../../app/constants/ActionTypes.js';
 
-console.log('Yo from content');
+const IFRAME_EXTENDED_HEIGHT = '255px';
+const IFRAME_REDUCED_HEIGHT = '60px';
 
 // create redux store
-const store = createStore(rootReducer);
+const store = createStore(
+  rootReducer,
+  new Record({
+    reduced: false,
+    alternative: undefined
+  })(),
+);
 
 // reach back to background script
 chrome.runtime.onConnect.addListener(function listener(portToBackground) {
   portToBackground.onMessage.addListener(msg => {
-    console.log('message from background', msg);
+    // console.log('message from background', msg);
     const {type} = msg;
 
     switch(type){
       case 'init': 
         const {style} = msg;
+        const reduced = store.getState().get('reduced');
         const lmemContentContainerP = new Promise(resolve => {
         const iframe = document.createElement('iframe');
         iframe.id = 'lmemFrame';
         iframe.width = '100%';
-        iframe.height = '255px';
+        iframe.height = reduced ? IFRAME_REDUCED_HEIGHT : IFRAME_EXTENDED_HEIGHT;
         iframe.style.position = 'fixed';
         iframe.style.bottom = '0px';
         iframe.style.left = '0px';
@@ -48,6 +58,10 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
           resolve(iframe.contentDocument.body)
         };
         document.body.appendChild(iframe);
+
+        store.subscribe(() => {
+          iframe.height = store.getState().get('reduced') ? IFRAME_REDUCED_HEIGHT : IFRAME_EXTENDED_HEIGHT;
+        })
       })
 
       lmemContentContainerP.then( lmemContentContainer => {
@@ -60,7 +74,7 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
       case 'alternative':
         const {alternative} = msg;
 
-        console.log('alternative in content', alternative);
+        // console.log('alternative in content', alternative);
         store.dispatch(alternativeFound(alternative));
         break;
       default:
@@ -68,11 +82,6 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
     }
 
   });
-
-
-
-  // only one connection is expected to happen
-  //chrome.runtime.onConnect.removeListener(listener);
 });
 
 

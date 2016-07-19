@@ -11,6 +11,7 @@
     "build:extension": "gulp build:extension",
     "build:app": "gulp build:app",
     "build:firefox": "gulp build:firefox",
+    "build:dev": "gulp build:dev",
     "compress:electron": "npm run build:electron && gulp compress:electron",
     "compress:extension": "npm run build:extension && gulp compress:extension",
     "compress:app": "npm run build:app && gulp compress:app",
@@ -19,16 +20,17 @@
     "lint": "eslint .",
     "test:app": "mocha --require test/app/setup.js --recursive test/app",
     "test:chrome": "npm run build:app && npm run build:extension && gulp test-chrome",
-    "test": "npm run test:app && npm run test:chrome"
+    "test": "npm run test:app && npm run test:chrome",
+    "deploy:extension": "gulp deploy:extension"
   },
   "bin": {
     "electron": "./node_modules/.bin/electron"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/zalmoxisus/browser-extension-boilerplate"
+    "url": "https://github.com/insitu-project/proto-ext"
   },
-  "homepage": "https://github.com/zalmoxisus/browser-extension-boilerplate",
+  "homepage": "http://www.lmem.net",
   "keywords": [
     "react",
     "reactjs",
@@ -79,6 +81,7 @@
     "gulp-jade": "1.1.0",
     "gulp-mocha": "^2.2.0",
     "gulp-rename": "^1.2.2",
+    "gulp-sftp": "^0.1.5",
     "gulp-util": "^3.0.7",
     "gulp-zip": "^3.2.0",
     "jsdom": "^8.1.0",
@@ -101,14 +104,15 @@
     "chrome-storage-local": "^0.1.5",
     "crossmessaging": "^0.2.0",
     "es6-promise": "^3.2.1",
+    "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.2.1",
+    "lodash": "^4.13.1",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-redux": "^4.4.0",
     "redux": "^3.3.1",
     "redux-notify": "^0.1.1",
     "redux-persist": "^2.0.1",
-    "redux-thunk": "^2.0.1",
-    "lodash": "^4.13.1"
+    "redux-thunk": "^2.0.1"
   }
 }

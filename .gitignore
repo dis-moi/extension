@@ -11,3 +11,4 @@ plugins/
 platforms/
 .floo
 .flooignore
+.ftppass

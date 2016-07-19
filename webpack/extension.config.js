@@ -10,7 +10,14 @@ export default baseConfig({
     content: [`${srcPath}extension/content/`]
   },
   output: {
-    path: path.join(__dirname, '../build/extension')
+    path: path.join(__dirname, '../build/extension'),
+    publicPath: 'https://ui.lmem.net',
+    sftp: {
+      // See .ftppass https://github.com/gtg092x/gulp-sftp#authentication
+      auth: 'keyMain',
+      host: 'sftp.dc0.gpaas.net',
+      remotePath: '/lamp0/web/vhosts/ui.lmem.net/htdocs/'
+    }
   },
   globals: {
     'process.env': {
