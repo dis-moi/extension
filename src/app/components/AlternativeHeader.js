@@ -2,7 +2,12 @@ import React, { Component, PropTypes } from 'react';
 
 const AlternativeHeader = ({imagesUrl, reduced, onExtend, onReduce}) => {
     const buttonText = reduced ? 'Agrandir' : 'Réduire';
-    const buttonStyle = reduced ? {transform: 'scale(1, -1)'} : {};
+    const buttonButtonClassName = [
+        "lmem-controls-picto",
+        reduced ? "lmem-controls-open" : "lmem-controls-close"
+    ].join(' ');
+     
+        
 
     return (
     <header className="lmem-topbar fixed">
@@ -20,7 +25,7 @@ const AlternativeHeader = ({imagesUrl, reduced, onExtend, onReduce}) => {
         <div className="button-wrapper">
             <div className="button-directive">
                 <button title={buttonText} className="button button-compact with-image" onClick={reduced ? onExtend : onReduce}>
-                    <img src={ imagesUrl + 'arrow.svg' } className="lmem-controls-picto lmem-controls-close" style={ buttonStyle }/>
+                    <img src={ imagesUrl + 'arrow.svg' } className={ buttonButtonClassName } />
                     <span className="button-label">{buttonText}</span>
                 </button>
             </div>
