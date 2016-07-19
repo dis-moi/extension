@@ -11,7 +11,8 @@ import { createStore } from 'redux';
 
 import rootReducer from '../../../app/content/reducers';
 import alternativeFound from '../../../app/content/actions/alternatives';
-import { REDUCE_ALTERNATIVE_IFRAME, EXTEND_ALTERNATIVE_IFRAME } from '../../../app/constants/ActionTypes.js';
+import { deactivateForSomeTime } from '../../../app/content/actions/ui';
+import portCommunication from '../../../app/content/portCommunication';
 
 const IFRAME_EXTENDED_HEIGHT = '255px';
 const IFRAME_REDUCED_HEIGHT = '60px';
@@ -20,6 +21,7 @@ const IFRAME_REDUCED_HEIGHT = '60px';
 const store = createStore(
   rootReducer,
   new Record({
+    open: true,
     reduced: false,
     alternative: undefined
   })(),
@@ -27,6 +29,8 @@ const store = createStore(
 
 // reach back to background script
 chrome.runtime.onConnect.addListener(function listener(portToBackground) {
+  portCommunication.port = portToBackground;
+
   portToBackground.onMessage.addListener(msg => {
     // console.log('message from background', msg);
     const {type} = msg;
@@ -60,7 +64,15 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
         document.body.appendChild(iframe);
 
         store.subscribe(() => {
-          iframe.height = store.getState().get('reduced') ? IFRAME_REDUCED_HEIGHT : IFRAME_EXTENDED_HEIGHT;
+          const state = store.getState();
+
+          if(!state.get('open')){
+            iframe.remove();
+          }
+          else{
+            iframe.height = state.get('reduced') ? IFRAME_REDUCED_HEIGHT : IFRAME_EXTENDED_HEIGHT;
+          }
+
         })
       })
 
