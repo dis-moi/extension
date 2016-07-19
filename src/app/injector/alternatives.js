@@ -3,7 +3,7 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 import Alternative from 'app/components/Alternatives';
-import { STYLES_URL, IMAGES_URL } from 'app/constants/assetsUrls';
+import { STYLES_URL, IMAGES_URL } from '../constants/assetsUrls';
 
 class AlternativesInjector {
 
