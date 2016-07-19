@@ -14,7 +14,7 @@ const config = baseConfig({
     background: [`${srcPath}extension/background/`, ...entry],
     window: [`${srcPath}window/`, ...entry],
     popup: [`${srcPath}extension/popup/`, ...entry],
-    inject: [`${srcPath}extension/inject/`, ...entry],
+    content: [`${srcPath}extension/content/`, ...entry],
     app: [path.join(__dirname, '../src/app/'), ...entry]
   },
   output: {

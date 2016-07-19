@@ -9,11 +9,9 @@ const styles = {
     top: 0
 };
 
-const Alternatives = ({recommendation, stylesUrl, imagesUrl}) => (
+const Alternatives = ({recommendation, imagesUrl}) => !recommendation ? (<Loader imagesUrl={ imagesUrl } />) : (
     <div>
         <section id="lmem--alternatives--root" style={styles}>
-            <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css' />
-            <link rel="stylesheet" href={stylesUrl} />
 
             <div className="main">
                 <div className="wrapperframe">
@@ -90,7 +88,6 @@ const Alternatives = ({recommendation, stylesUrl, imagesUrl}) => (
 
             </div>
         </section>
-        <Loader imagesUrl={ imagesUrl } />
     </div>
 );
 

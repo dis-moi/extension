@@ -9,6 +9,12 @@ import { dispatchInitialStateFromBackend } from './../../../app/actions/kraftBac
 
 import heap from './../../../lib/heap'
 
+// Load content code when the extension is loaded
+const contentCodeP = fetch('./js/content.bundle.js')
+.then( resp => resp.text() )
+const styleP = fetch('./styles/alt.css')
+.then( resp => resp.text() )
+
 configureStore(store => {
   window.store = store;
   // Expose the store to extension's windows
@@ -30,7 +36,8 @@ configureStore(store => {
   };
 
   listener.init(vAPI, store);
-  injector.init(vAPI, store);
+  Promise.all([contentCodeP, styleP])
+  .then( ([contentCode, style]) => injector.init(vAPI, contentCode, style, store) );
 
   store.dispatch(dispatchInitialStateFromBackend()); //store initialization from the kraft server
   
