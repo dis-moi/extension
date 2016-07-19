@@ -7,6 +7,8 @@ import listener from './../../../app/listeners';
 import injector from './../../../app/injector';
 import { dispatchInitialStateFromBackend } from './../../../app/actions/kraftBackend';
 
+import heap from './../../../lib/heap'
+
 // Load content code when the extension is loaded
 const contentCodeP = fetch('./js/content.bundle.js')
 .then( resp => resp.text() )
@@ -33,14 +35,12 @@ configureStore(store => {
     };
   };
 
-  //createMenu();
-  //initBadge(store.getState().counter.count);
   listener.init(vAPI, store);
   Promise.all([contentCodeP, styleP])
   .then( ([contentCode, style]) => injector.init(vAPI, contentCode, style, store) );
 
   store.dispatch(dispatchInitialStateFromBackend()); //store initialization from the kraft server
-
+  
   if (process.env.NODE_ENV !== 'production') {
     require('./inject');
   }
