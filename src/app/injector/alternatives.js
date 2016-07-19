@@ -40,26 +40,13 @@ class AlternativesInjector {
                     document.body.appendChild(iframe); \
                 });";
     }
-
-    injectHeap(){
-         return 'console.log("Injecting heap analytics"); \
-                let injectScript= document.createElement("script"); \
-                injectScript.type = "text/javascript"; \
-                injectScript.async = true; \
-                injectScript.src = "https://ui.lmem.net/js/heap.js"; \
-                document.getElementsByTagName("head")[0].appendChild(injectScript);';
-    }
-
+    
     renderForEachTab(state) {
         setTimeout(()=>{
             _.forIn(state.matchingTabs, (value, key) => {
                 this.vAPI.tabs.injectScript(key, {
                     code: this.buildDom(this.renderForTab(key, value)),
                     runAt: 'document_start'
-                });
-                this.vAPI.tabs.injectScript(key, {
-                    code: this.injectHeap(),
-                    runAt: 'document_end'
                 });
             });
         }, 1500); //we wait for the Dom to be built
