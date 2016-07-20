@@ -12,6 +12,8 @@ class AlternativeHeader extends Component {
         };
     }
 
+    
+
     render() {
         const {props, state} = this;
         const {imagesUrl, reduced, onExtend, onReduce, onDeactivate} = props;
@@ -27,15 +29,24 @@ class AlternativeHeader extends Component {
         };
 
         const deactivateMenu = deactivateMenuOpen ? (
-            <div>
-                <button onClick={ e => onDeactivate({
-                    where: DEACTIVATE_EVERYWHERE,
-                    duration: SESSION_DEACTIVATE_DELAY
-                }) }>Désactiver partout pour 30mins</button>
-                <button onClick={ e => onDeactivate({
-                    where: window.location && location.hostname,
-                    duration: DEACTIVATE_WEBSITE_ALWAYS
-                }) }>Désactiver pour ce site pour toujours</button>
+            <div className="menu-wrapper menu-bottom-right">
+                <div className="menu-content">
+                    <ul className="menu-list">
+                        <li>
+                            <button onClick={ e => onDeactivate({
+                                where: DEACTIVATE_EVERYWHERE,
+                                duration: SESSION_DEACTIVATE_DELAY
+                            }) }>Désactiver partout pour 30mins
+                            </button>
+                        </li><li>
+                            <button onClick={ e => onDeactivate({
+                                where: window.location && location.hostname,
+                                duration: DEACTIVATE_WEBSITE_ALWAYS
+                            }) }>Désactiver pour ce site pour toujours
+                            </button>
+                        </li>
+                    </ul>
+                </div>
             </div>
         ) : undefined;
 
@@ -59,19 +70,26 @@ class AlternativeHeader extends Component {
                     </div>
                 </div>
 
-                <div className="button-wrapper">
-                    <div className="button-directive">
-                        <button title="désactiver" className="button button-compact with-image" onClick={deactivateButtonOnClick} style={deactivateButtonStyle}>
-                            <img src={ imagesUrl + 'power-symbol.svg' } className="lmem-controls-picto lmem-controls-close"/>
-                        </button>
-                    </div>
-                    { deactivateMenu }
-                </div>
+                <nav>
+                    <ul className="lmem-controls-list">
+                        <li className="with-menu">
+                            <div className="button-directive">
+                                <button title="désactiver" className="button button-compact"
+                                        onClick={deactivateButtonOnClick} style={deactivateButtonStyle}>
+                                    <img src={ imagesUrl + 'power.svg' }
+                                         className="lmem-controls-picto"/>
+                                </button>
+                            </div>
+                            <div className="menu-directive">{ deactivateMenu }</div>
+                        </li>
+                    </ul>
+                </nav>
 
                 <div className="button-wrapper">
                     <div className="button-directive">
-                        <button title={reduceButtonText} className="button button-compact with-image" onClick={reduced ? onExtend : onReduce}>
-                            <img src={ imagesUrl + 'arrow.svg' } className={ buttonButtonClassName } />
+                        <button title={reduceButtonText} className="button button-compact with-image"
+                                onClick={reduced ? onExtend : onReduce}>
+                            <img src={ imagesUrl + 'arrow.svg' } className={ buttonButtonClassName }/>
                             <span className="button-label">{reduceButtonText}</span>
                         </button>
                     </div>
@@ -88,8 +106,8 @@ class AlternativeHeader extends Component {
     }
 }
 
-AlternativeHeader.propTypes = {
-    stylesUrl: PropTypes.string.isRequired
-};
+// AlternativeHeader.propTypes = {
+//     stylesUrl: PropTypes.string.isRequired
+// };
 
 export default AlternativeHeader;
