@@ -1,0 +1,112 @@
+/*! Benjamin Menant | WTFPL */
+
+/**
+ * Libraries Imports
+ *
+ * =import
+ */
+
+@import 'colors';
+
+
+/**
+ * Main Sizes
+ *
+ * =size
+ */
+
+// Root font-size, without unit.
+$root-font-size-without-unit: 16;
+
+/**
+ * Compute size with rem unit, relying upon
+ * the root font size without unit.
+ *
+ * @param   {number}    size    Size without unit.
+ * @return  {number}    Size in rem unit.
+ */
+@function rem-size($size) {
+    @return $size / $root-font-size-without-unit * 1rem;
+}
+
+$block-size: rem-size(60);  // Equals 60px.
+
+$border-width: rem-size(1);         // Equals 1px.
+$heavy-border-width: rem-size(3);   // Equals 3px.
+
+$margin-size: rem-size(15); // Equals 15px.
+$adjusted-margin: $margin-size - $border-width; // Equals 14px.
+$half-adjusted-margin: $adjusted-margin / 2;    // Equals 7px.
+
+$simple-line-height: $margin-size;              // Equals 15px.
+$double-line-height: $simple-line-height * 2;   // Equals 30px.
+$triple-line-height: $double-line-height * 2;   // Equals 60px.
+
+$unreadable-font-size: rem-size(7);         // Eqyals 7px.
+$tiny-font-size: rem-size(10);              // Equals 10px.
+$simple-font-size: rem-size(13);            // Equals 13px.
+$midway-font-size: rem-size(18);            // Equals 18px.
+$double-font-size: $simple-font-size * 2;   // Equals 26px.
+
+// Square root of 2 used to compute the hypotenuse of a right isoscele triangle.
+$pythagoras-const: 1.41421;
+
+// Layout widths
+
+$global-width: rem-size(940);
+$sideframe-width: $global-width * 1/3;
+$controls-inner-width: $block-size * 1.5;
+
+// Media Query Thresholds
+$media-query-threshold-small: rem-size(955);
+$media-query-threshold-small-edge: rem-size(1075);
+$media-query-threshold-medium: rem-size(1200);
+$media-query-threshold-wide: rem-size(1360);
+
+
+/**
+ * Colors
+ *
+ * Use `$font-color` on `$background-color` for primary content.
+ * Use `$font-em-color` on `$background-em-color` for emphasized content.
+ * Use `$font-quiet-color` on `$background-color` for secondary content.
+ *
+ * =color
+ */
+
+// Brand colors.
+$red: #f14621;
+$orange: #f68714;
+$blue: #4c99d2;
+$green: #859900;
+$pink: #d33682;
+$seaweed: #2aa198;
+$violet: #6c71c4;
+
+
+// Font colors.
+$font-color: $solarized-00;         // #657b83
+$font-em-color: $solarized-01;      // #586e75
+$font-quiet-color: $solarized-1;    // #93a1a1
+
+// Background colors.
+$background-color: $solarized-3;    // #fdf6e3
+$background-em-color: $solarized-2; // #eee8d5
+$background-light-color: #FFFDF9;
+
+// Reverse colors.
+$reverse-background-color: $solarized-03;   // #002b36
+$reverse-font-color: $solarized-0;          // #839496
+
+// Borders color.
+$border-color: $background-em-color;
+$heavy-border-color: $font-color;
+
+// Action color.
+$action-color: $blue;
+
+// Highlight color.
+$highlight-color: $orange;
+
+// Others
+$topbar-border-color: transparentize($font-quiet-color, .7);

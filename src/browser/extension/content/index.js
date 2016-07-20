@@ -56,7 +56,7 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
               <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css' />
               <style>`+style+`</style>
             </head>
-            <body style="background: white;">
+            <body>
           </html>`;
         iframe.onload = function() {
           resolve(iframe.contentDocument.body)

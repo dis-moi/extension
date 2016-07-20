@@ -1,0 +1,1425 @@
+/*! Benjamin Menant | WTFPL */
+
+@import '_variables';
+@import '_helpers';
+
+@import '_tooltip.scss';
+
+/**
+ * Quick Reset
+ *
+ * =reset
+ */
+
+// Root element
+:root {
+    background-color: $background-color;
+    color: $font-color;
+    margin: 0;
+    overflow: hidden;
+    overflow-x: auto;
+    padding: $margin-size;
+}
+body {
+    font-family: Ubuntu, sans-serif;
+    font-size: $simple-font-size;
+    font-weight: 400;
+    line-height: $simple-line-height;
+}
+
+// Content elements
+p, ul, ol, li {
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+// Heading elements
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+// Table elements
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    empty-cells: hide;
+}
+caption,
+th {
+    font-weight: inherit;
+}
+th, td {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+// Links elements
+:link {
+    @extend %link;
+}
+:visited {
+    color: $font-color;
+}
+a:hover,
+a:focus,
+a:active {
+    &, &.no-visited {
+        color: $action-color;
+        text-decoration: truenone;
+    }
+}
+
+// Inline elements
+strong, b {
+    font-weight: inherit;
+}
+small {
+    color: $font-quiet-color;
+    font-size: inherit;
+}
+mark {
+    background-color: $background-em-color;
+    border-radius: rem-size(2);
+    color: $font-em-color;
+    padding: 0 .5ex;
+}
+
+// Others
+
+.highlight {
+    background: $background-light-color;
+    border-radius: rem-size(3);
+    margin-top: $margin-size;
+    padding: $margin-size;
+}
+
+
+/**
+ * Menus
+ *
+ * =menu
+ */
+
+.with-menu {
+    position: relative;
+}
+
+.menu-wrapper {
+    box-shadow: 0 0 rem-size(7) rem-size(-4) #000;
+    font-size: $simple-line-height;
+    position: absolute;
+    text-align: left;
+    width: 3 * $block-size;
+    z-index: 100;
+
+    & > div {
+        padding: 0 $half-adjusted-margin;
+    }
+}
+
+.menu-bottom-right {
+    right: 0;
+}
+
+.menu-bottom-left {
+    left: 0;
+}
+
+.menu-right {
+    left: calc(100% + #{ rem-size(3) });
+    top: 0;
+}
+
+.menu-left {
+    right: calc(100% + #{ rem-size(3) });
+    top: 0;
+}
+
+.menu-header {
+    background: $background-light-color;
+    border-radius: rem-size(3) rem-size(3) 0 0;
+    box-shadow: 0 rem-size(-6) rem-size(6) rem-size(-10) #000 inset;
+    display: flex;
+    font-weight: 500;
+}
+
+    .menu-title {
+        flex: 1 1 auto;
+    }
+
+    .menu-close-button {
+        @extend .close-button;
+    }
+
+    .menu-close-picto {
+        width: $simple-line-height;
+        vertical-align: middle;
+    }
+
+.menu-content {
+    background: $background-light-color;
+    border-radius: 0 0 rem-size(3) rem-size(3);
+}
+
+    .menu-list {
+        padding: $half-adjusted-margin 0;
+
+        & > li {
+            margin: 0;
+        }
+    }
+
+
+/**
+ * Main Layout
+ *
+ * =layout
+ */
+
+body {
+    margin: 0;
+    width: auto;
+}
+
+// Popup
+.lmem-popup-body {
+    min-width: 11 * $block-size;
+}
+
+// Tch2
+.tch2-body {
+    min-width: $global-width;
+    width: auto;
+}
+
+// The Side Frame contains the query summary
+// and the brand-service outlines.
+.sideframe {
+    flex: 0 1 auto;
+    width: $sideframe-width;
+}
+
+// The Main Frame contains the alternatives
+// excerpt and the alternatives panes.
+.mainframe {
+    flex: 20 1 0;
+}
+
+.mainframe-inner {
+    margin-left: $adjusted-margin;
+    padding-left: $margin-size;
+    border-left: $border-width solid $border-color;
+}
+
+// The wrapper frame manage side and main
+// frames together.
+.wrapperframe {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: $block-size;
+}
+
+
+/**
+ * Query Summary
+ *
+ * =querysum
+ */
+
+.query-summary {
+    font-size: $simple-font-size;
+    margin-top: $margin-size - $half-adjusted-margin;
+}
+
+.summary-entry {
+    display: flex;
+    margin-bottom: $margin-size;
+
+    b {
+        overflow: hidden;
+        margin-left: 1ex;
+        text-overflow: ellipsis;
+    }
+
+    strong {
+        font-weight: 900;
+    }
+}
+
+.summary-entry-content {
+    display: inline-flex;
+    overflow: hidden;
+    white-space: nowrap;
+
+    strong {
+        color: $highlight-color;
+    }
+}
+ul.summary-entry-content {
+    white-space: normal;
+    flex-wrap: wrap;
+
+    li {
+        margin-left: 1ex;
+    }
+}
+
+.summary-entry-title {
+    @extend %summary-title;
+    flex: 0 0 auto;
+}
+
+.lmem-header-title-tooltip {
+     max-width: rem-size(240);
+}
+
+
+/**
+ * Alternatives Summary
+ *
+ * =altsum
+ */
+
+.alternatives-summary-filter {
+    line-height: $double-line-height;
+
+    &, ul, li {
+        display: inline-block;
+    }
+
+    a:focus {
+        color: inherit;
+    }
+
+    a:hover {
+        color: $action-color;
+    }
+
+    .active a {
+        color: $highlight-color;
+    }
+
+    li:not(:last-child)::after {
+        content: '–';
+    }
+}
+
+.alternatives-summary-disclaimer {
+    float: right;
+    line-height: $double-line-height;
+}
+
+.alternatives-summary-noalt {
+    line-height: $double-line-height;
+}
+
+.alternatives-summary {
+    font-size: $simple-line-height;
+    line-height: $double-line-height;
+    table-layout: fixed;
+    text-align: center;
+    width: 100%;
+
+    col:first-child {
+        width: ($block-size * 2) - $margin-size;
+    }
+
+    col {
+        transition: background-color .3s;
+
+        &.pane-opened {
+            background-color: $background-light-color;
+        }
+    }
+
+    .button-deactivated {
+        background: none;
+        border: none;
+        box-shadow: none;
+        color: inherit;
+        text-shadow: none;
+
+        .with-pane::after {
+            content: none;
+        }
+    }
+}
+
+.summary-thumbnails,
+.summary-details,
+.summary-reminders {
+    td, th {
+        border-color: $heavy-border-color;
+        border-style: solid;
+        border-width: $border-width 0 0 $heavy-border-width;
+        padding: $half-adjusted-margin;
+
+        &:last-child {
+            border-right-width: $heavy-border-width;
+        }
+
+        &:first-child {
+            text-align: left;
+        }
+    }
+}
+
+.summary-details tr:last-child {
+    td, th {
+        border-bottom-width: $border-width;
+        padding-bottom: $half-adjusted-margin - $border-width; // adjustment * 2
+        position: relative;
+    }
+
+    .pane-opened::after {
+        @include iso-rect-triangle('to top', $simple-line-height, $heavy-border-color);
+        bottom: -$midway-font-size;
+        left: calc(50% - #{ $simple-line-height * $pythagoras-const / 2 });
+    }
+}
+
+.summary-reminders {
+    td {
+        border-width: 0 $heavy-border-width $border-width $heavy-border-width;
+    }
+
+    td + td {
+        border-right-width: 0;
+    }
+
+    .summary-reminder-empty {
+         empty-cells: show;
+         border-bottom-width: 0;
+
+         &:not(:first-child) {
+             border-left-width: $heavy-border-width;
+         }
+
+         & + .summary-reminder-empty,
+         &:nth-child(2) {
+             border-left-width: 0;
+         }
+
+         &:last-child {
+             border-right-width: 0;
+         }
+    }
+}
+
+.summary-detail-title {
+    @extend %summary-title;
+}
+
+
+/**
+ * Alternatives Panes
+ *
+ * =panes
+ */
+
+.alternatives-wrapper {
+    display: flex;
+
+    .alternatives {
+        flex: 1 1 0;
+        max-width: $block-size * 10;
+    }
+}
+
+.alternatives {
+    background: $background-light-color;
+    border: $border-width solid $heavy-border-color;
+    margin-left: 2 * $block-size - $margin-size;
+    margin-top: $margin-size;
+    position: relative;
+
+    & > div {
+        margin: $adjusted-margin 0 $adjusted-margin $adjusted-margin;
+        max-height: $simple-line-height * 9; // Equals 135px.
+        overflow: auto;
+    }
+    .alternative {
+        margin-right: $adjusted-margin;
+    }
+}
+
+.alternative {
+    padding: $half-adjusted-margin 0;
+
+    &:not(:last-child) {
+        border-bottom: $border-width solid $heavy-border-color;
+    }
+
+    &:last-child {
+        padding-bottom: $margin-size - $half-adjusted-margin;
+    }
+
+    & > div {
+        display: flex;
+    }
+}
+
+.alternative-tooltip {
+    display: inline-block;
+    max-width: rem-size(240);
+}
+
+.alternative-affiliation {
+    flex: 3 2 0;
+    line-height: $double-line-height;
+}
+
+.alternative-price {
+    flex: 1 2 0;
+    align-items: center;
+    display: flex;
+
+    strong {
+        font-size: $simple-line-height;
+        text-align: right;
+    }
+
+    &.featured {
+
+        strong {
+            flex: 1 1 0;
+        }
+
+        small {
+            flex: 1 2 0;
+            line-height: $simple-line-height;
+            padding-left: $half-adjusted-margin;
+            text-align: left;
+        }
+    }
+}
+
+.alternative-details {
+    flex: 3 2 0;
+    overflow: hidden;
+}
+
+.alternative-details-entity {
+    display: flex;
+    white-space: nowrap;
+}
+
+.alternative-time {
+    flex: 0 0 auto;
+    font-size: $simple-line-height;
+    font-weight: 500;
+}
+
+.alternative-city {
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &::before {
+        content: ' – '; // no-breakable space + dash + breakable space
+    }
+}
+
+.alternative-date {
+    font-weight: 600;
+}
+
+
+/**
+ * Alternatives Excerpts
+ * (at minified status)
+ *
+ * =excerpt
+ */
+
+.excerpt-entry {
+    align-items: center;
+    display: flex;
+    flex: 1 1 0;
+
+    &.alone {
+        flex: 2 1 0;
+    }
+
+    &:not(:last-child) {
+        border-right: $border-width solid $topbar-border-color;
+        margin-right: $margin-size;
+        padding-right: $adjusted-margin;
+    }
+
+    small {
+        display: inline-block;
+    }
+
+    strong {
+        font-weight: 500;
+    }
+}
+
+
+/**
+ * LMEM Searching Notification
+ *
+ * =search
+ */
+
+.alternatives-searching-title {
+    @extend %title;
+}
+
+.alternatives-searching-wrapper {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+}
+
+.alternatives-searching-content {
+    flex: 1 1 0;
+    font-size: $simple-line-height;
+    min-width: $block-size * 7;
+
+    b {
+        color: $font-em-color;
+    }
+}
+
+.alternatives-searching-progress {
+    border: $border-width solid $topbar-border-color;
+    flex: 1 1 0;
+    height: $double-line-height - 2 * $border-width;
+    margin-right: $margin-size;
+    overflow: hidden;
+    position: relative;
+    max-width: ($block-size * 3) - ($border-width * 2);
+
+    &::before {
+        animation-direction: alternate;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-name: searching-progress;
+        animation-timing-function: linear;
+        background-color: $orange;
+        background-clip: content-box;
+        border-right: $margin-size solid $orange;
+        border-left: $margin-size solid $orange;
+        bottom: $half-adjusted-margin;
+        content: '';
+        display: block;
+        padding: 0 $margin-size;
+        position: absolute;
+        top: $half-adjusted-margin;
+        width: $margin-size;
+    }
+}
+
+@keyframes searching-progress {
+    from {
+        left: -50%;
+    }
+    to {
+        left: 100%;
+    }
+}
+
+
+/**
+ * LMEM Footer
+ *
+ * =footer
+ */
+
+.lmem-footer {
+    bottom: $half-adjusted-margin;
+}
+
+.lmem-footer-wrapper {
+    align-items: center;
+    display: flex;
+}
+
+.lmem-footer-logo {
+    @extend %lmem-logo-button;
+}
+
+
+/**
+ * LMEM logo-button
+ */
+
+%lmem-logo-button {
+    flex: 0 0 auto;
+    margin-right: $half-adjusted-margin;
+
+    img {
+        width: $block-size - $margin-size;
+        vertical-align: top;
+    }
+}
+
+
+/**
+ * LMEM Popup
+ *
+ * =popup
+ */
+
+.lmem-popup-title {
+    @extend %title;
+
+    background: url('../images/logo-lmem.svg') no-repeat 0 0;
+    padding-left: $block-size;
+    display: flex;
+    flex-direction: column;
+
+    span {
+        font-weight: 600;
+    }
+
+    small {
+        line-height: $simple-line-height;
+        font-size: $simple-line-height;
+    }
+}
+
+.lmem-popup-content {
+    font-size: $simple-line-height;
+
+    h1 {
+        @extend %title;
+
+        font-weight: 600;
+        margin: $margin-size 0 0;
+    }
+
+    h2 {
+        font-weight: 500;
+        line-height: $double-line-height;
+        margin-top: $margin-size;
+    }
+
+    h3 {
+        margin-bottom: $margin-size;
+        font-weight: 500;
+    }
+
+    ul {
+         display: flex;
+         justify-content: space-between;
+         margin-top: $margin-size;
+    }
+
+    li {
+        background: $background-light-color;
+        max-width: $block-size * 3;
+        padding: $margin-size;
+        border-radius: rem-size(3);
+    }
+
+    .button {
+        align-items: center;
+        font-weight: 400;
+        display: flex;
+        height: $double-line-height + $margin-size - 2 * $border-width;
+    }
+
+    strong {
+        font-weight: 500;
+    }
+}
+
+.lmem-popup-form-wrapper h3 {
+    margin: $simple-line-height 0 0;
+}
+
+.lmem-popup-form-wrapper,
+.alternatives-req-form-wrapper {
+    p.share-button-wrapper {
+       line-height: $double-line-height;
+
+       .share-button-wrapper {
+           margin: 0 .3ex;
+       }
+    }
+
+    .share-button-wrapper img {
+        height: $block-size / 3;
+        vertical-align: text-bottom;
+    }
+
+    .fieldset-inner-wrapper {
+        margin: #{ $margin-size * 1/3 } 0 0;
+    }
+}
+
+.popup-highlight {
+    @extend .highlight;
+}
+
+.lmem-popup-controls {
+     position: fixed;
+     top: $margin-size / 3;
+     right: $margin-size / 3;
+
+     .picto {
+          width: $block-size / 3;
+     }
+}
+
+.lmem-popup-footer {
+     margin-top: $margin-size;
+}
+
+//TODO make it working with the other form...
+form {
+    counter-reset: form-legends;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+fieldset:not(:first-child) {
+    margin-top: $margin-size;
+}
+
+legend {
+    font-size: $simple-line-height;
+    font-weight: 500;
+    line-height: $double-line-height;
+}
+
+legend::before {
+    content: counter(form-legends) '.';
+    counter-increment: form-legends;
+}
+
+.form-submit {
+     margin-left: $half-adjusted-margin;
+}
+
+.form-criteria-inner {
+     display: flex;
+     flex-direction: column;
+
+     label {
+          line-height: $double-line-height;
+          font-size: $simple-line-height;
+          margin-right: $margin-size;
+     }
+}
+
+.form-email {
+    input {
+        background: $background-light-color;
+        border: $border-width solid transparentize($font-quiet-color, .2);
+        color: $font-em-color;
+        display: inline-block;
+        font-size: $simple-line-height;
+        line-height: $double-line-height;
+        margin-bottom: -$border-width;  //
+        margin-top: -$border-width;     // Offset the border width…
+        padding: 0 rem-size(5);
+    }
+}
+.fieldset-inner-wrapper {
+    display: flex;
+}
+button {
+    font: inherit; // Fuck off default user-agent styles.
+    @extend %button
+}
+.form-submit {
+    button {
+        font-size: $simple-line-height;
+        font-weight: 900;
+        justify-content: space-between;
+        line-height: $double-line-height;
+        min-width: rem-size(200);
+        padding: 0 $half-adjusted-margin;
+    }
+
+    img {
+        height: rem-size(28);
+        margin: 0;
+        transform: rotate(-90deg);
+    }
+
+    button[disabled] {
+        transition: all .5s;
+        &,
+        &:hover,
+        &:focus,
+        &:active {
+            background: initial;
+            cursor: default;
+        }
+    }
+
+    .loading img {
+        @keyframes loading {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-name: loading;
+        animation-timing-function: linear;
+    }
+}
+
+input[type=email],
+input[type=text] {
+    &.ng-touched.ng-invalid {
+        border-color: $red;
+    }
+    &.ng-touched.ng-valid {
+        border-color: $green;
+    }
+}
+
+.mainframe {
+    form,
+    .form-email {
+        margin-top: 0;
+    }
+
+    .form-criteria {
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        legend {
+            flex: 0 100%;
+        }
+    }
+
+    .form-criteria-inner {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        max-height: 2 * $double-line-height;
+    }
+
+    @media(max-width: #{ $media-query-threshold-wide - $block-size }) {
+        label small {
+            @include visually-hidden;
+        }
+    }
+}
+
+.alternatives-req-form-wrapper {
+    h1 {
+        font-size: $midway-font-size;
+        line-height: $double-line-height;
+        font-weight: 500;
+    }
+
+    h2 {
+        line-height: $double-line-height;
+        margin-top: $margin-size;
+        font-weight: 600;
+    }
+
+    .lmem-noalt-content:last-of-type {
+        margin-bottom: $margin-size;
+    }
+}
+
+.lmem-header .form-hero {
+    margin-bottom: $margin-size;
+
+    strong { font-weight: 600 }
+}
+
+/**
+ * LMEM Share Buttons
+ *
+ * =share
+ */
+
+.lmem-share-buttons {
+    align-items: center;
+    background-color: $background-color;
+    border-radius: rem-size(3);
+    color: $font-color;
+    display: flex;
+    flex: 0 0 auto;
+    margin-right: 2 * $margin-size;
+    padding: 0 $half-adjusted-margin;
+
+    h2 {
+        line-height: $simple-line-height;
+    }
+
+    > :not(:last-child) {
+        margin-right: $half-adjusted-margin;
+    }
+
+    .share-button-wrapper {
+        display: inline-flex;
+        align-items: center;
+
+        img {
+             display: block;
+             width: $block-size / 3;
+        }
+        a {
+             display: block;
+        }
+    }
+}
+
+/**
+ * LMEM No Alternatives
+ *
+ * =noalt
+ */
+
+.lmem-noalt-title {
+    @extend .lmem-popup-title;
+}
+
+.lmem-noalt-content {
+    @extend .lmem-popup-content;
+}
+
+.lmem-noalt-footer {
+    @extend .lmem-popup-footer;
+}
+
+/**
+ * Thanks
+ *
+ * =thank
+ */
+
+.thank-wrapper {
+    line-height: $double-line-height;
+
+    h1 {
+        font-size: $simple-line-height;
+        font-weight: 600;
+        margin-right: $margin-size;
+    }
+
+    h2 {
+        margin-bottom: $margin-size + $half-adjusted-margin;
+        margin-top: $margin-size - $half-adjusted-margin;
+        font-weight: 600;
+    }
+
+    strong {
+         color: $highlight-color;
+         font-weight: 500;
+    }
+
+    .share-button-wrapper {
+        display: flex;
+    }
+
+    .facebook-share-button {
+        margin-left: $margin-size;
+    }
+
+    button {
+        display: block;
+        font-weight: 600;
+        margin-left: $margin-size;
+        padding: 0 $margin-size;
+    }
+
+    .button-deactivated {
+        color: $font-quiet-color;
+        box-shadow: none;
+        background: none;
+    }
+
+    img {
+        height: $double-font-size;
+        vertical-align: middle;
+        transform: rotate(-90deg);
+        margin: 0 rem-size(5) 0 rem-size(-5);
+    }
+}
+
+#we-have-been-useful-but-no-thanks {
+    margin-top: $margin-size / 3;
+    margin-bottom: rem-size(3);
+}
+
+.thank-bottom-line {
+    line-height: $simple-line-height;
+    margin-left: 2 * $margin-size;
+}
+
+.thank-innerwrapper {
+    display: flex;
+}
+
+
+/**
+ * LMEM Topbar
+ *
+ * =topbar
+ */
+
+.lmem-topbar-logo {
+    @extend %lmem-logo-button;
+
+    position: absolute;
+    left: $margin-size;
+    top: $margin-size - $half-adjusted-margin;
+}
+
+.lmem-topbar-notification {
+    flex: 1 1 auto;
+    margin-left: $block-size;
+}
+
+.lmem-topbar-title {
+    @extend %title;
+
+    line-height: inherit;
+    margin-bottom: inherit;
+
+    strong {
+        color: $highlight-color;
+    }
+}
+
+
+.lmem-topbar {
+    background: $background-em-color;
+    left: 0;
+    padding: $margin-size;
+    right: 0;
+    top: 0;
+    display: flex;
+    justify-content: flex-end;
+
+    nav {
+        flex: 0 0 auto;
+    }
+
+    > nav,
+    > .lmem-share-buttons,
+    > .button-wrapper {
+        line-height: $double-line-height;
+    }
+
+    .mainframe-inner {
+        align-items: center;
+        border-color: $topbar-border-color;
+        display: flex;
+        font-size: $simple-line-height;
+        height: $double-line-height;
+    }
+
+    .button-directive {
+        justify-content: flex-end;
+    }
+
+    .with-image img {
+        margin: 0;
+    }
+
+    // Win some space hiding secondary UI elements.
+    @media(max-width: #{ $media-query-threshold-small-edge - rem-size(1) }) {
+        z-index: 20;
+
+        .button-label {
+            @include visually-hidden;
+        }
+        .button-compact.with-image img {
+            margin-left: 0;
+        }
+    }
+
+    // Otherwise, display them.
+    @media(min-width: $media-query-threshold-small-edge) {
+        .button-label + .tooltip {
+            @include visually-hidden;
+        }
+
+        .with-image img {
+            margin-right: .2ex;
+            width: $block-size / 3;
+        }
+
+        .with-image {
+            min-width: $controls-inner-width;
+        }
+    }
+}
+
+.lmem-controls-list > li {
+    display: inline-block;
+    margin-right: $margin-size;
+}
+
+.lmem-controls-picto {
+    transition: transform .4s ease .1s;
+    vertical-align: top;
+    width: $double-line-height;
+}
+
+.lmem-controls-open {
+    transform: rotate(180deg);
+}
+.lmem-controls-tooltip {
+    @include tooltip-bottom-left;
+}
+
+// Here is the disclaimer (displayed with the controls)
+.lmem-disclaimer {
+    color: $font-quiet-color;
+    font-size: $tiny-font-size;
+    font-weight: 300;
+    hyphens: auto;
+    line-height: $simple-line-height;
+}
+
+.lmem-disclaimer-legal {
+    display: inline-block;
+    font-size: $unreadable-font-size;
+    font-weight: 300;
+    line-height: $simple-line-height / 2;
+}
+
+
+/**
+ * Summaries
+ *
+ * =sum
+ */
+
+%summary-title {
+    background-color: $background-em-color;
+    border-radius: rem-size(2);
+    color: $font-em-color;
+    padding: 0 .5ex;
+    align-self: baseline;
+
+    &::after {
+        content: ' :';
+    }
+}
+
+// Table context
+th%summary-title {
+    border-radius: 0;
+    border-color: $heavy-border-color;
+}
+
+/**
+ * Prices
+ *
+ * =price
+ */
+
+.price {
+    color: $highlight-color;
+    font-weight: 600;
+}
+
+
+/**
+ * Badges
+ *
+ * =badges
+ */
+
+.with-badge {
+    white-space: nowrap;
+}
+
+.badge {
+    background: $font-quiet-color;
+    border-radius: 1em;
+    color: $background-em-color;
+    display: inline-block;
+    font-size: $simple-font-size;
+    line-height: $midway-font-size;
+    font-weight: 700;
+    margin-left: .4ex;
+    padding: 0 .8ex;
+    vertical-align: baseline;
+}
+
+/**
+ * Pictos
+ *
+ * =picto
+ */
+
+.picto {
+    vertical-align: top;
+    width: $double-line-height;
+}
+
+
+/**
+ * Tooltips
+ *
+ * =tooltip
+ */
+
+.entry-tooltip strong {
+    font-weight: bold;
+}
+
+
+/**
+ * Buttons
+ *
+ * =button
+ */
+
+%button {
+    background-image:
+        linear-gradient(to top, rgba(250,250,250,.8) 50%, rgba(237,237,237,.8));
+    border: $border-width solid transparentize($font-quiet-color, .2);
+    border-radius: rem-size(3);
+    box-shadow: 0 1px 0 0 rgba(0,0,0,.05),
+                0 1px 0 0 #fff inset;
+    color: $font-em-color;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 500;
+    margin-top: -$border-width;     // Offset the border width…
+    margin-bottom: -$border-width;  //
+    position: relative;
+    text-decoration: none;
+    text-shadow: 0 1px 1px $background-light-color;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+        background: $background-light-color;
+        color: $font-em-color;
+        text-decoration: none;
+    }
+
+    &:focus {
+        outline: dotted $border-width;
+        outline-color: inherit;
+        outline-offset: rem-size(-4);
+    }
+}
+
+.button {
+    @extend %button;
+    padding: 0 1ex;
+}
+
+.button-compact {
+    @extend %button;
+    margin: -$border-width;
+    padding: 0;
+}
+
+.button-deactivated {
+    cursor: default;
+}
+
+%button-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.button-wrapper .button-directive {
+    display: flex;
+
+    .button:not(.with-image) {
+        @extend %button-ellipsis;
+    }
+}
+
+.button-directive {
+    justify-content: flex-end;
+}
+
+.close-button {
+    opacity: .6;
+    transition: opacity .2s;
+
+    &:hover,
+    &:focus,
+    &:active {
+        opacity: 1;
+    }
+}
+
+.with-right-arrow {
+    &::after {
+        @include iso-rect-triangle('to right', rem-size(8), $font-em-color);
+        display: inline-block;
+        right: 1ex;
+        top: 35%;
+    }
+}
+
+// Table context
+.button-summary {
+    display: block;
+
+    &.with-image {
+        display: flex;
+    }
+}
+
+.with-pane {
+    &::after {
+        @include iso-rect-triangle('to bottom', rem-size(8), $font-em-color);
+        display: inline-block;
+        right: 1ex;
+        top: 40%;
+    }
+}
+.with-double-pane {
+    @extend .with-pane;
+    &::before {
+        @include iso-rect-triangle('to bottom', rem-size(8), $font-em-color);
+        display: inline-block;
+        left: 1ex;
+        top: 40%;
+    }
+}
+
+// Image featured
+.with-image {
+    display: inline-flex;
+
+    img {
+        align-self: center;
+        flex: 0 0 auto;
+        margin-left: 1ex;
+    }
+
+    &.button-compact img {
+        margin-left: .5ex;
+    }
+
+    .button-label {
+        @extend %button-ellipsis;
+    }
+}

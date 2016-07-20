@@ -7,16 +7,29 @@ import listener from './../../../app/listeners';
 import AlternativesInjector from './../../../app/injector';
 import { dispatchInitialStateFromBackend } from './../../../app/actions/kraftBackend';
 
+import heap from './../../../lib/heap';
+/**
+ * FIXME import styles from components instead and let Webpack taking care of them...
+ *
+ * For now, we’re basically importing a plain-text chunk of css, merely generated
+ * from SASS files, before injecting it into a <style> element somewhere in
+ * into the iframe’s <head>...
+ *
+ * It does its job, but comes with performance issue (since Browsers cannot cache
+ * those styles) and maintainability issue (gap between React and Sass sort of
+ * components, error prone assets references, etc.)
+ */
+import mainStyles from './../../../app/styles/main.scss';
+import recoStyles from './../../../app/styles/reco.scss';
+
 import test from '../../../../test/integration/index.js';
 window.integrationTest = test;
 
 // Load content code when the extension is loaded
 const contentCodeP = fetch('./js/content.bundle.js')
-.then( resp => resp.text() )
-const styleP = fetch('./styles/alt.css')
-.then( resp => resp.text() )
+.then( resp => resp.text() );
 
-import heap from './../../../lib/heap'
+
 
 configureStore(store => {
   window.store = store;
@@ -39,8 +52,8 @@ configureStore(store => {
   };
 
   listener.init(vAPI, store);
-  Promise.all([contentCodeP, styleP])
-  .then( ([contentCode, style]) => new AlternativesInjector(vAPI, contentCode, style, store) );
+  Promise.all([contentCodeP])
+  .then( ([contentCode]) => new AlternativesInjector(vAPI, contentCode, mainStyles+recoStyles , store) );
 
   store.dispatch(dispatchInitialStateFromBackend()); //store initialization from the kraft server
 
