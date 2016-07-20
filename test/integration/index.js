@@ -1,4 +1,5 @@
 import loadBasicTests from './basic';
+import loadNavigationsTests from './navigations';
 
 mocha.setup({
     ui: 'bdd',
@@ -7,9 +8,9 @@ mocha.setup({
 
 chai.use(chaiAsPromised);
 
-loadBasicTests();
-
 export default function(){
-    console.log('mocha.run()')
+    loadBasicTests();
+    loadNavigationsTests();
+    
     mocha.run()
 }

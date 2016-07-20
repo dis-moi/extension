@@ -1,32 +1,13 @@
-const MATCHING_URL = "https://www.amazon.fr/Kindle-%C3%A9cran-tactile-antireflet-Wi-Fi/dp/B00KDRUCJY";
-const NON_MATCHING_URL = "http://www.aljazeera.com/programmes/witness/2016/01/paris-voice-suburbs-160103095138746.html";
+import assertIframeOpen from './shared/assertIframeOpen';
+
+const MATCHING_URL = "http://www.samsung.com/fr/galaxys6/";
+const NON_MATCHING_URL = "http://thevarguy.com/open-source-application-software-companies/open-source-hardware-what-it-means-and-why-it-matters";
 
 const expect = chai.expect;
 
 const IFRAME_SHOULD_OPEN_WITHIN_DELAY = 8*1000;
 
-function assertIframeOpen(tabId){
-    return new Promise((resolve, reject) => {
-        chrome.tabs.executeScript(tabId, {
-            file: './test/integration/content/assertIframeOpen.js',
-            runAt: 'document_start'
-        })
 
-        chrome.runtime.onMessage.addListener( (msg, {tab: {id: messageTabId}}) => {
-            console.log('message from content', msg, messageTabId, tabId)
-            if(messageTabId !== tabId || msg.type !== 'IFRAME_OPEN')
-                return; // ignore messages from other tabs or other content script
-
-            if(msg.error){
-                reject(message.error)
-                return;
-            }
-
-            resolve(msg.ok)
-        })
-    })
-    
-}
 
 export default function(){
     describe('Basic tests', () => {
