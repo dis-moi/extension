@@ -1,23 +1,22 @@
 {
   "extends": "eslint-config-airbnb",
-  "globals": {
-    "chrome": true
-  },
   "env": {
     "mocha": true,
     "browser": true,
-    "node": true
+    "es6": true,
+    "webextensions": true
   },
   "parser": "babel-eslint",
   "rules": {
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
     "react/react-in-jsx-scope": 2,
+    "indent": [2, 2, {"SwitchCase": 1}],
+    "comma-style": [ 2, "last" ],
+    "quotes": [ 1, "single" ],
     "react/jsx-quotes": 0,
     "block-scoped-var": 0,
     "padded-blocks": 0,
-    "quotes": [ 1, "single" ],
-    "comma-style": [ 2, "last" ],
     "eol-last": 0,
     "no-unused-vars": 0,
     "no-console": 0,
@@ -28,8 +27,18 @@
     "prefer-template": 0,
     "prefer-arrow-callback": 0,
     "arrow-body-style": 0,
-    "indent": [2, 2, {"SwitchCase": 1}],
-    "strict": 0
+    "space-before-blocks": 0,
+    "no-multiple-empty-lines": 0,
+    "curly": 0,
+    "no-case-declarations": 0,
+    "react/jsx-curly-spacing": 0,
+    "block-spacing": 0,
+    "react/sort-comp": 0,
+    "react/jsx-closing-bracket-location": 0,
+    "no-trailing-spaces": 0,
+    "react/jsx-no-bind": 0,
+    "react/prop-types": 0,
+    "brace-style": 0
   },
   "plugins": [
     "react"
