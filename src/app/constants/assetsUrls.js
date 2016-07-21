@@ -1,5 +1,3 @@
-import { getURL } from '../../vapi/chromeBackground'
-
-export const IMAGES_URL = getURL('img/');
-export const FONTS_URL = getURL('fonts/');
-export const STYLES_URL = getURL('styles/');
+export const IMAGES_URL = chrome.extension.getURL('img/');
+export const FONTS_URL = chrome.extension.getURL('fonts/');
+export const STYLES_URL = chrome.extension.getURL('styles/');

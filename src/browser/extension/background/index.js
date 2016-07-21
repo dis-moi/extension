@@ -2,20 +2,10 @@ import configureStore from 'app/store/configureStore';
 import createMenu from './contextMenus';
 import initBadge from './badge';
 
-<<<<<<< 2abc262f8bc003d759a60b47eec6f12ae74cb424
-import vAPI from './../../../vapi/chromeBackground'
-import listener from './../../../app/listeners';
-import AlternativesInjector from './../../../app/injector';
-import { dispatchInitialStateFromBackend } from './../../../app/actions/kraftBackend';
-=======
 import findMatchingOffers from '../../../app/lmem/findMatchingOffers';
 import tabs from '../../../app/tabs/index.js'
 
-//import vAPI from '../../../vapi/chromeBackground'
-//import listener from '../../../app/listeners';
-//import injector from '../../../app/injector';
 import { dispatchInitialStateFromBackend } from '../../../app/actions/kraftBackend';
->>>>>>> tabs/index.js handles the relationship with tabs
 
 import heap from './../../../lib/heap';
 /**
