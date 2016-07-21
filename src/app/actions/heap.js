@@ -6,7 +6,7 @@ export function loadHeapLibrary(action) {
 }
 
 export function trackHeapEvent(action) {
-  console.log("Track heap event");
+  console.log('Track heap event');
   window.heap.track(action.type, action.payload);
   return { type: HEAP_EVENT_TRACKED };
 }

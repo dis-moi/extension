@@ -1,3 +1,5 @@
+/* eslint global-require: "off" */
+
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import notify from 'redux-notify';

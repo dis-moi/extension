@@ -15,12 +15,12 @@ function mapStateToProps(state) {
     reduced: state.get('reduced')
   };
 }
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
   return {
-    onReduce(){ dispatch(reduce()) },
-    onExtend(){ dispatch(extend()) },
-    onDeactivate(details){ dispatch(deactivate(details)) }
-  }
+    onReduce(){ dispatch(reduce()); },
+    onExtend(){ dispatch(extend()); },
+    onDeactivate(details){ dispatch(deactivate(details)); }
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Alternative);

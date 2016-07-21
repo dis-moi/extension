@@ -17,7 +17,7 @@ describe('containers', () => {
 
   describe('App', () => {
     it('should display initial count', () => {
-      const wrapper = mount(<Provider store={ configureStore() }><App /></Provider>);
+      const wrapper = mount(<Provider store={configureStore()}><App /></Provider>);
       expect(wrapper.find('span.counter').text()).toBe('0');
     });
 
@@ -30,7 +30,7 @@ describe('containers', () => {
     ]
     .forEach((rule, idx) => {
       it(rule.title, () => {
-        const wrapper = mount(<Provider store={ configureStore(rule.value) }><App /></Provider>);
+        const wrapper = mount(<Provider store={configureStore(rule.value)}><App /></Provider>);
         wrapper.find('button').at(rule.idx || idx).simulate('click');
         expect(wrapper.find('span.counter').text()).toEqual(rule.result);
       });

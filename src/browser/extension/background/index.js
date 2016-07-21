@@ -1,9 +1,11 @@
-import configureStore from 'app/store/configureStore';
+/* eslint global-require: "off" */
+
+import configureStore from './../../../app/store/configureStore';
 import createMenu from './contextMenus';
 import initBadge from './badge';
 
 import findMatchingOffers from '../../../app/lmem/findMatchingOffers';
-import tabs from '../../../app/tabs/index.js'
+import tabs from '../../../app/tabs/index.js';
 
 import { dispatchInitialStateFromBackend } from '../../../app/actions/kraftBackend';
 
@@ -24,9 +26,7 @@ import recoStyles from './../../../app/styles/reco.scss';
 
 // Load content code when the extension is loaded
 const contentCodeP = fetch('./js/content.bundle.js')
-.then( resp => resp.text() );
-
-
+  .then(resp => resp.text());
 
 configureStore(store => {
   window.store = store;
@@ -48,35 +48,35 @@ configureStore(store => {
     };
   };
 
-
   Promise.all([contentCodeP])
-  .then( ([contentCode]) => {
+  .then(([contentCode]) => {
     tabs(chrome.tabs, {
-        findMatchingOffers: url => {
-          const state = store.getState();
-          const prefs = state.preferences || {};
-          const deactivated = prefs.deactivated || {};
+      findMatchingOffers: url => {
+        const state = store.getState();
+        const prefs = state.preferences || {};
+        const deactivated = prefs.deactivated || {};
 
-          if(deactivated.deactivatedEverywhereUntil && Date.now() < deactivated.deactivatedEverywhereUntil){
-            return [];
-          }
+        if (deactivated.deactivatedEverywhereUntil &&
+          Date.now() < deactivated.deactivatedEverywhereUntil) {
+          return [];
+        }
 
-          const deactivatedWebsites = deactivated.deactivatedWebsites || new Set();
+        const deactivatedWebsites = deactivated.deactivatedWebsites || new Set();
 
-          if(deactivatedWebsites.has( (new URL(url)).hostname )){
-            return [];
-          }
+        if (deactivatedWebsites.has((new URL(url)).hostname)) {
+          return [];
+        }
 
-          return findMatchingOffers(url, state.offers);
-        },
-        dispatch: store.dispatch,
-        contentCode,
-        contentStyle: mainStyles+recoStyles
-      }
-    )
-  })
+        return findMatchingOffers(url, state.offers);
+      },
+      dispatch: store.dispatch,
+      contentCode,
+      contentStyle: mainStyles + recoStyles
+    }
+    );
+  });
 
-  store.dispatch(dispatchInitialStateFromBackend()); //store initialization from the kraft server
+  store.dispatch(dispatchInitialStateFromBackend()); // store initialization from the kraft server
 
   if (process.env.NODE_ENV !== 'production') {
     require('./inject');
