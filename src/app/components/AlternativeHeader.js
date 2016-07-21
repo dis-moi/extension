@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { DEACTIVATE_EVERYWHERE, DEACTIVATE_WEBSITE_ALWAYS, SESSION_DEACTIVATE_DELAY } from '../constants/preferences';
 
-
-
 class AlternativeHeader extends Component {
 
     constructor(props) {
@@ -11,8 +9,6 @@ class AlternativeHeader extends Component {
             deactivateMenuOpen: false
         };
     }
-
-    
 
     render() {
         const {props, state} = this;
@@ -62,6 +58,7 @@ class AlternativeHeader extends Component {
             }) :
             e => this.setState({deactivateMenuOpen: !deactivateMenuOpen});
 
+
         return (
             <header className="lmem-topbar fixed">
                 <div className="lmem-topbar-notification">
@@ -88,7 +85,7 @@ class AlternativeHeader extends Component {
                                     </span></span>
                                 </button>
                             </div>
-                            <div className="menu-directive">{ deactivateMenu }</div>
+                            <div className="menu-directive" ref="deactivateMenu">{ deactivateMenu }</div>
                         </li>
                     </ul>
                 </nav>
@@ -96,7 +93,7 @@ class AlternativeHeader extends Component {
                 <div className="button-wrapper">
                     <div className="button-directive">
                         <button className="button button-compact with-image with-tooltip"
-                                onClick={reduced ? onExtend : onReduce}>
+                                onClick={this.onClick()}>
                             <img src={ imagesUrl + 'arrow.svg' } className={ buttonButtonClassName }/>
                             <span className="button-label">{reduceButtonText}</span>
                             <span className={tooltipButtonClassName}><span>
@@ -106,7 +103,8 @@ class AlternativeHeader extends Component {
                     </div>
                 </div>
 
-                <button className="lmem-topbar-logo with-tooltip not-button">
+                <button className="lmem-topbar-logo with-tooltip not-button"
+                        onClick={this.onClick()}>
                     <img src={ imagesUrl + 'logo-lmem.svg' } alt="" />
                     <span className="tooltip tooltip-right"><span>
                         { reduceButtonText + ' le panneau comparatif' }
@@ -115,10 +113,47 @@ class AlternativeHeader extends Component {
             </header>
         )
     }
-}
 
-// AlternativeHeader.propTypes = {
-//     stylesUrl: PropTypes.string.isRequired
-// };
+    onClick() {
+        return this.props.reduced ? this.props.onExtend : this.props.onReduce;
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.deactivateMenuOpen !== prevState.deactivateMenuOpen) {
+            this.watchForMenuExit();
+        }
+    }
+
+    menuElement() {
+        return this.refs.deactivateMenu;
+    }
+
+    ownerDocument() {
+        return this.menuElement().ownerDocument;
+    }
+
+    watchForMenuExit() {
+        if (this.state.deactivateMenuOpen) {
+            this.menuElement().addEventListener('click', this, false);
+            this.ownerDocument().addEventListener('click', this, false);
+        }
+        else {
+            this.menuElement().removeEventListener('click', this, false);
+            this.ownerDocument().removeEventListener('click', this, false);
+        }
+    }
+
+    /**
+     * Implements EventListener interface
+     */
+    handleEvent(event) {
+        if (event.currentTarget === this.menuElement()) {
+            event.stopPropagation();
+        }
+        else {
+            this.setState({deactivateMenuOpen: false});
+        }
+    }
+}
 
 export default AlternativeHeader;
