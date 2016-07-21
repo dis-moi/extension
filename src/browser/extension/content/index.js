@@ -5,7 +5,7 @@ import Root from 'app/containers/Root';
 import configureStore from 'app/store/configureStore';
 
 import Alternative from 'app/components/Alternatives';
-import { STYLES_URL, IMAGES_URL } from 'app/constants/assetsUrls';
+import { STYLES_URL, IMAGES_URL } from '../../../app/constants/assetsUrls';
 
 import { createStore } from 'redux';
 

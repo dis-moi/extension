@@ -64,6 +64,8 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.7.2",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
     "chromedriver": "^2.21.2",
     "co-mocha": "^1.1.2",
     "del": "^2.2.0",

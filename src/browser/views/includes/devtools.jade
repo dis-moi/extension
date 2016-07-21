@@ -1,2 +1,6 @@
 if env !== 'prod'
     script(src='chrome-extension://lmhkpmbekcpmknklioeibfkpmmfibljd/js/inject.bundle.js')
+    script(src='test/infrastructure/mocha.js')
+    script(src='test/infrastructure/chai.js')
+    script(src='test/infrastructure/chai-as-promised.js')
+    script(src='test/infrastructure/WebConsole-mocha-reporter.js')

@@ -170,6 +170,10 @@ npm run test:chrome
 npm test
 ```
 
+### Integration tests
+
+In the extension `background.html` console, run `window.integrationTest()`
+
 ## Roadmap
 
 - [x] Web app

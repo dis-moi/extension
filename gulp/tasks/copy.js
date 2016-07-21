@@ -1,18 +1,21 @@
 import gulp from 'gulp';
 import rename from 'gulp-rename';
 
-const copy = (dest, manifest) => () => {
+const copy = (dest, manifest, tests) => () => {
   if (manifest) {
     gulp.src(`./src/${manifest}`)
       .pipe(rename('manifest.json'))
       .pipe(gulp.dest(dest));
   }
   gulp.src('./src/assets/**/*').pipe(gulp.dest(dest));
+  if(tests){
+    gulp.src('./test/**/*').pipe(gulp.dest(dest+'/test'));
+  }
 };
 
 const manifestDevSource = 'browser/extension/manifest.dev.json';
 
-gulp.task('copy:build:dev', copy('./dev', manifestDevSource));
+gulp.task('copy:build:dev', copy('./dev', manifestDevSource, true));
 gulp.task('copy:build:extension',
   copy('./build/extension', 'browser/extension/manifest.prod.json'));
 gulp.task('copy:build:app', copy('./build/app', 'chromeApp/manifest.json'));
