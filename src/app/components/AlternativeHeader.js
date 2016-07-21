@@ -24,25 +24,30 @@ class AlternativeHeader extends Component {
             "lmem-controls-picto",
             reduced ? "lmem-controls-open" : "lmem-controls-close"
         ].join(' ');
-        const deactivateButtonStyle = {
-            minWidth: "2rem"
-        };
+        const tooltipButtonClassName = [
+            'tooltip',
+            reduced ? 'tooltip-left' : 'tooltip-bottom-right'
+        ].join(' ');
 
         const deactivateMenu = deactivateMenuOpen ? (
             <div className="menu-wrapper menu-bottom-right">
                 <div className="menu-content">
                     <ul className="menu-list">
                         <li>
-                            <button onClick={ e => onDeactivate({
+                            <button className="not-button with-image" onClick={ e => onDeactivate({
                                 where: DEACTIVATE_EVERYWHERE,
                                 duration: SESSION_DEACTIVATE_DELAY
-                            }) }>Désactiver partout pour 30mins
+                            }) }>
+                                <img className="lmem-controls-picto" src={ imagesUrl + 'power-timer.svg' } />
+                                <span>Désactiver partout pour 30mins</span>
                             </button>
                         </li><li>
-                            <button onClick={ e => onDeactivate({
+                            <button className="not-button with-image" onClick={ e => onDeactivate({
                                 where: window.location && location.hostname,
                                 duration: DEACTIVATE_WEBSITE_ALWAYS
-                            }) }>Désactiver pour ce site pour toujours
+                            }) }>
+                                <img className="lmem-controls-picto" src={ imagesUrl + 'power-cross.svg' } />
+                                <span>Désactiver sur ce site pour toujours</span>
                             </button>
                         </li>
                     </ul>
@@ -74,10 +79,13 @@ class AlternativeHeader extends Component {
                     <ul className="lmem-controls-list">
                         <li className="with-menu">
                             <div className="button-directive">
-                                <button title="désactiver" className="button button-compact"
-                                        onClick={deactivateButtonOnClick} style={deactivateButtonStyle}>
+                                <button className="button button-compact with-tooltip"
+                                        onClick={deactivateButtonOnClick}>
                                     <img src={ imagesUrl + 'power.svg' }
                                          className="lmem-controls-picto"/>
+                                    <span className={tooltipButtonClassName}><span>
+                                        Désactiver
+                                    </span></span>
                                 </button>
                             </div>
                             <div className="menu-directive">{ deactivateMenu }</div>
@@ -87,20 +95,23 @@ class AlternativeHeader extends Component {
 
                 <div className="button-wrapper">
                     <div className="button-directive">
-                        <button title={reduceButtonText} className="button button-compact with-image"
+                        <button className="button button-compact with-image with-tooltip"
                                 onClick={reduced ? onExtend : onReduce}>
                             <img src={ imagesUrl + 'arrow.svg' } className={ buttonButtonClassName }/>
                             <span className="button-label">{reduceButtonText}</span>
+                            <span className={tooltipButtonClassName}><span>
+                                {reduceButtonText}
+                            </span></span>
                         </button>
                     </div>
                 </div>
 
-                <a className="lmem-topbar-logo with-tooltip" href="">
+                <button className="lmem-topbar-logo with-tooltip not-button">
                     <img src={ imagesUrl + 'logo-lmem.svg' } alt="" />
                     <span className="tooltip tooltip-right"><span>
-                        { 'Réduire le panneau comparatif' }
+                        { reduceButtonText + ' le panneau comparatif' }
                     </span></span>
-                </a>
+                </button>
             </header>
         )
     }

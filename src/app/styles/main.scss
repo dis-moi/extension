@@ -129,7 +129,15 @@ mark {
 }
 
 .menu-bottom-right {
-    right: 0;
+    right: -.2ex;
+    top: calc(#{$double-line-height} + .5ex);
+
+    &:after {
+        @include iso-rect-triangle('to top', rem-size(8), $background-light-color);
+        display: inline-block;
+        right: 1.1ex;
+        top: -1ex;
+    }
 }
 
 .menu-bottom-left {
@@ -176,9 +184,33 @@ mark {
         padding: $half-adjusted-margin 0;
 
         & > li {
-            margin: 0;
+            margin: $half-adjusted-margin 0 #{$margin-size - $half-adjusted-margin} ;
+
+            &:not(:last-child) {
+                margin-bottom: $margin-size;
+            }
+        }
+
+        .with-image {
+            padding: 0;
+            font: inherit;
+            line-height: $simple-line-height;
+            text-align: inherit;
+
+            img {
+                align-self: flex-start;
+                margin-right: .5ex;
+            }
+
+            &:hover,
+            &:focus,
+            &:active {
+                color: $action-color;
+                text-decoration: underline;
+            }
         }
     }
+
 
 
 /**
@@ -659,7 +691,8 @@ ul.summary-entry-content {
 
 %lmem-logo-button {
     flex: 0 0 auto;
-    margin-right: $half-adjusted-margin;
+    margin: 0 .4375rem 0 0;
+    padding: 0;
 
     img {
         width: $block-size - $margin-size;
@@ -839,7 +872,12 @@ legend::before {
 }
 button {
     font: inherit; // Fuck off default user-agent styles.
-    @extend %button
+    @extend %button;
+    &.not-button {
+        background: inherit;
+        box-shadow: none;
+        border: 0;
+    }
 }
 .form-submit {
     button {
