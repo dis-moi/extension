@@ -56,8 +56,10 @@ class AlternativeHeader extends Component {
                 where: DEACTIVATE_EVERYWHERE,
                 duration: SESSION_DEACTIVATE_DELAY
             }) :
-            e => this.setState({deactivateMenuOpen: !deactivateMenuOpen});
-
+            e => {
+                e.nativeEvent.stopImmediatePropagation();
+                this.setState({deactivateMenuOpen: !deactivateMenuOpen});
+            };
 
         return (
             <header className="lmem-topbar fixed">
@@ -118,41 +120,22 @@ class AlternativeHeader extends Component {
         return this.props.reduced ? this.props.onExtend : this.props.onReduce;
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (this.state.deactivateMenuOpen !== prevState.deactivateMenuOpen) {
-            this.watchForMenuExit();
-        }
-    }
-
-    menuElement() {
-        return this.refs.deactivateMenu;
-    }
-
-    ownerDocument() {
-        return this.menuElement().ownerDocument;
+    componentDidMount() {
+        this.watchForMenuExit();
     }
 
     watchForMenuExit() {
-        if (this.state.deactivateMenuOpen) {
-            this.menuElement().addEventListener('click', this, false);
-            this.ownerDocument().addEventListener('click', this, false);
-        }
-        else {
-            this.menuElement().removeEventListener('click', this, false);
-            this.ownerDocument().removeEventListener('click', this, false);
-        }
-    }
+        const menuElement = this.refs.deactivateMenu;
 
-    /**
-     * Implements EventListener interface
-     */
-    handleEvent(event) {
-        if (event.currentTarget === this.menuElement()) {
-            event.stopPropagation();
-        }
-        else {
-            this.setState({deactivateMenuOpen: false});
-        }
+        menuElement.ownerDocument.addEventListener('click', event => {
+            if (!this.state.deactivateMenuOpen) return;
+
+            if ([menuElement, ...menuElement.querySelectorAll('*')]
+                    .every(element => element !== event.target)) {
+
+                this.setState({deactivateMenuOpen: false});
+            }
+        });
     }
 }
 
