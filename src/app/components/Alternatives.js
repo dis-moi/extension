@@ -5,7 +5,6 @@ import AlternativeMain from './AlternativeMain';
 
 const Alternatives = ({recommendation, imagesUrl, reduced, onExtend, onReduce, onDeactivate}) => recommendation ? (
     <section>
-        <AlternativeMain imagesUrl={imagesUrl} recommendation={recommendation} />
         <AlternativeHeader
             imagesUrl={imagesUrl}
             reduced={reduced}
@@ -13,6 +12,7 @@ const Alternatives = ({recommendation, imagesUrl, reduced, onExtend, onReduce, o
             onReduce={onReduce}
             onDeactivate={onDeactivate}
         />
+        <AlternativeMain imagesUrl={imagesUrl} recommendation={recommendation} />
     </section>
 ) : (<Loader imagesUrl={ imagesUrl } />);
 
