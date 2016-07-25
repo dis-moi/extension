@@ -95,7 +95,7 @@ class AlternativeHeader extends Component {
                 <div className="button-wrapper">
                     <div className="button-directive">
                         <button className="button button-compact with-image with-tooltip"
-                                onClick={this.onClick()}>
+                                onClick={this.onClick.bind(this)}>
                             <img src={ imagesUrl + 'arrow.svg' } className={ buttonButtonClassName }/>
                             <span className="button-label">{reduceButtonText}</span>
                             <span className={tooltipButtonClassName}><span>
@@ -106,7 +106,7 @@ class AlternativeHeader extends Component {
                 </div>
 
                 <button className="lmem-topbar-logo with-tooltip not-button"
-                        onClick={this.onClick()}>
+                        onClick={this.onClick.bind(this)}>
                     <img src={ imagesUrl + 'logo-lmem.svg' } alt="" />
                     <span className="tooltip tooltip-right"><span>
                         { reduceButtonText + ' le panneau comparatif' }
@@ -117,7 +117,7 @@ class AlternativeHeader extends Component {
     }
 
     onClick() {
-        return this.props.reduced ? this.props.onExtend : this.props.onReduce;
+        return this.props.reduced ? this.props.onExtend() : this.props.onReduce();
     }
 
     componentDidMount() {
