@@ -64,7 +64,9 @@ configureStore(store => {
             return [];
           }
 
-          if(deactivated.deactivatedWebsites && deactivated.deactivatedWebsites.has( (new URL(url)).hostname )){
+          const deactivatedWebsites = deactivated.deactivatedWebsites || new Set();
+
+          if(deactivatedWebsites.has( (new URL(url)).hostname )){
             return [];
           }
 
