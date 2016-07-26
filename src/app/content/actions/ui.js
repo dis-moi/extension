@@ -1,25 +1,33 @@
 import { REDUCE_ALTERNATIVE_IFRAME, EXTEND_ALTERNATIVE_IFRAME, DEACTIVATE } from '../../constants/ActionTypes';
 
-export function reduce() {
+export default function(portCommunication){
     return {
-        type: REDUCE_ALTERNATIVE_IFRAME
-    };
+        reduce() {
+            const action = {
+                type: REDUCE_ALTERNATIVE_IFRAME
+            };
+            portCommunication.sendBackgroundReduxAction(action)
+            return action;
+        },
+        
+        extend() {
+            const action = {
+                type: EXTEND_ALTERNATIVE_IFRAME
+            };
+            portCommunication.sendBackgroundReduxAction(action)
+            return action;
+        },
+
+        deactivate(details) {
+            const action = Object.assign(
+                { type: DEACTIVATE },
+                details
+            );
+            portCommunication.sendBackgroundReduxAction(action)
+            return action;
+        }
+    }
 }
 
-export function extend() {
-    return {
-        type: EXTEND_ALTERNATIVE_IFRAME
-    };
-}
 
-export function deactivate(portCommunication) {
-    return details => {
-        const action = Object.assign(
-            { type: DEACTIVATE },
-            details
-        );
 
-        portCommunication.sendBackgroundReduxAction(action)
-        return action;
-    };
-}

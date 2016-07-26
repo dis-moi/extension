@@ -1,4 +1,3 @@
-import { MATCHING_OFFERS_FOUND } from '../constants/ActionTypes';
 import { trackHeapEvent } from '../actions/heap';
 
 // Arbitrary set max payload size
