@@ -87,7 +87,7 @@ class AlternativeHeader extends Component {
                                     </span></span>
                                 </button>
                             </div>
-                            <div className="menu-directive" ref="deactivateMenu">{ deactivateMenu }</div>
+                            <div className="menu-directive menu-deactivate" ref="deactivateMenu">{ deactivateMenu }</div>
                         </li>
                     </ul>
                 </nav>
@@ -124,19 +124,25 @@ class AlternativeHeader extends Component {
         this.watchForMenuExit();
     }
 
+    componentWillUnmount() {
+        this.refs.deactivateMenu.ownerDocument.removeEventListener('click', this._closeMenuDocumentClickHandler);
+    }
+
     watchForMenuExit() {
         const menuElement = this.refs.deactivateMenu;
 
-        menuElement.ownerDocument.addEventListener('click', event => {
+        this._closeMenuDocumentClickHandler = event => {
             if (!this.state.deactivateMenuOpen) return;
 
-            if ([menuElement, ...menuElement.querySelectorAll('*')]
-                    .every(element => element !== event.target)) {
-
+            if (!event.target.matches('.menu-deactivate, .menu-deactivate *')) {
                 this.setState({deactivateMenuOpen: false});
             }
-        });
+        }
+
+        menuElement.ownerDocument.addEventListener('click', this._closeMenuDocumentClickHandler);
     }
+
+
 }
 
 export default AlternativeHeader;
