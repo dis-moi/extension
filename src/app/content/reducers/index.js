@@ -1,4 +1,4 @@
-import { ALTERNATIVE_FOUND, REDUCE_ALTERNATIVE_IFRAME, EXTEND_ALTERNATIVE_IFRAME } from '../../constants/ActionTypes';
+import { ALTERNATIVE_FOUND, REDUCE_ALTERNATIVE_IFRAME, EXTEND_ALTERNATIVE_IFRAME, DEACTIVATE } from '../../constants/ActionTypes';
 
 export default function(state = {}, action) {
     const {type} = action 
@@ -13,6 +13,9 @@ export default function(state = {}, action) {
 
         case EXTEND_ALTERNATIVE_IFRAME:
             return state.set('reduced', false);
+
+        case DEACTIVATE:
+            return state.set('open', false);
 
         default:
             return state;

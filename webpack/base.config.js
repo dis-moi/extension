@@ -37,8 +37,10 @@ const baseConfig = ({ input, output = {}, globals = {}, plugins, loaders }) => (
         exclude: /node_modules/
       }]),
       {
-        test: /\.css?$/,
-        loaders: ['style', 'raw']
+        test: /\.scss?$/,
+        // FIXME handle styles and assets injection through Webpack style- and css- loaders
+        // see ../src/browser/extension/background/index.js
+        loaders: ['raw', 'sass']
       }
     ]
   }

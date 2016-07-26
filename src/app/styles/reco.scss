@@ -1,0 +1,136 @@
+/*! Benjamin Menant | WTFPL */
+
+@import '_variables';
+@import '_helpers';
+
+.reco-summary-wrapper.highlight {
+    display: block;
+    margin: -$border-width;
+    text-decoration: none;
+    line-height: rem-size(20);
+    border: solid $border-width $background-light-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: $font-em-color;
+        border-color: $action-color;
+    }
+}
+
+//
+// Reco Header
+//
+
+.reco-summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.reco-summary-title {
+    font-size: $midway-font-size;
+    font-weight: 500;
+}
+
+//
+// Tags
+//
+
+.summary-tags {
+    display: flex;
+}
+
+.tag {
+    border-radius: rem-size(2);
+    margin-left: $half-adjusted-margin;
+    color: $background-light-color;
+    display: inline-block;
+    padding: 0 1ex;
+}
+
+.tag-health { background-color: $seaweed; }
+.tag-quality { background-color: $blue; }
+.tag-ecology { background-color: $green; }
+.tag-alert { background-color: $red; }
+.tag-local { background-color: $orange; }
+.tag-price { background-color: $pink; }
+.tag-ethics { background-color: $reverse-background-color; }
+
+//
+// Content
+//
+
+.reco-summary-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.reco-summary-content-innerwrapper {
+    overflow: hidden;
+}
+
+.reco-summary-link-referral {
+    display: flex;
+    align-items: center;
+    color: $font-quiet-color;
+    text-decoration: underline;
+
+    &:hover {
+        color: $action-color;
+    }
+
+    span {
+        overflow: hidden;
+        margin-right: $margin-size;
+        display: inline-block;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        @media(max-width: #{ $media-query-threshold-wide - rem-size(1)}) {
+            max-width: 30rem;
+        }
+    }
+
+    img {
+        height: rem-size(20);
+        margin-right: 1ex;
+    }
+}
+
+//
+// Button
+//
+
+.summary-link-checkout-wrapper {
+    flex: 0 0 auto;
+    line-height: $double-line-height;
+    align-self: flex-end;
+}
+
+.summary-link-checkout {
+    padding-right: 4ex;
+}
+
+.with-right-arrow::after {
+    top: 25%;
+}
+
+//
+// Contributor
+//
+
+.reco-contributor-title {
+    font-weight: 600;
+    margin-bottom: $half-adjusted-margin;
+}
+
+.reco-contributor-content img {
+    float: left;
+    margin: 0 $half-adjusted-margin $half-adjusted-margin 0;
+    max-height: $block-size;
+    max-width: 3/2 * $block-size;
+    border-radius: rem-size(2);
+    box-shadow: 0 0 rem-size(10) rem-size(-5) $reverse-background-color;
+}
