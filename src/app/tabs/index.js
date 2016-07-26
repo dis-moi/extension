@@ -13,6 +13,14 @@ export default function(tabs, {findMatchingOffers, dispatch, contentCode, conten
                     console.log('port in background was disconnected for tab', tabId);
                     matchingTabIdToPortP.delete(tabId);
                 });
+
+                tabPort.onMessage.addListener(msg => {
+                    console.log('message from content script', msg);
+
+                    if(msg.type === 'redux-action')
+                        dispatch(msg.action);
+                });
+
                 tabPort.postMessage({type: 'init', style: contentStyle});
 
                 resolve(tabPort);

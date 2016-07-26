@@ -52,13 +52,27 @@ configureStore(store => {
   };
 
 
-  Promise.all([contentCodeP, styleP])
-  .then( ([contentCode, contentStyle]) => {
+  Promise.all([contentCodeP])
+  .then( ([contentCode]) => {
     tabs(chrome.tabs, {
-        findMatchingOffers: url => findMatchingOffers(url, store.getState().offers),
+        findMatchingOffers: url => {
+          const state = store.getState();
+          const prefs = state.preferences || {};
+          const deactivated = prefs.deactivated || {};
+
+          if(deactivated.deactivatedEverywhereUntil && Date.now() < deactivated.deactivatedEverywhereUntil){
+            return [];
+          }
+
+          if(deactivated.deactivatedWebsites && deactivated.deactivatedWebsites.has( (new URL(url)).hostname )){
+            return [];
+          }
+
+          return findMatchingOffers(url, state.offers);
+        },
         dispatch: store.dispatch,
         contentCode,
-        contentStyle
+        contentStyle: mainStyles+recoStyles
       }
     )
   })
