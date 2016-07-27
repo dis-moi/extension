@@ -4,7 +4,8 @@ import {
   EXTEND_ALTERNATIVE_IFRAME,
   DEACTIVATE,
   TOGGLE_PREFERENCE_PANEL,
-  DEACTIVATED_WEBSITES
+  DEACTIVATED_WEBSITES,
+  REACTIVATE_WEBSITE
 } from '../../constants/ActionTypes';
 
 export default function (state = {}, action) {
@@ -33,7 +34,10 @@ export default function (state = {}, action) {
         return state.set('deactivatedWebsites', deactivatedWebsites);
 
         case REACTIVATE_WEBSITE:
-            throw 'TODO';
+            //const {website} = action;
+            // don't remove the website from state.set('deactivatedWebsites')
+            // reactivated websites are tracked locally in the PreferencePanel state
+            return state;
 
         default:
             return state;
