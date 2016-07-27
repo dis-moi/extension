@@ -1,10 +1,12 @@
 import { connect } from 'react-redux';
 
 import Alternative from '../components/Alternatives';
-import { reduce, extend, deactivate } from '../content/actions/ui.js';
+import uiActions from '../content/actions/ui.js';
 
 import { IMAGES_URL } from '../constants/assetsUrls';
 import portCommunication from 'app/content/portCommunication';
+
+const { reduce, extend, deactivate } = uiActions(portCommunication);
 
 function mapStateToProps(state) {
   return {
@@ -17,7 +19,7 @@ function mapDispatchToProps(dispatch){
   return {
     onReduce(){ dispatch(reduce()) },
     onExtend(){ dispatch(extend()) },
-    onDeactivate(details){ dispatch(deactivate(portCommunication)(details)) }
+    onDeactivate(details){ dispatch(deactivate(details)) }
   }
 }
 

@@ -11,7 +11,6 @@ import { createStore } from 'redux';
 
 import rootReducer from '../../../app/content/reducers';
 import alternativeFound from '../../../app/content/actions/alternatives';
-import { deactivateForSomeTime } from '../../../app/content/actions/ui';
 import portCommunication from '../../../app/content/portCommunication';
 
 const IFRAME_EXTENDED_HEIGHT = '255px';

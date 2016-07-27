@@ -1,4 +1,3 @@
-import { MATCHING_OFFERS_FOUND } from '../constants/ActionTypes';
 import { trackHeapEvent } from '../actions/heap';
 
 // Arbitrary set max payload size
@@ -23,14 +22,14 @@ const MAX_PAYLOAD_SIZE = 10000;
  */
 const events = store => next => action => {
     // Check payload size to avoid HTTP 414 Request-URI Too Large url
-    let payloadSize = JSON.stringify(action.payload).length
+    const payloadSize = JSON.stringify(action).length
     if (payloadSize>MAX_PAYLOAD_SIZE) {
         console.log("Payload size too large", payloadSize);
         window.heap.track(action.type);
     } else {
         window.heap.track(action.type, action.payload);
     }
-    let result = next(action);
+    const result = next(action);
     return result
 }
 

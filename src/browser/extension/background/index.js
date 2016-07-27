@@ -2,10 +2,10 @@ import configureStore from 'app/store/configureStore';
 import createMenu from './contextMenus';
 import initBadge from './badge';
 
-import vAPI from './../../../vapi/chromeBackground'
-import listener from './../../../app/listeners';
-import AlternativesInjector from './../../../app/injector';
-import { dispatchInitialStateFromBackend } from './../../../app/actions/kraftBackend';
+import findMatchingOffers from '../../../app/lmem/findMatchingOffers';
+import tabs from '../../../app/tabs/index.js'
+
+import { dispatchInitialStateFromBackend } from '../../../app/actions/kraftBackend';
 
 import heap from './../../../lib/heap';
 /**
@@ -51,9 +51,33 @@ configureStore(store => {
     };
   };
 
-  listener.init(vAPI, store);
+
   Promise.all([contentCodeP])
-  .then( ([contentCode]) => new AlternativesInjector(vAPI, contentCode, mainStyles+recoStyles , store) );
+  .then( ([contentCode]) => {
+    tabs(chrome.tabs, {
+        findMatchingOffers: url => {
+          const state = store.getState();
+          const prefs = state.preferences || {};
+          const deactivated = prefs.deactivated || {};
+
+          if(deactivated.deactivatedEverywhereUntil && Date.now() < deactivated.deactivatedEverywhereUntil){
+            return [];
+          }
+
+          const deactivatedWebsites = deactivated.deactivatedWebsites || new Set();
+
+          if(deactivatedWebsites.has( (new URL(url)).hostname )){
+            return [];
+          }
+
+          return findMatchingOffers(url, state.offers);
+        },
+        dispatch: store.dispatch,
+        contentCode,
+        contentStyle: mainStyles+recoStyles
+      }
+    )
+  })
 
   store.dispatch(dispatchInitialStateFromBackend()); //store initialization from the kraft server
 
