@@ -6,7 +6,7 @@ import uiActions from '../content/actions/ui.js';
 import { IMAGES_URL, CONTRIBUTOR_IMAGES_URL } from '../constants/assetsUrls';
 import portCommunication from 'app/content/portCommunication';
 
-const { reduce, extend, deactivate, togglePrefPanel } = uiActions(portCommunication);
+const { reduce, extend, deactivate, togglePrefPanel, reactivateWebsite } = uiActions(portCommunication);
 
 function mapStateToProps(state) {
   return {
@@ -25,7 +25,7 @@ function mapDispatchToProps(dispatch) {
     onDeactivate(details){ dispatch(deactivate(details)) },
     togglePrefPanel(){ dispatch(togglePrefPanel()) },
     onReactivateWebsite(s){
-      console.log('onReactivateWebsite', s);
+      dispatch(reactivateWebsite(s))
     }
   }
 }

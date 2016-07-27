@@ -39,7 +39,17 @@ export default function (portCommunication) {
       };
       portCommunication.sendBackgroundReduxAction(action);
       return action;
-    }
+
+    },
+
+        reactivateWebsite(s){
+            const action = {
+                type: REACTIVATE_WEBSITE,
+                website: s
+            };
+            portCommunication.sendBackgroundReduxAction(action)
+            return action;
+        }
   };
 }
 

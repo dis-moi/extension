@@ -32,8 +32,10 @@ export default function (state = {}, action) {
         const {deactivatedWebsites} = action;
         return state.set('deactivatedWebsites', deactivatedWebsites);
 
-    default:
-        return state;
-  }
-  
+        case REACTIVATE_WEBSITE:
+            throw 'TODO';
+
+        default:
+            return state;
+    }
 }
