@@ -12,13 +12,14 @@ const styles = {
 };
 
 const Alternatives = ({
-  recommendation, imagesUrl, reduced, onExtend, onReduce
+  recommendation, imagesUrl, reduced, onExtend, onReduce, onDeactivate
 }) => {
   return recommendation ? (
     <div>
       <section id="lmem--alternatives--root" style={styles}>
         <AlternativeHeader
-          imagesUrl={imagesUrl} reduced={reduced} onExtend={onExtend} onReduce={onReduce}
+          imagesUrl={imagesUrl} reduced={reduced}
+          onExtend={onExtend} onReduce={onReduce} onDeactivate={onDeactivate}
         />
         <AlternativeMain imagesUrl={imagesUrl} recommendation={recommendation} />
       </section>
@@ -28,9 +29,9 @@ const Alternatives = ({
 Alternatives.propTypes = {
   recommendation: PropTypes.object,
   imagesUrl: PropTypes.string.isRequired,
-  reduced: PropTypes.boolean.isRequired,
-  onExtend: PropTypes.function.isRequired,
-  onReduce: PropTypes.function.isRequired,
+  reduced: PropTypes.bool.isRequired,
+  onExtend: PropTypes.func.isRequired,
+  onReduce: PropTypes.func.isRequired,
 };
 
 export default Alternatives;
