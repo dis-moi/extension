@@ -19,7 +19,6 @@ export default function (state = {}, action) {
     case EXTEND_ALTERNATIVE_IFRAME:
       return state.set('reduced', false);
 
-
     case DEACTIVATE:
       return state.set('open', false);
 
