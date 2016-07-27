@@ -16,7 +16,7 @@ class AlternativeHeader extends Component {
 
   render() {
     const { props, state } = this;
-    const { imagesUrl, reduced, onExtend, onReduce, onDeactivate } = props;
+    const { imagesUrl, reduced, onExtend, onReduce, onDeactivate, togglePrefPanel } = props;
     const { deactivateMenuOpen } = state;
 
     const reduceButtonText = reduced ? 'Agrandir' : 'Réduire';
@@ -38,10 +38,10 @@ class AlternativeHeader extends Component {
                 where: DEACTIVATE_EVERYWHERE,
                 duration: SESSION_DEACTIVATE_DELAY
               }) }
-              >
+                >
                 <img
-                  role="presentation" 
-                  className="lmem-controls-picto" 
+                  role="presentation"
+                  className="lmem-controls-picto"
                   src={ imagesUrl + 'power-timer.svg' } />
                 <span>Désactiver partout pour 30mins</span>
               </button>
@@ -50,10 +50,10 @@ class AlternativeHeader extends Component {
                 where: window.location && location.hostname,
                 duration: DEACTIVATE_WEBSITE_ALWAYS
               }) }
-              >
+                >
                 <img
-                  role="presentation" 
-                  className="lmem-controls-picto" 
+                  role="presentation"
+                  className="lmem-controls-picto"
                   src={ imagesUrl + 'power-cross.svg' } />
                 <span>Désactiver sur ce site pour toujours</span>
               </button>
@@ -92,17 +92,29 @@ class AlternativeHeader extends Component {
               <div className="button-directive">
                 <button className="button button-compact with-tooltip"
                   onClick={deactivateButtonOnClick}
-                >
+                  >
                   <img role="presentation" src={ imagesUrl + 'power.svg' }
                     className="lmem-controls-picto"
-                  />
+                    />
                   <span className={tooltipButtonClassName}><span>
                     Désactiver
                   </span></span>
                 </button>
               </div>
               <div className="menu-directive menu-deactivate" ref="deactivateMenu">
-              { deactivateMenu }
+                { deactivateMenu }
+              </div>
+            </li>
+            <li className="with-menu">
+              <div className="button-directive">
+                <button className="button button-compact with-tooltip"
+                  onClick={togglePrefPanel}>
+                  <img role="presentation" src={ imagesUrl + 'settings.svg' }
+                    className="lmem-controls-picto" />
+                  <span className={tooltipButtonClassName}><span>
+                    Préférences
+                  </span></span>
+                </button>
               </div>
             </li>
           </ul>
@@ -112,10 +124,10 @@ class AlternativeHeader extends Component {
           <div className="button-directive">
             <button className="button button-compact with-image with-tooltip"
               onClick={this.onClick.bind(this) }
-            >
-              <img 
-                role="presentation" 
-                src={ imagesUrl + 'arrow.svg' } 
+              >
+              <img
+                role="presentation"
+                src={ imagesUrl + 'arrow.svg' }
                 className={ buttonButtonClassName }
                 />
               <span className="button-label">{reduceButtonText}</span>
@@ -128,7 +140,7 @@ class AlternativeHeader extends Component {
 
         <button className="lmem-topbar-logo with-tooltip not-button"
           onClick={this.onClick.bind(this) }
-        >
+          >
           <img src={ imagesUrl + 'logo-lmem.svg' } alt="" />
           <span className="tooltip tooltip-right"><span>
             { reduceButtonText + ' le panneau comparatif' }

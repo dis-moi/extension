@@ -28,6 +28,7 @@ const store = createStore(
   new Record({
     open: true,
     reduced: false,
+    preferencePanelOpen: false,
     alternative: undefined
   })(),
 );

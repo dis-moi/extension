@@ -1,10 +1,11 @@
 import {
-  REDUCE_ALTERNATIVE_IFRAME, 
-  EXTEND_ALTERNATIVE_IFRAME, 
-  DEACTIVATE 
+  REDUCE_ALTERNATIVE_IFRAME,
+  EXTEND_ALTERNATIVE_IFRAME,
+  DEACTIVATE,
+  TOGGLE_PREFERENCE_PANEL
 } from '../../constants/ActionTypes';
 
-export default function (portCommunication){
+export default function (portCommunication) {
   return {
     reduce() {
       const action = {
@@ -27,6 +28,15 @@ export default function (portCommunication){
         { type: DEACTIVATE },
         details
       );
+
+      portCommunication.sendBackgroundReduxAction(action);
+      return action;
+    },
+
+    togglePrefPanel() {
+      const action = {
+        type: TOGGLE_PREFERENCE_PANEL
+      };
       portCommunication.sendBackgroundReduxAction(action);
       return action;
     }

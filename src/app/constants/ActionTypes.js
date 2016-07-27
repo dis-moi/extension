@@ -1,3 +1,4 @@
+// background actions
 export const NOTIFY_SEND = 'notify/SEND';
 export const NOTIFY_RECEIVE = 'notify/RECEIVE';
 
@@ -13,5 +14,7 @@ export const ALTERNATIVE_FOUND = 'ALTERNATIVE_FOUND';
 
 export const REDUCE_ALTERNATIVE_IFRAME = 'REDUCE_ALTERNATIVE_IFRAME';
 export const EXTEND_ALTERNATIVE_IFRAME = 'EXTEND_ALTERNATIVE_IFRAME';
+
+export const TOGGLE_PREFERENCE_PANEL = 'TOGGLE_PREFERENCE_PANEL';
 
 export const DEACTIVATE = 'DEACTIVATE';
