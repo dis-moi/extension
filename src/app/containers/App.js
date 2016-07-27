@@ -14,16 +14,20 @@ function mapStateToProps(state) {
     imagesUrl: IMAGES_URL,
     contributorUrl: CONTRIBUTOR_IMAGES_URL,
     reduced: state.get('reduced'),
-    preferencePanelOpen: state.get('preferencePanelOpen')
+    preferencePanelOpen: state.get('preferencePanelOpen'),
+    deactivatedWebsites: state.get('deactivatedWebsites')
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
-    onReduce(){ dispatch(reduce()); },
-    onExtend(){ dispatch(extend()); },
-    onDeactivate(details){ dispatch(deactivate(details)); },
-    togglePrefPanel(){ dispatch(togglePrefPanel()); }
-  };
+    onReduce(){ dispatch(reduce()) },
+    onExtend(){ dispatch(extend()) },
+    onDeactivate(details){ dispatch(deactivate(details)) },
+    togglePrefPanel(){ dispatch(togglePrefPanel()) },
+    onReactivateWebsite(s){
+      console.log('onReactivateWebsite', s);
+    }
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Alternative);

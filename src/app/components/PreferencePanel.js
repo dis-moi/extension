@@ -4,33 +4,61 @@ import {
   DEACTIVATE_WEBSITE_ALWAYS, 
   SESSION_DEACTIVATE_DELAY 
 } from '../constants/preferences';
+import { Set as ImmutableSet } from 'immutable';
 
 const CONTENT_ABOUT = 'CONTENT_ABOUT';
 const CONTENT_DEACTIVATED_WEBSITES = 'CONTENT_DEACTIVATED_WEBSITES';
 
 class AlternativeHeader extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      content: CONTENT_ABOUT
-    };
-  }
+    constructor(props) {
+        super(props);
+        this.state =  {
+            content: CONTENT_ABOUT,
+            reactivatedWebsites: new ImmutableSet()
+        };
+    }
 
-  render() {
-    const { props, state } = this;
-        // const {imagesUrl, reduced, onExtend, onReduce, onDeactivate, togglePrefPanel} = props;
-    const { content } = state;
+    render() {
+        const {props, state} = this;
+        const {deactivatedWebsites, onReactivateWebsite} = props;
+        const {content, reactivatedWebsites} = state;
 
-    let mainContent;
+        let mainContent;
 
-    switch (content){
-      case CONTENT_ABOUT:
-        mainContent = 'Le Même En Mieux vous recommande des alternatives pertinentes, blablabla';
-        break;
-      case CONTENT_DEACTIVATED_WEBSITES:
-        mainContent = (
-                    'Les sites désactivés !'
+        const deactivatedWebsitesArray = [...deactivatedWebsites]
+
+        const options = deactivatedWebsitesArray
+        .map(s => <option value={s} key={s}/>);
+
+
+        const lis = deactivatedWebsitesArray
+        .map(s => <li key={s}>
+            <span>{s}</span>
+            <button onClick={reactivatedWebsites.has(s) ?
+                undefined :
+                e => {
+                    onReactivateWebsite(s);
+                    this.setState(Object.assign({}, state, {
+                        reactivatedWebsites: reactivatedWebsites.add(s)
+                    }))
+                }
+            }>{
+                reactivatedWebsites.has(s) ? '✓' : 'Réactiver'
+            }</button>
+        </li>);
+
+        switch(content){
+            case CONTENT_ABOUT:
+                mainContent = "Le Même En Mieux vous recommande des alternatives pertinentes, blablabla";
+                break;
+            case CONTENT_DEACTIVATED_WEBSITES:
+                mainContent = (
+                    <div>
+                        <ul>
+                            {lis}
+                        </ul>
+                    </div>
                 );
         break;
       default:

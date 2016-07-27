@@ -3,7 +3,8 @@ import {
   REDUCE_ALTERNATIVE_IFRAME,
   EXTEND_ALTERNATIVE_IFRAME,
   DEACTIVATE,
-  TOGGLE_PREFERENCE_PANEL
+  TOGGLE_PREFERENCE_PANEL,
+  DEACTIVATED_WEBSITES
 } from '../../constants/ActionTypes';
 
 export default function (state = {}, action) {
@@ -27,7 +28,12 @@ export default function (state = {}, action) {
     case TOGGLE_PREFERENCE_PANEL:
       return state.set('preferencePanelOpen', !state.get('preferencePanelOpen'));
 
+    case DEACTIVATED_WEBSITES:
+        const {deactivatedWebsites} = action;
+        return state.set('deactivatedWebsites', deactivatedWebsites);
+
     default:
-      return state;
+        return state;
   }
+  
 }

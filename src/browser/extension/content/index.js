@@ -1,4 +1,4 @@
-import { Record } from 'immutable';
+import { Record, Set as ImmutableSet } from 'immutable';
 import React from 'react';
 import { render } from 'react-dom';
 import Root from '../../../app/containers/Root';
@@ -12,6 +12,7 @@ import { createStore } from 'redux';
 import rootReducer from '../../../app/content/reducers';
 import alternativeFound from '../../../app/content/actions/alternatives';
 
+import updateDeactivatedWebsites from '../../../app/content/actions/preferences';
 import portCommunication from '../../../app/content/portCommunication';
 
 import {
@@ -29,7 +30,8 @@ const store = createStore(
     open: true,
     reduced: false,
     preferencePanelOpen: false,
-    alternative: undefined
+    alternative: undefined,
+    deactivatedWebsites: new ImmutableSet()
   })(),
 );
 
@@ -41,9 +43,10 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
     // console.log('message from background', msg);
     const { type } = msg;
 
+
     switch (type) {
       case 'init':
-        const { style } = msg;
+        const {style, deactivatedWebsites} = msg;
         const reduced = store.getState().get('reduced');
         const lmemContentContainerP = new Promise(resolve => {
           const iframe = document.createElement('iframe');
@@ -66,21 +69,24 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
           </html>`;
 
           iframe.onload = function () {
-            resolve(iframe.contentDocument.body);
+            resolve(iframe.contentDocument.body)
           };
           document.body.appendChild(iframe);
 
           store.subscribe(() => {
             const state = store.getState();
-            
+
             if (!state.get('open')) {
               iframe.remove();
             }
             else {
               iframe.height = state.get('reduced') ? IFRAME_REDUCED_HEIGHT : IFRAME_EXTENDED_HEIGHT;
             }
-          });
-        });
+
+          })
+        })
+
+        store.dispatch(updateDeactivatedWebsites(new ImmutableSet(deactivatedWebsites)));
 
         lmemContentContainerP.then(lmemContentContainer => {
           render(

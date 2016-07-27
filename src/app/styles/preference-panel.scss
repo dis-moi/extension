@@ -1,0 +1,35 @@
+.preference-panel{
+    display: flex;
+    flex-direction: row;
+
+    box-sizing: border-box;
+    * {
+        box-sizing: border-box;
+    }
+
+    nav {
+        width: 10%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+
+        button {
+            background: transparent;
+            border: 0;
+            padding: 1em;
+
+            &:hover{
+                background: hsla(0, 0%, 50%, 0.3);
+            }
+        }
+    }
+
+    main {
+        flex: 1;
+
+        padding: 1em;
+    }
+
+}
