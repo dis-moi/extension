@@ -8,7 +8,7 @@ mocha.setup({
 
 chai.use(chaiAsPromised);
 
-export default function(){
+export default window.integrationTest = function(){
     loadBasicTests();
     loadNavigationsTests();
     
