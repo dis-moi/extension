@@ -28,7 +28,7 @@
     "http://*/*",
     "https://*/*"
   ],
-  "content_security_policy": "default-src 'self'; script-src 'self' https://ui.lmem.net 'unsafe-eval'; connect-src http://lmem-craft-backend.cleverapps.io https://ui.lmem.net ws://localhost:3000 ws://localhost:35729; style-src 'self' https://ui.lmem.net; img-src 'self' https://ui.lmem.net data:;",
+  "content_security_policy": "default-src 'self'; script-src 'self' https://ui.lmem.net 'unsafe-eval'; https://heapanalytics.com https://cdn.heapanalytics.com; style-src * 'unsafe-inline'; img-src 'self' http://heapanalytics.com https://heapanalytics.com data:;",
   "web_accessible_resources": [
     "img/*",
     "styles/*",
