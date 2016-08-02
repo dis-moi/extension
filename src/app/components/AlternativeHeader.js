@@ -99,6 +99,7 @@ class AlternativeHeader extends Component {
                   <span className={tooltipButtonClassName}><span>
                     Désactiver
                   </span></span>
+
                 </button>
               </div>
               <div className="menu-directive menu-deactivate" ref="deactivateMenu">
