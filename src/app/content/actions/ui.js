@@ -2,7 +2,8 @@ import {
   REDUCE_ALTERNATIVE_IFRAME,
   EXTEND_ALTERNATIVE_IFRAME,
   DEACTIVATE,
-  TOGGLE_PREFERENCE_PANEL
+  TOGGLE_PREFERENCE_PANEL,
+  REACTIVATE_WEBSITE
 } from '../../constants/ActionTypes';
 
 export default function (portCommunication) {
@@ -42,14 +43,14 @@ export default function (portCommunication) {
 
     },
 
-        reactivateWebsite(s){
-            const action = {
-                type: REACTIVATE_WEBSITE,
-                website: s
-            };
-            portCommunication.sendBackgroundReduxAction(action)
-            return action;
-        }
+    reactivateWebsite(s){
+      const action = {
+        type: REACTIVATE_WEBSITE,
+        website: s
+      };
+      portCommunication.sendBackgroundReduxAction(action);
+      return action;
+    }
   };
 }
 

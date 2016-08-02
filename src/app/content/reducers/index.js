@@ -30,16 +30,16 @@ export default function (state = {}, action) {
       return state.set('preferencePanelOpen', !state.get('preferencePanelOpen'));
 
     case DEACTIVATED_WEBSITES:
-        const {deactivatedWebsites} = action;
-        return state.set('deactivatedWebsites', deactivatedWebsites);
+      const { deactivatedWebsites } = action;
+      return state.set('deactivatedWebsites', deactivatedWebsites);
 
-        case REACTIVATE_WEBSITE:
-            //const {website} = action;
+    case REACTIVATE_WEBSITE:
+            // const {website} = action;
             // don't remove the website from state.set('deactivatedWebsites')
             // reactivated websites are tracked locally in the PreferencePanel state
-            return state;
+      return state;
 
-        default:
-            return state;
-    }
+    default:
+      return state;
+  }
 }

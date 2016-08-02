@@ -46,7 +46,7 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
 
     switch (type) {
       case 'init':
-        const {style, deactivatedWebsites} = msg;
+        const { style, deactivatedWebsites } = msg;
         const reduced = store.getState().get('reduced');
         const lmemContentContainerP = new Promise(resolve => {
           const iframe = document.createElement('iframe');
@@ -69,7 +69,7 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
           </html>`;
 
           iframe.onload = function () {
-            resolve(iframe.contentDocument.body)
+            resolve(iframe.contentDocument.body);
           };
           document.body.appendChild(iframe);
 
@@ -83,8 +83,8 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
               iframe.height = state.get('reduced') ? IFRAME_REDUCED_HEIGHT : IFRAME_EXTENDED_HEIGHT;
             }
 
-          })
-        })
+          });
+        });
 
         store.dispatch(updateDeactivatedWebsites(new ImmutableSet(deactivatedWebsites)));
 

@@ -1,4 +1,7 @@
-export default function (tabs, {findMatchingOffers, dispatch, contentCode, contentStyle, getDeactivatedWebsites}) {
+export default function (
+  tabs,
+  { findMatchingOffers, dispatch, contentCode, contentStyle, getDeactivatedWebsites }
+) {
 
   const matchingTabIdToPortP = new Map();
 
@@ -29,7 +32,7 @@ export default function (tabs, {findMatchingOffers, dispatch, contentCode, conte
 
         resolve(tabPort);
       });
-    })
+    });
 
     matchingTabIdToPortP.set(tabId, tabPortP);
 
