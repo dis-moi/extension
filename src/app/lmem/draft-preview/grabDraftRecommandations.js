@@ -1,8 +1,7 @@
 /* eslint-disable */
 'use strict';
 
-
-chrome.runtime.onConnect.addListener(function listener(portToBackground) {
+if(!window.FAKING){
   /**
    * FAKING the data element until the backend actually adds it;
    */
@@ -11,17 +10,22 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
       'id': 1,
       'recommendation': {
         'id': 1,
+
+        // UPCOMING in next version of backend
+        'visibility': 'private',
+        
+        
         'alternatives': [
           {
             'id': 1,
-            'url_to_redirect': 'https://www.youtube.com/watch?v=zLAhRiUeJ8E',
+            'url_to_redirect': 'https://jekyllrb.com/',
             'label': 'Voir le comparatif'
           }
         ],
         'matching_contexts': {
           '1': {
             'id': 2,
-            'url_regex': '.*jekyllrb.com.*',
+            'url_regex': '.*wordpress.com.*',
             'description': 'Jekyll'
           }
         },
@@ -47,7 +51,7 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
             'description': 'Prix'
           }
         ],
-        'title': 'Jekyll musique',
+        'title': 'Jekyll > Wordpress',
         'contributor': {
           'id': 2,
           'name': 'Dav Bru',
@@ -58,7 +62,7 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
         },
         'description': 'Que vous ayez un usage basique, avancé, professionnel, geek, joueur régulier ou même photographe amateur, il existe de meilleurs smarpthones en termes de qualité/prix, santé et éthique de la marque.'
       },
-      'url_regex': '.*jekyllrb.com.*',
+      'url_regex': '.*wordpress.com.*',
       'description': 'Yooooooooooo'
     }
   ];
@@ -67,10 +71,16 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
   s.id = 'lmem-draft-recommandations';
   s.textContent = JSON.stringify(fakeData);
   document.body.appendChild(s);
-
+  window.FAKING = true;
+}
   /**
    * END OF FAKING
    */
+
+
+
+chrome.runtime.onConnect.addListener(function listener(portToBackground) {
+
 
 
 
