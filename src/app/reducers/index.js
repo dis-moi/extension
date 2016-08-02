@@ -69,6 +69,13 @@ export default function (state = {}, action) {
         }
             );
     }
+
+    case UPDATE_DRAFT_RECOMMANDATIONS: {
+      const {draftRecommandations} = action;
+
+      return Object.assign({}, state, { draftRecommandations });
+    }
+    
     default:
       return state;
   }

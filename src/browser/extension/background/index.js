@@ -7,8 +7,10 @@ import initBadge from './badge';
 import findMatchingOffersAccordingToPreferences
   from '../../../app/lmem/findMatchingOffersAccordingToPreferences';
 import tabs from '../../../app/tabs/index.js';
+import prepareDraftPreview from '../../../app/lmem/draft-preview/main.js';
 
 import { dispatchInitialStateFromBackend } from '../../../app/actions/kraftBackend';
+import updateDraftRecommandations from '../../../app/actions/updateDraftRecommandations';
 
 import heap from './../../../lib/heap';
 /**
@@ -69,7 +71,10 @@ configureStore(store => {
     );
   });
 
-  store.dispatch(dispatchInitialStateFromBackend()); // store initialization from the kraft server
+  throw 'Missing build step for draft grabing content script'
+  prepareDraftPreview(chrome.tabs, draftOffers => store.dispatch( updateDraftRecommandations(draftOffers) ));
+
+  store.dispatch(dispatchInitialStateFromBackend()); //store initialization from the kraft server
 
   if (process.env.NODE_ENV !== 'production') {
     require('./inject');
