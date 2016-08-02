@@ -22,9 +22,6 @@ import heap from './../../../lib/heap';
 import mainStyles from './../../../app/styles/main.scss';
 import recoStyles from './../../../app/styles/reco.scss';
 
-import test from '../../../../test/integration/index.js';
-window.integrationTest = test;
-
 // Load content code when the extension is loaded
 const contentCodeP = fetch('./js/content.bundle.js')
 .then( resp => resp.text() );
