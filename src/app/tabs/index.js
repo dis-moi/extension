@@ -1,67 +1,70 @@
-export default function(tabs, {findMatchingOffers, dispatch, contentCode, contentStyle}){
+export default function (tabs, { findMatchingOffers, dispatch, contentCode, contentStyle }){
 
-    const matchingTabIdToPortP = new Map();
-    
-    function createContentScriptAndPort(tabId){
-        const tabPortP = new Promise(resolve => {
-            tabs.executeScript(tabId, {
-                code: contentCode,
-                runAt: 'document_end'
-            }, () => {
-                const tabPort = chrome.tabs.connect(tabId);
-                tabPort.onDisconnect.addListener(() => {
-                    console.log('port in background was disconnected for tab', tabId);
-                    matchingTabIdToPortP.delete(tabId);
-                });
+  const matchingTabIdToPortP = new Map();
 
-                tabPort.onMessage.addListener(msg => {
-                    console.log('message from content script', msg);
+  function createContentScriptAndPort(tabId){
+    const tabPortP = new Promise(resolve => {
+      tabs.executeScript(tabId, {
+        code: contentCode,
+        runAt: 'document_end'
+      }, () => {
+        const tabPort = chrome.tabs.connect(tabId);
+        tabPort.onDisconnect.addListener(() => {
+          console.log('port in background was disconnected for tab', tabId);
+          matchingTabIdToPortP.delete(tabId);
+        });
 
-                    if(msg.type === 'redux-action')
-                        dispatch(msg.action);
-                });
+        tabPort.onMessage.addListener(msg => {
+          console.log('message from content script', msg);
 
-                tabPort.postMessage({type: 'init', style: contentStyle});
+          if (msg.type === 'redux-action')
+            dispatch(msg.action);
+        });
 
-                resolve(tabPort);
-            });
-        })
+        tabPort.postMessage({ type: 'init', style: contentStyle });
 
-        matchingTabIdToPortP.set(tabId, tabPortP);
-        
-        return tabPortP;
+        resolve(tabPort);
+      });
+    });
+
+    matchingTabIdToPortP.set(tabId, tabPortP);
+
+    return tabPortP;
+  }
+
+  function sendOffersToTab(tabId, offers){
+    console.log('before execute', tabId);
+
+    const tabPortP = matchingTabIdToPortP.get(tabId) || createContentScriptAndPort(tabId);
+    tabPortP
+        .then(tabPort => tabPort.postMessage({
+          type: 'alternative', 
+          alternative: { matchingOffers: offers }
+        }));
+  }
+
+
+  tabs.onCreated.addListener(({ id, url }) => {
+    const offers = findMatchingOffers(url);
+
+    if (offers.length >= 1){
+      sendOffersToTab(id, offers);
     }
+  });
 
-    function sendOffersToTab(tabId, offers){
-        console.log('before execute', tabId);
-        
-        const tabPortP = matchingTabIdToPortP.get(tabId) || createContentScriptAndPort(tabId);
-        tabPortP
-        .then(tabPort => tabPort.postMessage({type: 'alternative', alternative: {matchingOffers: offers}}))
+  tabs.onUpdated.addListener((id, { newUrl }, { url }) => {
+    const offers = findMatchingOffers(newUrl || url);
+
+    if (offers.length >= 1){
+      sendOffersToTab(id, offers);
     }
+    else {
+      matchingTabIdToPortP.delete(id);
+    }
+  });
 
-
-    tabs.onCreated.addListener( ({id, url}) => {
-        const offers = findMatchingOffers(url);
-
-        if(offers.length >= 1){
-            sendOffersToTab(id, offers)
-        }
-    });
-
-    tabs.onUpdated.addListener( (id, {newUrl}, {url}) => {
-        const offers = findMatchingOffers(newUrl || url);
-
-        if(offers.length >= 1){
-            sendOffersToTab(id, offers);
-        }
-        else{
-            matchingTabIdToPortP.delete(id);
-        }
-    });
-
-    tabs.onRemoved.addListener( id => {
-        matchingTabIdToPortP.delete(id);
-    });
+  tabs.onRemoved.addListener(id => {
+    matchingTabIdToPortP.delete(id);
+  });
 
 }

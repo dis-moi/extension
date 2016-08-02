@@ -3,22 +3,29 @@ import Loader from './Loader';
 import AlternativeHeader from './AlternativeHeader';
 import AlternativeMain from './AlternativeMain';
 
-const Alternatives = ({recommendation, imagesUrl, reduced, onExtend, onReduce, onDeactivate}) => recommendation ? (
+const Alternatives = ({
+  recommendation, imagesUrl, reduced, onExtend, onReduce, onDeactivate
+}) => {
+  return recommendation ? (
     <section>
-        <AlternativeHeader
-            imagesUrl={imagesUrl}
-            reduced={reduced}
-            onExtend={onExtend}
-            onReduce={onReduce}
-            onDeactivate={onDeactivate}
+      <AlternativeHeader
+        imagesUrl={imagesUrl}
+        reduced={reduced}
+        onExtend={onExtend}
+        onReduce={onReduce}
+        onDeactivate={onDeactivate}
         />
-        <AlternativeMain imagesUrl={imagesUrl} recommendation={recommendation} />
+      <AlternativeMain imagesUrl={imagesUrl} recommendation={recommendation} />
     </section>
-) : (<Loader imagesUrl={ imagesUrl } />);
+  ) : (<Loader imagesUrl={imagesUrl} />);
+};
 
 Alternatives.propTypes = {
-    recommendation: PropTypes.object,
-    imagesUrl: PropTypes.string.isRequired,
+  recommendation: PropTypes.object,
+  imagesUrl: PropTypes.string.isRequired,
+  reduced: PropTypes.bool.isRequired,
+  onExtend: PropTypes.func.isRequired,
+  onReduce: PropTypes.func.isRequired,
 };
 
 export default Alternatives;
