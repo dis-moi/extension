@@ -13,7 +13,7 @@ export default baseConfig({
     test: [`${testPath}integration/`]
   },
   plugins: {},
-  output: {   
+  output: {
     path: path.join(__dirname, '../dev'),
     publicPath: '.'
   }
