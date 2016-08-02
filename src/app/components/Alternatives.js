@@ -3,28 +3,22 @@ import Loader from './Loader';
 import AlternativeHeader from './AlternativeHeader';
 import AlternativeMain from './AlternativeMain';
 
-const styles = {
-  position: 'absolute',
-  bottom: 0,
-  left: 0,
-  right: 0,
-  top: 0
-};
-
 const Alternatives = ({
   recommendation, imagesUrl, reduced, onExtend, onReduce, onDeactivate
 }) => {
   return recommendation ? (
-    <div>
-      <section id="lmem--alternatives--root" style={styles}>
-        <AlternativeHeader
-          imagesUrl={imagesUrl} reduced={reduced}
-          onExtend={onExtend} onReduce={onReduce} onDeactivate={onDeactivate}
+    <section>
+      <AlternativeHeader
+        imagesUrl={imagesUrl}
+        reduced={reduced}
+        onExtend={onExtend}
+        onReduce={onReduce}
+        onDeactivate={onDeactivate}
         />
-        <AlternativeMain imagesUrl={imagesUrl} recommendation={recommendation} />
-      </section>
-    </div>
-) : (<Loader imagesUrl={imagesUrl} />);};
+      <AlternativeMain imagesUrl={imagesUrl} recommendation={recommendation} />
+    </section>
+  ) : (<Loader imagesUrl={imagesUrl} />);
+};
 
 Alternatives.propTypes = {
   recommendation: PropTypes.object,
