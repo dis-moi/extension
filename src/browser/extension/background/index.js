@@ -28,8 +28,8 @@ import mainStyles from './../../../app/styles/main.scss';
 import recoStyles from './../../../app/styles/reco.scss';
 
 // Load content code when the extension is loaded
-const contentCodeP = fetch('./js/content.bundle.js')
-  .then(resp => resp.text());
+const contentCodeP = fetch('./js/content.bundle.js').then(resp => resp.text());
+const draftRecoContentCodeP = fetch('./js/grabDraftRecommandations.js').then(resp => resp.text());
 
 configureStore(store => {
   window.store = store;
@@ -51,8 +51,8 @@ configureStore(store => {
     };
   };
 
-  Promise.all([contentCodeP])
-  .then(([contentCode]) => {
+  contentCodeP
+  .then(contentCode => {
     tabs(chrome.tabs, {
       findMatchingOffers: url => {
         const state = store.getState();
@@ -71,10 +71,15 @@ configureStore(store => {
     );
   });
 
-  throw 'Missing build step for draft grabing content script'
-  prepareDraftPreview(chrome.tabs, draftOffers => store.dispatch( updateDraftRecommandations(draftOffers) ));
+  draftRecoContentCodeP
+  .then(contentCode => prepareDraftPreview(
+      chrome.tabs, 
+      contentCode,
+      (draftOffers => store.dispatch(updateDraftRecommandations(draftOffers)))
+    )
+  );
 
-  store.dispatch(dispatchInitialStateFromBackend()); //store initialization from the kraft server
+  store.dispatch(dispatchInitialStateFromBackend()); // store initialization from the kraft server
 
   if (process.env.NODE_ENV !== 'production') {
     require('./inject');
