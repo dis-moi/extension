@@ -1,17 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 
-const AlternativeMain = ({ imagesUrl, recommendation }) => (
+const AlternativeMain = ({ imagesUrl, contributorUrl, recommendation }) => (
   <main className="main">
     <div className="wrapperframe">
       <header className="sideframe lmem-header">
         <div className="query-summary summary-contributor">
           <h2 className="reco-contributor-title">{'Recommandation proposée par'}</h2>
           <div className="reco-contributor-content">
-            <img role="presentation" src={imagesUrl + 'contributors/maarten.jpg'} />
-            <p>
-              <strong>Maarten Samson</strong>
-              <span>{'co-fondateur Le Même en Mieux.'}</span>
-            </p>
+            <img role="presentation" src={contributorUrl + recommendation.contributor.image} />
+            <div>{recommendation.contributor.name}</div>
+            <div>{recommendation.contributor.organization}</div>
           </div>
         </div>
       </header>
@@ -64,6 +62,7 @@ const AlternativeMain = ({ imagesUrl, recommendation }) => (
 AlternativeMain.propTypes = {
   recommendation: PropTypes.object.isRequired,
   imagesUrl: PropTypes.string.isRequired,
+  contributorUrl: PropTypes.string.isRequired,
 };
 
 export default AlternativeMain;
