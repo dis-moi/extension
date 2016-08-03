@@ -16,14 +16,16 @@ class PreferenceScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: PREFERENCE_SCREEN_PANEL_ABOUT,
       reactivatedWebsites: new ImmutableSet()
     };
   }
 
   render() {
     const { props, state } = this;
-    const { deactivatedWebsites, onReactivateWebsite } = props;
+    const {
+      preferenceScreenPanel, deactivatedWebsites, 
+      onReactivateWebsite, openPrefScreen
+    } = props;
     const { content, reactivatedWebsites } = state;
 
     let mainContent;
@@ -50,7 +52,7 @@ class PreferenceScreen extends Component {
             }</button>
         </li>);
 
-    switch (content){
+    switch (preferenceScreenPanel){
       case PREFERENCE_SCREEN_PANEL_ABOUT:
         mainContent = 'Le Même En Mieux vous recommande des alternatives pertinentes, blablabla';
         break;
@@ -67,15 +69,15 @@ class PreferenceScreen extends Component {
         console.error('Unknown content value', content);
     }
 
-    const changeContent = e => {
-      const newContent = e.target.getAttribute('data-content');
-      this.setState(Object.assign({}, state, { content: newContent }));
+    const changePanel = e => {
+      const newContent = e.target.getAttribute('data-panel');
+      openPrefScreen(newContent);
     };
 
     return (<section className="preference-panel wrapperframe">
             <nav>
-                <button data-content={PREFERENCE_SCREEN_PANEL_ABOUT} onClick={changeContent}>A propos</button>
-                <button data-content={PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES} onClick={changeContent}>
+                <button data-panel={PREFERENCE_SCREEN_PANEL_ABOUT} onClick={changePanel}>A propos</button>
+                <button data-panel={PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES} onClick={changePanel}>
                 Sites désactivés
                 </button>
             </nav>

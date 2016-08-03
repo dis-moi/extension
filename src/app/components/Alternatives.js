@@ -22,8 +22,10 @@ class Alternatives extends Component {
     
     const body = (preferenceScreenPanel ?
       <PreferenceScreen
+        preferenceScreenPanel={preferenceScreenPanel}
         deactivatedWebsites={deactivatedWebsites} 
         onReactivateWebsite={onReactivateWebsite}
+        openPrefScreen={openPrefScreen}
       /> :
       <AlternativeMain imagesUrl={imagesUrl} recommendation={recommendation} contributorUrl={contributorUrl}/>);
 

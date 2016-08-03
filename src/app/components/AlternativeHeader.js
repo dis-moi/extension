@@ -5,7 +5,8 @@ import {
   SESSION_DEACTIVATE_DELAY
 } from '../constants/preferences';
 import {
-  PREFERENCE_SCREEN_PANEL_ABOUT
+  PREFERENCE_SCREEN_PANEL_ABOUT,
+  HEADER_CONTENT
 } from '../constants/ui';
 
 class AlternativeHeader extends Component {
@@ -145,6 +146,10 @@ class AlternativeHeader extends Component {
       </div>
     </div>);
 
+    const headerContent = preferenceScreenPanel ?
+      HEADER_CONTENT[preferenceScreenPanel](imagesUrl) :
+      HEADER_CONTENT.default;
+
 
     return (
       <header className="lmem-topbar fixed">
@@ -153,7 +158,7 @@ class AlternativeHeader extends Component {
           <div className="mainframe">
             <div className="mainframe-inner">
               <h1 className="lmem-topbar-title">
-                <strong>{ 'Le Même en Mieux' }</strong>
+                {headerContent}
               </h1>
             </div>
           </div>
