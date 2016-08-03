@@ -11,7 +11,16 @@ body {
     color: $font-color;
 
     overflow: hidden;
-    overflow-x: auto;
-    
-    padding: $margin-size;
+    overflow-x: auto;   
 }
+
+.lmem-top-level {
+    display: flex;
+    flex-direction: column;
+
+    & > *{
+        padding: $margin-size;
+    } 
+    
+}
+

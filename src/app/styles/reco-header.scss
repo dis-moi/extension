@@ -1,0 +1,36 @@
+@import '_variables';
+
+.lmem-top-level{
+
+    header{
+        background: $background-em-color;
+        display: flex;
+        flex-direction: row;
+
+        align-items: center;
+        justify-content: flex-start;
+
+        height: 4em;
+
+        img{
+            max-width: 100%;
+            height: auto;
+        }
+
+        & > h1{
+            flex: 1;
+        }
+
+        button.reduce{
+            align-items: center;
+            padding: 0 0.5em 0 0;
+
+            img{
+                margin: 0;
+            }
+        }
+
+    }
+    
+
+}
