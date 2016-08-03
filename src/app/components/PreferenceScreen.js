@@ -4,17 +4,19 @@ import {
   DEACTIVATE_WEBSITE_ALWAYS, 
   SESSION_DEACTIVATE_DELAY 
 } from '../constants/preferences';
+import { 
+  PREFERENCE_SCREEN_PANEL_ABOUT,
+  PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES
+} from '../constants/ui';
 import { Set as ImmutableSet } from 'immutable';
 
-const CONTENT_ABOUT = 'CONTENT_ABOUT';
-const CONTENT_DEACTIVATED_WEBSITES = 'CONTENT_DEACTIVATED_WEBSITES';
 
-class AlternativeHeader extends Component {
+class PreferenceScreen extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      content: CONTENT_ABOUT,
+      content: PREFERENCE_SCREEN_PANEL_ABOUT,
       reactivatedWebsites: new ImmutableSet()
     };
   }
@@ -49,10 +51,10 @@ class AlternativeHeader extends Component {
         </li>);
 
     switch (content){
-      case CONTENT_ABOUT:
+      case PREFERENCE_SCREEN_PANEL_ABOUT:
         mainContent = 'Le Même En Mieux vous recommande des alternatives pertinentes, blablabla';
         break;
-      case CONTENT_DEACTIVATED_WEBSITES:
+      case PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES:
         mainContent = (
                     <div>
                         <ul>
@@ -72,8 +74,8 @@ class AlternativeHeader extends Component {
 
     return (<section className="preference-panel wrapperframe">
             <nav>
-                <button data-content={CONTENT_ABOUT} onClick={changeContent}>A propos</button>
-                <button data-content={CONTENT_DEACTIVATED_WEBSITES} onClick={changeContent}>
+                <button data-content={PREFERENCE_SCREEN_PANEL_ABOUT} onClick={changeContent}>A propos</button>
+                <button data-content={PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES} onClick={changeContent}>
                 Sites désactivés
                 </button>
             </nav>
@@ -85,4 +87,4 @@ class AlternativeHeader extends Component {
 
 }
 
-export default AlternativeHeader;
+export default PreferenceScreen;

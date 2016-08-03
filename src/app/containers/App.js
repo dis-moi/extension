@@ -7,7 +7,7 @@ import { IMAGES_URL, CONTRIBUTOR_IMAGES_URL } from '../constants/assetsUrls';
 import portCommunication from 'app/content/portCommunication';
 
 const {
-  reduce, extend, deactivate, togglePrefPanel, reactivateWebsite
+  reduce, extend, deactivate, closePrefScreen, openPrefScreen, reactivateWebsite
 } = uiActions(portCommunication);
 
 function mapStateToProps(state) {
@@ -16,7 +16,7 @@ function mapStateToProps(state) {
     imagesUrl: IMAGES_URL,
     contributorUrl: CONTRIBUTOR_IMAGES_URL,
     reduced: state.get('reduced'),
-    preferencePanelOpen: state.get('preferencePanelOpen'),
+    preferenceScreenPanel: state.get('preferenceScreenPanel'),
     deactivatedWebsites: state.get('deactivatedWebsites')
   };
 }
@@ -25,7 +25,8 @@ function mapDispatchToProps(dispatch) {
     onReduce(){ dispatch(reduce()); },
     onExtend(){ dispatch(extend()); },
     onDeactivate(details){ dispatch(deactivate(details)); },
-    togglePrefPanel(){ dispatch(togglePrefPanel()); },
+    closePrefScreen(){ dispatch(closePrefScreen()); },
+    openPrefScreen(panel){ dispatch(openPrefScreen(panel)); },
     onReactivateWebsite(s){
       dispatch(reactivateWebsite(s));
     }

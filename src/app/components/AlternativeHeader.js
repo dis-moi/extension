@@ -4,6 +4,9 @@ import {
   DEACTIVATE_WEBSITE_ALWAYS,
   SESSION_DEACTIVATE_DELAY
 } from '../constants/preferences';
+import {
+  PREFERENCE_SCREEN_PANEL_ABOUT
+} from '../constants/ui';
 
 class AlternativeHeader extends Component {
 
@@ -16,7 +19,10 @@ class AlternativeHeader extends Component {
 
   render() {
     const { props, state } = this;
-    const { imagesUrl, reduced, onExtend, onReduce, onDeactivate, togglePrefPanel } = props;
+    const {
+      imagesUrl, reduced, preferenceScreenPanel,
+      onExtend, onReduce, onDeactivate, closePrefScreen, openPrefScreen
+    } = props;
     const { deactivateMenuOpen } = state;
 
     const reduceButtonText = reduced ? 'Agrandir' : 'Réduire';
@@ -109,7 +115,7 @@ class AlternativeHeader extends Component {
             <li className="with-menu">
               <div className="button-directive">
                 <button className="button button-compact with-tooltip"
-                  onClick={togglePrefPanel}>
+                  onClick={e => openPrefScreen(PREFERENCE_SCREEN_PANEL_ABOUT)}>
                   <img role="presentation" src={ imagesUrl + 'settings.svg' }
                     className="lmem-controls-picto" />
                   <span className={tooltipButtonClassName}><span>

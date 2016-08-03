@@ -29,7 +29,7 @@ const store = createStore(
   new Record({
     open: true,
     reduced: false,
-    preferencePanelOpen: false,
+    preferenceScreenPanel: undefined, // preference screen close
     alternative: undefined,
     deactivatedWebsites: new ImmutableSet()
   })(),

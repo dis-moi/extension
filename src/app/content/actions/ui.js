@@ -2,7 +2,8 @@ import {
   REDUCE_ALTERNATIVE_IFRAME,
   EXTEND_ALTERNATIVE_IFRAME,
   DEACTIVATE,
-  TOGGLE_PREFERENCE_PANEL,
+  OPEN_PREFERENCE_PANEL,
+  CLOSE_PREFERENCE_PANEL,
   REACTIVATE_WEBSITE
 } from '../../constants/ActionTypes';
 
@@ -34,13 +35,21 @@ export default function (portCommunication) {
       return action;
     },
 
-    togglePrefPanel() {
+    closePrefScreen(){
       const action = {
-        type: TOGGLE_PREFERENCE_PANEL
+        type: CLOSE_PREFERENCE_PANEL
       };
       portCommunication.sendBackgroundReduxAction(action);
       return action;
-
+    },
+    
+    openPrefScreen(panel){
+      const action = {
+        type: OPEN_PREFERENCE_PANEL,
+        panel
+      };
+      portCommunication.sendBackgroundReduxAction(action);
+      return action;
     },
 
     reactivateWebsite(s){

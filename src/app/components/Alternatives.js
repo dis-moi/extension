@@ -2,37 +2,48 @@ import React, { Component, PropTypes } from 'react';
 import Loader from './Loader';
 import AlternativeHeader from './AlternativeHeader';
 import AlternativeMain from './AlternativeMain';
-import PreferencePanel from './PreferencePanel';
+import PreferenceScreen from './PreferenceScreen';
 
-const Alternatives = ({
-  recommendation, imagesUrl, reduced, contributorUrl, preferencePanelOpen, deactivatedWebsites,
-  onExtend, onReduce, onDeactivate, togglePrefPanel, onReactivateWebsite
-}) => {
-  const body = (preferencePanelOpen ?
-    <PreferencePanel
-      deactivatedWebsites={deactivatedWebsites} 
-      onReactivateWebsite={onReactivateWebsite}
-    /> :
-    <AlternativeMain 
-      imagesUrl={imagesUrl}
-      contributorUrl={contributorUrl}
-      recommendation={recommendation}
-    />);
+class Alternatives extends Component {
 
-  return recommendation ? (
-    <section>
-      <AlternativeHeader
-        imagesUrl={imagesUrl}
-        reduced={reduced}
-        onExtend={onExtend}
-        onReduce={onReduce}
-        onDeactivate={onDeactivate}
-        togglePrefPanel={togglePrefPanel}
-        />
-      { body }
-    </section>
-    ) : (<Loader imagesUrl={ imagesUrl } />);
-};
+  constructor(props) {
+    super(props);
+    this.state = {
+      // deactivateMenuOpen: false
+    };
+  }
+
+  render(){
+    const { props, state } = this;
+    const {
+      recommendation, imagesUrl, reduced, contributorUrl, preferencePanelOpen, deactivatedWebsites,
+      onExtend, onReduce, onDeactivate, togglePrefPanel, onReactivateWebsite
+    } = props;
+    
+    const body = (preferenceScreenPanel ?
+      <PreferenceScreen
+        deactivatedWebsites={deactivatedWebsites} 
+        onReactivateWebsite={onReactivateWebsite}
+      /> :
+      <AlternativeMain imagesUrl={imagesUrl} recommendation={recommendation} contributorUrl={contributorUrl}/>);
+
+    return recommendation ? (
+      <section>
+        <AlternativeHeader
+          imagesUrl={imagesUrl}
+          reduced={reduced}
+          preferenceScreenPanel={preferenceScreenPanel}
+          onExtend={onExtend}
+          onReduce={onReduce}
+          onDeactivate={onDeactivate}
+          closePrefScreen={closePrefScreen}
+          openPrefScreen={openPrefScreen}
+          />
+        { body }
+      </section>
+      ) : (<Loader imagesUrl={ imagesUrl } />);
+  }
+}
 
 Alternatives.propTypes = {
   recommendation: PropTypes.object,

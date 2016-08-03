@@ -17,8 +17,8 @@
     "compress:app": "npm run build:app && gulp compress:app",
     "compress:firefox": "npm run build:firefox && gulp compress:firefox",
     "clean": "rm -rf build/ && rm -rf dev/",
-    "lint": "eslint .",
     "test": "mocha --compilers js:babel-core/register test/app --recursive",
+    "lint": "git ls-files -om --exclude-standard | grep \\.js$ | xargs eslint --fix",
     "deploy:extension": "gulp deploy:extension"
   },
   "pre-commit": [

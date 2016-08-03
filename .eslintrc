@@ -12,6 +12,7 @@
     "react/jsx-uses-vars": 2,
     "react/react-in-jsx-scope": 2,
     "indent": [2, 2, {"SwitchCase": 1}],
+    "max-len": ["error", {"code": 120, "ignoreUrls": true}],
     "comma-style": [ 2, "last" ],
     "quotes": [ 1, "single" ],
     "react/jsx-quotes": 0,
