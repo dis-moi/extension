@@ -79,6 +79,73 @@ class AlternativeHeader extends Component {
         this.setState({ deactivateMenuOpen: !deactivateMenuOpen });
       };
 
+
+    const headerButtons = preferenceScreenPanel ?
+      (<li>
+        <div className="button-directive">
+          <button className="button button-compact with-tooltip"
+            onClick={closePrefScreen}>
+            <img role="presentation" src={ imagesUrl + 'close.svg' }
+              className="lmem-controls-picto" />
+            <span className={tooltipButtonClassName}><span>
+              Fermer l'écran des préférences
+            </span></span>
+          </button>
+        </div>
+      </li>) :
+      [(<li className="with-menu">
+        <div className="button-directive">
+          <button className="button button-compact with-tooltip"
+            onClick={deactivateButtonOnClick}
+            >
+            <img role="presentation" src={ imagesUrl + 'power.svg' }
+              className="lmem-controls-picto"
+              />
+            <span className={tooltipButtonClassName}><span>
+              Désactiver
+            </span></span>
+
+          </button>
+        </div>
+        <div className="menu-directive menu-deactivate" ref="deactivateMenu">
+          { deactivateMenu }
+        </div>
+      </li>),
+      (<li>
+        <div className="button-directive">
+          <button className="button button-compact with-tooltip"
+            onClick={e => openPrefScreen(PREFERENCE_SCREEN_PANEL_ABOUT)}>
+            <img role="presentation" src={ imagesUrl + 'settings.svg' }
+              className="lmem-controls-picto" />
+            <span className={tooltipButtonClassName}><span>
+              Préférences
+            </span></span>
+          </button>
+        </div>
+      </li>)];
+
+
+
+    const extendReduceButton = preferenceScreenPanel ? undefined :
+    (<div className="button-wrapper">
+      <div className="button-directive">
+        <button className="button button-compact with-image with-tooltip"
+          onClick={this.onClick.bind(this) }
+          >
+          <img
+            role="presentation"
+            src={ imagesUrl + 'arrow.svg' }
+            className={ buttonButtonClassName }
+            />
+          <span className="button-label">{reduceButtonText}</span>
+          <span className={tooltipButtonClassName}><span>
+            {reduceButtonText}
+          </span></span>
+        </button>
+      </div>
+    </div>);
+
+
     return (
       <header className="lmem-topbar fixed">
         <div className="lmem-topbar-notification">
@@ -94,56 +161,11 @@ class AlternativeHeader extends Component {
 
         <nav>
           <ul className="lmem-controls-list">
-            <li className="with-menu">
-              <div className="button-directive">
-                <button className="button button-compact with-tooltip"
-                  onClick={deactivateButtonOnClick}
-                  >
-                  <img role="presentation" src={ imagesUrl + 'power.svg' }
-                    className="lmem-controls-picto"
-                    />
-                  <span className={tooltipButtonClassName}><span>
-                    Désactiver
-                  </span></span>
-
-                </button>
-              </div>
-              <div className="menu-directive menu-deactivate" ref="deactivateMenu">
-                { deactivateMenu }
-              </div>
-            </li>
-            <li className="with-menu">
-              <div className="button-directive">
-                <button className="button button-compact with-tooltip"
-                  onClick={e => openPrefScreen(PREFERENCE_SCREEN_PANEL_ABOUT)}>
-                  <img role="presentation" src={ imagesUrl + 'settings.svg' }
-                    className="lmem-controls-picto" />
-                  <span className={tooltipButtonClassName}><span>
-                    Préférences
-                  </span></span>
-                </button>
-              </div>
-            </li>
+            {headerButtons}
           </ul>
         </nav>
 
-        <div className="button-wrapper">
-          <div className="button-directive">
-            <button className="button button-compact with-image with-tooltip"
-              onClick={this.onClick.bind(this) }
-              >
-              <img
-                role="presentation"
-                src={ imagesUrl + 'arrow.svg' }
-                className={ buttonButtonClassName }
-                />
-              <span className="button-label">{reduceButtonText}</span>
-              <span className={tooltipButtonClassName}><span>
-                {reduceButtonText}
-              </span></span>
-            </button>
-          </div>
-        </div>
+        {extendReduceButton}
 
         <button className="lmem-topbar-logo with-tooltip not-button"
           onClick={this.onClick.bind(this) }
