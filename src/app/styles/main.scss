@@ -5,97 +5,12 @@
 
 @import '_tooltip.scss';
 
+@import 'elements';
+@import 'top-level';
 @import 'preference-screen';
+@import 'reco';
 
-/**
- * Quick Reset
- *
- * =reset
- */
 
-// Root element
-:root {
-    background-color: $background-color;
-    color: $font-color;
-    margin: 0;
-    overflow: hidden;
-    overflow-x: auto;
-    padding: $margin-size;
-}
-body {
-    font-family: Ubuntu, sans-serif;
-    font-size: $simple-font-size;
-    font-weight: 400;
-    line-height: $simple-line-height;
-}
-
-// Content elements
-p, ul, ol, li {
-    font-size: inherit;
-    line-height: inherit;
-    margin: 0;
-    padding: 0;
-}
-
-ul, ol {
-    list-style: none;
-}
-
-// Heading elements
-h1, h2, h3, h4, h5, h6 {
-    font-size: inherit;
-    font-weight: inherit;
-    line-height: inherit;
-    margin: 0;
-    padding: 0;
-}
-
-// Table elements
-table {
-    border-collapse: separate;
-    border-spacing: 0;
-    empty-cells: hide;
-}
-caption,
-th {
-    font-weight: inherit;
-}
-th, td {
-    border: 0;
-    margin: 0;
-    padding: 0;
-}
-
-// Links elements
-:link {
-    @extend %link;
-}
-:visited {
-    color: $font-color;
-}
-a:hover,
-a:focus,
-a:active {
-    &, &.no-visited {
-        color: $action-color;
-        text-decoration: truenone;
-    }
-}
-
-// Inline elements
-strong, b {
-    font-weight: inherit;
-}
-small {
-    color: $font-quiet-color;
-    font-size: inherit;
-}
-mark {
-    background-color: $background-em-color;
-    border-radius: rem-size(2);
-    color: $font-em-color;
-    padding: 0 .5ex;
-}
 
 // Others
 

@@ -25,7 +25,6 @@ import heap from './../../../lib/heap';
  * components, error prone assets references, etc.)
  */
 import mainStyles from './../../../app/styles/main.scss';
-import recoStyles from './../../../app/styles/reco.scss';
 
 // Load content code when the extension is loaded
 const contentCodeP = fetch('./js/content.bundle.js').then(resp => resp.text());
@@ -69,7 +68,7 @@ configureStore(store => {
       },
       dispatch: store.dispatch,
       contentCode,
-      contentStyle: mainStyles + recoStyles
+      contentStyle: mainStyles
     }
     );
   });
