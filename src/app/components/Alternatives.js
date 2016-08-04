@@ -4,7 +4,7 @@ import AlternativeHeader from './AlternativeHeader';
 import AlternativeMain from './AlternativeMain';
 
 const Alternatives = ({
-  recommendation, imagesUrl, reduced, onExtend, onReduce, onDeactivate
+  recommendation, imagesUrl, contributorUrl, reduced, onExtend, onReduce, onDeactivate
 }) => {
   return recommendation ? (
     <section>
@@ -15,7 +15,10 @@ const Alternatives = ({
         onReduce={onReduce}
         onDeactivate={onDeactivate}
         />
-      <AlternativeMain imagesUrl={imagesUrl} recommendation={recommendation} />
+      <AlternativeMain
+        imagesUrl={imagesUrl}
+        contributorUrl={contributorUrl}
+        recommendation={recommendation} />
     </section>
   ) : (<Loader imagesUrl={imagesUrl} />);
 };
@@ -23,6 +26,7 @@ const Alternatives = ({
 Alternatives.propTypes = {
   recommendation: PropTypes.object,
   imagesUrl: PropTypes.string.isRequired,
+  contributorUrl: PropTypes.string.isRequired,
   reduced: PropTypes.bool.isRequired,
   onExtend: PropTypes.func.isRequired,
   onReduce: PropTypes.func.isRequired,
