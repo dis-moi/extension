@@ -16,8 +16,8 @@ class Alternatives extends Component {
   render(){
     const { props, state } = this;
     const {
-      recommendation, imagesUrl, reduced, contributorUrl, preferencePanelOpen, deactivatedWebsites,
-      onExtend, onReduce, onDeactivate, togglePrefPanel, onReactivateWebsite
+      recommendation, imagesUrl, reduced, contributorUrl, preferenceScreenPanel, deactivatedWebsites,
+      onExtend, onReduce, onDeactivate, togglePrefPanel, onReactivateWebsite, closePrefScreen, openPrefScreen
     } = props;
     
     const body = (preferenceScreenPanel ?
@@ -27,7 +27,7 @@ class Alternatives extends Component {
         onReactivateWebsite={onReactivateWebsite}
         openPrefScreen={openPrefScreen}
       /> :
-      <AlternativeMain imagesUrl={imagesUrl} recommendation={recommendation} contributorUrl={contributorUrl}/>);
+      <AlternativeMain imagesUrl={imagesUrl} recommendation={recommendation} contributorUrl={contributorUrl} />);
 
     return recommendation ? (
       <section>
