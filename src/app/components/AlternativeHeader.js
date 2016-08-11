@@ -158,7 +158,7 @@ class AlternativeHeader extends Component {
 
     return (
       <header>
-        <button className="with-tooltip not-button"
+        <button className="with-tooltip logo"
           onClick={this.onClick.bind(this) }
         >
           <img width="45" src={ imagesUrl + 'logo-lmem.svg' } alt="" />
@@ -166,6 +166,8 @@ class AlternativeHeader extends Component {
             { reduceButtonText + ' le panneau comparatif' }
           </span>
         </button>
+
+        <div className="separation-bar" />
 
         <h1 className="lmem-topbar-title">
           <strong>{headerContent}</strong>

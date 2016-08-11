@@ -2,7 +2,7 @@
 
 .lmem-top-level{
 
-    header{
+    & > header{
         background: $background-em-color;
         display: flex;
         flex-direction: row;
@@ -11,6 +11,15 @@
         justify-content: flex-start;
 
         height: 4em;
+
+        &>.logo{
+            position: relative; // so that the tooltip with position: absolute works
+
+            background: inherit;
+            box-shadow: none;
+            border: 0;
+            padding: 0;
+        }
 
         img{
             max-width: 100%;

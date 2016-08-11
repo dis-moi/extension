@@ -1,0 +1,9 @@
+@import '_variables';
+
+.separation-bar{
+    width: 0;
+    min-height: 100%;
+
+    border-left: 1px solid $background-light-color;
+    margin: 0 1em;
+}

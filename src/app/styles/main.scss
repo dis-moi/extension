@@ -10,7 +10,8 @@
 @import 'preference-screen';
 @import 'reco';
 @import 'reco-header';
-
+@import 'reco-main';
+@import 'separation-bar';
 
 
 // Others
@@ -196,18 +197,6 @@ body {
 .sideframe {
     flex: 0 1 auto;
     width: $sideframe-width;
-}
-
-// The Main Frame contains the alternatives
-// excerpt and the alternatives panes.
-.mainframe {
-    flex: 20 1 0;
-}
-
-.mainframe-inner {
-    margin-left: $adjusted-margin;
-    padding-left: $margin-size;
-    border-left: $border-width solid $border-color;
 }
 
 // The wrapper frame manage side and main
@@ -1365,11 +1354,12 @@ th%summary-title {
 }
 
 .with-right-arrow {
+    padding-right: 1.5em;
+
     &::after {
         @include iso-rect-triangle('to right', rem-size(8), $font-em-color);
         display: inline-block;
-        right: 1ex;
-        top: 35%;
+        right: 0.5em;
     }
 }
 
