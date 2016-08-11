@@ -108,10 +108,39 @@ mark {
 
 
 main {
+
+    .reco-summary-wrapper.highlight {
+        display: block;
+        margin: -$border-width;
+        text-decoration: none;
+        line-height: rem-size(20);
+        border: solid $border-width $background-light-color;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: $font-em-color;
+            border-color: $action-color;
+        }
+    }
+
     &.preview{
-        background-color: indianred;
+        .reco-summary-wrapper {
+            background-image: repeating-linear-gradient(145deg, #FDF6E3, #FDF6E3 30px, transparent 30px, transparent 60px); /* $background-color-highlight AFAIR (sort of white) */
+            border-color: #FDF6E3; /* $background-color AFAIR */
+        }
+
+        .reco-summary-wrapper::before {
+            content: 'PRÉVISUALISATION';
+            position: absolute;
+            font-weight: bold;
+            color: #EEE8D5; /* $font-color-em AFAIR */
+            transform: rotate(-90deg) translate(-40px, -100px);
+        }
     }
 }
+
+
 
 
 
