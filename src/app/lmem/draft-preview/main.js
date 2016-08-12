@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 function isRecommandationBackendURL(url) {
   const { hostname, pathname, search } = new URL(url);
 
@@ -9,7 +11,9 @@ function isRecommandationBackendURL(url) {
 
 export default function (tabs, contentCode, updateDraftRecommandations) {
 
-  function grabDraftRecommandations(tabId) {
+  // The onCreated and onUpdated events lead to too many calls by default
+  // Let's debounce 2secs
+  const grabDraftRecommandations = _.debounce(function (tabId) {
     tabs.executeScript(tabId, {
       code: contentCode,
       runAt: 'document_end'
@@ -23,7 +27,7 @@ export default function (tabs, contentCode, updateDraftRecommandations) {
         updateDraftRecommandations(msg);
       });
     });
-  }
+  }, 2 * 1000, {leading: true, trailing: false});
 
   tabs.onCreated.addListener(({ id, url }) => {
     if (isRecommandationBackendURL(url)) {
