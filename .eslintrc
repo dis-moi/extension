@@ -38,7 +38,9 @@
     "no-trailing-spaces": 0,
     "react/jsx-no-bind": 0,
     "react/prop-types": 0,
-    "brace-style": 0
+    "brace-style": 0,
+    "keyword-spacing": 0,
+    "no-param-reassign": 0
   },
   "plugins": [
     "react"

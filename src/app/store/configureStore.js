@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 import notify from 'redux-notify';
 import rootReducer from '../reducers';
 import trackEvents from '../events/trackEvents';
+import makeInitialState from './makeInitialState';
 
 export default function configureStore(callback, isBg) {
   let getState;
@@ -12,6 +13,10 @@ export default function configureStore(callback, isBg) {
   else getState = (isBg ? require('./getStateToBg') : require('./getStateFromBg'));
 
   getState(initialState => {
+    if(Object.keys(initialState).length === 0){
+      initialState = makeInitialState();
+    }
+
     let enhancer;
     const middleware = [
       thunk,

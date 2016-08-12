@@ -11,8 +11,8 @@ mocha.setup({
 chai.use(chaiAsPromised);
 
 window.integrationTest = function () {
-    loadBasicTests();
-    loadNavigationsTests();
+  loadBasicTests();
+  loadNavigationsTests();
 
-    mocha.run();
-}
+  mocha.run();
+};

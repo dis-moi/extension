@@ -10,6 +10,7 @@ webpack/replace
 
 test/app/setup.js
 test/infrastructure
+test/app
 
 src/browser/extension/background/contextMenus.js
 src/electron
