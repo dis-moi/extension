@@ -121,6 +121,7 @@
     "redux": "^3.3.1",
     "redux-notify": "^0.1.1",
     "redux-persist": "^3.2.2",
-    "redux-thunk": "^2.0.1"
+    "redux-thunk": "^2.0.1",
+    "whatwg-url": "^3.0.0"
   }
 }
