@@ -1,6 +1,6 @@
 import chai from 'chai';
 
-import {receivedMatchingContexts} from '../../../src/app/actions/kraftBackend';
+import {receivedMatchingContexts} from '../../src/app/actions/kraftBackend';
 
 const expect = chai.expect;
 

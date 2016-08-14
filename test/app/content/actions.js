@@ -1,9 +1,9 @@
 import chai from 'chai';
 
-import neverThrowingObject from '../../../infrastructure/neverThrowingObject';
+import neverThrowingObject from '../../infrastructure/neverThrowingObject';
 
-import alternativeFound from '../../../../src/app/content/actions/alternatives';
-import prepareUIEvents from '../../../../src/app/content/actions/ui';
+import alternativeFound from '../../../src/app/content/actions/alternatives';
+import prepareUIEvents from '../../../src/app/content/actions/ui';
 
 const expect = chai.expect;
 
