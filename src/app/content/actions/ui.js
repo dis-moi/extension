@@ -24,9 +24,9 @@ export default function (portCommunication){
 
     deactivate(details) {
       const action = Object.assign(
-                { type: DEACTIVATE },
-                details
-            );
+        { type: DEACTIVATE },
+        details
+      );
       portCommunication.sendBackgroundReduxAction(action);
       return action;
     }
