@@ -1,6 +1,12 @@
-import whatwgURL from 'whatwg-url';
-
 import findMatchingOffers from './findMatchingOffers';
+
+let whatwgURL;
+
+// whatwgURL is only needed to run tests in Node.
+// This line prevents unglify from tripping over some ES6 in 'whatwg-url'
+if(process.env.NODE_ENV !== 'production'){
+  whatwgURL = require('whatwg-url');
+}
 
 const _URL = typeof URL === 'function' ? URL : whatwgURL.URL;
 
