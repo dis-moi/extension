@@ -94,7 +94,19 @@ class AlternativeHeader extends Component {
           </button>
         </div>
       </li>) :
-      [(<li className="with-menu">
+      [(<li>
+        <div className="button-directive">
+          <button className="button button-compact with-tooltip"
+            onClick={e => openPrefScreen(PREFERENCE_SCREEN_PANEL_ABOUT)}>
+            <img role="presentation" src={ imagesUrl + 'settings.svg' }
+              className="lmem-controls-picto" />
+            <span className={tooltipButtonClassName}><span>
+              Préférences
+            </span></span>
+          </button>
+        </div>
+      </li>),
+      (<li className="with-menu">
         <div className="button-directive">
           <button className="button button-compact with-tooltip"
             onClick={deactivateButtonOnClick}
@@ -110,18 +122,6 @@ class AlternativeHeader extends Component {
         </div>
         <div className="menu-directive menu-deactivate" ref="deactivateMenu">
           { deactivateMenu }
-        </div>
-      </li>),
-      (<li>
-        <div className="button-directive">
-          <button className="button button-compact with-tooltip"
-            onClick={e => openPrefScreen(PREFERENCE_SCREEN_PANEL_ABOUT)}>
-            <img role="presentation" src={ imagesUrl + 'settings.svg' }
-              className="lmem-controls-picto" />
-            <span className={tooltipButtonClassName}><span>
-              Préférences
-            </span></span>
-          </button>
         </div>
       </li>)];
 
