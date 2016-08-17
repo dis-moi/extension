@@ -18,9 +18,7 @@
     "compress:firefox": "npm run build:firefox && gulp compress:firefox",
     "clean": "rm -rf build/ && rm -rf dev/",
     "lint": "eslint .",
-    "test:app": "mocha --require test/app/setup.js --recursive test/app",
-    "test:chrome": "npm run build:app && npm run build:extension && gulp test-chrome",
-    "test": "npm run test:app && npm run test:chrome",
+    "test": "mocha --compilers js:babel-core/register test/app --recursive",
     "deploy:extension": "gulp deploy:extension"
   },
   "pre-commit": [
@@ -28,6 +26,9 @@
   ],
   "bin": {
     "electron": "./node_modules/.bin/electron"
+  },
+  "engines" : {
+    "node" : ">=6"
   },
   "repository": {
     "type": "git",
@@ -123,6 +124,7 @@
     "redux": "^3.3.1",
     "redux-notify": "^0.1.1",
     "redux-persist": "^3.2.2",
-    "redux-thunk": "^2.0.1"
+    "redux-thunk": "^2.0.1",
+    "whatwg-url": "^3.0.0"
   }
 }

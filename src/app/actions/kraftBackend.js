@@ -13,7 +13,7 @@ function fetchAllMatchingContexts() {
   });
 }
 
-function receivedMatchingContexts(matchingContexts) {
+export function receivedMatchingContexts(matchingContexts) {
   console.log('received');
   return {
     type: RECEIVED_MATCHING_CONTEXTS,

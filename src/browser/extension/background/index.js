@@ -4,7 +4,8 @@ import configureStore from './../../../app/store/configureStore';
 import createMenu from './contextMenus';
 import initBadge from './badge';
 
-import findMatchingOffers from '../../../app/lmem/findMatchingOffers';
+import findMatchingOffersAccordingToPreferences
+  from '../../../app/lmem/findMatchingOffersAccordingToPreferences';
 import tabs from '../../../app/tabs/index.js';
 
 import { dispatchInitialStateFromBackend } from '../../../app/actions/kraftBackend';
@@ -53,21 +54,7 @@ configureStore(store => {
     tabs(chrome.tabs, {
       findMatchingOffers: url => {
         const state = store.getState();
-        const prefs = state.preferences || {};
-        const deactivated = prefs.deactivated || {};
-
-        if (deactivated.deactivatedEverywhereUntil &&
-          Date.now() < deactivated.deactivatedEverywhereUntil) {
-          return [];
-        }
-
-        const deactivatedWebsites = deactivated.deactivatedWebsites || new Set();
-
-        if (deactivatedWebsites.has((new URL(url)).hostname)) {
-          return [];
-        }
-
-        return findMatchingOffers(url, state.offers);
+        return findMatchingOffersAccordingToPreferences(url, state.offers, state.preferences);
       },
       dispatch: store.dispatch,
       contentCode,
