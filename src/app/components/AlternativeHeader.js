@@ -97,7 +97,12 @@ class AlternativeHeader extends Component {
       [(<li>
         <div className="button-directive">
           <button className="button button-compact with-tooltip"
-            onClick={e => openPrefScreen(PREFERENCE_SCREEN_PANEL_ABOUT)}>
+            onClick={e => {
+              if(reduced){
+                onExtend();
+              }
+              openPrefScreen(PREFERENCE_SCREEN_PANEL_ABOUT);
+            }}>
             <img role="presentation" src={ imagesUrl + 'settings.svg' }
               className="lmem-controls-picto" />
             <span className={tooltipButtonClassName}><span>
