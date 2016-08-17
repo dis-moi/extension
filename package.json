@@ -27,6 +27,9 @@
   "bin": {
     "electron": "./node_modules/.bin/electron"
   },
+  "engines" : {
+    "node" : ">=6"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/insitu-project/proto-ext"
