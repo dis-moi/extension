@@ -2,7 +2,7 @@
 
 .lmem-top-level{
 
-    & > header{
+    > header{
         background: $background-em-color;
         display: flex;
         flex-direction: row;
@@ -12,7 +12,7 @@
 
         height: 4em;
 
-        &>.logo{
+        > .logo{
             position: relative; // so that the tooltip with position: absolute works
 
             background: inherit;
@@ -26,16 +26,40 @@
             height: auto;
         }
 
-        & > h1{
+        > h1{
             flex: 1;
         }
 
         button.reduce{
             align-items: center;
-            padding: 0 0.5em 0 0;
+            line-height: $double-line-height;
+        }
 
-            img{
-                margin: 0;
+        // Win some space hiding secondary UI elements.
+        @media(max-width: #{ $media-query-threshold-small-edge - rem-size(1) }) {
+            z-index: 20;
+
+            .button-label {
+                @include visually-hidden;
+            }
+            .button-compact.with-image img {
+                margin-left: .5ex;
+            }
+        }
+
+        // Otherwise, display them.
+        @media(min-width: $media-query-threshold-small-edge) {
+            .button-label + .tooltip {
+                @include visually-hidden;
+            }
+
+            .with-image img {
+                margin-right: .2ex;
+                width: $block-size / 3;
+            }
+
+            .with-image {
+                min-width: $controls-inner-width;
             }
         }
 

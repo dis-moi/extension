@@ -1124,33 +1124,7 @@ input[type=text] {
         margin: 0;
     }
 
-    // Win some space hiding secondary UI elements.
-    @media(max-width: #{ $media-query-threshold-small-edge - rem-size(1) }) {
-        z-index: 20;
 
-        .button-label {
-            @include visually-hidden;
-        }
-        .button-compact.with-image img {
-            margin-left: 0;
-        }
-    }
-
-    // Otherwise, display them.
-    @media(min-width: $media-query-threshold-small-edge) {
-        .button-label + .tooltip {
-            @include visually-hidden;
-        }
-
-        .with-image img {
-            margin-right: .2ex;
-            width: $block-size / 3;
-        }
-
-        .with-image {
-            min-width: $controls-inner-width;
-        }
-    }
 }
 
 .lmem-controls-list > li {
