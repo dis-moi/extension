@@ -21,26 +21,21 @@
 .tooltip {
     position: absolute;
     z-index: 100;
-
-    & > * {
-        background: transparentize($reverse-background-color, .1);
-        border: $border-width solid rgba(0,0,0,0);
-        border-radius: rem-size(3);
-        box-shadow: -$border-width $border-width rem-size(7) rem-size(-2) #000;
-        color: $font-quiet-color;
-        display: block;
-        font-size: $simple-font-size;
-        hyphens: auto;
-        line-height: $simple-line-height;
-        margin: -$border-width;
-        padding: $half-adjusted-margin $margin-size;
-        position: relative;
-        text-shadow: none;
-    }
+    background: transparentize($reverse-background-color, .1);
+    border: $border-width solid rgba(0,0,0,0);
+    border-radius: rem-size(3);
+    box-shadow: -$border-width $border-width rem-size(7) rem-size(-2) #000;
+    color: $font-quiet-color;
+    display: block;
+    font-size: $simple-font-size;
+    line-height: $simple-line-height;
+    margin: -$border-width;
+    padding: $half-adjusted-margin $margin-size;
+    text-shadow: none;
+    
 }
 
 @mixin tooltip-top {
-    padding: 0 0 $half-adjusted-margin;
 
     .with-tooltip & {
         top: initial;
@@ -49,7 +44,7 @@
         left: initial;
     }
 
-    & > ::after {
+    &::after {
         @include iso-rect-triangle(
             'to bottom',
             $half-adjusted-margin * 1.2,
@@ -67,7 +62,6 @@
 }
 
 @mixin tooltip-bottom {
-    padding: $half-adjusted-margin 0 0;
 
     .with-tooltip & {
         top: calc(100% + #{ $simple-line-height });
@@ -76,7 +70,7 @@
         left: initial;
     }
 
-    & > ::after {
+    &::after {
         @include iso-rect-triangle(
             'to top',
             $half-adjusted-margin * 1.2,
@@ -94,16 +88,15 @@
 }
 
 @mixin tooltip-right {
-    padding: 0 0 0 $half-adjusted-margin;
 
     .with-tooltip & {
         top: calc(50% - #{ $simple-line-height });
         right: initial;
         bottom: initial;
-        left: calc(100%);
+        left: calc(100% + 0.5em);
     }
 
-    & > ::after {
+    &::after {
         @include iso-rect-triangle(
             'to left',
             $half-adjusted-margin,
@@ -122,16 +115,15 @@
 }
 
 @mixin tooltip-left {
-    padding: 0 $half-adjusted-margin 0 0;
 
     .with-tooltip & {
         top: calc(50% - #{ $simple-line-height });
-        right: calc(100%);
+        right: calc(100% + 0.5em);
         bottom: initial;
         left: initial;
     }
 
-    & > ::after {
+    &::after {
         @include iso-rect-triangle(
             'to right',
             $half-adjusted-margin,
@@ -150,16 +142,15 @@
 }
 
 @mixin tooltip-bottom-right {
-    padding: $half-adjusted-margin 0 0;
 
     .with-tooltip & {
-        top: calc(100%);
+        top: calc(100% + 0.5em);
         right: 0;
         bottom: initial;
         left: initial;
     }
 
-    & > ::after {
+    &::after {
         @include iso-rect-triangle(
             'to top',
             $half-adjusted-margin * 1.2,
@@ -178,16 +169,15 @@
 }
 
 @mixin tooltip-bottom-left {
-    padding: $half-adjusted-margin 0 0;
 
     .with-tooltip & {
-        top: calc(100%);
+        top: calc(100% + 0.5em);
         right: initial;
         bottom: initial;
         left: 0;
     }
 
-    & > ::after {
+    &::after {
         @include iso-rect-triangle(
             'to top',
             $half-adjusted-margin * 1.2,
@@ -206,16 +196,15 @@
 }
 
 @mixin tooltip-top-right {
-    padding: 0 0 $half-adjusted-margin;
 
     .with-tooltip & {
         top: initial;
         right: 0;
-        bottom: calc(100%);
+        bottom: calc(100% + 0.5em);
         left: initial;
     }
 
-    & > ::after {
+    &::after {
         @include iso-rect-triangle(
             'to bottom',
             $half-adjusted-margin * 1.2,
@@ -234,16 +223,15 @@
 }
 
 @mixin tooltip-top-left {
-    padding: 0 0 $half-adjusted-margin;
 
     .with-tooltip & {
         top: initial;
         right: initial;
-        bottom: calc(100%);
+        bottom: calc(100% + 0.5em);
         left: 0;
     }
 
-    & > ::after {
+    &::after {
         @include iso-rect-triangle(
             'to bottom',
             $half-adjusted-margin * 1.2,

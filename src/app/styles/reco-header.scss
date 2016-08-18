@@ -18,8 +18,9 @@
             border: 0;
             padding: 0;
 
-            :hover{
+            &:hover{
                 background: $background-light-color;
+                border-radius: 0.1875rem;
             }
         }
 
