@@ -24,5 +24,10 @@ export default function (url, offers, drafts, prefs = {}) {
     return [];
   }
 
-  return findMatchingOffers(url, offers);
+  const previewOffers = findMatchingOffers(url, drafts);
+
+  // prioritize previews over public offers
+  return previewOffers.length >= 1 ?
+    previewOffers : 
+    findMatchingOffers(url, offers);  
 }

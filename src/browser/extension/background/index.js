@@ -56,8 +56,9 @@ configureStore(store => {
     tabs(chrome.tabs, {
       findMatchingOffers: url => {
         const state = store.getState();
+        
         return findMatchingOffersAccordingToPreferences(
-          url, state.offers, state.draftRecommandations || {}, state.preferences
+          url, state.offers, state.draftRecommandations || [], state.preferences
         );
       },
       getDeactivatedWebsites: () => {
