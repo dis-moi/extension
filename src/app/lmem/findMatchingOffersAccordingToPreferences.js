@@ -10,7 +10,7 @@ if(process.env.NODE_ENV !== 'production'){
 
 const _URL = typeof URL === 'function' ? URL : whatwgURL.URL;
 
-export default function (url, offers, prefs = {}) {
+export default function (url, offers, drafts, prefs = {}) {
   const deactivated = prefs.deactivated || {};
 
   if (deactivated.deactivatedEverywhereUntil &&

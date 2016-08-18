@@ -15,10 +15,10 @@ const nonMatchingURL = 'https://soundcloud.com/capt-lovelace/meteo-marine';
 
 describe('findMatchingOffersAccordingToPreferences', function () {
 
-  describe('empty prefs', () => {
+  describe('empty prefs, no draft', () => {
     
     it('should match when the url matches an offer', () => {
-      const matching = findMatchingOffersAccordingToPreferences(matchingURL, offers, {})
+      const matching = findMatchingOffersAccordingToPreferences(matchingURL, offers, {}, {})
 
       expect(matching).to.be.an('array');
       expect(matching).to.be.of.length(1);
@@ -26,7 +26,7 @@ describe('findMatchingOffersAccordingToPreferences', function () {
     })
     
     it('should not match when the url does not match any offer', () => {
-      const matching = findMatchingOffersAccordingToPreferences(nonMatchingURL, offers, {})
+      const matching = findMatchingOffersAccordingToPreferences(nonMatchingURL, offers, {}, {})
 
       expect(matching).to.be.an('array');
       expect(matching).to.be.of.length(0);
@@ -44,7 +44,7 @@ describe('findMatchingOffersAccordingToPreferences', function () {
     };
 
     it('should not match when deactivatedEverywhereUntil is in the future', () => {
-      const matching = findMatchingOffersAccordingToPreferences(matchingURL, offers, prefs)
+      const matching = findMatchingOffersAccordingToPreferences(matchingURL, offers, {}, prefs)
 
       expect(matching).to.be.an('array');
       expect(matching).to.be.of.length(0);
@@ -64,7 +64,7 @@ describe('findMatchingOffersAccordingToPreferences', function () {
     };
 
     it('should not match with matching url, but pref listing as deactivated', () => {
-      const matching = findMatchingOffersAccordingToPreferences(matchingURL, offers, prefs)
+      const matching = findMatchingOffersAccordingToPreferences(matchingURL, offers, {}, prefs)
 
       expect(matching).to.be.an('array');
       expect(matching).to.be.of.length(0);
