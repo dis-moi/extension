@@ -19,21 +19,32 @@ class PreferenceDeactivatedPanel extends Component {
     } = props;
     const { reactivatedWebsites } = state;
 
-    const deactivatedWebsitesArray = [...deactivatedWebsites];
+    const websitesDisplayedAsDeactivated = deactivatedWebsites.subtract(reactivatedWebsites);
 
-    const lis = deactivatedWebsitesArray
-        .map(s => <li key={s}>
-            <span>{s}</span>
-            <button onClick={reactivatedWebsites.has(s) ?
+    const websitesDisplayedAsDeactivatedArray = [...websitesDisplayedAsDeactivated]
+    .map(w => ({ website: w, active: false }));
+    
+    const reactivatedWebsitesArray = [...reactivatedWebsites]
+    .map(w => ({ website: w, active: true }));
+
+    console.log('d, r', websitesDisplayedAsDeactivatedArray, reactivatedWebsitesArray);
+
+    const displayedWebsites = websitesDisplayedAsDeactivatedArray.concat(reactivatedWebsitesArray);
+    displayedWebsites.sort(({ website: w1 }, { website: w2 }) => w1.localeCompare(w2));
+
+    const lis = displayedWebsites
+        .map(({ website, active }) => <li key={website}>
+            <span>{website}</span>
+            <button onClick={active ?
                 undefined :
                 e => {
-                  onReactivateWebsite(s);
+                  onReactivateWebsite(website);
                   this.setState(Object.assign({}, state, {
-                    reactivatedWebsites: reactivatedWebsites.add(s)
+                    reactivatedWebsites: reactivatedWebsites.add(website)
                   }));
                 }
             }>{
-                reactivatedWebsites.has(s) ? '✓' : 'Réactiver'
+                active ? '✓' : 'Réactiver'
             }</button>
         </li>);
 

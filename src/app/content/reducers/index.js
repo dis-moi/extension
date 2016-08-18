@@ -40,10 +40,8 @@ export default function (state = {}, action) {
       return state.set('deactivatedWebsites', deactivatedWebsites);
 
     case REACTIVATE_WEBSITE:
-            // const {website} = action;
-            // don't remove the website from state.set('deactivatedWebsites')
-            // reactivated websites are tracked locally in the PreferenceScreen state
-      return state;
+      const { website } = action;
+      return state.set('deactivatedWebsites', state.get('deactivatedWebsites').delete(website));
 
     default:
       return state;
