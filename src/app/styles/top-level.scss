@@ -18,8 +18,8 @@ body {
     display: flex;
     flex-direction: column;
 
-    & > *{
-        padding: $margin-size;
+    > *{
+        padding: 0.539em $margin-size;
     } 
     
 }

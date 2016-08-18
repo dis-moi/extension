@@ -10,8 +10,6 @@
         align-items: center;
         justify-content: flex-start;
 
-        height: 4em;
-
         > .logo{
             position: relative; // so that the tooltip with position: absolute works
 
@@ -19,6 +17,10 @@
             box-shadow: none;
             border: 0;
             padding: 0;
+
+            :hover{
+                background: $background-light-color;
+            }
         }
 
         img{
