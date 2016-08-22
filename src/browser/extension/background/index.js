@@ -56,6 +56,12 @@ configureStore(store => {
         const state = store.getState();
         return findMatchingOffersAccordingToPreferences(url, state.offers, state.preferences);
       },
+      getDeactivatedWebsites: () => {
+        const state = store.getState();
+        const prefs = state.preferences || {};
+        const deactivated = prefs.deactivated || {};
+        return deactivated.deactivatedWebsites || new Set();
+      },
       dispatch: store.dispatch,
       contentCode,
       contentStyle: mainStyles + recoStyles
