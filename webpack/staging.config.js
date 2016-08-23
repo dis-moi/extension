@@ -19,7 +19,6 @@ export default baseConfig({
       remotePath: '/lamp0/web/vhosts/ui.lmem.net/htdocs/'
     }
   },
-  plugins: {},
   globals: {
     'process.env': {
       NODE_ENV: '"staging"',

@@ -1,26 +1,19 @@
 import path from 'path';
 import webpack from 'webpack';
 
-const baseConfig = ({ input, output = {}, globals = {}, plugins, loaders }) => ({
+const baseConfig = ({ input, output = {}, globals = {}, plugins = [], loaders }) => ({
   entry: input,
-  output: {
-    filename: 'js/[name].bundle.js',
-    chunkFilename: 'js/[id].chunk.js',
-    ...output
-  },
+  output: Object.assign(
+    {
+      filename: 'js/[name].bundle.js',
+      chunkFilename: 'js/[id].chunk.js'
+    },
+    output
+  ),
   globals: globals,
   plugins: [
     new webpack.DefinePlugin(globals),
-    ...(plugins ||
-    [
-      new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.UglifyJsPlugin({
-        comments: false,
-        compressor: {
-          warnings: false
-        }
-      })
-    ])
+    ...plugins
   ],
   resolve: {
     alias: {

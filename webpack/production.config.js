@@ -1,4 +1,5 @@
 import path from 'path';
+import webpack from 'webpack';
 import baseConfig from './base.config';
 const srcPath = path.join(__dirname, '../src/browser/');
 
@@ -19,6 +20,15 @@ export default baseConfig({
       remotePath: '/lamp0/web/vhosts/ui.lmem.net/htdocs/'
     }
   },
+  plugins: [
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      comments: false,
+      compressor: {
+        warnings: false
+      }
+    })
+  ],
   globals: {
     'process.env': {
       NODE_ENV: '"production"',

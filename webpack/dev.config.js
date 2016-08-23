@@ -12,7 +12,6 @@ export default baseConfig({
     content: [`${srcPath}extension/content/`],
     test: [`${testPath}integration/`]
   },
-  plugins: {},
   output: {
     path: path.join(__dirname, '../build/dev'),
     publicPath: '.'
