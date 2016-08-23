@@ -42,12 +42,12 @@ main {
     }
 
     &.preview{
-        .reco-summary-wrapper {
+        a.mainframe {
             background-image: repeating-linear-gradient(145deg, #FDF6E3, #FDF6E3 30px, transparent 30px, transparent 60px); /* $background-color-highlight AFAIR (sort of white) */
             border-color: #FDF6E3; /* $background-color AFAIR */
         }
 
-        .reco-summary-wrapper::before {
+        a.mainframe::before {
             content: 'PRÉVISUALISATION';
             position: absolute;
             font-weight: bold;
