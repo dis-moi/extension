@@ -43,14 +43,14 @@ configureStore(store => {
   window.getStore = () => {
     let unsubscribeList = [];
     return {
-      store: {
-        ...store,
+      store: Object.assign({
         subscribe(...args) {
           const unsubscribe = store.subscribe(...args);
           unsubscribeList.push(unsubscribe);
           return unsubscribe;
-        }
-      },
+        },
+        store
+      }),
       unsubscribe: () => {
         unsubscribeList.forEach(unsubscriber => { unsubscriber(); });
       }

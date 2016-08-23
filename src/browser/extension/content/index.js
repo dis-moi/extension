@@ -32,7 +32,7 @@ const store = createStore(
     preferenceScreenPanel: undefined, // preference screen close
     alternative: undefined,
     deactivatedWebsites: new ImmutableSet()
-  })(),
+  })()
 );
 
 // reach back to background script

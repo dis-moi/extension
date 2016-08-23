@@ -5,12 +5,11 @@ const menus = [
 ];
 
 function addToMenu(title, contexts, onclick, moreOptions) {
-  chrome.contextMenus.create({
+  chrome.contextMenus.create(Object.assign({
     title,
     contexts,
-    onclick,
-    ...moreOptions
-  });
+    onclick
+  }, moreOptions));
 }
 
 export default function createMenu() {

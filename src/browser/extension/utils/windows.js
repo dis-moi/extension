@@ -19,13 +19,12 @@ function handleClose(id) {
 
 export function popWindow(name, customOptions) {
   focusIfExist(name, () => {
-    const options = {
+    const options = Object.assign({
       type: 'popup',
       left: 0, top: 0,
       width: window.screen.availWidth, height: window.screen.availHeight,
-      url: chrome.extension.getURL(name + '.html'),
-      ...customOptions
-    };
+      url: chrome.extension.getURL(name + '.html')
+    }, customOptions);
     chrome.windows.create(options, (win) => {
       windows[name] = win.id;
       if (!chrome.windows.onRemoved.hasListeners()) {
