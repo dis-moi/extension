@@ -8,6 +8,7 @@ const copy = (dest, manifest, tests) => () => {
       .pipe(gulp.dest(dest));
   }
   gulp.src('./src/assets/**/*').pipe(gulp.dest(dest));
+  gulp.src('./src/app/lmem/draft-preview/grabDraftRecommandations.js').pipe(gulp.dest('./dev/js'));
   if(tests){
     gulp.src('./test/**/*').pipe(gulp.dest(dest+'/test'));
   }

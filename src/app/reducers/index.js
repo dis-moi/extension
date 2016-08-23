@@ -2,7 +2,8 @@ import {
   MATCHING_OFFERS_FOUND, 
   RECEIVED_MATCHING_CONTEXTS, 
   DEACTIVATE,
-  REACTIVATE_WEBSITE
+  REACTIVATE_WEBSITE,
+  UPDATE_DRAFT_RECOMMANDATIONS
 } from '../constants/ActionTypes';
 import { DEACTIVATE_EVERYWHERE, DEACTIVATE_WEBSITE_ALWAYS } from '../constants/preferences';
 
@@ -69,6 +70,13 @@ export default function (state = {}, action) {
         }
             );
     }
+
+    case UPDATE_DRAFT_RECOMMANDATIONS: {
+      const { draftRecommandations } = action;
+
+      return Object.assign({}, state, { draftRecommandations });
+    }
+
     default:
       return state;
   }

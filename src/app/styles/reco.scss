@@ -3,21 +3,6 @@
 @import '_variables';
 @import '_helpers';
 
-.reco-summary-wrapper.highlight {
-    display: block;
-    margin: -$border-width;
-    text-decoration: none;
-    line-height: rem-size(20);
-    border: solid $border-width $background-light-color;
-
-    &:hover,
-    &:focus,
-    &:active {
-        color: $font-em-color;
-        border-color: $action-color;
-    }
-}
-
 //
 // Reco Header
 //

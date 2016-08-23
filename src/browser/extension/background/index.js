@@ -7,8 +7,10 @@ import initBadge from './badge';
 import findMatchingOffersAccordingToPreferences
   from '../../../app/lmem/findMatchingOffersAccordingToPreferences';
 import tabs from '../../../app/tabs/index.js';
+import prepareDraftPreview from '../../../app/lmem/draft-preview/main.js';
 
 import { dispatchInitialStateFromBackend } from '../../../app/actions/kraftBackend';
+import updateDraftRecommandations from '../../../app/actions/updateDraftRecommandations';
 
 import heap from './../../../lib/heap';
 /**
@@ -26,8 +28,8 @@ import mainStyles from './../../../app/styles/main.scss';
 import recoStyles from './../../../app/styles/reco.scss';
 
 // Load content code when the extension is loaded
-const contentCodeP = fetch('./js/content.bundle.js')
-  .then(resp => resp.text());
+const contentCodeP = fetch('./js/content.bundle.js').then(resp => resp.text());
+const draftRecoContentCodeP = fetch('./js/grabDraftRecommandations.js').then(resp => resp.text());
 
 configureStore(store => {
   window.store = store;
@@ -49,12 +51,15 @@ configureStore(store => {
     };
   };
 
-  Promise.all([contentCodeP])
-  .then(([contentCode]) => {
+  contentCodeP
+  .then(contentCode => {
     tabs(chrome.tabs, {
       findMatchingOffers: url => {
         const state = store.getState();
-        return findMatchingOffersAccordingToPreferences(url, state.offers, state.preferences);
+        
+        return findMatchingOffersAccordingToPreferences(
+          url, state.offers, state.draftRecommandations || [], state.preferences
+        );
       },
       getDeactivatedWebsites: () => {
         const state = store.getState();
@@ -68,6 +73,14 @@ configureStore(store => {
     }
     );
   });
+
+  draftRecoContentCodeP
+  .then(contentCode => prepareDraftPreview(
+      chrome.tabs, 
+      contentCode,
+      (draftOffers => store.dispatch(updateDraftRecommandations(draftOffers)))
+    )
+  );
 
   store.dispatch(dispatchInitialStateFromBackend()); // store initialization from the kraft server
 
