@@ -38,6 +38,11 @@
             line-height: $double-line-height;
         }
 
+        .separation-bar{
+            border-color: $topbar-border-color ;
+        }
+        
+
         // Win some space hiding secondary UI elements.
         @media(max-width: #{ $media-query-threshold-small-edge - rem-size(1) }) {
             z-index: 20;
