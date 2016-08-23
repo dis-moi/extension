@@ -1,9 +1,15 @@
 import _ from 'lodash';
 
-function isRecommandationBackendURL(url) {
-  const { hostname, pathname, search } = new URL(url);
+const LMEM_BACKEND_ORIGIN = process.env.LMEM_BACKEND_ORIGIN;
 
-  return hostname === 'lmem-craft-backend.cleverapps.io' &&
+if(typeof LMEM_BACKEND_ORIGIN !== 'string'){
+  throw new TypeError('Missing LMEM backend origin ' + LMEM_BACKEND_ORIGIN);
+}
+
+function isRecommandationBackendURL(url) {
+  const { origin, pathname, search } = new URL(url);
+
+  return origin === LMEM_BACKEND_ORIGIN &&
     pathname.includes('/admin') &&
     search.includes('action=list') && 
     search.includes('entity=Recommendation');

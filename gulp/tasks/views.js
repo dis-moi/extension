@@ -2,7 +2,8 @@ import gulp from 'gulp';
 import jade from 'gulp-jade';
 
 import devConfig from '../../webpack/dev.config';
-import extConfig from '../../webpack/extension.config';
+import stagingConfig from '../../webpack/staging.config';
+import extConfig from '../../webpack/production.config';
 
 
 const paths = ['./src/browser/views/*.jade', './src/views/*.jade'];
@@ -15,8 +16,9 @@ const compile = (dest, path, config = {}, env = 'prod') => () => {
     .pipe(gulp.dest(dest));
 };
 
-gulp.task('views:build:dev', compile('./dev', paths, devConfig, 'dev'));
-gulp.task('views:build:extension', compile('./build/extension', paths[0], extConfig));
+gulp.task('views:build:dev', compile('./build/dev', paths, devConfig, 'dev'));
+gulp.task('views:build:staging', compile('./build/staging', paths[0], stagingConfig));
+gulp.task('views:build:production', compile('./build/production', paths[0], extConfig));
 
 gulp.task('views:watch', () => {
   gulp.watch(paths, ['views:dev']);

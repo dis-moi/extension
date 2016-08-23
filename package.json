@@ -4,10 +4,11 @@
   "description": "Building web, Electron and Chrome apps, and cross-browser extensions with React, Redux and Webpack. 'Write once, build everywhere' concept in practice.",
   "scripts": {
     "start": "npm run build:dev",
-    "build:extension": "gulp build:extension",
+    "build:production": "gulp build:production",
+    "build:staging": "gulp build:staging",
     "build:dev": "gulp build:dev",
-    "clean": "rm -rf build/ && rm -rf dev/",
-    "test": "mocha --compilers js:babel-core/register test/app --recursive",
+    "clean": "rm -rf build",
+    "test": "NODE_ENV=test mocha --compilers js:babel-core/register test/app --recursive",
     "lint": "git ls-files -om --exclude-standard | grep \\.js$ | xargs eslint --fix",
     "deploy:extension": "gulp deploy:extension"
   },

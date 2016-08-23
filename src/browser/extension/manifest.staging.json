@@ -1,6 +1,6 @@
 {
   "version": "0.0.0",
-  "name": "LMEM",
+  "name": "LMEM - STAGING",
   "manifest_version": 2,
   "description": "Redux counter example",
   "browser_action": {
@@ -28,7 +28,7 @@
     "http://*/*",
     "https://*/*"
   ],
-  "content_security_policy": "default-src 'self' https://lmem-craft-backend.cleverapps.io; script-src 'self' https://ui.lmem.net 'unsafe-eval' https://heapanalytics.com https://cdn.heapanalytics.com; style-src * 'unsafe-inline'; img-src 'self' http://heapanalytics.com https://heapanalytics.com data:;",
+  "content_security_policy": "default-src 'self' https://preprod-lmem-craft-backend.cleverapps.io; script-src 'self' https://ui.lmem.net 'unsafe-eval' https://heapanalytics.com https://cdn.heapanalytics.com; style-src * 'unsafe-inline'; img-src 'self' http://heapanalytics.com https://heapanalytics.com data:;",
   "web_accessible_resources": [
     "img/*",
     "styles/*",

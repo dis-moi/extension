@@ -10,7 +10,7 @@ export default baseConfig({
     content: [`${srcPath}extension/content/`]
   },
   output: {
-    path: path.join(__dirname, '../build/extension'),
+    path: path.join(__dirname, '../build/staging'),
     publicPath: 'https://ui.lmem.net',
     sftp: {
       // See .ftppass https://github.com/gtg092x/gulp-sftp#authentication
@@ -19,9 +19,11 @@ export default baseConfig({
       remotePath: '/lamp0/web/vhosts/ui.lmem.net/htdocs/'
     }
   },
+  plugins: {},
   globals: {
     'process.env': {
-      NODE_ENV: '"production"'
+      NODE_ENV: '"staging"',
+      LMEM_BACKEND_ORIGIN: '"https://preprod-lmem-craft-backend.cleverapps.io"'
     }
   }
 });

@@ -27,6 +27,12 @@ import heap from './../../../lib/heap';
 import mainStyles from './../../../app/styles/main.scss';
 import recoStyles from './../../../app/styles/reco.scss';
 
+if(process.env.NODE_ENV !== 'production'){
+  console.info('NODE_ENV', process.env.NODE_ENV);
+}
+console.info('LMEM_BACKEND_ORIGIN', process.env.LMEM_BACKEND_ORIGIN);
+
+
 // Load content code when the extension is loaded
 const contentCodeP = fetch('./js/content.bundle.js').then(resp => resp.text());
 const draftRecoContentCodeP = fetch('./js/grabDraftRecommandations.js').then(resp => resp.text());
