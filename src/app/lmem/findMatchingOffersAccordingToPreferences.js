@@ -1,4 +1,3 @@
-import findMatchingOffers from './findMatchingOffers';
 
 let whatwgURL;
 
@@ -8,9 +7,15 @@ if(process.env.NODE_ENV === 'test'){
   whatwgURL = require('whatwg-url');
 }
 
+function findMatchingMatchingContexts(url, matchingContexts) {
+  return matchingContexts.filter(mc => {
+    return (new RegExp(mc.url_regex).test(url));
+  });
+}
+
 const _URL = typeof URL === 'function' ? URL : whatwgURL.URL;
 
-export default function (url, offers, drafts, prefs = {}) {
+export default function (url, matchingContexts, draftMatchingContexts, prefs = {}) {
   const deactivated = prefs.deactivated || {};
 
   if (deactivated.deactivatedEverywhereUntil &&
@@ -24,10 +29,10 @@ export default function (url, offers, drafts, prefs = {}) {
     return [];
   }
 
-  const previewOffers = findMatchingOffers(url, drafts);
+  const matchingDraftMatchingContexts = findMatchingMatchingContexts(url, draftMatchingContexts);
 
   // prioritize previews over public offers
-  return previewOffers.length >= 1 ?
-    previewOffers : 
-    findMatchingOffers(url, offers);  
+  return matchingDraftMatchingContexts.length >= 1 ?
+    matchingDraftMatchingContexts : 
+    findMatchingMatchingContexts(url, matchingContexts);  
 }

@@ -1,6 +1,9 @@
 export default function (
   tabs,
-  { findMatchingOffers, dispatch, contentCode, contentStyle, getDeactivatedWebsites, getOnInstalledDetails }
+  { 
+    findMatchingMatchingContexts, getMatchingRecommandations, getDeactivatedWebsites, dispatch,
+    contentCode, contentStyle, getOnInstalledDetails
+  }
 ) {
 
   const matchingTabIdToPortP = new Map();
@@ -41,31 +44,36 @@ export default function (
   }
 
 
-  function sendOffersToTab(tabId, offers) {
+  function sendRecommendationsToTab(tabId, recos) {
     console.log('before execute', tabId);
 
     const tabPortP = matchingTabIdToPortP.get(tabId) || createContentScriptAndPort(tabId);
     tabPortP
       .then(tabPort => tabPort.postMessage({
-        type: 'alternative',
-        alternative: { matchingOffers: offers }
+        type: 'recommendations',
+        recommendations: recos
       }));
   }
 
 
   tabs.onCreated.addListener(({ id, url }) => {
-    const offers = findMatchingOffers(url);
+    const matchingMatchingContexts = findMatchingMatchingContexts(url);
+    const recoUrls = matchingMatchingContexts.map(mmc => mmc.recommendations_url);
 
-    if (offers.length >= 1) {
-      sendOffersToTab(id, offers);
+    if(recoUrls.length >= 1){
+      getMatchingRecommandations(recoUrls)
+      .then(recos => { sendRecommendationsToTab(id, recos); });
     }
+    
   });
 
-  tabs.onUpdated.addListener((id, { newUrl }, { url }) => {
-    const offers = findMatchingOffers(newUrl || url);
+  tabs.onUpdated.addListener((id, { url: newUrl }, { url }) => {
+    const matchingMatchingContexts = findMatchingMatchingContexts(newUrl || url);
+    const recoUrls = matchingMatchingContexts.map(mmc => mmc.recommendations_url);
 
-    if (offers.length >= 1) {
-      sendOffersToTab(id, offers);
+    if(recoUrls.length >= 1){
+      getMatchingRecommandations(recoUrls)
+      .then(recos => { sendRecommendationsToTab(id, recos); });
     }
     else {
       matchingTabIdToPortP.delete(id);

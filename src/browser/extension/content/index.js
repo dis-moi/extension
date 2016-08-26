@@ -114,9 +114,9 @@ const store = createStore(
     open: true,
     reduced: true,
     preferenceScreenPanel: undefined, // preference screen close
-    alternative: undefined,
+    recommendations: undefined,
     deactivatedWebsites: new ImmutableSet(),
-    onInstalledDetails: new ImmutableMap(),
+    onInstalledDetails: new ImmutableMap()
   })()
 );
 
@@ -171,15 +171,15 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
         });
 
         break;
-      case 'alternative':
-        const { alternative } = msg;
+      case 'recommendations':
+        const { recommendations } = msg;
         // console.log('alternative in content', alternative);
 
         // Even if the alternative arrived early, let the page load a bit before
         // showing the iframe in loading mode
         CanShowAlternativeIfAvailableP
         .then(() => {
-          store.dispatch(alternativeFound(alternative));
+          store.dispatch(alternativeFound(recommendations));
         });
 
         break;

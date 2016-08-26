@@ -7,11 +7,11 @@ const expect = chai.expect;
 describe('background actions', function () {
 
   it('receivedMatchingContexts', () => {
-    const details = {}
-    const action = receivedMatchingContexts(details);
+    const matchingContexts = {}
+    const action = receivedMatchingContexts(matchingContexts);
 
     expect(action.type).to.be.a('string').of.length.above(5);
-    expect(action.payload).to.eql(details);
+    expect(action.matchingContexts).to.equal(matchingContexts);
   })
     
 });

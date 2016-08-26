@@ -15,7 +15,7 @@ export default function (state = {}, action) {
 
   switch (type) {
     case RECEIVED_MATCHING_CONTEXTS:
-      return Object.assign({}, state, { offers: action.payload });
+      return Object.assign({}, state, { matchingContexts: action.matchingContexts });
 
     case DEACTIVATE: {
       const { where, duration } = action;

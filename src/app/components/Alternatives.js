@@ -16,9 +16,8 @@ class Alternatives extends Component {
   render(){
     const { props, state } = this;
     const {
-      recommendation, imagesUrl, reduced, contributorUrl, preferenceScreenPanel, deactivatedWebsites,
-      onExtend, onReduce, onDeactivate, togglePrefPanel, onReactivateWebsite, closePrefScreen, openPrefScreen,
-      onInstalledDetails
+      recommendations, imagesUrl, reduced, preferenceScreenPanel, deactivatedWebsites, onInstalledDetails,
+      onExtend, onReduce, onDeactivate, togglePrefPanel, onReactivateWebsite, closePrefScreen, openPrefScreen
     } = props;
 
     const body = (preferenceScreenPanel ?
@@ -30,9 +29,9 @@ class Alternatives extends Component {
         imagesUrl={imagesUrl}
         onInstalledDetails={onInstalledDetails}
       /> :
-      <AlternativeMain imagesUrl={imagesUrl} recommendation={recommendation} contributorUrl={contributorUrl} />);
-
-    return recommendation ? (
+      <AlternativeMain imagesUrl={imagesUrl} recommendations={recommendations} />);
+      
+    return recommendations ? (
       <section className="lmem-top-level">
         <AlternativeHeader
           imagesUrl={imagesUrl}
@@ -52,9 +51,8 @@ class Alternatives extends Component {
 
 
 Alternatives.propTypes = {
-  recommendation: PropTypes.object,
+  recommendations: PropTypes.object,
   imagesUrl: PropTypes.string.isRequired,
-  contributorUrl: PropTypes.string.isRequired,
   reduced: PropTypes.bool.isRequired,
   onExtend: PropTypes.func.isRequired,
   onReduce: PropTypes.func.isRequired,

@@ -8,6 +8,7 @@ import configureStore from './../../../app/store/configureStore';
 
 import findMatchingOffersAccordingToPreferences
   from '../../../app/lmem/findMatchingOffersAccordingToPreferences';
+import getMatchingRecommandations from '../../../app/lmem/getMatchingRecommandations';
 import tabs from '../../../app/tabs/index.js';
 import prepareDraftPreview from '../../../app/lmem/draft-preview/main.js';
 
@@ -71,13 +72,14 @@ configureStore(store => {
   contentCodeP
   .then(contentCode => {
     tabs(chrome.tabs, {
-      findMatchingOffers: url => {
+      findMatchingMatchingContexts: url => {
         const state = store.getState();
         
         return findMatchingOffersAccordingToPreferences(
-          url, state.offers, state.draftRecommandations || [], state.preferences
+          url, state.matchingContexts, state.draftRecommandations || [], state.preferences
         );
       },
+      getMatchingRecommandations,
       getDeactivatedWebsites: () => {
         const state = store.getState();
         const prefs = state.preferences || {};

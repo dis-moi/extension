@@ -12,9 +12,8 @@ const {
 
 function mapStateToProps(state) {
   return {
-    recommendation: state.get('alternative') && state.alternative.matchingOffers[0].recommendation,
+    recommendations: state.get('recommendations'),
     imagesUrl: IMAGES_URL,
-    contributorUrl: CONTRIBUTOR_IMAGES_URL,
     reduced: state.get('reduced'),
     preferenceScreenPanel: state.get('preferenceScreenPanel'),
     deactivatedWebsites: state.get('deactivatedWebsites'),

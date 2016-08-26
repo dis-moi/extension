@@ -15,8 +15,8 @@ export default function (state = {}, action) {
 
   switch (type) {
     case ALTERNATIVE_FOUND: {
-      const { alternative } = action;
-      return state.set('alternative', alternative).set('reduced', false);
+      const { recommendations } = action;
+      return state.set('recommendations', recommendations).set('reduced', false);
     }
 
     case REDUCE_ALTERNATIVE_IFRAME:
