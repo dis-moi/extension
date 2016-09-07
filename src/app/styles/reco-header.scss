@@ -10,6 +10,8 @@
         align-items: center;
         justify-content: flex-start;
 
+        padding: $margin-size;
+
         > .logo{
             position: relative; // so that the tooltip with position: absolute works
 
