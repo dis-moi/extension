@@ -23,14 +23,9 @@ export default Object.freeze({
     'page': 'background.html'
   },
   'permissions': [
-    'contextMenus',
-    'privacy',
     'storage',
     'tabs',
     'unlimitedStorage',
-    'webNavigation',
-    'webRequest',
-    'webRequestBlocking',
     'http://*/*',
     'https://*/*'
   ],

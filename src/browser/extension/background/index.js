@@ -1,7 +1,6 @@
 /* eslint global-require: "off" */
 
 import configureStore from './../../../app/store/configureStore';
-import createMenu from './contextMenus';
 import initBadge from './badge';
 
 import findMatchingOffersAccordingToPreferences
