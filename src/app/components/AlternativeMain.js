@@ -6,6 +6,7 @@ const AlternativeMain = ({ imagesUrl, recommendations }) => {
   // For now, this component is only capable of handling a single recommendation.
   // handling of several is TBD
   const recommendation = recommendations[0];
+  const {visibility} = recommendation;
 
   const mainClass = visibility === 'private' ? 'preview' : undefined;
 
