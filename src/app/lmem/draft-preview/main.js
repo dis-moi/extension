@@ -1,10 +1,6 @@
 import _ from 'lodash';
 
-const LMEM_BACKEND_ORIGIN = process.env.LMEM_BACKEND_ORIGIN;
-
-if(typeof LMEM_BACKEND_ORIGIN !== 'string'){
-  throw new TypeError('Missing LMEM backend origin ' + LMEM_BACKEND_ORIGIN);
-}
+import {LMEM_BACKEND_ORIGIN} from '../../constants/origins';
 
 function isRecommandationBackendURL(url) {
   const { origin, pathname, search } = new URL(url);

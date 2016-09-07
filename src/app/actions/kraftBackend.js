@@ -1,11 +1,8 @@
 import fetch from 'isomorphic-fetch';
 import { RECEIVED_MATCHING_CONTEXTS } from '../constants/ActionTypes';
 
-const LMEM_BACKEND_ORIGIN = process.env.LMEM_BACKEND_ORIGIN;
+import {LMEM_BACKEND_ORIGIN} from '../constants/origins';
 
-if(typeof LMEM_BACKEND_ORIGIN !== 'string'){
-  throw new TypeError('Missing LMEM backend origin ' + LMEM_BACKEND_ORIGIN);
-}
 
 function fetchAllMatchingContexts() {
   console.log('fetch');
