@@ -98,6 +98,7 @@
   },
   "dependencies": {
     "chrome-storage-local": "^0.1.5",
+    "content-security-policy-builder": "^1.1.0",
     "crossmessaging": "^0.2.0",
     "es6-promise": "^3.2.1",
     "immutable": "^3.8.1",
