@@ -30,7 +30,7 @@ class Alternatives extends Component {
       <AlternativeMain imagesUrl={imagesUrl} recommendation={recommendation} contributorUrl={contributorUrl} />);
 
     return recommendation ? (
-      <section>
+      <section className="lmem-top-level">
         <AlternativeHeader
           imagesUrl={imagesUrl}
           reduced={reduced}
@@ -46,6 +46,7 @@ class Alternatives extends Component {
       ) : (<Loader imagesUrl={ imagesUrl } />);
   }
 }
+
 
 Alternatives.propTypes = {
   recommendation: PropTypes.object,

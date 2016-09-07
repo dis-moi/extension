@@ -1,0 +1,26 @@
+@import '_variables';
+
+// Root element
+body {
+    font-family: Ubuntu, sans-serif;
+    font-size: $simple-font-size;
+    font-weight: 400;
+    line-height: $simple-line-height;
+
+    background-color: $background-color;
+    color: $font-color;
+
+    overflow: hidden;
+    overflow-x: auto;   
+}
+
+.lmem-top-level {
+    display: flex;
+    flex-direction: column;
+
+    > *{
+        padding: 0.539em $margin-size;
+    } 
+    
+}
+

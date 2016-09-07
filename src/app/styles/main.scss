@@ -5,97 +5,14 @@
 
 @import '_tooltip.scss';
 
+@import 'elements';
+@import 'top-level';
 @import 'preference-screen';
+@import 'reco';
+@import 'reco-header';
+@import 'reco-main';
+@import 'separation-bar';
 
-/**
- * Quick Reset
- *
- * =reset
- */
-
-// Root element
-:root {
-    background-color: $background-color;
-    color: $font-color;
-    margin: 0;
-    overflow: hidden;
-    overflow-x: auto;
-    padding: $margin-size;
-}
-body {
-    font-family: Ubuntu, sans-serif;
-    font-size: $simple-font-size;
-    font-weight: 400;
-    line-height: $simple-line-height;
-}
-
-// Content elements
-p, ul, ol, li {
-    font-size: inherit;
-    line-height: inherit;
-    margin: 0;
-    padding: 0;
-}
-
-ul, ol {
-    list-style: none;
-}
-
-// Heading elements
-h1, h2, h3, h4, h5, h6 {
-    font-size: inherit;
-    font-weight: inherit;
-    line-height: inherit;
-    margin: 0;
-    padding: 0;
-}
-
-// Table elements
-table {
-    border-collapse: separate;
-    border-spacing: 0;
-    empty-cells: hide;
-}
-caption,
-th {
-    font-weight: inherit;
-}
-th, td {
-    border: 0;
-    margin: 0;
-    padding: 0;
-}
-
-// Links elements
-:link {
-    @extend %link;
-}
-:visited {
-    color: $font-color;
-}
-a:hover,
-a:focus,
-a:active {
-    &, &.no-visited {
-        color: $action-color;
-        text-decoration: truenone;
-    }
-}
-
-// Inline elements
-strong, b {
-    font-weight: inherit;
-}
-small {
-    color: $font-quiet-color;
-    font-size: inherit;
-}
-mark {
-    background-color: $background-em-color;
-    border-radius: rem-size(2);
-    color: $font-em-color;
-    padding: 0 .5ex;
-}
 
 // Others
 
@@ -125,12 +42,12 @@ main {
     }
 
     &.preview{
-        .reco-summary-wrapper {
+        a.mainframe {
             background-image: repeating-linear-gradient(145deg, #FDF6E3, #FDF6E3 30px, transparent 30px, transparent 60px); /* $background-color-highlight AFAIR (sort of white) */
             border-color: #FDF6E3; /* $background-color AFAIR */
         }
 
-        .reco-summary-wrapper::before {
+        a.mainframe::before {
             content: 'PRÉVISUALISATION';
             position: absolute;
             font-weight: bold;
@@ -280,18 +197,6 @@ body {
 .sideframe {
     flex: 0 1 auto;
     width: $sideframe-width;
-}
-
-// The Main Frame contains the alternatives
-// excerpt and the alternatives panes.
-.mainframe {
-    flex: 20 1 0;
-}
-
-.mainframe-inner {
-    margin-left: $adjusted-margin;
-    padding-left: $margin-size;
-    border-left: $border-width solid $border-color;
 }
 
 // The wrapper frame manage side and main
@@ -1219,33 +1124,7 @@ input[type=text] {
         margin: 0;
     }
 
-    // Win some space hiding secondary UI elements.
-    @media(max-width: #{ $media-query-threshold-small-edge - rem-size(1) }) {
-        z-index: 20;
 
-        .button-label {
-            @include visually-hidden;
-        }
-        .button-compact.with-image img {
-            margin-left: 0;
-        }
-    }
-
-    // Otherwise, display them.
-    @media(min-width: $media-query-threshold-small-edge) {
-        .button-label + .tooltip {
-            @include visually-hidden;
-        }
-
-        .with-image img {
-            margin-right: .2ex;
-            width: $block-size / 3;
-        }
-
-        .with-image {
-            min-width: $controls-inner-width;
-        }
-    }
 }
 
 .lmem-controls-list > li {
@@ -1449,11 +1328,12 @@ th%summary-title {
 }
 
 .with-right-arrow {
+    padding-right: 1.5em;
+
     &::after {
         @include iso-rect-triangle('to right', rem-size(8), $font-em-color);
         display: inline-block;
-        right: 1ex;
-        top: 35%;
+        right: 0.5em;
     }
 }
 

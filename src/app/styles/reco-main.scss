@@ -1,0 +1,32 @@
+@import '_variables';
+
+.lmem-top-level{
+
+    & > main{
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 0.539em;
+
+        a.mainframe{
+            flex: 20 1 0;
+
+            margin-left: $adjusted-margin;
+            padding-left: $margin-size;
+            border: solid $border-width $background-light-color;
+
+            display: block;
+            margin: -$border-width;
+            text-decoration: none;
+            line-height: rem-size(20);
+
+            &:hover,
+            &:focus,
+            &:active {
+                color: $font-em-color;
+                border-color: $action-color;
+            }
+        }
+    }
+    
+
+}

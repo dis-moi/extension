@@ -157,34 +157,43 @@ class AlternativeHeader extends Component {
 
 
     return (
-      <header className="lmem-topbar fixed">
-        <div className="lmem-topbar-notification">
-
-          <div className="mainframe">
-            <div className="mainframe-inner">
-              <h1 className="lmem-topbar-title">
-                {headerContent}
-              </h1>
-            </div>
-          </div>
-        </div>
-
-        <nav>
-          <ul className="lmem-controls-list">
-            {headerButtons}
-          </ul>
-        </nav>
-
-        {extendReduceButton}
-
-        <button className="lmem-topbar-logo with-tooltip not-button"
+      <header>
+        <button className="with-tooltip logo"
           onClick={this.onClick.bind(this) }
-          >
-          <img src={ imagesUrl + 'logo-lmem.svg' } alt="" />
-          <span className="tooltip tooltip-right"><span>
+        >
+          <img width="45" src={ imagesUrl + 'logo-lmem.svg' } alt="" />
+          <span className="tooltip tooltip-right">
             { reduceButtonText + ' le panneau comparatif' }
-          </span></span>
+          </span>
         </button>
+
+        <div className="separation-bar" />
+
+        <h1 className="lmem-topbar-title">
+          <strong>{headerContent}</strong>
+        </h1>
+
+        
+        <ul className="lmem-controls-list">
+          {headerButtons}
+        </ul>
+
+        
+        <button className="reduce button-compact with-image with-tooltip"
+          onClick={this.onClick.bind(this) }
+        >
+          <img 
+            role="presentation" 
+            src={ imagesUrl + 'arrow.svg' } 
+            className={ buttonButtonClassName }
+            />
+          <span className="button-label">{reduceButtonText}</span>
+          <span className={tooltipButtonClassName}>
+            {reduceButtonText}
+          </span>
+        </button>
+
+        
       </header>
     );
   }
