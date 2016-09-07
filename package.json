@@ -10,7 +10,8 @@
     "clean": "rm -rf build",
     "test": "LMEM_BACKEND_ORIGIN='' NODE_ENV=test mocha --compilers js:babel-core/register test/app --recursive",
     "lint": "git ls-files -om --exclude-standard | grep \\.js$ | xargs eslint --fix",
-    "deploy:extension": "gulp deploy:extension"
+    "deploy:production": "gulp deploy:production",
+    "deploy:staging": "gulp deploy:staging"
   },
   "pre-commit": [
     "lint"

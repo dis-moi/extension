@@ -11,7 +11,7 @@ export default baseConfig({
   },
   output: {
     path: path.join(__dirname, '../build/staging'),
-    publicPath: 'https://ui.lmem.net',
+    publicPath: 'https://testing.ui.lmem.net',
     sftp: {
       // See .ftppass https://github.com/gtg092x/gulp-sftp#authentication
       auth: 'keyMain',

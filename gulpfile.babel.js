@@ -10,4 +10,6 @@ gulp.task('build:staging',
 gulp.task('build:production',
   ['webpack:build:production', 'views:build:production', 'copy:build:production']);
 gulp.task('test-chrome', ['chrome:test']);
-gulp.task('deploy:extension', ['build:production', 'sftp:deploy:extension']);
+
+gulp.task('deploy:production', ['build:production', 'sftp:deploy:production']);
+gulp.task('deploy:staging', ['build:staging', 'sftp:deploy:staging']);
