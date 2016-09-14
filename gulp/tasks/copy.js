@@ -1,42 +1,32 @@
 import gulp from 'gulp';
-import rename from 'gulp-rename';
+import file from 'gulp-file';
 
-const copy = (dest, manifest, tests) => () => {
-  if (manifest) {
-    gulp.src(`./src/${manifest}`)
-      .pipe(rename('manifest.json'))
+import devManifest from '../../src/browser/extension/manifest/dev';
+import prodManifest from '../../src/browser/extension/manifest/prod';
+import stagingManifest from '../../src/browser/extension/manifest/staging';
+
+const copy = (dest, manifestStr, tests) => () => {
+  if (manifestStr) {
+    file('manifest.json', manifestStr, { src: true })
       .pipe(gulp.dest(dest));
   }
   gulp.src('./src/assets/**/*').pipe(gulp.dest(dest));
-  gulp.src('./src/app/lmem/draft-preview/grabDraftRecommandations.js').pipe(gulp.dest('./dev/js'));
+  gulp.src('./src/app/lmem/draft-preview/grabDraftRecommandations.js')
+    .pipe(gulp.dest(dest+'/js'));
+
   if(tests){
     gulp.src('./test/**/*').pipe(gulp.dest(dest+'/test'));
   }
 };
 
-const manifestDevSource = 'browser/extension/manifest.dev.json';
 
-gulp.task('copy:build:dev', copy('./dev', manifestDevSource, true));
-gulp.task('copy:build:extension',
-  copy('./build/extension', 'browser/extension/manifest.prod.json'));
-gulp.task('copy:build:app', copy('./build/app', 'chromeApp/manifest.json'));
-gulp.task('copy:build:web', copy('./build/web'));
-gulp.task('copy:build:cordova', copy('./www'));
-
-gulp.task('copy:build:electron', () => {
-  gulp.src(['./src/electron/**', '!./src/electron/resources', '!./src/electron/resources/**'])
-    .pipe(gulp.dest('./build/electron'));
-  copy('./build/electron')();
-});
-
-gulp.task('copy:build:firefox', ['build:extension'], () => {
-  gulp.src('./build/extension/**').pipe(gulp.dest('./build/firefox'))
-    .on('finish', function () {
-      gulp.src('./src/browser/firefox/manifest.json')
-        .pipe(gulp.dest('./build/firefox'));
-    });
-});
+gulp.task('copy:build:dev',
+  copy('./build/dev', JSON.stringify(devManifest, null, 2), true));
+gulp.task('copy:build:staging',
+  copy('./build/staging', JSON.stringify(stagingManifest, null, 2)));
+gulp.task('copy:build:production',
+  copy('./build/production', JSON.stringify(prodManifest, null, 2)));
 
 gulp.task('copy:watch', () => {
-  gulp.watch(`./src/${manifestDevSource}`, ['copy:build:dev']);
+  gulp.watch(`./src/browser/extension/manifest`, ['copy:build:dev']);
 });

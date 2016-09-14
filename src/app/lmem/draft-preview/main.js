@@ -1,9 +1,11 @@
 import _ from 'lodash';
 
-function isRecommandationBackendURL(url) {
-  const { hostname, pathname, search } = new URL(url);
+import {LMEM_BACKEND_ORIGIN} from '../../constants/origins';
 
-  return hostname === 'lmem-craft-backend.cleverapps.io' &&
+function isRecommandationBackendURL(url) {
+  const { origin, pathname, search } = new URL(url);
+
+  return origin === LMEM_BACKEND_ORIGIN &&
     pathname.includes('/admin') &&
     search.includes('action=list') && 
     search.includes('entity=Recommendation');

@@ -3,14 +3,13 @@ import requireDir from 'require-dir';
 requireDir('./gulp/tasks');
 
 gulp.task('default',['build:dev']);
-gulp.task('build:dev', ['webpack:build:dev', 'views:build:dev', 'copy:build:dev', 'copy:watch']);
-gulp.task('build:web', ['webpack:build:web', 'views:build:web', 'copy:build:web']);
-gulp.task('build:cordova', ['webpack:build:cordova', 'views:build:cordova', 'copy:build:cordova']);
-gulp.task('build:electron',
-  ['webpack:build:electron', 'views:build:electron', 'copy:build:electron']);
-gulp.task('build:extension',
-  ['webpack:build:extension', 'views:build:extension', 'copy:build:extension']);
-gulp.task('build:app', ['webpack:build:app', 'views:build:app', 'copy:build:app']);
-gulp.task('build:firefox', ['copy:build:firefox']);
+gulp.task('build:dev',
+  ['webpack:build:dev', 'views:build:dev', 'copy:build:dev', 'copy:watch']);
+gulp.task('build:staging',
+  ['webpack:build:staging', 'views:build:staging', 'copy:build:staging']);
+gulp.task('build:production',
+  ['webpack:build:production', 'views:build:production', 'copy:build:production']);
 gulp.task('test-chrome', ['chrome:test']);
-gulp.task('deploy:extension', ['build:extension', 'sftp:deploy:extension']);
+
+gulp.task('deploy:production', ['build:production', 'sftp:deploy:production']);
+gulp.task('deploy:staging', ['build:staging', 'sftp:deploy:staging']);

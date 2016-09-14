@@ -1,7 +1,6 @@
 /* eslint global-require: "off" */
 
 import configureStore from './../../../app/store/configureStore';
-import createMenu from './contextMenus';
 import initBadge from './badge';
 
 import findMatchingOffersAccordingToPreferences
@@ -26,6 +25,12 @@ import heap from './../../../lib/heap';
  */
 import mainStyles from './../../../app/styles/main.scss';
 
+if(process.env.NODE_ENV !== 'production'){
+  console.info('NODE_ENV', process.env.NODE_ENV);
+}
+console.info('LMEM_BACKEND_ORIGIN', process.env.LMEM_BACKEND_ORIGIN);
+
+
 // Load content code when the extension is loaded
 const contentCodeP = fetch('./js/content.bundle.js').then(resp => resp.text());
 const draftRecoContentCodeP = fetch('./js/grabDraftRecommandations.js').then(resp => resp.text());
@@ -36,14 +41,14 @@ configureStore(store => {
   window.getStore = () => {
     let unsubscribeList = [];
     return {
-      store: {
-        ...store,
+      store: Object.assign({
         subscribe(...args) {
           const unsubscribe = store.subscribe(...args);
           unsubscribeList.push(unsubscribe);
           return unsubscribe;
-        }
-      },
+        },
+        store
+      }),
       unsubscribe: () => {
         unsubscribeList.forEach(unsubscriber => { unsubscriber(); });
       }

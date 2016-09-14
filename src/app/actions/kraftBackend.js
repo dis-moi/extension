@@ -1,11 +1,12 @@
 import fetch from 'isomorphic-fetch';
 import { RECEIVED_MATCHING_CONTEXTS } from '../constants/ActionTypes';
 
-const serverUrl = 'https://lmem-craft-backend.cleverapps.io';
+import {LMEM_BACKEND_ORIGIN} from '../constants/origins';
+
 
 function fetchAllMatchingContexts() {
   console.log('fetch');
-  return fetch(serverUrl + '/api/v1/matchingcontexts').then(response => {
+  return fetch(LMEM_BACKEND_ORIGIN + '/api/v1/matchingcontexts').then(response => {
     if (response.status >= 400) {
       throw new Error('Bad response from server');
     }

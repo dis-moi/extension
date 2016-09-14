@@ -12,9 +12,14 @@ export default baseConfig({
     content: [`${srcPath}extension/content/`],
     test: [`${testPath}integration/`]
   },
-  plugins: {},
   output: {
-    path: path.join(__dirname, '../dev'),
+    path: path.join(__dirname, '../build/dev'),
     publicPath: '.'
+  },
+  globals: {
+    'process.env': {
+      NODE_ENV: '"development"',
+      LMEM_BACKEND_ORIGIN: '"https://preprod-lmem-craft-backend.cleverapps.io"'
+    }
   }
 });
