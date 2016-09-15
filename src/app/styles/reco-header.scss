@@ -48,14 +48,14 @@
         
 
         // Win some space hiding secondary UI elements.
-        @media(max-width: #{ $media-query-threshold-small-edge - rem-size(1) }) {
+        @media(max-width: #{$media-query-threshold-small-edge - rem-size(1)}) {
             z-index: 20;
 
             .button-label {
                 @include visually-hidden;
             }
             .button-compact.with-image img {
-                margin-left: .5ex;
+                margin-left: initial;
             }
         }
 
