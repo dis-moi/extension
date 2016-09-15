@@ -5,22 +5,24 @@ export const PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES = 'PREFERENCE_SCREEN_P
 
 export const HEADER_CONTENT = {
   [PREFERENCE_SCREEN_PANEL_ABOUT]: imagesUrl => (
-    <strong>
+    <strong className="lmem-topbar-preferences">
       <img
         role="presentation"
         src={ imagesUrl + 'settings.svg' }
         className="lmem-controls-picto" />
-      <span>Préférences de l'extension - A propos</span>
+      <span>Préférences de l’extension</span>
+      <span>À propos</span>
     </strong>
   ),
 
   [PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES]: imagesUrl => (
-    <strong>
+    <strong className="lmem-topbar-preferences">
       <img
         role="presentation"
         src={ imagesUrl + 'settings.svg' }
         className="lmem-controls-picto" />
-      <span>Préférences de l'extension - Sites désactivés</span>
+      <span>Préférences de l’extension</span>
+      <span>Sites désactivés</span>
     </strong>
   ),
 

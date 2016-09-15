@@ -8,7 +8,7 @@ import {
 import PreferenceAboutPanel from './PreferenceAboutPanel';
 import PreferenceDeactivatedPanel from './PreferenceDeactivatedPanel';
 
-export default function(props) {
+export default function (props) {
   const {
     preferenceScreenPanel, deactivatedWebsites, 
     onReactivateWebsite, openPrefScreen
@@ -18,16 +18,16 @@ export default function(props) {
 
   switch (preferenceScreenPanel){
     case PREFERENCE_SCREEN_PANEL_ABOUT:
-      mainContent = <PreferenceAboutPanel/>;
+      mainContent = <PreferenceAboutPanel />;
       break;
     case PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES:
-      mainContent = <PreferenceDeactivatedPanel
+      mainContent = (<PreferenceDeactivatedPanel
         deactivatedWebsites={deactivatedWebsites}
         onReactivateWebsite={onReactivateWebsite}
-      />
+      />);
       break;
     default:
-      console.error('Unknown content value', content);
+      console.error('Unknown content value', preferenceScreenPanel);
   }
 
   const changePanel = e => {
@@ -36,15 +36,15 @@ export default function(props) {
   };
 
   return (<section className="preference-panel wrapperframe">
-      <nav>
-          <button data-panel={PREFERENCE_SCREEN_PANEL_ABOUT} onClick={changePanel}>A propos</button>
-          <button data-panel={PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES} onClick={changePanel}>
-          Sites désactivés
-          </button>
-      </nav>
-      <main>
-          {mainContent}
-      </main>
+    <nav>
+      <button data-panel={PREFERENCE_SCREEN_PANEL_ABOUT} onClick={changePanel}>À propos</button>
+      <button data-panel={PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES} onClick={changePanel}>
+        Sites désactivés
+      </button>
+    </nav>
+    <main>
+      {mainContent}
+    </main>
   </section>);
   
 }

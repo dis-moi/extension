@@ -4,6 +4,7 @@
 
     > header{
         background: $background-em-color;
+        color: $font-em-color;
         display: flex;
         flex-direction: row;
 
@@ -17,6 +18,7 @@
         > .logo{
             position: relative; // so that the tooltip with position: absolute works
 
+            max-height: $block-size - $margin-size;
             background: inherit;
             box-shadow: none;
             border: 0;
@@ -74,8 +76,5 @@
                 min-width: $controls-inner-width;
             }
         }
-
     }
-    
-
 }
