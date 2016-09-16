@@ -1,28 +1,48 @@
 import gulp from 'gulp';
 import gutil from 'gulp-util';
 import webpack from 'webpack';
+import path from 'path';
 
 import devConfig from '../../webpack/dev.config';
 import stagingConfig from '../../webpack/staging.config';
 import extConfig from '../../webpack/production.config';
 
-const build = (config, callback) => {
-  let myConfig = Object.create(config);
-  webpack(myConfig, (err, stats) => {
-    if (err) {
-      throw new gutil.PluginError('webpack:build', err);
-    }
-    gutil.log('[webpack:build]', stats.toString({ colors: true }));
+function compiler(config) {
+  return webpack(Object.create(config));
+}
+
+function staticCompiler(config) {
+  if (!staticCompiler.instance) {
+    staticCompiler.instance = compiler(config);
+  }
+  return staticCompiler.instance;
+}
+
+function build(compiler, callback) {
+  compiler.run((err, stats) => {
+    if (err) throw new gutil.PluginError('webpack:build', err);
+    gutil.log('[webpack:build]', stats.toString({
+      chunks: false,
+      colors: true,
+    }));
     callback();
   });
-};
+}
 
+gulp.task('webpack:watch', () => {
+  const globs = [
+    path.join(__dirname, '../../src/') + '**/*{js, scss}',
+    path.join(__dirname, '../../test/') + '**/*{js}',
+  ];
+  return gulp.watch(globs, ['webpack:build:dev']);
+});
 gulp.task('webpack:build:dev', (callback) => {
-  build(devConfig, callback);
+  // Instance webpack compiler once over multiple times (watch)
+  build(staticCompiler(devConfig), callback);
 });
 gulp.task('webpack:build:staging', (callback) => {
-  build(stagingConfig, callback);
+  build(compiler(stagingConfig), callback);
 });
 gulp.task('webpack:build:production', (callback) => {
-  build(extConfig, callback);
+  build(compiler(extConfig), callback);
 });

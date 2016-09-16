@@ -4,7 +4,8 @@ requireDir('./gulp/tasks');
 
 gulp.task('default',['build:dev']);
 gulp.task('build:dev',
-  ['webpack:build:dev', 'views:build:dev', 'copy:build:dev', 'copy:watch']);
+  ['webpack:build:dev', 'views:build:dev', 'copy:build:dev',
+    'copy:watch', 'webpack:watch']);
 gulp.task('build:staging',
   ['webpack:build:staging', 'views:build:staging', 'copy:build:staging']);
 gulp.task('build:production',
