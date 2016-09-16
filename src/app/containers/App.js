@@ -4,7 +4,7 @@ import Alternative from '../components/Alternatives';
 import uiActions from '../content/actions/ui.js';
 
 import { IMAGES_URL, CONTRIBUTOR_IMAGES_URL } from '../constants/assetsUrls';
-import portCommunication from 'app/content/portCommunication';
+import portCommunication from '../content/portCommunication';
 
 const {
   reduce, extend, deactivate, closePrefScreen, openPrefScreen, reactivateWebsite
@@ -17,7 +17,8 @@ function mapStateToProps(state) {
     contributorUrl: CONTRIBUTOR_IMAGES_URL,
     reduced: state.get('reduced'),
     preferenceScreenPanel: state.get('preferenceScreenPanel'),
-    deactivatedWebsites: state.get('deactivatedWebsites')
+    deactivatedWebsites: state.get('deactivatedWebsites'),
+    onInstalledDetails: state.get('onInstalledDetails')
   };
 }
 function mapDispatchToProps(dispatch) {
