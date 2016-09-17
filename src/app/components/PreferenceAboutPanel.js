@@ -21,7 +21,7 @@ export default function ({ onInstalledDetails }) {
         <h1>
           <span>Le Même en Mieux est un assistant d’achat</span>
           { localeDateOfInstall ? (
-            <span>que vous avez installé le <time dateTime={ISODateOfInstall}>{localeDateOfInstall}</time></span>
+            <span> que vous avez installé le <time dateTime={ISODateOfInstall}>{localeDateOfInstall}</time></span>
           ) : ''}.
         </h1>
         <p>
