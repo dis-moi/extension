@@ -5,7 +5,7 @@ const srcPath = path.join(__dirname, '../src/browser/');
 export default baseConfig({
   input: {
     background: [`${srcPath}extension/background/`],
-    window: [`${srcPath}window/`],
+    // window: [`${srcPath}window/`],
     //popup: [`${srcPath}extension/popup/`],
     content: [`${srcPath}extension/content/`]
   },
