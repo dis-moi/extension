@@ -5,6 +5,9 @@
     > header{
         background: $background-em-color;
         color: $font-em-color;
+
+        flex: 0 0 100%;
+
         display: flex;
         flex-direction: row;
 
@@ -42,6 +45,7 @@
         button.reduce{
             align-items: center;
             line-height: $double-line-height;
+            display: flex;
         }
 
         .separation-bar{

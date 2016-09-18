@@ -8,6 +8,17 @@ import {
 import PreferenceAboutPanel from './PreferenceAboutPanel';
 import PreferenceDeactivatedPanel from './PreferenceDeactivatedPanel';
 
+function mainClassName(screenPanel) {
+  switch (screenPanel) {
+    case PREFERENCE_SCREEN_PANEL_ABOUT:
+      return 'preference-about';
+    case PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES:
+      return 'preference-deactivated-websites';
+    default:
+      return '';
+  }
+}
+
 export default function (props) {
   const {
     preferenceScreenPanel, deactivatedWebsites, 
@@ -27,6 +38,7 @@ export default function (props) {
       mainContent = (<PreferenceDeactivatedPanel
         deactivatedWebsites={deactivatedWebsites}
         onReactivateWebsite={onReactivateWebsite}
+        imagesUrl={imagesUrl}
       />);
       break;
     default:
@@ -64,7 +76,7 @@ export default function (props) {
       </ul>
     </nav>
     <div className="separation-bar"></div>
-    <main>
+    <main className={mainClassName(preferenceScreenPanel)}>
       {mainContent}
     </main>
   </section>);
