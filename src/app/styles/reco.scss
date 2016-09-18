@@ -10,7 +10,7 @@
 .reco-summary-header {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: flex-start;
 }
 
 .reco-summary-title {
@@ -79,7 +79,7 @@
     }
 
     img {
-        height: rem-size(20);
+        height: rem-size(16);
         margin-right: 1ex;
     }
 }
