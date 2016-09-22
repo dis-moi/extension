@@ -7,7 +7,7 @@ function formatLocaleDate(strDate) {
   if (Number.isNaN(dateOfInstall.getTime()))
     return undefined;
 
-  return dateOfInstall.toLocaleDateString('fr',
+  return dateOfInstall.toLocaleDateString(navigator.language,
     { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 }
 
