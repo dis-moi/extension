@@ -39,7 +39,9 @@ const AlternativeMain = ({ imagesUrl, contributorUrl, recommendation }) => {
             <p>{recommendation.description}</p>
           </div>
           <div className="reco-summary-link-referral">
-            <img alt="Logo le même en mieux" src={imagesUrl + 'logo-lmem-new.svg'} />
+            <img
+              alt="Logo le même en mieux"
+              src={'https://www.google.com/s2/favicons?domain=' + encodeURIComponent(recommendation.alternatives[0].url_to_redirect)} />
             <span>{
               recommendation.alternatives[0].url_to_redirect.replace(/^https?:\/\/(www.)?/, '')
             }</span>
@@ -58,7 +60,7 @@ const AlternativeMain = ({ imagesUrl, contributorUrl, recommendation }) => {
         </div>
       </div>
     </a>
-  </main>)
+  </main>);
 };
 
 AlternativeMain.propTypes = {

@@ -1,7 +1,10 @@
 /* eslint global-require: "off" */
 
+// Early imports with high priority stuff involved, such as event listeners creation
+import onInstalled from '../../../app/actions/install';
+import heap from './../../../lib/heap';
+
 import configureStore from './../../../app/store/configureStore';
-import initBadge from './badge';
 
 import findMatchingOffersAccordingToPreferences
   from '../../../app/lmem/findMatchingOffersAccordingToPreferences';
@@ -11,7 +14,6 @@ import prepareDraftPreview from '../../../app/lmem/draft-preview/main.js';
 import { dispatchInitialStateFromBackend } from '../../../app/actions/kraftBackend';
 import updateDraftRecommandations from '../../../app/actions/updateDraftRecommandations';
 
-import heap from './../../../lib/heap';
 /**
  * FIXME import styles from components instead and let Webpack taking care of them...
  *
@@ -71,11 +73,14 @@ configureStore(store => {
         const deactivated = prefs.deactivated || {};
         return deactivated.deactivatedWebsites || new Set();
       },
+      getOnInstalledDetails: () => {
+        const state = store.getState();
+        return state.onInstalledDetails || {};
+      },
       dispatch: store.dispatch,
       contentCode,
       contentStyle: mainStyles
-    }
-    );
+    });
   });
 
   draftRecoContentCodeP
@@ -85,6 +90,10 @@ configureStore(store => {
       (draftOffers => store.dispatch(updateDraftRecommandations(draftOffers)))
     )
   );
+
+  if (!store.getState().onInstalledDetails) {
+    store.dispatch(onInstalled());
+  }
 
   store.dispatch(dispatchInitialStateFromBackend()); // store initialization from the kraft server
 

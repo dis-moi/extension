@@ -8,44 +8,77 @@ import {
 import PreferenceAboutPanel from './PreferenceAboutPanel';
 import PreferenceDeactivatedPanel from './PreferenceDeactivatedPanel';
 
-export default function(props) {
+function mainClassName(screenPanel) {
+  switch (screenPanel) {
+    case PREFERENCE_SCREEN_PANEL_ABOUT:
+      return 'preference-about';
+    case PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES:
+      return 'preference-deactivated-websites';
+    default:
+      return '';
+  }
+}
+
+export default function (props) {
   const {
     preferenceScreenPanel, deactivatedWebsites, 
-    onReactivateWebsite, openPrefScreen
+    onReactivateWebsite, openPrefScreen, imagesUrl,
+    onInstalledDetails
   } = props;
 
   let mainContent;
 
   switch (preferenceScreenPanel){
     case PREFERENCE_SCREEN_PANEL_ABOUT:
-      mainContent = <PreferenceAboutPanel/>;
+      mainContent = (<PreferenceAboutPanel
+        onInstalledDetails={onInstalledDetails}
+      />);
       break;
     case PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES:
-      mainContent = <PreferenceDeactivatedPanel
+      mainContent = (<PreferenceDeactivatedPanel
         deactivatedWebsites={deactivatedWebsites}
         onReactivateWebsite={onReactivateWebsite}
-      />
+        imagesUrl={imagesUrl}
+      />);
       break;
     default:
-      console.error('Unknown content value', content);
+      console.error('Unknown content value', preferenceScreenPanel);
   }
 
   const changePanel = e => {
-    const newContent = e.target.getAttribute('data-panel');
+    const newContent = e.currentTarget.getAttribute('data-panel');
     openPrefScreen(newContent);
   };
 
-  return (<section className="preference-panel wrapperframe">
-      <nav>
-          <button data-panel={PREFERENCE_SCREEN_PANEL_ABOUT} onClick={changePanel}>A propos</button>
-          <button data-panel={PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES} onClick={changePanel}>
-          Sites désactivés
+  return (<section className="preference-panel">
+    <nav>
+      <ul>
+        <li>
+          <button
+            data-panel={PREFERENCE_SCREEN_PANEL_ABOUT}
+            onClick={changePanel}
+            className={'not-button with-image' +
+              (preferenceScreenPanel === PREFERENCE_SCREEN_PANEL_ABOUT ? ' active' : '')}>
+            <img role="presentation" className="lmem-controls-picto" src={imagesUrl + 'info.svg'} />
+            <span>À propos</span>
           </button>
-      </nav>
-      <main>
-          {mainContent}
-      </main>
+        </li>
+        <li>
+          <button
+            data-panel={PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES}
+            onClick={changePanel}
+            className={'not-button with-image' +
+              (preferenceScreenPanel === PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES ? ' active' : '')}>
+            <img role="presentation" className="lmem-controls-picto" src={imagesUrl + 'power.svg'} />
+            <span>Sites désactivés</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+    <div className="separation-bar"></div>
+    <main className={mainClassName(preferenceScreenPanel)}>
+      {mainContent}
+    </main>
   </section>);
   
 }
-

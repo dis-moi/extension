@@ -1,24 +1,15 @@
-import { Record, Set as ImmutableSet } from 'immutable';
+import { Record, Set as ImmutableSet, Map as ImmutableMap, fromJS as immutableFromJS } from 'immutable';
 import React from 'react';
 import { render } from 'react-dom';
 import Root from '../../../app/containers/Root';
-import configureStore from '../../../app/store/configureStore';
-
-import Alternative from '../../../app/components/Alternatives';
-import { STYLES_URL, IMAGES_URL } from '../../../app/constants/assetsUrls';
 
 import { createStore } from 'redux';
 
 import rootReducer from '../../../app/content/reducers';
 import alternativeFound from '../../../app/content/actions/alternatives';
 
-import updateDeactivatedWebsites from '../../../app/content/actions/preferences';
+import { updateDeactivatedWebsites, updateInstalledDetails } from '../../../app/content/actions/preferences';
 import portCommunication from '../../../app/content/portCommunication';
-
-import {
-  REDUCE_ALTERNATIVE_IFRAME,
-  EXTEND_ALTERNATIVE_IFRAME
-} from '../../../app/constants/ActionTypes.js';
 
 const IFRAME_EXTENDED_HEIGHT = '255px';
 const IFRAME_REDUCED_HEIGHT = '60px';
@@ -31,7 +22,8 @@ const store = createStore(
     reduced: false,
     preferenceScreenPanel: undefined, // preference screen close
     alternative: undefined,
-    deactivatedWebsites: new ImmutableSet()
+    deactivatedWebsites: new ImmutableSet(),
+    onInstalledDetails: new ImmutableMap(),
   })()
 );
 
@@ -46,7 +38,7 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
 
     switch (type) {
       case 'init':
-        const { style, deactivatedWebsites } = msg;
+        const { style, deactivatedWebsites, onInstalledDetails } = msg;
         const reduced = store.getState().get('reduced');
         const lmemContentContainerP = new Promise(resolve => {
           const iframe = document.createElement('iframe');
@@ -54,10 +46,14 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
           iframe.width = '100%';
           iframe.height = reduced ? IFRAME_REDUCED_HEIGHT : IFRAME_EXTENDED_HEIGHT;
           iframe.style.position = 'fixed';
-          iframe.style.bottom = '0px';
-          iframe.style.left = '0px';
-          iframe.style.right = '0px';
-          iframe.style.zIndex = '999999999';
+          iframe.style.bottom = 0;
+          iframe.style.left = 0;
+          iframe.style.right = 0;
+          iframe.style.zIndex = 2147483647; // Max z-index value (signed 32bits integer)
+          iframe.style.background = '#FDF6E3'; // UI bg color (avoid having a transparent iframe after injection)
+          iframe.style.border = 'none';
+          iframe.style.transition = 'height .1s';
+          iframe.style.boxShadow = '0 0 15px #888';
           iframe.srcdoc = `<!doctype html>
           <html>
             <head>
@@ -87,6 +83,7 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
         });
 
         store.dispatch(updateDeactivatedWebsites(new ImmutableSet(deactivatedWebsites)));
+        store.dispatch(updateInstalledDetails(immutableFromJS(onInstalledDetails)));
 
         lmemContentContainerP.then(lmemContentContainer => {
           render(

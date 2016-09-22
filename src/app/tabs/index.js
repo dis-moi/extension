@@ -1,6 +1,6 @@
 export default function (
   tabs,
-  { findMatchingOffers, dispatch, contentCode, contentStyle, getDeactivatedWebsites }
+  { findMatchingOffers, dispatch, contentCode, contentStyle, getDeactivatedWebsites, getOnInstalledDetails }
 ) {
 
   const matchingTabIdToPortP = new Map();
@@ -27,7 +27,8 @@ export default function (
         tabPort.postMessage({
           type: 'init',
           style: contentStyle,
-          deactivatedWebsites: [...getDeactivatedWebsites()]
+          deactivatedWebsites: [...getDeactivatedWebsites()],
+          onInstalledDetails: getOnInstalledDetails()
         });
 
         resolve(tabPort);

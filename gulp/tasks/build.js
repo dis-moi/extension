@@ -31,8 +31,8 @@ function build(compiler, callback) {
 
 gulp.task('webpack:watch', () => {
   const globs = [
-    path.join(__dirname, '../../src/') + '**/*{js, scss}',
-    path.join(__dirname, '../../test/') + '**/*{js}',
+    path.join(__dirname, '../../src/') + '**/*',
+    path.join(__dirname, '../../test/') + '**/*',
   ];
   return gulp.watch(globs, ['webpack:build:dev']);
 });
