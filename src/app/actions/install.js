@@ -1,22 +1,21 @@
 import { INSTALLED } from '../constants/ActionTypes';
 
-function onInstalledPromise() {
-  return new Promise(resolve => {
+// Promise constructed when the module is first imported (very early)
+// in order to not miss the "install" event.
+const onInstalledPromise = new Promise(resolve => {
+  chrome.runtime.onInstalled.addListener(details => {
+    if (details.reason !== 'install') return;
 
-    chrome.runtime.onInstalled.addListener(details => {
-      if (details.reason !== 'install') return;
-
-      resolve(Object.assign({}, details, {
-        datetime: new Date(),
-        version: chrome.runtime.getManifest().version,
-      }));
-    });
+    resolve(Object.assign({}, details, {
+      datetime: new Date(),
+      version: chrome.runtime.getManifest().version,
+    }));
   });
-}
+});
 
-export function onInstalled() {
+export default function () {
   return dispatch => {
-    onInstalledPromise().then(onInstalledDetails => dispatch({
+    onInstalledPromise.then(onInstalledDetails => dispatch({
       type: INSTALLED,
       onInstalledDetails
     }));
