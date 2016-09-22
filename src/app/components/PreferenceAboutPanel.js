@@ -4,7 +4,7 @@ import { EXTENSION_VERSION } from '../constants/ui';
 function formatLocaleDate(strDate) {
   const dateOfInstall = new Date(strDate);
 
-  if (isNaN(dateOfInstall.valueOf()))
+  if (Number.isNaN(dateOfInstall.getTime()))
     return undefined;
 
   return dateOfInstall.toLocaleDateString('fr',
