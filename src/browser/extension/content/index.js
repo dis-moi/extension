@@ -110,7 +110,7 @@ const store = createStore(
   rootReducer,
   new Record({
     open: true,
-    reduced: false,
+    reduced: true,
     preferenceScreenPanel: undefined, // preference screen close
     alternative: undefined,
     deactivatedWebsites: new ImmutableSet(),
