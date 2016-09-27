@@ -128,7 +128,7 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
 
     switch (type) {
       case 'init':
-        const { style, deactivatedWebsites } = msg;
+        const { style, deactivatedWebsites, onInstalledDetails } = msg;
 
         store.dispatch(updateDeactivatedWebsites(new ImmutableSet(deactivatedWebsites)));
         store.dispatch(updateInstalledDetails(immutableFromJS(onInstalledDetails)));
