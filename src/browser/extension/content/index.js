@@ -97,11 +97,13 @@ const CanShowIframeLoadingP = Promise.race([DOMCompletePlusDelayP, LoadEndPlusDe
 // User research showed that the LMEM loading screen is important so people don't 
 // think the LMEM iframe is an ad.
 // Wait for some time loading before showing an alternative.
-const CanShowAlternativeIfAvailableP = CanShowIframeLoadingP.then(() => {
-  return new Promise(resolve => {
-    setTimeout(resolve, LOADING_SCREEN_DELAY);
+const CanShowAlternativeIfAvailableP = process.env.NODE_ENV === 'development' ?
+  Promise.resolve() : // otherwise the delay is annoying when developing
+  CanShowIframeLoadingP.then(() => {
+    return new Promise(resolve => {
+      setTimeout(resolve, LOADING_SCREEN_DELAY);
+    });
   });
-});
 
 
 
