@@ -19,7 +19,8 @@ export default baseConfig({
   globals: {
     'process.env': {
       NODE_ENV: '"development"',
-      LMEM_BACKEND_ORIGIN: '"https://preprod-lmem-craft-backend.cleverapps.io"'
+      LMEM_BACKEND_ORIGIN: '"https://preprod-lmem-craft-backend.cleverapps.io"',
+      LMEM_SCRIPTS_ORIGIN: "'.'", // Use local build
     }
   }
 });
