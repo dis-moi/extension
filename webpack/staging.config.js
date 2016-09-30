@@ -24,6 +24,7 @@ export default baseConfig({
       NODE_ENV: '"staging"',
       LMEM_BACKEND_ORIGIN: '"https://preprod-lmem-craft-backend.cleverapps.io"',
       LMEM_SCRIPTS_ORIGIN: "'https://testing.ui.lmem.net'",
+      HEAP_APPID: '"234457910"', // testing
     }
   }
 });

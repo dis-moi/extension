@@ -1,4 +1,4 @@
-import { trackHeapEvent } from '../actions/heap';
+// import { trackHeapEvent } from '../actions/heap';
 
 // Arbitrary set max payload size
 // @TODO find a nicer way to handle the error
@@ -24,7 +24,12 @@ const MAX_PAYLOAD_SIZE = 10000;
  * Could be implemented in a much nicer way though.
  */
 const events = store => next => action => {
-    // Check payload size to avoid HTTP 414 Request-URI Too Large url
+  if (!window.heap) {
+    console.log(`Heap analytics disabled: ignore tracking of "${action.type}"`);
+    return next(action);
+  }
+
+  // Check payload size to avoid HTTP 414 Request-URI Too Large url
   const payloadSize = JSON.stringify(action).length;
   if (payloadSize > MAX_PAYLOAD_SIZE) {
     console.log('Payload size too large', payloadSize);
@@ -32,8 +37,7 @@ const events = store => next => action => {
   } else {
     window.heap.track(action.type, action.payload);
   }
-  const result = next(action);
-  return result;
+  return next(action);
 };
 
 export default events;
