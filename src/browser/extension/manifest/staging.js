@@ -9,7 +9,8 @@ export default Object.assign(
     'content_security_policy': csp({
       'directives': {
         'default-src': [
-          'https://preprod-lmem-craft-backend.cleverapps.io'
+          'https://preprod-lmem-craft-backend.cleverapps.io',
+          'https://testing.ui.lmem.net'
         ],
         'script-src': [
           'https://testing.ui.lmem.net',

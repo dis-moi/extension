@@ -14,6 +14,8 @@ import prepareDraftPreview from '../../../app/lmem/draft-preview/main.js';
 import { dispatchInitialStateFromBackend } from '../../../app/actions/kraftBackend';
 import updateDraftRecommandations from '../../../app/actions/updateDraftRecommandations';
 
+import {LMEM_BACKEND_ORIGIN, LMEM_SCRIPTS_ORIGIN} from '../../../app/constants/origins';
+
 /**
  * FIXME import styles from components instead and let Webpack taking care of them...
  *
@@ -30,12 +32,12 @@ import mainStyles from './../../../app/styles/main.scss';
 if(process.env.NODE_ENV !== 'production'){
   console.info('NODE_ENV', process.env.NODE_ENV);
 }
-console.info('LMEM_BACKEND_ORIGIN', process.env.LMEM_BACKEND_ORIGIN);
-
+console.info(`LMEM_BACKEND_ORIGIN "${LMEM_BACKEND_ORIGIN}"`);
+console.info(`LMEM_SCRIPTS_ORIGIN "${LMEM_SCRIPTS_ORIGIN}"`);
 
 // Load content code when the extension is loaded
-const contentCodeP = fetch('./js/content.bundle.js').then(resp => resp.text());
-const draftRecoContentCodeP = fetch('./js/grabDraftRecommandations.js').then(resp => resp.text());
+const contentCodeP = fetch(LMEM_SCRIPTS_ORIGIN + '/js/content.bundle.js').then(resp => resp.text());
+const draftRecoContentCodeP = fetch(LMEM_SCRIPTS_ORIGIN + '/js/grabDraftRecommandations.js').then(resp => resp.text());
 
 configureStore(store => {
   window.store = store;
