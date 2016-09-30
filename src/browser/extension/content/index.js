@@ -88,7 +88,9 @@ const LoadEndPlusDelayP = LoadEndP.then(() => {
 });
 
 // Wait for some time before showing the extension to the user in loading mode
-const CanShowIframeLoadingP = Promise.race([DOMCompletePlusDelayP, LoadEndPlusDelayP]);
+const CanShowIframeLoadingP = process.env.NODE_ENV === 'development' ?
+  Promise.resolve() :
+  Promise.race([DOMCompletePlusDelayP, LoadEndPlusDelayP]);
 
 // User research showed that the LMEM loading screen is important so people don't 
 // think the LMEM iframe is an ad.
