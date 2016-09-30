@@ -58,7 +58,7 @@ export default function (
 
   tabs.onCreated.addListener(({ id, url }) => {
     const matchingMatchingContexts = findMatchingMatchingContexts(url);
-    const recoUrls = matchingMatchingContexts.map(mmc => mmc.recommendations_url);
+    const recoUrls = matchingMatchingContexts.map(mmc => mmc.recommendation_url);
 
     if(recoUrls.length >= 1){
       getMatchingRecommandations(recoUrls)
@@ -69,7 +69,7 @@ export default function (
 
   tabs.onUpdated.addListener((id, { url: newUrl }, { url }) => {
     const matchingMatchingContexts = findMatchingMatchingContexts(newUrl || url);
-    const recoUrls = matchingMatchingContexts.map(mmc => mmc.recommendations_url);
+    const recoUrls = matchingMatchingContexts.map(mmc => mmc.recommendation_url);
 
     if(recoUrls.length >= 1){
       getMatchingRecommandations(recoUrls)
