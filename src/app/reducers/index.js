@@ -3,7 +3,8 @@ import {
   RECEIVED_MATCHING_CONTEXTS, 
   DEACTIVATE,
   REACTIVATE_WEBSITE,
-  UPDATE_DRAFT_RECOMMANDATIONS
+  UPDATE_DRAFT_RECOMMANDATIONS,
+  INSTALLED
 } from '../constants/ActionTypes';
 import { DEACTIVATE_EVERYWHERE, DEACTIVATE_WEBSITE_ALWAYS } from '../constants/preferences';
 
@@ -75,6 +76,11 @@ export default function (state = {}, action) {
       const { draftRecommandations } = action;
 
       return Object.assign({}, state, { draftRecommandations });
+    }
+
+    case INSTALLED: {
+      const { onInstalledDetails } = action;
+      return Object.assign({}, state, { onInstalledDetails });
     }
 
     default:

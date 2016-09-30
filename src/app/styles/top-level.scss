@@ -15,12 +15,15 @@ body {
 }
 
 .lmem-top-level {
+    height: inherit;
     display: flex;
     flex-direction: column;
 
-    > *{
-        padding: 0.539em $margin-size;
-    } 
+    > * {
+        padding: $half-adjusted-margin $margin-size;
+    }
     
 }
+
+
 

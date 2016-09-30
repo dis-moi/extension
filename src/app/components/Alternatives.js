@@ -17,15 +17,18 @@ class Alternatives extends Component {
     const { props, state } = this;
     const {
       recommendation, imagesUrl, reduced, contributorUrl, preferenceScreenPanel, deactivatedWebsites,
-      onExtend, onReduce, onDeactivate, togglePrefPanel, onReactivateWebsite, closePrefScreen, openPrefScreen
+      onExtend, onReduce, onDeactivate, togglePrefPanel, onReactivateWebsite, closePrefScreen, openPrefScreen,
+      onInstalledDetails
     } = props;
-    
+
     const body = (preferenceScreenPanel ?
       <PreferenceScreen
         preferenceScreenPanel={preferenceScreenPanel}
         deactivatedWebsites={deactivatedWebsites} 
         onReactivateWebsite={onReactivateWebsite}
         openPrefScreen={openPrefScreen}
+        imagesUrl={imagesUrl}
+        onInstalledDetails={onInstalledDetails}
       /> :
       <AlternativeMain imagesUrl={imagesUrl} recommendation={recommendation} contributorUrl={contributorUrl} />);
 
@@ -55,6 +58,7 @@ Alternatives.propTypes = {
   reduced: PropTypes.bool.isRequired,
   onExtend: PropTypes.func.isRequired,
   onReduce: PropTypes.func.isRequired,
+  onInstalledDetails: PropTypes.object.isRequired,
 };
 
 export default Alternatives;

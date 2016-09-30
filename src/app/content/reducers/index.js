@@ -6,7 +6,8 @@ import {
   OPEN_PREFERENCE_PANEL,
   CLOSE_PREFERENCE_PANEL,
   DEACTIVATED_WEBSITES,
-  REACTIVATE_WEBSITE
+  REACTIVATE_WEBSITE,
+  INSTALLED_DETAILS,
 } from '../../constants/ActionTypes';
 
 export default function (state = {}, action) {
@@ -15,7 +16,7 @@ export default function (state = {}, action) {
   switch (type) {
     case ALTERNATIVE_FOUND: {
       const { alternative } = action;
-      return state.set('alternative', alternative);
+      return state.set('alternative', alternative).set('reduced', false);
     }
 
     case REDUCE_ALTERNATIVE_IFRAME:
@@ -38,6 +39,10 @@ export default function (state = {}, action) {
     case DEACTIVATED_WEBSITES:
       const { deactivatedWebsites } = action;
       return state.set('deactivatedWebsites', deactivatedWebsites);
+
+    case INSTALLED_DETAILS:
+      const { onInstalledDetails } = action;
+      return state.set('onInstalledDetails', onInstalledDetails);
 
     case REACTIVATE_WEBSITE:
       const { website } = action;

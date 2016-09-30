@@ -1,7 +1,10 @@
 /* eslint global-require: "off" */
 
+// Early imports with high priority stuff involved, such as event listeners creation
+import onInstalled from '../../../app/actions/install';
+import loadHeap from '../../../lib/heap';
+
 import configureStore from './../../../app/store/configureStore';
-import initBadge from './badge';
 
 import findMatchingOffersAccordingToPreferences
   from '../../../app/lmem/findMatchingOffersAccordingToPreferences';
@@ -11,7 +14,8 @@ import prepareDraftPreview from '../../../app/lmem/draft-preview/main.js';
 import { dispatchInitialStateFromBackend } from '../../../app/actions/kraftBackend';
 import updateDraftRecommandations from '../../../app/actions/updateDraftRecommandations';
 
-import heap from './../../../lib/heap';
+import {LMEM_BACKEND_ORIGIN, LMEM_SCRIPTS_ORIGIN} from '../../../app/constants/origins';
+
 /**
  * FIXME import styles from components instead and let Webpack taking care of them...
  *
@@ -28,12 +32,21 @@ import mainStyles from './../../../app/styles/main.scss';
 if(process.env.NODE_ENV !== 'production'){
   console.info('NODE_ENV', process.env.NODE_ENV);
 }
-console.info('LMEM_BACKEND_ORIGIN', process.env.LMEM_BACKEND_ORIGIN);
+console.info(`LMEM_BACKEND_ORIGIN "${LMEM_BACKEND_ORIGIN}"`);
+console.info(`LMEM_SCRIPTS_ORIGIN "${LMEM_SCRIPTS_ORIGIN}"`);
 
+const heapAppId = process.env.HEAP_APPID;
+if (typeof heapAppId === 'string') {
+  console.info(`Heap loading with appId "${heapAppId}"`);
+  loadHeap(heapAppId);
+}
+else {
+  console.warn('Heap analytics disabled: assuming "process.env.HEAP_APPID" is deliberately not defined.');
+}
 
 // Load content code when the extension is loaded
-const contentCodeP = fetch('./js/content.bundle.js').then(resp => resp.text());
-const draftRecoContentCodeP = fetch('./js/grabDraftRecommandations.js').then(resp => resp.text());
+const contentCodeP = fetch(LMEM_SCRIPTS_ORIGIN + '/js/content.bundle.js').then(resp => resp.text());
+const draftRecoContentCodeP = fetch(LMEM_SCRIPTS_ORIGIN + '/js/grabDraftRecommandations.js').then(resp => resp.text());
 
 configureStore(store => {
   window.store = store;
@@ -71,11 +84,14 @@ configureStore(store => {
         const deactivated = prefs.deactivated || {};
         return deactivated.deactivatedWebsites || new Set();
       },
+      getOnInstalledDetails: () => {
+        const state = store.getState();
+        return state.onInstalledDetails || {};
+      },
       dispatch: store.dispatch,
       contentCode,
       contentStyle: mainStyles
-    }
-    );
+    });
   });
 
   draftRecoContentCodeP
@@ -85,6 +101,10 @@ configureStore(store => {
       (draftOffers => store.dispatch(updateDraftRecommandations(draftOffers)))
     )
   );
+
+  if (!store.getState().onInstalledDetails) {
+    store.dispatch(onInstalled());
+  }
 
   store.dispatch(dispatchInitialStateFromBackend()); // store initialization from the kraft server
 

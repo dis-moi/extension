@@ -1,5 +1,5 @@
 import base from './base.js';
-import csp from "content-security-policy-builder";
+import csp from 'content-security-policy-builder';
 
 export default Object.assign(
   {},
@@ -9,7 +9,8 @@ export default Object.assign(
     'content_security_policy': csp({
       'directives': {
         'default-src': [
-          'https://lmem-craft-backend.cleverapps.io'
+          'https://lmem-craft-backend.cleverapps.io',
+          'https://ui.lmem.net',
         ],
         'script-src': [
           'https://ui.lmem.net',

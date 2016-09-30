@@ -6,7 +6,7 @@ const srcPath = path.join(__dirname, '../src/browser/');
 export default baseConfig({
   input: {
     background: [`${srcPath}extension/background/`],
-    window: [`${srcPath}window/`],
+    // window: [`${srcPath}window/`],
     //popup: [`${srcPath}extension/popup/`],
     content: [`${srcPath}extension/content/`]
   },
@@ -32,7 +32,9 @@ export default baseConfig({
   globals: {
     'process.env': {
       NODE_ENV: '"production"',
-      LMEM_BACKEND_ORIGIN: '"https://lmem-craft-backend.cleverapps.io"'
+      LMEM_BACKEND_ORIGIN: '"https://lmem-craft-backend.cleverapps.io"',
+      LMEM_SCRIPTS_ORIGIN: "'https://ui.lmem.net'",
+      HEAP_APPID: '"3705584166"', // production
     }
   }
 });

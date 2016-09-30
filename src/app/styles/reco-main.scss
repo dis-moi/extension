@@ -5,13 +5,11 @@
     & > main{
         display: flex;
         justify-content: flex-end;
-        margin-top: 0.539em;
+        margin-top: $half-adjusted-margin;
 
         a.mainframe{
             flex: 20 1 0;
-
-            margin-left: $adjusted-margin;
-            padding-left: $margin-size;
+            align-self: flex-start;
             border: solid $border-width $background-light-color;
 
             display: block;
@@ -27,6 +25,5 @@
             }
         }
     }
-    
 
 }
