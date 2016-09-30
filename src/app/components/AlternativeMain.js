@@ -26,9 +26,9 @@ const AlternativeMain = ({ imagesUrl, contributorUrl, recommendation }) => {
       <header className="summary-header reco-summary-header">
         <h3 className="reco-summary-title">{recommendation.title}</h3>
         <ul className="summary-tags">
-          {recommendation.filters
-            .map(filter =>
-              <li><b className={'tag tag-' + filter.label}> {filter.description} </b></li>
+          {recommendation.criteria
+            .map(criterion =>
+              <li><b className={'tag tag-' + criterion.label}> {criterion.description} </b></li>
             )
           }
         </ul>
