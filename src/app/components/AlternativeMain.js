@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import Editor from './Editor';
+import Contributor from './Contributor';
 
 const AlternativeMain = ({ imagesUrl, recommendations }) => {
   console.log('recommendations', recommendations);
@@ -12,14 +14,8 @@ const AlternativeMain = ({ imagesUrl, recommendations }) => {
 
   return (<main className={mainClass}>
     <header className="sideframe lmem-header">
-      <div className="query-summary summary-contributor">
-        <h2 className="reco-contributor-title">{'Recommandation proposée par'}</h2>
-        <div className="reco-contributor-content">
-          <img role="presentation" src={recommendation.contributor.image} />
-          <div>{recommendation.contributor.name}</div>
-          <div>{recommendation.contributor.organization}</div>
-        </div>
-      </div>
+      <Editor recommendation={recommendation} />
+      <Contributor recommendation={recommendation} />
     </header>
 
     <div className="separation-bar" />
