@@ -129,7 +129,7 @@ class AlternativeHeader extends Component {
               src={ imagesUrl + 'power.svg' }
               className="lmem-controls-picto" />
             <span className={tooltipButtonClassName}><span>
-              Désactiver
+              { reduced ? 'Désactiver 30min' : 'Désactiver' }
             </span></span>
 
           </button>
