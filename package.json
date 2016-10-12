@@ -91,6 +91,8 @@
     "require-dir": "^0.3.0",
     "sass-loader": "^4.0.0",
     "selenium-webdriver": "^2.52.0",
+    "sinon": "^1.17.6",
+    "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.12.13",
     "webpack-dev-server": "^1.14.1",
