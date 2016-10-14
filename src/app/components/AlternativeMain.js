@@ -1,15 +1,21 @@
 import React, { Component, PropTypes } from 'react';
 
+const AlternativeMain = ({ imagesUrl, recommendations }) => {
+  console.log('recommendations', recommendations);
 
-const AlternativeMain = ({ imagesUrl, contributorUrl, recommendation }) => {
-  const mainClass = recommendation.visibility === 'private' ? 'preview' : undefined;
-  
+  // For now, this component is only capable of handling a single recommendation.
+  // handling of several is TBD
+  const recommendation = recommendations[0];
+  const {visibility} = recommendation;
+
+  const mainClass = visibility === 'private' ? 'preview' : undefined;
+
   return (<main className={mainClass}>
     <header className="sideframe lmem-header">
       <div className="query-summary summary-contributor">
         <h2 className="reco-contributor-title">{'Recommandation proposée par'}</h2>
         <div className="reco-contributor-content">
-          <img role="presentation" src={contributorUrl + recommendation.contributor.image} />
+          <img role="presentation" src={recommendation.contributor.image} />
           <div>{recommendation.contributor.name}</div>
           <div>{recommendation.contributor.organization}</div>
         </div>
@@ -51,8 +57,7 @@ const AlternativeMain = ({ imagesUrl, contributorUrl, recommendation }) => {
           <span
             className="button summary-link-checkout with-right-arrow"
             target="_blank"
-            href={recommendation.alternatives[0].url_to_redirect}
-          >
+            href={recommendation.alternatives[0].url_to_redirect}>
             <span className="button-label">
               {recommendation.alternatives[0].label}
             </span>
@@ -64,9 +69,8 @@ const AlternativeMain = ({ imagesUrl, contributorUrl, recommendation }) => {
 };
 
 AlternativeMain.propTypes = {
-  recommendation: PropTypes.object.isRequired,
-  imagesUrl: PropTypes.string.isRequired,
-  contributorUrl: PropTypes.string.isRequired,
+  recommendations: PropTypes.array.isRequired,
+  imagesUrl: PropTypes.string.isRequired
 };
 
 export default AlternativeMain;

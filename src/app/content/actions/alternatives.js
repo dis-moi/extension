@@ -1,8 +1,8 @@
-import { ALTERNATIVE_FOUND } from '../../constants/ActionTypes';
+import { RECOMMENDATION_FOUND } from '../../constants/ActionTypes';
 
-export default function alternativeFound(alternative) {
+export default function(recommendations) {
   return {
-    type: ALTERNATIVE_FOUND,
-    alternative
+    type: RECOMMENDATION_FOUND,
+    recommendations
   };
 }

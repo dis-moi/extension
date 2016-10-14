@@ -1,6 +1,6 @@
 import {
-  REDUCE_ALTERNATIVE_IFRAME,
-  EXTEND_ALTERNATIVE_IFRAME,
+  REDUCE_RECOMMENDATION_IFRAME,
+  EXTEND_RECOMMENDATION_IFRAME,
   DEACTIVATE,
   OPEN_PREFERENCE_PANEL,
   CLOSE_PREFERENCE_PANEL,
@@ -11,7 +11,7 @@ export default function (portCommunication) {
   return {
     reduce() {
       const action = {
-        type: REDUCE_ALTERNATIVE_IFRAME
+        type: REDUCE_RECOMMENDATION_IFRAME
       };
       portCommunication.sendBackgroundReduxAction(action);
       return action;
@@ -19,7 +19,7 @@ export default function (portCommunication) {
 
     extend() {
       const action = {
-        type: EXTEND_ALTERNATIVE_IFRAME
+        type: EXTEND_RECOMMENDATION_IFRAME
       };
       portCommunication.sendBackgroundReduxAction(action);
       return action;

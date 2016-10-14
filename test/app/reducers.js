@@ -20,12 +20,12 @@ const {deactivate} = prepareUIEvents(neverThrowingObject());
 describe('background reducer', function () {
 
   it('initial state + receivedMatchingContexts => state with offers', () => {
-    const offers = [{}, {}];
-    const action = receivedMatchingContexts(offers);
+    const matchingContexts = [{}, {}];
+    const action = receivedMatchingContexts(matchingContexts);
 
     const nextState = reducer( makeInitialState(), action );
 
-    expect(nextState.offers).to.equal(offers);
+    expect(nextState.matchingContexts).to.equal(matchingContexts);
   })
 
   it('initial state + deactivate (everywhere) => state with deactivated pref', () => {
