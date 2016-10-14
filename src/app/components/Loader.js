@@ -12,20 +12,20 @@ const Loader = ({ imagesUrl }) => (
 
         <div className="mainframe"><section className="mainframe-inner">
           <h2 className="alternatives-searching-title visually-hidden">
-          Recherche d’alternatives en cours…</h2>
+          Recommandations en cours de chargement…</h2>
 
           <div className="alternatives-searching-wrapper">
             <div className="alternatives-searching-progress"></div>
 
             <p className="alternatives-searching-content">
-              Nous recherchons pour vous les alternatives.
+              Recommandations en cours de chargement…
             </p>
           </div>
         </section>
         </div>
       </div>
 
-      <a className="lmem-topbar-logo with-tooltip" href="">
+      <a className="lmem-topbar-logo with-tooltip">
         <img src={imagesUrl + 'logo-lmem.svg'} alt="" />
       </a>
     </aside>
