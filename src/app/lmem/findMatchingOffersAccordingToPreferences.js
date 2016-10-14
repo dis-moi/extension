@@ -13,7 +13,7 @@ function findMatchingMatchingContexts(url, matchingContexts) {
       return new RegExp(mc.url_regex, 'i').test(url);
     }
     catch (err) {
-      console.error('MatchingContext ignored:', err);
+      if (process.env.NODE_ENV !== 'test') console.error('MatchingContext ignored:', err);
       return false;
     }
   });

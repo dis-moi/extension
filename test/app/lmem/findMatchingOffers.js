@@ -1,11 +1,8 @@
 import chai from 'chai';
-import sinon from 'sinon';
-import sinonChai from 'sinon-chai';
 
 import findMMCAccordingToPreferences from '../../../src/app/lmem/findMatchingOffersAccordingToPreferences';
 
 const expect = chai.expect;
-chai.use(sinonChai);
 
 const offers = [
   {url_regex: 's.*'},
@@ -27,20 +24,12 @@ describe('findMatchingOffers', function () {
   });
 
   describe('invalid regex', () => {
-    const nastyOffers = [{url_regex: 'isNasty)'}].concat(offers);
-
-    beforeEach(() => {
-      sinon.stub(console, 'error');
-    });
-
-    afterEach(() => {
-      console.error.restore();
-    });
+    const nastyOffers = [{url_regex: 'isNasty)'}].concat(offers); // SyntaxError: Invalid RegExp: Unmatched ')'
 
     it('should not screw up the matching engine', () => {
       const matches = findMMCAccordingToPreferences(matchingURL, nastyOffers, []);
 
-      expect(console.error).to.have.been.calledWith('MatchingContext ignored:');
+      expect(findMMCAccordingToPreferences).to.not.throw(SyntaxError);
 
       expect(matches).to.be.an('array');
       expect(matches).to.be.of.length(2);
