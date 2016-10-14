@@ -3,7 +3,7 @@ import {
   RECEIVED_MATCHING_CONTEXTS, 
   DEACTIVATE,
   REACTIVATE_WEBSITE,
-  UPDATE_DRAFT_RECOMMANDATIONS,
+  UPDATE_DRAFT_RECOMMENDATIONS,
   INSTALLED
 } from '../constants/ActionTypes';
 import { DEACTIVATE_EVERYWHERE, DEACTIVATE_WEBSITE_ALWAYS } from '../constants/preferences';
@@ -72,7 +72,7 @@ export default function (state = {}, action) {
             );
     }
 
-    case UPDATE_DRAFT_RECOMMANDATIONS: {
+    case UPDATE_DRAFT_RECOMMENDATIONS: {
       const { draftRecommandations } = action;
 
       return Object.assign({}, state, { draftRecommandations });

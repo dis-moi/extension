@@ -1,7 +1,7 @@
 import {
-  ALTERNATIVE_FOUND,
-  REDUCE_ALTERNATIVE_IFRAME,
-  EXTEND_ALTERNATIVE_IFRAME,
+  RECOMMENDATION_FOUND,
+  REDUCE_RECOMMENDATION_IFRAME,
+  EXTEND_RECOMMENDATION_IFRAME,
   DEACTIVATE,
   OPEN_PREFERENCE_PANEL,
   CLOSE_PREFERENCE_PANEL,
@@ -14,15 +14,15 @@ export default function (state = {}, action) {
   const { type } = action;
 
   switch (type) {
-    case ALTERNATIVE_FOUND: {
+    case RECOMMENDATION_FOUND: {
       const { recommendations } = action;
       return state.set('recommendations', recommendations).set('reduced', false);
     }
 
-    case REDUCE_ALTERNATIVE_IFRAME:
+    case REDUCE_RECOMMENDATION_IFRAME:
       return state.set('reduced', true);
 
-    case EXTEND_ALTERNATIVE_IFRAME:
+    case EXTEND_RECOMMENDATION_IFRAME:
       return state.set('reduced', false);
 
     case DEACTIVATE:

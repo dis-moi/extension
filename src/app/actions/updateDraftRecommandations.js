@@ -1,8 +1,8 @@
-import { UPDATE_DRAFT_RECOMMANDATIONS } from './../constants/ActionTypes';
+import { UPDATE_DRAFT_RECOMMENDATIONS } from './../constants/ActionTypes';
 
 export default function (draftRecommandations) {
   return {
-    type: UPDATE_DRAFT_RECOMMANDATIONS,
+    type: UPDATE_DRAFT_RECOMMENDATIONS,
     draftRecommandations
   };
 }

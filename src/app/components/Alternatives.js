@@ -51,7 +51,7 @@ class Alternatives extends Component {
 
 
 Alternatives.propTypes = {
-  recommendations: PropTypes.object,
+  recommendations: PropTypes.array,
   imagesUrl: PropTypes.string.isRequired,
   reduced: PropTypes.bool.isRequired,
   onExtend: PropTypes.func.isRequired,

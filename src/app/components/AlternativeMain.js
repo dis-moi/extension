@@ -54,9 +54,9 @@ const AlternativeMain = ({ imagesUrl, recommendations }) => {
 
              <div className="summary-link-checkout-wrapper">
                <span
-                className="button summary-link-checkout with-right-arrow"
-                target="_blank"
-                href={recommendation.alternatives[0].url_to_redirect}
+                 className="button summary-link-checkout with-right-arrow"
+                 target="_blank"
+                 href={recommendation.alternatives[0].url_to_redirect}
                 >
 
                 <span className="button-label">
