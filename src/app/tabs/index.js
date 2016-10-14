@@ -1,6 +1,8 @@
+import recommendationIsValid from '../lmem/recommendationIsValid';
+
 export default function (
   tabs,
-  { 
+  {
     findMatchingMatchingContexts, getMatchingRecommendations, getDeactivatedWebsites, dispatch,
     contentCode, contentStyle, getOnInstalledDetails
   }
@@ -55,16 +57,25 @@ export default function (
       }));
   }
 
+  function fromRecoURLsToSendingToTab(recoUrls, tabId){
+    return getMatchingRecommendations(recoUrls)
+      .then(recos => recos.filter(recommendationIsValid))
+      .then(recos => {
+        if(recos.length >= 1){
+          sendRecommendationsToTab(tabId, recos);
+        }
+      });
+  }
+
 
   tabs.onCreated.addListener(({ id, url }) => {
     const matchingMatchingContexts = findMatchingMatchingContexts(url);
     const recoUrls = matchingMatchingContexts.map(mmc => mmc.recommendation_url);
 
     if(recoUrls.length >= 1){
-      getMatchingRecommendations(recoUrls)
-      .then(recos => { sendRecommendationsToTab(id, recos); });
+      fromRecoURLsToSendingToTab(recoUrls, id);
     }
-    
+
   });
 
   tabs.onUpdated.addListener((id, { url: newUrl }, { url }) => {
@@ -72,8 +83,7 @@ export default function (
     const recoUrls = matchingMatchingContexts.map(mmc => mmc.recommendation_url);
 
     if(recoUrls.length >= 1){
-      getMatchingRecommendations(recoUrls)
-      .then(recos => { sendRecommendationsToTab(id, recos); });
+      fromRecoURLsToSendingToTab(recoUrls, id);
     }
     else {
       matchingTabIdToPortP.delete(id);
