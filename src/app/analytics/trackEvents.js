@@ -21,12 +21,8 @@ const MAX_PAYLOAD_SIZE = 10000;
  *
  * Could be implemented in a much nicer way though.
  */
-const events = store => next => action => {
-  if (!window.heap) {
-    console.log(`Heap analytics disabled: ignore tracking of "${action.type}"`);
-    return next(action);
-  }
 
+export default function(action){
   // Check payload size to avoid HTTP 414 Request-URI Too Large url
   const payloadSize = JSON.stringify(action).length;
   if (payloadSize > MAX_PAYLOAD_SIZE) {
@@ -37,7 +33,4 @@ const events = store => next => action => {
     delete copy.type;
     window.heap.track(action.type, copy);
   }
-  return next(action);
 };
-
-export default events;

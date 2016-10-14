@@ -4,7 +4,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import notify from 'redux-notify';
 import rootReducer from '../reducers';
-import trackEvents from '../events/trackEvents';
+import trackEvents from '../analytics/middleware';
 import makeInitialState from './makeInitialState';
 
 export default function configureStore(callback, isBg) {
@@ -20,7 +20,7 @@ export default function configureStore(callback, isBg) {
     let enhancer;
     const middleware = [
       thunk,
-      trackEvents
+      window.heap ? trackEvents : undefined
     ];
 
     if (process.env.NODE_ENV !== 'production') {
