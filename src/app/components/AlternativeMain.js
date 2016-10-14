@@ -51,20 +51,17 @@ const AlternativeMain = ({ imagesUrl, recommendations }) => {
             <span>{
               recommendation.alternatives[0].url_to_redirect.replace(/^https?:\/\/(www.)?/, '')
             }</span>
-
-             <div className="summary-link-checkout-wrapper">
-               <span
-                 className="button summary-link-checkout with-right-arrow"
-                 target="_blank"
-                 href={recommendation.alternatives[0].url_to_redirect}
-                >
-
-                <span className="button-label">
-                  {recommendation.alternatives[0].label}
-                </span>
-              </span>
-            </div>
           </div>
+        </div>
+        <div className="summary-link-checkout-wrapper">
+          <span
+            className="button summary-link-checkout with-right-arrow"
+            target="_blank"
+            href={recommendation.alternatives[0].url_to_redirect}>
+            <span className="button-label">
+              {recommendation.alternatives[0].label}
+            </span>
+          </span>
         </div>
       </div>
     </a>
