@@ -9,7 +9,7 @@ if(process.env.NODE_ENV === 'test'){
 
 function findMatchingMatchingContexts(url, matchingContexts) {
   return matchingContexts.filter(mc => {
-    return (new RegExp(mc.url_regex).test(url));
+    return (new RegExp(mc.url_regex, 'i').test(url));
   });
 }
 
