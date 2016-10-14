@@ -3,7 +3,7 @@
 
 import assertIframeOpen from './shared/assertIframeOpen';
 
-const MATCHING_URL = 'http://www.20minutes.fr/societe/1860259-20160606-violences-policieres-quarante-huit-enquetes-judiciaires-ouvertes-police-polices';
+const MATCHING_URL = 'http://tests.menant-benjamin.fr';
 const NON_MATCHING_URL = 'http://thevarguy.com/open-source-application-software-companies/open-source-hardware-what-it-means-and-why-it-matters';
 
 const expect = chai.expect;
