@@ -1,5 +1,3 @@
-// import { trackHeapEvent } from '../actions/heap';
-
 // Arbitrary set max payload size
 // @TODO find a nicer way to handle the error
 const MAX_PAYLOAD_SIZE = 10000;
@@ -35,7 +33,9 @@ const events = store => next => action => {
     console.log('Payload size too large', payloadSize);
     window.heap.track(action.type);
   } else {
-    window.heap.track(action.type, action.payload);
+    const copy = Object.assign({}, action);
+    delete copy.type;
+    window.heap.track(action.type, copy);
   }
   return next(action);
 };
