@@ -4,7 +4,7 @@
 /*
   This is a relative URL as the request is intended to be same-origin.
 */
-const PRIVATE_RECOS_ENDPOINT = '/api/v1/admin/matchingcontexts/private';
+const PRIVATE_RECOS_ENDPOINT = '/api/v2/admin/matchingcontexts/private';
 
 
 chrome.runtime.onConnect.addListener(function listener(portToBackground) {

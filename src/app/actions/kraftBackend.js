@@ -5,7 +5,7 @@ import {LMEM_BACKEND_ORIGIN} from '../constants/origins';
 
 
 function fetchAllMatchingContexts() {
-  return fetch(LMEM_BACKEND_ORIGIN + '/api/v1/matchingcontexts').then(response => {
+  return fetch(LMEM_BACKEND_ORIGIN + '/api/v2/matchingcontexts').then(response => {
     if (response.status >= 400) {
       throw new Error('Bad response from server');
     }
