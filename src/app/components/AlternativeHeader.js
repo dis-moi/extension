@@ -99,7 +99,7 @@ class AlternativeHeader extends Component {
           </button>
         </div>
       </li>) :
-      [(<li>
+      [(<li key="preferences">
         <div className="button-directive">
           <button
             className="button button-compact with-tooltip"
@@ -119,7 +119,7 @@ class AlternativeHeader extends Component {
           </button>
         </div>
       </li>),
-      (<li className="with-menu">
+      (<li key="deactivate" className="with-menu">
         <div className="button-directive">
           <button
             className="button button-compact with-tooltip"
@@ -138,7 +138,7 @@ class AlternativeHeader extends Component {
           { deactivateMenu }
         </div>
       </li>),
-      (<li>
+      (<li key="reduce-extend-button">
         <button
           className="reduce button-compact with-image with-tooltip"
           onClick={this.onClick.bind(this) }>

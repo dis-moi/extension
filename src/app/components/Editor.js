@@ -1,18 +1,18 @@
 import React, { Component, PropTypes } from 'react';
 
-const Editor = ({ recommendation }) => {
+const Editor = ({ editor, author }) => {
 
   return (
     <div className="reco-editor">
 
-      <h2>{recommendation.editor.name}</h2>
+      <h2>{editor.label}</h2>
 
-      { !!recommendation.author ? (<p className="reco-author">{recommendation.author}</p>) : undefined }
+      {/* { author ? (<p className="reco-author">{author}</p>) : undefined }*/}
 
-      { !!recommendation.editor.url ? (
+      { editor.url ? (
         <p className="reco-link">
-          <a target="_blank" href={recommendation.editor.url}>
-            {recommendation.editor.url.replace(/https?:\/\/(www\.)?/, '')}
+          <a target="_blank" href={editor.url}>
+            {editor.url.replace(/https?:\/\/(www\.)?/, '')}
           </a>
         </p>
       ) : undefined }
@@ -22,12 +22,10 @@ const Editor = ({ recommendation }) => {
 };
 
 Editor.propTypes = {
-  recommendation: PropTypes.shape({
-    author: PropTypes.string,
-    editor: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      url: PropTypes.string,
-    }).isRequired,
+  author: PropTypes.string,
+  editor: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    url: PropTypes.string,
   }).isRequired,
 };
 

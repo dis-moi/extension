@@ -1,72 +1,122 @@
 import React, { Component, PropTypes } from 'react';
+import classNames from 'classnames';
+
 import Editor from './Editor';
 import Contributor from './Contributor';
 
-const AlternativeMain = ({ imagesUrl, recommendations }) => {
-  console.log('recommendations', recommendations);
+class AlternativeMain extends Component {
 
-  // For now, this component is only capable of handling a single recommendation.
-  // handling of several is TBD
-  const recommendation = recommendations[0];
-  const {visibility} = recommendation;
+  constructor(props) {
+    super(props);
+    this.state = {
+      recoHover: false,
+    };
+  }
 
-  const mainClass = visibility === 'private' ? 'preview' : undefined;
+  onMouseOver() {
+    this.setState({ recoHover: true });
+  }
 
-  return (<main className={mainClass}>
-    <header className="sideframe lmem-header">
-      <Editor recommendation={recommendation} />
-      <Contributor recommendation={recommendation} />
-    </header>
+  onMouseOut() {
+    this.setState({ recoHover: false });
+  }
 
-    <div className="separation-bar" />
+  render() {
+    const { recommendations } = this.props;
+    const { recoHover } = this.state;
 
-    <a
-      className="mainframe highlight"
-      target="_blank"
-      href={recommendation.alternatives[0].url_to_redirect}
-    >
-      <header className="summary-header reco-summary-header">
-        <h3 className="reco-summary-title">{recommendation.title}</h3>
-        <ul className="summary-tags">
-          {recommendation.criteria
-            .map(criterion =>
-              <li><b className={'tag tag-' + criterion.label}> {criterion.description} </b></li>
-            )
-          }
-        </ul>
+    // For now, this component is only capable of handling a single recommendation.
+    // handling of several is TBD
+    const recommendation = recommendations[0];
+    const {visibility} = recommendation;
+
+    const mainClass = visibility === 'private' ? 'preview' : undefined;
+
+    return (<main className={mainClass}>
+      <header className="sideframe lmem-header">
+        <Editor editor={recommendation.resource.editor} author={recommendation.resource.author} />
+        <Contributor contributor={recommendation.contributor} />
       </header>
-      <div className="reco-summary-content">
-        <div className="reco-summary-content-innerwrapper">
-          <div className="reco-summary-description summary-description">
-            <p>{recommendation.description}</p>
+
+      <div className="separation-bar" />
+
+      <div className={classNames('recommendation', 'mainframe', 'highlight', {active: recoHover})}>
+        <header className="summary-header reco-summary-header">
+          <h3 className="reco-summary-title">
+            <a
+              target="_blank"
+              href={recommendation.resource.url}
+              onMouseOver={e => this.onMouseOver()}
+              onMouseOut={e => this.onMouseOut()}>
+              {recommendation.title}
+            </a>
+          </h3>
+          <ul className="summary-tags">
+            {recommendation.criteria
+              .map(criterion =>
+                <li key={criterion.label}><b className={'tag tag-' + criterion.label}> {criterion.description} </b></li>
+              )
+            }
+          </ul>
+        </header>
+        <div className="reco-summary-content">
+          <div className="reco-summary-content-innerwrapper">
+            <div className="reco-summary-link-referral">
+              <a
+                target="_blank"
+                href={recommendation.resource.url}
+                onMouseOver={e => this.onMouseOver()}
+                onMouseOut={e => this.onMouseOut()}>
+                {recommendation.resource.url}
+              </a>
+            </div>
+            <a
+              href={recommendation.resource.url}
+              target="_blank"
+              onMouseOver={e => this.onMouseOver()}
+              onMouseOut={e => this.onMouseOut()}
+              className="reco-summary-description summary-description">
+              <p>{recommendation.description}</p>
+            </a>
           </div>
-          <div className="reco-summary-link-referral">
-            <img
-              alt="Logo le même en mieux"
-              src={'https://www.google.com/s2/favicons?domain=' + encodeURIComponent(recommendation.alternatives[0].url_to_redirect)} />
-            <span>{
-              recommendation.alternatives[0].url_to_redirect.replace(/^https?:\/\/(www.)?/, '')
-            }</span>
-          </div>
-        </div>
-        <div className="summary-link-checkout-wrapper">
-          <span
-            className="button summary-link-checkout with-right-arrow"
-            target="_blank"
-            href={recommendation.alternatives[0].url_to_redirect}>
-            <span className="button-label">
+          <div className="summary-link-checkout-wrapper">
+            <a
+              href={recommendation.resource.url}
+              target="_blank"
+              onMouseOver={e => this.onMouseOver()}
+              onMouseOut={e => this.onMouseOut()}
+              className="button summary-link-checkout with-right-arrow">
+              <span className="button-label">
+                {recommendation.resource.label}
+              </span>
+            </a>
+            <a
+              href={recommendation.alternatives[0].url_to_redirect}
+              target="_blank"
+              className="reco-alternative">
               {recommendation.alternatives[0].label}
-            </span>
-          </span>
+            </a>
+          </div>
         </div>
       </div>
-    </a>
-  </main>);
-};
+    </main>);
+  }
+}
 
 AlternativeMain.propTypes = {
-  recommendations: PropTypes.array.isRequired,
-  imagesUrl: PropTypes.string.isRequired
+  recommendations: PropTypes.arrayOf(PropTypes.shape({
+    contributor: PropTypes.object.isRequired,
+    criteria: PropTypes.arrayOf(PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    })),
+    resource: PropTypes.shape({
+      author: PropTypes.string,
+      editor: PropTypes.object.isRequired,
+      label: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+    })
+  })).isRequired,
 };
 
 export default AlternativeMain;

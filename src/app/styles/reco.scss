@@ -16,6 +16,11 @@
 .reco-summary-title {
     font-size: $midway-font-size;
     font-weight: 500;
+
+    a {
+        text-decoration: inherit;
+        color: inherit;
+    }
 }
 
 //
@@ -53,23 +58,29 @@
 }
 
 .reco-summary-content-innerwrapper {
+    align-self: flex-start;
     overflow: hidden;
+}
+
+a.reco-summary-description {
+    text-decoration: inherit;
+    color: inherit;
 }
 
 .reco-summary-link-referral {
     display: flex;
     align-items: center;
-    color: $font-quiet-color;
     text-decoration: underline;
 
-    &:hover {
+    > a:hover {
         color: $action-color;
     }
 
-    span {
+    > a {
+        color: $font-quiet-color;
         overflow: hidden;
-        margin-right: $margin-size;
         display: inline-block;
+        line-height: $double-line-height;
         text-overflow: ellipsis;
         white-space: nowrap;
 
@@ -77,11 +88,32 @@
             max-width: 30rem;
         }
     }
+}
 
-    img {
-        height: rem-size(16);
-        margin-right: 1ex;
+.reco-alternative {
+    line-height: rem-size(20);
+    margin-top: rem-size(5);
+}
+
+// Sideframe
+
+.sideframe {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.reco-editor {
+    h2 {
+        font-size: $simple-line-height;
+        line-height: $double-line-height;
+        font-weight: 500;
     }
+}
+
+.reco-contributor {
+    align-self: flex-end;
+    font-size: $tiny-font-size;
 }
 
 //
@@ -92,6 +124,11 @@
     flex: 0 0 auto;
     line-height: $double-line-height;
     align-self: flex-end;
+    margin-top: rem-size(10);
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .summary-link-checkout {

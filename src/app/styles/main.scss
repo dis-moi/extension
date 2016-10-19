@@ -19,7 +19,6 @@
 .highlight {
     background: $background-light-color;
     border-radius: rem-size(3);
-    margin-top: $margin-size;
     padding: $margin-size;
 }
 
@@ -29,7 +28,6 @@ main {
     .reco-summary-wrapper.highlight {
         display: block;
         margin: -$border-width;
-        text-decoration: none;
         line-height: rem-size(20);
         border: solid $border-width $background-light-color;
 
@@ -42,7 +40,7 @@ main {
     }
 
     &.preview{
-        a.mainframe {
+        .recommendation.mainframe {
             border: $half-adjusted-margin dashed $red;
         }
     }
