@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import Editor from './Editor';
 import Contributor from './Contributor';
 
-class AlternativeMain extends Component {
+class RecoMain extends Component {
 
   constructor(props) {
     super(props);
@@ -103,7 +103,7 @@ class AlternativeMain extends Component {
   }
 }
 
-AlternativeMain.propTypes = {
+RecoMain.propTypes = {
   recommendations: PropTypes.arrayOf(PropTypes.shape({
     contributor: PropTypes.object.isRequired,
     criteria: PropTypes.arrayOf(PropTypes.shape({
@@ -119,7 +119,7 @@ AlternativeMain.propTypes = {
   })).isRequired,
 };
 
-export default AlternativeMain;
+export default RecoMain;
 
 
 

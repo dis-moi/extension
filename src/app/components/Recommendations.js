@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import Loader from './Loader';
-import AlternativeHeader from './AlternativeHeader';
-import AlternativeMain from './AlternativeMain';
+import RecoHeader from './RecoHeader';
+import RecoMain from './RecoMain';
 import PreferenceScreen from './PreferenceScreen';
 
-class Alternatives extends Component {
+class Recommendations extends Component {
 
   constructor(props) {
     super(props);
@@ -29,11 +29,11 @@ class Alternatives extends Component {
         imagesUrl={imagesUrl}
         onInstalledDetails={onInstalledDetails}
       /> :
-      <AlternativeMain imagesUrl={imagesUrl} recommendations={recommendations} />);
+      <RecoMain imagesUrl={imagesUrl} recommendations={recommendations} />);
       
     return recommendations ? (
       <section className="lmem-top-level">
-        <AlternativeHeader
+        <RecoHeader
           imagesUrl={imagesUrl}
           reduced={reduced}
           preferenceScreenPanel={preferenceScreenPanel}
@@ -50,7 +50,7 @@ class Alternatives extends Component {
 }
 
 
-Alternatives.propTypes = {
+Recommendations.propTypes = {
   recommendations: PropTypes.array,
   imagesUrl: PropTypes.string.isRequired,
   reduced: PropTypes.bool.isRequired,
@@ -59,4 +59,4 @@ Alternatives.propTypes = {
   onInstalledDetails: PropTypes.object.isRequired,
 };
 
-export default Alternatives;
+export default Recommendations;

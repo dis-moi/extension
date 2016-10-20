@@ -9,7 +9,7 @@ import {
   HEADER_CONTENT
 } from '../constants/ui';
 
-class AlternativeHeader extends Component {
+class RecoHeader extends Component {
 
   constructor(props) {
     super(props);
@@ -236,4 +236,4 @@ class AlternativeHeader extends Component {
 
 }
 
-export default AlternativeHeader;
+export default RecoHeader;

@@ -8,7 +8,7 @@ const offers = [
   {url_regex: 'www.samsung.com'},
   {url_regex: 'arrested.com'}
 ]
-const draftRecommandations = [
+const draftRecommendations = [
   {url_regex: 'www.wordpress.com'}
 ]
 
@@ -76,14 +76,14 @@ describe('findMatchingOffersAccordingToPreferences', function () {
 
   })
 
-  describe('draft recommandations', () => {
+  describe('draft recommendations', () => {
 
-    it('should match a draft recommandation', () => {
-      const matching = findMatchingOffersAccordingToPreferences(matchingDraftURL, offers, draftRecommandations, {})
+    it('should match a draft recommendation', () => {
+      const matching = findMatchingOffersAccordingToPreferences(matchingDraftURL, offers, draftRecommendations, {})
 
       expect(matching).to.be.an('array');
       expect(matching).to.be.of.length(1);
-      expect(matching[0]).to.equal( draftRecommandations[0] );
+      expect(matching[0]).to.equal( draftRecommendations[0] );
     })
 
     it('should favor draft previews over public offers', () => {

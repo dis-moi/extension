@@ -6,7 +6,7 @@ import reducer from '../../src/app/reducers/';
 import makeInitialState from '../../src/app/store/makeInitialState';
 
 import {receivedMatchingContexts} from '../../src/app/actions/kraftBackend';
-import alternativeFound from '../../src/app/content/actions/alternatives';
+import alternativeFound from '../../src/app/content/actions/recommendations';
 
 import prepareUIEvents from '../../src/app/content/actions/ui';
 import { DEACTIVATE_EVERYWHERE, DEACTIVATE_WEBSITE_ALWAYS } from '../../src/app/constants/preferences';

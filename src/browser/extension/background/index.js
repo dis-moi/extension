@@ -8,12 +8,12 @@ import configureStore from './../../../app/store/configureStore';
 
 import findMatchingOffersAccordingToPreferences
   from '../../../app/lmem/findMatchingOffersAccordingToPreferences';
-import getMatchingRecommandations from '../../../app/lmem/getMatchingRecommandations';
+import getMatchingRecommendations from '../../../app/lmem/getMatchingRecommendations';
 import tabs from '../../../app/tabs/index.js';
 import prepareDraftPreview from '../../../app/lmem/draft-preview/main.js';
 
 import { dispatchInitialStateFromBackend } from '../../../app/actions/kraftBackend';
-import updateDraftRecommandations from '../../../app/actions/updateDraftRecommandations';
+import updateDraftRecommendations from '../../../app/actions/updateDraftRecommendations';
 
 import {LMEM_BACKEND_ORIGIN, LMEM_SCRIPTS_ORIGIN} from '../../../app/constants/origins';
 
@@ -47,7 +47,7 @@ else {
 
 // Load content code when the extension is loaded
 const contentCodeP = fetch(LMEM_SCRIPTS_ORIGIN + '/js/content.bundle.js').then(resp => resp.text());
-const draftRecoContentCodeP = fetch(LMEM_SCRIPTS_ORIGIN + '/js/grabDraftRecommandations.js').then(resp => resp.text());
+const draftRecoContentCodeP = fetch(LMEM_SCRIPTS_ORIGIN + '/js/grabDraftRecommendations.js').then(resp => resp.text());
 
 configureStore(store => {
   window.store = store;
@@ -76,10 +76,10 @@ configureStore(store => {
         const state = store.getState();
         
         return findMatchingOffersAccordingToPreferences(
-          url, state.matchingContexts, state.draftRecommandations || [], state.preferences
+          url, state.matchingContexts, state.draftRecommendations || [], state.preferences
         );
       },
-      getMatchingRecommandations,
+      getMatchingRecommendations,
       getDeactivatedWebsites: () => {
         const state = store.getState();
         const prefs = state.preferences || {};
@@ -100,7 +100,7 @@ configureStore(store => {
   .then(contentCode => prepareDraftPreview(
       chrome.tabs, 
       contentCode,
-      (draftOffers => store.dispatch(updateDraftRecommandations(draftOffers)))
+      (draftOffers => store.dispatch(updateDraftRecommendations(draftOffers)))
     )
   );
 

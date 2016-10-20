@@ -73,9 +73,9 @@ export default function (state = {}, action) {
     }
 
     case UPDATE_DRAFT_RECOMMENDATIONS: {
-      const { draftRecommandations } = action;
+      const { draftRecommendations } = action;
 
-      return Object.assign({}, state, { draftRecommandations });
+      return Object.assign({}, state, { draftRecommendations });
     }
 
     case INSTALLED: {
