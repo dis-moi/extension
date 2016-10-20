@@ -5,7 +5,12 @@ const Editor = ({ editor, author }) => {
   return (
     <div className="reco-editor">
 
-      <h2>{editor.label}</h2>
+      <h2>
+        <img
+          alt=""
+          src={'https://www.google.com/s2/favicons?domain=' + encodeURIComponent(editor.url)} />
+        {editor.label}
+      </h2>
 
       {/* { author ? (<p className="reco-author">{author}</p>) : undefined }*/}
 

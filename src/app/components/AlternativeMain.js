@@ -41,26 +41,28 @@ class AlternativeMain extends Component {
       <div className="separation-bar" />
 
       <div className={classNames('recommendation', 'mainframe', 'highlight', {active: recoHover})}>
-        <header className="summary-header reco-summary-header">
-          <h3 className="reco-summary-title">
-            <a
-              target="_blank"
-              href={recommendation.resource.url}
-              onMouseOver={e => this.onMouseOver()}
-              onMouseOut={e => this.onMouseOut()}>
-              {recommendation.title}
-            </a>
-          </h3>
-          <ul className="summary-tags">
-            {recommendation.criteria
-              .map(criterion =>
-                <li key={criterion.label}><b className={'tag tag-' + criterion.label}> {criterion.description} </b></li>
-              )
-            }
-          </ul>
-        </header>
-        <div className="reco-summary-content">
-          <div className="reco-summary-content-innerwrapper">
+        <div className="reco-summary">
+          <header className="summary-header reco-summary-header">
+            <h3 className="reco-summary-title">
+              <a
+                target="_blank"
+                href={recommendation.resource.url}
+                onMouseOver={e => this.onMouseOver()}
+                onMouseOut={e => this.onMouseOut()}>
+                {recommendation.title}
+              </a>
+            </h3>
+            <ul className="summary-tags">
+              {recommendation.criteria
+                .map(criterion => (
+                  <li key={criterion.label}>
+                    <b className={'tag tag-' + criterion.label}> {criterion.description} </b>
+                  </li>
+                ))
+              }
+            </ul>
+          </header>
+          <div className="reco-summary-content">
             <div className="reco-summary-link-referral">
               <a
                 target="_blank"
@@ -70,33 +72,31 @@ class AlternativeMain extends Component {
                 {recommendation.resource.url}
               </a>
             </div>
-            <a
-              href={recommendation.resource.url}
-              target="_blank"
-              onMouseOver={e => this.onMouseOver()}
-              onMouseOut={e => this.onMouseOut()}
-              className="reco-summary-description summary-description">
+            <div className="reco-summary-description summary-description">
               <p>{recommendation.description}</p>
-            </a>
+            </div>
           </div>
-          <div className="summary-link-checkout-wrapper">
-            <a
-              href={recommendation.resource.url}
-              target="_blank"
-              onMouseOver={e => this.onMouseOver()}
-              onMouseOut={e => this.onMouseOut()}
-              className="button summary-link-checkout with-right-arrow">
-              <span className="button-label">
-                {recommendation.resource.label}
-              </span>
-            </a>
-            <a
-              href={recommendation.alternatives[0].url_to_redirect}
-              target="_blank"
-              className="reco-alternative">
+        </div>
+        <div className="summary-link-checkout-wrapper">
+          <a
+            href={recommendation.resource.url}
+            target="_blank"
+            onMouseOver={e => this.onMouseOver()}
+            onMouseOut={e => this.onMouseOut()}
+            className="button summary-link-checkout with-right-arrow">
+            <span className="button-label">
+              {recommendation.resource.label}
+            </span>
+          </a>
+          <small>ou bien</small>
+          <a
+            href={recommendation.alternatives[0].url_to_redirect}
+            target="_blank"
+            className="reco-alternative button summary-link-checkout with-right-arrow">
+            <span className="button-label">
               {recommendation.alternatives[0].label}
-            </a>
-          </div>
+            </span>
+          </a>
         </div>
       </div>
     </main>);

@@ -9,7 +9,6 @@
 
 .reco-summary-header {
     display: flex;
-    justify-content: space-between;
     align-items: flex-start;
 }
 
@@ -29,6 +28,7 @@
 
 .summary-tags {
     display: flex;
+    margin-left: $half-adjusted-margin;
 }
 
 .tag {
@@ -51,26 +51,12 @@
 // Content
 //
 
-.reco-summary-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-}
-
-.reco-summary-content-innerwrapper {
-    align-self: flex-start;
-    overflow: hidden;
-}
-
 a.reco-summary-description {
     text-decoration: inherit;
     color: inherit;
 }
 
 .reco-summary-link-referral {
-    display: flex;
-    align-items: center;
-    text-decoration: underline;
 
     > a:hover {
         color: $action-color;
@@ -79,20 +65,11 @@ a.reco-summary-description {
     > a {
         color: $font-quiet-color;
         overflow: hidden;
-        display: inline-block;
+        display: block;
         line-height: $double-line-height;
         text-overflow: ellipsis;
         white-space: nowrap;
-
-        @media(max-width: #{ $media-query-threshold-wide - rem-size(1)}) {
-            max-width: 30rem;
-        }
     }
-}
-
-.reco-alternative {
-    line-height: rem-size(20);
-    margin-top: rem-size(5);
 }
 
 // Sideframe
@@ -101,18 +78,23 @@ a.reco-summary-description {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    padding-left: $margin-size;
 }
 
 .reco-editor {
+    img {
+        margin-right: rem-size(5);
+        vertical-align: middle;
+    }
     h2 {
-        font-size: $simple-line-height;
+        margin-top: rem-size(10);
+        font-size: $midway-font-size;
         line-height: $double-line-height;
         font-weight: 500;
     }
 }
 
 .reco-contributor {
-    align-self: flex-end;
     font-size: $tiny-font-size;
 }
 
@@ -124,7 +106,7 @@ a.reco-summary-description {
     flex: 0 0 auto;
     line-height: $double-line-height;
     align-self: flex-end;
-    margin-top: rem-size(10);
+    margin-left: $margin-size;
 
     display: flex;
     flex-direction: column;
@@ -138,21 +120,3 @@ a.reco-summary-description {
 .with-right-arrow::after {
     top: 25%;
 }
-
-//
-// Contributor
-//
-
-//.reco-contributor-title {
-//    font-weight: 600;
-//    margin-bottom: $half-adjusted-margin;
-//}
-//
-//.reco-contributor-content img {
-//    float: left;
-//    margin: 0 $half-adjusted-margin $half-adjusted-margin 0;
-//    max-height: $block-size;
-//    max-width: 3/2 * $block-size;
-//    border-radius: rem-size(2);
-//    box-shadow: 0 0 rem-size(10) rem-size(-5) $reverse-background-color;
-//}

@@ -12,11 +12,17 @@
 .recommendation {
     flex: 20 1 0;
     align-self: flex-start;
-    border: solid $border-width $background-light-color;
 
-    display: block;
+    border: solid $border-width $background-light-color;
     margin: -$border-width;
     line-height: rem-size(20);
+
+    display: flex;
+    justify-content: space-between;
+
+    .reco-summary {
+        min-width: 0; // fix for ellipsis of children elements
+    }
 
     &.active {
         border-color: $action-color;

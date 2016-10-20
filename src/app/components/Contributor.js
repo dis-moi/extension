@@ -5,7 +5,9 @@ const Contributor = ({ contributor }) => {
   return (
     <adress className="reco-contributor">
       <p>
-        { `Recommandation proposée par ${contributor.name}.` }
+        Recommandation proposée par
+        <br />
+        {contributor.name}
       </p>
     </adress>
   );
