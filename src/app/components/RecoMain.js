@@ -22,7 +22,7 @@ class RecoMain extends Component {
   }
 
   render() {
-    const { recommendations } = this.props;
+    const { recommendations, imagesUrl } = this.props;
     const { recoHover } = this.state;
 
     // For now, this component is only capable of handling a single recommendation.
@@ -83,19 +83,21 @@ class RecoMain extends Component {
             target="_blank"
             onMouseOver={e => this.onMouseOver()}
             onMouseOut={e => this.onMouseOut()}
-            className="button summary-link-checkout with-right-arrow">
+            className="button summary-link-checkout with-image">
             <span className="button-label">
               {recommendation.resource.label}
             </span>
+            <img role="presentation" src={imagesUrl + 'read.svg'} />
           </a>
           <small>ou bien</small>
           <a
             href={recommendation.alternatives[0].url_to_redirect}
             target="_blank"
-            className="reco-alternative button summary-link-checkout with-right-arrow">
+            className="reco-alternative button summary-link-checkout with-image">
             <span className="button-label">
               {recommendation.alternatives[0].label}
             </span>
+            <img role="presentation" src={imagesUrl + 'logo-bw.svg'} />
           </a>
         </div>
       </div>
@@ -104,6 +106,7 @@ class RecoMain extends Component {
 }
 
 RecoMain.propTypes = {
+  imagesUrl: PropTypes.string.isRequired,
   recommendations: PropTypes.arrayOf(PropTypes.shape({
     contributor: PropTypes.object.isRequired,
     criteria: PropTypes.arrayOf(PropTypes.shape({

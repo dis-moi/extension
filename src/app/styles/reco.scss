@@ -115,6 +115,11 @@ a.reco-summary-description {
 
 .summary-link-checkout {
     padding-right: 4ex;
+
+    img {
+        width: $double-line-height;
+        opacity: .9;
+    }
 }
 
 .with-right-arrow::after {
