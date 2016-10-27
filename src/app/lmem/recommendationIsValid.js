@@ -15,12 +15,12 @@ const reco = {
     visibility: 'public' // or 'private'
     title: 'Il y a mieux que le Samsung Galaxy S6',
     editor: {
-        name: 'Le Gorafi',
+        label: 'Le Gorafi',
     },
-    description: 'Que vous ayez un usage basique, avancé, professionnel, geek, joueur régulier ou même photographe amateur, il existe de meilleurs smartpthones en termes de qualité/prix, santé et éthique de la marque.',
+    description: 'Que vous ayez un usage basique, avancé, professionnel [...]',
     recommendations: [
         {
-            url_to_redirect: 'http://choisir.lmem.net/samsung-galaxy-s6-qualite-sante-ethique-les-meilleures-alternatives/',
+            url_to_redirect: 'http://choisir.lmem.net/samsung-galaxy-s6',
             label: 'Voir le comparatif',
         },
     ],
@@ -29,20 +29,24 @@ const reco = {
 */
 
 
-export default function(reco){
-    console.log('validating reco', reco)
-    if(Object(reco) !== reco){
-        return false;
-    }
+export default function (reco){
+  console.log('validating reco', reco);
+  if(Object(reco) !== reco){
+    return false;
+  }
 
-    const { contributor, title, editor, description, recommendations } = reco;
+  const { contributor, title, editor, description, resource } = reco;
 
-    return Object(contributor) === contributor && typeof contributor.name === 'string' &&
+  return Object(contributor) === contributor && typeof contributor.name === 'string' &&
         typeof title === 'string' &&
-        //Object(editor) === editor && typeof editor.name === 'string' &&
-        typeof description === 'string' // &&
-        //Array.isArray(recommendations) && recommendations.length >= 1 &&
-        //recommendations.every(r => 
+        Object(resource) === resource &&
+            typeof resource.label === 'string' && typeof resource.url === 'string' &&
+            Object(resource.editor) === resource.editor &&
+                typeof resource.editor.label === 'string' && typeof resource.editor.url === 'string' &&
+        // Object(editor) === editor && typeof editor.name === 'string' &&
+        typeof description === 'string'; // &&
+        // Array.isArray(recommendations) && recommendations.length >= 1 &&
+        // recommendations.every(r => 
         //    Object(r) === r && typeof r.url_to_redirect === 'string' && typeof r.label === 'string'
-        //);
+        // );
 }
