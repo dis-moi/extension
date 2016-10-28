@@ -12,6 +12,7 @@
 .recommendation {
     flex: 20 1 0;
     align-self: flex-start;
+    max-height: 3 * $block-size;
 
     border: solid $border-width $background-light-color;
     margin: -$border-width;
