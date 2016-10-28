@@ -181,7 +181,7 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
         // showing the iframe in loading mode
         CanShowRecommendationIfAvailableP
         .then(() => {
-          store.dispatch(recommendationFound(recommendations));
+          store.dispatch(recommendationFound(portCommunication)(recommendations));
         });
 
         break;
