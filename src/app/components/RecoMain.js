@@ -84,21 +84,25 @@ class RecoMain extends Component {
             onMouseOver={e => this.onMouseOver()}
             onMouseOut={e => this.onMouseOut()}
             className="button summary-link-checkout with-image">
+            <img role="presentation" src={imagesUrl + 'read.svg'} />
             <span className="button-label">
               {recommendation.resource.label}
             </span>
-            <img role="presentation" src={imagesUrl + 'read.svg'} />
           </a>
-          <small>ou bien</small>
-          <a
-            href={recommendation.alternatives[0].url_to_redirect}
-            target="_blank"
-            className="reco-alternative button summary-link-checkout with-image">
-            <span className="button-label">
-              {recommendation.alternatives[0].label}
-            </span>
-            <img role="presentation" src={imagesUrl + 'logo-bw.svg'} />
-          </a>
+          { recommendation.alternatives && recommendation.alternatives[0] ? (
+            <div>
+              <small>ou bien</small>
+              <a
+                href={recommendation.alternatives[0].url_to_redirect}
+                target="_blank"
+                className="reco-alternative button summary-link-checkout with-image">
+                <img role="presentation" src={imagesUrl + 'logo-bw.svg'} />
+                <span className="button-label">
+                  {recommendation.alternatives[0].label}
+                </span>
+              </a>
+            </div>
+          ) : undefined }
         </div>
       </div>
     </main>);
@@ -118,7 +122,11 @@ RecoMain.propTypes = {
       editor: PropTypes.object.isRequired,
       label: PropTypes.string.isRequired,
       url: PropTypes.string.isRequired,
-    })
+    }),
+    alternatives: PropTypes.arrayOf(PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      url_to_redirect: PropTypes.string.isRequired,
+    })),
   })).isRequired,
 };
 

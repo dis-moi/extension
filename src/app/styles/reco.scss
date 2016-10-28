@@ -109,17 +109,21 @@ a.reco-summary-description {
     align-self: flex-end;
     margin-left: $margin-size;
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    &,
+    > div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
 }
 
 .summary-link-checkout {
     padding-right: 4ex;
 
-    img {
+    &.with-image img {
         width: $double-line-height;
         opacity: .9;
+        margin: 0 1ex 0 0;
     }
 }
 
