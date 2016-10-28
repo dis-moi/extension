@@ -22,7 +22,7 @@ class RecoMain extends Component {
   }
 
   render() {
-    const { recommendations, imagesUrl } = this.props;
+    const { recommendations, imagesUrl, onCheckOutResource, onCheckOutAlternative } = this.props;
     const { recoHover } = this.state;
 
     // For now, this component is only capable of handling a single recommendation.
@@ -79,6 +79,7 @@ class RecoMain extends Component {
         </div>
         <div className="summary-link-checkout-wrapper">
           <a
+            onClick={(e) => onCheckOutResource(recommendation.resource)}
             href={recommendation.resource.url}
             target="_blank"
             onMouseOver={e => this.onMouseOver()}
@@ -93,6 +94,7 @@ class RecoMain extends Component {
             <div>
               <small>ou bien</small>
               <a
+                onClick={(e) => onCheckOutAlternative(recommendation.alternatives[0])}
                 href={recommendation.alternatives[0].url_to_redirect}
                 target="_blank"
                 className="reco-alternative button summary-link-checkout with-image">

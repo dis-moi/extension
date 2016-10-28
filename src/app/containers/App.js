@@ -3,11 +3,18 @@ import { connect } from 'react-redux';
 import Recommendations from '../components/Recommendations';
 import uiActions from '../content/actions/ui.js';
 
-import { IMAGES_URL, CONTRIBUTOR_IMAGES_URL } from '../constants/assetsUrls';
+import { IMAGES_URL } from '../constants/assetsUrls';
 import portCommunication from '../content/portCommunication';
 
 const {
-  reduce, extend, deactivate, closePrefScreen, openPrefScreen, reactivateWebsite
+  reduce,
+  extend,
+  deactivate,
+  closePrefScreen,
+  openPrefScreen,
+  reactivateWebsite,
+  checkOutResource,
+  checkOutAlternative,
 } = uiActions(portCommunication);
 
 function mapStateToProps(state) {
@@ -22,14 +29,14 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    onReduce(){ dispatch(reduce()); },
-    onExtend(){ dispatch(extend()); },
-    onDeactivate(details){ dispatch(deactivate(details)); },
-    closePrefScreen(){ dispatch(closePrefScreen()); },
-    openPrefScreen(panel){ dispatch(openPrefScreen(panel)); },
-    onReactivateWebsite(s){
-      dispatch(reactivateWebsite(s));
-    }
+    onReduce() { dispatch(reduce()); },
+    onExtend() { dispatch(extend()); },
+    onDeactivate(details) { dispatch(deactivate(details)); },
+    closePrefScreen() { dispatch(closePrefScreen()); },
+    openPrefScreen(panel) { dispatch(openPrefScreen(panel)); },
+    onReactivateWebsite(s) { dispatch(reactivateWebsite(s)); },
+    onCheckOutResource(r) { dispatch(checkOutResource(r)); },
+    onCheckOutAlternative(a) { dispatch(checkOutAlternative(a)); },
   };
 }
 

@@ -9,15 +9,11 @@ const expect = chai.expect;
 
 const {reduce, extend, deactivate} = prepareUIEvents(neverThrowingObject());
 
-const portCommunicationMock = {
-  sendBackgroundReduxAction: () => undefined,
-};
-
 describe('content actions', function () {
 
   it('recommendationFound', () => {
     const recos = [{}, {}];
-    const action = recommendationFound(portCommunicationMock)(recos);
+    const action = recommendationFound(neverThrowingObject())(recos);
 
     expect(action.type).to.be.a('string').of.length.above(5);
     expect(action.recommendations).to.equal(recos);
@@ -40,6 +36,6 @@ describe('content actions', function () {
     const action = deactivate(details);
 
     expect(action.type).to.be.a('string').of.length.above(5);
-  })
+  });
 
 });

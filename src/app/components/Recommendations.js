@@ -17,10 +17,11 @@ class Recommendations extends Component {
     const { props, state } = this;
     const {
       recommendations, imagesUrl, reduced, preferenceScreenPanel, deactivatedWebsites, onInstalledDetails,
-      onExtend, onReduce, onDeactivate, togglePrefPanel, onReactivateWebsite, closePrefScreen, openPrefScreen
+      onExtend, onReduce, onDeactivate, togglePrefPanel, onReactivateWebsite, closePrefScreen, openPrefScreen,
+      onCheckOutResource, onCheckOutAlternative,
     } = props;
 
-    const body = (preferenceScreenPanel ?
+    const body = preferenceScreenPanel ?
       <PreferenceScreen
         preferenceScreenPanel={preferenceScreenPanel}
         deactivatedWebsites={deactivatedWebsites} 
@@ -29,7 +30,12 @@ class Recommendations extends Component {
         imagesUrl={imagesUrl}
         onInstalledDetails={onInstalledDetails}
       /> :
-      <RecoMain imagesUrl={imagesUrl} recommendations={recommendations} />);
+      <RecoMain
+        imagesUrl={imagesUrl}
+        recommendations={recommendations}
+        onCheckOutResource={onCheckOutResource}
+        onCheckOutAlternative={onCheckOutAlternative}
+      />;
       
     return recommendations ? (
       <section className="lmem-top-level">
@@ -57,6 +63,8 @@ Recommendations.propTypes = {
   onExtend: PropTypes.func.isRequired,
   onReduce: PropTypes.func.isRequired,
   onInstalledDetails: PropTypes.object.isRequired,
+  onCheckOutResource: PropTypes.func.isRequired,
+  onCheckOutAlternative: PropTypes.func.isRequired,
 };
 
 export default Recommendations;
