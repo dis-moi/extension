@@ -13,6 +13,7 @@
     flex: 20 1 0;
     align-self: flex-start;
     max-height: 3 * $block-size;
+    min-width: 0; // fix for ellipsis of children elements
 
     border: solid $border-width $background-light-color;
     margin: -$border-width;
