@@ -1,7 +1,7 @@
 export default function (
   tabs,
   { 
-    findMatchingMatchingContexts, getMatchingRecommandations, getDeactivatedWebsites, dispatch,
+    findMatchingMatchingContexts, getMatchingRecommendations, getDeactivatedWebsites, dispatch,
     contentCode, contentStyle, getOnInstalledDetails
   }
 ) {
@@ -61,7 +61,7 @@ export default function (
     const recoUrls = matchingMatchingContexts.map(mmc => mmc.recommendation_url);
 
     if(recoUrls.length >= 1){
-      getMatchingRecommandations(recoUrls)
+      getMatchingRecommendations(recoUrls)
       .then(recos => { sendRecommendationsToTab(id, recos); });
     }
     
@@ -72,7 +72,7 @@ export default function (
     const recoUrls = matchingMatchingContexts.map(mmc => mmc.recommendation_url);
 
     if(recoUrls.length >= 1){
-      getMatchingRecommandations(recoUrls)
+      getMatchingRecommendations(recoUrls)
       .then(recos => { sendRecommendationsToTab(id, recos); });
     }
     else {

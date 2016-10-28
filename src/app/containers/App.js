@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Alternative from '../components/Alternatives';
+import Recommendations from '../components/Recommendations';
 import uiActions from '../content/actions/ui.js';
 
 import { IMAGES_URL, CONTRIBUTOR_IMAGES_URL } from '../constants/assetsUrls';
@@ -33,4 +33,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Alternative);
+export default connect(mapStateToProps, mapDispatchToProps)(Recommendations);

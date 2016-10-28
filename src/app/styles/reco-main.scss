@@ -6,24 +6,25 @@
         display: flex;
         justify-content: flex-end;
         margin-top: $half-adjusted-margin;
+    }
+}
 
-        a.mainframe{
-            flex: 20 1 0;
-            align-self: flex-start;
-            border: solid $border-width $background-light-color;
+.recommendation {
+    flex: 20 1 0;
+    align-self: flex-start;
 
-            display: block;
-            margin: -$border-width;
-            text-decoration: none;
-            line-height: rem-size(20);
+    border: solid $border-width $background-light-color;
+    margin: -$border-width;
+    line-height: rem-size(20);
 
-            &:hover,
-            &:focus,
-            &:active {
-                color: $font-em-color;
-                border-color: $action-color;
-            }
-        }
+    display: flex;
+    justify-content: space-between;
+
+    .reco-summary {
+        min-width: 0; // fix for ellipsis of children elements
     }
 
+    &.active {
+        border-color: $action-color;
+    }
 }

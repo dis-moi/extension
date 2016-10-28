@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 import {LMEM_BACKEND_ORIGIN} from '../../constants/origins';
 
-function isRecommandationBackendURL(url) {
+function isRecommendationBackendURL(url) {
   const { origin, pathname, search } = new URL(url);
 
   return origin === LMEM_BACKEND_ORIGIN &&
@@ -11,11 +11,11 @@ function isRecommandationBackendURL(url) {
     search.includes('entity=Recommendation');
 }
 
-export default function (tabs, contentCode, updateDraftRecommandations) {
+export default function (tabs, contentCode, updateDraftRecommendations) {
 
   // The onCreated and onUpdated events lead to too many calls by default
   // Let's debounce 2secs
-  const grabDraftRecommandations = _.debounce(function (tabId) {
+  const grabDraftRecommendations = _.debounce(function (tabId) {
     tabs.executeScript(tabId, {
       code: contentCode,
       runAt: 'document_end'
@@ -26,20 +26,20 @@ export default function (tabs, contentCode, updateDraftRecommandations) {
       tabPort.onMessage.addListener(msg => {
         console.log('message from draft grabing content script', msg);
 
-        updateDraftRecommandations(msg);
+        updateDraftRecommendations(msg);
       });
     });
   }, 2 * 1000, {leading: true, trailing: false});
 
   tabs.onCreated.addListener(({ id, url }) => {
-    if (isRecommandationBackendURL(url)) {
-      grabDraftRecommandations(id);
+    if (isRecommendationBackendURL(url)) {
+      grabDraftRecommendations(id);
     }
   });
 
   tabs.onUpdated.addListener((id, { newUrl }, { url }) => {
-    if (isRecommandationBackendURL(newUrl || url)) {
-      grabDraftRecommandations(id);
+    if (isRecommendationBackendURL(newUrl || url)) {
+      grabDraftRecommendations(id);
     }
   });
 }

@@ -2,7 +2,7 @@ import chai from 'chai';
 
 import neverThrowingObject from '../../infrastructure/neverThrowingObject';
 
-import recommendationFound from '../../../src/app/content/actions/alternatives';
+import recommendationFound from '../../../src/app/content/actions/recommendations';
 import prepareUIEvents from '../../../src/app/content/actions/ui';
 
 const expect = chai.expect;
