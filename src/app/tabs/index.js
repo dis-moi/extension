@@ -1,6 +1,11 @@
+import recommendationIsValid from '../lmem/recommendationIsValid';
+
 export default function (
   tabs,
-  { findMatchingOffers, dispatch, contentCode, contentStyle, getDeactivatedWebsites, getOnInstalledDetails }
+  {
+    findMatchingMatchingContexts, getMatchingRecommendations, getDeactivatedWebsites, dispatch,
+    contentCode, contentStyle, getOnInstalledDetails
+  }
 ) {
 
   const matchingTabIdToPortP = new Map();
@@ -41,31 +46,44 @@ export default function (
   }
 
 
-  function sendOffersToTab(tabId, offers) {
+  function sendRecommendationsToTab(tabId, recos) {
     console.log('before execute', tabId);
 
     const tabPortP = matchingTabIdToPortP.get(tabId) || createContentScriptAndPort(tabId);
     tabPortP
       .then(tabPort => tabPort.postMessage({
-        type: 'alternative',
-        alternative: { matchingOffers: offers }
+        type: 'recommendations',
+        recommendations: recos
       }));
+  }
+
+  function fromRecoURLsToSendingToTab(recoUrls, tabId){
+    return getMatchingRecommendations(recoUrls)
+      .then(recos => recos.filter(recommendationIsValid))
+      .then(recos => {
+        if(recos.length >= 1){
+          sendRecommendationsToTab(tabId, recos);
+        }
+      });
   }
 
 
   tabs.onCreated.addListener(({ id, url }) => {
-    const offers = findMatchingOffers(url);
+    const matchingMatchingContexts = findMatchingMatchingContexts(url);
+    const recoUrls = matchingMatchingContexts.map(mmc => mmc.recommendation_url);
 
-    if (offers.length >= 1) {
-      sendOffersToTab(id, offers);
+    if(recoUrls.length >= 1){
+      fromRecoURLsToSendingToTab(recoUrls, id);
     }
+
   });
 
-  tabs.onUpdated.addListener((id, { newUrl }, { url }) => {
-    const offers = findMatchingOffers(newUrl || url);
+  tabs.onUpdated.addListener((id, { url: newUrl }, { url }) => {
+    const matchingMatchingContexts = findMatchingMatchingContexts(newUrl || url);
+    const recoUrls = matchingMatchingContexts.map(mmc => mmc.recommendation_url);
 
-    if (offers.length >= 1) {
-      sendOffersToTab(id, offers);
+    if(recoUrls.length >= 1){
+      fromRecoURLsToSendingToTab(recoUrls, id);
     }
     else {
       matchingTabIdToPortP.delete(id);

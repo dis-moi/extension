@@ -6,7 +6,7 @@ import reducer from '../../src/app/reducers/';
 import makeInitialState from '../../src/app/store/makeInitialState';
 
 import {receivedMatchingContexts} from '../../src/app/actions/kraftBackend';
-import alternativeFound from '../../src/app/content/actions/alternatives';
+import alternativeFound from '../../src/app/content/actions/recommendations';
 
 import prepareUIEvents from '../../src/app/content/actions/ui';
 import { DEACTIVATE_EVERYWHERE, DEACTIVATE_WEBSITE_ALWAYS } from '../../src/app/constants/preferences';
@@ -20,12 +20,12 @@ const {deactivate} = prepareUIEvents(neverThrowingObject());
 describe('background reducer', function () {
 
   it('initial state + receivedMatchingContexts => state with offers', () => {
-    const offers = [{}, {}];
-    const action = receivedMatchingContexts(offers);
+    const matchingContexts = [{}, {}];
+    const action = receivedMatchingContexts(matchingContexts);
 
     const nextState = reducer( makeInitialState(), action );
 
-    expect(nextState.offers).to.equal(offers);
+    expect(nextState.matchingContexts).to.equal(matchingContexts);
   })
 
   it('initial state + deactivate (everywhere) => state with deactivated pref', () => {

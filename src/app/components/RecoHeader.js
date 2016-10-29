@@ -9,7 +9,7 @@ import {
   HEADER_CONTENT
 } from '../constants/ui';
 
-class AlternativeHeader extends Component {
+class RecoHeader extends Component {
 
   constructor(props) {
     super(props);
@@ -99,7 +99,7 @@ class AlternativeHeader extends Component {
           </button>
         </div>
       </li>) :
-      [(<li>
+      [(<li key="preferences">
         <div className="button-directive">
           <button
             className="button button-compact with-tooltip"
@@ -119,7 +119,7 @@ class AlternativeHeader extends Component {
           </button>
         </div>
       </li>),
-      (<li className="with-menu">
+      (<li key="deactivate" className="with-menu">
         <div className="button-directive">
           <button
             className="button button-compact with-tooltip"
@@ -129,7 +129,7 @@ class AlternativeHeader extends Component {
               src={ imagesUrl + 'power.svg' }
               className="lmem-controls-picto" />
             <span className={tooltipButtonClassName}><span>
-              Désactiver
+              { reduced ? 'Désactiver 30min' : 'Désactiver' }
             </span></span>
 
           </button>
@@ -138,7 +138,7 @@ class AlternativeHeader extends Component {
           { deactivateMenu }
         </div>
       </li>),
-      (<li>
+      (<li key="reduce-extend-button">
         <button
           className="reduce button-compact with-image with-tooltip"
           onClick={this.onClick.bind(this) }>
@@ -236,4 +236,4 @@ class AlternativeHeader extends Component {
 
 }
 
-export default AlternativeHeader;
+export default RecoHeader;

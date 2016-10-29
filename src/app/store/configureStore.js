@@ -4,7 +4,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import notify from 'redux-notify';
 import rootReducer from '../reducers';
-import trackEvents from '../events/trackEvents';
+import trackEvents from '../middlewares/analytics';
 import makeInitialState from './makeInitialState';
 
 export default function configureStore(callback, isBg) {

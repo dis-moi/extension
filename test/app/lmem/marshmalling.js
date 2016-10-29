@@ -18,7 +18,7 @@ const stateWithOneOffer = {
           }
         ],
         "matching_contexts":[],
-        "filters":[{"id":5,"label":"risk","description":"Risque"}],
+        "criteria":[{"id":5,"label":"risk","description":"Risque"}],
         "title":"Site e-commerce à risque",
         "description":"azerty"
       },

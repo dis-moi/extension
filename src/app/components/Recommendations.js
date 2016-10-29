@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import Loader from './Loader';
-import AlternativeHeader from './AlternativeHeader';
-import AlternativeMain from './AlternativeMain';
+import RecoHeader from './RecoHeader';
+import RecoMain from './RecoMain';
 import PreferenceScreen from './PreferenceScreen';
 
-class Alternatives extends Component {
+class Recommendations extends Component {
 
   constructor(props) {
     super(props);
@@ -16,12 +16,12 @@ class Alternatives extends Component {
   render(){
     const { props, state } = this;
     const {
-      recommendation, imagesUrl, reduced, contributorUrl, preferenceScreenPanel, deactivatedWebsites,
+      recommendations, imagesUrl, reduced, preferenceScreenPanel, deactivatedWebsites, onInstalledDetails,
       onExtend, onReduce, onDeactivate, togglePrefPanel, onReactivateWebsite, closePrefScreen, openPrefScreen,
-      onInstalledDetails
+      onCheckOutResource, onCheckOutAlternative,
     } = props;
 
-    const body = (preferenceScreenPanel ?
+    const body = preferenceScreenPanel ?
       <PreferenceScreen
         preferenceScreenPanel={preferenceScreenPanel}
         deactivatedWebsites={deactivatedWebsites} 
@@ -30,11 +30,16 @@ class Alternatives extends Component {
         imagesUrl={imagesUrl}
         onInstalledDetails={onInstalledDetails}
       /> :
-      <AlternativeMain imagesUrl={imagesUrl} recommendation={recommendation} contributorUrl={contributorUrl} />);
-
-    return recommendation ? (
+      <RecoMain
+        imagesUrl={imagesUrl}
+        recommendations={recommendations}
+        onCheckOutResource={onCheckOutResource}
+        onCheckOutAlternative={onCheckOutAlternative}
+      />;
+      
+    return recommendations ? (
       <section className="lmem-top-level">
-        <AlternativeHeader
+        <RecoHeader
           imagesUrl={imagesUrl}
           reduced={reduced}
           preferenceScreenPanel={preferenceScreenPanel}
@@ -51,14 +56,15 @@ class Alternatives extends Component {
 }
 
 
-Alternatives.propTypes = {
-  recommendation: PropTypes.object,
+Recommendations.propTypes = {
+  recommendations: PropTypes.array,
   imagesUrl: PropTypes.string.isRequired,
-  contributorUrl: PropTypes.string.isRequired,
   reduced: PropTypes.bool.isRequired,
   onExtend: PropTypes.func.isRequired,
   onReduce: PropTypes.func.isRequired,
   onInstalledDetails: PropTypes.object.isRequired,
+  onCheckOutResource: PropTypes.func.isRequired,
+  onCheckOutAlternative: PropTypes.func.isRequired,
 };
 
-export default Alternatives;
+export default Recommendations;

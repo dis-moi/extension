@@ -6,7 +6,7 @@ import Root from '../../../app/containers/Root';
 import { createStore } from 'redux';
 
 import rootReducer from '../../../app/content/reducers';
-import alternativeFound from '../../../app/content/actions/alternatives';
+import recommendationFound from '../../../app/content/actions/recommendations';
 
 import { updateDeactivatedWebsites, updateInstalledDetails } from '../../../app/content/actions/preferences';
 import portCommunication from '../../../app/content/portCommunication';
@@ -15,7 +15,7 @@ const IFRAME_EXTENDED_HEIGHT = '255px';
 const IFRAME_REDUCED_HEIGHT = '60px';
 
 const EXTENSION_STATE_SHOW_LOADING = 'EXTENSION_STATE_SHOW_LOADING';
-const EXTENSION_STATE_SHOW_ALTERNATIVE = 'EXTENSION_STATE_SHOW_ALTERNATIVE';
+const EXTENSION_STATE_SHOW_RECOMMENDATION = 'EXTENSION_STATE_SHOW_RECOMMENDATION';
 
 const AFTER_DOMCOMPLETE_DELAY = 5000;
 const AFTER_LOADEND_DELAY = 1000;
@@ -92,12 +92,14 @@ const LoadEndPlusDelayP = LoadEndP.then(() => {
 });
 
 // Wait for some time before showing the extension to the user in loading mode
-const CanShowIframeLoadingP = Promise.race([DOMCompletePlusDelayP, LoadEndPlusDelayP]);
+const CanShowIframeLoadingP = process.env.NODE_ENV === 'development' ?
+  Promise.resolve() :
+  Promise.race([DOMCompletePlusDelayP, LoadEndPlusDelayP]);
 
 // User research showed that the LMEM loading screen is important so people don't 
 // think the LMEM iframe is an ad.
-// Wait for some time loading before showing an alternative.
-const CanShowAlternativeIfAvailableP = process.env.NODE_ENV === 'development' ?
+// Wait for some time loading before showing a recommendation.
+const CanShowRecommendationIfAvailableP = process.env.NODE_ENV === 'development' ?
   Promise.resolve() : // otherwise the delay is annoying when developing
   CanShowIframeLoadingP.then(() => {
     return new Promise(resolve => {
@@ -114,9 +116,9 @@ const store = createStore(
     open: true,
     reduced: true,
     preferenceScreenPanel: undefined, // preference screen close
-    alternative: undefined,
+    recommendations: undefined,
     deactivatedWebsites: new ImmutableSet(),
-    onInstalledDetails: new ImmutableMap(),
+    onInstalledDetails: new ImmutableMap()
   })()
 );
 
@@ -171,15 +173,15 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
         });
 
         break;
-      case 'alternative':
-        const { alternative } = msg;
-        // console.log('alternative in content', alternative);
+      case 'recommendations':
+        const { recommendations } = msg;
+        // console.log('recommendations in content', recommendations);
 
-        // Even if the alternative arrived early, let the page load a bit before
+        // Even if the recommendation arrived early, let the page load a bit before
         // showing the iframe in loading mode
-        CanShowAlternativeIfAvailableP
+        CanShowRecommendationIfAvailableP
         .then(() => {
-          store.dispatch(alternativeFound(alternative));
+          store.dispatch(recommendationFound(portCommunication)(recommendations));
         });
 
         break;
