@@ -69,25 +69,29 @@ export default function (
 
 
   tabs.onCreated.addListener(({ id, url }) => {
+    if (!url) return;
+
     const matchingMatchingContexts = findMatchingMatchingContexts(url);
     const recoUrls = matchingMatchingContexts.map(mmc => mmc.recommendation_url);
 
     if(recoUrls.length >= 1){
       fromRecoURLsToSendingToTab(recoUrls, id);
     }
-
   });
 
-  tabs.onUpdated.addListener((id, { url: newUrl }, { url }) => {
-    const matchingMatchingContexts = findMatchingMatchingContexts(newUrl || url);
-    const recoUrls = matchingMatchingContexts.map(mmc => mmc.recommendation_url);
+  tabs.onUpdated.addListener((id, { status, url: newUrl }, { url }) => {
+    if (status === 'loading') {
+      const matchingUrl = newUrl || url; // handle reloading
 
-    if(recoUrls.length >= 1){
-      fromRecoURLsToSendingToTab(recoUrls, id);
+      const matchingMatchingContexts = findMatchingMatchingContexts(matchingUrl);
+      const recoUrls = matchingMatchingContexts.map(mmc => mmc.recommendation_url);
+
+      if (recoUrls.length >= 1) {
+        return fromRecoURLsToSendingToTab(recoUrls, id);
+      }
     }
-    else {
-      matchingTabIdToPortP.delete(id);
-    }
+
+    return matchingTabIdToPortP.delete(id);
   });
 
   tabs.onRemoved.addListener(id => {

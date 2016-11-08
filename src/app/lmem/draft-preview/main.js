@@ -32,13 +32,13 @@ export default function (tabs, contentCode, updateDraftRecommendations) {
   }, 2 * 1000, {leading: true, trailing: false});
 
   tabs.onCreated.addListener(({ id, url }) => {
-    if (isRecommendationBackendURL(url)) {
+    if (url && isRecommendationBackendURL(url)) {
       grabDraftRecommendations(id);
     }
   });
 
-  tabs.onUpdated.addListener((id, { newUrl }, { url }) => {
-    if (isRecommendationBackendURL(newUrl || url)) {
+  tabs.onUpdated.addListener((id, { status, url: newUrl }, { url }) => {
+    if (status === 'loading' && isRecommendationBackendURL(newUrl || url)) {
       grabDraftRecommendations(id);
     }
   });
