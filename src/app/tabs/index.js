@@ -46,27 +46,27 @@ export default function (
   }
 
 
-  function sendRecommendationsToTab(tabId, recos) {
+  function sendRecommendationsToTab(tabId, recos, matchingContexts) {
     console.log('before execute', tabId);
 
     const tabPortP = matchingTabIdToPortP.get(tabId) || createContentScriptAndPort(tabId);
     tabPortP
       .then(tabPort => tabPort.postMessage({
         type: 'recommendations',
-        recommendations: recos
+        recommendations: recos,
+        matchingContexts,
       }));
   }
 
-  function fromRecoURLsToSendingToTab(recoUrls, tabId){
+  function fromRecoURLsToSendingToTab(recoUrls, tabId, matchingContexts) {
     return getMatchingRecommendations(recoUrls)
       .then(recos => recos.filter(recommendationIsValid))
       .then(recos => {
-        if(recos.length >= 1){
-          sendRecommendationsToTab(tabId, recos);
+        if(recos.length >= 1) {
+          sendRecommendationsToTab(tabId, recos, matchingContexts);
         }
       });
   }
-
 
   tabs.onCreated.addListener(({ id, url }) => {
     if (!url) return;
@@ -74,8 +74,10 @@ export default function (
     const matchingMatchingContexts = findMatchingMatchingContexts(url);
     const recoUrls = matchingMatchingContexts.map(mmc => mmc.recommendation_url);
 
-    if(recoUrls.length >= 1){
-      fromRecoURLsToSendingToTab(recoUrls, id);
+    if(recoUrls.length >= 1) {
+      fromRecoURLsToSendingToTab(recoUrls, id, {
+        matchingUrl: url,
+      });
     }
   });
 
@@ -87,7 +89,9 @@ export default function (
       const recoUrls = matchingMatchingContexts.map(mmc => mmc.recommendation_url);
 
       if (recoUrls.length >= 1) {
-        return fromRecoURLsToSendingToTab(recoUrls, id);
+        fromRecoURLsToSendingToTab(recoUrls, id, {
+          matchingUrl: url,
+        });
       }
     }
 
