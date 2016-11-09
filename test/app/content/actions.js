@@ -13,10 +13,12 @@ describe('content actions', function () {
 
   it('recommendationFound', () => {
     const recos = [{}, {}];
-    const action = recommendationFound(neverThrowingObject())(recos);
+    const mmc = [{}, {}];
+    const action = recommendationFound(neverThrowingObject())(recos, mmc);
 
     expect(action.type).to.be.a('string').of.length.above(5);
     expect(action.recommendations).to.equal(recos);
+    expect(action.matchingContexts).to.equal(mmc);
   });
 
   it('reduce', () => {
