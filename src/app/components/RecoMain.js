@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 import Editor from './Editor';
 import Contributor from './Contributor';
+import RecoDescription from './RecoDescription';
 
 class RecoMain extends Component {
 
@@ -72,9 +73,7 @@ class RecoMain extends Component {
                 {recommendation.resource.url}
               </a>
             </div>
-            <div className="reco-summary-description summary-description">
-              <p>{recommendation.description}</p>
-            </div>
+            <RecoDescription description={recommendation.description} />
           </div>
         </div>
         <div className="summary-link-checkout-wrapper">
@@ -114,6 +113,7 @@ class RecoMain extends Component {
 RecoMain.propTypes = {
   imagesUrl: PropTypes.string.isRequired,
   recommendations: PropTypes.arrayOf(PropTypes.shape({
+    description: PropTypes.string.isRequired,
     contributor: PropTypes.object.isRequired,
     criteria: PropTypes.arrayOf(PropTypes.shape({
       label: PropTypes.string.isRequired,
