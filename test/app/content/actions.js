@@ -4,6 +4,7 @@ import neverThrowingObject from '../../infrastructure/neverThrowingObject';
 
 import recommendationFound from '../../../src/app/content/actions/recommendations';
 import prepareUIEvents from '../../../src/app/content/actions/ui';
+import { updateCriteria, updateEditors } from '../../../src/app/content/actions/preferences';
 
 const expect = chai.expect;
 
@@ -38,6 +39,22 @@ describe('content actions', function () {
     const action = deactivate(details);
 
     expect(action.type).to.be.a('string').of.length.above(5);
+  });
+
+  it('update criteria', () => {
+    const criteria = {};
+    const action = updateCriteria(criteria);
+
+    expect(action.type).to.be.a('string').of.length.above(5);
+    expect(action.criteria).to.equal(criteria);
+  });
+
+  it('update editor', () => {
+    const editors = {};
+    const action = updateEditors(editors);
+
+    expect(action.type).to.be.a('string').of.length.above(5);
+    expect(action.editors).to.equal(editors);
   });
 
 });

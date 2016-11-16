@@ -5,8 +5,11 @@ import reducer from '../../src/app/reducers/';
 
 import makeInitialState from '../../src/app/store/makeInitialState';
 
-import {receivedMatchingContexts} from '../../src/app/actions/kraftBackend';
-import alternativeFound from '../../src/app/content/actions/recommendations';
+import {
+  receivedMatchingContexts,
+  receivedCriteria,
+  receivedEditors,
+} from '../../src/app/actions/kraftBackend';
 
 import prepareUIEvents from '../../src/app/content/actions/ui';
 import { DEACTIVATE_EVERYWHERE, DEACTIVATE_WEBSITE_ALWAYS } from '../../src/app/constants/preferences';
@@ -26,7 +29,25 @@ describe('background reducer', function () {
     const nextState = reducer( makeInitialState(), action );
 
     expect(nextState.matchingContexts).to.equal(matchingContexts);
-  })
+  });
+
+  it('initial state + criteria => state with criteria', () => {
+    const criteria = [{}, {}];
+    const action = receivedCriteria(criteria);
+
+    const nextState = reducer( makeInitialState(), action );
+
+    expect(nextState.criteria).to.equal(criteria);
+  });
+
+  it('initial state + editors => state with editors', () => {
+    const editors = [{}, {}];
+    const action = receivedEditors(editors);
+
+    const nextState = reducer( makeInitialState(), action );
+
+    expect(nextState.editors).to.equal(editors);
+  });
 
   it('initial state + deactivate (everywhere) => state with deactivated pref', () => {
     const action = deactivate({
@@ -37,7 +58,7 @@ describe('background reducer', function () {
     const nextState = reducer( makeInitialState(), action );
 
     expect(nextState.preferences.deactivated.deactivatedEverywhereUntil).to.be.above(Date.now());
-  })
+  });
 
   it('initial state + deactivate (a website always) => state with deactivated pref', () => {
     const action = deactivate({
@@ -47,9 +68,7 @@ describe('background reducer', function () {
 
     const nextState = reducer( makeInitialState(), action );
 
-    expect(
-      nextState.preferences.deactivated.deactivatedWebsites.has(action.where)
-    ).to.be.true;
-  })
+    expect(nextState.preferences.deactivated.deactivatedWebsites.has(action.where)).to.be.true;
+  });
     
 });

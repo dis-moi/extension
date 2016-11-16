@@ -8,6 +8,7 @@ import portCommunication from '../content/portCommunication';
 
 const {
   closePrefScreen,
+  openPrefScreen,
   reactivateWebsite,
 } = uiActions(portCommunication);
 
@@ -16,12 +17,15 @@ function mapStateToProps(state) {
     imagesUrl: IMAGES_URL,
     preferenceScreenPanel: state.get('preferenceScreenPanel'),
     deactivatedWebsites: state.get('deactivatedWebsites'),
-    onInstalledDetails: state.get('onInstalledDetails')
+    onInstalledDetails: state.get('onInstalledDetails'),
+    criteria: state.get('criteria'),
+    editors: state.get('editors'),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
+    openPrefScreen(panel) { dispatch(openPrefScreen(panel)); },
     closePrefScreen() { dispatch(closePrefScreen()); },
     onReactivateWebsite(s) { dispatch(reactivateWebsite(s)); },
   };
