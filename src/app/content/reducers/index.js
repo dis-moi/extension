@@ -8,16 +8,17 @@ import {
   DEACTIVATED_WEBSITES,
   REACTIVATE_WEBSITE,
   INSTALLED_DETAILS,
+  CRITERIA,
+  EDITORS,
 } from '../../constants/ActionTypes';
 
 export default function (state = {}, action) {
   const { type } = action;
 
   switch (type) {
-    case RECOMMENDATION_FOUND: {
+    case RECOMMENDATION_FOUND:
       const { recommendations } = action;
       return state.set('recommendations', recommendations).set('reduced', false);
-    }
 
     case REDUCE_RECOMMENDATION_IFRAME:
       return state.set('reduced', true);
@@ -28,10 +29,9 @@ export default function (state = {}, action) {
     case DEACTIVATE:
       return state.set('open', false);
 
-    case OPEN_PREFERENCE_PANEL:{
+    case OPEN_PREFERENCE_PANEL:
       const { panel } = action;
       return state.set('preferenceScreenPanel', panel);
-    }
 
     case CLOSE_PREFERENCE_PANEL:
       return state.set('preferenceScreenPanel', undefined);
@@ -47,6 +47,14 @@ export default function (state = {}, action) {
     case REACTIVATE_WEBSITE:
       const { website } = action;
       return state.set('deactivatedWebsites', state.get('deactivatedWebsites').delete(website));
+
+    case CRITERIA:
+      const { criteria } = action;
+      return state.set('criteria', criteria);
+
+    case EDITORS:
+      const { editors } = action;
+      return state.set('editors', editors);
 
     default:
       return state;

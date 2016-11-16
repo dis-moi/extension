@@ -1,10 +1,11 @@
 import { 
-  MATCHING_OFFERS_FOUND, 
-  RECEIVED_MATCHING_CONTEXTS, 
+  RECEIVED_MATCHING_CONTEXTS,
+  RECEIVED_CRITERIA,
+  RECEIVED_EDITORS,
   DEACTIVATE,
   REACTIVATE_WEBSITE,
   UPDATE_DRAFT_RECOMMENDATIONS,
-  INSTALLED
+  INSTALLED,
 } from '../constants/ActionTypes';
 import { DEACTIVATE_EVERYWHERE, DEACTIVATE_WEBSITE_ALWAYS } from '../constants/preferences';
 
@@ -15,7 +16,16 @@ export default function (state = {}, action) {
 
   switch (type) {
     case RECEIVED_MATCHING_CONTEXTS:
-      return Object.assign({}, state, { matchingContexts: action.matchingContexts });
+      const { matchingContexts } = action;
+      return Object.assign({}, state, { matchingContexts });
+
+    case RECEIVED_CRITERIA:
+      const { criteria } = action;
+      return Object.assign({}, state, { criteria });
+
+    case RECEIVED_EDITORS:
+      const { editors } = action;
+      return Object.assign({}, state, { editors });
 
     case DEACTIVATE: {
       const { where, duration } = action;

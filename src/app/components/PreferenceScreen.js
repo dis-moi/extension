@@ -31,7 +31,7 @@ export default function (props) {
   const {
     preferenceScreenPanel, deactivatedWebsites, 
     onReactivateWebsite, openPrefScreen, imagesUrl,
-    onInstalledDetails
+    onInstalledDetails, criteria, editors
   } = props;
 
   let mainContent;
@@ -50,10 +50,14 @@ export default function (props) {
       />);
       break;
     case PREFERENCE_SCREEN_PANEL_CRITERIA:
-      mainContent = (<PreferenceCriteriaPanel />);
+      mainContent = (<PreferenceCriteriaPanel
+        criteria={criteria}
+      />);
       break;
     case PREFERENCE_SCREEN_PANEL_SOURCES:
-      mainContent = (<PreferenceSourcesPanel />);
+      mainContent = (<PreferenceSourcesPanel
+        editors={editors}
+      />);
       break;
     default:
       console.error('Unknown content value', preferenceScreenPanel);

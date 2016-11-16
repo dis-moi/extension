@@ -8,7 +8,12 @@ import { createStore } from 'redux';
 import rootReducer from '../../../app/content/reducers';
 import recommendationFound from '../../../app/content/actions/recommendations';
 
-import { updateDeactivatedWebsites, updateInstalledDetails } from '../../../app/content/actions/preferences';
+import {
+  updateDeactivatedWebsites,
+  updateInstalledDetails,
+  updateCriteria,
+  updateEditors,
+} from '../../../app/content/actions/preferences';
 import portCommunication from '../../../app/content/portCommunication';
 
 const IFRAME_EXTENDED_HEIGHT = '255px';
@@ -118,7 +123,9 @@ const store = createStore(
     preferenceScreenPanel: undefined, // preference screen close
     recommendations: undefined,
     deactivatedWebsites: new ImmutableSet(),
-    onInstalledDetails: new ImmutableMap()
+    onInstalledDetails: new ImmutableMap(),
+    criteria: [],
+    editors: [],
   })()
 );
 
@@ -136,10 +143,12 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
 
     switch (type) {
       case 'init':
-        const { style, deactivatedWebsites, onInstalledDetails } = msg;
+        const { style, deactivatedWebsites, onInstalledDetails, criteria, editors } = msg;
 
         store.dispatch(updateDeactivatedWebsites(new ImmutableSet(deactivatedWebsites)));
         store.dispatch(updateInstalledDetails(immutableFromJS(onInstalledDetails)));
+        store.dispatch(updateCriteria(criteria));
+        store.dispatch(updateEditors(editors));
 
         // Let the page load a bit before showing the iframe in loading mode
         CanShowIframeLoadingP

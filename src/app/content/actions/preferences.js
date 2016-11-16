@@ -1,4 +1,9 @@
-import { DEACTIVATED_WEBSITES, INSTALLED_DETAILS } from '../../constants/ActionTypes';
+import {
+  DEACTIVATED_WEBSITES,
+  INSTALLED_DETAILS,
+  CRITERIA,
+  EDITORS,
+} from '../../constants/ActionTypes';
 
 export function updateDeactivatedWebsites(deactivatedWebsites) {
   return {
@@ -11,5 +16,19 @@ export function updateInstalledDetails(onInstalledDetails) {
   return {
     type: INSTALLED_DETAILS,
     onInstalledDetails
+  };
+}
+
+export function updateCriteria(criteria) {
+  return {
+    type: CRITERIA,
+    criteria
+  };
+}
+
+export function updateEditors(editors) {
+  return {
+    type: EDITORS,
+    editors,
   };
 }

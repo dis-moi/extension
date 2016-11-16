@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 
-export default function () {
+function PreferenceCriteriaPanel({ criteria }) {
+  console.log(criteria);
 
   return (
     <div>
@@ -8,3 +9,12 @@ export default function () {
     </div>
   );
 }
+
+PreferenceCriteriaPanel.PropTypes = {
+  criteria: PropTypes.arrayOf(PropTypes.shape({
+    slug: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+  })).isRequired,
+};
+
+export default PreferenceCriteriaPanel;

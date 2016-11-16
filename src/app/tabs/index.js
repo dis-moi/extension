@@ -4,7 +4,7 @@ export default function (
   tabs,
   {
     findMatchingMatchingContexts, getMatchingRecommendations, getDeactivatedWebsites, dispatch,
-    contentCode, contentStyle, getOnInstalledDetails
+    contentCode, contentStyle, getOnInstalledDetails, getCriteria, getEditors
   }
 ) {
 
@@ -33,7 +33,9 @@ export default function (
           type: 'init',
           style: contentStyle,
           deactivatedWebsites: [...getDeactivatedWebsites()],
-          onInstalledDetails: getOnInstalledDetails()
+          onInstalledDetails: getOnInstalledDetails(),
+          criteria: getCriteria(),
+          editors: getEditors(),
         });
 
         resolve(tabPort);

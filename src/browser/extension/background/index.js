@@ -90,6 +90,8 @@ configureStore(store => {
         const state = store.getState();
         return state.onInstalledDetails || {};
       },
+      getCriteria: () => store.getState().criteria || [],
+      getEditors: () => store.getState().editors || [],
       dispatch: store.dispatch,
       contentCode,
       contentStyle: mainStyles
