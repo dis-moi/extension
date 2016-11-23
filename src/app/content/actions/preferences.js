@@ -2,33 +2,59 @@ import {
   DEACTIVATED_WEBSITES,
   INSTALLED_DETAILS,
   CRITERIA,
+  WHITE_CRITERIA,
   EDITORS,
+  BLACK_EDITORS
 } from '../../constants/ActionTypes';
 
-export function updateDeactivatedWebsites(deactivatedWebsites) {
+export default function (portCommunication) {
   return {
-    type: DEACTIVATED_WEBSITES,
-    deactivatedWebsites
-  };
-}
+    updateDeactivatedWebsites(deactivatedWebsites) {
+      return {
+        type: DEACTIVATED_WEBSITES,
+        deactivatedWebsites
+      };
+    },
+    
+    updateInstalledDetails(onInstalledDetails) {
+      return {
+        type: INSTALLED_DETAILS,
+        onInstalledDetails
+      };
+    },
+    
+    updateCriteria(criteria) {
+      return {
+        type: CRITERIA,
+        criteria
+      };
+    },
 
-export function updateInstalledDetails(onInstalledDetails) {
-  return {
-    type: INSTALLED_DETAILS,
-    onInstalledDetails
-  };
-}
+    updateWhiteCriteria(whiteCriteria) {
+      const action = {
+        type: WHITE_CRITERIA,
+        whiteCriteria
+      };
 
-export function updateCriteria(criteria) {
-  return {
-    type: CRITERIA,
-    criteria
-  };
-}
+      portCommunication.sendBackgroundReduxAction(action);
+      return action;
+    },
 
-export function updateEditors(editors) {
-  return {
-    type: EDITORS,
-    editors,
+    updateEditors(editors) {
+      return {
+        type: EDITORS,
+        editors
+      };
+    },
+
+    updateBlackEditors(blackEditors) {
+      const action = {
+        type: BLACK_EDITORS,
+        blackEditors
+      };
+
+      portCommunication.sendBackgroundReduxAction(action);
+      return action;
+    }
   };
 }

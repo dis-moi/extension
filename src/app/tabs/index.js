@@ -4,7 +4,8 @@ export default function (
   tabs,
   {
     findMatchingMatchingContexts, getMatchingRecommendations, getDeactivatedWebsites, dispatch,
-    contentCode, contentStyle, getOnInstalledDetails, getCriteria, getEditors
+    contentCode, contentStyle, getOnInstalledDetails,
+    getCriteria, getWhiteCriteria, getEditors, getBlackEditors
   }
 ) {
 
@@ -35,7 +36,9 @@ export default function (
           deactivatedWebsites: [...getDeactivatedWebsites()],
           onInstalledDetails: getOnInstalledDetails(),
           criteria: getCriteria(),
+          whiteCriteria: getWhiteCriteria(), // white list of criterias
           editors: getEditors(),
+          blackEditors: getBlackEditors() // black list of editors
         });
 
         resolve(tabPort);

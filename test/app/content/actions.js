@@ -4,11 +4,12 @@ import neverThrowingObject from '../../infrastructure/neverThrowingObject';
 
 import recommendationFound from '../../../src/app/content/actions/recommendations';
 import prepareUIEvents from '../../../src/app/content/actions/ui';
-import { updateCriteria, updateEditors } from '../../../src/app/content/actions/preferences';
+import preparePrefEvents from '../../../src/app/content/actions/preferences';
 
 const expect = chai.expect;
 
 const {reduce, extend, deactivate} = prepareUIEvents(neverThrowingObject());
+const { updateCriteria, updateEditors } = preparePrefEvents(neverThrowingObject());
 
 describe('content actions', function () {
 

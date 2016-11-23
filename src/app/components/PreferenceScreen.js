@@ -30,8 +30,11 @@ function mainClassName(screenPanel) {
 export default function (props) {
   const {
     preferenceScreenPanel, deactivatedWebsites, 
-    onReactivateWebsite, openPrefScreen, imagesUrl,
-    onInstalledDetails, criteria, editors
+    onReactivateWebsite, openPrefScreen, closePrefScreen,
+    imagesUrl, onInstalledDetails, 
+    criteria, editors, 
+    whiteCriteria, blackEditors,
+    onUpdateWhiteCriteria, onUpdateBlackEditors
   } = props;
 
   let mainContent;
@@ -52,11 +55,15 @@ export default function (props) {
     case PREFERENCE_SCREEN_PANEL_CRITERIA:
       mainContent = (<PreferenceCriteriaPanel
         criteria={criteria}
+        whiteCriteria={whiteCriteria}
+        onUpdateWhiteCriteria={onUpdateWhiteCriteria}
       />);
       break;
     case PREFERENCE_SCREEN_PANEL_SOURCES:
       mainContent = (<PreferenceSourcesPanel
         editors={editors}
+        blackEditors={blackEditors}
+        onUpdateBlackEditors={onUpdateBlackEditors}
       />);
       break;
     default:
