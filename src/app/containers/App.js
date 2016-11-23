@@ -22,7 +22,7 @@ function mapStateToProps(state) {
     recommendations: state.get('recommendations'),
     imagesUrl: IMAGES_URL,
     reduced: state.get('reduced'),
-    preferenceScreenPanel: state.get('preferenceScreenPanel'),
+    preferenceScreenPanel: state.get('preferenceScreenPanel')
   };
 }
 function mapDispatchToProps(dispatch) {

@@ -8,13 +8,18 @@ import { createStore } from 'redux';
 import rootReducer from '../../../app/content/reducers';
 import recommendationFound from '../../../app/content/actions/recommendations';
 
-import {
+import prefActions from '../../../app/content/actions/preferences.js';
+
+import portCommunication from '../../../app/content/portCommunication';
+
+const {
   updateDeactivatedWebsites,
   updateInstalledDetails,
   updateCriteria,
+  updateWhiteCriteria,
   updateEditors,
-} from '../../../app/content/actions/preferences';
-import portCommunication from '../../../app/content/portCommunication';
+  updateBlackEditors
+} = prefActions(portCommunication);
 
 const IFRAME_EXTENDED_HEIGHT = '255px';
 const IFRAME_REDUCED_HEIGHT = '60px';
@@ -124,8 +129,10 @@ const store = createStore(
     recommendations: undefined,
     deactivatedWebsites: new ImmutableSet(),
     onInstalledDetails: new ImmutableMap(),
-    criteria: [],
-    editors: [],
+    criteria: new ImmutableSet(),
+    whiteCriteria: new ImmutableSet(),
+    editors: new ImmutableSet(),
+    blackEditors: new ImmutableSet()
   })()
 );
 
@@ -143,12 +150,14 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
 
     switch (type) {
       case 'init':
-        const { style, deactivatedWebsites, onInstalledDetails, criteria, editors } = msg;
+        const { style, deactivatedWebsites, onInstalledDetails, criteria, whiteCriteria, editors, blackEditors } = msg;
 
         store.dispatch(updateDeactivatedWebsites(new ImmutableSet(deactivatedWebsites)));
         store.dispatch(updateInstalledDetails(immutableFromJS(onInstalledDetails)));
-        store.dispatch(updateCriteria(criteria));
-        store.dispatch(updateEditors(editors));
+        store.dispatch(updateCriteria(new ImmutableSet(criteria)));
+        store.dispatch(updateWhiteCriteria(new ImmutableSet(whiteCriteria)));
+        store.dispatch(updateEditors(new ImmutableSet(editors)));
+        store.dispatch(updateBlackEditors(new ImmutableSet(blackEditors)));
 
         // Let the page load a bit before showing the iframe in loading mode
         CanShowIframeLoadingP
