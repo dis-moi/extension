@@ -33,8 +33,8 @@ export default function (props) {
     onReactivateWebsite, openPrefScreen, closePrefScreen,
     imagesUrl, onInstalledDetails, 
     criteria, editors, 
-    whiteCriteria, blackEditors,
-    onUpdateWhiteCriteria, onUpdateBlackEditors
+    selectedCriteria, excludedEditors,
+    onUpdateSelectedCriteria, onUpdateExcludedEditors
   } = props;
 
   let mainContent;
@@ -55,15 +55,15 @@ export default function (props) {
     case PREFERENCE_SCREEN_PANEL_CRITERIA:
       mainContent = (<PreferenceCriteriaPanel
         criteria={criteria}
-        whiteCriteria={whiteCriteria}
-        onUpdateWhiteCriteria={onUpdateWhiteCriteria}
+        selectedCriteria={selectedCriteria}
+        onUpdateSelectedCriteria={onUpdateSelectedCriteria}
       />);
       break;
     case PREFERENCE_SCREEN_PANEL_SOURCES:
       mainContent = (<PreferenceSourcesPanel
         editors={editors}
-        blackEditors={blackEditors}
-        onUpdateBlackEditors={onUpdateBlackEditors}
+        excludedEditors={excludedEditors}
+        onUpdateExcludedEditors={onUpdateExcludedEditors}
       />);
       break;
     default:

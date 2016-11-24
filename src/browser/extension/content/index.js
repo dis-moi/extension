@@ -16,9 +16,9 @@ const {
   updateDeactivatedWebsites,
   updateInstalledDetails,
   updateCriteria,
-  updateWhiteCriteria,
+  updateSelectedCriteria,
   updateEditors,
-  updateBlackEditors
+  updateExcludedEditors
 } = prefActions(portCommunication);
 
 const IFRAME_EXTENDED_HEIGHT = '255px';
@@ -130,9 +130,9 @@ const store = createStore(
     deactivatedWebsites: new ImmutableSet(),
     onInstalledDetails: new ImmutableMap(),
     criteria: new ImmutableSet(),
-    whiteCriteria: new ImmutableSet(),
+    selectedCriteria: new ImmutableSet(),
     editors: new ImmutableSet(),
-    blackEditors: new ImmutableSet()
+    excludedEditors: new ImmutableSet()
   })()
 );
 
@@ -150,14 +150,15 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
 
     switch (type) {
       case 'init':
-        const { style, deactivatedWebsites, onInstalledDetails, criteria, whiteCriteria, editors, blackEditors } = msg;
+        const { style, deactivatedWebsites, onInstalledDetails,
+          criteria, selectedCriteria, editors, excludedEditors } = msg;
 
         store.dispatch(updateDeactivatedWebsites(new ImmutableSet(deactivatedWebsites)));
         store.dispatch(updateInstalledDetails(immutableFromJS(onInstalledDetails)));
         store.dispatch(updateCriteria(new ImmutableSet(criteria)));
-        store.dispatch(updateWhiteCriteria(new ImmutableSet(whiteCriteria)));
+        store.dispatch(updateSelectedCriteria(new ImmutableSet(selectedCriteria)));
         store.dispatch(updateEditors(new ImmutableSet(editors)));
-        store.dispatch(updateBlackEditors(new ImmutableSet(blackEditors)));
+        store.dispatch(updateExcludedEditors(new ImmutableSet(excludedEditors)));
 
         // Let the page load a bit before showing the iframe in loading mode
         CanShowIframeLoadingP

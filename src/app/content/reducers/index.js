@@ -9,9 +9,9 @@ import {
   REACTIVATE_WEBSITE,
   INSTALLED_DETAILS,
   CRITERIA,
-  WHITE_CRITERIA,
+  SELECTED_CRITERIA,
   EDITORS,
-  BLACK_EDITORS
+  EXCLUDED_EDITORS
 } from '../../constants/ActionTypes';
 
 export default function (state = {}, action) {
@@ -54,17 +54,17 @@ export default function (state = {}, action) {
       const { criteria } = action;
       return state.set('criteria', criteria);
 
-    case WHITE_CRITERIA:
-      const { whiteCriteria } = action;
-      return state.set('whiteCriteria', whiteCriteria);
+    case SELECTED_CRITERIA:
+      const { selectedCriteria } = action;
+      return state.set('selectedCriteria', selectedCriteria);
 
     case EDITORS:
       const { editors } = action;
       return state.set('editors', editors);
 
-    case BLACK_EDITORS:
-      const { blackEditors } = action;
-      return state.set('blackEditors', blackEditors);
+    case EXCLUDED_EDITORS:
+      const { excludedEditors } = action;
+      return state.set('excludedEditors', excludedEditors);
 
     default:
       return state;

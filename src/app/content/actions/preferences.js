@@ -2,9 +2,9 @@ import {
   DEACTIVATED_WEBSITES,
   INSTALLED_DETAILS,
   CRITERIA,
-  WHITE_CRITERIA,
+  SELECTED_CRITERIA,
   EDITORS,
-  BLACK_EDITORS
+  EXCLUDED_EDITORS
 } from '../../constants/ActionTypes';
 
 export default function (portCommunication) {
@@ -30,10 +30,10 @@ export default function (portCommunication) {
       };
     },
 
-    updateWhiteCriteria(whiteCriteria) {
+    updateSelectedCriteria(selectedCriteria) {
       const action = {
-        type: WHITE_CRITERIA,
-        whiteCriteria
+        type: SELECTED_CRITERIA,
+        selectedCriteria
       };
 
       portCommunication.sendBackgroundReduxAction(action);
@@ -47,10 +47,10 @@ export default function (portCommunication) {
       };
     },
 
-    updateBlackEditors(blackEditors) {
+    updateExcludedEditors(excludedEditors) {
       const action = {
-        type: BLACK_EDITORS,
-        blackEditors
+        type: EXCLUDED_EDITORS,
+        excludedEditors
       };
 
       portCommunication.sendBackgroundReduxAction(action);
