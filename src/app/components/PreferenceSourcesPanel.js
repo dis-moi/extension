@@ -1,25 +1,24 @@
 import React, { PropTypes } from 'react';
 
 function PreferenceSourcesPanel(props) {
-  const { editors, blackEditors, onUpdateBlackEditors } = props;
-  console.log(editors, blackEditors);
-
+  const { editors, excludedEditors, onUpdateExcludedEditors } = props;
   const lis = editors.map(editor => {
     return (
-      <li>
+      <li key={editor.id}>
         <input
           type="checkbox"
-          checked={ blackEditors.has(editor.id) }
+          checked={ excludedEditors.has(editor.id) }
           onChange={ event => {
-            if (event.target.checked)
-              blackEditors.add(editor.id);
-            else
-              blackEditors.delete(editor.id);
+            let newExcluded;
 
-            onUpdateBlackEditors(blackEditors);
-          }}>
-            { editor.label }
-        </input>
+            if (excludedEditors.has(editor.id))
+              newExcluded = excludedEditors.delete(editor.id);
+            else
+              newExcluded = excludedEditors.add(editor.id);
+
+            onUpdateExcludedEditors(newExcluded);
+          }} />
+        { editor.label }
       </li>
     );
   });

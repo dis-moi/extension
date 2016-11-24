@@ -92,8 +92,8 @@ configureStore(store => {
       },
       getCriteria: () => store.getState().criteria || [],
       getEditors: () => store.getState().editors || [],
-      getWhiteCriteria: () => store.getState().whiteCriteria || [],
-      getBlackEditors: () => store.getState().blackEditors || [],
+      getSelectedCriteria: () => store.getState().selectedCriteria || [],
+      getExcludedEditors: () => store.getState().excludedEditors || [],
       dispatch: store.dispatch,
       contentCode,
       contentStyle: mainStyles

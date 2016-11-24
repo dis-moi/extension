@@ -1,7 +1,9 @@
 import { 
   RECEIVED_MATCHING_CONTEXTS,
   RECEIVED_CRITERIA,
+  SELECTED_CRITERIA,
   RECEIVED_EDITORS,
+  EXCLUDED_EDITORS,
   DEACTIVATE,
   REACTIVATE_WEBSITE,
   UPDATE_DRAFT_RECOMMENDATIONS,
@@ -23,9 +25,17 @@ export default function (state = {}, action) {
       const { criteria } = action;
       return Object.assign({}, state, { criteria });
 
+    case SELECTED_CRITERIA:
+      const { selectedCriteria } = action;
+      return Object.assign({}, state, { selectedCriteria });
+
     case RECEIVED_EDITORS:
       const { editors } = action;
       return Object.assign({}, state, { editors });
+
+    case EXCLUDED_EDITORS:
+      const { excludedEditors } = action;
+      return Object.assign({}, state, { excludedEditors });
 
     case DEACTIVATE: {
       const { where, duration } = action;
