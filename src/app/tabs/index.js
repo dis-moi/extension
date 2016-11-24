@@ -1,9 +1,14 @@
 import recommendationIsValid from '../lmem/recommendationIsValid';
+import {
+  SELECTED_CRITERIA,
+  EXCLUDED_EDITORS
+} from '../constants/ActionTypes';
+
 
 export default function (
   tabs,
   {
-    findMatchingMatchingContexts, getMatchingRecommendations, getDeactivatedWebsites, dispatch,
+    findMatchingMatchingContexts, refreshMatchingContexts, getMatchingRecommendations, getDeactivatedWebsites, dispatch,
     contentCode, contentStyle, getOnInstalledDetails,
     getCriteria, getSelectedCriteria, getEditors, getExcludedEditors
   }
@@ -26,8 +31,12 @@ export default function (
         tabPort.onMessage.addListener(msg => {
           console.log('message from content script', msg);
 
-          if (msg.type === 'redux-action')
+          if (msg.type === 'redux-action'){
             dispatch(msg.action);
+            
+            if (msg.action.type === EXCLUDED_EDITORS || msg.action.type === SELECTED_CRITERIA)
+              refreshMatchingContexts();
+          }
         });
 
         tabPort.postMessage({
