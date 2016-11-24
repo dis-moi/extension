@@ -2,9 +2,7 @@ import fetch from 'isomorphic-fetch';
 import {
   RECEIVED_MATCHING_CONTEXTS,
   RECEIVED_CRITERIA,
-  SELECTED_CRITERIA,
-  RECEIVED_EDITORS,
-  EXCLUDED_EDITORS
+  RECEIVED_EDITORS
 } from '../constants/ActionTypes';
 
 import { LMEM_BACKEND_ORIGIN } from '../constants/origins';
@@ -19,9 +17,31 @@ function fetchJson(url) {
     });
 }
 
-function fetchAllMatchingContexts() {
-  // FIXME make up the request with selected criteria and excluded editors
-  return fetchJson(LMEM_BACKEND_ORIGIN + '/api/v2/matchingcontexts');
+function fetchMatchingContexts(criteria = undefined, excludedEditors = undefined) {
+
+  let url = LMEM_BACKEND_ORIGIN + '/api/v2/matchingcontexts';
+  let hasFilters = (criteria === undefined || criteria.length === 0) &&
+    (excludedEditors === undefined || excludedEditors.length === 0);
+
+  if (!hasFilters){
+    let criteriaStr = '';
+    let editorStr = '';
+
+    if (criteria !== undefined || criteria.length !== 0)
+      criteriaStr = 'criteria=' + criteria.join(','); 
+
+    if (excludedEditors !== undefined || excludedEditors.length !== 0)
+      editorStr = 'excluded_editors=' + excludedEditors.join(',');
+
+    const filters = [criteriaStr, editorStr].join('&');
+
+    console.log('filters', filters);
+
+    url += '?' + filters;
+  }
+
+  return fetchJson(url);
+  
 }
 
 function fetchAllCriteria() {
@@ -42,14 +62,6 @@ function fetchAllEditors() {
   ]));
 }
 
-function fetchSelectedCriteria() {
-  return new Promise(resolve => resolve(['price', 'quality']));
-}
-
-function fetchExcludedEditors() {
-  return new Promise(resolve => resolve([]));
-}
-
 export function receivedMatchingContexts(matchingContexts) {
   return {
     type: RECEIVED_MATCHING_CONTEXTS,
@@ -64,13 +76,6 @@ export function receivedCriteria(criteria) {
   };
 }
 
-export function selectedCriteria(criteria) {
-  return {
-    type: SELECTED_CRITERIA,
-    criteria,
-  };
-}
-
 export function receivedEditors(editors) {
   return {
     type: RECEIVED_EDITORS,
@@ -78,19 +83,16 @@ export function receivedEditors(editors) {
   };
 }
 
-export function excludedEditors(editors) {
-  return {
-    type: EXCLUDED_EDITORS,
-    editors,
+export function dispatchInitialStateFromBackend() {
+  return dispatch => {
+    fetchMatchingContexts().then(json => dispatch(receivedMatchingContexts(json)));
+    fetchAllCriteria().then(json => dispatch(receivedCriteria(json)));
+    fetchAllEditors().then(json => dispatch(receivedEditors(json)));
   };
 }
 
-export function dispatchInitialStateFromBackend() {
+export function refreshMatchingContextsFromBackend(criteria, excludedEditors) {
   return dispatch => {
-    fetchAllMatchingContexts().then(json => dispatch(receivedMatchingContexts(json)));
-    fetchAllCriteria().then(json => dispatch(receivedCriteria(json)));
-    fetchSelectedCriteria().then(json => dispatch(selectedCriteria(json)));
-    fetchAllEditors().then(json => dispatch(receivedEditors(json)));
-    fetchExcludedEditors().then(json => dispatch(excludedEditors(json)));
+    fetchMatchingContexts(criteria, excludedEditors).then(json => dispatch(receivedMatchingContexts(json)));
   };
 }

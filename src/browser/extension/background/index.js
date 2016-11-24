@@ -12,7 +12,7 @@ import getMatchingRecommendations from '../../../app/lmem/getMatchingRecommendat
 import tabs from '../../../app/tabs/index.js';
 import prepareDraftPreview from '../../../app/lmem/draft-preview/main.js';
 
-import { dispatchInitialStateFromBackend } from '../../../app/actions/kraftBackend';
+import { dispatchInitialStateFromBackend, refreshMatchingContextsFromBackend } from '../../../app/actions/kraftBackend';
 import updateDraftRecommendations from '../../../app/actions/updateDraftRecommendations';
 
 import {LMEM_BACKEND_ORIGIN, LMEM_SCRIPTS_ORIGIN} from '../../../app/constants/origins';
@@ -96,6 +96,10 @@ configureStore(store => {
       getExcludedEditors: () => store.getState().excludedEditors || [],
       dispatch: store.dispatch,
       contentCode,
+      refreshMatchingContexts: () => {
+        const state = store.getState();
+        store.dispatch(refreshMatchingContextsFromBackend(state.selectedCriteria, state.excludedEditors));
+      },
       contentStyle: mainStyles
     });
   });
