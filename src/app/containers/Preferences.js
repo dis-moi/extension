@@ -8,8 +8,10 @@ import { IMAGES_URL } from '../constants/assetsUrls';
 import portCommunication from '../content/portCommunication';
 
 const {
-  updateSelectedCriteria,
-  updateExcludedEditors
+  selectCriterium,
+  unselectCriterium,
+  excludeEditor,
+  includeEditor
 } = prefActions(portCommunication);
 
 const {
@@ -25,9 +27,7 @@ function mapStateToProps(state) {
     deactivatedWebsites: state.get('deactivatedWebsites'),
     onInstalledDetails: state.get('onInstalledDetails'),
     criteria: state.get('criteria'),
-    selectedCriteria: state.get('selectedCriteria'),
     editors: state.get('editors'),
-    excludedEditors: state.get('excludedEditors'),
   };
 }
 
@@ -36,8 +36,10 @@ function mapDispatchToProps(dispatch) {
     openPrefScreen(panel) { dispatch(openPrefScreen(panel)); },
     closePrefScreen() { dispatch(closePrefScreen()); },
     onReactivateWebsite(s) { dispatch(reactivateWebsite(s)); },
-    onUpdateSelectedCriteria(criteria) { dispatch(updateSelectedCriteria(criteria)); },
-    onUpdateExcludedEditors(editors) { dispatch(updateExcludedEditors(editors)); }
+    selectCriterium(criterium) { dispatch(selectCriterium(criterium)); },
+    unselectCriterium(criterium) { dispatch(unselectCriterium(criterium)); },
+    excludeEditor(editor) { dispatch(excludeEditor(editor)); },
+    includeEditor(editor) { dispatch(includeEditor(editor)); }
   };
 }
 

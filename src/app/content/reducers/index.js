@@ -9,9 +9,11 @@ import {
   REACTIVATE_WEBSITE,
   INSTALLED_DETAILS,
   CRITERIA,
-  SELECTED_CRITERIA,
+  SELECT_CRITERIUM,
+  UNSELECT_CRITERIUM,
   EDITORS,
-  EXCLUDED_EDITORS
+  EXCLUDE_EDITOR,
+  INCLUDE_EDITOR
 } from '../../constants/ActionTypes';
 
 export default function (state = {}, action) {
@@ -50,21 +52,49 @@ export default function (state = {}, action) {
       const { website } = action;
       return state.set('deactivatedWebsites', state.get('deactivatedWebsites').delete(website));
 
-    case CRITERIA:
+    case CRITERIA: {
       const { criteria } = action;
       return state.set('criteria', criteria);
+    }
 
-    case SELECTED_CRITERIA:
-      const { selectedCriteria } = action;
-      return state.set('selectedCriteria', selectedCriteria);
+    case SELECT_CRITERIUM: {
+      const { slug } = action;
+      const criteria = state.get('criteria');
 
-    case EDITORS:
+      return state.set('criteria', criteria.setIn([slug, 'isSelected'], true));
+    }
+
+    case UNSELECT_CRITERIUM: {
+      const { slug } = action;
+      const criteria = state.get('criteria');
+
+      return state.set('criteria', criteria.setIn([slug, 'isSelected'], false));
+    }
+
+    case EDITORS: {
       const { editors } = action;
       return state.set('editors', editors);
+    }
 
-    case EXCLUDED_EDITORS:
-      const { excludedEditors } = action;
-      return state.set('excludedEditors', excludedEditors);
+    case EXCLUDE_EDITOR: {
+      const { id } = action;
+      const editors = state.get('editors');
+
+      console.log('EXC SIZE EDITORS', editors.size);
+      console.log('EXC SIZE EDITORS', editors.setIn([id, 'isExcluded'], true).size);
+
+      return state.set('editors', editors.setIn([id, 'isExcluded'], true));
+    }  
+
+    case INCLUDE_EDITOR: {
+      const { id } = action;
+      const editors = state.get('editors');
+
+      console.log('INC SIZE EDITORS', editors);
+      console.log('INC SIZE EDITORS', editors.setIn([id, 'isExcluded'], true).size);
+
+      return state.set('editors', editors.setIn([id, 'isExcluded'], false));
+    }
 
     default:
       return state;
