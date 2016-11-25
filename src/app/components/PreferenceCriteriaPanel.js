@@ -1,24 +1,26 @@
 import React, { PropTypes } from 'react';
 
 function PreferenceCriteriaPanel(props) {
-  const { criteria, selectedCriteria, onUpdateSelectedCriteria } = props;
-  const lis = criteria.map(criterium => {
-    return (
-      <li key={criterium.slug}>
+  const { criteria, selectCriterium, unselectCriterium } = props;
+
+  let lis = [];
+
+  criteria.forEach((criterium, slug) => {
+    const label = criterium.get('label');
+    const isSelected = criterium.get('isSelected');
+
+    lis.push(
+      <li key={ slug }>
         <input
           type="checkbox"
-          checked={ selectedCriteria.has(criterium.slug) }
+          checked={ isSelected }
           onChange={ event => {
-            let newSelection;
-
-            if (selectedCriteria.has(criterium.slug))
-              newSelection = selectedCriteria.delete(criterium.slug);
+            if (isSelected)
+              unselectCriterium(slug);
             else
-              newSelection = selectedCriteria.add(criterium.slug);
-
-            onUpdateSelectedCriteria(newSelection);
+              selectCriterium(slug);
           }} />
-        { criterium.label }
+        { label }
       </li>
     );
   });

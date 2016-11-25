@@ -2,9 +2,11 @@ import {
   DEACTIVATED_WEBSITES,
   INSTALLED_DETAILS,
   CRITERIA,
-  SELECTED_CRITERIA,
+  SELECT_CRITERIUM,
+  UNSELECT_CRITERIUM,
   EDITORS,
-  EXCLUDED_EDITORS
+  EXCLUDE_EDITOR,
+  INCLUDE_EDITOR
 } from '../../constants/ActionTypes';
 
 export default function (portCommunication) {
@@ -30,10 +32,20 @@ export default function (portCommunication) {
       };
     },
 
-    updateSelectedCriteria(selectedCriteria) {
+    selectCriterium(slug) {
       const action = {
-        type: SELECTED_CRITERIA,
-        selectedCriteria
+        type: SELECT_CRITERIUM,
+        slug
+      };
+
+      portCommunication.sendBackgroundReduxAction(action);
+      return action;
+    },
+
+    unselectCriterium(slug) {
+      const action = {
+        type: UNSELECT_CRITERIUM,
+        slug
       };
 
       portCommunication.sendBackgroundReduxAction(action);
@@ -47,10 +59,20 @@ export default function (portCommunication) {
       };
     },
 
-    updateExcludedEditors(excludedEditors) {
+    excludeEditor(id) {
       const action = {
-        type: EXCLUDED_EDITORS,
-        excludedEditors
+        type: EXCLUDE_EDITOR,
+        id
+      };
+
+      portCommunication.sendBackgroundReduxAction(action);
+      return action;
+    },
+
+    includeEditor(id) {
+      const action = {
+        type: INCLUDE_EDITOR,
+        id
       };
 
       portCommunication.sendBackgroundReduxAction(action);

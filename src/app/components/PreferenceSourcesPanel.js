@@ -1,24 +1,25 @@
 import React, { PropTypes } from 'react';
 
 function PreferenceSourcesPanel(props) {
-  const { editors, excludedEditors, onUpdateExcludedEditors } = props;
-  const lis = editors.map(editor => {
-    return (
-      <li key={editor.id}>
+  const { editors, includeEditor, excludeEditor } = props;
+  const lis = [];
+
+  editors.forEach((editor, id) => {
+    const label = editor.get('label');
+    const isExcluded = editor.get('isExcluded');
+
+    lis.push(
+      <li key={ id }>
         <input
           type="checkbox"
-          checked={ excludedEditors.has(editor.id) }
+          checked={ isExcluded }
           onChange={ event => {
-            let newExcluded;
-
-            if (excludedEditors.has(editor.id))
-              newExcluded = excludedEditors.delete(editor.id);
+            if (isExcluded)
+              includeEditor(id);
             else
-              newExcluded = excludedEditors.add(editor.id);
-
-            onUpdateExcludedEditors(newExcluded);
+              excludeEditor(id);
           }} />
-        { editor.label }
+        { label }
       </li>
     );
   });

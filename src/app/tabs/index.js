@@ -1,7 +1,9 @@
 import recommendationIsValid from '../lmem/recommendationIsValid';
 import {
-  SELECTED_CRITERIA,
-  EXCLUDED_EDITORS
+  SELECT_CRITERIUM,
+  UNSELECT_CRITERIUM,
+  EXCLUDE_EDITOR,
+  INCLUDE_EDITOR
 } from '../constants/ActionTypes';
 
 
@@ -9,8 +11,7 @@ export default function (
   tabs,
   {
     findMatchingMatchingContexts, refreshMatchingContexts, getMatchingRecommendations, getDeactivatedWebsites, dispatch,
-    contentCode, contentStyle, getOnInstalledDetails,
-    getCriteria, getSelectedCriteria, getEditors, getExcludedEditors
+    contentCode, contentStyle, getOnInstalledDetails, getCriteria, getEditors
   }
 ) {
 
@@ -33,10 +34,23 @@ export default function (
 
           if (msg.type === 'redux-action'){
             dispatch(msg.action);
-            
-            if (msg.action.type === EXCLUDED_EDITORS || msg.action.type === SELECTED_CRITERIA)
+
+            if (msg.action.type === EXCLUDE_EDITOR || msg.action.type === INCLUDE_EDITOR ||
+              msg.action.type === SELECT_CRITERIUM || msg.action.type === UNSELECT_CRITERIUM)
               refreshMatchingContexts();
           }
+        });
+
+        // transform Maps to objects to be sent via tabPort
+        let criteria = {};
+        let editors = {};
+
+        getCriteria().forEach((criterium, slug) => {
+          criteria[slug] = criterium;
+        });
+
+        getEditors().forEach((editor, id) => {
+          editors[id] = editor;
         });
 
         tabPort.postMessage({
@@ -44,10 +58,8 @@ export default function (
           style: contentStyle,
           deactivatedWebsites: [...getDeactivatedWebsites()],
           onInstalledDetails: getOnInstalledDetails(),
-          criteria: getCriteria(),
-          selectedCriteria: getSelectedCriteria(), // white list of criterias
-          editors: getEditors(),
-          excludedEditors: getExcludedEditors() // black list of editors
+          criteria,
+          editors
         });
 
         resolve(tabPort);

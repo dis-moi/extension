@@ -1,3 +1,5 @@
+import makeMap from '../../lib/makeMap';
+
 import fetch from 'isomorphic-fetch';
 import {
   RECEIVED_MATCHING_CONTEXTS,
@@ -47,19 +49,19 @@ function fetchMatchingContexts(criteria = undefined, excludedEditors = undefined
 function fetchAllCriteria() {
   // TODO wait for https://github.com/insitu-project/kraft-backend/pull/79
   // return fetchJson(LMEM_BACKEND_ORIGIN + '/api/v2/criteria');
-  return new Promise(resolve => resolve([
+  return new Promise(resolve => resolve(makeMap([
     { slug: 'price', label: 'Prix' },
     { slug: 'quality', label: 'Qualité' },
-  ]));
+  ], 'slug')));
 }
 
 function fetchAllEditors() {
   // TODO wait for https://github.com/insitu-project/kraft-backend/pull/80
   // return fetchJson(LMEM_BACKEND_ORIGIN + '/api/v2/editors');
-  return new Promise(resolve => resolve([
+  return new Promise(resolve => resolve(makeMap([
     { id: 42, url: 'choisir.lmem.net', label: 'LMEM' },
     { id: 24, url: 'quechoisir.fr', label: 'Que Choisir' },
-  ]));
+  ], 'id')));
 }
 
 export function receivedMatchingContexts(matchingContexts) {
@@ -91,8 +93,8 @@ export function dispatchInitialStateFromBackend() {
   };
 }
 
-export function refreshMatchingContextsFromBackend(criteria, excludedEditors) {
+export function refreshMatchingContextsFromBackend(criteria, editors) {
   return dispatch => {
-    fetchMatchingContexts(criteria, excludedEditors).then(json => dispatch(receivedMatchingContexts(json)));
+    fetchMatchingContexts(criteria, editors).then(json => dispatch(receivedMatchingContexts(json)));
   };
 }

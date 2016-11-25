@@ -90,15 +90,30 @@ configureStore(store => {
         const state = store.getState();
         return state.onInstalledDetails || {};
       },
-      getCriteria: () => store.getState().criteria || [],
-      getEditors: () => store.getState().editors || [],
-      getSelectedCriteria: () => store.getState().selectedCriteria || [],
-      getExcludedEditors: () => store.getState().excludedEditors || [],
+      getCriteria: () => store.getState().criteria || new Map(),
+      getEditors: () => store.getState().editors || new Map(),
       dispatch: store.dispatch,
       contentCode,
       refreshMatchingContexts: () => {
         const state = store.getState();
-        store.dispatch(refreshMatchingContextsFromBackend(state.selectedCriteria, state.excludedEditors));
+
+        let selectedCriteria = Array.from(state.criteria.values())
+        .filter(criterium => {
+          return criterium.isSelected;  
+        })
+        .map(criterium => {
+          return criterium.slug;
+        });
+
+        let excludedEditors = Array.from(state.editors.values())
+        .filter(editor => {
+          return editor.isExcluded;  
+        })
+        .map(editor => {
+          return editor.id;
+        });
+
+        store.dispatch(refreshMatchingContextsFromBackend(selectedCriteria, excludedEditors));
       },
       contentStyle: mainStyles
     });
