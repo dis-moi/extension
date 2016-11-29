@@ -97,20 +97,14 @@ configureStore(store => {
       refreshMatchingContexts: () => {
         const state = store.getState();
 
-        let selectedCriteria = Array.from(state.criteria.values())
-        .filter(criterium => {
-          return criterium.isSelected;  
-        })
-        .map(criterium => {
-          return criterium.slug;
+        let selectedCriteria = Array.from(state.criteria.keys())
+        .filter(slug => {
+          return state.criteria.get(slug).get('isSelected');  
         });
 
-        let excludedEditors = Array.from(state.editors.values())
-        .filter(editor => {
-          return editor.isExcluded;  
-        })
-        .map(editor => {
-          return editor.id;
+        let excludedEditors = Array.from(state.editors.keys())
+        .filter(id => {
+          return state.editors.get(id).get('isExcluded');
         });
 
         store.dispatch(refreshMatchingContextsFromBackend(selectedCriteria, excludedEditors));

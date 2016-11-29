@@ -1,4 +1,5 @@
 import { createTransform } from 'redux-persist';
+import { Map as ImmutableMap } from 'immutable';
 
 export function serialize(stateObj){
   return JSON.stringify(stateObj, (key, value) => {
@@ -9,11 +10,19 @@ export function serialize(stateObj){
   });
 } 
 
-export function deserialize(string){
+export function deserialize(string, key){
+
+  if (key === 'criteria' || key === 'editors'){
+    return new ImmutableMap(JSON.parse(string, (k, v) => {
+      if (Object.prototype.toString.call(v) === '[object Object]')
+        return new ImmutableMap(v);
+      return v;
+    }));
+  }
+  
   return JSON.parse(string, function (k, v) {
-    if (k === 'deactivatedWebsites') {
+    if (k === 'deactivatedWebsites')
       return new Set(v);
-    }
     return v; // return everything else unchanged
   });
 } 
