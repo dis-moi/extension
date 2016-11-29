@@ -3,7 +3,7 @@ import chai from 'chai';
 import {
   receivedMatchingContexts,
   receivedCriteria,
-  receivedEditors,
+  receivedEditors
 } from '../../src/app/actions/kraftBackend';
 
 const expect = chai.expect;
