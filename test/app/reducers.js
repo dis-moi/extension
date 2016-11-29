@@ -1,6 +1,8 @@
 import chai from 'chai';
 import neverThrowingObject from '../infrastructure/neverThrowingObject';
 
+import { Map as ImmutableMap } from 'immutable';
+
 import reducer from '../../src/app/reducers/';
 
 import makeInitialState from '../../src/app/store/makeInitialState';
@@ -32,7 +34,7 @@ describe('background reducer', function () {
   });
 
   it('initial state + criteria => state with criteria', () => {
-    const criteria = [{}, {}];
+    const criteria = new ImmutableMap();
     const action = receivedCriteria(criteria);
 
     const nextState = reducer( makeInitialState(), action );
@@ -41,7 +43,7 @@ describe('background reducer', function () {
   });
 
   it('initial state + editors => state with editors', () => {
-    const editors = [{}, {}];
+    const editors = new ImmutableMap();
     const action = receivedEditors(editors);
 
     const nextState = reducer( makeInitialState(), action );

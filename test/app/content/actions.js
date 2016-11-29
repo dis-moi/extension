@@ -9,7 +9,9 @@ import preparePrefEvents from '../../../src/app/content/actions/preferences';
 const expect = chai.expect;
 
 const {reduce, extend, deactivate} = prepareUIEvents(neverThrowingObject());
-const { updateCriteria, updateEditors } = preparePrefEvents(neverThrowingObject());
+const { updateCriteria, updateEditors,
+  selectCriterium, unselectCriterium,
+  excludeEditor, includeEditor } = preparePrefEvents(neverThrowingObject());
 
 describe('content actions', function () {
 
@@ -50,12 +52,44 @@ describe('content actions', function () {
     expect(action.criteria).to.equal(criteria);
   });
 
+  it('select criterium', () => {
+    const slug = 'slug';
+    const action = selectCriterium(slug);
+
+    expect(action.type).to.be.a('string').of.length.above(5);
+    expect(action.slug).to.equal(slug);
+  });
+
+  it('unselect criterium', () => {
+    const slug = 'slug';
+    const action = unselectCriterium(slug);
+
+    expect(action.type).to.be.a('string').of.length.above(5);
+    expect(action.slug).to.equal(slug);
+  });
+
   it('update editor', () => {
     const editors = {};
     const action = updateEditors(editors);
 
     expect(action.type).to.be.a('string').of.length.above(5);
     expect(action.editors).to.equal(editors);
+  });
+
+  it('exclude editor', () => {
+    const id = 0;
+    const action = excludeEditor(id);
+
+    expect(action.type).to.be.a('string').of.length.above(5);
+    expect(action.id).to.equal(id);
+  });
+
+  it('include editor', () => {
+    const id = 0;
+    const action = includeEditor(id);
+
+    expect(action.type).to.be.a('string').of.length.above(5);
+    expect(action.id).to.equal(id);
   });
 
 });
