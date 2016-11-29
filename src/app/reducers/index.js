@@ -1,3 +1,4 @@
+import { Map as ImmutableMap } from 'immutable';
 import { 
   RECEIVED_MATCHING_CONTEXTS,
   RECEIVED_CRITERIA,
@@ -24,58 +25,68 @@ export default function (state = {}, action) {
       const { matchingContexts } = action;
       return Object.assign({}, state, { matchingContexts });
 
-    case RECEIVED_CRITERIA:
+    case RECEIVED_CRITERIA: {
       const { criteria } = action;
 
-      criteria.forEach((criterium, slug) => {
-        criterium.isSelected = true;
-      });
+      let newCriteria = state.criteria || criteria;
 
-      return Object.assign({}, state, { criteria });
+      if (Object.keys(state).indexOf('criteria') === -1) // first visit, all criteria are set to selected by default
+        criteria.forEach((criterium, slug) => {
+          newCriteria = newCriteria.setIn([slug, 'isSelected'], true);
+        });
+      else // other visits, new criteria from server are set to selected by default
+        criteria.forEach((criterium, slug) => {
+          if (!state.criteria.has(slug))
+            newCriteria = newCriteria.setIn([slug, 'isSelected'], true);
+        });
+
+      return Object.assign({}, state, { criteria: newCriteria });
+    }
 
     case SELECT_CRITERIUM: {
       const { slug } = action;
+      const criteria = state.criteria;
 
-      const updatedCriteria = state.criteria;
-      updatedCriteria.get(slug).isSelected = true;
-
-      return Object.assign({}, state, { criteria: updatedCriteria });
+      return Object.assign({}, state, {criteria: criteria.setIn([slug, 'isSelected'], true)});
     }
 
     case UNSELECT_CRITERIUM: {
       const { slug } = action;
+      const criteria = state.criteria;
 
-      const updatedCriteria = state.criteria;
-      updatedCriteria.get(slug).isSelected = false;
-
-      return Object.assign({}, state, { criteria: updatedCriteria });
+      return Object.assign({}, state, {criteria: criteria.setIn([slug, 'isSelected'], false)});
     }
 
-    case RECEIVED_EDITORS:
+    case RECEIVED_EDITORS: {
       const { editors } = action;
 
-      editors.forEach((editor, id) => {
-        editor.isExcluded = true;
-      });
+      let newEditors = state.editors || editors;
 
-      return Object.assign({}, state, { editors });
+      if (Object.keys(state).indexOf('editors') === -1) // first visit, all editors are set to not excluded by default
+        editors.forEach((editor, id) => {
+          newEditors = editors.setIn([id, 'isExcluded'], false);
+        });
+      else // other visits, new editors from server are set to not excluded by default
+        editors.forEach((editor, id) => { 
+          if (!state.editors.has(id))
+            newEditors = editors.setIn([id, 'isExcluded'], false);
+        });
+
+      return Object.assign({}, state, { editors: newEditors });
+    }
 
     case EXCLUDE_EDITOR: {
       const { id } = action;
+      const editors = state.editors;
 
-      const updatedEditors = state.editors;
-      updatedEditors.get(parseInt(id, 10)).isExcluded = true;
-
-      return Object.assign({}, state, { editors: updatedEditors });
+      return Object.assign({}, state, {editors: editors.setIn([id, 'isExcluded'], true)});
     }
 
     case INCLUDE_EDITOR: {
       const { id } = action;
+      const editors = state.editors;
 
-      const updatedEditors = state.editors;
-      updatedEditors.get(parseInt(id, 10)).isExcluded = false;
-
-      return Object.assign({}, state, { editors: updatedEditors });
+      return Object.assign({}, state, {editors: editors.setIn([id, 'isExcluded'], false)});
     }
 
     case DEACTIVATE: {

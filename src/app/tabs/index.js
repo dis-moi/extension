@@ -46,11 +46,25 @@ export default function (
         let editors = {};
 
         getCriteria().forEach((criterium, slug) => {
-          criteria[slug] = criterium;
+
+          let critObj = {};
+
+          criterium.forEach((v, k) => {
+            critObj[k] = v;
+          });
+
+          criteria[slug] = critObj;
         });
 
         getEditors().forEach((editor, id) => {
-          editors[id] = editor;
+
+          let editObj = {};
+
+          editor.forEach((v, k) => {
+            editObj[k] = v;
+          });
+
+          editors[id] = editObj;
         });
 
         tabPort.postMessage({

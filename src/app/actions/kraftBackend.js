@@ -1,4 +1,5 @@
 import makeMap from '../../lib/makeMap';
+import { Map as ImmutableMap } from 'immutable';
 
 import fetch from 'isomorphic-fetch';
 import {
@@ -49,19 +50,30 @@ function fetchMatchingContexts(criteria = undefined, excludedEditors = undefined
 function fetchAllCriteria() {
   // TODO wait for https://github.com/insitu-project/kraft-backend/pull/79
   // return fetchJson(LMEM_BACKEND_ORIGIN + '/api/v2/criteria');
-  return new Promise(resolve => resolve(makeMap([
-    { slug: 'price', label: 'Prix' },
-    { slug: 'quality', label: 'Qualité' },
-  ], 'slug')));
+
+  // return new Promise(resolve => resolve(makeMap([
+  //   { slug: 'price', label: 'Prix' },
+  //   { slug: 'quality', label: 'Qualité' },
+  // ], 'slug')));
+
+  return new Promise(resolve => resolve(new ImmutableMap({
+    'price': new ImmutableMap({ slug: 'price', label: 'Prix' }),
+    'quality': new ImmutableMap({ slug: 'quality', label: 'Qualité' }),
+  })));
 }
 
 function fetchAllEditors() {
   // TODO wait for https://github.com/insitu-project/kraft-backend/pull/80
   // return fetchJson(LMEM_BACKEND_ORIGIN + '/api/v2/editors');
-  return new Promise(resolve => resolve(makeMap([
-    { id: 42, url: 'choisir.lmem.net', label: 'LMEM' },
-    { id: 24, url: 'quechoisir.fr', label: 'Que Choisir' },
-  ], 'id')));
+  // return new Promise(resolve => resolve(makeMap([
+  //   { id: 42, url: 'choisir.lmem.net', label: 'LMEM' },
+  //   { id: 24, url: 'quechoisir.fr', label: 'Que Choisir' },
+  // ], 'id')));
+
+  return new Promise(resolve => resolve(new ImmutableMap({
+    42: new ImmutableMap({ id: 42, url: 'choisir.lmem.net', label: 'LMEM' }),
+    24: new ImmutableMap({ id: 24, url: 'quechoisir.fr', label: 'Que Choisir' }),
+  })));
 }
 
 export function receivedMatchingContexts(matchingContexts) {
