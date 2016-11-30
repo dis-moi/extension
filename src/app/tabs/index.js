@@ -46,7 +46,6 @@ export default function (
         let editors = {};
 
         getCriteria().forEach((criterium, slug) => {
-
           let critObj = {};
 
           criterium.forEach((v, k) => {
@@ -57,7 +56,6 @@ export default function (
         });
 
         getEditors().forEach((editor, id) => {
-
           let editObj = {};
 
           editor.forEach((v, k) => {

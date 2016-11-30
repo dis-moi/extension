@@ -19,14 +19,11 @@ function fetchJson(url) {
     });
 }
 
-function fetchMatchingContexts(criteria = [], excludedEditors = []) {
-
+export function makeUrlFromFilters(criteria = [], excludedEditors = []) {
   let url = LMEM_BACKEND_ORIGIN + '/api/v2/matchingcontexts';
   const hasFilters = !(criteria.length === 0 && excludedEditors.length === 0);
 
   if (hasFilters){
-    let criteriaStr = '';
-    let editorStr = '';
     let filters = '';
 
     if (criteria.length !== 0 && excludedEditors.length === 0)
@@ -34,20 +31,32 @@ function fetchMatchingContexts(criteria = [], excludedEditors = []) {
     else if (excludedEditors.length !== 0 && criteria.length === 0)
       filters = 'excluded_editors=' + excludedEditors.join(',');
     else
-      filters = [criteriaStr, editorStr].join('&');
+      filters = ['criteria=' + criteria.join(','), 'excluded_editors=' + excludedEditors.join(',')].join('&');
 
     console.log('filters', filters);
 
     url += '?' + filters;
   }
 
-  return fetchJson(url);
-  
+  return url;
+}
+
+function fetchMatchingContexts(criteria, excludedEditors) {
+  return fetchJson(makeUrlFromFilters(criteria, excludedEditors));  
 }
 
 function fetchAllCriteria() {
   // TODO wait for https://github.com/insitu-project/kraft-backend/pull/79
-  // return fetchJson(LMEM_BACKEND_ORIGIN + '/api/v2/criteria');
+  // return fetchJson(LMEM_BACKEND_ORIGIN + '/api/v2/criteria')
+  // .then(criteria => {
+  //   let newCriteria = new ImmutableMap();
+
+  //   Object.keys(criteria).forEach(slug => {
+  //     newCriteria = newCriteria.set(slug, new ImmutableMap(criteria[slug]))
+  //   });
+
+  //   return newCriteria;
+  // });
 
   return new Promise(resolve => resolve(new ImmutableMap({
     'price': new ImmutableMap({ slug: 'price', label: 'Prix' }),
@@ -57,7 +66,16 @@ function fetchAllCriteria() {
 
 function fetchAllEditors() {
   // TODO wait for https://github.com/insitu-project/kraft-backend/pull/80
-  // return fetchJson(LMEM_BACKEND_ORIGIN + '/api/v2/editors');
+  // return fetchJson(LMEM_BACKEND_ORIGIN + '/api/v2/editors')
+  // .then(editors => {
+  //   let newEditors = new ImmutableMap();
+
+  //   Object.keys(editors).forEach(id => {
+  //     newEditors = newEditors.set(id, new ImmutableMap(editors[id]))
+  //   });
+
+  //   return newEditors;
+  // });
 
   return new Promise(resolve => resolve(new ImmutableMap({
     42: new ImmutableMap({ id: 42, url: 'choisir.lmem.net', label: 'LMEM' }),
