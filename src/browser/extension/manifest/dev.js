@@ -18,8 +18,7 @@ export default Object.assign(
           'https://cdn.heapanalytics.com'
         ],
         'connect-src': [
-          'http://preprod-lmem-craft-backend.cleverapps.io',
-          'http://lmem-craft-backend.cleverapps.io'
+          'http://preprod-lmem-craft-backend.cleverapps.io'
         ],
         'img-src': [
           'self',
