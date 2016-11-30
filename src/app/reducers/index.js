@@ -28,17 +28,25 @@ export default function (state = {}, action) {
     case RECEIVED_CRITERIA: {
       const { criteria } = action;
 
-      let newCriteria = state.criteria || criteria;
+      let oldCriteria = state.criteria || criteria;
+      let newCriteria;
 
-      if (Object.keys(state).includes('criteria')) // first visit, all criteria are set to selected by default
-        criteria.forEach((criterium, slug) => {
-          newCriteria = newCriteria.setIn([slug, 'isSelected'], true);
-        });
-      else // other visits, new criteria from server are set to selected by default
-        criteria.forEach((criterium, slug) => {
-          if (!state.criteria.has(slug))
-            newCriteria = newCriteria.setIn([slug, 'isSelected'], true);
-        });
+      if (!Object.keys(state).includes('criteria')){ // first visit, all criteria are set to selected by default
+        newCriteria = oldCriteria.reduce((acc, curr) => {
+          return acc.setIn([curr.get('slug'), 'isSelected'], true);
+        }, oldCriteria);
+      }
+      else { // other visits, new criteria from server are set to selected by default
+        newCriteria = oldCriteria.reduce((acc, curr) => {
+          let output = acc;
+
+          if (!state.criteria.has(curr.get('slug')))
+            output = acc.setIn([curr.get('slug'), 'isSelected'], true);
+
+          return output;
+
+        }, oldCriteria);
+      }
 
       return Object.assign({}, state, { criteria: newCriteria });
     }
@@ -60,17 +68,23 @@ export default function (state = {}, action) {
     case RECEIVED_EDITORS: {
       const { editors } = action;
 
-      let newEditors = state.editors || editors;
+      let oldEditors = state.editors || editors;
+      let newEditors;
 
-      if (Object.keys(state).includes('editors')) // first visit, all editors are set to not excluded by default
-        editors.forEach((editor, id) => {
-          newEditors = editors.setIn([id, 'isExcluded'], false);
-        });
+      if (!Object.keys(state).includes('editors')) // first visit, all editors are set to not excluded by default
+        newEditors = oldEditors.reduce((acc, curr) => {
+          return acc.setIn([curr.get('id').toString(), 'isExcluded'], false);
+        }, oldEditors);
       else // other visits, new editors from server are set to not excluded by default
-        editors.forEach((editor, id) => { 
-          if (!state.editors.has(id))
-            newEditors = editors.setIn([id, 'isExcluded'], false);
-        });
+        newEditors = oldEditors.reduce((acc, curr) => { 
+          let output = acc;
+
+          if (!state.editors.has(curr.get('id').toString()))
+            output = acc.setIn([curr.get('id').toString(), 'isExcluded'], false);
+
+          return output;
+
+        }, oldEditors);
 
       return Object.assign({}, state, { editors: newEditors });
     }
