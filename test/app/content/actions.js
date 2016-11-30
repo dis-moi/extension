@@ -10,7 +10,7 @@ const expect = chai.expect;
 
 const {reduce, extend, deactivate} = prepareUIEvents(neverThrowingObject());
 const { updateCriteria, updateEditors,
-  selectCriterium, unselectCriterium,
+  selectCriterion, unselectCriterion,
   excludeEditor, includeEditor } = preparePrefEvents(neverThrowingObject());
 
 describe('content actions', function () {
@@ -52,17 +52,17 @@ describe('content actions', function () {
     expect(action.criteria).to.equal(criteria);
   });
 
-  it('select criterium', () => {
+  it('select criterion', () => {
     const slug = 'slug';
-    const action = selectCriterium(slug);
+    const action = selectCriterion(slug);
 
     expect(action.type).to.be.a('string').of.length.above(5);
     expect(action.slug).to.equal(slug);
   });
 
-  it('unselect criterium', () => {
+  it('unselect criterion', () => {
     const slug = 'slug';
-    const action = unselectCriterium(slug);
+    const action = unselectCriterion(slug);
 
     expect(action.type).to.be.a('string').of.length.above(5);
     expect(action.slug).to.equal(slug);

@@ -1,13 +1,13 @@
 import React, { PropTypes } from 'react';
 
 function PreferenceCriteriaPanel(props) {
-  const { criteria, selectCriterium, unselectCriterium } = props;
+  const { criteria, selectCriterion, unselectCriterion } = props;
 
   let lis = [];
 
-  criteria.forEach((criterium, slug) => {
-    const label = criterium.get('label');
-    const isSelected = criterium.get('isSelected');
+  criteria.forEach((criterion, slug) => {
+    const label = criterion.get('label');
+    const isSelected = criterion.get('isSelected');
 
     lis.push(
       <li key={ slug }>
@@ -16,9 +16,9 @@ function PreferenceCriteriaPanel(props) {
           checked={ isSelected }
           onChange={ event => {
             if (isSelected)
-              unselectCriterium(slug);
+              unselectCriterion(slug);
             else
-              selectCriterium(slug);
+              selectCriterion(slug);
           }} />
         { label }
       </li>

@@ -2,8 +2,8 @@ import { Map as ImmutableMap } from 'immutable';
 import { 
   RECEIVED_MATCHING_CONTEXTS,
   RECEIVED_CRITERIA,
-  SELECT_CRITERIUM,
-  UNSELECT_CRITERIUM,
+  SELECT_CRITERION,
+  UNSELECT_CRITERION,
   RECEIVED_EDITORS,
   EXCLUDE_EDITOR,
   INCLUDE_EDITOR,
@@ -51,14 +51,14 @@ export default function (state = {}, action) {
       return Object.assign({}, state, { criteria: newCriteria });
     }
 
-    case SELECT_CRITERIUM: {
+    case SELECT_CRITERION: {
       const { slug } = action;
       const criteria = state.criteria;
 
       return Object.assign({}, state, {criteria: criteria.setIn([slug, 'isSelected'], true)});
     }
 
-    case UNSELECT_CRITERIUM: {
+    case UNSELECT_CRITERION: {
       const { slug } = action;
       const criteria = state.criteria;
 
