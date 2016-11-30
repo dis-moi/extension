@@ -30,7 +30,7 @@ export default function (state = {}, action) {
 
       let newCriteria = state.criteria || criteria;
 
-      if (Object.keys(state).indexOf('criteria') === -1) // first visit, all criteria are set to selected by default
+      if (Object.keys(state).includes('criteria')) // first visit, all criteria are set to selected by default
         criteria.forEach((criterium, slug) => {
           newCriteria = newCriteria.setIn([slug, 'isSelected'], true);
         });
@@ -62,7 +62,7 @@ export default function (state = {}, action) {
 
       let newEditors = state.editors || editors;
 
-      if (Object.keys(state).indexOf('editors') === -1) // first visit, all editors are set to not excluded by default
+      if (Object.keys(state).includes('editors')) // first visit, all editors are set to not excluded by default
         editors.forEach((editor, id) => {
           newEditors = editors.setIn([id, 'isExcluded'], false);
         });

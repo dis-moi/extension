@@ -9,9 +9,7 @@ export default function (configure, callback) {
       debounce: 0
     },
     chrome !== 'undefined' && chrome.storage && chrome.storage.local ?
-      { storage,
-        transforms: [reduxPersistTransform]
-      } :
+      { storage } :
       {}
   );
   getStoredState(persistConfig, (err, initialState) => {
