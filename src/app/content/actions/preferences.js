@@ -2,8 +2,8 @@ import {
   DEACTIVATED_WEBSITES,
   INSTALLED_DETAILS,
   CRITERIA,
-  SELECT_CRITERIUM,
-  UNSELECT_CRITERIUM,
+  SELECT_CRITERION,
+  UNSELECT_CRITERION,
   EDITORS,
   EXCLUDE_EDITOR,
   INCLUDE_EDITOR
@@ -32,9 +32,9 @@ export default function (portCommunication) {
       };
     },
 
-    selectCriterium(slug) {
+    selectCriterion(slug) {
       const action = {
-        type: SELECT_CRITERIUM,
+        type: SELECT_CRITERION,
         slug
       };
 
@@ -42,9 +42,9 @@ export default function (portCommunication) {
       return action;
     },
 
-    unselectCriterium(slug) {
+    unselectCriterion(slug) {
       const action = {
-        type: UNSELECT_CRITERIUM,
+        type: UNSELECT_CRITERION,
         slug
       };
 

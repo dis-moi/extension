@@ -8,8 +8,8 @@ import { IMAGES_URL } from '../constants/assetsUrls';
 import portCommunication from '../content/portCommunication';
 
 const {
-  selectCriterium,
-  unselectCriterium,
+  selectCriterion,
+  unselectCriterion,
   excludeEditor,
   includeEditor
 } = prefActions(portCommunication);
@@ -36,8 +36,8 @@ function mapDispatchToProps(dispatch) {
     openPrefScreen(panel) { dispatch(openPrefScreen(panel)); },
     closePrefScreen() { dispatch(closePrefScreen()); },
     onReactivateWebsite(s) { dispatch(reactivateWebsite(s)); },
-    selectCriterium(criterium) { dispatch(selectCriterium(criterium)); },
-    unselectCriterium(criterium) { dispatch(unselectCriterium(criterium)); },
+    selectCriterion(criterion) { dispatch(selectCriterion(criterion)); },
+    unselectCriterion(criterion) { dispatch(unselectCriterion(criterion)); },
     excludeEditor(editor) { dispatch(excludeEditor(editor)); },
     includeEditor(editor) { dispatch(includeEditor(editor)); }
   };

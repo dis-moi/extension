@@ -9,8 +9,8 @@ import {
   REACTIVATE_WEBSITE,
   INSTALLED_DETAILS,
   CRITERIA,
-  SELECT_CRITERIUM,
-  UNSELECT_CRITERIUM,
+  SELECT_CRITERION,
+  UNSELECT_CRITERION,
   EDITORS,
   EXCLUDE_EDITOR,
   INCLUDE_EDITOR
@@ -57,14 +57,14 @@ export default function (state = {}, action) {
       return state.set('criteria', criteria);
     }
 
-    case SELECT_CRITERIUM: {
+    case SELECT_CRITERION: {
       const { slug } = action;
       const criteria = state.get('criteria');
 
       return state.set('criteria', criteria.setIn([slug, 'isSelected'], true));
     }
 
-    case UNSELECT_CRITERIUM: {
+    case UNSELECT_CRITERION: {
       const { slug } = action;
       const criteria = state.get('criteria');
 

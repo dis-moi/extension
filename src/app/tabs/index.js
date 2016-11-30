@@ -1,7 +1,7 @@
 import recommendationIsValid from '../lmem/recommendationIsValid';
 import {
-  SELECT_CRITERIUM,
-  UNSELECT_CRITERIUM,
+  SELECT_CRITERION,
+  UNSELECT_CRITERION,
   EXCLUDE_EDITOR,
   INCLUDE_EDITOR
 } from '../constants/ActionTypes';
@@ -36,7 +36,7 @@ export default function (
             dispatch(msg.action);
 
             if (msg.action.type === EXCLUDE_EDITOR || msg.action.type === INCLUDE_EDITOR ||
-              msg.action.type === SELECT_CRITERIUM || msg.action.type === UNSELECT_CRITERIUM)
+              msg.action.type === SELECT_CRITERION || msg.action.type === UNSELECT_CRITERION)
               refreshMatchingContexts();
           }
         });
@@ -45,10 +45,10 @@ export default function (
         let criteria = {};
         let editors = {};
 
-        getCriteria().forEach((criterium, slug) => {
+        getCriteria().forEach((criterion, slug) => {
           let critObj = {};
 
-          criterium.forEach((v, k) => {
+          criterion.forEach((v, k) => {
             critObj[k] = v;
           });
 

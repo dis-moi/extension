@@ -32,7 +32,7 @@ export default function (props) {
     preferenceScreenPanel, deactivatedWebsites, 
     onReactivateWebsite, openPrefScreen, closePrefScreen,
     imagesUrl, onInstalledDetails, 
-    criteria, selectCriterium, unselectCriterium,
+    criteria, selectCriterion, unselectCriterion,
     editors, excludeEditor, includeEditor
   } = props;
 
@@ -54,8 +54,8 @@ export default function (props) {
     case PREFERENCE_SCREEN_PANEL_CRITERIA:
       mainContent = (<PreferenceCriteriaPanel
         criteria={criteria}
-        selectCriterium={selectCriterium}
-        unselectCriterium={unselectCriterium}
+        selectCriterion={selectCriterion}
+        unselectCriterion={unselectCriterion}
       />);
       break;
     case PREFERENCE_SCREEN_PANEL_SOURCES:
