@@ -80,18 +80,12 @@ export default function (state = {}, action) {
       const { id } = action;
       const editors = state.get('editors');
 
-      console.log('EXC SIZE EDITORS', editors.size);
-      console.log('EXC SIZE EDITORS', editors.setIn([id, 'isExcluded'], true).size);
-
       return state.set('editors', editors.setIn([id, 'isExcluded'], true));
     }  
 
     case INCLUDE_EDITOR: {
       const { id } = action;
       const editors = state.get('editors');
-
-      console.log('INC SIZE EDITORS', editors);
-      console.log('INC SIZE EDITORS', editors.setIn([id, 'isExcluded'], true).size);
 
       return state.set('editors', editors.setIn([id, 'isExcluded'], false));
     }
