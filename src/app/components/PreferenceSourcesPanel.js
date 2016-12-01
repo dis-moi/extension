@@ -2,13 +2,13 @@ import React, { PropTypes } from 'react';
 
 function PreferenceSourcesPanel(props) {
   const { editors, includeEditor, excludeEditor } = props;
-  const lis = [];
 
-  editors.forEach((editor, id) => {
+  const lis = editors.toArray().map(editor => {
+    const id = editor.get('id');
     const label = editor.get('label');
     const isExcluded = editor.get('isExcluded');
 
-    lis.push(
+    return (
       <li key={ id }>
         <input
           type="checkbox"

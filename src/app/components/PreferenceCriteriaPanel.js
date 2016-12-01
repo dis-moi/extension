@@ -3,13 +3,12 @@ import React, { PropTypes } from 'react';
 function PreferenceCriteriaPanel(props) {
   const { criteria, selectCriterion, unselectCriterion } = props;
 
-  let lis = [];
-
-  criteria.forEach((criterion, slug) => {
+  const lis = criteria.toArray().map(criterion => {
+    const slug = criterion.get('slug');
     const label = criterion.get('label');
     const isSelected = criterion.get('isSelected');
 
-    lis.push(
+    return(
       <li key={ slug }>
         <input
           type="checkbox"
