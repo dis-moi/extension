@@ -46,41 +46,23 @@ function fetchMatchingContexts(criteria, excludedEditors) {
 }
 
 function fetchAllCriteria() {
-  // TODO wait for https://github.com/insitu-project/kraft-backend/pull/79
-  // return fetchJson(LMEM_BACKEND_ORIGIN + '/api/v2/criteria')
-  // .then(criteria => {
-  //   let newCriteria = new ImmutableMap();
-
-  //   Object.keys(criteria).forEach(slug => {
-  //     newCriteria = newCriteria.set(slug, new ImmutableMap(criteria[slug]))
-  //   });
-
-  //   return newCriteria;
-  // });
-
-  return new Promise(resolve => resolve(new ImmutableMap({
-    'price': new ImmutableMap({ slug: 'price', label: 'Prix' }),
-    'quality': new ImmutableMap({ slug: 'quality', label: 'Qualité' }),
-  })));
+  return fetchJson(LMEM_BACKEND_ORIGIN + '/api/v2/criteria')
+  .then(criteria => {
+    // transform list of objects into ImmutableMap of ImmutableMaps
+    return criteria.reduce((acc, criterion) => {
+      return acc.set(criterion.slug, new ImmutableMap(criterion));
+    }, new ImmutableMap());
+  });
 }
 
 function fetchAllEditors() {
-  // TODO wait for https://github.com/insitu-project/kraft-backend/pull/80
-  // return fetchJson(LMEM_BACKEND_ORIGIN + '/api/v2/editors')
-  // .then(editors => {
-  //   let newEditors = new ImmutableMap();
-
-  //   Object.keys(editors).forEach(id => {
-  //     newEditors = newEditors.set(id, new ImmutableMap(editors[id]))
-  //   });
-
-  //   return newEditors;
-  // });
-
-  return new Promise(resolve => resolve(new ImmutableMap({
-    42: new ImmutableMap({ id: 42, url: 'choisir.lmem.net', label: 'LMEM' }),
-    24: new ImmutableMap({ id: 24, url: 'quechoisir.fr', label: 'Que Choisir' }),
-  })));
+  return fetchJson(LMEM_BACKEND_ORIGIN + '/api/v2/editors')
+  .then(editors => {
+    // transform list of objects into ImmutableMap of ImmutableMaps
+    return editors.reduce((acc, editor) => {
+      return acc.set(editor.id.toString(), new ImmutableMap(editor));
+    }, new ImmutableMap());
+  });
 }
 
 export function receivedMatchingContexts(matchingContexts) {
@@ -107,8 +89,8 @@ export function receivedEditors(editors) {
 export function dispatchInitialStateFromBackend() {
   return dispatch => {
     fetchMatchingContexts().then(json => dispatch(receivedMatchingContexts(json)));
-    fetchAllCriteria().then(json => dispatch(receivedCriteria(json)));
-    fetchAllEditors().then(json => dispatch(receivedEditors(json)));
+    fetchAllCriteria().then(ImmMap => dispatch(receivedCriteria(ImmMap)));
+    fetchAllEditors().then(ImmMap => dispatch(receivedEditors(ImmMap)));
   };
 }
 
