@@ -27,25 +27,24 @@ export default function (state = {}, action) {
 
     case RECEIVED_CRITERIA: {
       const { criteria } = action;
-
-      let oldCriteria = state.criteria || criteria;
       let newCriteria;
 
       if (!Object.keys(state).includes('criteria')){ // first visit, all criteria are set to selected by default
-        newCriteria = oldCriteria.reduce((acc, curr) => {
+        newCriteria = criteria.reduce((acc, curr) => {
           return acc.setIn([curr.get('slug'), 'isSelected'], true);
-        }, oldCriteria);
+        }, criteria);
       }
       else { // other visits, new criteria from server are set to selected by default
-        newCriteria = oldCriteria.reduce((acc, curr) => {
+        newCriteria = criteria.reduce((acc, curr) => {
           let output = acc;
 
-          if (!state.criteria.has(curr.get('slug')))
+          if (!state.criteria.has(curr.get('slug'))){
             output = acc.setIn([curr.get('slug'), 'isSelected'], true);
+          }
 
           return output;
 
-        }, oldCriteria);
+        }, state.criteria);
       }
 
       return Object.assign({}, state, { criteria: newCriteria });
@@ -67,24 +66,21 @@ export default function (state = {}, action) {
 
     case RECEIVED_EDITORS: {
       const { editors } = action;
-
-      let oldEditors = state.editors || editors;
       let newEditors;
 
       if (!Object.keys(state).includes('editors')) // first visit, all editors are set to not excluded by default
-        newEditors = oldEditors.reduce((acc, curr) => {
+        newEditors = editors.reduce((acc, curr) => {
           return acc.setIn([curr.get('id').toString(), 'isExcluded'], false);
-        }, oldEditors);
+        }, editors);
       else // other visits, new editors from server are set to not excluded by default
-        newEditors = oldEditors.reduce((acc, curr) => { 
+        newEditors = editors.reduce((acc, curr) => { 
           let output = acc;
-
           if (!state.editors.has(curr.get('id').toString()))
             output = acc.setIn([curr.get('id').toString(), 'isExcluded'], false);
 
           return output;
 
-        }, oldEditors);
+        }, state.editors);
 
       return Object.assign({}, state, { editors: newEditors });
     }
