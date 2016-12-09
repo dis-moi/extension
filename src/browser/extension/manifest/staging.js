@@ -18,7 +18,7 @@ export default Object.assign(
           'https://cdn.heapanalytics.com'
         ],
         'img-src': [
-          'self',
+          '\'self\'',
           'https://heapanalytics.com',
           'https://cdn.heapanalytics.com',
           'data:'
