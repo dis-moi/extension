@@ -98,7 +98,11 @@ export default function (
 
   function fromRecoURLsToSendingToTab(recoUrls, tabId, matchingContexts) {
     return getMatchingRecommendations(recoUrls)
-      .then(recos => recos.filter(recommendationIsValid))
+      .then(recos => recos.filter(reco => {
+        const isValid = recommendationIsValid(reco);
+        if (!isValid) console.warn('Invalid recommendation not displayed:', reco);
+        return isValid;
+      }))
       .then(recos => {
         if(recos.length >= 1) {
           sendRecommendationsToTab(tabId, recos, matchingContexts);
