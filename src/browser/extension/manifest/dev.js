@@ -13,15 +13,13 @@ export default Object.assign(
           'https://lmem-craft-backend.cleverapps.io'
         ],
         'script-src': [
+          '\'self\'',
           'http://localhost:3000',
           'https://heapanalytics.com',
           'https://cdn.heapanalytics.com'
         ],
-        'connect-src': [
-          'http://preprod-lmem-craft-backend.cleverapps.io'
-        ],
         'img-src': [
-          'self',
+          '\'self\'',
           'https://heapanalytics.com',
           'https://cdn.heapanalytics.com',
           'data:'
