@@ -98,12 +98,12 @@ export default function (
 
   function fromRecoURLsToSendingToTab(recoUrls, tabId, trigger) {
     return getMatchingRecommendations(recoUrls)
-    .then(recos => recos.filter(reco => {
+    .then(recos => recos.filter(reco => { // validate recos
       const isValid = recommendationIsValid(reco);
       if (!isValid) console.warn('Invalid recommendation not displayed:', reco);
       return isValid;
     }))
-    .then(recos => {
+    .then(recos => { // filter dismissed recos
       let dismissed = getDismissed();
 
       let toDisplayRecos = recos.filter(reco => {
