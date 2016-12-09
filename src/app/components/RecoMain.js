@@ -60,8 +60,8 @@ class RecoMain extends Component {
             <ul className="summary-tags">
               {recommendation.criteria
                 .map(criterion => (
-                  <li key={criterion.label}>
-                    <b className={'tag tag-' + criterion.label}> {criterion.description} </b>
+                  <li key={criterion.slug}>
+                    <b className={'tag tag-' + criterion.slug}> {criterion.label} </b>
                   </li>
                 ))
               }
@@ -121,7 +121,7 @@ RecoMain.propTypes = {
     contributor: PropTypes.object.isRequired,
     criteria: PropTypes.arrayOf(PropTypes.shape({
       label: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
     })),
     resource: PropTypes.shape({
       author: PropTypes.string,
