@@ -7,8 +7,6 @@ const testPath = path.join(__dirname, '../test/');
 export default baseConfig({
   input: {
     background: [`${srcPath}extension/background/`],
-    // window: [`${srcPath}window/`],
-    //popup: [`${srcPath}extension/popup/`],
     content: [`${srcPath}extension/content/`],
     test: [`${testPath}integration/`]
   },
@@ -19,7 +17,7 @@ export default baseConfig({
   globals: {
     'process.env': {
       NODE_ENV: '"development"',
-      LMEM_BACKEND_ORIGIN: '"https://preprod-lmem-craft-backend.cleverapps.io"',
+      LMEM_BACKEND_ORIGIN: '"https://staging.recommendations.lmem.net"',
       LMEM_SCRIPTS_ORIGIN: "'.'", // Use local build
     }
   }
