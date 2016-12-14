@@ -7,7 +7,7 @@ export default function (portCommunication) {
       recommendations,
       matchingContexts,
     };
-    portCommunication.sendBackgroundReduxAction(action);
+    // portCommunication.sendBackgroundReduxAction(action);
     return action;
   };
 }
