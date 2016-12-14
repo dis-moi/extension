@@ -195,14 +195,14 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
 
         break;
       case 'recommendations':
-        const { recommendations, matchingContexts } = msg;
+        const { recommendations } = msg;
         // console.log('recommendations in content', recommendations);
 
         // Even if the recommendation arrived early, let the page load a bit before
         // showing the iframe in loading mode
         CanShowRecommendationIfAvailableP
         .then(() => {
-          store.dispatch(recommendationFound(recommendations, matchingContexts));
+          store.dispatch(recommendationFound(recommendations));
         });
 
         break;

@@ -6,13 +6,11 @@ import {
 
 export default function (portCommunication) {
   return {
-    recommendationFound(recommendations, matchingContexts){
+    recommendationFound(recommendations){
       const action = {
         type: RECOMMENDATION_FOUND,
-        recommendations,
-        matchingContexts,
+        recommendations
       };
-      // portCommunication.sendBackgroundReduxAction(action);
       return action;
     },
     dismissReco(id){

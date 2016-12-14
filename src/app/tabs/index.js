@@ -6,12 +6,13 @@ import {
   INCLUDE_EDITOR
 } from '../constants/ActionTypes';
 
+import { contextTriggered, recoDisplayed, recoDismissed } from '../actions/tab';
 
 export default function (
   tabs,
   {
     findTriggeredContexts, refreshMatchingContexts, getMatchingRecommendations, getDeactivatedWebsites, dispatch,
-    contentCode, contentStyle, getOnInstalledDetails, getCriteria, getEditors
+    contentCode, contentStyle, getOnInstalledDetails, getCriteria, getEditors, getDismissed
   }
 ) {
 
@@ -84,7 +85,7 @@ export default function (
   }
 
 
-  function sendRecommendationsToTab(tabId, recos, matchingContexts) {
+  function sendRecommendationsToTab(tabId, recos) {
     console.log('before execute', tabId);
 
     const tabPortP = matchingTabIdToPortP.get(tabId) || createContentScriptAndPort(tabId);
@@ -92,27 +93,32 @@ export default function (
       .then(tabPort => tabPort.postMessage({
         type: 'recommendations',
         recommendations: recos,
-        matchingContexts,
       }));
   }
 
-  function fromRecoURLsToSendingToTab(recoUrls, tabId, matchingContexts) {
+  function fromRecoURLsToSendingToTab(recoUrls, tabId, trigger) {
     return getMatchingRecommendations(recoUrls)
-      .then(recos => recos.filter(reco => {
-        const isValid = recommendationIsValid(reco);
-        if (!isValid) console.warn('Invalid recommendation not displayed:', reco);
-        return isValid;
-      }))
-      .then(recos => {
+    .then(recos => recos.filter(reco => {
+      const isValid = recommendationIsValid(reco);
+      if (!isValid) console.warn('Invalid recommendation not displayed:', reco);
+      return isValid;
+    }))
+    .then(recos => {
+      let dismissed = getDismissed();
 
-        // filter by dismissed recos in store
+      let toDisplayRecos = recos.filter(reco => {
+        if (dismissed.has(reco.id))
+          dispatch(recoDismissed(trigger, reco));
+        else
+          dispatch(recoDisplayed(trigger, reco));
 
-        // dispatch for each reco either RECO_DISPLAYED or RECO_DISMISSED
-
-        if(recos.length >= 1) {
-          sendRecommendationsToTab(tabId, recos, matchingContexts);
-        }
+        return dismissed.has(reco.id);
       });
+
+      if(toDisplayRecos.length >= 1) {
+        sendRecommendationsToTab(tabId, toDisplayRecos);
+      }
+    });
   }
 
   function triggerFromTabUrl(id, url){
@@ -120,12 +126,8 @@ export default function (
     const recoUrls = triggeredContexts.map(tc => tc.recommendation_url);
 
     if(recoUrls.length >= 1) {
-
-      // dispatch CONTEXT_MATCHED action => payload = URL
-
-      fromRecoURLsToSendingToTab(recoUrls, id, {
-        matchingUrl: url,
-      });
+      dispatch(contextTriggered({url}, triggeredContexts));
+      fromRecoURLsToSendingToTab(recoUrls, id, {url});
     }
   }
 
