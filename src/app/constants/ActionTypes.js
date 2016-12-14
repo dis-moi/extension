@@ -14,6 +14,8 @@ export const INSTALLED = 'INSTALLED';
 
 // content actions
 export const RECOMMENDATION_FOUND = 'RECOMMENDATION_FOUND';
+export const DISMISS_RECO = 'DISMISS_RECO';
+export const APPROVE_RECO = 'APPROVE_RECO';
 
 export const INSTALLED_DETAILS = 'INSTALLED_DETAILS';
 

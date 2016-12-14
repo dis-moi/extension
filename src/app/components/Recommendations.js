@@ -18,7 +18,7 @@ class Recommendations extends Component {
     const {
       recommendations, imagesUrl, reduced, preferenceScreenPanel,
       onExtend, onReduce, onDeactivate, closePrefScreen, openPrefScreen,
-      onCheckOutResource, onCheckOutAlternative, onCheckOutEditor,
+      onCheckOutResource, onCheckOutAlternative, onCheckOutEditor, dismissReco, approveReco
     } = props;
 
     const body = preferenceScreenPanel ?
@@ -29,6 +29,8 @@ class Recommendations extends Component {
         onCheckOutResource={onCheckOutResource}
         onCheckOutAlternative={onCheckOutAlternative}
         onCheckOutEditor={onCheckOutEditor}
+        dismissReco={dismissReco}
+        approveReco={approveReco}
       />;
       
     return recommendations ? (

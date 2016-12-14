@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 
 import Recommendations from '../components/Recommendations';
-import uiActions from '../content/actions/ui.js';
+import prepareUIActions from '../content/actions/ui.js';
+import prepareRecoActions from '../content/actions/recommendations.js';
 
 import { IMAGES_URL } from '../constants/assetsUrls';
 import portCommunication from '../content/portCommunication';
@@ -15,7 +16,12 @@ const {
   checkOutResource,
   checkOutAlternative,
   checkOutEditor,
-} = uiActions(portCommunication);
+} = prepareUIActions(portCommunication);
+
+const {
+  dismissReco,
+  approveReco
+} = prepareRecoActions(portCommunication);
 
 function mapStateToProps(state) {
   return {
@@ -35,6 +41,8 @@ function mapDispatchToProps(dispatch) {
     onCheckOutResource(r) { dispatch(checkOutResource(r)); },
     onCheckOutAlternative(a) { dispatch(checkOutAlternative(a)); },
     onCheckOutEditor(e) { dispatch(checkOutEditor(e)); },
+    dismissReco(id) { dispatch(dismissReco(id)); },
+    approveReco(id) { dispatch(approveReco(id)); }
   };
 }
 

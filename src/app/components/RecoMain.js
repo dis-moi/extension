@@ -23,7 +23,9 @@ class RecoMain extends Component {
   }
 
   render() {
-    const { recommendations, imagesUrl, onCheckOutResource, onCheckOutAlternative, onCheckOutEditor } = this.props;
+    const { recommendations, imagesUrl,
+      onCheckOutResource, onCheckOutAlternative, onCheckOutEditor,
+      dismissReco, approveReco } = this.props;
     const { recoHover } = this.state;
 
     // For now, this component is only capable of handling a single recommendation.
@@ -32,6 +34,37 @@ class RecoMain extends Component {
     const {visibility} = recommendation;
 
     const mainClass = visibility === 'private' ? 'preview' : undefined;
+
+    // console.log('RECO props', recommendation);
+
+    const rateRecoButtons = (
+      <ul>
+        <li>
+          <div className="button-directive">
+            <button
+              className="button button-compact with-tooltip"
+              onClick={e => {
+                console.log('Clicked on APPROVE');
+                approveReco(1);
+              }}>
+              <span><span>J'approuve</span></span>
+            </button>
+          </div>
+        </li>
+        <li>
+          <div className="button-directive">
+            <button
+              className="button button-compact with-tooltip"
+              onClick={e => {
+                console.log('Clicked on DISMISSED');
+                dismissReco(1);
+              }}>
+              <span><span>Je ne veux plus voir</span></span>
+            </button>
+          </div>
+        </li>
+      </ul>
+    );
 
     return (<main className={mainClass}>
       <header className="sideframe lmem-header">
@@ -57,6 +90,7 @@ class RecoMain extends Component {
                 {recommendation.title}
               </a>
             </h3>
+            {rateRecoButtons}
             <ul className="summary-tags">
               {recommendation.criteria
                 .map(criterion => (

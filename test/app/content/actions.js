@@ -2,7 +2,7 @@ import chai from 'chai';
 
 import neverThrowingObject from '../../infrastructure/neverThrowingObject';
 
-import recommendationFound from '../../../src/app/content/actions/recommendations';
+import prepareRecoEvents from '../../../src/app/content/actions/recommendations';
 import prepareUIEvents from '../../../src/app/content/actions/ui';
 import preparePrefEvents from '../../../src/app/content/actions/preferences';
 
@@ -12,6 +12,7 @@ const {reduce, extend, deactivate} = prepareUIEvents(neverThrowingObject());
 const { updateCriteria, updateEditors,
   selectCriterion, unselectCriterion,
   excludeEditor, includeEditor } = preparePrefEvents(neverThrowingObject());
+const { recommendationFound, dismissReco, approveReco } = prepareRecoEvents(neverThrowingObject());
 
 describe('content actions', function () {
 
