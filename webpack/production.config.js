@@ -30,7 +30,7 @@ export default baseConfig({
   globals: {
     'process.env': {
       NODE_ENV: '"production"',
-      LMEM_BACKEND_ORIGIN: '"https://lmem-craft-backend.cleverapps.io"',
+      LMEM_BACKEND_ORIGIN: '"https://recommendations.lmem.net"',
       LMEM_SCRIPTS_ORIGIN: "'https://ui.lmem.net'",
       HEAP_APPID: '"3705584166"', // production
     }
