@@ -7,6 +7,8 @@ import {
   RECEIVED_EDITORS,
   EXCLUDE_EDITOR,
   INCLUDE_EDITOR,
+  DISMISS_RECO,
+  APPROVE_RECO,
   DEACTIVATE,
   REACTIVATE_WEBSITE,
   UPDATE_DRAFT_RECOMMENDATIONS,
@@ -28,24 +30,16 @@ export default function (state = {}, action) {
     case RECEIVED_CRITERIA: {
       const { criteria } = action;
       let newCriteria;
+      
+      newCriteria = criteria.reduce((acc, curr) => {
+        let output = acc;
 
-      if (!Object.keys(state).includes('criteria')){ // first visit, all criteria are set to selected by default
-        newCriteria = criteria.reduce((acc, curr) => {
-          return acc.setIn([curr.get('slug'), 'isSelected'], true);
-        }, criteria);
-      }
-      else { // other visits, new criteria from server are set to selected by default
-        newCriteria = criteria.reduce((acc, curr) => {
-          let output = acc;
+        if (!state.criteria.has(curr.get('slug'))) // new criteria from server are set to selected by default
+          output = acc.setIn([curr.get('slug'), 'isSelected'], true);
+        
+        return output;
 
-          if (!state.criteria.has(curr.get('slug'))){
-            output = acc.setIn([curr.get('slug'), 'isSelected'], true);
-          }
-
-          return output;
-
-        }, state.criteria);
-      }
+      }, criteria);
 
       return Object.assign({}, state, { criteria: newCriteria });
     }
@@ -68,19 +62,14 @@ export default function (state = {}, action) {
       const { editors } = action;
       let newEditors;
 
-      if (!Object.keys(state).includes('editors')) // first visit, all editors are set to not excluded by default
-        newEditors = editors.reduce((acc, curr) => {
-          return acc.setIn([curr.get('id').toString(), 'isExcluded'], false);
-        }, editors);
-      else // other visits, new editors from server are set to not excluded by default
-        newEditors = editors.reduce((acc, curr) => { 
-          let output = acc;
-          if (!state.editors.has(curr.get('id').toString()))
-            output = acc.setIn([curr.get('id').toString(), 'isExcluded'], false);
+      newEditors = editors.reduce((acc, curr) => { 
+        let output = acc;
+        if (!state.editors.has(curr.get('id').toString())) // new editors from server are set to not excluded by default
+          output = acc.setIn([curr.get('id').toString(), 'isExcluded'], false);
+        
+        return output;
 
-          return output;
-
-        }, state.editors);
+      }, editors);
 
       return Object.assign({}, state, { editors: newEditors });
     }
@@ -97,6 +86,20 @@ export default function (state = {}, action) {
       const editors = state.editors;
 
       return Object.assign({}, state, {editors: editors.setIn([id.toString(), 'isExcluded'], false)});
+    }
+
+    case DISMISS_RECO: {
+      const { id } = action;
+      const dismissedRecos = state.dismissedRecos;
+
+      return Object.assign({}, state, {dismissedRecos: dismissedRecos.add(id)});
+    }
+
+    case APPROVE_RECO: {
+      const { id } = action;
+      const approvedRecos = state.approvedRecos;
+
+      return Object.assign({}, state, {approvedRecos: approvedRecos.add(id)});
     }
 
     case DEACTIVATE: {
