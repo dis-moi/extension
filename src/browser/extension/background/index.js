@@ -72,7 +72,7 @@ configureStore(store => {
   contentCodeP
   .then(contentCode => {
     tabs(chrome.tabs, {
-      findMatchingMatchingContexts: url => {
+      findTriggeredContexts: url => {
         const state = store.getState();
         
         return findMatchingOffersAccordingToPreferences(

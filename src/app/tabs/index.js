@@ -10,7 +10,7 @@ import {
 export default function (
   tabs,
   {
-    findMatchingMatchingContexts, refreshMatchingContexts, getMatchingRecommendations, getDeactivatedWebsites, dispatch,
+    findTriggeredContexts, refreshMatchingContexts, getMatchingRecommendations, getDeactivatedWebsites, dispatch,
     contentCode, contentStyle, getOnInstalledDetails, getCriteria, getEditors
   }
 ) {
@@ -104,37 +104,42 @@ export default function (
         return isValid;
       }))
       .then(recos => {
+
+        // filter by dismissed recos in store
+
+        // dispatch for each reco either RECO_DISPLAYED or RECO_DISMISSED
+
         if(recos.length >= 1) {
           sendRecommendationsToTab(tabId, recos, matchingContexts);
         }
       });
   }
 
-  tabs.onCreated.addListener(({ id, url }) => {
-    if (!url) return;
-
-    const matchingMatchingContexts = findMatchingMatchingContexts(url);
-    const recoUrls = matchingMatchingContexts.map(mmc => mmc.recommendation_url);
+  function triggerFromTabUrl(id, url){
+    const triggeredContexts = findTriggeredContexts(url);
+    const recoUrls = triggeredContexts.map(tc => tc.recommendation_url);
 
     if(recoUrls.length >= 1) {
+
+      // dispatch CONTEXT_MATCHED action => payload = URL
+
       fromRecoURLsToSendingToTab(recoUrls, id, {
         matchingUrl: url,
       });
     }
+  }
+
+  tabs.onCreated.addListener(({ id, url }) => {
+    if (!url) return;
+
+    triggerFromTabUrl(id, url);
   });
 
   tabs.onUpdated.addListener((id, { status, url: newUrl }, { url }) => {
     if (status === 'loading') {
       const matchingUrl = newUrl || url; // handle reloading
 
-      const matchingMatchingContexts = findMatchingMatchingContexts(matchingUrl);
-      const recoUrls = matchingMatchingContexts.map(mmc => mmc.recommendation_url);
-
-      if (recoUrls.length >= 1) {
-        fromRecoURLsToSendingToTab(recoUrls, id, {
-          matchingUrl: url,
-        });
-      }
+      triggerFromTabUrl(id, matchingUrl);
     }
 
     return matchingTabIdToPortP.delete(id);
