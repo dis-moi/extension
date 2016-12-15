@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 function PreferenceCriteriaPanel(props) {
-  const { criteria, selectCriterion, unselectCriterion } = props;
+  const { criteria, selectCriterion, unselectCriterion, imagesUrl } = props;
 
   const lis = criteria.toArray()
     .sort((criterionA, criterionB) => {
@@ -22,6 +22,7 @@ function PreferenceCriteriaPanel(props) {
               type="checkbox"
               checked={ isSelected }
               onChange={ () => (isSelected ? unselectCriterion(slug) : selectCriterion(slug)) } />
+            <img role="presentation" src={`${imagesUrl}${isSelected ? 'checked' : 'unchecked'}.svg`} />
             { label }
           </label>
         </li>
@@ -51,7 +52,10 @@ PreferenceCriteriaPanel.PropTypes = {
   criteria: PropTypes.arrayOf(PropTypes.shape({
     slug: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-  })).isRequired
+  })).isRequired,
+  selectCriterion: PropTypes.func.isRequired,
+  unselectCriterion: PropTypes.func.isRequired,
+  imagesUrl: PropTypes.string.isRequired,
 };
 
 export default PreferenceCriteriaPanel;

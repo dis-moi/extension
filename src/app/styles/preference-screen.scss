@@ -218,7 +218,9 @@
 
 .editor-label,
 .criterion-label {
-    display: block;
+    display: flex;
+    align-items: center;
+
     padding: 0 $margin-size;
     white-space: nowrap;
 
@@ -231,6 +233,19 @@
     }
 
     input {
-        margin: 0 1ex 0 0;
+        position: absolute;
+        transform: scale(0);
+    }
+
+    img {
+        margin-right: $half-adjusted-margin;
+        width: $block-size / 2;
+        height: $block-size / 2;
+        opacity: .8;
+    }
+
+    &:hover > img,
+    input:focus + img {
+        opacity: initial;
     }
 }

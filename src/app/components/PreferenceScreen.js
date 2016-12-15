@@ -56,6 +56,7 @@ export default function (props) {
         criteria={criteria}
         selectCriterion={selectCriterion}
         unselectCriterion={unselectCriterion}
+        imagesUrl={imagesUrl}
       />);
       break;
     case PREFERENCE_SCREEN_PANEL_SOURCES:
@@ -63,6 +64,7 @@ export default function (props) {
         editors={editors}
         excludeEditor={excludeEditor}
         includeEditor={includeEditor}
+        imagesUrl={imagesUrl}
       />);
       break;
     default:

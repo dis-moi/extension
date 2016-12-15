@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 function PreferenceSourcesPanel(props) {
-  const { editors, includeEditor, excludeEditor } = props;
+  const { editors, includeEditor, excludeEditor, imagesUrl } = props;
 
   const lis = editors.toArray()
     .sort((editorA, editorB) => {
@@ -22,6 +22,7 @@ function PreferenceSourcesPanel(props) {
               type="checkbox"
               checked={ isExcluded }
               onChange={ () => (isExcluded ? includeEditor(id) : excludeEditor(id)) } />
+            <img role="presentation" src={`${imagesUrl}${isExcluded ? 'crosschecked' : 'checked'}.svg`} />
             { label }
           </label>
         </li>
@@ -48,6 +49,9 @@ PreferenceSourcesPanel.PropTypes = {
     label: PropTypes.string.isRequired,
     url: PropTypes.string,
   })).isRequired,
+  includeEditor: PropTypes.func.isRequired,
+  excludeEditor: PropTypes.func.isRequired,
+  imagesUrl: PropTypes.string.isRequired,
 };
 
 export default PreferenceSourcesPanel;
