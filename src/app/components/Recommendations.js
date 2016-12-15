@@ -18,7 +18,7 @@ class Recommendations extends Component {
     const {
       recommendations, imagesUrl, reduced, preferenceScreenPanel, deactivatedWebsites, onInstalledDetails,
       onExtend, onReduce, onDeactivate, togglePrefPanel, onReactivateWebsite, closePrefScreen, openPrefScreen,
-      onCheckOutResource, onCheckOutAlternative,
+      onCheckOutResource, onCheckOutAlternative, onCheckOutEditor,
     } = props;
 
     const body = preferenceScreenPanel ?
@@ -35,6 +35,7 @@ class Recommendations extends Component {
         recommendations={recommendations}
         onCheckOutResource={onCheckOutResource}
         onCheckOutAlternative={onCheckOutAlternative}
+        onCheckOutEditor={onCheckOutEditor}
       />;
       
     return recommendations ? (
@@ -65,6 +66,7 @@ Recommendations.propTypes = {
   onInstalledDetails: PropTypes.object.isRequired,
   onCheckOutResource: PropTypes.func.isRequired,
   onCheckOutAlternative: PropTypes.func.isRequired,
+  onCheckOutEditor: PropTypes.func.isRequired,
 };
 
 export default Recommendations;

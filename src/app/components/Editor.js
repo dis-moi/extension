@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-const Editor = ({ editor, author }) => {
+const Editor = ({ editor, author, onCheckOutEditor }) => {
 
   return (
     <div className="reco-editor">
@@ -16,7 +16,9 @@ const Editor = ({ editor, author }) => {
 
       { editor.url ? (
         <p className="reco-link">
-          <a target="_blank" href={editor.url}>
+          <a
+            onClick={() => onCheckOutEditor(editor)}
+            target="_blank" href={editor.url}>
             {editor.url.replace(/https?:\/\/(www\.)?/, '')}
           </a>
         </p>
@@ -32,6 +34,7 @@ Editor.propTypes = {
     label: PropTypes.string.isRequired,
     url: PropTypes.string,
   }).isRequired,
+  onCheckOutEditor: PropTypes.func.isRequired,
 };
 
 export default Editor;

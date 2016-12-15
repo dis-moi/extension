@@ -15,6 +15,7 @@ const {
   reactivateWebsite,
   checkOutResource,
   checkOutAlternative,
+  checkOutEditor,
 } = uiActions(portCommunication);
 
 function mapStateToProps(state) {
@@ -37,6 +38,7 @@ function mapDispatchToProps(dispatch) {
     onReactivateWebsite(s) { dispatch(reactivateWebsite(s)); },
     onCheckOutResource(r) { dispatch(checkOutResource(r)); },
     onCheckOutAlternative(a) { dispatch(checkOutAlternative(a)); },
+    onCheckOutEditor(e) { dispatch(checkOutEditor(e)); },
   };
 }
 

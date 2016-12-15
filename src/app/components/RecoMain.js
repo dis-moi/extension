@@ -23,7 +23,7 @@ class RecoMain extends Component {
   }
 
   render() {
-    const { recommendations, imagesUrl, onCheckOutResource, onCheckOutAlternative } = this.props;
+    const { recommendations, imagesUrl, onCheckOutResource, onCheckOutAlternative, onCheckOutEditor } = this.props;
     const { recoHover } = this.state;
 
     // For now, this component is only capable of handling a single recommendation.
@@ -35,7 +35,11 @@ class RecoMain extends Component {
 
     return (<main className={mainClass}>
       <header className="sideframe lmem-header">
-        <Editor editor={recommendation.resource.editor} author={recommendation.resource.author} />
+        <Editor
+          editor={recommendation.resource.editor}
+          author={recommendation.resource.author}
+          onCheckOutEditor={onCheckOutEditor}
+        />
         <Contributor contributor={recommendation.contributor} />
       </header>
 
