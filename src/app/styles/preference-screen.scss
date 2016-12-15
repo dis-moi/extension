@@ -76,6 +76,8 @@
     }
 }
 
+.preference-criteria,
+.preference-sources,
 .preference-deactivated-websites {
     p {
         margin-top: $half-adjusted-margin;
@@ -84,8 +86,16 @@
     > div {
         display: flex;
     }
+
+    aside,
+    ul {
+        overflow-y: auto;
+        max-height: $block-size * 3;
+        min-height: $block-size * 3 - $half-adjusted-margin;
+    }
+
     aside {
-        flex: 1 1 50%;
+        flex: 1 2 50%;
         color: $font-quiet-color;
 
         h1,
@@ -98,19 +108,25 @@
             vertical-align: bottom;
         }
     }
+
     ul {
-        flex: 1 0 auto;
+        flex: 1 1 auto;
+    }
+    li {
+        line-height: $double-line-height;
+        margin-bottom: $half-adjusted-margin;
+    }
+}
+
+.preference-deactivated-websites {
+    ul {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        overflow-y: auto;
-        max-height: $block-size * 3;
     }
     li {
         flex: 0 0 auto;
         display: flex;
-        line-height: $double-line-height;
-        margin-bottom: $half-adjusted-margin;
 
         &.reactivated {
             > button,
@@ -170,18 +186,51 @@
             }
         }
     }
+}
 
-    .deactivated-website-title {
-        font-size: $midway-font-size;
-        margin: 0 $margin-size 0 $half-adjusted-margin;
+.deactivated-website-title {
+    font-size: $midway-font-size;
+    margin: 0 $margin-size 0 $half-adjusted-margin;
 
-        img {
-            margin-right: $half-adjusted-margin;
-            vertical-align: middle;
+    img {
+        margin-right: $half-adjusted-margin;
+        vertical-align: middle;
 
-            filter: grayscale(100%);
-            -webkit-filter: grayscale(100%);
-            opacity: .7;
+        filter: grayscale(100%);
+        -webkit-filter: grayscale(100%);
+        opacity: .7;
+    }
+}
+
+.preference-sources,
+.preference-criteria {
+  
+    @media (min-width: $media-query-threshold-wide) {
+        ul {
+            columns: 15em;
         }
+    }
+    
+    li {
+        margin-right: $margin-size;
+    }
+}
+
+.editor-label,
+.criterion-label {
+    display: block;
+    padding: 0 $margin-size;
+    white-space: nowrap;
+
+    font-size: $midway-font-size;
+    text-transform: capitalize;
+
+    transition: background-color .2s ease-out;
+    &:hover {
+        background-color: $background-light-color;
+    }
+
+    input {
+        margin: 0 1ex 0 0;
     }
 }

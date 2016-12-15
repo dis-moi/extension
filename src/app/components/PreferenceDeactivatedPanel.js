@@ -33,6 +33,7 @@ class PreferenceDeactivatedPanel extends Component {
     displayedWebsites.sort(({ website: w1 }, { website: w2 }) => w1.localeCompare(w2));
 
     const lis = displayedWebsites
+      .sort((a, b) => a.website.replace(/^www\./, '').localeCompare(b.website.replace(/^www\./, '')))
       .map(({ website, active }) => <li key={website} className={active ? 'reactivated' : undefined}>
         <span className="deactivated-website-title">
           <img
