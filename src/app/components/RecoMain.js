@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 import Editor from './Editor';
 import Contributor from './Contributor';
+import Criteria from './Criteria';
 import RecoDescription from './RecoDescription';
 import FeedbackButtons from '../containers/FeedbackButtons';
 
@@ -61,15 +62,8 @@ class RecoMain extends Component {
                 {recommendation.title}
               </a>
             </h3>
-            <ul className="summary-tags">
-              {recommendation.criteria
-                .map(criterion => (
-                  <li key={criterion.slug}>
-                    <b className={'tag tag-' + criterion.slug}> {criterion.label} </b>
-                  </li>
-                ))
-              }
-            </ul>
+
+            <Criteria criteria={ recommendation.criteria } />
           </header>
           <div className="reco-summary-content">
             <div className="reco-summary-link-referral">
