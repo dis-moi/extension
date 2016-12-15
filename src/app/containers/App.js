@@ -15,7 +15,7 @@ const {
   openPrefScreen,
   checkOutResource,
   checkOutAlternative,
-  checkOutEditor,
+  checkOutEditor
 } = prepareUIActions(portCommunication);
 
 const {
