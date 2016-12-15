@@ -7,6 +7,7 @@ import {
   REACTIVATE_WEBSITE,
   CHECKOUT_RECO_RESOURCE,
   CHECKOUT_RECO_ALTERNATIVE,
+  CHECKOUT_RECO_EDITOR,
 } from '../../constants/ActionTypes';
 
 export default function (portCommunication) {
@@ -79,7 +80,16 @@ export default function (portCommunication) {
       };
       portCommunication.sendBackgroundReduxAction(action);
       return action;
-    }
+    },
+
+    checkOutEditor(editor) {
+      const action = {
+        type: CHECKOUT_RECO_EDITOR,
+        editor,
+      };
+      portCommunication.sendBackgroundReduxAction(action);
+      return action;
+    },
 
   };
 }
