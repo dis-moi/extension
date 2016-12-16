@@ -9,6 +9,7 @@ import {
   INCLUDE_EDITOR,
   DISMISS_RECO,
   APPROVE_RECO,
+  REPORT_RECO,
   DEACTIVATE,
   REACTIVATE_WEBSITE,
   UPDATE_DRAFT_RECOMMENDATIONS,
@@ -95,7 +96,8 @@ export default function (state = {}, action) {
       return Object.assign({}, state, {editors: editors.setIn([id.toString(), 'isExcluded'], false)});
     }
 
-    case DISMISS_RECO: {
+    case DISMISS_RECO:
+    case REPORT_RECO: {
       const { id } = action;
       const dismissedRecos = state.dismissedRecos;
 

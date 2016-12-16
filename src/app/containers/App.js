@@ -20,7 +20,8 @@ const {
 
 const {
   dismissReco,
-  approveReco
+  approveReco,
+  reportReco
 } = prepareRecoActions(portCommunication);
 
 function mapStateToProps(state) {
@@ -42,7 +43,8 @@ function mapDispatchToProps(dispatch) {
     onCheckOutAlternative(a) { dispatch(checkOutAlternative(a)); },
     onCheckOutEditor(e) { dispatch(checkOutEditor(e)); },
     dismissReco(id) { dispatch(dismissReco(id)); },
-    approveReco(id) { dispatch(approveReco(id)); }
+    approveReco(id) { dispatch(approveReco(id)); },
+    reportReco(id) { dispatch(reportReco(id)); }
   };
 }
 

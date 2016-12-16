@@ -25,13 +25,15 @@ class RecoMain extends Component {
   render() {
     const { recommendations, imagesUrl,
       onCheckOutResource, onCheckOutAlternative, onCheckOutEditor,
-      dismissReco, approveReco } = this.props;
+      dismissReco, approveReco, reportReco } = this.props;
     const { recoHover } = this.state;
 
     // For now, this component is only capable of handling a single recommendation.
     // handling of several is TBD
     const recommendation = recommendations[0];
     const {visibility} = recommendation;
+
+    console.log('RECO', recommendation);
 
     const mainClass = visibility === 'private' ? 'preview' : undefined;
 
@@ -44,10 +46,9 @@ class RecoMain extends Component {
             <button
               className="button button-compact with-tooltip"
               onClick={e => {
-                console.log('Clicked on APPROVE');
                 approveReco(1);
               }}>
-              <span><span>J'approuve</span></span>
+              <span><span>LIKE</span></span>
             </button>
           </div>
         </li>
@@ -56,10 +57,20 @@ class RecoMain extends Component {
             <button
               className="button button-compact with-tooltip"
               onClick={e => {
-                console.log('Clicked on DISMISSED');
                 dismissReco(1);
               }}>
-              <span><span>Je ne veux plus voir</span></span>
+              <span><span>DISMISS</span></span>
+            </button>
+          </div>
+        </li>
+        <li>
+          <div className="button-directive">
+            <button
+              className="button button-compact with-tooltip"
+              onClick={e => {
+                reportReco(1);
+              }}>
+              <span><span>REPORT</span></span>
             </button>
           </div>
         </li>
