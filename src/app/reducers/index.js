@@ -31,19 +31,19 @@ export default function (state = {}, action) {
     case RECEIVED_CRITERIA: {
       const { criteria } = action;
       let newCriteria;
-      
+
       newCriteria = criteria.reduce((acc, curr) => {
         let output = acc;
         let slug = curr.get('slug');
 
         if (!state.criteria.has(slug)) // new criteria from server are set to selected by default
-          output = acc.setIn([slug, 'isSelected'], true);
+          output = acc.set(slug, curr.set('isSelected', true));
         else
           output = acc.set(slug, state.criteria.get(slug));
         
         return output;
 
-      }, criteria);
+      }, state.criteria);    
 
       return Object.assign({}, state, { criteria: newCriteria });
     }
@@ -71,13 +71,13 @@ export default function (state = {}, action) {
         let id = curr.get('id').toString();
 
         if (!state.editors.has(id)) // new editors from server are set to not excluded by default
-          output = acc.setIn([id, 'isExcluded'], false);
+          output = acc.set(id, curr.set('isExcluded', false));
         else
           output = acc.set(id, state.editors.get(id));
         
         return output;
 
-      }, editors);
+      }, state.editors);
 
       return Object.assign({}, state, { editors: newEditors });
     }

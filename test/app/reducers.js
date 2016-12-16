@@ -14,12 +14,13 @@ import {
 } from '../../src/app/actions/kraftBackend';
 
 import prepareUIEvents from '../../src/app/content/actions/ui';
+import preparePrefEvents from '../../src/app/content/actions/preferences';
 import { DEACTIVATE_EVERYWHERE, DEACTIVATE_WEBSITE_ALWAYS } from '../../src/app/constants/preferences';
-
 
 const expect = chai.expect;
 
-const {deactivate} = prepareUIEvents(neverThrowingObject());
+const { deactivate } = prepareUIEvents(neverThrowingObject());
+const { excludeEditor, includeEditor } = preparePrefEvents(neverThrowingObject());
 
 
 describe('background reducer', function () {
