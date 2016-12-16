@@ -100,5 +100,27 @@ describe('background reducer', function () {
 
     expect(nextState.preferences.deactivated.deactivatedWebsites.has(action.where)).to.be.true;
   });
-    
+
+  it('exclude editor', () => {
+    const action = excludeEditor(1);
+
+    const nextState = reducer(
+      { 'editors': new ImmutableMap({"1": new ImmutableMap({id: 1, 'isExcluded': false})}) }
+      , action );
+
+    expect(nextState.editors.size).to.equal(1);
+    expect(nextState.editors.get('1').get('isExcluded')).to.be.true;
+  });
+  
+  it('include editor', () => {
+    const action = includeEditor(1);
+
+    const nextState = reducer(
+      { 'editors': new ImmutableMap({"1": new ImmutableMap({id: 1, 'isExcluded': true})}) }
+      , action );
+
+    expect(nextState.editors.size).to.equal(1);
+    expect(nextState.editors.get('1').get('isExcluded')).to.be.false;
+  });
+
 });
