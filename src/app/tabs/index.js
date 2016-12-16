@@ -112,8 +112,10 @@ export default function (
         else
           dispatch(recoDisplayed(trigger, reco));
 
-        return dismissed.has(reco.id);
+        return !dismissed.has(reco.id);
       });
+
+
 
       if(toDisplayRecos.length >= 1) {
         sendRecommendationsToTab(tabId, toDisplayRecos);
