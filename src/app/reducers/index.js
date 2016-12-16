@@ -89,14 +89,14 @@ export default function (state = {}, action) {
       const { id } = action;
       const editors = state.editors;
 
-      return Object.assign({}, state, {editors: editors.setIn([id, 'isExcluded'], true)});
+      return Object.assign({}, state, {editors: editors.setIn([id.toString(), 'isExcluded'], true)});
     }
 
     case INCLUDE_EDITOR: {
       const { id } = action;
       const editors = state.editors;
 
-      return Object.assign({}, state, {editors: editors.setIn([id, 'isExcluded'], false)});
+      return Object.assign({}, state, {editors: editors.setIn([id.toString(), 'isExcluded'], false)});
     }
 
     case DEACTIVATE: {

@@ -80,14 +80,14 @@ export default function (state = {}, action) {
       const { id } = action;
       const editors = state.get('editors');
 
-      return state.set('editors', editors.setIn([id, 'isExcluded'], true));
+      return state.set('editors', editors.setIn([id.toString(), 'isExcluded'], true));
     }  
 
     case INCLUDE_EDITOR: {
       const { id } = action;
       const editors = state.get('editors');
 
-      return state.set('editors', editors.setIn([id, 'isExcluded'], false));
+      return state.set('editors', editors.setIn([id.toString(), 'isExcluded'], false));
     }
 
     default:
