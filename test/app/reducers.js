@@ -41,6 +41,7 @@ describe('background reducer', function () {
     const nextState = reducer( makeInitialState(), action );
 
     expect(nextState.criteria.size).to.equal(1);
+    expect(nextState.criteria.get('crit1').get('slug')).to.equal('crit1');
     expect(nextState.criteria.get('crit1').get('isSelected')).to.equal(true);
   });
 
@@ -64,6 +65,7 @@ describe('background reducer', function () {
     const nextState = reducer( makeInitialState(), action );
 
     expect(nextState.editors.size).to.equal(1);
+    expect(nextState.editors.get('1').get('id')).to.equal(1);
     expect(nextState.editors.get('1').get('isExcluded')).to.equal(false);
   });
 
