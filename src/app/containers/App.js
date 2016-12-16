@@ -12,7 +12,6 @@ const {
   deactivate,
   closePrefScreen,
   openPrefScreen,
-  reactivateWebsite,
   checkOutResource,
   checkOutAlternative,
   checkOutEditor,
@@ -23,9 +22,7 @@ function mapStateToProps(state) {
     recommendations: state.get('recommendations'),
     imagesUrl: IMAGES_URL,
     reduced: state.get('reduced'),
-    preferenceScreenPanel: state.get('preferenceScreenPanel'),
-    deactivatedWebsites: state.get('deactivatedWebsites'),
-    onInstalledDetails: state.get('onInstalledDetails')
+    preferenceScreenPanel: state.get('preferenceScreenPanel')
   };
 }
 function mapDispatchToProps(dispatch) {
@@ -35,7 +32,6 @@ function mapDispatchToProps(dispatch) {
     onDeactivate(details) { dispatch(deactivate(details)); },
     closePrefScreen() { dispatch(closePrefScreen()); },
     openPrefScreen(panel) { dispatch(openPrefScreen(panel)); },
-    onReactivateWebsite(s) { dispatch(reactivateWebsite(s)); },
     onCheckOutResource(r) { dispatch(checkOutResource(r)); },
     onCheckOutAlternative(a) { dispatch(checkOutAlternative(a)); },
     onCheckOutEditor(e) { dispatch(checkOutEditor(e)); },

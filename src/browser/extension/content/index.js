@@ -8,8 +8,16 @@ import { createStore } from 'redux';
 import rootReducer from '../../../app/content/reducers';
 import recommendationFound from '../../../app/content/actions/recommendations';
 
-import { updateDeactivatedWebsites, updateInstalledDetails } from '../../../app/content/actions/preferences';
+import prefActions from '../../../app/content/actions/preferences.js';
+
 import portCommunication from '../../../app/content/portCommunication';
+
+const {
+  updateDeactivatedWebsites,
+  updateInstalledDetails,
+  updateCriteria,
+  updateEditors
+} = prefActions(portCommunication);
 
 const IFRAME_EXTENDED_HEIGHT = '255px';
 const IFRAME_REDUCED_HEIGHT = '60px';
@@ -118,7 +126,9 @@ const store = createStore(
     preferenceScreenPanel: undefined, // preference screen close
     recommendations: undefined,
     deactivatedWebsites: new ImmutableSet(),
-    onInstalledDetails: new ImmutableMap()
+    onInstalledDetails: new ImmutableMap(),
+    criteria: new ImmutableMap(),
+    editors: new ImmutableMap(),
   })()
 );
 
@@ -130,16 +140,17 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
   portCommunication.port = portToBackground;
 
   portToBackground.onMessage.addListener(msg => {
-    // console.log('message from background', msg);
     const { type } = msg;
-
-
+    
     switch (type) {
       case 'init':
-        const { style, deactivatedWebsites, onInstalledDetails } = msg;
+        const { style, deactivatedWebsites, onInstalledDetails,
+          criteria, editors } = msg;
 
         store.dispatch(updateDeactivatedWebsites(new ImmutableSet(deactivatedWebsites)));
         store.dispatch(updateInstalledDetails(immutableFromJS(onInstalledDetails)));
+        store.dispatch(updateCriteria(immutableFromJS(criteria)));
+        store.dispatch(updateEditors(immutableFromJS(editors)));
 
         // Let the page load a bit before showing the iframe in loading mode
         CanShowIframeLoadingP

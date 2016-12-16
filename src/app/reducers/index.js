@@ -1,10 +1,16 @@
+import { Map as ImmutableMap } from 'immutable';
 import { 
-  MATCHING_OFFERS_FOUND, 
-  RECEIVED_MATCHING_CONTEXTS, 
+  RECEIVED_MATCHING_CONTEXTS,
+  RECEIVED_CRITERIA,
+  SELECT_CRITERION,
+  UNSELECT_CRITERION,
+  RECEIVED_EDITORS,
+  EXCLUDE_EDITOR,
+  INCLUDE_EDITOR,
   DEACTIVATE,
   REACTIVATE_WEBSITE,
   UPDATE_DRAFT_RECOMMENDATIONS,
-  INSTALLED
+  INSTALLED,
 } from '../constants/ActionTypes';
 import { DEACTIVATE_EVERYWHERE, DEACTIVATE_WEBSITE_ALWAYS } from '../constants/preferences';
 
@@ -13,9 +19,85 @@ export default function (state = {}, action) {
 
   console.log('reducer', type, action);
 
+  // FIXME: background state should be Immutable
   switch (type) {
     case RECEIVED_MATCHING_CONTEXTS:
-      return Object.assign({}, state, { matchingContexts: action.matchingContexts });
+      const { matchingContexts } = action;
+      return Object.assign({}, state, { matchingContexts });
+
+    case RECEIVED_CRITERIA: {
+      const { criteria } = action;
+      let newCriteria;
+
+      if (!Object.keys(state).includes('criteria')){ // first visit, all criteria are set to selected by default
+        newCriteria = criteria.reduce((acc, curr) => {
+          return acc.setIn([curr.get('slug'), 'isSelected'], true);
+        }, criteria);
+      }
+      else { // other visits, new criteria from server are set to selected by default
+        newCriteria = criteria.reduce((acc, curr) => {
+          let output = acc;
+
+          if (!state.criteria.has(curr.get('slug'))){
+            output = acc.setIn([curr.get('slug'), 'isSelected'], true);
+          }
+
+          return output;
+
+        }, state.criteria);
+      }
+
+      return Object.assign({}, state, { criteria: newCriteria });
+    }
+
+    case SELECT_CRITERION: {
+      const { slug } = action;
+      const criteria = state.criteria;
+
+      return Object.assign({}, state, {criteria: criteria.setIn([slug, 'isSelected'], true)});
+    }
+
+    case UNSELECT_CRITERION: {
+      const { slug } = action;
+      const criteria = state.criteria;
+
+      return Object.assign({}, state, {criteria: criteria.setIn([slug, 'isSelected'], false)});
+    }
+
+    case RECEIVED_EDITORS: {
+      const { editors } = action;
+      let newEditors;
+
+      if (!Object.keys(state).includes('editors')) // first visit, all editors are set to not excluded by default
+        newEditors = editors.reduce((acc, curr) => {
+          return acc.setIn([curr.get('id').toString(), 'isExcluded'], false);
+        }, editors);
+      else // other visits, new editors from server are set to not excluded by default
+        newEditors = editors.reduce((acc, curr) => { 
+          let output = acc;
+          if (!state.editors.has(curr.get('id').toString()))
+            output = acc.setIn([curr.get('id').toString(), 'isExcluded'], false);
+
+          return output;
+
+        }, state.editors);
+
+      return Object.assign({}, state, { editors: newEditors });
+    }
+
+    case EXCLUDE_EDITOR: {
+      const { id } = action;
+      const editors = state.editors;
+
+      return Object.assign({}, state, {editors: editors.setIn([id, 'isExcluded'], true)});
+    }
+
+    case INCLUDE_EDITOR: {
+      const { id } = action;
+      const editors = state.editors;
+
+      return Object.assign({}, state, {editors: editors.setIn([id, 'isExcluded'], false)});
+    }
 
     case DEACTIVATE: {
       const { where, duration } = action;

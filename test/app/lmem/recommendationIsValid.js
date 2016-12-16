@@ -27,8 +27,8 @@ describe('recommendationIsValid', function () {
       // },
       criteria: [
         {
-          label: 'health',
-          description: 'Santé',
+          slug: 'health',
+          label: 'Santé',
         },
       ],
       resource: {
@@ -61,8 +61,8 @@ describe('recommendationIsValid', function () {
       },
       criteria: [
         {
-          label: 'health',
-          description: 'Santé',
+          slug: 'health',
+          label: 'Santé',
         },
       ],
       resource: {
@@ -94,8 +94,8 @@ describe('recommendationIsValid', function () {
       },
       criteria: [
         {
-          label: 'health',
-          description: 'Santé',
+          slug: 'health',
+          label: 'Santé',
         },
       ],
       resource: {
@@ -127,8 +127,8 @@ describe('recommendationIsValid', function () {
       },
       criteria: [
         {
-          label: 'health',
-          description: 'Santé',
+          slug: 'health',
+          label: 'Santé',
         },
       ],
       resource: {
@@ -161,8 +161,8 @@ describe('recommendationIsValid', function () {
       },
       criteria: [
         {
-          label: 'health',
-          description: 'Santé',
+          slug: 'health',
+          label: 'Santé',
         },
       ],
       resource: {
@@ -195,8 +195,8 @@ describe('recommendationIsValid', function () {
       },
       criteria: [
         {
-          label: 'health',
-          description: 'Santé',
+          slug: 'health',
+          label: 'Santé',
         },
         {
           // label: 'health',
@@ -232,8 +232,8 @@ describe('recommendationIsValid', function () {
       },
       criteria: [
         {
-          label: 'health',
-          description: 'Santé',
+          slug: 'health',
+          label: 'Santé',
         },
       ],
       resource: {
@@ -269,8 +269,8 @@ describe('recommendationIsValid', function () {
       },
       criteria: [
         {
-          label: 'health',
-          description: 'Santé',
+          slug: 'health',
+          label: 'Santé',
         },
       ],
       resource: {
@@ -302,8 +302,8 @@ describe('recommendationIsValid', function () {
       },
       // criteria: [
       //   {
-      //     label: 'health',
-      //     description: 'Santé',
+      //     slug: 'health',
+      //     label: 'Santé',
       //   },
       // ],
       resource: {

@@ -12,7 +12,7 @@ import getMatchingRecommendations from '../../../app/lmem/getMatchingRecommendat
 import tabs from '../../../app/tabs/index.js';
 import prepareDraftPreview from '../../../app/lmem/draft-preview/main.js';
 
-import { dispatchInitialStateFromBackend } from '../../../app/actions/kraftBackend';
+import { dispatchInitialStateFromBackend, refreshMatchingContextsFromBackend } from '../../../app/actions/kraftBackend';
 import updateDraftRecommendations from '../../../app/actions/updateDraftRecommendations';
 
 import {LMEM_BACKEND_ORIGIN, LMEM_SCRIPTS_ORIGIN} from '../../../app/constants/origins';
@@ -90,8 +90,25 @@ configureStore(store => {
         const state = store.getState();
         return state.onInstalledDetails || {};
       },
+      getCriteria: () => store.getState().criteria || new Map(),
+      getEditors: () => store.getState().editors || new Map(),
       dispatch: store.dispatch,
       contentCode,
+      refreshMatchingContexts: () => {
+        const state = store.getState();
+
+        let selectedCriteria = Array.from(state.criteria.keys())
+        .filter(slug => {
+          return state.criteria.get(slug).get('isSelected');  
+        });
+
+        let excludedEditors = Array.from(state.editors.keys())
+        .filter(id => {
+          return state.editors.get(id).get('isExcluded');
+        });
+
+        store.dispatch(refreshMatchingContextsFromBackend(selectedCriteria, excludedEditors));
+      },
       contentStyle: mainStyles
     });
   });

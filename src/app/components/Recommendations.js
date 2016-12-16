@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Loader from './Loader';
 import RecoHeader from './RecoHeader';
 import RecoMain from './RecoMain';
-import PreferenceScreen from './PreferenceScreen';
+import Preferences from '../containers/Preferences';
 
 class Recommendations extends Component {
 
@@ -14,22 +14,15 @@ class Recommendations extends Component {
   }
 
   render(){
-    const { props, state } = this;
+    const { props } = this;
     const {
-      recommendations, imagesUrl, reduced, preferenceScreenPanel, deactivatedWebsites, onInstalledDetails,
-      onExtend, onReduce, onDeactivate, togglePrefPanel, onReactivateWebsite, closePrefScreen, openPrefScreen,
+      recommendations, imagesUrl, reduced, preferenceScreenPanel,
+      onExtend, onReduce, onDeactivate, closePrefScreen, openPrefScreen,
       onCheckOutResource, onCheckOutAlternative, onCheckOutEditor,
     } = props;
 
     const body = preferenceScreenPanel ?
-      <PreferenceScreen
-        preferenceScreenPanel={preferenceScreenPanel}
-        deactivatedWebsites={deactivatedWebsites} 
-        onReactivateWebsite={onReactivateWebsite}
-        openPrefScreen={openPrefScreen}
-        imagesUrl={imagesUrl}
-        onInstalledDetails={onInstalledDetails}
-      /> :
+      <Preferences /> :
       <RecoMain
         imagesUrl={imagesUrl}
         recommendations={recommendations}
@@ -63,7 +56,6 @@ Recommendations.propTypes = {
   reduced: PropTypes.bool.isRequired,
   onExtend: PropTypes.func.isRequired,
   onReduce: PropTypes.func.isRequired,
-  onInstalledDetails: PropTypes.object.isRequired,
   onCheckOutResource: PropTypes.func.isRequired,
   onCheckOutAlternative: PropTypes.func.isRequired,
   onCheckOutEditor: PropTypes.func.isRequired,
