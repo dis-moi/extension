@@ -1,12 +1,19 @@
+import sendReq from '../../../tools/sendReq';
+
 import recommendationIsValid from '../lmem/recommendationIsValid';
 import {
   SELECT_CRITERION,
   UNSELECT_CRITERION,
   EXCLUDE_EDITOR,
-  INCLUDE_EDITOR
+  INCLUDE_EDITOR,
+  DISMISS_RECO,
+  APPROVE_RECO,
+  REPORT_RECO
 } from '../constants/ActionTypes';
 
 import { contextTriggered, recoDisplayed, recoDismissed } from '../actions/tab';
+
+import { LMEM_BACKEND_ORIGIN } from '../constants/origins';
 
 export default function (
   tabs,
@@ -17,6 +24,19 @@ export default function (
 ) {
 
   const matchingTabIdToPortP = new Map();
+
+  function createRecoFeedback(type, url){ // NEEDS TESTING
+    const feedback = type.split('_')[0].toLowerCase();
+    const datetime = new Date().toISOString();
+
+    return {
+      feedback,
+      contexts: {
+        datetime,
+        url
+      }
+    };
+  }
 
   function createContentScriptAndPort(tabId) {
     const tabPortP = new Promise(resolve => {
@@ -36,9 +56,41 @@ export default function (
           if (msg.type === 'redux-action'){
             dispatch(msg.action);
 
-            if (msg.action.type === EXCLUDE_EDITOR || msg.action.type === INCLUDE_EDITOR ||
-              msg.action.type === SELECT_CRITERION || msg.action.type === UNSELECT_CRITERION)
-              refreshMatchingContexts();
+            switch (msg.action.type){
+              
+              // ask for matchingContexts update
+              case EXCLUDE_EDITOR:
+              case INCLUDE_EDITOR:
+              case SELECT_CRITERION:
+              case UNSELECT_CRITERION:
+                refreshMatchingContexts();
+                break;
+
+              // send feedback
+              case DISMISS_RECO:
+              case APPROVE_RECO:
+              case REPORT_RECO:
+                let tabUrl;
+                chrome.tabs.getSelected(null, function (tab) {
+                  tabUrl = tab.url;
+                });
+
+                const reqUrl = LMEM_BACKEND_ORIGIN + '/api/v2/recommendations/' + msg.action.id + '/feedbacks';
+
+                const payload = createRecoFeedback(msg.action.type, tabUrl);
+
+                sendReq('POST', reqUrl, payload)
+                .then(response => {
+                  console.log('RESPONSE', response);
+                })
+                .catch(error => {
+                  console.error('Error in /api/v2/recommendations/' + msg.action.id + '/feedbacks');
+                  console.error(error);
+                });
+                break;
+              
+              default:
+            }
           }
         });
 
