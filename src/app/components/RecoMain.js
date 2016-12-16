@@ -33,8 +33,6 @@ class RecoMain extends Component {
     const recommendation = recommendations[0];
     const {visibility} = recommendation;
 
-    console.log('RECO', recommendation);
-
     const mainClass = visibility === 'private' ? 'preview' : undefined;
 
     // console.log('RECO props', recommendation);
@@ -46,7 +44,7 @@ class RecoMain extends Component {
             <button
               className="button button-compact with-tooltip"
               onClick={e => {
-                approveReco(1);
+                approveReco(recommendation.id);
               }}>
               <span><span>LIKE</span></span>
             </button>
@@ -57,7 +55,7 @@ class RecoMain extends Component {
             <button
               className="button button-compact with-tooltip"
               onClick={e => {
-                dismissReco(1);
+                dismissReco(recommendation.id);
               }}>
               <span><span>DISMISS</span></span>
             </button>
@@ -68,7 +66,7 @@ class RecoMain extends Component {
             <button
               className="button button-compact with-tooltip"
               onClick={e => {
-                reportReco(1);
+                reportReco(recommendation.id);
               }}>
               <span><span>REPORT</span></span>
             </button>
