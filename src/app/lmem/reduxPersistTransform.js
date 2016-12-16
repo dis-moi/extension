@@ -1,5 +1,5 @@
 import { createTransform } from 'redux-persist';
-import { Map as ImmutableMap } from 'immutable';
+import { Map as ImmutableMap, Set as ImmutableSet } from 'immutable';
 
 export function serialize(stateObj){
   return JSON.stringify(stateObj, (key, value) => {
@@ -19,6 +19,8 @@ export function deserialize(string, key){
       return v;
     }));
   }
+  else if (key === 'dismissedRecos' || key === 'approvedRecos')
+    return new ImmutableSet(JSON.parse(string));
   
   return JSON.parse(string, function (k, v) {
     if (k === 'deactivatedWebsites')
