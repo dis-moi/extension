@@ -1,11 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 
+import { findType } from '../lmem/typeOfCriteria';
+
 import Editor from './Editor';
 import Contributor from './Contributor';
 import Criteria from './Criteria';
 import RecoDescription from './RecoDescription';
 import FeedbackButtons from '../containers/FeedbackButtons';
+import TypeIndicator from './TypeIndicator';
 
 class RecoMain extends Component {
 
@@ -38,6 +41,8 @@ class RecoMain extends Component {
 
     const mainClass = visibility === 'private' ? 'preview' : undefined;
 
+    const typeOfRecommendation = findType(recommendation.criteria);
+
     return (<main className={mainClass}>
       <header className="sideframe lmem-header">
         <Editor
@@ -50,7 +55,20 @@ class RecoMain extends Component {
 
       <div className="separation-bar" />
 
-      <div className={classNames('recommendation', 'mainframe', 'highlight', {active: recoHover})}>
+      <div
+        className={classNames(
+        'recommendation',
+        'mainframe',
+        'highlight',
+        {'with-indicator': typeOfRecommendation},
+        {active: recoHover}
+      )}>
+        {
+          typeOfRecommendation ?
+            <TypeIndicator recommendationType={ typeOfRecommendation } imagesUrl={ imagesUrl } /> :
+            undefined
+        }
+
         <div className="reco-summary">
           <header className="summary-header reco-summary-header">
             <h3 className="reco-summary-title">

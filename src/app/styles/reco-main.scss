@@ -19,6 +19,9 @@
     margin: -$border-width;
     line-height: rem-size(20);
 
+    position: relative;
+    overflow: hidden;
+
     display: flex;
     justify-content: space-between;
 
@@ -28,5 +31,9 @@
 
     &.active {
         border-color: $action-color;
+    }
+
+    &.with-indicator {
+        padding-left: $block-size + $margin-size;
     }
 }

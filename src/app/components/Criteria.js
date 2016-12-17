@@ -1,21 +1,9 @@
 import React, { PropTypes } from 'react';
 
-export default function Criteria(props) {
-  const criteria = props.criteria
-    .filter(({ slug }) => {
-      switch (slug) {
-        case 'ethics':
-        case 'price':
-        case 'quality':
-        case 'local':
-        case 'ecology':
-        case 'health':
-          return true;
+import { filterTags } from '../lmem/typeOfCriteria';
 
-        default:
-          return false;
-      }
-    })
+export default function Criteria(props) {
+  const criteria = filterTags(props.criteria)
     .map(criterion => (
       <li key={criterion.slug}>
         <b className={'tag tag-' + criterion.slug}> {criterion.label} </b>
