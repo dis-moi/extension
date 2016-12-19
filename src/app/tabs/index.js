@@ -11,11 +11,24 @@ import {
   REPORT_RECO
 } from '../constants/ActionTypes';
 
-import { contextTriggered, recoDisplayed, recoDismissed } from '../actions/tab';
+import { contextTriggered, recoDisplayed, recoDismissed } from '../actions/tabs';
 
 import { LMEM_BACKEND_ORIGIN } from '../constants/origins';
 
-export default function (
+export function makeRecoFeedback(type, url){ // NEEDS TESTING
+  const feedback = type.split('_')[0].toLowerCase();
+  const datetime = new Date().toISOString();
+
+  return {
+    feedback,
+    contexts: {
+      datetime,
+      url
+    }
+  };
+}
+
+export function makeTabs(
   tabs,
   {
     findTriggeredContexts, refreshMatchingContexts, getMatchingRecommendations, getDeactivatedWebsites, dispatch,
@@ -24,19 +37,6 @@ export default function (
 ) {
 
   const matchingTabIdToPortP = new Map();
-
-  function createRecoFeedback(type, url){ // NEEDS TESTING
-    const feedback = type.split('_')[0].toLowerCase();
-    const datetime = new Date().toISOString();
-
-    return {
-      feedback,
-      contexts: {
-        datetime,
-        url
-      }
-    };
-  }
 
   function createContentScriptAndPort(tabId) {
     const tabPortP = new Promise(resolve => {
@@ -77,7 +77,7 @@ export default function (
 
                 const reqUrl = LMEM_BACKEND_ORIGIN + '/api/v2/recommendations/' + msg.action.id + '/feedbacks';
 
-                const payload = createRecoFeedback(msg.action.type, tabUrl);
+                const payload = makeRecoFeedback(msg.action.type, tabUrl);
 
                 sendReq('POST', reqUrl, payload)
                 .then(response => {

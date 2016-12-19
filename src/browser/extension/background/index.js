@@ -9,7 +9,7 @@ import configureStore from './../../../app/store/configureStore';
 import findMatchingOffersAccordingToPreferences
   from '../../../app/lmem/findMatchingOffersAccordingToPreferences';
 import getMatchingRecommendations from '../../../app/lmem/getMatchingRecommendations';
-import tabs from '../../../app/tabs/index.js';
+import makeTabs from '../../../app/tabs/index.js';
 import prepareDraftPreview from '../../../app/lmem/draft-preview/main.js';
 
 import { dispatchInitialStateFromBackend, refreshMatchingContextsFromBackend } from '../../../app/actions/kraftBackend';
@@ -71,7 +71,7 @@ configureStore(store => {
 
   contentCodeP
   .then(contentCode => {
-    tabs(chrome.tabs, {
+    makeTabs(chrome.tabs, {
       findTriggeredContexts: url => {
         const state = store.getState();
         
