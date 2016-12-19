@@ -1,7 +1,7 @@
 import chai from 'chai';
 import neverThrowingObject from '../infrastructure/neverThrowingObject';
 
-import { Map as ImmutableMap } from 'immutable';
+import { Map as ImmutableMap, Set as ImmutableSet } from 'immutable';
 
 import reducer from '../../src/app/reducers/';
 
@@ -15,12 +15,14 @@ import {
 
 import prepareUIEvents from '../../src/app/content/actions/ui';
 import preparePrefEvents from '../../src/app/content/actions/preferences';
+import prepareRecoEvents from '../../src/app/content/actions/recommendations';
 import { DEACTIVATE_EVERYWHERE, DEACTIVATE_WEBSITE_ALWAYS } from '../../src/app/constants/preferences';
 
 const expect = chai.expect;
 
 const { deactivate } = prepareUIEvents(neverThrowingObject());
 const { excludeEditor, includeEditor } = preparePrefEvents(neverThrowingObject());
+const { dismissReco, approveReco, reportReco } = prepareRecoEvents(neverThrowingObject());
 
 
 describe('background reducer', function () {
@@ -108,8 +110,8 @@ describe('background reducer', function () {
     const action = excludeEditor(1);
 
     const nextState = reducer(
-      { 'editors': new ImmutableMap({"1": new ImmutableMap({id: 1, 'isExcluded': false})}) }
-      , action );
+      { 'editors': new ImmutableMap({"1": new ImmutableMap({id: 1, 'isExcluded': false})}) },
+      action );
 
     expect(nextState.editors.size).to.equal(1);
     expect(nextState.editors.get('1').get('isExcluded')).to.be.true;
@@ -119,11 +121,41 @@ describe('background reducer', function () {
     const action = includeEditor(1);
 
     const nextState = reducer(
-      { 'editors': new ImmutableMap({"1": new ImmutableMap({id: 1, 'isExcluded': true})}) }
-      , action );
+      { 'editors': new ImmutableMap({"1": new ImmutableMap({id: 1, 'isExcluded': true})}) },
+      action );
 
     expect(nextState.editors.size).to.equal(1);
     expect(nextState.editors.get('1').get('isExcluded')).to.be.false;
+  });
+
+  it('dismiss reco', () => {
+    const action = dismissReco(1);
+
+    const nextState = reducer(
+      { 'dismissedRecos': new ImmutableSet() },
+      action );
+
+    expect(nextState.dismissedRecos.size).to.equal(1);
+  });
+  
+  it('approve reco', () => {
+    const action = approveReco(1);
+
+    const nextState = reducer(
+      { 'approvedRecos': new ImmutableSet() },
+      action );
+
+    expect(nextState.approvedRecos.size).to.equal(1);
+  });
+
+  it('report reco', () => {
+    const action = reportReco(1);
+
+    const nextState = reducer(
+      { 'dismissedRecos': new ImmutableSet() },
+      action );
+
+    expect(nextState.dismissedRecos.size).to.equal(1);
   });
 
 });

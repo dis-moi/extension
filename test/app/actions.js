@@ -3,9 +3,14 @@ import chai from 'chai';
 import {
   receivedMatchingContexts,
   receivedCriteria,
-  receivedEditors,
-  makeUrlFromFilters
+  receivedEditors
 } from '../../src/app/actions/kraftBackend';
+
+import {
+  contextTriggered,
+  recoDisplayed,
+  recoDismissed
+} from '../../src/app/actions/tabs';
 
 const expect = chai.expect;
 
@@ -34,32 +39,35 @@ describe('background actions', function () {
     expect(action.type).to.be.a('string').of.length.above(5);
     expect(action.editors).to.equal(editors);
   });
+  
+  it('contextTriggered', () => {
+    const trigger = '';
+    const triggeredContexts = [];
+    const action = contextTriggered(trigger, triggeredContexts);
 
-});
-
-describe('background makeUrlFromFilters', function () {
-  it('only criteria', () => {
-    const criteria = ['crit1', 'crit2'];
-    const url = makeUrlFromFilters(criteria, []);
-
-    expect(url).to.be.a('string')
-    expect(url.split('?')[1]).to.equal('criteria=crit1,crit2');
+    expect(action.type).to.be.a('string').of.length.above(5);
+    expect(action.trigger).to.equal(trigger);
+    expect(action.triggeredContexts).to.equal(triggeredContexts);
   });
 
-  it('only editors', () => {
-    const editors = ['edit1', 'edit2'];
-    const url = makeUrlFromFilters([], editors);
+  it('recoDisplayed', () => {
+    const trigger = '';
+    const recommendation = {};
+    const action = recoDisplayed(trigger, recommendation);
 
-    expect(url).to.be.a('string')
-    expect(url.split('?')[1]).to.equal('excluded_editors=edit1,edit2');
+    expect(action.type).to.be.a('string').of.length.above(5);
+    expect(action.trigger).to.equal(trigger);
+    expect(action.recommendation).to.equal(recommendation);
   });
 
-  it('criteria and editors', () => {
-    const criteria = ['crit1', 'crit2'];
-    const editors = ['edit1', 'edit2'];
-    const url = makeUrlFromFilters(criteria, editors);
+  it('recoDismissed', () => {
+    const trigger = '';
+    const recommendation = {};
+    const action = recoDismissed(trigger, recommendation);
 
-    expect(url).to.be.a('string')
-    expect(url.split('?')[1]).to.equal('criteria=crit1,crit2&excluded_editors=edit1,edit2');
+    expect(action.type).to.be.a('string').of.length.above(5);
+    expect(action.trigger).to.equal(trigger);
+    expect(action.recommendation).to.equal(recommendation);
   });
+
 });
