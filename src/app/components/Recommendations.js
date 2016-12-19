@@ -19,7 +19,7 @@ class Recommendations extends Component {
       recommendations, imagesUrl, reduced, preferenceScreenPanel,
       onExtend, onReduce, onDeactivate, closePrefScreen, openPrefScreen,
       onCheckOutResource, onCheckOutAlternative, onCheckOutEditor,
-      dismissReco, approveReco
+      dismissReco, approveReco, reportReco
     } = props;
 
     const body = preferenceScreenPanel ?
