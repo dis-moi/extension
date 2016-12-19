@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import PreferenceScreen from '../components/PreferenceScreen';
 import uiActions from '../content/actions/ui.js';
-import prefActions from '../content/actions/preferences.js';
+import filterActions from '../content/actions/filters.js';
 
 import { IMAGES_URL } from '../constants/assetsUrls';
 import portCommunication from '../content/portCommunication';
@@ -12,7 +12,7 @@ const {
   unselectCriterion,
   excludeEditor,
   includeEditor
-} = prefActions(portCommunication);
+} = filterActions(portCommunication);
 
 const {
   closePrefScreen,

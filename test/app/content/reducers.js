@@ -1,6 +1,6 @@
 import chai from 'chai';
 import neverThrowingObject from '../../infrastructure/neverThrowingObject';
-import preparePrefEvents from '../../../src/app/content/actions/preferences';
+import prepareFilterEvents from '../../../src/app/content/actions/filters';
 
 import { Map as ImmutableMap } from 'immutable';
 
@@ -8,7 +8,7 @@ import reducer from '../../../src/app/content/reducers/';
 
 const expect = chai.expect;
 
-const { excludeEditor, includeEditor } = preparePrefEvents(neverThrowingObject());
+const { excludeEditor, includeEditor } = prepareFilterEvents(neverThrowingObject());
 
 describe('content reducer', function () {
 

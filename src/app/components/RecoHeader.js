@@ -3,7 +3,7 @@ import {
   DEACTIVATE_EVERYWHERE,
   DEACTIVATE_WEBSITE_ALWAYS,
   SESSION_DEACTIVATE_DELAY
-} from '../constants/preferences';
+} from '../constants/websites';
 import {
   PREFERENCE_SCREEN_PANEL_ABOUT,
   HEADER_CONTENT

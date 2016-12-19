@@ -4,14 +4,14 @@ import neverThrowingObject from '../../infrastructure/neverThrowingObject';
 
 import prepareRecoEvents from '../../../src/app/content/actions/recommendations';
 import prepareUIEvents from '../../../src/app/content/actions/ui';
-import preparePrefEvents from '../../../src/app/content/actions/preferences';
+import prepareFilterEvents from '../../../src/app/content/actions/filters';
 
 const expect = chai.expect;
 
 const {reduce, extend, deactivate} = prepareUIEvents(neverThrowingObject());
 const { updateCriteria, updateEditors,
   selectCriterion, unselectCriterion,
-  excludeEditor, includeEditor } = preparePrefEvents(neverThrowingObject());
+  excludeEditor, includeEditor } = prepareFilterEvents(neverThrowingObject());
 const { recommendationFound, dismissReco, approveReco, reportReco } = prepareRecoEvents(neverThrowingObject());
 
 describe('content actions', function () {

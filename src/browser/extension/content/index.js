@@ -8,7 +8,7 @@ import { createStore } from 'redux';
 import rootReducer from '../../../app/content/reducers';
 
 import prepareRecoActions from '../../../app/content/actions/recommendations';
-import preparePrefActions from '../../../app/content/actions/preferences';
+import prepareFilterActions from '../../../app/content/actions/filters';
 
 import portCommunication from '../../../app/content/portCommunication';
 
@@ -17,7 +17,7 @@ const {
   updateInstalledDetails,
   updateCriteria,
   updateEditors
-} = preparePrefActions(portCommunication);
+} = prepareFilterActions(portCommunication);
 
 const {
   recommendationFound,

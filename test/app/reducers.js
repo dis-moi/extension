@@ -14,14 +14,14 @@ import {
 } from '../../src/app/actions/kraftBackend';
 
 import prepareUIEvents from '../../src/app/content/actions/ui';
-import preparePrefEvents from '../../src/app/content/actions/preferences';
+import prepareFilterEvents from '../../src/app/content/actions/filters';
 import prepareRecoEvents from '../../src/app/content/actions/recommendations';
-import { DEACTIVATE_EVERYWHERE, DEACTIVATE_WEBSITE_ALWAYS } from '../../src/app/constants/preferences';
+import { DEACTIVATE_EVERYWHERE, DEACTIVATE_WEBSITE_ALWAYS } from '../../src/app/constants/websites';
 
 const expect = chai.expect;
 
 const { deactivate } = prepareUIEvents(neverThrowingObject());
-const { excludeEditor, includeEditor } = preparePrefEvents(neverThrowingObject());
+const { excludeEditor, includeEditor } = prepareFilterEvents(neverThrowingObject());
 const { dismissReco, approveReco, reportReco } = prepareRecoEvents(neverThrowingObject());
 
 
@@ -92,7 +92,7 @@ describe('background reducer', function () {
 
     const nextState = reducer( makeInitialState(), action );
 
-    expect(nextState.preferences.deactivated.deactivatedEverywhereUntil).to.be.above(Date.now());
+    expect(nextState.websites.deactivated.deactivatedEverywhereUntil).to.be.above(Date.now());
   });
 
   it('initial state + deactivate (a website always) => state with deactivated pref', () => {
@@ -103,7 +103,7 @@ describe('background reducer', function () {
 
     const nextState = reducer( makeInitialState(), action );
 
-    expect(nextState.preferences.deactivated.deactivatedWebsites.has(action.where)).to.be.true;
+    expect(nextState.websites.deactivated.deactivatedWebsites.has(action.where)).to.be.true;
   });
 
   it('exclude editor', () => {

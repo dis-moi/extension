@@ -9,7 +9,7 @@ import configureStore from './../../../app/store/configureStore';
 import findMatchingOffersAccordingToPreferences
   from '../../../app/lmem/findMatchingOffersAccordingToPreferences';
 import getMatchingRecommendations from '../../../app/lmem/getMatchingRecommendations';
-import makeTabs from '../../../app/tabs/index.js';
+import { makeTabs } from '../../../app/tabs/index.js';
 import prepareDraftPreview from '../../../app/lmem/draft-preview/main.js';
 
 import { dispatchInitialStateFromBackend, refreshMatchingContextsFromBackend } from '../../../app/actions/kraftBackend';
@@ -76,13 +76,13 @@ configureStore(store => {
         const state = store.getState();
         
         return findMatchingOffersAccordingToPreferences(
-          url, state.matchingContexts, state.draftRecommendations || [], state.preferences
+          url, state.matchingContexts, state.draftRecommendations || [], state.websites
         );
       },
       getMatchingRecommendations,
       getDeactivatedWebsites: () => {
         const state = store.getState();
-        const prefs = state.preferences || {};
+        const prefs = state.websites || {};
         const deactivated = prefs.deactivated || {};
         return deactivated.deactivatedWebsites || new Set();
       },
