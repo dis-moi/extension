@@ -70,22 +70,19 @@ export function makeTabs(
               case DISMISS_RECO:
               case APPROVE_RECO:
               case REPORT_RECO:
-                let tabUrl;
-                chrome.tabs.getSelected(null, function (tab) {
-                  tabUrl = tab.url;
-                });
-
                 const reqUrl = LMEM_BACKEND_ORIGIN + '/api/v2/recommendations/' + msg.action.id + '/feedbacks';
+                const tabUrlP = new Promise(res => chrome.tabs.getSelected(null, tab => res(tab.url)));
+                
+                tabUrlP.then(tabUrl => {
+                  const payload = makeRecoFeedback(msg.action.type, tabUrl);
 
-                const payload = makeRecoFeedback(msg.action.type, tabUrl);
-
-                sendReq('POST', reqUrl, payload)
-                .then(response => {
-                  console.log('RESPONSE', response);
-                })
-                .catch(error => {
-                  console.error('Error in /api/v2/recommendations/' + msg.action.id + '/feedbacks');
-                  console.error(error);
+                  sendReq('POST', reqUrl, payload)
+                  .then(response => {
+                    console.log('RESPONSE', response);
+                  })
+                  .catch(error => {
+                    console.error('Error in /api/v2/recommendations/' + msg.action.id + '/feedbacks', error);
+                  });
                 });
                 break;
               
@@ -156,9 +153,9 @@ export function makeTabs(
       return isValid;
     }))
     .then(recos => { // filter dismissed recos
-      let dismissed = getDismissed();
+      const dismissed = getDismissed();
 
-      let toDisplayRecos = recos.filter(reco => {
+      const toDisplayRecos = recos.filter(reco => {
         if (dismissed.has(reco.id))
           dispatch(recoDismissed(trigger, reco));
         else
@@ -166,8 +163,6 @@ export function makeTabs(
 
         return !dismissed.has(reco.id);
       });
-
-
 
       if(toDisplayRecos.length >= 1) {
         sendRecommendationsToTab(tabId, toDisplayRecos);

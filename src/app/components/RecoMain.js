@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import Editor from './Editor';
 import Contributor from './Contributor';
 import RecoDescription from './RecoDescription';
+import FeedbackButton from './FeedbackButton';
 
 class RecoMain extends Component {
 
@@ -35,43 +36,11 @@ class RecoMain extends Component {
 
     const mainClass = visibility === 'private' ? 'preview' : undefined;
 
-    // console.log('RECO props', recommendation);
-
     const rateRecoButtons = (
       <ul>
-        <li>
-          <div className="button-directive">
-            <button
-              className="button button-compact with-tooltip"
-              onClick={e => {
-                approveReco(recommendation.id);
-              }}>
-              <span><span>LIKE</span></span>
-            </button>
-          </div>
-        </li>
-        <li>
-          <div className="button-directive">
-            <button
-              className="button button-compact with-tooltip"
-              onClick={e => {
-                dismissReco(recommendation.id);
-              }}>
-              <span><span>DISMISS</span></span>
-            </button>
-          </div>
-        </li>
-        <li>
-          <div className="button-directive">
-            <button
-              className="button button-compact with-tooltip"
-              onClick={e => {
-                reportReco(recommendation.id);
-              }}>
-              <span><span>REPORT</span></span>
-            </button>
-          </div>
-        </li>
+        <FeedbackButton recoId={recommendation.id} text={'LIKE'} job={approveReco} />
+        <FeedbackButton recoId={recommendation.id} text={'DISMISS'} job={dismissReco} />
+        <FeedbackButton recoId={recommendation.id} text={'REPORT'} job={reportReco} />
       </ul>
     );
 

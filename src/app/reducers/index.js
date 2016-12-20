@@ -33,15 +33,11 @@ export default function (state = {}, action) {
       let newCriteria;
 
       newCriteria = criteria.reduce((acc, curr) => {
-        let output = acc;
-        let slug = curr.get('slug');
+        const slug = curr.get('slug');
 
-        if (!state.criteria.has(slug)) // new criteria from server are set to selected by default
-          output = acc.set(slug, curr.set('isSelected', true));
-        else
-          output = acc.set(slug, state.criteria.get(slug));
-        
-        return output;
+        return !state.criteria.has(slug) ?
+          acc.set(slug, curr.set('isSelected', true)) // new criteria from server are set to selected by default
+          : acc.set(slug, state.criteria.get(slug));
 
       }, state.criteria);    
 
@@ -67,15 +63,11 @@ export default function (state = {}, action) {
       let newEditors;
 
       newEditors = editors.reduce((acc, curr) => { 
-        let output = acc;
-        let id = curr.get('id').toString();
+        const id = curr.get('id').toString();
 
-        if (!state.editors.has(id)) // new editors from server are set to not excluded by default
-          output = acc.set(id, curr.set('isExcluded', false));
-        else
-          output = acc.set(id, state.editors.get(id));
-        
-        return output;
+        return !state.editors.has(id) ?
+          acc.set(id, curr.set('isExcluded', false)) // new editors from server are set to not excluded by default
+          : acc.set(id, state.editors.get(id));
 
       }, state.editors);
 
