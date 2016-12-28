@@ -37,6 +37,10 @@ function createExtensionIframe(reduced, style, onLoad){
   iframe.id = 'lmemFrame';
   iframe.width = '100%';
   iframe.height = reduced ? IFRAME_REDUCED_HEIGHT : IFRAME_EXTENDED_HEIGHT;
+  iframe.style.maxWidth = 'initial';
+  iframe.style.minWidth = 'initial';
+  iframe.style.minHeight = 'initial';
+  iframe.style.maxHeight = 'initial';
   iframe.style.position = 'fixed';
   iframe.style.bottom = 0;
   iframe.style.left = 0;
