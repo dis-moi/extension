@@ -2,6 +2,7 @@ import chai from 'chai';
 
 import { makeUrlFromFilters } from '../../src/app/actions/kraftBackend';
 import { makeRecoFeedback } from '../../src/app/tabs';
+import { APPROVE_RECO } from '../../src/app/constants/ActionTypes';
 
 const expect = chai.expect;
 
@@ -34,14 +35,21 @@ describe('background makeUrlFromFilters', function () {
 
 describe('background makeRecoFeedback', function () {
   it('should have right feedback and contexts', () => {
-    const type = 'TESTING_TYPE';
+    const type = APPROVE_RECO;
     const url = 'myUrl';
 
     const output = makeRecoFeedback(type, url);
 
-    expect(output.feedback).to.equal(type.split('_')[0].toLowerCase());
+    expect(output.feedback).to.equal('approve');
     expect(output.contexts.datetime).to.be.a('string').of.length(24);
     expect(output.contexts.url).to.equal(url);
+  });
+
+  it('should throw an error on wrong feedback type', () => {
+    const type =  'WRONG_TYPE';
+    const url = 'myUrl';
+
+    expect(makeRecoFeedback.bind(makeRecoFeedback, type, url)).to.throw();
   });
 
 });

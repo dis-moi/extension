@@ -1,5 +1,3 @@
-import sendReq from '../../../tools/sendReq';
-
 import recommendationIsValid from '../lmem/recommendationIsValid';
 import {
   SELECT_CRITERION,
@@ -16,14 +14,28 @@ import { contextTriggered, recoDisplayed, recoDismissed } from '../actions/tabs'
 import { LMEM_BACKEND_ORIGIN } from '../constants/origins';
 
 export function makeRecoFeedback(type, url){ // NEEDS TESTING
-  const feedback = type.split('_')[0].toLowerCase();
   const datetime = new Date().toISOString();
+
+  let feedback;
+  switch (type) {
+    case DISMISS_RECO:
+      feedback = 'dismiss';
+      break;
+    case APPROVE_RECO:
+      feedback = 'approve';
+      break;
+    case REPORT_RECO:
+      feedback = 'report';
+      break;
+    default:
+      throw new ReferenceError(`Wrong feedback type: ${type}`);
+  }
 
   return {
     feedback,
     contexts: {
       datetime,
-      url
+      url,
     }
   };
 }
@@ -53,7 +65,7 @@ export function makeTabs(
         tabPort.onMessage.addListener(msg => {
           console.log('message from content script', msg);
 
-          if (msg.type === 'redux-action'){
+          if (msg.type === 'redux-action') {
             dispatch(msg.action);
 
             switch (msg.action.type){
@@ -74,46 +86,38 @@ export function makeTabs(
                 const tabUrlP = new Promise(res => chrome.tabs.getSelected(null, tab => res(tab.url)));
                 
                 tabUrlP.then(tabUrl => {
-                  const payload = makeRecoFeedback(msg.action.type, tabUrl);
+                  const body = JSON.stringify(makeRecoFeedback(msg.action.type, tabUrl));
 
-                  sendReq('POST', reqUrl, payload)
-                  .then(response => {
-                    console.log('RESPONSE', response);
-                  })
-                  .catch(error => {
-                    console.error('Error in /api/v2/recommendations/' + msg.action.id + '/feedbacks', error);
-                  });
+                  fetch(reqUrl, { method: 'POST', body })
+                    .then(response => console.log('RESPONSE', response))
+                    .catch(error => console.error(`Error in ${reqUrl}`, error));
                 });
                 break;
               
               default:
+                break;
             }
           }
         });
 
-        // transform Maps to objects to be sent via tabPort
-        let criteria = {};
-        let editors = {};
+        const criteria = getCriteria().reduce((acc, criterionMap, slug) => {
+          const criterion = {
+            isSelected: criterionMap.get('isSelected'),
+            label: criterionMap.get('label'),
+            slug,
+          };
+          return Object.assign(acc, {[slug]: criterion});
+        }, {});
 
-        getCriteria().forEach((criterion, slug) => {
-          let critObj = {};
-
-          criterion.forEach((v, k) => {
-            critObj[k] = v;
-          });
-
-          criteria[slug] = critObj;
-        });
-
-        getEditors().forEach((editor, id) => {
-          let editObj = {};
-
-          editor.forEach((v, k) => {
-            editObj[k] = v;
-          });
-
-          editors[id] = editObj;
-        });
+        const editors = getEditors().reduce((acc, editorsMap, id) => {
+          const editor = {
+            isExcluded: editorsMap.get('isExcluded'),
+            label: editorsMap.get('label'),
+            url: editorsMap.get('url'),
+            id,
+          };
+          return Object.assign(acc, {[id]: editor});
+        }, {});
 
         tabPort.postMessage({
           type: 'init',
