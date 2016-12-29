@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import Editor from './Editor';
 import Contributor from './Contributor';
 import RecoDescription from './RecoDescription';
-import FeedbackButton from './FeedbackButton';
+import FeedbackButtons from './FeedbackButtons';
 
 class RecoMain extends Component {
 
@@ -36,14 +36,6 @@ class RecoMain extends Component {
 
     const mainClass = visibility === 'private' ? 'preview' : undefined;
 
-    const rateRecoButtons = (
-      <ul>
-        <FeedbackButton recoId={recommendation.id} text={'LIKE'} job={approveReco} />
-        <FeedbackButton recoId={recommendation.id} text={'DISMISS'} job={dismissReco} />
-        <FeedbackButton recoId={recommendation.id} text={'REPORT'} job={reportReco} />
-      </ul>
-    );
-
     return (<main className={mainClass}>
       <header className="sideframe lmem-header">
         <Editor
@@ -68,7 +60,6 @@ class RecoMain extends Component {
                 {recommendation.title}
               </a>
             </h3>
-            {rateRecoButtons}
             <ul className="summary-tags">
               {recommendation.criteria
                 .map(criterion => (
@@ -122,6 +113,15 @@ class RecoMain extends Component {
           ) : undefined }
         </div>
       </div>
+
+      <footer className="reco-feedback">
+        <FeedbackButtons
+          imagesUrl={ imagesUrl }
+          recoId={ recommendation.id }
+          dismissReco={ dismissReco }
+          approveReco={ approveReco }
+          reportReco={ reportReco } />
+      </footer>
     </main>);
   }
 }
@@ -129,6 +129,7 @@ class RecoMain extends Component {
 RecoMain.propTypes = {
   imagesUrl: PropTypes.string.isRequired,
   recommendations: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     contributor: PropTypes.object.isRequired,
     criteria: PropTypes.arrayOf(PropTypes.shape({

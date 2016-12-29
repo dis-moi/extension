@@ -130,3 +130,39 @@ a.reco-summary-description {
 .with-right-arrow::after {
     top: 25%;
 }
+
+// Feedback
+
+.reco-feedback {
+    margin-right: $margin-size;
+
+    > div {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .separation {
+        flex: 1;
+    }
+
+    button {
+        align-items: center;
+        line-height: $double-line-height;
+        display: flex;
+
+        opacity: .7;
+
+        &:hover,
+        &:focus {
+            opacity: 1;
+        }
+
+        img {
+            width: $block-size / 3;
+            margin-left: 0;
+            margin-right: .5ex;
+        }
+    }
+}

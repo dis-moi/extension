@@ -13,7 +13,7 @@ import { contextTriggered, recoDisplayed, recoDismissed } from '../actions/tabs'
 
 import { LMEM_BACKEND_ORIGIN } from '../constants/origins';
 
-export function makeRecoFeedback(type, url){ // NEEDS TESTING
+export function makeRecoFeedback(type, url) {
   const datetime = new Date().toISOString();
 
   let feedback;

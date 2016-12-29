@@ -1298,6 +1298,17 @@ th%summary-title {
     margin: -$border-width;
     padding: 0;
 }
+.button-hollow {
+    @extend %button;
+    background: none;
+    box-shadow: none;
+    border: none;
+
+    &:hover,
+    &:focus {
+        background: none;
+    }
+}
 
 .button-deactivated {
     cursor: default;
