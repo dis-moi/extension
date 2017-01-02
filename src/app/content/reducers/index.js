@@ -3,6 +3,7 @@ import {
   REDUCE_RECOMMENDATION_IFRAME,
   EXTEND_RECOMMENDATION_IFRAME,
   DEACTIVATE,
+  UNINSTALL,
   DISMISS_RECO,
   REPORT_RECO,
   OPEN_PREFERENCE_PANEL,
@@ -33,6 +34,7 @@ export default function (state = {}, action) {
     case DEACTIVATE:
     case DISMISS_RECO:
     case REPORT_RECO:
+    case UNINSTALL:
       return state.set('open', false);
 
     case OPEN_PREFERENCE_PANEL:
