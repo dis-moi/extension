@@ -6,9 +6,9 @@ import Root from '../../../app/containers/Root';
 import { createStore } from 'redux';
 
 import rootReducer from '../../../app/content/reducers';
-import recommendationFound from '../../../app/content/actions/recommendations';
 
-import prefActions from '../../../app/content/actions/preferences.js';
+import prepareRecoActions from '../../../app/content/actions/recommendations';
+import prepareFilterActions from '../../../app/content/actions/filters';
 
 import portCommunication from '../../../app/content/portCommunication';
 
@@ -17,7 +17,13 @@ const {
   updateInstalledDetails,
   updateCriteria,
   updateEditors
-} = prefActions(portCommunication);
+} = prepareFilterActions(portCommunication);
+
+const {
+  recommendationFound,
+  dismissReco,
+  approveReco
+} = prepareRecoActions(portCommunication);
 
 const IFRAME_EXTENDED_HEIGHT = '255px';
 const IFRAME_REDUCED_HEIGHT = '60px';
@@ -189,14 +195,14 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
 
         break;
       case 'recommendations':
-        const { recommendations, matchingContexts } = msg;
+        const { recommendations } = msg;
         // console.log('recommendations in content', recommendations);
 
         // Even if the recommendation arrived early, let the page load a bit before
         // showing the iframe in loading mode
         CanShowRecommendationIfAvailableP
         .then(() => {
-          store.dispatch(recommendationFound(portCommunication)(recommendations, matchingContexts));
+          store.dispatch(recommendationFound(recommendations));
         });
 
         break;

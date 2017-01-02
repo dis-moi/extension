@@ -7,12 +7,16 @@ import {
   RECEIVED_EDITORS,
   EXCLUDE_EDITOR,
   INCLUDE_EDITOR,
+  DISMISS_RECO,
+  APPROVE_RECO,
+  UNAPPROVE_RECO,
+  REPORT_RECO,
   DEACTIVATE,
   REACTIVATE_WEBSITE,
   UPDATE_DRAFT_RECOMMENDATIONS,
   INSTALLED,
 } from '../constants/ActionTypes';
-import { DEACTIVATE_EVERYWHERE, DEACTIVATE_WEBSITE_ALWAYS } from '../constants/preferences';
+import { DEACTIVATE_EVERYWHERE, DEACTIVATE_WEBSITE_ALWAYS } from '../constants/websites';
 
 export default function (state = {}, action) {
   const { type } = action;
@@ -29,23 +33,14 @@ export default function (state = {}, action) {
       const { criteria } = action;
       let newCriteria;
 
-      if (!Object.keys(state).includes('criteria')){ // first visit, all criteria are set to selected by default
-        newCriteria = criteria.reduce((acc, curr) => {
-          return acc.setIn([curr.get('slug'), 'isSelected'], true);
-        }, criteria);
-      }
-      else { // other visits, new criteria from server are set to selected by default
-        newCriteria = criteria.reduce((acc, curr) => {
-          let output = acc;
+      newCriteria = criteria.reduce((acc, curr) => {
+        const slug = curr.get('slug');
 
-          if (!state.criteria.has(curr.get('slug'))){
-            output = acc.setIn([curr.get('slug'), 'isSelected'], true);
-          }
+        return !state.criteria.has(slug) ?
+          acc.set(slug, curr.set('isSelected', true)) // new criteria from server are set to selected by default
+          : acc.set(slug, state.criteria.get(slug));
 
-          return output;
-
-        }, state.criteria);
-      }
+      }, state.criteria);    
 
       return Object.assign({}, state, { criteria: newCriteria });
     }
@@ -68,19 +63,14 @@ export default function (state = {}, action) {
       const { editors } = action;
       let newEditors;
 
-      if (!Object.keys(state).includes('editors')) // first visit, all editors are set to not excluded by default
-        newEditors = editors.reduce((acc, curr) => {
-          return acc.setIn([curr.get('id').toString(), 'isExcluded'], false);
-        }, editors);
-      else // other visits, new editors from server are set to not excluded by default
-        newEditors = editors.reduce((acc, curr) => { 
-          let output = acc;
-          if (!state.editors.has(curr.get('id').toString()))
-            output = acc.setIn([curr.get('id').toString(), 'isExcluded'], false);
+      newEditors = editors.reduce((acc, curr) => { 
+        const id = curr.get('id').toString();
 
-          return output;
+        return !state.editors.has(id) ?
+          acc.set(id, curr.set('isExcluded', false)) // new editors from server are set to not excluded by default
+          : acc.set(id, state.editors.get(id));
 
-        }, state.editors);
+      }, state.editors);
 
       return Object.assign({}, state, { editors: newEditors });
     }
@@ -99,9 +89,31 @@ export default function (state = {}, action) {
       return Object.assign({}, state, {editors: editors.setIn([id.toString(), 'isExcluded'], false)});
     }
 
+    case DISMISS_RECO:
+    case REPORT_RECO: {
+      const { id } = action;
+      const dismissedRecos = state.dismissedRecos;
+
+      return Object.assign({}, state, {dismissedRecos: dismissedRecos.add(id)});
+    }
+
+    case APPROVE_RECO: {
+      const { id } = action;
+      const approvedRecos = state.approvedRecos;
+
+      return Object.assign({}, state, { approvedRecos: approvedRecos.add(id) });
+    }
+
+    case UNAPPROVE_RECO: {
+      const { id } = action;
+      const approvedRecos = state.approvedRecos;
+
+      return Object.assign({}, state, { approvedRecos: approvedRecos.delete(id) });
+    }
+
     case DEACTIVATE: {
       const { where, duration } = action;
-      const deactivatedPref = state && state.preferences && state.preferences.deactivated || {};
+      const deactivatedPref = state && state.websites && state.websites.deactivated || {};
       let newDeactivatedPref;
 
       if (where === DEACTIVATE_EVERYWHERE) {
@@ -121,8 +133,8 @@ export default function (state = {}, action) {
       return Object.assign(
         {}, state,
         {
-          preferences: Object.assign(
-            {}, state.preferences,
+          websites: Object.assign(
+            {}, state.websites,
             {
               deactivated: newDeactivatedPref
             }
@@ -134,7 +146,7 @@ export default function (state = {}, action) {
     case REACTIVATE_WEBSITE: {
       const { website } = action;
 
-      const deactivatedPref = state && state.preferences && state.preferences.deactivated || {};
+      const deactivatedPref = state && state.websites && state.websites.deactivated || {};
       let newDeactivatedPref;
 
       deactivatedPref.deactivatedWebsites = new Set(deactivatedPref.deactivatedWebsites);
@@ -144,8 +156,8 @@ export default function (state = {}, action) {
       return Object.assign(
                 {}, state,
         { 
-          preferences: Object.assign(
-                        {}, state.preferences,
+          websites: Object.assign(
+                        {}, state.websites,
             {
               deactivated: newDeactivatedPref
             }

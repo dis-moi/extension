@@ -9,7 +9,7 @@ import configureStore from './../../../app/store/configureStore';
 import findMatchingOffersAccordingToPreferences
   from '../../../app/lmem/findMatchingOffersAccordingToPreferences';
 import getMatchingRecommendations from '../../../app/lmem/getMatchingRecommendations';
-import tabs from '../../../app/tabs/index.js';
+import { makeTabs } from '../../../app/tabs/index.js';
 import prepareDraftPreview from '../../../app/lmem/draft-preview/main.js';
 
 import { dispatchInitialStateFromBackend, refreshMatchingContextsFromBackend } from '../../../app/actions/kraftBackend';
@@ -71,18 +71,18 @@ configureStore(store => {
 
   contentCodeP
   .then(contentCode => {
-    tabs(chrome.tabs, {
-      findMatchingMatchingContexts: url => {
+    makeTabs(chrome.tabs, {
+      findTriggeredContexts: url => {
         const state = store.getState();
         
         return findMatchingOffersAccordingToPreferences(
-          url, state.matchingContexts, state.draftRecommendations || [], state.preferences
+          url, state.matchingContexts, state.draftRecommendations || [], state.websites
         );
       },
       getMatchingRecommendations,
       getDeactivatedWebsites: () => {
         const state = store.getState();
-        const prefs = state.preferences || {};
+        const prefs = state.websites || {};
         const deactivated = prefs.deactivated || {};
         return deactivated.deactivatedWebsites || new Set();
       },
@@ -92,6 +92,8 @@ configureStore(store => {
       },
       getCriteria: () => store.getState().criteria || new Map(),
       getEditors: () => store.getState().editors || new Map(),
+      getDismissed: () => store.getState().dismissedRecos || new Set(),
+      getApproved: () => store.getState().approvedRecos || new Set(),
       dispatch: store.dispatch,
       contentCode,
       refreshMatchingContexts: () => {

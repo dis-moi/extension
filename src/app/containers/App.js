@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Recommendations from '../components/Recommendations';
-import uiActions from '../content/actions/ui.js';
+import prepareUIActions from '../content/actions/ui.js';
 
 import { IMAGES_URL } from '../constants/assetsUrls';
 import portCommunication from '../content/portCommunication';
@@ -14,8 +14,8 @@ const {
   openPrefScreen,
   checkOutResource,
   checkOutAlternative,
-  checkOutEditor,
-} = uiActions(portCommunication);
+  checkOutEditor
+} = prepareUIActions(portCommunication);
 
 function mapStateToProps(state) {
   return {

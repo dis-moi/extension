@@ -2,27 +2,28 @@ import chai from 'chai';
 
 import neverThrowingObject from '../../infrastructure/neverThrowingObject';
 
-import recommendationFound from '../../../src/app/content/actions/recommendations';
+import prepareRecoEvents from '../../../src/app/content/actions/recommendations';
 import prepareUIEvents from '../../../src/app/content/actions/ui';
-import preparePrefEvents from '../../../src/app/content/actions/preferences';
+import prepareFilterEvents from '../../../src/app/content/actions/filters';
 
 const expect = chai.expect;
 
 const {reduce, extend, deactivate} = prepareUIEvents(neverThrowingObject());
 const { updateCriteria, updateEditors,
   selectCriterion, unselectCriterion,
-  excludeEditor, includeEditor } = preparePrefEvents(neverThrowingObject());
+  excludeEditor, includeEditor } = prepareFilterEvents(neverThrowingObject());
+const { recommendationFound, dismissReco, approveReco, reportReco } = prepareRecoEvents(neverThrowingObject());
 
 describe('content actions', function () {
 
   it('recommendationFound', () => {
     const recos = [{}, {}];
     const mmc = [{}, {}];
-    const action = recommendationFound(neverThrowingObject())(recos, mmc);
+
+    const action = recommendationFound(recos);
 
     expect(action.type).to.be.a('string').of.length.above(5);
     expect(action.recommendations).to.equal(recos);
-    expect(action.matchingContexts).to.equal(mmc);
   });
 
   it('reduce', () => {
@@ -87,6 +88,30 @@ describe('content actions', function () {
   it('include editor', () => {
     const id = 0;
     const action = includeEditor(id);
+
+    expect(action.type).to.be.a('string').of.length.above(5);
+    expect(action.id).to.equal(id);
+  });
+
+  it('dismiss reco', () => {
+    const id = 0;
+    const action = dismissReco(id);
+
+    expect(action.type).to.be.a('string').of.length.above(5);
+    expect(action.id).to.equal(id);
+  });
+
+  it('approve reco', () => {
+    const id = 0;
+    const action = approveReco(id);
+
+    expect(action.type).to.be.a('string').of.length.above(5);
+    expect(action.id).to.equal(id);
+  });
+
+  it('report reco', () => {
+    const id = 0;
+    const action = reportReco(id);
 
     expect(action.type).to.be.a('string').of.length.above(5);
     expect(action.id).to.equal(id);

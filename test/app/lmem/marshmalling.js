@@ -30,7 +30,7 @@ const stateWithOneOffer = {
 };
 
 const stateWithAlwaysDeactivateWebsitePref = {
-  preferences: {
+  websites: {
     deactivated: {
       deactivatedWebsites : new Set([
         'www.samsung.com'
@@ -41,7 +41,7 @@ const stateWithAlwaysDeactivateWebsitePref = {
 
 
 const stateWithDeactivateUntilPref = {
-  preferences: {
+  websites: {
     deactivated: {
       deactivatedEverywhereUntil : 1462701600000
     }
@@ -67,12 +67,12 @@ describe('marshmalling', function () {
     
     it('should serialize state with deactivatedWebsites preference', () => {
       expect( serialize(stateWithAlwaysDeactivateWebsitePref) )
-      .to.eql( '{"preferences":{"deactivated":{"deactivatedWebsites":["www.samsung.com"]}}}' )
+      .to.eql( '{"websites":{"deactivated":{"deactivatedWebsites":["www.samsung.com"]}}}' )
     });
     
     it('should serialize state with deactivatedEverywhereUntil preference', () => {
       expect( serialize(stateWithDeactivateUntilPref) )
-      .to.eql( '{"preferences":{"deactivated":{"deactivatedEverywhereUntil":1462701600000}}}' )
+      .to.eql( '{"websites":{"deactivated":{"deactivatedEverywhereUntil":1462701600000}}}' )
     });
     
   });
@@ -93,12 +93,12 @@ describe('marshmalling', function () {
       expect( bfState )
       .to.deep.equal( stateWithAlwaysDeactivateWebsitePref )
 
-      expect( Object.prototype.toString.call(bfState.preferences.deactivated.deactivatedWebsites) ).to.equal('[object Set]')
+      expect( Object.prototype.toString.call(bfState.websites.deactivated.deactivatedWebsites) ).to.equal('[object Set]')
 
       // chai does not support ES6 Sets, so converting to array for comparison
       // https://github.com/Automattic/expect.js/pull/144
-      expect( [...bfState.preferences.deactivated.deactivatedWebsites] )
-      .to.eql( [...stateWithAlwaysDeactivateWebsitePref.preferences.deactivated.deactivatedWebsites] )
+      expect( [...bfState.websites.deactivated.deactivatedWebsites] )
+      .to.eql( [...stateWithAlwaysDeactivateWebsitePref.websites.deactivated.deactivatedWebsites] )
     });
     
     it('should deserialize state with deactivatedEverywhereUntil preference', () => {

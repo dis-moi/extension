@@ -6,6 +6,6 @@ const expect = chai.expect;
 
 describe('makeInitialState', function () {
   it('init structure', function () {
-    expect(makeInitialState()).to.be.empty;
+    expect(makeInitialState()).to.not.be.empty;
   });
 });

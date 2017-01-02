@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import Editor from './Editor';
 import Contributor from './Contributor';
 import RecoDescription from './RecoDescription';
+import FeedbackButtons from '../containers/FeedbackButtons';
 
 class RecoMain extends Component {
 
@@ -23,7 +24,10 @@ class RecoMain extends Component {
   }
 
   render() {
-    const { recommendations, imagesUrl, onCheckOutResource, onCheckOutAlternative, onCheckOutEditor } = this.props;
+    const {
+      recommendations, imagesUrl,
+      onCheckOutResource, onCheckOutAlternative, onCheckOutEditor,
+    } = this.props;
     const { recoHover } = this.state;
 
     // For now, this component is only capable of handling a single recommendation.
@@ -110,6 +114,10 @@ class RecoMain extends Component {
           ) : undefined }
         </div>
       </div>
+
+      <footer className="reco-feedback">
+        <FeedbackButtons recoId={ recommendation.id } isApproved={ recommendation.isApproved } />
+      </footer>
     </main>);
   }
 }
@@ -117,12 +125,14 @@ class RecoMain extends Component {
 RecoMain.propTypes = {
   imagesUrl: PropTypes.string.isRequired,
   recommendations: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     contributor: PropTypes.object.isRequired,
     criteria: PropTypes.arrayOf(PropTypes.shape({
       label: PropTypes.string.isRequired,
       slug: PropTypes.string.isRequired,
     })),
+    isApproved: PropTypes.bool,
     resource: PropTypes.shape({
       author: PropTypes.string,
       editor: PropTypes.object.isRequired,
