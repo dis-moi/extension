@@ -95,17 +95,6 @@ describe('background reducer', function () {
     expect(nextState.websites.deactivated.deactivatedEverywhereUntil).to.be.above(Date.now());
   });
 
-  it('initial state + deactivate (a website always) => state with deactivated pref', () => {
-    const action = deactivate({
-      where: 'soundcloud.com',
-      duration: DEACTIVATE_WEBSITE_ALWAYS
-    });
-
-    const nextState = reducer( makeInitialState(), action );
-
-    expect(nextState.websites.deactivated.deactivatedWebsites.has(action.where)).to.be.true;
-  });
-
   it('exclude editor', () => {
     const action = excludeEditor(1);
 
