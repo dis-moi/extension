@@ -25,7 +25,7 @@ function mainClassName(screenPanel) {
 
 export default function (props) {
   const {
-    preferenceScreenPanel, openPrefScreen,
+    preferenceScreenPanel, openPrefScreen, uninstall,
     imagesUrl, onInstalledDetails, 
     criteria, selectCriterion, unselectCriterion,
     editors, excludeEditor, includeEditor
@@ -37,6 +37,7 @@ export default function (props) {
     case PREFERENCE_SCREEN_PANEL_ABOUT:
       mainContent = (<PreferenceAboutPanel
         onInstalledDetails={onInstalledDetails}
+        uninstall={uninstall}
       />);
       break;
     case PREFERENCE_SCREEN_PANEL_CRITERIA:
@@ -74,7 +75,7 @@ export default function (props) {
             className={'not-button with-image' +
               (preferenceScreenPanel === PREFERENCE_SCREEN_PANEL_ABOUT ? ' active' : '')}>
             <img role="presentation" className="lmem-controls-picto" src={imagesUrl + 'info.svg'} />
-            <span>À propos</span>
+            <span>Général</span>
           </button>
         </li>
         <li className="preference-menu-criteria">

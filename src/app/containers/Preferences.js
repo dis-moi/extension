@@ -17,6 +17,7 @@ const {
 const {
   closePrefScreen,
   openPrefScreen,
+  uninstall,
 } = uiActions(portCommunication);
 
 function mapStateToProps(state) {
@@ -33,6 +34,7 @@ function mapDispatchToProps(dispatch) {
   return {
     openPrefScreen(panel) { dispatch(openPrefScreen(panel)); },
     closePrefScreen() { dispatch(closePrefScreen()); },
+    uninstall() { dispatch(uninstall()); },
     selectCriterion(criterion) { dispatch(selectCriterion(criterion)); },
     unselectCriterion(criterion) { dispatch(unselectCriterion(criterion)); },
     excludeEditor(editor) { dispatch(excludeEditor(editor)); },

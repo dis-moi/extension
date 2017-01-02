@@ -2,9 +2,9 @@ import {
   REDUCE_RECOMMENDATION_IFRAME,
   EXTEND_RECOMMENDATION_IFRAME,
   DEACTIVATE,
+  UNINSTALL,
   OPEN_PREFERENCE_PANEL,
   CLOSE_PREFERENCE_PANEL,
-  REACTIVATE_WEBSITE,
   CHECKOUT_RECO_RESOURCE,
   CHECKOUT_RECO_ALTERNATIVE,
   CHECKOUT_RECO_EDITOR,
@@ -81,6 +81,15 @@ export default function (portCommunication) {
       portCommunication.sendBackgroundReduxAction(action);
       return action;
     },
+
+    uninstall() {
+      const action = {
+        type: UNINSTALL,
+        datetime: new Date(),
+      };
+      portCommunication.sendBackgroundReduxAction(action);
+      return action;
+    }
 
   };
 }

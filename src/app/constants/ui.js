@@ -20,7 +20,7 @@ function headerContent(imagesUrl, currPanel) {
 }
 
 export const HEADER_CONTENT = {
-  [PREFERENCE_SCREEN_PANEL_ABOUT]: imagesUrl => headerContent(imagesUrl, 'À propos'),
+  [PREFERENCE_SCREEN_PANEL_ABOUT]: imagesUrl => headerContent(imagesUrl, 'Général'),
 
   [PREFERENCE_SCREEN_PANEL_CRITERIA]: imagesUrl => headerContent(imagesUrl, 'Critères de choix'),
 

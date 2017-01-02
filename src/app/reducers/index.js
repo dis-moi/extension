@@ -11,10 +11,10 @@ import {
   UNAPPROVE_RECO,
   REPORT_RECO,
   DEACTIVATE,
+  UNINSTALL,
   UPDATE_DRAFT_RECOMMENDATIONS,
   INSTALLED,
 } from '../constants/ActionTypes';
-import { DEACTIVATE_EVERYWHERE } from '../constants/websites';
 
 export default function (state = {}, action) {
   const { type } = action;
@@ -131,6 +131,15 @@ export default function (state = {}, action) {
           )
         }
       );
+    }
+
+    case UNINSTALL: {
+      console.warn('Extension uninstallation is disabled when environment is development.');
+      if (process.env.NODE_ENV !== 'development') {
+        // Delay uninstallation to make sure tracking is done
+        setTimeout(() => chrome.management.uninstallSelf(), 1000);
+      }
+      return state;
     }
     
     case UPDATE_DRAFT_RECOMMENDATIONS: {

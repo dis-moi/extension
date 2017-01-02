@@ -71,8 +71,49 @@
         }
     }
 
+    footer {
+        margin-top: $margin-size;
+        line-height: $double-line-height;
+    }
+
     time {
         white-space: nowrap;
+    }
+
+    .modal {
+        h1 {
+            font-size: $block-size / 3;
+            font-weight: 500;
+            line-height: $double-line-height;
+            margin-bottom: $margin-size;
+        }
+
+        .modal-buttons-wrapper {
+            display: flex;
+            justify-content: flex-end;
+            line-height: $double-line-height;
+        }
+
+        .button-cancel,
+        .button-confirm {
+            padding-left: $margin-size;
+            padding-right: $margin-size;
+            font-size: $simple-line-height;
+            font-weight: 900;
+        }
+
+        .button-cancel {
+            color: inherit;
+            text-shadow: none;
+            text-decoration: underline;
+            margin-right: $margin-size;
+
+            &:hover,
+            &:focus {
+                color: $action-color;
+                text-decoration: none;
+            }
+        }
     }
 }
 
