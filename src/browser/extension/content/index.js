@@ -135,7 +135,6 @@ const store = createStore(
     reduced: true,
     preferenceScreenPanel: undefined, // preference screen close
     recommendations: undefined,
-    deactivatedWebsites: new ImmutableSet(),
     onInstalledDetails: new ImmutableMap(),
     criteria: new ImmutableMap(),
     editors: new ImmutableMap(),
@@ -154,10 +153,9 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
     
     switch (type) {
       case 'init':
-        const { style, deactivatedWebsites, onInstalledDetails,
+        const { style, onInstalledDetails,
           criteria, editors } = msg;
 
-        store.dispatch(updateDeactivatedWebsites(new ImmutableSet(deactivatedWebsites)));
         store.dispatch(updateInstalledDetails(immutableFromJS(onInstalledDetails)));
         store.dispatch(updateCriteria(immutableFromJS(criteria)));
         store.dispatch(updateEditors(immutableFromJS(editors)));

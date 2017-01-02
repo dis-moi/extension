@@ -7,8 +7,6 @@ import {
   REPORT_RECO,
   OPEN_PREFERENCE_PANEL,
   CLOSE_PREFERENCE_PANEL,
-  DEACTIVATED_WEBSITES,
-  REACTIVATE_WEBSITE,
   INSTALLED_DETAILS,
   CRITERIA,
   SELECT_CRITERION,
@@ -44,17 +42,9 @@ export default function (state = {}, action) {
     case CLOSE_PREFERENCE_PANEL:
       return state.set('preferenceScreenPanel', undefined);
 
-    case DEACTIVATED_WEBSITES:
-      const { deactivatedWebsites } = action;
-      return state.set('deactivatedWebsites', deactivatedWebsites);
-
     case INSTALLED_DETAILS:
       const { onInstalledDetails } = action;
       return state.set('onInstalledDetails', onInstalledDetails);
-
-    case REACTIVATE_WEBSITE:
-      const { website } = action;
-      return state.set('deactivatedWebsites', state.get('deactivatedWebsites').delete(website));
 
     case CRITERIA: {
       const { criteria } = action;

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 export const PREFERENCE_SCREEN_PANEL_ABOUT = 'PREFERENCE_SCREEN_PANEL_ABOUT';
-export const PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES = 'PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES';
 export const PREFERENCE_SCREEN_PANEL_CRITERIA = 'PREFERENCE_SCREEN_PANEL_CRITERIA';
 export const PREFERENCE_SCREEN_PANEL_SOURCES = 'PREFERENCE_SCREEN_PANEL_SOURCES';
 
@@ -22,8 +21,6 @@ function headerContent(imagesUrl, currPanel) {
 
 export const HEADER_CONTENT = {
   [PREFERENCE_SCREEN_PANEL_ABOUT]: imagesUrl => headerContent(imagesUrl, 'À propos'),
-
-  [PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES]: imagesUrl => headerContent(imagesUrl, 'Sites désactivés'),
 
   [PREFERENCE_SCREEN_PANEL_CRITERIA]: imagesUrl => headerContent(imagesUrl, 'Critères de choix'),
 

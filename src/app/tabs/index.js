@@ -47,7 +47,7 @@ export function makeRecoFeedback(type, url) {
 export function makeTabs(
   tabs,
   {
-    findTriggeredContexts, refreshMatchingContexts, getMatchingRecommendations, getDeactivatedWebsites, dispatch,
+    findTriggeredContexts, refreshMatchingContexts, getMatchingRecommendations, dispatch,
     contentCode, contentStyle, getOnInstalledDetails, getCriteria, getEditors, getDismissed, getApproved,
   }
 ) {
@@ -127,7 +127,6 @@ export function makeTabs(
         tabPort.postMessage({
           type: 'init',
           style: contentStyle,
-          deactivatedWebsites: [...getDeactivatedWebsites()],
           onInstalledDetails: getOnInstalledDetails(),
           criteria,
           editors

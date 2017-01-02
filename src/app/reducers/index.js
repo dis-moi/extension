@@ -1,5 +1,4 @@
-import { Map as ImmutableMap } from 'immutable';
-import { 
+import {
   RECEIVED_MATCHING_CONTEXTS,
   RECEIVED_CRITERIA,
   SELECT_CRITERION,
@@ -12,11 +11,10 @@ import {
   UNAPPROVE_RECO,
   REPORT_RECO,
   DEACTIVATE,
-  REACTIVATE_WEBSITE,
   UPDATE_DRAFT_RECOMMENDATIONS,
   INSTALLED,
 } from '../constants/ActionTypes';
-import { DEACTIVATE_EVERYWHERE, DEACTIVATE_WEBSITE_ALWAYS } from '../constants/websites';
+import { DEACTIVATE_EVERYWHERE } from '../constants/websites';
 
 export default function (state = {}, action) {
   const { type } = action;
@@ -112,23 +110,15 @@ export default function (state = {}, action) {
     }
 
     case DEACTIVATE: {
-      const { where, duration } = action;
+      const { duration } = action;
       const deactivatedPref = state && state.websites && state.websites.deactivated || {};
-      let newDeactivatedPref;
 
-      if (where === DEACTIVATE_EVERYWHERE) {
-        newDeactivatedPref = Object.assign(
-          {}, deactivatedPref,
-          {
-            deactivatedEverywhereUntil: Date.now() + duration
-          }
-        );
-      }
-      else {
-        deactivatedPref.deactivatedWebsites = new Set(deactivatedPref.deactivatedWebsites);
-        deactivatedPref.deactivatedWebsites.add(where);
-        newDeactivatedPref = deactivatedPref; // mutated
-      }
+      const newDeactivatedPref = Object.assign(
+        {}, deactivatedPref,
+        {
+          deactivatedEverywhereUntil: Date.now() + duration
+        }
+      );
 
       return Object.assign(
         {}, state,
@@ -143,29 +133,6 @@ export default function (state = {}, action) {
       );
     }
     
-    case REACTIVATE_WEBSITE: {
-      const { website } = action;
-
-      const deactivatedPref = state && state.websites && state.websites.deactivated || {};
-      let newDeactivatedPref;
-
-      deactivatedPref.deactivatedWebsites = new Set(deactivatedPref.deactivatedWebsites);
-      deactivatedPref.deactivatedWebsites.delete(website);
-      newDeactivatedPref = deactivatedPref; // mutated
-
-      return Object.assign(
-                {}, state,
-        { 
-          websites: Object.assign(
-                        {}, state.websites,
-            {
-              deactivated: newDeactivatedPref
-            }
-                    )
-        }
-            );
-    }
-
     case UPDATE_DRAFT_RECOMMENDATIONS: {
       const { draftRecommendations } = action;
 

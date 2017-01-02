@@ -55,15 +55,6 @@ export default function (portCommunication) {
       return action;
     },
 
-    reactivateWebsite(s){
-      const action = {
-        type: REACTIVATE_WEBSITE,
-        website: s
-      };
-      portCommunication.sendBackgroundReduxAction(action);
-      return action;
-    },
-
     checkOutResource(resource) {
       const action = {
         type: CHECKOUT_RECO_RESOURCE,

@@ -2,13 +2,11 @@ import React, { Component, PropTypes } from 'react';
 
 import { 
   PREFERENCE_SCREEN_PANEL_ABOUT,
-  PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES,
   PREFERENCE_SCREEN_PANEL_CRITERIA,
   PREFERENCE_SCREEN_PANEL_SOURCES,
 } from '../constants/ui';
 
 import PreferenceAboutPanel from './PreferenceAboutPanel';
-import PreferenceDeactivatedPanel from './PreferenceDeactivatedPanel';
 import PreferenceCriteriaPanel from './PreferenceCriteriaPanel';
 import PreferenceSourcesPanel from './PreferenceSourcesPanel';
 
@@ -16,8 +14,6 @@ function mainClassName(screenPanel) {
   switch (screenPanel) {
     case PREFERENCE_SCREEN_PANEL_ABOUT:
       return 'preference-about';
-    case PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES:
-      return 'preference-deactivated-websites';
     case PREFERENCE_SCREEN_PANEL_CRITERIA:
       return 'preference-criteria';
     case PREFERENCE_SCREEN_PANEL_SOURCES:
@@ -29,8 +25,7 @@ function mainClassName(screenPanel) {
 
 export default function (props) {
   const {
-    preferenceScreenPanel, deactivatedWebsites, 
-    onReactivateWebsite, openPrefScreen, closePrefScreen,
+    preferenceScreenPanel, openPrefScreen,
     imagesUrl, onInstalledDetails, 
     criteria, selectCriterion, unselectCriterion,
     editors, excludeEditor, includeEditor
@@ -42,13 +37,6 @@ export default function (props) {
     case PREFERENCE_SCREEN_PANEL_ABOUT:
       mainContent = (<PreferenceAboutPanel
         onInstalledDetails={onInstalledDetails}
-      />);
-      break;
-    case PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES:
-      mainContent = (<PreferenceDeactivatedPanel
-        deactivatedWebsites={deactivatedWebsites}
-        onReactivateWebsite={onReactivateWebsite}
-        imagesUrl={imagesUrl}
       />);
       break;
     case PREFERENCE_SCREEN_PANEL_CRITERIA:
@@ -87,16 +75,6 @@ export default function (props) {
               (preferenceScreenPanel === PREFERENCE_SCREEN_PANEL_ABOUT ? ' active' : '')}>
             <img role="presentation" className="lmem-controls-picto" src={imagesUrl + 'info.svg'} />
             <span>À propos</span>
-          </button>
-        </li>
-        <li className="preference-menu-deactivated">
-          <button
-            data-panel={PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES}
-            onClick={changePanel}
-            className={'not-button with-image' +
-              (preferenceScreenPanel === PREFERENCE_SCREEN_PANEL_DEACTIVATED_WEBSITES ? ' active' : '')}>
-            <img role="presentation" className="lmem-controls-picto" src={imagesUrl + 'power.svg'} />
-            <span>Sites désactivés</span>
           </button>
         </li>
         <li className="preference-menu-criteria">

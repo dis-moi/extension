@@ -80,12 +80,6 @@ configureStore(store => {
         );
       },
       getMatchingRecommendations,
-      getDeactivatedWebsites: () => {
-        const state = store.getState();
-        const prefs = state.websites || {};
-        const deactivated = prefs.deactivated || {};
-        return deactivated.deactivatedWebsites || new Set();
-      },
       getOnInstalledDetails: () => {
         const state = store.getState();
         return state.onInstalledDetails || {};
