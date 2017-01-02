@@ -15,8 +15,6 @@
     max-height: 3 * $block-size;
     min-width: 0; // fix for ellipsis of children elements
 
-    border: solid $border-width $background-light-color;
-    margin: -$border-width;
     line-height: rem-size(20);
 
     position: relative;
@@ -27,10 +25,6 @@
 
     .reco-summary {
         min-width: 0; // fix for ellipsis of children elements
-    }
-
-    &.active {
-        border-color: $action-color;
     }
 
     &.with-indicator {

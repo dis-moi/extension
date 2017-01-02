@@ -10,40 +10,21 @@ import RecoDescription from './RecoDescription';
 import FeedbackButtons from '../containers/FeedbackButtons';
 import TypeIndicator from './TypeIndicator';
 
-class RecoMain extends Component {
+export default function RecoMain({
+  recommendations, imagesUrl,
+  onCheckOutResource, onCheckOutAlternative, onCheckOutEditor,
+}) {
+  // For now, this component is only capable of handling a single recommendation.
+  // handling of several is TBD
+  const recommendation = recommendations[0];
+  const {visibility} = recommendation;
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      recoHover: false,
-    };
-  }
+  const mainClass = visibility === 'private' ? 'preview' : undefined;
 
-  onMouseOver() {
-    this.setState({ recoHover: true });
-  }
+  const typeOfRecommendation = findType(recommendation.criteria);
 
-  onMouseOut() {
-    this.setState({ recoHover: false });
-  }
-
-  render() {
-    const {
-      recommendations, imagesUrl,
-      onCheckOutResource, onCheckOutAlternative, onCheckOutEditor,
-    } = this.props;
-    const { recoHover } = this.state;
-
-    // For now, this component is only capable of handling a single recommendation.
-    // handling of several is TBD
-    const recommendation = recommendations[0];
-    const {visibility} = recommendation;
-
-    const mainClass = visibility === 'private' ? 'preview' : undefined;
-
-    const typeOfRecommendation = findType(recommendation.criteria);
-
-    return (<main className={mainClass}>
+  return (
+    <main className={mainClass}>
       <header className="sideframe lmem-header">
         <Editor
           editor={recommendation.resource.editor}
@@ -57,12 +38,11 @@ class RecoMain extends Component {
 
       <div
         className={classNames(
-        'recommendation',
-        'mainframe',
-        'highlight',
-        {'with-indicator': typeOfRecommendation},
-        {active: recoHover}
-      )}>
+          'recommendation',
+          'mainframe',
+          'highlight',
+          {'with-indicator': typeOfRecommendation}
+        )}>
         {
           typeOfRecommendation ?
             <TypeIndicator recommendationType={ typeOfRecommendation } imagesUrl={ imagesUrl } /> :
@@ -72,11 +52,7 @@ class RecoMain extends Component {
         <div className="reco-summary">
           <header className="summary-header reco-summary-header">
             <h3 className="reco-summary-title">
-              <a
-                target="_blank"
-                href={recommendation.resource.url}
-                onMouseOver={e => this.onMouseOver()}
-                onMouseOut={e => this.onMouseOut()}>
+              <a target="_blank" href={recommendation.resource.url}>
                 {recommendation.title}
               </a>
             </h3>
@@ -85,11 +61,7 @@ class RecoMain extends Component {
           </header>
           <div className="reco-summary-content">
             <div className="reco-summary-link-referral">
-              <a
-                target="_blank"
-                href={recommendation.resource.url}
-                onMouseOver={e => this.onMouseOver()}
-                onMouseOut={e => this.onMouseOut()}>
+              <a target="_blank" href={recommendation.resource.url}>
                 {recommendation.resource.url}
               </a>
             </div>
@@ -101,8 +73,6 @@ class RecoMain extends Component {
             onClick={(e) => onCheckOutResource(recommendation.resource)}
             href={recommendation.resource.url}
             target="_blank"
-            onMouseOver={e => this.onMouseOver()}
-            onMouseOut={e => this.onMouseOut()}
             className="button summary-link-checkout with-image">
             <img role="presentation" src={imagesUrl + 'read.svg'} />
             <span className="button-label">
@@ -130,8 +100,8 @@ class RecoMain extends Component {
       <footer className="reco-feedback">
         <FeedbackButtons recoId={ recommendation.id } isApproved={ recommendation.isApproved } />
       </footer>
-    </main>);
-  }
+    </main>
+  );
 }
 
 RecoMain.propTypes = {
@@ -157,8 +127,3 @@ RecoMain.propTypes = {
     })),
   })).isRequired,
 };
-
-export default RecoMain;
-
-
-

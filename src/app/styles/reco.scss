@@ -32,7 +32,7 @@
     top: 0;
     bottom: 0;
     width: $block-size;
-    box-shadow: 0 0 10px -5px;
+    box-shadow: 0 0 10px -4px;
 
     img {
         width: 100%;
@@ -41,15 +41,15 @@
 }
 
 .reco-type-indicator-go {
-    background-color: $green;
+    background: radial-gradient(ellipse at top left, $green, transparentize($green, .5) 150%);
 }
 
 .reco-type-indicator-nogo {
-    background-color: $orange;
+    background: radial-gradient(ellipse at top left, $orange, transparentize($orange, .5) 150%);
 }
 
 .reco-type-indicator-warning {
-    background-color: $red;
+    background: radial-gradient(ellipse at top left, $red, transparentize($red, .5) 150%);
 }
 
 //
@@ -183,8 +183,6 @@ a.reco-summary-description {
         margin-top: ($double-line-height - $block-size / 3) / 2;
         margin-bottom: ($double-line-height - $block-size / 3) / 2;
         display: flex;
-
-        opacity: .7;
 
         &:hover,
         &:focus {
