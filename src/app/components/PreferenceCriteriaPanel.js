@@ -7,7 +7,7 @@ function PreferenceCriteriaPanel(props) {
     .sort((criterionA, criterionB) => {
       const labelA = criterionA.get('label').toUpperCase();
       const labelB = criterionB.get('label').toUpperCase();
-      return labelA.localeCompare(labelB);
+      return -labelA.localeCompare(labelB);
     })
     .map(criterion => {
       const slug = criterion.get('slug');

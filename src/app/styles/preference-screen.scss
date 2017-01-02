@@ -94,7 +94,7 @@
     }
 
     aside {
-        flex: 1 2 50%;
+        flex: 2 2 50%;
         color: $font-quiet-color;
 
         h1,
@@ -109,7 +109,7 @@
     }
 
     ul {
-        flex: 1 1 auto;
+        flex: 1 5 auto;
     }
     li {
         line-height: $double-line-height;
@@ -119,16 +119,14 @@
 
 .preference-sources,
 .preference-criteria {
-  
-    @media (min-width: $media-query-threshold-wide) {
-        ul {
-            columns: 15em;
-        }
-    }
-    
     li {
         margin-right: $margin-size;
     }
+}
+
+.preference-criteria li {
+    display: inline-block;
+    width: $block-size * 3;
 }
 
 .editor-label,

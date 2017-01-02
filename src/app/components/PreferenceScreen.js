@@ -94,7 +94,7 @@ export default function (props) {
             className={'not-button with-image' +
             (preferenceScreenPanel === PREFERENCE_SCREEN_PANEL_SOURCES ? ' active' : '')}>
             <img role="presentation" className="lmem-controls-picto" src={imagesUrl + 'close.svg'} />
-            <span>Sources de recommandation</span>
+            <span>Sources d’information</span>
           </button>
         </li>
       </ul>
