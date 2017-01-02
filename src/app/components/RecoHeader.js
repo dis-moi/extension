@@ -12,14 +12,37 @@ class RecoHeader extends Component {
 
   constructor(props) {
     super(props);
+
+    this.handleDeactivateButtonClick = this.handleDeactivateButtonClick.bind(this);
+    this.handleReduceButtonClick = this.handleReduceButtonClick.bind(this);
+    this.handleOpenPrefButtonClick = this.handleOpenPrefButtonClick.bind(this);
+  }
+
+  handleDeactivateButtonClick() {
+    const { onDeactivate } = this.props;
+    onDeactivate({
+      where: DEACTIVATE_EVERYWHERE,
+      duration: SESSION_DEACTIVATE_DELAY,
+    });
+  }
+
+  handleReduceButtonClick() {
+    const { reduced, onExtend, onReduce } = this.props;
+    if (reduced) onExtend();
+    else onReduce();
+  }
+
+  handleOpenPrefButtonClick() {
+    const { reduced, onExtend, openPrefScreen } = this.props;
+    if (reduced) onExtend();
+    openPrefScreen(PREFERENCE_SCREEN_PANEL_ABOUT);
   }
 
   render() {
-    const { props } = this;
     const {
       imagesUrl, reduced, preferenceScreenPanel,
-      onExtend, onReduce, onDeactivate, closePrefScreen, openPrefScreen
-    } = props;
+       closePrefScreen
+    } = this.props;
 
     const reduceButtonText = reduced ? 'Agrandir' : 'Réduire';
     const buttonButtonClassName = [
@@ -30,12 +53,6 @@ class RecoHeader extends Component {
       'tooltip',
       reduced ? 'tooltip-left' : 'tooltip-bottom-right'
     ].join(' ');
-
-    const deactivateButtonOnClick =
-      e => onDeactivate({
-        where: DEACTIVATE_EVERYWHERE,
-        duration: SESSION_DEACTIVATE_DELAY
-      });
 
     const headerButtons = preferenceScreenPanel ?
       (<li>
@@ -57,12 +74,7 @@ class RecoHeader extends Component {
         <div className="button-directive">
           <button
             className="button button-compact with-tooltip"
-            onClick={e => {
-              if(reduced){
-                onExtend();
-              }
-              openPrefScreen(PREFERENCE_SCREEN_PANEL_ABOUT);
-            }}>
+            onClick={ this.handleOpenPrefButtonClick }>
             <img
               role="presentation"
               src={ imagesUrl + 'settings.svg' }
@@ -77,13 +89,13 @@ class RecoHeader extends Component {
         <div className="button-directive">
           <button
             className="button button-compact with-tooltip"
-            onClick={deactivateButtonOnClick}>
+            onClick={ this.handleDeactivateButtonClick }>
             <img
               role="presentation"
               src={ imagesUrl + 'power.svg' }
               className="lmem-controls-picto" />
             <span className={tooltipButtonClassName}><span>
-              Désactiver une heure
+              { 'Désactiver une heure' }
             </span></span>
           </button>
         </div>
@@ -91,7 +103,7 @@ class RecoHeader extends Component {
       (<li key="reduce-extend-button">
         <button
           className="reduce button-compact with-image with-tooltip"
-          onClick={this.onClick.bind(this) }>
+          onClick={ this.handleReduceButtonClick }>
           <img
             role="presentation"
             src={ imagesUrl + 'arrow.svg' }
@@ -104,14 +116,12 @@ class RecoHeader extends Component {
         </button>
       </li>)];
 
-
-
     const extendReduceButton = preferenceScreenPanel ? undefined :
     (<div className="button-wrapper">
       <div className="button-directive">
         <button
           className="button button-compact with-image with-tooltip"
-          onClick={this.onClick.bind(this) }>
+          onClick={ this.handleReduceButtonClick }>
           <img
             role="presentation"
             src={ imagesUrl + 'arrow.svg' }
@@ -128,12 +138,11 @@ class RecoHeader extends Component {
       HEADER_CONTENT[preferenceScreenPanel](imagesUrl) :
       HEADER_CONTENT.default;
 
-
     return (
       <header>
         <button
           className="with-tooltip logo"
-          onClick={this.onClick.bind(this) }>
+          onClick={ this.handleReduceButtonClick }>
           <img width="45" src={ imagesUrl + 'logo-lmem.svg' } alt="" />
           <span className="tooltip tooltip-right">
             { reduceButtonText + ' le panneau comparatif' }
@@ -154,10 +163,6 @@ class RecoHeader extends Component {
         
       </header>
     );
-  }
-
-  onClick() {
-    return this.props.reduced ? this.props.onExtend() : this.props.onReduce();
   }
 
 }
