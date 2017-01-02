@@ -77,8 +77,7 @@
 }
 
 .preference-criteria,
-.preference-sources,
-.preference-deactivated-websites {
+.preference-sources {
     p {
         margin-top: $half-adjusted-margin;
     }
@@ -115,90 +114,6 @@
     li {
         line-height: $double-line-height;
         margin-bottom: $half-adjusted-margin;
-    }
-}
-
-.preference-deactivated-websites {
-    ul {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    li {
-        flex: 0 0 auto;
-        display: flex;
-
-        &.reactivated {
-            > button,
-            > .deactivated-website-title {
-                opacity: .5;
-            }
-
-            > button {
-                background: none;
-
-                width: $block-size / 2;
-                margin-left: $block-size / 2;
-                margin-right: $block-size / 2;
-                padding: 0;
-
-                border-radius: 100%;
-
-                > img {
-                    width: $double-line-height;
-                    opacity: .8;
-                }
-            }
-
-            &:hover {
-                > button,
-                > span { opacity: initial }
-            }
-        }
-
-        > button {
-            align-self: center;
-            height: $double-line-height;
-            width: $block-size * 3 / 2;
-
-            font-size: $simple-line-height;
-            line-height: $simple-line-height;
-            font-weight: inherit;
-
-            opacity: 0;
-            transition: opacity, border-radius .2s ease-out 50ms;
-        }
-
-        &:hover > button,
-        > button:focus,
-        > button:active {
-            opacity: initial;
-        }
-
-        transition: background-color .2s ease-out;
-        &:hover {
-            background-color: $background-light-color;
-
-            img {
-                filter: initial;
-                -webkit-filter: initial;
-                opacity: initial;
-            }
-        }
-    }
-}
-
-.deactivated-website-title {
-    font-size: $midway-font-size;
-    margin: 0 $margin-size 0 $half-adjusted-margin;
-
-    img {
-        margin-right: $half-adjusted-margin;
-        vertical-align: middle;
-
-        filter: grayscale(100%);
-        -webkit-filter: grayscale(100%);
-        opacity: .7;
     }
 }
 
