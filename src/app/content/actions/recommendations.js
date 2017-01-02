@@ -2,17 +2,17 @@ import {
   RECOMMENDATION_FOUND,
   DISMISS_RECO,
   APPROVE_RECO,
-  REPORT_RECO
+  UNAPPROVE_RECO,
+  REPORT_RECO,
 } from '../../constants/ActionTypes';
 
 export default function (portCommunication) {
   return {
     recommendationFound(recommendations){
-      const action = {
+      return {
         type: RECOMMENDATION_FOUND,
         recommendations
       };
-      return action;
     },
     dismissReco(id){
       const action = {
@@ -25,6 +25,14 @@ export default function (portCommunication) {
     approveReco(id){
       const action = {
         type: APPROVE_RECO,
+        id
+      };
+      portCommunication.sendBackgroundReduxAction(action);
+      return action;
+    },
+    unapproveReco(id){
+      const action = {
+        type: UNAPPROVE_RECO,
         id
       };
       portCommunication.sendBackgroundReduxAction(action);

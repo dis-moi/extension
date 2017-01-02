@@ -93,6 +93,7 @@ configureStore(store => {
       getCriteria: () => store.getState().criteria || new Map(),
       getEditors: () => store.getState().editors || new Map(),
       getDismissed: () => store.getState().dismissedRecos || new Set(),
+      getApproved: () => store.getState().approvedRecos || new Set(),
       dispatch: store.dispatch,
       contentCode,
       refreshMatchingContexts: () => {

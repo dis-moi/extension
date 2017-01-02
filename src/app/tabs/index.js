@@ -6,6 +6,7 @@ import {
   INCLUDE_EDITOR,
   DISMISS_RECO,
   APPROVE_RECO,
+  UNAPPROVE_RECO,
   REPORT_RECO
 } from '../constants/ActionTypes';
 
@@ -23,6 +24,9 @@ export function makeRecoFeedback(type, url) {
       break;
     case APPROVE_RECO:
       feedback = 'approve';
+      break;
+    case UNAPPROVE_RECO:
+      feedback = 'unapprove';
       break;
     case REPORT_RECO:
       feedback = 'report';
@@ -44,7 +48,7 @@ export function makeTabs(
   tabs,
   {
     findTriggeredContexts, refreshMatchingContexts, getMatchingRecommendations, getDeactivatedWebsites, dispatch,
-    contentCode, contentStyle, getOnInstalledDetails, getCriteria, getEditors, getDismissed
+    contentCode, contentStyle, getOnInstalledDetails, getCriteria, getEditors, getDismissed, getApproved,
   }
 ) {
 
@@ -81,6 +85,7 @@ export function makeTabs(
               // send feedback
               case DISMISS_RECO:
               case APPROVE_RECO:
+              case UNAPPROVE_RECO:
               case REPORT_RECO:
                 const reqUrl = LMEM_BACKEND_ORIGIN + '/api/v2/recommendations/' + msg.action.id + '/feedbacks';
                 const tabUrlP = new Promise(res => chrome.tabs.getSelected(null, tab => res(tab.url)));
@@ -139,13 +144,21 @@ export function makeTabs(
 
 
   function sendRecommendationsToTab(tabId, recos) {
-    console.log('before execute', tabId);
+    // console.log('before execute', tabId);
 
     const tabPortP = matchingTabIdToPortP.get(tabId) || createContentScriptAndPort(tabId);
+
+    const approvedRecos = getApproved();
+    const recommendations = recos.map(reco => {
+      return Object.assign(reco, {
+        isApproved: approvedRecos.has(reco.id),
+      });
+    });
+
     tabPortP
       .then(tabPort => tabPort.postMessage({
         type: 'recommendations',
-        recommendations: recos,
+        recommendations,
       }));
   }
 

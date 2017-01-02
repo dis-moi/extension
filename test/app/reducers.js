@@ -22,7 +22,7 @@ const expect = chai.expect;
 
 const { deactivate } = prepareUIEvents(neverThrowingObject());
 const { excludeEditor, includeEditor } = prepareFilterEvents(neverThrowingObject());
-const { dismissReco, approveReco, reportReco } = prepareRecoEvents(neverThrowingObject());
+const { dismissReco, approveReco, unapproveReco, reportReco } = prepareRecoEvents(neverThrowingObject());
 
 
 describe('background reducer', function () {
@@ -143,9 +143,20 @@ describe('background reducer', function () {
 
     const nextState = reducer(
       { 'approvedRecos': new ImmutableSet() },
-      action );
+      action
+    );
 
     expect(nextState.approvedRecos.size).to.equal(1);
+  });
+
+  it('unapprove reco', () => {
+    const action = unapproveReco(42);
+    const approvedRecos = new ImmutableSet([42]);
+
+    expect(approvedRecos.size).to.equal(1);
+
+    const nextState = reducer({ approvedRecos }, action);
+    expect(nextState.approvedRecos.size).to.equal(0);
   });
 
   it('report reco', () => {

@@ -9,6 +9,7 @@ import {
   INCLUDE_EDITOR,
   DISMISS_RECO,
   APPROVE_RECO,
+  UNAPPROVE_RECO,
   REPORT_RECO,
   DEACTIVATE,
   REACTIVATE_WEBSITE,
@@ -100,7 +101,14 @@ export default function (state = {}, action) {
       const { id } = action;
       const approvedRecos = state.approvedRecos;
 
-      return Object.assign({}, state, {approvedRecos: approvedRecos.add(id)});
+      return Object.assign({}, state, { approvedRecos: approvedRecos.add(id) });
+    }
+
+    case UNAPPROVE_RECO: {
+      const { id } = action;
+      const approvedRecos = state.approvedRecos;
+
+      return Object.assign({}, state, { approvedRecos: approvedRecos.delete(id) });
     }
 
     case DEACTIVATE: {

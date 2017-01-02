@@ -19,7 +19,6 @@ class Recommendations extends Component {
       recommendations, imagesUrl, reduced, preferenceScreenPanel,
       onExtend, onReduce, onDeactivate, closePrefScreen, openPrefScreen,
       onCheckOutResource, onCheckOutAlternative, onCheckOutEditor,
-      dismissReco, approveReco, reportReco
     } = props;
 
     const body = preferenceScreenPanel ?
@@ -30,9 +29,6 @@ class Recommendations extends Component {
         onCheckOutResource={onCheckOutResource}
         onCheckOutAlternative={onCheckOutAlternative}
         onCheckOutEditor={onCheckOutEditor}
-        dismissReco={dismissReco}
-        approveReco={approveReco}
-        reportReco={reportReco}
       />;
       
     return recommendations ? (
@@ -63,9 +59,6 @@ Recommendations.propTypes = {
   onCheckOutResource: PropTypes.func.isRequired,
   onCheckOutAlternative: PropTypes.func.isRequired,
   onCheckOutEditor: PropTypes.func.isRequired,
-  dismissReco: PropTypes.func.isRequired,
-  approveReco: PropTypes.func.isRequired,
-  reportReco: PropTypes.func.isRequired
 };
 
 export default Recommendations;

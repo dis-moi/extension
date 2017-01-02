@@ -150,6 +150,8 @@ a.reco-summary-description {
     button {
         align-items: center;
         line-height: $double-line-height;
+        margin-top: ($double-line-height - $block-size / 3) / 2;
+        margin-bottom: ($double-line-height - $block-size / 3) / 2;
         display: flex;
 
         opacity: .7;
@@ -162,7 +164,7 @@ a.reco-summary-description {
         img {
             width: $block-size / 3;
             margin-left: 0;
-            margin-right: .5ex;
+            //margin-right: .5ex;
         }
     }
 }
