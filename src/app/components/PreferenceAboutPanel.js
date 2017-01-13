@@ -85,14 +85,14 @@ export default class PreferenceAboutPanel extends Component {
         <aside>
           <p>Le Même en Mieux est un service indépendant des sites Web consultés.</p>
           <ul>
-            <li><a target="_blank" href="http://support.lmem.net">Aide</a></li>
-            <li><a target="_blank" href="http://www.lmem.net/contact.html">Contact</a></li>
+            <li><a target="_blank" href="https://choisir.lmem.net/questions-frequentes-aide/">Aide</a></li>
+            <li><a target="_blank" href="https://www.lmem.net/contact.html">Contact</a></li>
             <li><a
               target="_blank"
-              href="http://help.lmem.net/knowledge_base/topics/comment-utilisez-vous-mes-donnees-personnelles?from_search=true">
+              href="https://choisir.lmem.net/charte-de-respect-de-la-vie-privee-5-regles-dor/">
               Vie privée
             </a></li>
-            <li><a target="_blank" href="http://www.lmem.net/cgu.html">CGU</a></li>
+            <li><a target="_blank" href="https://www.lmem.net/cgu.html">CGU</a></li>
             <li>v{EXTENSION_VERSION}</li>
           </ul>
         </aside>

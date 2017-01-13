@@ -36,10 +36,7 @@ function PreferenceSourcesPanel(props) {
       <aside>
         <h1>Aide</h1>
         <p>
-          Ci-contre, voici l’ensemble des sources de recommandation auxquelles votre assistant peut souscrire.
-        </p>
-        <p>
-          Sélectionnez-les ou bloquez-les à votre guise, pour choisir les sources en qui vous avez confiance.
+          Recevez les recommandations basées sur les sources que vous avez sélectionnées ci-contre.
         </p>
       </aside>
     </div>
