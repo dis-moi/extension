@@ -58,14 +58,14 @@ export default class FeedbackButtons extends Component {
 
         <div className="separation" role="presentation" />
 
-        <button
+        {/* <button
           className="button-hollow with-tooltip with-image"
           onClick={ e => reportReco(recoId) }>
           <img src={ imagesUrl + 'report.svg' } role="presentation" />
           <span className="tooltip tooltip-left">
             Signaler (erreur, propos haineux ou racistes...)
           </span>
-        </button>
+        </button>*/}
       </div>
     );
   }
