@@ -14,8 +14,12 @@ export default Object.assign(
         ],
         'script-src': [
           '\'self\'',
+          'https://ui.lmem.net',
           'https://heapanalytics.com',
           'https://cdn.heapanalytics.com'
+        ],
+        'object-src': [
+          '\'self\''
         ],
         'img-src': [
           '\'self\'',
