@@ -13,21 +13,3 @@ Root.propTypes = {
 };
 
 export default Root;
-
-/*
-export default class Root extends Component {
-  static propTypes = {
-    store: PropTypes.object.isRequired,
-    tabId: PropTypes.number.isRequired,
-  };
-
-  render() {
-    const { store, tabId } = this.props;
-    return (
-      <Provider store={store} tabId={tabId}>
-        <App />
-      </Provider>
-    );
-  }
-}
-*/

@@ -1,3 +1,4 @@
+import { Map as ImmutableMap, Set as ImmutableSet } from 'immutable';
 
 /**
  * When the redux store starts empty on first use (no store in local/chrome storage)
@@ -6,6 +7,10 @@
  */
 export default function (){
   return {
-    
+    criteria: new ImmutableMap(),
+    editors: new ImmutableMap(),
+    matchingContexts: [],
+    dismissedRecos: new ImmutableSet(),
+    approvedRecos: new ImmutableSet()
   };
 }

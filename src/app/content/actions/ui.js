@@ -2,11 +2,12 @@ import {
   REDUCE_RECOMMENDATION_IFRAME,
   EXTEND_RECOMMENDATION_IFRAME,
   DEACTIVATE,
+  UNINSTALL,
   OPEN_PREFERENCE_PANEL,
   CLOSE_PREFERENCE_PANEL,
-  REACTIVATE_WEBSITE,
   CHECKOUT_RECO_RESOURCE,
   CHECKOUT_RECO_ALTERNATIVE,
+  CHECKOUT_RECO_EDITOR,
 } from '../../constants/ActionTypes';
 
 export default function (portCommunication) {
@@ -54,15 +55,6 @@ export default function (portCommunication) {
       return action;
     },
 
-    reactivateWebsite(s){
-      const action = {
-        type: REACTIVATE_WEBSITE,
-        website: s
-      };
-      portCommunication.sendBackgroundReduxAction(action);
-      return action;
-    },
-
     checkOutResource(resource) {
       const action = {
         type: CHECKOUT_RECO_RESOURCE,
@@ -76,6 +68,24 @@ export default function (portCommunication) {
       const action = {
         type: CHECKOUT_RECO_ALTERNATIVE,
         alternative,
+      };
+      portCommunication.sendBackgroundReduxAction(action);
+      return action;
+    },
+
+    checkOutEditor(editor) {
+      const action = {
+        type: CHECKOUT_RECO_EDITOR,
+        editor,
+      };
+      portCommunication.sendBackgroundReduxAction(action);
+      return action;
+    },
+
+    uninstall() {
+      const action = {
+        type: UNINSTALL,
+        datetime: new Date(),
       };
       portCommunication.sendBackgroundReduxAction(action);
       return action;

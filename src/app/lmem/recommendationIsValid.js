@@ -16,8 +16,8 @@ const reco = {
   },
   // criteria: [
   //   {
-  //     label: 'health',
-  //     description: 'Santé',
+  //     slug: 'health',
+  //     label: 'Santé',
   //   },
   // ],
   resource: {
@@ -25,6 +25,7 @@ const reco = {
     url: 'http://choisir.lmem.net/samsung-galaxy-s6',
     label: 'Lire le comparatif',
     editor: {
+      id: 6
       label: 'Le Gorafi',
       url: 'http://legorafi.fr',
     },
@@ -66,7 +67,7 @@ export default function (reco){
     (!criteria || (Array.isArray(criteria) && criteria.every(criterion => (
       Object(criterion) === criterion &&
       typeof criterion.label === 'string' &&
-      typeof criterion.description === 'string'
+      typeof criterion.slug === 'string'
     )))) &&
 
     (!alternatives || (Array.isArray(alternatives) && alternatives.every(alternative => (

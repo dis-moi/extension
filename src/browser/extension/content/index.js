@@ -6,10 +6,24 @@ import Root from '../../../app/containers/Root';
 import { createStore } from 'redux';
 
 import rootReducer from '../../../app/content/reducers';
-import recommendationFound from '../../../app/content/actions/recommendations';
 
-import { updateDeactivatedWebsites, updateInstalledDetails } from '../../../app/content/actions/preferences';
+import prepareRecoActions from '../../../app/content/actions/recommendations';
+import prepareFilterActions from '../../../app/content/actions/filters';
+
 import portCommunication from '../../../app/content/portCommunication';
+
+const {
+  updateDeactivatedWebsites,
+  updateInstalledDetails,
+  updateCriteria,
+  updateEditors
+} = prepareFilterActions(portCommunication);
+
+const {
+  recommendationFound,
+  dismissReco,
+  approveReco
+} = prepareRecoActions(portCommunication);
 
 const IFRAME_EXTENDED_HEIGHT = '255px';
 const IFRAME_REDUCED_HEIGHT = '60px';
@@ -17,7 +31,7 @@ const IFRAME_REDUCED_HEIGHT = '60px';
 const EXTENSION_STATE_SHOW_LOADING = 'EXTENSION_STATE_SHOW_LOADING';
 const EXTENSION_STATE_SHOW_RECOMMENDATION = 'EXTENSION_STATE_SHOW_RECOMMENDATION';
 
-const AFTER_DOMCOMPLETE_DELAY = 5000;
+const AFTER_DOMCOMPLETE_DELAY = 2000;
 const AFTER_LOADEND_DELAY = 1000;
 const LOADING_SCREEN_DELAY = 4000;
 
@@ -29,6 +43,10 @@ function createExtensionIframe(reduced, style, onLoad){
   iframe.id = 'lmemFrame';
   iframe.width = '100%';
   iframe.height = reduced ? IFRAME_REDUCED_HEIGHT : IFRAME_EXTENDED_HEIGHT;
+  iframe.style.maxWidth = 'initial';
+  iframe.style.minWidth = 'initial';
+  iframe.style.minHeight = 'initial';
+  iframe.style.maxHeight = 'initial';
   iframe.style.position = 'fixed';
   iframe.style.bottom = 0;
   iframe.style.left = 0;
@@ -117,8 +135,9 @@ const store = createStore(
     reduced: true,
     preferenceScreenPanel: undefined, // preference screen close
     recommendations: undefined,
-    deactivatedWebsites: new ImmutableSet(),
-    onInstalledDetails: new ImmutableMap()
+    onInstalledDetails: new ImmutableMap(),
+    criteria: new ImmutableMap(),
+    editors: new ImmutableMap(),
   })()
 );
 
@@ -130,16 +149,16 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
   portCommunication.port = portToBackground;
 
   portToBackground.onMessage.addListener(msg => {
-    // console.log('message from background', msg);
     const { type } = msg;
-
-
+    
     switch (type) {
       case 'init':
-        const { style, deactivatedWebsites, onInstalledDetails } = msg;
+        const { style, onInstalledDetails,
+          criteria, editors } = msg;
 
-        store.dispatch(updateDeactivatedWebsites(new ImmutableSet(deactivatedWebsites)));
         store.dispatch(updateInstalledDetails(immutableFromJS(onInstalledDetails)));
+        store.dispatch(updateCriteria(immutableFromJS(criteria)));
+        store.dispatch(updateEditors(immutableFromJS(editors)));
 
         // Let the page load a bit before showing the iframe in loading mode
         CanShowIframeLoadingP
@@ -181,7 +200,7 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
         // showing the iframe in loading mode
         CanShowRecommendationIfAvailableP
         .then(() => {
-          store.dispatch(recommendationFound(portCommunication)(recommendations));
+          store.dispatch(recommendationFound(recommendations));
         });
 
         break;

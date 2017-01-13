@@ -1,6 +1,7 @@
 import chai from 'chai';
+import { Map as ImmutableMap } from 'immutable';
 
-import {serialize, deserialize} from '../../../src/app/lmem/reduxPersistTransform';
+import { serialize, deserialize } from '../../../src/app/lmem/reduxPersistTransform';
 
 const expect = chai.expect;
 
@@ -29,23 +30,27 @@ const stateWithOneOffer = {
 };
 
 const stateWithAlwaysDeactivateWebsitePref = {
-  preferences: {
+  websites: {
     deactivated: {
       deactivatedWebsites : new Set([
         'www.samsung.com'
       ])
     }
   }
-}
+};
 
 
 const stateWithDeactivateUntilPref = {
-  preferences: {
+  websites: {
     deactivated: {
       deactivatedEverywhereUntil : 1462701600000
     }
   }
-}
+};
+
+const critOrEditPartOfState = new ImmutableMap({
+    id: new ImmutableMap({ id: 'myID', label: 'myLabel' })
+});
 
 
 describe('marshmalling', function () {
@@ -53,34 +58,34 @@ describe('marshmalling', function () {
   describe('serialize', () => {
     it('should be an empty JSON object for an empty object', () => {
       expect( serialize({}) ).to.eql('{}');
-    })
+    });
     
     it('should serialize an offer', () => {
       expect( serialize(stateWithOneOffer) )
       .to.eql( JSON.stringify(stateWithOneOffer) )
-    })
+    });
     
     it('should serialize state with deactivatedWebsites preference', () => {
       expect( serialize(stateWithAlwaysDeactivateWebsitePref) )
-      .to.eql( '{"preferences":{"deactivated":{"deactivatedWebsites":["www.samsung.com"]}}}' )
-    })
+      .to.eql( '{"websites":{"deactivated":{"deactivatedWebsites":["www.samsung.com"]}}}' )
+    });
     
     it('should serialize state with deactivatedEverywhereUntil preference', () => {
       expect( serialize(stateWithDeactivateUntilPref) )
-      .to.eql( '{"preferences":{"deactivated":{"deactivatedEverywhereUntil":1462701600000}}}' )
-    })
+      .to.eql( '{"websites":{"deactivated":{"deactivatedEverywhereUntil":1462701600000}}}' )
+    });
     
-  })
+  });
 
   describe('deserialize', () => {
     it('should be an empty object for an empty JSON object', () => {
       expect( deserialize(serialize({})) ).to.deep.equal( {} );
-    })
+    });
     
     it('should deserialize an offer', () => {
       expect( deserialize(serialize(stateWithOneOffer)) )
       .to.deep.equal( stateWithOneOffer )
-    })
+    });
     
     it('should deserialize state with deactivatedWebsites preference', () => {
       const bfState = deserialize(serialize(stateWithAlwaysDeactivateWebsitePref));
@@ -88,21 +93,29 @@ describe('marshmalling', function () {
       expect( bfState )
       .to.deep.equal( stateWithAlwaysDeactivateWebsitePref )
 
-      expect( Object.prototype.toString.call(bfState.preferences.deactivated.deactivatedWebsites) ).to.equal('[object Set]')
+      expect( Object.prototype.toString.call(bfState.websites.deactivated.deactivatedWebsites) ).to.equal('[object Set]')
 
       // chai does not support ES6 Sets, so converting to array for comparison
       // https://github.com/Automattic/expect.js/pull/144
-      expect( [...bfState.preferences.deactivated.deactivatedWebsites] )
-      .to.eql( [...stateWithAlwaysDeactivateWebsitePref.preferences.deactivated.deactivatedWebsites] )
-
-      
-    })
+      expect( [...bfState.websites.deactivated.deactivatedWebsites] )
+      .to.eql( [...stateWithAlwaysDeactivateWebsitePref.websites.deactivated.deactivatedWebsites] )
+    });
     
     it('should deserialize state with deactivatedEverywhereUntil preference', () => {
       expect( deserialize(serialize(stateWithDeactivateUntilPref)) )
       .to.deep.equal( stateWithDeactivateUntilPref )
-    })
+    });
+
+    it('should deserialize state with criteria', () => {
+      expect( deserialize(serialize(critOrEditPartOfState), 'criteria') )
+      .to.deep.equal( critOrEditPartOfState )
+    });
+
+    it('should deserialize state with editors', () => {
+      expect( deserialize(serialize(critOrEditPartOfState), 'editors') )
+      .to.deep.equal( critOrEditPartOfState )
+    });
     
-  })
+  });
 
 });

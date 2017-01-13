@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Recommendations from '../components/Recommendations';
-import uiActions from '../content/actions/ui.js';
+import prepareUIActions from '../content/actions/ui.js';
 
 import { IMAGES_URL } from '../constants/assetsUrls';
 import portCommunication from '../content/portCommunication';
@@ -12,19 +12,17 @@ const {
   deactivate,
   closePrefScreen,
   openPrefScreen,
-  reactivateWebsite,
   checkOutResource,
   checkOutAlternative,
-} = uiActions(portCommunication);
+  checkOutEditor
+} = prepareUIActions(portCommunication);
 
 function mapStateToProps(state) {
   return {
     recommendations: state.get('recommendations'),
     imagesUrl: IMAGES_URL,
     reduced: state.get('reduced'),
-    preferenceScreenPanel: state.get('preferenceScreenPanel'),
-    deactivatedWebsites: state.get('deactivatedWebsites'),
-    onInstalledDetails: state.get('onInstalledDetails')
+    preferenceScreenPanel: state.get('preferenceScreenPanel')
   };
 }
 function mapDispatchToProps(dispatch) {
@@ -34,9 +32,9 @@ function mapDispatchToProps(dispatch) {
     onDeactivate(details) { dispatch(deactivate(details)); },
     closePrefScreen() { dispatch(closePrefScreen()); },
     openPrefScreen(panel) { dispatch(openPrefScreen(panel)); },
-    onReactivateWebsite(s) { dispatch(reactivateWebsite(s)); },
     onCheckOutResource(r) { dispatch(checkOutResource(r)); },
     onCheckOutAlternative(a) { dispatch(checkOutAlternative(a)); },
+    onCheckOutEditor(e) { dispatch(checkOutEditor(e)); },
   };
 }
 

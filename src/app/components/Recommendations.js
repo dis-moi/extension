@@ -1,60 +1,42 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import Loader from './Loader';
 import RecoHeader from './RecoHeader';
 import RecoMain from './RecoMain';
-import PreferenceScreen from './PreferenceScreen';
+import Preferences from '../containers/Preferences';
 
-class Recommendations extends Component {
+export default function Recommendations(props) {
+  const {
+    recommendations, imagesUrl, reduced, preferenceScreenPanel,
+    onExtend, onReduce, onDeactivate, closePrefScreen, openPrefScreen,
+    onCheckOutResource, onCheckOutAlternative, onCheckOutEditor,
+  } = props;
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      // deactivateMenuOpen: false
-    };
-  }
+  const body = preferenceScreenPanel ?
+    <Preferences /> :
+    <RecoMain
+      imagesUrl={imagesUrl}
+      recommendations={recommendations}
+      onCheckOutResource={onCheckOutResource}
+      onCheckOutAlternative={onCheckOutAlternative}
+      onCheckOutEditor={onCheckOutEditor}
+    />;
 
-  render(){
-    const { props, state } = this;
-    const {
-      recommendations, imagesUrl, reduced, preferenceScreenPanel, deactivatedWebsites, onInstalledDetails,
-      onExtend, onReduce, onDeactivate, togglePrefPanel, onReactivateWebsite, closePrefScreen, openPrefScreen,
-      onCheckOutResource, onCheckOutAlternative,
-    } = props;
-
-    const body = preferenceScreenPanel ?
-      <PreferenceScreen
+  return recommendations ? (
+    <section className="lmem-top-level">
+      <RecoHeader
+        imagesUrl={imagesUrl}
+        reduced={reduced}
         preferenceScreenPanel={preferenceScreenPanel}
-        deactivatedWebsites={deactivatedWebsites} 
-        onReactivateWebsite={onReactivateWebsite}
+        onExtend={onExtend}
+        onReduce={onReduce}
+        onDeactivate={onDeactivate}
+        closePrefScreen={closePrefScreen}
         openPrefScreen={openPrefScreen}
-        imagesUrl={imagesUrl}
-        onInstalledDetails={onInstalledDetails}
-      /> :
-      <RecoMain
-        imagesUrl={imagesUrl}
-        recommendations={recommendations}
-        onCheckOutResource={onCheckOutResource}
-        onCheckOutAlternative={onCheckOutAlternative}
-      />;
-      
-    return recommendations ? (
-      <section className="lmem-top-level">
-        <RecoHeader
-          imagesUrl={imagesUrl}
-          reduced={reduced}
-          preferenceScreenPanel={preferenceScreenPanel}
-          onExtend={onExtend}
-          onReduce={onReduce}
-          onDeactivate={onDeactivate}
-          closePrefScreen={closePrefScreen}
-          openPrefScreen={openPrefScreen}
-          />
-        { body }
-      </section>
-      ) : (<Loader imagesUrl={ imagesUrl } />);
-  }
+      />
+      { body }
+    </section>
+  ) : (<Loader imagesUrl={ imagesUrl } />);
 }
-
 
 Recommendations.propTypes = {
   recommendations: PropTypes.array,
@@ -62,9 +44,7 @@ Recommendations.propTypes = {
   reduced: PropTypes.bool.isRequired,
   onExtend: PropTypes.func.isRequired,
   onReduce: PropTypes.func.isRequired,
-  onInstalledDetails: PropTypes.object.isRequired,
   onCheckOutResource: PropTypes.func.isRequired,
   onCheckOutAlternative: PropTypes.func.isRequired,
+  onCheckOutEditor: PropTypes.func.isRequired,
 };
-
-export default Recommendations;
