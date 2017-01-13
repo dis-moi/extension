@@ -1,9 +1,11 @@
 import React, { PropTypes } from 'react';
 
+import { filterTags } from '../lmem/typeOfCriteria';
+
 function PreferenceCriteriaPanel(props) {
   const { criteria, selectCriterion, unselectCriterion, imagesUrl } = props;
 
-  const lis = criteria.toArray()
+  const lis = filterTags(criteria.toArray())
     .sort((criterionA, criterionB) => {
       const labelA = criterionA.get('label').toUpperCase();
       const labelB = criterionB.get('label').toUpperCase();
@@ -36,12 +38,12 @@ function PreferenceCriteriaPanel(props) {
       <aside>
         <h1>Aide</h1>
         <p>
-          Sélectionnez les critères de choix qui vous importent le plus.
-          Seules vous seront affichées les recommendations pertinentes pour ces critères.
+          Sélectionnez les critères de choix qui comptent pour vous.
+          Seules les recommandations répondant à ces critères vous seront affichées.
         </p>
         <p>
-          Par exemple, si peu vous importe le prix, dé-sélectionnez le critère <em>prix</em>.
-          L’assistant ne vous proposera alors plus de recommendation portant uniquement sur ce critère.
+          Par exemple, si le prix vous importe peu, dé-sélectionnez le critère <em>prix</em>.
+          L’assistant ne vous proposera alors plus de recommandation portant uniquement sur ce critère.
         </p>
       </aside>
     </div>

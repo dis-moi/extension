@@ -14,7 +14,8 @@ export function findType(criteria) {
 }
 
 export function filterTags(criteria) {
-  return criteria.filter(({ slug }) => {
+  return criteria.filter(criterion => {
+    const slug = criterion.slug || criterion.get('slug');
     switch (slug) {
       case 'ethics':
       case 'price':
