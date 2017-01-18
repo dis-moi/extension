@@ -76,7 +76,7 @@ configureStore(store => {
         const state = store.getState();
         
         return findMatchingOffersAccordingToPreferences(
-          url, state.matchingContexts, state.draftRecommendations || [], state.websites
+          url, state.matchingContexts.toJS(), state.draftRecommendations.toJS() || [], state.websites
         );
       },
       getMatchingRecommendations,

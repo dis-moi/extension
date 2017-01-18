@@ -1,5 +1,7 @@
 import chai from 'chai';
 
+import { Set as ImmutableSet } from 'immutable';
+
 import {
   receivedMatchingContexts,
   receivedCriteria,
@@ -21,7 +23,8 @@ describe('background actions', function () {
     const action = receivedMatchingContexts(matchingContexts);
 
     expect(action.type).to.be.a('string').of.length.above(5);
-    expect(action.matchingContexts).to.equal(matchingContexts);
+    expect(action.matchingContexts).to.be.an.instanceof(ImmutableSet);
+    expect(action.matchingContexts.size).to.equal(matchingContexts.length);
   });
 
   it('receivedCriteria', () => {

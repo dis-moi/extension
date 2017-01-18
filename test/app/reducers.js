@@ -32,8 +32,9 @@ describe('background reducer', function () {
     const action = receivedMatchingContexts(matchingContexts);
 
     const nextState = reducer( makeInitialState(), action );
-
-    expect(nextState.matchingContexts).to.equal(matchingContexts);
+    
+    expect(action.matchingContexts).to.be.an.instanceof(ImmutableSet);
+    expect(nextState.matchingContexts.size).to.equal(matchingContexts.length);
   });
 
   it('initial state + criteria => state with criteria', () => {

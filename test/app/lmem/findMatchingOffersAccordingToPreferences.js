@@ -16,8 +16,36 @@ const matchingURL = 'https://www.samsung.com/blabla';
 const matchingDraftURL = 'https://www.wordpress.com/lol';
 const nonMatchingURL = 'https://soundcloud.com/capt-lovelace/meteo-marine';
 
-
 describe('findMatchingOffersAccordingToPreferences', function () {
+
+  it('should be case insensitive', () => {
+    const offersWithWeirdCase = [
+      {url_regex: 's.*'},
+      {url_regex: 'SamSung'},
+      {url_regex: 'doesNotMatch'}
+    ];
+
+    const matches = findMatchingOffersAccordingToPreferences(matchingURL, offersWithWeirdCase, []);
+
+    expect(matches).to.be.an('array');
+    expect(matches).to.be.of.length(2);
+    expect(matches[0]).to.equal(offersWithWeirdCase[0]);
+    expect(matches[1]).to.equal(offersWithWeirdCase[1]);
+  });
+
+  describe('invalid regex', () => {
+    const nastyOffers = [{url_regex: 'isNasty)'}].concat(offers); // SyntaxError: Invalid RegExp: Unmatched ')'
+
+    it('should not screw up the matching engine', () => {
+      const matches = findMatchingOffersAccordingToPreferences(matchingURL, nastyOffers, []);
+
+      expect(findMatchingOffersAccordingToPreferences).to.not.throw(SyntaxError);
+
+      expect(matches).to.be.an('array');
+      expect(matches).to.be.of.length(1);
+      expect(matches[0]).to.equal(nastyOffers[1]);
+    });
+  });
 
   describe('empty prefs, no draft', () => {
     

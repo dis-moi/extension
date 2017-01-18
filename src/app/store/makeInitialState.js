@@ -9,7 +9,7 @@ export default function (){
   return {
     criteria: new ImmutableMap(),
     editors: new ImmutableMap(),
-    matchingContexts: [],
+    matchingContexts: new ImmutableSet(),
     dismissedRecos: new ImmutableSet(),
     approvedRecos: new ImmutableSet()
   };

@@ -1,4 +1,4 @@
-import { Map as ImmutableMap } from 'immutable';
+import { Map as ImmutableMap, Set as ImmutableSet } from 'immutable';
 
 import fetch from 'isomorphic-fetch';
 import {
@@ -68,7 +68,7 @@ function fetchAllEditors() {
 export function receivedMatchingContexts(matchingContexts) {
   return {
     type: RECEIVED_MATCHING_CONTEXTS,
-    matchingContexts
+    matchingContexts: new ImmutableSet(matchingContexts)
   };
 }
 
