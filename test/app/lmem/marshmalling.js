@@ -1,11 +1,21 @@
 import chai from 'chai';
-import { Map as ImmutableMap } from 'immutable';
+var chaiImmutable = require('chai-immutable');
+import { Map as ImmutableMap, Set as ImmutableSet, fromJS as _fromJS, Iterable } from 'immutable';
 
 import { serialize, deserialize } from '../../../src/app/lmem/reduxPersistTransform';
 
+chai.use(chaiImmutable);
 const expect = chai.expect;
 
-const stateWithOneOffer = {
+
+function fromJS(v){
+  return _fromJS(v, (key, value) => {
+    var isIndexed = Iterable.isIndexed(value);
+    return isIndexed ? value.toSet() : value.toMap();
+  });
+}
+
+const stateWithOneOffer = fromJS({
   offers: [
     {
       "id":4,
@@ -27,26 +37,26 @@ const stateWithOneOffer = {
       "description":"azerty"
     }
   ]
-};
+});
 
-const stateWithAlwaysDeactivateWebsitePref = {
+const stateWithAlwaysDeactivateWebsitePref = fromJS({
   websites: {
     deactivated: {
-      deactivatedWebsites : new Set([
+      deactivatedWebsites : [
         'www.samsung.com'
-      ])
+      ]
     }
   }
-};
+});
 
 
-const stateWithDeactivateUntilPref = {
+const stateWithDeactivateUntilPref = fromJS({
   websites: {
     deactivated: {
-      deactivatedEverywhereUntil : 1462701600000
+      everywhereUntil : 1462701600000
     }
   }
-};
+});
 
 const critOrEditPartOfState = new ImmutableMap({
     id: new ImmutableMap({ id: 'myID', label: 'myLabel' })
@@ -72,19 +82,19 @@ describe('marshmalling', function () {
     
     it('should serialize state with deactivatedEverywhereUntil preference', () => {
       expect( serialize(stateWithDeactivateUntilPref) )
-      .to.eql( '{"websites":{"deactivated":{"deactivatedEverywhereUntil":1462701600000}}}' )
+      .to.eql( '{"websites":{"deactivated":{"everywhereUntil":1462701600000}}}' )
     });
     
   });
 
   describe('deserialize', () => {
-    it('should be an empty object for an empty JSON object', () => {
-      expect( deserialize(serialize({})) ).to.deep.equal( {} );
+    it('should be an empty Map for an empty JSON object', () => {
+      expect( deserialize(serialize({})) ).to.equal( new ImmutableMap() );
     });
     
     it('should deserialize an offer', () => {
       expect( deserialize(serialize(stateWithOneOffer)) )
-      .to.deep.equal( stateWithOneOffer )
+      .to.equal( stateWithOneOffer )
     });
     
     it('should deserialize state with deactivatedWebsites preference', () => {
@@ -93,12 +103,8 @@ describe('marshmalling', function () {
       expect( bfState )
       .to.deep.equal( stateWithAlwaysDeactivateWebsitePref )
 
-      expect( Object.prototype.toString.call(bfState.websites.deactivated.deactivatedWebsites) ).to.equal('[object Set]')
-
-      // chai does not support ES6 Sets, so converting to array for comparison
-      // https://github.com/Automattic/expect.js/pull/144
-      expect( [...bfState.websites.deactivated.deactivatedWebsites] )
-      .to.eql( [...stateWithAlwaysDeactivateWebsitePref.websites.deactivated.deactivatedWebsites] )
+      expect( bfState.get('websites').get('deactivated').get('deactivatedWebsites'))
+      .to.be.an.instanceof(ImmutableSet);
     });
     
     it('should deserialize state with deactivatedEverywhereUntil preference', () => {

@@ -1,4 +1,4 @@
-import { Map as ImmutableMap, Set as ImmutableSet } from 'immutable';
+import { Map as ImmutableMap, Set as ImmutableSet, fromJS } from 'immutable';
 
 /**
  * When the redux store starts empty on first use (no store in local/chrome storage)
@@ -6,11 +6,18 @@ import { Map as ImmutableMap, Set as ImmutableSet } from 'immutable';
  * Among other things, this is also intended to document the state structure
  */
 export default function (){
-  return {
-    criteria: new ImmutableMap(),
-    editors: new ImmutableMap(),
-    matchingContexts: new ImmutableSet(),
-    dismissedRecos: new ImmutableSet(),
-    approvedRecos: new ImmutableSet()
-  };
+  return fromJS({
+    prefs: {
+      websites: new ImmutableMap(),
+      criteria: new ImmutableMap(),
+      editors: new ImmutableMap(),
+      dismissedRecos: new ImmutableSet(),
+      approvedRecos: new ImmutableSet()
+    },
+    notPrefs: {
+      onInstalledDetails: new ImmutableMap(),
+      matchingContexts: new ImmutableSet(),
+      draftRecommendations: new ImmutableSet()
+    }
+  });
 }

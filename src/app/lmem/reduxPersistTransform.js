@@ -10,22 +10,18 @@ export function serialize(stateObj){
   });
 } 
 
-export function deserialize(string, key){
+export function deserialize(string){
+  return JSON.parse(string, (key, value) => {
+    let output;
 
-  if (key === 'criteria' || key === 'editors'){
-    return new ImmutableMap(JSON.parse(string, (k, v) => {
-      if (Object.prototype.toString.call(v) === '[object Object]')
-        return new ImmutableMap(v);
-      return v;
-    }));
-  }
-  else if (key === 'dismissedRecos' || key === 'approvedRecos')
-    return new ImmutableSet(JSON.parse(string));
-  
-  return JSON.parse(string, function (k, v) {
-    if (k === 'deactivatedWebsites')
-      return new Set(v);
-    return v; // return everything else unchanged
+    if (value instanceof Array)
+      output = new ImmutableSet(value);
+    else if (value instanceof Object)
+      output = new ImmutableMap(value);
+    else
+      output = value;
+
+    return output;
   });
 } 
 

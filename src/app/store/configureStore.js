@@ -13,10 +13,6 @@ export default function configureStore(callback, isBg) {
   else getState = (isBg ? require('./getStateToBg') : require('./getStateFromBg'));
 
   getState(initialState => {
-    if(Object.keys(initialState).length === 0){
-      initialState = makeInitialState();
-    }
-
     let enhancer;
     const middleware = [
       thunk,

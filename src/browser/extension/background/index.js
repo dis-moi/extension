@@ -1,4 +1,5 @@
 /* eslint global-require: "off" */
+import { Map as ImmutableMap, Set as ImmutableSet } from 'immutable';
 
 // Early imports with high priority stuff involved, such as event listeners creation
 import onInstalled from '../../../app/actions/install';
@@ -76,31 +77,34 @@ configureStore(store => {
         const state = store.getState();
         
         return findMatchingOffersAccordingToPreferences(
-          url, state.matchingContexts.toJS(), state.draftRecommendations.toJS() || [], state.websites
+          url,
+          state.notPrefs.matchingContexts.toJS(),
+          state.notPrefs.draftRecommendations.toJS() || [],
+          state.prefs.get('websites')
         );
       },
       getMatchingRecommendations,
       getOnInstalledDetails: () => {
         const state = store.getState();
-        return state.onInstalledDetails || {};
+        return state.notPrefs.get('onInstalledDetails') || new ImmutableMap();
       },
-      getCriteria: () => store.getState().criteria || new Map(),
-      getEditors: () => store.getState().editors || new Map(),
-      getDismissed: () => store.getState().dismissedRecos || new Set(),
-      getApproved: () => store.getState().approvedRecos || new Set(),
+      getCriteria: () => store.getState().prefs.get('criteria') || new ImmutableMap(),
+      getEditors: () => store.getState().prefs.get('editors') || new ImmutableMap(),
+      getDismissed: () => store.getState().prefs.get('dismissedRecos') || new ImmutableSet(),
+      getApproved: () => store.getState().prefs.get('approvedRecos') || new ImmutableSet(),
       dispatch: store.dispatch,
       contentCode,
       refreshMatchingContexts: () => {
         const state = store.getState();
 
-        let selectedCriteria = Array.from(state.criteria.keys())
+        let selectedCriteria = Array.from(state.prefs.get('criteria').keys())
         .filter(slug => {
-          return state.criteria.get(slug).get('isSelected');  
+          return state.prefs.get('criteria').get(slug).get('isSelected');  
         });
 
-        let excludedEditors = Array.from(state.editors.keys())
+        let excludedEditors = Array.from(state.prefs.get('editors').keys())
         .filter(id => {
-          return state.editors.get(id).get('isExcluded');
+          return state.prefs.get('editors').get(id).get('isExcluded');
         });
 
         store.dispatch(refreshMatchingContextsFromBackend(selectedCriteria, excludedEditors));

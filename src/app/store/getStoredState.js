@@ -6,6 +6,7 @@ export default function (configure, callback) {
   const persistConfig = Object.assign(
     {
       transforms: [reduxPersistTransform],
+      whitelist: ['prefs'],
       debounce: 0
     },
     chrome !== 'undefined' && chrome.storage && chrome.storage.local ?
