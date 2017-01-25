@@ -1,4 +1,5 @@
-import { Map as ImmutableMap, Set as ImmutableSet, fromJS } from 'immutable';
+import { Map as ImmutableMap, Set as ImmutableSet } from 'immutable';
+import fromJS from '../../../utils/customFromJS';
 
 /**
  * When the redux store starts empty on first use (no store in local/chrome storage)
