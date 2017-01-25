@@ -1,19 +1,12 @@
 import chai from 'chai';
 var chaiImmutable = require('chai-immutable');
-import { Map as ImmutableMap, Set as ImmutableSet, fromJS as _fromJS, Iterable } from 'immutable';
+import { Map as ImmutableMap, Set as ImmutableSet } from 'immutable';
 
+import fromJS from '../../../utils/customFromJS'
 import { serialize, deserialize } from '../../../src/app/lmem/reduxPersistTransform';
 
 chai.use(chaiImmutable);
 const expect = chai.expect;
-
-
-function fromJS(v){
-  return _fromJS(v, (key, value) => {
-    var isIndexed = Iterable.isIndexed(value);
-    return isIndexed ? value.toSet() : value.toMap();
-  });
-}
 
 const stateWithOneOffer = fromJS({
   offers: [

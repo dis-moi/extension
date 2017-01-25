@@ -1,4 +1,4 @@
-import { Record, Set as ImmutableSet, Map as ImmutableMap, fromJS as immutableFromJS } from 'immutable';
+import { Record, Set as ImmutableSet, Map as ImmutableMap } from 'immutable';
 import React from 'react';
 import { render } from 'react-dom';
 import Root from '../../../app/containers/Root';
@@ -11,6 +11,8 @@ import prepareRecoActions from '../../../app/content/actions/recommendations';
 import prepareFilterActions from '../../../app/content/actions/filters';
 
 import portCommunication from '../../../app/content/portCommunication';
+
+import fromJS from '../../../../utils/customFromJS';
 
 const {
   updateDeactivatedWebsites,
@@ -156,9 +158,9 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
         const { style, onInstalledDetails,
           criteria, editors } = msg;
 
-        store.dispatch(updateInstalledDetails(immutableFromJS(onInstalledDetails)));
-        store.dispatch(updateCriteria(immutableFromJS(criteria)));
-        store.dispatch(updateEditors(immutableFromJS(editors)));
+        store.dispatch(updateInstalledDetails(fromJS(onInstalledDetails)));
+        store.dispatch(updateCriteria(fromJS(criteria)));
+        store.dispatch(updateEditors(fromJS(editors)));
 
         // Let the page load a bit before showing the iframe in loading mode
         CanShowIframeLoadingP
