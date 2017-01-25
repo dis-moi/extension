@@ -45,7 +45,8 @@
     "quote-props": 0,
     "no-extra-parens": 0,
     "object-curly-spacing": 0,
-    "no-underscore-dangle": 0
+    "no-underscore-dangle": 0,
+    "no-else-return": 0
   },
   "plugins": [
     "react"
