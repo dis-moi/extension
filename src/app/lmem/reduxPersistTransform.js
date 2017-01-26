@@ -1,4 +1,5 @@
-import { createTransform } from 'redux-persist';
+// import { createTransform } from 'redux-persist';
+import { createTransform } from 'redux-persist-immutable';
 import { Map as ImmutableMap, Set as ImmutableSet } from 'immutable';
 
 export function serialize(stateObj){

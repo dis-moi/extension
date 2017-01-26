@@ -7,12 +7,14 @@ function flatten(arr) {
   }, []);
 }
 
-// outputs the structure of an object into a list of its key addresses
-export function getAddresses(object){
-  return flatten(Object.keys(object).map(key => {
-    const value = object[key];
+// outputs the structure of a Map into a list of its key addresses
+export function getAddresses(myMap){
+  return flatten(myMap.keySeq().map(key => {
+    const value = myMap.get(key);
 
-    if (value instanceof Object && !Array.isArray(value)){
+    if (ImmutableMap.isMap(value) && value.size > 0){
+      const addresses = getAddresses(value);
+
       return getAddresses(value).map(subkey => {
         return [key, subkey].join(':');
       });
@@ -46,32 +48,29 @@ export function checkHistory(path, loadedState, history){
   return output;
 }
 
-export default function initializeStateAsMap(initialState, loadedState, history){
+// takes Maps arguments
+export default function initializeState(initialState, loadedState, history){
   
   if (loadedState !== undefined){
     const addresses = getAddresses(initialState);
 
-    let initialStateMap = fromJS(initialState);
-    const loadedStateMap = fromJS(loadedState);
-    const historyMap = fromJS(history);
-
     addresses.forEach(address => {
       const path = address.split(':');
 
-      if (loadedStateMap.hasIn(path)) // path is present in loaded, just get the corresponding value
-        initialStateMap = initialStateMap.setIn(path, loadedStateMap.getIn(path));
+      if (loadedState.hasIn(path)) // path is present in loaded, just get the corresponding value
+        initialState = initialState.setIn(path, loadedState.getIn(path));
       else if (history !== undefined){
         // check in the history if the path has changed
-        const oldPath = checkHistory(address, loadedStateMap, historyMap).split(':'); 
+        const oldPath = checkHistory(address, loadedState, history); 
         
         if (oldPath) // get the value
-          initialStateMap = initialStateMap.setIn(path, loadedStateMap.getIn(oldPath));
+          initialState = initialState.setIn(path, loadedState.getIn(oldPath.split(':')));
         else // no path found, log warning
-          console.warning('This path was not found in loaded state', address);
+          console.warn('This path was not found in loaded state', address, '=> initializing...');
       }
     });
 
-    return initialStateMap;
+    return initialState;
   }
   else
     return fromJS(initialState);

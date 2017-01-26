@@ -78,33 +78,33 @@ configureStore(store => {
         
         return findMatchingOffersAccordingToPreferences(
           url,
-          state.notPrefs.matchingContexts.toJS(),
-          state.notPrefs.draftRecommendations.toJS() || [],
-          state.prefs.get('websites')
+          state.get('notPrefs').get('matchingContexts').toJS(),
+          state.get('notPrefs').get('draftRecommendations').toJS() || [],
+          state.get('prefs').get('websites')
         );
       },
       getMatchingRecommendations,
       getOnInstalledDetails: () => {
         const state = store.getState();
-        return state.notPrefs.get('onInstalledDetails') || new ImmutableMap();
+        return state.get('notPrefs').get('onInstalledDetails') || new ImmutableMap();
       },
-      getCriteria: () => store.getState().prefs.get('criteria') || new ImmutableMap(),
-      getEditors: () => store.getState().prefs.get('editors') || new ImmutableMap(),
-      getDismissed: () => store.getState().prefs.get('dismissedRecos') || new ImmutableSet(),
-      getApproved: () => store.getState().prefs.get('approvedRecos') || new ImmutableSet(),
+      getCriteria: () => store.getState().get('prefs').get('criteria') || new ImmutableMap(),
+      getEditors: () => store.getState().get('prefs').get('editors') || new ImmutableMap(),
+      getDismissed: () => store.getState().get('prefs').get('dismissedRecos') || new ImmutableSet(),
+      getApproved: () => store.getState().get('prefs').get('approvedRecos') || new ImmutableSet(),
       dispatch: store.dispatch,
       contentCode,
       refreshMatchingContexts: () => {
         const state = store.getState();
 
-        let selectedCriteria = Array.from(state.prefs.get('criteria').keys())
+        let selectedCriteria = Array.from(state.get('prefs').get('criteria').keys())
         .filter(slug => {
-          return state.prefs.get('criteria').get(slug).get('isSelected');  
+          return state.get('prefs').get('criteria').get(slug).get('isSelected');  
         });
 
-        let excludedEditors = Array.from(state.prefs.get('editors').keys())
+        let excludedEditors = Array.from(state.get('prefs').get('editors').keys())
         .filter(id => {
-          return state.prefs.get('editors').get(id).get('isExcluded');
+          return state.get('prefs').get('editors').get(id).get('isExcluded');
         });
 
         store.dispatch(refreshMatchingContextsFromBackend(selectedCriteria, excludedEditors));

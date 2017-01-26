@@ -1,4 +1,5 @@
 import { Map as ImmutableMap, Set as ImmutableSet } from 'immutable';
+import fromJS from '../../../utils/customFromJS';
 
 import {
   RECEIVED_MATCHING_CONTEXTS,
@@ -7,11 +8,11 @@ import {
   INSTALLED
 } from '../constants/ActionTypes';
 
-const initialNotPrefs = {
+const initialNotPrefs = fromJS({
   onInstalledDetails: new ImmutableMap(),
   matchingContexts: new ImmutableSet(),
   draftRecommendations: new ImmutableSet(),
-};
+});
 
 export default function (state = initialNotPrefs, action) {
   const { type } = action;

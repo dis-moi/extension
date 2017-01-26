@@ -112,8 +112,10 @@
     "react-dom": "^0.14.7",
     "react-redux": "^4.4.0",
     "redux": "^3.3.1",
+    "redux-immutable": "^3.0.10",
     "redux-notify": "^0.1.1",
     "redux-persist": "^3.2.2",
+    "redux-persist-immutable": "^4.2.0",
     "redux-thunk": "^2.0.1",
     "whatwg-url": "^3.0.0"
   }

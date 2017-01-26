@@ -1,4 +1,4 @@
-import { getStoredState, persistStore } from 'redux-persist';
+import { getStoredState, persistStore } from 'redux-persist-immutable';
 import reduxPersistTransform from '../lmem/reduxPersistTransform';
 import storage from 'chrome-storage-local';
 

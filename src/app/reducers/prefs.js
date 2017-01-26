@@ -1,4 +1,5 @@
 import { Map as ImmutableMap, Set as ImmutableSet } from 'immutable';
+import fromJS from '../../../utils/customFromJS';
 
 import {
   RECEIVED_CRITERIA,
@@ -15,7 +16,7 @@ import {
 } from '../constants/ActionTypes';
 
 
-const initialPrefs = new ImmutableMap({
+const initialPrefs = fromJS({
   websites: new ImmutableSet(),
   criteria: new ImmutableMap(),
   editors: new ImmutableMap(),
