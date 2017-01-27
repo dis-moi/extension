@@ -1,6 +1,6 @@
 // Arbitrary set max payload size
 // @TODO find a nicer way to handle the error
-const MAX_PAYLOAD_SIZE = 10000;
+const MAX_PAYLOAD_SIZE = 8000;
 
 /**
  * Logs all actions and states after they are dispatched.
