@@ -1,6 +1,6 @@
 // Arbitrary set max payload size
 // @TODO find a nicer way to handle the error
-const MAX_PAYLOAD_SIZE = 10000;
+const MAX_PAYLOAD_SIZE = 7800;
 
 /**
  * Logs all actions and states after they are dispatched.
@@ -22,9 +22,9 @@ const MAX_PAYLOAD_SIZE = 10000;
  * Could be implemented in a much nicer way though.
  */
 
-export default function(action){
+export default function (action){
   // Check payload size to avoid HTTP 414 Request-URI Too Large url
-  const payloadSize = JSON.stringify(action).length;
+  const payloadSize = encodeURIComponent(JSON.stringify(action)).length;
   if (payloadSize > MAX_PAYLOAD_SIZE) {
     console.log('Payload size too large', payloadSize);
     window.heap.track(action.type);
@@ -33,4 +33,4 @@ export default function(action){
     delete copy.type;
     window.heap.track(action.type, copy);
   }
-};
+}

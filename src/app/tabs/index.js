@@ -88,7 +88,12 @@ export function makeTabs(
               case UNAPPROVE_RECO:
               case REPORT_RECO:
                 const reqUrl = LMEM_BACKEND_ORIGIN + '/api/v2/recommendations/' + msg.action.id + '/feedbacks';
-                const tabUrlP = new Promise(res => chrome.tabs.getSelected(null, tab => res(tab.url)));
+                const tabUrlP = new Promise(res => {
+                  chrome.tabs.query({
+                    active: true,
+                    currentWindow: true,
+                  }, ([selectedTab]) => res(selectedTab.url));
+                });
                 
                 tabUrlP.then(tabUrl => {
                   const body = JSON.stringify(makeRecoFeedback(msg.action.type, tabUrl));
