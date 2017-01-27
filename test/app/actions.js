@@ -6,13 +6,13 @@ import {
   receivedMatchingContexts,
   receivedCriteria,
   receivedEditors
-} from '../../src/app/actions/kraftBackend';
+} from '../../src/app/background/actions/kraftBackend';
 
 import {
   contextTriggered,
   recoDisplayed,
   recoDismissed
-} from '../../src/app/actions/tabs';
+} from '../../src/app/background/actions/tabs';
 
 const expect = chai.expect;
 

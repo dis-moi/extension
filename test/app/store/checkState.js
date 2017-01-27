@@ -2,10 +2,10 @@ import chai from 'chai';
 const expect = chai.expect;
 import { Map as ImmutableMap, Set as ImmutableSet } from 'immutable';
 
-import fromJS from '../../../utils/customFromJS';
+import fromJS from '../../../src/app/utils/customFromJS';
 
-import initializeStateAsMaps, { getAddresses, checkHistory } from '../../../src/app/store/checkState';
-import makeInitialState from '../../../src/app/store/makeInitialState';
+import initializeStateAsMaps, { getAddresses, checkHistory } from '../../../src/app/background/store/checkState';
+import makeInitialState from '../../../src/app/background/store/makeInitialState';
 
 describe('getAddresses', function () {
   it('should list all keys addresses of an nested object', function () {

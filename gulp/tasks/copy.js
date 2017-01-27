@@ -1,9 +1,9 @@
 import gulp from 'gulp';
 import file from 'gulp-file';
 
-import devManifest from '../../src/browser/extension/manifest/dev';
-import prodManifest from '../../src/browser/extension/manifest/prod';
-import stagingManifest from '../../src/browser/extension/manifest/staging';
+import devManifest from '../../manifest/dev';
+import prodManifest from '../../manifest/prod';
+import stagingManifest from '../../manifest/staging';
 
 const copy = (dest, manifestStr, tests) => () => {
   if (manifestStr) {
@@ -28,5 +28,5 @@ gulp.task('copy:build:production',
   copy('./build/production', JSON.stringify(prodManifest, null, 2)));
 
 gulp.task('copy:watch', () => {
-  gulp.watch(`./src/browser/extension/manifest`, ['copy:build:dev']);
+  gulp.watch(`./src/manifest`, ['copy:build:dev']);
 });

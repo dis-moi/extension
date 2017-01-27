@@ -13,6 +13,6 @@ test/infrastructure
 test/app
 
 src/electron
-src/app/containers/PopUp
+src/app/content/containers/PopUp
 
 src/lib/heap.js

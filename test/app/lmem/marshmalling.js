@@ -2,8 +2,8 @@ import chai from 'chai';
 var chaiImmutable = require('chai-immutable');
 import { Map as ImmutableMap, Set as ImmutableSet } from 'immutable';
 
-import fromJS from '../../../utils/customFromJS'
-import { serialize, deserialize } from '../../../src/app/lmem/reduxPersistTransform';
+import fromJS from '../../../src/app/utils/customFromJS'
+import { serialize, deserialize } from '../../../src/app/background/store/reduxPersistTransform';
 
 chai.use(chaiImmutable);
 const expect = chai.expect;

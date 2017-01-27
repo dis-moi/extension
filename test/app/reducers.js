@@ -3,16 +3,16 @@ import neverThrowingObject from '../infrastructure/neverThrowingObject';
 
 import { Map as ImmutableMap, Set as ImmutableSet, fromJS } from 'immutable';
 
-import prefsReducer from '../../src/app/reducers/prefs';
-import notPrefsReducer from '../../src/app/reducers/notPrefs';
+import prefsReducer from '../../src/app/background/reducers/prefs';
+import notPrefsReducer from '../../src/app/background/reducers/notPrefs';
 
-import makeInitialState from '../../src/app/store/makeInitialState';
+import makeInitialState from '../../src/app/background/store/makeInitialState';
 
 import {
   receivedMatchingContexts,
   receivedCriteria,
   receivedEditors,
-} from '../../src/app/actions/kraftBackend';
+} from '../../src/app/background/actions/kraftBackend';
 
 import prepareUIEvents from '../../src/app/content/actions/ui';
 import prepareFilterEvents from '../../src/app/content/actions/filters';
