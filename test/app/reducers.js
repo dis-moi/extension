@@ -4,7 +4,7 @@ import neverThrowingObject from '../infrastructure/neverThrowingObject';
 import { Map as ImmutableMap, Set as ImmutableSet, fromJS } from 'immutable';
 
 import prefsReducer from '../../src/app/background/reducers/prefs';
-import notPrefsReducer from '../../src/app/background/reducers/notPrefs';
+import resourcesReducer from '../../src/app/background/reducers/resources';
 
 import makeInitialState from '../../src/app/background/store/makeInitialState';
 
@@ -32,7 +32,7 @@ describe('background reducer', function () {
     const matchingContexts = [{}, {}];
     const action = receivedMatchingContexts(matchingContexts);
 
-    const nextState = notPrefsReducer( makeInitialState().get('notPrefs'), action );
+    const nextState = resourcesReducer( makeInitialState().get('resources'), action );
     
     expect(action.matchingContexts).to.be.an.instanceof(ImmutableSet);
     expect(nextState.get('matchingContexts')).to.have.size(matchingContexts.length);

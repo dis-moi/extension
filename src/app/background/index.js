@@ -78,15 +78,15 @@ configureStore(store => {
         
         return findMatchingOffersAccordingToPreferences(
           url,
-          state.get('notPrefs').get('matchingContexts').toJS(),
-          state.get('notPrefs').get('draftRecommendations').toJS() || [],
+          state.get('resources').get('matchingContexts').toJS(),
+          state.get('resources').get('draftRecommendations').toJS() || [],
           state.get('prefs').get('websites')
         );
       },
       getMatchingRecommendations,
       getOnInstalledDetails: () => {
         const state = store.getState();
-        return state.get('notPrefs').get('onInstalledDetails') || new ImmutableMap();
+        return state.get('resources').get('onInstalledDetails') || new ImmutableMap();
       },
       getCriteria: () => store.getState().get('prefs').get('criteria') || new ImmutableMap(),
       getEditors: () => store.getState().get('prefs').get('editors') || new ImmutableMap(),

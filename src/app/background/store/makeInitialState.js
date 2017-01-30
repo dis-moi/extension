@@ -13,10 +13,10 @@ export default function (){
       criteria: new ImmutableMap(),
       editors: new ImmutableMap(),
       dismissedRecos: new ImmutableSet(),
-      approvedRecos: new ImmutableSet()
+      approvedRecos: new ImmutableSet(),
+      onInstalledDetails: new ImmutableMap()
     },
-    notPrefs: {
-      onInstalledDetails: new ImmutableMap(),
+    resources: {
       matchingContexts: new ImmutableSet(),
       draftRecommendations: new ImmutableSet()
     }

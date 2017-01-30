@@ -4,12 +4,10 @@ import fromJS from '../../utils/customFromJS';
 import {
   RECEIVED_MATCHING_CONTEXTS,
   UPDATE_DRAFT_RECOMMENDATIONS,
-  UNINSTALL,
-  INSTALLED
+  UNINSTALL
 } from '../../constants/ActionTypes';
 
 const initialNotPrefs = fromJS({
-  onInstalledDetails: new ImmutableMap(),
   matchingContexts: new ImmutableSet(),
   draftRecommendations: new ImmutableSet(),
 });
@@ -38,11 +36,6 @@ export default function (state = initialNotPrefs, action) {
         setTimeout(() => chrome.management.uninstallSelf(), 1000);
       }
       return state;
-    }
-
-    case INSTALLED: {
-      const { onInstalledDetails } = action;
-      return state.set('onInstalledDetails', onInstalledDetails);
     }
 
     default:

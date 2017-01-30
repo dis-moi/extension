@@ -7,10 +7,9 @@ import rootReducer from '../reducers';
 import trackEvents from '../middlewares/analytics';
 import fromJS from '../../utils/customFromJS';
 
-import checkState from './checkState';
 import makeInitialState from './makeInitialState';
 
-import history from './history.js';
+import migrate from './migrations.js';
 
 export default function configureStore(callback, isBg) {
   let getState;
@@ -37,12 +36,13 @@ export default function configureStore(callback, isBg) {
       enhancer = applyMiddleware(...middleware);
     }
 
-    const initialPrefState = makeInitialState().delete('notPrefs'); // Map
-    const initialNotPrefState = makeInitialState().delete('prefs'); // Map
-
-    const checkedState = checkState(initialPrefState, fromJS(loadedState), fromJS(history));
-
-    const state = initialNotPrefState.merge(checkedState);
+    const initialPrefState = makeInitialState().delete('resources'); // Map
+    const initialResourcesState = makeInitialState().delete('prefs'); // Map
+    
+    // migrate loadedState to the current state structure
+    const migratedState = migrate(fromJS(loadedState), initialPrefState);
+    
+    const state = initialResourcesState.merge(migratedState);
     const store = createStore(rootReducer, state, enhancer);
 
     if (process.env.NODE_ENV !== 'production') {

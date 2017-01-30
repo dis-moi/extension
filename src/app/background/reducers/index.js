@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux-immutable';
 import prefs from './prefs';
-import notPrefs from './notPrefs';
+import resources from './resources';
 
 export default combineReducers({
   prefs,
-  notPrefs
+  resources
 });

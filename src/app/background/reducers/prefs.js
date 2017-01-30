@@ -2,6 +2,7 @@ import { Map as ImmutableMap, Set as ImmutableSet } from 'immutable';
 import fromJS from '../../utils/customFromJS';
 
 import {
+  INSTALLED,
   RECEIVED_CRITERIA,
   SELECT_CRITERION,
   UNSELECT_CRITERION,
@@ -21,7 +22,8 @@ const initialPrefs = fromJS({
   criteria: new ImmutableMap(),
   editors: new ImmutableMap(),
   dismissedRecos: new ImmutableSet(),
-  approvedRecos: new ImmutableSet()
+  approvedRecos: new ImmutableSet(),
+  onInstalledDetails: new ImmutableMap()
 });
 
 export default function (state = initialPrefs, action) {
@@ -31,6 +33,11 @@ export default function (state = initialPrefs, action) {
 
   // FIXME: background state should be Immutable
   switch (type) {
+    case INSTALLED: {
+      const { onInstalledDetails } = action;
+      return state.set('onInstalledDetails', onInstalledDetails);
+    }
+
     case RECEIVED_CRITERIA: {
       const { criteria } = action;
       let newCriteria;
