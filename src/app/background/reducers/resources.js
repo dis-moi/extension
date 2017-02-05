@@ -7,12 +7,12 @@ import {
   UNINSTALL
 } from '../../constants/ActionTypes';
 
-const initialNotPrefs = fromJS({
+const initialResources = fromJS({
   matchingContexts: new ImmutableSet(),
   draftRecommendations: new ImmutableSet(),
 });
 
-export default function (state = initialNotPrefs, action) {
+export default function (state = initialResources, action) {
   const { type } = action;
 
   console.log('reducer', type, action);
