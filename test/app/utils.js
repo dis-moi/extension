@@ -1,7 +1,7 @@
 import chai from 'chai';
 
-import { makeUrlFromFilters } from '../../src/app/actions/kraftBackend';
-import { makeRecoFeedback } from '../../src/app/tabs';
+import { makeUrlFromFilters } from '../../src/app/background/actions/kraftBackend';
+import { makeRecoFeedback } from '../../src/app/background/tabs';
 import { APPROVE_RECO } from '../../src/app/constants/ActionTypes';
 
 const expect = chai.expect;

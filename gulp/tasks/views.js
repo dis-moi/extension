@@ -6,7 +6,7 @@ import stagingConfig from '../../webpack/staging.config';
 import extConfig from '../../webpack/production.config';
 
 
-const paths = ['./src/browser/views/*.jade', './src/views/*.jade'];
+const paths = ['./views/*.jade'];
 
 const compile = (dest, path, config = {}, env = 'prod') => () => {
   gulp.src(path)

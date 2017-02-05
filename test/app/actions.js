@@ -1,16 +1,18 @@
 import chai from 'chai';
 
+import { Set as ImmutableSet } from 'immutable';
+
 import {
   receivedMatchingContexts,
   receivedCriteria,
   receivedEditors
-} from '../../src/app/actions/kraftBackend';
+} from '../../src/app/background/actions/kraftBackend';
 
 import {
   contextTriggered,
   recoDisplayed,
   recoDismissed
-} from '../../src/app/actions/tabs';
+} from '../../src/app/background/actions/tabs';
 
 const expect = chai.expect;
 
@@ -21,7 +23,8 @@ describe('background actions', function () {
     const action = receivedMatchingContexts(matchingContexts);
 
     expect(action.type).to.be.a('string').of.length.above(5);
-    expect(action.matchingContexts).to.equal(matchingContexts);
+    expect(action.matchingContexts).to.be.an.instanceof(ImmutableSet);
+    expect(action.matchingContexts.size).to.equal(matchingContexts.length);
   });
 
   it('receivedCriteria', () => {
