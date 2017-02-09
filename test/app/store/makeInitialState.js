@@ -1,6 +1,6 @@
 import chai from 'chai';
 
-import makeInitialState from '../../../src/app/store/makeInitialState';
+import makeInitialState from '../../../src/app/background/store/makeInitialState';
 
 const expect = chai.expect;
 

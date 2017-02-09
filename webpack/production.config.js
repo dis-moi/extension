@@ -1,12 +1,12 @@
 import path from 'path';
 import webpack from 'webpack';
 import baseConfig from './base.config';
-const srcPath = path.join(__dirname, '../src/browser/');
+const srcPath = path.join(__dirname, '../src/app/');
 
 export default baseConfig({
   input: {
-    background: [`${srcPath}extension/background/`],
-    content: [`${srcPath}extension/content/`]
+    background: [`${srcPath}background/`],
+    content: [`${srcPath}content/`]
   },
   output: {
     path: path.join(__dirname, '../build/production'),

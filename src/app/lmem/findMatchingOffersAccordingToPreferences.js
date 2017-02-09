@@ -1,4 +1,3 @@
-
 let whatwgURL;
 
 // whatwgURL is only needed to run tests in Node.
@@ -6,6 +5,8 @@ let whatwgURL;
 if(process.env.NODE_ENV === 'test'){
   whatwgURL = require('whatwg-url');
 }
+
+import { Map as ImmutableMap, Set as ImmutableSet } from 'immutable';
 
 function findMatchingMatchingContexts(url, matchingContexts) {
   return matchingContexts.filter(mc => {
@@ -21,19 +22,16 @@ function findMatchingMatchingContexts(url, matchingContexts) {
 
 const _URL = typeof URL === 'function' ? URL : whatwgURL.URL;
 
-export default function (url, matchingContexts, draftMatchingContexts, prefs = {}) {
-  const deactivated = prefs.deactivated || {};
+export default function (url, matchingContexts, draftMatchingContexts, prefs = new ImmutableMap()) {
+  const deactivated = prefs.get('deactivated') || new ImmutableMap();
 
-  if (deactivated.deactivatedEverywhereUntil &&
-    Date.now() < deactivated.deactivatedEverywhereUntil) {
+  if (deactivated.has('everywhereUntil') && Date.now() < deactivated.get('everywhereUntil'))
     return [];
-  }
 
-  const deactivatedWebsites = deactivated.deactivatedWebsites || new Set();
+  const deactivatedWebsites = deactivated.get('deactivatedWebsites') || new ImmutableSet();
 
-  if (deactivatedWebsites.has((new _URL(url)).hostname)) {
+  if (deactivatedWebsites.has((new _URL(url)).hostname))
     return [];
-  }
 
   const matchingDraftMatchingContexts = findMatchingMatchingContexts(url, draftMatchingContexts);
 

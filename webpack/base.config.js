@@ -18,7 +18,7 @@ const baseConfig = ({ input, output = {}, globals = {}, plugins = [], loaders })
   resolve: {
     alias: {
       app: path.join(__dirname, '../src/app'),
-      extension: path.join(__dirname, '../src/browser/extension')
+      extension: path.join(__dirname, '../src/app/background')
     },
     extensions: ['', '.js']
   },
@@ -32,7 +32,7 @@ const baseConfig = ({ input, output = {}, globals = {}, plugins = [], loaders })
       {
         test: /\.scss?$/,
         // FIXME handle styles and assets injection through Webpack style- and css- loaders
-        // see ../src/browser/extension/background/index.js
+        // see ../src/app/background/index.js
         loaders: ['raw', 'sass']
       }
     ]
