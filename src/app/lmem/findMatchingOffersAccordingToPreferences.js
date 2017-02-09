@@ -1,4 +1,10 @@
-import whatwgURL from 'whatwg-url';
+let whatwgURL;
+
+// whatwgURL is only needed to run tests in Node.
+// This line prevents Uglify from tripping over some ES6 in 'whatwg-url'
+if(process.env.NODE_ENV === 'test'){
+  whatwgURL = require('whatwg-url');
+}
 
 import { Map as ImmutableMap, Set as ImmutableSet } from 'immutable';
 
