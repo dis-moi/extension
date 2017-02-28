@@ -17,7 +17,10 @@ export default function (portCommunication) {
       const action = {
         type: REDUCE_RECOMMENDATION_IFRAME
       };
-      portCommunication.sendBackgroundReduxAction(action);
+
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+
       return action;
     },
 
@@ -25,7 +28,10 @@ export default function (portCommunication) {
       const action = {
         type: EXTEND_RECOMMENDATION_IFRAME
       };
-      portCommunication.sendBackgroundReduxAction(action);
+      
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+      
       return action;
     },
 
@@ -35,7 +41,9 @@ export default function (portCommunication) {
         details
       );
 
-      portCommunication.sendBackgroundReduxAction(action);
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+
       return action;
     },
 
@@ -43,7 +51,10 @@ export default function (portCommunication) {
       const action = {
         type: CLOSE_PREFERENCE_PANEL
       };
-      portCommunication.sendBackgroundReduxAction(action);
+      
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+
       return action;
     },
     
@@ -52,7 +63,10 @@ export default function (portCommunication) {
         type: OPEN_PREFERENCE_PANEL,
         panel
       };
-      portCommunication.sendBackgroundReduxAction(action);
+      
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+
       return action;
     },
 
@@ -61,7 +75,10 @@ export default function (portCommunication) {
         type: CHECKOUT_RECO_RESOURCE_BUTTON,
         resource,
       };
-      portCommunication.sendBackgroundReduxAction(action);
+      
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+
       return action;
     },
 
@@ -70,7 +87,10 @@ export default function (portCommunication) {
         type: CHECKOUT_RECO_RESOURCE_LINK,
         resource,
       };
-      portCommunication.sendBackgroundReduxAction(action);
+      
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+
       return action;
     },
 
@@ -79,7 +99,10 @@ export default function (portCommunication) {
         type: CHECKOUT_RECO_ALTERNATIVE,
         alternative,
       };
-      portCommunication.sendBackgroundReduxAction(action);
+      
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+
       return action;
     },
 
@@ -88,7 +111,10 @@ export default function (portCommunication) {
         type: CHECKOUT_RECO_EDITOR,
         editor,
       };
-      portCommunication.sendBackgroundReduxAction(action);
+      
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+
       return action;
     },
 
@@ -97,7 +123,10 @@ export default function (portCommunication) {
         type: UNINSTALL,
         datetime: new Date(),
       };
-      portCommunication.sendBackgroundReduxAction(action);
+      
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+
       return action;
     }
 

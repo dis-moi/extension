@@ -17,6 +17,10 @@ export default Object.freeze({
   'background': {
     'page': 'background.html'
   },
+  'options_ui': {
+    'page': 'options.html',
+    'chrome_style': true
+  },
   'permissions': [
     'storage',
     'tabs',

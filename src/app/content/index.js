@@ -212,9 +212,3 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
 
   });
 });
-
-
-
-
-
-

@@ -8,6 +8,7 @@ export default baseConfig({
   input: {
     background: [`${srcPath}background/`],
     content: [`${srcPath}content/`],
+    options: [`${srcPath}options/`],
     test: [`${testPath}integration/`]
   },
   output: {
