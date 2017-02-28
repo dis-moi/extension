@@ -5,7 +5,8 @@ import {
   UNINSTALL,
   OPEN_PREFERENCE_PANEL,
   CLOSE_PREFERENCE_PANEL,
-  CHECKOUT_RECO_RESOURCE,
+  CHECKOUT_RECO_RESOURCE_BUTTON,
+  CHECKOUT_RECO_RESOURCE_LINK,
   CHECKOUT_RECO_ALTERNATIVE,
   CHECKOUT_RECO_EDITOR,
 } from '../../constants/ActionTypes';
@@ -55,9 +56,18 @@ export default function (portCommunication) {
       return action;
     },
 
-    checkOutResource(resource) {
+    checkOutResourceButton(resource) {
       const action = {
-        type: CHECKOUT_RECO_RESOURCE,
+        type: CHECKOUT_RECO_RESOURCE_BUTTON,
+        resource,
+      };
+      portCommunication.sendBackgroundReduxAction(action);
+      return action;
+    },
+
+    checkOutResourceLink(resource) {
+      const action = {
+        type: CHECKOUT_RECO_RESOURCE_LINK,
         resource,
       };
       portCommunication.sendBackgroundReduxAction(action);
