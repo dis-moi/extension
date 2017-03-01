@@ -1,58 +1,15 @@
 import recommendationIsValid from '../lmem/recommendationIsValid';
-import {
-  SELECT_CRITERION,
-  UNSELECT_CRITERION,
-  EXCLUDE_EDITOR,
-  INCLUDE_EDITOR,
-  DISMISS_RECO,
-  APPROVE_RECO,
-  UNAPPROVE_RECO,
-  REPORT_RECO
-} from '../constants/ActionTypes';
+import { contextTriggered, recoDisplayed, recoDismissed } from './actions/tabs';
 
-import { contextTriggered, recoDisplayed, recoDismissed } from '../background/actions/tabs';
-
-import { LMEM_BACKEND_ORIGIN } from '../constants/origins';
-
-export function makeRecoFeedback(type, url) {
-  const datetime = new Date().toISOString();
-
-  let feedback;
-  switch (type) {
-    case DISMISS_RECO:
-      feedback = 'dismiss';
-      break;
-    case APPROVE_RECO:
-      feedback = 'approve';
-      break;
-    case UNAPPROVE_RECO:
-      feedback = 'unapprove';
-      break;
-    case REPORT_RECO:
-      feedback = 'report';
-      break;
-    default:
-      throw new ReferenceError(`Wrong feedback type: ${type}`);
-  }
-
-  return {
-    feedback,
-    contexts: {
-      datetime,
-      url,
-    }
-  };
-}
+export const matchingTabIdToPortP = new Map();
 
 export function makeTabs(
   tabs,
   {
-    findTriggeredContexts, refreshMatchingContexts, getMatchingRecommendations, dispatch,
+    findTriggeredContexts, getMatchingRecommendations, dispatch,
     contentCode, contentStyle, getOnInstalledDetails, getCriteria, getEditors, getDismissed, getApproved,
   }
 ) {
-
-  const matchingTabIdToPortP = new Map();
 
   function createContentScriptAndPort(tabId) {
     const tabPortP = new Promise(resolve => {
@@ -69,45 +26,8 @@ export function makeTabs(
         tabPort.onMessage.addListener(msg => {
           console.log('message from content script', msg);
 
-          if (msg.type === 'redux-action') {
+          if (msg.type === 'redux-action')
             dispatch(msg.action);
-
-            switch (msg.action.type){
-              
-              // ask for matchingContexts update
-              case EXCLUDE_EDITOR:
-              case INCLUDE_EDITOR:
-              case SELECT_CRITERION:
-              case UNSELECT_CRITERION:
-                refreshMatchingContexts();
-                break;
-
-              // send feedback
-              case DISMISS_RECO:
-              case APPROVE_RECO:
-              case UNAPPROVE_RECO:
-              case REPORT_RECO:
-                const reqUrl = LMEM_BACKEND_ORIGIN + '/api/v2/recommendations/' + msg.action.id + '/feedbacks';
-                const tabUrlP = new Promise(res => {
-                  chrome.tabs.query({
-                    active: true,
-                    currentWindow: true,
-                  }, ([selectedTab]) => res(selectedTab.url));
-                });
-                
-                tabUrlP.then(tabUrl => {
-                  const body = JSON.stringify(makeRecoFeedback(msg.action.type, tabUrl));
-
-                  fetch(reqUrl, { method: 'POST', body })
-                    .then(response => console.log('RESPONSE', response))
-                    .catch(error => console.error(`Error in ${reqUrl}`, error));
-                });
-                break;
-              
-              default:
-                break;
-            }
-          }
         });
 
         const criteria = getCriteria().reduce((acc, criterionMap, slug) => {
@@ -145,7 +65,6 @@ export function makeTabs(
 
     return tabPortP;
   }
-
 
   function sendRecommendationsToTab(tabId, recos) {
     // console.log('before execute', tabId);

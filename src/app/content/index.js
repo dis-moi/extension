@@ -204,8 +204,12 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
         .then(() => {
           store.dispatch(recommendationFound(recommendations));
         });
-
         break;
+
+      case 'dispatch':
+        store.dispatch(msg.action);
+        break;
+
       default:
         console.error('Content script: unrecognized message type from background', type, msg);
     }

@@ -13,7 +13,7 @@ import getMatchingRecommendations from '../lmem/getMatchingRecommendations';
 import { makeTabs } from './tabs.js';
 import prepareDraftPreview from '../lmem/draft-preview/main.js';
 
-import { dispatchInitialStateFromBackend, refreshMatchingContextsFromBackend } from './actions/kraftBackend';
+import { dispatchInitialStateFromBackend } from './actions/kraftBackend';
 import updateDraftRecommendations from './actions/updateDraftRecommendations';
 
 import {LMEM_BACKEND_ORIGIN, LMEM_SCRIPTS_ORIGIN} from '../constants/origins';
@@ -94,21 +94,6 @@ configureStore(store => {
       getApproved: () => store.getState().get('prefs').get('approvedRecos') || new ImmutableSet(),
       dispatch: store.dispatch,
       contentCode,
-      refreshMatchingContexts: () => {
-        const state = store.getState();
-
-        let selectedCriteria = Array.from(state.get('prefs').get('criteria').keys())
-        .filter(slug => {
-          return state.get('prefs').get('criteria').get(slug).get('isSelected');  
-        });
-
-        let excludedEditors = Array.from(state.get('prefs').get('editors').keys())
-        .filter(id => {
-          return state.get('prefs').get('editors').get(id).get('isExcluded');
-        });
-
-        store.dispatch(refreshMatchingContextsFromBackend(selectedCriteria, excludedEditors));
-      },
       contentStyle: mainStyles
     });
   });
