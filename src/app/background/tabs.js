@@ -213,8 +213,6 @@ export function makeTabs(
 
       triggerFromTabUrl(id, matchingUrl);
     }
-
-    return matchingTabIdToPortP.delete(id);
   });
 
   tabs.onRemoved.addListener(id => {
