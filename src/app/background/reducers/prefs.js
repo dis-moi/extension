@@ -31,7 +31,6 @@ export default function (state = initialPrefs, action) {
 
   console.log('reducer', type, action);
 
-  // FIXME: background state should be Immutable
   switch (type) {
     case INSTALLED: {
       const { onInstalledDetails } = action;
