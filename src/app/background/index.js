@@ -94,7 +94,7 @@ configureStore(store => {
       getApproved: () => store.getState().get('prefs').get('approvedRecos') || new ImmutableSet(),
       dispatch: store.dispatch,
       contentCode,
-      contentStyle: mainStyles
+      contentStyle: mainStyles.toString()
     });
   });
 
@@ -116,3 +116,7 @@ configureStore(store => {
     require('./inject');
   }
 }, true);
+
+chrome.browserAction.onClicked.addListener(tabs => {
+  chrome.tabs.create({url: 'options.html'});
+});

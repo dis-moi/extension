@@ -33,7 +33,11 @@ const baseConfig = ({ input, output = {}, globals = {}, plugins = [], loaders })
         test: /\.scss?$/,
         // FIXME handle styles and assets injection through Webpack style- and css- loaders
         // see ../src/app/background/index.js
-        loaders: ['raw', 'sass']
+        loaders: ['css-loader', 'sass-loader']
+      },
+      {
+        test: /\.svg/,
+        loader: 'svg-url-loader'
       }
     ]
   }
