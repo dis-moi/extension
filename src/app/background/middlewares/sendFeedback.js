@@ -45,7 +45,6 @@ export default function (store){
       case APPROVE_RECO:
       case UNAPPROVE_RECO:
       case REPORT_RECO:
-        console.log('YESSSSS');
 
         const reqUrl = LMEM_BACKEND_ORIGIN + '/api/v2/recommendations/' + action.id + '/feedbacks';
         const tabUrlP = new Promise(res => {
