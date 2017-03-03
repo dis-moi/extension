@@ -38,7 +38,9 @@ export default function (portCommunication) {
         slug
       };
 
-      portCommunication.sendBackgroundReduxAction(action);
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+      
       return action;
     },
 
@@ -48,7 +50,9 @@ export default function (portCommunication) {
         slug
       };
 
-      portCommunication.sendBackgroundReduxAction(action);
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+      
       return action;
     },
 
@@ -65,7 +69,9 @@ export default function (portCommunication) {
         id
       };
 
-      portCommunication.sendBackgroundReduxAction(action);
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+      
       return action;
     },
 
@@ -75,7 +81,9 @@ export default function (portCommunication) {
         id
       };
 
-      portCommunication.sendBackgroundReduxAction(action);
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+      
       return action;
     }
   };

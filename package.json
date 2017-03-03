@@ -93,6 +93,7 @@
     "sass-loader": "^4.0.0",
     "selenium-webdriver": "^2.52.0",
     "style-loader": "^0.13.1",
+    "svg-url-loader": "^2.0.2",
     "webpack": "^1.12.13",
     "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.10.0"

@@ -8,7 +8,7 @@ export default function Recommendations(props) {
   const {
     recommendations, imagesUrl, reduced, preferenceScreenPanel,
     onExtend, onReduce, onDeactivate, closePrefScreen, openPrefScreen,
-    onCheckOutResource, onCheckOutAlternative, onCheckOutEditor,
+    onCheckOutResourceButton, onCheckOutResourceLink, onCheckOutAlternative, onCheckOutEditor,
   } = props;
 
   const body = preferenceScreenPanel ?
@@ -16,7 +16,8 @@ export default function Recommendations(props) {
     <RecoMain
       imagesUrl={imagesUrl}
       recommendations={recommendations}
-      onCheckOutResource={onCheckOutResource}
+      onCheckOutResourceButton={onCheckOutResourceButton}
+      onCheckOutResourceLink={onCheckOutResourceLink}
       onCheckOutAlternative={onCheckOutAlternative}
       onCheckOutEditor={onCheckOutEditor}
     />;
@@ -44,7 +45,8 @@ Recommendations.propTypes = {
   reduced: PropTypes.bool.isRequired,
   onExtend: PropTypes.func.isRequired,
   onReduce: PropTypes.func.isRequired,
-  onCheckOutResource: PropTypes.func.isRequired,
+  onCheckOutResourceButton: PropTypes.func.isRequired,
+  onCheckOutResourceLink: PropTypes.func.isRequired,
   onCheckOutAlternative: PropTypes.func.isRequired,
   onCheckOutEditor: PropTypes.func.isRequired,
 };

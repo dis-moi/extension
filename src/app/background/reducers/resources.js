@@ -17,7 +17,6 @@ export default function (state = initialResources, action) {
 
   console.log('reducer', type, action);
 
-  // FIXME: background state should be Immutable
   switch (type) {
     case RECEIVED_MATCHING_CONTEXTS:
       const { matchingContexts } = action;

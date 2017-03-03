@@ -644,7 +644,7 @@ ul.summary-entry-content {
 .lmem-popup-title {
     @extend %title;
 
-    background: url('../images/logo-lmem.svg') no-repeat 0 0;
+    background: url('../../assets/img/logo-lmem.svg') no-repeat 0 0;
     padding-left: $block-size;
     display: flex;
     flex-direction: column;

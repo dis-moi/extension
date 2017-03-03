@@ -19,7 +19,10 @@ export default function (portCommunication) {
         type: DISMISS_RECO,
         id
       };
-      portCommunication.sendBackgroundReduxAction(action);
+      
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+
       return action;
     },
     approveReco(id){
@@ -27,7 +30,10 @@ export default function (portCommunication) {
         type: APPROVE_RECO,
         id
       };
-      portCommunication.sendBackgroundReduxAction(action);
+      
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+
       return action;
     },
     unapproveReco(id){
@@ -35,7 +41,10 @@ export default function (portCommunication) {
         type: UNAPPROVE_RECO,
         id
       };
-      portCommunication.sendBackgroundReduxAction(action);
+      
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+
       return action;
     },
     reportReco(id){
@@ -43,7 +52,10 @@ export default function (portCommunication) {
         type: REPORT_RECO,
         id
       };
-      portCommunication.sendBackgroundReduxAction(action);
+      
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+
       return action;
     }
   };
