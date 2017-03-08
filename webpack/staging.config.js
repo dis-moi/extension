@@ -5,7 +5,8 @@ const srcPath = path.join(__dirname, '../src/app/');
 export default baseConfig({
   input: {
     background: [`${srcPath}background/`],
-    content: [`${srcPath}content/`]
+    content: [`${srcPath}content/`],
+    options: [`${srcPath}options/`]
   },
   output: {
     path: path.join(__dirname, '../build/staging'),
