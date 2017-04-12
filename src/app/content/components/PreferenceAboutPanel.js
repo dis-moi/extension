@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Map } from 'immutable';
 import { EXTENSION_VERSION } from '../../constants/ui';
 
 import Modal from './Modal';
@@ -63,7 +64,7 @@ export default class PreferenceAboutPanel extends Component {
   render() {
     const { confirmUninstall } = this.state;
     const { onInstalledDetails } = this.props;
-    const ISODateOfInstall = onInstalledDetails && onInstalledDetails.get('datetime');
+    const ISODateOfInstall = Map.isMap(onInstalledDetails) && onInstalledDetails.get('datetime');
     const localeDateOfInstall = ISODateOfInstall && formatLocaleDate(ISODateOfInstall);
 
     return (

@@ -84,10 +84,7 @@ configureStore(store => {
         );
       },
       getMatchingRecommendations,
-      getOnInstalledDetails: () => {
-        const state = store.getState();
-        return state.get('resources').get('onInstalledDetails') || new ImmutableMap();
-      },
+      getOnInstalledDetails: () => store.getState().get('prefs').get('onInstalledDetails') || new ImmutableMap(),
       getCriteria: () => store.getState().get('prefs').get('criteria') || new ImmutableMap(),
       getEditors: () => store.getState().get('prefs').get('editors') || new ImmutableMap(),
       getDismissed: () => store.getState().get('prefs').get('dismissedRecos') || new ImmutableSet(),
@@ -106,7 +103,7 @@ configureStore(store => {
     )
   );
 
-  if (!store.getState().onInstalledDetails) {
+  if (store.getState().get('prefs').get('onInstalledDetails').isEmpty()) {
     store.dispatch(onInstalled());
   }
 

@@ -9,19 +9,11 @@ export default Object.assign(
     'content_security_policy': csp({
       'directives': {
         'default-src': [
-          'https://staging.recommendations.lmem.net',
+          'https://preprod-lmem-craft-backend.cleverapps.io',
         ],
         'script-src': [
           '\'self\'',
           'http://localhost:3000',
-          'https://heapanalytics.com',
-          'https://cdn.heapanalytics.com'
-        ],
-        'img-src': [
-          '\'self\'',
-          'https://heapanalytics.com',
-          'https://cdn.heapanalytics.com',
-          'data:'
         ],
         'style-src': [
           '\'unsafe-inline\''
