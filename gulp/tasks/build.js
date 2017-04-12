@@ -6,6 +6,7 @@ import path from 'path';
 import devConfig from '../../webpack/dev.config';
 import stagingConfig from '../../webpack/staging.config';
 import extConfig from '../../webpack/production.config';
+import firefoxConfig from '../../webpack/firefox.config';
 
 function compiler(config) {
   return webpack(Object.create(config));
@@ -45,4 +46,7 @@ gulp.task('webpack:build:staging', (callback) => {
 });
 gulp.task('webpack:build:production', (callback) => {
   build(compiler(extConfig), callback);
+});
+gulp.task('webpack:build:firefox', (callback) => {
+  build(compiler(firefoxConfig), callback);
 });
