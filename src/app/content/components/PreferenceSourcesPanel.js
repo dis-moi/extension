@@ -38,6 +38,10 @@ function PreferenceSourcesPanel(props) {
         <p>
           Recevez les recommandations basées sur les sources que vous avez sélectionnées ci-contre.
         </p>
+
+        <h2>Ajouter une nouvelle source</h2>
+        <a href="https://www.lmem.net/contact.html" target="_blank">Contactez-nous</a>
+        { ' pour proposer un nouveau média ou un article d’aide au choix.' }
       </aside>
     </div>
   );

@@ -34,7 +34,7 @@ export default function (state = initialPrefs, action) {
   switch (type) {
     case INSTALLED: {
       const { onInstalledDetails } = action;
-      return state.set('onInstalledDetails', onInstalledDetails);
+      return state.set('onInstalledDetails', ImmutableMap(onInstalledDetails)); // eslint-disable-line
     }
 
     case RECEIVED_CRITERIA: {
