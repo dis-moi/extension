@@ -12,7 +12,8 @@ const {
   deactivate,
   closePrefScreen,
   openPrefScreen,
-  checkOutResource,
+  checkOutResourceButton,
+  checkOutResourceLink,
   checkOutAlternative,
   checkOutEditor
 } = prepareUIActions(portCommunication);
@@ -32,7 +33,8 @@ function mapDispatchToProps(dispatch) {
     onDeactivate(details) { dispatch(deactivate(details)); },
     closePrefScreen() { dispatch(closePrefScreen()); },
     openPrefScreen(panel) { dispatch(openPrefScreen(panel)); },
-    onCheckOutResource(r) { dispatch(checkOutResource(r)); },
+    onCheckOutResourceButton(r) { dispatch(checkOutResourceButton(r)); },
+    onCheckOutResourceLink(r) { dispatch(checkOutResourceLink(r)); },
     onCheckOutAlternative(a) { dispatch(checkOutAlternative(a)); },
     onCheckOutEditor(e) { dispatch(checkOutEditor(e)); },
   };

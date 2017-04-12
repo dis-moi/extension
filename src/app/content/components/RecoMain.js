@@ -12,7 +12,7 @@ import TypeIndicator from './TypeIndicator';
 
 export default function RecoMain({
   recommendations, imagesUrl,
-  onCheckOutResource, onCheckOutAlternative, onCheckOutEditor,
+  onCheckOutResourceButton, onCheckOutResourceLink, onCheckOutAlternative, onCheckOutEditor,
 }) {
   // For now, this component is only capable of handling a single recommendation.
   // handling of several is TBD
@@ -61,7 +61,10 @@ export default function RecoMain({
           </header>
           <div className="reco-summary-content">
             <div className="reco-summary-link-referral">
-              <a target="_blank" href={recommendation.resource.url}>
+              <a 
+                onClick={(e) => onCheckOutResourceLink(recommendation.resource)}
+                target="_blank"
+                href={recommendation.resource.url}>
                 {recommendation.resource.url}
               </a>
             </div>
@@ -70,7 +73,7 @@ export default function RecoMain({
         </div>
         <div className="summary-link-checkout-wrapper">
           <a
-            onClick={(e) => onCheckOutResource(recommendation.resource)}
+            onClick={(e) => onCheckOutResourceButton(recommendation.resource)}
             href={recommendation.resource.url}
             target="_blank"
             className="button summary-link-checkout with-image">

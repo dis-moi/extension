@@ -5,7 +5,8 @@ import {
   UNINSTALL,
   OPEN_PREFERENCE_PANEL,
   CLOSE_PREFERENCE_PANEL,
-  CHECKOUT_RECO_RESOURCE,
+  CHECKOUT_RECO_RESOURCE_BUTTON,
+  CHECKOUT_RECO_RESOURCE_LINK,
   CHECKOUT_RECO_ALTERNATIVE,
   CHECKOUT_RECO_EDITOR,
 } from '../../constants/ActionTypes';
@@ -16,7 +17,10 @@ export default function (portCommunication) {
       const action = {
         type: REDUCE_RECOMMENDATION_IFRAME
       };
-      portCommunication.sendBackgroundReduxAction(action);
+
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+
       return action;
     },
 
@@ -24,7 +28,10 @@ export default function (portCommunication) {
       const action = {
         type: EXTEND_RECOMMENDATION_IFRAME
       };
-      portCommunication.sendBackgroundReduxAction(action);
+      
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+      
       return action;
     },
 
@@ -34,7 +41,9 @@ export default function (portCommunication) {
         details
       );
 
-      portCommunication.sendBackgroundReduxAction(action);
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+
       return action;
     },
 
@@ -42,7 +51,10 @@ export default function (portCommunication) {
       const action = {
         type: CLOSE_PREFERENCE_PANEL
       };
-      portCommunication.sendBackgroundReduxAction(action);
+      
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+
       return action;
     },
     
@@ -51,16 +63,34 @@ export default function (portCommunication) {
         type: OPEN_PREFERENCE_PANEL,
         panel
       };
-      portCommunication.sendBackgroundReduxAction(action);
+      
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+
       return action;
     },
 
-    checkOutResource(resource) {
+    checkOutResourceButton(resource) {
       const action = {
-        type: CHECKOUT_RECO_RESOURCE,
+        type: CHECKOUT_RECO_RESOURCE_BUTTON,
         resource,
       };
-      portCommunication.sendBackgroundReduxAction(action);
+      
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+
+      return action;
+    },
+
+    checkOutResourceLink(resource) {
+      const action = {
+        type: CHECKOUT_RECO_RESOURCE_LINK,
+        resource,
+      };
+      
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+
       return action;
     },
 
@@ -69,7 +99,10 @@ export default function (portCommunication) {
         type: CHECKOUT_RECO_ALTERNATIVE,
         alternative,
       };
-      portCommunication.sendBackgroundReduxAction(action);
+      
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+
       return action;
     },
 
@@ -78,7 +111,10 @@ export default function (portCommunication) {
         type: CHECKOUT_RECO_EDITOR,
         editor,
       };
-      portCommunication.sendBackgroundReduxAction(action);
+      
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+
       return action;
     },
 
@@ -87,7 +123,10 @@ export default function (portCommunication) {
         type: UNINSTALL,
         datetime: new Date(),
       };
-      portCommunication.sendBackgroundReduxAction(action);
+      
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+
       return action;
     }
 

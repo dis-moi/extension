@@ -17,6 +17,14 @@ export default Object.freeze({
   'background': {
     'page': 'background.html'
   },
+  'browser_action': {
+    'default_icon': {
+      '16': 'img/logo/16x16.png',
+      '48': 'img/logo/48x48.png',
+      '128': 'img/logo/128x128.png'
+    },
+    'default_title': 'LMEM options',
+  },
   'permissions': [
     'storage',
     'tabs',

@@ -5,7 +5,8 @@ const srcPath = path.join(__dirname, '../src/app/');
 export default baseConfig({
   input: {
     background: [`${srcPath}background/`],
-    content: [`${srcPath}content/`]
+    content: [`${srcPath}content/`],
+    options: [`${srcPath}options/`]
   },
   output: {
     path: path.join(__dirname, '../build/staging'),
@@ -20,7 +21,7 @@ export default baseConfig({
   globals: {
     'process.env': {
       NODE_ENV: '"staging"',
-      LMEM_BACKEND_ORIGIN: '"https://staging.recommendations.lmem.net"',
+      LMEM_BACKEND_ORIGIN: '"https://preprod-lmem-craft-backend.cleverapps.io"',
       LMEM_SCRIPTS_ORIGIN: "'https://testing.ui.lmem.net'",
       HEAP_APPID: '"234457910"', // testing
     }

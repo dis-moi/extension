@@ -22,6 +22,9 @@ export default Object.assign(
           'https://heapanalytics.com',
           'https://cdn.heapanalytics.com',
           'data:'
+        ],
+        'style-src': [
+          '\'unsafe-inline\''
         ]
       }
     })
