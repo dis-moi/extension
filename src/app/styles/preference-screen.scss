@@ -52,9 +52,17 @@
 
 .preference-about {
 
+    h1 {
+      line-height: $double-line-height;
+      font-weight: 600;
+    }
+
+    p {
+        margin-bottom: $half-adjusted-margin;
+    }
+
     aside {
         margin-top: $margin-size;
-        font-size: $tiny-font-size;
 
         ul {
             display: flex;
@@ -136,7 +144,6 @@
 
     aside {
         flex: 2 2 50%;
-        color: $font-quiet-color;
 
         h1,
         h2 {

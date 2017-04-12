@@ -115,5 +115,11 @@ configureStore(store => {
 }, true);
 
 chrome.browserAction.onClicked.addListener(tabs => {
-  chrome.tabs.create({url: 'options.html'});
+  if (chrome.runtime.openOptionsPage) {
+    // New way to open options pages, if supported (Chrome 42+).
+    chrome.runtime.openOptionsPage();
+  } else {
+    // Reasonable fallback.
+    chrome.tabs.create({url: 'options.html'});
+  }
 });
