@@ -29,7 +29,11 @@ export default function PreferenceAboutPanel(props) {
 
         <p>
           {'Pour découvrir ou faire découvrir Le Même en Mieux autour de vous, '}
-          <a href="https://choisir.lmem.net/exemples" target="_blank">rendez-vous sur cette page d’exemples</a>.
+          <a
+            href="https://choisir.lmem.net/decouvrir-exemples/"
+            target="_blank">
+            rendez-vous sur cette page d’exemples
+          </a>.
         </p>
 
       </section>
