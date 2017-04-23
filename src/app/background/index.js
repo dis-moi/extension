@@ -40,7 +40,12 @@ console.info(`LMEM_SCRIPTS_ORIGIN "${LMEM_SCRIPTS_ORIGIN}"`);
 const heapAppId = process.env.HEAP_APPID;
 if (typeof heapAppId === 'string') {
   console.info(`Heap loading with appId "${heapAppId}"`);
-  loadHeap(heapAppId);
+  loadHeap(heapAppId).then(heap => {
+    const uninstallOrigin = process.env.UNINSTALL_ORIGIN;
+    if (typeof uninstallOrigin === 'string') {
+      chrome.runtime.setUninstallURL(uninstallOrigin + '?u=' + encodeURIComponent(heap.userId));
+    }
+  });
 }
 else {
   console.warn('Heap analytics disabled: assuming "process.env.HEAP_APPID" is deliberately not defined.');

@@ -138,7 +138,7 @@
     aside,
     ul {
         overflow-y: auto;
-        max-height: $block-size * 3;
+        max-height: $block-size * 6;
         min-height: $block-size * 3 - $half-adjusted-margin;
     }
 
