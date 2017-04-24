@@ -70,37 +70,7 @@ class RecoHeader extends Component {
           </button>
         </div>
       </li>) :
-      [(<li key="preferences">
-        <div className="button-directive">
-          <button
-            className="button button-compact with-tooltip"
-            onClick={ this.handleOpenPrefButtonClick }>
-            <img
-              role="presentation"
-              src={ imagesUrl + 'settings.svg' }
-              className="lmem-controls-picto" />
-            <span className={tooltipButtonClassName}><span>
-              Préférences
-            </span></span>
-          </button>
-        </div>
-      </li>),
-      (<li key="deactivate">
-        <div className="button-directive">
-          <button
-            className="button button-compact with-tooltip"
-            onClick={ this.handleDeactivateButtonClick }>
-            <img
-              role="presentation"
-              src={ imagesUrl + 'power.svg' }
-              className="lmem-controls-picto" />
-            <span className={tooltipButtonClassName}><span>
-              { 'Désactiver une heure' }
-            </span></span>
-          </button>
-        </div>
-      </li>),
-      (<li key="reduce-extend-button">
+      [(<li key="reduce-extend-button">
         <button
           className="reduce button-compact with-image with-tooltip"
           onClick={ this.handleReduceButtonClick }>

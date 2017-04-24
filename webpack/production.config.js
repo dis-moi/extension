@@ -33,6 +33,7 @@ export default baseConfig({
       NODE_ENV: '"production"',
       LMEM_BACKEND_ORIGIN: '"https://recommendations.lmem.net"',
       LMEM_SCRIPTS_ORIGIN: "'https://ui.lmem.net'",
+      UNINSTALL_ORIGIN: "'https://www.lmem.net/desinstallation'",
       HEAP_APPID: '"3705584166"', // production
     }
   }

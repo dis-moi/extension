@@ -40,7 +40,12 @@ console.info(`LMEM_SCRIPTS_ORIGIN "${LMEM_SCRIPTS_ORIGIN}"`);
 const heapAppId = process.env.HEAP_APPID;
 if (typeof heapAppId === 'string') {
   console.info(`Heap loading with appId "${heapAppId}"`);
-  loadHeap(heapAppId);
+  loadHeap(heapAppId).then(heap => {
+    const uninstallOrigin = process.env.UNINSTALL_ORIGIN;
+    if (typeof uninstallOrigin === 'string') {
+      chrome.runtime.setUninstallURL(uninstallOrigin + '?u=' + encodeURIComponent(heap.userId));
+    }
+  });
 }
 else {
   console.warn('Heap analytics disabled: assuming "process.env.HEAP_APPID" is deliberately not defined.');
@@ -84,10 +89,7 @@ configureStore(store => {
         );
       },
       getMatchingRecommendations,
-      getOnInstalledDetails: () => {
-        const state = store.getState();
-        return state.get('resources').get('onInstalledDetails') || new ImmutableMap();
-      },
+      getOnInstalledDetails: () => store.getState().get('prefs').get('onInstalledDetails') || new ImmutableMap(),
       getCriteria: () => store.getState().get('prefs').get('criteria') || new ImmutableMap(),
       getEditors: () => store.getState().get('prefs').get('editors') || new ImmutableMap(),
       getDismissed: () => store.getState().get('prefs').get('dismissedRecos') || new ImmutableSet(),
@@ -106,7 +108,7 @@ configureStore(store => {
     )
   );
 
-  if (!store.getState().onInstalledDetails) {
+  if (store.getState().get('prefs').get('onInstalledDetails').isEmpty()) {
     store.dispatch(onInstalled());
   }
 
@@ -118,5 +120,11 @@ configureStore(store => {
 }, true);
 
 chrome.browserAction.onClicked.addListener(tabs => {
-  chrome.tabs.create({url: 'options.html'});
+  if (chrome.runtime.openOptionsPage) {
+    // New way to open options pages, if supported (Chrome 42+).
+    chrome.runtime.openOptionsPage();
+  } else {
+    // Reasonable fallback.
+    chrome.tabs.create({url: 'options.html'});
+  }
 });
