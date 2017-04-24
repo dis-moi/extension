@@ -11,7 +11,6 @@ const copy = (dest, manifestStr, tests) => () => {
       .pipe(gulp.dest(dest));
   }
   gulp.src('./src/assets/**/*').pipe(gulp.dest(dest));
-  gulp.src('./src/app/options/options.html').pipe(gulp.dest(dest));
   gulp.src('./src/app/lmem/draft-preview/grabDraftRecommendations.js')
     .pipe(gulp.dest(dest+'/js'));
 

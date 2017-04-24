@@ -28,7 +28,7 @@ export default function PreferenceAboutPanel(props) {
         )}
 
         <p>
-          {'Pour découvrir ou faire découvrir Le Même en Mieux autour de vous, '}
+          {'Pour découvrir ou faire découvrir le Même en Mieux autour de vous, '}
           <a
             href="https://choisir.lmem.net/decouvrir-exemples/"
             target="_blank">
