@@ -1,33 +1,24 @@
-# CrossBuilder
+# Le Même en Mieux - Recommendations
 
-[![Build Status](https://travis-ci.org/zalmoxisus/crossbuilder.svg)](https://travis-ci.org/zalmoxisus/crossbuilder)  [![Build status Windows](https://ci.appveyor.com/api/projects/status/83c3h264p0li62kl?svg=true)](https://ci.appveyor.com/project/zalmoxisus/crossbuilder) [![bitHound Score](https://www.bithound.io/github/zalmoxisus/crossbuilder/badges/score.svg)](https://www.bithound.io/github/zalmoxisus/crossbuilder) [![Dependency Status](https://david-dm.org/zalmoxisus/crossbuilder.svg)](https://david-dm.org/zalmoxisus/crossbuilder) [![devDependency Status](https://david-dm.org/zalmoxisus/crossbuilder/dev-status.svg)](https://david-dm.org/zalmoxisus/crossbuilder#info=devDependencies)
+[![Build Status](https://semaphoreci.com/api/v1/projects/02861938-a833-4f0e-938d-9bb2cd5ae49f/965710/shields_badge.svg)](https://semaphoreci.com/bmenant_lmem/extension)
 
-Building web, Electron, Cordova and Chrome apps, and cross-browser extensions that use Redux actions for messaging.
-
-Redux states are synced between background, injected page, app window, extension popup and badge.
-
-The developing is the same as for the web apps with React and Redux, just use the `src/app` boilerplate.
+At its early stages, this software was a fork of [Crossbuilder](https://github.com/zalmoxisus/crossbuilder).
+However, the software has evolved to better embrace our project needs and specificities. 
+As a result, the upstream codebase haven’t be merged for a while and it is unlikely to happen ever again.
 
 ## Structure
 
-- `src/app`: React cross-browser application (will be imported in the apps bellow).
-- `src/web`: web app sources.
-- `src/browser`: extensions sources.
-- `src/chromeApp`: Chrome app sources
-- `src/electron`: Electron app sources
-- `test/app`: tests for Redux actions and reducers, and for React components (using [enzyme](http://airbnb.io/enzyme/)).
-- `test/chrome`: tests for Chrome app and extension (using [chromedriver](https://www.npmjs.com/package/chromedriver), [selenium-webdriver](https://www.npmjs.com/package/selenium-webdriver)).
-
-## CrossBuilder included libraries
- - [redux-devtools-extension](https://github.com/zalmoxisus/redux-devtools-extension)
- - [redux-notify](https://github.com/zalmoxisus/redux-notify)
- - [crossmessaging](https://github.com/zalmoxisus/crossmessaging)
- - [chrome-storage-local](https://github.com/zalmoxisus/chrome-storage-local)
+- `src/app/`: React application (will be imported in the apps bellow).
+- `src/assets/`: web app fonts, images, etc.
+- `src/lib/`: external _non npm_ modules.
+- `manifest/`: base and environment specific web-extension manifests.
+- `test/app/`: tests for Redux actions and reducers, and for React components (using [enzyme](http://airbnb.io/enzyme/)).
+- `test/integration/`: runtime tests for built web-extensions.
 
 ## Installation
 
 ```bash
-# required node.js/io.js
+# required node.js/io.js (>= 6)
 # clone it
 npm install
 ```
@@ -35,50 +26,57 @@ npm install
 ## Development
 
 ```bash
-# build files to './dev'
-# watch files change
+# build files to './build/dev/'
+# watch files change (do not reload the extension though)
 # start WebpackDevServer
 npm start
 ```
 
-- Open web app in browser at `localhost:3000`.
-- [Load unpacked extension's `./dev` folder to Chrome.](https://developer.chrome.com/extensions/getstarted#unpacked)
-
-#### React/Flux hot reload
-
-This boilerplate uses `Webpack` and `react-transform`. You can hot reload by editing related files of `./src/app`. If the inject page for the extension is on https (like `https://github.com`), click the 'shield' icon on the Chrome address bar to allow loading `http://localhost` there (after making any changes in dev mode), so hot reload can work for that page.
+- [Load unpacked extension's `./build/dev/` folder to Chrome.](https://developer.chrome.com/extensions/getstarted#unpacked)
 
 #### Debug with Redux DevTools
 
 We use [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension), install it from [Chrome store](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) for debugging.
 
 
-## Build Chrome extension
+## Build Web extension
 
 ### Production
 
+To build a Chrome package...
+
 ```bash
-# build files to './build/extension'
+# build files to './build/production/'
 npm run build:production
+```
+
+To buid a **Firefox** package...
+
+```bash
+# build files to './build/firefox/'
+npm run build:firefox
 ```
 
 ### Staging
 
 ```bash
-# build files to './build/extension'
+# build files to './build/staging/'
 npm run build:staging
 ```
 
 ### Development
 
 ```bash
-# build files to './build/dev'
+# build files to './build/dev/'
 npm run build:dev
 ```
 
-`npm start` works too
-
 ## Deploy Chrome extension to SFTP server
+
+**CAUTION: deployments are operated by SemaphoreCI. Therefore, you SHOULD NOT perform any deployment on your own.**
+
+The Testing channel is updated automatically on any push to the develop branch. 
+The Stable channel is manually ignited from the master branch.
 
 ### Set up your SSH keys
 
@@ -102,60 +100,39 @@ try something like `echo $SSH_AUTH_SOCK`.
 ### Deploy
 
 ```bash
-# deploys files from './build/extension' to the SFTP server
-npm run deploy:extension
+# deploys files from './build/production' to the SFTP server
+npm run deploy:production
 ```
 
-## Build Firefox extension
-
-```bash
-# build files to './build/firefox'
-npm run build:firefox
-````
-Note that you should use Firefox Nightly or Developer Edition to support WebExtensions. It's [not possible for now to load Firefox extensions from local directories](https://bugzilla.mozilla.org/show_bug.cgi?id=1185460), so use `npm run compress:firefox` instead to generate an xpi file or use Firefox Developer Edition which can load local directories. Make sure yo follow [prerequisites](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Prerequisites) and [installing instruction](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Packaging_and_installation#Installing_Your_Extension).
-
-
-## Load
-
-- [Load the extension to Chrome](https://developer.chrome.com/extensions/getstarted#unpacked).
-- [Launch your Chrome app](https://developer.chrome.com/apps/first_app#five).
-- Firefox: [Prerequisites](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Prerequisites), [Installing](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Packaging_and_installation#Installing_Your_Extension).
+Or `npm run deploy:staging` for staging deployment.
 
 ## Test
 
 ```bash
-# test app
-npm run test:app
-
-# start Chromedriver for testing with Chrome
-npm run before:test:chrome
-
-# test Chrome extension
-npm run test:chrome:extension
-
-# test Chrome app
-npm run test:chrome:app
-
-# test Chrome extension and app
-npm run test:chrome
-
 # test everything
 npm test
 ```
 
 ### Integration tests
 
-In the extension `background.html` console, run `window.integrationTest()`
-
-## Roadmap
-
-- [x] Web app
-- [x] Electron app
-- [x] Chrome app
-- [x] Chrome extension
-- [x] Firefox extension (see [the current status](https://github.com/zalmoxisus/crossbuilder/issues/12))
-- [ ] Safari extension (based on [Chrome to Safari port](https://code.google.com/p/adblockforchrome/source/browse/trunk/port.js))
+Inspect the extension _background_ to get its console and run `window.integrationTest()`.
 
 ## LICENSE
 
-[MIT](LICENSE)
+[GNU GPL v3](LICENSE)
+
+>    Le Même en Mieux est un assistant d’achat indépendant des vendeurs et des marques.
+>    Copyright (C) 2016  INSITU SAS
+>
+>    This program is free software: you can redistribute it and/or modify
+>    it under the terms of the GNU General Public License as published by
+>    the Free Software Foundation, either version 3 of the License, or
+>    (at your option) any later version.
+>
+>    This program is distributed in the hope that it will be useful,
+>    but WITHOUT ANY WARRANTY; without even the implied warranty of
+>    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+>    GNU General Public License for more details.
+>
+>    You should have received a copy of the GNU General Public License
+>    along with this program.  If not, see <http://www.gnu.org/licenses/>.
