@@ -1,7 +1,7 @@
 {
   "name": "lmem-recommendations",
   "version": "0.1.0",
-  "description": "Building web, Electron and Chrome apps, and cross-browser extensions with React, Redux and Webpack. 'Write once, build everywhere' concept in practice.",
+  "description": "LMEM Recommendations web extensions using React+Redux.",
   "scripts": {
     "start": "npm run build:dev",
     "build:production": "gulp build:production",
@@ -23,24 +23,14 @@
     "type": "git",
     "url": "https://github.com/insitu-project/proto-ext"
   },
-  "homepage": "http://www.lmem.net",
-  "keywords": [
-    "react",
-    "reactjs",
-    "boilerplate",
-    "hot",
-    "live",
-    "edit",
-    "webpack",
-    "flux",
-    "redux",
-    "firefox",
-    "safari",
-    "chrome",
-    "app",
-    "extension"
-  ],
-  "authors": [
+  "homepage": "https://www.lmem.net",
+  "author": "INSITU SAS (https://github.com/insitu-project)",
+  "contributors": [
+    "Benjamin Menant (https://github.com/bmenant)",
+    "Arnaud Lemaire (https://github.com/lilobase)",
+    "David Bruant (https://github.com/DavidBruant)",
+    "Romain l'Ourson (https://github.com/iOiurson)",
+    "Vincent Van Steenbergen (https://github.com/nsteenv)",
     "Mihail Diordiev <zalmoxisus@gmail.com> (https://github.com/zalmoxisus)",
     "Jhen <developer@jhen.me> (https://github.com/jhen0409)"
   ],
