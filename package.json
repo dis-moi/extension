@@ -1,6 +1,6 @@
 {
-  "name": "crossbuilder",
-  "version": "0.8.0",
+  "name": "lmem-recommendations",
+  "version": "0.1.0",
   "description": "Building web, Electron and Chrome apps, and cross-browser extensions with React, Redux and Webpack. 'Write once, build everywhere' concept in practice.",
   "scripts": {
     "start": "npm run build:dev",
@@ -44,7 +44,7 @@
     "Mihail Diordiev <zalmoxisus@gmail.com> (https://github.com/zalmoxisus)",
     "Jhen <developer@jhen.me> (https://github.com/jhen0409)"
   ],
-  "license": "MIT",
+  "license": "GPL-3.0",
   "devDependencies": {
     "babel-core": "^6.7.2",
     "babel-eslint": "^6.0.2",
