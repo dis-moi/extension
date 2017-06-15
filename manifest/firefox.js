@@ -9,19 +9,8 @@ export default Object.assign(
     'permissions': [
       'storage',
       'tabs',
-      // 'unlimitedStorage',
       'http://*/*',
       'https://*/*'
     ],
-    'content_security_policy': csp({
-      'directives': {
-        'default-src': [
-          'https://recommendations.lmem.net',
-        ],
-        'style-src': [
-          '\'unsafe-inline\''
-        ]
-      }
-    })
   }
 );
