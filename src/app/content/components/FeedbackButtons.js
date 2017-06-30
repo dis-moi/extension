@@ -40,9 +40,9 @@ export default class FeedbackButtons extends Component {
         <button
           className="button-hollow with-tooltip with-image"
           onClick={ e => dismissReco(recoId) }>
-          <img src={ imagesUrl + 'close.svg' } role="presentation" />
+          <img src={ imagesUrl + 'trashbin.svg' } role="presentation" />
           <span className="tooltip tooltip-left">
-            Ignorer (ne plus afficher)
+            Ne plus afficher
           </span>
         </button>
         <button
