@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import notify from 'redux-notify';
 import rootReducer from '../reducers';
 import trackEvents from '../middlewares/analytics';
-import updatePrefs from '../middlewares/updatePrefs';
+import updatePrefs from '../middlewares/refreshMatchingContexts';
 import sendFeedback from '../middlewares/sendFeedback';
 import fromJS from '../../utils/customFromJS';
 

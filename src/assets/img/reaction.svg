@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" height="80" width="80" version="1.1" viewBox="0 0 75.000002 75.000001">
+ <g transform="translate(-47.667 -1854.9)">
+  <g fill="#586e75" transform="translate(199.37 2199.4)">
+   <path style="color-rendering:auto;color:#000000;isolation:auto;mix-blend-mode:normal;shape-rendering:auto;solid-color:#000000;image-rendering:auto" d="m-172.67-2117.3a24 24 0 0 0 -24 24 24 24 0 0 0 24 24 24 24 0 0 0 24 -24 24 24 0 0 0 -0.38476 -4.1465 15 15 0 0 1 -5.9219 1.2364 15 15 0 0 1 -0.4414 -0.021 17.5 17.5 0 0 1 0.24804 2.9316 17.5 17.5 0 0 1 -17.5 17.5 17.5 17.5 0 0 1 -17.5 -17.5 17.5 17.5 0 0 1 17.5 -17.5 17.5 17.5 0 0 1 2.7168 0.2344 15 15 0 0 1 -0.0234 -0.6445 15 15 0 0 1 1.1582 -5.7676 24 24 0 0 0 -3.8516 -0.3223z" transform="matrix(.93750 0 0 .93750 47.667 1655.6)"/>
+   <path style="color-rendering:auto;color:#000000;isolation:auto;mix-blend-mode:normal;shape-rendering:auto;solid-color:#000000;image-rendering:auto" d="m-122.24-300.38c1.2693 3.3828 4.4641 5.6203 8.0317 5.625 3.5705-0.001 6.7694-2.2394 8.0398-5.625z"/>
+   <path d="m-106.99-325.81-0.00003 4.1512 7.2994 0.00002-0.00002 7.2994 4.1513 0.00003-0.000026-7.2994 7.2994 0.00002-0.000027-4.1512h-7.2994l-0.000027-7.2994-4.1512 0.00002 0.00001 7.2994z"/>
+   <circle style="color-rendering:auto;color:#000000;isolation:auto;mix-blend-mode:normal;shape-rendering:auto;solid-color:#000000;image-rendering:auto" cx="-120.77" cy="-308.35" r="3.2812"/>
+   <circle style="color-rendering:auto;color:#000000;isolation:auto;mix-blend-mode:normal;shape-rendering:auto;solid-color:#000000;image-rendering:auto" cy="-308.35" cx="-107.65" r="3.2812"/>
+  </g>
+ </g>
+</svg>
