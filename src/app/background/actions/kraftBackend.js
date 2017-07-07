@@ -4,7 +4,8 @@ import fetch from 'isomorphic-fetch';
 import {
   RECEIVED_MATCHING_CONTEXTS,
   RECEIVED_CRITERIA,
-  RECEIVED_EDITORS
+  RECEIVED_EDITORS,
+  REFRESH_MATCHING_CONTEXTS,
 } from '../../constants/ActionTypes';
 
 import { LMEM_BACKEND_ORIGIN } from '../../constants/origins';
@@ -97,5 +98,18 @@ export function dispatchInitialStateFromBackend() {
 export function refreshMatchingContextsFromBackend(criteria, editors) {
   return dispatch => {
     fetchMatchingContexts(criteria, editors).then(json => dispatch(receivedMatchingContexts(json)));
+  };
+}
+
+// TODO to remove with legacy extension...
+export function refreshMatchingContextsFromLegacy() {
+  return dispatch => {
+    chrome.runtime.onMessage.addListener((msg, sender) => {
+      if (sender.id && sender.id === chrome.runtime.id) {
+        if (msg.type && msg.type === REFRESH_MATCHING_CONTEXTS) {
+          dispatch({type: REFRESH_MATCHING_CONTEXTS});
+        }
+      }
+    });
   };
 }

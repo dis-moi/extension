@@ -5,17 +5,21 @@ import {
   SELECT_CRITERION,
   UNSELECT_CRITERION,
   EXCLUDE_EDITOR,
-  INCLUDE_EDITOR
+  INCLUDE_EDITOR,
+  REFRESH_MATCHING_CONTEXTS,
 } from '../../constants/ActionTypes';
 
 export default function (store){
   return next => action => {
 
     switch (action.type) {
+      // Update prefs and explicit refresh...
       case EXCLUDE_EDITOR:
       case INCLUDE_EDITOR:
       case SELECT_CRITERION:
       case UNSELECT_CRITERION:
+      case REFRESH_MATCHING_CONTEXTS:
+
         const state = store.getState();
 
         // update all content stores
@@ -27,13 +31,12 @@ export default function (store){
           }));
         });
 
-        // fetch updated matching contexts
-        let selectedCriteria = Array.from(state.get('prefs').get('criteria').keys())
+        const selectedCriteria = Array.from(state.get('prefs').get('criteria').keys())
         .filter(slug => {
           return state.get('prefs').get('criteria').get(slug).get('isSelected');  
         });
 
-        let excludedEditors = Array.from(state.get('prefs').get('editors').keys())
+        const excludedEditors = Array.from(state.get('prefs').get('editors').keys())
         .filter(id => {
           return state.get('prefs').get('editors').get(id).get('isExcluded');
         });
@@ -41,8 +44,8 @@ export default function (store){
         store.dispatch(refreshMatchingContextsFromBackend(selectedCriteria, excludedEditors));
 
         break;
-      default:
-        break;
+
+      default: break;
     }
 
     return next(action);
