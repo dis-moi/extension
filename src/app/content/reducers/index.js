@@ -6,8 +6,6 @@ import {
   UNINSTALL,
   DISMISS_RECO,
   REPORT_RECO,
-  OPEN_PREFERENCE_PANEL,
-  CLOSE_PREFERENCE_PANEL,
   INSTALLED_DETAILS,
   CRITERIA,
   SELECT_CRITERION,
@@ -36,13 +34,6 @@ export default function (state = {}, action) {
     case REPORT_RECO:
     case UNINSTALL:
       return state.set('open', false);
-
-    case OPEN_PREFERENCE_PANEL:
-      const { panel } = action;
-      return state.set('preferenceScreenPanel', panel);
-
-    case CLOSE_PREFERENCE_PANEL:
-      return state.set('preferenceScreenPanel', undefined);
 
     case INSTALLED_DETAILS:
       const { onInstalledDetails } = action;
