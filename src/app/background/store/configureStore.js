@@ -5,7 +5,8 @@ import thunk from 'redux-thunk';
 import notify from 'redux-notify';
 import rootReducer from '../reducers';
 import trackEvents from '../middlewares/analytics';
-import updatePrefs from '../middlewares/refreshMatchingContexts';
+import refreshMatchingContexts from '../middlewares/refreshMatchingContexts';
+import openOptionsPage from '../middlewares/openOptionsPage';
 import sendFeedback from '../middlewares/sendFeedback';
 import fromJS from '../../utils/customFromJS';
 
@@ -23,7 +24,8 @@ export default function configureStore(callback, isBg) {
     const middleware = [
       thunk,
       trackEvents,
-      updatePrefs,
+      refreshMatchingContexts,
+      openOptionsPage,
       sendFeedback
     ];
 

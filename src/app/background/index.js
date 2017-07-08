@@ -19,6 +19,7 @@ import {
 } from './actions/kraftBackend';
 import updateDraftRecommendations from './actions/updateDraftRecommendations';
 
+import { OPEN_PREFERENCE_PANEL } from '../constants/ActionTypes';
 import {LMEM_BACKEND_ORIGIN, LMEM_SCRIPTS_ORIGIN} from '../constants/origins';
 
 /**
@@ -121,17 +122,12 @@ configureStore(store => {
   // TODO: remove with the legacy extension...
   store.dispatch(refreshMatchingContextsFromLegacy()); // watch for refresh request from the legacy extension
 
+  chrome.browserAction.onClicked.addListener(() => {
+    store.dispatch({ type: OPEN_PREFERENCE_PANEL });
+  });
+
   if (process.env.NODE_ENV !== 'production') {
     require('./inject');
   }
 }, true);
 
-chrome.browserAction.onClicked.addListener(tabs => {
-  if (chrome.runtime.openOptionsPage) {
-    // New way to open options pages, if supported (Chrome 42+).
-    chrome.runtime.openOptionsPage();
-  } else {
-    // Reasonable fallback.
-    chrome.tabs.create({url: 'options.html'});
-  }
-});
