@@ -63,7 +63,7 @@ export default function (portCommunication) {
         type: OPEN_PREFERENCE_PANEL,
         panel
       };
-      
+
       if (portCommunication)
         portCommunication.sendBackgroundReduxAction(action);
 
