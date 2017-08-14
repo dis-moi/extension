@@ -4,6 +4,7 @@ import file from 'gulp-file';
 import devManifest from '../../manifest/dev';
 import prodManifest from '../../manifest/prod';
 import stagingManifest from '../../manifest/staging';
+import firefoxManifest from '../../manifest/firefox';
 
 const copy = (dest, manifestStr, tests) => () => {
   if (manifestStr) {
@@ -26,6 +27,8 @@ gulp.task('copy:build:staging',
   copy('./build/staging', JSON.stringify(stagingManifest, null, 2)));
 gulp.task('copy:build:production',
   copy('./build/production', JSON.stringify(prodManifest, null, 2)));
+gulp.task('copy:build:firefox',
+  copy('./build/firefox', JSON.stringify(firefoxManifest, null, 2)));
 
 gulp.task('copy:watch', () => {
   gulp.watch(`./src/manifest`, ['copy:build:dev']);
