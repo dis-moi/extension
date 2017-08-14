@@ -19,6 +19,11 @@ export default baseConfig({
       remotePath: '/lamp0/web/vhosts/ui.lmem.net/htdocs/'
     }
   },
+  // No analytics with Firefox
+  loaders: [{
+    test: /lib\/heap/,
+    loader: 'null-loader',
+  }],
   plugins: [
     new webpack.optimize.DedupePlugin(),
   ],
@@ -29,5 +34,5 @@ export default baseConfig({
       LMEM_SCRIPTS_ORIGIN: "'.'", // Use local build
       //HEAP_APPID: '"3705584166"', // No analytics with Firefox
     }
-  }
+  },
 });
