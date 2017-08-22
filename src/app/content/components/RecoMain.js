@@ -65,7 +65,7 @@ export default function RecoMain({
                 onClick={(e) => onCheckOutResourceLink(recommendation.resource)}
                 target="_blank"
                 href={recommendation.resource.url}>
-                {recommendation.resource.url}
+                {recommendation.resource.url.replace(/\?.+$/, '')}
               </a>
             </div>
             <RecoDescription description={recommendation.description} />
