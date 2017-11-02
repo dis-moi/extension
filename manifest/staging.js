@@ -10,11 +10,11 @@ export default Object.assign(
       'directives': {
         'default-src': [
           'https://preprod-lmem-craft-backend.cleverapps.io',
-          'https://testing.ui.lmem.net',
+          'https://testing-ui.lmem.net',
         ],
         'script-src': [
           '\'self\'',
-          'https://testing.ui.lmem.net',
+          'https://testing-ui.lmem.net',
           'https://heapanalytics.com', 
           'https://cdn.heapanalytics.com'
         ],

@@ -5,6 +5,12 @@ export default Object.assign(
   {},
   base,
   {
-    'name': 'LMEM - DEV',
+    'name': 'LMEM',
+    'permissions': [
+      'storage',
+      'tabs',
+      'http://*/*',
+      'https://*/*'
+    ],
   }
 );

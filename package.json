@@ -5,6 +5,7 @@
   "scripts": {
     "start": "npm run build:dev",
     "build:production": "gulp build:production",
+    "build:firefox": "gulp build:firefox",
     "build:staging": "gulp build:staging",
     "build:dev": "gulp build:dev",
     "clean": "rm -rf build",
@@ -71,6 +72,7 @@
     "jsdom": "^8.1.0",
     "mocha": "^2.4.5",
     "node-sass": "^3.8.0",
+    "null-loader": "^0.1.1",
     "pre-commit": "^1.1.3",
     "raw-loader": "^0.5.1",
     "react-addons-test-utils": "^0.14.7",

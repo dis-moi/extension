@@ -19,7 +19,7 @@ const Editor = ({ editor, author, onCheckOutEditor }) => {
           <a
             onClick={() => onCheckOutEditor(editor)}
             target="_blank" href={editor.url}>
-            {editor.url.replace(/https?:\/\/(www\.)?/, '')}
+            {editor.url.replace(/(?:^https?:\/\/(?:www\.)?|\?.+$)/g, '')}
           </a>
         </p>
       ) : undefined }

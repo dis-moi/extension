@@ -1,7 +1,7 @@
 import path from 'path';
 import webpack from 'webpack';
 
-const baseConfig = ({ input, output = {}, globals = {}, plugins = [], loaders }) => ({
+const baseConfig = ({ input, output = {}, globals = {}, plugins = [], loaders = [] }) => ({
   entry: input,
   output: Object.assign(
     {
@@ -24,11 +24,11 @@ const baseConfig = ({ input, output = {}, globals = {}, plugins = [], loaders })
   },
   module: {
     loaders: [
-      ...(loaders || [{
+      {
         test: /\.js$/,
         loader: 'babel',
         exclude: /node_modules/
-      }]),
+      },
       {
         test: /\.scss?$/,
         // FIXME handle styles and assets injection through Webpack style- and css- loaders
@@ -38,8 +38,8 @@ const baseConfig = ({ input, output = {}, globals = {}, plugins = [], loaders })
       {
         test: /\.svg/,
         loader: 'svg-url-loader'
-      }
-    ]
+      },
+    ].concat(loaders),
   }
 });
 
