@@ -6,9 +6,11 @@
  */
 
 export default Object.freeze({
-  'version': '0.1.0',
+  'name': 'Le Même en Mieux',
+  'shortname': 'LMEM',
+  'description': 'Qualité, prix, éthique : s’il existe un meilleur choix, vous le saurez. Gratuit et sans pub, respecte votre vie privée.',
+  'version': '0.43.1',
   'manifest_version': 2,
-  'description': 'LMEM',
   'icons': {
     '16': 'img/logo/16x16.png',
     '48': 'img/logo/48x48.png',
