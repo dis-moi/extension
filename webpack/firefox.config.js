@@ -12,12 +12,6 @@ export default baseConfig({
   output: {
     path: path.join(__dirname, '../build/firefox'),
     publicPath: '.', // No remote URL with Firefox
-    sftp: {
-      // See .ftppass https://github.com/gtg092x/gulp-sftp#authentication
-      auth: 'keyMain',
-      host: 'sftp.dc0.gpaas.net',
-      remotePath: '/lamp0/web/vhosts/ui.lmem.net/htdocs/'
-    }
   },
   // No analytics with Firefox
   loaders: [{

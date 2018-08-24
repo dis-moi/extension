@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import file from 'gulp-file';
 
 import devManifest from '../../manifest/dev';
-import prodManifest from '../../manifest/prod';
+import prodManifest from '../../manifest/chromium';
 import stagingManifest from '../../manifest/staging';
 import firefoxManifest from '../../manifest/firefox';
 
@@ -25,8 +25,8 @@ gulp.task('copy:build:dev',
   copy('./build/dev', JSON.stringify(devManifest, null, 2), true));
 gulp.task('copy:build:staging',
   copy('./build/staging', JSON.stringify(stagingManifest, null, 2)));
-gulp.task('copy:build:production',
-  copy('./build/production', JSON.stringify(prodManifest, null, 2)));
+gulp.task('copy:build:chromium',
+  copy('./build/chromium', JSON.stringify(prodManifest, null, 2)));
 gulp.task('copy:build:firefox',
   copy('./build/firefox', JSON.stringify(firefoxManifest, null, 2)));
 

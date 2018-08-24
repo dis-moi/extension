@@ -10,11 +10,9 @@ export default Object.assign(
       'directives': {
         'default-src': [
           'https://recommendations.lmem.net',
-          'https://ui.lmem.net',
         ],
         'script-src': [
           '\'self\'',
-          'https://ui.lmem.net',
           'https://heapanalytics.com',
           'https://cdn.heapanalytics.com'
         ],

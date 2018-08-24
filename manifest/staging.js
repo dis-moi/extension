@@ -9,13 +9,11 @@ export default Object.assign(
     'content_security_policy': csp({
       'directives': {
         'default-src': [
-          'https://preprod-lmem-craft-backend.cleverapps.io',
-          'https://testing-ui.lmem.net',
+          'https://recommendations.lmem.net',
         ],
         'script-src': [
           '\'self\'',
-          'https://testing-ui.lmem.net',
-          'https://heapanalytics.com', 
+          'https://heapanalytics.com',
           'https://cdn.heapanalytics.com'
         ],
         'object-src': [
