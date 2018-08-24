@@ -40,4 +40,4 @@ const release = Object.freeze({
   ]
 });
 
-export default release;
+module.exports = release;
