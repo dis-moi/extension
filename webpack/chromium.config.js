@@ -10,14 +10,8 @@ export default baseConfig({
     options: [`${srcPath}options/`],
   },
   output: {
-    path: path.join(__dirname, '../build/production'),
-    publicPath: 'https://ui.lmem.net',
-    sftp: {
-      // See .ftppass https://github.com/gtg092x/gulp-sftp#authentication
-      auth: 'keyMain',
-      host: 'sftp.dc0.gpaas.net',
-      remotePath: '/lamp0/web/vhosts/ui.lmem.net/htdocs/'
-    }
+    path: path.join(__dirname, '../build/chromium'),
+    publicPath: '.',
   },
   plugins: [
     new webpack.optimize.DedupePlugin(),
@@ -32,7 +26,7 @@ export default baseConfig({
     'process.env': {
       NODE_ENV: '"production"',
       LMEM_BACKEND_ORIGIN: '"https://recommendations.lmem.net"',
-      LMEM_SCRIPTS_ORIGIN: "'https://ui.lmem.net'",
+      LMEM_SCRIPTS_ORIGIN: "'.'",
       UNINSTALL_ORIGIN: "'https://www.lmem.net/desinstallation'",
       HEAP_APPID: '"3705584166"', // production
     }

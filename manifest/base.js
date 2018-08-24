@@ -5,11 +5,14 @@
  * See other files in the directory
  */
 
+const version = process.env.npm_package_version;
+
 export default Object.freeze({
   'name': 'Le Même en Mieux',
   'shortname': 'LMEM',
-  'description': 'Qualité, prix, éthique : s’il existe un meilleur choix, vous le saurez. Gratuit et sans pub, respecte votre vie privée.',
-  'version': '0.43.1',
+  'description': 'Qualité, prix, éthique : s’il existe un meilleur choix, vous le saurez. ' +
+    'Gratuit et sans pub, respecte votre vie privée.',
+  version,
   'manifest_version': 2,
   'icons': {
     '16': 'img/logo/16x16.png',

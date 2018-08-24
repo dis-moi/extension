@@ -10,7 +10,7 @@ export default baseConfig({
   },
   output: {
     path: path.join(__dirname, '../build/staging'),
-    publicPath: 'https://testing-ui.lmem.net',
+    publicPath: '.',
     sftp: {
       // See .ftppass https://github.com/gtg092x/gulp-sftp#authentication
       auth: 'keyMain',
@@ -21,8 +21,8 @@ export default baseConfig({
   globals: {
     'process.env': {
       NODE_ENV: '"staging"',
-      LMEM_BACKEND_ORIGIN: '"https://preprod-lmem-craft-backend.cleverapps.io"',
-      LMEM_SCRIPTS_ORIGIN: "'https://testing-ui.lmem.net'",
+      LMEM_BACKEND_ORIGIN: '"https://recommendations.lmem.net"',
+      LMEM_SCRIPTS_ORIGIN: "'.'",
       UNINSTALL_ORIGIN: "'https://www.lmem.net/desinstallation'",
       HEAP_APPID: '"234457910"', // testing
     }
