@@ -24,15 +24,15 @@ const release = Object.freeze({
     }
   ],
   publish: [
-    {
+   {
       path: '@semantic-release/github',
       assets: [
         {
-          path: 'build/firefox.v*.zip',
+          path: 'build/lmem-v*-firefox.zip',
           label: 'Firefox Package'
         },
         {
-          path: 'build/chromium.v*.zip',
+          path: 'build/lmem-v*-chromium.zip',
           label: 'Chromium Package'
         }
       ]
