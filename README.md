@@ -17,10 +17,12 @@ As a result, the upstream codebase haven’t be merged for a while and it is unl
 
 ## Installation
 
+First install [yarn](https://yarnpkg.com/) and [nvm](https://github.com/creationix/nvm) (optional).
+
 ```bash
-# required node.js/io.js (>= 6)
-# clone it
-npm install
+# git clone...
+nvm use lts/carbon
+yarn
 ```
 
 ## Development
@@ -29,7 +31,7 @@ npm install
 # build files to './build/dev/'
 # watch files change (do not reload the extension though)
 # start WebpackDevServer
-npm start
+yarn start
 ```
 
 - [Load unpacked extension's `./build/dev/` folder to Chrome.](https://developer.chrome.com/extensions/getstarted#unpacked)
@@ -43,74 +45,34 @@ We use [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-e
 
 ### Production
 
-To build a Chrome package...
+To build all production packages (Chromium, Firefox, etc).
 
 ```bash
-# build files to './build/production/'
-npm run build:production
-```
-
-To buid a **Firefox** package...
-
-```bash
-# build files to './build/firefox/'
-npm run build:firefox
+# build files to './build/{browser}/'
+yarn build:production
 ```
 
 ### Staging
 
+To build a staging package...
+
 ```bash
 # build files to './build/staging/'
-npm run build:staging
+yarn build:staging
 ```
 
 ### Development
 
 ```bash
 # build files to './build/dev/'
-npm run build:dev
+yarn build:dev
 ```
-
-## Deploy Chrome extension to SFTP server
-
-**CAUTION: deployments are operated by SemaphoreCI. Therefore, you SHOULD NOT perform any deployment on your own.**
-
-The Testing channel is updated automatically on any push to the develop branch. 
-The Stable channel is manually ignited from the master branch.
-
-### Set up your SSH keys
-
-First, set up your public ssh key on the SFTP server.
-Then, create a `.ftppass` config file as follow (using your own values,
-see [gulp-sftp](https://github.com/gtg092x/gulp-sftp) for details):
-
-```json
-{
-  "keyMain": {
-    "agent": "/run/user/1001/keyring/ssh",
-    "user": "jdoe",
-    "keyLocation": "/home/jdoe/.ssh/dev-rsa"
-  }
-}
-```
-
-Hint: to get the path of your ssh-agent’s socket,
-try something like `echo $SSH_AUTH_SOCK`.
-
-### Deploy
-
-```bash
-# deploys files from './build/production' to the SFTP server
-npm run deploy:production
-```
-
-Or `npm run deploy:staging` for staging deployment.
 
 ## Test
 
 ```bash
 # test everything
-npm test
+yarn test
 ```
 
 ### Integration tests
