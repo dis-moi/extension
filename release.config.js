@@ -1,4 +1,10 @@
 const release = Object.freeze({
+  analyzeCommits: {
+    preset: 'angular',
+    parserOpts: {
+      noteKeywords: ['BREAKING CHANGE', 'BREAKING CHANGES', 'MAJOR RELEASE'],
+    },
+  },
   verifyConditions: [
     '@semantic-release/changelog',
     '@semantic-release/git',
