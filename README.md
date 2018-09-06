@@ -36,10 +36,10 @@ yarn start
 
 - [Load unpacked extension's `./build/dev/` folder to Chrome.](https://developer.chrome.com/extensions/getstarted#unpacked)
 
-#### Debug with Redux DevTools
+### Conventional Commits
 
-We use [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension), install it from [Chrome store](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) for debugging.
-
+We follow [conventional commits](https://conventionalcommits.org/) since version 1.0.0 and
+we use [Semantic Release](https://github.com/semantic-release/semantic-release) to build and publish new releases.
 
 ## Build Web extension
 
