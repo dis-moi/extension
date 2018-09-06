@@ -9,6 +9,7 @@ const release = Object.freeze({
     '@semantic-release/changelog',
     '@semantic-release/git',
     '@semantic-release/github',
+    'semantic-release-chrome',
   ],
   prepare: [
     '@semantic-release/changelog',
@@ -26,24 +27,29 @@ const release = Object.freeze({
         'build/**/*',
         'manifest/base.js'
       ],
-      message: 'chore: release ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
-    }
+      message: 'chore: release ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
+    },
   ],
   publish: [
-   {
+    {
       path: '@semantic-release/github',
       assets: [
         {
-          path: 'build/lmem-v*-firefox.zip',
+          path: 'build/lmem-v${nextRelease.version}-firefox.zip',
           label: 'Firefox Package'
         },
         {
-          path: 'build/lmem-v*-chromium.zip',
+          path: 'build/lmem-v${nextRelease.version}-chromium.zip',
           label: 'Chromium Package'
-        }
-      ]
-    }
-  ]
+        },
+      ],
+    },
+    {
+      path: 'semantic-release-chrome',
+      asset: 'build/lmem-v${nextRelease.version}-chromium.zip',
+      extensionId: 'fpjlnlnbacohacebkadbbjebbipcknbg',
+    },
+  ],
 });
 
 module.exports = release;
