@@ -24,7 +24,6 @@ const release = Object.freeze({
         'package.json',
         'yarn.lock',
         'CHANGELOG.md',
-        'build/**/*',
         'manifest/base.js'
       ],
       message: 'chore: release ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
