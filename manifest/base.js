@@ -35,6 +35,7 @@ export default Object.freeze({
     'default_title': 'LMEM options',
   },
   'permissions': [
+    'geolocation',
     'storage',
     'tabs',
     'unlimitedStorage',
