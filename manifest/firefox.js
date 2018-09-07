@@ -5,7 +5,6 @@ export default Object.assign(
   {},
   base,
   {
-    'name': 'LMEM',
     'permissions': [
       'storage',
       'tabs',

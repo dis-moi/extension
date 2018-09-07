@@ -5,7 +5,6 @@ export default Object.assign(
   {},
   base,
   {
-    'name': 'LMEM',
     'content_security_policy': csp({
       'directives': {
         'default-src': [
