@@ -13,8 +13,12 @@ const onInstalledPromise = new Promise(resolve => {
   });
 });
 
-export default function () {
+export default function ({ onboardingUrl }) {
   return dispatch => {
+    if (onboardingUrl) {
+      onInstalledPromise.then(() => chrome.tabs.create({ url: onboardingUrl }));
+    }
+
     onInstalledPromise.then(onInstalledDetails => dispatch({
       type: INSTALLED,
       onInstalledDetails

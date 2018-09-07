@@ -26,6 +26,7 @@ export default baseConfig({
       NODE_ENV: '"production"',
       LMEM_BACKEND_ORIGIN: '"https://recommendations.lmem.net"',
       LMEM_SCRIPTS_ORIGIN: "'.'", // Use local build
+      ONBOARDING_ORIGIN: '"https://bienvenue.lmem.net?extensionInstalled"',
       //HEAP_APPID: '"3705584166"', // No analytics with Firefox
     }
   },
