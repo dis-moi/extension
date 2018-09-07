@@ -113,7 +113,8 @@ configureStore(store => {
   );
 
   if (store.getState().get('prefs').get('onInstalledDetails').isEmpty()) {
-    store.dispatch(onInstalled());
+    const onboardingUrl = process.env.ONBOARDING_ORIGIN;
+    store.dispatch(onInstalled({ onboardingUrl }));
   }
 
   store.dispatch(dispatchInitialStateFromBackend()); // store initialization from the kraft server
