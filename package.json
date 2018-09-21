@@ -99,6 +99,7 @@
     "crossmessaging": "^0.2.0",
     "dompurify": "^0.8.4",
     "es6-promise": "^3.2.1",
+    "flat": "^4.1.0",
     "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.13.1",
