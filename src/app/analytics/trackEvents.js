@@ -1,6 +1,7 @@
+import mapEventFromAction from './eventsMapper';
+
 // Arbitrary set max payload size
-// @TODO find a nicer way to handle the error
-const MAX_PAYLOAD_SIZE = 7800;
+// const MAX_PAYLOAD_SIZE = 7800;
 
 /**
  * Logs all actions and states after they are dispatched.
@@ -20,17 +21,18 @@ const MAX_PAYLOAD_SIZE = 7800;
  * call, and if too big (arbitrary limit set) just send the event.
  *
  * Could be implemented in a much nicer way though.
+ *
+ * bmenant (2018-09-21):
+ * - Modified middleware to not track infrastructural events (api/, persist/, etc).
+ * - Added an event mapper to exclude some arbitrary properties.
+ * - Removed payload size check (it’s has become very very rare)
  */
 
-export default function (action){
-  // Check payload size to avoid HTTP 414 Request-URI Too Large url
-  const payloadSize = encodeURIComponent(JSON.stringify(action)).length;
-  if (payloadSize > MAX_PAYLOAD_SIZE) {
-    console.log('Payload size too large', payloadSize);
-    window.heap.track(action.type);
-  } else {
-    const copy = Object.assign({}, action);
-    delete copy.type;
-    window.heap.track(action.type, copy);
+export default function (action) {
+  if (window.heap) {
+    window.heap.track(action.type, mapEventFromAction(action));
+  }
+  else {
+    console.log(`Heap analytics disabled: ignore tracking of "${action.type}":`, action);
   }
 }
