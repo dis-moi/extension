@@ -1,13 +1,13 @@
-import track from '../../analytics/trackEvents.js';
+import track from '../../analytics/trackEvents';
 
 export default function (store){
   return next => action => {
-    if (!window.heap) {
-      console.log(`Heap analytics disabled: ignore tracking of "${action.type}":`, action);
-    }
-    else{
+    const { type } = action;
+
+    if (!type.startsWith('api/') && !type.startsWith('notify/') && !type.startsWith('persist/')) {
       track(action);
     }
+
     return next(action);
   };
 }
