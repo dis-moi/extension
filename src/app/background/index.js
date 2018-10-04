@@ -15,7 +15,6 @@ import prepareDraftPreview from '../lmem/draft-preview/main.js';
 
 import {
   dispatchInitialStateFromBackend,
-  refreshMatchingContextsFromLegacy,
 } from './actions/kraftBackend';
 import updateDraftRecommendations from './actions/updateDraftRecommendations';
 
@@ -118,10 +117,6 @@ configureStore(store => {
   }
 
   store.dispatch(dispatchInitialStateFromBackend()); // store initialization from the kraft server
-
-  // Legacy extension use only...
-  // TODO: remove with the legacy extension...
-  store.dispatch(refreshMatchingContextsFromLegacy()); // watch for refresh request from the legacy extension
 
   chrome.browserAction.onClicked.addListener(() => {
     store.dispatch({ type: OPEN_PREFERENCE_PANEL });
