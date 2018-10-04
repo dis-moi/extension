@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/insitu-project/recommendations-webextension/compare/v1.0.2...v1.0.3) (2018-09-21)
+
+
+### Bug Fixes
+
+* **analytics:** track properties and drop irevelant actions ([59b9bc0](https://github.com/insitu-project/recommendations-webextension/commit/59b9bc0))
+
 ## [1.0.2](https://github.com/insitu-project/recommendations-webextension/compare/v1.0.1...v1.0.2) (2018-09-07)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "lmem-recommendations",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "LMEM Recommendations web extensions using React+Redux.",
   "scripts": {
     "start": "npm run build:dev",
