@@ -32,7 +32,8 @@ export default Object.freeze({
       '48': 'img/logo/48x48.png',
       '128': 'img/logo/128x128.png'
     },
-    'default_title': 'LMEM options',
+    'default_title': 'Le Même en Mieux',
+    'default_popup': 'popup.html',
   },
   'permissions': [
     'geolocation',
