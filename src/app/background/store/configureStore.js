@@ -1,8 +1,8 @@
 /* eslint global-require: "off" */
 
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'remote-redux-devtools';
 import thunk from 'redux-thunk';
-import notify from 'redux-notify';
 import rootReducer from '../reducers';
 import trackEvents from '../middlewares/analytics';
 import refreshMatchingContexts from '../middlewares/refreshMatchingContexts';
@@ -20,8 +20,8 @@ export default function configureStore(callback, isBg) {
   else getState = (isBg ? require('./getStateToBg') : require('./getStateFromBg'));
 
   getState(loadedState => {
-    let enhancer;
-    const middleware = [
+    // let enhancer;
+    const middlewares = [
       thunk,
       trackEvents,
       refreshMatchingContexts,
@@ -29,18 +29,16 @@ export default function configureStore(callback, isBg) {
       sendFeedback
     ];
 
-    if (process.env.NODE_ENV !== 'production') {
-      middleware.push(
+    const composeEnhancers = composeWithDevTools({
+      // options
+    });
+    const enhancer = process.env.NODE_ENV !== 'production' ?
+      composeEnhancers(applyMiddleware(...middlewares.concat([
         require('redux-immutable-state-invariant')(),
-        require('redux-logger')({ level: 'info', collapsed: true })
-      );
-      enhancer = compose(
-        applyMiddleware(...middleware),
-        window.devToolsExtension ? window.devToolsExtension() : f => f
-      );
-    } else {
-      enhancer = applyMiddleware(...middleware);
-    }
+        require('redux-logger')({ level: 'info', collapsed: true }),
+      ]))) :
+      applyMiddleware(...middlewares);
+
 
     const initialPrefState = makeInitialState().delete('resources'); // Map
     const initialResourcesState = makeInitialState().delete('prefs'); // Map
@@ -51,13 +49,14 @@ export default function configureStore(callback, isBg) {
     const state = initialResourcesState.merge(migratedState);
     const store = createStore(rootReducer, state, enhancer);
 
-    if (process.env.NODE_ENV !== 'production') {
-      if (module.hot) {
-        module.hot.accept('../reducers', () =>
-          store.replaceReducer(require('../reducers'))
-        );
-      }
-    }
+    // FIXME
+    // if (process.env.NODE_ENV !== 'production') {
+    //   if (module.hot) {
+    //     module.hot.accept('../reducers', () =>
+    //       store.replaceReducer(require('../reducers'))
+    //     );
+    //   }
+    // }
 
     return store;
   }, callback);
