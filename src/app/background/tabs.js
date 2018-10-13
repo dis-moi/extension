@@ -1,7 +1,7 @@
 import recommendationIsValid from '../lmem/recommendationIsValid';
 import { contextTriggered, recoDisplayed, recoDismissed } from './actions/tabs';
 
-export const matchingTabIdToPortP = new Map();
+export const matchingTabIdToPortM = new Map();
 
 export function makeTabs(
   tabs,
@@ -20,7 +20,7 @@ export function makeTabs(
         const tabPort = chrome.tabs.connect(tabId);
         tabPort.onDisconnect.addListener(() => {
           console.log('port in background was disconnected for tab', tabId);
-          matchingTabIdToPortP.delete(tabId);
+          matchingTabIdToPortM.delete(tabId);
         });
 
         tabPort.onMessage.addListener(msg => {
@@ -61,7 +61,7 @@ export function makeTabs(
       });
     });
 
-    matchingTabIdToPortP.set(tabId, tabPortP);
+    matchingTabIdToPortM.set(tabId, tabPortP);
 
     return tabPortP;
   }
@@ -69,7 +69,7 @@ export function makeTabs(
   function sendRecommendationsToTab(tabId, recos) {
     // console.log('before execute', tabId);
 
-    const tabPortP = matchingTabIdToPortP.get(tabId) || createContentScriptAndPort(tabId);
+    const tabPortP = matchingTabIdToPortM.get(tabId) || createContentScriptAndPort(tabId);
 
     const approvedRecos = getApproved();
     const recommendations = recos.map(reco => {
@@ -135,7 +135,7 @@ export function makeTabs(
   });
 
   tabs.onRemoved.addListener(id => {
-    matchingTabIdToPortP.delete(id);
+    matchingTabIdToPortM.delete(id);
   });
 
 }

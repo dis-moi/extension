@@ -9,6 +9,7 @@ import {
   CHECKOUT_RECO_RESOURCE_LINK,
   CHECKOUT_RECO_ALTERNATIVE,
   CHECKOUT_RECO_EDITOR,
+  POPUP_CLICK,
 } from '../../constants/ActionTypes';
 
 export default function (portCommunication) {
@@ -128,8 +129,19 @@ export default function (portCommunication) {
         portCommunication.sendBackgroundReduxAction(action);
 
       return action;
-    }
+    },
 
+    popupClick(target) {
+      const action = {
+        type: POPUP_CLICK,
+        target,
+      };
+
+      if (portCommunication)
+        portCommunication.sendBackgroundReduxAction(action);
+
+      return action;
+    },
   };
 }
 

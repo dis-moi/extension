@@ -660,7 +660,8 @@ ul.summary-entry-content {
 }
 
 .lmem-popup-content {
-    font-size: $simple-line-height;
+    font-size: $midway-font-size;
+    line-height: $double-line-height;
 
     h1 {
         @extend %title;
@@ -681,16 +682,17 @@ ul.summary-entry-content {
     }
 
     ul {
-         display: flex;
-         justify-content: space-between;
-         margin-top: $margin-size;
+        display: flex;
+        flex-direction: column;
+        //justify-content: space-between;
+        margin-top: $margin-size;
     }
 
     li {
-        background: $background-light-color;
-        max-width: $block-size * 3;
-        padding: $margin-size;
-        border-radius: rem-size(3);
+        //background: $background-light-color;
+        //max-width: $block-size * 3;
+        //padding: $margin-size;
+        //border-radius: rem-size(3);
     }
 
     .button {
@@ -698,6 +700,11 @@ ul.summary-entry-content {
         font-weight: 400;
         display: flex;
         height: $double-line-height + $margin-size - 2 * $border-width;
+    }
+
+    .with-image img {
+        margin-left: 0;
+        margin-right: .5ex;
     }
 
     strong {
@@ -731,12 +738,14 @@ ul.summary-entry-content {
 
 .popup-highlight {
     @extend .highlight;
+    padding-right: $margin-size * 2;
+    padding-left: $margin-size * 2;
 }
 
 .lmem-popup-controls {
-     position: fixed;
-     top: $margin-size / 3;
-     right: $margin-size / 3;
+     margin-top: $margin-size;
+    font-size: $simple-font-size;
+    line-height: $double-line-height;
 
      .picto {
           width: $block-size / 3;
@@ -744,7 +753,7 @@ ul.summary-entry-content {
 }
 
 .lmem-popup-footer {
-     margin-top: $margin-size;
+     margin-top: $margin-size * 2;
 }
 
 //TODO make it working with the other form...

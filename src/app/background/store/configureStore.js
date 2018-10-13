@@ -4,7 +4,8 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'remote-redux-devtools';
 import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
-import trackEvents from '../middlewares/analytics';
+import analytics from '../middlewares/analytics';
+import trackEvents from '../../analytics/trackEvents';
 import refreshMatchingContexts from '../middlewares/refreshMatchingContexts';
 import openOptionsPage from '../middlewares/openOptionsPage';
 import sendFeedback from '../middlewares/sendFeedback';
@@ -19,11 +20,19 @@ export default function configureStore(callback, isBg) {
   if (isBg === undefined) getState = require('./getStoredState'); /* If you don't want to persist states, use './getDefaultState' */// eslint-disable-line max-len
   else getState = (isBg ? require('./getStateToBg') : require('./getStateFromBg'));
 
+  const trackEventMiddleware = analytics({
+    getCurrentTabs: chrome.tabs.query.bind(null, {
+      active: true,
+      currentWindow: true,
+    }),
+    track: trackEvents,
+  });
+
   getState(loadedState => {
     // let enhancer;
     const middlewares = [
       thunk,
-      trackEvents,
+      trackEventMiddleware,
       refreshMatchingContexts,
       openOptionsPage,
       sendFeedback

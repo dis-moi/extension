@@ -117,8 +117,5 @@ configureStore(store => {
 
   store.dispatch(dispatchInitialStateFromBackend()); // store initialization from the kraft server
 
-  if (process.env.NODE_ENV !== 'production') {
-    require('./inject');
-  }
 }, true);
 

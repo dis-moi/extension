@@ -12,6 +12,7 @@ import {
 
 const {
   openPrefScreen,
+  popupClick,
 } = uiActions();
 
 
@@ -26,6 +27,7 @@ function mapDispatchToProps(dispatch) {
     openPrefScreenAbout() { dispatch(openPrefScreen(PREFERENCE_SCREEN_PANEL_ABOUT)); },
     // FIXME there is no reducer on this action, 'panel' is not used
     openPrefScreenSources() { dispatch(openPrefScreen(PREFERENCE_SCREEN_PANEL_SOURCES)); },
+    onClick(target) { dispatch(popupClick(target)); },
   };
 }
 
