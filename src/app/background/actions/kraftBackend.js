@@ -101,15 +101,13 @@ export function refreshMatchingContextsFromBackend(criteria, editors) {
   };
 }
 
-// TODO to remove with legacy extension...
-export function refreshMatchingContextsFromLegacy() {
-  return dispatch => {
-    chrome.runtime.onMessage.addListener((msg, sender) => {
-      if (sender.id && sender.id === chrome.runtime.id) {
-        if (msg.type && msg.type === REFRESH_MATCHING_CONTEXTS) {
-          dispatch({type: REFRESH_MATCHING_CONTEXTS});
-        }
-      }
-    });
-  };
+export function refreshMatchingContextsEvery(milliseconds) {
+  function recurse(dispatch) {
+    setTimeout(() => {
+      dispatch({ type: REFRESH_MATCHING_CONTEXTS });
+      recurse(dispatch);
+    }, milliseconds);
+  }
+
+  return recurse;
 }

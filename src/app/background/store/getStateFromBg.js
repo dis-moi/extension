@@ -1,5 +1,4 @@
 import { connect } from 'crossmessaging';
-import { receiveNotification } from '../actions/extension';
 
 export default function (configure, callback) {
   let store;
@@ -11,8 +10,6 @@ export default function (configure, callback) {
     if (message.name === 'init') {
       store = configure(message.state);
       callback(store);
-    } else if (message.name === 'redux-notify' && message.action && store) {
-      store.dispatch(receiveNotification(message.action));
     }
   });
 }

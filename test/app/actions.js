@@ -1,11 +1,14 @@
 import chai from 'chai';
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
 
 import { Set as ImmutableSet } from 'immutable';
 
 import {
   receivedMatchingContexts,
   receivedCriteria,
-  receivedEditors
+  receivedEditors,
+  refreshMatchingContextsEvery,
 } from '../../src/app/background/actions/kraftBackend';
 
 import {
@@ -15,6 +18,8 @@ import {
 } from '../../src/app/background/actions/tabs';
 
 const expect = chai.expect;
+chai.use(sinonChai);
+
 
 describe('background actions', function () {
 
@@ -71,6 +76,29 @@ describe('background actions', function () {
     expect(action.type).to.be.a('string').of.length.above(5);
     expect(action.trigger).to.equal(trigger);
     expect(action.recommendation).to.equal(recommendation);
+  });
+
+  describe('auto refresh matching contexts', () => {
+    before(() => {
+      this.clock = sinon.useFakeTimers();
+    });
+
+    it('every x minutes', () => {
+      const recursiveFn = refreshMatchingContextsEvery(10000);
+      const dispatch = sinon.fake();
+
+      recursiveFn(dispatch);
+      expect(dispatch).to.not.have.been.called;
+
+      this.clock.next();
+      this.clock.next();
+      expect(dispatch).to.have.been.calledTwice;
+      expect(dispatch.lastCall.lastArg.type).to.be.a('string').of.length.above(5);
+    });
+
+    after(() => {
+      this.clock.restore();
+    });
   });
 
 });

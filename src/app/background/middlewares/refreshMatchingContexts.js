@@ -1,4 +1,4 @@
-import { matchingTabIdToPortP } from '../tabs';
+import { matchingTabIdToPortM } from '../tabs';
 import { refreshMatchingContextsFromBackend } from '../actions/kraftBackend';
 
 import {
@@ -23,7 +23,7 @@ export default function (store){
         const state = store.getState();
 
         // update all content stores
-        matchingTabIdToPortP.forEach(tabPortP => {
+        matchingTabIdToPortM.forEach(tabPortP => {
           tabPortP
           .then(tabPort => tabPort.postMessage({
             type: 'dispatch',

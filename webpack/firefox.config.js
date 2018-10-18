@@ -4,11 +4,6 @@ import baseConfig from './base.config';
 const srcPath = path.join(__dirname, '../src/app/');
 
 export default baseConfig({
-  input: {
-    background: [`${srcPath}background/`],
-    content: [`${srcPath}content/`],
-    options: [`${srcPath}options/`],
-  },
   output: {
     path: path.join(__dirname, '../build/firefox'),
     publicPath: '.', // No remote URL with Firefox
@@ -20,6 +15,12 @@ export default baseConfig({
   }],
   plugins: [
     new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      comments: false,
+      compressor: {
+        warnings: false
+      }
+    })
   ],
   globals: {
     'process.env': {
@@ -27,6 +28,7 @@ export default baseConfig({
       LMEM_BACKEND_ORIGIN: '"https://recommendations.lmem.net"',
       LMEM_SCRIPTS_ORIGIN: "'.'", // Use local build
       ONBOARDING_ORIGIN: '"https://bienvenue.lmem.net?extensionInstalled"',
+      REFRESH_MC_INTERVAL: '10*60*1000',
       //HEAP_APPID: '"3705584166"', // No analytics with Firefox
     }
   },
