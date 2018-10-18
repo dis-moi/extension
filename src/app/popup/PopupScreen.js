@@ -23,6 +23,10 @@ export default function PopupScreen({ imagesUrl, openPrefScreenAbout, onClick })
           n’a posté de message sur cette page.
         </p>
         <footer className="lmem-popup-footer">
+          <a className="with-image" href="https://choisir.lmem.net/apparition-assistant/" target="_blank" rel="noopener noreferrer" onClick={onClickHandler}>
+            <img role="presentation" className="picto" src={imagesUrl + 'info.svg'} />
+            <span>Découvrir où et quand l’assistant s’affiche</span>
+          </a>
           <a className="with-image" href="https://choisir.lmem.net/demander-un-conseil/" target="_blank" rel="noopener noreferrer" onClick={onClickHandler}>
             <img role="presentation" className="picto" src={imagesUrl + 'discuss.svg'} />
             <span>Demander de l’aide sur un forum</span>
