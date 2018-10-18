@@ -100,3 +100,14 @@ export function refreshMatchingContextsFromBackend(criteria, editors) {
     fetchMatchingContexts(criteria, editors).then(json => dispatch(receivedMatchingContexts(json)));
   };
 }
+
+export function refreshMatchingContextsEvery(milliseconds) {
+  function recurse(dispatch) {
+    setTimeout(() => {
+      dispatch({ type: REFRESH_MATCHING_CONTEXTS });
+      recurse(dispatch);
+    }, milliseconds);
+  }
+
+  return recurse;
+}
