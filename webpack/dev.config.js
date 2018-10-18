@@ -1,15 +1,9 @@
 import path from 'path';
 import baseConfig from './base.config';
-const srcPath = path.join(__dirname, '../src/app/');
-const testPath = path.join(__dirname, '../test/');
-
 
 export default baseConfig({
   input: {
-    background: [`${srcPath}background/`],
-    content: [`${srcPath}content/`],
-    options: [`${srcPath}options/`],
-    test: [`${testPath}integration/`]
+    test: [path.join(__dirname, '../test/integration/')],
   },
   output: {
     path: path.join(__dirname, '../build/dev'),

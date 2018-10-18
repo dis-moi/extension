@@ -41,6 +41,11 @@ yarn start
 We follow [conventional commits](https://conventionalcommits.org/) since version 1.0.0 and
 we use [Semantic Release](https://github.com/semantic-release/semantic-release) to build and publish new releases.
 
+### Redux DevTools
+
+We use [Redux DevTools](https://extension.remotedev.io/) to inspect Redux actions and state changes. 
+Once installed, from the Redux DevTools extension’s context menu, choose “Open Remote DevTools” for remote monitoring.
+
 ## Build Web extension
 
 ### Production

@@ -1,8 +1,18 @@
 import path from 'path';
 import webpack from 'webpack';
 
+const srcPath = path.join(__dirname, '../src/app');
+
 const baseConfig = ({ input, output = {}, globals = {}, plugins = [], loaders = [] }) => ({
-  entry: input,
+  entry: Object.assign(
+    {
+      background: [path.join(srcPath, './background/')],
+      content: [path.join(srcPath, './content/')],
+      options: [path.join(srcPath, './options/')],
+      popup: [path.join(srcPath, './popup/')],
+    },
+    input
+  ),
   output: Object.assign(
     {
       filename: 'js/[name].bundle.js',
@@ -17,8 +27,8 @@ const baseConfig = ({ input, output = {}, globals = {}, plugins = [], loaders = 
   ],
   resolve: {
     alias: {
-      app: path.join(__dirname, '../src/app'),
-      extension: path.join(__dirname, '../src/app/background')
+      app: srcPath,
+      extension: path.join(srcPath, './background')
     },
     extensions: ['', '.js']
   },

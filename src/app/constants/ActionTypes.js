@@ -1,6 +1,4 @@
 // background actions
-export const NOTIFY_SEND = 'notify/SEND';
-export const NOTIFY_RECEIVE = 'notify/RECEIVE';
 
 export const MATCHING_OFFERS_FOUND = 'matching_offers/FOUND';
 
@@ -43,6 +41,8 @@ export const CHECKOUT_RECO_RESOURCE_BUTTON = 'CHECKOUT_RECO_RESOURCE_BUTTON';
 export const CHECKOUT_RECO_RESOURCE_LINK = 'CHECKOUT_RECO_RESOURCE_LINK';
 export const CHECKOUT_RECO_ALTERNATIVE = 'CHECKOUT_RECO_ALTERNATIVE';
 export const CHECKOUT_RECO_EDITOR = 'CHECKOUT_RECO_EDITOR';
+
+export const POPUP_CLICK = 'POPUP_CLICK';
 
 export const CRITERIA = 'CRITERIA';
 export const SELECT_CRITERION = 'SELECT_CRITERION';
