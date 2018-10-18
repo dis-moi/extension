@@ -21,10 +21,15 @@ export default function configureStore(callback, isBg) {
   else getState = (isBg ? require('./getStateToBg') : require('./getStateFromBg'));
 
   const trackEventMiddleware = analytics({
-    getCurrentTabs: chrome.tabs.query.bind(null, {
-      active: true,
-      currentWindow: true,
-    }),
+    getCurrentTabs: () =>
+      new Promise(resolve =>
+        chrome.tabs.query(
+          {
+            active: true,
+            currentWindow: true,
+          },
+          tabs => resolve(tabs),
+        )),
     track: trackEvents,
   });
 

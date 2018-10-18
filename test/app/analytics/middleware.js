@@ -18,9 +18,7 @@ function create() {
   const track = sinon.stub();
 
   const invoke = action => middleware({
-    getCurrentTabs: (cb) => {
-      cb([{url: 'https://lmem.net'}]);
-    },
+    getCurrentTabs: () => Promise.resolve([{url: 'https://lmem.net'}]),
     track,
   })(store)(next)(action);
 
@@ -54,10 +52,12 @@ describe('Analytics middleware', () => {
     const { track, invoke } = create();
     const action = { type: POPUP_CLICK };
     invoke(action);
-    setTimeout(function doneDoesNotWorkWellWithMochaIDontWantToKnowWhyAtThisTime() {
+
+    // next tick
+    setTimeout(() => {
       expect(track).to.have.been.calledWith({ type: POPUP_CLICK, currentHref: 'https://lmem.net' });
       done();
-    }, 0);
+    }, 0)
   });
 
 });

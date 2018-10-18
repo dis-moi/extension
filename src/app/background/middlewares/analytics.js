@@ -6,7 +6,7 @@ export default function ({ getCurrentTabs, track }) {
 
     if (!type.startsWith('api/') && !type.startsWith('notify/') && !type.startsWith('persist/')) {
       if (type === POPUP_CLICK) {
-        new Promise(resolve => getCurrentTabs(tabs => resolve(tabs)))
+        getCurrentTabs()
           .then(tabs => (tabs.length > 0 ? tabs[0].url : undefined))
           .then(currTabUrl => Object.assign(action, {currentHref: currTabUrl}))
           .then(event => track(event));
