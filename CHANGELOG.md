@@ -1,3 +1,18 @@
+# [1.1.0](https://github.com/insitu-project/recommendations-webextension/compare/v1.0.3...v1.1.0) (2018-10-18)
+
+
+### Bug Fixes
+
+* **analytics:** track properties and drop irevelant actions ([2a2936a](https://github.com/insitu-project/recommendations-webextension/commit/2a2936a))
+* **matching contexts:** auto refresh matching contexts from backend every x minutes ([82b37ce](https://github.com/insitu-project/recommendations-webextension/commit/82b37ce)), closes [#178](https://github.com/insitu-project/recommendations-webextension/issues/178)
+* **popup:** add link to know where and when the addon shows up ([2062fb8](https://github.com/insitu-project/recommendations-webextension/commit/2062fb8))
+
+
+### Features
+
+* **popup:** bootstrap browser popup with react+redux (wip) ([b09782f](https://github.com/insitu-project/recommendations-webextension/commit/b09782f))
+* **popup:** simple content with analytics ([7455240](https://github.com/insitu-project/recommendations-webextension/commit/7455240))
+
 ## [1.0.3](https://github.com/insitu-project/recommendations-webextension/compare/v1.0.2...v1.0.3) (2018-09-21)
 
 
