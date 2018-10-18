@@ -23,6 +23,7 @@ export default baseConfig({
       LMEM_BACKEND_ORIGIN: '"https://recommendations.lmem.net"',
       LMEM_SCRIPTS_ORIGIN: "'.'",
       UNINSTALL_ORIGIN: "'https://www.lmem.net/desinstallation'",
+      REFRESH_MC_INTERVAL: '10*60*1000',
       ONBOARDING_ORIGIN: '"https://bienvenue.lmem.net?extensionInstalled"',
       HEAP_APPID: '"3705584166"', // production
     }

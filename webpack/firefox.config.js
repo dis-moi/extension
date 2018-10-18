@@ -28,6 +28,7 @@ export default baseConfig({
       LMEM_BACKEND_ORIGIN: '"https://recommendations.lmem.net"',
       LMEM_SCRIPTS_ORIGIN: "'.'", // Use local build
       ONBOARDING_ORIGIN: '"https://bienvenue.lmem.net?extensionInstalled"',
+      REFRESH_MC_INTERVAL: '10*60*1000',
       //HEAP_APPID: '"3705584166"', // No analytics with Firefox
     }
   },

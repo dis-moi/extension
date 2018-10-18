@@ -15,6 +15,7 @@ import prepareDraftPreview from '../lmem/draft-preview/main.js';
 
 import {
   dispatchInitialStateFromBackend,
+  refreshMatchingContextsEvery,
 } from './actions/kraftBackend';
 import updateDraftRecommendations from './actions/updateDraftRecommendations';
 
@@ -116,6 +117,15 @@ configureStore(store => {
   }
 
   store.dispatch(dispatchInitialStateFromBackend()); // store initialization from the kraft server
+
+  const refreshInterval = Number(process.env.REFRESH_MC_INTERVAL);
+  if (refreshInterval > 0) {
+    console.info(`Matching contexts will be refreshed every ${refreshInterval / 1000 / 60} minutes.`);
+    store.dispatch(refreshMatchingContextsEvery(refreshInterval));
+  }
+  else console.warn(
+    'Matching contexts auto-refresh disabled:',
+    'assuming "process.env.REFRESH_MC_INTERVAL" is deliberately not defined.');
 
 }, true);
 

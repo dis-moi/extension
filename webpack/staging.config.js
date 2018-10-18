@@ -14,6 +14,7 @@ export default baseConfig({
       LMEM_SCRIPTS_ORIGIN: "'.'",
       UNINSTALL_ORIGIN: "'https://www.lmem.net/desinstallation'",
       HEAP_APPID: '"234457910"', // testing
+      REFRESH_MC_INTERVAL: '5*60*1000',
     }
   }
 });
