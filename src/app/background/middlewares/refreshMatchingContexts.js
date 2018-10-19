@@ -12,42 +12,54 @@ import {
 export default function (store){
   return next => action => {
 
-    switch (action.type) {
-      // Update prefs and explicit refresh...
-      case EXCLUDE_EDITOR:
-      case INCLUDE_EDITOR:
-      case SELECT_CRITERION:
-      case UNSELECT_CRITERION:
-      case REFRESH_MATCHING_CONTEXTS:
+    function scheduleRefreshAfterward() {
+      const result = next(action);
 
-        const state = store.getState();
+      store.dispatch({ type: REFRESH_MATCHING_CONTEXTS });
 
-        // update all content stores
-        matchingTabIdToPortM.forEach(tabPortP => {
-          tabPortP
+      return result;
+    }
+
+    function refreshMatchingContexts() {
+      const state = store.getState();
+
+      // update all content stores
+      matchingTabIdToPortM.forEach(tabPortP => {
+        tabPortP
           .then(tabPort => tabPort.postMessage({
             type: 'dispatch',
             action
           }));
-        });
+      });
 
-        const selectedCriteria = Array.from(state.get('prefs').get('criteria').keys())
+      const selectedCriteria = Array.from(state.get('prefs').get('criteria').keys())
         .filter(slug => {
-          return state.get('prefs').get('criteria').get(slug).get('isSelected');  
+          return state.get('prefs').get('criteria').get(slug).get('isSelected');
         });
 
-        const excludedEditors = Array.from(state.get('prefs').get('editors').keys())
+      const excludedEditors = Array.from(state.get('prefs').get('editors').keys())
         .filter(id => {
           return state.get('prefs').get('editors').get(id).get('isExcluded');
         });
 
-        store.dispatch(refreshMatchingContextsFromBackend(selectedCriteria, excludedEditors));
+      store.dispatch(refreshMatchingContextsFromBackend(selectedCriteria, excludedEditors));
 
-        break;
-
-      default: break;
+      return next(action);
     }
 
-    return next(action);
+    switch (action.type) {
+      case EXCLUDE_EDITOR:
+      case INCLUDE_EDITOR:
+      case SELECT_CRITERION:
+      case UNSELECT_CRITERION:
+        return scheduleRefreshAfterward();
+
+      case REFRESH_MATCHING_CONTEXTS:
+        return refreshMatchingContexts();
+
+      default:
+        return next(action);
+    }
+
   };
 }
