@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/insitu-project/recommendations-webextension/compare/v1.1.0...v1.1.1) (2018-10-19)
+
+
+### Bug Fixes
+
+* **refresh Matching Contexts:** schedule refresh after editor/criterion update ([f447c88](https://github.com/insitu-project/recommendations-webextension/commit/f447c88))
+
 # [1.1.0](https://github.com/insitu-project/recommendations-webextension/compare/v1.0.3...v1.1.0) (2018-10-18)
 
 
