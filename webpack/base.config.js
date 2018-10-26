@@ -45,14 +45,26 @@ const baseConfig = ({
       },
       {
         test: /\.scss?$/,
-        include: [
-          path.resolve(__dirname, '../src/')
-        ],
-        use: [
-          "style-loader", // creates style nodes from JS strings
-          "css-loader", // translates CSS into CommonJS
-          "sass-loader" // compiles Sass to CSS, using Node Sass by default
-        ]
+          include: [
+            path.resolve(__dirname, '../src/app/'),
+          ],
+          oneOf: [
+              {
+                  resourceQuery: /external/, // foo.css?inline
+                  use: [
+                      "css-loader", // translates CSS into CommonJS
+                      "sass-loader" // compiles Sass to CSS, using Node Sass by default
+                  ]
+              },
+              {
+                  resourceQuery: /inline/, // foo.css?external
+                  use: [
+                      "style-loader", // creates style nodes from JS strings
+                      "css-loader", // translates CSS into CommonJS
+                      "sass-loader" // compiles Sass to CSS, using Node Sass by default
+                  ]
+              }
+          ]
       },
       {
         test: /\.svg/,
