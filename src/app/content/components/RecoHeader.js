@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   DEACTIVATE_EVERYWHERE,
   SESSION_DEACTIVATE_DELAY
@@ -41,7 +42,7 @@ class RecoHeader extends Component {
   render() {
     const {
       imagesUrl, reduced, preferenceScreenPanel,
-       closePrefScreen
+      closePrefScreen
     } = this.props;
 
     const reduceButtonText = reduced ? 'Agrandir' : 'Réduire';
@@ -54,23 +55,27 @@ class RecoHeader extends Component {
       reduced ? 'tooltip-left' : 'tooltip-bottom-right'
     ].join(' ');
 
-    const headerButtons = preferenceScreenPanel ?
-      (<li>
-        <div className="button-directive">
-          <button
-            className="button button-compact with-tooltip"
-            onClick={closePrefScreen}>
-            <img
-              role="presentation"
-              src={ imagesUrl + 'close.svg' }
-              className="lmem-controls-picto" />
-            <span className={tooltipButtonClassName}><span>
+    const headerButtons = preferenceScreenPanel
+      ? (
+        <li>
+          <div className="button-directive">
+            <button
+              className="button button-compact with-tooltip"
+              onClick={closePrefScreen}>
+              <img
+                role="presentation"
+                src={ imagesUrl + 'close.svg' }
+                className="lmem-controls-picto" />
+              <span className={tooltipButtonClassName}>
+                <span>
               Fermer l’écran des préférences
-            </span></span>
-          </button>
-        </div>
-      </li>) :
-      [(<li key="preferences">
+                </span>
+              </span>
+            </button>
+          </div>
+        </li>
+      )
+      : [(<li key="preferences">
         <div className="button-directive">
           <button
             className="button button-compact with-tooltip"
@@ -79,9 +84,11 @@ class RecoHeader extends Component {
               role="presentation"
               src={ imagesUrl + 'settings.svg' }
               className="lmem-controls-picto" />
-            <span className={tooltipButtonClassName}><span>
+            <span className={tooltipButtonClassName}>
+              <span>
               Préférences
-            </span></span>
+              </span>
+            </span>
           </button>
         </div>
       </li>),
@@ -101,27 +108,31 @@ class RecoHeader extends Component {
         </button>
       </li>)];
 
-    const extendReduceButton = preferenceScreenPanel ? undefined :
-    (<div className="button-wrapper">
-      <div className="button-directive">
-        <button
-          className="button button-compact with-image with-tooltip"
-          onClick={ this.handleReduceButtonClick }>
-          <img
-            role="presentation"
-            src={ imagesUrl + 'arrow.svg' }
-            className={ buttonButtonClassName } />
-          <span className="button-label">{reduceButtonText}</span>
-          <span className={tooltipButtonClassName}><span>
-            {reduceButtonText}
-          </span></span>
-        </button>
-      </div>
-    </div>);
+    const extendReduceButton = preferenceScreenPanel ? undefined
+      : (
+        <div className="button-wrapper">
+          <div className="button-directive">
+            <button
+              className="button button-compact with-image with-tooltip"
+              onClick={ this.handleReduceButtonClick }>
+              <img
+                role="presentation"
+                src={ imagesUrl + 'arrow.svg' }
+                className={ buttonButtonClassName } />
+              <span className="button-label">{reduceButtonText}</span>
+              <span className={tooltipButtonClassName}>
+                <span>
+                  {reduceButtonText}
+                </span>
+              </span>
+            </button>
+          </div>
+        </div>
+      );
 
-    const headerContent = preferenceScreenPanel ?
-      HEADER_CONTENT[preferenceScreenPanel](imagesUrl) :
-      HEADER_CONTENT.default;
+    const headerContent = preferenceScreenPanel
+      ? HEADER_CONTENT[preferenceScreenPanel](imagesUrl)
+      : HEADER_CONTENT.default;
 
     return (
       <header>

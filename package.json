@@ -116,6 +116,7 @@
     "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.2.1",
     "lodash-es": "^4.17.11",
+    "prop-types": "^15.6.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-hot-loader": "^4.3.11",

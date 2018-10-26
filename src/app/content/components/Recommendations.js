@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Loader from './Loader';
 import RecoHeader from './RecoHeader';
 import RecoMain from './RecoMain';
@@ -11,16 +12,18 @@ export default function Recommendations(props) {
     onCheckOutResourceButton, onCheckOutResourceLink, onCheckOutAlternative, onCheckOutEditor,
   } = props;
 
-  const body = preferenceScreenPanel ?
-    <Preferences /> :
-    <RecoMain
-      imagesUrl={imagesUrl}
-      recommendations={recommendations}
-      onCheckOutResourceButton={onCheckOutResourceButton}
-      onCheckOutResourceLink={onCheckOutResourceLink}
-      onCheckOutAlternative={onCheckOutAlternative}
-      onCheckOutEditor={onCheckOutEditor}
-    />;
+  const body = preferenceScreenPanel
+    ? <Preferences />
+    : (
+      <RecoMain
+        imagesUrl={imagesUrl}
+        recommendations={recommendations}
+        onCheckOutResourceButton={onCheckOutResourceButton}
+        onCheckOutResourceLink={onCheckOutResourceLink}
+        onCheckOutAlternative={onCheckOutAlternative}
+        onCheckOutEditor={onCheckOutEditor}
+      />
+    );
 
   return recommendations ? (
     <section className="lmem-top-level">

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class FeedbackButtons extends Component {
 
@@ -65,7 +66,7 @@ export default class FeedbackButtons extends Component {
           <span className="tooltip tooltip-left">
             Signaler (erreur, propos haineux ou racistes...)
           </span>
-        </button>*/}
+        </button> */}
       </div>
     );
   }

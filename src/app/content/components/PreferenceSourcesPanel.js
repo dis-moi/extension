@@ -1,7 +1,10 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function PreferenceSourcesPanel(props) {
-  const { editors, includeEditor, excludeEditor, imagesUrl } = props;
+  const {
+    editors, includeEditor, excludeEditor, imagesUrl 
+  } = props;
 
   const lis = editors.toArray()
     .sort((editorA, editorB) => {
@@ -9,7 +12,7 @@ function PreferenceSourcesPanel(props) {
       const labelB = editorB.get('label').toUpperCase();
       return labelA.localeCompare(labelB);
     })
-    .map(editor => {
+    .map((editor) => {
       const id = editor.get('id');
       const label = editor.get('label');
       const isExcluded = editor.get('isExcluded');

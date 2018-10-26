@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import { filterTags } from '../../lmem/typeOfCriteria';
 
@@ -6,7 +7,11 @@ export default function Criteria(props) {
   const criteria = filterTags(props.criteria)
     .map(criterion => (
       <li key={criterion.slug}>
-        <b className={'tag tag-' + criterion.slug}> {criterion.label} </b>
+        <b className={'tag tag-' + criterion.slug}> 
+          {' '}
+          {criterion.label}
+          {' '}
+        </b>
       </li>
     ));
 

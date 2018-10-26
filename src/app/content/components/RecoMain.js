@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { findType } from '../../lmem/typeOfCriteria';
@@ -44,9 +45,9 @@ export default function RecoMain({
           {'with-indicator': typeOfRecommendation}
         )}>
         {
-          typeOfRecommendation ?
-            <TypeIndicator recommendationType={ typeOfRecommendation } imagesUrl={ imagesUrl } /> :
-            undefined
+          typeOfRecommendation
+            ? <TypeIndicator recommendationType={ typeOfRecommendation } imagesUrl={ imagesUrl } />
+            : undefined
         }
 
         <div className="reco-summary">
@@ -62,7 +63,7 @@ export default function RecoMain({
           <div className="reco-summary-content">
             <div className="reco-summary-link-referral">
               <a 
-                onClick={(e) => onCheckOutResourceLink(recommendation.resource)}
+                onClick={e => onCheckOutResourceLink(recommendation.resource)}
                 target="_blank"
                 href={recommendation.resource.url}>
                 {recommendation.resource.url.replace(/\?.+$/, '')}
@@ -73,7 +74,7 @@ export default function RecoMain({
         </div>
         <div className="summary-link-checkout-wrapper">
           <a
-            onClick={(e) => onCheckOutResourceButton(recommendation.resource)}
+            onClick={e => onCheckOutResourceButton(recommendation.resource)}
             href={recommendation.resource.url}
             target="_blank"
             className="button summary-link-checkout with-image">
@@ -86,7 +87,7 @@ export default function RecoMain({
             <div>
               <small>ou bien</small>
               <a
-                onClick={(e) => onCheckOutAlternative(recommendation.alternatives[0])}
+                onClick={e => onCheckOutAlternative(recommendation.alternatives[0])}
                 href={recommendation.alternatives[0].url_to_redirect}
                 target="_blank"
                 className="reco-alternative button summary-link-checkout with-image">
