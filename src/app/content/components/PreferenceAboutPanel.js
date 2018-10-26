@@ -26,7 +26,8 @@ export default function PreferenceAboutPanel(props) {
         </h1>
         { localeDateOfInstall && (
           <p>
-Vous l’avez installé le
+            Vous l’avez installé le
+            {' '}
             <time dateTime={ISODateOfInstall}>{localeDateOfInstall}</time>
 .
           </p>
