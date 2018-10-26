@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 
 import PopupRoot from './PopupRoot';
 
-import 'style!../styles/main.scss'; // eslint-disable-line import/no-unresolved
+import '../styles/main.scss';
 
 const store = chrome.extension.getBackgroundPage().store;
 

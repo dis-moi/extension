@@ -1,9 +1,10 @@
 import path from 'path';
-import webpack from 'webpack';
 
 const srcPath = path.join(__dirname, '../src/app');
 
-const baseConfig = ({ input, output = {}, globals = {}, plugins = [], loaders = [] }) => ({
+const baseConfig = ({
+  input, output = {}, plugins = [], rules = [], ...rest 
+}) => ({
   entry: Object.assign(
     {
       background: [path.join(srcPath, './background/')],
@@ -20,9 +21,7 @@ const baseConfig = ({ input, output = {}, globals = {}, plugins = [], loaders = 
     },
     output
   ),
-  globals: globals,
   plugins: [
-    new webpack.DefinePlugin(globals),
     ...plugins
   ],
   resolve: {
@@ -30,27 +29,44 @@ const baseConfig = ({ input, output = {}, globals = {}, plugins = [], loaders = 
       app: srcPath,
       extension: path.join(srcPath, './background')
     },
-    extensions: ['', '.js']
+    extensions: ['.js']
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loader: 'babel',
-        exclude: /node_modules/
+        include: [
+          path.resolve(__dirname, '../src/')
+        ],
+        use: [
+          { loader: 'babel-loader' },
+        ],
+
       },
       {
         test: /\.scss?$/,
+        include: [
+          path.resolve(__dirname, '../src/')
+        ],
         // FIXME handle styles and assets injection through Webpack style- and css- loaders
         // see ../src/app/background/index.js
-        loaders: ['css-loader', 'sass-loader']
+        use: [
+          { loader: 'css-loader' },
+          { loader: 'sass-loader' },
+        ]
       },
       {
         test: /\.svg/,
-        loader: 'svg-url-loader'
-      },
-    ].concat(loaders),
-  }
+        include: [
+          path.resolve(__dirname, '../src/')
+        ],
+        use: [
+          { loader: 'svg-url-loader' },
+        ]
+      }
+    ].concat(rules),
+  },
+  ...rest,
 });
 
 export default baseConfig;

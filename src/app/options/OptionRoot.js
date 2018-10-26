@@ -1,11 +1,13 @@
 import React, { PropTypes } from 'react';
 import { Provider, connect } from 'react-redux';
+import { hot } from 'react-hot-loader';
 
 import OptionScreen from './OptionScreen';
 import filterActions from '../content/actions/filters.js';
 import uiActions from '../content/actions/ui.js';
 
 import { IMAGES_URL } from '../constants/assetsUrls';
+
 
 const {
   selectCriterion,
@@ -50,6 +52,6 @@ OptionRoot.propTypes = {
   store: PropTypes.object.isRequired
 };
 
-export default OptionRoot;
+export default hot(module)(OptionRoot);
 
 

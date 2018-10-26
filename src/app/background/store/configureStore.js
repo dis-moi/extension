@@ -17,23 +17,27 @@ import migrate from './migrations.js';
 
 export default function configureStore(callback, isBg) {
   let getState;
-  if (isBg === undefined) getState = require('./getStoredState'); /* If you don't want to persist states, use './getDefaultState' */// eslint-disable-line max-len
-  else getState = (isBg ? require('./getStateToBg') : require('./getStateFromBg'));
+  // @todo I don't get this condition
+  if (isBg === undefined) {
+    /* If you don't want to persist states, use './getDefaultState' */
+    getState = require('./getStoredState').default;
+  } else {
+    getState = isBg ? require('./getStateToBg').default : require('./getStateFromBg').default;
+  }
+  console.log(getState);
 
   const trackEventMiddleware = analytics({
-    getCurrentTabs: () =>
-      new Promise(resolve =>
-        chrome.tabs.query(
-          {
-            active: true,
-            currentWindow: true,
-          },
-          tabs => resolve(tabs),
-        )),
+    getCurrentTabs: () => new Promise(resolve => chrome.tabs.query(
+      {
+        active: true,
+        currentWindow: true,
+      },
+      tabs => resolve(tabs),
+    )),
     track: trackEvents,
   });
 
-  getState(loadedState => {
+  getState((loadedState) => {
     // let enhancer;
     const middlewares = [
       thunk,
@@ -46,12 +50,12 @@ export default function configureStore(callback, isBg) {
     const composeEnhancers = composeWithDevTools({
       // options
     });
-    const enhancer = process.env.NODE_ENV !== 'production' ?
-      composeEnhancers(applyMiddleware(...middlewares.concat([
+    const enhancer = process.env.NODE_ENV !== 'production'
+      ? composeEnhancers(applyMiddleware(...middlewares.concat([
         require('redux-immutable-state-invariant')(),
         require('redux-logger')({ level: 'info', collapsed: true }),
-      ]))) :
-      applyMiddleware(...middlewares);
+      ])))
+      : applyMiddleware(...middlewares);
 
 
     const initialPrefState = makeInitialState().delete('resources'); // Map
