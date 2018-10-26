@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Provider, connect } from 'react-redux';
+import { hot } from 'react-hot-loader';
 
 import PopupScreen from './PopupScreen';
 import uiActions from '../content/actions/ui.js';
@@ -43,6 +44,4 @@ PopupRoot.propTypes = {
   store: PropTypes.object.isRequired
 };
 
-export default PopupRoot;
-
-
+export default hot(module)(PopupRoot);

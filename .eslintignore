@@ -12,7 +12,6 @@ test/app/setup.js
 test/infrastructure
 test/app
 
-src/electron
 src/app/content/containers/PopUp
 
 src/lib/heap.js
