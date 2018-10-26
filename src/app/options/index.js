@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 
 import OptionRoot from './OptionRoot';
 
-import mainStyles from '../styles/main.scss';
+import mainStyles from '../styles/main.scss?inline'; // eslint-disable-line
 
 const { store } = chrome.extension.getBackgroundPage();
 
