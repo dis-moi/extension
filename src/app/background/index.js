@@ -32,7 +32,7 @@ import {LMEM_BACKEND_ORIGIN, LMEM_SCRIPTS_ORIGIN} from '../constants/origins';
  * those styles) and maintainability issue (gap between React and Sass sort of
  * components, error prone assets references, etc.)
  */
-import mainStyles from '../styles/main.scss';
+import mainStyles from '../styles/main.scss?external'; // eslint-disable-line
 
 if(process.env.NODE_ENV !== 'production'){
   console.info('NODE_ENV', process.env.NODE_ENV);
