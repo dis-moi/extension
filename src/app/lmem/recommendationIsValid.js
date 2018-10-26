@@ -44,36 +44,38 @@ const reco = {
 export default function (reco){
   if(Object(reco) !== reco) return false;
 
-  const { contributor, title, description, resource, criteria, alternatives } = reco;
+  const {
+    contributor, title, description, resource, criteria, alternatives 
+  } = reco;
 
   return (
 
-    typeof title === 'string' &&
-    typeof description === 'string' &&
+    typeof title === 'string'
+    && typeof description === 'string'
 
-    Object(resource) === resource &&
-    typeof resource.label === 'string' &&
-    typeof resource.url === 'string' &&
+    && Object(resource) === resource
+    && typeof resource.label === 'string'
+    && typeof resource.url === 'string'
 
-    (!resource.author || typeof resource.author === 'string') &&
+    && (!resource.author || typeof resource.author === 'string')
 
-    Object(resource.editor) === resource.editor &&
-    typeof resource.editor.label === 'string' &&
-    typeof resource.editor.url === 'string' &&
+    && Object(resource.editor) === resource.editor
+    && typeof resource.editor.label === 'string'
+    && typeof resource.editor.url === 'string'
 
-    Object(contributor) === contributor &&
-    typeof contributor.name === 'string' &&
+    && Object(contributor) === contributor
+    && typeof contributor.name === 'string'
 
-    (!criteria || (Array.isArray(criteria) && criteria.every(criterion => (
-      Object(criterion) === criterion &&
-      typeof criterion.label === 'string' &&
-      typeof criterion.slug === 'string'
-    )))) &&
+    && (!criteria || (Array.isArray(criteria) && criteria.every(criterion => (
+      Object(criterion) === criterion
+      && typeof criterion.label === 'string'
+      && typeof criterion.slug === 'string'
+    ))))
 
-    (!alternatives || (Array.isArray(alternatives) && alternatives.every(alternative => (
-      Object(alternative) === alternative &&
-      typeof alternative.label === 'string' &&
-      typeof alternative.url_to_redirect === 'string'
+    && (!alternatives || (Array.isArray(alternatives) && alternatives.every(alternative => (
+      Object(alternative) === alternative
+      && typeof alternative.label === 'string'
+      && typeof alternative.url_to_redirect === 'string'
     ))))
 
   );

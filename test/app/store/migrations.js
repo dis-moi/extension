@@ -1,6 +1,5 @@
 import chai from 'chai';
 const expect = chai.expect;
-import { Map as ImmutableMap, Set as ImmutableSet } from 'immutable';
 
 import fromJS from '../../../src/app/utils/customFromJS';
 

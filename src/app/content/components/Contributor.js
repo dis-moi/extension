@@ -17,7 +17,7 @@ const Contributor = ({ contributor }) => {
 Contributor.propTypes = {
   contributor: PropTypes.shape({
     name: PropTypes.string.isRequired,
-  }),
+  }).isRequired,
 };
 
 export default Contributor;

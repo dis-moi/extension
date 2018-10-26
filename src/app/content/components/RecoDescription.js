@@ -27,10 +27,11 @@ function sanitizeHtml(rawHtml) {
 const RecoDescription = ({ description }) => (
   <div
     className="reco-summary-description summary-description"
-    dangerouslySetInnerHTML={sanitizeHtml(description)} />
+    dangerouslySetInnerHTML={sanitizeHtml(description)} // eslint-disable-line
+  />
 );
 
-RecoDescription.PropTypes = {
+RecoDescription.propTypes = {
   description: PropTypes.string.isRequired,
 };
 

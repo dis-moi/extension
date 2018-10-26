@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Recommendations from '../components/Recommendations';
-import prepareUIActions from '../actions/ui.js';
+import prepareUIActions from '../actions/ui';
 
 import { IMAGES_URL } from '../../constants/assetsUrls';
 import portCommunication from '../portCommunication';

@@ -19,8 +19,7 @@ export default function (portCommunication) {
         type: REDUCE_RECOMMENDATION_IFRAME
       };
 
-      if (portCommunication)
-        portCommunication.sendBackgroundReduxAction(action);
+      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
 
       return action;
     },
@@ -30,8 +29,7 @@ export default function (portCommunication) {
         type: EXTEND_RECOMMENDATION_IFRAME
       };
       
-      if (portCommunication)
-        portCommunication.sendBackgroundReduxAction(action);
+      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
       
       return action;
     },
@@ -42,8 +40,7 @@ export default function (portCommunication) {
         details
       );
 
-      if (portCommunication)
-        portCommunication.sendBackgroundReduxAction(action);
+      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
 
       return action;
     },
@@ -53,8 +50,7 @@ export default function (portCommunication) {
         type: CLOSE_PREFERENCE_PANEL
       };
       
-      if (portCommunication)
-        portCommunication.sendBackgroundReduxAction(action);
+      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
 
       return action;
     },
@@ -65,8 +61,7 @@ export default function (portCommunication) {
         panel
       };
 
-      if (portCommunication)
-        portCommunication.sendBackgroundReduxAction(action);
+      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
 
       return action;
     },
@@ -77,8 +72,7 @@ export default function (portCommunication) {
         resource,
       };
       
-      if (portCommunication)
-        portCommunication.sendBackgroundReduxAction(action);
+      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
 
       return action;
     },
@@ -89,8 +83,7 @@ export default function (portCommunication) {
         resource,
       };
       
-      if (portCommunication)
-        portCommunication.sendBackgroundReduxAction(action);
+      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
 
       return action;
     },
@@ -101,8 +94,7 @@ export default function (portCommunication) {
         alternative,
       };
       
-      if (portCommunication)
-        portCommunication.sendBackgroundReduxAction(action);
+      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
 
       return action;
     },
@@ -113,8 +105,7 @@ export default function (portCommunication) {
         editor,
       };
       
-      if (portCommunication)
-        portCommunication.sendBackgroundReduxAction(action);
+      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
 
       return action;
     },
@@ -125,8 +116,7 @@ export default function (portCommunication) {
         datetime: new Date(),
       };
       
-      if (portCommunication)
-        portCommunication.sendBackgroundReduxAction(action);
+      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
 
       return action;
     },
@@ -137,8 +127,7 @@ export default function (portCommunication) {
         target,
       };
 
-      if (portCommunication)
-        portCommunication.sendBackgroundReduxAction(action);
+      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
 
       return action;
     },
