@@ -4,11 +4,10 @@ import { Provider, connect } from 'react-redux';
 import { hot } from 'react-hot-loader';
 
 import OptionScreen from './OptionScreen';
-import filterActions from '../content/actions/filters.js';
-import uiActions from '../content/actions/ui.js';
+import filterActions from '../content/actions/filters';
+import uiActions from '../content/actions/ui';
 
 import { IMAGES_URL } from '../constants/assetsUrls';
-
 
 const {
   selectCriterion,
@@ -50,9 +49,7 @@ const OptionRoot = ({ store }) => (
 );
 
 OptionRoot.propTypes = {
-  store: PropTypes.object.isRequired
+  store: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 export default hot(module)(OptionRoot);
-
-

@@ -5,6 +5,6 @@ import PopupRoot from './PopupRoot';
 
 import '../styles/main.scss';
 
-const store = chrome.extension.getBackgroundPage().store;
+const { store } = chrome.extension.getBackgroundPage();
 
 render(<PopupRoot store={store} />, document.getElementById('root'));

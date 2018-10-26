@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import { 
   PREFERENCE_SCREEN_PANEL_ABOUT,
@@ -33,7 +32,7 @@ export default class OptionScreen extends Component {
     };
   }
 
-  render(props) {
+  render() {
     const {
       imagesUrl, onInstalledDetails, uninstall,
       criteria, selectCriterion, unselectCriterion,
@@ -79,7 +78,7 @@ export default class OptionScreen extends Component {
 
     const changePanel = (e) => {
       const newContent = e.currentTarget.getAttribute('data-panel');
-      this.setState(Object.assign(this.state, {screen: newContent}));
+      this.setState(prevState => ({ ...prevState, screen: newContent }));
     };
 
     return (
@@ -88,31 +87,34 @@ export default class OptionScreen extends Component {
           <ul>
             <li className="preference-menu-about">
               <button
+                type="button"
                 data-panel={PREFERENCE_SCREEN_PANEL_ABOUT}
                 onClick={changePanel}
                 className={'not-button with-image'
                 + (screen === PREFERENCE_SCREEN_PANEL_ABOUT ? ' active' : '')}>
-                <img role="presentation" className="lmem-controls-picto" src={imagesUrl + 'info.svg'} />
+                <img alt="" className="lmem-controls-picto" src={imagesUrl + 'info.svg'} />
                 <span>Général</span>
               </button>
             </li>
             <li className="preference-menu-criteria">
               <button
+                type="button"
                 data-panel={PREFERENCE_SCREEN_PANEL_CRITERIA}
                 onClick={changePanel}
                 className={'not-button with-image'
               + (screen === PREFERENCE_SCREEN_PANEL_CRITERIA ? ' active' : '')}>
-                <img role="presentation" className="lmem-controls-picto" src={imagesUrl + 'valid.svg'} />
+                <img alt="" className="lmem-controls-picto" src={imagesUrl + 'valid.svg'} />
                 <span>Critères de choix</span>
               </button>
             </li>
             <li className="preference-menu-sources">
               <button
+                type="button"
                 data-panel={PREFERENCE_SCREEN_PANEL_SOURCES}
                 onClick={changePanel}
                 className={'not-button with-image'
               + (screen === PREFERENCE_SCREEN_PANEL_SOURCES ? ' active' : '')}>
-                <img role="presentation" className="lmem-controls-picto" src={imagesUrl + 'close.svg'} />
+                <img alt="" className="lmem-controls-picto" src={imagesUrl + 'close.svg'} />
                 <span>Sources d’information</span>
               </button>
             </li>
@@ -125,5 +127,4 @@ export default class OptionScreen extends Component {
       </section>
     );
   }
-  
 }

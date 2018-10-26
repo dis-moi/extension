@@ -27,7 +27,7 @@ function PreferenceCriteriaPanel(props) {
               type="checkbox"
               checked={ isSelected }
               onChange={ () => (isSelected ? unselectCriterion(slug) : selectCriterion(slug)) } />
-            <img role="presentation" src={`${imagesUrl}${isSelected ? 'checked' : 'unchecked'}.svg`} />
+            <img alt="" src={`${imagesUrl}${isSelected ? 'checked' : 'unchecked'}.svg`} />
             { label }
           </label>
         </li>
@@ -56,7 +56,7 @@ function PreferenceCriteriaPanel(props) {
   );
 }
 
-PreferenceCriteriaPanel.PropTypes = {
+PreferenceCriteriaPanel.propTypes = {
   criteria: PropTypes.arrayOf(PropTypes.shape({
     slug: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,

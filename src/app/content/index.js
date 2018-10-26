@@ -1,9 +1,9 @@
 import { Record, Set as ImmutableSet, Map as ImmutableMap } from 'immutable';
 import React from 'react';
 import { render } from 'react-dom';
+import { createStore } from 'redux';
 import Root from './containers/Root';
 
-import { createStore } from 'redux';
 
 import rootReducer from './reducers';
 
@@ -12,7 +12,7 @@ import prepareFilterActions from './actions/filters';
 
 import portCommunication from './portCommunication';
 
-import fromJS from '../../../src/app/utils/customFromJS';
+import fromJS from '../utils/customFromJS';
 
 const {
   updateDeactivatedWebsites,
@@ -81,48 +81,44 @@ function createExtensionIframe(reduced, style, onLoad){
 const DOMCompleteP = Promise.resolve(); // because the content script is loaded at "document_end"
 
 const DOMCompletePlusDelayP = DOMCompleteP.then(() => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const {navigationStart, domContentLoadedEventStart} = performance.timing;
 
     const diff = domContentLoadedEventStart - navigationStart;
 
-    if(diff >= AFTER_DOMCOMPLETE_DELAY)
-      resolve();
-    else
-      setTimeout(resolve, AFTER_DOMCOMPLETE_DELAY - diff);
+    if(diff >= AFTER_DOMCOMPLETE_DELAY) resolve();
+    else setTimeout(resolve, AFTER_DOMCOMPLETE_DELAY - diff);
   });
 });
 
 
-const LoadEndP = new Promise(resolve => {
+const LoadEndP = new Promise((resolve) => {
   document.addEventListener('load', resolve);
 });
 
 const LoadEndPlusDelayP = LoadEndP.then(() => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const {navigationStart, loadEventStart} = performance.timing;
 
     const diff = loadEventStart - navigationStart;
 
-    if(diff >= AFTER_LOADEND_DELAY)
-      resolve();
-    else
-      setTimeout(resolve, AFTER_LOADEND_DELAY - diff);
+    if(diff >= AFTER_LOADEND_DELAY) resolve();
+    else setTimeout(resolve, AFTER_LOADEND_DELAY - diff);
   });
 });
 
 // Wait for some time before showing the extension to the user in loading mode
-const CanShowIframeLoadingP = process.env.NODE_ENV === 'development' ?
-  Promise.resolve() :
-  Promise.race([DOMCompletePlusDelayP, LoadEndPlusDelayP]);
+const CanShowIframeLoadingP = process.env.NODE_ENV === 'development'
+  ? Promise.resolve()
+  : Promise.race([DOMCompletePlusDelayP, LoadEndPlusDelayP]);
 
 // User research showed that the LMEM loading screen is important so people don't 
 // think the LMEM iframe is an ad.
 // Wait for some time loading before showing a recommendation.
-const CanShowRecommendationIfAvailableP = process.env.NODE_ENV === 'development' ?
-  Promise.resolve() : // otherwise the delay is annoying when developing
-  CanShowIframeLoadingP.then(() => {
-    return new Promise(resolve => {
+const CanShowRecommendationIfAvailableP = process.env.NODE_ENV === 'development'
+  ? Promise.resolve() // otherwise the delay is annoying when developing
+  : CanShowIframeLoadingP.then(() => {
+    return new Promise((resolve) => {
       setTimeout(resolve, LOADING_SCREEN_DELAY);
     });
   });
@@ -150,13 +146,15 @@ const store = createStore(
 chrome.runtime.onConnect.addListener(function listener(portToBackground) {
   portCommunication.port = portToBackground;
 
-  portToBackground.onMessage.addListener(msg => {
+  portToBackground.onMessage.addListener((msg) => {
     const { type } = msg;
     
     switch (type) {
       case 'init':
-        const { style, onInstalledDetails,
-          criteria, editors } = msg;
+        const {
+          style, onInstalledDetails,
+          criteria, editors 
+        } = msg;
 
         store.dispatch(updateInstalledDetails(fromJS(onInstalledDetails)));
         store.dispatch(updateCriteria(fromJS(criteria)));
@@ -164,34 +162,34 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
 
         // Let the page load a bit before showing the iframe in loading mode
         CanShowIframeLoadingP
-        .then(() => {
+          .then(() => {
 
-          return new Promise(resolve => {
-            const iframe = createExtensionIframe(
-              store.getState().get('reduced'),
-              style,
-              () => { resolve(iframe.contentDocument.body); }
-            );
+            return new Promise((resolve) => {
+              const iframe = createExtensionIframe(
+                store.getState().get('reduced'),
+                style,
+                () => { resolve(iframe.contentDocument.body); }
+              );
 
-            document.body.appendChild(iframe);
+              document.body.appendChild(iframe);
 
-            store.subscribe(() => {
-              const state = store.getState();
+              store.subscribe(() => {
+                const state = store.getState();
 
-              if (!state.get('open')) {
-                iframe.remove();
-              }
-              else {
-                iframe.height = state.get('reduced') ? IFRAME_REDUCED_HEIGHT : IFRAME_EXTENDED_HEIGHT;
-              }
+                if (!state.get('open')) {
+                  iframe.remove();
+                }
+                else {
+                  iframe.height = state.get('reduced') ? IFRAME_REDUCED_HEIGHT : IFRAME_EXTENDED_HEIGHT;
+                }
 
-            });
-          })
-          .then(lmemContainer => {
-            render(<Root store={store} />, lmemContainer);
+              });
+            })
+              .then((lmemContainer) => {
+                render(<Root store={store} />, lmemContainer);
+              });
+
           });
-
-        });
 
         break;
       case 'recommendations':
@@ -201,9 +199,9 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
         // Even if the recommendation arrived early, let the page load a bit before
         // showing the iframe in loading mode
         CanShowRecommendationIfAvailableP
-        .then(() => {
-          store.dispatch(recommendationFound(recommendations));
-        });
+          .then(() => {
+            store.dispatch(recommendationFound(recommendations));
+          });
         break;
 
       case 'dispatch':
