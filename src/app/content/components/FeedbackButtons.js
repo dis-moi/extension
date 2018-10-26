@@ -39,19 +39,22 @@ export default class FeedbackButtons extends Component {
     return (
       <div>
         <button
+          type="button"
           className="button-hollow with-tooltip with-image"
           onClick={ e => dismissReco(recoId) }>
-          <img src={ imagesUrl + 'trashbin.svg' } role="presentation" />
+          <img alt="" src={ imagesUrl + 'trashbin.svg' } />
           <span className="tooltip tooltip-left">
             Ne plus afficher
           </span>
         </button>
         <button
+          type="button"
           className="button-hollow with-tooltip with-image"
           onClick={ this.handleApproveClick }>
           <img
+            alt=""
             src={ imagesUrl + (isApproved ? 'love-pink.svg' : 'love.svg') }
-            role="presentation" />
+          />
           <span className="tooltip tooltip-left">
             { isApproved ? 'J’approuve cette recommandation' : 'Approuver cette recommandation' }
           </span>
@@ -80,4 +83,8 @@ FeedbackButtons.propTypes = {
   approveReco: PropTypes.func.isRequired,
   unapproveReco: PropTypes.func.isRequired,
   reportReco: PropTypes.func.isRequired,
+};
+
+FeedbackButtons.defaultProps = {
+  isApproved: false,
 };

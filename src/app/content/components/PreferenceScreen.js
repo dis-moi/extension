@@ -77,31 +77,36 @@ export default function (props) {
         <ul>
           <li className="preference-menu-about">
             <button
+              type="button"
               data-panel={PREFERENCE_SCREEN_PANEL_ABOUT}
               onClick={changePanel}
               className={'not-button with-image'
               + (preferenceScreenPanel === PREFERENCE_SCREEN_PANEL_ABOUT ? ' active' : '')}>
-              <img role="presentation" className="lmem-controls-picto" src={imagesUrl + 'info.svg'} />
+              <img alt="" className="lmem-controls-picto" src={imagesUrl + 'info.svg'} />
               <span>Général</span>
             </button>
           </li>
           <li className="preference-menu-criteria">
             <button
+              type="button"
               data-panel={PREFERENCE_SCREEN_PANEL_CRITERIA}
               onClick={changePanel}
               className={'not-button with-image'
             + (preferenceScreenPanel === PREFERENCE_SCREEN_PANEL_CRITERIA ? ' active' : '')}>
-              <img role="presentation" className="lmem-controls-picto" src={imagesUrl + 'valid.svg'} />
+              <img alt="" className="lmem-controls-picto" src={imagesUrl + 'valid.svg'} />
               <span>Critères de choix</span>
             </button>
           </li>
           <li className="preference-menu-sources">
+
+
             <button
+              type="button"
               data-panel={PREFERENCE_SCREEN_PANEL_SOURCES}
               onClick={changePanel}
               className={'not-button with-image'
             + (preferenceScreenPanel === PREFERENCE_SCREEN_PANEL_SOURCES ? ' active' : '')}>
-              <img role="presentation" className="lmem-controls-picto" src={imagesUrl + 'close.svg'} />
+              <img alt="" className="lmem-controls-picto" src={imagesUrl + 'close.svg'} />
               <span>Sources d’information</span>
             </button>
           </li>

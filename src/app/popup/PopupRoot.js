@@ -4,7 +4,7 @@ import { Provider, connect } from 'react-redux';
 import { hot } from 'react-hot-loader';
 
 import PopupScreen from './PopupScreen';
-import uiActions from '../content/actions/ui.js';
+import uiActions from '../content/actions/ui';
 
 import { IMAGES_URL } from '../constants/assetsUrls';
 import {
@@ -42,7 +42,7 @@ const PopupRoot = ({ store }) => (
 );
 
 PopupRoot.propTypes = {
-  store: PropTypes.object.isRequired
+  store: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 export default hot(module)(PopupRoot);

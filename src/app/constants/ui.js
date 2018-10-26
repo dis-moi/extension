@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 export const PREFERENCE_SCREEN_PANEL_ABOUT = 'PREFERENCE_SCREEN_PANEL_ABOUT';
 export const PREFERENCE_SCREEN_PANEL_CRITERIA = 'PREFERENCE_SCREEN_PANEL_CRITERIA';
@@ -10,7 +10,7 @@ function headerContent(imagesUrl, currPanel) {
   return (
     <strong className="lmem-topbar-preferences">
       <img
-        role="presentation"
+        alt=""
         src={ imagesUrl + 'settings.svg' }
         className="lmem-controls-picto" />
       <span>Préférences</span>

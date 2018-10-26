@@ -38,7 +38,7 @@ export function makeRecoFeedback(type, url) {
 }
 
 export default function (store){
-  return next => action => {
+  return next => (action) => {
 
     switch (action.type){
       case DISMISS_RECO:
@@ -47,14 +47,14 @@ export default function (store){
       case REPORT_RECO:
 
         const reqUrl = LMEM_BACKEND_ORIGIN + '/api/v2/recommendations/' + action.id + '/feedbacks';
-        const tabUrlP = new Promise(res => {
+        const tabUrlP = new Promise((res) => {
           chrome.tabs.query({
             active: true,
             currentWindow: true,
           }, ([selectedTab]) => res(selectedTab.url));
         });
         
-        tabUrlP.then(tabUrl => {
+        tabUrlP.then((tabUrl) => {
           const body = JSON.stringify(makeRecoFeedback(action.type, tabUrl));
 
           fetch(reqUrl, { method: 'POST', body })

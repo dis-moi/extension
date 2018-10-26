@@ -1,7 +1,7 @@
 import { POPUP_CLICK } from '../../constants/ActionTypes';
 
 export default function ({ getCurrentTabs, track }) {
-  return store => next => action => {
+  return store => next => (action) => {
     const { type } = action;
 
     if (!type.startsWith('api/') && !type.startsWith('notify/') && !type.startsWith('persist/')) {

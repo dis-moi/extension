@@ -4,6 +4,7 @@ import Loader from './Loader';
 import RecoHeader from './RecoHeader';
 import RecoMain from './RecoMain';
 import Preferences from '../containers/Preferences';
+import { recommendation as RecommendationPropType } from '../../propTypes';
 
 export default function Recommendations(props) {
   const {
@@ -43,7 +44,7 @@ export default function Recommendations(props) {
 }
 
 Recommendations.propTypes = {
-  recommendations: PropTypes.array,
+  recommendations: PropTypes.arrayOf(PropTypes.shape(RecommendationPropType)),
   imagesUrl: PropTypes.string.isRequired,
   reduced: PropTypes.bool.isRequired,
   onExtend: PropTypes.func.isRequired,
@@ -52,4 +53,8 @@ Recommendations.propTypes = {
   onCheckOutResourceLink: PropTypes.func.isRequired,
   onCheckOutAlternative: PropTypes.func.isRequired,
   onCheckOutEditor: PropTypes.func.isRequired,
+};
+
+Recommendations.defaultProps = {
+  recommendations: [],
 };

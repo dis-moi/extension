@@ -25,7 +25,10 @@ function PreferenceSourcesPanel(props) {
               type="checkbox"
               checked={ isExcluded }
               onChange={ () => (isExcluded ? includeEditor(id) : excludeEditor(id)) } />
-            <img role="presentation" src={`${imagesUrl}${isExcluded ? 'crosschecked' : 'checked'}.svg`} />
+            <img
+              alt=""
+              src={`${imagesUrl}${isExcluded ? 'crosschecked' : 'checked'}.svg`}
+            />
             { label }
           </label>
         </li>
@@ -43,14 +46,14 @@ function PreferenceSourcesPanel(props) {
         </p>
 
         <h2>Ajouter une nouvelle source</h2>
-        <a href="https://www.lmem.net/contact.html" target="_blank">Contactez-nous</a>
+        <a href="https://www.lmem.net/contact.html" target="_blank" rel="noopener noreferrer">Contactez-nous</a>
         { ' pour proposer un nouveau média ou un article d’aide au choix.' }
       </aside>
     </div>
   );
 }
 
-PreferenceSourcesPanel.PropTypes = {
+PreferenceSourcesPanel.propTypes = {
   editors: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     label: PropTypes.string.isRequired,

@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 
 import PreferenceScreen from '../components/PreferenceScreen';
-import uiActions from '../actions/ui.js';
-import filterActions from '../actions/filters.js';
+import uiActions from '../actions/ui';
+import filterActions from '../actions/filters';
 
 import { IMAGES_URL } from '../../constants/assetsUrls';
 import portCommunication from '../portCommunication';
