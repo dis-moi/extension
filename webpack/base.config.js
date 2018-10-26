@@ -48,11 +48,10 @@ const baseConfig = ({
         include: [
           path.resolve(__dirname, '../src/')
         ],
-        // FIXME handle styles and assets injection through Webpack style- and css- loaders
-        // see ../src/app/background/index.js
         use: [
-          { loader: 'css-loader' },
-          { loader: 'sass-loader' },
+          "style-loader", // creates style nodes from JS strings
+          "css-loader", // translates CSS into CommonJS
+          "sass-loader" // compiles Sass to CSS, using Node Sass by default
         ]
       },
       {
