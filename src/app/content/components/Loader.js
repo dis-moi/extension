@@ -2,7 +2,8 @@
  * Created by insitu on 07/06/16.
  */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 const Loader = ({ imagesUrl }) => (
   <div id="loader">
@@ -10,18 +11,20 @@ const Loader = ({ imagesUrl }) => (
 
       <div className="lmem-topbar-notification">
 
-        <div className="mainframe"><section className="mainframe-inner">
-          <h2 className="alternatives-searching-title visually-hidden">
-          Recommandations en cours de chargement…</h2>
+        <div className="mainframe">
+          <section className="mainframe-inner">
+            <h2 className="alternatives-searching-title visually-hidden">
+          Recommandations en cours de chargement…
+            </h2>
 
-          <div className="alternatives-searching-wrapper">
-            <div className="alternatives-searching-progress"></div>
+            <div className="alternatives-searching-wrapper">
+              <div className="alternatives-searching-progress" />
 
-            <p className="alternatives-searching-content">
+              <p className="alternatives-searching-content">
               Recommandations en cours de chargement…
-            </p>
-          </div>
-        </section>
+              </p>
+            </div>
+          </section>
         </div>
       </div>
 
