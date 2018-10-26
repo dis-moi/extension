@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default function PopupScreen({ imagesUrl, openPrefScreenAbout, onClick }) {
   function onClickHandler(e) {
