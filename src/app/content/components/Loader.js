@@ -28,9 +28,9 @@ const Loader = ({ imagesUrl }) => (
         </div>
       </div>
 
-      <a className="lmem-topbar-logo with-tooltip">
+      <button type="button" className="lmem-topbar-logo with-tooltip">
         <img src={imagesUrl + 'logo-lmem.svg'} alt="" />
-      </a>
+      </button>
     </aside>
   </div>
 );

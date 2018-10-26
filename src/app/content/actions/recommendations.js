@@ -20,8 +20,7 @@ export default function (portCommunication) {
         id
       };
       
-      if (portCommunication)
-        portCommunication.sendBackgroundReduxAction(action);
+      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
 
       return action;
     },
@@ -31,8 +30,7 @@ export default function (portCommunication) {
         id
       };
       
-      if (portCommunication)
-        portCommunication.sendBackgroundReduxAction(action);
+      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
 
       return action;
     },
@@ -42,8 +40,7 @@ export default function (portCommunication) {
         id
       };
       
-      if (portCommunication)
-        portCommunication.sendBackgroundReduxAction(action);
+      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
 
       return action;
     },
@@ -53,8 +50,7 @@ export default function (portCommunication) {
         id
       };
       
-      if (portCommunication)
-        portCommunication.sendBackgroundReduxAction(action);
+      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
 
       return action;
     }

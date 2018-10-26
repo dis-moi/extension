@@ -1,15 +1,15 @@
+import { Map as ImmutableMap, Set as ImmutableSet } from 'immutable';
+
 let whatwgURL;
 
 // whatwgURL is only needed to run tests in Node.
 // This line prevents Uglify from tripping over some ES6 in 'whatwg-url'
-if(process.env.NODE_ENV === 'test'){
-  whatwgURL = require('whatwg-url');
+if (process.env.NODE_ENV === 'test') {
+  whatwgURL = require('whatwg-url'); // eslint-disable-line
 }
 
-import { Map as ImmutableMap, Set as ImmutableSet } from 'immutable';
-
 function findMatchingMatchingContexts(url, matchingContexts) {
-  return matchingContexts.filter(mc => {
+  return matchingContexts.filter((mc) => {
     try {
       return new RegExp(mc.url_regex, 'i').test(url);
     }
@@ -25,18 +25,16 @@ const _URL = typeof URL === 'function' ? URL : whatwgURL.URL;
 export default function (url, matchingContexts, draftMatchingContexts, prefs = new ImmutableMap()) {
   const deactivated = prefs.get('deactivated') || new ImmutableMap();
 
-  if (deactivated.has('everywhereUntil') && Date.now() < deactivated.get('everywhereUntil'))
-    return [];
+  if (deactivated.has('everywhereUntil') && Date.now() < deactivated.get('everywhereUntil')) return [];
 
   const deactivatedWebsites = deactivated.get('deactivatedWebsites') || new ImmutableSet();
 
-  if (deactivatedWebsites.has((new _URL(url)).hostname))
-    return [];
+  if (deactivatedWebsites.has((new _URL(url)).hostname)) return [];
 
   const matchingDraftMatchingContexts = findMatchingMatchingContexts(url, draftMatchingContexts);
 
   // prioritize previews over public offers
-  return matchingDraftMatchingContexts.length >= 1 ?
-    matchingDraftMatchingContexts : 
-    findMatchingMatchingContexts(url, matchingContexts);  
+  return matchingDraftMatchingContexts.length >= 1
+    ? matchingDraftMatchingContexts 
+    : findMatchingMatchingContexts(url, matchingContexts);  
 }

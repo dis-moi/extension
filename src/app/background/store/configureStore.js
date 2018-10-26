@@ -13,7 +13,7 @@ import fromJS from '../../utils/customFromJS';
 
 import makeInitialState from './makeInitialState';
 
-import migrate from './migrations.js';
+import migrate from './migrations';
 
 export default function configureStore(callback, isBg) {
   let getState;
@@ -24,7 +24,6 @@ export default function configureStore(callback, isBg) {
   } else {
     getState = isBg ? require('./getStateToBg').default : require('./getStateFromBg').default;
   }
-  console.log(getState);
 
   const trackEventMiddleware = analytics({
     getCurrentTabs: () => new Promise(resolve => chrome.tabs.query(
@@ -50,10 +49,11 @@ export default function configureStore(callback, isBg) {
     const composeEnhancers = composeWithDevTools({
       // options
     });
+
     const enhancer = process.env.NODE_ENV !== 'production'
       ? composeEnhancers(applyMiddleware(...middlewares.concat([
-        require('redux-immutable-state-invariant')(),
-        require('redux-logger')({ level: 'info', collapsed: true }),
+        require('redux-immutable-state-invariant').default(), // eslint-disable-line
+        require('redux-logger').createLogger({ level: 'info', collapsed: true }), // eslint-disable-line
       ])))
       : applyMiddleware(...middlewares);
 

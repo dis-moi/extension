@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import {
   DEACTIVATE_EVERYWHERE,
   SESSION_DEACTIVATE_DELAY
@@ -60,10 +59,12 @@ class RecoHeader extends Component {
         <li>
           <div className="button-directive">
             <button
+              type="button"
               className="button button-compact with-tooltip"
-              onClick={closePrefScreen}>
+              onClick={closePrefScreen}
+            >
               <img
-                role="presentation"
+                alt=""
                 src={ imagesUrl + 'close.svg' }
                 className="lmem-controls-picto" />
               <span className={tooltipButtonClassName}>
@@ -75,48 +76,57 @@ class RecoHeader extends Component {
           </div>
         </li>
       )
-      : [(<li key="preferences">
-        <div className="button-directive">
-          <button
-            className="button button-compact with-tooltip"
-            onClick={ this.handleOpenPrefButtonClick }>
-            <img
-              role="presentation"
-              src={ imagesUrl + 'settings.svg' }
-              className="lmem-controls-picto" />
-            <span className={tooltipButtonClassName}>
-              <span>
-              Préférences
+      : [
+        (
+          <li key="preferences">
+            <div className="button-directive">
+              <button
+                type="button"
+                className="button button-compact with-tooltip"
+                onClick={ this.handleOpenPrefButtonClick }>
+                <img
+                  alt=""
+                  src={ imagesUrl + 'settings.svg' }
+                  className="lmem-controls-picto" />
+                <span className={tooltipButtonClassName}>
+                  <span>
+                  Préférences
+                  </span>
+                </span>
+              </button>
+            </div>
+          </li>
+        ),
+        (
+          <li key="reduce-extend-button">
+            <button
+              type="button"
+              className="reduce button-compact with-image with-tooltip"
+              onClick={ this.handleReduceButtonClick }>
+              <img
+                alt=""
+                src={ imagesUrl + 'arrow.svg' }
+                className={ buttonButtonClassName }
+              />
+              <span className="button-label">{reduceButtonText}</span>
+              <span className={tooltipButtonClassName}>
+                {reduceButtonText}
               </span>
-            </span>
-          </button>
-        </div>
-      </li>),
-      (<li key="reduce-extend-button">
-        <button
-          className="reduce button-compact with-image with-tooltip"
-          onClick={ this.handleReduceButtonClick }>
-          <img
-            role="presentation"
-            src={ imagesUrl + 'arrow.svg' }
-            className={ buttonButtonClassName }
-          />
-          <span className="button-label">{reduceButtonText}</span>
-          <span className={tooltipButtonClassName}>
-            {reduceButtonText}
-          </span>
-        </button>
-      </li>)];
+            </button>
+          </li>
+        )
+      ];
 
     const extendReduceButton = preferenceScreenPanel ? undefined
       : (
         <div className="button-wrapper">
           <div className="button-directive">
             <button
+              type="button"
               className="button button-compact with-image with-tooltip"
               onClick={ this.handleReduceButtonClick }>
               <img
-                role="presentation"
+                alt=""
                 src={ imagesUrl + 'arrow.svg' }
                 className={ buttonButtonClassName } />
               <span className="button-label">{reduceButtonText}</span>
@@ -137,9 +147,10 @@ class RecoHeader extends Component {
     return (
       <header>
         <button
+          type="button"
           className="with-tooltip logo"
           onClick={ this.handleReduceButtonClick }>
-          <img width="45" src={ imagesUrl + 'logo-lmem.svg' } alt="" />
+          <img width="45" src={ imagesUrl + 'logo-lmem.svg' } alt="comparatif" />
           <span className="tooltip tooltip-right">
             { reduceButtonText + ' le panneau comparatif' }
           </span>
@@ -150,13 +161,10 @@ class RecoHeader extends Component {
         <h1 className="lmem-topbar-title">
           {headerContent}
         </h1>
-
         
         <ul className="lmem-controls-list">
           {headerButtons}
         </ul>
-
-        
       </header>
     );
   }

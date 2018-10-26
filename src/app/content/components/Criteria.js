@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import { filterTags } from '../../lmem/typeOfCriteria';
 
-export default function Criteria(props) {
-  const criteria = filterTags(props.criteria)
+export default function Criteria({ criteria }) {
+  const filteredCriteria = filterTags(criteria)
     .map(criterion => (
       <li key={criterion.slug}>
         <b className={'tag tag-' + criterion.slug}> 
@@ -17,12 +17,12 @@ export default function Criteria(props) {
 
   return (
     <ul className="summary-tags">
-      { criteria }
+      { filteredCriteria }
     </ul>
   );
 }
 
-Criteria.PropTypes = {
+Criteria.propTypes = {
   criteria: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,

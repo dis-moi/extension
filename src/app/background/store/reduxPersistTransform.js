@@ -14,12 +14,9 @@ export function deserialize(string){
   return JSON.parse(string, (key, value) => {
     let output;
 
-    if (value instanceof Array)
-      output = new ImmutableSet(value);
-    else if (value instanceof Object)
-      output = new ImmutableMap(value);
-    else
-      output = value;
+    if (value instanceof Array) output = new ImmutableSet(value);
+    else if (value instanceof Object) output = new ImmutableMap(value);
+    else output = value;
 
     return output;
   });
