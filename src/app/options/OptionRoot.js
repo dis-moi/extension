@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Provider, connect } from 'react-redux';
 import { hot } from 'react-hot-loader';
+import { ThemeProvider } from 'styled-components';
 
 import OptionScreen from './OptionScreen';
 import filterActions from '../content/actions/filters';
@@ -42,14 +43,17 @@ function mapDispatchToProps(dispatch) {
 
 const Options = connect(mapStateToProps, mapDispatchToProps)(OptionScreen);
 
-const OptionRoot = ({ store }) => (
+const OptionRoot = ({ store, theme }) => (
   <Provider store={store}>
-    <Options />
+    <ThemeProvider theme={theme}>
+      <Options />
+    </ThemeProvider>
   </Provider>
 );
 
 OptionRoot.propTypes = {
   store: PropTypes.object.isRequired, // eslint-disable-line
+  theme: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 export default hot(module)(OptionRoot);

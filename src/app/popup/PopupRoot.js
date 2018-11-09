@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Provider, connect } from 'react-redux';
 import { hot } from 'react-hot-loader';
+import { ThemeProvider } from 'styled-components';
 
 import PopupScreen from './PopupScreen';
 import uiActions from '../content/actions/ui';
@@ -35,14 +36,17 @@ function mapDispatchToProps(dispatch) {
 
 const Popup = connect(mapStateToProps, mapDispatchToProps)(PopupScreen);
 
-const PopupRoot = ({ store }) => (
+const PopupRoot = ({ store, theme }) => (
   <Provider store={store}>
-    <Popup />
+    <ThemeProvider theme={theme}>
+      <Popup />
+    </ThemeProvider>
   </Provider>
 );
 
 PopupRoot.propTypes = {
   store: PropTypes.object.isRequired, // eslint-disable-line
+  theme: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 export default hot(module)(PopupRoot);
