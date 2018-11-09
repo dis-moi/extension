@@ -40,8 +40,8 @@ const baseConfig = ({
         ],
         use: [
           { loader: 'babel-loader' },
+          { loader: 'stylelint-custom-processor-loader' },
         ],
-
       },
       {
         test: /\.scss?$/,
