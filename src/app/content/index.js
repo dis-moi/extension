@@ -4,7 +4,6 @@ import { render } from 'react-dom';
 import { createStore } from 'redux';
 import Root from './containers/Root';
 
-
 import rootReducer from './reducers';
 
 import prepareRecoActions from './actions/recommendations';
@@ -13,6 +12,7 @@ import prepareFilterActions from './actions/filters';
 import portCommunication from './portCommunication';
 
 import fromJS from '../utils/customFromJS';
+import theme from '../theme';
 
 const {
   updateDeactivatedWebsites,
@@ -186,7 +186,7 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
               });
             })
               .then((lmemContainer) => {
-                render(<Root store={store} />, lmemContainer);
+                render(<Root store={store} theme={theme} />, lmemContainer);
               });
 
           });
