@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Button from '../../components/01-atoms/Button';
+import Type from '../../components/01-atoms/Type';
+import UiTitle from '../../components/01-atoms/UiTitle';
+import MenuButton from '../../components/01-atoms/MenuButton';
+import TopBar from '../../components/02-molecules/TopBar.js';
+import BottomBar from '../../components/02-molecules/BottomBar.js';
+import Notification from '../../components/04-pages/Notification';
 
 export default function PopupScreen({ imagesUrl, openPrefScreenAbout, onClick }) {
   function onClickHandler(e) {
@@ -18,6 +25,31 @@ export default function PopupScreen({ imagesUrl, openPrefScreenAbout, onClick })
 
   return (
     <div className="lmem-popup-content">
+      <h2>Atoms</h2>
+      Type: 
+      <Type>plop</Type>
+
+      UiTitle:
+      <UiTitle>Le titre qui va bien</UiTitle>
+
+      MenuButton: 
+      <MenuButton>Ouvrir le menu</MenuButton>
+      
+      <h2>Molecules</h2>
+      TopBar:
+      <TopBar>
+        
+      </TopBar>
+
+      BottomBar:
+      <BottomBar></BottomBar>
+
+      <Notification>
+        TopBar
+        BottomBar
+      </Notification>
+
+
       <section className="popup-highlight">
         <p>
           Si l’assistant ne s’affiche pas en bas de page, c’est qu’aucune de vos sources de recommandation
