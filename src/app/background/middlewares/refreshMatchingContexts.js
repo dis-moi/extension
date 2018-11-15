@@ -10,7 +10,7 @@ import {
 } from '../../constants/ActionTypes';
 
 export default function (store){
-  return next => action => {
+  return next => (action) => {
 
     function scheduleRefreshAfterward() {
       const result = next(action);
@@ -24,7 +24,7 @@ export default function (store){
       const state = store.getState();
 
       // update all content stores
-      matchingTabIdToPortM.forEach(tabPortP => {
+      matchingTabIdToPortM.forEach((tabPortP) => {
         tabPortP
           .then(tabPort => tabPort.postMessage({
             type: 'dispatch',
@@ -33,12 +33,12 @@ export default function (store){
       });
 
       const selectedCriteria = Array.from(state.get('prefs').get('criteria').keys())
-        .filter(slug => {
+        .filter((slug) => {
           return state.get('prefs').get('criteria').get(slug).get('isSelected');
         });
 
       const excludedEditors = Array.from(state.get('prefs').get('editors').keys())
-        .filter(id => {
+        .filter((id) => {
           return state.get('prefs').get('editors').get(id).get('isExcluded');
         });
 

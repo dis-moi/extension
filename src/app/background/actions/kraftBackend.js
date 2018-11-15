@@ -12,7 +12,7 @@ import { LMEM_BACKEND_ORIGIN } from '../../constants/origins';
 
 function fetchJson(url) {
   return fetch(url)
-    .then(response => {
+    .then((response) => {
       if (response.status >= 400) {
         throw new Error('Bad response from server');
       }
@@ -27,12 +27,13 @@ export function makeUrlFromFilters(criteria = [], excludedEditors = []) {
   if (hasFilters){
     let filters = '';
 
-    if (criteria.length !== 0 && excludedEditors.length === 0)
-      filters = 'criteria=' + criteria.join(','); 
-    else if (excludedEditors.length !== 0 && criteria.length === 0)
+    if (criteria.length !== 0 && excludedEditors.length === 0) {
+      filters = 'criteria=' + criteria.join(',');
+    } else if (excludedEditors.length !== 0 && criteria.length === 0) {
       filters = 'excluded_editors=' + excludedEditors.join(',');
-    else
+    } else {
       filters = ['criteria=' + criteria.join(','), 'excluded_editors=' + excludedEditors.join(',')].join('&');
+    }
 
     console.log('filters', filters);
 
@@ -48,22 +49,22 @@ function fetchMatchingContexts(criteria, excludedEditors) {
 
 function fetchAllCriteria() {
   return fetchJson(LMEM_BACKEND_ORIGIN + '/api/v2/criteria')
-  .then(criteria => {
+    .then((criteria) => {
     // transform list of objects into ImmutableMap of ImmutableMaps
-    return criteria.reduce((acc, criterion) => {
-      return acc.set(criterion.slug, new ImmutableMap(criterion));
-    }, new ImmutableMap());
-  });
+      return criteria.reduce((acc, criterion) => {
+        return acc.set(criterion.slug, new ImmutableMap(criterion));
+      }, new ImmutableMap());
+    });
 }
 
 function fetchAllEditors() {
   return fetchJson(LMEM_BACKEND_ORIGIN + '/api/v2/editors')
-  .then(editors => {
+    .then((editors) => {
     // transform list of objects into ImmutableMap of ImmutableMaps
-    return editors.reduce((acc, editor) => {
-      return acc.set(editor.id.toString(), new ImmutableMap(editor));
-    }, new ImmutableMap());
-  });
+      return editors.reduce((acc, editor) => {
+        return acc.set(editor.id.toString(), new ImmutableMap(editor));
+      }, new ImmutableMap());
+    });
 }
 
 export function receivedMatchingContexts(matchingContexts) {
@@ -88,7 +89,7 @@ export function receivedEditors(editors) {
 }
 
 export function dispatchInitialStateFromBackend() {
-  return dispatch => {
+  return (dispatch) => {
     fetchMatchingContexts().then(json => dispatch(receivedMatchingContexts(json)));
     fetchAllCriteria().then(ImmMap => dispatch(receivedCriteria(ImmMap)));
     fetchAllEditors().then(ImmMap => dispatch(receivedEditors(ImmMap)));
@@ -96,7 +97,7 @@ export function dispatchInitialStateFromBackend() {
 }
 
 export function refreshMatchingContextsFromBackend(criteria, editors) {
-  return dispatch => {
+  return (dispatch) => {
     fetchMatchingContexts(criteria, editors).then(json => dispatch(receivedMatchingContexts(json)));
   };
 }

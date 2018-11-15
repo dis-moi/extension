@@ -1,9 +1,12 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import { filterTags } from '../../lmem/typeOfCriteria';
 
 function PreferenceCriteriaPanel(props) {
-  const { criteria, selectCriterion, unselectCriterion, imagesUrl } = props;
+  const {
+    criteria, selectCriterion, unselectCriterion, imagesUrl 
+  } = props;
 
   const lis = filterTags(criteria.toArray())
     .sort((criterionA, criterionB) => {
@@ -11,7 +14,7 @@ function PreferenceCriteriaPanel(props) {
       const labelB = criterionB.get('label').toUpperCase();
       return -labelA.localeCompare(labelB);
     })
-    .map(criterion => {
+    .map((criterion) => {
       const slug = criterion.get('slug');
       const label = criterion.get('label');
       const isSelected = criterion.get('isSelected');
@@ -24,7 +27,7 @@ function PreferenceCriteriaPanel(props) {
               type="checkbox"
               checked={ isSelected }
               onChange={ () => (isSelected ? unselectCriterion(slug) : selectCriterion(slug)) } />
-            <img role="presentation" src={`${imagesUrl}${isSelected ? 'checked' : 'unchecked'}.svg`} />
+            <img alt="" src={`${imagesUrl}${isSelected ? 'checked' : 'unchecked'}.svg`} />
             { label }
           </label>
         </li>
@@ -34,7 +37,7 @@ function PreferenceCriteriaPanel(props) {
   return (
     <div>
       <ul>{ lis }</ul>
-      <div className="separation-bar"></div>
+      <div className="separation-bar" />
       <aside>
         <h1>Aide</h1>
         <p>
@@ -42,7 +45,10 @@ function PreferenceCriteriaPanel(props) {
           Seules les recommandations répondant à ces critères vous seront affichées.
         </p>
         <p>
-          Par exemple, si le prix vous importe peu, dé-sélectionnez le critère <em>prix</em>.
+          Par exemple, si le prix vous importe peu, dé-sélectionnez le critère 
+          {' '}
+          <em>prix</em>
+.
           L’assistant ne vous proposera alors plus de recommandation portant uniquement sur ce critère.
         </p>
       </aside>
@@ -50,7 +56,7 @@ function PreferenceCriteriaPanel(props) {
   );
 }
 
-PreferenceCriteriaPanel.PropTypes = {
+PreferenceCriteriaPanel.propTypes = {
   criteria: PropTypes.arrayOf(PropTypes.shape({
     slug: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,

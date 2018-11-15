@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   CRITERIA_TYPE_GO,
@@ -60,7 +61,7 @@ export default function TypeIndicator({ recommendationType, imagesUrl }) {
   );
 }
 
-TypeIndicator.PropTypes = {
+TypeIndicator.propTypes = {
   recommendationType: PropTypes.string.isRequired,
   imagesUrl: PropTypes.string.isRequired,
 };

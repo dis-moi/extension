@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import prepareRecoActions from '../actions/recommendations.js';
+import prepareRecoActions from '../actions/recommendations';
 
 import { IMAGES_URL } from '../../constants/assetsUrls';
 import portCommunication from '../portCommunication';

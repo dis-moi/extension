@@ -44,8 +44,8 @@ export default function (state = initialPrefs, action) {
       newCriteria = criteria.reduce((acc, curr) => {
         const slug = curr.get('slug');
 
-        return !state.get('criteria').has(slug) ?
-          acc.set(slug, curr.set('isSelected', true)) // new criteria from server are set to selected by default
+        return !state.get('criteria').has(slug)
+          ? acc.set(slug, curr.set('isSelected', true)) // new criteria from server are set to selected by default
           : acc.set(slug, state.get('criteria').get(slug));
 
       }, state.get('criteria'));    
@@ -74,8 +74,8 @@ export default function (state = initialPrefs, action) {
       newEditors = editors.reduce((acc, curr) => { 
         const id = curr.get('id').toString();
 
-        return !state.get('editors').has(id) ?
-          acc.set(id, curr.set('isExcluded', false)) // new editors from server are set to not excluded by default
+        return !state.get('editors').has(id)
+          ? acc.set(id, curr.set('isExcluded', false)) // new editors from server are set to not excluded by default
           : acc.set(id, state.get('editors').get(id));
 
       }, state.get('editors'));

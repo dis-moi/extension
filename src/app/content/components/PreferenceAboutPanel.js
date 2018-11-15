@@ -5,11 +5,12 @@ import { EXTENSION_VERSION } from '../../constants/ui';
 function formatLocaleDate(strDate) {
   const dateOfInstall = new Date(strDate);
 
-  if (Number.isNaN(dateOfInstall.getTime()))
-    return undefined;
+  if (Number.isNaN(dateOfInstall.getTime())) return undefined;
 
   return dateOfInstall.toLocaleDateString(navigator.language,
-    { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+    });
 }
 
 export default function PreferenceAboutPanel(props) {
@@ -24,32 +25,54 @@ export default function PreferenceAboutPanel(props) {
           Le Même en Mieux est un assistant d’achat indépendant des vendeurs et des marques.
         </h1>
         { localeDateOfInstall && (
-          <p>Vous l’avez installé le <time dateTime={ISODateOfInstall}>{localeDateOfInstall}</time>.</p>
+          <p>
+            Vous l’avez installé le
+            {' '}
+            <time dateTime={ISODateOfInstall}>{localeDateOfInstall}</time>
+.
+          </p>
         )}
 
         <p>
           {'Pour découvrir ou faire découvrir le Même en Mieux autour de vous, '}
           <a
             href="https://choisir.lmem.net/decouvrir-exemples/"
-            target="_blank">
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             rendez-vous sur cette page d’exemples
-          </a>.
+          </a>
+.
         </p>
 
       </section>
       <aside>
         <ul>
-          <li><a target="_blank" href="https://choisir.lmem.net/questions-frequentes-aide/">Aide</a></li>
-          <li><a target="_blank" href="https://www.lmem.net/projet">À propos</a></li>
-          <li><a target="_blank" href="https://www.lmem.net/contact.html">Contact</a></li>
-          <li><a
-            target="_blank"
-            href="https://choisir.lmem.net/charte-de-respect-de-la-vie-privee-5-regles-dor/">
+          <li>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://choisir.lmem.net/questions-frequentes-aide/"
+            >
+              Aide
+            </a>
+          </li>
+          <li><a target="_blank" rel="noopener noreferrer" href="https://www.lmem.net/projet">À propos</a></li>
+          <li><a target="_blank" rel="noopener noreferrer" href="https://www.lmem.net/contact.html">Contact</a></li>
+          <li>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://choisir.lmem.net/charte-de-respect-de-la-vie-privee-5-regles-dor/">
             Vie privée
-          </a></li>
-          <li><a target="_blank" href="https://www.lmem.net/cgu.html">CGU</a></li>
-          <li><a target="_blank" href="https://choisir.lmem.net/desinstaller-meme-mieux/">Désinstaller</a></li>
-          <li>v{EXTENSION_VERSION}</li>
+            </a>
+          </li>
+          <li><a target="_blank" rel="noopener noreferrer" href="https://www.lmem.net/cgu.html">CGU</a></li>
+          <li><a target="_blank" rel="noopener noreferrer" href="https://choisir.lmem.net/desinstaller-meme-mieux/">Désinstaller</a></li>
+          <li>
+v
+            {EXTENSION_VERSION}
+          </li>
         </ul>
       </aside>
     </div>

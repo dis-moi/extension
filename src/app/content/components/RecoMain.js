@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { findType } from '../../lmem/typeOfCriteria';
@@ -9,6 +10,8 @@ import Criteria from './Criteria';
 import RecoDescription from './RecoDescription';
 import FeedbackButtons from '../containers/Feedback';
 import TypeIndicator from './TypeIndicator';
+import { recommendation as RecommendationPropType } from '../../propTypes';
+
 
 export default function RecoMain({
   recommendations, imagesUrl,
@@ -44,15 +47,15 @@ export default function RecoMain({
           {'with-indicator': typeOfRecommendation}
         )}>
         {
-          typeOfRecommendation ?
-            <TypeIndicator recommendationType={ typeOfRecommendation } imagesUrl={ imagesUrl } /> :
-            undefined
+          typeOfRecommendation
+            ? <TypeIndicator recommendationType={ typeOfRecommendation } imagesUrl={ imagesUrl } />
+            : undefined
         }
 
         <div className="reco-summary">
           <header className="summary-header reco-summary-header">
             <h3 className="reco-summary-title">
-              <a target="_blank" href={recommendation.resource.url}>
+              <a target="_blank" rel="noopener noreferrer" href={recommendation.resource.url}>
                 {recommendation.title}
               </a>
             </h3>
@@ -62,8 +65,9 @@ export default function RecoMain({
           <div className="reco-summary-content">
             <div className="reco-summary-link-referral">
               <a 
-                onClick={(e) => onCheckOutResourceLink(recommendation.resource)}
+                onClick={e => onCheckOutResourceLink(recommendation.resource)}
                 target="_blank"
+                rel="noopener noreferrer"
                 href={recommendation.resource.url}>
                 {recommendation.resource.url.replace(/\?.+$/, '')}
               </a>
@@ -73,11 +77,12 @@ export default function RecoMain({
         </div>
         <div className="summary-link-checkout-wrapper">
           <a
-            onClick={(e) => onCheckOutResourceButton(recommendation.resource)}
+            onClick={e => onCheckOutResourceButton(recommendation.resource)}
             href={recommendation.resource.url}
             target="_blank"
+            rel="noopener noreferrer"
             className="button summary-link-checkout with-image">
-            <img role="presentation" src={imagesUrl + 'read.svg'} />
+            <img alt="" src={imagesUrl + 'read.svg'} />
             <span className="button-label">
               {recommendation.resource.label}
             </span>
@@ -86,11 +91,12 @@ export default function RecoMain({
             <div>
               <small>ou bien</small>
               <a
-                onClick={(e) => onCheckOutAlternative(recommendation.alternatives[0])}
+                onClick={e => onCheckOutAlternative(recommendation.alternatives[0])}
                 href={recommendation.alternatives[0].url_to_redirect}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="reco-alternative button summary-link-checkout with-image">
-                <img role="presentation" src={imagesUrl + 'logo-bw.svg'} />
+                <img alt="" src={imagesUrl + 'logo-bw.svg'} />
                 <span className="button-label">
                   {recommendation.alternatives[0].label}
                 </span>
@@ -109,24 +115,5 @@ export default function RecoMain({
 
 RecoMain.propTypes = {
   imagesUrl: PropTypes.string.isRequired,
-  recommendations: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    contributor: PropTypes.object.isRequired,
-    criteria: PropTypes.arrayOf(PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired,
-    })),
-    isApproved: PropTypes.bool,
-    resource: PropTypes.shape({
-      author: PropTypes.string,
-      editor: PropTypes.object.isRequired,
-      label: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
-    }),
-    alternatives: PropTypes.arrayOf(PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      url_to_redirect: PropTypes.string.isRequired,
-    })),
-  })).isRequired,
+  recommendations: PropTypes.arrayOf(RecommendationPropType).isRequired,
 };

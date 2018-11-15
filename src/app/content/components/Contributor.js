@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Contributor = ({ contributor }) => {
 
@@ -16,7 +17,7 @@ const Contributor = ({ contributor }) => {
 Contributor.propTypes = {
   contributor: PropTypes.shape({
     name: PropTypes.string.isRequired,
-  }),
+  }).isRequired,
 };
 
 export default Contributor;

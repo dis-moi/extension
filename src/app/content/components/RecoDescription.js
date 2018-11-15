@@ -1,12 +1,12 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { sanitize } from 'dompurify';
 
 // FIXME This might be a backend thing...
 function addHtmlLinks(html) {
   return html.replace(
     /(https?:\/\/)?([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?/gi,
-    (match, protocol) =>
-      `<a
+    (match, protocol) => `<a
         target="_blank"
         rel="noopener noreferrer"
         href="${!protocol && 'https://'}${match}?utm_source=lmem_assistant">
@@ -27,10 +27,11 @@ function sanitizeHtml(rawHtml) {
 const RecoDescription = ({ description }) => (
   <div
     className="reco-summary-description summary-description"
-    dangerouslySetInnerHTML={sanitizeHtml(description)} />
+    dangerouslySetInnerHTML={sanitizeHtml(description)} // eslint-disable-line
+  />
 );
 
-RecoDescription.PropTypes = {
+RecoDescription.propTypes = {
   description: PropTypes.string.isRequired,
 };
 

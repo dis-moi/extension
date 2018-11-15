@@ -1,9 +1,12 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Provider, connect } from 'react-redux';
+import { hot } from 'react-hot-loader';
+import { ThemeProvider } from 'styled-components';
 
 import OptionScreen from './OptionScreen';
-import filterActions from '../content/actions/filters.js';
-import uiActions from '../content/actions/ui.js';
+import filterActions from '../content/actions/filters';
+import uiActions from '../content/actions/ui';
 
 import { IMAGES_URL } from '../constants/assetsUrls';
 
@@ -40,16 +43,17 @@ function mapDispatchToProps(dispatch) {
 
 const Options = connect(mapStateToProps, mapDispatchToProps)(OptionScreen);
 
-const OptionRoot = ({ store }) => (
+const OptionRoot = ({ store, theme }) => (
   <Provider store={store}>
-    <Options />
+    <ThemeProvider theme={theme}>
+      <Options />
+    </ThemeProvider>
   </Provider>
 );
 
 OptionRoot.propTypes = {
-  store: PropTypes.object.isRequired
+  store: PropTypes.object.isRequired, // eslint-disable-line
+  theme: PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default OptionRoot;
-
-
+export default hot(module)(OptionRoot);
