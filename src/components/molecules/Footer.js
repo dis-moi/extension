@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import FlexBar from '../atoms/FlexBar';
 
-export default styled(FlexBar)`
+export default styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 17px;
     padding-right: 25px;
-    padding-left: 20px;
-    min-height: 32px;
-    border-top: 1px solid rgba(188,188,201,0.20);
 `;
