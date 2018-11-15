@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.main`
+export default styled.section`
     background-color: #fff;
     border-left: 6px solid ${props => props.theme.otherText};
     border-radius: 5px;
