@@ -7,7 +7,7 @@ export function makeTabs(
   tabs,
   {
     findTriggeredContexts, getMatchingRecommendations, dispatch,
-    contentCode, contentStyle, getOnInstalledDetails, getCriteria, getEditors, getDismissed, getApproved,
+    contentCode, getOnInstalledDetails, getCriteria, getEditors, getDismissed, getApproved,
   }
 ) {
 
@@ -50,7 +50,6 @@ export function makeTabs(
 
         tabPort.postMessage({
           type: 'init',
-          style: contentStyle,
           onInstalledDetails: getOnInstalledDetails(),
           criteria,
           editors

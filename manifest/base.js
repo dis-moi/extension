@@ -45,7 +45,6 @@ export default Object.freeze({
   ],
   'web_accessible_resources': [
     'img/*',
-    'styles/*',
     'fonts/*'
   ]
 });
