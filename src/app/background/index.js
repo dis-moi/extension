@@ -21,19 +21,6 @@ import updateDraftRecommendations from './actions/updateDraftRecommendations';
 
 import {LMEM_BACKEND_ORIGIN, LMEM_SCRIPTS_ORIGIN} from '../constants/origins';
 
-/**
- * FIXME import styles from components instead and let Webpack taking care of them...
- *
- * For now, we’re basically importing a plain-text chunk of css, merely generated
- * from SASS files, before injecting it into a <style> element somewhere in
- * into the iframe’s <head>...
- *
- * It does its job, but comes with performance issue (since Browsers cannot cache
- * those styles) and maintainability issue (gap between React and Sass sort of
- * components, error prone assets references, etc.)
- */
-import mainStyles from '../styles/main.scss?external'; // eslint-disable-line
-
 if(process.env.NODE_ENV !== 'production'){
   console.info('NODE_ENV', process.env.NODE_ENV);
 }
@@ -99,7 +86,6 @@ configureStore((store) => {
         getApproved: () => store.getState().get('prefs').get('approvedRecos') || new ImmutableSet(),
         dispatch: store.dispatch,
         contentCode,
-        contentStyle: mainStyles.toString()
       });
     });
 
