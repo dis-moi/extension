@@ -9,12 +9,13 @@
     "build:dev": "gulp build:dev",
     "clean": "rm -rf build",
     "test": "LMEM_BACKEND_ORIGIN='' LMEM_SCRIPTS_ORIGIN='.' NODE_ENV=test mocha --require @babel/register test/app --recursive",
+    "lint-git-hook": "git diff-index --name-only --cached HEAD | grep \\.js$ | xargs eslint --fix",
     "lint": "git ls-files -om --exclude-standard | grep \\.js$ | xargs eslint --fix",
     "lint:css":"stylelint './src/**/*.js'",
     "analyse": "babel-node ./node_modules/webpack/bin/webpack --optimize-minimize --mode production --config webpack/chromium.config.js --profile --json > stats.json"
   },
   "pre-commit": [
-    "lint"
+    "lint-git-hook"
   ],
   "engines": {
     "node": ">=8"
