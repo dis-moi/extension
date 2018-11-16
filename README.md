@@ -36,6 +36,13 @@ yarn start
 
 - [Load unpacked extension's `./build/dev/` folder to Chrome.](https://developer.chrome.com/extensions/getstarted#unpacked)
 
+## Sandbox
+There is a sandbox for components testing and integration, it's hot reloaded and js and css are linted.
+The sandbox may be run with the following command:
+```
+yarn sandbox
+```
+
 ### Conventional Commits
 
 We follow [conventional commits](https://conventionalcommits.org/) since version 1.0.0 and

@@ -4,13 +4,14 @@
   "description": "LMEM Recommendations web extensions using React+Redux.",
   "scripts": {
     "start": "npm run build:dev",
+    "sandbox": "webpack-dev-server --hot --config webpack/sandbox.config.babel.js",
     "build:production": "gulp build:production",
     "build:staging": "gulp build:staging",
     "build:dev": "gulp build:dev",
     "clean": "rm -rf build",
     "test": "LMEM_BACKEND_ORIGIN='' LMEM_SCRIPTS_ORIGIN='.' NODE_ENV=test mocha --compilers js:@babel/register test/app --recursive",
     "lint": "git ls-files -om --exclude-standard | grep \\.js$ | xargs eslint --fix",
-    "lint:css":"stylelint './src/**/*.js'",
+    "lint:css": "stylelint './src/**/*.js'",
     "analyse": "babel-node ./node_modules/webpack/bin/webpack --optimize-minimize --mode production --config webpack/chromium.config.js --profile --json > stats.json"
   },
   "pre-commit": [
@@ -72,6 +73,7 @@
     "enzyme": "^3.7.0",
     "eslint": "^5.7.0",
     "eslint-config-airbnb": "^17.1.0",
+    "eslint-loader": "^2.1.1",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
@@ -83,6 +85,7 @@
     "gulp-rename": "^1.4.0",
     "gulp-util": "^3.0.7",
     "gulp-zip": "^4.2.0",
+    "html-webpack-plugin": "^3.2.0",
     "jsdom": "^8.1.0",
     "mocha": "^5.2.0",
     "node-sass": "^4.9.4",
