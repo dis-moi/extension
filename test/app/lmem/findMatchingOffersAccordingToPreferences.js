@@ -7,11 +7,11 @@ const expect = chai.expect;
 
 const offers = [
   {url_regex: 'www.samsung.com'},
-  {url_regex: 'arrested.com'}
-]
+  {url_regex: 'arrested.com'},
+];
 const draftRecommendations = [
-  {url_regex: 'www.wordpress.com'}
-]
+  {url_regex: 'www.wordpress.com'},
+];
 
 const matchingURL = 'https://www.samsung.com/blabla';
 const matchingDraftURL = 'https://www.wordpress.com/lol';
@@ -32,6 +32,43 @@ describe('findMatchingOffersAccordingToPreferences', function () {
     expect(matches).to.be.of.length(2);
     expect(matches[0]).to.equal(offersWithWeirdCase[0]);
     expect(matches[1]).to.equal(offersWithWeirdCase[1]);
+  });
+
+  describe('exclusion', () => {
+    it('should exclude matching exclusion of otherwise matching url', () => {
+      const offersWithExclusion = [
+        { url_regex: 'samsung', exclude_url_regex: 'blabla' },
+      ];
+
+      const matches = findMatchingOffersAccordingToPreferences(matchingURL, offersWithExclusion, []);
+
+      expect(matches).to.be.an('array');
+      expect(matches).to.be.of.length(0);
+    });
+
+    it('should not exclude non matching exclusion of matching url', () => {
+      const offersWithExclusion = [
+        { url_regex: 'samsung', exclude_url_regex: 'nono' },
+      ];
+
+      const matches = findMatchingOffersAccordingToPreferences(matchingURL, offersWithExclusion, []);
+
+      expect(matches).to.be.an('array');
+      expect(matches).to.be.of.length(1);
+      expect(matches[0]).to.equal(offersWithExclusion[0]);
+    });
+
+    it('should exclude its matching context if regex is invalid', () => {
+      const offersWithExclusion = [
+        { url_regex: 'samsung', exclude_url_regex: 'isNasty)' }, // SyntaxError: Invalid RegExp: Unmatched ')'
+      ].concat(offers);
+
+      const matches = findMatchingOffersAccordingToPreferences(matchingURL, offersWithExclusion, []);
+
+      expect(matches).to.be.an('array');
+      expect(matches).to.be.of.length(1);
+      expect(matches[0]).to.equal(offersWithExclusion[1]);
+    });
   });
 
   describe('invalid regex', () => {
