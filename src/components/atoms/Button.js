@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export default styled.button`
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
+  font-size: 1rem;
+  margin: 1rem;
+  padding: 0.25rem 1rem;
   border-radius: 3px;
 
   :hover {

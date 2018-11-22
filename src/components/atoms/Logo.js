@@ -2,6 +2,6 @@ import styled from 'styled-components';
 
 export default styled.h1`
     margin:0;
-    font-size: 16px;
+    font-size: 1.6em;
     color: ${props => props.theme.otherText};
 `;
