@@ -4,9 +4,9 @@ import { hot, setConfig } from 'react-hot-loader';
 import theme from '../theme';
 
 import {
+  BulleTitle,
   ButtonClose,
   ButtonMenu,
-  ButtonDelete,
   Logo,
   Title,
   Type,
@@ -16,6 +16,12 @@ import {
   Dislikes,
   Contributor
 } from '../../components/atoms';
+
+import {
+  Arrow,
+  Close,
+  Delete
+} from '../../components/atoms/icons';
 
 import {
   BulleDeleted,
@@ -29,9 +35,6 @@ import {
   Footer,
   Header,
 } from '../../components/molecules';
-
-import Close from '../../components/atoms/icons/Close';
-import Arrow from '../../components/atoms/icons/Arrow';
 
 import Notification from '../../components/views/Notification';
 
@@ -50,9 +53,11 @@ const Sandbox = () => (
         <main>
           <BulleExcerpt>
             <Type>plop</Type>
-            <Title>« De nombreux clients mécontents de ce… »</Title>
-            <Contributor>Le Même en Mieux</Contributor>
-            <ButtonDelete />
+            <div>
+              <BulleTitle>« De nombreux clients mécontents de ce… »</BulleTitle>
+              <Contributor>Le Même en Mieux</Contributor>
+            </div>
+            <Delete />
           </BulleExcerpt>
         </main>
 
@@ -61,7 +66,7 @@ const Sandbox = () => (
           <ButtonMenu>Afficher le menu</ButtonMenu>
         </Footer>
       </Notification>
-      
+
       <h2>Liste avec une Bulle supprimée</h2>
 
       <Notification>
@@ -77,7 +82,7 @@ const Sandbox = () => (
             <Type>plop</Type>
             <Title>« De nombreux clients mécontents de ce… »</Title>
             <Contributor>Le Même en Mieux</Contributor>
-            <ButtonDelete />
+            <Delete />
           </BulleExcerpt>
 
           <BulleDeleted>
@@ -90,7 +95,7 @@ const Sandbox = () => (
           <ButtonMenu>Afficher le menu</ButtonMenu>
         </Footer>
       </Notification>
-      
+
       <h2>Détails d'une Bulle</h2>
 
       <Notification>
