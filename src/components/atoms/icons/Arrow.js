@@ -1,15 +1,15 @@
 import React from 'react';
 
 export default () => (
-  <svg width="12" height="12">
-    <g 
+  <svg width="7" height="12">
+    <path 
       fill="none" 
       fillRule="evenodd" 
       stroke="#787993" 
       strokeLinecap="round" 
       strokeLinejoin="round" 
-      strokeWidth="2">
-      <path d="M1 1l10 10M11 1L1 11" />
-    </g>
+      strokeWidth="2" 
+      d="M6.046 1L1 6.046 6.046 11" />
   </svg>
+
 );

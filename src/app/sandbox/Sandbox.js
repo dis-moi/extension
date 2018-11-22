@@ -15,6 +15,9 @@ import Approves from '../../components/atoms/Approves';
 import Dislikes from '../../components/atoms/Dislikes';
 import Contributor from '../../components/atoms/Contributor';
 
+import Close from '../../components/atoms/icons/Close';
+import Arrow from '../../components/atoms/icons/Arrow';
+
 import Header from '../../components/molecules/Header';
 import Footer from '../../components/molecules/Footer';
 import Feedbacks from '../../components/molecules/Feedbacks';
@@ -33,62 +36,23 @@ const Sandbox = () => (
         <Header>
           <Title>2 messages pour cette page</Title>
           <ButtonClose>
-            <svg width="12" height="12">
-              <g 
-                fill="none" 
-                fillRule="evenodd" 
-                stroke="#787993" 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth="2">
-                <path d="M1 1l10 10M11 1L1 11" />
-              </g>
-            </svg>
+            <Close />
           </ButtonClose>
         </Header>
         <Header>
           <Title>
-            <svg width="7" height="12">
-              <path 
-                fill="none" 
-                fillRule="evenodd" 
-                stroke="#787993" 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth="2" 
-                d="M6.046 1L1 6.046 6.046 11" />
-            </svg> 
+            <Arrow />
             &nbsp;
             Le Même en Mieux, il y a 8 mois
           </Title>
           <ButtonClose>
-            <svg width="12" height="12">
-              <g 
-                fill="none" 
-                fillRule="evenodd" 
-                stroke="#787993" 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth="2">
-                <path d="M1 1l10 10M11 1L1 11" />
-              </g>
-            </svg>
+            <Close />
           </ButtonClose>
         </Header>
         <Header>
           <Title>Aucune de vos relations n’a créé de bulle pour cette page</Title>
           <ButtonClose>
-            <svg width="12" height="12">
-              <g 
-                fill="none" 
-                fillRule="evenodd" 
-                stroke="#787993" 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth="2">
-                <path d="M1 1l10 10M11 1L1 11" />
-              </g>
-            </svg>
+            <Close />
           </ButtonClose>
         </Header>
 

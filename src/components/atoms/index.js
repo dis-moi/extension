@@ -1,4 +1,11 @@
-import MenuButton from '../atoms/MenuButton';
-import Title from '../atoms/Title';
-import Type from '../atoms/Type';
-
+// export { default } from './Approves';
+// export { default } from './ButtonClose';
+// export { default } from './ButtonMenu';
+// export { default } from './ButtonDelete';
+// export { default } from './Contributor';
+// export { default } from './Dislikes';
+// export { default } from './Logo';
+// export { default } from './Message';
+// export { default } from './SourceURL';
+// export { default } from './Title';
+// export { default } from '.Type';
