@@ -1,6 +1,4 @@
 export default {
-  main: 'purple',
-
   // fonts colors
   mainText: '#25265e',
   otherText: '#787993',
