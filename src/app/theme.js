@@ -14,7 +14,7 @@ export default {
   sadness: '#D16464',
   surprise: '#3C6AE2',
 
-  //icons backgrounds
+  // icons backgrounds
   BGWarningFav: '#FEF0F0',
   BGApproval: '#EAF9F0',
   BGAlternative: '#F0F5FA',
