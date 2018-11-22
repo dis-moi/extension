@@ -3,29 +3,35 @@ import { ThemeProvider } from 'styled-components';
 import { hot, setConfig } from 'react-hot-loader';
 import theme from '../theme';
 
-import ButtonClose from '../../components/atoms/ButtonClose';
-import ButtonMenu from '../../components/atoms/ButtonMenu';
-import ButtonDelete from '../../components/atoms/ButtonDelete';
-import Logo from '../../components/atoms/Logo';
-import Title from '../../components/atoms/Title';
-import Type from '../../components/atoms/Type';
-import Message from '../../components/atoms/Message';
-import SourceURL from '../../components/atoms/SourceURL';
-import Approves from '../../components/atoms/Approves';
-import Dislikes from '../../components/atoms/Dislikes';
-import Contributor from '../../components/atoms/Contributor';
+import { 
+  ButtonClose, 
+  ButtonMenu, 
+  ButtonDelete, 
+  Logo, 
+  Title, 
+  Type, 
+  Message, 
+  SourceURL, 
+  Approves, 
+  Dislikes, 
+  Contributor 
+} from '../../components/atoms';
+
+import {
+  BulleDeleted,
+  BulleDetails,
+  BulleExcerpt,
+  BulleToAdd
+} from '../../components/organisms';
+
+import {
+  Feedbacks,
+  Footer,
+  Header,
+} from '../../components/molecules';
 
 import Close from '../../components/atoms/icons/Close';
 import Arrow from '../../components/atoms/icons/Arrow';
-
-import Header from '../../components/molecules/Header';
-import Footer from '../../components/molecules/Footer';
-import Feedbacks from '../../components/molecules/Feedbacks';
-
-import BulleDetails from '../../components/organisms/BulleDetails';
-import BulleExcerpt from '../../components/organisms/BulleExcerpt';
-import BulleDeleted from '../../components/organisms/BulleDeleted';
-import BulleToAdd from '../../components/organisms/BulleToAdd';
 
 import Notification from '../../components/views/Notification';
 
