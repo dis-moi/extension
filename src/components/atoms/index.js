@@ -1,7 +1,7 @@
 export { default as Approves } from './Approves';
+export { default as BulleTitle } from './BulleTitle';
 export { default as ButtonClose } from './ButtonClose';
 export { default as ButtonMenu } from './ButtonMenu';
-export { default as ButtonDelete } from './ButtonDelete';
 export { default as Contributor } from './Contributor';
 export { default as Dislikes } from './Dislikes';
 export { default as Logo } from './Logo';
