@@ -1,4 +1,2 @@
-export { default as BulleDeleted } from './BulleDeleted';
-export { default as BulleDetails } from './BulleDetails';
-export { default as BulleExcerpt } from './BulleExcerpt';
-export { default as BulleToAdd } from './BulleToAdd';
+export { default as Bulle } from './Bulle';
+export { default as Notification } from './Notification';
