@@ -7,6 +7,7 @@ import {
   BulleTitle,
   ButtonClose,
   ButtonMenu,
+  ButtonReset,
   Logo,
   Title,
   Type,
@@ -45,6 +46,7 @@ const Sandbox = () => (
       <Notification>
         <Header>
           <Title>2 messages pour cette page</Title>
+
           <ButtonClose>
             <Close />
           </ButtonClose>
@@ -53,16 +55,19 @@ const Sandbox = () => (
         <main>
           <BulleExcerpt>
             <Type>plop</Type>
+
             <div>
               <BulleTitle>« De nombreux clients mécontents de ce… »</BulleTitle>
               <Contributor>Le Même en Mieux</Contributor>
             </div>
+
             <Delete />
           </BulleExcerpt>
         </main>
 
         <Footer>
           <Logo>Bulles</Logo>
+
           <ButtonMenu>Afficher le menu</ButtonMenu>
         </Footer>
       </Notification>
@@ -80,8 +85,15 @@ const Sandbox = () => (
         <main>
           <BulleExcerpt>
             <Type>plop</Type>
-            <Title>« De nombreux clients mécontents de ce… »</Title>
-            <Contributor>Le Même en Mieux</Contributor>
+
+            <div>
+              <BulleTitle>
+                « De nombreux clients mécontents de ce… »
+              </BulleTitle>
+
+              <Contributor>Le Même en Mieux</Contributor>
+            </div>
+
             <Delete />
           </BulleExcerpt>
 
@@ -92,6 +104,7 @@ const Sandbox = () => (
 
         <Footer>
           <Logo>Bulles</Logo>
+
           <ButtonMenu>Afficher le menu</ButtonMenu>
         </Footer>
       </Notification>
@@ -101,10 +114,14 @@ const Sandbox = () => (
       <Notification>
         <Header>
           <Title>
-            <Arrow />
+            <ButtonReset>
+              <Arrow />
+            </ButtonReset>
+
             &nbsp;
             Le Même en Mieux, il y a 8 mois
           </Title>
+
           <ButtonClose>
             <Close />
           </ButtonClose>
@@ -113,18 +130,21 @@ const Sandbox = () => (
         <main>
           <BulleDetails>
             <Type>plop</Type>
-            <Message>
-              De nombreux clients mécontents de
-              Pixmania et ses vendeurs s’expriment sur les réseaux sociaux depuis 2016.
-              Les plaintes continuent en 2017 et 2018 si l’on se réfère au forum Que Choisir.
-            </Message>
 
-            <SourceURL>http://forum.que-choisir.org/pixmania-avis-1285</SourceURL>
+            <div>
+              <Message>
+                De nombreux clients mécontents de
+                Pixmania et ses vendeurs s’expriment sur les réseaux sociaux depuis 2016.
+                Les plaintes continuent en 2017 et 2018 si l’on se réfère au forum Que Choisir.
+              </Message>
 
-            <Feedbacks>
-              <Approves>21</Approves>
-              <Dislikes>3</Dislikes>
-            </Feedbacks>
+              <SourceURL>http://forum.que-choisir.org/pixmania-avis-1285</SourceURL>
+
+              <Feedbacks>
+                <Approves>21</Approves>
+                <Dislikes>3</Dislikes>
+              </Feedbacks>
+            </div>
           </BulleDetails>
         </main>
 
