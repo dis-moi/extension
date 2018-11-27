@@ -23,6 +23,14 @@ const Sandbox = () => (
           approves={21}
           dislikes={3}
         />
+        <Bulle
+          type="Plop"
+          message={message}
+          contributor="Le Même en Mieux"
+          source="http://forum.que-choisir.org/pixmania-avis-1285"
+          approves={21}
+          dislikes={3}
+        />
       </Notification>
 
       <h2>Liste avec une Bulle supprimée</h2>
