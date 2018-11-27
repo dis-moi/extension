@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export default styled.article`
+    box-sizing: border-box;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 1.6em 2.5em 1.6em 2.0em;
+    padding: 18px 35px 15px 30px;
+    min-height: 75px;
     font-size: ${props => (props.details ? '1.5em' : '1.4em')};
 
     & + & {

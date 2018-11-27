@@ -4,12 +4,14 @@ import styled from 'styled-components';
 import Truncated from '../atoms/Truncated';
 
 export const Title = styled.p`
-    display:inline-block;
-    color: ${props => props.theme.otherText};
+    display: inline-block;
+    margin: 0;
+    color: ${props => props.theme.mainText};
+    font-weight: bold;
 `;
 
 export default ({ children }) => (
   <Title>
-    « <Truncated width="350px">{children}</Truncated> »
+    « <Truncated width="290px">{children}</Truncated> »
   </Title>
 );

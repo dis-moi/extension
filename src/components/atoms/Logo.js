@@ -2,6 +2,6 @@ import styled from 'styled-components';
 
 export default styled.h1.attrs({ children: 'Bulles' })`
     margin:0;
-    font-size: 1.6em;
-    color: ${props => props.theme.otherText};
+    font-size: 16px;
+    color: #B7B7C4;
 `;
