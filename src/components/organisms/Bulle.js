@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   BulleContainer,
   BulleContent,
+  BulleDeleted,
   Approves,
   Contributor,
   DeleteButton,
@@ -44,7 +45,9 @@ export default class Bulle extends PureComponent {
       return (
         <BulleContainer>
           {deleted ? (
-            <Fragment>Cette bulle ne s’affichera plus</Fragment>
+            <Fragment>
+              <BulleDeleted>Cette bulle ne s’affichera plus</BulleDeleted>
+            </Fragment>
           ) : (
             <Fragment>
               {type && <BulleType>{type}</BulleType>}
