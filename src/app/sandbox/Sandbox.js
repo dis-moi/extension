@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { hot, setConfig } from 'react-hot-loader';
 import theme from '../theme';
-import { AddBulle } from '../../components/atoms';
+import { AddBulleContainer } from '../../components/atoms';
 import { Notification, Bulle } from '../../components/organisms';
 
 const message = 'De nombreux clients mécontents de Pixmania et ses vendeurs s’expriment sur les '
@@ -77,7 +77,7 @@ const Sandbox = () => (
       <Notification
         title="Aucune de vos relations n’a créé de bulle pour cette page"
       >
-        <AddBulle />
+        <AddBulleContainer />
       </Notification>
     </Fragment>
   </ThemeProvider>
