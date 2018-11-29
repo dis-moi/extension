@@ -10,10 +10,9 @@ import {
   Dislikes,
   Message,
   SourceURL,
-  BulleType,
   Feedbacks
 } from '../atoms';
-import BulleTitle from '../molecules/BulleTitle';
+import { BulleTitle, BulleType } from '../molecules';
 
 export default class Bulle extends PureComponent {
     static propTypes = {
@@ -41,7 +40,6 @@ export default class Bulle extends PureComponent {
       const {
         type, details, message, contributor, source, approves, dislikes, onDelete, deleted
       } = this.props;
-
       return (
         <BulleContainer>
           {deleted ? (
@@ -50,7 +48,7 @@ export default class Bulle extends PureComponent {
             </Fragment>
           ) : (
             <Fragment>
-              {type && <BulleType>{type}</BulleType>}
+              <BulleType type={type} />
               <BulleContent deleted={deleted}>
                 {details ? (
                   <Fragment>

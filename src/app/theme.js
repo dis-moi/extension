@@ -2,37 +2,41 @@ export default {
   // fonts colors
   mainText: '#25265e',
   otherText: '#787993',
-
-  // icons colors
-  warningFav: {
-    color: '#FB6C6A',
-    background: '#FEF0F0',
+  // bulle type colors
+  bulleTypes: {
+    Warning: {
+      color: '#FB6C6A',
+      background: '#FEF0F0',
+    },
+    Fav: {
+      color: '#FB6C6A',
+      background: '#FEF0F0',
+    },
+    Alternative: {
+      color: '#488FC1',
+      background: '#F0F5FA',
+    },
+    Approval: {
+      color: '#2DC76D',
+      background: '#EAF9F0',
+    },
+    NeedHelp: {
+      color: '#F5A623',
+      background: '#FDF9C6',
+    },
+    Rant: {
+      color: '#9013FE',
+      background: '#F3E7FE',
+    },
+    Sadness: {
+      color: '#D16464',
+      background: '#FAEFEF',
+    },
+    Surprise: {
+      color: '#3C6AE2',
+      background: '#EBF0FC',
+    },
   },
-  approval: {
-    color: '#2DC76D',
-    background: '#EAF9F0',
-  },
-  alternative: {
-    color: '#488FC1',
-    background: '#F0F5FA',
-  },
-  needHelp: {
-    color: '#F5A623',
-    background: '#FDF9C6',
-  },
-  rant: {
-    color: '#9013FE',
-    background: '#F3E7FE',
-  },
-  sadness: {
-    color: '#D16464',
-    background: '#FAEFEF',
-  },
-  surprise: {
-    color: '#3C6AE2',
-    background: '#EBF0FC',
-  },
-
   // iframe
   iframe: {
     style: {
