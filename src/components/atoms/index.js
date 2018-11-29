@@ -3,7 +3,7 @@ export { default as BackButton } from './BackButton';
 export { default as BulleContainer } from './BulleContainer';
 export { default as BulleContent } from './BulleContent';
 export { default as BulleDeleted } from './BulleDeleted';
-export { default as BulleType } from './BulleType';
+export { default as BulleTypeBackground } from './BulleTypeBackground';
 export { default as Button } from './Button';
 export { default as CloseButton } from './CloseButton';
 export { default as Contributor } from './Contributor';

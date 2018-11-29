@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { hot, setConfig } from 'react-hot-loader';
 import theme from '../theme';
-import { AddBulleContainer, BulleType } from '../../components/atoms';
+import { AddBulleContainer } from '../../components/atoms';
 import { Notification, Bulle } from '../../components/organisms';
 
 const message = 'De nombreux clients mécontents de Pixmania et ses vendeurs s’expriment sur les '
@@ -14,15 +14,12 @@ const Sandbox = () => (
   <ThemeProvider theme={theme}>
     <Fragment>
       <h2>Type</h2>
-
-      <BulleType />
       
       <h2>Liste de Bulles </h2>
       <Notification
         title="2 messages pour cette page"
       >
         <Bulle
-          type={type}
           message={message}
           contributor="Le Même en Mieux"
           source="http://forum.que-choisir.org/pixmania-avis-1285"
@@ -30,7 +27,7 @@ const Sandbox = () => (
           dislikes={3}
         />
         <Bulle
-          type="Plop"
+          type="Warning"
           message={message}
           contributor="Le Même en Mieux"
           source="http://forum.que-choisir.org/pixmania-avis-1285"
@@ -45,7 +42,7 @@ const Sandbox = () => (
         title="2 messages pour cette page"
       >
         <Bulle
-          type="Plop"
+          type="Alternative"
           message={message}
           contributor="Le Même en Mieux"
           source="http://forum.que-choisir.org/pixmania-avis-1285"
@@ -53,7 +50,7 @@ const Sandbox = () => (
           dislikes={3}
         />
         <Bulle
-          type="Plop"
+          type="Rant"
           message={message}
           contributor="Le Même en Mieux"
           source="http://forum.que-choisir.org/pixmania-avis-1285"
@@ -70,7 +67,7 @@ const Sandbox = () => (
         details
       >
         <Bulle
-          type="Plop"
+          type="NeedHelp"
           message={message}
           contributor="Le Même en Mieux"
           source="http://forum.que-choisir.org/pixmania-avis-1285"
