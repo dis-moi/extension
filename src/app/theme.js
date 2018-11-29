@@ -4,22 +4,34 @@ export default {
   otherText: '#787993',
 
   // icons colors
-  warningFav: '#FB6C6A',
-  approval: '#2DC76D',
-  alternative: '#488FC1',
-  needHelp: '#F5A623',
-  rant: '#9013FE',
-  sadness: '#D16464',
-  surprise: '#3C6AE2',
-
-  // icons backgrounds
-  BGWarningFav: '#FEF0F0',
-  BGApproval: '#EAF9F0',
-  BGAlternative: '#F0F5FA',
-  BGNeedHelp: '#FDF9C6',
-  BGRant: '#F3E7FE',
-  BGSadness: '#FAEFEF',
-  BGSurprise: '#EBF0FC',
+  warningFav: {
+    color: '#FB6C6A',
+    background: '#FEF0F0',
+  },
+  approval: {
+    color: '#2DC76D',
+    background: '#EAF9F0',
+  },
+  alternative: {
+    color: '#488FC1',
+    background: '#F0F5FA',
+  },
+  needHelp: {
+    color: '#F5A623',
+    background: '#FDF9C6',
+  },
+  rant: {
+    color: '#9013FE',
+    background: '#F3E7FE',
+  },
+  sadness: {
+    color: '#D16464',
+    background: '#FAEFEF',
+  },
+  surprise: {
+    color: '#3C6AE2',
+    background: '#EBF0FC',
+  },
 
   // iframe
   iframe: {
