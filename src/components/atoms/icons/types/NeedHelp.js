@@ -1,9 +1,10 @@
+/* eslint-disable max-len */
 import React from 'react';
 
-export default () => (
+export default ({ color }) => (
   <svg width="24" height="24">
     <g
-      fill="#F5A623"
+      fill={color}
       fillRule="evenodd">
       <path
         stroke="#F5A623"

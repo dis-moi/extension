@@ -1,8 +1,5 @@
-export { default as Alternative } from './Alternative';
-export { default as Approval } from './Approval';
-export { default as Approval } from './Approval';
-export { default as ApprovalFace } from './ApprovalFace';
 export { default as Arrow } from './Arrow';
+export { default as Bubble } from './Bubble';
 export { default as Close } from './Close';
 export { default as Delete } from './Delete';
 export { default as NeedHelp } from './NeedHelp';
