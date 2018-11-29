@@ -50,7 +50,7 @@ export default class Bulle extends PureComponent {
             </Fragment>
           ) : (
             <Fragment>
-              {type && <BulleType>{type}</BulleType>}
+              {type && <BulleType type={type} /> }
               <BulleContent deleted={deleted}>
                 {details ? (
                   <Fragment>
