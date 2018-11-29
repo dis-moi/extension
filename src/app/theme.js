@@ -8,6 +8,10 @@ export default {
       color: '#FB6C6A',
       background: '#FEF0F0',
     },
+    Fav: {
+      color: '#FB6C6A',
+      background: '#FEF0F0',
+    },
     Alternative: {
       color: '#488FC1',
       background: '#F0F5FA',
@@ -16,7 +20,6 @@ export default {
       color: '#2DC76D',
       background: '#EAF9F0',
     },
-
     NeedHelp: {
       color: '#F5A623',
       background: '#FDF9C6',

@@ -13,8 +13,6 @@ const type = 'warningFav';
 const Sandbox = () => (
   <ThemeProvider theme={theme}>
     <Fragment>
-      <h2>Type</h2>
-      
       <h2>Liste de Bulles </h2>
       <Notification
         title="2 messages pour cette page"
@@ -27,7 +25,7 @@ const Sandbox = () => (
           dislikes={3}
         />
         <Bulle
-          type="Warning"
+          type="Fav"
           message={message}
           contributor="Le Même en Mieux"
           source="http://forum.que-choisir.org/pixmania-avis-1285"
@@ -37,7 +35,6 @@ const Sandbox = () => (
       </Notification>
 
       <h2>Liste avec une Bulle supprimée</h2>
-
       <Notification
         title="2 messages pour cette page"
       >
@@ -61,7 +58,6 @@ const Sandbox = () => (
       </Notification>
 
       <h2>Détails d'une Bulle</h2>
-
       <Notification
         title="Le Même en Mieux, il y a 8 mois"
         details
