@@ -11,8 +11,9 @@ import {
   MenuButton,
   BackButton
 } from '../atoms';
+import Bulle from './Bulle';
 
-export default class Bulle extends PureComponent {
+export default class Notification extends PureComponent {
     static propTypes = {
       title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
       onClose: PropTypes.func,
@@ -33,7 +34,7 @@ export default class Bulle extends PureComponent {
       const { children, details } = this.props;
 
       return React.Children.map(children, (child) => {
-        if (child instanceof Bulle) {
+        if (Object.prototype.isPrototypeOf.call(Bulle, child.type)) {
           return React.cloneElement(child, {
             ...child.props,
             details,
