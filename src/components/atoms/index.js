@@ -1,3 +1,4 @@
+export { default as AddBulleLink } from './AddBulleLink';
 export { default as Approves } from './Approves';
 export { default as BackButton } from './BackButton';
 export { default as BulleContainer } from './BulleContainer';
@@ -20,4 +21,3 @@ export { default as Message } from './Message';
 export { default as SourceURL } from './SourceURL';
 export { default as Title } from './Title';
 export { default as Truncated } from './Truncated';
-export { default as AddBulleContainer } from './AddBulleContainer';
