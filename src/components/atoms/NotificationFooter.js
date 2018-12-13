@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 import FlexBar from './FlexBar';
 
-export default styled(FlexBar)`
-    padding-right: 25px;
-    padding-left: 15px;
-    min-height: 32px;
-    border-top: 1px solid rgba(188,188,201,0.20);
+export default styled.nav`
+    display: flex;
+    justify-content: space-between;
+    padding-right: 38px;
+    padding-bottom: 5px;
+    padding-left: 38px;
+    margin-top: auto;
+    border-top: 1px solid #DDDDDD;
 `;

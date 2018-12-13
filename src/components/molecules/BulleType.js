@@ -10,7 +10,7 @@ const BulleType = ({ type, theme }) => {
 
   return (
     <BulleTypeBackground color={style && style.background}>
-      {BulleTypeIcon && <BulleTypeIcon color={style && style.color} />}
+      {BulleTypeIcon && <BulleTypeIcon />}
     </BulleTypeBackground>
   );
 };

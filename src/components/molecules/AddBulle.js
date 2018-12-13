@@ -1,16 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { AddBulleLink, BulleContainer, } from '../atoms';
-import { Arrow, Bubble } from '../atoms/icons';
 
 const AddBulle = ({ onClick }) => (
-  <BulleContainer>
-    <AddBulleLink onClick={onClick}>
-      <Bubble />
-      <span>Ajouter une bulle</span>
-      <Arrow />
-    </AddBulleLink>
-  </BulleContainer>
+  <AddBulleLink onClick={onClick}>
+    <span>+</span> 
+    Créer votre bulle
+  </AddBulleLink>
 );
 
 AddBulle.propTypes = {
@@ -18,7 +14,7 @@ AddBulle.propTypes = {
 };
 
 AddBulle.defaultProps = {
-  onClick: () => {},
+  onClick: () => { },
 };
 
 export default AddBulle;
