@@ -5,11 +5,15 @@ const BulleTypeBackground = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
+    margin-right: 10px;
     border-radius: 50%;
+    background-color: ${props => props.color};
 
-    background-color: ${props => props.color}
+    & > svg {
+      fill: #fff;
+    }
 `;
 
 BulleTypeBackground.propTypes = {

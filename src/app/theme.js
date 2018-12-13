@@ -6,8 +6,7 @@ export default {
   // bulle type colors
   bulleTypes: {
     Warning: {
-      color: '#FB6C6A',
-      background: '#FEF0F0',
+      background: '#F70B7B',
     },
     Fav: {
       color: '#FB6C6A',
@@ -18,8 +17,7 @@ export default {
       background: '#F0F5FA',
     },
     Approval: {
-      color: '#2DC76D',
-      background: '#EAF9F0',
+      background: '#34C16C',
     },
     NeedHelp: {
       color: '#F5A623',

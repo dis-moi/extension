@@ -10,9 +10,10 @@ import {
   Logo,
   MenuButton,
   BackButton,
-  NavLink,
+  NavLink
 } from '../atoms';
 import Bulle from './Bulle';
+import AddBulle from '../molecules/AddBulle';
 import {
   Account,
   Bubble,
@@ -68,12 +69,12 @@ export default class Notification extends PureComponent {
                 {title}
               </Fragment>
             )}
-
           </Title>
           <CloseButton onClick={onClose} />
         </NotificationHeader>
         <NotificationMain>
           {this.renderChildren()}
+          <AddBulle />
         </NotificationMain>
         <NotificationFooter>
           <NavLink>

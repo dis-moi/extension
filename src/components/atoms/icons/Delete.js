@@ -1,16 +1,9 @@
 import React from 'react';
 
 export default () => (
-  <svg width="17" height="17">
-    <g 
-      fill="none" 
-      fillRule="evenodd" 
-      stroke="#787993" 
-      strokeLinecap="round" 
-      strokeLinejoin="round" 
-      strokeWidth="2" 
-      opacity=".5">
-      <path d="M3 7v7a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2V7M6   4V1h5v3M1 4h15v3H1z" />
-    </g>
+  <svg viewBox="0 0 13.233 13.203">
+    <path
+      d="M1.007 0A1.006 1.006 0 0 0 .3 1.718L5.191 6.6.319 11.462a1.006 1.006 0 0 0 .712 1.717 1 1 0 0 0 .712-.294l4.874-4.862 4.9 4.885a1.007 1.007 0 1 0 1.424-1.423L8.042 6.6l4.872-4.86A1.007 1.007 0 0 0 11.491.318L6.617 5.18 1.719.294A1 1 0 0 0 1.007 0z"
+    />
   </svg>
 );
