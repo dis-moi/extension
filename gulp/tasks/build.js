@@ -9,7 +9,7 @@ import extConfig from '../../webpack/chromium.config';
 import firefoxConfig from '../../webpack/firefox.config';
 
 function compiler(config) {
-  return webpack(Object.create(config));
+  return webpack(config);
 }
 
 function staticCompiler(config) {

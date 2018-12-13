@@ -10,8 +10,8 @@ import configureStore from './store/configureStore';
 import findMatchingOffersAccordingToPreferences
   from '../lmem/findMatchingOffersAccordingToPreferences';
 import getMatchingRecommendations from '../lmem/getMatchingRecommendations';
-import { makeTabs } from './tabs.js';
-import prepareDraftPreview from '../lmem/draft-preview/main.js';
+import { makeTabs } from './tabs';
+import prepareDraftPreview from '../lmem/draft-preview/main';
 
 import {
   dispatchInitialStateFromBackend,
@@ -32,7 +32,7 @@ import {LMEM_BACKEND_ORIGIN, LMEM_SCRIPTS_ORIGIN} from '../constants/origins';
  * those styles) and maintainability issue (gap between React and Sass sort of
  * components, error prone assets references, etc.)
  */
-import mainStyles from '../styles/main.scss';
+import mainStyles from '../styles/main.scss?external'; // eslint-disable-line
 
 if(process.env.NODE_ENV !== 'production'){
   console.info('NODE_ENV', process.env.NODE_ENV);
@@ -43,7 +43,7 @@ console.info(`LMEM_SCRIPTS_ORIGIN "${LMEM_SCRIPTS_ORIGIN}"`);
 const heapAppId = process.env.HEAP_APPID;
 if (typeof heapAppId === 'string') {
   console.info(`Heap loading with appId "${heapAppId}"`);
-  loadHeap(heapAppId).then(heap => {
+  loadHeap(heapAppId).then((heap) => {
     const uninstallOrigin = process.env.UNINSTALL_ORIGIN;
     if (typeof uninstallOrigin === 'string') {
       chrome.runtime.setUninstallURL(uninstallOrigin + '?u=' + encodeURIComponent(heap.userId));
@@ -58,7 +58,7 @@ else {
 const contentCodeP = fetch(LMEM_SCRIPTS_ORIGIN + '/js/content.bundle.js').then(resp => resp.text());
 const draftRecoContentCodeP = fetch(LMEM_SCRIPTS_ORIGIN + '/js/grabDraftRecommendations.js').then(resp => resp.text());
 
-configureStore(store => {
+configureStore((store) => {
   window.store = store;
   // Expose the store to extension's windows
   window.getStore = () => {
@@ -73,43 +73,42 @@ configureStore(store => {
         store
       }),
       unsubscribe: () => {
-        unsubscribeList.forEach(unsubscriber => { unsubscriber(); });
+        unsubscribeList.forEach((unsubscriber) => { unsubscriber(); });
       }
     };
   };
 
   contentCodeP
-  .then(contentCode => {
-    makeTabs(chrome.tabs, {
-      findTriggeredContexts: url => {
-        const state = store.getState();
+    .then((contentCode) => {
+      makeTabs(chrome.tabs, {
+        findTriggeredContexts: (url) => {
+          const state = store.getState();
         
-        return findMatchingOffersAccordingToPreferences(
-          url,
-          state.get('resources').get('matchingContexts').toJS(),
-          state.get('resources').get('draftRecommendations').toJS() || [],
-          state.get('prefs').get('websites')
-        );
-      },
-      getMatchingRecommendations,
-      getOnInstalledDetails: () => store.getState().get('prefs').get('onInstalledDetails') || new ImmutableMap(),
-      getCriteria: () => store.getState().get('prefs').get('criteria') || new ImmutableMap(),
-      getEditors: () => store.getState().get('prefs').get('editors') || new ImmutableMap(),
-      getDismissed: () => store.getState().get('prefs').get('dismissedRecos') || new ImmutableSet(),
-      getApproved: () => store.getState().get('prefs').get('approvedRecos') || new ImmutableSet(),
-      dispatch: store.dispatch,
-      contentCode,
-      contentStyle: mainStyles.toString()
+          return findMatchingOffersAccordingToPreferences(
+            url,
+            state.get('resources').get('matchingContexts').toJS(),
+            state.get('resources').get('draftRecommendations').toJS() || [],
+            state.get('prefs').get('websites')
+          );
+        },
+        getMatchingRecommendations,
+        getOnInstalledDetails: () => store.getState().get('prefs').get('onInstalledDetails') || new ImmutableMap(),
+        getCriteria: () => store.getState().get('prefs').get('criteria') || new ImmutableMap(),
+        getEditors: () => store.getState().get('prefs').get('editors') || new ImmutableMap(),
+        getDismissed: () => store.getState().get('prefs').get('dismissedRecos') || new ImmutableSet(),
+        getApproved: () => store.getState().get('prefs').get('approvedRecos') || new ImmutableSet(),
+        dispatch: store.dispatch,
+        contentCode,
+        contentStyle: mainStyles.toString()
+      });
     });
-  });
 
   draftRecoContentCodeP
-  .then(contentCode => prepareDraftPreview(
+    .then(contentCode => prepareDraftPreview(
       chrome.tabs, 
       contentCode,
       (draftOffers => store.dispatch(updateDraftRecommendations(draftOffers)))
-    )
-  );
+    ));
 
   if (store.getState().get('prefs').get('onInstalledDetails').isEmpty()) {
     const onboardingUrl = process.env.ONBOARDING_ORIGIN;
@@ -125,7 +124,8 @@ configureStore(store => {
   }
   else console.warn(
     'Matching contexts auto-refresh disabled:',
-    'assuming "process.env.REFRESH_MC_INTERVAL" is deliberately not defined.');
+    'assuming "process.env.REFRESH_MC_INTERVAL" is deliberately not defined.'
+  );
 
 }, true);
 

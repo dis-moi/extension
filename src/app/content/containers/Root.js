@@ -1,15 +1,21 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
+import { hot } from 'react-hot-loader';
+import { ThemeProvider } from 'styled-components';
 import App from './App';
 
-const Root = ({ store }) => (
+const Root = ({ store, theme }) => (
   <Provider store={store}>
-    <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </Provider>
 );
 
 Root.propTypes = {
-  store: PropTypes.object.isRequired
+  store: PropTypes.object.isRequired, // eslint-disable-line
+  theme: PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default Root;
+export default hot(module)(Root);

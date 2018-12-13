@@ -12,7 +12,7 @@ export function makeTabs(
 ) {
 
   function createContentScriptAndPort(tabId) {
-    const tabPortP = new Promise(resolve => {
+    const tabPortP = new Promise((resolve) => {
       tabs.executeScript(tabId, {
         code: contentCode,
         runAt: 'document_end'
@@ -23,11 +23,10 @@ export function makeTabs(
           matchingTabIdToPortM.delete(tabId);
         });
 
-        tabPort.onMessage.addListener(msg => {
+        tabPort.onMessage.addListener((msg) => {
           console.log('message from content script', msg);
 
-          if (msg.type === 'redux-action')
-            dispatch(msg.action);
+          if (msg.type === 'redux-action') dispatch(msg.action);
         });
 
         const criteria = getCriteria().reduce((acc, criterionMap, slug) => {
@@ -72,7 +71,7 @@ export function makeTabs(
     const tabPortP = matchingTabIdToPortM.get(tabId) || createContentScriptAndPort(tabId);
 
     const approvedRecos = getApproved();
-    const recommendations = recos.map(reco => {
+    const recommendations = recos.map((reco) => {
       return Object.assign(reco, {
         isApproved: approvedRecos.has(reco.id),
       });
@@ -87,27 +86,25 @@ export function makeTabs(
 
   function fromRecoURLsToSendingToTab(recoUrls, tabId, trigger) {
     return getMatchingRecommendations(recoUrls)
-    .then(recos => recos.filter(reco => { // validate recos
-      const isValid = recommendationIsValid(reco);
-      if (!isValid) console.warn('Invalid recommendation not displayed:', reco);
-      return isValid;
-    }))
-    .then(recos => { // filter dismissed recos
-      const dismissed = getDismissed();
+      .then(recos => recos.filter((reco) => { // validate recos
+        const isValid = recommendationIsValid(reco);
+        if (!isValid) console.warn('Invalid recommendation not displayed:', reco);
+        return isValid;
+      }))
+      .then((recos) => { // filter dismissed recos
+        const dismissed = getDismissed();
 
-      const toDisplayRecos = recos.filter(reco => {
-        if (dismissed.has(reco.id))
-          dispatch(recoDismissed(trigger, reco));
-        else
-          dispatch(recoDisplayed(trigger, reco));
+        const toDisplayRecos = recos.filter((reco) => {
+          if (dismissed.has(reco.id)) dispatch(recoDismissed(trigger, reco));
+          else dispatch(recoDisplayed(trigger, reco));
 
-        return !dismissed.has(reco.id);
+          return !dismissed.has(reco.id);
+        });
+
+        if(toDisplayRecos.length >= 1) {
+          sendRecommendationsToTab(tabId, toDisplayRecos);
+        }
       });
-
-      if(toDisplayRecos.length >= 1) {
-        sendRecommendationsToTab(tabId, toDisplayRecos);
-      }
-    });
   }
 
   function triggerFromTabUrl(id, url){
@@ -134,7 +131,7 @@ export function makeTabs(
     }
   });
 
-  tabs.onRemoved.addListener(id => {
+  tabs.onRemoved.addListener((id) => {
     matchingTabIdToPortM.delete(id);
   });
 

@@ -1,6 +1,6 @@
 import { getStoredState, persistStore } from 'redux-persist-immutable';
-import reduxPersistTransform from './reduxPersistTransform';
 import storage from 'chrome-storage-local';
+import reduxPersistTransform from './reduxPersistTransform';
 
 export default function (configure, callback) {
   const persistConfig = Object.assign(
@@ -9,9 +9,9 @@ export default function (configure, callback) {
       whitelist: ['prefs'],
       debounce: 0
     },
-    chrome !== 'undefined' && chrome.storage && chrome.storage.local ?
-      { storage } :
-      {}
+    chrome !== 'undefined' && chrome.storage && chrome.storage.local
+      ? { storage }
+      : {}
   );
   getStoredState(persistConfig, (err, initialState) => {
     const store = configure(initialState);

@@ -9,7 +9,7 @@ export default Object.assign(
     'content_security_policy': csp({
       'directives': {
         'default-src': [
-          'https://recommendations.lmem.net',
+          'https://staging-recommendations.lmem.net',
         ],
         'script-src': [
           '\'self\'',

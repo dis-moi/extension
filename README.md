@@ -80,6 +80,24 @@ yarn build:dev
 yarn test
 ```
 
+## Lint
+
+### Javascript
+Code style rules are available in `.eslintrc`.
+
+You can manually lint .js files running the following command:
+```
+npm run lint
+```
+
+### Styles
+Styling rules are available in `.stylelintrc`.
+
+You can manually the styled components running the following command:
+```
+npm run lint:css
+```
+
 ### Integration tests
 
 Inspect the extension _background_ to get its console and run `window.integrationTest()`.
