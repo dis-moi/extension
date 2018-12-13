@@ -21,3 +21,4 @@ export { default as Message } from './Message';
 export { default as SourceURL } from './SourceURL';
 export { default as Title } from './Title';
 export { default as Truncated } from './Truncated';
+export { default as NavLink } from './NavLink';

@@ -5,7 +5,6 @@ export default () => (
     <g 
       fill="none" 
       fillRule="evenodd" 
-      stroke="#787993" 
       strokeLinecap="round" 
       strokeLinejoin="round" 
       strokeWidth="2">

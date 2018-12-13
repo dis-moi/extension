@@ -13,7 +13,7 @@ const Sandbox = () => (
     <Fragment>
       <h2>Liste de Bulles </h2>
       <Notification
-        title="2 messages pour cette page"
+        title="Bulles"
       >
         <Bulle
           message={message}
@@ -34,7 +34,7 @@ const Sandbox = () => (
 
       <h2>Liste avec une Bulle supprimée</h2>
       <Notification
-        title="2 messages pour cette page"
+        title="Bulles"
       >
         <Bulle
           type="Alternative"
@@ -57,7 +57,7 @@ const Sandbox = () => (
 
       <h2>Détails d'une Bulle</h2>
       <Notification
-        title="Le Même en Mieux, il y a 8 mois"
+        title="Détails de la bulle"
         details
       >
         <Bulle
@@ -72,7 +72,7 @@ const Sandbox = () => (
 
       <h2>Aucune Bulle</h2>
       <Notification
-        title="Aucune de vos relations n’a créé de bulle pour cette page"
+        title="Bulles"
       >
         <AddBulle />
       </Notification>
