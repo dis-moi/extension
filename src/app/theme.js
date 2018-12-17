@@ -1,6 +1,5 @@
 export default {
   // fonts colors
-  darkBlue: '#0C52B4',
   otherText: '#787993',
   navInactive: '#a6b1c0',
 

@@ -6,6 +6,6 @@ import OpenIcon from './icons/Arrow';
 export default styled(Button).attrs({ children: <OpenIcon /> })`
    width: auto;
    height: 13px;
-   stroke: ${props => props.theme.darkBlue};
+   stroke: ${props => props.theme.activeColor};
 `;
 
