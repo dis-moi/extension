@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { AddBulleLink, BulleContainer, } from '../atoms';
+import { AddBulleLink, CenterContainer, } from '../atoms';
 
 const AddBulle = ({ onClick }) => (
-  <AddBulleLink onClick={onClick}>
-    <span>+</span> 
-    Créer votre bulle
-  </AddBulleLink>
+  <CenterContainer>
+    <AddBulleLink onClick={onClick}>
+      <span>+</span>
+      Créer votre bulle
+    </AddBulleLink>
+  </CenterContainer>
 );
 
 AddBulle.propTypes = {

@@ -25,3 +25,4 @@ export { default as Truncated } from './Truncated';
 export { default as NavLink } from './NavLink';
 export { default as ListBullesTitle } from './ListBullesTitle';
 export { default as NoBulleImg } from './NoBulleImg';
+export { default as CenterContainer } from './CenterContainer';

@@ -74,7 +74,9 @@ export default class Notification extends PureComponent {
         </NotificationHeader>
         <NotificationMain>
           {this.renderChildren()}
-          <AddBulle />
+          {!details && (
+            <AddBulle />
+          )}
         </NotificationMain>
         <NotificationFooter>
           <NavLink>
