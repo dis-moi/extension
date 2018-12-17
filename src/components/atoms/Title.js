@@ -5,6 +5,6 @@ export default styled.p`
     margin: 0;
     padding: 1em 1em 1em 0;
     font-size: 1.8em;
-    color: ${props => props.theme.darkBlue};
+    color: ${props => props.theme.activeColor};
     text-transform: uppercase;
 `;

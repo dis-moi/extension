@@ -6,6 +6,6 @@ import CloseIcon from './icons/Delete';
 export default styled(Button).attrs({ children: <CloseIcon /> })`
    width: 13px;
    height: 13px;
-   stroke: ${props => props.theme.darkBlue};
+   stroke: ${props => props.theme.activeColor};
 `;
 

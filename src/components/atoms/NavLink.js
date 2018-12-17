@@ -6,10 +6,10 @@ export default styled.a`
     padding-top: 5px;
     padding-bottom: 6px;
     text-align: center;
-    border-top: 2px solid ${props => props.theme.darkBlue};
+    border-top: 2px solid ${props => props.theme.activeColor};
 
     & > svg {
         height: 28px;
-        fill: ${props => props.theme.darkBlue};
+        fill: ${props => props.theme.activeColor};
     }
 `;
