@@ -5,7 +5,7 @@ export default styled.div`
     display: flex;
     align-items: center;
     width: 338px;
-    height: 85px;
+    min-height: 85px;
     padding: 12px 12px 12px 13px;
     margin-right: 11px;
     margin-left: 5px;
