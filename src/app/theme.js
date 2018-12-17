@@ -3,6 +3,32 @@ export default {
   darkBlue: '#0C52B4',
   otherText: '#787993',
   navInactive: '#a6b1c0',
+
+  primaryColor: '#404348',
+  secondaryColor: '#5F656C',
+  activeColor: '#0C52B4',
+
+  // color list:
+  white: '#fff',
+  accountListBg: '#FAFAFA',
+  typeBg: '#EBEBEB',
+  listBg: '#EFEDED',
+  bottomBar: '#DDDDDD',
+  topBarNavInactiveDeleteBg: '#A6B1C0',
+  detailsButtonTxtBulleDetailsMeta: '#5F656C',
+  formBorder: '#707070',
+  text: '#404348',
+  blue: '#0C52B4',
+  link: '#1974C3',
+  error: '#F01953',
+  formError: '#DB0D0D',
+  button: '#1ECCB5',
+
+  // new types:
+  approval: '#34C16C',
+  warning: '#F70B7B',
+
+
   // bulle type colors
   bulleTypes: {
     Warning: {
