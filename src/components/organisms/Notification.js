@@ -1,41 +1,23 @@
 import React, { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import {
-  NotificationContainer,
-  NotificationHeader,
-  NotificationMain,
-  NotificationFooter,
-  Title,
-  CloseButton,
-  Logo,
-  MenuButton,
-  BackButton,
-  NavLink
-} from '../atoms';
+import { NotificationMain } from '../atoms';
 import Bulle from './Bulle';
-import AddBulle from '../molecules/AddBulle';
-import {
-  Account,
-  Bubble,
-  CheckList,
-  Help
-} from '../atoms/icons/nav';
+import { NotificationHeader } from '../molecules';
 
 export default class Notification extends PureComponent {
   static propTypes = {
-    title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     onClose: PropTypes.func,
-    onOpenMenu: PropTypes.func,
     onBack: PropTypes.func,
     children: PropTypes.node.isRequired,
     details: PropTypes.bool,
   };
 
   static defaultProps = {
+    title: null,
     details: false,
     onClose: () => { },
-    onOpenMenu: () => { },
-    onBack: () => { },
+    onBack: null,
   };
 
   renderChildren() {
@@ -54,43 +36,16 @@ export default class Notification extends PureComponent {
 
   render() {
     const {
-      title, onClose, onOpenMenu, onBack, details
+      title, onClose, onBack
     } = this.props;
 
     return (
-      <NotificationContainer>
-        <NotificationHeader>
-          <Title>
-            <Logo />
-            {details && (
-              <Fragment>
-                <BackButton onClick={onBack} />
-                &nbsp;
-                {title}
-              </Fragment>
-            )}
-          </Title>
-          <CloseButton onClick={onClose} />
-        </NotificationHeader>
+      <Fragment>
+        <NotificationHeader title={title} onClose={onClose} onBack={onBack} />
         <NotificationMain>
           {this.renderChildren()}
-          <AddBulle />
         </NotificationMain>
-        <NotificationFooter>
-          <NavLink>
-            <Bubble />
-          </NavLink>
-          <NavLink>
-            <CheckList />
-          </NavLink>
-          <NavLink>
-            <Help />
-          </NavLink>
-          <NavLink>
-            <Account />
-          </NavLink>
-        </NotificationFooter>
-      </NotificationContainer>
+      </Fragment>
     );
   }
 }

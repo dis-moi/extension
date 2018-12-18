@@ -13,7 +13,7 @@ export { default as OpenButton } from './OpenButton';
 export { default as MenuButton } from './MenuButton';
 export { default as NotificationContainer } from './NotificationContainer';
 export { default as NotificationFooter } from './NotificationFooter';
-export { default as NotificationHeader } from './NotificationHeader';
+export { default as NotificationHeaderContainer } from './NotificationHeaderContainer';
 export { default as NotificationMain } from './NotificationMain';
 export { default as Dislikes } from './Dislikes';
 export { default as Feedbacks } from './Feedbacks';
