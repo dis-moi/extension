@@ -70,7 +70,7 @@ export default class Bulle extends PureComponent {
                     <BulleTitle>{message}</BulleTitle>
                     <Contributor>{contributor}</Contributor>
                   </div>
-                  <OpenButton />
+                  <OpenButton to="/details" />
                 </Fragment>
               )}
             </BulleContent>
