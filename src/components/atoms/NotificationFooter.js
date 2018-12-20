@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import FlexBar from './FlexBar';
 
 export default styled.nav`
     display: flex;
