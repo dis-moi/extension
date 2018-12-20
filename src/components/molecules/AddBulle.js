@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { AddBulleLink, CenterContainer, } from '../atoms';
+import { Add } from '../atoms/icons';
 
 const AddBulle = ({ onClick }) => (
   <CenterContainer>
     <AddBulleLink onClick={onClick}>
-      <span>+</span>
+      <Add />
       Créer votre bulle
     </AddBulleLink>
   </CenterContainer>

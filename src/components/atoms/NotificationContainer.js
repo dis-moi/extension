@@ -6,7 +6,7 @@ export default styled.section`
     max-width: 384px;
     height: 414px;
     font-size: 10px;
-    font-family: sans-serif;
+    font-family: 'Lato', sans-serif;
     background-color: #fff;
     border-radius: 7px;
     box-shadow: 0 3px 6px 0 rgba(0,0,0,.58);

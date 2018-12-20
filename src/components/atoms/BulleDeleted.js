@@ -4,7 +4,8 @@ export default styled.p`
     width: 100%;
     margin: 0;
     text-align: center;
-    color: #404348;
+    color: ${props => props.theme.deletedText};
+    font-weight: bold;
 `;
 
 

@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
 export default styled.a`
-    color: ${props => props.theme.mainText}
+    color: ${props => props.theme.link};
+
+    & > span {
+        vertical-align: bottom;
+    }
 `;
