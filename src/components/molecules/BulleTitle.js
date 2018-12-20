@@ -9,6 +9,7 @@ export const Title = styled.p`
     color: ${props => props.theme.activeColor};
     font-weight: bold;
     line-height: 1.3;
+    font-family: 'Lato', sans-serif;
 `;
 
 export default ({ children }) => (

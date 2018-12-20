@@ -68,6 +68,7 @@
     "chai-immutable": "^1.6.0",
     "chromedriver": "^2.21.2",
     "co-mocha": "^1.2.2",
+    "css-loader": "^2.0.1",
     "del": "^2.2.0",
     "enzyme": "^3.7.0",
     "eslint": "^5.7.0",
@@ -77,6 +78,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "expect": "^1.15.2",
+    "file-loader": "^2.0.0",
     "gulp": "3.9.0",
     "gulp-file": "^0.4.0",
     "gulp-jade": "1.1.0",
@@ -137,6 +139,8 @@
     "redux-thunk": "^2.0.1",
     "remote-redux-devtools": "^0.5.13",
     "styled-components": "^4.0.3",
+    "typeface-lato": "^0.0.54",
+    "typeface-sedgwick-ave": "^0.0.54",
     "whatwg-url": "^3.0.0"
   }
 }
