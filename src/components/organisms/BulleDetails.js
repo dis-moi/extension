@@ -1,8 +1,9 @@
 import React, { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
-  BulleContainer,
-  BulleContent,
+  BulleDetailsContainer,
+  BulleDetailsContent,
+  BulleDetailsMeta,
   BulleDeleted,
   Approves,
   Contributor,
@@ -10,15 +11,20 @@ import {
   OpenButton,
   Dislikes,
   Message,
+  Source,
   SourceURL,
-  Feedbacks
+  Feedbacks,
+  Date,
+  Truncated
 } from '../atoms';
+import { Anchor } from '../atoms/icons';
 import { BulleTitle, BulleType } from '../molecules';
 
 export default class Bulle extends PureComponent {
   static propTypes = {
     details: PropTypes.bool,
     type: PropTypes.string,
+    date: PropTypes.string,
     message: PropTypes.string.isRequired,
     source: PropTypes.string.isRequired,
     approves: PropTypes.number,
@@ -31,6 +37,7 @@ export default class Bulle extends PureComponent {
   static defaultProps = {
     details: false,
     type: null,
+    date: null,
     approves: 0,
     dislikes: 0,
     onDelete: () => { },
@@ -39,25 +46,48 @@ export default class Bulle extends PureComponent {
 
   render() {
     const {
-      type, details, message, contributor, source, approves, dislikes, onDelete, deleted
+      type, details, date, message, contributor, source, approves, dislikes, onDelete, deleted
     } = this.props;
     return (
-      <BulleContainer>
+      <BulleDetailsContainer>
         {deleted ? (
           <Fragment>
-            <BulleContent>
+            <BulleDetailsContent>
               <BulleDeleted>Cette bulle ne s’affichera plus !</BulleDeleted>
-            </BulleContent>
+            </BulleDetailsContent>
           </Fragment>
         ) : (
           <Fragment>
             {!details && <DeleteButton onClick={onDelete} />}
-            <BulleContent deleted={deleted}>
-              <BulleType type={type} />
+            <BulleDetailsContent deleted={deleted}>
+              <BulleDetailsMeta>
+                <BulleType type={type} />
+                <div>
+                  <Date>
+                    Le 
+                    &nbsp;
+                    {date}
+                  </Date>
+                  <Contributor>
+                    {contributor}
+                    &nbsp;
+                    a écrit
+                  </Contributor>
+                </div>
+              </BulleDetailsMeta>
               {details ? (
                 <Fragment>
                   <Message>{message}</Message>
-                  <SourceURL>{source}</SourceURL>
+                  <Source>
+                    <Anchor />
+                    En savoir plus : 
+                    &nbsp;
+                    <SourceURL>
+                      <Truncated width="230px">
+                        {source}
+                      </Truncated>
+                    </SourceURL>
+                  </Source>
 
                   <Feedbacks>
                     <Approves>{approves}</Approves>
@@ -77,10 +107,10 @@ export default class Bulle extends PureComponent {
                   <OpenButton to="/details" />
                 </Fragment>
               )}
-            </BulleContent>
+            </BulleDetailsContent>
           </Fragment>
         )}
-      </BulleContainer>
+      </BulleDetailsContainer>
     );
   }
 }

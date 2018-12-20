@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.div`
-    font-size: 13px;
-    line-height: 1.45;
+export default styled.time`
+    font-size: 14px;
     color: ${props => props.theme.secondaryColor}
 `;

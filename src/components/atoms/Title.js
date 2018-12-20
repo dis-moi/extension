@@ -7,4 +7,5 @@ export default styled.p`
     font-size: 1.8em;
     color: ${props => props.theme.activeColor};
     text-transform: uppercase;
+    font-weight: bold;
 `;

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
 export default styled.p`
-    font-size: 1em;
+    margin: 15px 0;
+    font-size: 15px;
 `;

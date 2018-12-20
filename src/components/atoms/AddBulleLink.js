@@ -1,18 +1,23 @@
 import styled from 'styled-components';
 
+// should move to molecule, button only should be an atom
 export default styled.button`
+    box-sizing: border-box;
+    padding: 2px 12px 0;
     height: 28px;
     margin-top: 25px;
     font-size: 15px;
-    font-weight: bold;
-    color: #5F656C;
+    line-height: 1;
+    font-weight: normal;
+    color: #a6b1c0;
     text-transform: uppercase;
     background-color: #fff;
-    border: 1px solid #5F656C;
+    border: 1px solid transparent;
     border-radius: 5px;
 
-    span {
-      font-size: 20px;
-      line-height: 1;
+    & > svg {
+      width: 12px;
+      height: 12px;
+      margin-right: 5px;
     }
 `;

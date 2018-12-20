@@ -5,5 +5,5 @@ import styled from 'styled-components';
 
 export default styled.main` 
   height: 100%;
-  background-color: #EFEDED;
+  background-color: ${props => props.theme.listBg};
 `;
