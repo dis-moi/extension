@@ -9,10 +9,9 @@ export default {
   navInactive: '#a6b1c0',
   navActive: '#4378A5',
   link: '#1974C3',
+  accountListBg: '#fff',
 
   // color list:
-  white: '#fff',
-  accountListBg: '#FAFAFA',
   typeBg: '#EBEBEB',
   bottomBar: '#DDDDDD',
   topBarNavInactiveDeleteBg: '#A6B1C0',
