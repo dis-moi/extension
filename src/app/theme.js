@@ -7,6 +7,7 @@ export default {
   deletedText: '#484046',
   listBg: '#EFEDED',
   navInactive: '#a6b1c0',
+  navActive: '#4378A5',
   link: '#1974C3',
 
   // color list:
