@@ -18,6 +18,7 @@ import {
   Truncated
 } from '../atoms';
 import { Anchor } from '../atoms/icons';
+import { Approval, Warning } from '../atoms/icons/types';
 import { BulleTitle, BulleType } from '../molecules';
 
 export default class Bulle extends PureComponent {
@@ -83,15 +84,21 @@ export default class Bulle extends PureComponent {
                     En savoir plus : 
                     &nbsp;
                     <SourceURL>
-                      <Truncated width="230px">
+                      <Truncated width="220px">
                         {source}
                       </Truncated>
                     </SourceURL>
                   </Source>
 
                   <Feedbacks>
-                    <Approves>{approves}</Approves>
-                    <Dislikes>{dislikes}</Dislikes>
+                    <Approves>
+                      <Approval /> 
+                      {approves}
+                    </Approves>
+                    <Dislikes>
+                      <Warning />
+                      {dislikes}
+                    </Dislikes>
                   </Feedbacks>
                 </Fragment>
               ) : (

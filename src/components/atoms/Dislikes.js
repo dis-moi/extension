@@ -1,5 +1,5 @@
 import styled from 'styled-components';
 
-export default styled.div`
+export default styled.a`
     color: ${props => props.theme.otherText}
 `;
