@@ -12,7 +12,7 @@ export default styled.div`
     background-color: #fff;
     border-radius: 15px;
 
-    & > button {
+    & > a {
         transform: rotate(180deg)
     }
 `;
