@@ -9,7 +9,6 @@ import {
 const NotificationHeader = ({
   title, onBack, onClose, theme, history
 }) => {
-  console.log('history', history);
   const handleBack = onBack || history.goBack;
 
   return (
