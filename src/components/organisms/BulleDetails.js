@@ -111,7 +111,7 @@ export default class Bulle extends PureComponent {
                       {contributor}
                     </Contributor>
                   </div>
-                  <OpenButton to="/details" />
+                  <OpenButton to="bulles/details" />
                 </Fragment>
               )}
             </BulleDetailsContent>

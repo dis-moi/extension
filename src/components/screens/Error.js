@@ -1,8 +1,9 @@
 import React from 'react';
+import {Notification} from '../organisms';
 
 export default ({ location }) => (
-  <div>
-No match for
+  <Notification>
+      Aucunes routes ne correspond à
     <code>{location.pathname}</code>
-  </div>
+  </Notification>
 );

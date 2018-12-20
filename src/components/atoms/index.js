@@ -15,7 +15,7 @@ export { default as DeleteButton } from './DeleteButton';
 export { default as OpenButton } from './OpenButton';
 export { default as MenuButton } from './MenuButton';
 export { default as NotificationContainer } from './NotificationContainer';
-export { default as NotificationFooter } from './NotificationFooter';
+export { default as NotificationFooterContainer } from './NotificationFooterContainer';
 export { default as NotificationHeaderContainer } from './NotificationHeaderContainer';
 export { default as NotificationMain } from './NotificationMain';
 export { default as Dislikes } from './Dislikes';
