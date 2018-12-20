@@ -9,7 +9,7 @@ const message = 'L’économie est (vraiment) un sport de combat : “La boule p
 
 
 export default () => (
-  <Notification title="Détail de la bulle">
+  <Notification title="Détail de la bulle" bulles>
     <BulleDetails
       type="Warning"
       date="03 déc. 2018"
