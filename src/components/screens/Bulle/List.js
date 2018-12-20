@@ -7,7 +7,7 @@ const message = 'De nombreux clients mécontents de Pixmania et ses vendeurs s�
     + 'réseaux sociaux depuis 2016. Les plaintes continuent en 2017 et 2018 si l’on se réfère au forum Que Choisir.';
 
 export default ({ match }) => (
-  <Notification>
+  <Notification bulles>
     <ListBullesTitle>Bulles pour cette page</ListBullesTitle>
     <Bulle
       match={match}
