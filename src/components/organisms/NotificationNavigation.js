@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  MemoryRouter as Router, Redirect, Route, Switch 
+  BrowserRouter as Router, Redirect, Route, Switch
 } from 'react-router-dom';
 import { NotificationContainer } from '../atoms';
 import { NotificationFooter } from '../molecules';
