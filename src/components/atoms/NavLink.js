@@ -9,8 +9,9 @@ export default styled(ReactRouterNavLink).attrs({ replace: true, activeClassName
     padding-bottom: 6px;
     text-align: center;
     border-top: 2px solid ${props => props.theme.secondaryColor};
+    
     &.${props => props.activeClassName} {
-      border-top: 2px solid ${props => props.theme.darkBlue}
+      border-top: 2px solid ${props => props.theme.activeColor}
     }
 
     & > svg {
@@ -20,6 +21,6 @@ export default styled(ReactRouterNavLink).attrs({ replace: true, activeClassName
     
         
     &.${props => props.activeClassName} > svg {
-      fill: ${props => props.theme.darkBlue}
+      fill: ${props => props.theme.activeColor}
     }
 `;
