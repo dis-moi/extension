@@ -1,7 +1,12 @@
+import React from 'react';
 import styled from 'styled-components';
+import Logo from './icons/Logo';
 
-export default styled.h1.attrs({ children: 'Bulles' })`
-    margin:0 0 0 auto;
-    font-size: 16px;
-    color: #B7B7C4;
+export default styled.h1.attrs({ children: <Logo /> })`
+    margin: 0 0 0 auto;
+
+   & svg {
+        width: 170px;
+        vertical-align: middle;
+    }
 `;
