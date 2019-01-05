@@ -1,10 +1,12 @@
 import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const srcPath = path.join(__dirname, '../src/app');
 
 const baseConfig = ({
-  input, output = {}, plugins = [], rules = [], ...rest 
+    mode, input, output = {}, plugins = [], rules = [], ...rest
 }) => ({
+  mode,
   entry: Object.assign(
     {
       background: [path.join(srcPath, './background/')],
@@ -22,6 +24,9 @@ const baseConfig = ({
     output
   ),
   plugins: [
+    new HtmlWebpackPlugin({ template: './views/background.pug', filename: 'background.html', inject: false }),
+    new HtmlWebpackPlugin({ template: './views/options.pug', filename: 'options.html', inject: false }),
+    new HtmlWebpackPlugin({ template: './views/popup.pug', filename: 'popup.html', inject: false }),
     ...plugins
   ],
   resolve: {
@@ -74,6 +79,16 @@ const baseConfig = ({
         use: [
           { loader: 'svg-url-loader' },
         ]
+      },
+      {
+          test: /\.(jade|pug)$/,
+          use: {
+              loader: 'pug-loader',
+              options: {
+                  pretty: mode === 'development',
+              }
+          },
+          include: [ path.resolve(__dirname, '../views/') ],
       }
     ].concat(rules),
   },
