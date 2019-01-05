@@ -1,4 +1,4 @@
-if env !== 'prod'
+if process.env.NODE_ENV !== 'production'
     script(src='test/infrastructure/mocha.js')
     script(src='test/infrastructure/chai.js')
     script(src='test/infrastructure/chai-as-promised.js')
