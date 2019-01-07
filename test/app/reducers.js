@@ -1,6 +1,4 @@
 import chai from 'chai';
-import neverThrowingObject from '../infrastructure/neverThrowingObject';
-
 import { Map as ImmutableMap, Set as ImmutableSet, fromJS } from 'immutable';
 
 import prefsReducer from '../../src/app/background/reducers/prefs';
@@ -14,28 +12,23 @@ import {
   receivedEditors,
 } from '../../src/app/background/actions/kraftBackend';
 
-import prepareUIEvents from '../../src/app/content/actions/ui';
-import prepareFilterEvents from '../../src/app/content/actions/filters';
-import prepareRecoEvents from '../../src/app/content/actions/recommendations';
+import { deactivate } from '../../src/app/content/actions/ui';
+import { excludeEditor, includeEditor } from '../../src/app/content/actions/filters';
+import { dismissReco, approveReco, unapproveReco, reportReco } from '../../src/app/content/actions/recommendations';
 import { DEACTIVATE_EVERYWHERE, DEACTIVATE_WEBSITE_ALWAYS } from '../../src/app/constants/websites';
 
 const expect = chai.expect;
 
-const { deactivate } = prepareUIEvents(neverThrowingObject());
-const { excludeEditor, includeEditor } = prepareFilterEvents(neverThrowingObject());
-const { dismissReco, approveReco, unapproveReco, reportReco } = prepareRecoEvents(neverThrowingObject());
-
-
 describe('background reducer', function () {
 
   it('initial state + receivedMatchingContexts => state with offers', () => {
-    const matchingContexts = [{}, {}];
+    const matchingContexts = new ImmutableSet([{}, {}]);
     const action = receivedMatchingContexts(matchingContexts);
 
     const nextState = resourcesReducer( makeInitialState().get('resources'), action );
     
-    expect(action.matchingContexts).to.be.an.instanceof(ImmutableSet);
-    expect(nextState.get('matchingContexts')).to.have.size(matchingContexts.length);
+    expect(action.payload.matchingContexts).to.be.an.instanceof(ImmutableSet);
+    expect(nextState.get('matchingContexts')).to.have.size(matchingContexts.size);
   });
 
   it('initial state + criteria => state with criteria', () => {

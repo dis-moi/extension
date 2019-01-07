@@ -1,5 +1,9 @@
 // background actions
 
+export const INIT = 'init';
+export const PUBLISHED_FROM_TAB = 'redux-action';
+export const PUBLISH_TO_TAB = 'PUBLISH_TO_TAB';
+
 export const MATCHING_OFFERS_FOUND = 'matching_offers/FOUND';
 
 export const RECEIVED_MATCHING_CONTEXTS = 'api/UPDATE_MATCHING_CONTEXTS';

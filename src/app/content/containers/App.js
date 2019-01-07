@@ -1,12 +1,7 @@
 import { connect } from 'react-redux';
 
 import Recommendations from '../components/Recommendations';
-import prepareUIActions from '../actions/ui';
-
-import { IMAGES_URL } from '../../constants/assetsUrls';
-import portCommunication from '../portCommunication';
-
-const {
+import {
   reduce,
   extend,
   deactivate,
@@ -16,7 +11,8 @@ const {
   checkOutResourceLink,
   checkOutAlternative,
   checkOutEditor
-} = prepareUIActions(portCommunication);
+} from '../actions/ui';
+import { IMAGES_URL } from '../../constants/assetsUrls';
 
 function mapStateToProps(state) {
   return {

@@ -5,19 +5,12 @@ import { hot } from 'react-hot-loader';
 import { ThemeProvider } from 'styled-components';
 
 import PopupScreen from './PopupScreen';
-import uiActions from '../content/actions/ui';
-
+import { openPrefScreen, popupClick } from '../content/actions/ui';
 import { IMAGES_URL } from '../constants/assetsUrls';
 import {
   PREFERENCE_SCREEN_PANEL_ABOUT,
   PREFERENCE_SCREEN_PANEL_SOURCES,
 } from '../constants/ui';
-
-const {
-  openPrefScreen,
-  popupClick,
-} = uiActions();
-
 
 function mapStateToProps(state) {
   return {

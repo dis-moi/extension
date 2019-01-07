@@ -3,27 +3,20 @@ import {
   RECO_DISPLAYED,
   RECO_DISMISSED
 } from '../../constants/ActionTypes';
+import createAction from '../../utils/createAction';
 
-export function contextTriggered(trigger, triggeredContexts) {
-  return {
-    type: CONTEXT_TRIGGERED,
-    trigger,
-    triggeredContexts
-  };
-}
-
-export function recoDisplayed(trigger, recommendation) {
-  return {
-    type: RECO_DISPLAYED,
-    trigger,
-    recommendation
-  };
-}
-
-export function recoDismissed(trigger, recommendation) {
-  return {
-    type: RECO_DISMISSED,
-    trigger,
-    recommendation
-  };
-}
+export const contextTriggered = createAction(
+  CONTEXT_TRIGGERED,
+  (triggeredContexts = []) => ({ triggeredContexts }),
+  trigger => ({ trigger })
+);
+export const recoDisplayed = createAction(
+  RECO_DISPLAYED,
+  recommendation => ({ recommendation }),
+  trigger => ({ trigger })
+);
+export const recoDismissed = createAction(
+  RECO_DISMISSED,
+  recommendation => ({ recommendation }),
+  trigger => ({ trigger })
+);

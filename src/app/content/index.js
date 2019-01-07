@@ -4,27 +4,15 @@ import { StyleSheetManager } from 'styled-components';
 import store from './store';
 import Root from './containers/Root';
 
-import prepareRecoActions from './actions/recommendations';
-import prepareFilterActions from './actions/filters';
+import { recommendationFound } from './actions/recommendations';
+import { updateInstalledDetails, updateCriteria, updateEditors } from './actions/filters';
 
 import portCommunication from './portCommunication';
 
 import fromJS from '../utils/customFromJS';
 import theme from '../theme';
 import { create, getHeight } from './extensionIframe';
-
-const {
-  updateDeactivatedWebsites,
-  updateInstalledDetails,
-  updateCriteria,
-  updateEditors
-} = prepareFilterActions(portCommunication);
-
-const {
-  recommendationFound,
-  dismissReco,
-  approveReco
-} = prepareRecoActions(portCommunication);
+import { PUBLISH_TO_TAB, INIT, RECOMMENDATION_FOUND } from '../constants/ActionTypes';
 
 const EXTENSION_STATE_SHOW_LOADING = 'EXTENSION_STATE_SHOW_LOADING';
 const EXTENSION_STATE_SHOW_RECOMMENDATION = 'EXTENSION_STATE_SHOW_RECOMMENDATION';
@@ -87,11 +75,12 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
   portCommunication.port = portToBackground;
 
   portToBackground.onMessage.addListener((msg) => {
-    const { type } = msg;
+    const { type, payload } = msg;
     
     switch (type) {
-      case 'init':
-        const { onInstalledDetails, criteria, editors } = msg;
+      case INIT:
+        const { onInstalledDetails, criteria, editors } = payload;
+        console.log('payload init', payload);
 
         store.dispatch(updateInstalledDetails(fromJS(onInstalledDetails)));
         store.dispatch(updateCriteria(fromJS(criteria)));
@@ -130,9 +119,9 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
             }));
 
         break;
-      case 'recommendations':
-        const { recommendations } = msg;
-        // console.log('recommendations in content', recommendations);
+      case RECOMMENDATION_FOUND:
+        const { recommendations } = payload;
+        console.log('recommendations in content', recommendations);
 
         // Even if the recommendation arrived early, let the page load a bit before
         // showing the iframe in loading mode
@@ -142,8 +131,9 @@ chrome.runtime.onConnect.addListener(function listener(portToBackground) {
           });
         break;
 
-      case 'dispatch':
-        store.dispatch(msg.action);
+      case PUBLISH_TO_TAB:
+        const { action } = payload;
+        store.dispatch(action);
         break;
 
       default:
