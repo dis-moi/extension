@@ -5,22 +5,11 @@ import { hot } from 'react-hot-loader';
 import { ThemeProvider } from 'styled-components';
 
 import OptionScreen from './OptionScreen';
-import filterActions from '../content/actions/filters';
-import uiActions from '../content/actions/ui';
-
+import {
+  selectCriterion, unselectCriterion, excludeEditor, includeEditor 
+} from '../content/actions/filters';
+import { uninstall } from '../content/actions/ui';
 import { IMAGES_URL } from '../constants/assetsUrls';
-
-const {
-  selectCriterion,
-  unselectCriterion,
-  excludeEditor,
-  includeEditor
-} = filterActions(undefined);
-
-const {
-  uninstall
-} = uiActions(undefined);
-
 
 function mapStateToProps(state) {
   return {

@@ -53,7 +53,7 @@ export default function configureStore(callback, isBg) {
     const enhancer = process.env.NODE_ENV !== 'production'
       ? composeEnhancers(applyMiddleware(...middlewares.concat([
         require('redux-immutable-state-invariant').default(), // eslint-disable-line
-        require('redux-logger').createLogger({ level: 'info', collapsed: true }), // eslint-disable-line
+        require('redux-logger').createLogger({ level: 'info', collapsed: true, stateTransformer: state => state.toJS() }), // eslint-disable-line
       ])))
       : applyMiddleware(...middlewares);
 

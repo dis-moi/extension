@@ -2,8 +2,6 @@ import chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
-import { Set as ImmutableSet } from 'immutable';
-
 import {
   receivedMatchingContexts,
   receivedCriteria,
@@ -28,8 +26,7 @@ describe('background actions', function () {
     const action = receivedMatchingContexts(matchingContexts);
 
     expect(action.type).to.be.a('string').of.length.above(5);
-    expect(action.matchingContexts).to.be.an.instanceof(ImmutableSet);
-    expect(action.matchingContexts.size).to.equal(matchingContexts.length);
+    expect(action.payload.matchingContexts).to.equal(matchingContexts);
   });
 
   it('receivedCriteria', () => {
@@ -37,7 +34,7 @@ describe('background actions', function () {
     const action = receivedCriteria(criteria);
 
     expect(action.type).to.be.a('string').of.length.above(5);
-    expect(action.criteria).to.equal(criteria);
+    expect(action.payload.criteria).to.equal(criteria);
   });
 
   it('receivedEditors', () => {
@@ -45,37 +42,37 @@ describe('background actions', function () {
     const action = receivedEditors(editors);
 
     expect(action.type).to.be.a('string').of.length.above(5);
-    expect(action.editors).to.equal(editors);
+    expect(action.payload.editors).to.equal(editors);
   });
   
   it('contextTriggered', () => {
     const trigger = '';
     const triggeredContexts = [];
-    const action = contextTriggered(trigger, triggeredContexts);
+    const action = contextTriggered(triggeredContexts, trigger);
 
     expect(action.type).to.be.a('string').of.length.above(5);
-    expect(action.trigger).to.equal(trigger);
-    expect(action.triggeredContexts).to.equal(triggeredContexts);
+    expect(action.meta.trigger).to.equal(trigger);
+    expect(action.payload.triggeredContexts).to.equal(triggeredContexts);
   });
 
   it('recoDisplayed', () => {
     const trigger = '';
     const recommendation = {};
-    const action = recoDisplayed(trigger, recommendation);
+    const action = recoDisplayed(recommendation, trigger);
 
     expect(action.type).to.be.a('string').of.length.above(5);
-    expect(action.trigger).to.equal(trigger);
-    expect(action.recommendation).to.equal(recommendation);
+    expect(action.meta.trigger).to.equal(trigger);
+    expect(action.payload.recommendation).to.equal(recommendation);
   });
 
   it('recoDismissed', () => {
     const trigger = '';
     const recommendation = {};
-    const action = recoDismissed(trigger, recommendation);
+    const action = recoDismissed(recommendation, trigger);
 
     expect(action.type).to.be.a('string').of.length.above(5);
-    expect(action.trigger).to.equal(trigger);
-    expect(action.recommendation).to.equal(recommendation);
+    expect(action.meta.trigger).to.equal(trigger);
+    expect(action.payload.recommendation).to.equal(recommendation);
   });
 
   describe('auto refresh matching contexts', () => {

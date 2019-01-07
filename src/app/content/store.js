@@ -1,6 +1,7 @@
-import { createStore } from 'redux';
+import { applyMiddleware, createStore} from 'redux';
 import { Record, Map as ImmutableMap } from 'immutable';
 import rootReducer from './reducers';
+import middlewares from './middlewares';
 
 export default createStore(
   rootReducer,
@@ -12,5 +13,6 @@ export default createStore(
     onInstalledDetails: new ImmutableMap(),
     criteria: new ImmutableMap(),
     editors: new ImmutableMap(),
-  })()
+  })(),
+  applyMiddleware(...middlewares)
 );

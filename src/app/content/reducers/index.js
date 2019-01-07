@@ -16,11 +16,11 @@ import {
 } from '../../constants/ActionTypes';
 
 export default function (state = {}, action) {
-  const { type } = action;
+  const { type, payload } = action;
 
   switch (type) {
     case RECOMMENDATION_FOUND:
-      const { recommendations } = action;
+      const { recommendations } = payload;
       return state.set('recommendations', recommendations).set('reduced', false);
 
     case REDUCE_RECOMMENDATION_IFRAME:
@@ -36,7 +36,7 @@ export default function (state = {}, action) {
       return state.set('open', false);
 
     case INSTALLED_DETAILS:
-      const { onInstalledDetails } = action;
+      const { onInstalledDetails } = payload;
       return state.set('onInstalledDetails', onInstalledDetails);
 
     case CRITERIA: {
@@ -45,33 +45,33 @@ export default function (state = {}, action) {
     }
 
     case SELECT_CRITERION: {
-      const { slug } = action;
+      const { slug } = payload;
       const criteria = state.get('criteria');
 
       return state.set('criteria', criteria.setIn([slug, 'isSelected'], true));
     }
 
     case UNSELECT_CRITERION: {
-      const { slug } = action;
+      const { slug } = payload;
       const criteria = state.get('criteria');
 
       return state.set('criteria', criteria.setIn([slug, 'isSelected'], false));
     }
 
     case EDITORS: {
-      const { editors } = action;
+      const { editors } = payload;
       return state.set('editors', editors);
     }
 
     case EXCLUDE_EDITOR: {
-      const { id } = action;
+      const { id } = payload;
       const editors = state.get('editors');
 
       return state.set('editors', editors.setIn([id.toString(), 'isExcluded'], true));
     }  
 
     case INCLUDE_EDITOR: {
-      const { id } = action;
+      const { id } = payload;
       const editors = state.get('editors');
 
       return state.set('editors', editors.setIn([id.toString(), 'isExcluded'], false));

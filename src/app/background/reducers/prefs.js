@@ -27,18 +27,18 @@ const initialPrefs = fromJS({
 });
 
 export default function (state = initialPrefs, action) {
-  const { type } = action;
+  const { type, payload } = action;
 
   console.log('reducer', type, action);
 
   switch (type) {
     case INSTALLED: {
-      const { onInstalledDetails } = action;
+      const { onInstalledDetails } = payload;
       return state.set('onInstalledDetails', ImmutableMap(onInstalledDetails)); // eslint-disable-line
     }
 
     case RECEIVED_CRITERIA: {
-      const { criteria } = action;
+      const { criteria } = payload;
       let newCriteria;
 
       newCriteria = criteria.reduce((acc, curr) => {
@@ -54,7 +54,7 @@ export default function (state = initialPrefs, action) {
     }
 
     case SELECT_CRITERION: {
-      const { slug } = action;
+      const { slug } = payload;
       const criteria = state.get('criteria');
 
       return state.set('criteria', criteria.setIn([slug, 'isSelected'], true));
@@ -68,10 +68,10 @@ export default function (state = initialPrefs, action) {
     }
 
     case RECEIVED_EDITORS: {
-      const { editors } = action;
+      const { editors } = payload;
       let newEditors;
 
-      newEditors = editors.reduce((acc, curr) => { 
+      newEditors = editors.reduce((acc, curr) => {
         const id = curr.get('id').toString();
 
         return !state.get('editors').has(id)
@@ -84,14 +84,14 @@ export default function (state = initialPrefs, action) {
     }
 
     case EXCLUDE_EDITOR: {
-      const { id } = action;
+      const { id } = payload;
       const editors = state.get('editors');
 
       return state.set('editors', editors.setIn([id.toString(), 'isExcluded'], true));
     }
 
     case INCLUDE_EDITOR: {
-      const { id } = action;
+      const { id } = payload;
       const editors = state.get('editors');
 
       return state.set('editors', editors.setIn([id.toString(), 'isExcluded'], false));
@@ -99,28 +99,28 @@ export default function (state = initialPrefs, action) {
 
     case DISMISS_RECO:
     case REPORT_RECO: {
-      const { id } = action;
+      const { id } = payload;
       const dismissedRecos = state.get('dismissedRecos');
 
       return state.set('dismissedRecos', dismissedRecos.add(id));
     }
 
     case APPROVE_RECO: {
-      const { id } = action;
+      const { id } = payload;
       const approvedRecos = state.get('approvedRecos');
 
       return state.set('approvedRecos', approvedRecos.add(id));
     }
 
     case UNAPPROVE_RECO: {
-      const { id } = action;
+      const { id } = payload;
       const approvedRecos = state.get('approvedRecos');
 
       return state.set('approvedRecos', approvedRecos.delete(id));
     }
 
     case DEACTIVATE: {
-      const { duration } = action;
+      const { duration } = payload;
 
       return state.setIn(['websites', 'deactivated', 'everywhereUntil'], Date.now() + duration);
     }

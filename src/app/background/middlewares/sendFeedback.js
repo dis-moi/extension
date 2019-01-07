@@ -39,14 +39,15 @@ export function makeRecoFeedback(type, url) {
 
 export default function (store){
   return next => (action) => {
+    const { type, payload } = action;
 
-    switch (action.type){
+    switch (type){
       case DISMISS_RECO:
       case APPROVE_RECO:
       case UNAPPROVE_RECO:
       case REPORT_RECO:
-
-        const reqUrl = LMEM_BACKEND_ORIGIN + '/api/v2/recommendations/' + action.id + '/feedbacks';
+        const { id } = payload;
+        const reqUrl = LMEM_BACKEND_ORIGIN + '/api/v2/recommendations/' + id + '/feedbacks';
         const tabUrlP = new Promise((res) => {
           chrome.tabs.query({
             active: true,
@@ -55,7 +56,7 @@ export default function (store){
         });
         
         tabUrlP.then((tabUrl) => {
-          const body = JSON.stringify(makeRecoFeedback(action.type, tabUrl));
+          const body = JSON.stringify(makeRecoFeedback(type, tabUrl));
 
           fetch(reqUrl, { method: 'POST', body })
             .then(response => console.log('RESPONSE', response))

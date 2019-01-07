@@ -8,79 +8,17 @@ import {
   EXCLUDE_EDITOR,
   INCLUDE_EDITOR
 } from '../../constants/ActionTypes';
+import createAction from '../../utils/createAction';
+import createBackgroundAction from '../createBackgroundAction';
 
-export default function (portCommunication) {
-  return {
-    updateDeactivatedWebsites(deactivatedWebsites) {
-      return {
-        type: DEACTIVATED_WEBSITES,
-        deactivatedWebsites
-      };
-    },
-    
-    updateInstalledDetails(onInstalledDetails) {
-      return {
-        type: INSTALLED_DETAILS,
-        onInstalledDetails
-      };
-    },
-    
-    updateCriteria(criteria) {
-      return {
-        type: CRITERIA,
-        criteria
-      };
-    },
-
-    selectCriterion(slug) {
-      const action = {
-        type: SELECT_CRITERION,
-        slug
-      };
-
-      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
-      
-      return action;
-    },
-
-    unselectCriterion(slug) {
-      const action = {
-        type: UNSELECT_CRITERION,
-        slug
-      };
-
-      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
-      
-      return action;
-    },
-
-    updateEditors(editors) {
-      return {
-        type: EDITORS,
-        editors
-      };
-    },
-
-    excludeEditor(id) {
-      const action = {
-        type: EXCLUDE_EDITOR,
-        id
-      };
-
-      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
-      
-      return action;
-    },
-
-    includeEditor(id) {
-      const action = {
-        type: INCLUDE_EDITOR,
-        id
-      };
-
-      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
-      
-      return action;
-    }
-  };
-}
+export const updateDeactivatedWebsites = createAction(
+  DEACTIVATED_WEBSITES,
+  deactivatedWebsites => ({ deactivatedWebsites })
+);
+export const updateInstalledDetails = createAction(INSTALLED_DETAILS, onInstalledDetails => ({ onInstalledDetails }));
+export const updateCriteria = createAction(CRITERIA, criteria => ({ criteria }));
+export const selectCriterion = createBackgroundAction(SELECT_CRITERION, slug => ({ slug }));
+export const unselectCriterion = createBackgroundAction(UNSELECT_CRITERION, slug => ({ slug }));
+export const updateEditors = createAction(EDITORS, (editors = []) => ({ editors }));
+export const excludeEditor = createBackgroundAction(EXCLUDE_EDITOR, id => ({ id }));
+export const includeEditor = createBackgroundAction(INCLUDE_EDITOR, id => ({ id }));
