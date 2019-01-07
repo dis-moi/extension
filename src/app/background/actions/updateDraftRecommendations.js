@@ -1,8 +1,4 @@
 import { UPDATE_DRAFT_RECOMMENDATIONS } from '../../constants/ActionTypes';
+import createAction from '../../utils/createAction';
 
-export default function (draftRecommendations) {
-  return {
-    type: UPDATE_DRAFT_RECOMMENDATIONS,
-    draftRecommendations
-  };
-}
+export default createAction(UPDATE_DRAFT_RECOMMENDATIONS)(draftRecommendations => ({ draftRecommendations }));

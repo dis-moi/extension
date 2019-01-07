@@ -1,18 +1,8 @@
 import { connect } from 'react-redux';
 
-import prepareRecoActions from '../actions/recommendations';
-
+import { dismissReco, approveReco, unapproveReco, reportReco } from '../actions/recommendations';
 import { IMAGES_URL } from '../../constants/assetsUrls';
-import portCommunication from '../portCommunication';
-
 import FeedbackButtons from '../components/FeedbackButtons';
-
-const {
-  dismissReco,
-  approveReco,
-  unapproveReco,
-  reportReco
-} = prepareRecoActions(portCommunication);
 
 function mapStateToProps(state, ownProps) {
   return Object.assign({}, ownProps, {

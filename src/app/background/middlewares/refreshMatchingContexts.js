@@ -1,5 +1,6 @@
 import { matchingTabIdToPortM } from '../tabs';
-import { refreshMatchingContextsFromBackend } from '../actions/kraftBackend';
+import { refreshMatchingContexts, refreshMatchingContextsFromBackend } from '../actions/kraftBackend';
+import publishToTab from '../actions/publishToTab';
 
 import {
   SELECT_CRITERION,
@@ -15,21 +16,18 @@ export default function (store){
     function scheduleRefreshAfterward() {
       const result = next(action);
 
-      store.dispatch({ type: REFRESH_MATCHING_CONTEXTS });
+      store.dispatch(refreshMatchingContexts());
 
       return result;
     }
 
-    function refreshMatchingContexts() {
+    function updateMatchingContexts() {
       const state = store.getState();
 
       // update all content stores
       matchingTabIdToPortM.forEach((tabPortP) => {
         tabPortP
-          .then(tabPort => tabPort.postMessage({
-            type: 'dispatch',
-            action
-          }));
+          .then(tabPort => tabPort.postMessage(publishToTab(action)));
       });
 
       const selectedCriteria = Array.from(state.get('prefs').get('criteria').keys())
@@ -55,7 +53,7 @@ export default function (store){
         return scheduleRefreshAfterward();
 
       case REFRESH_MATCHING_CONTEXTS:
-        return refreshMatchingContexts();
+        return updateMatchingContexts();
 
       default:
         return next(action);

@@ -5,54 +5,11 @@ import {
   UNAPPROVE_RECO,
   REPORT_RECO,
 } from '../../constants/ActionTypes';
+import createAction from '../../utils/createAction';
+import createBackgroundAction from '../createBackgroundAction';
 
-export default function (portCommunication) {
-  return {
-    recommendationFound(recommendations){
-      return {
-        type: RECOMMENDATION_FOUND,
-        recommendations
-      };
-    },
-    dismissReco(id){
-      const action = {
-        type: DISMISS_RECO,
-        id
-      };
-      
-      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
-
-      return action;
-    },
-    approveReco(id){
-      const action = {
-        type: APPROVE_RECO,
-        id
-      };
-      
-      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
-
-      return action;
-    },
-    unapproveReco(id){
-      const action = {
-        type: UNAPPROVE_RECO,
-        id
-      };
-      
-      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
-
-      return action;
-    },
-    reportReco(id){
-      const action = {
-        type: REPORT_RECO,
-        id
-      };
-      
-      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
-
-      return action;
-    }
-  };
-}
+export const recommendationFound = createAction(RECOMMENDATION_FOUND, (recommendations = []) => ({ recommendations }));
+export const dismissReco = createBackgroundAction(DISMISS_RECO, id => ({ id }));
+export const approveReco = createBackgroundAction(APPROVE_RECO, id => ({ id }));
+export const unapproveReco = createBackgroundAction(UNAPPROVE_RECO, id => ({ id }));
+export const reportReco = createBackgroundAction(REPORT_RECO, id => ({ id }));

@@ -1,5 +1,8 @@
 import recommendationIsValid from '../lmem/recommendationIsValid';
 import { contextTriggered, recoDisplayed, recoDismissed } from './actions/tabs';
+import init from './actions/init';
+import { recommendationFound } from '../content/actions/recommendations';
+import { PUBLISHED_FROM_TAB } from '../constants/ActionTypes';
 
 export const matchingTabIdToPortM = new Map();
 
@@ -23,10 +26,11 @@ export function makeTabs(
           matchingTabIdToPortM.delete(tabId);
         });
 
-        tabPort.onMessage.addListener((msg) => {
-          console.log('message from content script', msg);
+        tabPort.onMessage.addListener((action) => {
+          const { type, payload } = action;
+          console.log('message from content script', action);
 
-          if (msg.type === 'redux-action') dispatch(msg.action);
+          if (type === PUBLISHED_FROM_TAB) dispatch(payload);
         });
 
         const criteria = getCriteria().reduce((acc, criterionMap, slug) => {
@@ -48,12 +52,12 @@ export function makeTabs(
           return Object.assign(acc, {[id]: editor});
         }, {});
 
-        tabPort.postMessage({
-          type: 'init',
+
+        tabPort.postMessage(init({
           onInstalledDetails: getOnInstalledDetails(),
           criteria,
           editors
-        });
+        }));
 
         resolve(tabPort);
       });
@@ -77,10 +81,7 @@ export function makeTabs(
     });
 
     tabPortP
-      .then(tabPort => tabPort.postMessage({
-        type: 'recommendations',
-        recommendations,
-      }));
+      .then(tabPort => tabPort.postMessage(recommendationFound(recommendations)));
   }
 
   function fromRecoURLsToSendingToTab(recoUrls, tabId, trigger) {
@@ -94,8 +95,8 @@ export function makeTabs(
         const dismissed = getDismissed();
 
         const toDisplayRecos = recos.filter((reco) => {
-          if (dismissed.has(reco.id)) dispatch(recoDismissed(trigger, reco));
-          else dispatch(recoDisplayed(trigger, reco));
+          if (dismissed.has(reco.id)) dispatch(recoDismissed(reco, trigger));
+          else dispatch(recoDisplayed(reco, trigger));
 
           return !dismissed.has(reco.id);
         });
@@ -111,7 +112,7 @@ export function makeTabs(
     const recoUrls = triggeredContexts.map(tc => tc.recommendation_url);
 
     if(recoUrls.length >= 1) {
-      dispatch(contextTriggered({url}, triggeredContexts));
+      dispatch(contextTriggered(triggeredContexts, url));
       fromRecoURLsToSendingToTab(recoUrls, id, {url});
     }
   }

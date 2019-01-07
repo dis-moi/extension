@@ -1,4 +1,7 @@
 import { INSTALLED } from '../../constants/ActionTypes';
+import createAction from '../../utils/createAction';
+
+export const installed = createAction(INSTALLED)(onInstalledDetails => ({ onInstalledDetails }));
 
 // Promise constructed when the module is first imported (very early)
 // in order to not miss the "install" event.
@@ -19,9 +22,6 @@ export default function ({ onboardingUrl }) {
       onInstalledPromise.then(() => chrome.tabs.create({ url: onboardingUrl }));
     }
 
-    onInstalledPromise.then(onInstalledDetails => dispatch({
-      type: INSTALLED,
-      onInstalledDetails
-    }));
+    onInstalledPromise.then(onInstalledDetails => dispatch(installed(onInstalledDetails)));
   };
 }
