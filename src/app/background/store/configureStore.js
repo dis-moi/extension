@@ -9,6 +9,7 @@ import trackEvents from '../../analytics/trackEvents';
 import refreshMatchingContexts from '../middlewares/refreshMatchingContexts';
 import openOptionsPage from '../middlewares/openOptionsPage';
 import sendFeedback from '../middlewares/sendFeedback';
+import createTabsMiddleware from '../middlewares/tabs';
 import fromJS from '../../utils/customFromJS';
 
 import makeInitialState from './makeInitialState';
@@ -43,7 +44,8 @@ export default function configureStore(callback, isBg) {
       trackEventMiddleware,
       refreshMatchingContexts,
       openOptionsPage,
-      sendFeedback
+      sendFeedback,
+      createTabsMiddleware(chrome.tabs),
     ];
 
     const composeEnhancers = composeWithDevTools({
