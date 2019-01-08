@@ -2,14 +2,8 @@
 
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'remote-redux-devtools';
-import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
-import analytics from '../middlewares/analytics';
-import trackEvents from '../../analytics/trackEvents';
-import refreshMatchingContexts from '../middlewares/refreshMatchingContexts';
-import openOptionsPage from '../middlewares/openOptionsPage';
-import sendFeedback from '../middlewares/sendFeedback';
-import createTabsMiddleware from '../middlewares/tabs';
+import middlewares from '../middlewares';
 import fromJS from '../../utils/customFromJS';
 
 import makeInitialState from './makeInitialState';
@@ -26,28 +20,7 @@ export default function configureStore(callback, isBg) {
     getState = isBg ? require('./getStateToBg').default : require('./getStateFromBg').default;
   }
 
-  const trackEventMiddleware = analytics({
-    getCurrentTabs: () => new Promise(resolve => chrome.tabs.query(
-      {
-        active: true,
-        currentWindow: true,
-      },
-      tabs => resolve(tabs),
-    )),
-    track: trackEvents,
-  });
-
   getState((loadedState) => {
-    // let enhancer;
-    const middlewares = [
-      thunk,
-      trackEventMiddleware,
-      refreshMatchingContexts,
-      openOptionsPage,
-      sendFeedback,
-      createTabsMiddleware(chrome.tabs),
-    ];
-
     const composeEnhancers = composeWithDevTools({
       // options
     });
@@ -55,7 +28,11 @@ export default function configureStore(callback, isBg) {
     const enhancer = process.env.NODE_ENV !== 'production'
       ? composeEnhancers(applyMiddleware(...middlewares.concat([
         require('redux-immutable-state-invariant').default(), // eslint-disable-line
-        require('redux-logger').createLogger({ level: 'info', collapsed: true, stateTransformer: state => state.toJS() }), // eslint-disable-line
+        require('redux-logger').createLogger({ // eslint-disable-line
+          level: 'info',
+          collapsed: true,
+          stateTransformer: state => state.toJS()
+        }),
       ])))
       : applyMiddleware(...middlewares);
 
