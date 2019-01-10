@@ -4,6 +4,8 @@ import DeleteIcon from './icons/Delete';
 
 export default styled.button.attrs({ children: <DeleteIcon /> })`
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
   width: 17px;
   height: 17px;
   padding: 0 4px;
