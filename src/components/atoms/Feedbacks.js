@@ -8,7 +8,7 @@ export default styled.div`
 
     & svg {
         margin-right: 3px;
-        fill: ${props => props.theme.navInactive};
+        fill: ${props => props.theme.secondaryColor};
         vertical-align: middle
     }
 
