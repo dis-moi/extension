@@ -6,6 +6,7 @@ import ArrowIcon from './icons/Arrow';
 export default styled(Button).attrs({ children: <ArrowIcon /> })`
     height: 13px;
     margin-right: 10px;
+    background: none;
     stroke: ${props => props.theme.activeColor};
 `;
 
