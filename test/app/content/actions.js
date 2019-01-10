@@ -15,7 +15,7 @@ import {
   excludeEditor,
   includeEditor
 } from '../../../src/app/content/actions/filters';
-import init from '../../../src/app/background/actions/init';
+import { init } from '../../../src/app/background/actions/tabs';
 
 const expect = chai.expect;
 

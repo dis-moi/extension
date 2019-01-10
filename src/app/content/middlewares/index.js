@@ -1,4 +1,9 @@
 import backgroundPublisher from './backgroundPublisher';
-import portCommunication from '../portCommunication';
+import sagaMiddleware from './saga';
 
-export default [backgroundPublisher(portCommunication), require('redux-logger').createLogger({ level: 'info', collapsed: true, stateTransformer: state => state.toJS() })];
+export { sagaMiddleware };
+
+export default [
+  backgroundPublisher,
+  sagaMiddleware
+];

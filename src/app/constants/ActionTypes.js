@@ -1,8 +1,6 @@
 // background actions
 
-export const INIT = 'init';
-export const PUBLISHED_FROM_TAB = 'redux-action';
-export const PUBLISH_TO_TAB = 'PUBLISH_TO_TAB';
+export const INIT = 'INIT';
 
 export const MATCHING_OFFERS_FOUND = 'matching_offers/FOUND';
 
@@ -16,6 +14,7 @@ export const REFRESH_MATCHING_CONTEXTS = 'REFRESH_MATCHING_CONTEXTS';
 
 export const INSTALLED = 'INSTALLED';
 
+export const MATCH_CONTEXT = 'LMEM/MATCH_CONTEXT';
 export const CONTEXT_TRIGGERED = 'CONTEXT_TRIGGERED';
 export const RECO_DISPLAYED = 'RECO_DISPLAYED';
 export const RECO_DISMISSED = 'RECO_DISMISSED';

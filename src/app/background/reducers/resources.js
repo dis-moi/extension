@@ -15,8 +15,6 @@ const initialResources = fromJS({
 export default function (state = initialResources, action) {
   const { type, payload } = action;
 
-  console.log('reducer', type, action);
-
   switch (type) {
     case RECEIVED_MATCHING_CONTEXTS:
       const { matchingContexts } = payload;

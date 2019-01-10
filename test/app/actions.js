@@ -48,7 +48,7 @@ describe('background actions', function () {
   it('contextTriggered', () => {
     const trigger = '';
     const triggeredContexts = [];
-    const action = contextTriggered(triggeredContexts, trigger);
+    const action = contextTriggered(triggeredContexts, { trigger });
 
     expect(action.type).to.be.a('string').of.length.above(5);
     expect(action.meta.trigger).to.equal(trigger);

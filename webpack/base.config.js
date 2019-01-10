@@ -9,8 +9,8 @@ const baseConfig = ({
   mode,
   entry: Object.assign(
     {
-      background: [path.join(srcPath, './background/')],
-      content: [path.join(srcPath, './content/')],
+      background: ['@babel/polyfill', path.join(srcPath, './background/')],
+      content: ['@babel/polyfill', path.join(srcPath, './content/')],
       options: [path.join(srcPath, './options/')],
       popup: [path.join(srcPath, './popup/')],
     },

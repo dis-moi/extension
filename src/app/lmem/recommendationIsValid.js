@@ -40,12 +40,11 @@ const reco = {
 
 */
 
-
-export default function (reco){
+export const isValid = (reco) => {
   if(Object(reco) !== reco) return false;
 
   const {
-    contributor, title, description, resource, criteria, alternatives 
+    contributor, title, description, resource, criteria, alternatives
   } = reco;
 
   return (
@@ -68,15 +67,25 @@ export default function (reco){
 
     && (!criteria || (Array.isArray(criteria) && criteria.every(criterion => (
       Object(criterion) === criterion
-      && typeof criterion.label === 'string'
-      && typeof criterion.slug === 'string'
+        && typeof criterion.label === 'string'
+        && typeof criterion.slug === 'string'
     ))))
 
     && (!alternatives || (Array.isArray(alternatives) && alternatives.every(alternative => (
       Object(alternative) === alternative
-      && typeof alternative.label === 'string'
-      && typeof alternative.url_to_redirect === 'string'
+        && typeof alternative.label === 'string'
+        && typeof alternative.url_to_redirect === 'string'
     ))))
 
   );
-}
+};
+
+export default (reco) => {
+  const valid = isValid(reco);
+
+  if (!valid) {
+    console.warn('Invalid recommendation not displayed:', reco);
+  }
+
+  return valid;
+};
