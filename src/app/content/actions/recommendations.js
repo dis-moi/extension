@@ -8,7 +8,11 @@ import {
 import createAction from '../../utils/createAction';
 import createBackgroundAction from '../createBackgroundAction';
 
-export const recommendationFound = createAction(RECOMMENDATION_FOUND, (recommendations = []) => ({ recommendations }));
+export const recommendationFound = createAction(
+  RECOMMENDATION_FOUND,
+  (recommendations = []) => ({ recommendations }),
+  tab => ({ tab })
+);
 export const dismissReco = createBackgroundAction(DISMISS_RECO, id => ({ id }));
 export const approveReco = createBackgroundAction(APPROVE_RECO, id => ({ id }));
 export const unapproveReco = createBackgroundAction(UNAPPROVE_RECO, id => ({ id }));

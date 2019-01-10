@@ -1,5 +1,4 @@
 import { tabCreated, tabRemoved, tabUpdated } from '../actions/browser/tabs';
-import { TAB_CREATED } from '../../constants/browser/tabs';
 
 export const onTabCreated = store => ({ id, url }) => {
   if (!url) return;
@@ -25,9 +24,10 @@ export default tabs => (store) => {
   tabs.onRemoved.addListener(onTabRemoved(store));
 
   return next => (action) => {
-    const { type } = action;
+    const { meta } = action;
 
-    if (type === TAB_CREATED) {
+    if (meta && meta.tab) {
+      tabs.sendMessage(meta.tab, action);
     }
 
     return next(action);

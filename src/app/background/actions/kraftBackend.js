@@ -44,7 +44,7 @@ export function makeUrlFromFilters(criteria = [], excludedEditors = []) {
   return url;
 }
 
-function fetchMatchingContexts(criteria, excludedEditors) {
+export function fetchMatchingContexts(criteria, excludedEditors) {
   return fetchJson(makeUrlFromFilters(criteria, excludedEditors)).then(json => new ImmutableSet(json));
 }
 
@@ -92,13 +92,6 @@ export function dispatchInitialStateFromBackend() {
 }
 
 export const refreshMatchingContexts = createAction(REFRESH_MATCHING_CONTEXTS);
-
-export function refreshMatchingContextsFromBackend(criteria, editors) {
-  return (dispatch) => {
-    fetchMatchingContexts(criteria, editors)
-      .then(matchingContexts => dispatch(receivedMatchingContexts(matchingContexts)));
-  };
-}
 
 export function refreshMatchingContextsEvery(milliseconds) {
   function recurse(dispatch) {

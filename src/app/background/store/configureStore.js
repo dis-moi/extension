@@ -1,9 +1,9 @@
 /* eslint global-require: "off" */
-
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'remote-redux-devtools';
 import rootReducer from '../reducers';
-import middlewares from '../middlewares';
+import middlewares, { sagaMiddleware } from '../middlewares';
+import rootSaga from '../sagas';
 import fromJS from '../../utils/customFromJS';
 
 import makeInitialState from './makeInitialState';
@@ -45,6 +45,8 @@ export default function configureStore(callback, isBg) {
     
     const state = initialResourcesState.merge(migratedState);
     const store = createStore(rootReducer, state, enhancer);
+
+    sagaMiddleware.run(rootSaga);
 
     // FIXME
     // if (process.env.NODE_ENV !== 'production') {

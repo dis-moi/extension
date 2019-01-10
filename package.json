@@ -114,6 +114,7 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.2.5",
     "chrome-storage-local": "^0.1.5",
     "classnames": "^2.2.5",
     "content-security-policy-builder": "^1.1.0",
@@ -133,7 +134,9 @@
     "redux-immutable": "^3.0.10",
     "redux-persist": "^3.2.2",
     "redux-persist-immutable": "^4.2.0",
+    "redux-saga": "^0.16.2",
     "redux-thunk": "^2.0.1",
+    "regenerator-runtime": "^0.13.1",
     "remote-redux-devtools": "^0.5.13",
     "styled-components": "^4.0.3",
     "whatwg-url": "^3.0.0"

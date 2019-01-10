@@ -29,8 +29,6 @@ const initialPrefs = fromJS({
 export default function (state = initialPrefs, action) {
   const { type, payload } = action;
 
-  console.log('reducer', type, action);
-
   switch (type) {
     case INSTALLED: {
       const { onInstalledDetails } = payload;

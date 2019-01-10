@@ -9,11 +9,16 @@ export const transformBackgroundAction = (action) => {
   };
 };
 
-export default portCommunication => store => next => (action) => {
+export const sendToBackground = action => new Promise((resolve) => {
+  chrome.runtime.sendMessage(action, response => resolve(response));
+});
+
+export default store => next => (action) => {
   const { meta } = action;
 
   if (meta && meta.background) {
-    portCommunication.sendBackgroundReduxAction(transformBackgroundAction(action));
+    sendToBackground(transformBackgroundAction(action))
+      .then(response => console.log('Background respond', response));
   }
 
   return next(action);
