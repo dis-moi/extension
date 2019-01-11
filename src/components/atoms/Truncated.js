@@ -1,9 +1,16 @@
-import styled from 'styled-components';
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
+import truncate from '../../app/utils/truncate';
 
-export default styled.span`
-    width: ${props => props.width};
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: inline-block;
-`;
+const Truncated = ({ numberOfWords, children }) => (<Fragment>{truncate(children, numberOfWords)}</Fragment>);
+
+Truncated.propTypes = {
+  numberOfWords: PropTypes.number.isRequired,
+  children: PropTypes.string,
+};
+
+Truncated.defaultProps = {
+  children: ''
+};
+
+export default Truncated;
