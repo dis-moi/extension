@@ -5,6 +5,7 @@ import OpenIcon from './icons/Arrow';
 
 export default styled(Link).attrs({ children: <OpenIcon />, role: 'button' })`
    padding:0;
+   margin-left: auto;
    border: none;
    cursor: pointer;
    width: auto;

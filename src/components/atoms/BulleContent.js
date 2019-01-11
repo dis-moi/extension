@@ -17,6 +17,10 @@ export default styled.a`
         border-color: ${props => props.theme.activeColor}
     }
 
+    & > div + div {
+        width: 245px;
+    }
+
     & > a {
         transform: rotate(180deg)
     }
