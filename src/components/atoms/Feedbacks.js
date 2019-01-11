@@ -16,14 +16,14 @@ export default styled.div`
     & a {
         color: ${props => props.theme.navInactive};
 
+        & + a {
+            margin-left: 20px;
+        }
+
         &:hover {
             svg {
                 fill: ${props => props.theme.secondaryColor};
             }
         }
-    }
-
-    & a + a {
-        margin-left: 20px;
     }
 `;
