@@ -9,6 +9,11 @@ export default styled(ReactRouterNavLink).attrs({ replace: true, activeClassName
     padding-bottom: 6px;
     text-align: center;
     border-top: 2px solid transparent;
+
+    & > svg {
+        height: 28px;
+        fill: ${props => props.theme.navInactive};
+    }
     
     &.${props => props.activeClassName},
     &:hover {
@@ -17,10 +22,5 @@ export default styled(ReactRouterNavLink).attrs({ replace: true, activeClassName
       & > svg {
         fill: ${props => props.theme.navActive}
       }
-    }
-
-    & > svg {
-        height: 28px;
-        fill: ${props => props.theme.navInactive};
     }
 `;
