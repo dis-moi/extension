@@ -8,12 +8,19 @@ export default styled.div`
 
     & svg {
         margin-right: 3px;
-        fill: ${props => props.theme.secondaryColor};
+        stroke: ${props => props.theme.secondaryColor};
+        fill: #fff;
         vertical-align: middle
     }
 
     & a {
-        color: ${props => props.theme.navInactive}
+        color: ${props => props.theme.navInactive};
+
+        &:hover {
+            svg {
+                fill: ${props => props.theme.secondaryColor};
+            }
+        }
     }
 
     & a + a {
