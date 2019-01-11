@@ -1,0 +1,1 @@
+export default (text = '', limit = 50, after = '…') => `${text.trim().split(' ').slice(0, limit).join(' ')}${after}`;
