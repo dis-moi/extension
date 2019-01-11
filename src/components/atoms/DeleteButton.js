@@ -11,7 +11,7 @@ export default styled.button.attrs({ children: <DeleteIcon /> })`
   padding: 0 4px;
   margin-left: 16px;
   fill: #fff;
-  background: #A6B1C0;
+  background: ${props => props.theme.navInactive};
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -19,5 +19,9 @@ export default styled.button.attrs({ children: <DeleteIcon /> })`
   & > svg {
       width: 9px;
       height: 9px;
+  }
+
+  &:hover {
+    background-color: ${props => props.theme.formError}
   }
 `;

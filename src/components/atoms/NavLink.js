@@ -9,18 +9,18 @@ export default styled(ReactRouterNavLink).attrs({ replace: true, activeClassName
     padding-bottom: 6px;
     text-align: center;
     border-top: 2px solid transparent;
-    
-    &.${props => props.activeClassName} {
-      border-top: 2px solid ${props => props.theme.navActive}
-    }
 
     & > svg {
         height: 28px;
         fill: ${props => props.theme.navInactive};
     }
     
-        
-    &.${props => props.activeClassName} > svg {
-      fill: ${props => props.theme.navActive}
+    &.${props => props.activeClassName},
+    &:hover {
+      border-top: 2px solid ${props => props.theme.navActive};
+
+      & > svg {
+        fill: ${props => props.theme.navActive}
+      }
     }
 `;
