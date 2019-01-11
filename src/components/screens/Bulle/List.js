@@ -11,7 +11,7 @@ export default ({ match }) => (
     <ListBullesTitle>Bulles pour cette page</ListBullesTitle>
     <Bulle
       match={match}
-      type="Alternative"
+      type="Other"
       message={message}
       contributor="Le Même en Mieux"
       source="http://forum.que-choisir.org/pixmania-avis-1285"
