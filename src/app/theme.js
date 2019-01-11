@@ -23,41 +23,29 @@ export default {
 
   // new types:
   approval: '#34C16C',
-  warning: '#F70B7B',
+  disapproval: '#F70B7B',
+  tip: '#E3C51F',
+  alternative: '#49B6D6',
+  other: '#EB950C',
 
 
   // bulle type colors
   bulleTypes: {
-    Warning: {
+    Disapproval: {
       background: '#F70B7B',
     },
-    Fav: {
-      color: '#FB6C6A',
-      background: '#FEF0F0',
-    },
     Alternative: {
-      color: '#488FC1',
-      background: '#F0F5FA',
+      background: '#49B6D6',
     },
     Approval: {
       background: '#34C16C',
     },
-    NeedHelp: {
-      color: '#F5A623',
-      background: '#FDF9C6',
+    Tip: {
+      background: '#E3C51F',
     },
-    Rant: {
-      color: '#9013FE',
-      background: '#F3E7FE',
-    },
-    Sadness: {
-      color: '#D16464',
-      background: '#FAEFEF',
-    },
-    Surprise: {
-      color: '#3C6AE2',
-      background: '#EBF0FC',
-    },
+    Other: {
+      background: '#EB950C',
+    }
   },
   // iframe
   iframe: {
