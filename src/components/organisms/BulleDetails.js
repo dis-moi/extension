@@ -84,7 +84,7 @@ export default class Bulle extends PureComponent {
                     En savoir plus : 
                     &nbsp;
                     <SourceURL>
-                      <Truncated width="220px">
+                      <Truncated numberOfCharacters={39} preserveWords={false}>
                         {source}
                       </Truncated>
                     </SourceURL>

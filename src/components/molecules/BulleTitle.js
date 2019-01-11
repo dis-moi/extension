@@ -14,6 +14,6 @@ export const Title = styled.p`
 
 export default ({ children }) => (
   <Title>
-    <Truncated numberOfWords={9}>{children}</Truncated>
+    <Truncated numberOfCharacters={60}>{children}</Truncated>
   </Title>
 );
