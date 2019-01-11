@@ -18,7 +18,7 @@ import {
   Truncated
 } from '../atoms';
 import { Anchor } from '../atoms/icons';
-import { Approval, Warning } from '../atoms/icons/types';
+import { Approval, Disapproval } from '../atoms/icons/types';
 import { BulleTitle, BulleType } from '../molecules';
 
 export default class Bulle extends PureComponent {
@@ -96,7 +96,7 @@ export default class Bulle extends PureComponent {
                       {approves}
                     </Approves>
                     <Dislikes>
-                      <Warning />
+                      <Disapproval />
                       {dislikes}
                     </Dislikes>
                   </Feedbacks>
