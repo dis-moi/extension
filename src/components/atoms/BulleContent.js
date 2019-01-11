@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.div`
+export default styled.a`
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -11,6 +11,11 @@ export default styled.div`
     margin-left: 5px;
     background-color: #fff;
     border-radius: 15px;
+    border: 2px solid transparent;
+
+    &:hover {
+        border-color: ${props => props.theme.activeColor}
+    }
 
     & > a {
         transform: rotate(180deg)
