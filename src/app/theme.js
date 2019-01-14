@@ -29,8 +29,8 @@ export default {
   other: '#EB950C',
 
 
-  // bulle type colors
-  bulleTypes: {
+  // notice type colors
+  noticeTypes: {
     Disapproval: {
       background: '#F70B7B',
     },

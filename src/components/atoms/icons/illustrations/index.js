@@ -1,1 +1,1 @@
-export { default as NoBulle } from './NoBulle';
+export { default as NoNotice } from './NoNotice';

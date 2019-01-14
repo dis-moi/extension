@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const BulleTypeBackground = styled.div`
+const TypeBackground = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,12 +16,12 @@ const BulleTypeBackground = styled.div`
     }
 `;
 
-BulleTypeBackground.propTypes = {
+TypeBackground.propTypes = {
   color: PropTypes.string,
 };
 
-BulleTypeBackground.defaultProps = {
+TypeBackground.defaultProps = {
   color: '#F1F1F4'
 };
 
-export default BulleTypeBackground;
+export default TypeBackground;
