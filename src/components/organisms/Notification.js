@@ -37,6 +37,15 @@ export default class Notification extends PureComponent {
     });
   }
 
+  get hasNotices() {
+    const { children } = this.props;
+
+    return React
+      .Children
+      .toArray(children)
+      .some(child => Object.prototype.isPrototypeOf.call(Notice, child.type));
+  }
+
   render() {
     const {
       title, onClose, onBack, notices
