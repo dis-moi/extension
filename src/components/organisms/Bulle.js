@@ -39,47 +39,31 @@ export default class Bulle extends PureComponent {
 
   render() {
     const {
-      type, details, message, contributor, source, approves, dislikes, onDelete, deleted
+      type, message, contributor, onDelete, deleted
     } = this.props;
     return (
       <BulleContainer>
-        {deleted ? (
-          <Fragment>
-            <BulleContent>
+        <Fragment>
+          {!deleted && <DeleteButton onClick={onDelete} />}
+          <BulleContent to={!deleted && 'bulles/details'}>
+            {deleted ? (
               <BulleDeleted>Cette bulle ne s’affichera plus !</BulleDeleted>
-            </BulleContent>
-          </Fragment>
-        ) : (
-          <Fragment>
-            {!details && <DeleteButton onClick={onDelete} />}
-            <BulleContent deleted={deleted}>
-              <BulleType type={type} />
-              {details ? (
-                <Fragment>
-                  <Message>{message}</Message>
-                  <SourceURL>{source}</SourceURL>
-
-                  <Feedbacks>
-                    <Approves>{approves}</Approves>
-                    <Dislikes>{dislikes}</Dislikes>
-                  </Feedbacks>
-                </Fragment>
-              ) : (
-                <Fragment>
-                  <div>
-                    <BulleTitle>{message}</BulleTitle>
-                    <Contributor>
+            ) : (
+              <Fragment>
+                <BulleType type={type} />
+                <div>
+                  <BulleTitle>{message}</BulleTitle>
+                  <Contributor>
                       Par :
                       &nbsp;
-                      {contributor}
-                    </Contributor>
-                  </div>
-                  <OpenButton to="bulles/details" />
-                </Fragment>
-              )}
-            </BulleContent>
-          </Fragment>
-        )}
+                    {contributor}
+                  </Contributor>
+                </div>
+                <OpenButton to="bulles/details" />
+              </Fragment>
+            )}
+          </BulleContent>
+        </Fragment>
       </BulleContainer>
     );
   }
