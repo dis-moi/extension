@@ -1,6 +1,6 @@
 import React, { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { NotificationMain } from '../atoms';
+import { NotificationMain} from '../atoms';
 import Notice from './Notice';
 import { NotificationHeader } from '../molecules';
 

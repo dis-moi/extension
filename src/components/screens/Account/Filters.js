@@ -1,8 +1,9 @@
 import React from 'react';
-import {Notification} from '../../organisms';
+import { NotificationContentTitle } from '../../atoms';
+import { Notification } from '../../organisms';
 
 export default () => (
   <Notification title="Filtres">
-    Mes filtres
+    <NotificationContentTitle>Mes filtres</NotificationContentTitle>
   </Notification>
 );
