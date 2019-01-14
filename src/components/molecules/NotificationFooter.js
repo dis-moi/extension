@@ -6,7 +6,7 @@ import {
 
 const NotificationFooter = () => (
   <NotificationFooterContainer>
-    <NavLink to="/bulles">
+    <NavLink to="/notices">
       <Bubble />
     </NavLink>
     <NavLink to="/subscriptions">

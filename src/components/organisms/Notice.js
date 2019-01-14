@@ -1,38 +1,28 @@
 import React, { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
-  BulleContainer,
-  BulleContent,
-  BulleDeleted,
-  Approves,
+  NoticeContainer,
+  NoticeContent,
+  NoticeDeleted,
   Contributor,
   DeleteButton,
   OpenButton,
-  Dislikes,
-  Message,
-  SourceURL,
-  Feedbacks
 } from '../atoms';
-import { BulleTitle, BulleType } from '../molecules';
+import { NoticeTitle, NoticeType } from '../molecules';
 
-export default class Bulle extends PureComponent {
+const to = 'notices/details';
+
+export default class Notice extends PureComponent {
   static propTypes = {
-    details: PropTypes.bool,
     type: PropTypes.string,
     message: PropTypes.string.isRequired,
-    source: PropTypes.string.isRequired,
-    approves: PropTypes.number,
-    dislikes: PropTypes.number,
     contributor: PropTypes.string.isRequired,
     onDelete: PropTypes.func,
     deleted: PropTypes.bool,
   }
 
   static defaultProps = {
-    details: false,
     type: null,
-    approves: 0,
-    dislikes: 0,
     onDelete: () => { },
     deleted: false,
   }
@@ -42,29 +32,29 @@ export default class Bulle extends PureComponent {
       type, message, contributor, onDelete, deleted
     } = this.props;
     return (
-      <BulleContainer>
+      <NoticeContainer>
         <Fragment>
           {!deleted && <DeleteButton onClick={onDelete} />}
-          <BulleContent to={!deleted && 'bulles/details'}>
+          <NoticeContent to={!deleted && to}>
             {deleted ? (
-              <BulleDeleted>Cette bulle ne s’affichera plus !</BulleDeleted>
+              <NoticeDeleted>Cette notification ne s’affichera plus !</NoticeDeleted>
             ) : (
               <Fragment>
-                <BulleType type={type} />
+                <NoticeType type={type} />
                 <div>
-                  <BulleTitle>{message}</BulleTitle>
+                  <NoticeTitle>{message}</NoticeTitle>
                   <Contributor>
                       Par :
                       &nbsp;
                     {contributor}
                   </Contributor>
                 </div>
-                <OpenButton to="bulles/details" />
+                <OpenButton to={to} />
               </Fragment>
             )}
-          </BulleContent>
+          </NoticeContent>
         </Fragment>
-      </BulleContainer>
+      </NoticeContainer>
     );
   }
 }

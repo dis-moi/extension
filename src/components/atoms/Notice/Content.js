@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const BulleContent = ({ to, ...props }) => {
+const Content = ({ to, ...props }) => {
   if (to) {
     return (<Link to={to} {...props} />);
   }
@@ -10,7 +10,7 @@ const BulleContent = ({ to, ...props }) => {
   return (<div {...props} />);
 };
 
-export default styled(BulleContent)`
+export default styled(Content)`
     box-sizing: border-box;
     display: flex;
     align-items: center;

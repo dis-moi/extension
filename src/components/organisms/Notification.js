@@ -1,7 +1,7 @@
 import React, { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { NotificationMain } from '../atoms';
-import Bulle from './Bulle';
+import Notice from './Notice';
 import { NotificationHeader } from '../molecules';
 
 export default class Notification extends PureComponent {
@@ -11,7 +11,7 @@ export default class Notification extends PureComponent {
     onBack: PropTypes.func,
     children: PropTypes.node.isRequired,
     details: PropTypes.bool,
-    bulles: PropTypes.bool,
+    notices: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -19,14 +19,14 @@ export default class Notification extends PureComponent {
     details: false,
     onClose: () => { },
     onBack: null,
-    bulles: false,
+    notices: false,
   };
 
   renderChildren() {
     const { children, details } = this.props;
 
     return React.Children.map(children, (child) => {
-      if (Object.prototype.isPrototypeOf.call(Bulle, child.type)) {
+      if (Object.prototype.isPrototypeOf.call(Notice, child.type)) {
         return React.cloneElement(child, {
           ...child.props,
           details,
@@ -39,13 +39,13 @@ export default class Notification extends PureComponent {
 
   render() {
     const {
-      title, onClose, onBack, bulles
+      title, onClose, onBack, notices
     } = this.props;
 
     return (
       <Fragment>
         <NotificationHeader title={title} onClose={onClose} onBack={onBack} />
-        <NotificationMain bulles={bulles}>
+        <NotificationMain notices={notices}>
           {this.renderChildren()}
         </NotificationMain>
       </Fragment>

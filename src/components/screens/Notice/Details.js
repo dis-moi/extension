@@ -1,5 +1,5 @@
 import React from 'react';
-import {BulleDetails, Notification} from '../../organisms';
+import {NoticeDetails, Notification} from '../../organisms';
 
 const message = 'L’économie est (vraiment) un sport de combat : “La boule puante de MM. Cahuc et Zylberberg ' 
     + 'contre le “négationnisme” des économistes critiques le confirme : le combat idéologique '
@@ -9,8 +9,8 @@ const message = 'L’économie est (vraiment) un sport de combat : “La boule p
 
 
 export default () => (
-  <Notification title="Détail de la bulle" bulles>
-    <BulleDetails
+  <Notification title="Détail de la notice" notices>
+    <NoticeDetails
       type="Warning"
       date="03 déc. 2018"
       message={message}

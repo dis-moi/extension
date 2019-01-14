@@ -1,9 +1,9 @@
 import React, { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
-  BulleDetailsContainer,
-  BulleDetailsContent,
-  BulleDetailsMeta,
+  NoticeDetailsContainer,
+  NoticeDetailsContent,
+  NoticeDetailsMeta,
   Approves,
   Contributor,
   Dislikes,
@@ -16,9 +16,9 @@ import {
 } from '../atoms';
 import { Anchor } from '../atoms/icons';
 import { Approval, Disapproval } from '../atoms/icons/types';
-import { BulleType } from '../molecules';
+import { NoticeType } from '../molecules';
 
-export default class Bulle extends PureComponent {
+export default class Notice extends PureComponent {
   static propTypes = {
     type: PropTypes.string,
     date: PropTypes.string,
@@ -41,10 +41,10 @@ export default class Bulle extends PureComponent {
       type, date, message, contributor, source, approves, dislikes
     } = this.props;
     return (
-      <BulleDetailsContainer>
-        <BulleDetailsContent>
-          <BulleDetailsMeta>
-            <BulleType type={type} />
+      <NoticeDetailsContainer>
+        <NoticeDetailsContent>
+          <NoticeDetailsMeta>
+            <NoticeType type={type} />
             <div>
               <Date>
                     Le 
@@ -57,7 +57,7 @@ export default class Bulle extends PureComponent {
                     a écrit
               </Contributor>
             </div>
-          </BulleDetailsMeta>
+          </NoticeDetailsMeta>
           <Fragment>
             <Message>{message}</Message>
             <Source>
@@ -82,8 +82,8 @@ export default class Bulle extends PureComponent {
               </Dislikes>
             </Feedbacks>
           </Fragment>
-        </BulleDetailsContent>
-      </BulleDetailsContainer>
+        </NoticeDetailsContent>
+      </NoticeDetailsContainer>
     );
   }
 }
