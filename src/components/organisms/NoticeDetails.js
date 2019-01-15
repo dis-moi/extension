@@ -1,4 +1,4 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
   NoticeDetailsContainer,
@@ -53,26 +53,24 @@ export default class Notice extends PureComponent {
             </Contributor>
             <NoticeType type={type} />
           </NoticeDetailsMeta>
-          <Fragment>
-            <Message>{message}</Message>
-            <Source>
-              <Anchor />
+          <Message>{message}</Message>
+          <Source>
+            <Anchor />
               En savoir plus :
               &nbsp;
-              <SourceURL numberOfCharacters={39}>{source}</SourceURL>
-            </Source>
+            <SourceURL numberOfCharacters={39}>{source}</SourceURL>
+          </Source>
 
-            <Feedbacks>
-              <Button>
-                <Approval />
-                {approves}
-              </Button>
-              <Button>
-                <Disapproval />
-                {dislikes}
-              </Button>
-            </Feedbacks>
-          </Fragment>
+          <Feedbacks>
+            <Button>
+              <Approval />
+              {approves}
+            </Button>
+            <Button>
+              <Disapproval />
+              {dislikes}
+            </Button>
+          </Feedbacks>
         </NoticeDetailsContent>
       </NoticeDetailsContainer>
     );

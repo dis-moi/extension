@@ -33,27 +33,25 @@ export default class Notice extends PureComponent {
     } = this.props;
     return (
       <NoticeContainer>
-        <Fragment>
-          {!deleted && <DeleteButton onClick={onDelete} />}
-          <NoticeContent to={!deleted && to}>
-            {deleted ? (
-              <NoticeDeleted>Cette notification ne s’affichera plus !</NoticeDeleted>
-            ) : (
-              <Fragment>
-                <NoticeType type={type} />
-                <div>
-                  <NoticeTitle>{message}</NoticeTitle>
-                  <Contributor>
+        {!deleted && <DeleteButton onClick={onDelete} />}
+        <NoticeContent to={!deleted && to}>
+          {deleted ? (
+            <NoticeDeleted>Cette notification ne s’affichera plus !</NoticeDeleted>
+          ) : (
+            <Fragment>
+              <NoticeType type={type} />
+              <div>
+                <NoticeTitle>{message}</NoticeTitle>
+                <Contributor>
                       Par :
                       &nbsp;
-                    {contributor}
-                  </Contributor>
-                </div>
-                <OpenButton to={to} />
-              </Fragment>
-            )}
-          </NoticeContent>
-        </Fragment>
+                  {contributor}
+                </Contributor>
+              </div>
+              <OpenButton to={to} />
+            </Fragment>
+          )}
+        </NoticeContent>
       </NoticeContainer>
     );
   }
