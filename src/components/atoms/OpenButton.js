@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import OpenIcon from './icons/Arrow';
 
-export default styled(Link).attrs({ children: <OpenIcon />, role: 'button' })`
+export default styled.div.attrs({ children: <OpenIcon /> })`
    padding:0;
    margin-left: auto;
    border: none;
