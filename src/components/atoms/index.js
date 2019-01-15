@@ -1,5 +1,4 @@
 export { default as AddNoticeLink } from './AddNoticeLink';
-export { default as Approves } from './Approves';
 export { default as BackButton } from './BackButton';
 export { default as NoticeContainer } from './Notice/Container';
 export { default as NoticeContent } from './Notice/Content';
@@ -19,12 +18,11 @@ export { default as NotificationContentTitle } from './Notification/ContentTitle
 export { default as NotificationFooterContainer } from './Notification/FooterContainer';
 export { default as NotificationHeaderContainer } from './Notification/HeaderContainer';
 export { default as NotificationMain } from './Notification/Main';
-export { default as Dislikes } from './Dislikes';
 export { default as Feedbacks } from './Feedbacks';
 export { default as Logo } from './Logo';
 export { default as Message } from './Message';
 export { default as Source } from './Source';
-export { default as SourceURL } from './SourceURL';
+export { default as SourceURLContainer } from './SourceURLContainer';
 export { default as Title } from './Title';
 export { default as Truncated } from './Truncated';
 export { default as NavLink } from './NavLink';

@@ -8,14 +8,14 @@ const message = 'De nombreux clients mécontents de Pixmania et ses vendeurs s�
 
 export default ({ match }) => {
   return (
-    <Notification notices>
+    <Notification>
       <NotificationContentTitle>Notices pour cette page</NotificationContentTitle>
       <Notice
         match={match}
         type="Tip"
         message={message}
         contributor="Le Même en Mieux"
-        source="http://forum.que-choisir.org/pixmania-avis-1285"
+        source="https://forum.quechoisir.org/pixmania-avis-1285"
         approves={21}
         dislikes={3}
       />
@@ -24,7 +24,7 @@ export default ({ match }) => {
         type="Rant"
         message={message}
         contributor="Le Même en Mieux"
-        source="http://forum.que-choisir.org/pixmania-avis-1285"
+        source="https://forum.quechoisir.org/pixmania-avis-1285"
         approves={21}
         dislikes={3}
         deleted

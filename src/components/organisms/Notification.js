@@ -11,15 +11,13 @@ export default class Notification extends PureComponent {
     onBack: PropTypes.func,
     children: PropTypes.node.isRequired,
     details: PropTypes.bool,
-    notices: PropTypes.bool,
   };
 
   static defaultProps = {
     title: null,
     details: false,
-    onClose: () => { },
+    onClose: () => {},
     onBack: null,
-    notices: false,
   };
 
   renderChildren() {
@@ -48,13 +46,13 @@ export default class Notification extends PureComponent {
 
   render() {
     const {
-      title, onClose, onBack, notices
+      title, onClose, onBack
     } = this.props;
 
     return (
       <Fragment>
         <NotificationHeader title={title} onClose={onClose} onBack={onBack} />
-        <NotificationMain notices={notices}>
+        <NotificationMain>
           {this.renderChildren()}
         </NotificationMain>
       </Fragment>

@@ -9,13 +9,13 @@ const message = 'L’économie est (vraiment) un sport de combat : “La boule p
 
 
 export default () => (
-  <Notification title="Détail de la notice" notices>
+  <Notification title="Détail de la notice">
     <NoticeDetails
       type="Tip"
       date="03 déc. 2018"
       message={message}
       contributor="Le Même en Mieux"
-      source="http://forum.que-choisir.org/pixmania-avis-1285"
+      source="https://forum.quechoisir.org/pixmania-avis-1285"
       approves={21}
       dislikes={3}
       details
