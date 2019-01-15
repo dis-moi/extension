@@ -9,12 +9,6 @@ export default styled.div`
         margin-right: 6px;
     }
 
-    & [class^="Contributor"] {
-        font-size: 14px;
-        font-weight: bold;
-        color: ${props => props.theme.primaryColor}
-    }
-
     & [class^="TypeBackground"] {
         width: 23px;
         height: 23px;
