@@ -14,12 +14,14 @@ export default styled.button`
     border: 1px solid transparent;
     border-radius: 5px;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
 
     & > svg {
       width: 12px;
       height: 12px;
       margin-right: 5px;
       fill: ${props => props.theme.secondaryColor};
+      transition: all 0.2s ease-in-out;
     }
 
     &:hover {

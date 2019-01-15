@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 export default styled.a`
-    color: ${props => props.theme.secondaryColor};
+    color: ${props => props.theme.activeColor};
     cursor: pointer;
+    transition: all .2s ease-in-out;
 
     &,
     & > span {
@@ -14,6 +15,6 @@ export default styled.a`
     }
 
     &:hover {
-        color: ${props => props.theme.activeColor};
+        color: ${props => props.theme.secondaryColor};
     }
 `;

@@ -11,6 +11,7 @@ export default styled.div`
         color: ${props => props.theme.navInactive};
 
         svg {
+            transition: all 0.2s ease-in-out;
             margin-right: 3px;
             stroke: ${props => props.theme.secondaryColor};
             fill: #fff;
