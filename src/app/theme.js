@@ -28,7 +28,6 @@ export default {
   alternative: '#49B6D6',
   other: '#EB950C',
 
-
   // notice type colors
   noticeTypes: {
     Disapproval: {
