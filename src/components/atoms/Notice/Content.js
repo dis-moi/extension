@@ -19,6 +19,7 @@ export default styled(Content)`
     padding: 12px 12px 12px 13px;
     margin-right: 11px;
     margin-left: 5px;
+    text-decoration: none;
     background-color: #fff;
     border-radius: 15px;
     border: 2px solid transparent;
