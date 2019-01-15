@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-// should be moved to organisms due to Contributor override 
 export default styled.div`
     display: flex;
 

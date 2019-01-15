@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-// should move to molecule, button only should be an atom
 export default styled.button`
     box-sizing: border-box;
     padding: 2px 12px 0;
