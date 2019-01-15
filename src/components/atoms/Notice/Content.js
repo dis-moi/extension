@@ -24,7 +24,7 @@ export default styled(Content)`
     border-radius: 15px;
     border: 2px solid transparent;
 
-    &:hover {
+    &[href]:hover {
         border-color: ${props => props.theme.activeColor}
     }
 
