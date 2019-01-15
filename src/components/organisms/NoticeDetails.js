@@ -4,19 +4,16 @@ import {
   NoticeDetailsContainer,
   NoticeDetailsContent,
   NoticeDetailsMeta,
-  Approves,
   Contributor,
-  Dislikes,
   Message,
   Source,
-  SourceURL,
   Feedbacks,
   Date,
-  Truncated
+  Button
 } from '../atoms';
 import { Anchor } from '../atoms/icons';
 import { Approval, Disapproval } from '../atoms/icons/types';
-import { NoticeType } from '../molecules';
+import {NoticeType, SourceURL} from '../molecules';
 
 export default class Notice extends PureComponent {
   static propTypes = {
@@ -62,22 +59,18 @@ export default class Notice extends PureComponent {
               <Anchor />
               En savoir plus :
               &nbsp;
-              <SourceURL>
-                <Truncated numberOfCharacters={39} preserveWords={false}>
-                  {source}
-                </Truncated>
-              </SourceURL>
+              <SourceURL numberOfCharacters={39}>{source}</SourceURL>
             </Source>
 
             <Feedbacks>
-              <Approves>
+              <Button>
                 <Approval />
                 {approves}
-              </Approves>
-              <Dislikes>
+              </Button>
+              <Button>
                 <Disapproval />
                 {dislikes}
-              </Dislikes>
+              </Button>
             </Feedbacks>
           </Fragment>
         </NoticeDetailsContent>

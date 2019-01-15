@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import Button from './Button';
 import DeleteIcon from './icons/Delete';
 
-export default styled.button.attrs({ children: <DeleteIcon /> })`
+export default styled(Button).attrs({ children: <DeleteIcon /> })`
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -10,13 +11,11 @@ export default styled.button.attrs({ children: <DeleteIcon /> })`
   height: 17px;
   padding: 0 4px;
   margin-left: 16px;
-  fill: #fff;
   background: ${props => props.theme.navInactive};
-  border: none;
   border-radius: 50%;
-  cursor: pointer;
 
   & > svg {
+      fill: #fff;
       width: 9px;
       height: 9px;
   }
