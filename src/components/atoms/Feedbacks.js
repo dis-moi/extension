@@ -22,6 +22,8 @@ export default styled.div`
 
         &:hover {
             svg {
+                stroke: #fff;
+                stroke-width: .5px;
                 fill: ${props => props.theme.secondaryColor};
             }
         }
