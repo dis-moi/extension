@@ -9,8 +9,10 @@ export default styled(ReactRouterNavLink).attrs({ replace: true, activeClassName
     padding-bottom: 6px;
     text-align: center;
     border-top: 2px solid transparent;
+    transition: all 0.2s ease-in-out;
 
     & > svg {
+        transition: all 0.2s ease-in-out;
         height: 28px;
         fill: ${props => props.theme.navInactive};
     }

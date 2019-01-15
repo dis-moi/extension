@@ -23,6 +23,7 @@ export default styled(Content)`
     background-color: #fff;
     border-radius: 15px;
     border: 2px solid transparent;
+    transition: all 0.2s ease-in-out;
 
     &[href]:hover {
         border-color: ${props => props.theme.activeColor}
