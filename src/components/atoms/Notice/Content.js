@@ -28,11 +28,12 @@ export default styled(Content)`
         border-color: ${props => props.theme.activeColor}
     }
 
-    & > div + div {
+    & > div:nth-child(2) {
         width: 245px;
     }
 
-    & > a {
+    & [class^="OpenButton"] {
+        height: auto;
         transform: rotate(180deg)
     }
 `;
