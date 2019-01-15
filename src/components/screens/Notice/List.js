@@ -12,7 +12,7 @@ export default ({ match }) => {
       <NotificationContentTitle>Notices pour cette page</NotificationContentTitle>
       <Notice
         match={match}
-        type="Other"
+        type="Tip"
         message={message}
         contributor="Le Même en Mieux"
         source="http://forum.que-choisir.org/pixmania-avis-1285"

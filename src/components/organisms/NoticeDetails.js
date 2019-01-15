@@ -44,26 +44,24 @@ export default class Notice extends PureComponent {
       <NoticeDetailsContainer>
         <NoticeDetailsContent>
           <NoticeDetailsMeta>
+            <Date>
+              Le
+              &nbsp;
+              {date}
+            </Date>
+            <Contributor>
+              {contributor}
+              &nbsp;
+              :
+            </Contributor>
             <NoticeType type={type} />
-            <div>
-              <Date>
-                    Le 
-                    &nbsp;
-                {date}
-              </Date>
-              <Contributor>
-                {contributor}
-                    &nbsp;
-                    a écrit
-              </Contributor>
-            </div>
           </NoticeDetailsMeta>
           <Fragment>
             <Message>{message}</Message>
             <Source>
               <Anchor />
-                    En savoir plus : 
-                    &nbsp;
+              En savoir plus :
+              &nbsp;
               <SourceURL>
                 <Truncated numberOfCharacters={39} preserveWords={false}>
                   {source}
@@ -73,7 +71,7 @@ export default class Notice extends PureComponent {
 
             <Feedbacks>
               <Approves>
-                <Approval /> 
+                <Approval />
                 {approves}
               </Approves>
               <Dislikes>
