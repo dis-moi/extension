@@ -13,6 +13,7 @@ const Content = ({ to, ...props }) => {
 export default styled(Content)`
     box-sizing: border-box;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     width: 338px;
     min-height: 85px;
@@ -36,5 +37,21 @@ export default styled(Content)`
     & [class^="OpenButton"] {
         height: auto;
         transform: rotate(180deg)
+    }
+
+    & > button {
+        margin-right: auto;
+        margin-left: auto;
+        font-size: 12px;
+        color: ${props => props.theme.secondaryColor};
+        text-align: center;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-decoration: underline;
+        transition: all .2s ease-in-out;
+
+        &:hover {
+            color: ${props => props.theme.activeColor}
+        }
     }
 `;
