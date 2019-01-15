@@ -7,6 +7,7 @@ import {
   Contributor,
   DeleteButton,
   OpenButton,
+  Button,
 } from '../atoms';
 import { NoticeTitle, NoticeType } from '../molecules';
 
@@ -36,7 +37,10 @@ export default class Notice extends PureComponent {
         {!deleted && <DeleteButton onClick={onDelete} />}
         <NoticeContent to={!deleted && to}>
           {deleted ? (
-            <NoticeDeleted>Cette notification ne s’affichera plus !</NoticeDeleted>
+            <Fragment>
+              <NoticeDeleted>Cette notification ne s’affichera plus !</NoticeDeleted>
+              <Button>Annuler</Button>
+            </Fragment>
           ) : (
             <Fragment>
               <NoticeType type={type} />
