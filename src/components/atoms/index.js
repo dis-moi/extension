@@ -26,6 +26,6 @@ export { default as SourceURLContainer } from './SourceURLContainer';
 export { default as Title } from './Title';
 export { default as Truncated } from './Truncated';
 export { default as NavLink } from './NavLink';
-export { default as NoNoticeImg } from './NoNoticeImg';
+export { default as NoNoticeImg } from './Notice/NoNoticeImg';
 export { default as CenterContainer } from './CenterContainer';
 export { default as Date } from './Date';
