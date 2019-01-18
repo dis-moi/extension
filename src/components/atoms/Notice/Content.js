@@ -45,10 +45,6 @@ export default styled(Content)`
         font-size: 12px;
         color: ${props => props.theme.secondaryColor};
         text-align: center;
-        font-weight: bold;
-        text-transform: uppercase;
-        text-decoration: underline;
-        transition: all .2s ease-in-out;
 
         &:hover {
             color: ${props => props.theme.activeColor}
