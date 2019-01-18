@@ -4,6 +4,7 @@ import {
   NoticeDetailsContainer,
   NoticeDetailsContent,
   NoticeDetailsMeta,
+  NoticeDetailsDislike,
   Contributor,
   Message,
   Source,
@@ -71,6 +72,10 @@ export default class Notice extends PureComponent {
               {dislikes}
             </Button>
           </Feedbacks>
+
+          <NoticeDetailsDislike>
+            Merci pour votre retour, cette bulle ne s’affichera plus
+          </NoticeDetailsDislike>
         </NoticeDetailsContent>
       </NoticeDetailsContainer>
     );
