@@ -4,6 +4,6 @@ export default styled.h2`
     margin: 12px 0 26px;
     font-size: 22px;
     font-weight: bold;
-    color: #5F656C;
+    color: ${props => props.theme.secondaryColor};
     text-align: center;
 `;
