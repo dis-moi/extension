@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export default styled.div`
     box-sizing: border-box;
+    position: relative;
     display: flex;
     flex-direction: column;
     height: 320px;
