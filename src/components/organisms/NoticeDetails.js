@@ -10,7 +10,8 @@ import {
   Source,
   Feedbacks,
   Date,
-  Button
+  Button,
+  BorderButton
 } from '../atoms';
 import { Anchor } from '../atoms/icons';
 import { Approval, Disapproval } from '../atoms/icons/types';
@@ -75,6 +76,12 @@ export default class Notice extends PureComponent {
 
           <NoticeDetailsDislike>
             Merci pour votre retour, cette bulle ne s’affichera plus
+
+            <div>
+              <Button>Annuler</Button>
+              <BorderButton>OK</BorderButton>
+            </div>
+
           </NoticeDetailsDislike>
         </NoticeDetailsContent>
       </NoticeDetailsContainer>
