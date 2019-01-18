@@ -9,6 +9,7 @@ export { default as NoticeDetailsContent } from './Notice/DetailsContent';
 export { default as NoticeDetailsMeta } from './Notice/DetailsMeta';
 export { default as NoticeDetailsDislike } from './Notice/DetailsDislike';
 export { default as Button } from './Button';
+export { default as BorderButton } from './BorderButton';
 export { default as CloseButton } from './CloseButton';
 export { default as Contributor } from './Contributor';
 export { default as DeleteButton } from './DeleteButton';
