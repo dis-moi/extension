@@ -1,8 +1,9 @@
 import React, { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { NotificationMain} from '../atoms';
-import Notice from './Notice';
+import { NotificationMain } from '../atoms';
 import { NotificationHeader } from '../molecules';
+import Notice from './Notice';
+import NoticeDetails from './NoticeDetails';
 
 export default class Notification extends PureComponent {
   static propTypes = {
@@ -41,7 +42,8 @@ export default class Notification extends PureComponent {
     return React
       .Children
       .toArray(children)
-      .some(child => Object.prototype.isPrototypeOf.call(Notice, child.type));
+      .some(child => Object.prototype.isPrototypeOf.call(Notice, child.type)
+          || Object.prototype.isPrototypeOf.call(NoticeDetails, child.type));
   }
 
   render() {
@@ -52,7 +54,7 @@ export default class Notification extends PureComponent {
     return (
       <Fragment>
         <NotificationHeader title={title} onClose={onClose} onBack={onBack} />
-        <NotificationMain>
+        <NotificationMain notices={this.hasNotices}>
           {this.renderChildren()}
         </NotificationMain>
       </Fragment>
