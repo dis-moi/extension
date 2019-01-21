@@ -2,7 +2,10 @@ import {
   INIT,
   CONTEXT_TRIGGERED,
   RECO_DISPLAYED,
-  RECO_DISMISSED, MATCH_CONTEXT
+  RECO_DISMISSED,
+  MATCH_CONTEXT,
+  MATCH_CONTEXT_FAILURE,
+  CONTEXT_TRIGGER_FAILURE
 } from '../../constants/ActionTypes';
 import createAction from '../../utils/createAction';
 
@@ -17,11 +20,24 @@ export const matchContext = createAction(
   tab => ({ tab }),
 );
 
+export const matchContextFailure = createAction(
+  MATCH_CONTEXT_FAILURE,
+  error => error,
+  ({ tab, trigger }) => ({ tab, trigger }),
+);
+
 export const contextTriggered = createAction(
   CONTEXT_TRIGGERED,
   (triggeredContexts = []) => ({ triggeredContexts }),
   ({ trigger, tab }) => ({ trigger, tab })
 );
+
+export const contextTriggerFailure = createAction(
+  CONTEXT_TRIGGER_FAILURE,
+  error => error,
+  ({ tab, trigger }) => ({ tab, trigger }),
+);
+
 export const recoDisplayed = createAction(
   RECO_DISPLAYED,
   recommendation => ({ recommendation }),
