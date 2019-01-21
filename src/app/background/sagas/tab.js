@@ -6,10 +6,10 @@ import {
   getInitialContent,
   getRecommendationsToDisplay, getDismissedRecommendations
 } from '../selectors/prefs';
-import {TAB_CREATED, TAB_UPDATED} from '../../constants/browser/tabs';
-import {CONTEXT_TRIGGERED, MATCH_CONTEXT} from '../../constants/ActionTypes';
+import { TAB_CREATED, TAB_UPDATED } from '../../constants/browser/tabs';
+import { CONTEXT_TRIGGERED, MATCH_CONTEXT } from '../../constants/ActionTypes';
 import {
-  init, contextTriggered, matchContext, recoDismissed, recoDisplayed
+  init, contextTriggered, matchContext, matchContextFailure, recoDismissed, recoDisplayed, contextTriggerFailure
 } from '../actions/tabs';
 import { recommendationFound } from '../../content/actions/recommendations';
 import fetchMatchingRecommendations from '../../lmem/getMatchingRecommendations';
@@ -20,39 +20,49 @@ export function* tabSaga({ payload: tab, meta: { url } }) {
   yield put(matchContext(url, tab));
 }
 
-export function* matchContextSaga({ payload: context, meta: { tab } }) {
+export function* matchContextSaga({ payload: trigger, meta: { tab } }) {
   try {
-    const triggeredContexts = yield select(state => findTriggeredContexts(state)(context));
+    const triggeredContexts = yield select(state => findTriggeredContexts(state)(trigger));
 
     if (triggeredContexts.length >= 1) {
-      yield put(contextTriggered(triggeredContexts, { trigger: context, tab }));
+      yield put(contextTriggered(triggeredContexts, { trigger, tab }));
+    } else {
+      throw new Error('No contexts triggered');
     }
   } catch (e) {
-    console.error(e);
+    yield put(matchContextFailure(e, { trigger, tab }));
   }
 }
 
 export const contextTriggeredSaga = executeContentScript => function* ({
   payload: { triggeredContexts },
-  meta: { tab, url }
+  meta: { tab, url: trigger }
 }) {
-  yield call(executeContentScript, tab);
+  try {
+    yield call(executeContentScript, tab);
 
-  const initialContent = yield select(getInitialContent);
+    const initialContent = yield select(getInitialContent);
 
-  yield put(init(initialContent, tab));
+    yield put(init(initialContent, tab));
 
-  const recommendations = yield call(fetchMatchingRecommendations, triggeredContexts.map(tc => tc.recommendation_url));
-  console.log('recommendations', recommendations);
-  const recommendationsToDisplay = yield select(getRecommendationsToDisplay(recommendations));
-  yield all(recommendations.map(reco => put(recoDisplayed(reco, { trigger: url }))));
+    const recommendations = yield call(
+      fetchMatchingRecommendations,
+      triggeredContexts.map(tc => tc.recommendation_url)
+    );
 
-  const dismissedRecommendations = yield select(getDismissedRecommendations(recommendations));
-  yield all(dismissedRecommendations.map(reco => put(recoDismissed(reco, { trigger: url }))));
+    const recommendationsToDisplay = yield select(getRecommendationsToDisplay(recommendations));
+    yield all(recommendations.map(reco => put(recoDisplayed(reco, { trigger }))));
 
-  console.log('recommendationsToDisplay', recommendationsToDisplay);
-  if (recommendationsToDisplay.length >= 1) {
-    yield put(recommendationFound(recommendationsToDisplay, tab));
+    const dismissedRecommendations = yield select(getDismissedRecommendations(recommendations));
+    yield all(dismissedRecommendations.map(reco => put(recoDismissed(reco, { trigger }))));
+
+    if (recommendationsToDisplay.length >= 1) {
+      yield put(recommendationFound(recommendationsToDisplay, tab));
+    } else {
+      throw new Error('Context was triggered but they were no recommendations left to display.');
+    }
+  } catch (e) {
+    yield put(contextTriggerFailure(e, { tab, trigger }));
   }
 };
 
