@@ -32,3 +32,4 @@ export { default as NoNoticeImg } from './Notice/NoNoticeImg';
 export { default as CenterContainer } from './CenterContainer';
 export { default as Date } from './Date';
 export { default as LoadingContainer } from './LoadingContainer';
+export { default as List } from './List';
