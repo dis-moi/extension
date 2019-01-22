@@ -1,12 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {Notification} from '../../organisms';
+import { Notification } from '../../organisms';
+import { Account, OpenButton } from '../../atoms';
 
 export default ({ match }) => (
   <Notification title="Account">
-    <Link to={`${match.url}/data`}>Mes données</Link>
-    <Link to={`${match.url}/contributions`}>Mes contributions</Link>
-    <Link to={`${match.url}/filters`}>Mes filtres</Link>
-    <Link to={`${match.url}/privacy`}>Vie Privée</Link>
+    <Account>
+      <Link to={`${match.url}/data`}>
+        Mes données
+        <OpenButton />
+      </Link>
+      <Link to={`${match.url}/contributions`}>
+        Mes contributions
+        <OpenButton />
+      </Link>
+      <Link to={`${match.url}/filters`}>
+        Mes filtres
+        <OpenButton />
+      </Link>
+      <Link to={`${match.url}/privacy`}>
+        Vie Privée
+        <OpenButton />
+      </Link>
+    </Account>
   </Notification>
 );
