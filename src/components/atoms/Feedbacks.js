@@ -9,13 +9,15 @@ export default styled.div`
 
     & ${Button} {
         color: ${props => props.theme.navInactive};
+        text-decoration: none;
 
         svg {
             transition: all 0.2s ease-in-out;
             margin-right: 3px;
             stroke: ${props => props.theme.secondaryColor};
             fill: #fff;
-            vertical-align: middle
+            vertical-align: middle;
+            transform: scale(-1, 1)
         }
 
         & + ${Button} {
