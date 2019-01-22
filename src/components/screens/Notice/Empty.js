@@ -4,7 +4,7 @@ import { NoNoticeTitle, NoNoticeImg } from '../../atoms/Notification';
 import { AddNotice } from '../../molecules';
 import { Notification } from '../../organisms';
 
-export default ({ match }) => {
+export default () => {
   return (
     <Notification>
       <NoNoticeImg>

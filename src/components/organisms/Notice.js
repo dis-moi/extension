@@ -52,7 +52,7 @@ export default class Notice extends PureComponent {
                   {contributor}
                 </Contributor>
               </div>
-              <OpenButton to={to} />
+              <OpenButton />
             </Fragment>
           )}
         </NoticeContent>
