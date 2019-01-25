@@ -1,9 +1,7 @@
 import styled from 'styled-components';
+import ContentTitle from '../Notification/ContentTitle';
 
-export default styled.h2`
+export default styled(ContentTitle)`
     margin: 0 0 10px;
-    font-size: 14px;
-    font-weight: bold;
-    color: ${props => props.theme.primaryColor};
-    text-transform: uppercase;
+    text-align: left;
 `;
