@@ -1,20 +1,10 @@
 import styled from 'styled-components';
+import ExternalLink from './ExternalLink';
 
-export default styled.a`
-    color: ${props => props.theme.activeColor};
-    cursor: pointer;
-    transition: all .2s ease-in-out;
+export default styled(ExternalLink)`
 
-    &,
     & > span {
         text-decoration: underline;
-    }
-
-    & > span {
         vertical-align: bottom;
-    }
-
-    &:hover {
-        color: ${props => props.theme.secondaryColor};
     }
 `;

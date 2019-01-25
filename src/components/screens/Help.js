@@ -1,7 +1,12 @@
 import React from 'react';
 import { Notification } from '../organisms';
 import { Container, ContentTitle } from '../atoms/Help';
-import { BorderButton, CenterContainer, List } from '../atoms';
+import { 
+  BorderButton, 
+  CenterContainer, 
+  List, 
+  ExternalLink
+} from '../atoms';
 import { Textarea, Form } from '../atoms/Forms';
 
 export default () => (
@@ -11,16 +16,16 @@ export default () => (
 
       <List>
         <li>
-          <a href="_#">Sur quelles pages apparaissent les notices ?</a>
+          <ExternalLink>Sur quelles pages apparaissent les notices ?</ExternalLink>
         </li>
         <li>
-          <a href="_#">J’ai beau testé, les notices n’apparaissent pas</a>
+          <ExternalLink>J’ai beau testé, les notices n’apparaissent pas</ExternalLink>
         </li>
         <li>
-          <a href="_#">Quelles sont les données utilisées ?</a>
+          <ExternalLink>Quelles sont les données utilisées ?</ExternalLink>
         </li>
         <li>
-          <a href="_#">Autres questions fréquentes</a>
+          <ExternalLink>Autres questions fréquentes</ExternalLink>
         </li>
       </List>
 
