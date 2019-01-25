@@ -18,8 +18,8 @@ export default ({ match }) => (
         Mes filtres
         <OpenButton />
       </Link>
-      <Link to={`${match.url}/privacy`}>
-        Vie Privée
+      <Link to={`${match.url}/about`}>
+        À propos
         <OpenButton />
       </Link>
     </Account>

@@ -1,6 +1,4 @@
-import React from 'react';
 import styled from 'styled-components';
-import CloseIcon from './icons/Close';
 
 export default styled.nav`
     
