@@ -1,10 +1,6 @@
 import styled from 'styled-components';
+import ContentTitle from '../ContentTitle';
 
-export default styled.h2`
+export default styled(ContentTitle)`
     margin: 12px 0 0;
-    font-size: 14px;
-    font-weight: bold;
-    color: ${props => props.theme.secondaryColor};
-    text-transform: uppercase;
-    text-align: center;
 `;
