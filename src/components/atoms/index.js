@@ -21,6 +21,7 @@ export { default as NotificationFooterContainer } from './Notification/FooterCon
 export { default as NotificationHeaderContainer } from './Notification/HeaderContainer';
 export { default as NotificationMain } from './Notification/Main';
 export { default as Feedbacks } from './Feedbacks';
+export { default as GlobalStyle } from './GlobalStyle';
 export { default as Logo } from './Logo';
 export { default as Message } from './Message';
 export { default as Source } from './Source';

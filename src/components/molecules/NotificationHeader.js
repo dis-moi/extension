@@ -5,38 +5,40 @@ import { withRouter } from 'react-router';
 import {
   BackButton, CloseButton, Logo, NotificationHeaderContainer, Title
 } from '../atoms';
+import { truncateButPreserveWords } from '../../app/utils/truncate';
+import removeHtml from '../../app/utils/removeHtml';
 
 const NotificationHeader = ({
-  title, onBack, onClose, theme, history
+  title, goBack, close, theme, history
 }) => {
-  const handleBack = onBack || history.goBack;
+  const handleGoBack = goBack || history.goBack;
 
   return (
     <NotificationHeaderContainer theme={theme}>
       {history.index > 0
-        && <BackButton onClick={handleBack} />
+        && <BackButton onClick={handleGoBack} />
       }
       {title ? (
-        <Title>{title}</Title>
+        <Title title={title}>{truncateButPreserveWords(removeHtml(title), 34)}</Title>
       ) : (
         <Logo />
       )}
-      <CloseButton onClick={onClose} />
+      <CloseButton onClick={close} />
     </NotificationHeaderContainer>
   );
 };
 
 NotificationHeader.propTypes = {
   title: PropTypes.string,
-  onBack: PropTypes.func,
-  onClose: PropTypes.func,
+  goBack: PropTypes.func,
+  close: PropTypes.func,
   theme: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 NotificationHeader.defaultProps = {
   title: null,
-  onBack: null,
-  onClose: () => {},
+  goBack: null,
+  close: () => {},
 };
 
 export default withRouter(withTheme(NotificationHeader));

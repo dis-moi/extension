@@ -1,16 +1,16 @@
 import React from 'react';
-import { Notification } from '../organisms';
 import { Container, ContentTitle } from '../atoms/Help';
-import { 
-  BorderButton, 
-  CenterContainer, 
-  List, 
+import {
+  BorderButton,
+  CenterContainer,
+  List,
   ExternalLink
 } from '../atoms';
 import { Textarea, Form } from '../atoms/Forms';
+import Notification from '../organisms/Notification';
 
-export default () => (
-  <Notification title="Aide">
+export default ({ close }) => (
+  <Notification title="Aide" close={close}>
     <Container>
       <ContentTitle>Questions fréquentes</ContentTitle>
 
@@ -29,7 +29,7 @@ export default () => (
         </li>
       </List>
 
-      <ContentTitle>Contacter le support de Bulles</ContentTitle>
+      <ContentTitle>Contacter le support de Le Même En Mieux</ContentTitle>
 
       <Form>
         <Textarea placeholder="Écrire votre message ici" required />

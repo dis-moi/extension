@@ -1,11 +1,13 @@
-import recommendationIsValid from '../../lmem/recommendationIsValid';
+import { recommendationIsValid, recommendationFilter } from '../../lmem';
 
-export const getWebsites = state => state.get('prefs').get('websites');
-export const getOnInstalledDetails = state => state.get('prefs').get('onInstalledDetails');
-export const getCriteria = state => state.get('prefs').get('criteria');
-export const getEditors = state => state.get('prefs').get('editors');
-export const getDismissed = state => state.get('prefs').get('dismissedRecos');
-export const getApproved = state => state.get('prefs').get('approvedRecos');
+export const getPrefs = state => state.get('prefs');
+
+export const getWebsites = state => getPrefs(state).get('websites');
+export const getOnInstalledDetails = state => getPrefs(state).get('onInstalledDetails');
+export const getCriteria = state => getPrefs(state).get('criteria');
+export const getEditors = state => getPrefs(state).get('editors');
+export const getDismissed = state => getPrefs(state).get('dismissedRecos');
+export const getApproved = state => getPrefs(state).get('approvedRecos');
 
 export const getCriterionBySlug = slug => state => getCriteria(state).get(slug);
 export const getSelectedCriteria = state => Array.from(getCriteria(state).keys())
@@ -23,29 +25,24 @@ export const getInitialContent = state => ({
 
 export const getRecommendationEnhancer = (state) => {
   const approvedRecos = getApproved(state);
+  const dismissedRecommendations = getDismissed(state);
 
   return recommendation => ({
     ...recommendation,
-    isApproved: approvedRecos.has(recommendation.id)
+    isApproved: approvedRecos.has(recommendation.id) ? true : undefined,
+    isDismissed: dismissedRecommendations.has(recommendation.id),
+    isValid: recommendationIsValid(recommendation),
   });
-};
-
-export const getRecommendationFilter = (state) => {
-  const dismissedRecommendations = getDismissed(state);
-
-  return recommendation => !dismissedRecommendations.has(recommendation.id)
-      && recommendationIsValid(recommendation);
 };
 
 export const getRecommendationsToDisplay = recommendations => (state) => {
   const recommendationEnhancer = getRecommendationEnhancer(state);
-  const recommendationFilter = getRecommendationFilter(state);
 
-  return recommendations.filter(recommendationFilter).map(recommendationEnhancer);
+  return recommendations.map(recommendationEnhancer).filter(recommendationFilter);
 };
 
 export const getDismissedRecommendations = recommendations => (state) => {
-  const recommendationFilter = getRecommendationFilter(state);
+  const recommendationEnhancer = getRecommendationEnhancer(state);
 
-  return recommendations.filter(recommendation => !recommendationFilter(recommendation));
+  return recommendations.map(recommendationEnhancer).filter(recommendation => !recommendationFilter(recommendation));
 };

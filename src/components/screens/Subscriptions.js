@@ -2,10 +2,10 @@ import React from 'react';
 import { Notification } from '../organisms';
 import Subscriptions from '../atoms/icons/illustrations/Subscriptions';
 import { Container, SubscriptionsData } from '../atoms/Subscriptions';
-import { BorderButton, CenterContainer } from '../atoms';
+import { BorderButton } from '../atoms';
 
-export default () => (
-  <Notification title="Abonnements">
+export default ({ close }) => (
+  <Notification title="Abonnements" close={close}>
     <Container>
       <Subscriptions />
 

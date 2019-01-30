@@ -1,3 +1,4 @@
+
 // background actions
 
 export const INIT = 'INIT';
@@ -32,6 +33,11 @@ export const INSTALLED_DETAILS = 'INSTALLED_DETAILS';
 
 export const REDUCE_RECOMMENDATION_IFRAME = 'REDUCE_RECOMMENDATION_IFRAME';
 export const EXTEND_RECOMMENDATION_IFRAME = 'EXTEND_RECOMMENDATION_IFRAME';
+
+export const OPEN = 'OPEN';
+export const OPENED = 'OPENED';
+export const CLOSE = 'CLOSE';
+export const CLOSED = 'CLOSED';
 
 export const OPEN_PREFERENCE_PANEL = 'OPEN_PREFERENCE_PANEL';
 export const CLOSE_PREFERENCE_PANEL = 'CLOSE_PREFERENCE_PANEL';

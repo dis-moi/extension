@@ -8,9 +8,10 @@ const message = 'L’économie est (vraiment) un sport de combat : “La boule p
     + '(et résister à) la pseudo”';
 
 
-export default () => (
-  <Notification title="Détail de la notice">
+export default ({ close }) => (
+  <Notification title="Détail de la notice" close={close}>
     <NoticeDetails
+      id={1}
       type="Tip"
       date="03 déc. 2018"
       message={message}

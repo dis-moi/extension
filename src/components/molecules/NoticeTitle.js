@@ -1,9 +1,9 @@
-/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Truncated from '../atoms/Truncated';
 
-export const Title = styled.p`
+export const TitleContainer = styled.p`
     display: inline;
     margin: 0 10px 0 0;
     color: ${props => props.theme.activeColor};
@@ -11,8 +11,14 @@ export const Title = styled.p`
     line-height: 1.3;
 `;
 
-export default ({ children }) => (
-  <Title>
+const NoticeTitle = ({ children }) => (
+  <TitleContainer>
     <Truncated numberOfCharacters={60}>{children}</Truncated>
-  </Title>
+  </TitleContainer>
 );
+
+NoticeTitle.propTypes = {
+  children: PropTypes.string.isRequired
+};
+
+export default NoticeTitle;

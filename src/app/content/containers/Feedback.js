@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 
-import { dismissReco, approveReco, unapproveReco, reportReco } from '../actions/recommendations';
+import {
+  dismissReco, approveReco, unapproveReco, reportReco 
+} from '../actions/recommendations';
 import { IMAGES_URL } from '../../constants/assetsUrls';
 import FeedbackButtons from '../components/FeedbackButtons';
 

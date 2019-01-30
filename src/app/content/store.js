@@ -18,10 +18,10 @@ const enhancer = process.env.NODE_ENV !== 'production'
 const store = createStore(
   rootReducer,
   new Record({
-    open: true,
+    open: false,
     reduced: true,
-    preferenceScreenPanel: undefined, // preference screen close
-    recommendations: undefined,
+    preferenceScreenPanel: null, // preference screen close
+    recommendations: [],
     onInstalledDetails: new ImmutableMap(),
     criteria: new ImmutableMap(),
     editors: new ImmutableMap(),

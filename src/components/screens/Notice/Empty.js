@@ -4,14 +4,14 @@ import { NoNoticeTitle, NoNoticeImg } from '../../atoms/Notification';
 import { AddNotice } from '../../molecules';
 import { Notification } from '../../organisms';
 
-export default () => {
+export default ({ close }) => {
   return (
-    <Notification>
+    <Notification close={close}>
       <NoNoticeImg>
         <NoNotice />
       </NoNoticeImg>
 
-      <NoNoticeTitle>Il n’y a plus de bulle ici</NoNoticeTitle>
+      <NoNoticeTitle>Il n’y a plus de notifications ici</NoNoticeTitle>
 
       <AddNotice />
     </Notification>

@@ -1,4 +1,4 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { Fragment, PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import { NotificationMain } from '../atoms';
 import { NotificationHeader } from '../molecules';
@@ -8,17 +8,19 @@ import NoticeDetails from './NoticeDetails';
 export default class Notification extends PureComponent {
   static propTypes = {
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-    onClose: PropTypes.func,
+    close: PropTypes.func,
     onBack: PropTypes.func,
     children: PropTypes.node.isRequired,
     details: PropTypes.bool,
+    closed: PropTypes.bool,
   };
 
   static defaultProps = {
     title: null,
     details: false,
-    onClose: () => {},
+    close: null,
     onBack: null,
+    closed: false,
   };
 
   renderChildren() {
@@ -48,12 +50,16 @@ export default class Notification extends PureComponent {
 
   render() {
     const {
-      title, onClose, onBack
+      title, close, onBack, closed
     } = this.props;
+
+    if (closed) {
+      return null;
+    }
 
     return (
       <Fragment>
-        <NotificationHeader title={title} onClose={onClose} onBack={onBack} />
+        <NotificationHeader title={title} close={close} onBack={onBack} />
         <NotificationMain notices={this.hasNotices}>
           {this.renderChildren()}
         </NotificationMain>

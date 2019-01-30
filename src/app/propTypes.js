@@ -22,7 +22,8 @@ export const recommendation = {
   description: PropTypes.string.isRequired,
   contributor: PropTypes.object.isRequired,
   criteria: PropTypes.arrayOf(PropTypes.shape(criteria)),
-  isApproved: PropTypes.bool,
+  isApproved: PropTypes.oneOf([true, false, undefined]),
+  isDismissed: PropTypes.bool,
   resource: PropTypes.shape(resource),
   alternatives: PropTypes.arrayOf(PropTypes.shape(alternative)),
 };

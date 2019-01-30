@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { Notification } from '../../organisms';
 import { Account, OpenButton } from '../../atoms';
 
-export default ({ match }) => (
-  <Notification title="Account">
+export default ({ match, close }) => (
+  <Notification title="Account" close={close}>
     <Account>
       <Link to={`${match.url}/data`}>
         Mes données

@@ -6,11 +6,12 @@ import { Notification, Notice} from '../../organisms';
 const message = 'De nombreux clients mécontents de Pixmania et ses vendeurs s’expriment sur les '
     + 'réseaux sociaux depuis 2016. Les plaintes continuent en 2017 et 2018 si l’on se réfère au forum Que Choisir.';
 
-export default ({ match }) => {
+export default ({ match, close }) => {
   return (
-    <Notification>
-      <NotificationContentTitle>Notices pour cette page</NotificationContentTitle>
+    <Notification close={close}>
+      <NotificationContentTitle>Notifications pour cette page</NotificationContentTitle>
       <Notice
+        id={1}
         match={match}
         type="Tip"
         message={message}
@@ -20,6 +21,7 @@ export default ({ match }) => {
         dislikes={3}
       />
       <Notice
+        id={2}
         match={match}
         type="Rant"
         message={message}

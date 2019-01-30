@@ -1,5 +1,5 @@
 import {
-  put, takeLatest, select, call, fork, all
+  put, takeLatest, select, call, fork, all, take
 } from 'redux-saga/effects';
 import { findTriggeredContexts } from '../selectors';
 import {
@@ -13,7 +13,7 @@ import {
 } from '../actions/tabs';
 import { recommendationFound } from '../../content/actions/recommendations';
 import fetchMatchingRecommendations from '../../lmem/getMatchingRecommendations';
-import { fetchContentScript, executeTabScript, sendToTab } from '../services';
+import {fetchContentScript, executeTabScript, sendToTab, createBrowserActionChannel} from '../services';
 import watchSingleMessageSaga from '../../utils/watchSingleMessageSaga';
 
 export function* tabSaga({ payload: tab, meta: { url } }) {
@@ -51,12 +51,12 @@ export const contextTriggeredSaga = executeContentScript => function* ({
     );
 
     const recommendationsToDisplay = yield select(getRecommendationsToDisplay(recommendations));
-    yield all(recommendations.map(reco => put(recoDisplayed(reco, { trigger }))));
+    yield all(recommendationsToDisplay.map(reco => put(recoDisplayed(reco, { trigger }))));
 
     const dismissedRecommendations = yield select(getDismissedRecommendations(recommendations));
     yield all(dismissedRecommendations.map(reco => put(recoDismissed(reco, { trigger }))));
 
-    if (recommendationsToDisplay.length >= 1) {
+    if (recommendationsToDisplay.length > 0) {
       yield put(recommendationFound(recommendationsToDisplay, tab));
     } else {
       throw new Error('Context was triggered but they were no recommendations left to display.');
@@ -73,8 +73,23 @@ export function* publishToTabSaga(action) {
   console.log(`Tab "${tab}" respond`, response);
 }
 
+export function* watchBrowserActionSaga() {
+  const channel = yield call(createBrowserActionChannel);
+
+  while (true) {
+    try {
+      const action = yield take(channel);
+      console.log(action);
+      yield put(action);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+}
+
 export default function* tabRootSaga() {
   yield fork(watchSingleMessageSaga);
+  yield fork(watchBrowserActionSaga);
   const contentCode = yield call(fetchContentScript, '/js/content.bundle.js');
   const executeTabContentScript = yield call(executeTabScript, contentCode);
 

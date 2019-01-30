@@ -11,32 +11,37 @@ import {
 } from '../atoms';
 import { NoticeTitle, NoticeType } from '../molecules';
 
-const to = 'notices/details';
-
 export default class Notice extends PureComponent {
   static propTypes = {
+    id: PropTypes.number.isRequired,
     type: PropTypes.string,
     message: PropTypes.string.isRequired,
     contributor: PropTypes.string.isRequired,
-    onDelete: PropTypes.func,
-    deleted: PropTypes.bool,
+    dismiss: PropTypes.func,
+    dismissed: PropTypes.bool,
   }
 
   static defaultProps = {
     type: null,
-    onDelete: () => { },
-    deleted: false,
+    dismiss: () => {},
+    dismissed: false,
+  }
+
+  handleDismiss = () => {
+    const { dismiss, id } = this.props;
+    console.log(dismiss, id);
+    dismiss(id);
   }
 
   render() {
     const {
-      type, message, contributor, onDelete, deleted
+      id, type, message, contributor, dismissed
     } = this.props;
     return (
       <NoticeContainer>
-        {!deleted && <DeleteButton onClick={onDelete} />}
-        <NoticeContent to={!deleted && to}>
-          {deleted ? (
+        {!dismissed && <DeleteButton onClick={this.handleDismiss} />}
+        <NoticeContent to={!dismissed && `notices/details/${id}`}>
+          {dismissed ? (
             <Fragment>
               <NoticeDeleted>Cette notification ne s’affichera plus !</NoticeDeleted>
               <Button>Annuler</Button>

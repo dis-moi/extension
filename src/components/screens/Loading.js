@@ -3,8 +3,8 @@ import { Loading } from '../atoms/icons/illustrations';
 import { LoadingContainer } from '../atoms';
 import { Notification } from '../organisms';
 
-export default ({ location }) => (
-  <Notification>
+export default ({ location, close }) => (
+  <Notification close={close}>
     <LoadingContainer>
       <Loading />
       Chargement…
