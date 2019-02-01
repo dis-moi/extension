@@ -22,7 +22,7 @@ export default class Notice extends PureComponent {
   }
 
   static defaultProps = {
-    type: null,
+    type: 'Other',
     dismiss: () => {},
     dismissed: false,
   }

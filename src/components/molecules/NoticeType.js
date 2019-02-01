@@ -21,7 +21,7 @@ NoticeType.propTypes = {
 };
 
 NoticeType.defaultProps = {
-  type: null,
+  type: 'Other',
 };
 
 export default withTheme(NoticeType);

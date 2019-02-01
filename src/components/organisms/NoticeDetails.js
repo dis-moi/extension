@@ -38,7 +38,7 @@ class NoticeDetails extends PureComponent {
   }
 
   static defaultProps = {
-    type: null,
+    type: 'Other',
     date: null,
     approves: 0,
     dislikes: 0,

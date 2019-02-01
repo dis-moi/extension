@@ -4,6 +4,7 @@ import { recommendation as NoticeType } from '../../../../propTypes';
 import { NotificationContentTitle } from '../../../../../components/atoms';
 import { AddNotice, NoNotice } from '../../../../../components/molecules';
 import { Notification, Notice } from '../../../../../components/organisms';
+import { findType } from '../../../../lmem';
 
 const List = ({
   match, notices, dismiss, close 
@@ -14,13 +15,13 @@ const List = ({
       {notices.length > 0 ? (
         <Fragment>
           {notices.slice(0, 2).map(({
-            id, title, contributor: { name }, resource: { url }
+            id, title, contributor: { name }, resource: { url }, criteria
           }) => (
             <Notice
               key={id}
               id={id}
               match={match}
-              type="Tip"
+              type={findType(criteria)}
               message={title}
               contributor={name}
               source={url}

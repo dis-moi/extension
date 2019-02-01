@@ -6,29 +6,31 @@ import { findType } from '../../../../lmem/typeOfCriteria';
 
 const Details = ({
   notice: {
-    id, resource: { url, author }, title, criteria, description, isApproved
+    id, resource: { url }, contributor: { name }, title, criteria, description, isApproved
   },
   approve,
   disapprove,
   close,
-}) => (
-  <Notification title={title} close={close}>
-    <NoticeDetails
-      id={id}
-      type={findType(criteria)}
-      date="03 déc. 2018"
-      message={description}
-      contributor={author}
-      source={url}
-      approves={21}
-      dislikes={3}
-      approve={approve}
-      disapprove={disapprove}
-      approved={isApproved}
-      details
-    />
-  </Notification>
-);
+}) => {
+  return (
+    <Notification title={title} close={close}>
+      <NoticeDetails
+        id={id}
+        type={findType(criteria)}
+        date="03 déc. 2018"
+        message={description}
+        contributor={name}
+        source={url}
+        approves={21}
+        dislikes={3}
+        approve={approve}
+        disapprove={disapprove}
+        approved={isApproved}
+        details
+      />
+    </Notification>
+  );
+};
 
 Details.propTypes = {
   notice: PropTypes.shape(NoticeType).isRequired,
