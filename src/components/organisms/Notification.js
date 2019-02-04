@@ -4,6 +4,7 @@ import { NotificationMain } from '../atoms';
 import { NotificationHeader } from '../molecules';
 import Notice from './Notice';
 import NoticeDetails from './NoticeDetails';
+import isChildInstanceOf from '../../app/utils/isChildInstanceOf';
 
 export default class Notification extends PureComponent {
   static propTypes = {
@@ -27,7 +28,7 @@ export default class Notification extends PureComponent {
     const { children, details } = this.props;
 
     return React.Children.map(children, (child) => {
-      if (Object.prototype.isPrototypeOf.call(Notice, child.type)) {
+      if (isChildInstanceOf(child)(Notice)) {
         return React.cloneElement(child, {
           ...child.props,
           details,
@@ -44,8 +45,7 @@ export default class Notification extends PureComponent {
     return React
       .Children
       .toArray(children)
-      .some(child => Object.prototype.isPrototypeOf.call(Notice, child.type)
-          || Object.prototype.isPrototypeOf.call(NoticeDetails, child.type));
+      .some(child => isChildInstanceOf(child)(Notice) || isChildInstanceOf(child)(NoticeDetails));
   }
 
   render() {
