@@ -12,26 +12,21 @@ const List = ({
   return (
     <Notification close={close}>
       <NotificationContentTitle>Notifications pour cette page</NotificationContentTitle>
-      {notices.length > 0 ? (
-        <Fragment>
-          {notices.slice(0, 2).map(({
-            id, title, contributor: { name }, resource: { url }, criteria
-          }) => (
-            <Notice
-              key={id}
-              id={id}
-              match={match}
-              type={findType(criteria)}
-              message={title}
-              contributor={name}
-              source={url}
-              dismiss={dismiss}
-            />
-          ))}
-        </Fragment>
-      ) : (
-        <NoNotice />
-      )}
+      {notices.slice(0, 2).map(({
+        id, title, contributor: { name }, resource: { url }, criteria
+      }) => (
+        <Notice
+          key={id}
+          id={id}
+          match={match}
+          type={findType(criteria)}
+          message={title}
+          contributor={name}
+          source={url}
+          dismiss={dismiss}
+        />
+      ))}
+      {notices.length === 0 && <NoNotice />}
       <AddNotice
         as="a"
         href="https://form.jotformeu.com/82702852284358"
