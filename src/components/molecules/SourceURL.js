@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { SourceURLContainer, Truncated} from '../atoms';
 
 export const SourceURL = ({ numberOfCharacters, children, ...props }) => (
-  <SourceURLContainer {...props} href={children} target="_blank" rel="noopener noreferrer">
+  <SourceURLContainer {...props} href={children}>
     <Truncated numberOfCharacters={numberOfCharacters} preserveWords={false}>
       {children}
     </Truncated>

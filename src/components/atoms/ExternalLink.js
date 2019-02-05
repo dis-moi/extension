@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.a`
+export default styled.a.attrs({ target: '_blank', rel: 'noopener noreferrer' })`
     color: ${props => props.theme.activeColor};
     text-decoration: underline;
     cursor: pointer;
