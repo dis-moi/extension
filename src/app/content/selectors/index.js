@@ -8,3 +8,7 @@ export const getNoticeById = (state, { match: { params } }) => getById(getNotice
 export const isOpen = state => state.get('open');
 
 export const getFilteredNotices = state => getNotices(state).filter(recommendationFilter);
+
+export const getOnInstalledDetails = state => state.get('onInstalledDetails');
+
+export const getInstallationDate = state => getOnInstalledDetails(state).get('datetime');

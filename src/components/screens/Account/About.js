@@ -1,29 +1,49 @@
 import React from 'react';
-
-import { Notification } from '../../organisms';
+import PropTypes from 'prop-types';
 import { Container, Content, ContentTitle } from '../../atoms/About';
-import { ExternalLink } from '../../atoms';
+import { ExternalLink, Time } from '../../atoms';
+import { Notification } from '../../organisms';
 
-export default () => (
-  <Notification title="À propos">
+const About = ({ close, installationDate, extensionVersion }) => (
+  <Notification title="À propos" close={close}>
     <Container>
-      <ContentTitle>Le Même En Mieux V1.1.0</ContentTitle>
+      <ContentTitle>
+Le Même En Mieux V
+        {extensionVersion}
+      </ContentTitle>
       <Content>
         Bulles vous permet de lire et poster des messages directement sur toutes les pages du web.
         Chacun reçoit ainsi les messages de ses amis, média et experts préférés au moment où il en besoin.
       </Content>
 
       <Content>
-        Vous avez installé le compagnon Bulles le vendredi 7 décembre 2018.
+        Vous avez installé le compagnon Bulles le 
+        {' '}
+        <Time>{installationDate}</Time>
+.
       </Content>
 
       <nav>
-        <ExternalLink href="_#">Contact</ExternalLink>
+        <ExternalLink href="https://www.lmem.net/contact.html">Contact</ExternalLink>
         &nbsp;
         -
         &nbsp;
-        <ExternalLink href="_#">Désinstaller</ExternalLink>
+        <ExternalLink href="https://choisir.lmem.net/desinstaller-meme-mieux/">Désinstaller</ExternalLink>
       </nav>
     </Container>
   </Notification>
 );
+
+About.propTypes = {
+  close: PropTypes.func,
+  installationDate: PropTypes.string,
+  extensionVersion: PropTypes.string,
+};
+
+About.defaultProps = {
+  close: () => {},
+  installationDate: (new Date()).toString(),
+  extensionVersion: '0.0.0'
+};
+
+export default About;

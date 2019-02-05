@@ -26,6 +26,7 @@ export { default as Logo } from './Logo';
 export { default as Message } from './Message';
 export { default as Source } from './Source';
 export { default as SourceURLContainer } from './SourceURLContainer';
+export { default as Time } from './Time';
 export { default as Title } from './Title';
 export { default as Truncated } from './Truncated';
 export { default as NavLink } from './NavLink';
