@@ -12,6 +12,7 @@ import createAction from '../../utils/createAction';
 export const init = createAction(
   INIT,
   ({ onInstalledDetails, criteria, editors }) => ({ onInstalledDetails, criteria, editors }),
+  tab => ({ tab })
 );
 
 export const matchContext = createAction(
