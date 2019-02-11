@@ -40,4 +40,31 @@ describe('migrate', function () {
     expect(migrate(loadedState, initialState).getIn(['prefs', 'onInstalledDetails']))
     .to.deep.equal(initialState.getIn(['prefs', 'onInstalledDetails']));
   });
+
+  it('copies approvedRecos to likedNotices', function () {
+    const initialState = makeInitialState();
+
+    const previouslyLikedNotices = ['some', 'ids'];
+
+    const loadedState = fromJS({
+      prefs: {
+        approvedRecos: previouslyLikedNotices
+      }
+    });
+
+    const migratedState = migrate(loadedState, initialState);
+
+    expect(migratedState.getIn(['prefs', 'likedNotices'])).to.include('some');
+  });
+  it('initialize dislikedNotices if not existent', function () {
+    const initialState = makeInitialState();
+
+    const loadedState = fromJS({
+      prefs: {}
+    });
+
+    const migratedState = migrate(loadedState, initialState);
+
+    expect(migratedState.getIn(['prefs', 'dislikedNotices'])).to.exist
+  });
 });

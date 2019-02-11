@@ -6,10 +6,10 @@ import { findType } from '../../../../lmem/typeOfCriteria';
 
 const Details = ({
   notice: {
-    id, resource: { url }, contributor: { name }, title, criteria, description, isApproved
+    id, resource: { url }, contributor: { name }, title, criteria, description, liked, disliked
   },
-  approve,
-  disapprove,
+  like, unlike,
+  dislike, undislike,
   close,
 }) => {
   return (
@@ -21,11 +21,14 @@ const Details = ({
         message={description}
         contributor={name}
         source={url}
-        approves={21}
+        likes={21}
         dislikes={3}
-        approve={approve}
-        disapprove={disapprove}
-        approved={isApproved}
+        like={like}
+        unlike={unlike}
+        dislike={dislike}
+        undislike={undislike}
+        liked={liked}
+        disliked={disliked}
         details
       />
     </Notification>
@@ -34,14 +37,14 @@ const Details = ({
 
 Details.propTypes = {
   notice: PropTypes.shape(NoticeType).isRequired,
-  approve: PropTypes.func,
-  disapprove: PropTypes.func,
+  like: PropTypes.func,
+  unlike: PropTypes.func,
+  dislike: PropTypes.func,
+  undislike: PropTypes.func,
   close: PropTypes.func,
 };
 
 Details.defaultProps = {
-  approve: () => {},
-  disapprove: () => {},
   close: null,
 };
 

@@ -11,7 +11,7 @@ import { CONTEXT_TRIGGERED, MATCH_CONTEXT } from '../../constants/ActionTypes';
 import {
   init, contextTriggered, matchContext, matchContextFailure, recoDismissed, recoDisplayed, contextTriggerFailure
 } from '../actions/tabs';
-import { recommendationFound } from '../../content/actions/recommendations';
+import { noticesFound } from '../../content/actions/recommendations';
 import fetchMatchingRecommendations from '../../lmem/getMatchingRecommendations';
 import {fetchContentScript, executeTabScript, sendToTab, createBrowserActionChannel} from '../services';
 import watchSingleMessageSaga from '../../utils/watchSingleMessageSaga';
@@ -57,12 +57,12 @@ export const contextTriggeredSaga = executeContentScript => function* ({
     yield all(dismissedRecommendations.map(reco => put(recoDismissed(reco, { trigger }))));
 
     if (recommendationsToDisplay.length > 0) {
-      yield put(recommendationFound(recommendationsToDisplay, tab));
+      yield put(noticesFound(recommendationsToDisplay, tab));
     } else {
       throw new Error('Context was triggered but they were no recommendations left to display.');
     }
   } catch (e) {
-    yield put(contextTriggerFailure(e, { tab, trigger }));
+    yield put(contextTriggerFailure(e, { tab, trigger }));;
   }
 };
 

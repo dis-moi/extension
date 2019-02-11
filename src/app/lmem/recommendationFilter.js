@@ -1,1 +1,4 @@
-export default recommendation => recommendation.isDismissed !== true && recommendation.isValid !== false && recommendation.isApproved !== false;
+export default notice =>
+  notice.dismissed !== true
+  && notice.valid !== false
+  && notice.disliked !== true;

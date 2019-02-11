@@ -14,7 +14,7 @@ import {
 
 import { deactivate } from '../../src/app/content/actions/ui';
 import { excludeEditor, includeEditor } from '../../src/app/content/actions/filters';
-import { dismissReco, approveReco, unapproveReco, reportReco } from '../../src/app/content/actions/recommendations';
+import { dismissNotice, likeNotice, unlikeNotice, dislikeNotice, undislikeNotice, undismissNotice, reportNotice } from '../../src/app/content/actions/recommendations';
 import { DEACTIVATE_EVERYWHERE, DEACTIVATE_WEBSITE_ALWAYS } from '../../src/app/constants/websites';
 
 const expect = chai.expect;
@@ -26,7 +26,7 @@ describe('background reducer', function () {
     const action = receivedMatchingContexts(matchingContexts);
 
     const nextState = resourcesReducer( makeInitialState().get('resources'), action );
-    
+
     expect(action.payload.matchingContexts).to.be.an.instanceof(ImmutableSet);
     expect(nextState.get('matchingContexts')).to.have.size(matchingContexts.size);
   });
@@ -121,7 +121,7 @@ describe('background reducer', function () {
     expect(nextState.get('editors')).to.have.size(1);
     expect(nextState.get('editors').get('1').get('isExcluded')).to.be.true;
   });
-  
+
   it('include editor', () => {
     const action = includeEditor(1);
 
@@ -140,44 +140,74 @@ describe('background reducer', function () {
     expect(nextState.get('editors').get('1').get('isExcluded')).to.be.false;
   });
 
-  it('dismiss reco', () => {
-    const action = dismissReco(1);
+  it('dismiss notice', () => {
+    const action = dismissNotice(1);
 
     const nextState = prefsReducer(
-      fromJS({'dismissedRecos': new ImmutableSet()}),
+      fromJS({'dismissedNotices': new ImmutableSet()}),
       action );
 
-    expect(nextState.get('dismissedRecos')).to.have.size(1);
-  });
-  
-  it('approve reco', () => {
-    const action = approveReco(1);
-
-    const nextState = prefsReducer(
-      fromJS({ 'approvedRecos': new ImmutableSet()}),
-      action );
-
-    expect(nextState.get('approvedRecos')).to.have.size(1);
+    expect(nextState.get('dismissedNotices')).to.have.size(1);
   });
 
-  it('unapprove reco', () => {
-    const action = unapproveReco(42);
+  it('like notice', () => {
+    const action = likeNotice(1);
 
     const nextState = prefsReducer(
-      fromJS({ 'approvedRecos': new ImmutableSet([42])}),
+      fromJS({ 'likedNotices': new ImmutableSet()}),
       action );
 
-    expect(nextState.get('approvedRecos')).to.have.size(0);
+    expect(nextState.get('likedNotices')).to.have.size(1);
   });
 
-  it('report reco', () => {
-    const action = reportReco(1);
+  it('dislike notice', () => {
+    const action = dislikeNotice(1);
 
     const nextState = prefsReducer(
-      fromJS({'dismissedRecos': new ImmutableSet()}),
+      fromJS({ 'dislikedNotices': new ImmutableSet()}),
       action );
 
-    expect(nextState.get('dismissedRecos')).to.have.size(1);
+    expect(nextState.get('dislikedNotices')).to.have.size(1);
+  });
+
+  it('undismiss notice', () => {
+    const action = undismissNotice(42);
+
+    const nextState = prefsReducer(
+      fromJS({ 'dismissedNotices': new ImmutableSet([42])}),
+      action );
+
+    expect(nextState.get('dismissedNotices')).to.have.size(0);
+  });
+
+  it('unlike notice', () => {
+    const action = unlikeNotice(42);
+
+    const nextState = prefsReducer(
+      fromJS({ 'likedNotices': new ImmutableSet([42])}),
+      action );
+
+    expect(nextState.get('likedNotices')).to.have.size(0);
+  });
+
+  it('undislike notice', () => {
+    const action = undislikeNotice(42);
+
+    const nextState = prefsReducer(
+      fromJS({ 'dislikedNotices': new ImmutableSet([42])}),
+      action );
+
+    expect(nextState.get('dislikedNotices')).to.have.size(0);
+  });
+
+  it('report notice', () => {
+    const action = reportNotice(1);
+
+    const nextState = prefsReducer(
+      fromJS({'reportedNotices': new ImmutableSet()}),
+      action );
+
+    expect(nextState.get('reportedNotices')).to.have.size(1);
   });
 
 });
