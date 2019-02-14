@@ -69,7 +69,7 @@ class NoticeDetails extends PureComponent {
 
   render() {
     const {
-      type, date, message, contributor, source, approves, dislikes, approved
+      type, date, message, contributor, source, approved
     } = this.props;
 
     return (
@@ -99,11 +99,9 @@ class NoticeDetails extends PureComponent {
           <Feedbacks>
             <Button onClick={this.handleApprove}>
               <Approval active={approved === true} />
-              {approves}
             </Button>
             <Button onClick={this.handleDisapprove}>
               <Disapproval active={approved === false} />
-              {dislikes}
             </Button>
           </Feedbacks>
 
