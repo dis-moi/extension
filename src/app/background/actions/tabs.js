@@ -23,8 +23,7 @@ export const matchContext = createAction(
 
 export const matchContextFailure = createAction(
   MATCH_CONTEXT_FAILURE,
-  error => error,
-  ({ tab, trigger }) => ({ tab, trigger }),
+  error => ({ error })
 );
 
 export const contextTriggered = createAction(
