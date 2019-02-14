@@ -35,8 +35,7 @@ export const contextTriggered = createAction(
 
 export const contextTriggerFailure = createAction(
   CONTEXT_TRIGGER_FAILURE,
-  error => error,
-  ({ tab, trigger }) => ({ tab, trigger }),
+  error => ({ error })
 );
 
 export const recoDisplayed = createAction(
