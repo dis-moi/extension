@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { recommendation as NoticeType } from '../../../../propTypes';
 import { NotificationContentTitle } from '../../../../../components/atoms';
@@ -7,13 +7,13 @@ import { Notification, Notice } from '../../../../../components/organisms';
 import { findType } from '../../../../lmem';
 
 const List = ({
-  match, notices, dismiss, close 
+  match, notices, dismiss, undismiss, close
 }) => {
   return (
     <Notification close={close}>
       <NotificationContentTitle>Notifications pour cette page</NotificationContentTitle>
       {notices.slice(0, 2).map(({
-        id, title, contributor: { name }, resource: { url }, criteria
+        id, title, contributor: { name }, resource: { url }, criteria, dismissed, disliked
       }) => (
         <Notice
           key={id}
@@ -24,6 +24,9 @@ const List = ({
           contributor={name}
           source={url}
           dismiss={dismiss}
+          undismiss={undismiss}
+          dismissed={dismissed}
+          disliked={disliked}
         />
       ))}
       {notices.length === 0 && <NoNotice />}
@@ -41,13 +44,13 @@ List.propTypes = {
   match: PropTypes.object,
   notices: PropTypes.arrayOf(PropTypes.shape(NoticeType)),
   dismiss: PropTypes.func,
+  undismiss: PropTypes.func,
   close: PropTypes.func,
 };
 
 List.defaultProps = {
   match: null,
   notices: [],
-  dismiss: () => {},
   close: null,
 };
 

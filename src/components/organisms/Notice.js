@@ -18,33 +18,30 @@ export default class Notice extends PureComponent {
     message: PropTypes.string.isRequired,
     contributor: PropTypes.string.isRequired,
     dismiss: PropTypes.func,
+    undismiss: PropTypes.func,
     dismissed: PropTypes.bool,
+    disliked: PropTypes.bool,
   }
 
   static defaultProps = {
     type: 'Other',
-    dismiss: () => {},
     dismissed: false,
-  }
-
-  handleDismiss = () => {
-    const { dismiss, id } = this.props;
-    console.log(dismiss, id);
-    dismiss(id);
   }
 
   render() {
     const {
-      id, type, message, contributor, dismissed
+      id, type, message, contributor, dismissed, disliked, dismiss, undismiss
     } = this.props;
     return (
       <NoticeContainer>
-        {!dismissed && <DeleteButton onClick={this.handleDismiss} />}
+        {!dismissed && !disliked &&
+          <DeleteButton onClick={() => dismiss(id)} />
+        }
         <NoticeContent to={!dismissed && `notices/details/${id}`}>
-          {dismissed ? (
+          {dismissed || disliked ? (
             <Fragment>
               <NoticeDeleted>Cette notification ne s’affichera plus !</NoticeDeleted>
-              <Button>Annuler</Button>
+              <Button onClick={() => undismiss(id)}>Annuler</Button>
             </Fragment>
           ) : (
             <Fragment>

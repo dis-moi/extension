@@ -1,3 +1,4 @@
+import { LOCATION_CHANGE } from 'connected-react-router'
 import {
   NOTICES_FOUND, DISMISS_NOTICE, UNDISMISS_NOTICE, LIKE_NOTICE, UNLIKE_NOTICE, DISLIKE_NOTICE, UNDISLIKE_NOTICE
 } from '../../constants/ActionTypes';
@@ -27,6 +28,11 @@ export default (state = [], action) => {
 
     case UNDISLIKE_NOTICE:
       return updateItem(state, { id: payload.id, disliked: false, justDisliked: false });
+
+    case LOCATION_CHANGE:
+      return state.map(
+        notice => ({ ...notice, justDismissed: false, justLiked: false, justDisliked: false })
+      )
 
     default:
       return state;
