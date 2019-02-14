@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { recommendation as NoticeType } from '../../../../propTypes';
 import { NotificationContentTitle } from '../../../../../components/atoms';
@@ -7,7 +7,7 @@ import { Notification, Notice } from '../../../../../components/organisms';
 import { findType } from '../../../../lmem';
 
 const List = ({
-  match, notices, dismiss, close 
+  notices, dismiss, close
 }) => {
   return (
     <Notification close={close}>
@@ -18,7 +18,6 @@ const List = ({
         <Notice
           key={id}
           id={id}
-          match={match}
           type={findType(criteria)}
           message={title}
           contributor={name}
@@ -38,14 +37,12 @@ const List = ({
 };
 
 List.propTypes = {
-  match: PropTypes.object,
   notices: PropTypes.arrayOf(PropTypes.shape(NoticeType)),
   dismiss: PropTypes.func,
   close: PropTypes.func,
 };
 
 List.defaultProps = {
-  match: null,
   notices: [],
   dismiss: () => {},
   close: null,
