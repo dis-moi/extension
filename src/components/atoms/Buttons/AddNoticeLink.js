@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import BorderButton from './BorderButton';
 
 export default styled(BorderButton)`
+    display: flex;
+    align-items: center;
     margin-top: 25px;
     color: ${props => props.theme.secondaryColor};
     border-color: #fff;

@@ -12,7 +12,9 @@
     "test": "LMEM_BACKEND_ORIGIN='' LMEM_SCRIPTS_ORIGIN='.' NODE_ENV=test mocha --compilers js:@babel/register test/app --recursive",
     "lint": "git ls-files -om --exclude-standard | grep \\.js$ | xargs eslint --fix",
     "lint:css": "stylelint './src/**/*.js'",
-    "analyse": "babel-node ./node_modules/webpack/bin/webpack --optimize-minimize --mode production --config webpack/chromium.config.js --profile --json > stats.json"
+    "analyse": "babel-node ./node_modules/webpack/bin/webpack --optimize-minimize --mode production --config webpack/chromium.config.js --profile --json > stats.json",
+    "storybook": "start-storybook -p 6007 -c .storybook",
+    "build-storybook": "build-storybook"
   },
   "pre-commit": [
     "lint"
@@ -57,6 +59,9 @@
     "@semantic-release/exec": "^2.3.0",
     "@semantic-release/git": "^7.0.1",
     "@semantic-release/github": "^5.0.1",
+    "@storybook/addon-actions": "^4.1.11",
+    "@storybook/addons": "^4.1.11",
+    "@storybook/react": "^4.1.11",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
     "babel-plugin-add-module-exports": "^1.0.0",

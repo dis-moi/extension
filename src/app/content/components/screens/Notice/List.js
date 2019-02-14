@@ -7,7 +7,7 @@ import { Notification, Notice } from '../../../../../components/organisms';
 import { findType } from '../../../../lmem';
 
 const List = ({
-  match, notices, dismiss, undismiss, close
+  notices, dismiss, undismiss, close
 }) => {
   return (
     <Notification close={close}>
@@ -18,7 +18,6 @@ const List = ({
         <Notice
           key={id}
           id={id}
-          match={match}
           type={findType(criteria)}
           message={title}
           contributor={name}
@@ -41,7 +40,6 @@ const List = ({
 };
 
 List.propTypes = {
-  match: PropTypes.object,
   notices: PropTypes.arrayOf(PropTypes.shape(NoticeType)),
   dismiss: PropTypes.func,
   undismiss: PropTypes.func,
@@ -49,7 +47,6 @@ List.propTypes = {
 };
 
 List.defaultProps = {
-  match: null,
   notices: [],
   close: null,
 };

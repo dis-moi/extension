@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withTheme } from 'styled-components';
 import { withRouter } from 'react-router';
 import {
   BackButton, CloseButton, Logo, NotificationHeaderContainer, Title
@@ -9,12 +8,12 @@ import { truncateButPreserveWords } from '../../app/utils/truncate';
 import removeHtml from '../../app/utils/removeHtml';
 
 const NotificationHeader = ({
-  title, goBack, close, theme, history
+  title, goBack, close, history
 }) => {
   const handleGoBack = goBack || history.goBack;
 
   return (
-    <NotificationHeaderContainer theme={theme}>
+    <NotificationHeaderContainer>
       {history.index > 0
         && <BackButton onClick={handleGoBack} />
       }
@@ -32,7 +31,6 @@ NotificationHeader.propTypes = {
   title: PropTypes.string,
   goBack: PropTypes.func,
   close: PropTypes.func,
-  theme: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 NotificationHeader.defaultProps = {
@@ -41,4 +39,6 @@ NotificationHeader.defaultProps = {
   close: () => {},
 };
 
-export default withRouter(withTheme(NotificationHeader));
+export { NotificationHeader };
+
+export default withRouter(NotificationHeader);
