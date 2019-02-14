@@ -59,7 +59,8 @@ export const contextTriggeredSaga = executeContentScript => function* ({
     if (recommendationsToDisplay.length > 0) {
       yield put(noticesFound(recommendationsToDisplay, tab));
     } else {
-      throw new Error('Context was triggered but they were no recommendations left to display.');
+      // Will throw here when we will be able to not trigger context on dismissed/disliked notices
+      // throw new Error('Context was triggered but they were no recommendations left to display.');
     }
   } catch (e) {
     yield put(contextTriggerFailure(e, { tab, trigger }));;
