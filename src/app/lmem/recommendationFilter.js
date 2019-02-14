@@ -1,4 +1,3 @@
-export default notice =>
-  notice.dismissed !== true
-  && notice.valid !== false
-  && notice.disliked !== true;
+export default notice => notice.valid
+  && (!notice.dismissed || notice.justDismissed)
+  && (!notice.disliked || notice.justDisliked);

@@ -23,8 +23,11 @@ export const recommendation = {
   contributor: PropTypes.object.isRequired,
   criteria: PropTypes.arrayOf(PropTypes.shape(criteria)),
   liked: PropTypes.bool,
+  justLiked: PropTypes.bool,
   disliked: PropTypes.bool,
+  justDisliked: PropTypes.bool,
   dismissed: PropTypes.bool,
+  justDismissed: PropTypes.bool,
   resource: PropTypes.shape(resource),
   alternatives: PropTypes.arrayOf(PropTypes.shape(alternative)),
 };

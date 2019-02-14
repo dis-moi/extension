@@ -11,22 +11,22 @@ export default (state = [], action) => {
       return payload.notices;
 
     case DISMISS_NOTICE:
-      return updateItem(state, { id: payload.id, dismissed: true });
+      return updateItem(state, { id: payload.id, dismissed: true, justDismissed: true });
 
     case UNDISMISS_NOTICE:
-      return updateItem(state, { id: payload.id, dismissed: false });
+      return updateItem(state, { id: payload.id, dismissed: false, justDismissed: false });
 
     case LIKE_NOTICE:
-      return updateItem(state, { id: payload.id, liked: true,  });
+      return updateItem(state, { id: payload.id, liked: true, justLiked: true });
 
     case UNLIKE_NOTICE:
-      return updateItem(state, { id: payload.id, liked: false });
+      return updateItem(state, { id: payload.id, liked: false, justDismissed: false });
 
     case DISLIKE_NOTICE:
-      return updateItem(state, { id: payload.id, disliked: true,  });
+      return updateItem(state, { id: payload.id, disliked: true, justDisliked: true });
 
     case UNDISLIKE_NOTICE:
-      return updateItem(state, { id: payload.id, disliked: false });
+      return updateItem(state, { id: payload.id, disliked: false, justDisliked: false });
 
     default:
       return state;
