@@ -2,14 +2,11 @@ import {
   put, takeLatest, select, call, fork, all, take
 } from 'redux-saga/effects';
 import { findTriggeredContexts } from '../selectors';
-import {
-  getInitialContent,
-  getRecommendationsToDisplay, getDismissedRecommendations
-} from '../selectors/prefs';
+import { getInitialContent, getNoticesToDisplay, getIgnoredNotices } from '../selectors/prefs';
 import { TAB_CREATED, TAB_UPDATED } from '../../constants/browser/tabs';
 import { CONTEXT_TRIGGERED, MATCH_CONTEXT } from '../../constants/ActionTypes';
 import {
-  init, contextTriggered, matchContext, matchContextFailure, recoDismissed, recoDisplayed, contextTriggerFailure
+  init, contextTriggered, matchContext, matchContextFailure, noticeIgnored, noticeDisplayed, contextTriggerFailure
 } from '../actions/tabs';
 import { noticesFound } from '../../content/actions/recommendations';
 import fetchMatchingRecommendations from '../../lmem/getMatchingRecommendations';
@@ -45,25 +42,25 @@ export const contextTriggeredSaga = executeContentScript => function* ({
 
     yield put(init(initialContent, tab));
 
-    const recommendations = yield call(
+    const notices = yield call(
       fetchMatchingRecommendations,
       triggeredContexts.map(tc => tc.recommendation_url)
     );
 
-    const recommendationsToDisplay = yield select(getRecommendationsToDisplay(recommendations));
-    yield all(recommendationsToDisplay.map(reco => put(recoDisplayed(reco, { trigger }))));
+    const noticesToShow = yield select(getNoticesToDisplay(notices));
+    yield all(noticesToShow.map(notice => put(noticeDisplayed(notice, trigger))));
 
-    const dismissedRecommendations = yield select(getDismissedRecommendations(recommendations));
-    yield all(dismissedRecommendations.map(reco => put(recoDismissed(reco, { trigger }))));
+    const ignoredNotices = yield select(getIgnoredNotices(notices));
+    yield all(ignoredNotices.map(notice => put(noticeIgnored(notice, trigger ))));
 
-    if (recommendationsToDisplay.length > 0) {
-      yield put(noticesFound(recommendationsToDisplay, tab));
+    if (noticesToShow.length > 0) {
+      yield put(noticesFound(noticesToShow, tab));
     } else {
       // Will throw here when we will be able to not trigger context on dismissed/disliked notices
       // throw new Error('Context was triggered but they were no recommendations left to display.');
     }
   } catch (e) {
-    yield put(contextTriggerFailure(e, { tab, trigger }));;
+    yield put(contextTriggerFailure(e, { tab, trigger }));
   }
 };
 
