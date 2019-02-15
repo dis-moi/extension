@@ -17,28 +17,6 @@ const Wrapper = styled.div`
   height: 414px;
 `
 
-const notices = [
-  {
-    id: '123',
-    description: 'Description',
-    title: 'title',
-    contributor: { name: 'John Doe' },
-    criteria: [{ label: 'label', slug: 'slug' }],
-    isApproved: true,
-    isDismissed: false,
-    resource: {
-      author: 'Jack Daniels',
-      editor: 'LMEM',
-      label: 'label',
-      url: 'url',
-    },
-    alternatives: [{
-      label: 'some alternative',
-      url_to_redirect: 'url'
-    }]
-  }
-]
-
 storiesOf('organisms/Notice', module)
   .addDecorator(getStory => (
     <div>
@@ -63,6 +41,15 @@ storiesOf('organisms/Notice', module)
   ))
   .add('Other', () => (
     <Notice type='Other' contributor='Jalil' id='123' message='message' dismiss={action('dismiss')} dismissed={false} />
+  ))
+  .add('No type', () => (
+    <Notice contributor='Jalil' id='123' message='message' dismiss={action('dismiss')} dismissed={false} />
+  ))
+  .add('Undefined type', () => (
+    <Notice type={undefined} contributor='Jalil' id='123' message='message' dismiss={action('dismiss')} dismissed={false} />
+  ))
+  .add('Unknown type', () => (
+    <Notice type='some inexistant type' contributor='Jalil' id='123' message='message' dismiss={action('dismiss')} dismissed={false} />
   ))
   .add('dismissed', () => (
     <Notice type='Disapproval' contributor='Jalil' id='123' message='message' dismiss={action('dismiss')} dismissed={true} />
