@@ -1,34 +1,38 @@
+import { LOCATION_CHANGE } from 'connected-react-router'
 import {
-  APPROVE_RECO, DISMISS_RECO, RECOMMENDATION_FOUND, UNAPPROVE_RECO
+  NOTICES_FOUND, DISMISS_NOTICE, UNDISMISS_NOTICE, LIKE_NOTICE, UNLIKE_NOTICE, DISLIKE_NOTICE, UNDISLIKE_NOTICE
 } from '../../constants/ActionTypes';
 import updateItem from '../../utils/updateItem';
-import toggleTernary from '../../utils/toggleTernary';
-import { getById } from '../selectors/notices';
 
 export default (state = [], action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case RECOMMENDATION_FOUND: {
-      const { recommendations } = payload;
+    case NOTICES_FOUND:
+      return payload.notices;
 
-      return recommendations;
-    }
+    case DISMISS_NOTICE:
+      return updateItem(state, { id: payload.id, dismissed: true, justDismissed: true });
 
-    case DISMISS_RECO:
-      return updateItem(state, { id: payload.id, isDismissed: true });
+    case UNDISMISS_NOTICE:
+      return updateItem(state, { id: payload.id, dismissed: false, justDismissed: false });
 
-    case UNAPPROVE_RECO: {
-      const item = getById(state, payload);
+    case LIKE_NOTICE:
+      return updateItem(state, { id: payload.id, liked: true, justLiked: true });
 
-      return updateItem(state, { id: payload.id, isApproved: toggleTernary(item.isApproved, true) });
-    }
+    case UNLIKE_NOTICE:
+      return updateItem(state, { id: payload.id, liked: false, justDismissed: false });
 
-    case APPROVE_RECO: {
-      const item = getById(state, payload);
+    case DISLIKE_NOTICE:
+      return updateItem(state, { id: payload.id, disliked: true, justDisliked: true });
 
-      return updateItem(state, { ...item, isApproved: toggleTernary(item.isApproved) });
-    }
+    case UNDISLIKE_NOTICE:
+      return updateItem(state, { id: payload.id, disliked: false, justDisliked: false });
+
+    case LOCATION_CHANGE:
+      return state.map(
+        notice => ({ ...notice, justDismissed: false, justLiked: false, justDisliked: false })
+      )
 
     default:
       return state;

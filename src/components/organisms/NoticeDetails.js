@@ -16,7 +16,7 @@ import {
   BorderButton
 } from '../atoms';
 import { Anchor } from '../atoms/icons';
-import { Approval, Disapproval } from '../atoms/icons/types';
+import { Like, Dislike } from '../atoms/icons/types';
 import { NoticeType, SourceURL } from '../molecules';
 
 
@@ -27,12 +27,15 @@ class NoticeDetails extends PureComponent {
     date: PropTypes.string,
     message: PropTypes.string.isRequired,
     source: PropTypes.string.isRequired,
-    approves: PropTypes.number,
+    like: PropTypes.func,
+    unlike: PropTypes.func,
+    liked: PropTypes.oneOf([true, false, undefined]),
+    likes: PropTypes.number,
+    dislike: PropTypes.func,
+    undislike: PropTypes.func,
+    disliked: PropTypes.oneOf([true, false, undefined]),
     dislikes: PropTypes.number,
     contributor: PropTypes.string.isRequired,
-    approved: PropTypes.oneOf([true, false, undefined]),
-    approve: PropTypes.func,
-    disapprove: PropTypes.func,
     goBack: PropTypes.func,
     history: PropTypes.object,
   }
@@ -40,25 +43,26 @@ class NoticeDetails extends PureComponent {
   static defaultProps = {
     type: 'Other',
     date: null,
-    approves: 0,
-    dislikes: 0,
-    approved: undefined,
-    approve: () => {},
-    disapprove: () => {},
     goBack: null,
     history: null
   }
 
-  handleApprove = () => {
-    const { approve, id } = this.props;
-    console.log(approve, id);
-    approve(id);
+  handleLikeClick = () => {
+    const { liked, like, unlike, id } = this.props;
+    if (liked) {
+      unlike(id);
+    } else {
+      like(id);
+    }
   }
 
-  handleDisapprove = () => {
-    const { disapprove, id } = this.props;
-
-    disapprove(id);
+  handleDislikeClick = () => {
+    const { disliked, dislike, undislike, id } = this.props;
+    if (disliked) {
+      undislike(id);
+    } else {
+      dislike(id);
+    }
   }
 
   get handleGoBack() {
@@ -69,7 +73,7 @@ class NoticeDetails extends PureComponent {
 
   render() {
     const {
-      type, date, message, contributor, source, approved
+      type, date, message, contributor, source, liked, disliked,
     } = this.props;
 
     return (
@@ -97,19 +101,19 @@ class NoticeDetails extends PureComponent {
           </Source>
 
           <Feedbacks>
-            <Button onClick={this.handleApprove}>
-              <Approval active={approved === true} />
+            <Button onClick={this.handleLikeClick}>
+              <Like active={liked} />
             </Button>
-            <Button onClick={this.handleDisapprove}>
-              <Disapproval active={approved === false} />
+            <Button onClick={this.handleDislikeClick}>
+              <Dislike active={disliked} />
             </Button>
           </Feedbacks>
 
-          {(approved === false) && (
+          {(disliked) && (
             <NoticeDetailsDislike>
             Merci pour votre retour, cette notification ne s’affichera plus
               <div>
-                <Button onClick={this.handleDisapprove}>Annuler</Button>
+                <Button onClick={this.handleDislikeClick}>Annuler</Button>
                 <BorderButton onClick={this.handleGoBack}>OK</BorderButton>
               </div>
             </NoticeDetailsDislike>

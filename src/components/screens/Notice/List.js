@@ -17,7 +17,7 @@ export default ({ match, close }) => {
         message={message}
         contributor="Le Même en Mieux"
         source="https://forum.quechoisir.org/pixmania-avis-1285"
-        approves={21}
+        likes={21}
         dislikes={3}
       />
       <Notice
@@ -27,7 +27,7 @@ export default ({ match, close }) => {
         message={message}
         contributor="Le Même en Mieux"
         source="https://forum.quechoisir.org/pixmania-avis-1285"
-        approves={21}
+        likes={21}
         dislikes={3}
         deleted
       />

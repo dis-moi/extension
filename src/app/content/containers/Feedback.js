@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import {
-  dismissReco, approveReco, unapproveReco, reportReco 
+  dismissNotice, likeNotice, dislikeNotice, reportNotice
 } from '../actions/recommendations';
 import { IMAGES_URL } from '../../constants/assetsUrls';
 import FeedbackButtons from '../components/FeedbackButtons';
@@ -14,10 +14,10 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    dismissReco(id) { dispatch(dismissReco(id)); },
+    dismissReco(id) { dispatch(dismissNotice(id)); },
     approveReco(id) { dispatch(approveReco(id)); },
     unapproveReco(id) { dispatch(unapproveReco(id)); },
-    reportReco(id) { dispatch(reportReco(id)); },
+    reportReco(id) { dispatch(reportNotice(id)); },
   };
 }
 

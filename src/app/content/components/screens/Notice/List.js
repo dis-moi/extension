@@ -7,13 +7,13 @@ import { Notification, Notice } from '../../../../../components/organisms';
 import { findType } from '../../../../lmem';
 
 const List = ({
-  notices, dismiss, close
+  notices, dismiss, undismiss, close
 }) => {
   return (
     <Notification close={close}>
       <NotificationContentTitle>Notifications pour cette page</NotificationContentTitle>
       {notices.slice(0, 2).map(({
-        id, title, contributor: { name }, resource: { url }, criteria
+        id, title, contributor: { name }, resource: { url }, criteria, dismissed, disliked
       }) => (
         <Notice
           key={id}
@@ -23,6 +23,9 @@ const List = ({
           contributor={name}
           source={url}
           dismiss={dismiss}
+          undismiss={undismiss}
+          dismissed={dismissed}
+          disliked={disliked}
         />
       ))}
       {notices.length === 0 && <NoNotice />}
@@ -39,12 +42,12 @@ const List = ({
 List.propTypes = {
   notices: PropTypes.arrayOf(PropTypes.shape(NoticeType)),
   dismiss: PropTypes.func,
+  undismiss: PropTypes.func,
   close: PropTypes.func,
 };
 
 List.defaultProps = {
   notices: [],
-  dismiss: () => {},
   close: null,
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
 
-const Disapproval = ({ active, theme }) => {
+const Dislike = ({ active, theme }) => {
   const stroke = !active ? theme.secondaryColor : '#fff';
   const fill = active ? theme.secondaryColor : undefined;
 
@@ -28,4 +28,4 @@ const Disapproval = ({ active, theme }) => {
   );
 };
 
-export default withTheme(Disapproval);
+export default withTheme(Dislike);

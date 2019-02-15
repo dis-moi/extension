@@ -2,7 +2,7 @@
  * It happened in the past that invalid recommendation object result in broken UI
  * https://github.com/insitu-project/proto-ext/issues/85
  * This was due to the server sending back objects with missing fields
- * This function validates the object at runtime to decide what to do before the 
+ * This function validates the object at runtime to decide what to do before the
  * object gets sent to the UI.
  */
 
@@ -40,12 +40,12 @@ const reco = {
 
 */
 
-export const isValid = (reco) => {
-  if(Object(reco) !== reco) return false;
+export const isValid = (notice) => {
+  if(Object(notice) !== notice) return false;
 
   const {
     contributor, title, description, resource, criteria, alternatives
-  } = reco;
+  } = notice;
 
   return (
 
@@ -80,11 +80,11 @@ export const isValid = (reco) => {
   );
 };
 
-export default (reco) => {
-  const valid = isValid(reco);
+export default (notice) => {
+  const valid = isValid(notice);
 
   if (!valid) {
-    console.warn('Invalid recommendation not displayed:', reco);
+    console.warn('Invalid notice not displayed:', notice);
   }
 
   return valid;
