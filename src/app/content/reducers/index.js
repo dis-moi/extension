@@ -1,3 +1,4 @@
+import { connectRouter } from 'connected-react-router/immutable'
 import { combineReducers } from 'redux-immutable';
 
 import criteria from './criteria';
@@ -8,7 +9,7 @@ import preferenceScreenPanel from './preferenceScreenPanel';
 import recommendations from './recommendations';
 import reduced from './reduced';
 
-export default combineReducers({
+export default history => combineReducers({
   criteria,
   editors,
   onInstalledDetails,
@@ -16,4 +17,5 @@ export default combineReducers({
   preferenceScreenPanel,
   recommendations,
   reduced,
+  router: connectRouter(history)
 });

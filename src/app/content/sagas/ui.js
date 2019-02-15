@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-  put, takeLatest, select, call 
+  put, takeLatest, select, call
 } from 'redux-saga/effects';
 import { render } from 'react-dom';
 import { StyleSheetManager, ThemeProvider } from 'styled-components';
 import { Provider} from 'react-redux';
 import { open, opened, closed } from '../actions/ui';
 import { isOpen as isNotificationOpen } from '../selectors';
-import {CLOSE, OPEN, RECOMMENDATION_FOUND} from '../../constants/ActionTypes';
+import {CLOSE, OPEN, NOTICES_FOUND} from '../../constants/ActionTypes';
 import { append, create, remove } from '../extensionIframe';
 import theme from '../../theme';
 import store from '../store';
@@ -57,5 +57,5 @@ export function* recommendationFoundSaga() {
 export default function* backgroundRootSaga() {
   yield takeLatest(OPEN, openSaga);
   yield takeLatest(CLOSE, closeSaga);
-  yield takeLatest(RECOMMENDATION_FOUND, recommendationFoundSaga);
+  yield takeLatest(NOTICES_FOUND, recommendationFoundSaga);
 }

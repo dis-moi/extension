@@ -4,5 +4,5 @@ import identity from '../utils/identity';
 export default (
   type,
   payloadCreator = identity,
-  metaCreator = () => ({ background: true })
+  metaCreator = (meta) => (meta ? { ...meta, background: true } : { background: true })
 ) => createAction(type, payloadCreator, metaCreator);

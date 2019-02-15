@@ -1,10 +1,10 @@
 import chai from 'chai';
 
 import {
-  recommendationFound,
-  dismissReco,
-  approveReco,
-  reportReco
+  noticesFound,
+  dismissNotice,
+  likeNotice,
+  reportNotice
 } from '../../../src/app/content/actions/recommendations';
 import { reduce, extend, deactivate } from '../../../src/app/content/actions/ui';
 import {
@@ -26,14 +26,13 @@ describe('content actions', function () {
     expect(action.payload).to.be.an('object').to.include.all.keys('onInstalledDetails', 'criteria', 'editors');
   })
 
-  it('recommendationFound', () => {
-    const recos = [{}, {}];
-    const mmc = [{}, {}];
+  it('noticesFound', () => {
+    const notices = [{}, {}];
 
-    const action = recommendationFound(recos);
+    const action = noticesFound(notices);
 
     expect(action.type).to.be.a('string').of.length.above(5);
-    expect(action.payload.recommendations).to.equal(recos);
+    expect(action.payload.notices).to.equal(notices);
   });
 
   it('reduce', () => {
@@ -105,15 +104,15 @@ describe('content actions', function () {
 
   it('dismiss reco', () => {
     const id = 0;
-    const action = dismissReco(id);
+    const action = dismissNotice(id);
 
     expect(action.type).to.be.a('string').of.length.above(5);
     expect(action.payload.id).to.equal(id);
   });
 
-  it('approve reco', () => {
+  it('likes notice', () => {
     const id = 0;
-    const action = approveReco(id);
+    const action = likeNotice(id);
 
     expect(action.type).to.be.a('string').of.length.above(5);
     expect(action.payload.id).to.equal(id);
@@ -121,7 +120,7 @@ describe('content actions', function () {
 
   it('report reco', () => {
     const id = 0;
-    const action = reportReco(id);
+    const action = reportNotice(id);
 
     expect(action.type).to.be.a('string').of.length.above(5);
     expect(action.payload.id).to.equal(id);

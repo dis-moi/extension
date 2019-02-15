@@ -1,5 +1,5 @@
 import {
-  CLOSED, DEACTIVATE, OPENED, REPORT_RECO, UNINSTALL
+  CLOSED, DEACTIVATE, OPENED, REPORT_NOTICE, UNINSTALL
 } from '../../constants/ActionTypes';
 
 export default (state = false, action) => {
@@ -7,7 +7,7 @@ export default (state = false, action) => {
 
   switch (type) {
     case DEACTIVATE:
-    case REPORT_RECO:
+    case REPORT_NOTICE:
     case UNINSTALL:
     case CLOSED:
       return false;
