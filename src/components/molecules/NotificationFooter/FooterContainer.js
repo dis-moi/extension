@@ -10,5 +10,6 @@ export default styled.nav`
     padding-bottom: 5px;
     padding-left: 38px;
     margin-top: auto;
+    background-color: #fff;
     border-top: 1px solid ${props => props.theme.bottomBar};
 `;
