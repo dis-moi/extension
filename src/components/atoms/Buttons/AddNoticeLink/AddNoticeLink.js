@@ -1,7 +1,9 @@
+import React from 'react';
 import styled from 'styled-components';
-import BorderButton from './BorderButton';
+import BorderButton from '../BorderButton';
+import AddIcon from './AddIcon';
 
-export default styled(BorderButton)`
+const Button = styled(BorderButton)`
     display: flex;
     align-items: center;
     margin-top: 25px;
@@ -24,3 +26,10 @@ export default styled(BorderButton)`
       }
     }
 `;
+
+export default () => (
+  <Button>
+    <AddIcon />
+    Créer votre notification
+  </Button>
+);
