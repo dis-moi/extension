@@ -1,5 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { withKnobs, text } from '@storybook/addon-knobs';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import theme from '../../../../app/theme';
 import BorderButton from './BorderButton';
@@ -13,6 +14,7 @@ const Global = createGlobalStyle`
 `;
 
 storiesOf('atoms/Buttons/BorderButton', module)
+  .addDecorator(withKnobs)
   .addDecorator(getStory => (
     <div>
       <Global />
@@ -21,5 +23,4 @@ storiesOf('atoms/Buttons/BorderButton', module)
       </ThemeProvider>
     </div>
   ))
-  .add('normal', () => <BorderButton>Ajouter</BorderButton>);
- 
+  .add('normal', () => <BorderButton dangerouslySetInnerHTML={{__html: text('content', 'Ajouter')}} />);
