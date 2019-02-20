@@ -1,24 +1,22 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { sanitize } from 'dompurify';
 import { withRouter } from 'react-router';
 import {
-  NoticeDetailsContainer,
-  NoticeDetailsContent,
-  NoticeDetailsMeta,
-  NoticeDetailsDislike,
   Contributor,
-  Message,
-  Source,
-  Feedbacks,
-  Date,
   Button,
   BorderButton
-} from '../atoms';
-import { Anchor } from '../atoms/icons';
-import { Like, Dislike } from '../atoms/icons/types';
-import { NoticeType, SourceURL } from '../molecules';
-
+} from '../../atoms';
+import { Anchor } from '../../atoms/icons';
+import { Like, Dislike } from '../../atoms/icons/types';
+import { NoticeType, SourceURL } from '../../molecules';
+import DetailsContainer from './DetailsContainer';
+import DetailsContent from './DetailsContent';
+import DetailsMeta from './DetailsMeta';
+import DetailsDislike from './DetailsDislike';
+import MessageWrapper from './Message';
+import Source from './Source';
+import Feedbacks from './Feedbacks';
+import Date from './Date';
 
 class NoticeDetails extends PureComponent {
   static propTypes = {
@@ -77,9 +75,9 @@ class NoticeDetails extends PureComponent {
     } = this.props;
 
     return (
-      <NoticeDetailsContainer>
-        <NoticeDetailsContent>
-          <NoticeDetailsMeta>
+      <DetailsContainer>
+        <DetailsContent>
+          <DetailsMeta>
             <Date>
               Le
               &nbsp;
@@ -91,8 +89,8 @@ class NoticeDetails extends PureComponent {
               :
             </Contributor>
             <NoticeType type={type} />
-          </NoticeDetailsMeta>
-          <Message>{message}</Message>
+          </DetailsMeta>
+          <MessageWrapper>{message}</MessageWrapper>
           <Source>
             <Anchor />
               En savoir plus :
@@ -110,16 +108,16 @@ class NoticeDetails extends PureComponent {
           </Feedbacks>
 
           {(disliked) && (
-            <NoticeDetailsDislike>
+            <DetailsDislike>
             Merci pour votre retour, cette notification ne s’affichera plus
               <div>
                 <Button onClick={this.handleDislikeClick}>Annuler</Button>
                 <BorderButton onClick={this.handleGoBack}>OK</BorderButton>
               </div>
-            </NoticeDetailsDislike>
+            </DetailsDislike>
           )}
-        </NoticeDetailsContent>
-      </NoticeDetailsContainer>
+        </DetailsContent>
+      </DetailsContainer>
     );
   }
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { NotificationMain } from '../atoms';
 import { NotificationHeader } from '../molecules';
 import Notice from './Notice';
-import NoticeDetails from './NoticeDetails';
+import NoticeDetails from './NoticeDetails/NoticeDetails';
 import isChildInstanceOf from '../../app/utils/isChildInstanceOf';
 
 export default class Notification extends PureComponent {

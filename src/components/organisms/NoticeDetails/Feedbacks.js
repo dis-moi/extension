@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from './Button';
+import Button from '../../atoms/Button';
 
 export default styled.div`
     display: flex;

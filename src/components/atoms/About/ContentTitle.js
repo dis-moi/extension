@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ContentTitle from '../ContentTitle';
+import ContentTitle from '../ContentTitle/ContentTitle';
 
 export default styled(ContentTitle)`
     margin: 0 0 18px;
