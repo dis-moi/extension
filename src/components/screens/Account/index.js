@@ -2,7 +2,7 @@ import { Route, Switch } from 'react-router-dom';
 import React from 'react';
 import Filters from './Filters';
 import Menu from './Menu';
-import About from './About';
+import About from './About/About';
 import Error from '../Error';
 import Loading from '../Loading';
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Content, ContentTitle } from '../../atoms/About';
-import { ExternalLink, Time } from '../../atoms';
-import { Notification } from '../../organisms';
+import { Container, Content, ContentTitle } from '../../../atoms/About';
+import { ExternalLink, Time } from '../../../atoms';
+import { Notification } from '../../../organisms';
 
 const About = ({ close, installationDate, extensionVersion }) => (
   <Notification title="À propos" close={close}>
