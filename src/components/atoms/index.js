@@ -13,7 +13,7 @@ export { default as BorderButton } from './Buttons/BorderButton';
 export { default as CloseButton } from './Buttons/CloseButton/CloseButton';
 export { default as Contributor } from './Contributor';
 export { default as DeleteButton } from './Buttons/DeleteButton/DeleteButton';
-export { default as OpenButton } from './OpenButton';
+export { default as OpenButton } from './Buttons/OpenButton/OpenButton';
 export { default as NotificationContainer } from './Notification/Container';
 export { default as NotificationContentTitle } from './Notification/ContentTitle';
 export { default as NotificationFooterContainer } from '../molecules/NotificationFooter/FooterContainer';

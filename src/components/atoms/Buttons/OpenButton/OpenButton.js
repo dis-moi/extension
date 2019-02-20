@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import OpenIcon from './icons/Arrow';
+import OpenIcon from '../../icons/Arrow';
 
 export default styled.div.attrs({ children: <OpenIcon /> })`
    padding:0;
