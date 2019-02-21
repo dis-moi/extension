@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   height: 414px;
 `
 
-storiesOf('screens/About', module)
+storiesOf('screens/Loading', module)
   .addDecorator(getStory => (
     <div>
       <Global/>
