@@ -15,6 +15,9 @@
     "react/no-unescaped-entities": 0,
     "react/forbid-prop-types": 0,
     "import/prefer-default-export": 1,
+    "import/no-extraneous-dependencies": [1, {
+      "devDependencies": true
+    }],
     "indent": [2, 2, {"SwitchCase": 1}],
     "max-len": ["error", {"code": 120, "ignoreUrls": true}],
     "comma-style": [ 2, "last" ],
