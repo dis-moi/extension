@@ -11,13 +11,15 @@ import NotificationFooter from './components/NotificationFooter';
 import Loading from './containers/screens/Notice/Loading';
 import store, { history } from './store';
 
+const DELAY_BEFORE_SHOWING = process.env.NODE_ENV === 'production' ? 4000 : 10;
+
 export default class App extends React.PureComponent {
   state = {
     loaded: false
   };
 
   componentDidMount() {
-    setTimeout(this.setLoaded, 1000);
+    setTimeout(this.setLoaded, DELAY_BEFORE_SHOWING);
   }
 
   setLoaded = () => {
