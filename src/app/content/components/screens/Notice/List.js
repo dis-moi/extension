@@ -41,14 +41,13 @@ const List = ({
 
 List.propTypes = {
   notices: PropTypes.arrayOf(PropTypes.shape(NoticeType)),
-  dismiss: PropTypes.func,
-  undismiss: PropTypes.func,
-  close: PropTypes.func,
+  dismiss: PropTypes.func.isRequired,
+  undismiss: PropTypes.func.isRequired,
+  close: PropTypes.func.isRequired,
 };
 
 List.defaultProps = {
   notices: [],
-  close: null,
 };
 
 export default List;

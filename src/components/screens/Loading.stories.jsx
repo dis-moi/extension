@@ -1,26 +1,26 @@
-import React from 'react'
-import { MemoryRouter as Router } from 'react-router-dom'
-import { storiesOf } from '@storybook/react'
+import React from 'react';
+import { MemoryRouter as Router } from 'react-router-dom';
+import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
-import theme from '../../app/theme'
-import Loading from './Loading'
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
+import theme from '../../app/theme';
+import Loading from './Loading';
 
 const Global = createGlobalStyle`
   body {
     background-color: grey;
   }
-`
+`;
 
 const Wrapper = styled.div`
   width: 384px;
   height: 414px;
-`
+`;
 
 storiesOf('screens/Loading', module)
   .addDecorator(getStory => (
     <div>
-      <Global/>
+      <Global />
       <Router>
         <ThemeProvider theme={theme}>
           <Wrapper>

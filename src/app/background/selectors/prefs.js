@@ -1,5 +1,5 @@
 import { recommendationIsValid, recommendationFilter } from '../../lmem';
-import Notice from '../../lmem/Notice'
+import Notice from '../../lmem/Notice';
 
 export const getPrefs = state => state.get('prefs');
 
@@ -39,15 +39,15 @@ export const getNoticeEnhancer = (state) => {
   });
 };
 
-export const getNoticesToDisplay = notices => (state) => notices
+export const getNoticesToDisplay = notices => state => notices
   .map(getNoticeEnhancer(state))
   .filter(recommendationFilter);
 
 
-export const getDismissedNotices = notices => (state) => notices
+export const getDismissedNotices = notices => state => notices
   .map(getNoticeEnhancer(state))
   .filter(notice => notice.dismissed);
 
-export const getIgnoredNotices = notices => (state) => notices
+export const getIgnoredNotices = notices => state => notices
   .map(getNoticeEnhancer(state))
   .filter(Notice.isIgnored);

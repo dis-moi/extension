@@ -28,8 +28,8 @@ const initialPrefs = fromJS({
   onInstalledDetails: new ImmutableMap()
 });
 
-const addToSet = element => immutableSet => immutableSet.add(element)
-const deleteFromSet = element => immutableSet => immutableSet.delete(element)
+const addToSet = element => immutableSet => immutableSet.add(element);
+const deleteFromSet = element => immutableSet => immutableSet.delete(element);
 
 export default function (state = initialPrefs, action) {
   const { type, payload } = action;
