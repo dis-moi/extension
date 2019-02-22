@@ -1,4 +1,5 @@
 export default {
+  main: 'purple',
   // colors
   primaryColor: '#404348',
   activeColor: '#0C52B4',

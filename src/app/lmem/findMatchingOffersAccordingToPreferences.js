@@ -9,9 +9,10 @@ if (process.env.NODE_ENV === 'test') {
 }
 
 function findMatchingMatchingContexts(url, matchingContexts) {
-  return matchingContexts.filter((mc) => {
+  return matchingContexts.filter(({ url_regex: urlRegex, exclude_url_regex: excludeUrlRegex }) => {
     try {
-      return new RegExp(mc.url_regex, 'i').test(url);
+      return new RegExp(urlRegex, 'i').test(url)
+        && !(excludeUrlRegex && new RegExp(excludeUrlRegex, 'i').test(url));
     }
     catch (err) {
       if (process.env.NODE_ENV !== 'test') console.error('MatchingContext ignored:', err);
@@ -35,6 +36,6 @@ export default function (url, matchingContexts, draftMatchingContexts, prefs = n
 
   // prioritize previews over public offers
   return matchingDraftMatchingContexts.length >= 1
-    ? matchingDraftMatchingContexts 
-    : findMatchingMatchingContexts(url, matchingContexts);  
+    ? matchingDraftMatchingContexts
+    : findMatchingMatchingContexts(url, matchingContexts);
 }

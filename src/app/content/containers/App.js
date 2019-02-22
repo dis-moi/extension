@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-
 import Recommendations from '../components/Recommendations';
+import { IMAGES_URL } from '../../constants/assetsUrls';
 import {
   reduce,
   extend,
@@ -12,7 +12,6 @@ import {
   checkOutAlternative,
   checkOutEditor
 } from '../actions/ui';
-import { IMAGES_URL } from '../../constants/assetsUrls';
 import { getNotices } from '../selectors';
 
 function mapStateToProps(state) {

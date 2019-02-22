@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-
 import PreferenceScreen from '../components/PreferenceScreen';
+import { IMAGES_URL } from '../../constants/assetsUrls';
 import { closePrefScreen, openPrefScreen, uninstall } from '../actions/ui';
 import {
   selectCriterion,
@@ -8,7 +8,6 @@ import {
   excludeEditor,
   includeEditor
 } from '../actions/filters';
-import { IMAGES_URL } from '../../constants/assetsUrls';
 
 function mapStateToProps(state) {
   return {

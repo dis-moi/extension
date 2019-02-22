@@ -6,9 +6,10 @@ import { ThemeProvider } from 'styled-components';
 
 import OptionScreen from './OptionScreen';
 import {
-  selectCriterion, unselectCriterion, excludeEditor, includeEditor 
+  selectCriterion, unselectCriterion, excludeEditor, includeEditor
 } from '../content/actions/filters';
 import { uninstall } from '../content/actions/ui';
+
 import { IMAGES_URL } from '../constants/assetsUrls';
 
 function mapStateToProps(state) {

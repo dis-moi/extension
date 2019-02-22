@@ -39,10 +39,10 @@ export default function configureStore(callback, isBg) {
 
     const initialPrefState = makeInitialState().delete('resources'); // Map
     const initialResourcesState = makeInitialState().delete('prefs'); // Map
-    
+
     // migrate loadedState to the current state structure
     const migratedState = migrate(fromJS(loadedState), initialPrefState);
-    
+
     const state = initialResourcesState.merge(migratedState);
     const store = createStore(rootReducer, state, enhancer);
 
