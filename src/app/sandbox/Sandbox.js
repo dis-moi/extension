@@ -1,14 +1,14 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { hot, setConfig } from 'react-hot-loader';
+import 'typeface-lato';
+import 'typeface-sedgwick-ave';
 import theme from '../theme';
-import Button from '../../components/atoms/Button';
+import { NotificationNavigation } from '../../components/organisms';
 
 const Sandbox = () => (
   <ThemeProvider theme={theme}>
-    <Fragment>
-      <Button>I'm purple!</Button>
-    </Fragment>
+    <NotificationNavigation />
   </ThemeProvider>
 );
 

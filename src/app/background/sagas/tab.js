@@ -1,19 +1,18 @@
 import {
-  put, takeLatest, select, call, fork, all
+  put, takeLatest, select, call, fork, all, take
 } from 'redux-saga/effects';
 import { findTriggeredContexts } from '../selectors';
-import {
-  getInitialContent,
-  getRecommendationsToDisplay, getDismissedRecommendations
-} from '../selectors/prefs';
+import { getInitialContent, getNoticesToDisplay, getIgnoredNotices } from '../selectors/prefs';
 import { TAB_CREATED, TAB_UPDATED } from '../../constants/browser/tabs';
 import { CONTEXT_TRIGGERED, MATCH_CONTEXT } from '../../constants/ActionTypes';
 import {
-  init, contextTriggered, matchContext, matchContextFailure, recoDismissed, recoDisplayed, contextTriggerFailure
+  init, contextTriggered, matchContext, matchContextFailure, noticeIgnored, noticeDisplayed, contextTriggerFailure
 } from '../actions/tabs';
-import { recommendationFound } from '../../content/actions/recommendations';
+import { noticesFound } from '../../content/actions/recommendations';
 import fetchMatchingRecommendations from '../../lmem/getMatchingRecommendations';
-import { fetchContentScript, executeTabScript, sendToTab } from '../services';
+import {
+  fetchContentScript, executeTabScript, sendToTab, createBrowserActionChannel
+} from '../services';
 import watchSingleMessageSaga from '../../utils/watchSingleMessageSaga';
 
 export function* tabSaga({ payload: tab, meta: { url } }) {
@@ -45,21 +44,22 @@ export const contextTriggeredSaga = executeContentScript => function* ({
 
     yield put(init(initialContent, tab));
 
-    const recommendations = yield call(
+    const notices = yield call(
       fetchMatchingRecommendations,
       triggeredContexts.map(tc => tc.recommendation_url)
     );
 
-    const recommendationsToDisplay = yield select(getRecommendationsToDisplay(recommendations));
-    yield all(recommendations.map(reco => put(recoDisplayed(reco, { trigger }))));
+    const noticesToShow = yield select(getNoticesToDisplay(notices));
+    yield all(noticesToShow.map(notice => put(noticeDisplayed(notice, trigger))));
 
-    const dismissedRecommendations = yield select(getDismissedRecommendations(recommendations));
-    yield all(dismissedRecommendations.map(reco => put(recoDismissed(reco, { trigger }))));
+    const ignoredNotices = yield select(getIgnoredNotices(notices));
+    yield all(ignoredNotices.map(notice => put(noticeIgnored(notice, trigger))));
 
-    if (recommendationsToDisplay.length >= 1) {
-      yield put(recommendationFound(recommendationsToDisplay, tab));
+    if (noticesToShow.length > 0) {
+      yield put(noticesFound(noticesToShow, tab));
     } else {
-      throw new Error('Context was triggered but they were no recommendations left to display.');
+      // Will throw here when we will be able to not trigger context on dismissed/disliked notices
+      // throw new Error('Context was triggered but they were no recommendations left to display.');
     }
   } catch (e) {
     yield put(contextTriggerFailure(e, { tab, trigger }));
@@ -73,8 +73,23 @@ export function* publishToTabSaga(action) {
   console.log(`Tab "${tab}" respond`, response);
 }
 
+export function* watchBrowserActionSaga() {
+  const channel = yield call(createBrowserActionChannel);
+
+  while (true) {
+    try {
+      const action = yield take(channel);
+      console.log(action);
+      yield put(action);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+}
+
 export default function* tabRootSaga() {
   yield fork(watchSingleMessageSaga);
+  yield fork(watchBrowserActionSaga);
   const contentCode = yield call(fetchContentScript, '/js/content.bundle.js');
   const executeTabContentScript = yield call(executeTabScript, contentCode);
 

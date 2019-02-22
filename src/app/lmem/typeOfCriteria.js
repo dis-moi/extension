@@ -5,12 +5,12 @@ export const CRITERIA_TYPE_WARNING = 'CRITERIA_TYPE_WARNING';
 export function findType(criteria) {
   return criteria.reduce((acc, { slug }) => {
     switch (slug) {
-      case 'go': return CRITERIA_TYPE_GO;
-      case 'no-go': return CRITERIA_TYPE_NOGO;
-      case 'alert': return CRITERIA_TYPE_WARNING;
+      case 'go': return 'Approval';
+      case 'no-go': return 'Disapproval';
+      case 'alert': return 'Tip';
       default: return acc;
     }
-  }, null);
+  }, 'Other');
 }
 
 export function filterTags(criteria) {

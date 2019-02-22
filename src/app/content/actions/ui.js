@@ -3,19 +3,28 @@ import {
   EXTEND_RECOMMENDATION_IFRAME,
   DEACTIVATE,
   UNINSTALL,
+  OPEN,
+  OPENED,
+  CLOSE,
+  CLOSED,
   OPEN_PREFERENCE_PANEL,
   CLOSE_PREFERENCE_PANEL,
   CHECKOUT_RECO_RESOURCE_BUTTON,
   CHECKOUT_RECO_RESOURCE_LINK,
   CHECKOUT_RECO_ALTERNATIVE,
   CHECKOUT_RECO_EDITOR,
-  POPUP_CLICK,
+  POPUP_CLICK
 } from '../../constants/ActionTypes';
 import createBackgroundAction from '../createBackgroundAction';
+import createAction from '../../utils/createAction';
 
 export const reduce = createBackgroundAction(REDUCE_RECOMMENDATION_IFRAME);
 export const extend = createBackgroundAction(EXTEND_RECOMMENDATION_IFRAME);
 export const deactivate = createBackgroundAction(DEACTIVATE, ({ where, duration }) => ({ where, duration }));
+export const open = createAction(OPEN);
+export const opened = createAction(OPENED);
+export const close = createAction(CLOSE);
+export const closed = createAction(CLOSED);
 export const closePrefScreen = createBackgroundAction(CLOSE_PREFERENCE_PANEL);
 export const openPrefScreen = createBackgroundAction(OPEN_PREFERENCE_PANEL, panel => ({ panel }));
 export const checkOutResourceButton = createBackgroundAction(CHECKOUT_RECO_RESOURCE_BUTTON, resource => ({ resource }));

@@ -1,9 +1,12 @@
 import chai from 'chai';
+import { createMemoryHistory } from 'history'
 import { Map as ImmutableMap } from 'immutable';
 import { excludeEditor, includeEditor } from '../../../src/app/content/actions/filters';
-import reducer from '../../../src/app/content/reducers/';
+import reducerCreator from '../../../src/app/content/reducers/';
 
 const expect = chai.expect;
+
+const reducer = reducerCreator(createMemoryHistory())
 
 describe('content reducer', function () {
 

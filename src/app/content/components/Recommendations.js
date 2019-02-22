@@ -16,15 +16,17 @@ export default function Recommendations(props) {
   const body = preferenceScreenPanel
     ? <Preferences />
     : (
-      recommendations.length > 0 &&
-      <RecoMain
-        imagesUrl={imagesUrl}
-        recommendations={recommendations}
-        onCheckOutResourceButton={onCheckOutResourceButton}
-        onCheckOutResourceLink={onCheckOutResourceLink}
-        onCheckOutAlternative={onCheckOutAlternative}
-        onCheckOutEditor={onCheckOutEditor}
-      />
+      recommendations.length > 0
+      && (
+        <RecoMain
+          imagesUrl={imagesUrl}
+          recommendations={recommendations}
+          onCheckOutResourceButton={onCheckOutResourceButton}
+          onCheckOutResourceLink={onCheckOutResourceLink}
+          onCheckOutAlternative={onCheckOutAlternative}
+          onCheckOutEditor={onCheckOutEditor}
+        />
+      )
     );
 
   return recommendations ? (

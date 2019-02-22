@@ -33,7 +33,6 @@ export default Object.freeze({
       '128': 'img/logo/128x128.png'
     },
     'default_title': 'Le Même en Mieux',
-    'default_popup': 'popup.html',
   },
   'permissions': [
     'geolocation',

@@ -2,16 +2,18 @@ import {
   INIT,
   CONTEXT_TRIGGERED,
   RECO_DISPLAYED,
-  RECO_DISMISSED,
+  NOTICE_IGNORED,
   MATCH_CONTEXT,
   MATCH_CONTEXT_FAILURE,
   CONTEXT_TRIGGER_FAILURE
 } from '../../constants/ActionTypes';
+import Notice from '../../lmem/Notice';
 import createAction from '../../utils/createAction';
 
 export const init = createAction(
   INIT,
   ({ onInstalledDetails, criteria, editors }) => ({ onInstalledDetails, criteria, editors }),
+  tab => ({ tab })
 );
 
 export const matchContext = createAction(
@@ -22,8 +24,7 @@ export const matchContext = createAction(
 
 export const matchContextFailure = createAction(
   MATCH_CONTEXT_FAILURE,
-  error => error,
-  ({ tab, trigger }) => ({ tab, trigger }),
+  error => ({ error })
 );
 
 export const contextTriggered = createAction(
@@ -34,17 +35,17 @@ export const contextTriggered = createAction(
 
 export const contextTriggerFailure = createAction(
   CONTEXT_TRIGGER_FAILURE,
-  error => error,
-  ({ tab, trigger }) => ({ tab, trigger }),
+  error => ({ error })
 );
 
-export const recoDisplayed = createAction(
+export const noticeDisplayed = createAction(
   RECO_DISPLAYED,
-  recommendation => ({ recommendation }),
+  notice => ({ notice }),
   trigger => ({ trigger })
 );
-export const recoDismissed = createAction(
-  RECO_DISMISSED,
-  recommendation => ({ recommendation }),
+
+export const noticeIgnored = createAction(
+  NOTICE_IGNORED,
+  notice => ({ notice, reason: Notice.ignoringReason(notice) }),
   trigger => ({ trigger })
 );

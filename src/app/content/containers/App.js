@@ -13,10 +13,11 @@ import {
   checkOutEditor
 } from '../actions/ui';
 import { IMAGES_URL } from '../../constants/assetsUrls';
+import { getNotices } from '../selectors';
 
 function mapStateToProps(state) {
   return {
-    recommendations: state.get('recommendations'),
+    recommendations: getNotices(state),
     imagesUrl: IMAGES_URL,
     reduced: state.get('reduced'),
     preferenceScreenPanel: state.get('preferenceScreenPanel')

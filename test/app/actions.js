@@ -9,11 +9,7 @@ import {
   refreshMatchingContextsEvery,
 } from '../../src/app/background/actions/kraftBackend';
 
-import {
-  contextTriggered,
-  recoDisplayed,
-  recoDismissed
-} from '../../src/app/background/actions/tabs';
+import { contextTriggered, noticeDisplayed, noticeIgnored } from '../../src/app/background/actions/tabs';
 
 const expect = chai.expect;
 chai.use(sinonChai);
@@ -44,7 +40,7 @@ describe('background actions', function () {
     expect(action.type).to.be.a('string').of.length.above(5);
     expect(action.payload.editors).to.equal(editors);
   });
-  
+
   it('contextTriggered', () => {
     const trigger = '';
     const triggeredContexts = [];
@@ -55,24 +51,36 @@ describe('background actions', function () {
     expect(action.payload.triggeredContexts).to.equal(triggeredContexts);
   });
 
-  it('recoDisplayed', () => {
+  it('noticeDisplayed', () => {
     const trigger = '';
-    const recommendation = {};
-    const action = recoDisplayed(recommendation, trigger);
+    const notice = {};
+    const action = noticeDisplayed(notice, trigger);
 
     expect(action.type).to.be.a('string').of.length.above(5);
     expect(action.meta.trigger).to.equal(trigger);
-    expect(action.payload.recommendation).to.equal(recommendation);
+    expect(action.payload.notice).to.equal(notice);
   });
 
-  it('recoDismissed', () => {
+  it('noticeIgnored when notice dismissed', () => {
     const trigger = '';
-    const recommendation = {};
-    const action = recoDismissed(recommendation, trigger);
+    const notice = { dismissed: true };
+    const action = noticeIgnored(notice, trigger);
 
     expect(action.type).to.be.a('string').of.length.above(5);
     expect(action.meta.trigger).to.equal(trigger);
-    expect(action.payload.recommendation).to.equal(recommendation);
+    expect(action.payload.notice).to.equal(notice);
+    expect(action.payload.reason).to.equal('dismiss');
+  });
+
+  it('noticeIgnored when notice disliked', () => {
+    const trigger = '';
+    const notice = { disliked: true };
+    const action = noticeIgnored(notice, trigger);
+
+    expect(action.type).to.be.a('string').of.length.above(5);
+    expect(action.meta.trigger).to.equal(trigger);
+    expect(action.payload.notice).to.equal(notice);
+    expect(action.payload.reason).to.equal('dislike');
   });
 
   describe('auto refresh matching contexts', () => {

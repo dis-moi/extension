@@ -12,8 +12,10 @@ export default function (){
       websites: new ImmutableMap(),
       criteria: new ImmutableMap(),
       editors: new ImmutableMap(),
-      dismissedRecos: new ImmutableSet(),
-      approvedRecos: new ImmutableSet(),
+      dismissedNotices: new ImmutableSet(),
+      likedNotices: new ImmutableSet(),
+      dislikedNotices: new ImmutableSet(),
+      reportedNotices: new ImmutableSet(),
       onInstalledDetails: new ImmutableMap()
     },
     resources: {

@@ -12,7 +12,7 @@ export default baseConfig({
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"staging"',
-        LMEM_BACKEND_ORIGIN: '"https://staging-recommendations.lmem.net"',
+        LMEM_BACKEND_ORIGIN: '"https://recommendations.lmem.net"',
         LMEM_SCRIPTS_ORIGIN: '\'.\'',
         UNINSTALL_ORIGIN: '\'https://www.lmem.net/desinstallation\'',
         HEAP_APPID: '"234457910"', // testing

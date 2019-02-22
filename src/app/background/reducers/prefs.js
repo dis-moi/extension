@@ -9,10 +9,10 @@ import {
   RECEIVED_EDITORS,
   EXCLUDE_EDITOR,
   INCLUDE_EDITOR,
-  DISMISS_RECO,
-  APPROVE_RECO,
-  UNAPPROVE_RECO,
-  REPORT_RECO,
+  DISMISS_NOTICE, UNDISMISS_NOTICE,
+  LIKE_NOTICE, UNLIKE_NOTICE,
+  DISLIKE_NOTICE, UNDISLIKE_NOTICE,
+  REPORT_NOTICE,
   DEACTIVATE
 } from '../../constants/ActionTypes';
 
@@ -21,10 +21,15 @@ const initialPrefs = fromJS({
   websites: new ImmutableSet(),
   criteria: new ImmutableMap(),
   editors: new ImmutableMap(),
-  dismissedRecos: new ImmutableSet(),
-  approvedRecos: new ImmutableSet(),
+  dismissedNotices: new ImmutableSet(),
+  likedNotices: new ImmutableSet(),
+  dislikedNotices: new ImmutableSet(),
+  reportedNotices: new ImmutableSet(),
   onInstalledDetails: new ImmutableMap()
 });
+
+const addToSet = element => immutableSet => immutableSet.add(element);
+const deleteFromSet = element => immutableSet => immutableSet.delete(element);
 
 export default function (state = initialPrefs, action) {
   const { type, payload } = action;
@@ -46,7 +51,7 @@ export default function (state = initialPrefs, action) {
           ? acc.set(slug, curr.set('isSelected', true)) // new criteria from server are set to selected by default
           : acc.set(slug, state.get('criteria').get(slug));
 
-      }, state.get('criteria'));    
+      }, state.get('criteria'));
 
       return state.set('criteria', newCriteria);
     }
@@ -95,27 +100,23 @@ export default function (state = initialPrefs, action) {
       return state.set('editors', editors.setIn([id.toString(), 'isExcluded'], false));
     }
 
-    case DISMISS_RECO:
-    case REPORT_RECO: {
-      const { id } = payload;
-      const dismissedRecos = state.get('dismissedRecos');
+    case REPORT_NOTICE: return state.update('reportedNotices', addToSet(payload.id))
 
-      return state.set('dismissedRecos', dismissedRecos.add(id));
-    }
+    case DISMISS_NOTICE:
+      return state.update('dismissedNotices', addToSet(payload.id))
+    case UNDISMISS_NOTICE:
+      return state.update('dismissedNotices', deleteFromSet(payload.id))
 
-    case APPROVE_RECO: {
-      const { id } = payload;
-      const approvedRecos = state.get('approvedRecos');
+    case LIKE_NOTICE:
+      return state.update('likedNotices', addToSet(payload.id))
+    case UNLIKE_NOTICE:
+      return state.update('likedNotices', deleteFromSet(payload.id))
 
-      return state.set('approvedRecos', approvedRecos.add(id));
-    }
+    case DISLIKE_NOTICE:
+      return state.update('dislikedNotices', addToSet(payload.id))
+    case UNDISLIKE_NOTICE:
+      return state.update('dislikedNotices', deleteFromSet(payload.id))
 
-    case UNAPPROVE_RECO: {
-      const { id } = payload;
-      const approvedRecos = state.get('approvedRecos');
-
-      return state.set('approvedRecos', approvedRecos.delete(id));
-    }
 
     case DEACTIVATE: {
       const { duration } = payload;

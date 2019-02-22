@@ -1,11 +1,15 @@
-import recommendationIsValid from '../../lmem/recommendationIsValid';
+import { recommendationIsValid, recommendationFilter } from '../../lmem';
+import Notice from '../../lmem/Notice';
 
-export const getWebsites = state => state.get('prefs').get('websites');
-export const getOnInstalledDetails = state => state.get('prefs').get('onInstalledDetails');
-export const getCriteria = state => state.get('prefs').get('criteria');
-export const getEditors = state => state.get('prefs').get('editors');
-export const getDismissed = state => state.get('prefs').get('dismissedRecos');
-export const getApproved = state => state.get('prefs').get('approvedRecos');
+export const getPrefs = state => state.get('prefs');
+
+export const getWebsites = state => getPrefs(state).get('websites');
+export const getOnInstalledDetails = state => getPrefs(state).get('onInstalledDetails');
+export const getCriteria = state => getPrefs(state).get('criteria');
+export const getEditors = state => getPrefs(state).get('editors');
+export const getDismissed = state => getPrefs(state).get('dismissedNotices');
+export const getLiked = state => getPrefs(state).get('likedNotices');
+export const getDisliked = state => getPrefs(state).get('dislikedNotices');
 
 export const getCriterionBySlug = slug => state => getCriteria(state).get(slug);
 export const getSelectedCriteria = state => Array.from(getCriteria(state).keys())
@@ -21,31 +25,29 @@ export const getInitialContent = state => ({
   editors: getEditors(state)
 });
 
-export const getRecommendationEnhancer = (state) => {
-  const approvedRecos = getApproved(state);
+export const getNoticeEnhancer = (state) => {
+  const dismissed = getDismissed(state);
+  const liked = getLiked(state);
+  const disliked = getDisliked(state);
 
-  return recommendation => ({
-    ...recommendation,
-    isApproved: approvedRecos.has(recommendation.id)
+  return notice => ({
+    ...notice,
+    dismissed: dismissed.has(notice.id),
+    liked: liked.has(notice.id),
+    disliked: disliked.has(notice.id),
+    valid: recommendationIsValid(notice),
   });
 };
 
-export const getRecommendationFilter = (state) => {
-  const dismissedRecommendations = getDismissed(state);
+export const getNoticesToDisplay = notices => state => notices
+  .map(getNoticeEnhancer(state))
+  .filter(recommendationFilter);
 
-  return recommendation => !dismissedRecommendations.has(recommendation.id)
-      && recommendationIsValid(recommendation);
-};
 
-export const getRecommendationsToDisplay = recommendations => (state) => {
-  const recommendationEnhancer = getRecommendationEnhancer(state);
-  const recommendationFilter = getRecommendationFilter(state);
+export const getDismissedNotices = notices => state => notices
+  .map(getNoticeEnhancer(state))
+  .filter(notice => notice.dismissed);
 
-  return recommendations.filter(recommendationFilter).map(recommendationEnhancer);
-};
-
-export const getDismissedRecommendations = recommendations => (state) => {
-  const recommendationFilter = getRecommendationFilter(state);
-
-  return recommendations.filter(recommendation => !recommendationFilter(recommendation));
-};
+export const getIgnoredNotices = notices => state => notices
+  .map(getNoticeEnhancer(state))
+  .filter(Notice.isIgnored);
