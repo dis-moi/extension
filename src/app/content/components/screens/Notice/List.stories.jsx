@@ -1,21 +1,21 @@
-import React from 'react'
-import { MemoryRouter as Router } from 'react-router-dom'
-import { storiesOf } from '@storybook/react'
+import React from 'react';
+import { MemoryRouter as Router } from 'react-router-dom';
+import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
-import theme from '../../../../theme'
-import List from './List'
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
+import theme from '../../../../theme';
+import List from './List';
 
 const Global = createGlobalStyle`
   body {
     background-color: grey;
   }
-`
+`;
 
 const Wrapper = styled.div`
   width: 384px;
   height: 414px;
-`
+`;
 
 const notices = [
   {
@@ -37,12 +37,12 @@ const notices = [
       url_to_redirect: 'url'
     }]
   }
-]
+];
 
 storiesOf('screens/Notice/List', module)
   .addDecorator(getStory => (
     <div>
-      <Global/>
+      <Global />
       <Router>
         <ThemeProvider theme={theme}>
           <Wrapper>
@@ -53,8 +53,8 @@ storiesOf('screens/Notice/List', module)
     </div>
   ))
   .add('with 1 notification', () => (
-    <List close={action('close')} dismiss={action('dismiss')} notices={notices} />
+    <List close={action('close')} dismiss={action('dismiss')} undismiss={action('undismiss')} notices={notices} />
   ))
   .add('empty list', () => (
-    <List close={action('close')} dismiss={action('dismiss')} notices={[]} />
-  ))
+    <List close={action('close')} dismiss={action('dismiss')} undismiss={action('undismiss')} notices={[]} />
+  ));

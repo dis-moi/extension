@@ -30,40 +30,42 @@ class NoticeDetails extends PureComponent {
     like: PropTypes.func,
     unlike: PropTypes.func,
     liked: PropTypes.oneOf([true, false, undefined]),
-    likes: PropTypes.number,
     dislike: PropTypes.func,
     undislike: PropTypes.func,
     disliked: PropTypes.oneOf([true, false, undefined]),
-    dislikes: PropTypes.number,
     contributor: PropTypes.string.isRequired,
     goBack: PropTypes.func,
     history: PropTypes.object,
-  }
+  };
 
   static defaultProps = {
     type: 'Other',
     date: null,
     goBack: null,
     history: null
-  }
+  };
 
   handleLikeClick = () => {
-    const { liked, like, unlike, id } = this.props;
+    const {
+      liked, like, unlike, id
+    } = this.props;
     if (liked) {
       unlike(id);
     } else {
       like(id);
     }
-  }
+  };
 
   handleDislikeClick = () => {
-    const { disliked, dislike, undislike, id } = this.props;
+    const {
+      disliked, dislike, undislike, id
+    } = this.props;
     if (disliked) {
       undislike(id);
     } else {
       dislike(id);
     }
-  }
+  };
 
   get handleGoBack() {
     const { goBack, history } = this.props;

@@ -3,8 +3,8 @@ import { MemoryRouter as Router } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
-import theme from '../../../theme';
-import About from './About';
+import theme from '../../app/theme';
+import Loading from './Loading';
 
 const Global = createGlobalStyle`
   body {
@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   height: 414px;
 `;
 
-storiesOf('screens/About', module)
+storiesOf('screens/Loading', module)
   .addDecorator(getStory => (
     <div>
       <Global />
@@ -30,7 +30,4 @@ storiesOf('screens/About', module)
       </Router>
     </div>
   ))
-  .add('normal', () => <About extensionVersion="1.2.3" close={action('close')} installationDate="01/01/2042" />)
-  .add('missing installation date', () => (
-    <About extensionVersion="1.2.3" close={action('close')} />
-  ));
+  .add('normal', () => <Loading close={action('close')} />);

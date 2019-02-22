@@ -17,16 +17,16 @@ export default class Notice extends PureComponent {
     type: PropTypes.string,
     message: PropTypes.string.isRequired,
     contributor: PropTypes.string.isRequired,
-    dismiss: PropTypes.func,
-    undismiss: PropTypes.func,
+    dismiss: PropTypes.func.isRequired,
+    undismiss: PropTypes.func.isRequired,
     dismissed: PropTypes.bool,
     disliked: PropTypes.bool,
-  }
+  };
 
   static defaultProps = {
     type: 'Other',
     dismissed: false,
-  }
+  };
 
   render() {
     const {
@@ -34,8 +34,8 @@ export default class Notice extends PureComponent {
     } = this.props;
     return (
       <NoticeContainer>
-        {!dismissed && !disliked &&
-          <DeleteButton onClick={() => dismiss(id)} />
+        {!dismissed && !disliked
+        && <DeleteButton onClick={() => dismiss(id)} />
         }
         <NoticeContent to={!dismissed && `notices/details/${id}`}>
           {dismissed || disliked ? (
