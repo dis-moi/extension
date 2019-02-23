@@ -1,11 +1,13 @@
 import React from 'react';
-import { NavLink, NotificationFooterContainer} from '../../../components/atoms';
-import { Account, Bubble, Help } from '../../../components/atoms/icons/nav';
+import { NavLink, NotificationFooterContainer} from '../../../../components/atoms';
+import AccountIcon from './AccountIcon';
+import BubbleIcon from './BubbleIcon';
+import HelpIcon from './HelpIcon';
 
 const NotificationFooter = () => (
   <NotificationFooterContainer>
     <NavLink to="/notices">
-      <Bubble />
+      <BubbleIcon />
     </NavLink>
     <NavLink
       as="a"
@@ -13,10 +15,10 @@ const NotificationFooter = () => (
       target="_blank"
       rel="noopener noreferrer"
     >
-      <Help />
+      <HelpIcon />
     </NavLink>
     <NavLink to="/about">
-      <Account />
+      <AccountIcon />
     </NavLink>
   </NotificationFooterContainer>
 );

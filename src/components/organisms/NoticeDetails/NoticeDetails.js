@@ -71,7 +71,7 @@ class NoticeDetails extends PureComponent {
 
   render() {
     const {
-      type, date, message, contributor, source, liked, disliked,
+      type, date, message, contributor, source, liked, disliked, dismissed
     } = this.props;
 
     return (
@@ -107,7 +107,7 @@ class NoticeDetails extends PureComponent {
             </Button>
           </Feedbacks>
 
-          {(disliked) && (
+          {(disliked || dismissed) && (
             <DetailsDislike>
             Merci pour votre retour, cette notification ne s’affichera plus
               <div>
