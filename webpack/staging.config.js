@@ -4,6 +4,9 @@ import baseConfig from './base.config';
 
 export default baseConfig({
   mode: 'development',
+  input: {
+    test: [path.join(__dirname, '../test/integration/')],
+  },
   output: {
     path: path.join(__dirname, '../build/staging'),
     publicPath: '.',
@@ -20,5 +23,4 @@ export default baseConfig({
       }
     })
   ],
-
 });

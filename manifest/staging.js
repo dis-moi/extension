@@ -13,6 +13,7 @@ export default Object.assign(
         ],
         'script-src': [
           '\'self\'',
+          '\'unsafe-eval\'',
           'https://heapanalytics.com',
           'https://cdn.heapanalytics.com'
         ],

@@ -22,10 +22,6 @@ export default Object.freeze({
   'background': {
     'page': 'background.html'
   },
-  'options_ui': {
-    'page': 'options.html',
-    'chrome_style': false
-  },
   'browser_action': {
     'default_icon': {
       '16': 'img/logo/16x16.png',
