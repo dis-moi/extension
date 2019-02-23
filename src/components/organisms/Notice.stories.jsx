@@ -17,6 +17,7 @@ storiesOf('organisms/Notice', module)
       id="123"
       message="message"
       dismiss={action('dismiss')}
+      undismiss={action('undismiss')}
       dismissed={false}
     />
   ))
@@ -27,6 +28,7 @@ storiesOf('organisms/Notice', module)
       id="123"
       message="message"
       dismiss={action('dismiss')}
+      undismiss={action('undismiss')}
       dismissed={false}
     />
   ))
@@ -37,6 +39,7 @@ storiesOf('organisms/Notice', module)
       id="123"
       message="message"
       dismiss={action('dismiss')}
+      undismiss={action('undismiss')}
       dismissed={false}
     />
   ))
@@ -47,16 +50,49 @@ storiesOf('organisms/Notice', module)
       id="123"
       message="message"
       dismiss={action('dismiss')}
+      undismiss={action('undismiss')}
+      dismissed={false}
+    />
+  ))
+  .add('No type', () => (
+    <Notice
+      contributor="Jalil"
+      id="123"
+      message="message"
+      dismiss={action('dismiss')}
+      undismiss={action('undismiss')}
+      dismissed={false}
+    />
+  ))
+  .add('Undefined type', () => (
+    <Notice
+      type={undefined}
+      contributor="Jalil"
+      id="123"
+      message="message"
+      dismiss={action('dismiss')}
+      undismiss={action('undismiss')}
+      dismissed={false}
+    />
+  ))
+  .add('Unknown type', () => (
+    <Notice
+      type="some inexistant type"
+      contributor="Jalil"
+      id="123"
+      message="message"
+      dismiss={action('dismiss')}
+      undismiss={action('undismiss')}
       dismissed={false}
     />
   ))
   .add('dismissed', () => (
     <Notice
-      type="Disapproval"
       contributor="Jalil"
       id="123"
       message="message"
       dismiss={action('dismiss')}
+      undismiss={action('undismiss')}
       dismissed
     />
   ));

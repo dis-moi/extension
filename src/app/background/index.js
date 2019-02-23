@@ -1,4 +1,3 @@
-
 /* eslint global-require: "off" */
 
 // Early imports with high priority stuff involved, such as event listeners creation
@@ -7,6 +6,7 @@ import loadHeap from '../../lib/heap';
 
 import configureStore from './store/configureStore';
 import { getOnInstalledDetails } from './selectors/prefs';
+
 import prepareDraftPreview from '../lmem/draft-preview/main';
 
 import {
@@ -63,7 +63,7 @@ configureStore((store) => {
 
   draftRecoContentCodeP
     .then(contentCode => prepareDraftPreview(
-      chrome.tabs, 
+      chrome.tabs,
       contentCode,
       (draftOffers => store.dispatch(updateDraftRecommendations(draftOffers)))
     ));

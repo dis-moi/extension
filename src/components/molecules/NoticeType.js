@@ -4,9 +4,15 @@ import { withTheme } from 'styled-components';
 import { NoticeTypeBackground } from '../atoms';
 import * as noticeTypeIcons from '../atoms/icons/types';
 
+const getTypeOrFallback = referential => type => (
+  type in referential
+    ? referential[type]
+    : referential.Other
+);
+
 const NoticeType = ({ type, theme }) => {
-  const NoticeTypeIcon = noticeTypeIcons[type];
-  const style = theme.noticeTypes[type];
+  const NoticeTypeIcon = getTypeOrFallback(noticeTypeIcons)(type);
+  const style = getTypeOrFallback(theme.noticeTypes)(type);
 
   return (
     <NoticeTypeBackground color={style && style.background}>

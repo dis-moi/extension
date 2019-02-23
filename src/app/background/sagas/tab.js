@@ -10,7 +10,9 @@ import {
 } from '../actions/tabs';
 import { noticesFound } from '../../content/actions/recommendations';
 import fetchMatchingRecommendations from '../../lmem/getMatchingRecommendations';
-import {fetchContentScript, executeTabScript, sendToTab, createBrowserActionChannel} from '../services';
+import {
+  fetchContentScript, executeTabScript, sendToTab, createBrowserActionChannel
+} from '../services';
 import watchSingleMessageSaga from '../../utils/watchSingleMessageSaga';
 
 export function* tabSaga({ payload: tab, meta: { url } }) {
@@ -51,7 +53,7 @@ export const contextTriggeredSaga = executeContentScript => function* ({
     yield all(noticesToShow.map(notice => put(noticeDisplayed(notice, trigger))));
 
     const ignoredNotices = yield select(getIgnoredNotices(notices));
-    yield all(ignoredNotices.map(notice => put(noticeIgnored(notice, trigger ))));
+    yield all(ignoredNotices.map(notice => put(noticeIgnored(notice, trigger))));
 
     if (noticesToShow.length > 0) {
       yield put(noticesFound(noticesToShow, tab));

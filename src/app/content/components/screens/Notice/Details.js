@@ -37,15 +37,11 @@ const Details = ({
 
 Details.propTypes = {
   notice: PropTypes.shape(NoticeType).isRequired,
-  like: PropTypes.func,
-  unlike: PropTypes.func,
-  dislike: PropTypes.func,
-  undislike: PropTypes.func,
-  close: PropTypes.func,
-};
-
-Details.defaultProps = {
-  close: null,
+  like: PropTypes.func.isRequired,
+  unlike: PropTypes.func.isRequired,
+  dislike: PropTypes.func.isRequired,
+  undislike: PropTypes.func.isRequired,
+  close: PropTypes.func.isRequired,
 };
 
 export default Details;

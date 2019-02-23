@@ -1,10 +1,11 @@
 import {
-  NOTICES_FOUND, DISMISS_NOTICE, UNDISMISS_NOTICE, LIKE_NOTICE, UNLIKE_NOTICE, DISLIKE_NOTICE, UNDISLIKE_NOTICE, REPORT_NOTICE,
+  NOTICES_FOUND, DISMISS_NOTICE, UNDISMISS_NOTICE, LIKE_NOTICE, UNLIKE_NOTICE,
+  DISLIKE_NOTICE, UNDISLIKE_NOTICE, REPORT_NOTICE,
 } from '../../constants/ActionTypes';
 import createAction from '../../utils/createAction';
 import createBackgroundAction from '../createBackgroundAction';
 
-const withId = id => ({ id })
+const withId = id => ({ id });
 
 export const noticesFound = createAction(
   NOTICES_FOUND,

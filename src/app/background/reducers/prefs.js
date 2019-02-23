@@ -28,8 +28,8 @@ const initialPrefs = fromJS({
   onInstalledDetails: new ImmutableMap()
 });
 
-const addToSet = element => immutableSet => immutableSet.add(element)
-const deleteFromSet = element => immutableSet => immutableSet.delete(element)
+const addToSet = element => immutableSet => immutableSet.add(element);
+const deleteFromSet = element => immutableSet => immutableSet.delete(element);
 
 export default function (state = initialPrefs, action) {
   const { type, payload } = action;
@@ -100,22 +100,22 @@ export default function (state = initialPrefs, action) {
       return state.set('editors', editors.setIn([id.toString(), 'isExcluded'], false));
     }
 
-    case REPORT_NOTICE: return state.update('reportedNotices', addToSet(payload.id))
+    case REPORT_NOTICE: return state.update('reportedNotices', addToSet(payload.id));
 
     case DISMISS_NOTICE:
-      return state.update('dismissedNotices', addToSet(payload.id))
+      return state.update('dismissedNotices', addToSet(payload.id));
     case UNDISMISS_NOTICE:
-      return state.update('dismissedNotices', deleteFromSet(payload.id))
+      return state.update('dismissedNotices', deleteFromSet(payload.id));
 
     case LIKE_NOTICE:
-      return state.update('likedNotices', addToSet(payload.id))
+      return state.update('likedNotices', addToSet(payload.id));
     case UNLIKE_NOTICE:
-      return state.update('likedNotices', deleteFromSet(payload.id))
+      return state.update('likedNotices', deleteFromSet(payload.id));
 
     case DISLIKE_NOTICE:
-      return state.update('dislikedNotices', addToSet(payload.id))
+      return state.update('dislikedNotices', addToSet(payload.id));
     case UNDISLIKE_NOTICE:
-      return state.update('dislikedNotices', deleteFromSet(payload.id))
+      return state.update('dislikedNotices', deleteFromSet(payload.id));
 
 
     case DEACTIVATE: {

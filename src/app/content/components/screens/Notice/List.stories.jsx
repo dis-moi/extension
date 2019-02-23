@@ -33,8 +33,8 @@ storiesOf('screens/Notice/List', module)
     </Router>
   ))
   .add('with 1 notification', () => (
-    <List close={action('close')} dismiss={action('dismiss')} notices={notices} />
+    <List close={action('close')} dismiss={action('dismiss')} undismiss={action('undismiss')} notices={notices} />
   ))
   .add('empty list', () => (
-    <List close={action('close')} dismiss={action('dismiss')} notices={[]} />
+    <List close={action('close')} dismiss={action('dismiss')} undismiss={action('undismiss')} notices={[]} />
   ));

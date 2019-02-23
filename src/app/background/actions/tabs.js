@@ -7,7 +7,7 @@ import {
   MATCH_CONTEXT_FAILURE,
   CONTEXT_TRIGGER_FAILURE
 } from '../../constants/ActionTypes';
-import Notice from '../../lmem/Notice'
+import Notice from '../../lmem/Notice';
 import createAction from '../../utils/createAction';
 
 export const init = createAction(

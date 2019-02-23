@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components';
 
 import PopupScreen from './PopupScreen';
 import { openPrefScreen, popupClick } from '../content/actions/ui';
+
 import { IMAGES_URL } from '../constants/assetsUrls';
 import {
   PREFERENCE_SCREEN_PANEL_ABOUT,
