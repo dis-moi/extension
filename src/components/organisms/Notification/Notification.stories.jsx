@@ -5,29 +5,30 @@ import { action } from '@storybook/addon-actions';
 import Notification from './Notification';
 
 storiesOf('organisms/Notification', module)
-  .addDecorator(getStory => (
+  .add('normal', () => (
     <Router>
-      {getStory()}
+      <Notification />
     </Router>
   ))
-  .add('normal', () => (
-    <Notification />
-  ))
   .add('with title', () => (
-    <Notification
-      title="Notification title"
-    />
+    <Router>
+      <Notification
+        title="Notification title"
+      />
+    </Router>
   ))
   .add('with long title', () => (
-    <Notification
-      title="Very long notification title, it should break"
-    />
+    <Router>
+      <Notification
+        title="Very long notification title, it should break"
+      />
+    </Router>
   ))
   .add('with nav', () => (
-    <Notification
-      title="Notification title"
-      onBack={action('handleGoBack')}
-    >
-    Need help to add back button
-    </Notification>
+    <Router initialIndex={2} initialEntries={['/path', '/pass']}>
+      <Notification
+        title="Very long notification title, it should break"
+        onBack={action('handleGoBack')}
+      />
+    </Router>
   ));

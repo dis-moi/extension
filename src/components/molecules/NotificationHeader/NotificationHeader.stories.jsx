@@ -5,17 +5,23 @@ import { action } from '@storybook/addon-actions';
 import NotificationHeader from './NotificationHeader';
 
 storiesOf('molecules/NotificationHeader', module)
-  .addDecorator(getStory => (
+  .add('normal', () => (
     <Router>
-      {getStory()}
+      <NotificationHeader close={action('close')} />
     </Router>
   ))
-  .add('normal', () => (
-    <NotificationHeader close={action('close')} />
-  ))
   .add('with title', () => (
-    <NotificationHeader title="title" close={action('close')} onBack={action('onback')} />
+    <Router>
+      <NotificationHeader title="title" close={action('close')} />
+    </Router>
   ))
   .add('with long title', () => (
-    <NotificationHeader title="Very long notification title, it should breaktitle" close={action('close')} onBack={action('onback')} />
+    <Router>
+      <NotificationHeader title="Very long notification title, it should breaktitle" close={action('close')} />
+    </Router>
+  ))
+  .add('with nav history', () => (
+    <Router initialIndex={2} initialEntries={['/path', '/pass']}>
+      <NotificationHeader title="title" close={action('close')} />
+    </Router>
   ));

@@ -59,7 +59,7 @@ export default class Notification extends PureComponent {
 
     return (
       <Fragment>
-        <NotificationHeader title={title} close={close} onBack={onBack} />
+        <NotificationHeader title={title} close={close} goBack={onBack} />
         <Main notices={this.hasNotices}>
           {this.renderChildren()}
         </Main>
