@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
-import { NoticeTypeBackground } from '../atoms';
-import * as noticeTypeIcons from '../atoms/icons/types';
+import Background from './Background';
+import * as noticeTypeIcons from '../../atoms/icons/types';
 
 const getTypeOrFallback = referential => type => (
   type in referential
@@ -15,9 +15,9 @@ const NoticeType = ({ type, theme }) => {
   const style = getTypeOrFallback(theme.noticeTypes)(type);
 
   return (
-    <NoticeTypeBackground color={style && style.background}>
+    <Background color={style && style.background}>
       {NoticeTypeIcon && <NoticeTypeIcon />}
-    </NoticeTypeBackground>
+    </Background>
   );
 };
 

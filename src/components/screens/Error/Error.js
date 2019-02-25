@@ -1,13 +1,15 @@
 import React from 'react';
-import { Container, ContentTitle, Content } from '../atoms/Error';
-import { BorderButton } from '../atoms';
-import { Error } from '../atoms/icons/illustrations';
-import { Notification } from '../organisms';
+import Container from './Container';
+import ContentTitle from './ContentTitle';
+import Content from './Content';
+import BorderButton from '../../atoms/Buttons/BorderButton/BorderButton';
+import Illustration from './Illustration';
+import Notification from '../../organisms/Notification';
 
 export default ({ location }) => (
   <Notification>
     <Container>
-      <Error />
+      <Illustration />
       <ContentTitle>
         Oops !
       </ContentTitle>

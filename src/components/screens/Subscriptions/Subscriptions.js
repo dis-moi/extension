@@ -1,13 +1,14 @@
 import React from 'react';
-import { Notification } from '../organisms';
-import Subscriptions from '../atoms/icons/illustrations/Subscriptions';
-import { Container, SubscriptionsData } from '../atoms/Subscriptions';
-import { BorderButton } from '../atoms';
+import { Notification } from '../../organisms';
+import Illustration from './Illustration';
+import Container from './Container';
+import SubscriptionsData from './SubscriptionsData';
+import BorderButton from '../../atoms/Buttons/BorderButton/BorderButton';
 
 export default ({ close }) => (
   <Notification title="Abonnements" close={close}>
     <Container>
-      <Subscriptions />
+      <Illustration />
 
       <SubscriptionsData>
         <div>

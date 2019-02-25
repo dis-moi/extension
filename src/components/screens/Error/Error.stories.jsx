@@ -1,10 +1,9 @@
 import React from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
-import theme from '../../app/theme';
-import Loading from './Loading';
+import theme from '../../../app/theme';
+import Error from './Error';
 
 const Global = createGlobalStyle`
   body {
@@ -17,7 +16,7 @@ const Wrapper = styled.div`
   height: 414px;
 `;
 
-storiesOf('screens/Loading', module)
+storiesOf('screens/Error', module)
   .addDecorator(getStory => (
     <div>
       <Global />
@@ -30,4 +29,4 @@ storiesOf('screens/Loading', module)
       </Router>
     </div>
   ))
-  .add('normal', () => <Loading close={action('close')} />);
+  .add('normal', () => <Error />);

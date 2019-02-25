@@ -2,7 +2,7 @@ import React, { Fragment, PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import { NotificationMain } from '../atoms';
 import { NotificationHeader } from '../molecules';
-import Notice from './Notice';
+import Notice from './Notice/Notice';
 import NoticeDetails from './NoticeDetails/NoticeDetails';
 import isChildInstanceOf from '../../app/utils/isChildInstanceOf';
 

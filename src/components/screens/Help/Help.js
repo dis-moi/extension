@@ -1,13 +1,14 @@
 import React from 'react';
-import { Container, ContentTitle } from '../atoms/Help';
+import Container from './Container';
+import ContentTitle from './ContentTitle';
 import {
   BorderButton,
   CenterContainer,
   List,
   ExternalLink
-} from '../atoms';
-import { Textarea, Form } from '../atoms/Forms';
-import Notification from '../organisms/Notification';
+} from '../../atoms';
+import { Textarea, Form } from '../../atoms/Forms';
+import Notification from '../../organisms/Notification';
 
 export default ({ close }) => (
   <Notification title="Aide" close={close}>

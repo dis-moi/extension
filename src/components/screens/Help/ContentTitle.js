@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ContentTitle from '../Notification/ContentTitle';
+import ContentTitle from '../../atoms/Notification/ContentTitle';
 
 export default styled(ContentTitle)`
     margin: 0 0 10px;

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import {
   BackButton, CloseButton, Logo, NotificationHeaderContainer, Title
-} from '../atoms';
-import { truncateButPreserveWords } from '../../app/utils/truncate';
-import removeHtml from '../../app/utils/removeHtml';
+} from '../../atoms';
+import { truncateButPreserveWords } from '../../../app/utils/truncate';
+import removeHtml from '../../../app/utils/removeHtml';
 
 const NotificationHeader = ({
   title, goBack, close, history

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Notification } from '../../organisms';
-import { Account, OpenButton } from '../../atoms';
+import { Notification } from '../../../organisms';
+import { Account, OpenButton } from '../../../atoms';
 
 export default ({ match, close }) => (
   <Notification title="Account" close={close}>

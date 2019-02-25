@@ -1,15 +1,16 @@
 import React, { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
-  NoticeContainer,
-  NoticeContent,
-  NoticeDeleted,
   Contributor,
   DeleteButton,
   OpenButton,
   Button,
-} from '../atoms';
-import { NoticeTitle, NoticeType } from '../molecules';
+} from '../../atoms';
+import Type from '../../molecules/Type/Type';
+import Container from './Container';
+import Content from './Content';
+import Deleted from './Deleted';
+import Title from './Title';
 
 export default class Notice extends PureComponent {
   static propTypes = {
@@ -33,21 +34,21 @@ export default class Notice extends PureComponent {
       id, type, message, contributor, dismissed, disliked, dismiss, undismiss
     } = this.props;
     return (
-      <NoticeContainer>
+      <Container>
         {!dismissed && !disliked
         && <DeleteButton onClick={() => dismiss(id)} />
         }
-        <NoticeContent to={!dismissed && `notices/details/${id}`}>
+        <Content to={!dismissed && `notices/details/${id}`}>
           {dismissed || disliked ? (
             <Fragment>
-              <NoticeDeleted>Cette notification ne s’affichera plus !</NoticeDeleted>
+              <Deleted>Cette notification ne s’affichera plus !</Deleted>
               <Button onClick={() => undismiss(id)}>Annuler</Button>
             </Fragment>
           ) : (
             <Fragment>
-              <NoticeType type={type} />
+              <Type type={type} />
               <div>
-                <NoticeTitle>{message}</NoticeTitle>
+                <Title>{message}</Title>
                 <Contributor>
                       Par :
                       &nbsp;
@@ -57,8 +58,8 @@ export default class Notice extends PureComponent {
               <OpenButton />
             </Fragment>
           )}
-        </NoticeContent>
-      </NoticeContainer>
+        </Content>
+      </Container>
     );
   }
 }

@@ -1,10 +1,10 @@
 import { Route, Switch } from 'react-router-dom';
 import React from 'react';
-import Filters from './Filters';
-import Menu from './Menu';
+import Filters from './Filters/Filters';
+import Menu from './Menu/Menu';
 import About from './About/About';
-import Error from '../Error';
-import Loading from '../Loading';
+import Error from '../Error/Error';
+import Loading from '../Loading/Loading';
 
 export default ({ match }) => (
   <Switch>
