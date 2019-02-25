@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '../../Button';
-import ArrowIcon from '../../icons/Arrow';
+import Button from '../../atoms/Button';
+import ArrowIcon from '../../atoms/icons/Arrow';
 
 export default styled(Button).attrs({ children: <ArrowIcon /> })`
     height: 30px;

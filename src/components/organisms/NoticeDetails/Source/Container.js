@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ExternalLink from './ExternalLink';
+import ExternalLink from '../../../atoms/ExternalLink';
 
 export default styled(ExternalLink)`
 

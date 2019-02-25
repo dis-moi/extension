@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '../../Button';
-import DeleteIcon from '../../icons/Delete';
+import Button from '../../atoms/Button';
+import DeleteIcon from './DeleteIcon';
 
 export default styled(Button).attrs({ children: <DeleteIcon /> })`
   box-sizing: border-box;

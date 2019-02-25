@@ -36,7 +36,6 @@ export default styled(Content)`
 
     & [class^="OpenButton"] {
         height: auto;
-        transform: rotate(180deg)
     }
 
     & > button {

@@ -2,7 +2,6 @@ import React, { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
   Contributor,
-  DeleteButton,
   OpenButton,
   Button,
 } from '../../atoms';
@@ -10,6 +9,7 @@ import Type from '../../molecules/Type/Type';
 import Container from './Container';
 import Content from './Content';
 import Deleted from './Deleted';
+import DeleteButton from './DeleteButton';
 import Title from './Title';
 
 export default class Notice extends PureComponent {

@@ -8,7 +8,7 @@ import {
   ExternalLink
 } from '../../atoms';
 import { Textarea, Form } from '../../atoms/Forms';
-import Notification from '../../organisms/Notification';
+import Notification from '../../organisms/Notification/Notification';
 
 export default ({ close }) => (
   <Notification title="Aide" close={close}>

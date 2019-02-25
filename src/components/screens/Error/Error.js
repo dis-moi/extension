@@ -4,7 +4,7 @@ import ContentTitle from './ContentTitle';
 import Content from './Content';
 import BorderButton from '../../atoms/Buttons/BorderButton/BorderButton';
 import Illustration from './Illustration';
-import Notification from '../../organisms/Notification';
+import Notification from '../../organisms/Notification/Notification';
 
 export default ({ location }) => (
   <Notification>

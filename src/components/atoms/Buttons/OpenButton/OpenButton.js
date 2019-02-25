@@ -10,5 +10,6 @@ export default styled.div.attrs({ children: <OpenIcon /> })`
    width: auto;
    height: 13px;
    stroke: ${props => props.theme.activeColor};
+   transform: rotate(180deg);
 `;
 

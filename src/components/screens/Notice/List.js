@@ -1,5 +1,5 @@
 import React from 'react';
-import { NotificationContentTitle } from '../../atoms';
+import { ContentTitleTop } from '../../atoms';
 import { AddNotice} from '../../molecules';
 import { Notification, Notice} from '../../organisms';
 
@@ -9,7 +9,7 @@ const message = 'De nombreux clients mÃ©contents de Pixmania et ses vendeurs sâ€
 export default ({ match, close }) => {
   return (
     <Notification close={close}>
-      <NotificationContentTitle>Notifications pour cette page</NotificationContentTitle>
+      <ContentTitleTop>Notifications pour cette page</ContentTitleTop>
       <Notice
         id={1}
         match={match}

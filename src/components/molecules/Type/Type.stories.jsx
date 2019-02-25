@@ -9,6 +9,26 @@ storiesOf('molecules/Type', module)
       {getStory()}
     </Router>
   ))
-  .add('normal', () => (
+  .add('approval', () => (
+    <Type 
+      type="Approval"
+    />
+  ))
+  .add('disapproval', () => (
+    <Type 
+      type="Disapproval"
+    />
+  ))
+  .add('tip', () => (
+    <Type 
+      type="Tip"
+    />
+  ))
+  .add('other', () => (
+    <Type 
+      type="Other"
+    />
+  ))
+  .add('undefined / unknown ', () => (
     <Type />
   ));

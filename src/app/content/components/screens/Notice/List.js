@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { recommendation as NoticeType } from '../../../../propTypes';
-import { NotificationContentTitle } from '../../../../../components/atoms';
+import ContentTitleTop from '../../../../../components/atoms/ContentTitle/ContentTitleTop';
 import { AddNotice, NoNotice } from '../../../../../components/molecules';
 import { Notification, Notice } from '../../../../../components/organisms';
 import { findType } from '../../../../lmem';
@@ -11,7 +11,7 @@ const List = ({
 }) => {
   return (
     <Notification close={close}>
-      <NotificationContentTitle>Notifications pour cette page</NotificationContentTitle>
+      <ContentTitleTop>Notifications pour cette page</ContentTitleTop>
       {notices.slice(0, 2).map(({
         id, title, contributor: { name }, resource: { url }, criteria, dismissed, disliked
       }) => (

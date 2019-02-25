@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '../../Button';
-import CloseIcon from '../../icons/Close';
+import Button from '../../atoms/Button';
+import CloseIcon from '../../atoms/icons/Close';
 
 export default styled(Button).attrs({ children: <CloseIcon /> })`
    margin-left: auto;

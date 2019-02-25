@@ -11,5 +11,11 @@ storiesOf('molecules/NotificationHeader', module)
     </Router>
   ))
   .add('normal', () => (
+    <NotificationHeader close={action('close')} />
+  ))
+  .add('with title', () => (
     <NotificationHeader title="title" close={action('close')} onBack={action('onback')} />
+  ))
+  .add('with long title', () => (
+    <NotificationHeader title="Very long notification title, it should breaktitle" close={action('close')} onBack={action('onback')} />
   ));

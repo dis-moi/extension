@@ -6,15 +6,17 @@ import {
   Button,
   BorderButton
 } from '../../atoms';
-import { Anchor } from '../../atoms/icons';
 import { Like, Dislike } from '../../atoms/icons/types';
-import { NoticeType, SourceURL } from '../../molecules';
+import Type from '../../molecules/Type/Type';
+import Source from './Source/Source';
+import Anchor from './Source/AnchorIcon';
+import SourceContainer from './Source/Container';
+import SourceURL from './Source/SourceURL';
 import DetailsContainer from './DetailsContainer';
 import DetailsContent from './DetailsContent';
 import DetailsMeta from './DetailsMeta';
 import DetailsDislike from './DetailsDislike';
 import MessageWrapper from './Message';
-import Source from './Source';
 import Feedbacks from './Feedbacks';
 import Date from './Date';
 
@@ -90,7 +92,7 @@ class NoticeDetails extends PureComponent {
               &nbsp;
               :
             </Contributor>
-            <NoticeType type={type} />
+            <Type type={type} />
           </DetailsMeta>
           <MessageWrapper>{message}</MessageWrapper>
           <Source>

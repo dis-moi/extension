@@ -12,4 +12,5 @@ export default styled.nav`
     margin-top: auto;
     background-color: #fff;
     border-top: 1px solid ${props => props.theme.bottomBar};
+    border-radius: 0 0 7px 7px;
 `;
