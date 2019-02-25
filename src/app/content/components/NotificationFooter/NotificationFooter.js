@@ -1,5 +1,6 @@
 import React from 'react';
-import { NavLink, NotificationFooterContainer} from '../../../../components/atoms';
+import NotificationFooterContainer from '../../../../components/molecules/NotificationFooter/FooterContainer';
+import NavLink from '../../../../components/molecules/NotificationFooter/NavLink';
 import AccountIcon from './AccountIcon';
 import BubbleIcon from './BubbleIcon';
 import HelpIcon from './HelpIcon';
