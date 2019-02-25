@@ -45,7 +45,6 @@ export default class App extends React.PureComponent {
                 )
                 : <Loading />
               }
-              <NotificationFooter />
             </NotificationContainer>
           </ConnectedRouter>
         </ThemeProvider>
