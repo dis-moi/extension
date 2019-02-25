@@ -5,6 +5,7 @@ import rootReducer from '../reducers';
 import middlewares, { sagaMiddleware } from '../middlewares';
 import rootSaga from '../sagas';
 import fromJS from '../../utils/customFromJS';
+import listenTabs from './listenTabs';
 
 import makeInitialState from './makeInitialState';
 
@@ -45,6 +46,8 @@ export default function configureStore(callback, isBg) {
 
     const state = initialResourcesState.merge(migratedState);
     const store = createStore(rootReducer, state, enhancer);
+
+    listenTabs(chrome.tabs, store);
 
     sagaMiddleware.run(rootSaga);
 
