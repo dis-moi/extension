@@ -4,7 +4,7 @@ import { Notification } from '../../../organisms';
 import { OpenButton } from '../../../atoms';
 import Account from './Account';
 
-export default ({ match, close }) => (
+export const Menu = ({ match, close }) => (
   <Notification title="Account" close={close}>
     <Account>
       <Link to={`${match.url}/data`}>
@@ -26,3 +26,5 @@ export default ({ match, close }) => (
     </Account>
   </Notification>
 );
+
+export default Menu;
