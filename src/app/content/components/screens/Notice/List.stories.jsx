@@ -21,7 +21,6 @@ const notices = [
   {
     id: '123',
     description: 'Description',
-    title: 'title',
     contributor: { name: 'John Doe' },
     criteria: [{ label: 'label', slug: 'slug' }],
     isApproved: true,

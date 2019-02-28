@@ -6,14 +6,14 @@ import { findType } from '../../../../lmem/typeOfCriteria';
 
 const Details = ({
   notice: {
-    id, resource: { url }, contributor: { name }, title, criteria, description, liked, disliked
+    id, resource: { url }, contributor: { name }, criteria, description, liked, disliked
   },
   like, unlike,
   dislike, undislike,
   close,
 }) => {
   return (
-    <Notification title={title} close={close}>
+    <Notification title={description} close={close}>
       <NoticeDetails
         id={id}
         type={findType(criteria)}

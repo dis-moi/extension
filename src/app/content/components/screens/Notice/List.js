@@ -13,13 +13,13 @@ const List = ({
     <Notification close={close}>
       <NotificationContentTitle>Notifications pour cette page</NotificationContentTitle>
       {notices.slice(0, 2).map(({
-        id, title, contributor: { name }, resource: { url }, criteria, dismissed, disliked
+        id, description, contributor: { name }, resource: { url }, criteria, dismissed, disliked
       }) => (
         <Notice
           key={id}
           id={id}
           type={findType(criteria)}
-          message={title}
+          message={description}
           contributor={name}
           source={url}
           dismiss={dismiss}
