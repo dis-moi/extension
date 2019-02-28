@@ -1,7 +1,6 @@
 import thunk from 'redux-thunk';
 import openOptionsPage from './openOptionsPage';
 import sendFeedback from './sendFeedback';
-import createTabsMiddleware from './tabs';
 import analytics from './analytics';
 import sagaMiddleware from './saga';
 import track from '../../analytics/trackEvents';
@@ -17,6 +16,5 @@ export default [
   }),
   openOptionsPage,
   sendFeedback,
-  createTabsMiddleware(chrome.tabs),
   sagaMiddleware,
 ];
