@@ -15,9 +15,10 @@ import {
 } from '../services';
 import watchSingleMessageSaga from '../../utils/watchSingleMessageSaga';
 
-export function* tabSaga({ payload: tab, meta: { url } }) {
+export const tabSaga = executeContentScript => function* ({ payload: tab, meta: { url } }) {
+  yield call(executeContentScript, tab);
   yield put(matchContext(url, tab));
-}
+};
 
 export function* matchContextSaga({ payload: trigger, meta: { tab } }) {
   try {
@@ -33,13 +34,11 @@ export function* matchContextSaga({ payload: trigger, meta: { tab } }) {
   }
 }
 
-export const contextTriggeredSaga = executeContentScript => function* ({
+export const contextTriggeredSaga = function* ({
   payload: { triggeredContexts },
   meta: { tab, url: trigger }
 }) {
   try {
-    yield call(executeContentScript, tab);
-
     const initialContent = yield select(getInitialContent);
 
     yield put(init(initialContent, tab));
@@ -93,8 +92,8 @@ export default function* tabRootSaga() {
   const contentCode = yield call(fetchContentScript, '/js/content.bundle.js');
   const executeTabContentScript = yield call(executeTabScript, contentCode);
 
-  yield takeLatest([TAB_CREATED, TAB_UPDATED], tabSaga);
+  yield takeLatest([TAB_CREATED, TAB_UPDATED], tabSaga(executeTabContentScript));
   yield takeLatest(MATCH_CONTEXT, matchContextSaga);
-  yield takeLatest(CONTEXT_TRIGGERED, contextTriggeredSaga(executeTabContentScript));
+  yield takeLatest(CONTEXT_TRIGGERED, contextTriggeredSaga);
   yield takeLatest(({ meta }) => meta && meta.tab, publishToTabSaga);
 }
