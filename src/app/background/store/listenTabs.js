@@ -6,9 +6,9 @@ export const onTabCreated = store => ({ id, url }) => {
   store.dispatch(tabCreated(id, { url }));
 };
 
-export const onTabUpdated = store => (id, { status, url: newUrl }, { url }) => {
-  if (status === 'loading') {
-    const matchingUrl = newUrl || url; // handle reloading
+export const onTabUpdated = store => (id, changeInfo, tab) => {
+  if (changeInfo.status === 'complete') {
+    const matchingUrl = changeInfo.url || tab.url; // handle reloading
 
     store.dispatch(tabUpdated(id, { url: matchingUrl }));
   }
