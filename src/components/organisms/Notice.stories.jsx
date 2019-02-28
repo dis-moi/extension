@@ -115,4 +115,13 @@ storiesOf('organisms/Notice', module)
       undismiss={action('undismiss')}
       dismissed
     />
+  ))
+  .add('with long title', () => (
+    <Notice
+      contributor="Jalil"
+      id="123"
+      message="This is very long title for a notification that you may want to read some time in the future"
+      dismiss={action('dismiss')}
+      undismiss={action('undismiss')}
+    />
   ));
