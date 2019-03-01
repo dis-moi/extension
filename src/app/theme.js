@@ -50,14 +50,14 @@ export default {
   // iframe
   iframe: {
     style: {
-      maxWidth: 'initial',
-      minWidth: 'initial',
-      minHeight: 'initial',
-      maxHeight: 'initial',
+      'max-width': 'initial',
+      'min-width': 'initial',
+      'min-height': 'initial',
+      'max-height': 'initial',
       position: 'fixed',
       top: 0,
       right: 0,
-      zIndex: 2147483647, // Max z-index value (signed 32bits integer)
+      'z-index': 2147483647, // Max z-index value (signed 32bits integer)
       border: 'none',
       transition: 'height .1s',
       width: '390px',
