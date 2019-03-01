@@ -20,7 +20,7 @@ const Wrapper = styled.div`
 const notices = [
   {
     id: '123',
-    description: 'Description',
+    description: '<p>Description with a <a href="http://some.url">link</a></p>',
     contributor: { name: 'John Doe' },
     criteria: [{ label: 'label', slug: 'slug' }],
     isApproved: true,
