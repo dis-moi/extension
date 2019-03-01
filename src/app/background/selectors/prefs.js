@@ -10,6 +10,7 @@ export const getEditors = state => getPrefs(state).get('editors');
 export const getDismissed = state => getPrefs(state).get('dismissedNotices');
 export const getLiked = state => getPrefs(state).get('likedNotices');
 export const getDisliked = state => getPrefs(state).get('dislikedNotices');
+export const getIgnored = state => [...new Set([...getDisliked(state), ...getDismissed(state)])];
 
 export const getCriterionBySlug = slug => state => getCriteria(state).get(slug);
 export const getSelectedCriteria = state => Array.from(getCriteria(state).keys())
