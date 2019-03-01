@@ -3,6 +3,7 @@ import {
   put, takeLatest, select, call
 } from 'redux-saga/effects';
 import { render } from 'react-dom';
+import { goBack } from 'connected-react-router';
 import { StyleSheetManager, ThemeProvider } from 'styled-components';
 import { Provider} from 'react-redux';
 import { open, opened, closed } from '../actions/ui';
@@ -17,10 +18,17 @@ const iframe = create({
   style: theme.iframe.style,
 });
 
+const getLocation = state => state.getIn(['router', 'location', 'pathname']);
+
 export function* openSaga() {
   const isOpen = yield select(isNotificationOpen);
 
   if (!isOpen) {
+    const location = yield select(getLocation);
+    if (location && /\/notices\/details\/[0-9]+/.test(location)) {
+      yield put(goBack());
+    }
+
     const contentDocument = yield call(append, iframe);
 
     const root = document.createElement('div');
