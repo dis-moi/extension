@@ -60,6 +60,9 @@ export default {
       zIndex: 2147483647, // Max z-index value (signed 32bits integer)
       border: 'none',
       transition: 'height .1s',
+      width: '390px',
+      height: '423px',
+      left: 'auto'
     },
   }
 };
