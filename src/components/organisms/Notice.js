@@ -11,6 +11,12 @@ import {
 } from '../atoms';
 import { NoticeTitle, NoticeType } from '../molecules';
 
+const strip = (html) => {
+  const tmp = document.createElement('div');
+  tmp.innerHTML = html;
+  return tmp.textContent || tmp.innerText || '';
+};
+
 export default class Notice extends PureComponent {
   static propTypes = {
     id: PropTypes.number.isRequired,
@@ -47,7 +53,7 @@ export default class Notice extends PureComponent {
             <Fragment>
               <NoticeType type={type} />
               <div>
-                <NoticeTitle>{message}</NoticeTitle>
+                <NoticeTitle>{strip(message)}</NoticeTitle>
                 <Contributor>
                       Par :
                       &nbsp;
