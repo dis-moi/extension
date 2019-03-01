@@ -10,14 +10,19 @@ import {
 } from '../actions/tabs';
 import { noticesFound } from '../../content/actions/recommendations';
 import fetchMatchingRecommendations from '../../lmem/getMatchingRecommendations';
+import { getTabs } from '../selectors/tabs';
 import {
   fetchContentScript, executeTabScript, sendToTab, createBrowserActionChannel
 } from '../services';
 import watchSingleMessageSaga from '../../utils/watchSingleMessageSaga';
 
-export const tabSaga = executeContentScript => function* ({ payload: tab, meta: { url } }) {
+export const tabSaga = executeContentScript => function* ({ payload: tab }) {
   yield call(executeContentScript, tab);
-  yield put(matchContext(url, tab));
+  const tabs = yield select(getTabs);
+  const tabInfos = tabs.get(tab);
+  if (tabInfos.get('url') !== tabInfos.get('matchedUrl')) {
+    yield put(matchContext(tabInfos.get('url'), tab));
+  }
 };
 
 export function* matchContextSaga({ payload: trigger, meta: { tab } }) {

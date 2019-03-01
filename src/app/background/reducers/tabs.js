@@ -1,4 +1,5 @@
 import { Map as ImmutableMap } from 'immutable';
+import { MATCH_CONTEXT } from '../../constants/ActionTypes';
 import {
   TAB_CREATED,
   TAB_UPDATED,
@@ -15,10 +16,13 @@ export default function (state = initialState, action) {
       return state.set(payload, meta);
 
     case TAB_UPDATED:
-      return state.set(payload, meta);
+      return state.mergeIn([payload], meta);
 
     case TAB_REMOVED:
       return state.remove(payload);
+
+    case MATCH_CONTEXT:
+      return state.setIn([meta.tab, 'matchedUrl'], payload);
 
     default:
       return state;
