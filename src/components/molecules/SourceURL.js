@@ -1,22 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { SourceURLContainer, Truncated} from '../atoms';
+import { SourceURLContainer } from '../atoms';
 
-export const SourceURL = ({ numberOfCharacters, children, ...props }) => (
+export const SourceURL = ({ children, ...props }) => (
   <SourceURLContainer {...props} href={children}>
-    <Truncated numberOfCharacters={numberOfCharacters} preserveWords={false}>
-      {children}
-    </Truncated>
+    {children}
   </SourceURLContainer>
 );
 
 SourceURL.propTypes = {
-  numberOfCharacters: PropTypes.number,
   children: PropTypes.string.isRequired,
-};
-
-SourceURL.defaultProps = {
-  numberOfCharacters: null,
 };
 
 export default SourceURL;
