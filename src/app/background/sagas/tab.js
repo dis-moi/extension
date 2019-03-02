@@ -3,9 +3,7 @@ import {
   put, takeLatest, select, call, fork, all, take
 } from 'redux-saga/effects';
 import { findTriggeredContexts } from '../selectors';
-import {
-  getInitialContent, getNoticesToDisplay, getIgnoredNotices, getIgnored
-} from '../selectors/prefs';
+import { getInitialContent, getNoticesToDisplay, getIgnoredNotices } from '../selectors/prefs';
 import { TAB_CREATED, TAB_UPDATED } from '../../constants/browser/tabs';
 import { CONTEXT_TRIGGERED, MATCH_CONTEXT } from '../../constants/ActionTypes';
 import {
@@ -38,18 +36,6 @@ export function* matchContextSaga({ payload: trigger, meta: { tab } }) {
 }
 
 const uniq = urls => [...new Set(urls)];
-const getIdFromUrl = url => parseInt(
-  /http.+\.lmem\.net\/api\/v[23]\/recommendation\/([0-9]+)$/.exec(url)[1],
-  10
-);
-const partitionIgnored = ignored => urls => urls.reduce(
-  (partition, url) => (
-    ignored.includes(getIdFromUrl(url))
-      ? { ...partition, ignored: [...partition.ignored, url]}
-      : { ...partition, actives: [...partition.actives, url]}
-  ),
-  { ignored: [], actives: []}
-);
 const map = fn => array => array.map(fn);
 
 export const contextTriggeredSaga = function* ({
@@ -60,10 +46,7 @@ export const contextTriggeredSaga = function* ({
     const initialContent = yield select(getInitialContent);
     yield put(init(initialContent, tab));
 
-    const previouslyIgnored = yield select(getIgnored);
-
     const toFetch = compose(
-      // partitionIgnored(previouslyIgnored),
       uniq,
       map(tc => tc.recommendation_url)
     )(triggeredContexts);
