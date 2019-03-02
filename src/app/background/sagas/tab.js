@@ -16,7 +16,7 @@ import {
 import watchSingleMessageSaga from '../../utils/watchSingleMessageSaga';
 
 export const tabSaga = executeContentScript => function* ({ payload: tab, meta: { url } }) {
-  yield call(executeContentScript, tab);
+  yield call(executeContentScript, tab, url);
   yield put(matchContext(url, tab));
 };
 
