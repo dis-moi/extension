@@ -3,7 +3,7 @@ import {
   put, takeLatest, select, call
 } from 'redux-saga/effects';
 import { render } from 'react-dom';
-import { goBack } from 'connected-react-router';
+import { push } from 'connected-react-router';
 import { open, opened, closed } from '../actions/ui';
 import { isOpen as isNotificationOpen, isMounted as isNotificationMounted} from '../selectors';
 import { CLOSE, OPEN, NOTICES_FOUND } from '../../constants/ActionTypes';
@@ -23,8 +23,8 @@ export function* openSaga() {
 
   if (!isOpen) {
     const location = yield select(getLocation);
-    if (location && /\/notices\/details\/[0-9]+/.test(location)) {
-      yield put(goBack());
+    if (location) {
+      yield put(push('/'));
     }
 
     if (isMounted) {
