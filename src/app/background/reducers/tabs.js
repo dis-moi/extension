@@ -13,10 +13,10 @@ export default function (state = initialState, action) {
 
   switch (type) {
     case TAB_CREATED:
-      return state.set(payload, meta);
+      return state.set(payload, new ImmutableMap(meta));
 
     case TAB_UPDATED:
-      return state.mergeIn([payload], meta);
+      return state.mergeIn([payload], new ImmutableMap(meta));
 
     case TAB_REMOVED:
       return state.remove(payload);
