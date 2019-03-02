@@ -31,9 +31,5 @@ export default styled.div`
                 fill: ${props => props.theme.secondaryColor};
             }
         }
-
-        &:focus {
-            outline: 1px dotted ${props => props.theme.activeColor};
-        }
     }
 `;

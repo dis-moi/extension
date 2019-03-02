@@ -17,4 +17,8 @@ export default styled.button`
     &:hover {
         color: ${props => props.theme.activeColor}
     }
+    
+    &:focus {
+        outline: 1px dotted ${props => props.theme.activeColor};
+    }
 `;
