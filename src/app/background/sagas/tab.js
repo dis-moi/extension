@@ -1,3 +1,4 @@
+import { compose } from 'redux';
 import {
   put, takeLatest, select, call, fork, all, take
 } from 'redux-saga/effects';
@@ -34,19 +35,23 @@ export function* matchContextSaga({ payload: trigger, meta: { tab } }) {
   }
 }
 
+const uniq = urls => [...new Set(urls)];
+const map = fn => array => array.map(fn);
+
 export const contextTriggeredSaga = function* ({
   payload: { triggeredContexts },
   meta: { tab, url: trigger }
 }) {
   try {
     const initialContent = yield select(getInitialContent);
-
     yield put(init(initialContent, tab));
 
-    const notices = yield call(
-      fetchMatchingRecommendations,
-      triggeredContexts.map(tc => tc.recommendation_url)
-    );
+    const toFetch = compose(
+      uniq,
+      map(tc => tc.recommendation_url)
+    )(triggeredContexts);
+
+    const notices = yield call(fetchMatchingRecommendations, toFetch);
 
     const noticesToShow = yield select(getNoticesToDisplay(notices));
     yield all(noticesToShow.map(notice => put(noticeDisplayed(notice, trigger))));
