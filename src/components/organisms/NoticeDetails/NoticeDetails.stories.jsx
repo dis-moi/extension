@@ -4,6 +4,10 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import NoticeDetails from './NoticeDetails';
 
+const message = `<p> Un message qui décrit <a href="http://www.lmem.net">quelque chose</a> et donc ça prend beaucoup de mots. </p>
+<p>Il peut aussi y avoir plusieurs paragraphes, <a href="http://www.lmem.net">avec encore des liens</a></p>
+`;
+
 storiesOf('organisms/NoticeDetails', module)
   .addDecorator(getStory => (
     <Router>
@@ -15,7 +19,7 @@ storiesOf('organisms/NoticeDetails', module)
       type="Approval"
       contributor="Jalil"
       id="123"
-      message="Un message qui décrit quelque chose et donc ça prend beaucoup de mots"
+      message={message}
       date="12/12/2042"
       source="http://www.lmem.net"
       likes={42}
@@ -29,7 +33,7 @@ storiesOf('organisms/NoticeDetails', module)
       dismissed
       contributor="Jalil"
       id="123"
-      message="Un message qui décrit quelque chose et donc ça prend beaucoup de mots"
+      message={message}
       date="12/12/2042"
       source="http://www.lmem.net"
       likes={42}
@@ -43,7 +47,7 @@ storiesOf('organisms/NoticeDetails', module)
       disliked
       contributor="Jalil"
       id="123"
-      message="Un message qui décrit quelque chose et donc ça prend beaucoup de mots"
+      message={message}
       date="12/12/2042"
       source="http://www.lmem.net"
       likes={42}

@@ -10,13 +10,12 @@ import { Like, Dislike } from '../../atoms/icons/types';
 import Type from '../../molecules/Type/Type';
 import Source from './Source/Source';
 import Anchor from './Source/AnchorIcon';
-import SourceContainer from './Source/Container';
 import SourceURL from './Source/SourceURL';
 import DetailsContainer from './DetailsContainer';
 import DetailsContent from './DetailsContent';
 import DetailsMeta from './DetailsMeta';
 import DetailsDislike from './DetailsDislike';
-import MessageWrapper from './Message';
+import Message from './Message';
 import Feedbacks from './Feedbacks';
 import Date from './Date';
 
@@ -94,7 +93,7 @@ class NoticeDetails extends PureComponent {
             </Contributor>
             <Type type={type} />
           </DetailsMeta>
-          <MessageWrapper>{message}</MessageWrapper>
+          <Message>{message}</Message>
           <Source>
             <Anchor />
               En savoir plus :
