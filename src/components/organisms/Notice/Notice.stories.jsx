@@ -4,6 +4,8 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Notice from './Notice';
 
+const message = '<p>Description with a <a href="http://some.url">link</a></p>';
+
 storiesOf('organisms/Notice', module)
   .addDecorator(getStory => (
     <Router>
@@ -15,7 +17,7 @@ storiesOf('organisms/Notice', module)
       type="Approval"
       contributor="Jalil"
       id="123"
-      message="message"
+      message={message}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
       dismissed={false}
@@ -26,7 +28,7 @@ storiesOf('organisms/Notice', module)
       type="Disapproval"
       contributor="Jalil"
       id="123"
-      message="message"
+      message={message}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
       dismissed={false}
@@ -37,7 +39,7 @@ storiesOf('organisms/Notice', module)
       type="Tip"
       contributor="Jalil"
       id="123"
-      message="message"
+      message={message}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
       dismissed={false}
@@ -48,7 +50,7 @@ storiesOf('organisms/Notice', module)
       type="Other"
       contributor="Jalil"
       id="123"
-      message="message"
+      message={message}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
       dismissed={false}
@@ -58,7 +60,7 @@ storiesOf('organisms/Notice', module)
     <Notice
       contributor="Jalil"
       id="123"
-      message="message"
+      message={message}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
       dismissed={false}
@@ -69,7 +71,7 @@ storiesOf('organisms/Notice', module)
       type={undefined}
       contributor="Jalil"
       id="123"
-      message="message"
+      message={message}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
       dismissed={false}
@@ -80,7 +82,7 @@ storiesOf('organisms/Notice', module)
       type="some inexistant type"
       contributor="Jalil"
       id="123"
-      message="message"
+      message={message}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
       dismissed={false}
@@ -90,9 +92,18 @@ storiesOf('organisms/Notice', module)
     <Notice
       contributor="Jalil"
       id="123"
-      message="message"
+      message={message}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
       dismissed
+    />
+  ))
+  .add('with long title', () => (
+    <Notice
+      contributor="Jalil"
+      id="123"
+      message='<p>This is very long title for a notification with a <a href="http://some.url">link</a> that you may want to read some time in the future</p>'
+      dismiss={action('dismiss')}
+      undismiss={action('undismiss')}
     />
   ));

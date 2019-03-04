@@ -3,40 +3,38 @@ import {
   put, takeLatest, select, call
 } from 'redux-saga/effects';
 import { render } from 'react-dom';
-import { StyleSheetManager, ThemeProvider } from 'styled-components';
-import { Provider} from 'react-redux';
+import { push } from 'connected-react-router';
 import { open, opened, closed } from '../actions/ui';
-import { isOpen as isNotificationOpen } from '../selectors';
-import {CLOSE, OPEN, NOTICES_FOUND} from '../../constants/ActionTypes';
-import { append, create, remove } from '../extensionIframe';
+import { isOpen as isNotificationOpen, isMounted as isNotificationMounted} from '../selectors';
+import { CLOSE, OPEN, NOTICES_FOUND } from '../../constants/ActionTypes';
+import { append, create } from '../extensionIframe';
 import theme from '../../theme';
-import store from '../store';
 import App from '../App';
 
 const iframe = create({
   style: theme.iframe.style,
 });
 
+const getLocation = state => state.getIn(['router', 'location', 'pathname']);
+
 export function* openSaga() {
   const isOpen = yield select(isNotificationOpen);
+  const isMounted = yield select(isNotificationMounted);
 
   if (!isOpen) {
-    const contentDocument = yield call(append, iframe);
+    const location = yield select(getLocation);
+    if (location) {
+      yield put(push('/'));
+    }
 
-    const root = document.createElement('div');
-    contentDocument.body.appendChild(root);
-
-    yield call(
-      render,
-      <StyleSheetManager target={contentDocument.head}>
-        <Provider store={store}>
-          <ThemeProvider theme={theme}>
-            <App />
-          </ThemeProvider>
-        </Provider>
-      </StyleSheetManager>,
-      root
-    );
+    if (isMounted) {
+      document.querySelector('#lmemFrame').style.setProperty('display', '', 'important');
+    } else {
+      const contentDocument = yield call(append, iframe);
+      const root = document.createElement('div');
+      contentDocument.body.appendChild(root);
+      yield call(render, <App contentDocument={contentDocument} />, root);
+    }
 
     yield put(opened());
   }
@@ -45,7 +43,7 @@ export function* openSaga() {
 export function* closeSaga() {
   const isOpen = yield select(isNotificationOpen);
   if (isOpen) {
-    yield call(remove);
+    document.querySelector('#lmemFrame').style.setProperty('display', 'none', 'important');
     yield put(closed());
   }
 }

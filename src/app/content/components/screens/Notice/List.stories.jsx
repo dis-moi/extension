@@ -7,8 +7,7 @@ import List from './List';
 const notices = [
   {
     id: '123',
-    description: 'Description',
-    title: 'title',
+    description: '<p>Description with a <a href="http://some.url">link</a></p>',
     contributor: { name: 'John Doe' },
     criteria: [{ label: 'label', slug: 'slug' }],
     isApproved: true,

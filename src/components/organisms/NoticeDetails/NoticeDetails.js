@@ -98,7 +98,7 @@ class NoticeDetails extends PureComponent {
             <Anchor />
               En savoir plus :
               &nbsp;
-            <SourceURL numberOfCharacters={37}>{source}</SourceURL>
+            <SourceURL>{source}</SourceURL>
           </Source>
 
           <Feedbacks>

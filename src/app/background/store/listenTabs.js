@@ -18,18 +18,8 @@ export const onTabRemoved = store => (id) => {
   store.dispatch(tabRemoved(id));
 };
 
-export default tabs => (store) => {
+export default (tabs, store) => {
   tabs.onCreated.addListener(onTabCreated(store));
   tabs.onUpdated.addListener(onTabUpdated(store));
   tabs.onRemoved.addListener(onTabRemoved(store));
-
-  return next => (action) => {
-    const { meta } = action;
-
-    if (meta && meta.tab) {
-      tabs.sendMessage(meta.tab, action);
-    }
-
-    return next(action);
-  };
 };

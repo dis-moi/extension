@@ -5,7 +5,9 @@ export const create = ({ style = {} }) => {
   iframe.height = '423px';
   iframe.srcdoc = '<!doctype html><html><head><meta charset="utf-8"></head><body /></html>';
 
-  Object.assign(iframe.style, style);
+  Object.keys(style).forEach(
+    key => iframe.style.setProperty(key, style[key], 'important')
+  );
 
   return iframe;
 };

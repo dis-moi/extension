@@ -1,9 +1,11 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest, select } from 'redux-saga/effects';
 import { BROWSER_ACTION_CLICKED } from '../../constants/browser/action';
-import { open } from '../actions/ui';
+import { open, close } from '../actions/ui';
+import { isOpen as isNotificationOpen } from '../selectors';
 
 export function* browserActionClickedSaga() {
-  yield put(open());
+  const isOpen = yield select(isNotificationOpen);
+  yield put(isOpen ? close() : open());
 }
 
 export default function* backgroundRootSaga() {

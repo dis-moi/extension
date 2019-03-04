@@ -12,6 +12,12 @@ import Deleted from './Deleted';
 import DeleteButton from './DeleteButton';
 import Title from './Title';
 
+const strip = (html) => {
+  const tmp = document.createElement('div');
+  tmp.innerHTML = html;
+  return tmp.textContent || tmp.innerText || '';
+};
+
 export default class Notice extends PureComponent {
   static propTypes = {
     id: PropTypes.number.isRequired,
@@ -48,7 +54,7 @@ export default class Notice extends PureComponent {
             <Fragment>
               <Type type={type} />
               <div>
-                <Title>{message}</Title>
+                <Title>{strip(message)}</Title>
                 <Contributor>
                       Par :
                       &nbsp;
