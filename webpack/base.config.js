@@ -10,9 +10,7 @@ const baseConfig = ({
   entry: Object.assign(
     {
       background: ['@babel/polyfill', path.join(srcPath, './background/')],
-      content: ['@babel/polyfill', path.join(srcPath, './content/')],
-      options: [path.join(srcPath, './options/')],
-      popup: [path.join(srcPath, './popup/')],
+      content: ['@babel/polyfill', path.join(srcPath, './content/')]
     },
     input
   ),
@@ -25,8 +23,6 @@ const baseConfig = ({
   ),
   plugins: [
     new HtmlWebpackPlugin({ template: './views/background.pug', filename: 'background.html', inject: false }),
-    new HtmlWebpackPlugin({ template: './views/options.pug', filename: 'options.html', inject: false }),
-    new HtmlWebpackPlugin({ template: './views/popup.pug', filename: 'popup.html', inject: false }),
     ...plugins
   ],
   resolve: {
@@ -34,12 +30,12 @@ const baseConfig = ({
       app: srcPath,
       extension: path.join(srcPath, './background')
     },
-    extensions: ['.js']
+    extensions: ['.js', '.jsx']
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         include: [
           path.resolve(__dirname, '../src/')
         ],

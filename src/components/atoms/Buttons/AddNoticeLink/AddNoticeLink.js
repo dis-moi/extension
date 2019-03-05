@@ -27,8 +27,10 @@ const Button = styled(BorderButton)`
     }
 `;
 
-export default () => (
-  <Button>
+export default ({
+  href, as, target, rel
+}) => (
+  <Button href={href} as={as} target={target} rel={rel}>
     <AddIcon />
     Créer votre notification
   </Button>

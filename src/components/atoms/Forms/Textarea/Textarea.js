@@ -10,4 +10,5 @@ export default styled.textarea`
     border-radius: 6px;
     border: 1px solid ${props => props.theme.secondaryColor};
     resize: none;
+    font-style: italic;
 `;
