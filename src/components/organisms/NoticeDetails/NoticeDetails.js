@@ -82,14 +82,10 @@ class NoticeDetails extends PureComponent {
         <DetailsContent>
           <DetailsMeta>
             <Date>
-              Le
-              &nbsp;
-              {date}
+              Le {date}
             </Date>
             <Contributor>
-              {contributor}
-              &nbsp;
-              :
+              {contributor} :
             </Contributor>
             <Type type={type} />
           </DetailsMeta>
@@ -97,7 +93,6 @@ class NoticeDetails extends PureComponent {
           <Source>
             <Anchor />
               En savoir plus :
-              &nbsp;
             <SourceURL>{source}</SourceURL>
           </Source>
 
