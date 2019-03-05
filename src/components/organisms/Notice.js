@@ -54,11 +54,7 @@ export default class Notice extends PureComponent {
               <NoticeType type={type} />
               <div>
                 <NoticeTitle>{strip(message)}</NoticeTitle>
-                <Contributor>
-                      Par :
-                      &nbsp;
-                  {contributor}
-                </Contributor>
+                <Contributor>Par : {contributor}</Contributor>
               </div>
               <OpenButton />
             </Fragment>
