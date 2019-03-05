@@ -12,29 +12,27 @@ const Details = ({
   like, unlike,
   dislike, undislike,
   close,
-}) => {
-  return (
-    <Notification title={description} hasNotices close={close}>
-      <NoticeDetails
-        id={id}
-        type={findType(criteria)}
-        date="03 déc. 2018"
-        message={description}
-        contributor={name}
-        source={url}
-        likes={21}
-        dislikes={3}
-        like={like}
-        unlike={unlike}
-        dislike={dislike}
-        undislike={undislike}
-        liked={liked}
-        disliked={disliked}
-        details
-      />
-    </Notification>
-  );
-};
+}) => (
+  <Notification title="Détail de la bulle" hasNotices close={close}>
+    <NoticeDetails
+      id={id}
+      type={findType(criteria)}
+      date="03 déc. 2018"
+      message={description}
+      contributor={name}
+      source={url}
+      likes={21}
+      dislikes={3}
+      like={like}
+      unlike={unlike}
+      dislike={dislike}
+      undislike={undislike}
+      liked={liked}
+      disliked={disliked}
+      details
+    />
+  </Notification>
+);
 
 Details.propTypes = {
   notice: PropTypes.shape(NoticeType).isRequired,

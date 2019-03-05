@@ -11,7 +11,7 @@ export const List = ({
   notices, dismiss, undismiss, close
 }) => {
   return (
-    <Notification title="Notifications pour cette page" hasNotices close={close}>
+    <Notification title="Bulles pour cette page" hasNotices close={close}>
       {notices.slice(0, 2).map(({
         id, description, contributor: { name }, resource: { url }, criteria, dismissed, disliked
       }) => (
