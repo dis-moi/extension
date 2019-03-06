@@ -2,10 +2,6 @@ const base = require('./base');
 
 module.exports = {
   ...base,
-  'permissions': [
-    'storage',
-    'tabs',
-    'http://*/*',
-    'https://*/*'
-  ],
+  shortname: 'LMEM',
+  permissions: ['storage', 'tabs', 'http://*/*', 'https://*/*']
 };

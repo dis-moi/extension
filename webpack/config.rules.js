@@ -8,7 +8,7 @@ module.exports = (env, mode) => {
     },
     {
       test: /\.jsx?$/,
-      loader: require.resolve("babel-loader"),
+      loader: require.resolve("awesome-typescript-loader"),
       include: [
         path.resolve(__dirname, "..", "src"),
         path.resolve(__dirname, "..", ".storybook")
