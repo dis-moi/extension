@@ -1,33 +1,30 @@
-import base from './base.js';
-import csp from 'content-security-policy-builder';
+const csp = require('content-security-policy-builder');
+const base = require('./base');
 
-export default Object.assign(
-  {},
-  base,
-  {
-    'content_security_policy': csp({
-      'directives': {
-        'default-src': [
-          'https://recommendations.lmem.net',
-        ],
-        'script-src': [
-          '\'self\'',
-          'https://heapanalytics.com',
-          'https://cdn.heapanalytics.com'
-        ],
-        'object-src': [
-          '\'self\''
-        ],
-        'img-src': [
-          '\'self\'',
-          'https://heapanalytics.com',
-          'https://cdn.heapanalytics.com',
-          'data:'
-        ],
-        'style-src': [
-          '\'unsafe-inline\''
-        ]
-      }
-    })
-  }
-);
+module.exports = {
+  ...base,
+  'content_security_policy': csp({
+    'directives': {
+      'default-src': [
+        'https://recommendations.lmem.net',
+      ],
+      'script-src': [
+        '\'self\'',
+        'https://heapanalytics.com',
+        'https://cdn.heapanalytics.com'
+      ],
+      'object-src': [
+        '\'self\''
+      ],
+      'img-src': [
+        '\'self\'',
+        'https://heapanalytics.com',
+        'https://cdn.heapanalytics.com',
+        'data:'
+      ],
+      'style-src': [
+        '\'unsafe-inline\''
+      ]
+    }
+  })
+};

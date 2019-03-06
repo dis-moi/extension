@@ -7,7 +7,7 @@
 
 const version = process.env.npm_package_version;
 
-export default Object.freeze({
+module.exports = Object.freeze({
   'name': 'Le Même en Mieux',
   'shortname': 'LMEM',
   'description': 'Qualité, prix, éthique : s’il existe un meilleur choix, vous le saurez. ' +

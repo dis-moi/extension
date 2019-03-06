@@ -3,8 +3,6 @@ node_modules
 build
 dev
 
-gulp
-gulpfile.babel.js
 webpack
 webpack/replace
 

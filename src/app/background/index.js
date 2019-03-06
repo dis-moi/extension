@@ -15,14 +15,13 @@ import {
 } from './actions/kraftBackend';
 import updateDraftRecommendations from './actions/updateDraftRecommendations';
 
-import {LMEM_BACKEND_ORIGIN, LMEM_SCRIPTS_ORIGIN} from '../constants/origins';
+import {LMEM_BACKEND_ORIGIN } from '../constants/origins';
 import fetchContentScript from './services/fetchContentScript';
 
 if(process.env.NODE_ENV !== 'production'){
   console.info('NODE_ENV', process.env.NODE_ENV);
 }
 console.info(`LMEM_BACKEND_ORIGIN "${LMEM_BACKEND_ORIGIN}"`);
-console.info(`LMEM_SCRIPTS_ORIGIN "${LMEM_SCRIPTS_ORIGIN}"`);
 
 const heapAppId = process.env.HEAP_APPID;
 if (typeof heapAppId === 'string') {
