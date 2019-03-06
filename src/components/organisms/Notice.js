@@ -46,7 +46,7 @@ export default class Notice extends PureComponent {
         <NoticeContent to={!dismissed && `notices/details/${id}`}>
           {dismissed || disliked ? (
             <Fragment>
-              <NoticeDeleted>Cette notification ne s’affichera plus !</NoticeDeleted>
+              <NoticeDeleted>Cette recommandation ne s’affichera plus !</NoticeDeleted>
               <Button onClick={() => undismiss(id)}>Annuler</Button>
             </Fragment>
           ) : (

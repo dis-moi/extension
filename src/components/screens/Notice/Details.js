@@ -9,7 +9,7 @@ const message = 'L’économie est (vraiment) un sport de combat : “La boule p
 
 
 export default ({ close }) => (
-  <Notification title="Détail de la notice" close={close}>
+  <Notification title="Détail de la recommandation" close={close}>
     <NoticeDetails
       id={1}
       type="Tip"

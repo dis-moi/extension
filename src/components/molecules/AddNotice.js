@@ -7,7 +7,7 @@ const AddNotice = ({ onClick, ...props }) => (
   <CenterContainer>
     <AddNoticeLink onClick={onClick} {...props}>
       <Add />
-      Créer votre notification
+      Créer votre recommandation
     </AddNoticeLink>
   </CenterContainer>
 );

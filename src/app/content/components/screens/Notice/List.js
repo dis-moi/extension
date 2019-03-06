@@ -11,7 +11,7 @@ const List = ({
 }) => {
   return (
     <Notification close={close}>
-      <NotificationContentTitle>Notifications pour cette page</NotificationContentTitle>
+      <NotificationContentTitle>Recommandations pour cette page</NotificationContentTitle>
       {notices.slice(0, 2).map(({
         id, description, contributor: { name }, resource: { url }, criteria, dismissed, disliked
       }) => (
