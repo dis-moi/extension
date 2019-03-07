@@ -9,7 +9,7 @@ const message = 'De nombreux clients mÃ©contents de Pixmania et ses vendeurs sâ€
 export default ({ match, close }) => {
   return (
     <Notification close={close}>
-      <NotificationContentTitle>Notifications pour cette page</NotificationContentTitle>
+      <NotificationContentTitle>Recommandations pour cette page</NotificationContentTitle>
       <Notice
         id={1}
         match={match}

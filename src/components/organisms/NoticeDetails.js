@@ -113,7 +113,7 @@ class NoticeDetails extends PureComponent {
 
           {(disliked) && (
             <NoticeDetailsDislike>
-            Merci pour votre retour, cette notification ne s’affichera plus
+            Merci pour votre retour, cette recommandation ne s’affichera plus
               <div>
                 <Button onClick={this.handleDislikeClick}>Annuler</Button>
                 <BorderButton onClick={this.handleGoBack}>OK</BorderButton>

@@ -11,7 +11,7 @@ export default ({ close }) => {
         <NoNotice />
       </NoNoticeImg>
 
-      <NoNoticeTitle>Il n’y a plus de notifications ici</NoNoticeTitle>
+      <NoNoticeTitle>Il n’y a plus de recommandation ici</NoNoticeTitle>
 
       <AddNotice />
     </Notification>
