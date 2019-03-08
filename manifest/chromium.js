@@ -1,5 +1,5 @@
-import base from './base.js';
 import csp from 'content-security-policy-builder';
+import base from './base';
 
 export default Object.assign(
   {},
@@ -8,7 +8,7 @@ export default Object.assign(
     'content_security_policy': csp({
       'directives': {
         'default-src': [
-          'https://recommendations.lmem.net',
+          'https://reco2bulle.lmem.net',
         ],
         'script-src': [
           '\'self\'',

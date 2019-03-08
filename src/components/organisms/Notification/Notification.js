@@ -1,6 +1,7 @@
 import React, { Fragment, PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import { NotificationHeader, NotificationFooter } from '../../molecules';
+import { NotificationHeader } from '../../molecules';
+import NotificationFooter from '../../../app/content/components/NotificationFooter'
 import Notice from '../Notice/Notice';
 import NoticeDetails from '../NoticeDetails/NoticeDetails';
 import isChildInstanceOf from '../../../app/utils/isChildInstanceOf';

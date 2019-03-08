@@ -1,7 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { AddNoticeLink, CenterContainer, } from '../atoms';
-
+import React from "react";
+import PropTypes from "prop-types";
+import { AddNoticeLink, CenterContainer } from "../atoms";
 
 const AddNotice = ({ onClick, ...props }) => (
   <CenterContainer>
@@ -10,11 +9,11 @@ const AddNotice = ({ onClick, ...props }) => (
 );
 
 AddNotice.propTypes = {
-  onClick: PropTypes.func,
+  onClick: PropTypes.func
 };
 
 AddNotice.defaultProps = {
-  onClick: () => { },
+  onClick: () => {}
 };
 
 export default AddNotice;
