@@ -1,11 +1,24 @@
 import styled from 'styled-components';
 
 export default styled.button`
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border-radius: 3px;
+    box-sizing: border-box;
+    padding:0;
+    font-weight: bold;
+    line-height: 1;
+    color: ${props => props.theme.secondaryColor};
+    text-transform: uppercase;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
 
-  color: ${props => props.theme.main};
-  border: 2px solid ${props => props.theme.main};
+    &:hover {
+        color: ${props => props.theme.activeColor}
+    }
+    
+    &:focus {
+        outline: 1px dotted ${props => props.theme.activeColor};
+    }
 `;

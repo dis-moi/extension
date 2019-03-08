@@ -22,10 +22,6 @@ export default Object.freeze({
   'background': {
     'page': 'background.html'
   },
-  'options_ui': {
-    'page': 'options.html',
-    'chrome_style': false
-  },
   'browser_action': {
     'default_icon': {
       '16': 'img/logo/16x16.png',
@@ -33,7 +29,6 @@ export default Object.freeze({
       '128': 'img/logo/128x128.png'
     },
     'default_title': 'Le Même en Mieux',
-    'default_popup': 'popup.html',
   },
   'permissions': [
     'geolocation',
@@ -45,7 +40,6 @@ export default Object.freeze({
   ],
   'web_accessible_resources': [
     'img/*',
-    'styles/*',
     'fonts/*'
   ]
 });

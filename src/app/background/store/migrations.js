@@ -1,4 +1,4 @@
-import { Map as ImmutableMap, OrderedMap } from 'immutable';
+import { OrderedMap } from 'immutable';
 
 let migrations = new OrderedMap();
 
@@ -46,13 +46,39 @@ migrations = migrations.set('2017-01-26', (previousState, defaultState) => {
   return newState;
 });
 
+
+// 26-01-2017
+migrations = migrations.set('2019-02-11', (previousState, defaultState) => {
+  let newState = previousState;
+
+  // prefs.dismissedNotices <= prefs.dismissedRecos
+  if (!previousState.hasIn(['prefs', 'dismissedNotices'])) newState = newState.setIn(
+    ['prefs', 'dismissedNotices'],
+    previousState.getIn(['prefs', 'dismissedRecos']) || defaultState.getIn(['prefs', 'dismissedNotices'])
+  );
+
+  // prefs.likedNotices <= prefs.approvedRecos
+  if (!previousState.hasIn(['prefs', 'likedNotices'])) newState = newState.setIn(
+    ['prefs', 'likedNotices'],
+    previousState.getIn(['prefs', 'approvedRecos']) || defaultState.getIn(['prefs', 'likedNotices'])
+  );
+
+  // prefs.likedNotices <= prefs.approvedRecos
+  if (!previousState.hasIn(['prefs', 'dislikedNotices'])) newState = newState.setIn(
+    ['prefs', 'dislikedNotices'],
+    defaultState.getIn(['prefs', 'dislikedNotices'])
+  );
+
+  return newState;
+});
+
 // ADD NEW MIGRATIONS HEREUNDER
 // ...
 
 export default (previousState, defaultState) => {
-  return previousState !== undefined
-    ? migrations.reduce((migratedState, migrate, date) => {
-      return migrate(migratedState, defaultState);  
-    }, previousState)
-    : defaultState;
+  if (previousState === undefined) return defaultState;
+
+  return migrations.reduce((migratedState, migrate, date) => {
+    return migrate(migratedState, defaultState);
+  }, previousState);
 };

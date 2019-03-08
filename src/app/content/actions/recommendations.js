@@ -1,58 +1,21 @@
 import {
-  RECOMMENDATION_FOUND,
-  DISMISS_RECO,
-  APPROVE_RECO,
-  UNAPPROVE_RECO,
-  REPORT_RECO,
+  NOTICES_FOUND, DISMISS_NOTICE, UNDISMISS_NOTICE, LIKE_NOTICE, UNLIKE_NOTICE,
+  DISLIKE_NOTICE, UNDISLIKE_NOTICE, REPORT_NOTICE,
 } from '../../constants/ActionTypes';
+import createAction from '../../utils/createAction';
+import createBackgroundAction from '../createBackgroundAction';
 
-export default function (portCommunication) {
-  return {
-    recommendationFound(recommendations){
-      return {
-        type: RECOMMENDATION_FOUND,
-        recommendations
-      };
-    },
-    dismissReco(id){
-      const action = {
-        type: DISMISS_RECO,
-        id
-      };
-      
-      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
+const withId = id => ({ id })
 
-      return action;
-    },
-    approveReco(id){
-      const action = {
-        type: APPROVE_RECO,
-        id
-      };
-      
-      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
-
-      return action;
-    },
-    unapproveReco(id){
-      const action = {
-        type: UNAPPROVE_RECO,
-        id
-      };
-      
-      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
-
-      return action;
-    },
-    reportReco(id){
-      const action = {
-        type: REPORT_RECO,
-        id
-      };
-      
-      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
-
-      return action;
-    }
-  };
-}
+export const noticesFound = createAction(
+  NOTICES_FOUND,
+  (notices = []) => ({ notices }),
+  tab => ({ tab })
+);
+export const dismissNotice = createBackgroundAction(DISMISS_NOTICE, withId);
+export const undismissNotice = createBackgroundAction(UNDISMISS_NOTICE, withId);
+export const likeNotice = createBackgroundAction(LIKE_NOTICE, withId);
+export const unlikeNotice = createBackgroundAction(UNLIKE_NOTICE, withId);
+export const dislikeNotice = createBackgroundAction(DISLIKE_NOTICE, withId);
+export const undislikeNotice = createBackgroundAction(UNDISLIKE_NOTICE, withId);
+export const reportNotice = createBackgroundAction(REPORT_NOTICE, withId);

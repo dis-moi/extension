@@ -1,14 +1,16 @@
 import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const srcPath = path.join(__dirname, '../src/app');
 
 const baseConfig = ({
-  input, output = {}, plugins = [], rules = [], ...rest 
+    mode, input, output = {}, plugins = [], rules = [], ...rest
 }) => ({
+  mode,
   entry: Object.assign(
     {
-      background: [path.join(srcPath, './background/')],
-      content: [path.join(srcPath, './content/')],
+      background: ['@babel/polyfill', path.join(srcPath, './background/')],
+      content: ['@babel/polyfill', path.join(srcPath, './content/')],
       options: [path.join(srcPath, './options/')],
       popup: [path.join(srcPath, './popup/')],
     },
@@ -22,6 +24,9 @@ const baseConfig = ({
     output
   ),
   plugins: [
+    new HtmlWebpackPlugin({ template: './views/background.pug', filename: 'background.html', inject: false }),
+    new HtmlWebpackPlugin({ template: './views/options.pug', filename: 'options.html', inject: false }),
+    new HtmlWebpackPlugin({ template: './views/popup.pug', filename: 'popup.html', inject: false }),
     ...plugins
   ],
   resolve: {
@@ -42,6 +47,23 @@ const baseConfig = ({
           { loader: 'babel-loader' },
           { loader: 'stylelint-custom-processor-loader' },
         ],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          { loader: "style-loader" },
+          { loader: "css-loader" }
+        ]
+      },
+      {
+          test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+          use: [{
+              loader: 'file-loader',
+              options: {
+                  name: '[name].[ext]',
+                  outputPath: 'fonts/'
+              }
+          }]
       },
       {
         test: /\.scss?$/,
@@ -74,6 +96,16 @@ const baseConfig = ({
         use: [
           { loader: 'svg-url-loader' },
         ]
+      },
+      {
+          test: /\.(jade|pug)$/,
+          use: {
+              loader: 'pug-loader',
+              options: {
+                  pretty: mode === 'development',
+              }
+          },
+          include: [ path.resolve(__dirname, '../views/') ],
       }
     ].concat(rules),
   },

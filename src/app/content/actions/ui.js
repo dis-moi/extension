@@ -3,136 +3,33 @@ import {
   EXTEND_RECOMMENDATION_IFRAME,
   DEACTIVATE,
   UNINSTALL,
+  OPEN,
+  OPENED,
+  CLOSE,
+  CLOSED,
   OPEN_PREFERENCE_PANEL,
   CLOSE_PREFERENCE_PANEL,
   CHECKOUT_RECO_RESOURCE_BUTTON,
   CHECKOUT_RECO_RESOURCE_LINK,
   CHECKOUT_RECO_ALTERNATIVE,
   CHECKOUT_RECO_EDITOR,
-  POPUP_CLICK,
+  POPUP_CLICK
 } from '../../constants/ActionTypes';
+import createBackgroundAction from '../createBackgroundAction';
+import createAction from '../../utils/createAction';
 
-export default function (portCommunication) {
-  return {
-    reduce() {
-      const action = {
-        type: REDUCE_RECOMMENDATION_IFRAME
-      };
-
-      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
-
-      return action;
-    },
-
-    extend() {
-      const action = {
-        type: EXTEND_RECOMMENDATION_IFRAME
-      };
-      
-      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
-      
-      return action;
-    },
-
-    deactivate(details) {
-      const action = Object.assign(
-        { type: DEACTIVATE },
-        details
-      );
-
-      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
-
-      return action;
-    },
-
-    closePrefScreen(){
-      const action = {
-        type: CLOSE_PREFERENCE_PANEL
-      };
-      
-      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
-
-      return action;
-    },
-    
-    openPrefScreen(panel){
-      const action = {
-        type: OPEN_PREFERENCE_PANEL,
-        panel
-      };
-
-      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
-
-      return action;
-    },
-
-    checkOutResourceButton(resource) {
-      const action = {
-        type: CHECKOUT_RECO_RESOURCE_BUTTON,
-        resource,
-      };
-      
-      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
-
-      return action;
-    },
-
-    checkOutResourceLink(resource) {
-      const action = {
-        type: CHECKOUT_RECO_RESOURCE_LINK,
-        resource,
-      };
-      
-      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
-
-      return action;
-    },
-
-    checkOutAlternative(alternative) {
-      const action = {
-        type: CHECKOUT_RECO_ALTERNATIVE,
-        alternative,
-      };
-      
-      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
-
-      return action;
-    },
-
-    checkOutEditor(editor) {
-      const action = {
-        type: CHECKOUT_RECO_EDITOR,
-        editor,
-      };
-      
-      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
-
-      return action;
-    },
-
-    uninstall() {
-      const action = {
-        type: UNINSTALL,
-        datetime: new Date(),
-      };
-      
-      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
-
-      return action;
-    },
-
-    popupClick(target) {
-      const action = {
-        type: POPUP_CLICK,
-        target,
-      };
-
-      if (portCommunication) portCommunication.sendBackgroundReduxAction(action);
-
-      return action;
-    },
-  };
-}
-
-
-
+export const reduce = createBackgroundAction(REDUCE_RECOMMENDATION_IFRAME);
+export const extend = createBackgroundAction(EXTEND_RECOMMENDATION_IFRAME);
+export const deactivate = createBackgroundAction(DEACTIVATE, ({ where, duration }) => ({ where, duration }));
+export const open = createAction(OPEN);
+export const opened = createAction(OPENED);
+export const close = createAction(CLOSE);
+export const closed = createAction(CLOSED);
+export const closePrefScreen = createBackgroundAction(CLOSE_PREFERENCE_PANEL);
+export const openPrefScreen = createBackgroundAction(OPEN_PREFERENCE_PANEL, panel => ({ panel }));
+export const checkOutResourceButton = createBackgroundAction(CHECKOUT_RECO_RESOURCE_BUTTON, resource => ({ resource }));
+export const checkOutResourceLink = createBackgroundAction(CHECKOUT_RECO_RESOURCE_LINK, resource => ({ resource }));
+export const checkOutAlternative = createBackgroundAction(CHECKOUT_RECO_ALTERNATIVE, alternative => ({ alternative }));
+export const checkOutEditor = createBackgroundAction(CHECKOUT_RECO_EDITOR, editor => ({ editor }));
+export const uninstall = createBackgroundAction(UNINSTALL, () => ({ datetime: new Date() }));
+export const popupClick = createBackgroundAction(POPUP_CLICK, target => ({ target }));

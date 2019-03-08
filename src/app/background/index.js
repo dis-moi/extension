@@ -1,16 +1,12 @@
 /* eslint global-require: "off" */
-import { Map as ImmutableMap, Set as ImmutableSet } from 'immutable';
 
 // Early imports with high priority stuff involved, such as event listeners creation
 import onInstalled from './actions/install';
 import loadHeap from '../../lib/heap';
 
 import configureStore from './store/configureStore';
+import { getOnInstalledDetails } from './selectors/prefs';
 
-import findMatchingOffersAccordingToPreferences
-  from '../lmem/findMatchingOffersAccordingToPreferences';
-import getMatchingRecommendations from '../lmem/getMatchingRecommendations';
-import { makeTabs } from './tabs';
 import prepareDraftPreview from '../lmem/draft-preview/main';
 
 import {
@@ -20,19 +16,7 @@ import {
 import updateDraftRecommendations from './actions/updateDraftRecommendations';
 
 import {LMEM_BACKEND_ORIGIN, LMEM_SCRIPTS_ORIGIN} from '../constants/origins';
-
-/**
- * FIXME import styles from components instead and let Webpack taking care of them...
- *
- * For now, we’re basically importing a plain-text chunk of css, merely generated
- * from SASS files, before injecting it into a <style> element somewhere in
- * into the iframe’s <head>...
- *
- * It does its job, but comes with performance issue (since Browsers cannot cache
- * those styles) and maintainability issue (gap between React and Sass sort of
- * components, error prone assets references, etc.)
- */
-import mainStyles from '../styles/main.scss?external'; // eslint-disable-line
+import fetchContentScript from './services/fetchContentScript';
 
 if(process.env.NODE_ENV !== 'production'){
   console.info('NODE_ENV', process.env.NODE_ENV);
@@ -55,8 +39,7 @@ else {
 }
 
 // Load content code when the extension is loaded
-const contentCodeP = fetch(LMEM_SCRIPTS_ORIGIN + '/js/content.bundle.js').then(resp => resp.text());
-const draftRecoContentCodeP = fetch(LMEM_SCRIPTS_ORIGIN + '/js/grabDraftRecommendations.js').then(resp => resp.text());
+const draftRecoContentCodeP = fetchContentScript('/js/grabDraftRecommendations.js');
 
 configureStore((store) => {
   window.store = store;
@@ -78,39 +61,14 @@ configureStore((store) => {
     };
   };
 
-  contentCodeP
-    .then((contentCode) => {
-      makeTabs(chrome.tabs, {
-        findTriggeredContexts: (url) => {
-          const state = store.getState();
-        
-          return findMatchingOffersAccordingToPreferences(
-            url,
-            state.get('resources').get('matchingContexts').toJS(),
-            state.get('resources').get('draftRecommendations').toJS() || [],
-            state.get('prefs').get('websites')
-          );
-        },
-        getMatchingRecommendations,
-        getOnInstalledDetails: () => store.getState().get('prefs').get('onInstalledDetails') || new ImmutableMap(),
-        getCriteria: () => store.getState().get('prefs').get('criteria') || new ImmutableMap(),
-        getEditors: () => store.getState().get('prefs').get('editors') || new ImmutableMap(),
-        getDismissed: () => store.getState().get('prefs').get('dismissedRecos') || new ImmutableSet(),
-        getApproved: () => store.getState().get('prefs').get('approvedRecos') || new ImmutableSet(),
-        dispatch: store.dispatch,
-        contentCode,
-        contentStyle: mainStyles.toString()
-      });
-    });
-
   draftRecoContentCodeP
     .then(contentCode => prepareDraftPreview(
-      chrome.tabs, 
+      chrome.tabs,
       contentCode,
       (draftOffers => store.dispatch(updateDraftRecommendations(draftOffers)))
     ));
 
-  if (store.getState().get('prefs').get('onInstalledDetails').isEmpty()) {
+  if (getOnInstalledDetails(store.getState()).isEmpty()) {
     const onboardingUrl = process.env.ONBOARDING_ORIGIN;
     store.dispatch(onInstalled({ onboardingUrl }));
   }

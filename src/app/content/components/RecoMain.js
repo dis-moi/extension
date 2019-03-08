@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -115,5 +115,5 @@ export default function RecoMain({
 
 RecoMain.propTypes = {
   imagesUrl: PropTypes.string.isRequired,
-  recommendations: PropTypes.arrayOf(RecommendationPropType).isRequired,
+  recommendations: PropTypes.arrayOf(PropTypes.shape(RecommendationPropType)).isRequired,
 };

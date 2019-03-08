@@ -1,14 +1,12 @@
 import chai from 'chai';
-import neverThrowingObject from '../../infrastructure/neverThrowingObject';
-import prepareFilterEvents from '../../../src/app/content/actions/filters';
-
+import { createMemoryHistory } from 'history'
 import { Map as ImmutableMap } from 'immutable';
-
-import reducer from '../../../src/app/content/reducers/';
+import { excludeEditor, includeEditor } from '../../../src/app/content/actions/filters';
+import reducerCreator from '../../../src/app/content/reducers/';
 
 const expect = chai.expect;
 
-const { excludeEditor, includeEditor } = prepareFilterEvents(neverThrowingObject());
+const reducer = reducerCreator(createMemoryHistory())
 
 describe('content reducer', function () {
 
