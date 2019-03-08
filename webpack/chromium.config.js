@@ -13,10 +13,10 @@ export default baseConfig({
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"',
-        LMEM_BACKEND_ORIGIN: '"https://recommendations.lmem.net"',
+        LMEM_BACKEND_ORIGIN: '"https://reco2bulle.lmem.net"',
         LMEM_SCRIPTS_ORIGIN: '\'.\'',
         UNINSTALL_ORIGIN: '\'https://www.lmem.net/desinstallation\'',
-        REFRESH_MC_INTERVAL: '10*60*1000',
+        REFRESH_MC_INTERVAL: '30*60*1000',
         ONBOARDING_ORIGIN: '"https://bienvenue.lmem.net?extensionInstalled"',
         HEAP_APPID: '"3705584166"', // production
       }
