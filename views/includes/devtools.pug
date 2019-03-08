@@ -1,4 +1,4 @@
-if process.env.NODE_ENV !== 'production'
+if webpackConfig.mode !== 'production'
     script(src='test/infrastructure/mocha.js')
     script(src='test/infrastructure/chai.js')
     script(src='test/infrastructure/chai-as-promised.js')
