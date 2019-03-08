@@ -1,18 +1,3 @@
-# [1.2.0](https://github.com/insitu-project/recommendations-webextension/compare/v1.1.1...v1.2.0) (2018-12-13)
-
-
-### Bug Fixes
-
-* handle content and options/popup styles loading differently ([59a86e7](https://github.com/insitu-project/recommendations-webextension/commit/59a86e7))
-* style not loading in options and popup ([ec529cd](https://github.com/insitu-project/recommendations-webextension/commit/ec529cd))
-* whitespace removed by eslint ([f0c9ffb](https://github.com/insitu-project/recommendations-webextension/commit/f0c9ffb))
-
-
-### Features
-
-* add style-components stack ([c255796](https://github.com/insitu-project/recommendations-webextension/commit/c255796))
-* **MatchingContexts:** support exclude url regex ([1258730](https://github.com/insitu-project/recommendations-webextension/commit/1258730))
-
 ## [1.1.1](https://github.com/insitu-project/recommendations-webextension/compare/v1.1.0...v1.1.1) (2018-10-19)
 
 
