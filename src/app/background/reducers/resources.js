@@ -13,17 +13,15 @@ const initialResources = fromJS({
 });
 
 export default function (state = initialResources, action) {
-  const { type } = action;
-
-  console.log('reducer', type, action);
+  const { type, payload } = action;
 
   switch (type) {
     case RECEIVED_MATCHING_CONTEXTS:
-      const { matchingContexts } = action;
+      const { matchingContexts } = payload;
       return state.set('matchingContexts', matchingContexts);
 
     case UPDATE_DRAFT_RECOMMENDATIONS: {
-      const { draftRecommendations } = action;
+      const { draftRecommendations } = payload;
 
       return state.set('draftRecommendations', draftRecommendations);
     }

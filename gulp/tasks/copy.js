@@ -24,7 +24,7 @@ const copy = (dest, manifestStr, tests) => () => {
 gulp.task('copy:build:dev',
   copy('./build/dev', JSON.stringify(devManifest, null, 2), true));
 gulp.task('copy:build:staging',
-  copy('./build/staging', JSON.stringify(stagingManifest, null, 2)));
+  copy('./build/staging', JSON.stringify(stagingManifest, null, 2), true));
 gulp.task('copy:build:chromium',
   copy('./build/chromium', JSON.stringify(prodManifest, null, 2)));
 gulp.task('copy:build:firefox',

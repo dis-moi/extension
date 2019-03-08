@@ -1,15 +1,11 @@
 /* eslint global-require: "off" */
-
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'remote-redux-devtools';
-import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
-import analytics from '../middlewares/analytics';
-import trackEvents from '../../analytics/trackEvents';
-import refreshMatchingContexts from '../middlewares/refreshMatchingContexts';
-import openOptionsPage from '../middlewares/openOptionsPage';
-import sendFeedback from '../middlewares/sendFeedback';
+import middlewares, { sagaMiddleware } from '../middlewares';
+import rootSaga from '../sagas';
 import fromJS from '../../utils/customFromJS';
+import listenTabs from './listenTabs';
 
 import makeInitialState from './makeInitialState';
 
@@ -25,27 +21,7 @@ export default function configureStore(callback, isBg) {
     getState = isBg ? require('./getStateToBg').default : require('./getStateFromBg').default;
   }
 
-  const trackEventMiddleware = analytics({
-    getCurrentTabs: () => new Promise(resolve => chrome.tabs.query(
-      {
-        active: true,
-        currentWindow: true,
-      },
-      tabs => resolve(tabs),
-    )),
-    track: trackEvents,
-  });
-
   getState((loadedState) => {
-    // let enhancer;
-    const middlewares = [
-      thunk,
-      trackEventMiddleware,
-      refreshMatchingContexts,
-      openOptionsPage,
-      sendFeedback
-    ];
-
     const composeEnhancers = composeWithDevTools({
       // options
     });
@@ -53,19 +29,27 @@ export default function configureStore(callback, isBg) {
     const enhancer = process.env.NODE_ENV !== 'production'
       ? composeEnhancers(applyMiddleware(...middlewares.concat([
         require('redux-immutable-state-invariant').default(), // eslint-disable-line
-        require('redux-logger').createLogger({ level: 'info', collapsed: true }), // eslint-disable-line
+        require('redux-logger').createLogger({ // eslint-disable-line
+          level: 'info',
+          collapsed: true,
+          stateTransformer: state => state.toJS()
+        }),
       ])))
       : applyMiddleware(...middlewares);
 
 
     const initialPrefState = makeInitialState().delete('resources'); // Map
     const initialResourcesState = makeInitialState().delete('prefs'); // Map
-    
+
     // migrate loadedState to the current state structure
     const migratedState = migrate(fromJS(loadedState), initialPrefState);
-    
+
     const state = initialResourcesState.merge(migratedState);
     const store = createStore(rootReducer, state, enhancer);
+
+    listenTabs(chrome.tabs, store);
+
+    sagaMiddleware.run(rootSaga);
 
     // FIXME
     // if (process.env.NODE_ENV !== 'production') {

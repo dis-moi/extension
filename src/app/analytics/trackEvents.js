@@ -33,6 +33,6 @@ export default function (action) {
     window.heap.track(action.type, mapEventFromAction(action));
   }
   else {
-    console.log(`Heap analytics disabled: ignore tracking of "${action.type}":`, action);
+    console.info(`Heap analytics disabled: ignore tracking of "${action.type}"`);
   }
 }

@@ -1,24 +1,13 @@
 import { connect } from 'react-redux';
-
 import PreferenceScreen from '../components/PreferenceScreen';
-import uiActions from '../actions/ui';
-import filterActions from '../actions/filters';
-
 import { IMAGES_URL } from '../../constants/assetsUrls';
-import portCommunication from '../portCommunication';
-
-const {
+import { closePrefScreen, openPrefScreen, uninstall } from '../actions/ui';
+import {
   selectCriterion,
   unselectCriterion,
   excludeEditor,
   includeEditor
-} = filterActions(portCommunication);
-
-const {
-  closePrefScreen,
-  openPrefScreen,
-  uninstall,
-} = uiActions(portCommunication);
+} from '../actions/filters';
 
 function mapStateToProps(state) {
   return {

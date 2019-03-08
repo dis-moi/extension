@@ -2,7 +2,9 @@ import chai from 'chai';
 
 import { makeUrlFromFilters } from '../../src/app/background/actions/kraftBackend';
 import { makeRecoFeedback } from '../../src/app/background/middlewares/sendFeedback';
-import { APPROVE_RECO } from '../../src/app/constants/ActionTypes';
+import { LIKE_NOTICE } from '../../src/app/constants/ActionTypes';
+import isAction from "../../src/app/utils/isAction";
+import createAction from "../../src/app/utils/createAction";
 
 const expect = chai.expect;
 
@@ -35,12 +37,12 @@ describe('background makeUrlFromFilters', function () {
 
 describe('background makeRecoFeedback', function () {
   it('should have right feedback and contexts', () => {
-    const type = APPROVE_RECO;
+    const type = LIKE_NOTICE;
     const url = 'myUrl';
 
     const output = makeRecoFeedback(type, url);
 
-    expect(output.feedback).to.equal('approve');
+    expect(output.feedback).to.equal('like');
     expect(output.contexts.datetime).to.be.a('string').of.length(24);
     expect(output.contexts.url).to.equal(url);
   });
@@ -52,4 +54,32 @@ describe('background makeRecoFeedback', function () {
     expect(makeRecoFeedback.bind(makeRecoFeedback, type, url)).to.throw();
   });
 
+});
+
+describe('isAction', () => {
+  const standardActionWithError = {
+    type: 'type',
+    payload: new Error(),
+    error: true,
+    meta: { tab: 1 }
+  };
+
+  it('shall return true for a standard action', () => {
+    expect(isAction(standardActionWithError)).to.equal(true);
+  });
+
+  it('shall return true for an action created with the action creator', () => {
+    const action = createAction('type')('payload');
+
+    expect(isAction(action)).to.equal(true);
+  });
+
+  it('shall return false when an extra key is found', () => {
+    const action = {
+      ...standardActionWithError,
+      extraKey: 'extra'
+    };
+
+    expect(isAction(action)).to.equal(false);
+  });
 });

@@ -36,6 +36,6 @@ export default function (url, matchingContexts, draftMatchingContexts, prefs = n
 
   // prioritize previews over public offers
   return matchingDraftMatchingContexts.length >= 1
-    ? matchingDraftMatchingContexts 
-    : findMatchingMatchingContexts(url, matchingContexts);  
+    ? matchingDraftMatchingContexts
+    : findMatchingMatchingContexts(url, matchingContexts);
 }

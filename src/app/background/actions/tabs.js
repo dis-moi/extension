@@ -1,29 +1,51 @@
 import {
+  INIT,
   CONTEXT_TRIGGERED,
   RECO_DISPLAYED,
-  RECO_DISMISSED
+  NOTICE_IGNORED,
+  MATCH_CONTEXT,
+  MATCH_CONTEXT_FAILURE,
+  CONTEXT_TRIGGER_FAILURE
 } from '../../constants/ActionTypes';
+import Notice from '../../lmem/Notice';
+import createAction from '../../utils/createAction';
 
-export function contextTriggered(trigger, triggeredContexts) {
-  return {
-    type: CONTEXT_TRIGGERED,
-    trigger,
-    triggeredContexts
-  };
-}
+export const init = createAction(
+  INIT,
+  ({ onInstalledDetails, criteria, editors }) => ({ onInstalledDetails, criteria, editors }),
+  tab => ({ tab })
+);
 
-export function recoDisplayed(trigger, recommendation) {
-  return {
-    type: RECO_DISPLAYED,
-    trigger,
-    recommendation
-  };
-}
+export const matchContext = createAction(
+  MATCH_CONTEXT,
+  context => context,
+  tab => ({ tab }),
+);
 
-export function recoDismissed(trigger, recommendation) {
-  return {
-    type: RECO_DISMISSED,
-    trigger,
-    recommendation
-  };
-}
+export const matchContextFailure = createAction(
+  MATCH_CONTEXT_FAILURE,
+  error => ({ error })
+);
+
+export const contextTriggered = createAction(
+  CONTEXT_TRIGGERED,
+  (triggeredContexts = []) => ({ triggeredContexts }),
+  ({ trigger, tab }) => ({ trigger, tab })
+);
+
+export const contextTriggerFailure = createAction(
+  CONTEXT_TRIGGER_FAILURE,
+  error => ({ error })
+);
+
+export const noticeDisplayed = createAction(
+  RECO_DISPLAYED,
+  notice => ({ notice }),
+  trigger => ({ trigger })
+);
+
+export const noticeIgnored = createAction(
+  NOTICE_IGNORED,
+  notice => ({ notice, reason: Notice.ignoringReason(notice) }),
+  trigger => ({ trigger })
+);
