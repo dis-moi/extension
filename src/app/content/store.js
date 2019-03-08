@@ -17,7 +17,7 @@ const enhancer = process.env.NODE_ENV !== 'production'
       stateTransformer: state => state.toJS()
     }),
   ]))
-  : applyMiddleware(routerMiddleware(history),...middlewares);
+  : applyMiddleware(routerMiddleware(history), ...middlewares);
 
 const store = createStore(
   rootReducer(history),

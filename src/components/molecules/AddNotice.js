@@ -1,23 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { AddNoticeLink, CenterContainer, } from '../atoms';
-import { Add } from '../atoms/icons';
+import React from "react";
+import PropTypes from "prop-types";
+import { AddNoticeLink, CenterContainer } from "../atoms";
 
 const AddNotice = ({ onClick, ...props }) => (
   <CenterContainer>
-    <AddNoticeLink onClick={onClick} {...props}>
-      <Add />
-      Créer votre recommandation
-    </AddNoticeLink>
+    <AddNoticeLink onClick={onClick} />
   </CenterContainer>
 );
 
 AddNotice.propTypes = {
-  onClick: PropTypes.func,
+  onClick: PropTypes.func
 };
 
 AddNotice.defaultProps = {
-  onClick: () => { },
+  onClick: () => {}
 };
 
 export default AddNotice;

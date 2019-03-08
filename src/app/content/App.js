@@ -33,7 +33,7 @@ const Notification = connect(mapStateToProps)(
           )
           : <Loading />
         }
-        <NotificationFooter />
+
       </NotificationContainer>
     )
     : null

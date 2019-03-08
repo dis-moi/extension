@@ -2,7 +2,7 @@ import { Route, Switch } from 'react-router-dom';
 import React from 'react';
 import List from './List';
 import Details from './Details';
-import Error from '../Error';
+import Error from '../Error/Error';
 
 export default ({ match }) => (
   <Switch>
