@@ -1,12 +1,17 @@
 import chai from "chai";
-import { findMatchingOffersAccordingToPreferences } from "../../../src/app/lmem/matchingContext";
+import {
+  findMatchingOffersAccordingToPreferences,
+  MatchingContext
+} from "../../../src/app/lmem/matchingContext";
 const expect = chai.expect;
 
-const offers = [
-  { url_regex: "www.samsung.com" },
-  { url_regex: "arrested.com" }
+const offers: MatchingContext[] = [
+  { url_regex: "www.samsung.com", recommendation_url: "http://b" },
+  { url_regex: "arrested.com", recommendation_url: "http://b" }
 ];
-const draftRecommendations = [{ url_regex: "www.wordpress.com" }];
+const draftRecommendations = [
+  { url_regex: "www.wordpress.com", recommendation_url: "http://b" }
+];
 
 const matchingURL = "https://www.samsung.com/blabla";
 const matchingDraftURL = "https://www.wordpress.com/lol";
@@ -14,10 +19,10 @@ const nonMatchingURL = "https://soundcloud.com/capt-lovelace/meteo-marine";
 
 describe("findMatchingOffersAccordingToPreferences", function() {
   it("should be case insensitive", () => {
-    const offersWithWeirdCase = [
-      { url_regex: "s.*" },
-      { url_regex: "SamSung" },
-      { url_regex: "doesNotMatch" }
+    const offersWithWeirdCase: MatchingContext[] = [
+      { url_regex: "s.*", recommendation_url: "http://s" },
+      { url_regex: "SamSung", recommendation_url: "http://S" },
+      { url_regex: "doesNotMatch", recommendation_url: "http://d" }
     ];
 
     const matches = findMatchingOffersAccordingToPreferences(
@@ -34,8 +39,12 @@ describe("findMatchingOffersAccordingToPreferences", function() {
 
   describe("exclusion", () => {
     it("should exclude matching exclusion of otherwise matching url", () => {
-      const offersWithExclusion = [
-        { url_regex: "samsung", exclude_url_regex: "blabla" }
+      const offersWithExclusion: MatchingContext[] = [
+        {
+          url_regex: "samsung",
+          exclude_url_regex: "blabla",
+          recommendation_url: "http://b"
+        }
       ];
 
       const matches = findMatchingOffersAccordingToPreferences(
@@ -50,7 +59,11 @@ describe("findMatchingOffersAccordingToPreferences", function() {
 
     it("should not exclude non matching exclusion of matching url", () => {
       const offersWithExclusion = [
-        { url_regex: "samsung", exclude_url_regex: "nono" }
+        {
+          url_regex: "samsung",
+          exclude_url_regex: "nono",
+          recommendation_url: "http://b"
+        }
       ];
 
       const matches = findMatchingOffersAccordingToPreferences(
@@ -65,9 +78,14 @@ describe("findMatchingOffersAccordingToPreferences", function() {
     });
 
     it("should exclude its matching context if regex is invalid", () => {
-      const offersWithExclusion = [
-        { url_regex: "samsung", exclude_url_regex: "isNasty)" } // SyntaxError: Invalid RegExp: Unmatched ')'
-      ].concat(offers);
+      const offersWithExclusion: MatchingContext[] = [
+        {
+          url_regex: "samsung",
+          exclude_url_regex: "isNasty)",
+          recommendation_url: "http://b"
+        }, // SyntaxError: Invalid RegExp: Unmatched ')',
+        ...offers
+      ];
 
       const matches = findMatchingOffersAccordingToPreferences(
         matchingURL,
@@ -82,7 +100,9 @@ describe("findMatchingOffersAccordingToPreferences", function() {
   });
 
   describe("invalid regex", () => {
-    const nastyOffers = [{ url_regex: "isNasty)" }].concat(offers); // SyntaxError: Invalid RegExp: Unmatched ')'
+    const nastyOffers = [
+      { url_regex: "isNasty)", recommendation_url: "http://b" }
+    ].concat(offers); // SyntaxError: Invalid RegExp: Unmatched ')'
 
     it("should not screw up the matching engine", () => {
       const matches = findMatchingOffersAccordingToPreferences(
@@ -126,47 +146,6 @@ describe("findMatchingOffersAccordingToPreferences", function() {
     });
   });
 
-  describe("pref with deactivated.everywhereUntil in the future", () => {
-    const prefs = fromJS({
-      deactivated: {
-        // in the future
-        everywhereUntil: Date.now() + 100 * 1000
-      }
-    });
-
-    it("should not match when deactivatedEverywhereUntil is in the future", () => {
-      const matching = findMatchingOffersAccordingToPreferences(
-        matchingURL,
-        offers,
-        [],
-        prefs
-      );
-
-      expect(matching).to.be.an("array");
-      expect(matching).to.be.of.length(0);
-    });
-  });
-
-  describe("pref with deactivatedWebsites", () => {
-    const prefs = fromJS({
-      deactivated: {
-        deactivatedWebsites: new Set(["www.samsung.com", "yo.com"])
-      }
-    });
-
-    it("should not match with matching url, but pref listing as deactivated", () => {
-      const matching = findMatchingOffersAccordingToPreferences(
-        matchingURL,
-        offers,
-        [],
-        prefs
-      );
-
-      expect(matching).to.be.an("array");
-      expect(matching).to.be.of.length(0);
-    });
-  });
-
   describe("draft recommendations", () => {
     it("should match a draft recommendation", () => {
       const matching = findMatchingOffersAccordingToPreferences(
@@ -183,12 +162,14 @@ describe("findMatchingOffersAccordingToPreferences", function() {
     it("should favor draft previews over public offers", () => {
       const draftRec = {
         url_regex: "www.wordpress.com",
+        recommendation_url: "http://b",
         recommendation: {
           visibility: "private"
         }
       };
       const publicRec = {
         url_regex: "www.wordpress.com",
+        recommendation_url: "http://b",
         recommendation: {
           visibility: "public"
         }

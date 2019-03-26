@@ -67,7 +67,7 @@ export function prefs(state: PrefsState = initialPrefs, action: AppAction) {
             )
           };
       }
-      break;
+      return state;
     default:
       return state;
   }

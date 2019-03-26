@@ -87,7 +87,9 @@ export const getNotice = <N extends Notice>(
   notices: N[]
 ): N | undefined => find((notice: N): boolean => notice.id === id, notices);
 
-export const isNoticeValid = (notice: Notice): boolean => {
+export const isNoticeValid = (notice: {
+  [key: string]: any;
+}): notice is Notice => {
   if (Object(notice) !== notice) return false;
 
   const {
