@@ -94,7 +94,7 @@ module.exports = {
   moduleTrace: true,
 
   // Show performance hint when file size exceeds `performance.maxAssetSize`
-  performance: true,
+  performance: false,
 
   // Show the exports of the modules
   providedExports: true,

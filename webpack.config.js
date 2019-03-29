@@ -1,8 +1,8 @@
-const path = require("path");
+const path = require('path');
 const entry = require('./webpack/config.entry');
-const rules = require("./webpack/config.rules");
-const plugins = require("./webpack/config.plugins.js");
-const stats = require("./webpack/config.stats");
+const rules = require('./webpack/config.rules');
+const plugins = require('./webpack/config.plugins.js');
+const stats = require('./webpack/config.stats');
 
 module.exports = function webpack(env = {}, argv = {}) {
   const srcPath = path.resolve(__dirname, 'src');
@@ -16,7 +16,7 @@ module.exports = function webpack(env = {}, argv = {}) {
       filename: 'js/[name].bundle.js',
       chunkFilename: 'js/[id].chunk.js',
       path: path.join(__dirname, 'build', env.build),
-      publicPath: '.',
+      publicPath: '.'
     },
     module: { rules: rules(argv.mode) },
     plugins: plugins(env, argv, path.join(__dirname, 'build')),
