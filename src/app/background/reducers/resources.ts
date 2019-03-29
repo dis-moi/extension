@@ -15,23 +15,20 @@ export default function(
   state: ResourcesState = initialResources,
   action: AppAction
 ) {
-  // @ts-ignore
-  // @ts-ignore
-  // @ts-ignore
   switch (action.type) {
     case 'api/UPDATE_MATCHING_CONTEXTS':
       return { ...state, matchingContexts: action.payload.matchingContexts };
 
-    // @ts-ignore
+    /* Action is not existing yet, but will come soon.
     case 'UPDATE_DRAFT_RECOMMENDATIONS': {
       return {
         ...state,
-        // @ts-ignore
         draftRecommendations: action.payload.draftRecommendations
       };
     }
+    */
 
-    // @ts-ignore
+    /* Will be used ?
     case 'UNINSTALL': {
       console.warn(
         'Extension uninstallation is disabled when environment is development.'
@@ -42,6 +39,7 @@ export default function(
       }
       return state;
     }
+    */
 
     default:
       return state;
