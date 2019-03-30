@@ -44,16 +44,10 @@ module.exports = (env = {}, argv = {}, outputPath) => {
     }
   ];
   if (argv.mode !== 'production') {
-    copyConfig.push(
-      {
-        from: 'test/infrastructure',
-        to: path.join(outputPath, env.build, 'test', 'infrastructure')
-      },
-      {
-        from: 'test/integration',
-        to: path.join(outputPath, env.build, 'test', 'integration')
-      }
-    );
+    copyConfig.push({
+      from: 'test/integration',
+      to: path.join(outputPath, env.build, 'test', 'integration')
+    });
   }
 
   const plugins = [
