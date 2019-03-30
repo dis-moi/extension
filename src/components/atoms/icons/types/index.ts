@@ -11,7 +11,7 @@ import Other from './Other';
 interface Props {
   active?: boolean;
 }
-export const TypesIcons: { [key in NoticeType]: ComponentType<Props> } = {
+const TypesIcons: { [key in NoticeType]: ComponentType<Props> } = {
   Approval,
   Disapproval,
   Tip,
