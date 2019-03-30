@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux';
 import { InstallationDetails } from '../lmem/installation';
 import { BaseAction } from './BaseAction';
+import { version } from '../../../package.json';
 
 export interface InstalledAction extends BaseAction {
   type: 'INSTALLED';
@@ -25,7 +26,7 @@ const onInstalledPromise = new Promise<InstallationDetails>(resolve => {
     resolve({
       ...details,
       datetime: new Date(),
-      version: chrome.runtime.getManifest().version
+      version
     });
   });
 });
