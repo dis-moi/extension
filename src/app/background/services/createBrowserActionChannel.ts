@@ -1,5 +1,5 @@
 import { eventChannel } from 'redux-saga';
-import { browserActionClicked } from 'app/actions/browser/browserAction';
+import { browserActionClicked } from 'app/actions/browser';
 
 export const createBrowserActionChannel = () => {
   return eventChannel(emit => {

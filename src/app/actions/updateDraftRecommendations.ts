@@ -1,4 +1,4 @@
-import { BaseAction } from './BaseAction';
+import { BaseAction } from '.';
 
 interface UpdateDraftRecommendationsAction extends BaseAction {
   type: 'UPDATE_DRAFT_RECOMMENDATIONS';

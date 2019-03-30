@@ -1,10 +1,10 @@
 import { LocationChangeAction } from 'connected-react-router';
-import { BrowserActionClickedAction } from './browser/browserAction';
+import { BrowserActionClickedAction } from './browser';
 import {
   TabCreatedAction,
   TabRemovedAction,
   TabUpdatedAction
-} from './browser/tabs';
+} from './tabsLifecycle';
 import { InstalledAction } from './install';
 import {
   RefreshMatchingContextsAction,
@@ -22,6 +22,18 @@ import {
 import { InstalledDetailsAction } from './filters';
 import { CloseAction, ClosedAction, OpenAction, OpenedAction } from './ui';
 import { FeedbackOnNoticeAction, NoticesFoundAction } from './recommendations';
+import { Action } from 'redux';
+
+export interface BaseAction extends Action {
+  payload?: {};
+  meta?: ActionMeta;
+}
+
+export type TabAction = BaseAction & {
+  meta: ActionMeta & {
+    tab: number;
+  };
+};
 
 export interface ActionMeta {
   tab?: number;

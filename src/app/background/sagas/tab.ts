@@ -28,18 +28,21 @@ import {
 } from 'app/actions/tabs';
 import { noticesFound } from 'app/actions/recommendations';
 import watchSingleMessageSaga from '../../utils/watchSingleMessageSaga';
-import { TabAction } from '../../actions/BaseAction';
+import { TabAction } from '../../actions';
 import fetchContentScript from '../services/fetchContentScript';
 import executeTabScript, {
   ExecuteContentScript
 } from '../services/executeTabScript';
 import createBrowserActionChannel from '../services/createBrowserActionChannel';
-import { TabCreatedAction, TabUpdatedAction } from '../../actions/browser/tabs';
+import {
+  TabCreatedAction,
+  TabUpdatedAction
+} from '../../actions/tabsLifecycle';
 import * as R from 'ramda';
 import { MatchingContext } from '../../lmem/matchingContext';
 import { EnhancedNotice } from '../../lmem/notice';
 import sendToTab from '../services/sendToTab';
-import { AppAction } from '../../actions';
+import { AppAction } from '../../actions/';
 import { fetchMatchingNotices } from '../../lmem/fetchMatchingNotices';
 
 export const tabSaga = (executeContentScript: ExecuteContentScript) =>

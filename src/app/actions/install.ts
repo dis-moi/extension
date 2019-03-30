@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { InstallationDetails } from '../lmem/installation';
-import { BaseAction } from './BaseAction';
+import { BaseAction } from '.';
 import { version } from '../../../package.json';
 
 export interface InstalledAction extends BaseAction {

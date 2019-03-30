@@ -1,4 +1,4 @@
-import { TabAction } from '../BaseAction';
+import { TabAction } from '.';
 
 export interface BrowserActionClickedAction extends TabAction {
   type: 'BROWSER/BROWSER_ACTION_CLICKED';

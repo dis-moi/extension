@@ -1,4 +1,4 @@
-import { BaseAction } from './BaseAction';
+import { BaseAction } from '.';
 
 export interface OpenAction extends BaseAction {
   type: 'OPEN';

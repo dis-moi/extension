@@ -1,5 +1,5 @@
 import { EnhancedNotice } from 'app/lmem/notice';
-import { BaseAction, TabAction } from './BaseAction';
+import { BaseAction, TabAction } from '.';
 
 export interface NoticesFoundAction extends TabAction {
   type: 'NOTICES_FOUND';

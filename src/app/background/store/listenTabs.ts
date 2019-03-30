@@ -1,4 +1,4 @@
-import { tabCreated, tabRemoved, tabUpdated } from 'app/actions/browser/tabs';
+import { tabCreated, tabRemoved, tabUpdated } from 'app/actions/tabsLifecycle';
 import { Store } from 'redux';
 
 export const onTabCreated = (store: Store) => ({

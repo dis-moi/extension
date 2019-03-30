@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch';
 import { LMEM_BACKEND_ORIGIN } from 'app/constants/origins';
 import { MatchingContext } from 'app/lmem/matchingContext';
 import { Dispatch } from 'redux';
-import { BaseAction } from './BaseAction';
+import { BaseAction } from '.';
 
 function fetchJson(url: string) {
   return fetch(url).then(response => {

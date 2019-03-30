@@ -1,5 +1,5 @@
 import { InstallationDetails } from '../lmem/installation';
-import { BaseAction } from './BaseAction';
+import { BaseAction } from '.';
 
 export interface InstalledDetailsAction extends BaseAction {
   type: 'INSTALLED_DETAILS';
