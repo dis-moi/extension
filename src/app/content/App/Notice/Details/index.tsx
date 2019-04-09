@@ -1,9 +1,9 @@
-import React from "react";
-import Notification from "../../../../../components/organisms/Notification";
-import NoticeDetails from "../../../../../components/organisms/NoticeDetails/NoticeDetails";
-import withConnect from "./withConnect";
-import { DetailsProps } from "./types";
-import { findType } from "app/lmem/noticeType";
+import React from 'react';
+import Notification from '../../../../../components/organisms/Notification';
+import NoticeDetails from '../../../../../components/organisms/NoticeDetails/NoticeDetails';
+import withConnect from './withConnect';
+import { DetailsProps } from './types';
+import { findType } from 'app/lmem/noticeType';
 
 export const Details = ({
   notice,

@@ -1,11 +1,11 @@
-import React from "react";
-import Notification from "components/organisms/Notification";
-import NoticeItem from "components/organisms/Notice/Notice";
-import { AddNotice } from "components/molecules";
-import { findType } from "app/lmem/noticeType";
-import NoNotice from "./NoNotice";
-import withConnect from "./withConnect";
-import { EnhancedNotice } from "../../../../lmem/notice";
+import React from 'react';
+import Notification from 'components/organisms/Notification';
+import NoticeItem from 'components/organisms/Notice/Notice';
+import AddNotice from 'components/molecules/AddNotice';
+import { findType } from 'app/lmem/noticeType';
+import NoNotice from './NoNotice';
+import withConnect from './withConnect';
+import { EnhancedNotice } from '../../../../lmem/notice';
 
 export interface Props {
   notices: EnhancedNotice[];
@@ -14,7 +14,7 @@ export interface Props {
   close?: () => void;
 }
 export const List = ({ notices, dismiss, undismiss, close }: Props) => (
-  <Notification title="Notifications pour cette page" hasNotices close={close}>
+  <Notification title="Bulles pour cette page" hasNotices close={close}>
     {notices
       .slice(0, 2)
       .map(

@@ -1,13 +1,13 @@
-import React, { Fragment, PureComponent } from "react";
-import { NoticeType } from "app/lmem/noticeType";
-import { stripHtml } from "app/utils/stripHtml";
-import { Contributor, OpenButton, Button } from "../../atoms";
-import Type from "../../molecules/Type/Type";
-import Container from "./Container";
-import Content from "./Content";
-import Deleted from "./Deleted";
-import DeleteButton from "./DeleteButton";
-import Title from "./Title";
+import React, { Fragment, PureComponent } from 'react';
+import { NoticeType } from 'app/lmem/noticeType';
+import { stripHtml } from 'app/utils/stripHtml';
+import { Contributor, OpenButton, Button } from '../../atoms';
+import Type from '../../molecules/Type/Type';
+import Container from './Container';
+import Content from './Content';
+import Deleted from './Deleted';
+import DeleteButton from './DeleteButton';
+import Title from './Title';
 
 interface Props {
   id: number;
@@ -22,7 +22,7 @@ interface Props {
 
 export default class Notice extends PureComponent<Props> {
   static defaultProps = {
-    type: "Other",
+    type: 'Other',
     dismissed: false
   };
 
@@ -42,7 +42,7 @@ export default class Notice extends PureComponent<Props> {
         <Content to={dismissed ? undefined : `notices/details/${id}`}>
           {dismissed || disliked ? (
             <Fragment>
-              <Deleted>Cette notification ne s’affichera plus !</Deleted>
+              <Deleted>Cette bulle ne s’affichera plus !</Deleted>
               <Button onClick={this.onUndismiss}>Annuler</Button>
             </Fragment>
           ) : (
@@ -50,10 +50,7 @@ export default class Notice extends PureComponent<Props> {
               <Type type={type} />
               <div>
                 <Title>{stripHtml(message)}</Title>
-                <Contributor>
-                  Par : &nbsp;
-                  {contributor}
-                </Contributor>
+                <Contributor>Par : {contributor}</Contributor>
               </div>
               <OpenButton />
             </Fragment>

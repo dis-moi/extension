@@ -20,16 +20,17 @@ const ENV = {
     REFRESH_MC_INTERVAL: '5*60*1000'
   },
   chromium: {
-    LMEM_BACKEND_ORIGIN: '"https://recommendations.lmem.net"',
+    LMEM_BACKEND_ORIGIN: '"https://reco2bulle.lmem.net"',
     UNINSTALL_ORIGIN: "'https://www.lmem.net/desinstallation'",
-    REFRESH_MC_INTERVAL: '10*60*1000',
+    REFRESH_MC_INTERVAL: '30*60*1000',
     ONBOARDING_ORIGIN: '"https://bienvenue.lmem.net?extensionInstalled"',
     HEAP_APPID: '"3705584166"' // production
   },
   firefox: {
-    LMEM_BACKEND_ORIGIN: '"https://recommendations.lmem.net"',
+    LMEM_BACKEND_ORIGIN: '"https://reco2bulle.lmem.net"',
     ONBOARDING_ORIGIN: '"https://bienvenue.lmem.net?extensionInstalled"',
-    REFRESH_MC_INTERVAL: '10*60*1000'
+    REFRESH_MC_INTERVAL: '30*60*1000'
+    // No analytics with Firefox // HEAP_APPID: '"3705584166"',
   }
 };
 

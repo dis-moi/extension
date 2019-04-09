@@ -1,20 +1,20 @@
-import React, { PureComponent } from "react";
-import { RouteComponentProps, withRouter } from "react-router";
-import { Contributor, Button, BorderButton } from "../../atoms";
-import Like from "../../atoms/icons/types/Like";
-import Dislike from "../../atoms/icons/types/Dislike";
-import Type from "../../molecules/Type/Type";
-import Source from "./Source/Source";
-import Anchor from "./Source/AnchorIcon";
-import SourceURL from "./Source/SourceURL";
-import DetailsContainer from "./DetailsContainer";
-import DetailsContent from "./DetailsContent";
-import DetailsMeta from "./DetailsMeta";
-import DetailsDislike from "./DetailsDislike";
-import Message from "./Message";
-import Feedbacks from "./Feedbacks";
-import Date from "./Date";
-import { NoticeType } from "../../../app/lmem/noticeType";
+import React, { PureComponent } from 'react';
+import { RouteComponentProps, withRouter } from 'react-router';
+import { Contributor, Button, BorderButton } from '../../atoms';
+import Like from '../../atoms/icons/types/Like';
+import Dislike from '../../atoms/icons/types/Dislike';
+import Type from '../../molecules/Type/Type';
+import Source from './Source/Source';
+import Anchor from './Source/AnchorIcon';
+import SourceURL from './Source/SourceURL';
+import DetailsContainer from './DetailsContainer';
+import DetailsContent from './DetailsContent';
+import DetailsMeta from './DetailsMeta';
+import DetailsDislike from './DetailsDislike';
+import Message from './Message';
+import Feedbacks from './Feedbacks';
+import Date from './Date';
+import { NoticeType } from '../../../app/lmem/noticeType';
 
 interface Props {
   id: number;
@@ -66,21 +66,13 @@ class NoticeDetails extends PureComponent<Props & RouteComponentProps> {
       <DetailsContainer>
         <DetailsContent>
           <DetailsMeta>
-            <Date>
-              Le &nbsp;
-              {date}
-            </Date>
-            <Contributor>
-              {contributor}
-              &nbsp; :
-            </Contributor>
+            <Date>Le {date}</Date>
+            <Contributor>{contributor} :</Contributor>
             <Type type={type} />
           </DetailsMeta>
           <Message>{message}</Message>
           <Source>
-            <Anchor />
-            En savoir plus : &nbsp;
-            <SourceURL>{source}</SourceURL>
+            <Anchor /> En savoir plus : <SourceURL>{source}</SourceURL>
           </Source>
 
           <Feedbacks>
@@ -94,7 +86,7 @@ class NoticeDetails extends PureComponent<Props & RouteComponentProps> {
 
           {(disliked || dismissed) && (
             <DetailsDislike>
-              Merci pour votre retour, cette notification ne s’affichera plus
+              Merci pour votre retour, cette bulle ne s’affichera plus
               <div>
                 <Button onClick={this.handleDislikeClick}>Annuler</Button>
                 <BorderButton onClick={this.props.history.goBack}>

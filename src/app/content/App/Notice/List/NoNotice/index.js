@@ -9,6 +9,6 @@ export default () => (
       <Illustration />
     </IllustrationContainer>
 
-    <Title>Il n’y a plus de notifications ici</Title>
+    <Title>Il n’y a plus de recommandation ici</Title>
   </Fragment>
 );

@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import BorderButton from "../BorderButton";
-import AddIcon from "./AddIcon";
+import React from 'react';
+import styled from 'styled-components';
+import BorderButton from '../BorderButton';
+import AddIcon from './AddIcon';
 
 const Button = styled(BorderButton)`
   display: flex;
@@ -30,6 +30,6 @@ const Button = styled(BorderButton)`
 export default ({ ...props }) => (
   <Button {...props}>
     <AddIcon />
-    Créer votre notification
+    Créer votre recommandation
   </Button>
 );

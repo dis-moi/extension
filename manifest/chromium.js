@@ -3,28 +3,22 @@ const base = require('./base');
 
 module.exports = {
   ...base,
-  'content_security_policy': csp({
-    'directives': {
-      'default-src': [
-        'https://recommendations.lmem.net',
-      ],
+  content_security_policy: csp({
+    directives: {
+      'default-src': ['https://reco2bulle.lmem.net'],
       'script-src': [
-        '\'self\'',
+        "'self'",
         'https://heapanalytics.com',
         'https://cdn.heapanalytics.com'
       ],
-      'object-src': [
-        '\'self\''
-      ],
+      'object-src': ["'self'"],
       'img-src': [
-        '\'self\'',
+        "'self'",
         'https://heapanalytics.com',
         'https://cdn.heapanalytics.com',
         'data:'
       ],
-      'style-src': [
-        '\'unsafe-inline\''
-      ]
+      'style-src': ["'unsafe-inline'"]
     }
   })
 };
