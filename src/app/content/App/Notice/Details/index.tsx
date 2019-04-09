@@ -14,7 +14,7 @@ export const Details = ({
   close
 }: DetailsProps) =>
   notice ? (
-    <Notification title={notice.description} hasNotices close={close}>
+    <Notification title="Détail de la bulle" hasNotices close={close}>
       <NoticeDetails
         id={notice.id}
         type={findType(notice.criteria)}
