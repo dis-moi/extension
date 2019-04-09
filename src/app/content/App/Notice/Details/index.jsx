@@ -14,7 +14,7 @@ const Details = ({
   close,
 }) => {
   return (
-    <Notification title={description} hasNotices close={close}>
+    <Notification title="Détail de la recommandation" close={close}>
       <NoticeDetails
         id={id}
         type={findType(criteria)}
