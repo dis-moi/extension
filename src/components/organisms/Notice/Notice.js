@@ -1,21 +1,17 @@
-import React, { Fragment, PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import {
-  Contributor,
-  OpenButton,
-  Button,
-} from '../../atoms';
-import Type from '../../molecules/Type/Type';
-import Container from './Container';
-import Content from './Content';
-import Deleted from './Deleted';
-import DeleteButton from './DeleteButton';
-import Title from './Title';
+import React, { Fragment, PureComponent } from "react";
+import PropTypes from "prop-types";
+import { Contributor, OpenButton, Button } from "../../atoms";
+import Type from "../../molecules/Type/Type";
+import Container from "./Container";
+import Content from "./Content";
+import Deleted from "./Deleted";
+import DeleteButton from "./DeleteButton";
+import Title from "./Title";
 
-const strip = (html) => {
-  const tmp = document.createElement('div');
+const strip = html => {
+  const tmp = document.createElement("div");
   tmp.innerHTML = html;
-  return tmp.textContent || tmp.innerText || '';
+  return tmp.textContent || tmp.innerText || "";
 };
 
 export default class Notice extends PureComponent {
@@ -27,27 +23,34 @@ export default class Notice extends PureComponent {
     dismiss: PropTypes.func.isRequired,
     undismiss: PropTypes.func.isRequired,
     dismissed: PropTypes.bool,
-    disliked: PropTypes.bool,
+    disliked: PropTypes.bool
   };
 
   static defaultProps = {
-    type: 'Other',
-    dismissed: false,
+    type: "Other",
+    dismissed: false
   };
 
   render() {
     const {
-      id, type, message, contributor, dismissed, disliked, dismiss, undismiss
+      id,
+      type,
+      message,
+      contributor,
+      dismissed,
+      disliked,
+      dismiss,
+      undismiss
     } = this.props;
     return (
       <Container>
-        {!dismissed && !disliked
-        && <DeleteButton onClick={() => dismiss(id)} />
-        }
+        {!dismissed && !disliked && (
+          <DeleteButton onClick={() => dismiss(id)} />
+        )}
         <Content to={!dismissed && `notices/details/${id}`}>
           {dismissed || disliked ? (
             <Fragment>
-              <Deleted>Cette notification ne s’affichera plus !</Deleted>
+              <Deleted>Cette recommandation ne s’affichera plus !</Deleted>
               <Button onClick={() => undismiss(id)}>Annuler</Button>
             </Fragment>
           ) : (
@@ -55,11 +58,7 @@ export default class Notice extends PureComponent {
               <Type type={type} />
               <div>
                 <Title>{strip(message)}</Title>
-                <Contributor>
-                      Par :
-                      &nbsp;
-                  {contributor}
-                </Contributor>
+                <Contributor>Par : {contributor}</Contributor>
               </div>
               <OpenButton />
             </Fragment>

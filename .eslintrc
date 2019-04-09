@@ -70,6 +70,7 @@
     "no-underscore-dangle": 0,
     "no-else-return": 0,
     "newline-per-chained-call": 0,
-    "module-resolver/use-alias": 0
+    "module-resolver/use-alias": 0,
+    "react/jsx-one-expression-per-line": 0
   }
 }
