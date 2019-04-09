@@ -1,9 +1,9 @@
-import React from "react";
-import Notification from "components/organisms/Notification";
-import BorderButton from "components/atoms/Buttons/BorderButton/BorderButton";
-import Illustration from "./Illustration";
-import Container from "./Container";
-import SubscriptionsData from "./SubscriptionsData";
+import React from 'react';
+import Notification from 'components/organisms/Notification';
+import BorderButton from 'components/atoms/Buttons/BorderButton/BorderButton';
+import Illustration from './Illustration';
+import Container from './Container';
+import SubscriptionsData from './SubscriptionsData';
 
 interface Props {
   close?: () => void;

@@ -1,7 +1,7 @@
-import React, { ReactNode } from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { LocationDescriptor } from "history";
+import React, { ReactNode } from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { LocationDescriptor } from 'history';
 
 interface ContentProps {
   to?: LocationDescriptor;
@@ -39,7 +39,7 @@ export default styled(Content)`
     width: 245px;
   }
 
-  & [class^="OpenButton"] {
+  & [class^='OpenButton'] {
     height: auto;
   }
 

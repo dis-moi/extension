@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import Truncated from "../../atoms/Truncated";
+import React from 'react';
+import styled from 'styled-components';
+import Truncated from '../../atoms/Truncated';
 
 export const TitleContainer = styled.p`
   display: inline;

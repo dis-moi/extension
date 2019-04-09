@@ -15,7 +15,7 @@
     "clean": "rm -rf build",
     "test": "LMEM_BACKEND_ORIGIN='' NODE_ENV=test ts-mocha --paths test/app/*.ts test/app/**/*.ts",
     "lint": "yarn lint:ts && yarn lint:css",
-    "lint:ts": "tslint './src/**/*.ts'",
+    "lint:ts": "tslint -p .",
     "lint:css": "stylelint './src/**/*.js'",
     "analyse": "babel-node ./node_modules/webpack/bin/webpack --optimize-minimize --mode production --config webpack/chromium.config.js --profile --json > stats.json",
     "storybook": "start-storybook -p 6007 -c .storybook",
@@ -29,7 +29,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
-      "tslint",
+      "tslint -p .",
       "prettier --write",
       "git add"
     ]

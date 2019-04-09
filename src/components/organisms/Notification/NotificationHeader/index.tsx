@@ -1,14 +1,14 @@
-import React from "react";
-import { MemoryHistory } from "history";
-import { RouteComponentProps, withRouter } from "react-router";
-import { truncateButPreserveWords } from "app/utils/truncate";
-import { stripHtml } from "app/utils/stripHtml";
-import Container from "./Container";
-import LogoContainer from "./LogoContainer";
-import LogoImg from "./LogoImg";
-import BackButton from "./BackButton";
-import CloseButton from "./CloseButton";
-import Title from "./Title";
+import React from 'react';
+import { MemoryHistory } from 'history';
+import { RouteComponentProps, withRouter } from 'react-router';
+import { truncateButPreserveWords } from 'app/utils/truncate';
+import { stripHtml } from 'app/utils/stripHtml';
+import Container from './Container';
+import LogoContainer from './LogoContainer';
+import LogoImg from './LogoImg';
+import BackButton from './BackButton';
+import CloseButton from './CloseButton';
+import Title from './Title';
 
 interface OwnProps {
   title?: string;

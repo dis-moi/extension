@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import truncate from "../../app/utils/truncate";
+import React, { Fragment } from 'react';
+import truncate from '../../app/utils/truncate';
 
 interface Props {
   children: string;
@@ -15,7 +15,7 @@ const Truncated = ({ numberOfCharacters, preserveWords, children }: Props) => (
 );
 
 Truncated.defaultProps = {
-  children: "",
+  children: '',
   preserveWords: true
 };
 

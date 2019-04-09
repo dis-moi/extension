@@ -33,11 +33,10 @@ export const receivedMatchingContexts = (
 });
 
 export function dispatchInitialStateFromBackend() {
-  return (dispatch: Dispatch) => {
+  return (dispatch: Dispatch) =>
     fetchMatchingContexts().then((matchingContexts: MatchingContext[]) =>
       dispatch(receivedMatchingContexts(matchingContexts))
     );
-  };
 }
 
 export interface RefreshMatchingContextsAction extends BaseAction {

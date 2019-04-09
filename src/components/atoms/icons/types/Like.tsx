@@ -1,13 +1,13 @@
-import React from "react";
-import { withTheme } from "styled-components";
-import { Theme } from "app/theme";
+import React from 'react';
+import { withTheme } from 'styled-components';
+import { Theme } from 'app/theme';
 
 interface Props {
   active?: boolean;
   theme: Theme;
 }
 const Like = ({ active, theme }: Props) => {
-  const stroke = !active ? theme.secondaryColor : "#fff";
+  const stroke = !active ? theme.secondaryColor : '#fff';
   const fill = active ? theme.secondaryColor : undefined;
 
   return (

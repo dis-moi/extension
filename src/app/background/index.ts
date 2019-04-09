@@ -18,17 +18,28 @@ if (process.env.NODE_ENV !== 'production') {
 }
 console.info(`LMEM_BACKEND_ORIGIN "${LMEM_BACKEND_ORIGIN}"`);
 
+const setUninstallURL = (heapUserId: string) => {
+  const uninstallOrigin = process.env.UNINSTALL_ORIGIN;
+  if (typeof uninstallOrigin === 'string') {
+    chrome.runtime.setUninstallURL(
+      uninstallOrigin + '?u=' + encodeURIComponent(heapUserId || '-1')
+    );
+  }
+};
+
 const heapAppId = process.env.HEAP_APPID;
 if (typeof heapAppId === 'string') {
   console.info(`Heap loading with appId "${heapAppId}"`);
-  loadHeap(heapAppId).then(heap => {
-    const uninstallOrigin = process.env.UNINSTALL_ORIGIN;
-    if (typeof uninstallOrigin === 'string') {
-      chrome.runtime.setUninstallURL(
-        uninstallOrigin + '?u=' + encodeURIComponent(heap.userId)
-      );
-    }
-  });
+  loadHeap(heapAppId)
+    .catch(error => {
+      console.warn('Could not load Heap Analytics', error);
+    })
+    .then(heap => {
+      if (heap) setUninstallURL(heap.userId);
+    })
+    .catch(error => {
+      console.warn('Could not load set uninstall URL', error);
+    });
 } else {
   console.warn(
     'Heap analytics disabled: assuming "process.env.HEAP_APPID" is deliberately not defined.'

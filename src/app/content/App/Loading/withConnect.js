@@ -1,5 +1,5 @@
-import { connect } from "react-redux";
-import { close } from "app/actions/ui";
+import { connect } from 'react-redux';
+import { close } from 'app/actions/ui';
 
 const mapDispatchToProps = {
   close

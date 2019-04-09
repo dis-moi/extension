@@ -1,8 +1,8 @@
-import React from "react";
-import { Link, RouteComponentProps } from "react-router-dom";
-import Notification from "components/organisms/Notification";
-import { OpenButton } from "components/atoms";
-import Account from "./Account";
+import React from 'react';
+import { Link, RouteComponentProps } from 'react-router-dom';
+import Notification from 'components/organisms/Notification';
+import { OpenButton } from 'components/atoms';
+import Account from './Account';
 
 interface OwnProps {
   close?: () => void;

@@ -1,9 +1,9 @@
-import React from "react";
-import { withTheme } from "styled-components";
-import Background from "./Background";
-import noticeTypeIcons from "../../atoms/icons/types";
-import { Theme } from "app/theme";
-import { getTypeOrFallback, NoticeType } from "app/lmem/noticeType";
+import React from 'react';
+import { withTheme } from 'styled-components';
+import Background from './Background';
+import noticeTypeIcons from '../../atoms/icons/types';
+import { Theme } from 'app/theme';
+import { getTypeOrFallback, NoticeType } from 'app/lmem/noticeType';
 
 interface Style {
   background: string;

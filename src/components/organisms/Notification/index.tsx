@@ -1,9 +1,9 @@
-import React, { ReactNode } from "react";
-import ContentTitleTop from "./ContentTitleTop";
-import NotificationContainer from "./Container";
-import NotificationHeader from "./NotificationHeader";
-import NotificationFooter from "./NotificationFooter";
-import Main from "./Main";
+import React, { ReactNode } from 'react';
+import ContentTitleTop from './ContentTitleTop';
+import NotificationContainer from './Container';
+import NotificationHeader from './NotificationHeader';
+import NotificationFooter from './NotificationFooter';
+import Main from './Main';
 
 interface Props {
   title?: string;

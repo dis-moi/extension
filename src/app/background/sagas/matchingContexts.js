@@ -1,17 +1,17 @@
-import { put, takeLatest, call } from "redux-saga/effects";
+import { put, takeLatest, call } from 'redux-saga/effects';
 import {
   REFRESH_MATCHING_CONTEXTS,
   EXCLUDE_EDITOR,
   INCLUDE_EDITOR,
   SELECT_CRITERION,
   UNSELECT_CRITERION
-} from "../../constants/ActionTypes";
+} from '../../constants/ActionTypes';
 
 import {
   fetchMatchingContexts,
   receivedMatchingContexts,
   refreshMatchingContexts
-} from "app/actions/kraftBackend";
+} from 'app/actions/kraftBackend';
 
 export function* refreshMatchingContextsSaga() {
   const matchingContexts = yield call(fetchMatchingContexts);

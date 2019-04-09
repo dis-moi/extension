@@ -1,7 +1,7 @@
-import React from "react";
-import { Route, RouteComponentProps, Switch } from "react-router-dom";
-import List from "./List";
-import Details from "./Details";
+import React from 'react';
+import { Route, RouteComponentProps, Switch } from 'react-router-dom';
+import List from './List';
+import Details from './Details';
 
 export default ({ match }: RouteComponentProps) => (
   <Switch>

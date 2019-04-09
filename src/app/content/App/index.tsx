@@ -1,20 +1,20 @@
-import React from "react";
-import { Provider, connect } from "react-redux";
-import { Redirect, Route, Switch } from "react-router-dom";
-import { ConnectedRouter } from "connected-react-router/immutable";
-import { ThemeProvider, StyleSheetManager } from "styled-components";
-import theme from "../../theme";
-import store, { history, State } from "../store";
-import GlobalStyle from "../GlobalStyle";
-import Account from "./Account";
-import Error from "./Error";
-import Loading from "./Loading";
-import Notice from "./Notice";
-import Subscriptions from "./Subscriptions";
-import Help from "./Help";
-import { isOpen } from "../selectors";
+import React from 'react';
+import { Provider, connect } from 'react-redux';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router/immutable';
+import { ThemeProvider, StyleSheetManager } from 'styled-components';
+import theme from '../../theme';
+import store, { history, State } from '../store';
+import GlobalStyle from '../GlobalStyle';
+import Account from './Account';
+import Error from './Error';
+import Loading from './Loading';
+import Notice from './Notice';
+import Subscriptions from './Subscriptions';
+import Help from './Help';
+import { isOpen } from '../selectors';
 
-const DELAY_BEFORE_SHOWING = process.env.NODE_ENV === "production" ? 4000 : 10;
+const DELAY_BEFORE_SHOWING = process.env.NODE_ENV === 'production' ? 4000 : 10;
 
 const mapStateToProps = (state: State) => ({
   open: isOpen(state)

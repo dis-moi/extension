@@ -1,5 +1,5 @@
-import { backgroundPublisher } from "./backgroundPublisher";
-import sagaMiddleware from "./saga";
+import { backgroundPublisher } from './backgroundPublisher';
+import sagaMiddleware from './saga';
 
 export { sagaMiddleware };
 

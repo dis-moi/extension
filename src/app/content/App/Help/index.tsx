@@ -1,14 +1,14 @@
-import React from "react";
-import Notification from "components/organisms/Notification";
+import React from 'react';
+import Notification from 'components/organisms/Notification';
 import {
   BorderButton,
   CenterContainer,
   List,
   ExternalLink
-} from "components/atoms";
-import { Textarea } from "components/atoms/Forms";
-import Container from "./Container";
-import ContentTitle from "./ContentTitle";
+} from 'components/atoms';
+import { Textarea } from 'components/atoms/Forms';
+import Container from './Container';
+import ContentTitle from './ContentTitle';
 
 interface Props {
   close?: () => void;

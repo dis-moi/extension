@@ -1,5 +1,5 @@
-import React from "react";
-import Notification from "components/organisms/Notification";
+import React from 'react';
+import Notification from 'components/organisms/Notification';
 
 interface Props {
   close?: () => void;

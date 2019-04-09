@@ -1,5 +1,5 @@
-import React from "react";
-import formatLocaleDate from "../../app/utils/formatLocaleDate";
+import React from 'react';
+import formatLocaleDate from '../../app/utils/formatLocaleDate';
 
 interface Props {
   children: Date;
