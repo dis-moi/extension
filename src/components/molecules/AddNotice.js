@@ -7,5 +7,4 @@ const AddNotice = ({ ...props }) => (
   </CenterContainer>
 );
 
-
 export default AddNotice;
