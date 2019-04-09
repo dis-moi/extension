@@ -8,49 +8,33 @@ import { findType } from "app/lmem";
 import NoNotice from "./NoNotice";
 import withConnect from "./withConnect";
 
-export const List = ({ notices, dismiss, undismiss, close }) => {
-  return (
-    <Notification
-      title="Notifications pour cette page"
-      hasNotices
-      close={close}
-    >
-      {notices
-        .slice(0, 2)
-        .map(
-          ({
-            id,
-            description,
-            contributor: { name },
-            resource: { url },
-            criteria,
-            dismissed,
-            disliked
-          }) => (
-            <Notice
-              key={id}
-              id={id}
-              type={findType(criteria)}
-              message={description}
-              contributor={name}
-              source={url}
-              dismiss={dismiss}
-              undismiss={undismiss}
-              dismissed={dismissed}
-              disliked={disliked}
-            />
-          )
-        )}
-      {notices.length === 0 && <NoNotice />}
-      <AddNotice
-        as="a"
-        href="https://form.jotformeu.com/82702852284358"
-        target="_blank"
-        rel="noopener noreferrer"
+export const List = ({ notices, dismiss, undismiss, close }) => (
+  <Notification title="Bulles pour cette page" hasNotices close={close}>
+    {notices.slice(0, 2).map(({
+      id, description, contributor: { name }, resource: { url }, criteria, dismissed, disliked
+    }) => (
+      <Notice
+        key={id}
+        id={id}
+        type={findType(criteria)}
+        message={description}
+        contributor={name}
+        source={url}
+        dismiss={dismiss}
+        undismiss={undismiss}
+        dismissed={dismissed}
+        disliked={disliked}
       />
-    </Notification>
-  );
-};
+    ))}
+    {notices.length === 0 && <NoNotice />}
+    <AddNotice
+      as="a"
+      href="https://form.jotformeu.com/82702852284358"
+      target="_blank"
+      rel="noopener noreferrer"
+    />
+  </Notification>
+);
 
 List.propTypes = {
   notices: PropTypes.arrayOf(PropTypes.shape(NoticeType)),
