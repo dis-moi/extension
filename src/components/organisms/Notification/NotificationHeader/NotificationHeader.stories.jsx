@@ -2,33 +2,26 @@ import React from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import Notification from '.';
+import NotificationHeader from '.';
 
-storiesOf('organisms/Notification', module)
+storiesOf('molecules/NotificationHeader', module)
   .add('normal', () => (
     <Router>
-      <Notification />
+      <NotificationHeader close={action('close')} />
     </Router>
   ))
   .add('with title', () => (
     <Router>
-      <Notification
-        title="Notification title"
-      />
+      <NotificationHeader title="title" close={action('close')} />
     </Router>
   ))
   .add('with long title', () => (
     <Router>
-      <Notification
-        title="Very long notification title, it should break"
-      />
+      <NotificationHeader title="Very long notification title, it should breaktitle" close={action('close')} />
     </Router>
   ))
-  .add('with nav', () => (
+  .add('with nav history', () => (
     <Router initialIndex={2} initialEntries={['/path', '/pass']}>
-      <Notification
-        title="Very long notification title, it should break"
-        onBack={action('handleGoBack')}
-      />
+      <NotificationHeader title="title" close={action('close')} />
     </Router>
   ));

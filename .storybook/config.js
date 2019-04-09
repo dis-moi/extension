@@ -4,7 +4,7 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import theme from '../src/app/theme';
 import 'typeface-lato';
 import 'typeface-sedgwick-ave';
-import { NotificationContainer } from '../src/components/atoms';
+import NotificationContainer from 'components/organisms/Notification/Container';
 
 const Global = createGlobalStyle`
   body {

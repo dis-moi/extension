@@ -3,5 +3,5 @@ import styled from 'styled-components';
 export default styled.main` 
   position: relative;
   height: 342px;
-  background-color: ${props => (props.notices ? props.theme.listBg : props.theme.accountListBg)};
+  background-color: ${props => (props.hasNotices ? props.theme.listBg : props.theme.accountListBg)};
 `;

@@ -1,4 +1,11 @@
 {
   "presets": [["@babel/preset-env", { "useBuiltIns": "entry" }], "@babel/preset-react"],
-  "plugins": ["add-module-exports", "babel-plugin-styled-components", "@babel/plugin-proposal-class-properties"]
+  "plugins": [
+    "add-module-exports",
+    "babel-plugin-styled-components",
+    ["babel-plugin-module-resolver", {
+      "root": ["./src"]
+    }],
+    "@babel/plugin-proposal-class-properties"
+  ]
 }
