@@ -1,8 +1,11 @@
 import { connect } from 'react-redux';
-import { close } from '../../actions/ui';
+import { close } from 'app/actions/ui';
 
 const mapDispatchToProps = {
-  close,
+  close
 };
 
-export default connect(null, mapDispatchToProps);
+export default connect(
+  null,
+  mapDispatchToProps
+);

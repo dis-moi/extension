@@ -1,7 +1,7 @@
-import React, { Fragment } from "react";
-import IllustrationContainer from "./IllustrationContainer";
-import Illustration from "./Illustration";
-import Title from "./Title";
+import React, { Fragment } from 'react';
+import IllustrationContainer from './IllustrationContainer';
+import Illustration from './Illustration';
+import Title from './Title';
 
 export default () => (
   <Fragment>

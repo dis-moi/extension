@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import BorderButton from "../BorderButton";
-import AddIcon from "./AddIcon";
+import React from 'react';
+import styled from 'styled-components';
+import BorderButton from '../BorderButton';
+import AddIcon from './AddIcon';
 
 const Button = styled(BorderButton)`
   display: flex;
@@ -27,10 +27,8 @@ const Button = styled(BorderButton)`
   }
 `;
 
-export default ({
-  href, as, target, rel
-}) => (
-  <Button href={href} as={as} target={target} rel={rel}>
+export default ({ ...props }) => (
+  <Button {...props}>
     <AddIcon />
     Créer votre recommandation
   </Button>

@@ -1,14 +1,7 @@
-import base from './base.js';
+const base = require('./base');
 
-export default Object.assign(
-  {},
-  base,
-  {
-    'permissions': [
-      'storage',
-      'tabs',
-      'http://*/*',
-      'https://*/*'
-    ],
-  }
-);
+module.exports = {
+  ...base,
+  shortname: 'LMEM',
+  permissions: ['storage', 'tabs', 'http://*/*', 'https://*/*']
+};

@@ -7,30 +7,30 @@
 
 const version = process.env.npm_package_version;
 
-export default Object.freeze({
-  'name': 'Le Même en Mieux',
-  'shortname': 'LMEM',
-  'description': 'Qualité, prix, éthique : s’il existe un meilleur choix, vous le saurez. ' +
-    'Gratuit et sans pub, respecte votre vie privée.',
+module.exports = Object.freeze({
+  name: 'Le Même en Mieux',
+  description:
+    'Qualité, prix, éthique : s’il existe un meilleur choix, vous le saurez. '
+    + 'Gratuit et sans pub, respecte votre vie privée.',
   version,
-  'manifest_version': 2,
-  'icons': {
+  manifest_version: 2,
+  icons: {
     '16': 'img/logo/16x16.png',
     '48': 'img/logo/48x48.png',
     '128': 'img/logo/128x128.png'
   },
-  'background': {
-    'page': 'background.html'
+  background: {
+    page: 'background.html'
   },
-  'browser_action': {
-    'default_icon': {
+  browser_action: {
+    default_icon: {
       '16': 'img/logo/16x16.png',
       '48': 'img/logo/48x48.png',
       '128': 'img/logo/128x128.png'
     },
-    'default_title': 'Le Même en Mieux',
+    default_title: 'Le Même en Mieux'
   },
-  'permissions': [
+  permissions: [
     'geolocation',
     'storage',
     'tabs',
@@ -38,8 +38,5 @@ export default Object.freeze({
     'http://*/*',
     'https://*/*'
   ],
-  'web_accessible_resources': [
-    'img/*',
-    'fonts/*'
-  ]
+  web_accessible_resources: ['img/*', 'fonts/*']
 });

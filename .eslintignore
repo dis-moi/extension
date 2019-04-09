@@ -3,8 +3,6 @@ node_modules
 build
 dev
 
-gulp
-gulpfile.babel.js
 webpack
 webpack/replace
 
@@ -14,4 +12,4 @@ test/app
 
 src/app/content/containers/PopUp
 
-src/lib/heap.js
+src/lib/heap.ts

@@ -1,5 +1,5 @@
 import React from 'react';
-import { AddNoticeLink, CenterContainer, } from '../atoms';
+import { AddNoticeLink, CenterContainer } from '../atoms';
 
 const AddNotice = ({ ...props }) => (
   <CenterContainer>
