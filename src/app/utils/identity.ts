@@ -1,1 +1,1 @@
-export default (me: any) => me;
+export default <T>(arg: T): T => arg;
