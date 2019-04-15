@@ -10,4 +10,9 @@ export default styled(Button).attrs({ children: <DeleteIcon /> })`
   width: 18px;
   height: 23px;
   margin-left: 16px;
+
+  &:hover svg path,
+  &:hover svg rect {
+    fill: ${props => props.theme.formError};
+  }
 `;
