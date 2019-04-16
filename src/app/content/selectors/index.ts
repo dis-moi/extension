@@ -1,19 +1,11 @@
 import { createSelector } from 'reselect';
 import { RouteComponentProps } from 'react-router';
 import { getLocation } from 'connected-react-router';
-import {
-  EnhancedNotice,
-  getNotice,
-  shouldNoticeBeShown
-} from 'app/lmem/notice';
+import { getNotice, isUnread, shouldNoticeBeShown } from 'app/lmem/notice';
 import { InstallationDetails } from 'app/lmem/installation';
 import { State } from '../store';
 
 export const getNotices = (state: State) => state.recommendations;
-
-export const isRead = (notice: EnhancedNotice) => notice.read === true;
-
-export const isUnread = (notice: EnhancedNotice) => !isRead(notice);
 
 export const getUnreadNotices = (state: State) =>
   getNotices(state).filter(isUnread);

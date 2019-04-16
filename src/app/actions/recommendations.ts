@@ -78,7 +78,8 @@ export interface ReadNoticeAction extends BaseAction {
 
 export const readNotice = (id: number): ReadNoticeAction => ({
   type: 'READ_NOTICE',
-  payload: id
+  payload: id,
+  meta: { sendToBackground: true }
 });
 
 export interface NoticesUpdatedAction extends TabAction {

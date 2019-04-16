@@ -8,13 +8,15 @@ export interface PrefsState {
   dismissedNotices: number[];
   likedNotices: number[];
   dislikedNotices: number[];
+  readNotices: number[];
 }
 
 const initialPrefs: PrefsState = {
   installationDetails: { version },
   dismissedNotices: [],
   likedNotices: [],
-  dislikedNotices: []
+  dislikedNotices: [],
+  readNotices: []
 };
 
 export function prefs(state: PrefsState = initialPrefs, action: AppAction) {
@@ -68,6 +70,13 @@ export function prefs(state: PrefsState = initialPrefs, action: AppAction) {
           };
       }
       return state;
+
+    case 'READ_NOTICE':
+      return {
+        ...state,
+        readNotices: R.uniq(R.concat(state.readNotices, [action.payload]))
+      };
+
     default:
       return state;
   }

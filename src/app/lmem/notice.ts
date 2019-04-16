@@ -147,3 +147,7 @@ export const shouldNoticeBeShown = (notice: EnhancedNotice): boolean =>
     (!notice.dismissed || notice.justDismissed) &&
     (!notice.disliked || notice.justDisliked)) ||
   false;
+
+export const isRead = (notice: EnhancedNotice) => notice.read === true;
+
+export const isUnread = (notice: EnhancedNotice) => !isRead(notice);
