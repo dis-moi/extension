@@ -22,6 +22,14 @@ export interface Theme {
   formError: string;
   button: string;
 
+  // badge background colors
+  badge: {
+    backgroundColor: {
+      read: string;
+      unread: string;
+    };
+  };
+
   // new types:
   approval: string;
   disapproval: string;
@@ -90,6 +98,14 @@ export const theme = {
   error: '#F01953',
   formError: '#DB0D0D',
   button: '#1ECCB5',
+
+  // badge background colors
+  badge: {
+    backgroundColor: {
+      read: '#9DA1A7',
+      unread: '#DB0D0D'
+    }
+  },
 
   // new types:
   approval: '#34C16C',

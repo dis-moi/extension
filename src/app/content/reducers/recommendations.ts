@@ -17,6 +17,11 @@ export default (state: NoticesState = [], action: AppAction): NoticesState => {
     case 'NOTICES_FOUND':
       return action.payload.notices;
 
+    case 'READ_NOTICE':
+      return state.map(notice =>
+        notice.id === action.payload ? { ...notice, read: true } : notice
+      );
+
     case 'FEEDBACK_ON_NOTICE':
       switch (action.payload.feedback) {
         case 'dismiss':

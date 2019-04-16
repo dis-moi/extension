@@ -1,5 +1,5 @@
 import { EnhancedNotice } from 'app/lmem/notice';
-import { BaseAction, TabAction } from '.';
+import { BaseAction, TabAction, TabMeta } from '.';
 
 export interface NoticesFoundAction extends TabAction {
   type: 'NOTICES_FOUND';
@@ -69,4 +69,28 @@ export const undislikeNotice = (id: number): FeedbackOnNoticeAction => ({
   type: 'FEEDBACK_ON_NOTICE',
   payload: { id, feedback: 'undislike' },
   meta: { sendToBackground: true }
+});
+
+export interface ReadNoticeAction extends BaseAction {
+  type: 'READ_NOTICE';
+  payload: number;
+}
+
+export const readNotice = (id: number): ReadNoticeAction => ({
+  type: 'READ_NOTICE',
+  payload: id
+});
+
+export interface NoticesUpdatedAction extends TabAction {
+  type: 'NOTICES_UPDATED';
+  payload: EnhancedNotice[];
+}
+
+export const noticesUpdated = (
+  payload: EnhancedNotice[],
+  meta: TabMeta
+): NoticesUpdatedAction => ({
+  type: 'NOTICES_UPDATED',
+  payload,
+  meta
 });

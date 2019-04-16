@@ -16,7 +16,7 @@ import Feedbacks from './Feedbacks';
 import Date from './Date';
 import { NoticeType } from '../../../app/lmem/noticeType';
 
-interface Props {
+interface NoticeDetailsProps {
   id: number;
   type: NoticeType;
   date: string;
@@ -30,8 +30,12 @@ interface Props {
   undislike: (id: number) => void;
   disliked?: boolean;
   dismissed?: boolean;
+  view?: (id: number) => void;
 }
-class NoticeDetails extends PureComponent<Props & RouteComponentProps> {
+class NoticeDetails extends PureComponent<
+  NoticeDetailsProps & RouteComponentProps,
+  {}
+> {
   handleLikeClick = () => {
     const { liked, like, unlike, id } = this.props;
     if (liked) {
@@ -49,6 +53,13 @@ class NoticeDetails extends PureComponent<Props & RouteComponentProps> {
       dislike(id);
     }
   };
+
+  componentDidMount(): void {
+    const { view, id } = this.props;
+    if (view) {
+      view(id);
+    }
+  }
 
   render() {
     const {

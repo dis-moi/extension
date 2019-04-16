@@ -4,7 +4,8 @@ import {
   likeNotice,
   unlikeNotice,
   dislikeNotice,
-  undislikeNotice
+  undislikeNotice,
+  readNotice
 } from 'app/actions/recommendations';
 import { close } from 'app/actions/ui';
 import { State } from '../../../store';
@@ -19,7 +20,8 @@ const mapDispatchToProps = {
   unlike: unlikeNotice,
   dislike: dislikeNotice,
   undislike: undislikeNotice,
-  close
+  close,
+  view: readNotice
 };
 
 export default connect(

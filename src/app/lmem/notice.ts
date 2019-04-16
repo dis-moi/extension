@@ -42,6 +42,7 @@ export interface EnhancedNotice extends Notice {
   justDisliked?: boolean;
   dismissed: boolean;
   justDismissed?: boolean;
+  read?: boolean;
 }
 
 /* eslint-disable no-nested-ternary */

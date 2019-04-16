@@ -21,7 +21,11 @@ import {
 } from './tabs';
 import { InstalledDetailsAction } from './filters';
 import { CloseAction, ClosedAction, OpenAction, OpenedAction } from './ui';
-import { FeedbackOnNoticeAction, NoticesFoundAction } from './recommendations';
+import {
+  FeedbackOnNoticeAction,
+  NoticesFoundAction,
+  ReadNoticeAction
+} from './recommendations';
 import { Action } from 'redux';
 
 export interface BaseAction extends Action {
@@ -29,10 +33,12 @@ export interface BaseAction extends Action {
   meta?: ActionMeta;
 }
 
+export interface TabMeta extends ActionMeta {
+  tab: number;
+}
+
 export type TabAction = BaseAction & {
-  meta: ActionMeta & {
-    tab: number;
-  };
+  meta: TabMeta;
 };
 
 export interface ActionMeta {
@@ -63,4 +69,5 @@ export type AppAction =
   | ClosedAction
   | NoticesFoundAction
   | FeedbackOnNoticeAction
+  | ReadNoticeAction
   | (LocationChangeAction & { meta?: ActionMeta });
