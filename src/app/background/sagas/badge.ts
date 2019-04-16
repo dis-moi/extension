@@ -1,13 +1,14 @@
 import { takeLatest } from 'redux-saga/effects';
 import { NoticesUpdatedAction } from '../../actions/recommendations';
 import { Theme } from '../../theme';
+import { isUnread } from '../../content/selectors';
 
 export const updateBadgeSaga = (theme: Theme) =>
   function*({
     payload: notices,
     meta: { tab: tabId }
   }: NoticesUpdatedAction): IterableIterator<any> {
-    const unreadNotices = notices.filter(notice => !notice.read);
+    const unreadNotices = notices.filter(isUnread);
     const { backgroundColor } = theme.badge;
 
     chrome.browserAction.setBadgeText({
