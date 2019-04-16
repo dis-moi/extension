@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import { RouteComponentProps } from 'react-router';
+import { getLocation } from 'connected-react-router';
 import { getNotice, shouldNoticeBeShown } from 'app/lmem/notice';
 import { InstallationDetails } from 'app/lmem/installation';
 import { State } from '../store';
@@ -33,3 +34,5 @@ export const getExtensionInstallationDate = createSelector(
 );
 
 export const getTabId = (state: State) => state.tabId;
+
+export const getPathname = (state: State) => getLocation(state).pathname;
