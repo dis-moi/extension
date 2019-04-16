@@ -14,7 +14,11 @@ import {
   getIgnoredNotices
 } from '../selectors/prefs';
 import { TAB_CREATED, TAB_UPDATED } from '../../constants/browser/tabs';
-import { CONTEXT_TRIGGERED, MATCH_CONTEXT } from '../../constants/ActionTypes';
+import {
+  CONTEXT_TRIGGERED,
+  MATCH_CONTEXT,
+  NOTICES_FOUND
+} from '../../constants/ActionTypes';
 import {
   init,
   contextTriggered,
@@ -26,7 +30,11 @@ import {
   MatchContextAction,
   ContextTriggeredAction
 } from 'app/actions/tabs';
-import { noticesFound } from 'app/actions/recommendations';
+import {
+  noticesFound,
+  NoticesFoundAction,
+  noticesUpdated
+} from 'app/actions/recommendations';
 import watchSingleMessageSaga from '../../utils/watchSingleMessageSaga';
 import { TabAction } from '../../actions';
 import fetchContentScript from '../services/fetchContentScript';
@@ -132,6 +140,13 @@ export function* watchBrowserActionSaga() {
   }
 }
 
+export function* updateNoticesSaga({
+  payload: { notices },
+  meta: { tab }
+}: NoticesFoundAction) {
+  yield put(noticesUpdated(notices, { tab }));
+}
+
 export default function* tabRootSaga() {
   yield fork(watchSingleMessageSaga);
   yield fork(watchBrowserActionSaga);
@@ -151,4 +166,6 @@ export default function* tabRootSaga() {
     (action: AppAction) => Boolean(action.meta && action.meta.sendToTab),
     publishToTabSaga
   );
+
+  yield takeLatest(NOTICES_FOUND, updateNoticesSaga);
 }

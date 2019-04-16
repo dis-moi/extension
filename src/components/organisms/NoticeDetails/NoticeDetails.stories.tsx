@@ -23,6 +23,7 @@ storiesOf('organisms/NoticeDetails', module)
       unlike={action('unlike')}
       dislike={action('dislike')}
       undislike={action('undislike')}
+      view={action('view')}
     />
   ))
   .add('Dismissed', () => (
@@ -38,6 +39,7 @@ storiesOf('organisms/NoticeDetails', module)
       unlike={action('unlike')}
       dislike={action('dislike')}
       undislike={action('undislike')}
+      view={action('view')}
     />
   ))
   .add('Disliked', () => (
@@ -53,6 +55,7 @@ storiesOf('organisms/NoticeDetails', module)
       unlike={action('unlike')}
       dislike={action('dislike')}
       undislike={action('undislike')}
+      view={action('view')}
     />
   ))
   .add('No source', () => (

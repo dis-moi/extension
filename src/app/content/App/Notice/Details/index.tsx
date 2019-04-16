@@ -11,7 +11,8 @@ export const Details = ({
   unlike,
   dislike,
   undislike,
-  close
+  close,
+  view
 }: DetailsProps) =>
   notice ? (
     <Notification title="Détail de la bulle" hasNotices close={close}>
@@ -29,6 +30,7 @@ export const Details = ({
         liked={notice.liked}
         disliked={notice.disliked}
         dismissed={notice.dismissed}
+        view={view}
       />
     </Notification>
   ) : null;

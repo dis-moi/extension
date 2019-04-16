@@ -8,7 +8,8 @@
   "rules": {
     "quotemark": [true, "single", "jsx-double"],
     "jsx-boolean-value": false,
-    "no-unused-expression": false
+    "no-unused-expression": false,
+    "no-empty": [true, "allow-empty-functions"]
   },
   "jsRules": true,
   "rulesDirectory": []
