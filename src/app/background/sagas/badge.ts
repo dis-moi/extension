@@ -1,7 +1,7 @@
 import { takeLatest } from 'redux-saga/effects';
 import { NoticesUpdatedAction } from '../../actions/recommendations';
 import { Theme } from '../../theme';
-import { isUnread } from '../../content/selectors';
+import { isUnread } from '../../lmem/notice';
 
 export const updateBadgeSaga = (theme: Theme) =>
   function*({
