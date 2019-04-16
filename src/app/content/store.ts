@@ -8,12 +8,14 @@ import { InstallationDetailsState } from './reducers/installationDetails';
 import { OpenState } from './reducers/open';
 import { NoticesState } from './reducers/recommendations';
 import { PersistedState } from 'redux-persist/es/types';
+import { TabIdState } from './reducers/tabId';
 export const history = createMemoryHistory();
 
 export interface State extends PersistedState {
   installationDetails: InstallationDetailsState;
   open: OpenState;
   recommendations: NoticesState;
+  tabId: TabIdState;
   router: RouterState;
 }
 
