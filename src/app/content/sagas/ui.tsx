@@ -6,7 +6,8 @@ import { open, opened, closed } from 'app/actions/ui';
 import {
   isOpen as isNotificationOpen,
   isMounted as isNotificationMounted,
-  getPathname
+  getPathname,
+  hasUnreadNotices
 } from '../selectors';
 import { CLOSE, OPEN, NOTICES_FOUND } from '../../constants/ActionTypes';
 import {
@@ -52,12 +53,15 @@ export function* closeSaga() {
   }
 }
 
-export function* recommendationFoundSaga() {
-  yield put(open());
+export function* noticesFoundSaga() {
+  const shouldOpen = yield select(hasUnreadNotices);
+  if (shouldOpen) {
+    yield put(open());
+  }
 }
 
 export default function* backgroundRootSaga() {
   yield takeLatest(OPEN, openSaga);
   yield takeLatest(CLOSE, closeSaga);
-  yield takeLatest(NOTICES_FOUND, recommendationFoundSaga);
+  yield takeLatest(NOTICES_FOUND, noticesFoundSaga);
 }
