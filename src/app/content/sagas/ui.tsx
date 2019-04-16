@@ -5,31 +5,26 @@ import { push } from 'connected-react-router';
 import { open, opened, closed } from 'app/actions/ui';
 import {
   isOpen as isNotificationOpen,
-  isMounted as isNotificationMounted
+  isMounted as isNotificationMounted,
+  getPathname
 } from '../selectors';
 import { CLOSE, OPEN, NOTICES_FOUND } from '../../constants/ActionTypes';
-import { append, create } from '../extensionIframe';
+import {
+  append,
+  create,
+  setImportant as setFrameImportant
+} from '../extensionIframe';
 import theme from '../../theme';
 import App from '../App';
-import { State } from '../store';
 
 const iframe = create(theme.iframe.style);
-
-const getLocation = (state: State) => state.router.location.pathname;
-
-const setFrameImportant = () => {
-  const frame = document.querySelector('#lmemFrame');
-  if (frame) {
-    (frame as HTMLIFrameElement).style.setProperty('display', '', 'important');
-  }
-};
 
 export function* openSaga() {
   const isOpen = yield select(isNotificationOpen);
   const isMounted = yield select(isNotificationMounted);
 
   if (!isOpen) {
-    const location = yield select(getLocation);
+    const location = yield select(getPathname);
     if (location) {
       yield put(push('/'));
     }

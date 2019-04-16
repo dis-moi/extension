@@ -31,3 +31,10 @@ export const remove = (): void => {
     iframe.remove();
   }
 };
+
+export const setImportant = () => {
+  const frame = document.querySelector('#lmemFrame');
+  if (frame) {
+    (frame as HTMLIFrameElement).style.setProperty('display', '', 'important');
+  }
+};
