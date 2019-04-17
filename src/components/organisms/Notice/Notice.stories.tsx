@@ -8,7 +8,7 @@ const message = '<p>Description with a <a href="http://some.url">link</a></p>';
 
 storiesOf('organisms/Notice', module)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
-  .add('Approval', () => (
+  .add('Approved', () => (
     <Notice
       type="Approval"
       contributor="Jalil"
@@ -16,11 +16,9 @@ storiesOf('organisms/Notice', module)
       message={message}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
-      dismissed={false}
-      disliked={false}
     />
   ))
-  .add('Disapproval', () => (
+  .add('Disapproved', () => (
     <Notice
       type="Disapproval"
       contributor="Jalil"
@@ -28,8 +26,6 @@ storiesOf('organisms/Notice', module)
       message={message}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
-      dismissed={false}
-      disliked={false}
     />
   ))
   .add('Tip', () => (
@@ -40,8 +36,6 @@ storiesOf('organisms/Notice', module)
       message={message}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
-      dismissed={false}
-      disliked={false}
     />
   ))
   .add('Other', () => (
@@ -52,8 +46,6 @@ storiesOf('organisms/Notice', module)
       message={message}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
-      dismissed={false}
-      disliked={false}
     />
   ))
   .add('No type', () => (
@@ -63,8 +55,6 @@ storiesOf('organisms/Notice', module)
       message={message}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
-      dismissed={false}
-      disliked={false}
     />
   ))
   .add('Undefined type', () => (
@@ -75,11 +65,9 @@ storiesOf('organisms/Notice', module)
       message={message}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
-      dismissed={false}
-      disliked={false}
     />
   ))
-  .add('dismissed', () => (
+  .add('Dismissed', () => (
     <Notice
       contributor="Jalil"
       id={123}
@@ -87,10 +75,9 @@ storiesOf('organisms/Notice', module)
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
       dismissed
-      disliked={false}
     />
   ))
-  .add('with long title', () => (
+  .add('Long title', () => (
     <Notice
       contributor="Jalil"
       id={123}
