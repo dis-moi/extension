@@ -18,12 +18,14 @@ interface Props {
   undismiss: (id: number) => void;
   dismissed: boolean;
   disliked: boolean;
+  read: boolean;
 }
 
 export default class Notice extends PureComponent<Props> {
   static defaultProps = {
     type: 'Other',
-    dismissed: false
+    dismissed: false,
+    read: false
   };
 
   onDismiss = () => {
@@ -35,11 +37,22 @@ export default class Notice extends PureComponent<Props> {
   };
 
   render() {
-    const { id, type, message, contributor, dismissed, disliked } = this.props;
+    const {
+      id,
+      type,
+      message,
+      contributor,
+      dismissed,
+      disliked,
+      read
+    } = this.props;
     return (
       <Container>
         {!dismissed && !disliked && <DeleteButton onClick={this.onDismiss} />}
-        <Content to={dismissed ? undefined : `notices/details/${id}`}>
+        <Content
+          to={dismissed ? undefined : `notices/details/${id}`}
+          read={read}
+        >
           {dismissed || disliked ? (
             <Fragment>
               <Deleted>Cette bulle ne s’affichera plus !</Deleted>
