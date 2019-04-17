@@ -25,7 +25,8 @@ export const List = ({ notices, dismiss, undismiss, close }: Props) => (
           resource: { url },
           criteria,
           dismissed,
-          disliked
+          disliked,
+          read
         }) => (
           <NoticeItem
             key={id}
@@ -37,6 +38,7 @@ export const List = ({ notices, dismiss, undismiss, close }: Props) => (
             undismiss={undismiss}
             dismissed={dismissed}
             disliked={disliked}
+            read={read}
           />
         )
       )}

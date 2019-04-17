@@ -99,7 +99,16 @@ storiesOf('organisms/Notice', module)
       }
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
-      dismissed={false}
-      disliked={false}
+    />
+  ))
+  .add('Read', () => (
+    <Notice
+      type="Approval"
+      contributor="Lutangar"
+      id={123}
+      message={message}
+      dismiss={action('dismiss')}
+      undismiss={action('undismiss')}
+      read
     />
   ));
