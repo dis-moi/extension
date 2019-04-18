@@ -41,12 +41,14 @@ export const List = ({ notices, dismiss, undismiss, close }: Props) => (
         )
       )}
     {notices.length === 0 && <NoNotice />}
-    <AddNotice
-      as="a"
-      href="https://form.jotformeu.com/82702852284358"
-      target="_blank"
-      rel="noopener noreferrer"
-    />
+    {notices.length > 0 && (
+      <AddNotice
+        as="a"
+        href="https://form.jotformeu.com/82702852284358"
+        target="_blank"
+        rel="noopener noreferrer"
+      />
+    )}
   </Notification>
 );
 
