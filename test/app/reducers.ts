@@ -1,8 +1,8 @@
-import chai from "chai";
-import prefsReducer from "../../src/app/background/reducers/prefs";
-import resourcesReducer from "../../src/app/background/reducers/resources";
-import { receivedMatchingContexts } from "../../src/app/actions/kraftBackend";
+import chai from 'chai';
 
+import prefsReducer from '../../src/app/background/reducers/prefs';
+import resourcesReducer from '../../src/app/background/reducers/resources';
+import { receivedMatchingContexts } from '../../src/app/actions/kraftBackend';
 import {
   dismissNotice,
   likeNotice,
@@ -10,16 +10,16 @@ import {
   dislikeNotice,
   undislikeNotice,
   undismissNotice
-} from "../../src/app/actions/recommendations";
-import { MatchingContext } from "../../src/app/lmem/matchingContext";
+} from '../../src/app/actions/recommendations';
+import { MatchingContext } from '../../src/app/lmem/matchingContext';
 
 const expect = chai.expect;
 
-describe("background reducer", function() {
-  it("initial state + receivedMatchingContexts => state with offers", () => {
+describe('background reducer', function() {
+  it('initial state + receivedMatchingContexts => state with offers', () => {
     const matchingContexts: MatchingContext[] = [
-      { recommendation_url: "http://1", url_regex: "/1/" },
-      { recommendation_url: "http://2", url_regex: "/2/" }
+      { recommendation_url: 'http://1', url_regex: '/1/' },
+      { recommendation_url: 'http://2', url_regex: '/2/' }
     ];
     const action = receivedMatchingContexts(matchingContexts);
 
@@ -30,7 +30,7 @@ describe("background reducer", function() {
     );
   });
 
-  it("dismiss notice", () => {
+  it('dismiss notice', () => {
     const action = dismissNotice(1);
 
     const nextState = prefsReducer(
@@ -38,7 +38,7 @@ describe("background reducer", function() {
         dismissedNotices: [],
         likedNotices: [],
         dislikedNotices: [],
-        installationDetails: { version: "0.1" }
+        installationDetails: { version: '0.1' }
       },
       action
     );
@@ -46,7 +46,7 @@ describe("background reducer", function() {
     expect(nextState.dismissedNotices).to.have.lengthOf(1);
   });
 
-  it("like notice", () => {
+  it('like notice', () => {
     const action = likeNotice(1);
 
     const nextState = prefsReducer(
@@ -54,7 +54,7 @@ describe("background reducer", function() {
         dismissedNotices: [],
         likedNotices: [],
         dislikedNotices: [],
-        installationDetails: { version: "0.1" }
+        installationDetails: { version: '0.1' }
       },
       action
     );
@@ -62,7 +62,7 @@ describe("background reducer", function() {
     expect(nextState.likedNotices).to.have.lengthOf(1);
   });
 
-  it("dislike notice", () => {
+  it('dislike notice', () => {
     const action = dislikeNotice(1);
 
     const nextState = prefsReducer(
@@ -70,7 +70,7 @@ describe("background reducer", function() {
         dismissedNotices: [],
         likedNotices: [],
         dislikedNotices: [],
-        installationDetails: { version: "0.1" }
+        installationDetails: { version: '0.1' }
       },
       action
     );
@@ -78,7 +78,7 @@ describe("background reducer", function() {
     expect(nextState.dislikedNotices).to.have.lengthOf(1);
   });
 
-  it("undismiss notice", () => {
+  it('undismiss notice', () => {
     const action = undismissNotice(42);
 
     const nextState = prefsReducer(
@@ -86,7 +86,7 @@ describe("background reducer", function() {
         dismissedNotices: [42],
         likedNotices: [],
         dislikedNotices: [],
-        installationDetails: { version: "0.1" }
+        installationDetails: { version: '0.1' }
       },
       action
     );
@@ -94,7 +94,7 @@ describe("background reducer", function() {
     expect(nextState.dismissedNotices).to.have.lengthOf(0);
   });
 
-  it("unlike notice", () => {
+  it('unlike notice', () => {
     const action = unlikeNotice(42);
 
     const nextState = prefsReducer(
@@ -102,7 +102,7 @@ describe("background reducer", function() {
         dismissedNotices: [],
         likedNotices: [42],
         dislikedNotices: [],
-        installationDetails: { version: "0.1" }
+        installationDetails: { version: '0.1' }
       },
       action
     );
@@ -110,7 +110,7 @@ describe("background reducer", function() {
     expect(nextState.likedNotices).to.have.lengthOf(0);
   });
 
-  it("undislike notice", () => {
+  it('undislike notice', () => {
     const action = undislikeNotice(42);
 
     const nextState = prefsReducer(
@@ -118,7 +118,7 @@ describe("background reducer", function() {
         dismissedNotices: [],
         likedNotices: [],
         dislikedNotices: [42],
-        installationDetails: { version: "0.1" }
+        installationDetails: { version: '0.1' }
       },
       action
     );

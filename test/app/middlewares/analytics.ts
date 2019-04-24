@@ -1,10 +1,9 @@
-import chai from "chai";
-import sinon from "sinon";
-import sinonChai from "sinon-chai";
+import chai from 'chai';
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
+import { Action } from 'redux';
 
-import middleware from "../../../src/app/background/middlewares/analytics";
-import { POPUP_CLICK } from "../../../src/app/constants/ActionTypes";
-import { Action } from "redux";
+import middleware from '../../../src/app/background/middlewares/analytics';
 
 const expect = chai.expect;
 chai.use(sinonChai);
@@ -18,24 +17,24 @@ function create() {
   return { next, track, invoke };
 }
 
-describe("Analytics middleware", () => {
-  it("passes through api actions", () => {
+describe('Analytics middleware', () => {
+  it('passes through api actions', () => {
     const { next, invoke } = create();
-    const action = { type: "api/bypass" };
+    const action = { type: 'api/bypass' };
     invoke(action);
     expect(next).to.have.been.calledWith(action);
   });
 
-  it("passes through persist actions", () => {
+  it('passes through persist actions', () => {
     const { next, invoke } = create();
-    const action = { type: "persist/bypass" };
+    const action = { type: 'persist/bypass' };
     invoke(action);
     expect(next).to.have.been.calledWith(action);
   });
 
-  it("tracks actions", () => {
+  it('tracks actions', () => {
     const { track, invoke } = create();
-    const action = { type: "gothroughthisone" };
+    const action = { type: 'gothroughthisone' };
     invoke(action);
     expect(track).to.have.been.calledWith(action);
   });
