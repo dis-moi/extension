@@ -299,7 +299,7 @@ describe('isNoticeValid', function() {
       // ],
       resource: {
         // author: 'Boby',
-        url: 'http://choisir.lmem.net/samsung-galaxy-s6',
+        // url: 'http://choisir.lmem.net/samsung-galaxy-s6',
         label: 'Lire le comparatif',
         editor: {
           label: 'Le Gorafi',
@@ -315,5 +315,27 @@ describe('isNoticeValid', function() {
     };
 
     expect(isNoticeValid(reco)).to.be.true;
+  });
+
+  it('A notice with no source is valid', () => {
+    const notice = {
+      title: 'Il y a mieux que le Samsung Galaxy S6',
+      description: 'Que vous ayez un usage basique, avancé, professionnel [...]',
+      contributor: {
+        name: 'Maarten Samson',
+      },
+      resource: {
+        author: 'Boby',
+        // url: 'http://choisir.lmem.net/samsung-galaxy-s6',
+        label: 'Lire le comparatif',
+        editor: {
+          label: 'Le Gorafi',
+          url: 'http://legorafi.fr',
+        },
+      },
+      alternatives: [],
+    };
+
+    expect(isNoticeValid(notice)).to.be.true;
   });
 });

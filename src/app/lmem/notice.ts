@@ -106,7 +106,6 @@ export const isNoticeValid = (notice: {
     typeof description === 'string' &&
     Object(resource) === resource &&
     typeof resource.label === 'string' &&
-    typeof resource.url === 'string' &&
     (!resource.author || typeof resource.author === 'string') &&
     Object(resource.editor) === resource.editor &&
     typeof resource.editor.label === 'string' &&
