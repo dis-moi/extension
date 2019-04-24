@@ -21,7 +21,7 @@ interface Props {
   type: NoticeType;
   date: string;
   message: string;
-  source: string;
+  source?: string;
   contributor: string;
   like: (id: number) => void;
   unlike: (id: number) => void;
@@ -71,10 +71,11 @@ class NoticeDetails extends PureComponent<Props & RouteComponentProps> {
             <Type type={type} />
           </DetailsMeta>
           <Message>{message}</Message>
-          <Source>
-            <Anchor /> En savoir plus : <SourceURL>{source}</SourceURL>
-          </Source>
-
+          {source && (
+            <Source>
+              <Anchor /> En savoir plus : <SourceURL>{source}</SourceURL>
+            </Source>
+          )}
           <Feedbacks>
             <Button onClick={this.handleLikeClick}>
               <Like active={liked} />

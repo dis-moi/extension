@@ -54,4 +54,17 @@ storiesOf('organisms/NoticeDetails', module)
       dislike={action('dislike')}
       undislike={action('undislike')}
     />
+  ))
+  .add('No source', () => (
+    <NoticeDetails
+      type="Approval"
+      contributor="Lutangar"
+      id={123}
+      message={message}
+      date="12/12/2042"
+      like={action('like')}
+      unlike={action('unlike')}
+      dislike={action('dislike')}
+      undislike={action('undislike')}
+    />
   ));
