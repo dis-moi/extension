@@ -28,7 +28,7 @@ export const Notification = ({
     <NotificationContainer>
       <NotificationHeader title={title} close={close} goBack={onBack} />
       <Main hasNotices={hasNotices}>
-        <ContentTitleTop>{contentTitle}</ContentTitleTop>
+        {contentTitle && <ContentTitleTop>{contentTitle}</ContentTitleTop>}
         {children}
       </Main>
       <NotificationFooter />
