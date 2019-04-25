@@ -65,4 +65,18 @@ storiesOf('screens/Notice/List', module)
       undismiss={action('undismiss')}
       notices={[]}
     />
+  ))
+  .add('2 lines excerpt', () => (
+    <List
+      close={action('close')}
+      dismiss={action('dismiss')}
+      undismiss={action('undismiss')}
+      notices={[
+        {
+          ...notice,
+          description:
+            'dazd zazaddd dddddd ddddd dddd dddddd ddd ddddd dddddddd dd'
+        }
+      ]}
+    />
   ));
