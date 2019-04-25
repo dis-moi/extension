@@ -31,7 +31,7 @@ export default styled(Content)`
   border-radius: 15px;
   border: 2px solid transparent;
   transition: all 0.2s ease-in-out;
-  opacity: ${props => (props.read ? '0.6' : '1')};
+  opacity: ${props => (props.read ? '0.5' : '1')};
 
   &[href]:hover {
     border-color: ${props => props.theme.activeColor};
