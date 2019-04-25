@@ -55,8 +55,8 @@ export interface Theme {
       'min-height': string;
       'max-height': string;
       position: string;
-      top: number;
-      right: number;
+      top: string;
+      right: string;
       'z-index': number; // Max z-index value (signed 32bits integer)
       border: string;
       transition: string;
@@ -124,8 +124,8 @@ export const theme = {
       'min-height': 'initial',
       'max-height': 'initial',
       position: 'fixed',
-      top: 0,
-      right: 0,
+      top: '20px',
+      right: '20px',
       'z-index': 2147483647, // Max z-index value (signed 32bits integer)
       border: 'none',
       transition: 'height .1s',
