@@ -14,4 +14,14 @@ if (!(window as CustomWindow).__LMEM__CONTENT_SCRIPT_INJECTED__) {
   });
 
   (window as CustomWindow).__LMEM__CONTENT_SCRIPT_INJECTED__ = true;
+
+  init({
+    dsn: process.env.SENTRY_DSN,
+    environment: process.env.NODE_ENV,
+    release: `${version}-${process.env.BUILD}`
+  });
+
+  configureScope((scope: any) => {
+    scope.setTag('context', 'content');
+  });
 }

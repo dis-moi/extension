@@ -25,6 +25,24 @@ nvm use lts/carbon
 yarn
 ```
 
+### Sentry
+
+To configure Sentry error reporting, you should create a `.sentryclirc` file at the root of the project directory:
+```
+[defaults]
+project=lmem
+org=insitu
+
+[auth]
+token=4d786d88c7d9436282c35b4eb82ae2dfeaff5ee296e3404ba3654ab62c151b73
+```
+> **Note 1:** You'll find your token here https://sentry.io/settings/account/api/auth-tokens/
+
+> **Note 2:** If you ever need to change the Sentry DSN go to `./webpack/config.plugins.js`.
+
+## Environments
+You'll find a bunch of env variables defined in `./webpack/config.plugins.js`.
+
 ## Development
 
 ```bash
