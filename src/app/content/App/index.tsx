@@ -3,6 +3,7 @@ import { Provider, connect } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router/immutable';
 import { ThemeProvider, StyleSheetManager } from 'styled-components';
+import { configureScope } from '@sentry/browser';
 import theme from '../../theme';
 import store, { history, State } from '../store';
 import GlobalStyle from '../GlobalStyle';
@@ -58,6 +59,9 @@ export default class App extends React.PureComponent<AppProps, AppState> {
 
   componentDidMount() {
     setTimeout(this.setLoaded, DELAY_BEFORE_SHOWING);
+    configureScope((scope) => {
+      scope.setTag('context', 'iframe');
+    });
   }
 
   setLoaded = () => {
