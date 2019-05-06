@@ -12,13 +12,12 @@ const baseNotice: StatefulNotice = {
   created: subMonths(new Date(), 1),
   modified: subWeeks(new Date(), 1),
   message: `
-<p>Un message qui décrit <a href="http://www.lmem.net">quelque chose</a> et donc ça prend beaucoup de mots. </p>
-<p>Il peut aussi y avoir plusieurs paragraphes, <a href="http://www.lmem.net">avec encore des liens</a></p>
+<p>L’économie est (vraiment) un sport de combat : “La boule puante de MM. Cahuc et Zylberberg contre le “négationnisme” des économistes critiques le confirme : le combat idéologique tombe parfois dans le caniveau. Depuis vingt ans pourtant, s’est construit en France une contre-expertise économique crédible qui veut fournir aux dominés des outils pour penser (et résister à) la pseudo” construit en France une contre-expertise</p>
 `,
   ratings: { likes: 42, dislikes: 2 },
   contributor: { id: 1, name: 'Jalil' },
   visibility: 'public',
-  source: { label: 'LMEM', url: 'http://www.lmem.net' },
+  source: { label: 'LMEM', url: 'https://blogs.mediapart.fr/thomas-coutrot/blog/040916/leconomie-est-vraiment-un-sport-de-combat' },
   state: {
     liked: false,
     dismissed: false,
@@ -27,7 +26,7 @@ const baseNotice: StatefulNotice = {
   }
 };
 
-const message = storiesOf('organisms/NoticeDetails', module)
+storiesOf('organisms/NoticeDetails', module)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
   .add('Approval', () => (
     <NoticeDetails
