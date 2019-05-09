@@ -33,11 +33,7 @@ export type IgnoringReason = 'dislike' | 'dismiss' | 'other';
 export const isIgnored = (notice: EnhancedNotice): boolean =>
   notice.status.dismissed || notice.status.disliked;
 export const ignoringReason = (notice: EnhancedNotice): IgnoringReason =>
-  notice.status.dismissed
-    ? 'dismiss'
-    : notice.status.disliked
-    ? 'dislike'
-    : 'other';
+  notice.status.dismissed ? 'dismiss' : 'dislike';
 
 export const dismissNotice = (notice: EnhancedNotice): EnhancedNotice => ({
   ...notice,
