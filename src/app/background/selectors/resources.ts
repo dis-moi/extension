@@ -3,5 +3,5 @@ import { BackgroundState } from '../reducers';
 export const getMatchingContexts = (state: BackgroundState) =>
   state.resources.matchingContexts;
 
-export const getDrafRecommendations = (state: BackgroundState) =>
-  state.resources.draftRecommendations;
+export const getDraftNotices = (state: BackgroundState) =>
+  state.resources.drafts;

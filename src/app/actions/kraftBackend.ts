@@ -1,25 +1,7 @@
-import fetch from 'isomorphic-fetch';
-import { LMEM_BACKEND_ORIGIN } from 'app/constants/origins';
 import { MatchingContext } from 'app/lmem/matchingContext';
 import { Dispatch } from 'redux';
 import { BaseAction } from '.';
-
-function fetchJson(url: string) {
-  return fetch(url).then(response => {
-    if (response.status >= 400) {
-      throw new Error('Bad response from server');
-    }
-    return response.json();
-  });
-}
-
-export function makeUrlFromFilters() {
-  return LMEM_BACKEND_ORIGIN + '/api/v2/matchingcontexts';
-}
-
-export function fetchMatchingContexts(): Promise<MatchingContext[]> {
-  return fetchJson(makeUrlFromFilters());
-}
+import fetchMatchingContexts from '../../api/fetchMatchingContexts';
 
 export interface ReceivedMatchingContextsAction extends BaseAction {
   type: 'api/UPDATE_MATCHING_CONTEXTS';

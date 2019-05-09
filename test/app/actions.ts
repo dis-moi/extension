@@ -20,32 +20,32 @@ chai.use(sinonChai);
 
 const notice: EnhancedNotice = {
   id: 1,
-  title: 'This is a title',
-  description: 'This is a notice',
-  resource: {
-    author: 'Jalil',
-    label: 'Jalil\'s feed',
-    url: 'http://jalil',
-    editor: { id: 1, label: 'editor', url: 'http://editor' }
+  intention: 'approval',
+  message: 'This is a notice',
+  source: {
+    label: 'Jalil',
+    url: 'http://jalil'
   },
-  contributor: { organization: 'LMEM', name: 'Jalil', image: '' },
+  contributor: { id: 1, name: 'Jalil', image: '' },
   visibility: 'public',
-  valid: true,
-  alternatives: [],
-  criteria: [],
-  dislikes: 0,
-  filters: [],
-  likes: 0,
-  disliked: false,
-  dismissed: false,
-  liked: false
+  ratings: {
+    dislikes: 0,
+    likes: 0
+  },
+  status: {
+    liked: false,
+    disliked: false,
+    dismissed: false
+  },
+  created: new Date(),
+  modified: new Date()
 };
 
 describe('background actions', function() {
   it('receivedMatchingContexts', () => {
     const matchingContexts: MatchingContext[] = [
-      { recommendation_url: 'http://1', url_regex: '/1/' },
-      { recommendation_url: 'http://2', url_regex: '/2/' }
+      { noticeUrl: 'http://1', urlRegex: '/1/', noticeId: 42 },
+      { noticeUrl: 'http://2', urlRegex: '/2/', noticeId: 42 }
     ];
     const action = receivedMatchingContexts(matchingContexts);
 
@@ -80,12 +80,13 @@ describe('background actions', function() {
 
   it('noticeIgnored when notice dismissed', () => {
     const trigger = 'http://trigger';
-    const dismissedNotice = { ...notice, dismissed: true };
+    const dismissedNotice: EnhancedNotice = {
+      ...notice,
+      status: { dismissed: true, liked: false, disliked: false }
+    };
     const action = noticeIgnored(dismissedNotice, trigger);
 
-    expect(action.type)
-      .to.be.a('string')
-      .of.length.above(5);
+    expect(action.type).to.equal('NOTICE_IGNORED');
     expect(action.payload.url).to.equal(trigger);
     expect(action.payload.notice).to.equal(dismissedNotice);
     expect(action.payload.reason).to.equal('dismiss');
@@ -93,12 +94,13 @@ describe('background actions', function() {
 
   it('noticeIgnored when notice disliked', () => {
     const trigger = 'http://trigger';
-    const dislikedNotice = { ...notice, disliked: true };
+    const dislikedNotice = {
+      ...notice,
+      status: { dismissed: false, liked: false, disliked: true }
+    };
     const action = noticeIgnored(dislikedNotice, trigger);
 
-    expect(action.type)
-      .to.be.a('string')
-      .of.length.above(5);
+    expect(action.type).to.equal('NOTICE_IGNORED');
     expect(action.payload.url).to.equal(trigger);
     expect(action.payload.notice).to.equal(dislikedNotice);
     expect(action.payload.reason).to.equal('dislike');

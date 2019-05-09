@@ -1,4 +1,3 @@
-import { Criteria } from 'app/lmem/criterion';
 import {
   ignoringReason,
   EnhancedNotice,
@@ -6,7 +5,6 @@ import {
   Notice
 } from 'app/lmem/notice';
 import { InstallationDetails } from 'app/lmem/installation';
-import { Editor } from 'app/lmem/editors';
 import { MatchingContext } from 'app/lmem/matchingContext';
 import { BaseAction, TabAction } from '.';
 

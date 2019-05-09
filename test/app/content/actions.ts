@@ -4,7 +4,7 @@ import {
   noticesFound,
   dismissNotice,
   likeNotice
-} from '../../../src/app/actions/recommendations';
+} from '../../../src/app/actions/notices';
 import { init } from '../../../src/app/actions/tabs';
 import { EnhancedNotice } from '../../../src/app/lmem/notice';
 
@@ -12,25 +12,18 @@ const expect = chai.expect;
 
 const notice1: EnhancedNotice = {
   id: 1,
-  title: 'This is a title',
-  description: 'This is a notice',
-  resource: {
-    author: 'Jalil',
-    label: 'Jalil\'s feed',
-    url: 'http://jalil',
-    editor: { id: 1, label: 'editor', url: 'http://editor' }
+  intention: 'approval',
+  message: 'This is a notice',
+  source: {
+    label: 'Jalil',
+    url: 'http://jalil'
   },
-  contributor: { organization: 'LMEM', name: 'Jalil', image: '' },
+  contributor: { id: 1, name: 'Jalil', image: '' },
   visibility: 'public',
-  valid: true,
-  alternatives: [],
-  criteria: [],
-  dislikes: 0,
-  filters: [],
-  likes: 0,
-  disliked: false,
-  dismissed: false,
-  liked: false
+  ratings: { dislikes: 0, likes: 0 },
+  status: { disliked: false, dismissed: false, liked: false },
+  created: new Date(),
+  modified: new Date()
 };
 
 describe('content actions', function() {
@@ -50,7 +43,7 @@ describe('content actions', function() {
     expect(action.payload.notices).to.deep.equal([notice1]);
   });
 
-  it('dismiss reco', () => {
+  it('dismiss notice', () => {
     const id = 0;
     const action = dismissNotice(id);
 

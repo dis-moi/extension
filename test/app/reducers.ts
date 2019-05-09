@@ -1,5 +1,4 @@
 import chai from 'chai';
-
 import prefsReducer from '../../src/app/background/reducers/prefs';
 import resourcesReducer from '../../src/app/background/reducers/resources';
 import { receivedMatchingContexts } from '../../src/app/actions/kraftBackend';
@@ -10,7 +9,7 @@ import {
   dislikeNotice,
   undislikeNotice,
   undismissNotice
-} from '../../src/app/actions/recommendations';
+} from '../../src/app/actions/notices';
 import { MatchingContext } from '../../src/app/lmem/matchingContext';
 
 const expect = chai.expect;
@@ -18,8 +17,8 @@ const expect = chai.expect;
 describe('background reducer', function() {
   it('initial state + receivedMatchingContexts => state with offers', () => {
     const matchingContexts: MatchingContext[] = [
-      { recommendation_url: 'http://1', url_regex: '/1/' },
-      { recommendation_url: 'http://2', url_regex: '/2/' }
+      { noticeUrl: 'http://1', urlRegex: '/1/', noticeId: 42 },
+      { noticeUrl: 'http://2', urlRegex: '/2/', noticeId: 42 }
     ];
     const action = receivedMatchingContexts(matchingContexts);
 

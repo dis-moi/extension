@@ -1,24 +1,18 @@
 import React, { Fragment, PureComponent } from 'react';
-import { NoticeType } from 'app/lmem/noticeType';
 import { stripHtml } from 'app/utils/stripHtml';
 import { Contributor, OpenButton, Button } from '../../atoms';
-import Type from '../../molecules/Type/Type';
 import Container from './Container';
 import Content from './Content';
 import Deleted from './Deleted';
 import DeleteButton from './DeleteButton';
 import Title from './Title';
+import { EnhancedNotice } from '../../../app/lmem/notice';
+import IntentionIcon from '../../molecules/Type/IntentionIcon';
 
 interface Props {
-  id: number;
-  type: NoticeType;
-  message: string;
-  contributor: string;
+  notice: EnhancedNotice;
   dismiss: (id: number) => void;
   undismiss: (id: number) => void;
-  dismissed: boolean;
-  disliked: boolean;
-  read: boolean;
 }
 
 export default class Notice extends PureComponent<Props> {
@@ -30,22 +24,22 @@ export default class Notice extends PureComponent<Props> {
   };
 
   onDismiss = () => {
-    this.props.dismiss(this.props.id);
+    this.props.dismiss(this.props.notice.id);
   };
 
   onUndismiss = () => {
-    this.props.undismiss(this.props.id);
+    this.props.undismiss(this.props.notice.id);
   };
 
   render() {
     const {
-      id,
-      type,
-      message,
-      contributor,
-      dismissed,
-      disliked,
-      read
+      notice: {
+        id,
+        intention,
+        message,
+        contributor,
+        status: { dismissed, disliked, read }
+      }
     } = this.props;
     return (
       <Container>
@@ -61,10 +55,10 @@ export default class Notice extends PureComponent<Props> {
             </Fragment>
           ) : (
             <Fragment>
-              <Type type={type} />
+              <IntentionIcon intention={intention} />
               <div>
                 <Title>{stripHtml(message)}</Title>
-                <Contributor>Par : {contributor}</Contributor>
+                <Contributor>Par : {contributor.name}</Contributor>
               </div>
               <OpenButton />
             </Fragment>

@@ -25,7 +25,7 @@ import {
   FeedbackOnNoticeAction,
   NoticesFoundAction,
   ReadNoticeAction
-} from './recommendations';
+} from './notices';
 import { Action } from 'redux';
 
 export interface BaseAction extends Action {

@@ -13,7 +13,7 @@ export default function mapEventFromAction(action: Action) {
   // Drop useless properties in order to reduce objects size
   // Note: HEAP client sdk already drops object-like properties
   delete event.type;
-  delete event['recommendation.description'];
+  delete event['notice.message'];
 
   return event;
 }

@@ -1,17 +1,25 @@
+import { Draft } from './draft';
+
 export interface MatchingContext {
-  recommendation_url: string;
-  url_regex: string;
-  exclude_url_regex?: string;
+  noticeId: number;
+  noticeUrl: string;
+  urlRegex: string;
+  excludeUrlRegex?: string;
+  querySelector?: string;
+}
+
+export interface RestrictedContext {
+  urlRegex: string;
 }
 
 export const urlMatchesContext = (
   url: string,
-  { url_regex, exclude_url_regex }: MatchingContext
+  { urlRegex, excludeUrlRegex }: MatchingContext | Draft
 ): boolean => {
   try {
     return (
-      new RegExp(url_regex, 'i').test(url) &&
-      !(exclude_url_regex && new RegExp(exclude_url_regex, 'i').test(url))
+      new RegExp(urlRegex, 'i').test(url) &&
+      !(excludeUrlRegex && new RegExp(excludeUrlRegex, 'i').test(url))
     );
   } catch (err) {
     if (process.env.NODE_ENV !== 'test') {
@@ -23,20 +31,20 @@ export const urlMatchesContext = (
 
 export const findMatchingMatchingContexts = (
   url: string,
-  allMatchingContexts: MatchingContext[]
+  allMatchingContexts: MatchingContext[] | Draft[]
 ): MatchingContext[] =>
-  allMatchingContexts.filter((context: MatchingContext) =>
+  allMatchingContexts.filter((context: MatchingContext | Draft) =>
     urlMatchesContext(url, context)
   );
 
 export function findMatchingOffersAccordingToPreferences(
   url: string,
   matchingContexts: MatchingContext[],
-  draftMatchingContexts: MatchingContext[]
+  drafts: Draft[]
 ) {
   const matchingDraftMatchingContexts = findMatchingMatchingContexts(
     url,
-    draftMatchingContexts
+    drafts
   );
 
   // prioritize previews over public offers

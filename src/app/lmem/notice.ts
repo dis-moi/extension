@@ -1,86 +1,91 @@
 import { find } from 'ramda';
-import { Criterion } from './criterion';
-import { Editor } from './editors';
-
-export interface Alternative {
-  label: string;
-  url_to_redirect: string;
-}
-
-export interface Contributor {
-  image: string;
-  name: string;
-  organization: string;
-}
-
-export interface Resource {
-  author?: string;
-  editor: Editor;
-  label: string;
-  url: string;
-}
+import { Source } from './source';
+import { intentions, Intention } from './intention';
+import { Ratings } from './rating';
+import { Contributor } from './contributor';
 
 export interface Notice {
   id: number;
-  title: string;
-  description: string;
+  created: Date;
+  modified: Date;
+  intention: Intention;
   contributor: Contributor;
-  resource: Resource;
-  alternatives: Alternative[];
-  criteria: Criterion[];
-  filters?: Criterion[];
-  likes: number;
-  dislikes: number;
-  valid: boolean;
-  visibility: 'public';
+  message: string;
+  source?: Source;
+  ratings: Ratings;
+  visibility: 'public' | 'private';
 }
 
 export interface EnhancedNotice extends Notice {
-  liked: boolean;
-  justLiked?: boolean;
-  disliked: boolean;
-  justDisliked?: boolean;
-  dismissed: boolean;
-  justDismissed?: boolean;
-  read?: boolean;
+  status: {
+    read: boolean;
+    liked: boolean;
+    justLiked?: boolean;
+    disliked: boolean;
+    justDisliked?: boolean;
+    dismissed: boolean;
+    justDismissed?: boolean;
+  };
 }
 
 /* eslint-disable no-nested-ternary */
 export type IgnoringReason = 'dislike' | 'dismiss' | 'other';
 export const isIgnored = (notice: EnhancedNotice): boolean =>
-  notice.dismissed || notice.disliked;
+  notice.status.dismissed || notice.status.disliked;
 export const ignoringReason = (notice: EnhancedNotice): IgnoringReason =>
-  notice.dismissed ? 'dismiss' : notice.disliked ? 'dislike' : 'other';
+  notice.status.dismissed
+    ? 'dismiss'
+    : notice.status.disliked
+    ? 'dislike'
+    : 'other';
 
 export const dismissNotice = (notice: EnhancedNotice): EnhancedNotice => ({
   ...notice,
-  dismissed: true,
-  justDismissed: true
+  status: {
+    ...notice.status,
+    dismissed: true,
+    justDismissed: true
+  }
 });
 export const undismissNotice = (notice: EnhancedNotice): EnhancedNotice => ({
   ...notice,
-  dismissed: false,
-  justDismissed: false
+  status: {
+    ...notice.status,
+    dismissed: false,
+    justDismissed: false
+  }
 });
 export const likeNotice = (notice: EnhancedNotice): EnhancedNotice => ({
   ...notice,
-  liked: true,
-  justLiked: true
+  status: {
+    ...notice.status,
+    liked: true,
+    justLiked: true
+  }
 });
 export const unlikeNotice = (notice: EnhancedNotice): EnhancedNotice => ({
   ...notice,
-  liked: false,
-  justLiked: false
+  status: {
+    ...notice.status,
+    liked: false,
+    justLiked: false
+  }
 });
 export const dislikeNotice = (notice: EnhancedNotice): EnhancedNotice => ({
   ...notice,
-  disliked: true,
-  justDisliked: true
+  status: {
+    ...notice.status,
+    disliked: true,
+    justDisliked: true
+  }
 });
 export const undislikeNotice = (notice: EnhancedNotice): EnhancedNotice => ({
   ...notice,
-  disliked: false,
-  justDisliked: false
+  status: {
+    ...notice.status,
+    disliked: false,
+    justDisliked: false
+  }
 });
 
 export const getNotice = <N extends Notice>(
@@ -93,42 +98,14 @@ export const isNoticeValid = (notice: {
 }): notice is Notice => {
   if (Object(notice) !== notice) return false;
 
-  const {
-    contributor,
-    title,
-    description,
-    resource,
-    criteria,
-    alternatives
-  } = notice;
+  const { contributor, message, intention } = notice;
 
   return (
-    typeof title === 'string' &&
-    typeof description === 'string' &&
-    Object(resource) === resource &&
-    typeof resource.label === 'string' &&
-    (!resource.author || typeof resource.author === 'string') &&
-    Object(resource.editor) === resource.editor &&
-    typeof resource.editor.label === 'string' &&
-    typeof resource.editor.url === 'string' &&
+    typeof message === 'string' &&
     Object(contributor) === contributor &&
     typeof contributor.name === 'string' &&
-    (!criteria ||
-      (Array.isArray(criteria) &&
-        criteria.every(
-          criterion =>
-            Object(criterion) === criterion &&
-            typeof criterion.label === 'string' &&
-            typeof criterion.slug === 'string'
-        ))) &&
-    (!alternatives ||
-      (Array.isArray(alternatives) &&
-        alternatives.every(
-          alternative =>
-            Object(alternative) === alternative &&
-            typeof alternative.label === 'string' &&
-            typeof alternative.url_to_redirect === 'string'
-        )))
+    typeof intention === 'string' &&
+    intentions.includes(intention as Intention)
   );
 };
 
@@ -143,11 +120,11 @@ export const warnIfNoticeInvalid = (notice: Notice): boolean => {
 };
 
 export const shouldNoticeBeShown = (notice: EnhancedNotice): boolean =>
-  (notice.valid &&
-    (!notice.dismissed || notice.justDismissed) &&
-    (!notice.disliked || notice.justDisliked)) ||
+  (isNoticeValid(notice) &&
+    (!notice.status.dismissed || notice.status.justDismissed) &&
+    (!notice.status.disliked || notice.status.justDisliked)) ||
   false;
 
-export const isRead = (notice: EnhancedNotice) => notice.read === true;
+export const isRead = (notice: EnhancedNotice) => notice.status.read;
 
 export const isUnread = (notice: EnhancedNotice) => !isRead(notice);

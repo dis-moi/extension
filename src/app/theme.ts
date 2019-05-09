@@ -34,20 +34,20 @@ export interface Theme {
   other: string;
 
   // notice type colors
-  noticeTypes: {
-    Disapproval: {
+  intentions: {
+    disapproval: {
       background: string;
     };
-    Alternative: {
+    alternative: {
       background: string;
     };
-    Approval: {
+    approval: {
       background: string;
     };
-    Tip: {
+    tip: {
       background: string;
     };
-    Other: {
+    other: {
       background: string;
     };
   };
@@ -71,7 +71,7 @@ export interface Theme {
   };
 }
 
-export const theme = {
+export const theme: Theme = {
   main: 'purple',
   // colors
   primaryColor: '#404348',
@@ -111,20 +111,20 @@ export const theme = {
   other: '#EB950C',
 
   // notice type colors
-  noticeTypes: {
-    Disapproval: {
+  intentions: {
+    disapproval: {
       background: '#F70B7B'
     },
-    Alternative: {
+    alternative: {
       background: '#49B6D6'
     },
-    Approval: {
+    approval: {
       background: '#34C16C'
     },
-    Tip: {
+    tip: {
       background: '#E3C51F'
     },
-    Other: {
+    other: {
       background: '#EB950C'
     }
   },

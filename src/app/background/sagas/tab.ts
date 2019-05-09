@@ -34,7 +34,7 @@ import {
   noticesFound,
   NoticesFoundAction,
   noticesUpdated
-} from 'app/actions/recommendations';
+} from 'app/actions/notices';
 import watchSingleMessageSaga from '../../utils/watchSingleMessageSaga';
 import { TabAction } from '../../actions';
 import fetchContentScript from '../services/fetchContentScript';
@@ -48,10 +48,10 @@ import {
 } from '../../actions/tabsLifecycle';
 import * as R from 'ramda';
 import { MatchingContext } from '../../lmem/matchingContext';
-import { EnhancedNotice } from '../../lmem/notice';
+import { EnhancedNotice, Notice, warnIfNoticeInvalid } from '../../lmem/notice';
 import sendToTab from '../services/sendToTab';
 import { AppAction } from '../../actions/';
-import { fetchMatchingNotices } from '../../lmem/fetchMatchingNotices';
+import { fetchNotices } from '../../../api/fetchNotice';
 
 export const tabSaga = (executeContentScript: ExecuteContentScript) =>
   function*({ payload: { tab, url } }: TabCreatedAction | TabUpdatedAction) {
@@ -87,20 +87,21 @@ export const contextTriggeredSaga = function*({
 
     const toFetch = R.compose<MatchingContext[], string[], string[]>(
       R.uniq,
-      R.map(tc => tc.recommendation_url)
+      R.map(tc => tc.noticeUrl)
     )(triggeredContexts);
 
-    const notices = yield call(fetchMatchingNotices, toFetch);
+    const notices = yield call(fetchNotices, toFetch);
+    const validNotices: Notice[] = notices.filter(warnIfNoticeInvalid);
 
     const noticesToShow: EnhancedNotice[] = yield select(
-      getNoticesToDisplay(notices)
+      getNoticesToDisplay(validNotices)
     );
     yield all(
       noticesToShow.map(notice => put(noticeDisplayed(notice, trigger)))
     );
 
     const ignoredNotices: EnhancedNotice[] = yield select(
-      getIgnoredNotices(notices)
+      getIgnoredNotices(validNotices)
     );
     yield all(
       ignoredNotices.map(notice => put(noticeIgnored(notice, trigger)))
@@ -110,7 +111,7 @@ export const contextTriggeredSaga = function*({
       yield put(noticesFound(noticesToShow, tab));
     } else {
       // Will throw here when we will be able to not trigger context on dismissed/disliked notices
-      // throw new Error('Context was triggered but they were no recommendations left to display.');
+      // throw new Error('Context was triggered but they were no notices left to display.');
     }
   } catch (e) {
     yield put(contextTriggerFailure(tab, trigger, e));

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { dismissNotice, undismissNotice } from 'app/actions/recommendations';
+import { dismissNotice, undismissNotice } from 'app/actions/notices';
 import { close } from 'app/actions/ui';
 import { getFilteredNotices } from '../../../selectors';
 import { State } from '../../../store';

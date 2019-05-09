@@ -2,7 +2,6 @@ import React from 'react';
 import Notification from 'components/organisms/Notification';
 import NoticeItem from 'components/organisms/Notice/Notice';
 import AddNotice from 'components/molecules/AddNotice';
-import { findType } from 'app/lmem/noticeType';
 import NoNotice from './NoNotice';
 import withConnect from './withConnect';
 import { EnhancedNotice } from '../../../../lmem/notice';
@@ -15,33 +14,14 @@ export interface Props {
 }
 export const List = ({ notices, dismiss, undismiss, close }: Props) => (
   <Notification title="Bulles pour cette page" hasNotices close={close}>
-    {notices
-      .slice(0, 2)
-      .map(
-        ({
-          id,
-          description,
-          contributor: { name },
-          resource: { url },
-          criteria,
-          dismissed,
-          disliked,
-          read
-        }) => (
-          <NoticeItem
-            key={id}
-            id={id}
-            type={findType(criteria)}
-            message={description}
-            contributor={name}
-            dismiss={dismiss}
-            undismiss={undismiss}
-            dismissed={dismissed}
-            disliked={disliked}
-            read={read}
-          />
-        )
-      )}
+    {notices.slice(0, 2).map((notice: EnhancedNotice) => (
+      <NoticeItem
+        key={notice.id}
+        notice={notice}
+        dismiss={dismiss}
+        undismiss={undismiss}
+      />
+    ))}
     {notices.length === 0 && <NoNotice />}
     {notices.length > 0 && (
       <AddNotice

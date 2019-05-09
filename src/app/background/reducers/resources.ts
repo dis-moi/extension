@@ -1,14 +1,15 @@
 import { MatchingContext } from 'app/lmem/matchingContext';
 import { AppAction } from 'app/actions';
+import { Draft } from '../../lmem/draft';
 
 export interface ResourcesState {
   matchingContexts: MatchingContext[];
-  draftRecommendations: MatchingContext[];
+  drafts: Draft[];
 }
 
 const initialResources: ResourcesState = {
   matchingContexts: [],
-  draftRecommendations: []
+  drafts: []
 };
 
 export default function(
@@ -20,10 +21,10 @@ export default function(
       return { ...state, matchingContexts: action.payload.matchingContexts };
 
     /* Action is not existing yet, but will come soon.
-    case 'UPDATE_DRAFT_RECOMMENDATIONS': {
+    case 'UPDATE_DRAFT_NOTICES': {
       return {
         ...state,
-        draftRecommendations: action.payload.draftRecommendations
+        drafts: action.payload.drafts
       };
     }
     */
