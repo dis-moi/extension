@@ -1,14 +1,14 @@
 export type Intention =
   | 'approval'
   | 'disapproval'
-  | 'tip'
+  | 'information'
   | 'alternative'
   | 'other';
 
 export const intentions: Intention[] = [
   'approval',
   'disapproval',
-  'tip',
+  'information',
   'alternative',
   'other'
 ];

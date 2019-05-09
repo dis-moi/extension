@@ -8,6 +8,6 @@ storiesOf('molecules/Type', module)
   .add('approval', () => <Intention intention="approval" />)
   .add('disapproval', () => <Intention intention="disapproval" />)
   .add('alternative', () => <Intention intention="alternative" />)
-  .add('tip', () => <Intention intention="tip" />)
+  .add('information', () => <Intention intention="information" />)
   .add('other', () => <Intention intention="other" />)
   .add('undefined / unknown ', () => <Intention />);

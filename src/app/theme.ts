@@ -29,7 +29,7 @@ export interface Theme {
   // new types:
   approval: string;
   disapproval: string;
-  tip: string;
+  information: string;
   alternative: string;
   other: string;
 
@@ -44,7 +44,7 @@ export interface Theme {
     approval: {
       background: string;
     };
-    tip: {
+    information: {
       background: string;
     };
     other: {
@@ -106,7 +106,7 @@ export const theme: Theme = {
   // new types:
   approval: '#34C16C',
   disapproval: '#F70B7B',
-  tip: '#E3C51F',
+  information: '#E3C51F',
   alternative: '#49B6D6',
   other: '#EB950C',
 
@@ -121,7 +121,7 @@ export const theme: Theme = {
     approval: {
       background: '#34C16C'
     },
-    tip: {
+    information: {
       background: '#E3C51F'
     },
     other: {

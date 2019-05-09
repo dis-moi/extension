@@ -34,21 +34,28 @@ storiesOf('organisms/Notice', module)
   ))
   .add('Disapproved', () => (
     <Notice
-      notice={{ ...baseNotice, type: 'Disapproval' }}
+      notice={{ ...baseNotice, intention: 'disapproval' }}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
     />
   ))
-  .add('Tip', () => (
+  .add('Alternative', () => (
     <Notice
-      notice={{ ...baseNotice, type: 'Tip' }}
+      notice={{ ...baseNotice, intention: 'alternative' }}
+      dismiss={action('dismiss')}
+      undismiss={action('undismiss')}
+    />
+  ))
+  .add('Information', () => (
+    <Notice
+      notice={{ ...baseNotice, intention: 'information' }}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
     />
   ))
   .add('Other', () => (
     <Notice
-      notice={{ ...baseNotice, type: 'Other' }}
+      notice={{ ...baseNotice, intention: 'other' }}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
     />

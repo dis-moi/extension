@@ -4,7 +4,7 @@ import { Intention } from 'app/lmem/intention';
 import Approval from './Like';
 // import Dislike from "./Dislike";
 import Disapproval from './Dislike';
-import Tip from './Tip';
+import Information from './Information';
 import Alternative from './Alternative';
 import Other from './Other';
 
@@ -14,7 +14,7 @@ interface Props {
 const TypesIcons: { [key in Intention]: ComponentType<Props> } = {
   approval: Approval,
   disapproval: Disapproval,
-  tip: Tip,
+  information: Information,
   alternative: Alternative,
   other: Other
 };
