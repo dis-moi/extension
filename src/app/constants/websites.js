@@ -1,2 +1,0 @@
-export const DEACTIVATE_EVERYWHERE = '/@EVERYWHERE';
-export const SESSION_DEACTIVATE_DELAY = 60 * 60 * 1000; // ms
