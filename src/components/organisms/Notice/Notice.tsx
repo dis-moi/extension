@@ -38,7 +38,7 @@ export default class Notice extends PureComponent<Props> {
         intention,
         message,
         contributor,
-        status: { dismissed, disliked, read }
+        status: { dismissed, justDismissed, disliked, justDisliked, read }
       }
     } = this.props;
     return (
@@ -48,7 +48,7 @@ export default class Notice extends PureComponent<Props> {
           to={dismissed ? undefined : `notices/details/${id}`}
           read={read}
         >
-          {dismissed || disliked ? (
+          {(dismissed && justDismissed) || (disliked && justDisliked) ? (
             <Fragment>
               <Deleted>Cette bulle ne s’affichera plus !</Deleted>
               <Button onClick={this.onUndismiss}>Annuler</Button>
