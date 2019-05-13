@@ -1,33 +1,27 @@
 import { takeLatest } from 'redux-saga/effects';
 import { NoticesUpdatedAction } from '../../actions/recommendations';
-import { Theme } from '../../theme';
-import { isUnread } from '../../lmem/notice';
+import { BadgeTheme, updateBadge, resetBadge } from '../../lmem/badge';
+import { TabAction } from '../../actions';
 
-export const updateBadgeSaga = (theme: Theme) =>
+export const updateBadgeSaga = (badgeTheme: BadgeTheme) =>
   function*({
     payload: notices,
     meta: { tab: tabId }
   }: NoticesUpdatedAction): IterableIterator<any> {
-    const unreadNotices = notices.filter(isUnread);
-    const { backgroundColor } = theme.badge;
-
-    chrome.browserAction.setBadgeText({
-      text:
-        unreadNotices.length > 0
-          ? unreadNotices.length.toString()
-          : notices.length.toString(),
-      tabId
-    });
-    chrome.browserAction.setBadgeBackgroundColor({
-      color:
-        unreadNotices.length > 0
-          ? backgroundColor.unread
-          : backgroundColor.read,
-      tabId
-    });
+    updateBadge(notices, badgeTheme, tabId);
   };
 
-export default (theme: Theme) =>
+export function* resetBadgeSaga({
+  meta: { tab: tabId }
+}: TabAction): IterableIterator<any> {
+  resetBadge(tabId);
+}
+
+export default (badgeTheme: BadgeTheme) =>
   function* tabRootSaga() {
-    yield takeLatest('NOTICES_UPDATED', updateBadgeSaga(theme));
+    yield takeLatest('NOTICES_UPDATED', updateBadgeSaga(badgeTheme));
+    yield takeLatest(
+      ['BROWSER/TAB_CREATED', 'BROWSER/TAB_UPDATED'],
+      resetBadgeSaga
+    );
   };

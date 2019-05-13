@@ -1,3 +1,5 @@
+import { BadgeTheme } from './lmem/badge';
+
 export interface Theme {
   main: string;
   // colors
@@ -22,13 +24,7 @@ export interface Theme {
   formError: string;
   button: string;
 
-  // badge background colors
-  badge: {
-    backgroundColor: {
-      read: string;
-      unread: string;
-    };
-  };
+  badge: BadgeTheme;
 
   // new types:
   approval: string;
