@@ -2,6 +2,7 @@ import React from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { withKnobs, object } from '@storybook/addon-knobs/react';
 import { List } from '.';
 import { EnhancedNotice } from '../../../../lmem/notice';
 
@@ -29,54 +30,75 @@ const notice: EnhancedNotice = {
   dislikes: 0,
   likes: 0,
   valid: true,
-  visibility: 'public'
+  visibility: 'public' as 'public'
 };
 
 storiesOf('screens/Notice/List', module)
+  .addDecorator(withKnobs)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
-  .add('1 notice', () => (
-    <List
-      close={action('close')}
-      dismiss={action('dismiss')}
-      undismiss={action('undismiss')}
-      notices={[notice]}
-    />
-  ))
-  .add('2 notices', () => (
-    <List
-      close={action('close')}
-      dismiss={action('dismiss')}
-      undismiss={action('undismiss')}
-      notices={[notice, notice]}
-    />
-  ))
-  .add('1 read', () => (
-    <List
-      close={action('close')}
-      dismiss={action('dismiss')}
-      undismiss={action('undismiss')}
-      notices={[notice, { ...notice, read: true }]}
-    />
-  ))
-  .add('empty', () => (
-    <List
-      close={action('close')}
-      dismiss={action('dismiss')}
-      undismiss={action('undismiss')}
-      notices={[]}
-    />
-  ))
-  .add('2 lines excerpt', () => (
-    <List
-      close={action('close')}
-      dismiss={action('dismiss')}
-      undismiss={action('undismiss')}
-      notices={[
-        {
-          ...notice,
-          description:
-            'dazd zazaddd dddddd ddddd dddd dddddd ddd ddddd dddddddd dd'
-        }
-      ]}
-    />
-  ));
+  .add('1 notice', () => {
+    const notices = object('Notices', [notice]);
+
+    return (
+      <List
+        close={action('close')}
+        dismiss={action('dismiss')}
+        undismiss={action('undismiss')}
+        notices={notices}
+      />
+    );
+  })
+  .add('2 notices', () => {
+    const notices = object('Notices', [notice, notice]);
+
+    return (
+      <List
+        close={action('close')}
+        dismiss={action('dismiss')}
+        undismiss={action('undismiss')}
+        notices={notices}
+      />
+    );
+  })
+  .add('1 read', () => {
+    const notices = object('Notices', [notice, { ...notice, read: true }]);
+
+    return (
+      <List
+        close={action('close')}
+        dismiss={action('dismiss')}
+        undismiss={action('undismiss')}
+        notices={notices}
+      />
+    );
+  })
+  .add('empty', () => {
+    const notices = object('Notices', []);
+
+    return (
+      <List
+        close={action('close')}
+        dismiss={action('dismiss')}
+        undismiss={action('undismiss')}
+        notices={notices}
+      />
+    );
+  })
+  .add('2 lines excerpt', () => {
+    const notices = object('Notices', [
+      {
+        ...notice,
+        description:
+          'dazd zazaddd dddddd ddddd dddd dddddd ddd ddddd dddddddd dd'
+      }
+    ]);
+
+    return (
+      <List
+        close={action('close')}
+        dismiss={action('dismiss')}
+        undismiss={action('undismiss')}
+        notices={notices}
+      />
+    );
+  });
