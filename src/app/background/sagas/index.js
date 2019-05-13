@@ -5,5 +5,5 @@ import badge from './badge';
 import theme from '../../theme';
 
 export default function* rootSaga() {
-  yield all([fork(matchingContexts), fork(tab), fork(badge(theme))]);
+  yield all([fork(matchingContexts), fork(tab), fork(badge(theme.badge))]);
 }
