@@ -36,7 +36,7 @@ import {
   noticesUpdated
 } from 'app/actions/notices';
 import watchSingleMessageSaga from '../../utils/watchSingleMessageSaga';
-import { TabAction } from '../../actions';
+import { BaseAction, TabAction } from '../../actions';
 import fetchContentScript from '../services/fetchContentScript';
 import executeTabScript, {
   ExecuteContentScript
@@ -114,7 +114,7 @@ export const contextTriggeredSaga = function*({
       // throw new Error('Context was triggered but they were no notices left to display.');
     }
   } catch (e) {
-    yield put(contextTriggerFailure(tab, trigger, e));
+    yield put(contextTriggerFailure(e, tab, trigger));
   }
 };
 
@@ -164,7 +164,7 @@ export default function* tabRootSaga() {
   yield takeLatest(MATCH_CONTEXT, matchContextSaga);
   yield takeLatest(CONTEXT_TRIGGERED, contextTriggeredSaga);
   yield takeLatest(
-    (action: AppAction) => Boolean(action.meta && action.meta.sendToTab),
+    (action: BaseAction) => Boolean(action.meta && action.meta.sendToTab),
     publishToTabSaga
   );
 

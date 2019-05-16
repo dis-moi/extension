@@ -6,7 +6,7 @@ import {
 } from 'app/lmem/notice';
 import { InstallationDetails } from 'app/lmem/installation';
 import { MatchingContext } from 'app/lmem/matchingContext';
-import { BaseAction, TabAction } from '.';
+import { BaseAction, TabAction, TabErrorAction } from '.';
 
 export interface InitAction extends TabAction {
   type: 'INIT';
@@ -38,9 +38,8 @@ export const matchContext = (url: string, tab: number): MatchContextAction => ({
   meta: { tab, tracked: false }
 });
 
-export interface MatchContextFailureAction extends TabAction {
+export interface MatchContextFailureAction extends TabErrorAction {
   type: 'LMEM/MATCH_CONTEXT_FAILURE';
-  payload: { error: Error; url: string; tab: number };
 }
 export const matchContextFailure = (
   error: Error,
@@ -48,8 +47,9 @@ export const matchContextFailure = (
   tab: number
 ): MatchContextFailureAction => ({
   type: 'LMEM/MATCH_CONTEXT_FAILURE',
-  payload: { error, url, tab },
-  meta: { tab, tracked: false }
+  payload: error,
+  meta: { url, tab, tracked: false },
+  error: true
 });
 
 export interface ContextTriggeredAction extends TabAction {
@@ -70,22 +70,19 @@ export const contextTriggered = (
   meta: { tab }
 });
 
-export interface ContextTriggerFailureAction extends TabAction {
+export interface ContextTriggerFailureAction extends TabErrorAction {
   type: 'LMEM/CONTEXT_TRIGGER_FAILURE';
-  payload: {
-    tab: number;
-    url: string;
-    error: Error;
-  };
+  meta: { url: string; tab: number };
 }
 export const contextTriggerFailure = (
+  error: Error,
   tab: number,
-  url: string,
-  error: Error
+  url: string
 ): ContextTriggerFailureAction => ({
   type: 'LMEM/CONTEXT_TRIGGER_FAILURE',
-  payload: { tab, url, error },
-  meta: { tab }
+  payload: error,
+  meta: { url, tab },
+  error: true
 });
 
 export interface NoticeDisplayedAction extends BaseAction {

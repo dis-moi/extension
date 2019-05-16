@@ -1,4 +1,4 @@
-import { AppAction } from 'app/actions';
+import { AppAction, BaseAction } from 'app/actions';
 import { Dispatch } from 'redux';
 
 export const transformBackgroundAction = <A extends AppAction>(
@@ -14,7 +14,7 @@ export const sendToBackground = (action: AppAction): Promise<string> =>
   });
 
 export const backgroundPublisher = () => (next: Dispatch<AppAction>) => (
-  action: AppAction
+  action: BaseAction
 ) => {
   if (action.meta && action.meta.sendToBackground) {
     sendToBackground(transformBackgroundAction(action)).then(response =>

@@ -1,6 +1,6 @@
 import { MatchingContext } from 'app/lmem/matchingContext';
 import { Dispatch } from 'redux';
-import { BaseAction } from '.';
+import { BaseAction, ErrorAction } from '.';
 import fetchMatchingContexts from '../../api/fetchMatchingContexts';
 
 export interface ReceivedMatchingContextsAction extends BaseAction {
@@ -28,6 +28,17 @@ export interface RefreshMatchingContextsAction extends BaseAction {
 export const refreshMatchingContexts = (): RefreshMatchingContextsAction => ({
   type: 'REFRESH_MATCHING_CONTEXTS',
   meta: { tracked: false }
+});
+
+export interface RefreshMatchingContextsFailedAction extends ErrorAction {
+  type: 'REFRESH_MATCHING_CONTEXTS_FAILED';
+}
+export const refreshMatchingContextsFailed = (
+  e: Error
+): RefreshMatchingContextsFailedAction => ({
+  type: 'REFRESH_MATCHING_CONTEXTS_FAILED',
+  payload: e,
+  error: true
 });
 
 export function refreshMatchingContextsEvery(milliseconds: number) {

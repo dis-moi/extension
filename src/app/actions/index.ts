@@ -28,18 +28,31 @@ import {
 } from './notices';
 import { Action } from 'redux';
 
-export interface BaseAction extends Action {
-  payload?: {};
+export interface StandardAction extends Action {
+  payload?: any;
+  meta?: any;
+  error?: true;
+}
+
+export interface BaseAction extends StandardAction {
   meta?: ActionMeta;
+}
+
+export interface ErrorAction extends BaseAction {
+  payload: Error;
+  error: true;
 }
 
 export interface TabMeta extends ActionMeta {
   tab: number;
+  url?: string;
 }
 
 export type TabAction = BaseAction & {
   meta: TabMeta;
 };
+
+export type TabErrorAction = TabAction & ErrorAction;
 
 export interface ActionMeta {
   tab?: number;

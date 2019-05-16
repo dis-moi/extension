@@ -1,13 +1,19 @@
 import { put, takeLatest, call } from 'redux-saga/effects';
 import fetchMatchingContexts from '../../../api/fetchMatchingContexts';
 import { REFRESH_MATCHING_CONTEXTS } from '../../constants/ActionTypes';
-
-import { receivedMatchingContexts } from 'app/actions/kraftBackend';
+import {
+  receivedMatchingContexts,
+  refreshMatchingContextsFailed
+} from 'app/actions/kraftBackend';
 
 export function* refreshMatchingContextsSaga() {
-  const matchingContexts = yield call(fetchMatchingContexts);
+  try {
+    const matchingContexts = yield call(fetchMatchingContexts);
 
-  yield put(receivedMatchingContexts(matchingContexts));
+    yield put(receivedMatchingContexts(matchingContexts));
+  } catch (e) {
+    yield put(refreshMatchingContextsFailed(e));
+  }
 }
 
 export default function* tabRootSaga() {
