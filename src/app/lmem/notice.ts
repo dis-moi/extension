@@ -83,6 +83,13 @@ export const undislikeNotice = (notice: EnhancedNotice): EnhancedNotice => ({
     justDisliked: false
   }
 });
+export const readNotice = (notice: EnhancedNotice): EnhancedNotice => ({
+  ...notice,
+  status: {
+    ...notice.status,
+    read: true
+  }
+});
 
 export const getNotice = <N extends Notice>(
   id: number,
