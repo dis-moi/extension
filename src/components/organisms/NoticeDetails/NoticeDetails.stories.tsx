@@ -22,7 +22,8 @@ const baseNotice: EnhancedNotice = {
   status: {
     liked: false,
     dismissed: false,
-    disliked: false
+    disliked: false,
+    read: false
   }
 };
 

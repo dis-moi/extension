@@ -35,7 +35,8 @@ const notice: EnhancedNotice = {
   status: {
     liked: false,
     disliked: false,
-    dismissed: false
+    dismissed: false,
+    read: false
   },
   created: new Date(),
   modified: new Date()
@@ -82,7 +83,7 @@ describe('background actions', function() {
     const trigger = 'http://trigger';
     const dismissedNotice: EnhancedNotice = {
       ...notice,
-      status: { dismissed: true, liked: false, disliked: false }
+      status: { dismissed: true, liked: false, disliked: false, read: false }
     };
     const action = noticeIgnored(dismissedNotice, trigger);
 
@@ -96,7 +97,7 @@ describe('background actions', function() {
     const trigger = 'http://trigger';
     const dislikedNotice = {
       ...notice,
-      status: { dismissed: false, liked: false, disliked: true }
+      status: { dismissed: false, liked: false, disliked: true, read: false }
     };
     const action = noticeIgnored(dislikedNotice, trigger);
 

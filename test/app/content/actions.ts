@@ -21,7 +21,7 @@ const notice1: EnhancedNotice = {
   contributor: { id: 1, name: 'Jalil', image: '' },
   visibility: 'public',
   ratings: { dislikes: 0, likes: 0 },
-  status: { disliked: false, dismissed: false, liked: false },
+  status: { disliked: false, dismissed: false, liked: false, read: false },
   created: new Date(),
   modified: new Date()
 };

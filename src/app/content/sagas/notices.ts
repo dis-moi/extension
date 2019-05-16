@@ -1,6 +1,6 @@
 import { put, takeLatest, select } from 'redux-saga/effects';
 import { getNotices, getTabId } from '../selectors';
-import { noticesUpdated } from '../../actions/recommendations';
+import { noticesUpdated } from '../../actions/notices';
 
 export function* updateNoticesSaga() {
   const notices = yield select(getNotices);
