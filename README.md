@@ -103,7 +103,7 @@ yarn test
 You can lint both TypeScript and CSS by running:
 
 ```bash
-npm run lint
+yarn lint
 ```
 
 ### TypeScript
@@ -113,7 +113,7 @@ Code style rules are available in `tslint.json`.
 You can manually lint .ts files running the following command:
 
 ```bash
-npm run lint:ts
+yarn lint:ts
 ```
 
 ### Styles
@@ -123,7 +123,7 @@ Styling rules are available in `.stylelintrc`.
 You can manually the styled components running the following command:
 
 ```bash
-npm run lint:css
+yarn lint:css
 ```
 
 ### Integration tests
