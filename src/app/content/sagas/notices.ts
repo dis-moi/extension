@@ -1,11 +1,15 @@
 import { put, takeLatest, select } from 'redux-saga/effects';
 import { getNotices, getTabId } from '../selectors';
-import { noticesUpdated } from '../../actions/notices';
+import { noticesUpdated, updateNoticesFailed } from '../../actions/notices';
 
 export function* updateNoticesSaga() {
-  const notices = yield select(getNotices);
-  const tab = yield select(getTabId);
-  yield put(noticesUpdated(notices, { tab, sendToBackground: true }));
+  try {
+    const notices = yield select(getNotices);
+    const tab = yield select(getTabId);
+    yield put(noticesUpdated(notices, { tab, sendToBackground: true }));
+  } catch (e) {
+    yield put(updateNoticesFailed(e));
+  }
 }
 
 export default function* noticesRootSaga() {

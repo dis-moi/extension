@@ -5,11 +5,7 @@ import { updateInstalledDetails } from 'app/actions/filters';
 import { InitAction } from 'app/actions/tabs';
 
 export function* initSaga({ payload: { installationDetails } }: InitAction) {
-  try {
-    yield put(updateInstalledDetails(installationDetails));
-  } catch (e) {
-    console.error(e);
-  }
+  yield put(updateInstalledDetails(installationDetails));
 }
 
 export default function* backgroundRootSaga() {

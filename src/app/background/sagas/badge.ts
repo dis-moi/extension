@@ -3,20 +3,29 @@ import { NoticesUpdatedAction } from '../../actions/notices';
 import { BadgeTheme, updateBadge, resetBadge } from '../../lmem/badge';
 import { TabAction } from '../../actions';
 import { getNoticesToDisplay } from '../selectors/prefs';
+import { badgeResetFailed, badgeUpdateFailed } from '../../actions/badge';
 
 export const updateBadgeSaga = (badgeTheme: BadgeTheme) =>
   function*({
     payload: notices,
     meta: { tab: tabId }
   }: NoticesUpdatedAction): IterableIterator<any> {
-    const noticesToDisplay = yield select(getNoticesToDisplay(notices));
-    yield call(updateBadge, noticesToDisplay, badgeTheme, tabId);
+    try {
+      const noticesToDisplay = yield select(getNoticesToDisplay(notices));
+      yield call(updateBadge, noticesToDisplay, badgeTheme, tabId);
+    } catch (e) {
+      badgeUpdateFailed(e);
+    }
   };
 
 export function* resetBadgeSaga({
   meta: { tab: tabId }
 }: TabAction): IterableIterator<any> {
-  resetBadge(tabId);
+  try {
+    resetBadge(tabId);
+  } catch (e) {
+    badgeResetFailed(e);
+  }
 }
 
 export default (badgeTheme: BadgeTheme) =>

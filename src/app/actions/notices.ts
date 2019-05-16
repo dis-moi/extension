@@ -1,5 +1,5 @@
 import { StatefulNotice } from 'app/lmem/notice';
-import { BaseAction, TabAction, TabMeta } from '.';
+import { BaseAction, ErrorAction, TabAction, TabMeta } from '.';
 
 export interface NoticesFoundAction extends TabAction {
   type: 'NOTICES_FOUND';
@@ -94,6 +94,16 @@ export const noticesUpdated = (
   type: 'NOTICES_UPDATED',
   payload,
   meta
+});
+
+export interface UpdateNoticeFailedAction extends ErrorAction {
+  type: 'UPDATE_NOTICE_FAILED';
+}
+
+export const updateNoticesFailed = (e: Error): UpdateNoticeFailedAction => ({
+  type: 'UPDATE_NOTICE_FAILED',
+  payload: e,
+  error: true
 });
 
 export interface ResourceLinkClickedAction extends BaseAction {

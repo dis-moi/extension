@@ -2,7 +2,7 @@ import React from 'react';
 import { put, takeLatest, select, call } from 'redux-saga/effects';
 import { render } from 'react-dom';
 import { go, replace } from 'connected-react-router';
-import { open, opened, closed } from 'app/actions/ui';
+import { open, opened, openFailed, closed, closeFailed } from 'app/actions/ui';
 import {
   isOpen as isNotificationOpen,
   isMounted as isNotificationMounted,
@@ -19,36 +19,44 @@ const iframe = create(theme.iframe.style);
 let contentDocument: Document;
 
 export function* openSaga() {
-  const isOpen = yield select(isNotificationOpen);
-  const isMounted = yield select(isNotificationMounted);
+  try {
+    const isOpen = yield select(isNotificationOpen);
+    const isMounted = yield select(isNotificationMounted);
 
-  if (!isOpen) {
-    const location = yield select(getPathname);
-    if (location) {
-      yield put(replace('/'));
+    if (!isOpen) {
+      const location = yield select(getPathname);
+      if (location) {
+        yield put(replace('/'));
+      }
+
+      if (isMounted && contentDocument.visibilityState === 'visible') {
+        show();
+      } else {
+        contentDocument = yield call(append, iframe);
+        const root = document.createElement('div');
+        contentDocument.body.appendChild(root);
+        const renderAppInIframe = () =>
+          render(<App contentDocument={contentDocument} />, root);
+        yield call(renderAppInIframe);
+      }
+
+      yield put(opened());
     }
-
-    if (isMounted && contentDocument.visibilityState === 'visible') {
-      show();
-    } else {
-      contentDocument = yield call(append, iframe);
-      const root = document.createElement('div');
-      contentDocument.body.appendChild(root);
-      const renderAppInIframe = () =>
-        render(<App contentDocument={contentDocument} />, root);
-      yield call(renderAppInIframe);
-    }
-
-    yield put(opened());
+  } catch (e) {
+    yield put(openFailed(e));
   }
 }
 
 export function* closeSaga() {
-  const isOpen = yield select(isNotificationOpen);
-  if (isOpen) {
-    hide();
-    yield put(go(-history.entries.length));
-    yield put(closed());
+  try {
+    const isOpen = yield select(isNotificationOpen);
+    if (isOpen) {
+      hide();
+      yield put(go(-history.entries.length));
+      yield put(closed());
+    }
+  } catch (e) {
+    yield put(closeFailed(e));
   }
 }
 
