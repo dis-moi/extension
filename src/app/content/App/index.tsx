@@ -3,7 +3,6 @@ import { Provider, connect } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router/immutable';
 import { ThemeProvider, StyleSheetManager } from 'styled-components';
-import { configureScope } from '@sentry/browser';
 import theme from '../../theme';
 import store, { history, State } from '../store';
 import GlobalStyle from '../GlobalStyle';
@@ -14,6 +13,7 @@ import Notice from './Notice';
 import Subscriptions from './Subscriptions';
 import Help from './Help';
 import { isOpen } from '../selectors';
+import { configureSentryScope } from '../../utils/sentry';
 
 const DELAY_BEFORE_SHOWING = process.env.NODE_ENV === 'production' ? 4000 : 10;
 
@@ -59,7 +59,7 @@ export default class App extends React.PureComponent<AppProps, AppState> {
 
   componentDidMount() {
     setTimeout(this.setLoaded, DELAY_BEFORE_SHOWING);
-    configureScope((scope) => {
+    configureSentryScope(scope => {
       scope.setTag('context', 'iframe');
     });
   }

@@ -8,10 +8,13 @@
   "scripts": {
     "start": "webpack --watch --progress --hot --env.hmr --mode=development --env.build=dev",
     "build:staging": "webpack --mode=production --env.build=staging",
+    "release:staging": "webpack --mode=production --env.build=staging --env.sentry",
     "build:firefox": "webpack --mode=production --env.build=firefox",
     "build:chromium": "webpack --mode=production --env.build=chromium",
     "build:production": "yarn build:chromium && yarn build:firefox",
+    "release:production": "yarn build:chromium --env.sentry && yarn build:firefox --env.sentry",
     "build": "yarn build:staging && yarn build:production",
+    "release": "yarn release:staging && yarn release:production",
     "clean": "rm -rf build",
     "test": "LMEM_BACKEND_ORIGIN='' NODE_ENV=test ts-mocha --paths test/app/*.ts test/app/**/*.ts",
     "lint": "yarn lint:ts && yarn lint:css",

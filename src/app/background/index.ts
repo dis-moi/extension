@@ -7,21 +7,15 @@ import {
   refreshMatchingContextsEvery
 } from 'app/actions/kraftBackend';
 import onInstalled from 'app/actions/install';
-import { init, configureScope } from '@sentry/browser';
+import { configureSentryScope, initSentry } from '../utils/sentry';
 import updateDraftRecommendations from 'app/actions/updateDraftRecommendations';
 import { getInstallationDetails } from './selectors/prefs';
 import { store } from './store';
 import fetchContentScript from './services/fetchContentScript';
 import { BackgroundState } from './reducers';
-import { version } from 'app/../../package.json';
 
-init({
-  dsn: process.env.SENTRY_DSN,
-  environment: process.env.NODE_ENV,
-  release: `${version}-${process.env.BUILD}`,
-});
-
-configureScope((scope) => {
+initSentry();
+configureSentryScope(scope => {
   scope.setTag('context', 'background');
 });
 
@@ -50,7 +44,7 @@ if (typeof heapAppId === 'string') {
       if (heap) {
         setUninstallURL(heap.userId);
 
-        configureScope((scope) => {
+        configureSentryScope(scope => {
           scope.setUser({ id: heap.userId });
         });
       }
