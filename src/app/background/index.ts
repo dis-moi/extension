@@ -8,10 +8,16 @@ import {
 } from 'app/actions/kraftBackend';
 import onInstalled from 'app/actions/install';
 import updateDraftNotices from 'app/actions/updateDraftNotices';
+import { configureSentryScope, initSentry } from '../utils/sentry';
 import { getInstallationDetails } from './selectors/prefs';
 import { store } from './store';
 import fetchContentScript from './services/fetchContentScript';
 import { BackgroundState } from './reducers';
+
+initSentry();
+configureSentryScope(scope => {
+  scope.setTag('context', 'background');
+});
 
 if (process.env.NODE_ENV !== 'production') {
   console.info('NODE_ENV', process.env.NODE_ENV);
@@ -35,7 +41,13 @@ if (typeof heapAppId === 'string') {
       console.warn('Could not load Heap Analytics', error);
     })
     .then(heap => {
-      if (heap) setUninstallURL(heap.userId);
+      if (heap) {
+        setUninstallURL(heap.userId);
+
+        configureSentryScope(scope => {
+          scope.setUser({ id: heap.userId });
+        });
+      }
     })
     .catch(error => {
       console.warn('Could not load set uninstall URL', error);

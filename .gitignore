@@ -14,3 +14,4 @@ platforms/
 .flooignore
 .ftppass
 storybook-static/*
+.sentryclirc
