@@ -19,7 +19,7 @@ const ENV = {
     UNINSTALL_ORIGIN: "'https://www.lmem.net/desinstallation'",
     HEAP_APPID: '"234457910"', // testing
     REFRESH_MC_INTERVAL: '5*60*1000',
-    SENTRY_DSN: '"https://12ed31b41955443480dbfcb5da3e3a33@sentry.io/1404898"',
+    SENTRY_DSN: '"https://12ed31b41955443480dbfcb5da3e3a33@sentry.io/1404898"'
   },
   chromium: {
     LMEM_BACKEND_ORIGIN: '"https://notices.lmem.net/api/v3/"',
@@ -27,14 +27,14 @@ const ENV = {
     REFRESH_MC_INTERVAL: '30*60*1000',
     ONBOARDING_ORIGIN: '"https://bienvenue.lmem.net?extensionInstalled"',
     HEAP_APPID: '"3705584166"', // production
-    SENTRY_DSN: '"https://12ed31b41955443480dbfcb5da3e3a33@sentry.io/1404898"',
+    SENTRY_DSN: '"https://12ed31b41955443480dbfcb5da3e3a33@sentry.io/1404898"'
   },
   firefox: {
     LMEM_BACKEND_ORIGIN: '"https://notices.lmem.net/api/v3/"',
     ONBOARDING_ORIGIN: '"https://bienvenue.lmem.net?extensionInstalled"',
     REFRESH_MC_INTERVAL: '30*60*1000',
     // No analytics with Firefox // HEAP_APPID: '"3705584166"',
-    SENTRY_DSN: '"https://12ed31b41955443480dbfcb5da3e3a33@sentry.io/1404898"',
+    SENTRY_DSN: '"https://12ed31b41955443480dbfcb5da3e3a33@sentry.io/1404898"'
   }
 };
 
@@ -57,7 +57,11 @@ module.exports = (env = {}, argv = {}, outputPath) => {
 
   const plugins = [
     new webpack.DefinePlugin({
-      'process.env': { ...ENV[env.build], BUILD: JSON.stringify(env.build) }
+      'process.env': {
+        ...ENV[env.build],
+        BUILD: JSON.stringify(env.build),
+        SENTRY_ENABLE: env.sentry ? 'true' : 'false'
+      }
     }),
     new HtmlWebpackPlugin({
       template: './views/background.pug',
@@ -71,14 +75,14 @@ module.exports = (env = {}, argv = {}, outputPath) => {
     new CopyWebpackPlugin(copyConfig)
   ];
 
-  if (env.build !== 'dev') {
+  if (env.sentry) {
     plugins.push(
       new SentryWebpackPlugin({
         include: `./build/${env.build}/js`,
         ignore: ['test.*.js*'],
-        release: `${version}-${env.build}`,
+        release: `${version}-${env.build}`
       })
-    )
+    );
   }
 
   if (!env.hmr) {
