@@ -6,7 +6,7 @@ import {
   dislikeNotice,
   undislikeNotice,
   readNotice
-} from 'app/actions/recommendations';
+} from 'app/actions/notices';
 import { close } from 'app/actions/ui';
 import { State } from '../../../store';
 import { DetailsProps } from './types';

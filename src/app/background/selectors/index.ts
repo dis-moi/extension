@@ -1,5 +1,5 @@
 import { findMatchingOffersAccordingToPreferences } from '../../lmem/matchingContext';
-import { getDrafRecommendations, getMatchingContexts } from './resources';
+import { getDraftNotices, getMatchingContexts } from './resources';
 import { BackgroundState } from '../reducers';
 
 export const findTriggeredContexts = (state: BackgroundState) => (
@@ -8,5 +8,5 @@ export const findTriggeredContexts = (state: BackgroundState) => (
   findMatchingOffersAccordingToPreferences(
     url,
     getMatchingContexts(state),
-    getDrafRecommendations(state)
+    getDraftNotices(state)
   );

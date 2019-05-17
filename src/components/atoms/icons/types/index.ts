@@ -1,22 +1,22 @@
 import { ComponentType } from 'react';
-import { NoticeType } from 'app/lmem/noticeType';
+import { Intention } from 'app/lmem/intention';
 // import Like from "./Like";
 import Approval from './Like';
 // import Dislike from "./Dislike";
 import Disapproval from './Dislike';
-import Tip from './Tip';
+import Information from './Information';
 import Alternative from './Alternative';
 import Other from './Other';
 
 interface Props {
   active?: boolean;
 }
-const TypesIcons: { [key in NoticeType]: ComponentType<Props> } = {
-  Approval,
-  Disapproval,
-  Tip,
-  Alternative,
-  Other
+const TypesIcons: { [key in Intention]: ComponentType<Props> } = {
+  approval: Approval,
+  disapproval: Disapproval,
+  information: Information,
+  alternative: Alternative,
+  other: Other
 };
 
 export default TypesIcons;

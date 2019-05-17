@@ -3,25 +3,25 @@ import { LMEM_BACKEND_ORIGIN } from '../../constants/origins';
 import TabChangeInfo = chrome.tabs.TabChangeInfo;
 import Tab = chrome.tabs.Tab;
 
-function isRecommendationBackendURL(url: string) {
+function isNoticeBackendURL(url: string) {
   const { origin, pathname, search } = new URL(url);
 
   return (
     origin === LMEM_BACKEND_ORIGIN &&
     pathname.includes('/admin') &&
     search.includes('action=list') &&
-    search.includes('entity=Recommendation')
+    search.includes('entity=Notice')
   );
 }
 
 export default function(
   tabs: any,
   contentCode: string,
-  updateDraftRecommendations: (msg: any) => void
+  updateDraftNotices: (msg: any) => void
 ) {
   // The onCreated and onUpdated events lead to too many calls by default
   // Let's debounce 2secs
-  const grabDraftRecommendations = debounce(
+  const grabDraftNotices = debounce(
     function(tabId: number) {
       tabs.executeScript(
         tabId,
@@ -36,7 +36,7 @@ export default function(
           tabPort.onMessage.addListener((msg: any) => {
             console.log('message from draft grabing content script', msg);
 
-            updateDraftRecommendations(msg);
+            updateDraftNotices(msg);
           });
         }
       );
@@ -46,16 +46,16 @@ export default function(
   );
 
   tabs.onCreated.addListener(({ id, url }: Tab) => {
-    if (url && id && isRecommendationBackendURL(url)) {
-      grabDraftRecommendations(id);
+    if (url && id && isNoticeBackendURL(url)) {
+      grabDraftNotices(id);
     }
   });
 
   tabs.onUpdated.addListener(
     (id: number, { status, url: newUrl }: TabChangeInfo, { url }: Tab) => {
       const u = newUrl || url;
-      if (status === 'loading' && u && isRecommendationBackendURL(u)) {
-        grabDraftRecommendations(id);
+      if (status === 'loading' && u && isNoticeBackendURL(u)) {
+        grabDraftNotices(id);
       }
     }
   );

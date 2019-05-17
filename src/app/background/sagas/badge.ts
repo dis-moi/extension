@@ -1,5 +1,5 @@
 import { takeLatest } from 'redux-saga/effects';
-import { NoticesUpdatedAction } from '../../actions/recommendations';
+import { NoticesUpdatedAction } from '../../actions/notices';
 import { BadgeTheme, updateBadge, resetBadge } from '../../lmem/badge';
 import { TabAction } from '../../actions';
 

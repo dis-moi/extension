@@ -3,7 +3,6 @@ import Notification from '../../../../../components/organisms/Notification';
 import NoticeDetails from '../../../../../components/organisms/NoticeDetails/NoticeDetails';
 import withConnect from './withConnect';
 import { DetailsProps } from './types';
-import { findType } from 'app/lmem/noticeType';
 
 export const Details = ({
   notice,
@@ -17,19 +16,11 @@ export const Details = ({
   notice ? (
     <Notification title="Détail de la bulle" hasNotices close={close}>
       <NoticeDetails
-        id={notice.id}
-        type={findType(notice.criteria)}
-        date="03 déc. 2018"
-        message={notice.description}
-        contributor={notice.contributor.name}
-        source={notice.resource.url}
+        notice={notice}
         like={like}
         unlike={unlike}
         dislike={dislike}
         undislike={undislike}
-        liked={notice.liked}
-        disliked={notice.disliked}
-        dismissed={notice.dismissed}
         view={view}
       />
     </Notification>

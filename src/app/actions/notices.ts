@@ -1,15 +1,15 @@
-import { EnhancedNotice } from 'app/lmem/notice';
+import { StatefulNotice } from 'app/lmem/notice';
 import { BaseAction, TabAction, TabMeta } from '.';
 
 export interface NoticesFoundAction extends TabAction {
   type: 'NOTICES_FOUND';
   payload: {
-    notices: EnhancedNotice[];
+    notices: StatefulNotice[];
   };
 }
 
 export const noticesFound = (
-  notices: EnhancedNotice[],
+  notices: StatefulNotice[],
   tab: number
 ): NoticesFoundAction => ({
   type: 'NOTICES_FOUND',
@@ -84,11 +84,11 @@ export const readNotice = (id: number): ReadNoticeAction => ({
 
 export interface NoticesUpdatedAction extends TabAction {
   type: 'NOTICES_UPDATED';
-  payload: EnhancedNotice[];
+  payload: StatefulNotice[];
 }
 
 export const noticesUpdated = (
-  payload: EnhancedNotice[],
+  payload: StatefulNotice[],
   meta: TabMeta
 ): NoticesUpdatedAction => ({
   type: 'NOTICES_UPDATED',

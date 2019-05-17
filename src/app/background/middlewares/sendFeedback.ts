@@ -1,22 +1,8 @@
 import { LMEM_BACKEND_ORIGIN } from '../../constants/origins';
 import { AppAction } from '../../actions';
 import { Dispatch } from 'redux';
-import {
-  FeedbackOnNoticeAction,
-  feedbackType
-} from '../../actions/recommendations';
-
-export function makeRecoFeedback(feedback: feedbackType, url: string) {
-  const datetime = new Date().toISOString();
-
-  return {
-    feedback,
-    contexts: {
-      datetime,
-      url
-    }
-  };
-}
+import { FeedbackOnNoticeAction, feedbackType } from '../../actions/notices';
+import postRating from '../../../api/postRating';
 
 /* eslint-disable indent, implicit-arrow-linebreak, no-multi-spaces */
 const isUserToNoticeAction = (
@@ -27,25 +13,14 @@ export default function() {
   return (next: Dispatch) => (action: AppAction) => {
     if (isUserToNoticeAction(action)) {
       const { id } = action.payload;
-      const reqUrl =
-        LMEM_BACKEND_ORIGIN + '/api/v2/recommendations/' + id + '/feedbacks';
-      new Promise<string>(resolve => {
-        chrome.tabs.query(
-          {
-            active: true,
-            currentWindow: true
-          },
-          ([selectedTab]) => resolve(selectedTab.url)
-        );
-      }).then((tabUrl: string) => {
-        const body = JSON.stringify(
-          makeRecoFeedback(action.payload.feedback, tabUrl)
-        );
-
-        fetch(reqUrl, { method: 'POST', body })
-          .then(response => console.log('RESPONSE', response))
-          .catch(error => console.error(`Error in ${reqUrl}`, error));
-      });
+      chrome.tabs.query(
+        { active: true, currentWindow: true },
+        ([selectedTab]) => {
+          if (selectedTab && selectedTab.url) {
+            postRating(id, selectedTab.url, action.payload.feedback);
+          }
+        }
+      );
     }
 
     return next(action);

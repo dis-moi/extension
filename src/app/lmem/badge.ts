@@ -1,4 +1,4 @@
-import { EnhancedNotice, isUnread } from './notice';
+import { StatefulNotice, isUnread } from './notice';
 
 export interface BadgeTheme {
   backgroundColor: {
@@ -10,14 +10,14 @@ export interface BadgeTheme {
 /**
  * Update text and background color of the badge based on the number of notices.
  *
- * @param {EnhancedNotice[]} notices
+ * @param {StatefulNotice[]} notices
  * @param {BadgeTheme} badgeTheme
  * @param {number} tabId Limits the change to when a particular tab is selected.
  *
  * @return {void}
  */
 export const updateBadge = (
-  notices: EnhancedNotice[],
+  notices: StatefulNotice[],
   badgeTheme: BadgeTheme,
   tabId?: number
 ): void => {

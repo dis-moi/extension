@@ -1,5 +1,4 @@
 import chai from 'chai';
-
 import prefsReducer from '../../src/app/background/reducers/prefs';
 import resourcesReducer from '../../src/app/background/reducers/resources';
 import { receivedMatchingContexts } from '../../src/app/actions/kraftBackend';
@@ -9,8 +8,9 @@ import {
   unlikeNotice,
   dislikeNotice,
   undislikeNotice,
-  undismissNotice
-} from '../../src/app/actions/recommendations';
+  undismissNotice,
+  readNotice
+} from '../../src/app/actions/notices';
 import { MatchingContext } from '../../src/app/lmem/matchingContext';
 
 const expect = chai.expect;
@@ -18,8 +18,8 @@ const expect = chai.expect;
 describe('background reducer', function() {
   it('initial state + receivedMatchingContexts => state with offers', () => {
     const matchingContexts: MatchingContext[] = [
-      { recommendation_url: 'http://1', url_regex: '/1/' },
-      { recommendation_url: 'http://2', url_regex: '/2/' }
+      { noticeUrl: 'http://1', urlRegex: '/1/', noticeId: 42 },
+      { noticeUrl: 'http://2', urlRegex: '/2/', noticeId: 42 }
     ];
     const action = receivedMatchingContexts(matchingContexts);
 
@@ -38,6 +38,7 @@ describe('background reducer', function() {
         dismissedNotices: [],
         likedNotices: [],
         dislikedNotices: [],
+        readNotices: [],
         installationDetails: { version: '0.1' }
       },
       action
@@ -54,6 +55,7 @@ describe('background reducer', function() {
         dismissedNotices: [],
         likedNotices: [],
         dislikedNotices: [],
+        readNotices: [],
         installationDetails: { version: '0.1' }
       },
       action
@@ -70,6 +72,7 @@ describe('background reducer', function() {
         dismissedNotices: [],
         likedNotices: [],
         dislikedNotices: [],
+        readNotices: [],
         installationDetails: { version: '0.1' }
       },
       action
@@ -86,6 +89,7 @@ describe('background reducer', function() {
         dismissedNotices: [42],
         likedNotices: [],
         dislikedNotices: [],
+        readNotices: [],
         installationDetails: { version: '0.1' }
       },
       action
@@ -102,6 +106,7 @@ describe('background reducer', function() {
         dismissedNotices: [],
         likedNotices: [42],
         dislikedNotices: [],
+        readNotices: [],
         installationDetails: { version: '0.1' }
       },
       action
@@ -118,11 +123,30 @@ describe('background reducer', function() {
         dismissedNotices: [],
         likedNotices: [],
         dislikedNotices: [42],
+        readNotices: [],
         installationDetails: { version: '0.1' }
       },
       action
     );
 
     expect(nextState.dislikedNotices).to.have.lengthOf(0);
+  });
+
+  it('read notice', () => {
+    const action = readNotice(42);
+
+    const nextState = prefsReducer(
+      {
+        dismissedNotices: [],
+        likedNotices: [],
+        dislikedNotices: [],
+        readNotices: [],
+        installationDetails: { version: '0.1' }
+      },
+      action
+    );
+
+    expect(nextState.readNotices).to.have.lengthOf(1);
+    expect(nextState.readNotices[0]).to.equal(42);
   });
 });

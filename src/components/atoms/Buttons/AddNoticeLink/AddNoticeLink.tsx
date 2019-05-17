@@ -30,6 +30,6 @@ const Button = styled(BorderButton)`
 export default ({ ...props }) => (
   <Button {...props}>
     <AddIcon />
-    Créer votre recommandation
+    Créer votre bulle
   </Button>
 );

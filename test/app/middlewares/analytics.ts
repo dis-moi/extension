@@ -2,7 +2,6 @@ import chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import { Action } from 'redux';
-
 import middleware from '../../../src/app/background/middlewares/analytics';
 
 const expect = chai.expect;

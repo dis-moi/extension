@@ -7,11 +7,11 @@ import {
 const expect = chai.expect;
 
 const offers: MatchingContext[] = [
-  { url_regex: 'www.samsung.com', recommendation_url: 'http://b' },
-  { url_regex: 'arrested.com', recommendation_url: 'http://b' }
+  { urlRegex: 'www.samsung.com', noticeUrl: 'http://b', noticeId: 42 },
+  { urlRegex: 'arrested.com', noticeUrl: 'http://b', noticeId: 42 }
 ];
-const draftRecommendations = [
-  { url_regex: 'www.wordpress.com', recommendation_url: 'http://b' }
+const draftNotices = [
+  { urlRegex: 'www.wordpress.com', noticeUrl: 'http://b', noticeId: 42 }
 ];
 
 const matchingURL = 'https://www.samsung.com/blabla';
@@ -21,9 +21,9 @@ const nonMatchingURL = 'https://soundcloud.com/capt-lovelace/meteo-marine';
 describe('findMatchingOffersAccordingToPreferences', function() {
   it('should be case insensitive', () => {
     const offersWithWeirdCase: MatchingContext[] = [
-      { url_regex: 's.*', recommendation_url: 'http://s' },
-      { url_regex: 'SamSung', recommendation_url: 'http://S' },
-      { url_regex: 'doesNotMatch', recommendation_url: 'http://d' }
+      { urlRegex: 's.*', noticeUrl: 'http://s', noticeId: 42 },
+      { urlRegex: 'SamSung', noticeUrl: 'http://S', noticeId: 42 },
+      { urlRegex: 'doesNotMatch', noticeUrl: 'http://d', noticeId: 42 }
     ];
 
     const matches = findMatchingOffersAccordingToPreferences(
@@ -42,9 +42,10 @@ describe('findMatchingOffersAccordingToPreferences', function() {
     it('should exclude matching exclusion of otherwise matching url', () => {
       const offersWithExclusion: MatchingContext[] = [
         {
-          url_regex: 'samsung',
-          exclude_url_regex: 'blabla',
-          recommendation_url: 'http://b'
+          urlRegex: 'samsung',
+          excludeUrlRegex: 'blabla',
+          noticeUrl: 'http://b',
+          noticeId: 42
         }
       ];
 
@@ -61,9 +62,10 @@ describe('findMatchingOffersAccordingToPreferences', function() {
     it('should not exclude non matching exclusion of matching url', () => {
       const offersWithExclusion = [
         {
-          url_regex: 'samsung',
-          exclude_url_regex: 'nono',
-          recommendation_url: 'http://b'
+          urlRegex: 'samsung',
+          excludeUrlRegex: 'nono',
+          noticeUrl: 'http://b',
+          noticeId: 42
         }
       ];
 
@@ -81,9 +83,10 @@ describe('findMatchingOffersAccordingToPreferences', function() {
     it('should exclude its matching context if regex is invalid', () => {
       const offersWithExclusion: MatchingContext[] = [
         {
-          url_regex: 'samsung',
-          exclude_url_regex: 'isNasty)',
-          recommendation_url: 'http://b'
+          urlRegex: 'samsung',
+          excludeUrlRegex: 'isNasty)',
+          noticeUrl: 'http://b',
+          noticeId: 42
         }, // SyntaxError: Invalid RegExp: Unmatched ')',
         ...offers
       ];
@@ -102,7 +105,7 @@ describe('findMatchingOffersAccordingToPreferences', function() {
 
   describe('invalid regex', () => {
     const nastyOffers = [
-      { url_regex: 'isNasty)', recommendation_url: 'http://b' }
+      { urlRegex: 'isNasty)', noticeUrl: 'http://b', noticeId: 42 }
     ].concat(offers); // SyntaxError: Invalid RegExp: Unmatched ')'
 
     it('should not screw up the matching engine', () => {
@@ -147,31 +150,33 @@ describe('findMatchingOffersAccordingToPreferences', function() {
     });
   });
 
-  describe('draft recommendations', () => {
-    it('should match a draft recommendation', () => {
+  describe('draft notices', () => {
+    it('should match a draft notice', () => {
       const matching = findMatchingOffersAccordingToPreferences(
         matchingDraftURL,
         offers,
-        draftRecommendations
+        draftNotices
       );
 
       expect(matching).to.be.an('array');
       expect(matching).to.be.of.length(1);
-      expect(matching[0]).to.equal(draftRecommendations[0]);
+      expect(matching[0]).to.equal(draftNotices[0]);
     });
 
     it('should favor draft previews over public offers', () => {
       const draftRec = {
-        url_regex: 'www.wordpress.com',
-        recommendation_url: 'http://b',
-        recommendation: {
+        urlRegex: 'www.wordpress.com',
+        noticeUrl: 'http://b',
+        noticeId: 42,
+        notice: {
           visibility: 'private'
         }
       };
       const publicRec = {
-        url_regex: 'www.wordpress.com',
-        recommendation_url: 'http://b',
-        recommendation: {
+        urlRegex: 'www.wordpress.com',
+        noticeUrl: 'http://b',
+        noticeId: 42,
+        notice: {
           visibility: 'public'
         }
       };

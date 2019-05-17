@@ -1,0 +1,5 @@
+### Get Notice 1
+GET https://staging-notices.lmem.net/api/v3/notices/15
+Accept: application/json
+
+###

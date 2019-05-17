@@ -1,86 +1,96 @@
 import { find } from 'ramda';
-import { Criterion } from './criterion';
-import { Editor } from './editors';
-
-export interface Alternative {
-  label: string;
-  url_to_redirect: string;
-}
-
-export interface Contributor {
-  image: string;
-  name: string;
-  organization: string;
-}
-
-export interface Resource {
-  author?: string;
-  editor: Editor;
-  label: string;
-  url: string;
-}
+import { Source } from './source';
+import { intentions, Intention } from './intention';
+import { Ratings } from './rating';
+import { Contributor } from './contributor';
 
 export interface Notice {
   id: number;
-  title: string;
-  description: string;
+  created: Date;
+  modified: Date;
+  intention: Intention;
   contributor: Contributor;
-  resource: Resource;
-  alternatives: Alternative[];
-  criteria: Criterion[];
-  filters?: Criterion[];
-  likes: number;
-  dislikes: number;
-  valid: boolean;
-  visibility: 'public';
+  message: string;
+  source?: Source;
+  ratings: Ratings;
+  visibility: 'public' | 'private';
 }
 
-export interface EnhancedNotice extends Notice {
+export interface NoticeState {
+  read: boolean;
   liked: boolean;
   justLiked?: boolean;
   disliked: boolean;
   justDisliked?: boolean;
   dismissed: boolean;
   justDismissed?: boolean;
-  read?: boolean;
+}
+
+export interface StatefulNotice extends Notice {
+  state: NoticeState;
 }
 
 /* eslint-disable no-nested-ternary */
 export type IgnoringReason = 'dislike' | 'dismiss' | 'other';
-export const isIgnored = (notice: EnhancedNotice): boolean =>
-  notice.dismissed || notice.disliked;
-export const ignoringReason = (notice: EnhancedNotice): IgnoringReason =>
-  notice.dismissed ? 'dismiss' : notice.disliked ? 'dislike' : 'other';
+export const isIgnored = (notice: StatefulNotice): boolean =>
+  notice.state.dismissed || notice.state.disliked;
+export const ignoringReason = (notice: StatefulNotice): IgnoringReason =>
+  notice.state.dismissed ? 'dismiss' : 'dislike';
 
-export const dismissNotice = (notice: EnhancedNotice): EnhancedNotice => ({
+export const dismissNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
-  dismissed: true,
-  justDismissed: true
+  state: {
+    ...notice.state,
+    dismissed: true,
+    justDismissed: true
+  }
 });
-export const undismissNotice = (notice: EnhancedNotice): EnhancedNotice => ({
+export const undismissNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
-  dismissed: false,
-  justDismissed: false
+  state: {
+    ...notice.state,
+    dismissed: false,
+    justDismissed: false
+  }
 });
-export const likeNotice = (notice: EnhancedNotice): EnhancedNotice => ({
+export const likeNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
-  liked: true,
-  justLiked: true
+  state: {
+    ...notice.state,
+    liked: true,
+    justLiked: true
+  }
 });
-export const unlikeNotice = (notice: EnhancedNotice): EnhancedNotice => ({
+export const unlikeNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
-  liked: false,
-  justLiked: false
+  state: {
+    ...notice.state,
+    liked: false,
+    justLiked: false
+  }
 });
-export const dislikeNotice = (notice: EnhancedNotice): EnhancedNotice => ({
+export const dislikeNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
-  disliked: true,
-  justDisliked: true
+  state: {
+    ...notice.state,
+    disliked: true,
+    justDisliked: true
+  }
 });
-export const undislikeNotice = (notice: EnhancedNotice): EnhancedNotice => ({
+export const undislikeNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
-  disliked: false,
-  justDisliked: false
+  state: {
+    ...notice.state,
+    disliked: false,
+    justDisliked: false
+  }
+});
+export const readNotice = (notice: StatefulNotice): StatefulNotice => ({
+  ...notice,
+  state: {
+    ...notice.state,
+    read: true
+  }
 });
 
 export const getNotice = <N extends Notice>(
@@ -93,42 +103,14 @@ export const isNoticeValid = (notice: {
 }): notice is Notice => {
   if (Object(notice) !== notice) return false;
 
-  const {
-    contributor,
-    title,
-    description,
-    resource,
-    criteria,
-    alternatives
-  } = notice;
+  const { contributor, message, intention } = notice;
 
   return (
-    typeof title === 'string' &&
-    typeof description === 'string' &&
-    Object(resource) === resource &&
-    typeof resource.label === 'string' &&
-    (!resource.author || typeof resource.author === 'string') &&
-    Object(resource.editor) === resource.editor &&
-    typeof resource.editor.label === 'string' &&
-    typeof resource.editor.url === 'string' &&
+    typeof message === 'string' &&
     Object(contributor) === contributor &&
     typeof contributor.name === 'string' &&
-    (!criteria ||
-      (Array.isArray(criteria) &&
-        criteria.every(
-          criterion =>
-            Object(criterion) === criterion &&
-            typeof criterion.label === 'string' &&
-            typeof criterion.slug === 'string'
-        ))) &&
-    (!alternatives ||
-      (Array.isArray(alternatives) &&
-        alternatives.every(
-          alternative =>
-            Object(alternative) === alternative &&
-            typeof alternative.label === 'string' &&
-            typeof alternative.url_to_redirect === 'string'
-        )))
+    typeof intention === 'string' &&
+    intentions.includes(intention as Intention)
   );
 };
 
@@ -142,12 +124,12 @@ export const warnIfNoticeInvalid = (notice: Notice): boolean => {
   return valid;
 };
 
-export const shouldNoticeBeShown = (notice: EnhancedNotice): boolean =>
-  (notice.valid &&
-    (!notice.dismissed || notice.justDismissed) &&
-    (!notice.disliked || notice.justDisliked)) ||
+export const shouldNoticeBeShown = (notice: StatefulNotice): boolean =>
+  (isNoticeValid(notice) &&
+    (!notice.state.dismissed || notice.state.justDismissed) &&
+    (!notice.state.disliked || notice.state.justDisliked)) ||
   false;
 
-export const isRead = (notice: EnhancedNotice) => notice.read === true;
+export const isRead = (notice: StatefulNotice) => notice.state.read;
 
-export const isUnread = (notice: EnhancedNotice) => !isRead(notice);
+export const isUnread = (notice: StatefulNotice) => !isRead(notice);

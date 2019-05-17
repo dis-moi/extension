@@ -1,13 +1,13 @@
 import React from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
-import Type from './Type';
+import Intention from './IntentionIcon';
 
 storiesOf('molecules/Type', module)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
-  .add('approval', () => <Type type="Approval" />)
-  .add('disapproval', () => <Type type="Disapproval" />)
-  .add('alternative', () => <Type type="Alternative" />)
-  .add('tip', () => <Type type="Tip" />)
-  .add('other', () => <Type type="Other" />)
-  .add('undefined / unknown ', () => <Type />);
+  .add('approval', () => <Intention intention="approval" />)
+  .add('disapproval', () => <Intention intention="disapproval" />)
+  .add('alternative', () => <Intention intention="alternative" />)
+  .add('information', () => <Intention intention="information" />)
+  .add('other', () => <Intention intention="other" />)
+  .add('undefined / unknown ', () => <Intention />);

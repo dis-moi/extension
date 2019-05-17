@@ -5,7 +5,7 @@ import { getNotice, isUnread, shouldNoticeBeShown } from 'app/lmem/notice';
 import { InstallationDetails } from 'app/lmem/installation';
 import { State } from '../store';
 
-export const getNotices = (state: State) => state.recommendations;
+export const getNotices = (state: State) => state.notices;
 
 export const getUnreadNotices = (state: State) =>
   getNotices(state).filter(isUnread);

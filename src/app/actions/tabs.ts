@@ -1,12 +1,10 @@
-import { Criteria } from 'app/lmem/criterion';
 import {
   ignoringReason,
-  EnhancedNotice,
+  StatefulNotice,
   IgnoringReason,
   Notice
 } from 'app/lmem/notice';
 import { InstallationDetails } from 'app/lmem/installation';
-import { Editor } from 'app/lmem/editors';
 import { MatchingContext } from 'app/lmem/matchingContext';
 import { BaseAction, TabAction } from '.';
 
@@ -110,7 +108,7 @@ export interface NoticeIgnoredAction extends BaseAction {
   payload: { notice: Notice; reason: IgnoringReason; url: string };
 }
 export const noticeIgnored = (
-  notice: EnhancedNotice,
+  notice: StatefulNotice,
   url: string
 ): NoticeIgnoredAction => ({
   type: 'NOTICE_IGNORED',

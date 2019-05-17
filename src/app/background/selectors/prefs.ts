@@ -1,8 +1,7 @@
 import {
   Notice,
-  EnhancedNotice,
+  StatefulNotice,
   isIgnored,
-  warnIfNoticeInvalid,
   shouldNoticeBeShown
 } from '../../lmem/notice';
 import { BackgroundState } from '../reducers';
@@ -23,32 +22,36 @@ export const getInitialContent = (state: BackgroundState) => ({
   installationDetails: getInstallationDetails(state)
 });
 
-export const getNoticeEnhancer = (state: BackgroundState) => {
+export const getAddStateToNotice = (state: BackgroundState) => {
   const dismissed = getDismissed(state);
   const liked = getLiked(state);
   const disliked = getDisliked(state);
   const read = getRead(state);
 
-  return (notice: Notice) => ({
+  return (notice: Notice): StatefulNotice => ({
     ...notice,
-    dismissed: dismissed.includes(notice.id),
-    liked: liked.includes(notice.id),
-    disliked: disliked.includes(notice.id),
-    valid: warnIfNoticeInvalid(notice),
-    read: read.includes(notice.id)
+    state: {
+      dismissed: dismissed.includes(notice.id),
+      liked: liked.includes(notice.id),
+      disliked: disliked.includes(notice.id),
+      read: read.includes(notice.id)
+    }
   });
 };
 
-export const getNoticesToDisplay = (notices: EnhancedNotice[]) => (
+export const getNoticesToDisplay = (notices: Notice[]) => (
   state: BackgroundState
-): EnhancedNotice[] =>
-  notices.map(getNoticeEnhancer(state)).filter(shouldNoticeBeShown);
+): StatefulNotice[] =>
+  notices.map(getAddStateToNotice(state)).filter(shouldNoticeBeShown);
 
-export const getDismissedNotices = (notices: EnhancedNotice[]) => (
+export const getDismissedNotices = (notices: Notice[]) => (
   state: BackgroundState
-): EnhancedNotice[] =>
-  notices.map(getNoticeEnhancer(state)).filter(notice => notice.dismissed);
+): StatefulNotice[] =>
+  notices
+    .map(getAddStateToNotice(state))
+    .filter(notice => notice.state.dismissed);
 
-export const getIgnoredNotices = (notices: EnhancedNotice[]) => (
+export const getIgnoredNotices = (notices: Notice[]) => (
   state: BackgroundState
-): EnhancedNotice[] => notices.map(getNoticeEnhancer(state)).filter(isIgnored);
+): StatefulNotice[] =>
+  notices.map(getAddStateToNotice(state)).filter(isIgnored);

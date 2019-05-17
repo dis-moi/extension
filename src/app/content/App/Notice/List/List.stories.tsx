@@ -4,33 +4,28 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, object } from '@storybook/addon-knobs/react';
 import { List } from '.';
-import { EnhancedNotice } from '../../../../lmem/notice';
+import { StatefulNotice } from '../../../../lmem/notice';
+import { subMonths, subWeeks } from 'date-fns';
 
-const notice: EnhancedNotice = {
+const notice: StatefulNotice = {
   id: 123,
-  title: 'title is going to be removed',
-  description: '<p>Description with a <a href="http://some.url">link</a></p>',
-  contributor: { name: 'John Doe', image: 'image', organization: 'org' },
-  criteria: [{ label: 'label', slug: 'slug' }],
-  resource: {
-    author: 'Jack Daniels',
-    editor: { id: 42, label: 'LMEM', url: 'url' },
-    label: 'label',
-    url: 'url'
+  intention: 'disapproval',
+  created: subMonths(new Date(), 1),
+  modified: subWeeks(new Date(), 1),
+  message: '<p>Description with a <a href="http://some.url">link</a></p>',
+  contributor: { id: 1, name: 'John Doe', image: 'image' },
+  source: {
+    label: 'LMEM',
+    url: 'http://www.lmem.net'
   },
-  alternatives: [
-    {
-      label: 'some alternative',
-      url_to_redirect: 'url'
-    }
-  ],
-  dismissed: false,
-  disliked: false,
-  liked: false,
-  dislikes: 0,
-  likes: 0,
-  valid: true,
-  visibility: 'public' as 'public'
+  visibility: 'public',
+  ratings: { dislikes: 0, likes: 0 },
+  state: {
+    dismissed: false,
+    disliked: false,
+    liked: false,
+    read: false
+  }
 };
 
 storiesOf('screens/Notice/List', module)

@@ -2,7 +2,6 @@ import { createMigrate } from 'redux-persist';
 import { MigrationManifest, PersistedState } from 'redux-persist/es/types';
 import * as R from 'ramda';
 import { Criteria } from '../../lmem/criterion';
-import { Editor } from '../../lmem/editors';
 import { InstallationDetails } from '../../lmem/installation';
 import { State } from '../../content/store';
 
@@ -10,14 +9,14 @@ interface StateV0V1orV2 extends PersistedState {
   prefs?: {
     websites: any;
     criteria: Criteria;
-    editors: { [id: number]: Editor };
+    editors: { [id: number]: any };
     dismissedRecos: number[];
     approvedRecos: number[];
     onInstalledDetails: InstallationDetails;
   };
   websites?: any;
   criteria?: Criteria;
-  editors?: { [id: number]: Editor };
+  editors?: { [id: number]: any };
   dismissedRecos?: number[];
   approvedRecos?: number[];
   dismissedNotices?: number[];
@@ -29,7 +28,7 @@ interface StateV0V1orV2 extends PersistedState {
 interface StateV1Prefs {
   websites: any;
   criteria: Criteria;
-  editors: { [id: number]: Editor };
+  editors: { [id: number]: any };
   dismissedRecos?: number[];
   approvedRecos?: number[];
   dismissedNotices?: number[];
@@ -44,7 +43,7 @@ interface StateV1orV2 extends PersistedState {
 interface StateV2Prefs {
   websites: any;
   criteria: Criteria;
-  editors: { [id: number]: Editor };
+  editors: { [id: number]: any };
   dismissedNotices: number[];
   likedNotices: number[];
   dislikedNotices: number[];

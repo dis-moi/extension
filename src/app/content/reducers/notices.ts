@@ -6,11 +6,12 @@ import {
   undislikeNotice,
   undismissNotice,
   unlikeNotice,
-  EnhancedNotice
+  StatefulNotice,
+  readNotice
 } from '../../lmem/notice';
 import { AppAction } from 'app/actions';
 
-export type NoticesState = EnhancedNotice[];
+export type NoticesState = StatefulNotice[];
 
 export default (state: NoticesState = [], action: AppAction): NoticesState => {
   switch (action.type) {
@@ -19,7 +20,7 @@ export default (state: NoticesState = [], action: AppAction): NoticesState => {
 
     case 'READ_NOTICE':
       return state.map(notice =>
-        notice.id === action.payload ? { ...notice, read: true } : notice
+        notice.id === action.payload ? readNotice(notice) : notice
       );
 
     case 'FEEDBACK_ON_NOTICE':
@@ -59,9 +60,12 @@ export default (state: NoticesState = [], action: AppAction): NoticesState => {
     case LOCATION_CHANGE:
       return state.map(notice => ({
         ...notice,
-        justDisliked: false,
-        justLiked: false,
-        justDismissed: false
+        state: {
+          ...notice.state,
+          justDisliked: false,
+          justLiked: false,
+          justDismissed: false
+        }
       }));
 
     default:

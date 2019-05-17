@@ -7,7 +7,7 @@ import {
   refreshMatchingContextsEvery
 } from 'app/actions/kraftBackend';
 import onInstalled from 'app/actions/install';
-import updateDraftRecommendations from 'app/actions/updateDraftRecommendations';
+import updateDraftNotices from 'app/actions/updateDraftNotices';
 import { getInstallationDetails } from './selectors/prefs';
 import { store } from './store';
 import fetchContentScript from './services/fetchContentScript';
@@ -47,9 +47,9 @@ if (typeof heapAppId === 'string') {
 }
 
 // Load content code when the extension is loaded
-fetchContentScript('/js/grabDraftRecommendations.js').then(contentCode =>
+fetchContentScript('/js/grabDraftNotices.js').then(contentCode =>
   prepareDraftPreview(chrome.tabs, contentCode, (draftOffers: {}) =>
-    store.dispatch(updateDraftRecommendations(draftOffers))
+    store.dispatch(updateDraftNotices(draftOffers))
   )
 );
 
