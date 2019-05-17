@@ -48,7 +48,7 @@ import {
 } from '../../actions/tabsLifecycle';
 import * as R from 'ramda';
 import { MatchingContext } from '../../lmem/matchingContext';
-import { EnhancedNotice, Notice, warnIfNoticeInvalid } from '../../lmem/notice';
+import { StatefulNotice, Notice, warnIfNoticeInvalid } from '../../lmem/notice';
 import sendToTab from '../services/sendToTab';
 import { AppAction } from '../../actions/';
 import { fetchNotices } from '../../../api/fetchNotice';
@@ -93,14 +93,14 @@ export const contextTriggeredSaga = function*({
     const notices = yield call(fetchNotices, toFetch);
     const validNotices: Notice[] = notices.filter(warnIfNoticeInvalid);
 
-    const noticesToShow: EnhancedNotice[] = yield select(
+    const noticesToShow: StatefulNotice[] = yield select(
       getNoticesToDisplay(validNotices)
     );
     yield all(
       noticesToShow.map(notice => put(noticeDisplayed(notice, trigger)))
     );
 
-    const ignoredNotices: EnhancedNotice[] = yield select(
+    const ignoredNotices: StatefulNotice[] = yield select(
       getIgnoredNotices(validNotices)
     );
     yield all(

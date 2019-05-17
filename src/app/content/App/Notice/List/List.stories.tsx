@@ -4,10 +4,10 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, object } from '@storybook/addon-knobs/react';
 import { List } from '.';
-import { EnhancedNotice } from '../../../../lmem/notice';
+import { StatefulNotice } from '../../../../lmem/notice';
 import { subMonths, subWeeks } from 'date-fns';
 
-const notice: EnhancedNotice = {
+const notice: StatefulNotice = {
   id: 123,
   intention: 'disapproval',
   created: subMonths(new Date(), 1),
@@ -20,7 +20,7 @@ const notice: EnhancedNotice = {
   },
   visibility: 'public',
   ratings: { dislikes: 0, likes: 0 },
-  status: {
+  state: {
     dismissed: false,
     disliked: false,
     liked: false,
@@ -44,10 +44,7 @@ storiesOf('screens/Notice/List', module)
       close={action('close')}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
-      notices={[
-        notice,
-        { ...notice, status: { ...notice.status, read: true } }
-      ]}
+      notices={[notice, { ...notice, state: { ...notice.state, read: true } }]}
     />
   ))
   .add('empty', () => (

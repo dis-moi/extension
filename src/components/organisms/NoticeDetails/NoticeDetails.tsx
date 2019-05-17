@@ -13,12 +13,12 @@ import DetailsDislike from './DetailsDislike';
 import Message from './Message';
 import Feedbacks from './Feedbacks';
 import Date from './Date';
-import { EnhancedNotice } from '../../../app/lmem/notice';
+import { StatefulNotice } from '../../../app/lmem/notice';
 import { format } from 'date-fns';
 import IntentionIcon from '../../molecules/Type/IntentionIcon';
 
 interface NoticeDetailsProps {
-  notice: EnhancedNotice;
+  notice: StatefulNotice;
   like: (id: number) => void;
   unlike: (id: number) => void;
   dislike: (id: number) => void;
@@ -30,7 +30,7 @@ class NoticeDetails extends PureComponent<
 > {
   handleLikeClick = () => {
     const { notice, like, unlike } = this.props;
-    if (notice.status.liked) {
+    if (notice.state.liked) {
       unlike(notice.id);
     } else {
       like(notice.id);
@@ -41,7 +41,7 @@ class NoticeDetails extends PureComponent<
     const {
       notice: {
         id,
-        status: { disliked }
+        state: { disliked }
       },
       dislike,
       undislike
@@ -71,7 +71,7 @@ class NoticeDetails extends PureComponent<
         created,
         contributor,
         source,
-        status: { liked, disliked, dismissed }
+        state: { liked, disliked, dismissed }
       }
     } = this.props;
 

@@ -6,11 +6,11 @@ import Content from './Content';
 import Deleted from './Deleted';
 import DeleteButton from './DeleteButton';
 import Title from './Title';
-import { EnhancedNotice } from '../../../app/lmem/notice';
+import { StatefulNotice } from '../../../app/lmem/notice';
 import IntentionIcon from '../../molecules/Type/IntentionIcon';
 
 interface Props {
-  notice: EnhancedNotice;
+  notice: StatefulNotice;
   dismiss: (id: number) => void;
   undismiss: (id: number) => void;
 }
@@ -38,7 +38,7 @@ export default class Notice extends PureComponent<Props> {
         intention,
         message,
         contributor,
-        status: { dismissed, justDismissed, disliked, justDisliked, read }
+        state: { dismissed, justDismissed, disliked, justDisliked, read }
       }
     } = this.props;
     return (

@@ -16,77 +16,79 @@ export interface Notice {
   visibility: 'public' | 'private';
 }
 
-export interface EnhancedNotice extends Notice {
-  status: {
-    read: boolean;
-    liked: boolean;
-    justLiked?: boolean;
-    disliked: boolean;
-    justDisliked?: boolean;
-    dismissed: boolean;
-    justDismissed?: boolean;
-  };
+export interface NoticeState {
+  read: boolean;
+  liked: boolean;
+  justLiked?: boolean;
+  disliked: boolean;
+  justDisliked?: boolean;
+  dismissed: boolean;
+  justDismissed?: boolean;
+}
+
+export interface StatefulNotice extends Notice {
+  state: NoticeState;
 }
 
 /* eslint-disable no-nested-ternary */
 export type IgnoringReason = 'dislike' | 'dismiss' | 'other';
-export const isIgnored = (notice: EnhancedNotice): boolean =>
-  notice.status.dismissed || notice.status.disliked;
-export const ignoringReason = (notice: EnhancedNotice): IgnoringReason =>
-  notice.status.dismissed ? 'dismiss' : 'dislike';
+export const isIgnored = (notice: StatefulNotice): boolean =>
+  notice.state.dismissed || notice.state.disliked;
+export const ignoringReason = (notice: StatefulNotice): IgnoringReason =>
+  notice.state.dismissed ? 'dismiss' : 'dislike';
 
-export const dismissNotice = (notice: EnhancedNotice): EnhancedNotice => ({
+export const dismissNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
-  status: {
-    ...notice.status,
+  state: {
+    ...notice.state,
     dismissed: true,
     justDismissed: true
   }
 });
-export const undismissNotice = (notice: EnhancedNotice): EnhancedNotice => ({
+export const undismissNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
-  status: {
-    ...notice.status,
+  state: {
+    ...notice.state,
     dismissed: false,
     justDismissed: false
   }
 });
-export const likeNotice = (notice: EnhancedNotice): EnhancedNotice => ({
+export const likeNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
-  status: {
-    ...notice.status,
+  state: {
+    ...notice.state,
     liked: true,
     justLiked: true
   }
 });
-export const unlikeNotice = (notice: EnhancedNotice): EnhancedNotice => ({
+export const unlikeNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
-  status: {
-    ...notice.status,
+  state: {
+    ...notice.state,
     liked: false,
     justLiked: false
   }
 });
-export const dislikeNotice = (notice: EnhancedNotice): EnhancedNotice => ({
+export const dislikeNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
-  status: {
-    ...notice.status,
+  state: {
+    ...notice.state,
     disliked: true,
     justDisliked: true
   }
 });
-export const undislikeNotice = (notice: EnhancedNotice): EnhancedNotice => ({
+export const undislikeNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
-  status: {
-    ...notice.status,
+  state: {
+    ...notice.state,
     disliked: false,
     justDisliked: false
   }
 });
-export const readNotice = (notice: EnhancedNotice): EnhancedNotice => ({
+export const readNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
-  status: {
-    ...notice.status,
+  state: {
+    ...notice.state,
     read: true
   }
 });
@@ -122,12 +124,12 @@ export const warnIfNoticeInvalid = (notice: Notice): boolean => {
   return valid;
 };
 
-export const shouldNoticeBeShown = (notice: EnhancedNotice): boolean =>
+export const shouldNoticeBeShown = (notice: StatefulNotice): boolean =>
   (isNoticeValid(notice) &&
-    (!notice.status.dismissed || notice.status.justDismissed) &&
-    (!notice.status.disliked || notice.status.justDisliked)) ||
+    (!notice.state.dismissed || notice.state.justDismissed) &&
+    (!notice.state.disliked || notice.state.justDisliked)) ||
   false;
 
-export const isRead = (notice: EnhancedNotice) => notice.status.read;
+export const isRead = (notice: StatefulNotice) => notice.state.read;
 
-export const isUnread = (notice: EnhancedNotice) => !isRead(notice);
+export const isUnread = (notice: StatefulNotice) => !isRead(notice);

@@ -1,6 +1,6 @@
 import {
   Notice,
-  EnhancedNotice,
+  StatefulNotice,
   isIgnored,
   shouldNoticeBeShown
 } from '../../lmem/notice';
@@ -22,15 +22,15 @@ export const getInitialContent = (state: BackgroundState) => ({
   installationDetails: getInstallationDetails(state)
 });
 
-export const getNoticeEnhancer = (state: BackgroundState) => {
+export const getAddStateToNotice = (state: BackgroundState) => {
   const dismissed = getDismissed(state);
   const liked = getLiked(state);
   const disliked = getDisliked(state);
   const read = getRead(state);
 
-  return (notice: Notice): EnhancedNotice => ({
+  return (notice: Notice): StatefulNotice => ({
     ...notice,
-    status: {
+    state: {
       dismissed: dismissed.includes(notice.id),
       liked: liked.includes(notice.id),
       disliked: disliked.includes(notice.id),
@@ -41,16 +41,17 @@ export const getNoticeEnhancer = (state: BackgroundState) => {
 
 export const getNoticesToDisplay = (notices: Notice[]) => (
   state: BackgroundState
-): EnhancedNotice[] =>
-  notices.map(getNoticeEnhancer(state)).filter(shouldNoticeBeShown);
+): StatefulNotice[] =>
+  notices.map(getAddStateToNotice(state)).filter(shouldNoticeBeShown);
 
 export const getDismissedNotices = (notices: Notice[]) => (
   state: BackgroundState
-): EnhancedNotice[] =>
+): StatefulNotice[] =>
   notices
-    .map(getNoticeEnhancer(state))
-    .filter(notice => notice.status.dismissed);
+    .map(getAddStateToNotice(state))
+    .filter(notice => notice.state.dismissed);
 
 export const getIgnoredNotices = (notices: Notice[]) => (
   state: BackgroundState
-): EnhancedNotice[] => notices.map(getNoticeEnhancer(state)).filter(isIgnored);
+): StatefulNotice[] =>
+  notices.map(getAddStateToNotice(state)).filter(isIgnored);

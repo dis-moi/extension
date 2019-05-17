@@ -1,6 +1,6 @@
 import {
   ignoringReason,
-  EnhancedNotice,
+  StatefulNotice,
   IgnoringReason,
   Notice
 } from 'app/lmem/notice';
@@ -108,7 +108,7 @@ export interface NoticeIgnoredAction extends BaseAction {
   payload: { notice: Notice; reason: IgnoringReason; url: string };
 }
 export const noticeIgnored = (
-  notice: EnhancedNotice,
+  notice: StatefulNotice,
   url: string
 ): NoticeIgnoredAction => ({
   type: 'NOTICE_IGNORED',

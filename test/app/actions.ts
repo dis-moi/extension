@@ -13,12 +13,12 @@ import {
   noticeIgnored
 } from '../../src/app/actions/tabs';
 import { MatchingContext } from '../../src/app/lmem/matchingContext';
-import { EnhancedNotice } from '../../src/app/lmem/notice';
+import { StatefulNotice } from '../../src/app/lmem/notice';
 
 const expect = chai.expect;
 chai.use(sinonChai);
 
-const notice: EnhancedNotice = {
+const notice: StatefulNotice = {
   id: 1,
   intention: 'approval',
   message: 'This is a notice',
@@ -32,7 +32,7 @@ const notice: EnhancedNotice = {
     dislikes: 0,
     likes: 0
   },
-  status: {
+  state: {
     liked: false,
     disliked: false,
     dismissed: false,
@@ -81,9 +81,9 @@ describe('background actions', function() {
 
   it('noticeIgnored when notice dismissed', () => {
     const trigger = 'http://trigger';
-    const dismissedNotice: EnhancedNotice = {
+    const dismissedNotice: StatefulNotice = {
       ...notice,
-      status: { dismissed: true, liked: false, disliked: false, read: false }
+      state: { dismissed: true, liked: false, disliked: false, read: false }
     };
     const action = noticeIgnored(dismissedNotice, trigger);
 

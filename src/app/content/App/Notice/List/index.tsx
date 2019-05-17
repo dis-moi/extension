@@ -4,17 +4,17 @@ import NoticeItem from 'components/organisms/Notice/Notice';
 import AddNotice from 'components/molecules/AddNotice';
 import NoNotice from './NoNotice';
 import withConnect from './withConnect';
-import { EnhancedNotice } from '../../../../lmem/notice';
+import { StatefulNotice } from '../../../../lmem/notice';
 
 export interface Props {
-  notices: EnhancedNotice[];
+  notices: StatefulNotice[];
   dismiss: (id: number) => void;
   undismiss: (id: number) => void;
   close?: () => void;
 }
 export const List = ({ notices, dismiss, undismiss, close }: Props) => (
   <Notification title="Bulles pour cette page" hasNotices close={close}>
-    {notices.slice(0, 2).map((notice: EnhancedNotice) => (
+    {notices.slice(0, 2).map((notice: StatefulNotice) => (
       <NoticeItem
         key={notice.id}
         notice={notice}

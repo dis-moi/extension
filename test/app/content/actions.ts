@@ -6,11 +6,11 @@ import {
   likeNotice
 } from '../../../src/app/actions/notices';
 import { init } from '../../../src/app/actions/tabs';
-import { EnhancedNotice } from '../../../src/app/lmem/notice';
+import { StatefulNotice } from '../../../src/app/lmem/notice';
 
 const expect = chai.expect;
 
-const notice1: EnhancedNotice = {
+const notice1: StatefulNotice = {
   id: 1,
   intention: 'approval',
   message: 'This is a notice',
@@ -21,7 +21,7 @@ const notice1: EnhancedNotice = {
   contributor: { id: 1, name: 'Jalil', image: '' },
   visibility: 'public',
   ratings: { dislikes: 0, likes: 0 },
-  status: { disliked: false, dismissed: false, liked: false, read: false },
+  state: { disliked: false, dismissed: false, liked: false, read: false },
   created: new Date(),
   modified: new Date()
 };

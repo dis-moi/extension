@@ -3,10 +3,10 @@ import { MemoryRouter as Router } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Notice from './Notice';
-import { EnhancedNotice } from '../../../app/lmem/notice';
+import { StatefulNotice } from '../../../app/lmem/notice';
 import { subWeeks, subMonths } from 'date-fns';
 
-const baseNotice: EnhancedNotice = {
+const baseNotice: StatefulNotice = {
   id: 123,
   intention: 'approval',
   created: subMonths(new Date(), 1),
@@ -15,7 +15,7 @@ const baseNotice: EnhancedNotice = {
   ratings: { likes: 42, dislikes: 2 },
   contributor: { id: 1, name: 'Jalil' },
   visibility: 'public',
-  status: {
+  state: {
     liked: false,
     dismissed: false,
     disliked: false,
@@ -64,7 +64,7 @@ storiesOf('organisms/Notice', module)
     <Notice
       notice={{
         ...baseNotice,
-        status: { ...baseNotice.status, dismissed: true }
+        state: { ...baseNotice.state, dismissed: true }
       }}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
@@ -74,7 +74,7 @@ storiesOf('organisms/Notice', module)
     <Notice
       notice={{
         ...baseNotice,
-        status: { ...baseNotice.status, read: true }
+        state: { ...baseNotice.state, read: true }
       }}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
