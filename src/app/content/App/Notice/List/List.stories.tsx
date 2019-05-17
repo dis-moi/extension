@@ -31,27 +31,69 @@ const notice: StatefulNotice = {
 storiesOf('screens/Notice/List', module)
   .addDecorator(withKnobs)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
-  .add('2 notices', () => (
-    <List
-      close={action('close')}
-      dismiss={action('dismiss')}
-      undismiss={action('undismiss')}
-      notices={[notice, notice]}
-    />
-  ))
-  .add('1 read', () => (
-    <List
-      close={action('close')}
-      dismiss={action('dismiss')}
-      undismiss={action('undismiss')}
-      notices={[notice, { ...notice, state: { ...notice.state, read: true } }]}
-    />
-  ))
-  .add('empty', () => (
-    <List
-      close={action('close')}
-      dismiss={action('dismiss')}
-      undismiss={action('undismiss')}
-      notices={[]}
-    />
-  ));
+  .add('1 notice', () => {
+    const notices = object('Notices', [notice]);
+
+    return (
+      <List
+        close={action('close')}
+        dismiss={action('dismiss')}
+        undismiss={action('undismiss')}
+        notices={notices}
+      />
+    );
+  })
+  .add('2 notices', () => {
+    const notices = object('Notices', [notice, notice]);
+
+    return (
+      <List
+        close={action('close')}
+        dismiss={action('dismiss')}
+        undismiss={action('undismiss')}
+        notices={notices}
+      />
+    );
+  })
+  .add('1 read', () => {
+    const notices = object('Notices', [notice, { ...notice, read: true }]);
+
+    return (
+      <List
+        close={action('close')}
+        dismiss={action('dismiss')}
+        undismiss={action('undismiss')}
+        notices={notices}
+      />
+    );
+  })
+  .add('empty', () => {
+    const notices = object('Notices', []);
+
+    return (
+      <List
+        close={action('close')}
+        dismiss={action('dismiss')}
+        undismiss={action('undismiss')}
+        notices={notices}
+      />
+    );
+  })
+  .add('2 lines excerpt', () => {
+    const notices = object('Notices', [
+      {
+        ...notice,
+        description:
+          'dazd zazaddd dddddd ddddd dddd dddddd ddd ddddd dddddddd dd'
+      }
+    ]);
+
+    return (
+      <List
+        close={action('close')}
+        dismiss={action('dismiss')}
+        undismiss={action('undismiss')}
+        notices={notices}
+      />
+    );
+  });
