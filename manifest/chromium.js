@@ -6,6 +6,7 @@ module.exports = {
   content_security_policy: csp({
     directives: {
       'default-src': ['https://reco2bulle.lmem.net'],
+      'connect-src': ['https://sentry.io/api'],
       'script-src': [
         "'self'",
         'https://heapanalytics.com',
