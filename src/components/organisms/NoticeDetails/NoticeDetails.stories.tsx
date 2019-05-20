@@ -17,7 +17,11 @@ const baseNotice: StatefulNotice = {
   ratings: { likes: 42, dislikes: 2 },
   contributor: { id: 1, name: 'Jalil' },
   visibility: 'public',
-  source: { label: 'LMEM', url: 'https://blogs.mediapart.fr/thomas-coutrot/blog/040916/leconomie-est-vraiment-un-sport-de-combat' },
+  source: {
+    label: 'LMEM',
+    url:
+      'https://blogs.mediapart.fr/thomas-coutrot/blog/040916/leconomie-est-vraiment-un-sport-de-combat'
+  },
   state: {
     liked: false,
     dismissed: false,

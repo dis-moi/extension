@@ -15,6 +15,7 @@ import Date from './Date';
 import { StatefulNotice } from '../../../app/lmem/notice';
 import { format } from 'date-fns';
 import IntentionIcon from '../../molecules/Type/IntentionIcon';
+import { FeedbackOnNoticeAction } from '../../../app/actions/notices';
 
 interface NoticeDetailsProps {
   notice: StatefulNotice;

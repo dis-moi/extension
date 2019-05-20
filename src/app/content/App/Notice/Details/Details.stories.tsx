@@ -1,37 +1,49 @@
 import React from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
-import { Details } from '.';
 import { action } from '@storybook/addon-actions';
+import {
+  withKnobs,
+  text,
+  select,
+  date,
+  number,
+  boolean
+} from '@storybook/addon-knobs';
+import Faker from 'faker';
+import {
+  defaultSourceUrl,
+  generateStatefulNotice
+} from '../../../../../../test/fakers/generateNotice';
+import { Details } from '.';
+import { intentions } from '../../../../lmem/intention';
+import { subMonths } from 'date-fns';
+
+const defaultContributorName = Faker.name.findName();
+const defaultMessage = Faker.lorem.paragraph(3);
+const defaultDate = subMonths(new Date(), 1);
 
 storiesOf('screens/Notice/Details', module)
+  .addDecorator(withKnobs)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
   .add('default', () => (
     <Details
-      notice={{
-        id: 42,
-        title: 'Title will be removed',
-        description: "This is the notice's message. It can be short or long.",
-        visibility: 'public',
-        alternatives: [],
-        contributor: { name: 'John Doe', organization: 'ORG', image: 'image' },
-        resource: {
-          author: 'author',
-          label: 'resource',
-          url: 'http://w',
-          editor: { id: 1, label: 'editor', url: 'http://x' }
-        },
-        criteria: [],
-        liked: false,
-        likes: 12,
-        disliked: false,
-        dislikes: 1,
-        dismissed: false,
-        valid: true
-      }}
+      notice={generateStatefulNotice({
+        contributor: text('contributor', defaultContributorName),
+        intention: select('intention', intentions, 'approval'),
+        message: `<p>${text('message', defaultMessage)}</p>`,
+        sourceUrl: text('source', defaultSourceUrl),
+        created: date('created', defaultDate),
+        likes: number('likes', 42),
+        dislikes: number('dislikes', 2),
+        liked: boolean('liked', false),
+        disliked: boolean('disliked', false)
+      })}
       like={action('like')}
       unlike={action('unlike')}
       dislike={action('dislike')}
       undislike={action('undislike')}
+      view={action('view')}
+      close={action('close')}
     />
   ));

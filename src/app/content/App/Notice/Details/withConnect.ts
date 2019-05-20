@@ -5,19 +5,34 @@ import {
   unlikeNotice,
   dislikeNotice,
   undislikeNotice,
-  readNotice
+  readNotice,
+  FeedbackOnNoticeAction
 } from 'app/actions/notices';
 import { close } from 'app/actions/ui';
 import { State } from '../../../store';
 import { getNoticeById } from '../../../selectors';
 import { DetailsProps } from './types';
+import { StatefulNotice } from '../../../../lmem/notice';
+
+export interface DetailsStateProps {
+  notice?: StatefulNotice;
+}
 
 const mapStateToProps = (
   state: State,
   props: DetailsProps & RouteComponentProps
-) => ({
+): DetailsStateProps | undefined => ({
   notice: getNoticeById(state, props)
 });
+
+export interface DetailsDispatchProps {
+  like: (id: number) => void;
+  unlike: (id: number) => void;
+  dislike: (id: number) => void;
+  undislike: (id: number) => void;
+  view: (id: number) => void;
+  close: () => void;
+}
 
 const mapDispatchToProps = {
   like: likeNotice,
