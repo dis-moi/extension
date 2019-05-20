@@ -71,6 +71,7 @@ class NoticeDetails extends PureComponent<
         created,
         contributor,
         source,
+        ratings: { likes, dislikes },
         state: { liked, disliked, dismissed }
       }
     } = this.props;
@@ -94,9 +95,11 @@ class NoticeDetails extends PureComponent<
           <Feedbacks>
             <Button onClick={this.handleLikeClick}>
               <Like active={liked} />
+              {likes}
             </Button>
             <Button onClick={this.handleDislikeClick}>
               <Dislike active={disliked} />
+              {dislikes}
             </Button>
           </Feedbacks>
 
