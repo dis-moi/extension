@@ -18,7 +18,7 @@ export const loadHeap = (appId: string): Promise<Heap> => {
 
   return new Promise(resolve => {
     (function heapLoader() {
-      if (heap && heap.loaded && heap.userId) resolve(heap);
+      if (win.heap && win.heap.loaded && win.heap.userId) resolve(win.heap);
       else setTimeout(heapLoader, 100);
     })();
   });

@@ -7,7 +7,10 @@ module.exports = {
   content_security_policy: csp({
     directives: {
       'default-src': ['https://staging-notices.lmem.net'],
-      'connect-src': ['https://sentry.io/api'],
+      'connect-src': [
+        'https://staging-notices.lmem.net',
+        'https://sentry.io/api/*'
+      ],
       'script-src': [
         "'self'",
         "'unsafe-eval'",
