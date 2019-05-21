@@ -3,38 +3,34 @@ import { MemoryRouter as Router } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import NoticeDetails from './NoticeDetails';
-import { StatefulNotice } from '../../../app/lmem/notice';
 import { subMonths, subWeeks } from 'date-fns';
+import Faker from 'faker';
+import {
+  defaultSourceUrl,
+  generateStatefulNotice
+} from '../../../../test/fakers/generateNotice';
+import { boolean, date, number, select, text } from '@storybook/addon-knobs';
+import { intentions } from '../../../app/lmem/intention';
 
-const baseNotice: StatefulNotice = {
-  id: 123,
-  intention: 'approval',
-  created: subMonths(new Date(), 1),
-  modified: subWeeks(new Date(), 1),
-  message: `
-<p>L’économie est (vraiment) un sport de combat : “La boule puante de MM. Cahuc et Zylberberg contre le “négationnisme” des économistes critiques le confirme : le combat idéologique tombe parfois dans le caniveau. Depuis vingt ans pourtant, s’est construit en France une contre-expertise économique crédible qui veut fournir aux dominés des outils pour penser (et résister à) la pseudo” construit en France une contre-expertise</p>
-`,
-  ratings: { likes: 42, dislikes: 2 },
-  contributor: { id: 1, name: 'Jalil' },
-  visibility: 'public',
-  source: {
-    label: 'LMEM',
-    url:
-      'https://blogs.mediapart.fr/thomas-coutrot/blog/040916/leconomie-est-vraiment-un-sport-de-combat'
-  },
-  state: {
-    liked: false,
-    dismissed: false,
-    disliked: false,
-    read: false
-  }
-};
+const defaultContributorName = Faker.name.findName();
+const defaultMessage = Faker.lorem.paragraph(3);
+const defaultDate = subMonths(new Date(), 1);
 
 storiesOf('organisms/NoticeDetails', module)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
   .add('Approval', () => (
     <NoticeDetails
-      notice={baseNotice}
+      notice={generateStatefulNotice({
+        contributor: text('contributor', defaultContributorName),
+        intention: 'approval',
+        message: `<p>${text('message', defaultMessage)}</p>`,
+        sourceUrl: text('source', defaultSourceUrl),
+        created: date('created', defaultDate),
+        likes: number('likes', 42),
+        dislikes: number('dislikes', 2),
+        liked: boolean('liked', false),
+        disliked: boolean('disliked', false)
+      })}
       like={action('like')}
       unlike={action('unlike')}
       dislike={action('dislike')}
@@ -44,10 +40,7 @@ storiesOf('organisms/NoticeDetails', module)
   ))
   .add('Dismissed', () => (
     <NoticeDetails
-      notice={{
-        ...baseNotice,
-        state: { ...baseNotice.state, dismissed: true }
-      }}
+      notice={generateStatefulNotice({ dismissed: true })}
       like={action('like')}
       unlike={action('unlike')}
       dislike={action('dislike')}
@@ -57,10 +50,7 @@ storiesOf('organisms/NoticeDetails', module)
   ))
   .add('Disliked', () => (
     <NoticeDetails
-      notice={{
-        ...baseNotice,
-        state: { ...baseNotice.state, disliked: true }
-      }}
+      notice={generateStatefulNotice({ disliked: true })}
       like={action('like')}
       unlike={action('unlike')}
       dislike={action('dislike')}
@@ -70,10 +60,7 @@ storiesOf('organisms/NoticeDetails', module)
   ))
   .add('No source', () => (
     <NoticeDetails
-      notice={{
-        ...baseNotice,
-        source: undefined
-      }}
+      notice={generateStatefulNotice({ withSource: false })}
       like={action('like')}
       unlike={action('unlike')}
       dislike={action('dislike')}
