@@ -26,6 +26,7 @@ interface Options {
 
 export const defaultSourceUrl =
   'https://blogs.mediapart.fr/thomas-coutrot/blog/040916/leconomie-est-vraiment-un-sport-de-combat';
+export const defaultMessage = `L’économie est (vraiment) un sport de combat : “La boule puante de MM. Cahuc et Zylberberg contre le “négationnisme” des économistes critiques le confirme : le combat idéologique tombe parfois dans le caniveau. Depuis vingt ans pourtant, s’est construit en France une contre-expertise économique crédible qui veut fournir aux dominés des outils pour penser (et résister à) la pseudo” construit en France une contre-expertise`;
 
 export const generateStatefulNotice = ({
   intention,
@@ -47,7 +48,7 @@ export const generateStatefulNotice = ({
   intention: intention || 'approval',
   created: created || subMonths(new Date(), 1),
   modified: modified || subWeeks(new Date(), 1),
-  message: message || Faker.lorem.paragraph(3),
+  message: message || defaultMessage,
   ratings: { likes: likes || 42, dislikes: dislikes || 2 },
   contributor: { id: 1, name: contributor || Faker.name.findName() },
   visibility: 'public',

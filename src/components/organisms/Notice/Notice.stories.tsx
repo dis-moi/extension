@@ -4,12 +4,14 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, text, boolean, select } from '@storybook/addon-knobs';
 import Notice from './Notice';
-import { generateStatefulNotice } from '../../../../test/fakers/generateNotice';
+import {
+  defaultMessage,
+  generateStatefulNotice
+} from '../../../../test/fakers/generateNotice';
 import Faker from 'faker';
 import { intentions } from '../../../app/lmem/intention';
 
 const defaultContributorName = Faker.name.findName();
-const defaultMessage = Faker.lorem.paragraph(3);
 
 storiesOf('organisms/Notice', module)
   .addDecorator(withKnobs)

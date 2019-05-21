@@ -12,6 +12,7 @@ import {
 } from '@storybook/addon-knobs';
 import Faker from 'faker';
 import {
+  defaultMessage,
   defaultSourceUrl,
   generateStatefulNotice
 } from '../../../../../../test/fakers/generateNotice';
@@ -20,7 +21,6 @@ import { intentions } from '../../../../lmem/intention';
 import { subMonths } from 'date-fns';
 
 const defaultContributorName = Faker.name.findName();
-const defaultMessage = Faker.lorem.paragraph(3);
 const defaultDate = subMonths(new Date(), 1);
 
 storiesOf('screens/Notice/Details', module)
