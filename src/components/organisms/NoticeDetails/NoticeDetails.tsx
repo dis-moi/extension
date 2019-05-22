@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { Contributor, Button, BorderButton } from '../../atoms';
+import { Contributor, Button, Timer } from '../../atoms';
 import Like from '../../atoms/icons/types/Like';
 import Dislike from '../../atoms/icons/types/Dislike';
 import Source from './Source/Source';
@@ -121,9 +121,7 @@ class NoticeDetails extends PureComponent<
               Merci pour votre retour, cette bulle ne s’affichera plus
               <div>
                 <Button onClick={this.handleDislikeClick}>Annuler</Button>
-                <BorderButton onClick={this.props.history.goBack}>
-                  OK
-                </BorderButton>
+                <Timer>(3s)</Timer>
               </div>
             </DetailsDislike>
           )}
