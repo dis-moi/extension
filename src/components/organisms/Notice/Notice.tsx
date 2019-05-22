@@ -1,6 +1,12 @@
 import React, { Fragment, PureComponent } from 'react';
 import { stripHtml } from 'app/utils/stripHtml';
-import { Contributor, OpenButton, Button } from '../../atoms';
+import {
+  Contributor,
+  OpenButton,
+  Button,
+  Timer,
+  CenterContainer
+} from '../../atoms';
 import Container from './Container';
 import Content from './Content';
 import Deleted from './Deleted';
@@ -51,7 +57,10 @@ export default class Notice extends PureComponent<Props> {
           {dismissed || disliked ? (
             <Fragment>
               <Deleted>Cette bulle ne s’affichera plus !</Deleted>
-              <Button onClick={this.onUndismiss}>Annuler</Button>
+              <CenterContainer>
+                <Button onClick={this.onUndismiss}>Annuler</Button>
+                <Timer>(3s)</Timer>
+              </CenterContainer>
             </Fragment>
           ) : (
             <Fragment>
