@@ -5,7 +5,7 @@ import rootReducer from './reducers';
 import middlewares, { sagaMiddleware } from './middlewares';
 import rootSaga from './sagas';
 import { InstallationDetailsState } from './reducers/installationDetails';
-import { OpenState } from './reducers/open';
+import { UIState } from './reducers/ui';
 import { NoticesState } from './reducers/notices';
 import { PersistedState } from 'redux-persist/es/types';
 import { TabState } from './reducers/tab';
@@ -14,7 +14,7 @@ export const history = createMemoryHistory();
 
 export interface State extends PersistedState {
   installationDetails: InstallationDetailsState;
-  open: OpenState;
+  ui: UIState;
   notices: NoticesState;
   tab: TabState;
   router: RouterState;

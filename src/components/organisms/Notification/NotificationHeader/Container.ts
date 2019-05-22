@@ -10,4 +10,5 @@ export default styled.div`
   padding-right: 10px;
   padding-left: 12px;
   border-bottom: 1px solid #a6b1c0;
+  background-color: ${props => props.theme.accountListBg};
 `;

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { version } from 'app/../../package.json';
 import { close } from 'app/actions/ui';
+import { removeUITitle, setUITitle } from '../../../actions/ui/title';
 import { getExtensionInstallationDate } from 'app/content/selectors';
 import { State } from '../../../store';
 
@@ -10,7 +11,9 @@ const mapStateToProps = (state: State) => ({
 });
 
 const mapDispatchToProps = {
-  close
+  close,
+  setUITitle,
+  removeUITitle
 };
 
 export default connect(

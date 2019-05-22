@@ -8,11 +8,11 @@ import {
   readNotice,
   resourceLinkClicked
 } from 'app/actions/notices';
-import { close } from 'app/actions/ui';
 import { State } from '../../../store';
 import { getNoticeById } from '../../../selectors';
 import { DetailsProps } from './types';
 import { StatefulNotice } from '../../../../lmem/notice';
+import { removeUITitle, setUITitle } from '../../../actions/ui/title';
 
 export interface DetailsStateProps {
   notice?: StatefulNotice;
@@ -42,7 +42,8 @@ const mapDispatchToProps = {
   undislike: undislikeNotice,
   view: readNotice,
   followSource: resourceLinkClicked,
-  close
+  setUITitle,
+  removeUITitle
 };
 
 export default connect(

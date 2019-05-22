@@ -3,14 +3,14 @@ import { combineReducers } from 'redux';
 import { MemoryHistory } from 'history';
 
 import installationDetails from './installationDetails';
-import open from './open';
+import ui from './ui';
 import notices from './notices';
 import tab from './tab';
 
 export default (history: MemoryHistory) =>
   combineReducers({
     installationDetails,
-    open,
+    ui,
     notices,
     tab,
     router: connectRouter(history)
