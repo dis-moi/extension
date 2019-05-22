@@ -1,26 +1,28 @@
 import React from 'react';
 import FooterContainer from './FooterContainer';
 import NavLink from './NavLink';
-import AccountIcon from './AccountIcon';
-import BubbleIcon from './BubbleIcon';
-import CheckListIcon from './CheckListIcon';
-import HelpIcon from './HelpIcon';
+import {
+  FooterRoute,
+  footerRoutes
+} from '../../../../app/content/footerRoutes';
 
-const NotificationFooter = () => (
+interface NotificationFooterProps {
+  children?: FooterRoute[];
+}
+
+const NotificationFooter = ({ children }: NotificationFooterProps) => (
   <FooterContainer>
-    <NavLink to="/notices">
-      <BubbleIcon />
-    </NavLink>
-    <NavLink to="/subscriptions">
-      <CheckListIcon />
-    </NavLink>
-    <NavLink to="/help">
-      <HelpIcon />
-    </NavLink>
-    <NavLink to="/account">
-      <AccountIcon />
-    </NavLink>
+    {children &&
+      children.map(route => (
+        <NavLink key={route.location as string} to={route.location}>
+          {route.element}
+        </NavLink>
+      ))}
   </FooterContainer>
 );
+
+NotificationFooter.defaultProps = {
+  children: footerRoutes
+};
 
 export default NotificationFooter;
