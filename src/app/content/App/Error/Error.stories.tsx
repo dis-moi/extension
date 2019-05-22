@@ -1,10 +1,14 @@
 import React from 'react';
-import { MemoryRouter as Router } from 'react-router';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+import Notification from 'components/organisms/Notification';
 import Error from '.';
+import { MemoryRouter as Router } from 'react-router';
 
-storiesOf('screens/Error', module).add('normal', () => (
-  <Router>
-    <Error />
-  </Router>
-));
+storiesOf('screens/Error', module)
+  .addDecorator(getStory => (
+    <Router>
+      <Notification close={action('close')}>{getStory()}</Notification>
+    </Router>
+  ))
+  .add('normal', () => <Error />);

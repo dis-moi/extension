@@ -3,13 +3,14 @@ import { MemoryRouter as Router } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, boolean, text, select } from '@storybook/addon-knobs/react';
-import { List } from '.';
 import {
   defaultMessage,
   generateStatefulNotice
 } from '../../../../../../test/fakers/generateNotice';
 import Faker from 'faker';
 import { intentions } from '../../../../lmem/intention';
+import Notification from 'components/organisms/Notification';
+import { List } from '.';
 
 const firstContributorName = Faker.name.findName();
 const firstMessage = defaultMessage;
@@ -18,7 +19,13 @@ const secondMessage = `De nombreux clients mécontents de Pixmania et ses vendeu
 
 storiesOf('screens/Notice/List', module)
   .addDecorator(withKnobs)
-  .addDecorator(getStory => <Router>{getStory()}</Router>)
+  .addDecorator(getStory => (
+    <Router>
+      <Notification close={action('close')} hasNotices>
+        {getStory()}
+      </Notification>
+    </Router>
+  ))
   .add('1 notice', () => (
     <List
       close={action('close')}

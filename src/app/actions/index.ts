@@ -29,7 +29,7 @@ import {
 import { Action } from 'redux';
 
 export interface BaseAction extends Action {
-  payload?: {};
+  payload?: any;
   meta?: ActionMeta;
 }
 

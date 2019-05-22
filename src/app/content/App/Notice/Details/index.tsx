@@ -1,10 +1,15 @@
 import React from 'react';
-import Notification from '../../../../../components/organisms/Notification';
 import NoticeDetails from '../../../../../components/organisms/NoticeDetails/NoticeDetails';
 import withConnect, {
   DetailsDispatchProps,
   DetailsStateProps
 } from './withConnect';
+
+import ScreenProps, { useUITitleEffect } from '../../../ScreenProps';
+
+export type DetailsScreenProps = ScreenProps &
+  DetailsDispatchProps &
+  DetailsStateProps;
 
 export const Details = ({
   notice,
@@ -14,10 +19,13 @@ export const Details = ({
   undislike,
   close,
   view,
-  followSource
-}: DetailsDispatchProps & DetailsStateProps) =>
-  notice ? (
-    <Notification title="Détail de la bulle" hasNotices close={close}>
+  followSource,
+  ...props
+}: DetailsScreenProps) => {
+  if (notice) {
+    useUITitleEffect(props)('Détail de la bulle');
+
+    return (
       <NoticeDetails
         notice={notice}
         like={like}
@@ -27,7 +35,10 @@ export const Details = ({
         view={view}
         followSource={followSource}
       />
-    </Notification>
-  ) : null;
+    );
+  }
+
+  return null;
+};
 
 export default withConnect(Details);

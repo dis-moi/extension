@@ -1,9 +1,11 @@
 import React from 'react';
-import Notification from 'components/organisms/Notification';
+import ContentTitleTop from 'components/organisms/Notification/ContentTitleTop';
+import ScreenProps, { useUITitleEffect } from '../../../ScreenProps';
 
-interface Props {
-  close?: () => void;
-}
-export default ({ close }: Props) => (
-  <Notification contentTitle="Mes filtres" title="Mes Filtres" close={close} />
-);
+interface Props extends ScreenProps {}
+
+export default (props: Props) => {
+  useUITitleEffect(props)('Mes Filtres');
+
+  return <ContentTitleTop>Mes filtres</ContentTitleTop>;
+};
