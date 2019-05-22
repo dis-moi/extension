@@ -9,5 +9,5 @@ export function* updateNoticesSaga() {
 }
 
 export default function* noticesRootSaga() {
-  yield takeLatest('READ_NOTICE', updateNoticesSaga);
+  yield takeLatest(['READ_NOTICE', 'FEEDBACK_ON_NOTICE'], updateNoticesSaga);
 }

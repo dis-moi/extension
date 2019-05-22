@@ -1,14 +1,16 @@
-import { takeLatest } from 'redux-saga/effects';
+import { takeLatest, call, select } from 'redux-saga/effects';
 import { NoticesUpdatedAction } from '../../actions/notices';
 import { BadgeTheme, updateBadge, resetBadge } from '../../lmem/badge';
 import { TabAction } from '../../actions';
+import { getNoticesToDisplay } from '../selectors/prefs';
 
 export const updateBadgeSaga = (badgeTheme: BadgeTheme) =>
   function*({
     payload: notices,
     meta: { tab: tabId }
   }: NoticesUpdatedAction): IterableIterator<any> {
-    updateBadge(notices, badgeTheme, tabId);
+    const noticesToDisplay = yield select(getNoticesToDisplay(notices));
+    yield call(updateBadge, noticesToDisplay, badgeTheme, tabId);
   };
 
 export function* resetBadgeSaga({
