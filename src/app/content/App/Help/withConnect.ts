@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
-import { close } from 'app/actions/ui';
+import { removeUITitle, setUITitle } from '../../actions/ui/title';
 
 const mapDispatchToProps = {
-  close
+  setUITitle,
+  removeUITitle
 };
 
 export default connect(

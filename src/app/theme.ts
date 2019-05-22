@@ -8,7 +8,7 @@ export interface Theme {
   otherText: string;
   secondaryColor: string;
   deletedText: string;
-  listBg: string;
+  noticeBg: string;
   navInactive: string;
   navActive: string;
   link: string;
@@ -79,7 +79,7 @@ export const theme: Theme = {
   otherText: '#787993',
   secondaryColor: '#5F656C',
   deletedText: '#484046',
-  listBg: '#EFEDED',
+  noticeBg: '#EFEDED',
   navInactive: '#a6b1c0',
   navActive: '#4378A5',
   link: '#1974C3',

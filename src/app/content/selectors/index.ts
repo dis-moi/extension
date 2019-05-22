@@ -3,6 +3,7 @@ import { RouteComponentProps } from 'react-router';
 import { getLocation } from 'connected-react-router';
 import { getNotice, isUnread, shouldNoticeBeShown } from 'app/lmem/notice';
 import { InstallationDetails } from 'app/lmem/installation';
+import { OpenState, MountedState, TitleState, UIState } from '../reducers/ui';
 import { State } from '../store';
 
 export const getNotices = (state: State) => state.notices;
@@ -22,8 +23,10 @@ export const getNoticeById = (
   }: RouteComponentProps<{ id?: string }>
 ) => getNotice(Number(id), getNotices(state));
 
-export const isOpen = (state: State): boolean => state.open.open;
-export const isMounted = (state: State): boolean => state.open.mounted;
+export const getUI = (state: State): UIState => state.ui;
+export const isOpen = (state: State): OpenState => getUI(state).open;
+export const isMounted = (state: State): MountedState => getUI(state).mounted;
+export const getTitle = (state: State): TitleState => getUI(state).title;
 
 export const getFilteredNotices = createSelector(
   getNotices,
@@ -42,3 +45,6 @@ export const getExtensionInstallationDate = createSelector(
 export const getTab = (state: State) => state;
 
 export const getPathname = (state: State) => getLocation(state).pathname;
+
+export const isNoticeContext = (state: State) =>
+  getPathname(state).includes('notice');

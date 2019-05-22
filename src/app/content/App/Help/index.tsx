@@ -1,5 +1,4 @@
 import React from 'react';
-import Notification from 'components/organisms/Notification';
 import {
   BorderButton,
   CenterContainer,
@@ -9,15 +8,17 @@ import {
 import { Textarea } from 'components/atoms/Forms';
 import Container from './Container';
 import ContentTitle from './ContentTitle';
+import ScreenProps, { useUITitleEffect } from '../../ScreenProps';
+import withConnect from './withConnect';
 
-interface Props {
-  close?: () => void;
-}
-export const Help = ({ close }: Props) => (
-  <Notification title="Aide" close={close}>
+interface Props extends ScreenProps {}
+
+export const Help = (props: Props) => {
+  useUITitleEffect(props)('Help');
+
+  return (
     <Container>
       <ContentTitle>Questions fréquentes</ContentTitle>
-
       <List>
         <li>
           <ExternalLink>
@@ -47,7 +48,7 @@ export const Help = ({ close }: Props) => (
         </CenterContainer>
       </form>
     </Container>
-  </Notification>
-);
+  );
+};
 
-export default Help;
+export default withConnect(Help);

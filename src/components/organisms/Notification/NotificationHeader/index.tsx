@@ -1,8 +1,6 @@
 import React from 'react';
 import { MemoryHistory } from 'history';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { truncateButPreserveWords } from 'app/utils/truncate';
-import { stripHtml } from 'app/utils/stripHtml';
 import Container from './Container';
 import LogoContainer from './LogoContainer';
 import LogoImg from './LogoImg';
@@ -26,9 +24,7 @@ const NotificationHeader = ({ title, goBack, close, history }: Props) => {
         <BackButton onClick={handleGoBack} />
       )}
       {title ? (
-        <Title title={title}>
-          {truncateButPreserveWords(stripHtml(title), 34)}
-        </Title>
+        <Title>{title}</Title>
       ) : (
         <LogoContainer>
           <LogoImg />

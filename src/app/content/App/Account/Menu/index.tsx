@@ -1,15 +1,15 @@
 import React from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
-import Notification from 'components/organisms/Notification';
 import { OpenButton } from 'components/atoms';
 import Account from './Account';
+import ScreenProps, { useUITitleEffect } from '../../../ScreenProps';
 
-interface OwnProps {
-  close?: () => void;
-}
-type Props = OwnProps & RouteComponentProps;
-export const Menu = ({ match, close }: Props) => (
-  <Notification title="Account" close={close}>
+type MenuProps = ScreenProps & RouteComponentProps;
+
+export const Menu = ({ match, ...props }: MenuProps) => {
+  useUITitleEffect(props)('Account');
+
+  return (
     <Account>
       <Link to={`${match.url}/data`}>
         Mes données
@@ -28,7 +28,7 @@ export const Menu = ({ match, close }: Props) => (
         <OpenButton />
       </Link>
     </Account>
-  </Notification>
-);
+  );
+};
 
 export default Menu;

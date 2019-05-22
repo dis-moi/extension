@@ -1,13 +1,12 @@
 import React, { ReactNode } from 'react';
-import ContentTitleTop from './ContentTitleTop';
 import NotificationContainer from './Container';
 import NotificationHeader from './NotificationHeader';
-import NotificationFooter from './NotificationFooter';
 import Main from './Main';
+import NotificationFooter from './NotificationFooter';
+import ScreenProps from '../../../app/content/ScreenProps';
 
-interface Props {
+interface OwnProps {
   title?: string;
-  contentTitle?: string;
   close?: () => void;
   onBack?: () => void;
   closed?: boolean;
@@ -15,22 +14,20 @@ interface Props {
   children?: ReactNode;
 }
 
-export const Notification = ({
+type NotificationProps = OwnProps & ScreenProps;
+
+const Notification = ({
   title,
-  contentTitle,
   close,
   onBack,
   closed,
   hasNotices,
   children
-}: Props) =>
+}: NotificationProps) =>
   closed ? null : (
-    <NotificationContainer>
+    <NotificationContainer hasNotices={hasNotices}>
       <NotificationHeader title={title} close={close} goBack={onBack} />
-      <Main hasNotices={hasNotices}>
-        {contentTitle && <ContentTitleTop>{contentTitle}</ContentTitleTop>}
-        {children}
-      </Main>
+      <Main hasNotices={hasNotices}>{children}</Main>
       <NotificationFooter />
     </NotificationContainer>
   );

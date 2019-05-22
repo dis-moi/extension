@@ -1,18 +1,24 @@
 import React from 'react';
 import { ExternalLink, Time } from 'components/atoms';
-import { Notification } from 'components/organisms/Notification';
 import Title from './Title';
 import Content from './Content';
 import Container from './Container';
 import withConnect from './withConnect';
+import ScreenProps, { useUITitleEffect } from '../../../ScreenProps';
 
-interface Props {
+interface AboutProps extends ScreenProps {
   installationDate?: Date;
   extensionVersion: string;
-  close?: () => void;
 }
-export const About = ({ close, installationDate, extensionVersion }: Props) => (
-  <Notification title="À propos" close={close}>
+
+export const About = ({
+  installationDate,
+  extensionVersion,
+  ...props
+}: AboutProps) => {
+  useUITitleEffect(props)('À propos');
+
+  return (
     <Container>
       <Title>Le Même En Mieux V{extensionVersion}</Title>
       <Content>
@@ -56,7 +62,7 @@ export const About = ({ close, installationDate, extensionVersion }: Props) => (
         </ExternalLink>
       </nav>
     </Container>
-  </Notification>
-);
+  );
+};
 
 export default withConnect(About);
