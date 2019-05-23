@@ -12,5 +12,5 @@ export const browserActionClicked = (
 ): BrowserActionClickedAction => ({
   type: 'BROWSER/BROWSER_ACTION_CLICKED',
   payload: { tab },
-  meta: { tab, sendToTab: true }
+  meta: { tab, sendToTab: true, tracked: false }
 });

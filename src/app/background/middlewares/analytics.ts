@@ -9,7 +9,8 @@ export const analytics = (track: Track) => () => (next: Dispatch) => (
   if (
     !action.type.startsWith('api/') &&
     !action.type.startsWith('notify/') &&
-    !action.type.startsWith('persist/')
+    !action.type.startsWith('persist/') &&
+    !(action.meta && action.meta.tracked === false)
   ) {
     track(action);
   }

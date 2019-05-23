@@ -31,6 +31,13 @@ describe('Analytics middleware', () => {
     expect(next).to.have.been.calledWith(action);
   });
 
+  it("does'nt track actions with a `tracked` meta set to `false`", () => {
+    const { next, invoke } = create();
+    const action = { type: 'doNotTrackMeEither', meta: { tracked: false } };
+    invoke(action);
+    expect(next).to.have.been.calledWith(action);
+  });
+
   it('tracks actions', () => {
     const { track, invoke } = create();
     const action = { type: 'gothroughthisone' };

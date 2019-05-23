@@ -11,7 +11,8 @@ export const receivedMatchingContexts = (
   matchingContexts: MatchingContext[]
 ): ReceivedMatchingContextsAction => ({
   type: 'api/UPDATE_MATCHING_CONTEXTS',
-  payload: { matchingContexts }
+  payload: { matchingContexts },
+  meta: { tracked: false }
 });
 
 export function dispatchInitialStateFromBackend() {
@@ -25,7 +26,8 @@ export interface RefreshMatchingContextsAction extends BaseAction {
   type: 'REFRESH_MATCHING_CONTEXTS';
 }
 export const refreshMatchingContexts = (): RefreshMatchingContextsAction => ({
-  type: 'REFRESH_MATCHING_CONTEXTS'
+  type: 'REFRESH_MATCHING_CONTEXTS',
+  meta: { tracked: false }
 });
 
 export function refreshMatchingContextsEvery(milliseconds: number) {
