@@ -11,13 +11,16 @@ const NotificationFooter = () => (
     <NavLink to="/notices">
       <BubbleIcon />
     </NavLink>
-    <NavLink to="/subscriptions">
-      <CheckListIcon />
-    </NavLink>
-    <NavLink to="/help">
+    <NavLink
+      to=""
+      as="a"
+      href="https://choisir.lmem.net/questions-frequentes-aide/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <HelpIcon />
     </NavLink>
-    <NavLink to="/account">
+    <NavLink to="/account/about">
       <AccountIcon />
     </NavLink>
   </FooterContainer>
