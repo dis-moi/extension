@@ -45,6 +45,7 @@ export interface ActionMeta {
   tab?: number;
   sendToBackground?: boolean;
   sendToTab?: boolean;
+  tracked?: false;
 }
 
 export type AppAction =

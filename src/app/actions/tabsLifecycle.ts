@@ -7,7 +7,7 @@ export interface TabCreatedAction extends TabAction {
 export const tabCreated = (tab: number, url: string): TabCreatedAction => ({
   type: 'BROWSER/TAB_CREATED',
   payload: { tab, url },
-  meta: { tab }
+  meta: { tab, tracked: false }
 });
 
 export interface TabUpdatedAction extends TabAction {
@@ -17,7 +17,7 @@ export interface TabUpdatedAction extends TabAction {
 export const tabUpdated = (tab: number, url: string): TabUpdatedAction => ({
   type: 'BROWSER/TAB_UPDATED',
   payload: { tab, url },
-  meta: { tab }
+  meta: { tab, tracked: false }
 });
 
 export interface TabRemovedAction extends TabAction {
@@ -27,5 +27,5 @@ export interface TabRemovedAction extends TabAction {
 export const tabRemoved = (tab: number): TabRemovedAction => ({
   type: 'BROWSER/TAB_REMOVED',
   payload: { tab },
-  meta: { tab }
+  meta: { tab, tracked: false }
 });

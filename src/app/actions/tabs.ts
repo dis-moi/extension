@@ -35,7 +35,7 @@ export interface MatchContextAction extends TabAction {
 export const matchContext = (url: string, tab: number): MatchContextAction => ({
   type: 'LMEM/MATCH_CONTEXT',
   payload: { url, tab },
-  meta: { tab }
+  meta: { tab, tracked: false }
 });
 
 export interface MatchContextFailureAction extends TabAction {
@@ -49,7 +49,7 @@ export const matchContextFailure = (
 ): MatchContextFailureAction => ({
   type: 'LMEM/MATCH_CONTEXT_FAILURE',
   payload: { error, url, tab },
-  meta: { tab }
+  meta: { tab, tracked: false }
 });
 
 export interface ContextTriggeredAction extends TabAction {
