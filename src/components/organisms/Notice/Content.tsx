@@ -41,8 +41,12 @@ export default styled(Content)`
     width: 245px;
   }
 
-  & [class^='OpenButton'] {
+  & > div:nth-child(3) {
     height: auto;
+  }
+
+  &:hover > div:nth-child(3) {
+    stroke: ${props => props.theme.activeColor};
   }
 
   & > button {
