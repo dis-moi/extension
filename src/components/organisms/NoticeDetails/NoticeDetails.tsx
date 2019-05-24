@@ -15,7 +15,6 @@ import Date from './Date';
 import { StatefulNotice } from '../../../app/lmem/notice';
 import { format } from 'date-fns';
 import IntentionIcon from '../../molecules/Type/IntentionIcon';
-import { FeedbackOnNoticeAction } from '../../../app/actions/notices';
 
 interface NoticeDetailsProps {
   notice: StatefulNotice;
@@ -24,6 +23,7 @@ interface NoticeDetailsProps {
   dislike: (id: number) => void;
   undislike: (id: number) => void;
   view?: (id: number) => void;
+  followSource?: (id: number) => void;
 }
 class NoticeDetails extends PureComponent<
   NoticeDetailsProps & RouteComponentProps
@@ -50,6 +50,16 @@ class NoticeDetails extends PureComponent<
       undislike(id);
     } else {
       dislike(id);
+    }
+  };
+
+  handleFollowSource = () => {
+    const {
+      followSource,
+      notice: { id }
+    } = this.props;
+    if (followSource) {
+      followSource(id);
     }
   };
 
@@ -88,7 +98,10 @@ class NoticeDetails extends PureComponent<
           <Message>{message}</Message>
           {source && (
             <Source>
-              En savoir plus : <SourceURL>{source.url}</SourceURL>
+              En savoir plus :{' '}
+              <SourceURL onClick={this.handleFollowSource}>
+                {source.url}
+              </SourceURL>
             </Source>
           )}
 
