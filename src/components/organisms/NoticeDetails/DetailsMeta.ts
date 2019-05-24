@@ -5,11 +5,16 @@ export default styled.div`
     align-items: center;
 
     time,
-    div:not(:last-child) {
+    & > div:not(:last-child) {
         margin-right: 6px;
     }
+    
+    & > div:not(:last-child) {
+        font-weight: bold;
+        color: ${props => props.theme.primaryColor};
+    }
 
-    & [class^="TypeBackground"] {
+    & > div:last-child {
         width: 23px;
         height: 23px;
 

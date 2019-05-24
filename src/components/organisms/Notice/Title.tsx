@@ -5,7 +5,7 @@ import Truncated from '../../atoms/Truncated';
 export const TitleContainer = styled.p`
   display: inline;
   margin: 0 10px 0 0;
-  color: ${props => props.theme.activeColor};
+  color: ${props => props.theme.primaryColor};
   font-weight: bold;
   line-height: 1.3;
 `;
