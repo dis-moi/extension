@@ -9,16 +9,17 @@ if (!(window as CustomWindow).__LMEM__CONTENT_SCRIPT_INJECTED__) {
   require('typeface-lato');
   require('typeface-sedgwick-ave');
   const store = require('./store').default;
+  const documentReady = require('../utils/documentReady').default;
   const externalClickHandler = require('./externalClickHandler').default;
   const handleExternalClick = externalClickHandler(store);
 
   (window as CustomWindow).__LMEM__CONTENT_SCRIPT_INJECTED__ = true;
 
-  window.addEventListener('load', () => {
+  documentReady.then(() => {
     document.addEventListener('click', handleExternalClick);
-  });
 
-  window.addEventListener('unload', () => {
-    document.removeEventListener('click', handleExternalClick);
+    window.addEventListener('unload', () => {
+      document.removeEventListener('click', handleExternalClick);
+    });
   });
 }
