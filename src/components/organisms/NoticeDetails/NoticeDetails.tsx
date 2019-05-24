@@ -4,7 +4,6 @@ import { Contributor, Button, BorderButton } from '../../atoms';
 import Like from '../../atoms/icons/types/Like';
 import Dislike from '../../atoms/icons/types/Dislike';
 import Source from './Source/Source';
-import Anchor from './Source/AnchorIcon';
 import SourceURL from './Source/SourceURL';
 import DetailsContainer from './DetailsContainer';
 import DetailsContent from './DetailsContent';
@@ -16,6 +15,7 @@ import Date from './Date';
 import { StatefulNotice } from '../../../app/lmem/notice';
 import { format } from 'date-fns';
 import IntentionIcon from '../../molecules/Type/IntentionIcon';
+import { FeedbackOnNoticeAction } from '../../../app/actions/notices';
 
 interface NoticeDetailsProps {
   notice: StatefulNotice;
@@ -88,7 +88,7 @@ class NoticeDetails extends PureComponent<
           <Message>{message}</Message>
           {source && (
             <Source>
-              <Anchor /> En savoir plus : <SourceURL>{source.url}</SourceURL>
+              En savoir plus : <SourceURL>{source.url}</SourceURL>
             </Source>
           )}
 

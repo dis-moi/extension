@@ -7,6 +7,10 @@ const MessageBlock = styled.div`
     font-size: 15px;
     line-height: 1.4;
     color: ${props => props.theme.primaryColor};
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
   }
 `;
 

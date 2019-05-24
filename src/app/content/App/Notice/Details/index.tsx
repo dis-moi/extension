@@ -1,8 +1,10 @@
 import React from 'react';
 import Notification from '../../../../../components/organisms/Notification';
 import NoticeDetails from '../../../../../components/organisms/NoticeDetails/NoticeDetails';
-import withConnect from './withConnect';
-import { DetailsProps } from './types';
+import withConnect, {
+  DetailsDispatchProps,
+  DetailsStateProps
+} from './withConnect';
 
 export const Details = ({
   notice,
@@ -12,7 +14,7 @@ export const Details = ({
   undislike,
   close,
   view
-}: DetailsProps) =>
+}: DetailsDispatchProps & DetailsStateProps) =>
   notice ? (
     <Notification title="Détail de la bulle" hasNotices close={close}>
       <NoticeDetails
