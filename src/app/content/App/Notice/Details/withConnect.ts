@@ -6,7 +6,7 @@ import {
   dislikeNotice,
   undislikeNotice,
   readNotice,
-  FeedbackOnNoticeAction
+  resourceLinkClicked
 } from 'app/actions/notices';
 import { close } from 'app/actions/ui';
 import { State } from '../../../store';
@@ -32,6 +32,7 @@ export interface DetailsDispatchProps {
   undislike: (id: number) => void;
   view: (id: number) => void;
   close: () => void;
+  followSource: (id: number) => void;
 }
 
 const mapDispatchToProps = {
@@ -40,6 +41,7 @@ const mapDispatchToProps = {
   dislike: dislikeNotice,
   undislike: undislikeNotice,
   view: readNotice,
+  followSource: resourceLinkClicked,
   close
 };
 

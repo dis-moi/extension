@@ -95,3 +95,13 @@ export const noticesUpdated = (
   payload,
   meta
 });
+
+export interface ResourceLinkClickedAction extends BaseAction {
+  type: 'NOTICE/RESOURCE_LINK_CLICKED';
+  payload: number;
+}
+
+export const resourceLinkClicked = (id: number): ResourceLinkClickedAction => ({
+  type: 'NOTICE/RESOURCE_LINK_CLICKED',
+  payload: id
+});

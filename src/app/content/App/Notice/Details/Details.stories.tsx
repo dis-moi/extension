@@ -44,6 +44,7 @@ storiesOf('screens/Notice/Details', module)
       dislike={action('dislike')}
       undislike={action('undislike')}
       view={action('view')}
+      followSource={action('followSource')}
       close={action('close')}
     />
   ));

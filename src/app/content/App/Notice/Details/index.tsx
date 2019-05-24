@@ -13,7 +13,8 @@ export const Details = ({
   dislike,
   undislike,
   close,
-  view
+  view,
+  followSource
 }: DetailsDispatchProps & DetailsStateProps) =>
   notice ? (
     <Notification title="Détail de la bulle" hasNotices close={close}>
@@ -24,6 +25,7 @@ export const Details = ({
         dislike={dislike}
         undislike={undislike}
         view={view}
+        followSource={followSource}
       />
     </Notification>
   ) : null;

@@ -4,7 +4,10 @@ import sinonChai from 'sinon-chai';
 import { Action } from 'redux';
 import middleware from '../../../src/app/background/middlewares/analytics';
 import { close } from '../../../src/app/actions/ui';
-import { readNotice } from '../../../src/app/actions/notices';
+import {
+  readNotice,
+  resourceLinkClicked
+} from '../../../src/app/actions/notices';
 
 const expect = chai.expect;
 chai.use(sinonChai);
@@ -57,6 +60,13 @@ describe('Analytics middleware', () => {
   it('tracks read notice action', () => {
     const { track, invoke } = create();
     const action = readNotice(1);
+    invoke(action);
+    expect(track).to.have.been.calledWith(action);
+  });
+
+  it('tracks resource link clicked action', () => {
+    const { track, invoke } = create();
+    const action = resourceLinkClicked(1);
     invoke(action);
     expect(track).to.have.been.calledWith(action);
   });
