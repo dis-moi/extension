@@ -1,21 +1,22 @@
 const release = Object.freeze({
-  analyzeCommits: {
-    preset: 'angular',
-    parserOpts: {
-      noteKeywords: ['BREAKING CHANGE', 'BREAKING CHANGES', 'MAJOR RELEASE']
-    }
-  },
   verifyConditions: [
     '@semantic-release/changelog',
     '@semantic-release/git',
     '@semantic-release/github',
     'semantic-release-chrome'
   ],
+  analyzeCommits: {
+    preset: 'angular',
+    parserOpts: {
+      noteKeywords: ['BREAKING CHANGE', 'BREAKING CHANGES', 'MAJOR RELEASE']
+    }
+  },
   prepare: [
     '@semantic-release/changelog',
+    '@semantic-release/npm',
     {
       path: '@semantic-release/git',
-      assets: ['package.json', 'yarn.lock', 'CHANGELOG.md', 'manifest/base.js'],
+      assets: ['package.json', 'yarn.lock', 'CHANGELOG.md'],
       message:
         'chore: release ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
     }
@@ -23,9 +24,7 @@ const release = Object.freeze({
   publish: [
     {
       path: '@semantic-release/exec',
-      cmd:
-        'sed -i \'s/"version":\\s*"${lastRelease.version}"/"version": "${nextRelease.version}"/\' package.json && ' +
-        'yarn run release:production'
+      cmd: 'yarn run release:production'
     },
     {
       path: '@semantic-release/github',
