@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/insitu-project/recommendations-webextension/compare/v2.2.0...v2.2.1) (2019-05-31)
+
+
+### Bug Fixes
+
+* change semantic-release to bump before build ([eb9cf7a](https://github.com/insitu-project/recommendations-webextension/commit/eb9cf7a))
+
 # [2.2.0](https://github.com/insitu-project/recommendations-webextension/compare/v2.1.0...v2.2.0) (2019-05-31)
 
 
