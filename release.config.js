@@ -14,12 +14,6 @@ const release = Object.freeze({
   prepare: [
     '@semantic-release/changelog',
     {
-      path: '@semantic-release/exec',
-      cmd:
-        'sed -i \'s/"version":\\s*"${lastRelease.version}"/"version": "${nextRelease.version}"/\' package.json && ' +
-        'yarn run release:production'
-    },
-    {
       path: '@semantic-release/git',
       assets: ['package.json', 'yarn.lock', 'CHANGELOG.md', 'manifest/base.js'],
       message:
@@ -27,6 +21,12 @@ const release = Object.freeze({
     }
   ],
   publish: [
+    {
+      path: '@semantic-release/exec',
+      cmd:
+        'sed -i \'s/"version":\\s*"${lastRelease.version}"/"version": "${nextRelease.version}"/\' package.json && ' +
+        'yarn run release:production'
+    },
     {
       path: '@semantic-release/github',
       assets: [
