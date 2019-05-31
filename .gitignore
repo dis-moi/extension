@@ -1,3 +1,4 @@
+.awcache/
 node_modules
 npm-debug.log
 .DS_Store
@@ -12,3 +13,5 @@ platforms/
 .floo
 .flooignore
 .ftppass
+storybook-static/*
+.sentryclirc

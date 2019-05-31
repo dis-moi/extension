@@ -1,5 +1,9 @@
 {
-  "extends": "eslint-config-airbnb",
+  "extends": [
+    "eslint-config-airbnb",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
   "env": {
     "mocha": true,
     "browser": true,
@@ -7,6 +11,15 @@
     "webextensions": true
   },
   "parser": "babel-eslint",
+  "plugins": [
+    "react",
+    "module-resolver"
+  ],
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  },
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/jsx-uses-react": 2,
@@ -57,9 +70,7 @@
     "no-underscore-dangle": 0,
     "no-else-return": 0,
     "newline-per-chained-call": 0,
+    "module-resolver/use-alias": 0,
     "react/jsx-one-expression-per-line": 0
-  },
-  "plugins": [
-    "react"
-  ]
+  }
 }

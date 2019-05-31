@@ -1,35 +1,30 @@
-import base from './base.js';
-import csp from 'content-security-policy-builder';
+const csp = require('content-security-policy-builder');
+const base = require('./base');
 
-export default Object.assign(
-  {},
-  base,
-  {
-    'name': 'LMEM - STAGING',
-    'content_security_policy': csp({
-      'directives': {
-        'default-src': [
-          'https://staging-recommendations.lmem.net',
-        ],
-        'script-src': [
-          '\'self\'',
-          '\'unsafe-eval\'',
-          'https://heapanalytics.com',
-          'https://cdn.heapanalytics.com'
-        ],
-        'object-src': [
-          '\'self\''
-        ],
-        'img-src': [
-          '\'self\'',
-          'https://heapanalytics.com',
-          'https://cdn.heapanalytics.com',
-          'data:'
-        ],
-        'style-src': [
-          '\'unsafe-inline\''
-        ]
-      }
-    })
-  }
-);
+module.exports = {
+  ...base,
+  name: 'LMEM - STAGING',
+  content_security_policy: csp({
+    directives: {
+      'default-src': ['https://staging-notices.lmem.net'],
+      'connect-src': [
+        'https://staging-notices.lmem.net',
+        'https://sentry.io/api/*'
+      ],
+      'script-src': [
+        "'self'",
+        "'unsafe-eval'",
+        'https://heapanalytics.com',
+        'https://cdn.heapanalytics.com'
+      ],
+      'object-src': ["'self'"],
+      'img-src': [
+        "'self'",
+        'https://heapanalytics.com',
+        'https://cdn.heapanalytics.com',
+        'data:'
+      ],
+      'style-src': ["'unsafe-inline'"]
+    }
+  })
+};

@@ -1,0 +1,5 @@
+### Get all matching contexts
+GET https://staging-notices.lmem.net/api/v3/matching-contexts
+Accept: application/json
+
+###

@@ -1,0 +1,17 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint-config-standard",
+    "tslint-react",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "quotemark": [true, "single", "avoid-escape", "jsx-double"],
+    "jsx-boolean-value": false,
+    "no-unused-expression": false,
+    "no-empty": [true, "allow-empty-functions"],
+    "no-floating-promises": false
+  },
+  "jsRules": true,
+  "rulesDirectory": []
+}
