@@ -1,3 +1,56 @@
+# [2.1.0](https://github.com/insitu-project/recommendations-webextension/compare/v2.0.0...v2.1.0) (2019-05-31)
+
+
+### Bug Fixes
+
+* **analytics:** revert Heap lib injection ([8208772](https://github.com/insitu-project/recommendations-webextension/commit/8208772))
+* **badge:** only count notices to display and handle feedbacks on notice ([a8216d3](https://github.com/insitu-project/recommendations-webextension/commit/a8216d3)), closes [#285](https://github.com/insitu-project/recommendations-webextension/issues/285)
+* **badge:** reset badge when a tab is created or updated ([b6551f5](https://github.com/insitu-project/recommendations-webextension/commit/b6551f5))
+* **ContentTitle:** don't show empty tag if the title is empty, fix [#262](https://github.com/insitu-project/recommendations-webextension/issues/262) ([e5cfc35](https://github.com/insitu-project/recommendations-webextension/commit/e5cfc35))
+* **details:** remove double spacings ([0ad6f86](https://github.com/insitu-project/recommendations-webextension/commit/0ad6f86))
+* **Details:** changed read more url width ([6da174b](https://github.com/insitu-project/recommendations-webextension/commit/6da174b))
+* **excerpt:** fix notice excerpt which could take 3 lines instead of 2 ([71d94bf](https://github.com/insitu-project/recommendations-webextension/commit/71d94bf))
+* **external-click-handler:** don't close the UI when the user click on an interactive Html element ([d999de6](https://github.com/insitu-project/recommendations-webextension/commit/d999de6))
+* **externalClickHandler:** check if document is already ready ([92531cd](https://github.com/insitu-project/recommendations-webextension/commit/92531cd))
+* **feedback:** fix notice still shown on list after dismiss from details ([34a1aef](https://github.com/insitu-project/recommendations-webextension/commit/34a1aef))
+* **heap:** fix heap declaration ([fd02740](https://github.com/insitu-project/recommendations-webextension/commit/fd02740))
+* **notice:** handle HTML in message ([b33c1e2](https://github.com/insitu-project/recommendations-webextension/commit/b33c1e2))
+* **Notice:** change excerpt text color ([c63302e](https://github.com/insitu-project/recommendations-webextension/commit/c63302e))
+* **NoticeDetails:** make notice source optional, fix [#246](https://github.com/insitu-project/recommendations-webextension/issues/246) ([3e30985](https://github.com/insitu-project/recommendations-webextension/commit/3e30985))
+* **notices:** correct <Notice/Details> props typing ([db4d960](https://github.com/insitu-project/recommendations-webextension/commit/db4d960))
+* **notices:** revert REPORT_NOTICE action type deletion ([ea064e3](https://github.com/insitu-project/recommendations-webextension/commit/ea064e3))
+* **notification:** fix import to require in script injection ([6f2d307](https://github.com/insitu-project/recommendations-webextension/commit/6f2d307))
+* **notification:** Footer displayed twice ([3335bca](https://github.com/insitu-project/recommendations-webextension/commit/3335bca))
+* **NotificationFooter:** revert to uncomplete nav links for apiv3 partial release ([f0014b6](https://github.com/insitu-project/recommendations-webextension/commit/f0014b6))
+* bad imports ([90a3641](https://github.com/insitu-project/recommendations-webextension/commit/90a3641))
+* **read:** fix read behavior ([a3de138](https://github.com/insitu-project/recommendations-webextension/commit/a3de138))
+* **UI:** changed read more link design ([c376687](https://github.com/insitu-project/recommendations-webextension/commit/c376687))
+* **UI:** changed read more link design ([269af49](https://github.com/insitu-project/recommendations-webextension/commit/269af49))
+* change iFrame position ([9c0c097](https://github.com/insitu-project/recommendations-webextension/commit/9c0c097))
+* changed opacity for read Bulle according to the design ([3f04d89](https://github.com/insitu-project/recommendations-webextension/commit/3f04d89))
+* fix bad rebase ([cf78096](https://github.com/insitu-project/recommendations-webextension/commit/cf78096))
+* read version directly from package.json, at build time ([0ac84b2](https://github.com/insitu-project/recommendations-webextension/commit/0ac84b2))
+
+
+### Features
+
+* adapt to API V3 ([63e24a9](https://github.com/insitu-project/recommendations-webextension/commit/63e24a9))
+* **read:** Handle read status visually on a `Notice` ([3e8df34](https://github.com/insitu-project/recommendations-webextension/commit/3e8df34))
+* added new button story ([c86fed3](https://github.com/insitu-project/recommendations-webextension/commit/c86fed3))
+* **badge:** add badge on browser action button ([10b0d64](https://github.com/insitu-project/recommendations-webextension/commit/10b0d64))
+* **badge:** store read notice in user `prefs` state slice ([55818ac](https://github.com/insitu-project/recommendations-webextension/commit/55818ac))
+* **details:** change title to 'Détail de la bulle' ([6b2894e](https://github.com/insitu-project/recommendations-webextension/commit/6b2894e))
+* **error-reporting:** add Sentry integration ([132fa77](https://github.com/insitu-project/recommendations-webextension/commit/132fa77))
+* **list:** remove 'Add a recommendation' button when empty list ([e709fe0](https://github.com/insitu-project/recommendations-webextension/commit/e709fe0))
+* **notice:** add an action when clicking on the source link of a notice and track it ([ec8e137](https://github.com/insitu-project/recommendations-webextension/commit/ec8e137))
+* **notices:** change intention 'tip' to 'information' ([f7b2638](https://github.com/insitu-project/recommendations-webextension/commit/f7b2638))
+* **ratings:** restore (dis)likes count on NoticeDetails ([501cac1](https://github.com/insitu-project/recommendations-webextension/commit/501cac1))
+* **sentry:** condition Sentry logging and version declaring to yarn release ([20dfab5](https://github.com/insitu-project/recommendations-webextension/commit/20dfab5))
+* **tab:** add `tabId` state slice to get `tabId` from content context ([c128fc4](https://github.com/insitu-project/recommendations-webextension/commit/c128fc4))
+* **tracking:** don't track action explicitly tagged as `tracked: false` ([f76118e](https://github.com/insitu-project/recommendations-webextension/commit/f76118e))
+* **ui:** show UI only if there ares unread notices ([212f205](https://github.com/insitu-project/recommendations-webextension/commit/212f205))
+* **UI:** close the UI when clicking outside of the UI ([7f1e109](https://github.com/insitu-project/recommendations-webextension/commit/7f1e109))
+
 # [2.0.0](https://github.com/insitu-project/recommendations-webextension/compare/v1.2.0...v2.0.0) (2019-03-08)
 
 
