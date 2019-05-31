@@ -74,6 +74,7 @@
     "@semantic-release/changelog": "^3.0.0",
     "@semantic-release/exec": "^2.3.0",
     "@semantic-release/git": "^7.0.1",
+    "@semantic-release/npm": "^5.1.7",
     "@semantic-release/github": "^5.0.1",
     "@sentry/webpack-plugin": "^1.6.2",
     "@storybook/addon-actions": "^4.1.11",
