@@ -13,7 +13,11 @@ const release = Object.freeze({
   },
   prepare: [
     '@semantic-release/changelog',
-    '@semantic-release/npm',
+    {
+      path: '@semantic-release/exec',
+      cmd:
+        'sed -i \'s/"version":\\s*"[^"]+"/"version": "${nextRelease.version}"/\' package.json'
+    },
     {
       path: '@semantic-release/exec',
       cmd:
