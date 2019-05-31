@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/insitu-project/recommendations-webextension/compare/v2.1.0...v2.2.0) (2019-05-31)
+
+
+### Features
+
+* update version number ([5d35428](https://github.com/insitu-project/recommendations-webextension/commit/5d35428))
+
 # [2.1.0](https://github.com/insitu-project/recommendations-webextension/compare/v2.0.0...v2.1.0) (2019-05-31)
 
 
