@@ -1,3 +1,17 @@
+# [2.3.0](https://github.com/insitu-project/recommendations-webextension/compare/v2.2.1...v2.3.0) (2019-06-01)
+
+
+### Bug Fixes
+
+* change version accordingly to tag and changelog ([48ae9b3](https://github.com/insitu-project/recommendations-webextension/commit/48ae9b3))
+
+
+### Features
+
+* work on semantic-release setup ([bf7b797](https://github.com/insitu-project/recommendations-webextension/commit/bf7b797))
+* work on semantic-release setup ([cd26b86](https://github.com/insitu-project/recommendations-webextension/commit/cd26b86))
+* work on semantic-release setup ([cfc6c84](https://github.com/insitu-project/recommendations-webextension/commit/cfc6c84))
+
 ## [2.2.1](https://github.com/insitu-project/recommendations-webextension/compare/v2.2.0...v2.2.1) (2019-05-31)
 
 
