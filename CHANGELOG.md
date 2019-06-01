@@ -1,3 +1,10 @@
+## [2.3.2](https://github.com/insitu-project/recommendations-webextension/compare/v2.3.1...v2.3.2) (2019-06-01)
+
+
+### Bug Fixes
+
+* chromium production manifest permissions ([5c89944](https://github.com/insitu-project/recommendations-webextension/commit/5c89944))
+
 ## [2.3.1](https://github.com/insitu-project/recommendations-webextension/compare/v2.3.0...v2.3.1) (2019-06-01)
 
 
