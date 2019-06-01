@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/insitu-project/recommendations-webextension/compare/v2.3.0...v2.3.1) (2019-06-01)
+
+
+### Bug Fixes
+
+* correct package version bump regex ([ac8360b](https://github.com/insitu-project/recommendations-webextension/commit/ac8360b))
+
 # [2.3.0](https://github.com/insitu-project/recommendations-webextension/compare/v2.2.1...v2.3.0) (2019-06-01)
 
 
