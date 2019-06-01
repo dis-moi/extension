@@ -16,12 +16,7 @@ const release = Object.freeze({
     {
       path: '@semantic-release/exec',
       cmd:
-        'sed -i \'s/"version":\\s*"[^"]+"/"version": "${nextRelease.version}"/\' package.json'
-    },
-    {
-      path: '@semantic-release/exec',
-      cmd:
-        'sed -i \'s/"version":\\s*"[^"]+"/"version": "${nextRelease.version}"/\' package.json'
+        'sed -i -r \'s/"version":\\s*"[^"]+"/"version": "${nextRelease.version}"/\' package.json'
     },
     {
       path: '@semantic-release/git',
