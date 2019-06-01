@@ -5,13 +5,13 @@
  * See other files in the directory
  */
 
-const version = process.env.npm_package_version;
+const version = require('../package.json').version;
 
 module.exports = Object.freeze({
   name: 'Le Même en Mieux',
   description:
-    'Qualité, prix, éthique : s’il existe un meilleur choix, vous le saurez. '
-    + 'Gratuit et sans pub, respecte votre vie privée.',
+    'Qualité, prix, éthique : s’il existe un meilleur choix, vous le saurez. ' +
+    'Gratuit et sans pub, respecte votre vie privée.',
   version,
   manifest_version: 2,
   icons: {
