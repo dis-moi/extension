@@ -12,6 +12,8 @@ export const updateBadgeSaga = (badgeTheme: BadgeTheme) =>
   }: NoticesUpdatedAction): IterableIterator<any> {
     try {
       const noticesToDisplay = yield select(getNoticesToDisplay(notices));
+      console.log('noticesToDisplay', noticesToDisplay);
+      console.log('tab.id', tab.id);
       yield call(updateBadge, noticesToDisplay, badgeTheme, tab.id);
     } catch (e) {
       badgeUpdateFailed(e);

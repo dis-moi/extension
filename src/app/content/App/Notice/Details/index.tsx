@@ -16,6 +16,7 @@ export const Details = ({
   like,
   unlike,
   dislike,
+  confirmDislike,
   undislike,
   close,
   view,
@@ -31,6 +32,7 @@ export const Details = ({
         like={like}
         unlike={unlike}
         dislike={dislike}
+        confirmDislike={confirmDislike}
         undislike={undislike}
         view={view}
         followSource={followSource}

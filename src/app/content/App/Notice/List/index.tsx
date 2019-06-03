@@ -9,12 +9,14 @@ import ScreenProps, { useUITitleEffect } from '../../../ScreenProps';
 export interface Props extends ScreenProps {
   notices: StatefulNotice[];
   dismiss: (id: number) => void;
+  confirmDismiss: (id: number) => void;
   undismiss: (id: number) => void;
   close?: () => void;
 }
 export const List = ({
   notices,
   dismiss,
+                       confirmDismiss,
   undismiss,
   close,
   ...props
@@ -28,6 +30,7 @@ export const List = ({
           key={notice.id}
           notice={notice}
           dismiss={dismiss}
+          confirmDismiss={confirmDismiss}
           undismiss={undismiss}
         />
       ))}

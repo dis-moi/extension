@@ -4,6 +4,7 @@ import {
   likeNotice,
   unlikeNotice,
   dislikeNotice,
+  confirmDislikeNotice,
   undislikeNotice,
   readNotice,
   resourceLinkClicked
@@ -29,6 +30,7 @@ export interface DetailsDispatchProps {
   like: (id: number) => void;
   unlike: (id: number) => void;
   dislike: (id: number) => void;
+  confirmDislike: (id: number) => void;
   undislike: (id: number) => void;
   view: (id: number) => void;
   close: () => void;
@@ -39,6 +41,7 @@ const mapDispatchToProps = {
   like: likeNotice,
   unlike: unlikeNotice,
   dislike: dislikeNotice,
+  confirmDislike: confirmDislikeNotice,
   undislike: undislikeNotice,
   view: readNotice,
   followSource: resourceLinkClicked,
