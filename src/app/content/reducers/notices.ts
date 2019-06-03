@@ -56,18 +56,6 @@ export default (state: NoticesState = [], action: AppAction): NoticesState => {
           );
       }
       return state;
-
-    case LOCATION_CHANGE:
-      return state.map(notice => ({
-        ...notice,
-        state: {
-          ...notice.state,
-          justDisliked: false,
-          justLiked: false,
-          justDismissed: false
-        }
-      }));
-
     default:
       return state;
   }

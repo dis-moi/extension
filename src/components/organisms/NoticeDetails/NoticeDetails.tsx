@@ -15,8 +15,12 @@ import Date from './Date';
 import { StatefulNotice } from '../../../app/lmem/notice';
 import { format } from 'date-fns';
 import IntentionIcon from '../../molecules/Type/IntentionIcon';
+import {
+  CountDownState,
+  initialState as countdownInitialState
+} from '../../../app/lmem/countdown';
 
-interface NoticeDetailsProps {
+interface NoticeDetailsProps extends RouteComponentProps {
   notice: StatefulNotice;
   like: (id: number) => void;
   unlike: (id: number) => void;
@@ -25,9 +29,39 @@ interface NoticeDetailsProps {
   view?: (id: number) => void;
   followSource?: (id: number) => void;
 }
-class NoticeDetails extends PureComponent<
-  NoticeDetailsProps & RouteComponentProps
-> {
+class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
+  constructor(props: NoticeDetailsProps) {
+    super(props);
+    this.state = countdownInitialState;
+  }
+
+  startCountdown = () => {
+    const intervalID = window.setInterval(this.updateCountdown, 1000);
+    this.setState({ ...countdownInitialState, intervalID });
+  };
+
+  updateCountdown = () => {
+    const { countdown } = this.state;
+    this.setState({ countdown: countdown - 1 }, this.shouldStopCountDown);
+  };
+
+  shouldStopCountDown = () => {
+    const { countdown } = this.state;
+    if (countdown === 0) {
+      this.stopCountdown();
+      console.log('DISLIKED');
+      const { notice, dislike, history } = this.props;
+      dislike(notice.id);
+      history.goBack();
+    }
+  };
+
+  stopCountdown = () => {
+    if (this.state.intervalID) {
+      window.clearInterval(this.state.intervalID);
+    }
+  };
+
   handleLikeClick = () => {
     const { notice, like, unlike } = this.props;
     if (notice.state.liked) {
@@ -43,13 +77,12 @@ class NoticeDetails extends PureComponent<
         id,
         state: { disliked }
       },
-      dislike,
       undislike
     } = this.props;
     if (disliked) {
       undislike(id);
     } else {
-      dislike(id);
+      this.startCountdown();
     }
   };
 
@@ -86,6 +119,8 @@ class NoticeDetails extends PureComponent<
       }
     } = this.props;
 
+    const { countdown, intervalID } = this.state;
+
     return (
       <DetailsContainer>
         <DetailsContent>
@@ -116,12 +151,12 @@ class NoticeDetails extends PureComponent<
             </Button>
           </Feedbacks>
 
-          {(disliked || dismissed) && (
+          {intervalID && (
             <DetailsDislike>
               Merci pour votre retour, cette bulle ne s’affichera plus
               <div>
                 <Button onClick={this.handleDislikeClick}>Annuler</Button>
-                <Timer>(3s)</Timer>
+                <Timer>({countdown}s)</Timer>
               </div>
             </DetailsDislike>
           )}

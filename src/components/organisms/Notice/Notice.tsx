@@ -14,6 +14,10 @@ import DeleteButton from './DeleteButton';
 import Title from './Title';
 import { StatefulNotice } from '../../../app/lmem/notice';
 import IntentionIcon from '../../molecules/Type/IntentionIcon';
+import {
+  CountDownState,
+  initialState as countdownInitialState
+} from '../../../app/lmem/countdown';
 
 interface Props {
   notice: StatefulNotice;
@@ -21,7 +25,12 @@ interface Props {
   undismiss: (id: number) => void;
 }
 
-export default class Notice extends PureComponent<Props> {
+export default class Notice extends PureComponent<Props, CountDownState> {
+  constructor(props: Props) {
+    super(props);
+    this.state = countdownInitialState;
+  }
+
   static defaultProps = {
     type: 'Other',
     dismissed: false,
@@ -30,12 +39,43 @@ export default class Notice extends PureComponent<Props> {
   };
 
   onDismiss = () => {
-    this.props.dismiss(this.props.notice.id);
+    this.startCountdown();
+  };
+
+  startCountdown = () => {
+    const intervalID = window.setInterval(this.updateCountdown, 1000);
+    this.setState({ ...countdownInitialState, intervalID });
+  };
+
+  updateCountdown = () => {
+    const { countdown } = this.state;
+    this.setState({ countdown: countdown - 1 }, this.shouldStopCountDown);
+  };
+
+  shouldStopCountDown = () => {
+    const { countdown } = this.state;
+    if (countdown === 0) {
+      this.stopCountdown();
+      console.log('DISMISSED');
+      const { dismiss, notice } = this.props;
+      dismiss(notice.id);
+    }
+  };
+
+  stopCountdown = () => {
+    const { intervalID } = this.state;
+    if (intervalID) {
+      window.clearInterval(intervalID);
+    }
   };
 
   onUndismiss = () => {
-    this.props.undismiss(this.props.notice.id);
+    this.stopCountdown();
   };
+
+  componentWillUnmount(): void {
+    this.stopCountdown();
+  }
 
   render() {
     const {
@@ -44,9 +84,12 @@ export default class Notice extends PureComponent<Props> {
         intention,
         message,
         contributor,
-        state: { dismissed, justDismissed, disliked, justDisliked, read }
+        state: { dismissed, disliked, read }
       }
     } = this.props;
+
+    const { countdown, intervalID } = this.state;
+
     return (
       <Container>
         {!dismissed && !disliked && <DeleteButton onClick={this.onDismiss} />}
@@ -54,12 +97,12 @@ export default class Notice extends PureComponent<Props> {
           to={dismissed ? undefined : `notices/details/${id}`}
           read={read}
         >
-          {dismissed || disliked ? (
+          {intervalID ? (
             <Fragment>
               <Deleted>Cette bulle ne s’affichera plus !</Deleted>
               <CenterContainer>
                 <Button onClick={this.onUndismiss}>Annuler</Button>
-                <Timer>(3s)</Timer>
+                <Timer>({countdown}s)</Timer>
               </CenterContainer>
             </Fragment>
           ) : (

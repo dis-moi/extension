@@ -19,11 +19,8 @@ export interface Notice {
 export interface NoticeState {
   read: boolean;
   liked: boolean;
-  justLiked?: boolean;
   disliked: boolean;
-  justDisliked?: boolean;
   dismissed: boolean;
-  justDismissed?: boolean;
 }
 
 export interface StatefulNotice extends Notice {
@@ -41,48 +38,42 @@ export const dismissNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
   state: {
     ...notice.state,
-    dismissed: true,
-    justDismissed: true
+    dismissed: true
   }
 });
 export const undismissNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
   state: {
     ...notice.state,
-    dismissed: false,
-    justDismissed: false
+    dismissed: false
   }
 });
 export const likeNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
   state: {
     ...notice.state,
-    liked: true,
-    justLiked: true
+    liked: true
   }
 });
 export const unlikeNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
   state: {
     ...notice.state,
-    liked: false,
-    justLiked: false
+    liked: false
   }
 });
 export const dislikeNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
   state: {
     ...notice.state,
-    disliked: true,
-    justDisliked: true
+    disliked: true
   }
 });
 export const undislikeNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
   state: {
     ...notice.state,
-    disliked: false,
-    justDisliked: false
+    disliked: false
   }
 });
 export const readNotice = (notice: StatefulNotice): StatefulNotice => ({
@@ -125,10 +116,7 @@ export const warnIfNoticeInvalid = (notice: Notice): boolean => {
 };
 
 export const shouldNoticeBeShown = (notice: StatefulNotice): boolean =>
-  (isNoticeValid(notice) &&
-    (!notice.state.dismissed || notice.state.justDismissed) &&
-    (!notice.state.disliked || notice.state.justDisliked)) ||
-  false;
+  isNoticeValid(notice) && !notice.state.dismissed && !notice.state.disliked;
 
 export const isRead = (notice: StatefulNotice) => notice.state.read;
 
