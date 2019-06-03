@@ -49,6 +49,7 @@ storiesOf('screens/Notice/Details', module)
       like={action('like')}
       unlike={action('unlike')}
       dislike={action('dislike')}
+      confirmDislike={action('confirmDislike')}
       undislike={action('undislike')}
       view={action('view')}
       followSource={action('followSource')}

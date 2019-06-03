@@ -37,10 +37,12 @@ export const noNoticesDisplayed = (tab: Tab): NoNoticesDisplayedAction => ({
 
 export type feedbackType =
   | 'dismiss'
+  | 'confirmDismiss'
   | 'undismiss'
   | 'like'
   | 'unlike'
   | 'dislike'
+  | 'confirmDislike'
   | 'undislike';
 
 export interface FeedbackOnNoticeAction extends BaseAction {
@@ -51,6 +53,12 @@ export interface FeedbackOnNoticeAction extends BaseAction {
 export const dismissNotice = (id: number): FeedbackOnNoticeAction => ({
   type: 'FEEDBACK_ON_NOTICE',
   payload: { id, feedback: 'dismiss' },
+  meta: { sendToBackground: true }
+});
+
+export const confirmDismissNotice = (id: number): FeedbackOnNoticeAction => ({
+  type: 'FEEDBACK_ON_NOTICE',
+  payload: { id, feedback: 'confirmDismiss' },
   meta: { sendToBackground: true }
 });
 
@@ -75,6 +83,12 @@ export const unlikeNotice = (id: number): FeedbackOnNoticeAction => ({
 export const dislikeNotice = (id: number): FeedbackOnNoticeAction => ({
   type: 'FEEDBACK_ON_NOTICE',
   payload: { id, feedback: 'dislike' },
+  meta: { sendToBackground: true }
+});
+
+export const confirmDislikeNotice = (id: number): FeedbackOnNoticeAction => ({
+  type: 'FEEDBACK_ON_NOTICE',
+  payload: { id, feedback: 'confirmDislike' },
   meta: { sendToBackground: true }
 });
 
