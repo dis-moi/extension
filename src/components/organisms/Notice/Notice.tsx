@@ -1,4 +1,4 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { stripHtml } from 'app/utils/stripHtml';
 import {
   Contributor,
@@ -7,7 +7,7 @@ import {
   Timer,
   CenterContainer
 } from '../../atoms';
-import Container from './Container';
+import Container, { height, marginTop } from './Container';
 import Content from './Content';
 import Deleted from './Deleted';
 import DeleteButton from './DeleteButton';
@@ -19,12 +19,33 @@ import {
   initialState as countdownInitialState
 } from '../../../app/lmem/countdown';
 
+export const transitionKeys = {
+  from: {
+    height,
+    marginTop,
+    opacity: 0,
+    transform: 'translate3d(0%,200%,0)'
+  },
+  enter: { opacity: 1, transform: 'translate3d(0%,0%,0)' },
+  leave: () => async (next: (...args: any[]) => Promise<{}>) => {
+    await next({ opacity: 0, transform: 'translate3d(100%,0%,0)' });
+    await next({ height: 0, marginTop: 0 });
+  }
+};
+
+export interface NoticeTransitionProps {
+  item: StatefulNotice;
+  props: object;
+  key: string;
+}
+
 interface Props {
   notice: StatefulNotice;
   dismiss: (id: number) => void;
   confirmDismiss: (id: number) => void;
   undismiss: (id: number) => void;
   truncateTitleAt?: number;
+  style?: object;
 }
 
 export default class Notice extends PureComponent<Props, CountDownState> {
@@ -77,6 +98,10 @@ export default class Notice extends PureComponent<Props, CountDownState> {
     }
   };
 
+  onUndismiss = () => {
+    this.stopCountdown();
+  };
+
   componentWillUnmount(): void {
     this.stopCountdown();
   }
@@ -90,28 +115,29 @@ export default class Notice extends PureComponent<Props, CountDownState> {
         contributor,
         state: { dismissed, disliked, read }
       },
-      truncateTitleAt
+      truncateTitleAt,
+      style
     } = this.props;
 
     const { countdown, intervalID } = this.state;
 
     return (
-      <Container>
+      <Container style={style}>
         {!dismissed && !disliked && <DeleteButton onClick={this.onDismiss} />}
         <Content
           to={dismissed ? undefined : `notices/details/${id}`}
           read={read}
         >
           {(dismissed || disliked) && intervalID ? (
-            <Fragment>
+            <>
               <Deleted>Cette bulle ne s’affichera plus !</Deleted>
               <CenterContainer>
                 <Button onClick={this.onUndismiss}>Annuler</Button>
                 <Timer>({countdown}s)</Timer>
               </CenterContainer>
-            </Fragment>
+            </>
           ) : (
-            <Fragment>
+            <>
               <IntentionIcon intention={intention} />
               <div>
                 <Title numberOfCharacters={truncateTitleAt}>
@@ -120,7 +146,7 @@ export default class Notice extends PureComponent<Props, CountDownState> {
                 <Contributor>Par : {contributor.name}</Contributor>
               </div>
               <OpenButton />
-            </Fragment>
+            </>
           )}
         </Content>
       </Container>
