@@ -1,6 +1,14 @@
 import React from 'react';
-import NoticeItem from 'components/organisms/Notice/Notice';
-import AddNotice from 'components/molecules/AddNotice';
+import { useTransition } from 'react-spring';
+import {
+  List as ListContainer,
+  AddNoticeContainer,
+  AddNoticeLink
+} from 'components/atoms';
+import NoticeItem, {
+  NoticeTransitionProps,
+  transitionKeys
+} from 'components/organisms/Notice/Notice';
 import NoNotice from './NoNotice';
 import withConnect from './withConnect';
 import { StatefulNotice } from '../../../../lmem/notice';
@@ -12,7 +20,8 @@ export interface Props extends ScreenProps {
   undismiss: (id: number) => void;
   close?: () => void;
 }
-export const List = ({
+
+export const ListScreen = ({
   notices,
   dismiss,
   undismiss,
@@ -21,27 +30,34 @@ export const List = ({
 }: Props) => {
   useUITitleEffect(props)('Bulles Pour cette page');
 
+  const transitions = useTransition(
+    notices.slice(0, 2),
+    notice => notice.id,
+    // @ts-ignore
+    transitionKeys
+  );
+
   return (
     <>
-      {notices.slice(0, 2).map((notice: StatefulNotice) => (
-        <NoticeItem
-          key={notice.id}
-          notice={notice}
-          dismiss={dismiss}
-          undismiss={undismiss}
-        />
-      ))}
+      <ListContainer>
+        {transitions.map(({ item, props, key }: NoticeTransitionProps) => (
+          <NoticeItem
+            key={key}
+            notice={item}
+            dismiss={dismiss}
+            undismiss={undismiss}
+            style={props}
+          />
+        ))}
+      </ListContainer>
       {notices.length === 0 && <NoNotice />}
       {notices.length > 0 && (
-        <AddNotice
-          as="a"
-          href="https://form.jotformeu.com/82702852284358"
-          target="_blank"
-          rel="noopener noreferrer"
-        />
+        <AddNoticeContainer>
+          <AddNoticeLink />
+        </AddNoticeContainer>
       )}
     </>
   );
 };
 
-export default withConnect(List);
+export default withConnect(ListScreen);

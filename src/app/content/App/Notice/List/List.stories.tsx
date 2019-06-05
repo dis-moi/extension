@@ -10,7 +10,7 @@ import {
 import Faker from 'faker';
 import { intentions } from '../../../../lmem/intention';
 import Notification from 'components/organisms/Notification';
-import { List } from '.';
+import { ListScreen } from '.';
 
 const firstContributorName = Faker.name.findName();
 const firstMessage = defaultMessage;
@@ -27,7 +27,7 @@ storiesOf('screens/Notice/List', module)
     </Router>
   ))
   .add('1 notice', () => (
-    <List
+    <ListScreen
       close={action('close')}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
@@ -42,7 +42,7 @@ storiesOf('screens/Notice/List', module)
     />
   ))
   .add('2 notices', () => (
-    <List
+    <ListScreen
       close={action('close')}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
@@ -68,7 +68,7 @@ storiesOf('screens/Notice/List', module)
     />
   ))
   .add('1 read', () => (
-    <List
+    <ListScreen
       close={action('close')}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
@@ -95,7 +95,7 @@ storiesOf('screens/Notice/List', module)
     />
   ))
   .add('empty', () => (
-    <List
+    <ListScreen
       close={action('close')}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
@@ -103,7 +103,7 @@ storiesOf('screens/Notice/List', module)
     />
   ))
   .add('2 lines excerpt', () => (
-    <List
+    <ListScreen
       close={action('close')}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}

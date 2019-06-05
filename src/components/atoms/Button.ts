@@ -1,6 +1,13 @@
 import styled from 'styled-components';
+import * as React from 'react';
+import { Theme } from '../../app/theme';
 
-export default styled.button`
+export interface ButtonProps {
+  as?: string | React.ComponentType<any>;
+  theme?: Theme;
+}
+
+export default styled.button<ButtonProps>`
   box-sizing: border-box;
   padding: 0;
   font-weight: bold;
