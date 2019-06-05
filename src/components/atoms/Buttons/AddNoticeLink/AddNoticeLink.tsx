@@ -2,11 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import BorderButton from '../BorderButton';
 import AddIcon from './AddIcon';
+import { ButtonProps } from '../../Button';
 
-const Button = styled(BorderButton)`
+export interface ButtonLinkProps extends ButtonProps {
+  href: string;
+  target?: string;
+  rel?: string;
+}
+
+const ButtonLink = styled(BorderButton)<ButtonLinkProps>`
   display: flex;
   align-items: center;
-  margin-top: 25px;
   color: ${props => props.theme.secondaryColor};
   border-color: #fff;
 
@@ -28,8 +34,14 @@ const Button = styled(BorderButton)`
 `;
 
 export default ({ ...props }) => (
-  <Button {...props}>
+  <ButtonLink
+    as="a"
+    href="https://form.jotformeu.com/82702852284358"
+    target="_blank"
+    rel="noopener noreferrer"
+    {...props}
+  >
     <AddIcon />
     Créer votre bulle
-  </Button>
+  </ButtonLink>
 );
