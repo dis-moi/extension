@@ -6,7 +6,7 @@ export default styled.div`
   justify-content: center;
   margin-top: 93px;
 
-  & > button {
+  & > a {
     margin-top: -10px;
     margin-left: 16px;
   }

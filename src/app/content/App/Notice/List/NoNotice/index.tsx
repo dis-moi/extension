@@ -9,7 +9,14 @@ export default () => (
     <Title>Pas de Bulle ici</Title>
     <ButtonContainer>
       <Illustration />
-      <BorderButton>Créer une Bulle</BorderButton>
+      <BorderButton
+        as="a"
+        href="https://form.jotformeu.com/82702852284358"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Créer une Bulle
+      </BorderButton>
     </ButtonContainer>
   </Fragment>
 );
