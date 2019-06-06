@@ -95,7 +95,7 @@ storiesOf('screens/Notice/List', module)
       notices={[]}
     />
   ))
-  .add('2 lines excerpt', () => (
+  .add('3 lines excerpt', () => (
     <List
       close={action('close')}
       dismiss={action('dismiss')}
@@ -105,7 +105,13 @@ storiesOf('screens/Notice/List', module)
           dismissed: boolean('dismissed', false),
           intention: select('intention', intentions, 'approval'),
           contributor: text('contributor', firstContributorName),
-          message: `<p>dazd zazaddd dddddd ddddd dddd dddddd ddd ddddd dddddddd dd</p>`
+          message: `<p>Que choisir signale que de nombreux clients mécontents de Pixmania se sont exprimés sur les réseaux sociaux.</p>`
+        }),
+        generateStatefulNotice({
+          dismissed: boolean('dismissed', false),
+          intention: select('intention', intentions, 'approval'),
+          contributor: text('contributor', firstContributorName),
+          message: `<p>Les loueurs de véhicules ont parfois besoin de rapatrier des véhicules. Plusieurs sites, notamment LuckyLoc et DriiveMe vous proposent de le faire pour eux, moyennant 1 €.</p>`
         })
       ]}
     />

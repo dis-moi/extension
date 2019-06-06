@@ -15,7 +15,7 @@ interface Props {
 }
 const NoticeTitle = ({ children }: Props) => (
   <TitleContainer>
-    <Truncated numberOfCharacters={60}>{children}</Truncated>
+    <Truncated numberOfCharacters={92}>{children}</Truncated>
   </TitleContainer>
 );
 
