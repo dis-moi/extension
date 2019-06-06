@@ -10,15 +10,12 @@ import {
   hasUnreadNotices
 } from '../selectors';
 import { CLOSE, OPEN, NOTICES_FOUND } from '../../constants/ActionTypes';
-import {
-  append,
-  create,
-  setImportant as setFrameImportant
-} from '../extensionIframe';
+import { append, create, hide, show } from '../extensionIframe';
 import theme from '../../theme';
 import App from '../App';
 
 const iframe = create(theme.iframe.style);
+let contentDocument: Document;
 
 export function* openSaga() {
   const isOpen = yield select(isNotificationOpen);
@@ -30,15 +27,15 @@ export function* openSaga() {
       yield put(push('/'));
     }
 
-    if (isMounted) {
-      setFrameImportant();
+    if (isMounted && contentDocument.visibilityState === 'visible') {
+      show();
     } else {
-      const contentDocument = yield call(append, iframe);
+      contentDocument = yield call(append, iframe);
       const root = document.createElement('div');
       contentDocument.body.appendChild(root);
-      const show = () =>
+      const renderAppInIframe = () =>
         render(<App contentDocument={contentDocument} />, root);
-      yield call(show);
+      yield call(renderAppInIframe);
     }
 
     yield put(opened());
@@ -48,7 +45,7 @@ export function* openSaga() {
 export function* closeSaga() {
   const isOpen = yield select(isNotificationOpen);
   if (isOpen) {
-    setFrameImportant();
+    hide();
     yield put(closed());
   }
 }

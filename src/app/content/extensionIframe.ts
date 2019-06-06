@@ -25,16 +25,20 @@ export const append = (iframe: HTMLIFrameElement): Promise<Document | null> =>
     document.body.appendChild(iframe);
   });
 
-export const remove = (): void => {
-  const iframe = document.getElementById('lmemFrame');
-  if (iframe) {
-    iframe.remove();
+export const show = () => {
+  const frame = document.querySelector('#lmemFrame');
+  if (frame) {
+    (frame as HTMLIFrameElement).style.removeProperty('display');
   }
 };
 
-export const setImportant = () => {
+export const hide = () => {
   const frame = document.querySelector('#lmemFrame');
   if (frame) {
-    (frame as HTMLIFrameElement).style.setProperty('display', '', 'important');
+    (frame as HTMLIFrameElement).style.setProperty(
+      'display',
+      'none',
+      'important'
+    );
   }
 };
