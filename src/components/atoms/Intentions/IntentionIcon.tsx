@@ -1,7 +1,7 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
 import Background from './Background';
-import intentionIcons from '../../atoms/icons/types';
+import intentionIcons from '../icons/IntentionsIcons';
 import { Theme } from 'app/theme';
 import { getTypeOrFallback, Intention } from 'app/lmem/intention';
 
@@ -11,14 +11,17 @@ interface Style {
 interface Props {
   intention?: Intention;
   theme: Theme;
+  active?: boolean;
 }
-const IntentionIcon = ({ intention, theme }: Props) => {
+const IntentionIcon = ({ intention, theme, active }: Props) => {
   const Icon = getTypeOrFallback(intentionIcons)(intention);
   const style = getTypeOrFallback<Style>(theme.intentions)(intention);
 
   return (
-    <Background color={style && style.background}>
-      {Icon && <Icon />}
+    <Background
+      color={active ? style && style.background : theme.inactiveIntentionBg}
+    >
+      {Icon && <Icon filled={!active} stroked={!active} />}
     </Background>
   );
 };

@@ -58,4 +58,14 @@ storiesOf('organisms/NoticeDetails', module)
       {...commonProps}
       notice={generateStatefulNotice({ withSource: false })}
     />
+  ))
+  .add('Preview', () => (
+    <NoticeDetails
+      notice={generateStatefulNotice({ withSource: false })}
+      like={action('like')}
+      unlike={action('unlike')}
+      dislike={action('dislike')}
+      undislike={action('undislike')}
+      preview
+    />
   ));
