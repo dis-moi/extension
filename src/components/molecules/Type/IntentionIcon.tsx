@@ -11,14 +11,15 @@ interface Style {
 interface Props {
   intention?: Intention;
   theme: Theme;
+  active?: boolean;
 }
-const IntentionIcon = ({ intention, theme }: Props) => {
+const IntentionIcon = ({ intention, theme, active }: Props) => {
   const Icon = getTypeOrFallback(intentionIcons)(intention);
   const style = getTypeOrFallback<Style>(theme.intentions)(intention);
 
   return (
-    <Background color={style && style.background}>
-      {Icon && <Icon />}
+    <Background color={active ? style && style.background : '#f00'}>
+      {Icon && <Icon active={active} />}
     </Background>
   );
 };
