@@ -30,10 +30,18 @@ export default styled(Content)`
   background-color: ${props => (props.read ? 'transparent' : '#fff')};
   border-radius: 15px;
   border: 2px solid ${props => (props.read ? '#fff' : 'transparent')};
-  transition: all 0.2s ease-in-out;
+
+  &,
+  p {
+    transition: all 0.2s ease-in-out;
+  }
 
   &[href]:hover {
     border-color: ${props => props.theme.activeColor};
+
+    p {
+      color: ${props => props.theme.activeColor};
+    }
   }
 
   & > div:nth-child(2) {
