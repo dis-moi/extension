@@ -2,6 +2,7 @@ import React from 'react';
 import Notification from 'components/organisms/Notification';
 import Input from 'components/atoms/Forms/Input/Input';
 import Textarea from 'components/atoms/Forms/Textarea/Textarea';
+import Error from 'components/atoms/Forms/Error/Error';
 import { CenterContainer, ContentWrapper } from 'components/atoms/';
 import BorderButton from 'components/atoms/Buttons/BorderButton';
 
@@ -16,6 +17,7 @@ export const CreateNoticeScreen = ({ close }: Props) => (
       <CenterContainer>
         <BorderButton>prévisualiser et publier</BorderButton>
       </CenterContainer>
+      <Error>Les champs en rouge sont incorrects ou incomplets</Error>
     </ContentWrapper>
   </Notification>
 );
