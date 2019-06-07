@@ -14,7 +14,7 @@ import Deleted from './Deleted';
 import DeleteButton from './DeleteButton';
 import Title from './Title';
 import { StatefulNotice } from '../../../app/lmem/notice';
-import IntentionIcon from '../../molecules/Type/IntentionIcon';
+import IntentionIcon from '../../atoms/Intentions/IntentionIcon';
 import {
   CountDownState,
   initialState as countdownInitialState
@@ -60,7 +60,7 @@ export default class Notice extends PureComponent<Props, CountDownState> {
   }
 
   static defaultProps = {
-    type: 'Other',
+    intention: 'Other',
     dismissed: false,
     disliked: false,
     read: false,
@@ -143,7 +143,7 @@ export default class Notice extends PureComponent<Props, CountDownState> {
             </>
           ) : (
             <>
-              <IntentionIcon intention={intention} />
+              <IntentionIcon intention={intention} active />
               <Description>
                 <Title numberOfCharacters={truncateTitleAt}>
                   {stripHtml(message)}

@@ -23,7 +23,7 @@ export interface Theme {
   accountListBg: string;
 
   // color list:
-  typeBg: string;
+  inactiveIntentionBg: string;
   bottomBar: string;
   topBarNavInactiveDeleteBg: string;
   formBorder: string;
@@ -97,7 +97,7 @@ export const theme: Theme = {
   accountListBg: '#fff',
 
   // color list:
-  typeBg: '#EBEBEB',
+  inactiveIntentionBg: '#EBEBEB',
   bottomBar: '#DDDDDD',
   topBarNavInactiveDeleteBg: '#A6B1C0',
   formBorder: '#707070',
