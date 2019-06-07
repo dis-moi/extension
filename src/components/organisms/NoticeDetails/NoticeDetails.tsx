@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { Button, Contributor, Timer } from '../../atoms';
-import Like from '../../atoms/icons/types/Like';
-import Dislike from '../../atoms/icons/types/Dislike';
+import { Contributor, Button, Timer } from '../../atoms';
+import ThumbUp from '../../atoms/icons/ThumbUp';
+import ThumbDown from '../../atoms/icons/ThumbDown';
 import Source from './Source/Source';
 import SourceURL from './Source/SourceURL';
 import DetailsContainer from './DetailsContainer';
@@ -14,7 +14,7 @@ import Feedbacks from './Feedbacks';
 import Date from './Date';
 import { StatefulNotice } from '../../../app/lmem/notice';
 import { format } from 'date-fns';
-import IntentionIcon from '../../molecules/Type/IntentionIcon';
+import IntentionIcon from '../../atoms/Intentions/IntentionIcon';
 import {
   CountDownState,
   initialState as countdownInitialState
@@ -144,7 +144,7 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
           <DetailsMeta>
             <Date>Le {format(created, 'DD/MM/YYYY')}</Date>
             <Contributor>{contributor.name} :</Contributor>
-            <IntentionIcon intention={intention} />
+            <IntentionIcon active intention={intention} />
           </DetailsMeta>
 
           <Message>{message}</Message>
@@ -159,11 +159,11 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
 
           <Feedbacks>
             <Button onClick={this.handleLikeClick}>
-              <Like active={liked} />
+              <ThumbUp filled={liked} />
               {likes}
             </Button>
             <Button onClick={this.handleDislikeClick}>
-              <Dislike active={disliked} />
+              <ThumbDown filled={disliked} />
               {dislikes}
             </Button>
           </Feedbacks>

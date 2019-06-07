@@ -5,7 +5,7 @@ export default styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 320px;
+  flex-grow: 1;
   padding: 12px 16px 12px 16px;
   margin: 10px;
   background-color: #fff;
