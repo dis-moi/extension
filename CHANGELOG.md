@@ -1,3 +1,10 @@
+## [2.3.4](https://github.com/insitu-project/recommendations-webextension/compare/v2.3.3...v2.3.4) (2019-06-07)
+
+
+### Bug Fixes
+
+* **iframe:** hide iframe when content closed ([498cbdb](https://github.com/insitu-project/recommendations-webextension/commit/498cbdb))
+
 ## [2.3.3](https://github.com/insitu-project/recommendations-webextension/compare/v2.3.2...v2.3.3) (2019-06-01)
 
 
