@@ -17,7 +17,7 @@ export const Details = ({
   followSource
 }: DetailsDispatchProps & DetailsStateProps) =>
   notice ? (
-    <Notification title="Détail de la bulle" hasNotices close={close}>
+    <Notification title="Détail de la recommandation" hasNotices close={close}>
       <NoticeDetails
         notice={notice}
         like={like}
