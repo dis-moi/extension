@@ -14,7 +14,7 @@ import Feedbacks from './Feedbacks';
 import Date from './Date';
 import { StatefulNotice } from '../../../app/lmem/notice';
 import { format } from 'date-fns';
-import IntentionIcon from '../../molecules/Type/IntentionIcon';
+import IntentionIcon from '../../atoms/Intentions/IntentionIcon';
 
 interface NoticeDetailsProps {
   notice: StatefulNotice;
@@ -92,7 +92,7 @@ class NoticeDetails extends PureComponent<
           <DetailsMeta>
             <Date>Le {format(created, 'DD/MM/YYYY')}</Date>
             <Contributor>{contributor.name} :</Contributor>
-            <IntentionIcon intention={intention} />
+            <IntentionIcon active intention={intention} />
           </DetailsMeta>
 
           <Message>{message}</Message>

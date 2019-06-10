@@ -7,7 +7,7 @@ import Deleted from './Deleted';
 import DeleteButton from './DeleteButton';
 import Title from './Title';
 import { StatefulNotice } from '../../../app/lmem/notice';
-import IntentionIcon from '../../molecules/Type/IntentionIcon';
+import IntentionIcon from '../../atoms/Intentions/IntentionIcon';
 
 interface Props {
   notice: StatefulNotice;
@@ -17,7 +17,7 @@ interface Props {
 
 export default class Notice extends PureComponent<Props> {
   static defaultProps = {
-    type: 'Other',
+    intention: 'Other',
     dismissed: false,
     disliked: false,
     read: false
@@ -55,7 +55,7 @@ export default class Notice extends PureComponent<Props> {
             </Fragment>
           ) : (
             <Fragment>
-              <IntentionIcon intention={intention} />
+              <IntentionIcon intention={intention} active />
               <div>
                 <Title>{stripHtml(message)}</Title>
                 <Contributor>Par : {contributor.name}</Contributor>

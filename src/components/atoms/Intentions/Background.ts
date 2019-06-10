@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const TypeBackground = styled.div`
+const IntentionBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,8 +11,8 @@ const TypeBackground = styled.div`
   background-color: ${props => props.color};
 `;
 
-TypeBackground.defaultProps = {
+IntentionBackground.defaultProps = {
   color: '#F1F1F4'
 };
 
-export default TypeBackground;
+export default IntentionBackground;

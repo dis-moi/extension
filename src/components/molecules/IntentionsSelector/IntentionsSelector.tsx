@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { intentions } from 'app/lmem/intention';
-import IntentionIcon from 'components/molecules/Type/IntentionIcon';
+import IntentionIcon from 'components/atoms/Intentions/IntentionIcon';
 import IntentionsSelectorContainer from './IntentionsSelectorContainer';
 
 interface Props {
