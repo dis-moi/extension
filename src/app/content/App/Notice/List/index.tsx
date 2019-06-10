@@ -13,7 +13,7 @@ export interface Props {
   close?: () => void;
 }
 export const List = ({ notices, dismiss, undismiss, close }: Props) => (
-  <Notification title="Bulles pour cette page" hasNotices close={close}>
+  <Notification title="Le Même en Mieux" hasNotices close={close}>
     {notices.slice(0, 2).map((notice: StatefulNotice) => (
       <NoticeItem
         key={notice.id}
