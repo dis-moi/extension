@@ -1,3 +1,10 @@
+## [2.3.6](https://github.com/insitu-project/recommendations-webextension/compare/v2.3.5...v2.3.6) (2019-06-10)
+
+
+### Bug Fixes
+
+* **firefox:** catch sentry init error in content script ([8326a64](https://github.com/insitu-project/recommendations-webextension/commit/8326a64))
+
 ## [2.3.5](https://github.com/insitu-project/recommendations-webextension/compare/v2.3.4...v2.3.5) (2019-06-10)
 
 
