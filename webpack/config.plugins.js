@@ -19,7 +19,7 @@ const ENV = {
     UNINSTALL_ORIGIN: "'https://www.lmem.net/desinstallation'",
     HEAP_APPID: '"234457910"', // testing
     REFRESH_MC_INTERVAL: '5*60*1000',
-    SENTRY_DSN: '"https://12ed31b41955443480dbfcb5da3e3a33@sentry.io/1404898"'
+    SENTRY_DSN: '"https://12ed31b41955443480dbfcb5da3e3a33@sentry.io/1404847"'
   },
   chromium: {
     LMEM_BACKEND_ORIGIN: '"https://notices.lmem.net/api/v3/"',
@@ -27,14 +27,14 @@ const ENV = {
     REFRESH_MC_INTERVAL: '30*60*1000',
     ONBOARDING_ORIGIN: '"https://bienvenue.lmem.net?extensionInstalled"',
     HEAP_APPID: '"3705584166"', // production
-    SENTRY_DSN: '"https://12ed31b41955443480dbfcb5da3e3a33@sentry.io/1404898"'
+    SENTRY_DSN: '"https://12ed31b41955443480dbfcb5da3e3a33@sentry.io/1404847"'
   },
   firefox: {
     LMEM_BACKEND_ORIGIN: '"https://notices.lmem.net/api/v3/"',
     ONBOARDING_ORIGIN: '"https://bienvenue.lmem.net?extensionInstalled"',
     REFRESH_MC_INTERVAL: '30*60*1000',
     // No analytics with Firefox // HEAP_APPID: '"3705584166"',
-    SENTRY_DSN: '"https://12ed31b41955443480dbfcb5da3e3a33@sentry.io/1404898"'
+    SENTRY_DSN: '"https://12ed31b41955443480dbfcb5da3e3a33@sentry.io/1404847"'
   }
 };
 
