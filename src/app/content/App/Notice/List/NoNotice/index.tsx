@@ -6,7 +6,7 @@ import BorderButton from 'components/atoms/Buttons/BorderButton';
 
 export default () => (
   <Fragment>
-    <Title>Pas de Bulle ici</Title>
+    <Title>Pas de recommandation pour cette page</Title>
     <ButtonContainer>
       <Illustration />
       <BorderButton
@@ -15,7 +15,7 @@ export default () => (
         target="_blank"
         rel="noopener noreferrer"
       >
-        Créer une Bulle
+        Créer une recommandation
       </BorderButton>
     </ButtonContainer>
   </Fragment>
