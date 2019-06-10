@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { Contributor, Button, BorderButton } from '../../atoms';
-import Like from '../../atoms/icons/types/Like';
-import Dislike from '../../atoms/icons/types/Dislike';
+import ThumbUp from '../../atoms/icons/ThumbUp';
+import ThumbDown from '../../atoms/icons/ThumbDown';
 import Source from './Source/Source';
 import SourceURL from './Source/SourceURL';
 import DetailsContainer from './DetailsContainer';
@@ -107,11 +107,11 @@ class NoticeDetails extends PureComponent<
 
           <Feedbacks>
             <Button onClick={this.handleLikeClick}>
-              <Like active={liked} />
+              <ThumbUp filled={liked} />
               {likes}
             </Button>
             <Button onClick={this.handleDislikeClick}>
-              <Dislike active={disliked} />
+              <ThumbDown filled={disliked} />
               {dislikes}
             </Button>
           </Feedbacks>

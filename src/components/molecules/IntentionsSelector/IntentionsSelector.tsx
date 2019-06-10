@@ -13,7 +13,7 @@ const IntentionSelector = ({ value }: Props) => (
       <IntentionIcon
         key={intention}
         intention={intention}
-        clicked={intention === value}
+        active={intention === value}
       />
     ))}
   </IntentionsSelectorContainer>

@@ -5,7 +5,8 @@ import Intention from './IntentionIcon';
 
 storiesOf('molecules/Type', module)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
-  .add('approval', () => <Intention intention="approval" />)
+  .add('approval (active)', () => <Intention active intention="approval" />)
+  .add('approval (inactive)', () => <Intention intention="approval" />)
   .add('disapproval', () => <Intention intention="disapproval" />)
   .add('alternative', () => <Intention intention="alternative" />)
   .add('information', () => <Intention intention="information" />)

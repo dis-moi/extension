@@ -3,12 +3,13 @@ import { withTheme } from 'styled-components';
 import { Theme } from 'app/theme';
 
 interface Props {
-  active?: boolean;
+  stroked?: boolean;
+  filled?: boolean;
   theme: Theme;
 }
-const Dislike = ({ active, theme }: Props) => {
-  const stroke = !active ? theme.secondaryColor : '#fff';
-  const fill = active ? theme.secondaryColor : undefined;
+const ThumbDown = ({ filled, stroked, theme }: Props) => {
+  const stroke = stroked ? theme.secondaryColor : undefined;
+  const fill = filled ? theme.secondaryColor : '#fff';
 
   return (
     <svg width="20.254" height="19.444" viewBox="-1 -1 22.254 21.444">
@@ -33,4 +34,4 @@ const Dislike = ({ active, theme }: Props) => {
   );
 };
 
-export default withTheme(Dislike);
+export default withTheme(ThumbDown);

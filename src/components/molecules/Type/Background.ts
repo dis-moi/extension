@@ -9,10 +9,6 @@ const TypeBackground = styled.div`
   margin-right: 10px;
   border-radius: 50%;
   background-color: ${props => props.color};
-
-  & > svg {
-    fill: #fff;
-  }
 `;
 
 TypeBackground.defaultProps = {
