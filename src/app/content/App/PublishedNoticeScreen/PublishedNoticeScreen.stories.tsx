@@ -1,10 +1,9 @@
 import React from 'react';
-import { MemoryRouter as Router } from 'react-router';
 import { storiesOf } from '@storybook/react';
-import Error from '.';
+import { action } from '@storybook/addon-actions';
+import { MemoryRouter as Router } from 'react-router-dom';
+import PublishedNoticeScreen from '.';
 
-storiesOf('screens/Error', module).add('normal', () => (
-  <Router>
-    <Error />
-  </Router>
-));
+storiesOf('screens/PublishedNoticeScreen', module)
+  .addDecorator(getStory => <Router>{getStory()}</Router>)
+  .add('normal', () => <PublishedNoticeScreen />);

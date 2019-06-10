@@ -1,9 +1,7 @@
 import styled from 'styled-components';
+import ContentTitle from 'components/atoms/ContentTitle';
 
-export default styled.h2`
-  margin: 15px 0 0;
-  font-size: 38px;
-  font-family: 'Sedgwick Ave', cursive;
-  font-weight: normal;
-  color: ${props => props.theme.error};
+export default styled(ContentTitle)`
+  margin-top: 9px;
+  font-size: 22px;
 `;
