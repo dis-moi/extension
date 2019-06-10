@@ -1,3 +1,11 @@
+## [2.3.7](https://github.com/insitu-project/recommendations-webextension/compare/v2.3.6...v2.3.7) (2019-06-10)
+
+
+### Bug Fixes
+
+* **sentry:** Wrong project DSN ([6602530](https://github.com/insitu-project/recommendations-webextension/commit/6602530))
+* **wordings:** still lmem, not yet bulle ([c0d1abd](https://github.com/insitu-project/recommendations-webextension/commit/c0d1abd))
+
 ## [2.3.6](https://github.com/insitu-project/recommendations-webextension/compare/v2.3.5...v2.3.6) (2019-06-10)
 
 
