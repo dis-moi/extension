@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Notification from 'components/organisms/Notification';
-import { Button, CenterContainer } from 'components/atoms';
+import { Button, CenterContainer, ExternalLink } from 'components/atoms';
 import BorderButton from 'components/atoms/Buttons/BorderButton';
 import Container from './Container';
 import Content from './Content';
@@ -13,7 +13,10 @@ export default () => (
     <Container>
       <Illustration />
       <ContentTitle>Félicitations !</ContentTitle>
-      <Content>Votre bulle à bien été publiée sur:</Content>
+      <Content>
+        Votre bulle à bien été publiée sur :
+        <ExternalLink>www.ouisncf.com</ExternalLink>
+      </Content>
       <BorderButton>Voir la Bulle</BorderButton>
 
       <CenterContainer>
