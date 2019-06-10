@@ -1,3 +1,10 @@
+## [2.3.5](https://github.com/insitu-project/recommendations-webextension/compare/v2.3.4...v2.3.5) (2019-06-10)
+
+
+### Bug Fixes
+
+* **manifest:** rename shortname to short_name ([5567d01](https://github.com/insitu-project/recommendations-webextension/commit/5567d01))
+
 ## [2.3.4](https://github.com/insitu-project/recommendations-webextension/compare/v2.3.3...v2.3.4) (2019-06-07)
 
 
