@@ -1,15 +1,13 @@
 import React from 'react';
-import NoticeDetails from '../../../../../components/organisms/NoticeDetails/NoticeDetails';
+import { compose } from 'redux';
+import withTitle from 'app/hocs/withTitle';
+import NoticeDetails from 'components/organisms/NoticeDetails/NoticeDetails';
 import withConnect, {
   DetailsDispatchProps,
   DetailsStateProps
 } from './withConnect';
 
-import ScreenProps, { useUITitleEffect } from '../../../ScreenProps';
-
-export type DetailsScreenProps = ScreenProps &
-  DetailsDispatchProps &
-  DetailsStateProps;
+export type DetailsScreenProps = DetailsDispatchProps & DetailsStateProps;
 
 export const Details = ({
   notice,
@@ -18,14 +16,10 @@ export const Details = ({
   dislike,
   confirmDislike,
   undislike,
-  close,
   view,
-  followSource,
-  ...props
+  followSource
 }: DetailsScreenProps) => {
   if (notice) {
-    useUITitleEffect(props)('Détail de la bulle');
-
     return (
       <NoticeDetails
         notice={notice}
@@ -43,4 +37,7 @@ export const Details = ({
   return null;
 };
 
-export default withConnect(Details);
+export default compose(
+  withConnect,
+  withTitle<DetailsScreenProps>('Détail de la bulle')
+)(Details);

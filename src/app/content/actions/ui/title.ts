@@ -5,9 +5,9 @@ export interface SetUITitleAction extends BaseAction {
   payload?: string;
 }
 
-export const setUITitle = (payload?: string): SetUITitleAction => ({
+export const setUITitle = (title: string): SetUITitleAction => ({
   type: 'UI/SET_TITLE',
-  payload
+  payload: title
 });
 
 export interface RemoveUITitleAction extends BaseAction {

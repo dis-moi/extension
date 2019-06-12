@@ -3,9 +3,8 @@ import NotificationContainer from './Container';
 import NotificationHeader from './NotificationHeader';
 import Main from './Main';
 import NotificationFooter from './NotificationFooter';
-import ScreenProps from '../../../app/content/ScreenProps';
 
-interface OwnProps {
+interface NotificationProps {
   title?: string;
   close?: () => void;
   onBack?: () => void;
@@ -13,8 +12,6 @@ interface OwnProps {
   hasNotices?: boolean;
   children?: ReactNode;
 }
-
-type NotificationProps = OwnProps & ScreenProps;
 
 const Notification = ({
   title,
