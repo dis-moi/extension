@@ -6,7 +6,6 @@ import {
 } from 'app/actions/notices';
 import { getNoticesToDisplay } from '../../../selectors';
 import { State } from '../../../store';
-import { removeUITitle, setUITitle } from '../../../actions/ui/title';
 
 const mapStateToProps = (state: State) => ({
   notices: getNoticesToDisplay(state)
@@ -15,9 +14,7 @@ const mapStateToProps = (state: State) => ({
 const mapDispatchToProps = {
   dismiss,
   undismiss,
-  confirmDismiss,
-  setUITitle,
-  removeUITitle
+  confirmDismiss
 };
 
 export default connect(

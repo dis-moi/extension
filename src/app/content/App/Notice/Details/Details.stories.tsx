@@ -53,6 +53,5 @@ storiesOf('screens/Notice/Details', module)
       undislike={action('undislike')}
       view={action('view')}
       followSource={action('followSource')}
-      close={action('close')}
     />
   ));

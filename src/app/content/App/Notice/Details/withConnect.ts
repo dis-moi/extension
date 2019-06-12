@@ -13,7 +13,6 @@ import { State } from '../../../store';
 import { getNoticeById } from '../../../selectors';
 import { DetailsProps } from './types';
 import { StatefulNotice } from '../../../../lmem/notice';
-import { removeUITitle, setUITitle } from '../../../actions/ui/title';
 
 export interface DetailsStateProps {
   notice?: StatefulNotice;
@@ -33,20 +32,17 @@ export interface DetailsDispatchProps {
   confirmDislike: (id: number) => void;
   undislike: (id: number) => void;
   view: (id: number) => void;
-  close: () => void;
   followSource: (id: number) => void;
 }
 
-const mapDispatchToProps = {
+const mapDispatchToProps: DetailsDispatchProps = {
   like: likeNotice,
   unlike: unlikeNotice,
   dislike: dislikeNotice,
   confirmDislike: confirmDislikeNotice,
   undislike: undislikeNotice,
   view: readNotice,
-  followSource: resourceLinkClicked,
-  setUITitle,
-  removeUITitle
+  followSource: resourceLinkClicked
 };
 
 export default connect(
