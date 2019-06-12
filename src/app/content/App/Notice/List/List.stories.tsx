@@ -28,7 +28,6 @@ storiesOf('screens/Notice/List', module)
   ))
   .add('1 notice', () => (
     <ListScreen
-      close={action('close')}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
       notices={[
@@ -43,7 +42,6 @@ storiesOf('screens/Notice/List', module)
   ))
   .add('2 notices', () => (
     <ListScreen
-      close={action('close')}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
       notices={[
@@ -69,7 +67,6 @@ storiesOf('screens/Notice/List', module)
   ))
   .add('1 read', () => (
     <ListScreen
-      close={action('close')}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
       notices={[
@@ -96,7 +93,6 @@ storiesOf('screens/Notice/List', module)
   ))
   .add('empty', () => (
     <ListScreen
-      close={action('close')}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
       notices={[]}
@@ -104,7 +100,6 @@ storiesOf('screens/Notice/List', module)
   ))
   .add('2 lines excerpt', () => (
     <ListScreen
-      close={action('close')}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
       notices={[
