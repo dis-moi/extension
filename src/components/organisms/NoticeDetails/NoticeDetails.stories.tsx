@@ -66,4 +66,14 @@ storiesOf('organisms/NoticeDetails', module)
       dislike={action('dislike')}
       undislike={action('undislike')}
     />
+  ))
+  .add('Preview', () => (
+    <NoticeDetails
+      notice={generateStatefulNotice({ withSource: false })}
+      like={action('like')}
+      unlike={action('unlike')}
+      dislike={action('dislike')}
+      undislike={action('undislike')}
+      preview
+    />
   ));

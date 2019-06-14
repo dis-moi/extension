@@ -29,6 +29,7 @@ interface NoticeDetailsProps {
   undislike: (id: number) => void;
   view?: (id: number) => void;
   followSource?: (id: number) => void;
+  preview?: boolean;
 }
 class NoticeDetails extends PureComponent<
   NoticeDetailsProps & RouteComponentProps
@@ -88,7 +89,8 @@ class NoticeDetails extends PureComponent<
         source,
         ratings: { likes, dislikes },
         state: { liked, disliked, dismissed }
-      }
+      },
+      preview
     } = this.props;
 
     return (
@@ -110,16 +112,18 @@ class NoticeDetails extends PureComponent<
             </Source>
           )}
 
-          <Feedbacks>
-            <Button onClick={this.handleLikeClick}>
-              <ThumbUp filled={liked} />
-              {likes}
-            </Button>
-            <Button onClick={this.handleDislikeClick}>
-              <ThumbDown filled={disliked} />
-              {dislikes}
-            </Button>
-          </Feedbacks>
+          {!preview && (
+            <Feedbacks>
+              <Button onClick={this.handleLikeClick}>
+                <ThumbUp filled={liked} />
+                {likes}
+              </Button>
+              <Button onClick={this.handleDislikeClick}>
+                <ThumbDown filled={disliked} />
+                {dislikes}
+              </Button>
+            </Feedbacks>
+          )}
 
           {(disliked || dismissed) && (
             <DetailsDislike>
@@ -134,10 +138,12 @@ class NoticeDetails extends PureComponent<
           )}
         </DetailsContent>
 
-        <CenterContainer>
-          <Button>Modifier</Button>
-          <BorderButton>Modifier</BorderButton>
-        </CenterContainer>
+        {preview && (
+          <CenterContainer>
+            <Button>Modifier</Button>
+            <BorderButton>Publier</BorderButton>
+          </CenterContainer>
+        )}
       </DetailsContainer>
     );
   }

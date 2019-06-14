@@ -68,5 +68,6 @@ storiesOf('screens/Notice/Details', module)
       view={action('view')}
       followSource={action('followSource')}
       close={action('close')}
+      preview
     />
   ));
