@@ -1,5 +1,6 @@
 import { StatefulNotice } from 'app/lmem/notice';
 import { BaseAction, ErrorAction, TabAction, TabMeta } from '.';
+import Tab from 'app/lmem/Tab';
 
 export interface NoticesFoundAction extends TabAction {
   type: 'NOTICES_FOUND';
@@ -10,7 +11,7 @@ export interface NoticesFoundAction extends TabAction {
 
 export const noticesFound = (
   notices: StatefulNotice[],
-  tab: number
+  tab: Tab
 ): NoticesFoundAction => ({
   type: 'NOTICES_FOUND',
   payload: {

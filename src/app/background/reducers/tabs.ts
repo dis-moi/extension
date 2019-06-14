@@ -1,13 +1,14 @@
 import {
   TAB_CREATED,
-  TAB_UPDATED,
-  TAB_REMOVED
+  TAB_REMOVED,
+  TAB_UPDATED
 } from '../../constants/browser/tabs';
 import { AppAction } from 'app/actions';
 import * as R from 'ramda';
+import Tab from 'app/lmem/Tab';
 
 export interface TabsState {
-  [tab: string]: string;
+  [tabId: string]: Tab;
 }
 
 export const initialState: TabsState = {};
@@ -15,13 +16,11 @@ export const initialState: TabsState = {};
 export default function(state = initialState, action: AppAction) {
   switch (action.type) {
     case TAB_CREATED:
-      return { ...state, [action.payload.tab]: action.payload.url };
-
     case TAB_UPDATED:
-      return { ...state, [action.payload.tab]: action.payload.url };
+      return { ...state, [action.payload.tab.id]: action.payload.tab };
 
     case TAB_REMOVED:
-      return R.dissoc<TabsState>(action.payload.tab.toString(), state);
+      return R.dissoc<TabsState>(action.payload.tab.id.toString(), state);
 
     default:
       return state;

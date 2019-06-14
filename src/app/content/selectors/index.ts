@@ -39,6 +39,6 @@ export const getExtensionInstallationDate = createSelector(
     details.datetime ? new Date(details.datetime) : undefined
 );
 
-export const getTabId = (state: State) => state.tabId;
+export const getTab = (state: State) => state;
 
 export const getPathname = (state: State) => getLocation(state).pathname;

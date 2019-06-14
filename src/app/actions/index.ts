@@ -8,6 +8,7 @@ import {
 import { InstalledAction } from './install';
 import {
   RefreshMatchingContextsAction,
+  RefreshMatchingContextsFailedAction,
   ReceivedMatchingContextsAction
 } from './kraftBackend';
 import {
@@ -27,6 +28,7 @@ import {
   ReadNoticeAction
 } from './notices';
 import { Action } from 'redux';
+import Tab from 'app/lmem/Tab';
 
 export interface StandardAction extends Action {
   payload?: any;
@@ -44,21 +46,19 @@ export interface ErrorAction extends BaseAction {
 }
 
 export interface TabMeta extends ActionMeta {
-  tab: number;
-  url?: string;
+  tab: Tab;
 }
 
-export type TabAction = BaseAction & {
+export interface TabAction extends BaseAction {
   meta: TabMeta;
-};
+}
 
 export type TabErrorAction = TabAction & ErrorAction;
 
 export interface ActionMeta {
-  tab?: number;
   sendToBackground?: boolean;
   sendToTab?: boolean;
-  tracked?: false;
+  tracked?: boolean;
 }
 
 export type AppAction =
@@ -69,6 +69,7 @@ export type AppAction =
   | TabRemovedAction
   | InstalledAction
   | RefreshMatchingContextsAction
+  | RefreshMatchingContextsFailedAction
   | ReceivedMatchingContextsAction
   | MatchContextAction
   | MatchContextFailureAction

@@ -8,21 +8,21 @@ import { badgeResetFailed, badgeUpdateFailed } from '../../actions/badge';
 export const updateBadgeSaga = (badgeTheme: BadgeTheme) =>
   function*({
     payload: notices,
-    meta: { tab: tabId }
+    meta: { tab }
   }: NoticesUpdatedAction): IterableIterator<any> {
     try {
       const noticesToDisplay = yield select(getNoticesToDisplay(notices));
-      yield call(updateBadge, noticesToDisplay, badgeTheme, tabId);
+      yield call(updateBadge, noticesToDisplay, badgeTheme, tab.id);
     } catch (e) {
       badgeUpdateFailed(e);
     }
   };
 
 export function* resetBadgeSaga({
-  meta: { tab: tabId }
+  meta: { tab }
 }: TabAction): IterableIterator<any> {
   try {
-    resetBadge(tabId);
+    resetBadge(tab.id);
   } catch (e) {
     badgeResetFailed(e);
   }

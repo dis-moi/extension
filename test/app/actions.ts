@@ -14,9 +14,12 @@ import {
 } from '../../src/app/actions/tabs';
 import { MatchingContext } from '../../src/app/lmem/matchingContext';
 import { StatefulNotice } from '../../src/app/lmem/notice';
+import Tab from '../../src/app/lmem/Tab';
 
 const expect = chai.expect;
 chai.use(sinonChai);
+
+const tab: Tab = { id: 1, url: 'http://tests.menant-benjamin.fr/' };
 
 const notice: StatefulNotice = {
   id: 1,
@@ -57,15 +60,14 @@ describe('background actions', function() {
   });
 
   it('contextTriggered', () => {
-    const trigger = '';
     const triggeredContexts: MatchingContext[] = [];
-    const action = contextTriggered(1, trigger, triggeredContexts);
+    const action = contextTriggered(triggeredContexts, tab);
 
     expect(action.type)
       .to.be.a('string')
       .of.length.above(5);
-    expect(action.payload.url).to.equal(trigger);
-    expect(action.payload.triggeredContexts).to.equal(triggeredContexts);
+    expect(action.meta.tab).to.equal(tab);
+    expect(action.payload).to.equal(triggeredContexts);
   });
 
   it('noticeDisplayed', () => {

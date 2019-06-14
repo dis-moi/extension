@@ -1,12 +1,12 @@
 import { Action } from 'redux';
 
 export const sendToTab = (
-  tab: number,
+  tabId: number,
   action: Action,
   options = {}
 ): Promise<Action> =>
   new Promise(resolve => {
-    chrome.tabs.sendMessage(tab, action, options, response =>
+    chrome.tabs.sendMessage(tabId, action, options, response =>
       resolve(response)
     );
   });

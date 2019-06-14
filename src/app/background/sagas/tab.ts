@@ -50,40 +50,37 @@ import * as R from 'ramda';
 import { MatchingContext } from '../../lmem/matchingContext';
 import { StatefulNotice, Notice, warnIfNoticeInvalid } from '../../lmem/notice';
 import sendToTab from '../services/sendToTab';
-import { AppAction } from '../../actions/';
 import { fetchNotices } from '../../../api/fetchNotice';
 
 export const tabSaga = (executeContentScript: ExecuteContentScript) =>
-  function*({ payload: { tab, url } }: TabCreatedAction | TabUpdatedAction) {
-    yield call(executeContentScript, tab, url);
-    yield put(matchContext(url, tab));
+  function*({ payload: { tab } }: TabCreatedAction | TabUpdatedAction) {
+    yield call(executeContentScript, tab);
+    yield put(matchContext(tab));
   };
 
-export function* matchContextSaga({
-  payload: { url },
-  meta: { tab }
-}: MatchContextAction) {
+export function* matchContextSaga({ meta: { tab } }: MatchContextAction) {
   try {
     const triggeredContexts = yield select(state =>
-      findTriggeredContexts(state)(url)
+      findTriggeredContexts(state)(tab.url)
     );
 
     if (triggeredContexts.length >= 1) {
-      yield put(contextTriggered(tab, url, triggeredContexts));
+      yield put(contextTriggered(triggeredContexts, tab));
     } else {
       throw new Error('No contexts triggered');
     }
   } catch (e) {
-    yield put(matchContextFailure(e, url, tab));
+    yield put(matchContextFailure(e, tab));
   }
 }
 
 export const contextTriggeredSaga = function*({
-  payload: { tab, url: trigger, triggeredContexts }
+  payload: triggeredContexts,
+  meta: { tab }
 }: ContextTriggeredAction) {
   try {
     const initialContent = yield select(getInitialContent);
-    yield put(init(tab, initialContent.installationDetails));
+    yield put(init(initialContent.installationDetails, tab));
 
     const toFetch = R.compose<MatchingContext[], string[], string[]>(
       R.uniq,
@@ -97,14 +94,14 @@ export const contextTriggeredSaga = function*({
       getNoticesToDisplay(validNotices)
     );
     yield all(
-      noticesToShow.map(notice => put(noticeDisplayed(notice, trigger)))
+      noticesToShow.map(notice => put(noticeDisplayed(notice, tab.url)))
     );
 
     const ignoredNotices: StatefulNotice[] = yield select(
       getIgnoredNotices(validNotices)
     );
     yield all(
-      ignoredNotices.map(notice => put(noticeIgnored(notice, trigger)))
+      ignoredNotices.map(notice => put(noticeIgnored(notice, tab.url)))
     );
 
     if (noticesToShow.length > 0) {
@@ -114,7 +111,7 @@ export const contextTriggeredSaga = function*({
       // throw new Error('Context was triggered but they were no notices left to display.');
     }
   } catch (e) {
-    yield put(contextTriggerFailure(e, tab, trigger));
+    yield put(contextTriggerFailure(e, tab));
   }
 };
 
@@ -122,7 +119,7 @@ export function* publishToTabSaga(action: TabAction) {
   const {
     meta: { tab }
   } = action;
-  const response = yield call(sendToTab, tab, action);
+  const response = yield call(sendToTab, tab.id, action);
 
   console.log(`Tab "${tab}" respond`, response);
 }

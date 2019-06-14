@@ -5,13 +5,13 @@ import { MemoryHistory } from 'history';
 import installationDetails from './installationDetails';
 import open from './open';
 import notices from './notices';
-import tabId from './tabId';
+import tab from './tab';
 
 export default (history: MemoryHistory) =>
   combineReducers({
     installationDetails,
     open,
     notices,
-    tabId,
+    tab,
     router: connectRouter(history)
   });
