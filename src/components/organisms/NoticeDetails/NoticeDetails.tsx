@@ -1,6 +1,11 @@
 import React, { PureComponent } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { Contributor, Button, BorderButton } from '../../atoms';
+import {
+  Contributor,
+  Button,
+  BorderButton,
+  CenterContainer
+} from '../../atoms';
 import ThumbUp from '../../atoms/icons/ThumbUp';
 import ThumbDown from '../../atoms/icons/ThumbDown';
 import Source from './Source/Source';
@@ -128,6 +133,11 @@ class NoticeDetails extends PureComponent<
             </DetailsDislike>
           )}
         </DetailsContent>
+
+        <CenterContainer>
+          <Button>Modifier</Button>
+          <BorderButton>Modifier</BorderButton>
+        </CenterContainer>
       </DetailsContainer>
     );
   }

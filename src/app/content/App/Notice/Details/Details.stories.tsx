@@ -47,4 +47,26 @@ storiesOf('screens/Notice/Details', module)
       followSource={action('followSource')}
       close={action('close')}
     />
+  ))
+  .add('previewScreen', () => (
+    <Details
+      notice={generateStatefulNotice({
+        contributor: text('contributor', defaultContributorName),
+        intention: select('intention', intentions, 'approval'),
+        message: `<p>${text('message', defaultMessage)}</p>`,
+        sourceUrl: text('source', defaultSourceUrl),
+        created: date('created', defaultDate),
+        likes: number('likes', 42),
+        dislikes: number('dislikes', 2),
+        liked: boolean('liked', false),
+        disliked: boolean('disliked', false)
+      })}
+      like={action('like')}
+      unlike={action('unlike')}
+      dislike={action('dislike')}
+      undislike={action('undislike')}
+      view={action('view')}
+      followSource={action('followSource')}
+      close={action('close')}
+    />
   ));
