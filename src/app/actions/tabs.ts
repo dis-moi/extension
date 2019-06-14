@@ -57,6 +57,19 @@ export const contextTriggered = (
   meta: { tab }
 });
 
+export interface ContextNotTriggeredAction extends TabAction {
+  type: 'LMEM/CONTEXT_NOT_TRIGGERED';
+  payload: MatchingContext[];
+}
+export const contextNotTriggered = (
+  triggeredContexts: MatchingContext[],
+  tab: Tab
+): ContextNotTriggeredAction => ({
+  type: 'LMEM/CONTEXT_NOT_TRIGGERED',
+  payload: triggeredContexts,
+  meta: { tab }
+});
+
 export interface ContextTriggerFailureAction extends TabErrorAction {
   type: 'LMEM/CONTEXT_TRIGGER_FAILURE';
 }
