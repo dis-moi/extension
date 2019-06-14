@@ -14,7 +14,7 @@ export default () => (
       <Illustration />
       <ContentTitle>Félicitations !</ContentTitle>
       <Content>
-        Votre bulle à bien été publiée sur :
+        Votre bulle sera publiée d’ici 24h sur :
         <ExternalLink>www.ouisncf.com</ExternalLink>
       </Content>
       <BorderButton>Voir la Bulle</BorderButton>
