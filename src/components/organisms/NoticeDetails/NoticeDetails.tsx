@@ -1,11 +1,6 @@
 import React, { PureComponent } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
-import {
-  Contributor,
-  Button,
-  BorderButton,
-  CenterContainer
-} from '../../atoms';
+import { Contributor, Button, BorderButton } from '../../atoms';
 import ThumbUp from '../../atoms/icons/ThumbUp';
 import ThumbDown from '../../atoms/icons/ThumbDown';
 import Source from './Source/Source';
@@ -17,6 +12,7 @@ import DetailsDislike from './DetailsDislike';
 import Message from './Message';
 import Feedbacks from './Feedbacks';
 import Date from './Date';
+import CenterContainer from './CenterContainer';
 import { StatefulNotice } from '../../../app/lmem/notice';
 import { format } from 'date-fns';
 import IntentionIcon from '../../atoms/Intentions/IntentionIcon';
