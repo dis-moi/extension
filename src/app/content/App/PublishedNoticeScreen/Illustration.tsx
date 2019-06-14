@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default () => (
-  <svg width="119.664" height="104.427">
+  <svg width="87" height="104.427">
     <defs>
       <clipPath id="a">
         <path

@@ -48,7 +48,7 @@ storiesOf('screens/Notice/Details', module)
       close={action('close')}
     />
   ))
-  .add('previewScreen', () => (
+  .add('preview', () => (
     <Details
       notice={generateStatefulNotice({
         contributor: text('contributor', defaultContributorName),

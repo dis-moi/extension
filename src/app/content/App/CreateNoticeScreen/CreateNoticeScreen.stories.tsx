@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { MemoryRouter as Router } from 'react-router-dom';
 import CreateNoticeScreen from '.';
 
-storiesOf('screens/CreateNoticeScreen', module)
+storiesOf('screens/CreateNotice', module)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
   .add('normal', () => <CreateNoticeScreen close={action('close')} />)
   .add('error', () => <CreateNoticeScreen close={action('close')} />);
