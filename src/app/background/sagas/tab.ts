@@ -28,9 +28,11 @@ import {
   noticeDisplayed,
   contextTriggerFailure,
   MatchContextAction,
-  ContextTriggeredAction
+  ContextTriggeredAction,
+  contextNotTriggered
 } from 'app/actions/tabs';
 import {
+  noNoticesDisplayed,
   noticesFound,
   NoticesFoundAction,
   noticesUpdated
@@ -67,7 +69,7 @@ export function* matchContextSaga({ meta: { tab } }: MatchContextAction) {
     if (triggeredContexts.length >= 1) {
       yield put(contextTriggered(triggeredContexts, tab));
     } else {
-      throw new Error('No contexts triggered');
+      yield put(contextNotTriggered(triggeredContexts, tab));
     }
   } catch (e) {
     yield put(matchContextFailure(e, tab));
@@ -107,8 +109,7 @@ export const contextTriggeredSaga = function*({
     if (noticesToShow.length > 0) {
       yield put(noticesFound(noticesToShow, tab));
     } else {
-      // Will throw here when we will be able to not trigger context on dismissed/disliked notices
-      // throw new Error('Context was triggered but they were no notices left to display.');
+      yield put(noNoticesDisplayed(tab));
     }
   } catch (e) {
     yield put(contextTriggerFailure(e, tab));

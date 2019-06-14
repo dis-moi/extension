@@ -23,6 +23,18 @@ export const noticesFound = (
   }
 });
 
+// Context was triggered but they were no notices left to display
+export interface NoNoticesDisplayedAction extends TabAction {
+  type: 'NO_NOTICES_DISPLAYED';
+}
+
+export const noNoticesDisplayed = (tab: Tab): NoNoticesDisplayedAction => ({
+  type: 'NO_NOTICES_DISPLAYED',
+  meta: {
+    tab
+  }
+});
+
 export type feedbackType =
   | 'dismiss'
   | 'undismiss'
