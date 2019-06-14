@@ -1,30 +1,31 @@
 import { TabAction } from '.';
+import Tab from 'app/lmem/Tab';
 
 export interface TabCreatedAction extends TabAction {
   type: 'BROWSER/TAB_CREATED';
-  payload: { tab: number; url: string };
+  payload: { tab: Tab };
 }
-export const tabCreated = (tab: number, url: string): TabCreatedAction => ({
+export const tabCreated = (tab: Tab): TabCreatedAction => ({
   type: 'BROWSER/TAB_CREATED',
-  payload: { tab, url },
+  payload: { tab },
   meta: { tab, tracked: false }
 });
 
 export interface TabUpdatedAction extends TabAction {
   type: 'BROWSER/TAB_UPDATED';
-  payload: { tab: number; url: string };
+  payload: { tab: Tab };
 }
-export const tabUpdated = (tab: number, url: string): TabUpdatedAction => ({
+export const tabUpdated = (tab: Tab): TabUpdatedAction => ({
   type: 'BROWSER/TAB_UPDATED',
-  payload: { tab, url },
+  payload: { tab },
   meta: { tab, tracked: false }
 });
 
 export interface TabRemovedAction extends TabAction {
   type: 'BROWSER/TAB_REMOVED';
-  payload: { tab: number };
+  payload: { tab: Tab };
 }
-export const tabRemoved = (tab: number): TabRemovedAction => ({
+export const tabRemoved = (tab: Tab): TabRemovedAction => ({
   type: 'BROWSER/TAB_REMOVED',
   payload: { tab },
   meta: { tab, tracked: false }

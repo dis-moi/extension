@@ -7,6 +7,7 @@ import {
 } from '../../../src/app/actions/notices';
 import { init } from '../../../src/app/actions/tabs';
 import { StatefulNotice } from '../../../src/app/lmem/notice';
+import Tab from 'app/lmem/Tab';
 
 const expect = chai.expect;
 
@@ -27,15 +28,20 @@ const notice1: StatefulNotice = {
 };
 
 describe('content actions', function() {
+  const tab: Tab = { id: 1, url: 'http://tests.menant-benjamin.fr/' };
   it('init', () => {
-    const action = init(1, { version: '0.1' });
+    const action = init({ version: '0.1' }, tab);
     expect(action.payload)
       .to.be.an('object')
-      .to.include.all.keys('installationDetails', 'tab');
+      .to.include.all.keys('version');
+
+    expect(action.meta)
+      .to.be.an('object')
+      .to.include.all.keys('tab');
   });
 
   it('noticesFound', () => {
-    const action = noticesFound([notice1], 1);
+    const action = noticesFound([notice1], tab);
 
     expect(action.type)
       .to.be.a('string')
@@ -54,7 +60,7 @@ describe('content actions', function() {
   });
 
   it('likes notice', () => {
-    const id = 0;
+    const id = 0; 
     const action = likeNotice(id);
 
     expect(action.type)

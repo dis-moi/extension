@@ -1,17 +1,14 @@
 import { tabCreated, tabRemoved, tabUpdated } from 'app/actions/tabsLifecycle';
 import { Store } from 'redux';
 
-export const onTabCreated = (store: Store) => ({
-  id,
-  url
-}: chrome.tabs.Tab) => {
-  if (!url || !id) return;
+export const onTabCreated = (store: Store) => (tab: chrome.tabs.Tab) => {
+  if (!tab.url || !tab.id) return;
 
-  store.dispatch(tabCreated(id, url));
+  store.dispatch(tabCreated({ id: tab.id, url: tab.url }));
 };
 
 export const onTabUpdated = (store: Store) => (
-  tab: number,
+  tabId: number,
   changeInfo: chrome.tabs.TabChangeInfo,
   tabInfo: chrome.tabs.Tab
 ) => {
@@ -19,12 +16,12 @@ export const onTabUpdated = (store: Store) => (
     const matchingUrl = changeInfo.url || tabInfo.url; // handle reloading
     if (!matchingUrl) return;
 
-    store.dispatch(tabUpdated(tab, matchingUrl));
+    store.dispatch(tabUpdated({ id: tabId, url: matchingUrl }));
   }
 };
 
-export const onTabRemoved = (store: Store) => (tab: number) => {
-  store.dispatch(tabRemoved(tab));
+export const onTabRemoved = (store: Store) => (tabId: number) => {
+  store.dispatch(tabRemoved({ id: tabId, url: '' }));
 };
 
 export default (store: Store) => {

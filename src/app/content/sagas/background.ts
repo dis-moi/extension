@@ -4,7 +4,7 @@ import { INIT } from '../../constants/ActionTypes';
 import { updateInstalledDetails } from 'app/actions/filters';
 import { InitAction } from 'app/actions/tabs';
 
-export function* initSaga({ payload: { installationDetails } }: InitAction) {
+export function* initSaga({ payload: installationDetails }: InitAction) {
   yield put(updateInstalledDetails(installationDetails));
 }
 

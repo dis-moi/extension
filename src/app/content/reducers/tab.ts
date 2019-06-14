@@ -1,12 +1,14 @@
 import { AppAction } from 'app/actions';
+import Tab from 'app/lmem/Tab';
 
-export type TabIdState = number | null;
-export const initialState: TabIdState = null;
+export const initialState = null;
+
+export type TabState = Tab | null;
 
 export default (
-  state: TabIdState = initialState,
+  state: TabState = initialState,
   action: AppAction
-): TabIdState => {
+): TabState => {
   if (action.type === 'NOTICES_FOUND') {
     return action.meta.tab;
   }

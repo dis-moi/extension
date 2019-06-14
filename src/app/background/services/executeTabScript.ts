@@ -1,13 +1,14 @@
-export type ExecuteContentScript = (tab: number, url: string) => Promise<any[]>;
+import Tab from 'app/lmem/Tab';
+
+export type ExecuteContentScript = (tab: Tab) => Promise<any[]>;
 
 export const executeTabScript = (code: string): ExecuteContentScript => (
-  tab: number,
-  url: string
+  tab: Tab
 ): Promise<any[]> =>
   new Promise(resolve => {
-    if (url.startsWith('http')) {
+    if (tab.url.startsWith('http')) {
       chrome.tabs.executeScript(
-        tab,
+        tab.id,
         {
           code,
           runAt: 'document_end'
