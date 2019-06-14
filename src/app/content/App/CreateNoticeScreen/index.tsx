@@ -2,7 +2,7 @@ import React from 'react';
 import Notification from 'components/organisms/Notification';
 import IntentionsSelector from 'components/molecules/IntentionsSelector/IntentionsSelector';
 import Input from 'components/atoms/Forms/Input/Input';
-import Textarea from 'components/atoms/Forms/Textarea/Textarea';
+import Textarea from './Textarea';
 import Error from 'components/atoms/Forms/Error/Error';
 import { CenterContainer, ContentWrapper } from 'components/atoms/';
 import BorderButton from 'components/atoms/Buttons/BorderButton';
