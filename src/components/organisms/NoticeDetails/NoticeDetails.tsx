@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { Contributor, Button, Timer } from '../../atoms';
+import { Button, Contributor, Timer } from '../../atoms';
 import Like from '../../atoms/icons/types/Like';
 import Dislike from '../../atoms/icons/types/Dislike';
 import Source from './Source/Source';
@@ -115,7 +115,7 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
         contributor,
         source,
         ratings: { likes, dislikes },
-        state: { liked, disliked, dismissed }
+        state: { liked, disliked }
       }
     } = this.props;
 
