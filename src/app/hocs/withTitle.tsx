@@ -7,13 +7,17 @@ interface TitleProps {
   removeUITitle: () => void;
 }
 
+interface TitleManipulationProps {
+  changeUITitle?: (title: string) => void;
+}
+
 const mapDispatchToProps: TitleProps = {
   setUITitle,
   removeUITitle
 };
 
-const withTitle = <TComponentProps extends {}>(title: string) => (
-  Component: ComponentType<TComponentProps>
+const withTitle = <TComponentProps extends {}>(title: string | undefined) => (
+  Component: ComponentType<TComponentProps & TitleManipulationProps>
 ) => {
   const ComponentWithTitleEffect = ({
     setUITitle,
@@ -21,12 +25,12 @@ const withTitle = <TComponentProps extends {}>(title: string) => (
     ...props
   }: TitleProps & TComponentProps) => {
     useEffect(() => {
-      setUITitle(title);
+      setUITitle(title || '');
       return removeUITitle;
     }, []);
 
     // @ts-ignore -> We need a way to tell TypeScript that TComponentProps should not contain setUITitle, nor removeUITitle keys
-    return <Component {...props} />;
+    return <Component {...props} changeUITitle={setUITitle} />;
   };
 
   const ConnectedComponent = connect(
