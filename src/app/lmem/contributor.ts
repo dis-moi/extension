@@ -12,9 +12,15 @@ interface Picture {
 export interface Contributor {
   id: number;
   name: string;
+  image?: string;
   avatar?: Avatar;
   intro?: string;
   contributions: number;
+}
+
+export interface NewContributor {
+  name: string;
+  email: string;
 }
 
 export interface StatefulContributor extends Contributor {

@@ -1,6 +1,7 @@
 import { fork, all } from 'redux-saga/effects';
 import tab from './tab';
 import badge from './badge';
+import contribution from './contribution';
 import externalMessage from './externalMessage';
 import theme from '../../theme';
 import error from '../../sagas/error';
@@ -18,6 +19,7 @@ export default function* rootSaga() {
     fork(tab),
     fork(badge(theme.badge)),
     fork(listenActionsFromMessages('background')),
+    fork(contribution),
     fork(externalMessage),
     fork(watchBrowserActionSaga),
     fork(openOptionsWhenRequestedSaga),

@@ -2,7 +2,7 @@ import { find } from 'ramda';
 import { Source } from './source';
 import { intentions, Intention } from './intention';
 import { Ratings } from './rating';
-import { Contributor } from './contributor';
+import { Contributor, NewContributor } from './contributor';
 
 export interface Notice {
   id: number;
@@ -14,6 +14,14 @@ export interface Notice {
   source?: Source;
   ratings: Ratings;
   visibility: 'public' | 'private';
+}
+
+export interface Contribution {
+  url: string;
+  date: Date;
+  intention: Intention;
+  contributor: NewContributor;
+  message: string;
 }
 
 export interface NoticeState {
