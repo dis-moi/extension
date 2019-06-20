@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export default styled.input`
+interface Props {
+  error?: boolean;
+}
+
+export default styled.input<Props>`
   box-sizing: border-box;
   width: 100%;
   margin-bottom: 10px;
@@ -8,7 +12,11 @@ export default styled.input`
   font-size: 13px;
   line-height: 1;
   border-radius: 6px;
-  border: 1px solid ${props => props.theme.secondaryColor};
+  border: 1px solid
+    ${props =>
+      props.error ? props.theme.formError : props.theme.secondaryColor};
+  box-shadow: inset 0px 0px 0px 2px
+    ${props => (props.error ? props.theme.formError : '#fff')};
   resize: none;
 
   ::placeholder {

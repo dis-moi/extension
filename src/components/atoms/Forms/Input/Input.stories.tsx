@@ -9,4 +9,14 @@ storiesOf('atoms/Forms/Input', module)
       type="text"
     />
   ))
-  .add('email', () => <Input placeholder="coucou@lmem.net" type="email" />);
+  .add('text with error', () => (
+    <Input
+      placeholder="Source (facultatif). Exemple : www.nom-de-site.com"
+      type="text"
+      error
+    />
+  ))
+  .add('email', () => <Input placeholder="coucou@lmem.net" type="email" />)
+  .add('email with error', () => (
+    <Input placeholder="coucou@lmem.net" type="email" error />
+  ));
