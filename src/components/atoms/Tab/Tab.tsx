@@ -16,4 +16,8 @@ export default styled(Button)<Props>`
   background-color ${props =>
     props.active ? props.theme.activeColor : props.theme.contributorGrey};
   border-radius: 8px 8px 0 0;
+
+  &:hover {
+    color: ${props => (props.active ? '#FFF' : props.theme.activeColor)};
+  }
 `;
