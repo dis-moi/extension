@@ -1,7 +1,11 @@
 if (!(window as CustomWindow).__LMEM__CONTENT_SCRIPT_INJECTED__) {
   const { configureSentryScope, initSentry } = require('../utils/sentry');
 
-  initSentry();
+  try {
+    initSentry();
+  } catch (error) {
+    console.warn('Could not init Sentry in contentScript', error);
+  }
   configureSentryScope((scope: any) => {
     scope.setTag('context', 'content');
   });
