@@ -9,6 +9,7 @@ const version = require('../package.json').version;
 
 module.exports = Object.freeze({
   name: 'Le Même en Mieux',
+  short_name: 'LMEM',
   description:
     'Qualité, prix, éthique : s’il existe un meilleur choix, vous le saurez. ' +
     'Gratuit et sans pub, respecte votre vie privée.',
