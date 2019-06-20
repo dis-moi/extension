@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTransition } from 'react-spring';
+import { compose } from 'redux';
 import {
   List as ListContainer,
   AddNoticeContainer,
@@ -9,27 +10,18 @@ import NoticeItem, {
   NoticeTransitionProps,
   transitionKeys
 } from 'components/organisms/Notice/Notice';
+import { StatefulNotice } from 'app/lmem/notice';
+import withTitle from 'app/hocs/withTitle';
 import NoNotice from './NoNotice';
 import withConnect from './withConnect';
-import { StatefulNotice } from '../../../../lmem/notice';
-import ScreenProps, { useUITitleEffect } from '../../../ScreenProps';
 
-export interface Props extends ScreenProps {
+export interface Props {
   notices: StatefulNotice[];
   dismiss: (id: number) => void;
   undismiss: (id: number) => void;
-  close?: () => void;
 }
 
-export const ListScreen = ({
-  notices,
-  dismiss,
-  undismiss,
-  close,
-  ...props
-}: Props) => {
-  useUITitleEffect(props)('Bulles Pour cette page');
-
+export const ListScreen = ({ notices, dismiss, undismiss }: Props) => {
   const transitions = useTransition(
     notices.slice(0, 2),
     notice => notice.id,
@@ -60,4 +52,9 @@ export const ListScreen = ({
   );
 };
 
-export default withConnect(ListScreen);
+const Chose = compose(
+  withConnect,
+  withTitle<Props>('Bulles Pour cette page')
+)(ListScreen);
+
+export default Chose;

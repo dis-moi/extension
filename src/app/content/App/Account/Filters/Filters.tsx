@@ -1,11 +1,11 @@
 import React from 'react';
 import ContentTitleTop from 'components/organisms/Notification/ContentTitleTop';
-import ScreenProps, { useUITitleEffect } from '../../../ScreenProps';
+import withTitle from 'app/hocs/withTitle';
 
-interface Props extends ScreenProps {}
+interface Props {}
 
-export default (props: Props) => {
-  useUITitleEffect(props)('Mes Filtres');
+export const Filters = (props: Props) => (
+  <ContentTitleTop>Mes filtres</ContentTitleTop>
+);
 
-  return <ContentTitleTop>Mes filtres</ContentTitleTop>;
-};
+export default withTitle<Props>('Mes Filtres')(Filters);

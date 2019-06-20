@@ -1,5 +1,6 @@
+import React, { ComponentType } from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
-import React from 'react';
 import {
   Redirect,
   Route,
@@ -8,8 +9,8 @@ import {
   withRouter
 } from 'react-router';
 import { State } from '../store';
-import { getTitle, isNoticeContext, isOpen } from '../selectors';
 
+import { getTitle, isNoticeContext, isOpen } from '../selectors';
 import Notice from './Notice';
 import Subscriptions from './Subscriptions';
 import Help from './Help';
@@ -20,8 +21,8 @@ import Notification from 'components/organisms/Notification';
 import { close } from '../../actions/ui';
 
 const mapStateToProps = (state: State) => ({
-  open: isOpen(state) as boolean,
-  title: getTitle(state) as string,
+  open: isOpen(state),
+  title: getTitle(state),
   noticeContext: isNoticeContext(state)
 });
 
@@ -29,15 +30,18 @@ const mapDispatchToProps = {
   close
 };
 
-interface OwnProps {
-  loaded: boolean;
+interface ConnectProps {
   open: boolean;
   title: string;
   close: () => void;
   noticeContext: boolean;
 }
 
-type UIProps = OwnProps & RouteComponentProps;
+interface ExternalProps {
+  loaded: boolean;
+}
+
+type UIProps = ExternalProps & ConnectProps & RouteComponentProps;
 
 const UI = ({ loaded, open, title, close, noticeContext }: UIProps) => {
   if (open) {
@@ -65,9 +69,10 @@ const UI = ({ loaded, open, title, close, noticeContext }: UIProps) => {
   return null;
 };
 
-export default withRouter(
+export default compose<ComponentType<ExternalProps>>(
+  withRouter,
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(UI)
-);
+  )
+)(UI);
