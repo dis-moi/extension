@@ -80,7 +80,7 @@ module.exports = (env = {}, argv = {}, outputPath) => {
       new SentryWebpackPlugin({
         include: `./build/${env.build}/js`,
         ignore: ['test.*.js*'],
-        release: `${version}-${env.build}`
+        release: `web-extension@${version}-${env.build}`
       })
     );
   }
