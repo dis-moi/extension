@@ -28,7 +28,6 @@ export default styled.div`
       svg {
         stroke: ${props => props.theme.secondaryColor};
         stroke-width: 0.5px;
-        /* fill: ${props => props.theme.secondaryColor}; */
       }
     }
   }
