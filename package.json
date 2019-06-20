@@ -22,7 +22,7 @@
     "lint:ts": "tslint -p .",
     "lint:css": "stylelint './src/**/*.js'",
     "analyse": "babel-node ./node_modules/webpack/bin/webpack --optimize-minimize --mode production --config webpack/chromium.config.js --profile --json > stats.json",
-    "storybook": "start-storybook -p 6007 -c .storybook",
+    "storybook": "start-storybook --ci -p 6007 -c .storybook",
     "build-storybook": "build-storybook"
   },
   "husky": {
