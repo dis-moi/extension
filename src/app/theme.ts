@@ -1,5 +1,9 @@
 import { BadgeTheme } from './lmem/badge';
 
+export interface IntentionStyle {
+  background: string;
+}
+
 export interface Theme {
   main: string;
   // colors
@@ -35,21 +39,11 @@ export interface Theme {
 
   // notice type colors
   intentions: {
-    disapproval: {
-      background: string;
-    };
-    alternative: {
-      background: string;
-    };
-    approval: {
-      background: string;
-    };
-    information: {
-      background: string;
-    };
-    other: {
-      background: string;
-    };
+    disapproval: IntentionStyle;
+    alternative: IntentionStyle;
+    approval: IntentionStyle;
+    information: IntentionStyle;
+    other: IntentionStyle;
   };
   // iframe
   iframe: {
