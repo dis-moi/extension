@@ -15,3 +15,4 @@ platforms/
 .ftppass
 storybook-static/*
 .sentryclirc
+.env

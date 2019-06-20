@@ -1,22 +1,32 @@
-import React, { Fragment } from 'react';
-import { intentions } from 'app/lmem/intention';
+import React from 'react';
+import { Intention, intentions } from 'app/lmem/intention';
 import IntentionIcon from 'components/atoms/Intentions/IntentionIcon';
-import IntentionsSelectorContainer from './IntentionsSelectorContainer';
+import Container from './Container';
 
 interface Props {
-  value: string;
+  value: Intention;
+  onChange?: (intention: Intention) => void;
 }
 
-const IntentionSelector = ({ value }: Props) => (
-  <IntentionsSelectorContainer>
-    {intentions.map(intention => (
-      <IntentionIcon
-        key={intention}
-        intention={intention}
-        active={intention === value}
-      />
-    ))}
-  </IntentionsSelectorContainer>
-);
+const IntentionSelector = ({ value, onChange }: Props) => {
+  const handleChange = (intention: Intention) => {
+    if (onChange) {
+      return () => onChange(intention);
+    }
+  };
+
+  return (
+    <Container>
+      {intentions.map(intention => (
+        <IntentionIcon
+          key={intention}
+          intention={intention}
+          active={intention === value}
+          onClick={handleChange(intention)}
+        />
+      ))}
+    </Container>
+  );
+};
 
 export default IntentionSelector;
