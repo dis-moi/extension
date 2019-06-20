@@ -1,7 +1,7 @@
 import React from 'react';
 import { put, takeLatest, select, call } from 'redux-saga/effects';
 import { render } from 'react-dom';
-import { push } from 'connected-react-router';
+import { go, replace } from 'connected-react-router';
 import { open, opened, closed } from 'app/actions/ui';
 import {
   isOpen as isNotificationOpen,
@@ -13,6 +13,7 @@ import { CLOSE, OPEN, NOTICES_FOUND } from '../../constants/ActionTypes';
 import { append, create, hide, show } from '../extensionIframe';
 import theme from '../../theme';
 import App from '../App';
+import { history } from '../store';
 
 const iframe = create(theme.iframe.style);
 let contentDocument: Document;
@@ -24,7 +25,7 @@ export function* openSaga() {
   if (!isOpen) {
     const location = yield select(getPathname);
     if (location) {
-      yield put(push('/'));
+      yield put(replace('/'));
     }
 
     if (isMounted && contentDocument.visibilityState === 'visible') {
@@ -46,6 +47,7 @@ export function* closeSaga() {
   const isOpen = yield select(isNotificationOpen);
   if (isOpen) {
     hide();
+    yield put(go(-history.entries.length));
     yield put(closed());
   }
 }
