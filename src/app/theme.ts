@@ -23,6 +23,7 @@ export interface Theme {
   error: string;
   formError: string;
   button: string;
+  contributorGrey: string;
 
   badge: BadgeTheme;
 
@@ -94,6 +95,7 @@ export const theme: Theme = {
   error: '#F01953',
   formError: '#DB0D0D',
   button: '#1ECCB5',
+  contributorGrey: '#F5F5F5',
 
   // badge background colors
   badge: {
