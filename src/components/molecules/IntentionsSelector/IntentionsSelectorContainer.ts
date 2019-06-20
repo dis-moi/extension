@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Background from 'components/atoms/Intentions/Background';
 
 export default styled.div`
   box-sizing: border-box;
@@ -6,7 +7,7 @@ export default styled.div`
   justify-content: space-between;
   margin-bottom: 10px;
 
-  & > div {
+  ${Background} {
     margin-right: 0;
   }
 `;
