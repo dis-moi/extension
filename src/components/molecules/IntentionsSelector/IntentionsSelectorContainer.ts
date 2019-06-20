@@ -9,5 +9,6 @@ export default styled.div`
 
   ${Background} {
     margin-right: 0;
+    cursor: pointer;
   }
 `;
