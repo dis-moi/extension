@@ -10,3 +10,4 @@ export { default as Contributor } from './Contributor';
 export { default as Time } from './Time';
 export { default as List } from './List';
 export { default as ExternalLink } from './ExternalLink';
+export { default as Title } from './Title';
