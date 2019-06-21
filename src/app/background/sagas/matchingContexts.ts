@@ -1,5 +1,5 @@
 import { put, takeLatest, call } from 'redux-saga/effects';
-import fetchMatchingContexts from '../../../api/fetchMatchingContexts';
+import fetchMatchingContexts from 'api/lmem/fetchMatchingContexts';
 import { REFRESH_MATCHING_CONTEXTS } from '../../constants/ActionTypes';
 
 import { receivedMatchingContexts } from 'app/actions/kraftBackend';

@@ -3,18 +3,27 @@ import { MemoryRouter as Router } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import NoticeDetails from './NoticeDetails';
-import { subMonths, subWeeks } from 'date-fns';
+import { subMonths } from 'date-fns';
 import Faker from 'faker';
 import {
   defaultSourceUrl,
   generateStatefulNotice
 } from '../../../../test/fakers/generateNotice';
-import { boolean, date, number, select, text } from '@storybook/addon-knobs';
-import { intentions } from '../../../app/lmem/intention';
+import { boolean, date, number, text } from '@storybook/addon-knobs';
 
 const defaultContributorName = Faker.name.findName();
 const defaultMessage = Faker.lorem.paragraph(3);
 const defaultDate = subMonths(new Date(), 1);
+
+const defaultActions = {
+  like: action('like'),
+  unlike: action('unlike'),
+  dislike: action('dislike'),
+  undislike: action('undislike'),
+  view: action('view'),
+  onEdit: action('edit'),
+  onPublish: action('publish')
+};
 
 storiesOf('organisms/NoticeDetails', module)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
@@ -31,49 +40,31 @@ storiesOf('organisms/NoticeDetails', module)
         liked: boolean('liked', false),
         disliked: boolean('disliked', false)
       })}
-      like={action('like')}
-      unlike={action('unlike')}
-      dislike={action('dislike')}
-      undislike={action('undislike')}
-      view={action('view')}
+      {...defaultActions}
     />
   ))
   .add('Dismissed', () => (
     <NoticeDetails
       notice={generateStatefulNotice({ dismissed: true })}
-      like={action('like')}
-      unlike={action('unlike')}
-      dislike={action('dislike')}
-      undislike={action('undislike')}
-      view={action('view')}
+      {...defaultActions}
     />
   ))
   .add('Disliked', () => (
     <NoticeDetails
       notice={generateStatefulNotice({ disliked: true })}
-      like={action('like')}
-      unlike={action('unlike')}
-      dislike={action('dislike')}
-      undislike={action('undislike')}
-      view={action('view')}
+      {...defaultActions}
     />
   ))
   .add('No source', () => (
     <NoticeDetails
       notice={generateStatefulNotice({ withSource: false })}
-      like={action('like')}
-      unlike={action('unlike')}
-      dislike={action('dislike')}
-      undislike={action('undislike')}
+      {...defaultActions}
     />
   ))
   .add('Preview', () => (
     <NoticeDetails
       notice={generateStatefulNotice({ withSource: false })}
-      like={action('like')}
-      unlike={action('unlike')}
-      dislike={action('dislike')}
-      undislike={action('undislike')}
       preview
+      {...defaultActions}
     />
   ));

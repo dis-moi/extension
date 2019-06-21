@@ -6,6 +6,8 @@ import withConnect, {
   DetailsStateProps
 } from './withConnect';
 
+const toBeImplemented = () => undefined;
+
 export const Details = ({
   notice,
   like,
@@ -28,6 +30,8 @@ export const Details = ({
         view={view}
         followSource={followSource}
         preview={preview}
+        onEdit={toBeImplemented}
+        onPublish={toBeImplemented}
       />
     </Notification>
   ) : null;

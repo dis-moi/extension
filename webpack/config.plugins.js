@@ -6,11 +6,12 @@ const AddAssetWebpackPlugin = require('add-asset-webpack-plugin');
 const ZipPlugin = require('zip-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const SentryWebpackPlugin = require('@sentry/webpack-plugin');
+const R = require('ramda');
 
 const manifests = require('../manifest');
 const { version } = require('../package.json');
 
-const ENV = {
+const BUILD_CONFIG = {
   dev: {
     LMEM_BACKEND_ORIGIN: '"https://staging-notices.lmem.net/api/v3/"'
   },
@@ -18,25 +19,35 @@ const ENV = {
     LMEM_BACKEND_ORIGIN: '"https://staging-notices.lmem.net/api/v3/"',
     UNINSTALL_ORIGIN: "'https://www.lmem.net/desinstallation'",
     HEAP_APPID: '"234457910"', // testing
-    REFRESH_MC_INTERVAL: '5*60*1000',
-    SENTRY_DSN: '"https://12ed31b41955443480dbfcb5da3e3a33@sentry.io/1404898"'
+    REFRESH_MC_INTERVAL: '5*60*1000'
   },
   chromium: {
     LMEM_BACKEND_ORIGIN: '"https://notices.lmem.net/api/v3/"',
     UNINSTALL_ORIGIN: "'https://www.lmem.net/desinstallation'",
     REFRESH_MC_INTERVAL: '30*60*1000',
     ONBOARDING_ORIGIN: '"https://bienvenue.lmem.net?extensionInstalled"',
-    HEAP_APPID: '"3705584166"', // production
-    SENTRY_DSN: '"https://12ed31b41955443480dbfcb5da3e3a33@sentry.io/1404898"'
+    HEAP_APPID: '"3705584166"' // production
   },
   firefox: {
     LMEM_BACKEND_ORIGIN: '"https://notices.lmem.net/api/v3/"',
     ONBOARDING_ORIGIN: '"https://bienvenue.lmem.net?extensionInstalled"',
-    REFRESH_MC_INTERVAL: '30*60*1000',
+    REFRESH_MC_INTERVAL: '30*60*1000'
     // No analytics with Firefox // HEAP_APPID: '"3705584166"',
-    SENTRY_DSN: '"https://12ed31b41955443480dbfcb5da3e3a33@sentry.io/1404898"'
   }
 };
+
+const selectEnvVarsToInject = R.pick([
+  'SEND_CONTRIBUTION_FROM',
+  'SEND_CONTRIBUTION_TO',
+  'SEND_IN_BLUE_TOKEN',
+  'SENTRY_DSN'
+]);
+const formatEnvVars = R.map(value => `"${value}"`);
+
+const processENVVarsToInject = R.pipe(
+  selectEnvVarsToInject,
+  formatEnvVars
+);
 
 module.exports = (env = {}, argv = {}, outputPath) => {
   const buildPath = path.join(outputPath, env.build);
@@ -58,7 +69,8 @@ module.exports = (env = {}, argv = {}, outputPath) => {
   const plugins = [
     new webpack.DefinePlugin({
       'process.env': {
-        ...ENV[env.build],
+        ...BUILD_CONFIG[env.build],
+        ...processENVVarsToInject(process.env),
         BUILD: JSON.stringify(env.build),
         SENTRY_ENABLE: env.sentry ? 'true' : 'false'
       }

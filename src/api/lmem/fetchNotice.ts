@@ -1,4 +1,4 @@
-import { Notice } from '../app/lmem/notice';
+import { Notice } from 'app/lmem/notice';
 import { get } from './call';
 
 export const fetchNotice = (noticeUrl: string): Promise<Notice> =>

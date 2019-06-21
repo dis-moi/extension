@@ -1,8 +1,7 @@
-import { LMEM_BACKEND_ORIGIN } from '../../constants/origins';
-import { AppAction } from '../../actions';
 import { Dispatch } from 'redux';
+import postRating from 'api/lmem/postRating';
+import { AppAction } from '../../actions';
 import { FeedbackOnNoticeAction, feedbackType } from '../../actions/notices';
-import postRating from '../../../api/postRating';
 
 /* eslint-disable indent, implicit-arrow-linebreak, no-multi-spaces */
 const isUserToNoticeAction = (

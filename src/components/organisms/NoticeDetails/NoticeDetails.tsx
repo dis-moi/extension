@@ -26,6 +26,8 @@ interface NoticeDetailsProps {
   view?: (id: number) => void;
   followSource?: (id: number) => void;
   preview?: boolean;
+  onEdit: () => void;
+  onPublish: () => void;
 }
 class NoticeDetails extends PureComponent<
   NoticeDetailsProps & RouteComponentProps
@@ -86,7 +88,9 @@ class NoticeDetails extends PureComponent<
         ratings: { likes, dislikes },
         state: { liked, disliked, dismissed }
       },
-      preview
+      preview,
+      onEdit,
+      onPublish
     } = this.props;
 
     return (
@@ -136,8 +140,8 @@ class NoticeDetails extends PureComponent<
 
         {preview && (
           <CenterContainer>
-            <Button>Modifier</Button>
-            <BorderButton>Publier</BorderButton>
+            <Button onClick={onEdit}>Modifier</Button>
+            <BorderButton onClick={onPublish}>Publier</BorderButton>
           </CenterContainer>
         )}
       </DetailsContainer>

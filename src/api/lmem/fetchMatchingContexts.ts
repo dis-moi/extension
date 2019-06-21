@@ -1,4 +1,4 @@
-import { MatchingContext } from '../app/lmem/matchingContext';
+import { MatchingContext } from 'app/lmem/matchingContext';
 import { get } from './call';
 
 const fetchMatchingContexts = (): Promise<MatchingContext[]> =>

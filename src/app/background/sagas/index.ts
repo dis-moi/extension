@@ -3,7 +3,13 @@ import matchingContexts from './matchingContexts';
 import tab from './tab';
 import badge from './badge';
 import theme from '../../theme';
+import contributionSaga from './contribution';
 
 export default function* rootSaga() {
-  yield all([fork(matchingContexts), fork(tab), fork(badge(theme.badge))]);
+  yield all([
+    fork(matchingContexts),
+    fork(tab),
+    fork(badge(theme.badge)),
+    fork(contributionSaga)
+  ]);
 }

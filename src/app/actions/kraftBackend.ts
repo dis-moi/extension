@@ -1,7 +1,7 @@
-import { MatchingContext } from 'app/lmem/matchingContext';
 import { Dispatch } from 'redux';
+import { MatchingContext } from 'app/lmem/matchingContext';
+import fetchMatchingContexts from 'api/lmem/fetchMatchingContexts';
 import { BaseAction } from '.';
-import fetchMatchingContexts from '../../api/fetchMatchingContexts';
 
 export interface ReceivedMatchingContextsAction extends BaseAction {
   type: 'api/UPDATE_MATCHING_CONTEXTS';
