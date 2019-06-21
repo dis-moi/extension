@@ -1,3 +1,10 @@
+## [2.3.8](https://github.com/insitu-project/recommendations-webextension/compare/v2.3.7...v2.3.8) (2019-06-21)
+
+
+### Bug Fixes
+
+* **sentry:** Wrong project DSN ([d84fc3f](https://github.com/insitu-project/recommendations-webextension/commit/d84fc3f))
+
 ## [2.3.7](https://github.com/insitu-project/recommendations-webextension/compare/v2.3.6...v2.3.7) (2019-06-10)
 
 
