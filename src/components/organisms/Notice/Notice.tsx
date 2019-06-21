@@ -13,6 +13,7 @@ interface Props {
   notice: StatefulNotice;
   dismiss: (id: number) => void;
   undismiss: (id: number) => void;
+  truncateTitleAt?: number;
 }
 
 export default class Notice extends PureComponent<Props> {
@@ -20,7 +21,8 @@ export default class Notice extends PureComponent<Props> {
     type: 'Other',
     dismissed: false,
     disliked: false,
-    read: false
+    read: false,
+    truncateTitleAt: Title.defaultProps.numberOfCharacters
   };
 
   onDismiss = () => {
@@ -38,8 +40,9 @@ export default class Notice extends PureComponent<Props> {
         intention,
         message,
         contributor,
-        state: { dismissed, justDismissed, disliked, justDisliked, read }
-      }
+        state: { dismissed, disliked, read }
+      },
+      truncateTitleAt
     } = this.props;
     return (
       <Container>
@@ -57,7 +60,9 @@ export default class Notice extends PureComponent<Props> {
             <Fragment>
               <IntentionIcon intention={intention} />
               <div>
-                <Title>{stripHtml(message)}</Title>
+                <Title numberOfCharacters={truncateTitleAt}>
+                  {stripHtml(message)}
+                </Title>
                 <Contributor>Par : {contributor.name}</Contributor>
               </div>
               <OpenButton />
