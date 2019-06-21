@@ -2,7 +2,13 @@ import React from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, text, boolean, select } from '@storybook/addon-knobs';
+import {
+  withKnobs,
+  text,
+  boolean,
+  select,
+  number
+} from '@storybook/addon-knobs';
 import Notice from './Notice';
 import {
   defaultMessage,
@@ -10,8 +16,11 @@ import {
 } from '../../../../test/fakers/generateNotice';
 import Faker from 'faker';
 import { intentions } from '../../../app/lmem/intention';
+import Title from './Title';
 
 const defaultContributorName = Faker.name.findName();
+const longMessage =
+  'This is very long title for a notification with a link that you may want to read some time in the future';
 
 storiesOf('organisms/Notice', module)
   .addDecorator(withKnobs)
@@ -103,13 +112,15 @@ storiesOf('organisms/Notice', module)
   .add('Long title', () => (
     <Notice
       notice={generateStatefulNotice({
-        dismissed: true,
         intention: select('intention', intentions, 'approval'),
         contributor: text('contributor', defaultContributorName),
-        message:
-          '<p>This is very long title for a notification with a <a href="http://some.url">link</a> that you may want to read some time in the future</p>'
+        message: `<p>${text('message', longMessage)}</p>`
       })}
       dismiss={action('dismiss')}
       undismiss={action('undismiss')}
+      truncateTitleAt={number(
+        'truncateTitleAt',
+        Title.defaultProps.numberOfCharacters
+      )}
     />
   ));

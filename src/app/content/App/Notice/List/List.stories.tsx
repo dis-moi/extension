@@ -94,19 +94,4 @@ storiesOf('screens/Notice/List', module)
       undismiss={action('undismiss')}
       notices={[]}
     />
-  ))
-  .add('2 lines excerpt', () => (
-    <List
-      close={action('close')}
-      dismiss={action('dismiss')}
-      undismiss={action('undismiss')}
-      notices={[
-        generateStatefulNotice({
-          dismissed: boolean('dismissed', false),
-          intention: select('intention', intentions, 'approval'),
-          contributor: text('contributor', firstContributorName),
-          message: `<p>dazd zazaddd dddddd ddddd dddd dddddd ddd ddddd dddddddd dd</p>`
-        })
-      ]}
-    />
   ));

@@ -12,11 +12,22 @@ export const TitleContainer = styled.p`
 
 interface Props {
   children: string;
+  numberOfCharacters?: number;
 }
-const NoticeTitle = ({ children }: Props) => (
+const NoticeTitle = ({ children, numberOfCharacters }: Props) => (
   <TitleContainer>
-    <Truncated numberOfCharacters={60}>{children}</Truncated>
+    <Truncated
+      numberOfCharacters={
+        numberOfCharacters || NoticeTitle.defaultProps.numberOfCharacters
+      }
+    >
+      {children}
+    </Truncated>
   </TitleContainer>
 );
+
+NoticeTitle.defaultProps = {
+  numberOfCharacters: 92
+};
 
 export default NoticeTitle;
