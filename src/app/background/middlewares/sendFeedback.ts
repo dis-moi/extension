@@ -1,8 +1,8 @@
-import { AppAction } from '../../actions';
 import { Dispatch } from 'redux';
-import { FeedbackOnNoticeAction } from '../../actions/notices';
-import postRating from '../../../api/postRating';
-import { RatingType } from '../../lmem/rating';
+import postRating from 'api/lmem/postRating';
+import { AppAction } from 'app/actions';
+import { FeedbackOnNoticeAction } from 'app/actions/notices';
+import { RatingType } from 'app/lmem/rating';
 
 const isRatingAction = (action: AppAction): action is FeedbackOnNoticeAction =>
   action.type === 'FEEDBACK_ON_NOTICE' &&

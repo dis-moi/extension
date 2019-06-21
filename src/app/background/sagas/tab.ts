@@ -7,6 +7,7 @@ import {
   all,
   take
 } from 'redux-saga/effects';
+import { fetchNotices } from 'api/lmem/fetchNotice';
 import { findTriggeredContexts } from '../selectors';
 import {
   getInitialContent,
@@ -52,7 +53,7 @@ import * as R from 'ramda';
 import { MatchingContext } from '../../lmem/matchingContext';
 import { StatefulNotice, Notice, warnIfNoticeInvalid } from '../../lmem/notice';
 import sendToTab from '../services/sendToTab';
-import { fetchNotices } from '../../../api/fetchNotice';
+import { AppAction } from '../../actions/';
 
 export const tabSaga = (executeContentScript: ExecuteContentScript) =>
   function*({ payload: { tab } }: TabCreatedAction | TabUpdatedAction) {

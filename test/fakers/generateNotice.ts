@@ -4,7 +4,7 @@ import Faker from 'faker';
 import { NoticeState, StatefulNotice } from '../../src/app/lmem/notice';
 import { Intention } from '../../src/app/lmem/intention';
 import { Source } from '../../src/app/lmem/source';
-import { Contributor } from '../../src/app/lmem/contributor';
+import { OtherContributor } from '../../src/app/lmem/contributor';
 import { Ratings } from '../../src/app/lmem/rating';
 
 interface Options {
@@ -107,7 +107,7 @@ export const generateStatefulNoticeVariant = (
         )(notice.source || defaultSource)
       : undefined;
 
-  const newContrib: Contributor = assocIfGiven<Contributor, 'name'>(
+  const newContrib: OtherContributor = assocIfGiven<OtherContributor, 'name'>(
     'name',
     contributor
   )(notice.contributor);

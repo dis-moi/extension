@@ -1,18 +1,19 @@
 // Early imports with high priority stuff involved, such as event listeners creation
 import loadHeap from '../../lib/heap';
 import prepareDraftPreview from '../lmem/draft-preview/main';
-import { LMEM_BACKEND_ORIGIN } from '../constants/origins';
+import { LMEM_BACKEND_ORIGIN } from 'app/constants/origins';
 import {
   dispatchInitialStateFromBackend,
   refreshMatchingContextsEvery
 } from 'app/actions/kraftBackend';
 import onInstalled from 'app/actions/install';
 import updateDraftNotices from 'app/actions/updateDraftNotices';
-import { configureSentryScope, initSentry } from '../utils/sentry';
-import { getInstallationDetails } from './selectors/prefs';
+import { configureSentryScope, initSentry } from 'app/utils/sentry';
 import { store } from './store';
+import { getInstallationDetails } from './selectors/prefs';
 import fetchContentScript from './services/fetchContentScript';
 import { BackgroundState } from './reducers';
+import { contributionSubmitted } from '../actions/contribution';
 
 initSentry();
 configureSentryScope(scope => {

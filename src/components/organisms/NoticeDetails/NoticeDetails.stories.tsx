@@ -3,14 +3,13 @@ import { MemoryRouter as Router } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import NoticeDetails from './NoticeDetails';
-import { subMonths, subWeeks } from 'date-fns';
+import { subMonths } from 'date-fns';
 import Faker from 'faker';
 import {
   defaultSourceUrl,
   generateStatefulNotice
 } from '../../../../test/fakers/generateNotice';
-import { boolean, date, number, select, text } from '@storybook/addon-knobs';
-import { intentions } from '../../../app/lmem/intention';
+import { boolean, date, number, text } from '@storybook/addon-knobs';
 
 const defaultContributorName = Faker.name.findName();
 const defaultMessage = Faker.lorem.paragraph(3);
@@ -58,15 +57,5 @@ storiesOf('organisms/NoticeDetails', module)
     <NoticeDetails
       {...commonProps}
       notice={generateStatefulNotice({ withSource: false })}
-    />
-  ))
-  .add('Preview', () => (
-    <NoticeDetails
-      notice={generateStatefulNotice({ withSource: false })}
-      like={action('like')}
-      unlike={action('unlike')}
-      dislike={action('dislike')}
-      undislike={action('undislike')}
-      preview
     />
   ));

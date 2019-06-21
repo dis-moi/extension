@@ -6,11 +6,12 @@ const AddAssetWebpackPlugin = require('add-asset-webpack-plugin');
 const ZipPlugin = require('zip-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const SentryWebpackPlugin = require('@sentry/webpack-plugin');
+const R = require('ramda');
 
 const manifests = require('../manifest');
 const { version } = require('../package.json');
 
-const ENV = {
+const BUILD_CONFIG = {
   dev: {
     LMEM_BACKEND_ORIGIN: '"https://staging-notices.lmem.net/api/v3/"'
   },
@@ -38,6 +39,19 @@ const ENV = {
   }
 };
 
+const selectEnvVarsToInject = R.pick([
+  'SEND_CONTRIBUTION_FROM',
+  'SEND_CONTRIBUTION_TO',
+  'SEND_IN_BLUE_TOKEN',
+  'SENTRY_DSN'
+]);
+const formatEnvVars = R.map(value => `"${value}"`);
+
+const processENVVarsToInject = R.pipe(
+  selectEnvVarsToInject,
+  formatEnvVars
+);
+
 module.exports = (env = {}, argv = {}, outputPath) => {
   const buildPath = path.join(outputPath, env.build);
 
@@ -58,7 +72,8 @@ module.exports = (env = {}, argv = {}, outputPath) => {
   const plugins = [
     new webpack.DefinePlugin({
       'process.env': {
-        ...ENV[env.build],
+        ...BUILD_CONFIG[env.build],
+        ...processENVVarsToInject(process.env),
         BUILD: JSON.stringify(env.build),
         SENTRY_ENABLE: env.sentry ? 'true' : 'false'
       }
