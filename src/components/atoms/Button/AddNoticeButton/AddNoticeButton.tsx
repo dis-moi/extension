@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import BorderButton from '../BorderButton';
 import AddIcon from './AddIcon';
@@ -29,13 +30,7 @@ const ButtonLink = styled(BorderButton)<ButtonProps>`
 `;
 
 export default ({ ...props }) => (
-  <ButtonLink
-    as="a"
-    href="https://form.jotformeu.com/82702852284358"
-    target="_blank"
-    rel="noopener noreferrer"
-    {...props}
-  >
+  <ButtonLink as={Link} to="/contribute" {...props}>
     <AddIcon />
     Créer votre bulle
   </ButtonLink>

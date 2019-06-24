@@ -6,6 +6,10 @@ export interface ButtonProps {
   as?: string | React.ComponentType<any>;
   theme?: Theme;
   loading?: boolean;
+  href?: string;
+  target?: '_blank';
+  rel?: string;
+  to?: string;
 }
 
 export default styled.button<ButtonProps>`

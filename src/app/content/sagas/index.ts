@@ -1,18 +1,20 @@
 import { fork, all } from 'redux-saga/effects';
-import errorSaga from 'app/sagas/error';
-import createBackgroundChannelSaga from 'app/sagas/backgroundChannel';
-import initSaga from './init';
-import browserActionSaga from './browserAction';
-import noticesSaga from './notices';
-import uiSaga from './ui';
+import error from 'app/sagas/error';
+import backgroundChannel from 'app/sagas/backgroundChannel';
+import init from './init';
+import browserAction from './browserAction';
+import contribution from './contribution';
+import notices from './notices';
+import ui from './ui';
 
 export default function* rootSaga() {
   yield all([
-    fork(createBackgroundChannelSaga('content')),
-    fork(initSaga),
-    fork(browserActionSaga),
-    fork(noticesSaga),
-    fork(uiSaga),
-    fork(errorSaga)
+    fork(backgroundChannel('content')),
+    fork(init),
+    fork(browserAction),
+    fork(contribution),
+    fork(notices),
+    fork(ui),
+    fork(error)
   ]);
 }

@@ -1,18 +1,15 @@
 import styled from 'styled-components';
-import { CenterContainer, ExternalLink } from 'components/atoms/';
+import { ExternalLink } from 'components/atoms';
 
 export default styled.article`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   height: 100%;
   padding-bottom: 38px;
   text-align: center;
-
-  & ${CenterContainer} {
-    margin-top: auto;
-  }
 
   & ${ExternalLink} {
     display: block;

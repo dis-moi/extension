@@ -20,6 +20,7 @@ import Error from './Error';
 import Notification from 'components/organisms/Notification';
 import { close } from '../../actions/ui';
 import { CloseCause } from '../../lmem/ui';
+import Contribute from './Contribute';
 
 const mapStateToProps = (state: ContentState) => ({
   open: isOpen(state),
@@ -59,6 +60,7 @@ const UI = ({ loaded, open, title, close, noticeContext }: UIProps) => {
           <Route path="/subscriptions" component={Subscriptions} />
           <Route path="/help" component={Help} />
           <Route path="/account" component={Account} />
+          <Route path="/contribute" component={Contribute} />
           <Route component={Error} />
         </Switch>
       </Notification>
