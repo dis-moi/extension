@@ -29,6 +29,11 @@ import {
   MarkNoticeReadAction
 } from './notices';
 import {
+  ContributionSubmissionFailed,
+  ContributionSubmittedAction,
+  SubmitContributionAction
+} from './contribution';
+import {
   RemoveUITitleAction,
   SetUITitleAction
 } from '../content/actions/ui/title';
@@ -87,6 +92,18 @@ export const createErrorAction = (type: unknown = 'ERROR') => (
   meta
 });
 
+export interface FormAction extends BaseAction {
+  payload: {};
+  meta: ActionMeta & FormMeta;
+}
+
+export type TabFormMeta = TabMeta & FormMeta;
+
+export interface TabFormAction extends TabAction {
+  payload: {};
+  meta: TabFormMeta;
+}
+
 export interface TabMeta extends ActionMeta {
   tab: Tab;
 }
@@ -96,6 +113,14 @@ export interface TabAction extends BaseAction {
 }
 
 export type TabErrorAction = TabAction & ErrorAction;
+
+export type TabFormErrorAction = TabFormAction & ErrorAction;
+
+export interface FormMeta {
+  form: string;
+  resolve: (...args: any[]) => void;
+  reject: (...args: any[]) => void;
+}
 
 export interface ActionMeta {
   sendToBackground?: boolean;
@@ -136,6 +161,9 @@ export type AppAction =
   | MarkNoticeReadAction
   | SetUITitleAction
   | RemoveUITitleAction
+  | SubmitContributionAction
+  | ContributionSubmittedAction
+  | ContributionSubmissionFailed
   | OptionsRequestedAction
   | OptionsTabOpened
   | ListeningActionsReadyAction

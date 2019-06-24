@@ -9,7 +9,7 @@ export const formatContributionHtmlEmail = (contribution: Contribution) => `
 <html lang="fr"><body>
   <h1>Nouvelle contribution de ${contribution.contributor.name} !</h1>
   <ul>
-    <li><strong>date: </strong>${formatDate(contribution.date)}</li>
+    <li><strong>date: </strong>${formatDate(contribution.created)}</li>
     <li><strong>e-mail: </strong>${contribution.contributor.email}</li>
     <li><strong>url: </strong>${contribution.url}</li>
     <li><strong>intention: </strong>${contribution.intention}</li>
@@ -21,7 +21,7 @@ export const formatContributionHtmlEmail = (contribution: Contribution) => `
 export const formatContributionTextEmail = (contribution: Contribution) =>
   `Nouvelle contribution de ${contribution.contributor.name} !\n
 \n
-date: ${formatDate(contribution.date)}\n
+date: ${formatDate(contribution.created)}\n
 e-mail: ${contribution.contributor.email}\n
 url: ${contribution.url}\n
 intention: ${contribution.intention}\n

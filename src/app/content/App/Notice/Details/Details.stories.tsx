@@ -23,6 +23,15 @@ import Notification from '../../../../../components/organisms/Notification';
 
 const defaultContributorName = Faker.name.findName();
 const defaultDate = subMonths(new Date(), 1);
+const commonProps = {
+  like: action('like'),
+  unlike: action('unlike'),
+  dislike: action('dislike'),
+  confirmDislike: action('confirmDislike'),
+  undislike: action('undislike'),
+  view: action('view'),
+  followSource: action('followSource')
+};
 
 storiesOf('screens/Notice/Details', module)
   .addDecorator(withKnobs)
@@ -35,6 +44,7 @@ storiesOf('screens/Notice/Details', module)
   ))
   .add('default', () => (
     <Details
+      {...commonProps}
       notice={generateStatefulNotice({
         contributor: text('contributor', defaultContributorName),
         intention: select('intention', intentions, 'approval'),
@@ -46,12 +56,5 @@ storiesOf('screens/Notice/Details', module)
         liked: boolean('liked', false),
         disliked: boolean('disliked', false)
       })}
-      like={action('like')}
-      unlike={action('unlike')}
-      dislike={action('dislike')}
-      confirmDislike={action('confirmDislike')}
-      undislike={action('undislike')}
-      view={action('view')}
-      followSource={action('followSource')}
     />
   ));

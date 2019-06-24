@@ -1,6 +1,6 @@
 import { StatefulNotice } from 'app/lmem/notice';
-import { BaseAction, ErrorAction, TabAction, TabMeta } from '.';
 import Tab from 'app/lmem/Tab';
+import { BaseAction, ErrorAction, TabAction, TabMeta } from '.';
 
 export interface NoticesFoundAction extends TabAction {
   type: 'NOTICES_FOUND';
