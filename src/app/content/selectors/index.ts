@@ -1,7 +1,14 @@
 import { createSelector } from 'reselect';
 import { RouteComponentProps } from 'react-router';
 import { getLocation } from 'connected-react-router';
-import { getNotice, isUnread, shouldNoticeBeShown } from 'app/lmem/notice';
+import { getFormValues } from 'redux-form';
+
+import {
+  getNotice,
+  isUnread,
+  shouldNoticeBeShown,
+  Contribution
+} from 'app/lmem/notice';
 import { InstallationDetails } from 'app/lmem/installation';
 import { OpenState, MountedState, TitleState, UIState } from '../reducers/ui';
 import { State } from '../store';
@@ -49,7 +56,16 @@ export const getExtensionInstallationDate = createSelector(
 
 export const getTab = (state: State) => state.tab;
 
+export const getURL = (state: State) => {
+  const tab = getTab(state);
+  return tab ? tab.url : null;
+};
+
 export const getPathname = (state: State) => getLocation(state).pathname;
 
 export const isNoticeContext = (state: State) =>
   getPathname(state).includes('notice');
+
+export const getContribution = (state: State): Contribution =>
+  // @ts-ignore
+  getFormValues('contribution')(state);

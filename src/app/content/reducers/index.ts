@@ -1,6 +1,7 @@
 import { connectRouter } from 'connected-react-router';
 import { combineReducers } from 'redux';
 import { MemoryHistory } from 'history';
+import { reducer as form } from 'redux-form';
 
 import installationDetails from './installationDetails';
 import ui from './ui';
@@ -13,5 +14,6 @@ export default (history: MemoryHistory) =>
     ui,
     notices,
     tab,
-    router: connectRouter(history)
+    router: connectRouter(history),
+    form
   });
