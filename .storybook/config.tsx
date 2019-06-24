@@ -1,6 +1,8 @@
 import { configure, addDecorator } from '@storybook/react';
 import React from 'react';
+import { Provider } from 'react-redux';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import store from './store';
 import theme from '../src/app/theme';
 import 'typeface-lato';
 import 'typeface-sedgwick-ave';
@@ -12,12 +14,12 @@ const Global = createGlobalStyle`
 `;
 
 addDecorator(getStory => (
-  <>
+  <Provider store={store}>
     <Global />
     <ThemeProvider theme={theme}>
       <>{getStory()}</>
     </ThemeProvider>
-  </>
+  </Provider>
 ));
 
 // automatically import all files ending in *.stories.js
