@@ -30,7 +30,7 @@ export const ContributorNav = () => (
           </Stat>
         </StatsWrapper>
 
-        <ContributorButton>Abonné</ContributorButton>
+        <ContributorButton />
       </ContributorInfos>
     </ContributorInfosWrapper>
 
