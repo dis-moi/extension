@@ -60,6 +60,7 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
   stopCountdown = () => {
     if (this.state.intervalID) {
       window.clearInterval(this.state.intervalID);
+      this.setState({ intervalID: null });
     }
   };
 
@@ -93,7 +94,7 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
     const { notice: { id }, undislike } = this.props;
     undislike(id);
     this.stopCountdown();
-  }
+  };
 
   handleFollowSource = () => {
     const {
@@ -124,7 +125,7 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
         contributor,
         source,
         ratings: { likes, dislikes },
-        state: { liked, disliked }
+        state: { liked, disliked, dismissed }
       }
     } = this.props;
 
