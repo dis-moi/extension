@@ -1,15 +1,13 @@
 import React from 'react';
-import { useTransition } from 'react-spring';
 import { compose } from 'redux';
-import {
-  List as ListContainer,
-  AddNoticeContainer,
-  AddNoticeLink
-} from 'components/atoms';
+import { useTransition } from 'react-spring';
+
+import { AddNoticeContainer, AddNoticeLink } from 'components/atoms';
 import NoticeItem, {
   NoticeTransitionProps,
   transitionKeys
 } from 'components/organisms/Notice/Notice';
+import ListContainer from './ListContainer';
 import { StatefulNotice } from 'app/lmem/notice';
 import withTitle from 'app/hocs/withTitle';
 import NoNotice from './NoNotice';
@@ -63,4 +61,3 @@ export default compose(
   withConnect,
   withTitle<Props>('Bulles Pour cette page')
 )(ListScreen);
-
