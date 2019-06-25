@@ -100,11 +100,8 @@ export default class Notice extends PureComponent<Props, CountDownState> {
     const { intervalID } = this.state;
     if (intervalID) {
       window.clearInterval(intervalID);
+      this.setState({ intervalID: null });
     }
-  };
-
-  onUndismiss = () => {
-    this.stopCountdown();
   };
 
   componentWillUnmount(): void {
@@ -130,7 +127,7 @@ export default class Notice extends PureComponent<Props, CountDownState> {
       <Container style={style}>
         {!dismissed && !disliked && <DeleteButton onClick={this.onDismiss} />}
         <Content
-          to={dismissed ? undefined : `notices/details/${id}`}
+          to={dismissed || intervalID ? undefined : `notices/details/${id}`}
           read={read}
         >
           {(dismissed || disliked) && intervalID ? (
