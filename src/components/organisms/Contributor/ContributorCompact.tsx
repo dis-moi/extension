@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import Avatar from 'components/atoms/Avatar/Avatar';
 import UserName from 'components/atoms/UserName/UserName';
 import Stat from 'components/atoms/Stat/Stat';
