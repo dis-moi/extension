@@ -21,4 +21,3 @@ export default styled(Button)<Props>`
     color: ${props => (props.active ? '#FFF' : props.theme.activeColor)};
   }
 `;
-

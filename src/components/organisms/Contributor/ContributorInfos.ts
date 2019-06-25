@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import UserName from 'components/atoms/UserName/UserName';
-import ContributorButton from './ContributorButton';
 
 export default styled.div`
   flex-grow: 1;
@@ -9,10 +8,5 @@ export default styled.div`
 
   ${UserName} {
     margin-bottom: 5px;
-  }
-
-  ${ContributorButton} {
-    width: 100%;
-    margin-top: 5px;
   }
 `;
