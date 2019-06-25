@@ -1,10 +1,8 @@
 import React from 'react';
-
 import styled from 'styled-components';
-
-import BackgroundButton from 'components/atoms/Buttons/BackgroundButton/BackgroundButton';
-import Wrapper from './Wrapper';
+import BackgroundButton from 'components/atoms/Button/BackgroundButton/BackgroundButton';
 import ContributorNav from 'components/organisms/ContributorNav/ContributorNav';
+import Wrapper from './Wrapper';
 
 const SubscriptionsEmpty = styled.div`
   display: flex;
