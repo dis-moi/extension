@@ -44,10 +44,6 @@ export default styled(Content)`
     }
   }
 
-  & > div + div {
-    width: 245px;
-  }
-
   & > p + div {
     width: 100%;
   }
