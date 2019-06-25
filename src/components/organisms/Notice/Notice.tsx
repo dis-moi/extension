@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import styled from 'styled-components';
 import { stripHtml } from 'app/utils/stripHtml';
 import {
   Contributor,
@@ -32,6 +33,10 @@ export const transitionKeys = {
     await next({ height: 0, marginTop: 0 });
   }
 };
+
+const Description = styled.div`
+  width: 245px;
+`;
 
 export interface NoticeTransitionProps {
   item: StatefulNotice;
@@ -139,12 +144,12 @@ export default class Notice extends PureComponent<Props, CountDownState> {
           ) : (
             <>
               <IntentionIcon intention={intention} />
-              <div>
+              <Description>
                 <Title numberOfCharacters={truncateTitleAt}>
                   {stripHtml(message)}
                 </Title>
                 <Contributor>Par : {contributor.name}</Contributor>
-              </div>
+              </Description>
               <OpenButton />
             </>
           )}
