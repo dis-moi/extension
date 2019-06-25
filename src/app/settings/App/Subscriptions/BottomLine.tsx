@@ -1,7 +1,6 @@
 import React from 'react';
-
 import styled from 'styled-components';
-import BackgroundButton from 'components/atoms/Buttons/BackgroundButton/BackgroundButton';
+import BackgroundButton from 'components/atoms/Button/BackgroundButton/BackgroundButton';
 
 const BottomLineBg = styled.section`
   position: fixed;
