@@ -1,4 +1,5 @@
 import { eventChannel } from 'redux-saga';
+import { captureMessage } from '@sentry/browser';
 import { browserActionClicked } from 'app/actions/browser';
 
 export const createBrowserActionChannel = () => {
@@ -6,8 +7,13 @@ export const createBrowserActionChannel = () => {
     const handleClick = (tab: chrome.tabs.Tab) => {
       if (tab.id && tab.url) {
         emit(browserActionClicked({ id: tab.id, url: tab.url }));
+      }
+
+      const message = `Tab has no id (${tab.id}) or URL (${tab.url}).`;
+      if (process.env.SENTRY_ENABLE) {
+        captureMessage(message);
       } else {
-        console.error('Tab had no id or URL.');
+        console.log(message);
       }
     };
 
