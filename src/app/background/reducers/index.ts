@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import prefs, { PrefsState } from './prefs';
 import resources, { ResourcesState } from './resources';
 import tabs, { TabsState } from './tabs';
-import { PersistedState } from 'redux-persist/es/types';
+import { PersistedState } from 'redux-persist';
 
 export interface PersistedBackgroundState extends PersistedState {
   prefs: PrefsState;

@@ -5,7 +5,12 @@ import Illustration from './Illustration';
 import Container from './Container';
 import SubscriptionsData from './SubscriptionsData';
 
-export const Subscriptions = () => (
+interface Props {
+  close?: () => void;
+  settingsRequested: () => void;
+}
+
+export const Subscriptions = ({ settingsRequested }: Props) => (
   <Container>
     <Illustration />
     <SubscriptionsData>
@@ -27,7 +32,7 @@ export const Subscriptions = () => (
       </div>
     </SubscriptionsData>
 
-    <BorderButton>Gérer</BorderButton>
+    <BorderButton onClick={settingsRequested}>Gérer</BorderButton>
   </Container>
 );
 

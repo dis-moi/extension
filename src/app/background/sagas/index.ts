@@ -5,6 +5,7 @@ import badge from './badge';
 import externalMessage from './externalMessage';
 import theme from '../../theme';
 import error from '../../sagas/error';
+import settings from './settings';
 
 export default function* rootSaga() {
   yield all([
@@ -12,6 +13,7 @@ export default function* rootSaga() {
     fork(tab),
     fork(badge(theme.badge)),
     fork(externalMessage),
+    fork(settings),
     fork(error)
   ]);
 }
