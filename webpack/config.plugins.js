@@ -72,6 +72,11 @@ module.exports = (env = {}, argv = {}, outputPath) => {
       filename: 'background.html',
       inject: false
     }),
+    new HtmlWebpackPlugin({
+      template: './views/settings.pug',
+      filename: 'settings.html',
+      inject: false
+    }),
     new AddAssetWebpackPlugin(
       'manifest.json',
       JSON.stringify(manifests[env.build], null, 2)
