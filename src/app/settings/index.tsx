@@ -9,6 +9,7 @@ configureSentryScope((scope: any) => {
 import React from 'react';
 import { render } from 'react-dom';
 import App from './App';
+import store from './store';
 
 require('typeface-lato');
 require('typeface-sedgwick-ave');
