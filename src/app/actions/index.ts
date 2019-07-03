@@ -1,4 +1,6 @@
+import { Action } from 'redux';
 import { LocationChangeAction } from 'connected-react-router';
+import Tab from 'app/lmem/Tab';
 import { BrowserActionClickedAction } from './browser';
 import {
   TabCreatedAction,
@@ -27,9 +29,8 @@ import {
   NoticesFoundAction,
   ReadNoticeAction
 } from './notices';
-import { Action } from 'redux';
-import Tab from 'app/lmem/Tab';
 import MessageSender = chrome.runtime.MessageSender;
+import { SettingsRequestedAction } from './settings';
 
 export interface StandardAction extends Action {
   payload?: any;
@@ -99,4 +100,5 @@ export type AppAction =
   | NoticesFoundAction
   | FeedbackOnNoticeAction
   | ReadNoticeAction
+  | SettingsRequestedAction
   | (LocationChangeAction & { meta?: ActionMeta });

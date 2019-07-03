@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'connected-react-router/immutable';
+import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider, StyleSheetManager } from 'styled-components';
 import theme from '../../theme';
 import UI from './UI';
