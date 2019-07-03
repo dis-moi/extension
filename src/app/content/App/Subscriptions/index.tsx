@@ -4,11 +4,14 @@ import BorderButton from 'components/atoms/Buttons/BorderButton/BorderButton';
 import Illustration from './Illustration';
 import Container from './Container';
 import SubscriptionsData from './SubscriptionsData';
+import withConnect from './withConnect';
 
 interface Props {
   close?: () => void;
+  settingsRequested: () => void;
 }
-export default ({ close }: Props) => (
+
+export const Subscriptions = ({ close, settingsRequested }: Props) => (
   <Notification title="Abonnements" close={close}>
     <Container>
       <Illustration />
@@ -32,7 +35,9 @@ export default ({ close }: Props) => (
         </div>
       </SubscriptionsData>
 
-      <BorderButton>Gérer</BorderButton>
+      <BorderButton onClick={settingsRequested}>Gérer</BorderButton>
     </Container>
   </Notification>
 );
+
+export default withConnect(Subscriptions);

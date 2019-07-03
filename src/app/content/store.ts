@@ -7,12 +7,11 @@ import rootSaga from './sagas';
 import { InstallationDetailsState } from './reducers/installationDetails';
 import { OpenState } from './reducers/open';
 import { NoticesState } from './reducers/notices';
-import { PersistedState } from 'redux-persist/es/types';
 import { TabState } from './reducers/tab';
 
 export const history = createMemoryHistory();
 
-export interface State extends PersistedState {
+export interface State {
   installationDetails: InstallationDetailsState;
   open: OpenState;
   notices: NoticesState;

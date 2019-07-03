@@ -4,12 +4,14 @@ import tab from './tab';
 import badge from './badge';
 import theme from '../../theme';
 import error from '../../sagas/error';
+import settings from './settings';
 
 export default function* rootSaga() {
   yield all([
     fork(matchingContexts),
     fork(tab),
     fork(badge(theme.badge)),
-    fork(error)
+    fork(error),
+    fork(settings)
   ]);
 }

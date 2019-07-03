@@ -1,7 +1,7 @@
-import BackgroundButton from 'components/atoms/Buttons/BackgroundButton/BackgroundButton';
+import React from 'react';
+import BackgroundButton from 'components/atoms/Buttons/BackgroundButton';
 import Tab from 'components/atoms/Tab/Tab';
 import Container from './Container';
-import React from 'react';
 
 export const ContributorNav = () => (
   <Container>
