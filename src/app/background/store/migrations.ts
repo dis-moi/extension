@@ -3,7 +3,7 @@ import { MigrationManifest, PersistedState } from 'redux-persist/es/types';
 import * as R from 'ramda';
 import { Criteria } from '../../lmem/criterion';
 import { InstallationDetails } from '../../lmem/installation';
-import { State } from '../../content/store';
+import { BackgroundState } from '../reducers';
 
 interface StateV0V1orV2 extends PersistedState {
   prefs?: {
@@ -133,7 +133,7 @@ const migrations: MigrationManifest = {
     )(previousState) as StateV2;
   },
   // March 2019 - Typescript migration
-  3: (persistedState: PersistedState): State => {
+  3: (persistedState: PersistedState): BackgroundState => {
     const previousState = persistedState as StateV2;
 
     return R.compose(
@@ -142,7 +142,7 @@ const migrations: MigrationManifest = {
         previousState.prefs.onInstalledDetails
       ),
       R.dissocPath(['prefs', 'websites'])
-    )(previousState) as State;
+    )(previousState) as BackgroundState;
   }
 
   // ADD NEW MIGRATIONS HEREUNDER
