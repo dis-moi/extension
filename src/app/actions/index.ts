@@ -33,8 +33,9 @@ import {
   RemoveUITitleAction,
   SetUITitleAction
 } from '../content/actions/ui/title';
-type MessageSender = chrome.runtime.MessageSender;
 import { SettingsRequestedAction } from './settings';
+
+type MessageSender = chrome.runtime.MessageSender;
 
 export interface StandardAction extends Action {
   payload?: unknown;
