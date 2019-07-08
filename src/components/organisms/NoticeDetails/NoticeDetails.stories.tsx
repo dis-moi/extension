@@ -16,19 +16,19 @@ const defaultContributorName = Faker.name.findName();
 const defaultMessage = Faker.lorem.paragraph(3);
 const defaultDate = subMonths(new Date(), 1);
 const commonProps = {
-    like: action('like'),
-    unlike: action('unlike'),
-    dislike: action('dislike'),
-    confirmDislike: action('confirmDislike'),
-    undislike: action('undislike'),
-    view: action('view'),
-}
+  like: action('like'),
+  unlike: action('unlike'),
+  dislike: action('dislike'),
+  confirmDislike: action('confirmDislike'),
+  undislike: action('undislike'),
+  view: action('view')
+};
 
 storiesOf('organisms/NoticeDetails', module)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
   .add('Approval', () => (
     <NoticeDetails
-        {...commonProps}
+      {...commonProps}
       notice={generateStatefulNotice({
         contributor: text('contributor', defaultContributorName),
         intention: 'approval',
@@ -40,27 +40,23 @@ storiesOf('organisms/NoticeDetails', module)
         liked: boolean('liked', false),
         disliked: boolean('disliked', false)
       })}
-
     />
   ))
   .add('Dismissed', () => (
     <NoticeDetails
-        {...commonProps}
+      {...commonProps}
       notice={generateStatefulNotice({ dismissed: true })}
-
     />
   ))
   .add('Disliked', () => (
     <NoticeDetails
-        {...commonProps}
-        notice={generateStatefulNotice({ disliked: true })}
-
+      {...commonProps}
+      notice={generateStatefulNotice({ disliked: true })}
     />
   ))
   .add('No source', () => (
     <NoticeDetails
-        {...commonProps}
-        notice={generateStatefulNotice({ withSource: false })}
-
+      {...commonProps}
+      notice={generateStatefulNotice({ withSource: false })}
     />
   ));

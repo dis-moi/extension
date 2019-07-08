@@ -23,18 +23,17 @@ const longMessage =
   'This is very long title for a notification with a link that you may want to read some time in the future';
 
 const commonProps = {
-    dismiss: action('dismiss'),
-    confirmDismiss: action('confirmDismiss'),
-    undismiss: action('undismiss'),
-}
+  dismiss: action('dismiss'),
+  confirmDismiss: action('confirmDismiss'),
+  undismiss: action('undismiss')
+};
 
 storiesOf('organisms/Notice', module)
   .addDecorator(withKnobs)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
   .add('Approved', () => (
     <Notice
-
-        {...commonProps}
+      {...commonProps}
       notice={generateStatefulNotice({
         dismissed: boolean('dismissed', false),
         intention: 'approval',
@@ -56,67 +55,62 @@ storiesOf('organisms/Notice', module)
   ))
   .add('Alternative', () => (
     <Notice
-        {...commonProps}
+      {...commonProps}
       notice={generateStatefulNotice({
         intention: 'alternative',
         dismissed: boolean('dismissed', false),
         contributor: text('contributor', defaultContributorName),
         message: `<p>${text('message', defaultMessage)}</p>`
       })}
-
     />
   ))
   .add('Information', () => (
     <Notice
-        {...commonProps}
+      {...commonProps}
       notice={generateStatefulNotice({
         intention: 'information',
         dismissed: boolean('dismissed', false),
         contributor: text('contributor', defaultContributorName),
         message: `<p>${text('message', defaultMessage)}</p>`
       })}
-
     />
   ))
   .add('Other', () => (
     <Notice
-        {...commonProps}
+      {...commonProps}
       notice={generateStatefulNotice({
         intention: 'other',
         dismissed: boolean('dismissed', false),
         contributor: text('contributor', defaultContributorName),
         message: `<p>${text('message', defaultMessage)}</p>`
       })}
-
     />
   ))
   .add('Dismissed', () => (
     <Notice
-        {...commonProps}
+      {...commonProps}
       notice={generateStatefulNotice({
         dismissed: true,
         intention: select('intention', intentions, 'approval'),
         contributor: text('contributor', defaultContributorName),
         message: `<p>${text('message', defaultMessage)}</p>`
       })}
-
     />
   ))
   .add('Read', () => (
     <Notice
-        {...commonProps}
+      {...commonProps}
       notice={generateStatefulNotice({
         read: true,
         intention: select('intention', intentions, 'approval'),
         contributor: text('contributor', defaultContributorName),
         message: `<p>${text('message', defaultMessage)}</p>`
       })}
-
     />
   ))
   .add('Long title', () => (
     <Notice
-        {...commonProps}
+      {...commonProps}
       notice={generateStatefulNotice({
         intention: select('intention', intentions, 'approval'),
         contributor: text('contributor', defaultContributorName),

@@ -90,7 +90,10 @@ export default class Notice extends PureComponent<Props, CountDownState> {
   shouldStopCountDown = () => {
     const { countdown } = this.state;
     if (countdown === 0) {
-      const { confirmDismiss, notice: { id } } = this.props;
+      const {
+        confirmDismiss,
+        notice: { id }
+      } = this.props;
       confirmDismiss(id);
       this.stopCountdown();
     }

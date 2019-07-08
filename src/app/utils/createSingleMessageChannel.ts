@@ -18,15 +18,11 @@ export default () => {
         : 'background';
 
       if (isAction(action)) {
-        console.info(
-          `Received valid action "${action.type}" from ${from}`
-        );
+        console.info(`Received valid action "${action.type}" from ${from}`);
         emit(action);
         sendResponse({ ...action, type: `${action.type}_RECEIVED` });
       } else {
-        const error = new Error(
-          `Received invalid action from ${from}`
-        );
+        const error = new Error(`Received invalid action from ${from}`);
         const invalidAction = {
           type: `INVALID_ACTION`,
           payload: error,

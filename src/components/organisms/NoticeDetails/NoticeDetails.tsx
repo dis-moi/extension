@@ -51,7 +51,11 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
     if (countdown === 0) {
       this.stopCountdown();
 
-      const { notice: { id }, confirmDislike, history } = this.props;
+      const {
+        notice: { id },
+        confirmDislike,
+        history
+      } = this.props;
       confirmDislike(id);
       history.goBack();
     }
@@ -91,7 +95,10 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
   };
 
   handleCancelDislike = () => {
-    const { notice: { id }, undislike } = this.props;
+    const {
+      notice: { id },
+      undislike
+    } = this.props;
     undislike(id);
     this.stopCountdown();
   };

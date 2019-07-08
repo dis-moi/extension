@@ -21,10 +21,10 @@ export interface Props {
 }
 
 export const ListScreen = ({
-   notices,
-   dismiss,
-   confirmDismiss,
-   undismiss,
+  notices,
+  dismiss,
+  confirmDismiss,
+  undismiss
 }: Props) => {
   const transitions = useTransition(
     notices.slice(0, 2),

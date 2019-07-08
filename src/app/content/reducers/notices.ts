@@ -7,7 +7,9 @@ import {
   undismissNotice,
   unlikeNotice,
   StatefulNotice,
-  readNotice, confirmDismissNotice, confirmDislikeNotice
+  readNotice,
+  confirmDismissNotice,
+  confirmDislikeNotice
 } from '../../lmem/notice';
 import { AppAction } from 'app/actions';
 
@@ -32,7 +34,9 @@ export default (state: NoticesState = [], action: AppAction): NoticesState => {
 
         case 'confirmDismiss':
           return state.map(notice =>
-              notice.id === action.payload.id ? confirmDismissNotice(notice) : notice
+            notice.id === action.payload.id
+              ? confirmDismissNotice(notice)
+              : notice
           );
 
         case 'undismiss':
@@ -57,7 +61,9 @@ export default (state: NoticesState = [], action: AppAction): NoticesState => {
 
         case 'confirmDislike':
           return state.map(notice =>
-              notice.id === action.payload.id ? confirmDislikeNotice(notice) : notice
+            notice.id === action.payload.id
+              ? confirmDislikeNotice(notice)
+              : notice
           );
 
         case 'undislike':

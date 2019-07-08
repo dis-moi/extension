@@ -17,10 +17,10 @@ const firstMessage = defaultMessage;
 const secondContributorName = Faker.name.findName();
 const secondMessage = `De nombreux clients mécontents de Pixmania et ses vendeurs s'expriment sur les réseaux sociaux depuis 2016. Les plaintes continuent en 2017, 2018 et encore en 2019 si l'on se réfère au forum Que Choisir.`;
 const commonProps = {
-    close: action('close'),
-    dismiss: action('dismiss'),
-    confirmDismiss: action('confirmDismiss'),
-    undismiss: action('undismiss'),
+  close: action('close'),
+  dismiss: action('dismiss'),
+  confirmDismiss: action('confirmDismiss'),
+  undismiss: action('undismiss')
 };
 
 storiesOf('screens/Notice/List', module)
@@ -94,9 +94,4 @@ storiesOf('screens/Notice/List', module)
       ]}
     />
   ))
-  .add('empty', () => (
-    <ListScreen
-      {...commonProps}
-      notices={[]}
-    />
-  ));
+  .add('empty', () => <ListScreen {...commonProps} notices={[]} />);
