@@ -28,7 +28,6 @@ export const getAddStateToNotice = (state: BackgroundState) => {
   const disliked = getDisliked(state);
   const read = getRead(state);
 
-  console.log('dismissed', dismissed);
   return (notice: Notice): StatefulNotice => ({
     ...notice,
     state: {

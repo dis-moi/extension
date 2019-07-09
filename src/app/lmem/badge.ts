@@ -25,7 +25,6 @@ export const updateBadge = (
     const unreadNotices = notices.filter(isUnread);
     const { backgroundColor } = badgeTheme;
 
-    console.log('unreadNotices', unreadNotices);
     chrome.browserAction.setBadgeText({
       text:
         unreadNotices.length > 0
