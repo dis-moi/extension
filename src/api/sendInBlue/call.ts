@@ -14,7 +14,7 @@ const call = (path: string, data?: {} | [], method: Method = 'GET') =>
     if (response.status >= 400) {
       throw new Error('Bad response from server');
     }
-    if (response.status === 204) {
+    if (response.status >= 200 && response.status < 300) {
       return true;
     }
     return response.json();
