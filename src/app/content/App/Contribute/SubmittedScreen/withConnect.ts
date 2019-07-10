@@ -1,10 +1,9 @@
 import { connect } from 'react-redux';
+import { replace } from 'connected-react-router';
 
-import ContributionSubmittedScreen from './ContributionSubmittedScreen';
-import { history, State } from 'app/content/store';
 import { close } from 'app/actions/ui';
+import { State } from 'app/content/store';
 import { getContribution } from 'app/content/selectors';
-import { go, replace } from 'connected-react-router';
 
 const mapDispatchToProps = {
   close,
@@ -16,4 +15,4 @@ export default connect(
     contribution: getContribution(state)
   }),
   mapDispatchToProps
-)(ContributionSubmittedScreen);
+);

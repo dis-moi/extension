@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter as Router } from 'react-router-dom';
-import SubmitContributionScreen from './SubmitContributionScreen';
 import Notification from 'components/organisms/Notification';
+import ContributeScreen from './ContributeScreen';
 
 storiesOf('screens/Contribute/Submit', module)
   .addDecorator(getStory => (
@@ -10,4 +10,4 @@ storiesOf('screens/Contribute/Submit', module)
       <Notification title="créer une bulle ici">{getStory()}</Notification>
     </Router>
   ))
-  .add('normal', () => <SubmitContributionScreen />);
+  .add('normal', () => <ContributeScreen />);

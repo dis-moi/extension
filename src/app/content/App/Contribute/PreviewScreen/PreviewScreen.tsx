@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { InjectedFormProps, reduxForm } from 'redux-form';
+import { InjectedFormProps } from 'redux-form';
 import styled from 'styled-components';
 
 import { Contribution } from 'app/lmem/notice';
@@ -7,14 +7,15 @@ import NoticePreview from 'components/organisms/NoticePreview';
 import { BorderButton, Button } from 'components/atoms';
 import { Error, Form } from 'components/atoms/Forms';
 import handleFormSubmit from 'app/utils/form/handleFormSubmit';
-import validate from 'app/lmem/contribution/validateForm';
-import { form } from '../Submit/SubmitContributionForm';
+import withReduxForm from './withReduxForm';
 
 const PreviewForm = styled(Form)`
   padding: 12px 16px 12px 16px;
   display: flex;
   justify-content: space-around;
   width: 50%;
+  self-align: center;
+  align-self: center;
 `;
 
 export interface PreviewScreenOwnProps {
@@ -68,9 +69,4 @@ class PreviewScreen extends Component<PreviewScreenProps> {
   }
 }
 
-export default reduxForm<Contribution, PreviewScreenOwnProps>({
-  form,
-  destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true,
-  validate
-})(PreviewScreen);
+export default withReduxForm(PreviewScreen);

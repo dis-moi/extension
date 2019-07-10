@@ -8,7 +8,9 @@ import { action } from '@storybook/addon-actions';
 storiesOf('screens/Contribute/Preview', module)
   .addDecorator(getStory => (
     <Router>
-      <Notification title="Prévisualisation">{getStory()}</Notification>
+      <Notification title="Prévisualisation" hasNotices>
+        {getStory()}
+      </Notification>
     </Router>
   ))
   .add('normal', () => (
