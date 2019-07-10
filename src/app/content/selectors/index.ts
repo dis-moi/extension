@@ -60,13 +60,15 @@ export const getTab = (state: ContentState) => state.tab;
 
 export const getURL = (state: State) => {
   const tab = getTab(state);
-  return tab ? tab.url : null;
+  return tab ? tab.url : '';
 };
 
 export const getPathname = (state: ContentState) => getLocation(state).pathname;
 
-export const isNoticeContext = (state: ContentState) =>
-  getPathname(state).includes('notice');
+export const isNoticeContext = (state: ContentState) => {
+  const pathname = getPathname(state);
+  return pathname.includes('notice') || pathname.includes('preview');
+};
 
 export const getContribution = (state: State): Contribution =>
   // @ts-ignore

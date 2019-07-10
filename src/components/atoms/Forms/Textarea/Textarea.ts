@@ -7,7 +7,6 @@ interface Props {
 export default styled.textarea<Props>`
   box-sizing: border-box;
   width: 100%;
-  height: 87px;
   margin-bottom: 10px;
   padding: 8px 10px 10px 14px;
   font-size: 13px;
