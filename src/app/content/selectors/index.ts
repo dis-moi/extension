@@ -58,13 +58,15 @@ export const getTab = (state: State) => state.tab;
 
 export const getURL = (state: State) => {
   const tab = getTab(state);
-  return tab ? tab.url : null;
+  return tab ? tab.url : '';
 };
 
 export const getPathname = (state: State) => getLocation(state).pathname;
 
-export const isNoticeContext = (state: State) =>
-  getPathname(state).includes('notice');
+export const isNoticeContext = (state: State) => {
+  const pathname = getPathname(state);
+  return pathname.includes('notice') || pathname.includes('preview');
+};
 
 export const getContribution = (state: State): Contribution =>
   // @ts-ignore

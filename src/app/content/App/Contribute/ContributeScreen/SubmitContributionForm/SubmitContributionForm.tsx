@@ -9,6 +9,7 @@ import {
   TextareaField
 } from 'components/organisms/Fields';
 import { Contribution } from 'app/lmem/notice';
+import withReduxForm from './withReduxForm';
 
 export interface SubmitContributionFormOwnProps {
   onSubmit: (...args: any[]) => void;
@@ -20,9 +21,7 @@ export type SubmitContributionFormProps = InjectedFormProps<
 > &
   SubmitContributionFormOwnProps;
 
-export default class SubmitContributionForm extends Component<
-  SubmitContributionFormProps
-> {
+class SubmitContributionForm extends Component<SubmitContributionFormProps> {
   get isButtonDisabled() {
     return !this.props.valid || this.props.submitting;
   }
@@ -48,6 +47,7 @@ export default class SubmitContributionForm extends Component<
         <Field
           name="message"
           placeholder="Ecrire le message que vous souhaitez publier"
+          rows={5}
           component={TextareaField}
         />
         <CenterContainer>
@@ -65,3 +65,5 @@ export default class SubmitContributionForm extends Component<
     );
   }
 }
+
+export default withReduxForm(SubmitContributionForm);
