@@ -37,7 +37,7 @@ export const Help = (props: Props) => (
     <ContentTitle>Contacter le support de Le Même En Mieux</ContentTitle>
 
     <form>
-      <Textarea placeholder="Écrire votre message ici" required />
+      <Textarea rows={5} placeholder="Écrire votre message ici" required />
 
       <CenterContainer>
         <BorderButton>Envoyer</BorderButton>
