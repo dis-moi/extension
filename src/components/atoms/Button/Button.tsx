@@ -9,15 +9,19 @@ export interface ButtonContainerProps
   extends HTMLAttributes<HTMLButtonElement> {
   theme?: Theme;
   href?: string;
+  to?: string;
   target?: '_blank';
   rel?: string;
   className?: string;
+  disabled?: boolean;
+  type?: 'submit' | 'reset' | 'button';
 }
 
 export interface ButtonProps extends ButtonContainerProps {
   loading?: boolean;
   children?: ReactNode | string;
   disabled?: boolean;
+  dangerouslySetInnerHTML?: any;
 }
 
 export const ButtonContainer = styled.button<ButtonContainerProps>`

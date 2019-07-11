@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Field, InjectedFormProps } from 'redux-form';
 import { Form, Error } from 'components/atoms/Forms';
-import { CenterContainer } from 'components/atoms';
-import BorderButton from 'components/atoms/Buttons/BorderButton';
+import { CenterContainer, BorderButton } from 'components/atoms';
 import {
   InputField,
   IntentionsSelectorField,
