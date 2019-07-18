@@ -22,19 +22,24 @@ const defaultContributorName = Faker.name.findName();
 const longMessage =
   'This is very long title for a notification with a link that you may want to read some time in the future';
 
+const commonProps = {
+  dismiss: action('dismiss'),
+  confirmDismiss: action('confirmDismiss'),
+  undismiss: action('undismiss')
+};
+
 storiesOf('organisms/Notice', module)
   .addDecorator(withKnobs)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
   .add('Approved', () => (
     <Notice
+      {...commonProps}
       notice={generateStatefulNotice({
         dismissed: boolean('dismissed', false),
         intention: 'approval',
         contributor: text('contributor', defaultContributorName),
         message: `<p>${text('message', defaultMessage)}</p>`
       })}
-      dismiss={action('dismiss')}
-      undismiss={action('undismiss')}
     />
   ))
   .add('Disapproved', () => (
@@ -45,79 +50,72 @@ storiesOf('organisms/Notice', module)
         contributor: text('contributor', defaultContributorName),
         message: `<p>${text('message', defaultMessage)}</p>`
       })}
-      dismiss={action('dismiss')}
-      undismiss={action('undismiss')}
+      {...commonProps}
     />
   ))
   .add('Alternative', () => (
     <Notice
+      {...commonProps}
       notice={generateStatefulNotice({
         intention: 'alternative',
         dismissed: boolean('dismissed', false),
         contributor: text('contributor', defaultContributorName),
         message: `<p>${text('message', defaultMessage)}</p>`
       })}
-      dismiss={action('dismiss')}
-      undismiss={action('undismiss')}
     />
   ))
   .add('Information', () => (
     <Notice
+      {...commonProps}
       notice={generateStatefulNotice({
         intention: 'information',
         dismissed: boolean('dismissed', false),
         contributor: text('contributor', defaultContributorName),
         message: `<p>${text('message', defaultMessage)}</p>`
       })}
-      dismiss={action('dismiss')}
-      undismiss={action('undismiss')}
     />
   ))
   .add('Other', () => (
     <Notice
+      {...commonProps}
       notice={generateStatefulNotice({
         intention: 'other',
         dismissed: boolean('dismissed', false),
         contributor: text('contributor', defaultContributorName),
         message: `<p>${text('message', defaultMessage)}</p>`
       })}
-      dismiss={action('dismiss')}
-      undismiss={action('undismiss')}
     />
   ))
   .add('Dismissed', () => (
     <Notice
+      {...commonProps}
       notice={generateStatefulNotice({
         dismissed: true,
         intention: select('intention', intentions, 'approval'),
         contributor: text('contributor', defaultContributorName),
         message: `<p>${text('message', defaultMessage)}</p>`
       })}
-      dismiss={action('dismiss')}
-      undismiss={action('undismiss')}
     />
   ))
   .add('Read', () => (
     <Notice
+      {...commonProps}
       notice={generateStatefulNotice({
         read: true,
         intention: select('intention', intentions, 'approval'),
         contributor: text('contributor', defaultContributorName),
         message: `<p>${text('message', defaultMessage)}</p>`
       })}
-      dismiss={action('dismiss')}
-      undismiss={action('undismiss')}
     />
   ))
   .add('Long title', () => (
     <Notice
+      {...commonProps}
       notice={generateStatefulNotice({
         intention: select('intention', intentions, 'approval'),
         contributor: text('contributor', defaultContributorName),
         message: `<p>${text('message', longMessage)}</p>`
       })}
-      dismiss={action('dismiss')}
-      undismiss={action('undismiss')}
       truncateTitleAt={number(
         'truncateTitleAt',
         Title.defaultProps.numberOfCharacters

@@ -3,9 +3,10 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider, StyleSheetManager } from 'styled-components';
 import theme from '../../theme';
-import Content from './Content';
+import UI from './UI';
 import store, { history } from '../store';
 import { configureSentryScope } from '../../utils/sentry';
+import GlobalStyle from '../GlobalStyle';
 
 const DELAY_BEFORE_SHOWING = process.env.NODE_ENV === 'production' ? 4000 : 10;
 
@@ -39,9 +40,10 @@ export default class App extends React.PureComponent<AppProps, AppState> {
     return (
       <StyleSheetManager target={contentDocument.head}>
         <Provider store={store}>
+          <GlobalStyle />
           <ThemeProvider theme={theme}>
             <ConnectedRouter history={history}>
-              <Content loaded={loaded} />
+              <UI loaded={loaded} />
             </ConnectedRouter>
           </ThemeProvider>
         </Provider>

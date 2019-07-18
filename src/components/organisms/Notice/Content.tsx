@@ -44,11 +44,11 @@ export default styled(Content)`
     }
   }
 
-  & > div:nth-child(2) {
-    width: 245px;
+  & > p + div {
+    width: 100%;
   }
 
-  & > div:nth-child(3) {
+  & [class^='OpenButton'] {
     height: auto;
   }
 
