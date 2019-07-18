@@ -38,7 +38,7 @@ import {
   noticesUpdated
 } from 'app/actions/notices';
 import watchSingleMessageSaga from '../../utils/watchSingleMessageSaga';
-import { BaseAction, TabAction } from '../../actions';
+import { BaseAction, createErrorAction, TabAction } from '../../actions';
 import fetchContentScript from '../services/fetchContentScript';
 import executeTabScript, {
   ExecuteContentScript
@@ -122,7 +122,7 @@ export function* publishToTabSaga(action: TabAction) {
   } = action;
   const response = yield call(sendToTab, tab.id, action);
 
-  console.log(`Tab "${tab}" respond`, response);
+  console.info(`Tab "${tab.url}" respond`, response);
 }
 
 export function* watchBrowserActionSaga() {
@@ -131,10 +131,9 @@ export function* watchBrowserActionSaga() {
   while (true) {
     try {
       const action = yield take(channel);
-      console.log(action);
       yield put(action);
     } catch (e) {
-      console.error(e);
+      createErrorAction()(e);
     }
   }
 }

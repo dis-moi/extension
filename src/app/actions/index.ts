@@ -29,6 +29,7 @@ import {
 } from './notices';
 import { Action } from 'redux';
 import Tab from 'app/lmem/Tab';
+import MessageSender = chrome.runtime.MessageSender;
 
 export interface StandardAction extends Action {
   payload?: any;
@@ -45,6 +46,16 @@ export interface ErrorAction extends BaseAction {
   error: true;
 }
 
+export const createErrorAction = (type: any = 'ERROR') => (
+  e: Error,
+  meta?: ActionMeta
+): ErrorAction => ({
+  type,
+  payload: e,
+  error: true,
+  meta
+});
+
 export interface TabMeta extends ActionMeta {
   tab: Tab;
 }
@@ -59,6 +70,9 @@ export interface ActionMeta {
   sendToBackground?: boolean;
   sendToTab?: boolean;
   tracked?: boolean;
+  action?: any;
+  external?: boolean;
+  sender?: MessageSender;
 }
 
 export type AppAction =
