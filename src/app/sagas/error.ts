@@ -1,14 +1,10 @@
 import { takeLatest } from 'redux-saga/effects';
 import { SagaIterator } from 'redux-saga';
-import { captureException } from '@sentry/browser';
+import { captureException } from 'app/utils/sentry';
 import { BaseAction, ErrorAction } from '../actions';
 
 export function* handleErrorSaga({ payload: e }: ErrorAction): SagaIterator {
-  if (process.env.SENTRY_ENABLE) {
-    captureException(e);
-  } else {
-    console.error(e);
-  }
+  captureException(e);
 }
 
 export default function* errorRootSaga() {

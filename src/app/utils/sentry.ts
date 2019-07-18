@@ -1,4 +1,11 @@
-import { init, configureScope, Scope } from '@sentry/browser';
+import {
+  init,
+  configureScope,
+  Scope,
+  Severity,
+  captureMessage as sentryCaptureMessage,
+  captureException as sentryCaptureException
+} from '@sentry/browser';
 import { version } from '../../../package.json';
 
 export const initSentry = () => {
@@ -15,5 +22,44 @@ type ScopeCallback = (scope: Scope) => void;
 export const configureSentryScope = (scopeCallback: ScopeCallback) => {
   if (process.env.SENTRY_ENABLE) {
     configureScope(scopeCallback);
+  }
+};
+
+export const captureMessage = (
+  message: string,
+  level?: Severity
+): string | undefined => {
+  if (process.env.SENTRY_ENABLE) {
+    return sentryCaptureMessage(message, level);
+  } else {
+    switch (level) {
+      case Severity.Fatal:
+      case Severity.Error:
+      case Severity.Critical:
+        console.error(message);
+        break;
+      case Severity.Warning:
+        console.warn(message);
+        break;
+
+      case Severity.Info:
+        console.info(message);
+        break;
+      case Severity.Debug:
+        console.debug(message);
+        break;
+      case Severity.Log:
+      default:
+        console.log(message);
+        break;
+    }
+  }
+};
+
+export const captureException = (exception: any): string | undefined => {
+  if (process.env.SENTRY_ENABLE) {
+    return sentryCaptureException(exception);
+  } else {
+    console.error(exception);
   }
 };
