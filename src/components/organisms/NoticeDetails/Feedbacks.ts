@@ -1,13 +1,17 @@
 import styled from 'styled-components';
-import Button from '../../atoms/Button';
+import { Theme } from 'app/theme';
 
-export default styled.div`
+interface FeedbacksProps {
+  theme?: Theme;
+}
+
+export default styled.div<FeedbacksProps>`
   display: flex;
   justify-content: flex-end;
   margin-top: auto;
   font-size: 14px;
 
-  & ${Button} {
+  & button {
     color: ${props => props.theme.navInactive};
     text-decoration: none;
 
@@ -20,7 +24,7 @@ export default styled.div`
       transform: scale(-1, 1);
     }
 
-    & + ${Button} {
+    & button {
       margin-left: 20px;
     }
 

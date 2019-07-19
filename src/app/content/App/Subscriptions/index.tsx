@@ -1,5 +1,5 @@
 import React from 'react';
-import BorderButton from 'components/atoms/Buttons/BorderButton/BorderButton';
+import BorderButton from 'components/atoms/Button/BorderButton/BorderButton';
 import withTitle from 'app/hocs/withTitle';
 import Illustration from './Illustration';
 import Container from './Container';

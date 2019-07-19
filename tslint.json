@@ -13,5 +13,10 @@
     "no-floating-promises": false
   },
   "jsRules": true,
-  "rulesDirectory": []
+  "rulesDirectory": [],
+  "linterOptions": {
+    "exclude": [
+      "./src/components/organisms/NoticeDetails/Feedbacks.ts"
+    ]
+  }
 }

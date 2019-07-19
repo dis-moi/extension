@@ -2,7 +2,7 @@ import React from 'react';
 import Title from './Title';
 import ButtonContainer from './ButtonContainer';
 import Illustration from './Illustration';
-import BorderButton from 'components/atoms/Buttons/BorderButton';
+import BorderButton from 'components/atoms/Button/BorderButton';
 
 export default () => (
   <>
