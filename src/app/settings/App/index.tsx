@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider } from 'styled-components';
 import theme from '../../theme';
-import Content from './Settings';
+import Content from './Subscriptions/Subscriptions';
 import store, { history } from '../store';
 
 const App = () => (
