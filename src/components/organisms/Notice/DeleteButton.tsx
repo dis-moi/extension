@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '../../atoms/Button';
+import Button from '../../atoms/Button/Button';
 import DeleteIcon from './DeleteIcon';
 
 export default styled(Button).attrs({ children: <DeleteIcon /> })`

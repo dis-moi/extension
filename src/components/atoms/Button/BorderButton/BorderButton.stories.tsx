@@ -9,4 +9,16 @@ storiesOf('atoms/Buttons/BorderButton', module)
     <BorderButton
       dangerouslySetInnerHTML={{ __html: text('content', 'Ajouter') }}
     />
+  ))
+  .add('disabled', () => (
+    <BorderButton
+      dangerouslySetInnerHTML={{ __html: text('content', 'Ajouter') }}
+      disabled
+    />
+  ))
+  .add('loading', () => <BorderButton loading>Ajouter</BorderButton>)
+  .add('disabled and loading', () => (
+    <BorderButton loading disabled>
+      Ajouter
+    </BorderButton>
   ));

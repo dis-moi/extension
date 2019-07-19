@@ -2,15 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import BorderButton from '../BorderButton';
 import AddIcon from './AddIcon';
-import { ButtonProps } from '../../Button';
+import { ButtonProps } from '../Button';
 
-export interface ButtonLinkProps extends ButtonProps {
-  href: string;
-  target?: string;
-  rel?: string;
-}
-
-const ButtonLink = styled(BorderButton)<ButtonLinkProps>`
+const ButtonLink = styled(BorderButton)<ButtonProps>`
   display: flex;
   align-items: center;
   color: ${props => props.theme.secondaryColor};

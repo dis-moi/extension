@@ -1,5 +1,13 @@
 import { BadgeTheme } from './lmem/badge';
 
+export interface ButtonTheme {
+  default: string;
+  hover: string;
+  pressed: string;
+  clicked: string;
+  disabled: string;
+}
+
 export interface Theme {
   main: string;
   // colors
@@ -23,6 +31,7 @@ export interface Theme {
   error: string;
   formError: string;
   button: string;
+  contributorGrey: string;
 
   badge: BadgeTheme;
 
@@ -32,6 +41,8 @@ export interface Theme {
   information: string;
   alternative: string;
   other: string;
+
+  basicButton: ButtonTheme;
 
   // notice type colors
   intentions: {
@@ -94,6 +105,7 @@ export const theme: Theme = {
   error: '#F01953',
   formError: '#DB0D0D',
   button: '#1ECCB5',
+  contributorGrey: '#F5F5F5',
 
   // badge background colors
   badge: {
@@ -109,6 +121,15 @@ export const theme: Theme = {
   information: '#E3C51F',
   alternative: '#49B6D6',
   other: '#EB950C',
+
+  // Button colors
+  basicButton: {
+    default: '#1ECCB5',
+    hover: '#0E8D7C',
+    pressed: '#09574C',
+    clicked: '#06332C',
+    disabled: '#BAB8B8'
+  },
 
   // notice type colors
   intentions: {
