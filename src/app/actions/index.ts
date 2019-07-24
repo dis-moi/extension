@@ -9,10 +9,9 @@ import {
 } from './tabsLifecycle';
 import { InstalledAction } from './install';
 import {
-  RefreshMatchingContextsAction,
   RefreshMatchingContextsFailedAction,
   ReceivedMatchingContextsAction
-} from './kraftBackend';
+} from './refreshMatchingContexts';
 import {
   InitAction,
   MatchContextAction,
@@ -31,6 +30,19 @@ import {
 } from './notices';
 import MessageSender = chrome.runtime.MessageSender;
 import { SettingsRequestedAction } from './settings';
+
+export * from './badge';
+export * from './browser';
+export * from './filters';
+export * from './install';
+export * from './notices';
+export * from './refreshMatchingContexts';
+export * from './refreshContributors';
+export * from './settings';
+export * from './tabs';
+export * from './tabsLifecycle';
+export * from './ui';
+export * from './updateDraftNotices';
 
 export interface StandardAction extends Action {
   payload?: any;
@@ -83,7 +95,6 @@ export type AppAction =
   | TabUpdatedAction
   | TabRemovedAction
   | InstalledAction
-  | RefreshMatchingContextsAction
   | RefreshMatchingContextsFailedAction
   | ReceivedMatchingContextsAction
   | MatchContextAction

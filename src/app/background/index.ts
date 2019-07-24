@@ -2,10 +2,6 @@
 import loadHeap from '../../lib/heap';
 import prepareDraftPreview from '../lmem/draft-preview/main';
 import { LMEM_BACKEND_ORIGIN } from '../constants/origins';
-import {
-  dispatchInitialStateFromBackend,
-  refreshMatchingContextsEvery
-} from 'app/actions/kraftBackend';
 import onInstalled from 'app/actions/install';
 import updateDraftNotices from 'app/actions/updateDraftNotices';
 import { configureSentryScope, initSentry } from '../utils/sentry';
@@ -81,23 +77,5 @@ if (ONBOARDING_ORIGIN) {
 } else {
   console.warn(
     'No installation details: assuming "process.env.ONBOARDING_ORIGIN" is deliberately not defined.'
-  );
-}
-
-dispatchInitialStateFromBackend()(store.dispatch);
-// store initialization from the kraft server
-
-const refreshInterval = Number(REFRESH_MC_INTERVAL);
-if (refreshInterval > 0) {
-  console.info(
-    `Matching contexts will be refreshed every ${refreshInterval /
-      1000 /
-      60} minutes.`
-  );
-  refreshMatchingContextsEvery(refreshInterval)(store.dispatch);
-} else {
-  console.warn(
-    'Matching contexts auto-refresh disabled:',
-    'assuming "process.env.REFRESH_MC_INTERVAL" is deliberately not defined.'
   );
 }

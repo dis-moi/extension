@@ -50,7 +50,11 @@ export const generateStatefulNotice = ({
   modified: modified || subWeeks(new Date(), 1),
   message: message || defaultMessage,
   ratings: { likes: likes || 42, dislikes: dislikes || 2 },
-  contributor: { id: 1, name: contributor || Faker.name.findName() },
+  contributor: {
+    id: 1,
+    name: contributor || Faker.name.findName(),
+    contributions: Faker.random.number()
+  },
   visibility: 'public',
   source: withSource
     ? {
