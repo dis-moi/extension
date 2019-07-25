@@ -6,4 +6,5 @@ export default styled.div`
   align-items: center;
   font-weight: bold;
   font-size: 14px;
+  color: ${props => props.theme.formBorder};
 `;
