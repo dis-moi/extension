@@ -39,5 +39,8 @@ module.exports = Object.freeze({
     'http://*/*',
     'https://*/*'
   ],
-  web_accessible_resources: ['img/*', 'fonts/*']
+  web_accessible_resources: ['img/*', 'fonts/*'],
+  externally_connectable: {
+    matches: ['https://*.lmem.net/*']
+  }
 });
