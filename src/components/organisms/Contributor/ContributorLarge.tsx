@@ -7,6 +7,13 @@ import Stat from 'components/atoms/Stat/Stat';
 import StatType from 'components/atoms/Stat/StatType';
 import ContributorButton from './ContributorButton';
 
+const ContributorCard = styled.div`
+  padding: 12px 15px 10px;
+  background-color: #fff;
+  border: 1px solid #dedede;
+  border-radius: 8px;
+`;
+
 const ContributorWrapper = styled.div`
   display: flex;
 `;
@@ -26,28 +33,43 @@ const StatsWrapper = styled.div`
   justify-content: space-between;
 `;
 
+const ContributorIntro = styled.p`
+  margin: 20px 0 0;
+  font-size: 15px;
+  color: ${props => props.theme.formBorder};
+`;
+
 export const Contributor = () => (
-  <ContributorWrapper>
-    <Avatar />
+  <ContributorCard>
+    <ContributorWrapper>
+      <Avatar />
 
-    <ContributorInfos>
-      <UserName>Jean Michel</UserName>
+      <ContributorInfos>
+        <UserName>Jean Michel</UserName>
 
-      <StatsWrapper>
-        <Stat>
-          120 <StatType>Bulles</StatType>
-        </Stat>
-        <Stat>
-          120 <StatType>J'aime</StatType>
-        </Stat>
-        <Stat>
-          120 <StatType>Abonnés</StatType>
-        </Stat>
-      </StatsWrapper>
+        <StatsWrapper>
+          <Stat>
+            120 <StatType>Bulles</StatType>
+          </Stat>
+          <Stat>
+            120 <StatType>J'aime</StatType>
+          </Stat>
+          <Stat>
+            120 <StatType>Abonnés</StatType>
+          </Stat>
+        </StatsWrapper>
 
-      <ContributorButton />
-    </ContributorInfos>
-  </ContributorWrapper>
+        <ContributorButton />
+      </ContributorInfos>
+    </ContributorWrapper>
+
+    <ContributorIntro>
+      Passionné d’infos et s’intox, je vous préviens parfois (mais pas toujours
+      ^^) quand vous êtes en train de consulter un hoax, c’est-à-dire un message
+      poignant, révoltant ou alarmant… mais faux ! Mes sources : Hoaxbuster,
+      HoaxKiller, Hoaxteam, Secuser.com.
+    </ContributorIntro>
+  </ContributorCard>
 );
 
 export default Contributor;
