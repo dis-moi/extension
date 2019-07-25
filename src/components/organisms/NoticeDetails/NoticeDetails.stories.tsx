@@ -15,11 +15,20 @@ import { intentions } from '../../../app/lmem/intention';
 const defaultContributorName = Faker.name.findName();
 const defaultMessage = Faker.lorem.paragraph(3);
 const defaultDate = subMonths(new Date(), 1);
+const commonProps = {
+  like: action('like'),
+  unlike: action('unlike'),
+  dislike: action('dislike'),
+  confirmDislike: action('confirmDislike'),
+  undislike: action('undislike'),
+  view: action('view')
+};
 
 storiesOf('organisms/NoticeDetails', module)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
   .add('Approval', () => (
     <NoticeDetails
+      {...commonProps}
       notice={generateStatefulNotice({
         contributor: text('contributor', defaultContributorName),
         intention: 'approval',
@@ -31,39 +40,23 @@ storiesOf('organisms/NoticeDetails', module)
         liked: boolean('liked', false),
         disliked: boolean('disliked', false)
       })}
-      like={action('like')}
-      unlike={action('unlike')}
-      dislike={action('dislike')}
-      undislike={action('undislike')}
-      view={action('view')}
     />
   ))
   .add('Dismissed', () => (
     <NoticeDetails
+      {...commonProps}
       notice={generateStatefulNotice({ dismissed: true })}
-      like={action('like')}
-      unlike={action('unlike')}
-      dislike={action('dislike')}
-      undislike={action('undislike')}
-      view={action('view')}
     />
   ))
   .add('Disliked', () => (
     <NoticeDetails
+      {...commonProps}
       notice={generateStatefulNotice({ disliked: true })}
-      like={action('like')}
-      unlike={action('unlike')}
-      dislike={action('dislike')}
-      undislike={action('undislike')}
-      view={action('view')}
     />
   ))
   .add('No source', () => (
     <NoticeDetails
+      {...commonProps}
       notice={generateStatefulNotice({ withSource: false })}
-      like={action('like')}
-      unlike={action('unlike')}
-      dislike={action('dislike')}
-      undislike={action('undislike')}
     />
   ));

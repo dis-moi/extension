@@ -1,12 +1,13 @@
 import styled from 'styled-components';
+import { animated } from 'react-spring';
 
 interface Props {
   hasNotices?: boolean;
 }
 
-export default styled('main')<Props>`
+export default styled(animated.main)<Props>`
   position: relative;
   height: 342px;
   background-color: ${props =>
-    props.hasNotices ? props.theme.listBg : props.theme.accountListBg};
+    props.hasNotices ? props.theme.noticeBg : props.theme.accountListBg};
 `;

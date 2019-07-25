@@ -44,7 +44,7 @@ export const generateStatefulNotice = ({
   read,
   withSource = true
 }: Options = {}): StatefulNotice => ({
-  id: 123,
+  id: Math.random() * 1000,
   intention: intention || 'approval',
   created: created || subMonths(new Date(), 1),
   modified: modified || subWeeks(new Date(), 1),

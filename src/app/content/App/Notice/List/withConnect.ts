@@ -1,17 +1,20 @@
 import { connect } from 'react-redux';
-import { dismissNotice, undismissNotice } from 'app/actions/notices';
-import { close } from 'app/actions/ui';
-import { getFilteredNotices } from '../../../selectors';
+import {
+  dismissNotice as dismiss,
+  undismissNotice as undismiss,
+  confirmDismissNotice as confirmDismiss
+} from 'app/actions/notices';
+import { getNoticesToDisplay } from '../../../selectors';
 import { State } from '../../../store';
 
 const mapStateToProps = (state: State) => ({
-  notices: getFilteredNotices(state)
+  notices: getNoticesToDisplay(state)
 });
 
 const mapDispatchToProps = {
-  dismiss: dismissNotice,
-  undismiss: undismissNotice,
-  close
+  dismiss,
+  undismiss,
+  confirmDismiss
 };
 
 export default connect(

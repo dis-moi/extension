@@ -3,9 +3,7 @@ import { SagaIterator } from 'redux-saga';
 import { captureException } from '@sentry/browser';
 import { BaseAction, ErrorAction } from '../actions';
 
-export function* handleErrorSaga({
-  payload: e
-}: ErrorAction): SagaIterator {
+export function* handleErrorSaga({ payload: e }: ErrorAction): SagaIterator {
   if (process.env.SENTRY_ENABLE) {
     captureException(e);
   } else {

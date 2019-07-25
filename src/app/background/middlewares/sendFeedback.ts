@@ -1,23 +1,23 @@
-import { LMEM_BACKEND_ORIGIN } from '../../constants/origins';
 import { AppAction } from '../../actions';
 import { Dispatch } from 'redux';
-import { FeedbackOnNoticeAction, feedbackType } from '../../actions/notices';
+import { FeedbackOnNoticeAction } from '../../actions/notices';
 import postRating from '../../../api/postRating';
+import { RatingType } from '../../lmem/rating';
 
-/* eslint-disable indent, implicit-arrow-linebreak, no-multi-spaces */
-const isUserToNoticeAction = (
-  action: AppAction
-): action is FeedbackOnNoticeAction => action.type === 'FEEDBACK_ON_NOTICE';
+const isRatingAction = (action: AppAction): action is FeedbackOnNoticeAction =>
+  action.type === 'FEEDBACK_ON_NOTICE' &&
+  Object.values(RatingType).includes(action.payload.feedback);
 
 export default function() {
   return (next: Dispatch) => (action: AppAction) => {
-    if (isUserToNoticeAction(action)) {
+    if (isRatingAction(action)) {
       const { id } = action.payload;
       chrome.tabs.query(
         { active: true, currentWindow: true },
         ([selectedTab]) => {
           if (selectedTab && selectedTab.url) {
-            postRating(id, selectedTab.url, action.payload.feedback);
+            postRating(id, selectedTab.url, action.payload
+              .feedback as RatingType);
           }
         }
       );

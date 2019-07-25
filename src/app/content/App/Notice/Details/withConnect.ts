@@ -4,11 +4,11 @@ import {
   likeNotice,
   unlikeNotice,
   dislikeNotice,
+  confirmDislikeNotice,
   undislikeNotice,
   readNotice,
   resourceLinkClicked
 } from 'app/actions/notices';
-import { close } from 'app/actions/ui';
 import { State } from '../../../store';
 import { getNoticeById } from '../../../selectors';
 import { DetailsProps } from './types';
@@ -29,20 +29,20 @@ export interface DetailsDispatchProps {
   like: (id: number) => void;
   unlike: (id: number) => void;
   dislike: (id: number) => void;
+  confirmDislike: (id: number) => void;
   undislike: (id: number) => void;
   view: (id: number) => void;
-  close: () => void;
   followSource: (id: number) => void;
 }
 
-const mapDispatchToProps = {
+const mapDispatchToProps: DetailsDispatchProps = {
   like: likeNotice,
   unlike: unlikeNotice,
   dislike: dislikeNotice,
+  confirmDislike: confirmDislikeNotice,
   undislike: undislikeNotice,
   view: readNotice,
-  followSource: resourceLinkClicked,
-  close
+  followSource: resourceLinkClicked
 };
 
 export default connect(

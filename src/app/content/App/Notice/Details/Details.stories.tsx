@@ -19,13 +19,20 @@ import {
 import { Details } from '.';
 import { intentions } from '../../../../lmem/intention';
 import { subMonths } from 'date-fns';
+import Notification from '../../../../../components/organisms/Notification';
 
 const defaultContributorName = Faker.name.findName();
 const defaultDate = subMonths(new Date(), 1);
 
 storiesOf('screens/Notice/Details', module)
   .addDecorator(withKnobs)
-  .addDecorator(getStory => <Router>{getStory()}</Router>)
+  .addDecorator(getStory => (
+    <Router>
+      <Notification close={action('close')} hasNotices>
+        {getStory()}
+      </Notification>
+    </Router>
+  ))
   .add('default', () => (
     <Details
       notice={generateStatefulNotice({
@@ -42,9 +49,9 @@ storiesOf('screens/Notice/Details', module)
       like={action('like')}
       unlike={action('unlike')}
       dislike={action('dislike')}
+      confirmDislike={action('confirmDislike')}
       undislike={action('undislike')}
       view={action('view')}
       followSource={action('followSource')}
-      close={action('close')}
     />
   ));

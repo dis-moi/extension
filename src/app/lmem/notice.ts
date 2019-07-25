@@ -30,6 +30,17 @@ export interface StatefulNotice extends Notice {
   state: NoticeState;
 }
 
+export enum NoticeFeedbackType {
+  DISMISS = 'dismiss',
+  CONFIRM_DISMISS = 'confirmDissmiss',
+  UNDISMISS = 'undismiss',
+  LIKE = 'like',
+  UNLIKE = 'unlike',
+  DISLIKE = 'dislike',
+  CONFIRM_DISLIKE = 'confirmDislike',
+  UNDISLIKE = 'undislike'
+}
+
 /* eslint-disable no-nested-ternary */
 export type IgnoringReason = 'dislike' | 'dismiss' | 'other';
 export const isIgnored = (notice: StatefulNotice): boolean =>
@@ -45,6 +56,17 @@ export const dismissNotice = (notice: StatefulNotice): StatefulNotice => ({
     justDismissed: true
   }
 });
+
+export const confirmDismissNotice = (
+  notice: StatefulNotice
+): StatefulNotice => ({
+  ...notice,
+  state: {
+    ...notice.state,
+    justDismissed: false
+  }
+});
+
 export const undismissNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
   state: {
@@ -75,6 +97,15 @@ export const dislikeNotice = (notice: StatefulNotice): StatefulNotice => ({
     ...notice.state,
     disliked: true,
     justDisliked: true
+  }
+});
+export const confirmDislikeNotice = (
+  notice: StatefulNotice
+): StatefulNotice => ({
+  ...notice,
+  state: {
+    ...notice.state,
+    justDisliked: false
   }
 });
 export const undislikeNotice = (notice: StatefulNotice): StatefulNotice => ({
