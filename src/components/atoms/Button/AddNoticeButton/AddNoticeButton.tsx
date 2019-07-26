@@ -10,7 +10,6 @@ const ButtonLink = styled(BorderButton)<ButtonProps>`
   color: ${props => props.theme.secondaryColor};
   text-transform: uppercase;
   border-color: #fff;
-  border-radius: 7px;
 
   & > svg {
     width: 12px;
