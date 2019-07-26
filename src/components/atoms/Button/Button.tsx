@@ -2,8 +2,8 @@ import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 import { Theme } from 'app/theme';
 
-import LoadingIcon from 'components/atoms/LoadingIcon/LoadingIcon';
-import LoadingGradient from 'components/atoms/icons/LoadingGradient';
+import LoadingRotator from 'components/atoms/LoadingRotator/LoadingRotator';
+import Loading from 'components/atoms/icons/Loading';
 
 export interface ButtonContainerProps {
   theme?: Theme;
@@ -45,6 +45,10 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
   &:disabled {
     color: #fff;
     cursor: auto;
+
+    svg {
+      fill: ${props => props.theme.text};
+    }
   }
 
   &:disabled,
@@ -55,7 +59,7 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
     border-color: ${props => props.theme.basicButton.disabled};
   }
 
-  ${LoadingIcon} svg {
+  ${LoadingRotator} svg {
     width: 18px;
     height: 18px;
   }
@@ -71,9 +75,9 @@ export default ({
 }: ButtonProps) => (
   <ButtonContainer href={href} target={target} rel={rel} {...props}>
     {loading ? (
-      <LoadingIcon>
-        <LoadingGradient />
-      </LoadingIcon>
+      <LoadingRotator>
+        <Loading />
+      </LoadingRotator>
     ) : (
       children
     )}
