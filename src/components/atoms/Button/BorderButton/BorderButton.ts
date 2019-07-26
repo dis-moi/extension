@@ -12,6 +12,7 @@ export default styled(Button)<ButtonProps>`
   color: ${props => props.theme.button};
   text-decoration: none;
   background-color: #fff;
+  border-radius: 7px;
   border: 2px solid ${props => props.theme.button};
 
   &:hover,
