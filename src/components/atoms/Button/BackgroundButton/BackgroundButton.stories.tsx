@@ -17,4 +17,4 @@ storiesOf('atoms/Buttons/BackgroundButton', module)
     />
   ))
   .add('loading', () => <BackgroundButton loading />)
-  .add('disabled and loading', () => <BackgroundButton loading />);
+  .add('disabled and loading', () => <BackgroundButton disabled loading />);
