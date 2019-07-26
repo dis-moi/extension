@@ -24,7 +24,7 @@ export default styled.div<FeedbacksProps>`
       transform: scale(-1, 1);
     }
 
-    & button {
+    & + button {
       margin-left: 20px;
     }
 
