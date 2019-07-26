@@ -8,6 +8,7 @@ const ButtonLink = styled(BorderButton)<ButtonProps>`
   display: flex;
   align-items: center;
   color: ${props => props.theme.secondaryColor};
+  text-transform: uppercase;
   border-color: #fff;
   border-radius: 7px;
 
