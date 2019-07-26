@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 import Avatar from 'components/atoms/Avatar/Avatar';
+import AvatarDefault from 'components/atoms/icons/AvatarDefault';
 import UserName from 'components/atoms/UserName/UserName';
 import Stat from 'components/atoms/Stat/Stat';
 import StatType from 'components/atoms/Stat/StatType';
@@ -42,7 +43,9 @@ const ContributorIntro = styled.p`
 export const Contributor = () => (
   <ContributorCard>
     <ContributorWrapper>
-      <Avatar />
+      <Avatar>
+        <AvatarDefault />
+      </Avatar>
 
       <ContributorInfos>
         <UserName>Jean Michel</UserName>
