@@ -16,18 +16,13 @@ export default styled(Button)<ButtonProps>`
 
   &:hover,
   &:focus,
-  &:active,
-  &:visited {
+  &:active {
     color: #fff;
   }
 
   &:hover {
     background-color: ${props => props.theme.basicButton.hover};
     border-color: ${props => props.theme.basicButton.hover};
-  }
-  &:visited {
-    background-color: ${props => props.theme.basicButton.pressed};
-    border-color: ${props => props.theme.basicButton.pressed};
   }
   &:focus {
     background-color: ${props => props.theme.basicButton.clicked};

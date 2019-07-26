@@ -9,6 +9,7 @@ const ButtonLink = styled(BorderButton)<ButtonProps>`
   align-items: center;
   color: ${props => props.theme.secondaryColor};
   border-color: #fff;
+  border-radius: 7px;
 
   & > svg {
     width: 12px;
