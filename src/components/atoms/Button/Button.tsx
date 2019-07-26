@@ -46,8 +46,9 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
     color: #fff;
     cursor: auto;
 
-    svg {
-      fill: ${props => props.theme.text};
+    svg,
+    &:hover svg {
+      fill: #fff;
     }
   }
 
