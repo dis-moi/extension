@@ -26,7 +26,7 @@ class SubmitContributionForm extends Component<SubmitContributionFormProps> {
   }
 
   render() {
-    const { handleSubmit, submitting, error, dirty } = this.props;
+    const { handleSubmit, submitting, error, anyTouched } = this.props;
     return (
       <Form onSubmit={handleSubmit}>
         <Field name="url" type="hidden" component={InputField} />
@@ -59,7 +59,7 @@ class SubmitContributionForm extends Component<SubmitContributionFormProps> {
           </BorderButton>
         </CenterContainer>
 
-        {dirty && error && <Error>{error}</Error>}
+        {anyTouched && error && <Error>{error}</Error>}
       </Form>
     );
   }
