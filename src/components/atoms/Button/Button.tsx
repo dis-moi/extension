@@ -11,6 +11,7 @@ export interface ButtonContainerProps {
   target?: '_blank';
   rel?: string;
   onClick?: (...args: any[]) => any;
+  className?: string;
 }
 
 export interface ButtonProps extends ButtonContainerProps {
@@ -66,15 +67,22 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
   }
 `;
 
-export default ({
+const Button = ({
   loading,
   children,
   target,
   rel,
   href,
+  className,
   ...props
 }: ButtonProps) => (
-  <ButtonContainer href={href} target={target} rel={rel} {...props}>
+  <ButtonContainer
+    className={className}
+    href={href}
+    target={target}
+    rel={rel}
+    {...props}
+  >
     {loading ? (
       <LoadingRotator>
         <Loading />
@@ -84,3 +92,5 @@ export default ({
     )}
   </ButtonContainer>
 );
+
+export default styled(Button)``;

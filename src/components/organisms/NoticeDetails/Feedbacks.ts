@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Theme } from 'app/theme';
+import { Button } from 'components/atoms';
 
 interface FeedbacksProps {
   theme?: Theme;
@@ -11,7 +12,7 @@ export default styled.div<FeedbacksProps>`
   margin-top: auto;
   font-size: 14px;
 
-  & button {
+  & ${Button} {
     color: ${props => props.theme.navInactive};
     text-decoration: none;
 
@@ -24,7 +25,7 @@ export default styled.div<FeedbacksProps>`
       transform: scale(-1, 1);
     }
 
-    & + button {
+    & + ${Button} {
       margin-left: 20px;
     }
 
