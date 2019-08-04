@@ -8,15 +8,17 @@ import Loading from 'components/atoms/icons/Loading';
 export interface ButtonContainerProps {
   theme?: Theme;
   href?: string;
+  to?: string;
   target?: '_blank';
   rel?: string;
   onClick?: (...args: any[]) => any;
+  disabled?: boolean;
+  type?: 'submit' | 'reset' | 'button';
 }
 
 export interface ButtonProps extends ButtonContainerProps {
   loading?: boolean;
   children?: ReactNode | string;
-  disabled?: boolean;
   dangerouslySetInnerHTML?: any;
 }
 
@@ -66,15 +68,8 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
   }
 `;
 
-export default ({
-  loading,
-  children,
-  target,
-  rel,
-  href,
-  ...props
-}: ButtonProps) => (
-  <ButtonContainer href={href} target={target} rel={rel} {...props}>
+export default ({ loading, children, ...props }: ButtonProps) => (
+  <ButtonContainer {...props}>
     {loading ? (
       <LoadingRotator>
         <Loading />
