@@ -25,7 +25,7 @@ const ContributorButton = ({ followed }: Props) =>
     </Container>
   ) : (
     <Container>
-      <BorderButton>Suivre</BorderButton>
+      <BorderButton>S'abonner</BorderButton>
     </Container>
   );
 
