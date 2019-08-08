@@ -30,8 +30,9 @@ const ContributorInfos = styled.div`
 `;
 
 const StatsWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-column-gap: 5px;
+  grid-template-columns: 1fr 1fr 1fr;
 `;
 
 const ContributorIntro = styled.p`
