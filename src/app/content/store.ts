@@ -2,12 +2,12 @@ import { applyMiddleware, createStore } from 'redux';
 import { routerMiddleware, RouterState } from 'connected-react-router';
 import { createMemoryHistory } from 'history';
 import rootReducer from './reducers';
-import middlewares, { sagaMiddleware } from './middlewares';
 import rootSaga from './sagas';
 import { InstallationDetailsState } from './reducers/installationDetails';
 import { UIState } from './reducers/ui';
 import { NoticesState } from './reducers/notices';
 import { TabState } from './reducers/tab';
+import createSagaMiddleware from '@redux-saga/core';
 
 export const history = createMemoryHistory();
 
@@ -18,6 +18,10 @@ export interface State {
   tab: TabState;
   router: RouterState;
 }
+
+const sagaMiddleware = createSagaMiddleware();
+
+const middlewares = [sagaMiddleware];
 
 const enhancer =
   process.env.NODE_ENV !== 'production'

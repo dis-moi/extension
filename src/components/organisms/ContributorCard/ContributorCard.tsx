@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ContributorLarge from '../Contributor/ContributorLarge';
+import { Contributor } from '../../../app/lmem/contributor';
 
 const Container = styled.article`
   padding: 10px 15px;
@@ -9,9 +10,13 @@ const Container = styled.article`
   border-radius: 8px;
 `;
 
-export const ContributorNav = () => (
+interface Props {
+  contributor: Contributor;
+}
+
+export const ContributorNav = ({ contributor }: Props) => (
   <Container>
-    <ContributorLarge />
+    <ContributorLarge contributor={contributor} />
   </Container>
 );
 

@@ -29,7 +29,17 @@ import {
   ReadNoticeAction
 } from './notices';
 import MessageSender = chrome.runtime.MessageSender;
-import { SettingsRequestedAction } from './settings';
+import { SettingsRequestedAction, SettingsTabOpened } from './settings';
+import {
+  ContributorsTransmittedAction,
+  ReceivedContributorsAction,
+  RefreshContributorsFailedAction
+} from './refreshContributors';
+import {
+  ListenActionFailedAction,
+  ListeningActionsReadyAction
+} from './webext';
+import { From } from '../../webext/From';
 
 export * from './badge';
 export * from './browser';
@@ -43,6 +53,7 @@ export * from './tabs';
 export * from './tabsLifecycle';
 export * from './ui';
 export * from './updateDraftNotices';
+export * from './webext';
 
 export interface StandardAction extends Action {
   payload?: any;
@@ -86,6 +97,8 @@ export interface ActionMeta {
   action?: any;
   external?: boolean;
   sender?: MessageSender;
+  from?: From;
+  tab?: Tab;
 }
 
 export type AppAction =
@@ -99,6 +112,9 @@ export type AppAction =
   | ReceivedMatchingContextsAction
   | MatchContextAction
   | MatchContextFailureAction
+  | ReceivedContributorsAction
+  | RefreshContributorsFailedAction
+  | ContributorsTransmittedAction
   | ContextTriggeredAction
   | ContextTriggerFailureAction
   | NoticeDisplayedAction
@@ -112,4 +128,7 @@ export type AppAction =
   | FeedbackOnNoticeAction
   | ReadNoticeAction
   | SettingsRequestedAction
+  | SettingsTabOpened
+  | ListeningActionsReadyAction
+  | ListenActionFailedAction
   | (LocationChangeAction & { meta?: ActionMeta });

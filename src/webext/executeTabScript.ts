@@ -2,7 +2,7 @@ import Tab from 'app/lmem/Tab';
 
 export type ExecuteContentScript = (tab: Tab) => Promise<any[]>;
 
-export const executeTabScript = (code: string): ExecuteContentScript => (
+const executeTabScript = (code: string): ExecuteContentScript => (
   tab: Tab
 ): Promise<any[]> =>
   new Promise(resolve => {

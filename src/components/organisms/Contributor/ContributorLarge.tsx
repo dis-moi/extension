@@ -1,6 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import Button from 'components/atoms/Button';
+import styled from 'styled-components';
+import { Contributor } from 'app/lmem/contributor';
 import Avatar from 'components/atoms/Avatar/Avatar';
 import AvatarDefault from 'components/atoms/icons/AvatarDefault';
 import UserName from 'components/atoms/UserName/UserName';
@@ -47,7 +48,11 @@ const ContributionExample = styled(Button)`
   color: ${props => props.theme.activeColor};
 `;
 
-export const Contributor = () => (
+interface Props {
+  contributor: Contributor;
+}
+
+export const ContributorLarge = ({ contributor }: Props) => (
   <ContributorCard>
     <ContributorWrapper>
       <Avatar>
@@ -55,11 +60,11 @@ export const Contributor = () => (
       </Avatar>
 
       <ContributorInfos>
-        <UserName>Jean Michel</UserName>
+        <UserName>{contributor.name}</UserName>
 
         <StatsWrapper>
           <Stat>
-            120 <StatType>Bulles</StatType>
+            {contributor.contributions} <StatType>Bulles</StatType>
           </Stat>
           <Stat>
             120 <StatType>J'aime</StatType>
@@ -84,4 +89,4 @@ export const Contributor = () => (
   </ContributorCard>
 );
 
-export default Contributor;
+export default ContributorLarge;

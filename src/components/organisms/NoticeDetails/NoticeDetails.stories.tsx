@@ -10,7 +10,6 @@ import {
   generateStatefulNotice
 } from '../../../../test/fakers/generateNotice';
 import { boolean, date, number, select, text } from '@storybook/addon-knobs';
-import { intentions } from '../../../app/lmem/intention';
 
 const defaultContributorName = Faker.name.findName();
 const defaultMessage = Faker.lorem.paragraph(3);

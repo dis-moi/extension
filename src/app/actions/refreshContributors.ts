@@ -23,3 +23,15 @@ export const refreshContributorsFailed = (
   payload: e,
   error: true
 });
+
+export interface ContributorsTransmittedAction extends BaseAction {
+  type: 'CONTRIBUTORS_TRANSMITTED';
+  payload: { contributors: Contributor[] };
+}
+export const contributorsTransmitted = (
+  contributors: Contributor[]
+): ContributorsTransmittedAction => ({
+  type: 'CONTRIBUTORS_TRANSMITTED',
+  payload: { contributors },
+  meta: { tracked: false }
+});

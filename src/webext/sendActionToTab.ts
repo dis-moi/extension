@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 
-export const sendToTab = (
+const sendToTab = (
   tabId: number,
   action: Action,
   options = {}
