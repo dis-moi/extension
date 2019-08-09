@@ -7,7 +7,8 @@ import {
   AppAction,
   contributorsTransmitted,
   ListeningActionsReadyAction,
-  settingsTabOpened
+  settingsTabOpened,
+  settingsTabOpenFailed
 } from '../../actions';
 import { getContributors } from '../selectors/resources';
 
@@ -17,9 +18,13 @@ const isSettingsTabReadyAction = (action: AppAction): boolean =>
   !!action.meta.tab;
 
 function* openSettingsSaga() {
-  const tab: chrome.tabs.Tab = yield call(openSettings);
-  if (tab && tab.id) {
-    yield put(settingsTabOpened(tab as Tab));
+  try {
+    const tab: chrome.tabs.Tab = yield call(openSettings);
+    if (tab && tab.id) {
+      yield put(settingsTabOpened(tab as Tab));
+    }
+  } catch (error) {
+    yield put(settingsTabOpenFailed(error));
   }
 }
 
