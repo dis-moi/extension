@@ -15,11 +15,28 @@ export const receivedMatchingContexts = (
   meta: { tracked: false }
 });
 
+export interface ReceivedMatchingContextsFailureAction extends BaseAction {
+  type: 'api/UPDATE_MATCHING_CONTEXTS_FAILURE';
+  payload: { error: Error };
+  meta: { tracked: false };
+}
+export const receivedMatchingContextsFailure = (
+  error: Error
+): ReceivedMatchingContextsFailureAction => ({
+  type: 'api/UPDATE_MATCHING_CONTEXTS_FAILURE',
+  payload: { error },
+  meta: { tracked: false }
+});
+
 export function dispatchInitialStateFromBackend() {
   return (dispatch: Dispatch) =>
-    fetchMatchingContexts().then((matchingContexts: MatchingContext[]) =>
-      dispatch(receivedMatchingContexts(matchingContexts))
-    );
+    fetchMatchingContexts()
+      .then((matchingContexts: MatchingContext[]) =>
+        dispatch(receivedMatchingContexts(matchingContexts))
+      )
+      .catch((error: Error) =>
+        dispatch(receivedMatchingContextsFailure(error))
+      );
 }
 
 export interface RefreshMatchingContextsAction extends BaseAction {
