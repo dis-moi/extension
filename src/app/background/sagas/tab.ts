@@ -17,6 +17,7 @@ import { TAB_CREATED, TAB_UPDATED } from '../../constants/browser/tabs';
 import {
   CONTEXT_TRIGGERED,
   MATCH_CONTEXT,
+  NOTICE_DISPLAYED,
   NOTICES_FOUND
 } from '../../constants/ActionTypes';
 import {
@@ -28,12 +29,15 @@ import {
   noticeDisplayed,
   contextTriggerFailure,
   MatchContextAction,
-  ContextTriggeredAction
+  ContextTriggeredAction,
+  NoticeDisplayedAction
 } from 'app/actions/tabs';
 import {
   noticesFound,
   NoticesFoundAction,
-  noticesUpdated
+  noticesUpdated,
+  displayNotice,
+  FeedbackOnNoticeAction
 } from 'app/actions/notices';
 import watchSingleMessageSaga from '../../utils/watchSingleMessageSaga';
 import { TabAction } from '../../actions';
@@ -148,6 +152,12 @@ export function* updateNoticesSaga({
   yield put(noticesUpdated(notices, { tab }));
 }
 
+export function* displayNoticeSaga({
+  payload: { notice }
+}: NoticeDisplayedAction) {
+  yield put(displayNotice(notice.id));
+}
+
 export default function* tabRootSaga() {
   yield fork(watchSingleMessageSaga);
   yield fork(watchBrowserActionSaga);
@@ -167,6 +177,7 @@ export default function* tabRootSaga() {
     (action: AppAction) => Boolean(action.meta && action.meta.sendToTab),
     publishToTabSaga
   );
+  yield takeLatest(NOTICE_DISPLAYED, displayNoticeSaga);
 
   yield takeLatest(NOTICES_FOUND, updateNoticesSaga);
 }

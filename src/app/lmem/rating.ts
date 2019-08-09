@@ -7,8 +7,7 @@ export type RatingType =
   | 'undismiss'
   | 'display'
   | 'unfold'
-  | 'click-message'
-  | 'click-source'
+  | 'click-outbound'
   | 'report';
 
 export interface Ratings {
