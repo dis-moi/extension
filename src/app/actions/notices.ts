@@ -30,8 +30,7 @@ export type feedbackType =
   | 'dislike'
   | 'undislike'
   | 'display'
-  | 'unfold'
-  | 'click-outbound';
+  | 'unfold';
 
 export interface FeedbackOnNoticeAction extends BaseAction {
   type: 'FEEDBACK_ON_NOTICE';
@@ -47,12 +46,6 @@ export const displayNotice = (id: number): FeedbackOnNoticeAction => ({
 export const unfoldNotice = (id: number): FeedbackOnNoticeAction => ({
   type: 'FEEDBACK_ON_NOTICE',
   payload: { id, feedback: 'unfold' },
-  meta: { sendToBackground: true }
-});
-
-export const clickOutboundNotice = (id: number): FeedbackOnNoticeAction => ({
-  type: 'FEEDBACK_ON_NOTICE',
-  payload: { id, feedback: 'click-outbound' },
   meta: { sendToBackground: true }
 });
 

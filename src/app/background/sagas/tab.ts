@@ -36,8 +36,7 @@ import {
   noticesFound,
   NoticesFoundAction,
   noticesUpdated,
-  displayNotice,
-  FeedbackOnNoticeAction
+  displayNotice
 } from 'app/actions/notices';
 import watchSingleMessageSaga from '../../utils/watchSingleMessageSaga';
 import { TabAction } from '../../actions';
