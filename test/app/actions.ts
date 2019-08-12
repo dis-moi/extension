@@ -12,6 +12,7 @@ import {
 import { MatchingContext } from '../../src/app/lmem/matchingContext';
 import { StatefulNotice } from '../../src/app/lmem/notice';
 import Tab from '../../src/app/lmem/Tab';
+import { generateContributor } from '../fakers/generateContributor';
 
 const expect = chai.expect;
 chai.use(sinonChai);
@@ -26,7 +27,7 @@ const notice: StatefulNotice = {
     label: 'Jalil',
     url: 'http://jalil'
   },
-  contributor: { id: 1, name: 'Jalil', avatar: '', contributions: 42 },
+  contributor: generateContributor(),
   visibility: 'public',
   ratings: {
     dislikes: 0,

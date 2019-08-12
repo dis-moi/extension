@@ -14,5 +14,10 @@ export const generateContributor = ({
 }: Options = {}): Contributor => ({
   id: id || 42,
   name: name || Faker.name.findName(),
-  contributions: contributions || Faker.random.number()
+  contributions: contributions || Faker.random.number(),
+  avatar: {
+    small: { url: 'http://small' },
+    normal: { url: 'http://normal' },
+    large: { url: 'http://large' }
+  }
 });
