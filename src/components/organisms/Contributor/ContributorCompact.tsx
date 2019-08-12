@@ -1,11 +1,9 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import Avatar from 'components/atoms/Avatar/Avatar';
 import UserName from 'components/atoms/UserName/UserName';
-import Like from '../../atoms/icons/types/Like';
 import Stat from 'components/atoms/Stat/Stat';
-import StatType from 'components/atoms/Stat/StatType';
 import ContributorButton from './ContributorButton';
 
 const ContributorWrapper = styled.div`

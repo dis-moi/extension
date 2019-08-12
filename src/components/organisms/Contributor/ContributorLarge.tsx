@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
+import Button from 'components/atoms/Button';
 import Avatar from 'components/atoms/Avatar/Avatar';
 import AvatarDefault from 'components/atoms/icons/AvatarDefault';
 import UserName from 'components/atoms/UserName/UserName';
@@ -41,6 +42,12 @@ const ContributorIntro = styled.p`
   color: ${props => props.theme.formBorder};
 `;
 
+const ContributionExample = styled(Button)`
+  margin-top: 25px;
+  font-size: 12px;
+  color: ${props => props.theme.activeColor};
+`;
+
 export const Contributor = () => (
   <ContributorCard>
     <ContributorWrapper>
@@ -66,6 +73,8 @@ export const Contributor = () => (
         <ContributorButton />
       </ContributorInfos>
     </ContributorWrapper>
+
+    <ContributionExample>Voir un exemple de ses bulles</ContributionExample>
 
     <ContributorIntro>
       Passionné d’infos et s’intox, je vous préviens parfois (mais pas toujours
