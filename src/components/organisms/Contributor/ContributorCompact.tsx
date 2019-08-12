@@ -69,15 +69,7 @@ export const Contributor = () => (
       <UserName>Jean Michel</UserName>
 
       <StatsWrapper>
-        <Stat>
-          <StatIcon>
-            <Like />
-          </StatIcon>{' '}
-          120
-        </Stat>
-        <Stat>
-          <StatIcon /> 120
-        </Stat>
+        <Stat>120 Bulles</Stat>
       </StatsWrapper>
     </ContributorInfos>
 
