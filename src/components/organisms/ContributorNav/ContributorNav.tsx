@@ -7,7 +7,6 @@ export const ContributorNav = () => (
   <Container>
     <Tab active>Mes abonnements</Tab>
     <Tab>Suggestions</Tab>
-    <BackgroundButton>Inviter un ami</BackgroundButton>
   </Container>
 );
 
