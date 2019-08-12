@@ -1,7 +1,12 @@
 import styled from 'styled-components';
-import Button from '../../atoms/Button';
+import { Theme } from 'app/theme';
+import { Button } from 'components/atoms';
 
-export default styled.div`
+interface FeedbacksProps {
+  theme?: Theme;
+}
+
+export default styled.div<FeedbacksProps>`
   display: flex;
   justify-content: flex-end;
   margin-top: auto;

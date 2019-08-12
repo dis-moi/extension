@@ -1,10 +1,12 @@
 export { default as Truncated } from './Truncated';
 
-export { default as Button } from './Button';
 export { default as AddNoticeContainer } from './AddNoticeContainer';
-export { default as AddNoticeLink } from './Buttons/AddNoticeLink';
-export { default as BorderButton } from './Buttons/BorderButton';
-export { default as OpenButton } from './Buttons/OpenButton/OpenButton';
+
+export { default as Button } from './Button';
+export { default as AddNoticeButton } from './Button/AddNoticeButton';
+export { default as BackgroundButton } from './Button/BackgroundButton';
+export { default as BorderButton } from './Button/BorderButton';
+export { default as OpenButton } from './Button/OpenButton';
 
 export { default as CenterContainer } from './CenterContainer';
 export { default as Contributor } from './Contributor';

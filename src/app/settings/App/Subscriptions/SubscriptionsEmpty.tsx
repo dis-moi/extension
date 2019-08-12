@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import BackgroundButton from 'components/atoms/Buttons/BackgroundButton/BackgroundButton';
+import BackgroundButton from 'components/atoms/Button/BackgroundButton/BackgroundButton';
 import Wrapper from './Wrapper';
 import ContributorNav from 'components/organisms/ContributorNav/ContributorNav';
 

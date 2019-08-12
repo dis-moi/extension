@@ -2,7 +2,7 @@ import React from 'react';
 import { compose } from 'redux';
 import { useTransition } from 'react-spring';
 
-import { AddNoticeContainer, AddNoticeLink } from 'components/atoms';
+import { AddNoticeContainer, AddNoticeButton } from 'components/atoms';
 import NoticeItem, {
   NoticeTransitionProps,
   transitionKeys
@@ -50,7 +50,7 @@ export const ListScreen = ({
       {notices.length === 0 && <NoNotice />}
       {notices.length > 0 && (
         <AddNoticeContainer>
-          <AddNoticeLink />
+          <AddNoticeButton />
         </AddNoticeContainer>
       )}
     </>

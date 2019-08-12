@@ -29,6 +29,7 @@ import {
   NoticesFoundAction,
   ReadNoticeAction
 } from './notices';
+import MessageSender = chrome.runtime.MessageSender;
 import { SettingsRequestedAction } from './settings';
 
 export interface StandardAction extends Action {
@@ -46,6 +47,16 @@ export interface ErrorAction extends BaseAction {
   error: true;
 }
 
+export const createErrorAction = (type: any = 'ERROR') => (
+  e: Error,
+  meta?: ActionMeta
+): ErrorAction => ({
+  type,
+  payload: e,
+  error: true,
+  meta
+});
+
 export interface TabMeta extends ActionMeta {
   tab: Tab;
 }
@@ -60,6 +71,9 @@ export interface ActionMeta {
   sendToBackground?: boolean;
   sendToTab?: boolean;
   tracked?: boolean;
+  action?: any;
+  external?: boolean;
+  sender?: MessageSender;
 }
 
 export type AppAction =

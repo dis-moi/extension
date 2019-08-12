@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import BorderButton from 'components/atoms/Buttons/BorderButton';
+import BorderButton from 'components/atoms/Button/BorderButton';
 
 export default styled(BorderButton)`
   color: #fff;

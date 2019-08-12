@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import BackgroundButton from 'components/atoms/Buttons/BackgroundButton/BackgroundButton';
-import BorderButton from 'components/atoms/Buttons/BorderButton/BorderButton';
+import BackgroundButton from 'components/atoms/Button/BackgroundButton/BackgroundButton';
+import BorderButton from 'components/atoms/Button/BorderButton/BorderButton';
 
 const Container = styled.div`
   display: flex;
