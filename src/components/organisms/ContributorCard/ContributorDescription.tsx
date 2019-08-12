@@ -1,13 +1,13 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-const Container = styled.p`
+const Description = styled.p`
   margin-top: 20px;
   margin-bottom: 0;
   font-size: 15px;
 `;
 
-const PlaceholderContainer = styled(Container)`
+const PlaceholderDescription = styled(Description)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,11 +19,11 @@ interface Props {
 }
 const ContributorDescription = ({ children }: Props) =>
   children ? (
-    <Container>{children}</Container>
+    <Description>{children}</Description>
   ) : (
-    <PlaceholderContainer>
+    <PlaceholderDescription>
       Cet utilisateur n’a pas encore ajouté une description.
-    </PlaceholderContainer>
+    </PlaceholderDescription>
   );
 
 export default ContributorDescription;
