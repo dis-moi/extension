@@ -1,14 +1,7 @@
 import { Action } from 'redux';
 
-const sendToTab = (
-  tabId: number,
-  action: Action,
-  options = {}
-): Promise<Action> =>
-  new Promise(resolve => {
-    chrome.tabs.sendMessage(tabId, action, options, response =>
-      resolve(response)
-    );
-  });
+const sendToTab = (tabId: number, action: Action, options = {}): void => {
+  chrome.tabs.sendMessage(tabId, action, options);
+};
 
 export default sendToTab;

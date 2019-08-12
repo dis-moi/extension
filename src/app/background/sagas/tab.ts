@@ -140,9 +140,7 @@ export function* publishToTabSaga(action: TabAction) {
       )
     );
   }
-  const response = yield call(sendToTab, tab.id, action);
-
-  console.info(`Tab "${tab.url}" respond`, response);
+  sendToTab(tab.id, action);
 }
 
 export function* watchBrowserActionSaga() {

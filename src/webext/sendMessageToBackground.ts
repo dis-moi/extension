@@ -1,6 +1,5 @@
-const sendMessageToBackground = (message: any) =>
-  new Promise(resolve => {
-    chrome.runtime.sendMessage(message, response => resolve(response));
-  });
+const sendMessageToBackground = (message: any): void => {
+  chrome.runtime.sendMessage(message);
+};
 
 export default sendMessageToBackground;

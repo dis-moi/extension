@@ -29,11 +29,12 @@ function* openSettingsSaga() {
 }
 
 function* sendContributorsToSettingsTab(action: ListeningActionsReadyAction) {
-  const tab = action.meta.tab;
-  const contributorsTransmittedAction = assocTabIfNotGiven(
-    tab as chrome.tabs.Tab
-  )(contributorsTransmitted(yield select(getContributors)));
-  yield sendToTab(tab!.id, contributorsTransmittedAction);
+  const tab = action.meta.tab as chrome.tabs.Tab & Tab;
+  const contributors = yield select(getContributors);
+  const contributorsTransmittedAction = assocTabIfNotGiven(tab)(
+    contributorsTransmitted(contributors)
+  );
+  sendToTab(tab.id, contributorsTransmittedAction);
 }
 
 export default function* settings() {
