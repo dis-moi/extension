@@ -3,8 +3,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 import BackgroundButton from 'components/atoms/Button/BackgroundButton/BackgroundButton';
+import Logo from 'components/atoms/icons/Logo';
 import Wrapper from './Wrapper';
 import ContributorNav from 'components/organisms/ContributorNav/ContributorNav';
+
+const BullesLogo = styled.div`
+  width: 90px;
+  height: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+`;
 
 const SubscriptionsEmpty = styled.div`
   display: flex;
@@ -35,6 +43,10 @@ const EmptyButton = styled(BackgroundButton)`
 
 const Settings = () => (
   <Wrapper>
+    <BullesLogo>
+      <Logo />
+    </BullesLogo>
+
     <ContributorNav />
 
     <SubscriptionsEmpty>

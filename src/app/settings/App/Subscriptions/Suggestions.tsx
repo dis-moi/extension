@@ -1,10 +1,18 @@
 import React from 'react';
 
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+import Logo from 'components/atoms/icons/Logo';
 import ContributorNav from 'components/organisms/ContributorNav/ContributorNav';
 import Contributor from 'components/organisms/Contributor/ContributorLarge';
 import Wrapper from './Wrapper';
 import BottomLine from './BottomLine';
+
+const BullesLogo = styled.div`
+  width: 90px;
+  height: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+`;
 
 const ContributorsWidth = styled.section`
   padding-bottom: 250px;
@@ -19,6 +27,10 @@ const ContributorsList = styled.div`
 
 const Settings = () => (
   <Wrapper>
+    <BullesLogo>
+      <Logo />
+    </BullesLogo>
+
     <ContributorsWidth>
       <ContributorNav />
 
