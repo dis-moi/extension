@@ -21,12 +21,12 @@ export function* submitContributionSaga({
 
     yield put(contributionSubmitted(contribution));
 
-    // reset history, form and redirect to success page
-    yield put(go(-history.entries.length));
-    yield put(reset(form));
-    yield put(replace('/contribute/submitted'));
-
     if (form) {
+      // reset history, form and redirect to success page
+      yield put(go(-history.entries.length));
+      yield put(reset(form));
+      yield put(replace('/contribute/submitted'));
+
       yield call(resolve);
     }
   } catch (e) {
