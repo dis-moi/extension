@@ -1,3 +1,14 @@
+## [2.3.9](https://github.com/insitu-project/recommendations-webextension/compare/v2.3.8...v2.3.9) (2019-08-16)
+
+
+### Bug Fixes
+
+* **displayRating:** add displayRating ([3a4c3d2](https://github.com/insitu-project/recommendations-webextension/commit/3a4c3d2))
+* **fetchMatchingContexts:** catch network error ([24cc24a](https://github.com/insitu-project/recommendations-webextension/commit/24cc24a)), closes [#257](https://github.com/insitu-project/recommendations-webextension/issues/257)
+* **ratings:** drop unused code ([ee69802](https://github.com/insitu-project/recommendations-webextension/commit/ee69802))
+* **unfold rating:** use action payload to get notice id ([344b40f](https://github.com/insitu-project/recommendations-webextension/commit/344b40f))
+* **unfoldRating:** add unfoldRating ([5c91420](https://github.com/insitu-project/recommendations-webextension/commit/5c91420))
+
 ## [2.3.8](https://github.com/insitu-project/recommendations-webextension/compare/v2.3.7...v2.3.8) (2019-06-21)
 
 
