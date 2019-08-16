@@ -16,7 +16,6 @@ import { StatefulNotice } from '../../../../lmem/notice';
 
 export interface DetailsStateProps {
   notice?: StatefulNotice;
-  preview?: boolean;
 }
 
 const mapStateToProps = (
