@@ -1,7 +1,10 @@
-import { put, takeLatest, select, all } from 'redux-saga/effects';
+import { put, takeLatest, select } from 'redux-saga/effects';
 import { getNotices, getTabId } from '../selectors';
-import { noticesUpdated, unfoldNotice } from '../../actions/notices';
-import { Notice } from '../../lmem/notice';
+import {
+  noticesUpdated,
+  ReadNoticeAction,
+  unfoldNotice
+} from '../../actions/notices';
 
 export function* updateNoticesSaga() {
   const notices = yield select(getNotices);
@@ -9,9 +12,10 @@ export function* updateNoticesSaga() {
   yield put(noticesUpdated(notices, { tab, sendToBackground: true }));
 }
 
-export function* rateUnfoldedNoticesSaga() {
-  const notices = yield select(getNotices);
-  yield all(notices.map(({ id }: Notice) => put(unfoldNotice(id))));
+export function* rateUnfoldedNoticesSaga({
+  payload: noticeId
+}: ReadNoticeAction) {
+  yield put(unfoldNotice(noticeId));
 }
 
 export default function* noticesRootSaga() {
