@@ -1,8 +1,13 @@
 import { createSelector } from 'reselect';
 import { RouteComponentProps } from 'react-router';
 import { getLocation } from 'connected-react-router';
-import { getFormValues } from 'redux-form';
-
+import {
+  getFormMeta,
+  getFormSyncErrors,
+  getFormValues,
+  RegisteredFieldState
+} from 'redux-form';
+import * as R from 'ramda';
 import {
   getNotice,
   isMarkedUnread,
@@ -12,6 +17,7 @@ import {
 import { InstallationDetails } from 'app/lmem/installation';
 import { OpenState, MountedState, TitleState, UIState } from '../reducers/ui';
 import { ContentState } from '../store';
+import { getRegisteredFieldsPaths } from '../../utils/form';
 
 export const getNotices = (state: ContentState) => state.notices;
 
@@ -73,3 +79,33 @@ export const isNoticeContext = (state: ContentState) => {
 export const getContribution = (state: State): Contribution =>
   // @ts-ignore
   getFormValues('contribution')(state);
+
+export const getFormState = (formName: string) => (state: State) =>
+  state.form[formName];
+
+export const getFormRegisteredFields = (formName: string) => (
+  state: State
+): RegisteredFieldState[] => {
+  const form = getFormState(formName)(state);
+  return R.path(['registeredFields'], form) || [];
+};
+
+export const getFlatFormErrors = (formName: string) => (
+  state: State
+): string[] => {
+  const fieldsPaths = getRegisteredFieldsPaths(
+    getFormRegisteredFields(formName)(state)
+  );
+  const metas = getFormMeta(formName)(state);
+  const syncErrors = getFormSyncErrors(formName)(state);
+
+  return fieldsPaths
+    .map(fieldPath => {
+      const errorMessage = R.path(fieldPath, syncErrors);
+      const touched = R.path(fieldPath.concat('touched'), metas);
+
+      // @ts-ignore
+      return touched && errorMessage ? errorMessage.toString() : undefined;
+    }, {})
+    .filter(errorMessage => errorMessage);
+};

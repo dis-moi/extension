@@ -1,6 +1,7 @@
 import { applyMiddleware, createStore } from 'redux';
 import { routerMiddleware, RouterState } from 'connected-react-router';
 import { createMemoryHistory } from 'history';
+import { FormStateMap } from 'redux-form';
 import rootReducer from './reducers';
 import rootSaga from './sagas';
 import { InstallationDetailsState } from './reducers/installationDetails';
@@ -17,6 +18,7 @@ export interface ContentState {
   notices: NoticesState;
   tab: TabState;
   router: RouterState;
+  form: FormStateMap;
 }
 
 const sagaMiddleware = createSagaMiddleware();
