@@ -28,12 +28,26 @@ export type feedbackType =
   | 'like'
   | 'unlike'
   | 'dislike'
-  | 'undislike';
+  | 'undislike'
+  | 'display'
+  | 'unfold';
 
 export interface FeedbackOnNoticeAction extends BaseAction {
   type: 'FEEDBACK_ON_NOTICE';
   payload: { id: number; feedback: feedbackType };
 }
+
+export const displayNotice = (id: number): FeedbackOnNoticeAction => ({
+  type: 'FEEDBACK_ON_NOTICE',
+  payload: { id, feedback: 'display' },
+  meta: { sendToBackground: true }
+});
+
+export const unfoldNotice = (id: number): FeedbackOnNoticeAction => ({
+  type: 'FEEDBACK_ON_NOTICE',
+  payload: { id, feedback: 'unfold' },
+  meta: { sendToBackground: true }
+});
 
 export const dismissNotice = (id: number): FeedbackOnNoticeAction => ({
   type: 'FEEDBACK_ON_NOTICE',
