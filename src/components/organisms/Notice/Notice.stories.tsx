@@ -97,11 +97,11 @@ storiesOf('organisms/Notice', module)
       })}
     />
   ))
-  .add('Read', () => (
+  .add('Marked read', () => (
     <Notice
       {...commonProps}
       notice={generateStatefulNotice({
-        read: true,
+        markedRead: true,
         intention: select('intention', intentions, 'approval'),
         contributor: text('contributor', defaultContributorName),
         message: `<p>${text('message', defaultMessage)}</p>`

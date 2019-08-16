@@ -5,7 +5,7 @@ import { Action } from 'redux';
 import middleware from '../../../src/app/background/middlewares/analytics';
 import { close } from '../../../src/app/actions/ui';
 import {
-  readNotice,
+  markNoticeRead,
   resourceLinkClicked
 } from '../../../src/app/actions/notices';
 
@@ -59,7 +59,7 @@ describe('Analytics middleware', () => {
 
   it('tracks read notice action', () => {
     const { track, invoke } = create();
-    const action = readNotice(1);
+    const action = markNoticeRead(1);
     invoke(action);
     expect(track).to.have.been.calledWith(action);
   });

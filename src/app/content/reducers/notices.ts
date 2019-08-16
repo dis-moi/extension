@@ -7,7 +7,7 @@ import {
   undismissNotice,
   unlikeNotice,
   StatefulNotice,
-  readNotice,
+  markNoticeRead,
   confirmDismissNotice,
   confirmDislikeNotice
 } from '../../lmem/notice';
@@ -20,9 +20,9 @@ export default (state: NoticesState = [], action: AppAction): NoticesState => {
     case 'NOTICES_FOUND':
       return action.payload.notices;
 
-    case 'READ_NOTICE':
+    case 'MARK_NOTICE_READ':
       return state.map(notice =>
-        notice.id === action.payload ? readNotice(notice) : notice
+        notice.id === action.payload ? markNoticeRead(notice) : notice
       );
 
     case 'FEEDBACK_ON_NOTICE':

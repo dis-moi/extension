@@ -39,7 +39,7 @@ const notice: StatefulNotice = {
     liked: false,
     disliked: false,
     dismissed: false,
-    read: false
+    markedRead: false
   },
   created: new Date(),
   modified: new Date()
@@ -85,7 +85,12 @@ describe('background actions', function() {
     const trigger = 'http://trigger';
     const dismissedNotice: StatefulNotice = {
       ...notice,
-      state: { dismissed: true, liked: false, disliked: false, read: false }
+      state: {
+        dismissed: true,
+        liked: false,
+        disliked: false,
+        markedRead: false
+      }
     };
     const action = noticeIgnored(dismissedNotice, trigger);
 
@@ -97,9 +102,14 @@ describe('background actions', function() {
 
   it('noticeIgnored when notice disliked', () => {
     const trigger = 'http://trigger';
-    const dislikedNotice = {
+    const dislikedNotice: StatefulNotice = {
       ...notice,
-      status: { dismissed: false, liked: false, disliked: true, read: false }
+      state: {
+        dismissed: false,
+        liked: false,
+        disliked: true,
+        markedRead: false
+      }
     };
     const action = noticeIgnored(dislikedNotice, trigger);
 

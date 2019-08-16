@@ -1,9 +1,9 @@
-import { StatefulNotice, isUnread } from './notice';
+import { StatefulNotice, isMarkedUnread } from './notice';
 
 export interface BadgeTheme {
   backgroundColor: {
-    read: string;
-    unread: string;
+    markedRead: string;
+    markedUnread: string;
   };
 }
 
@@ -25,21 +25,21 @@ export const updateBadge = (
   tabId?: number
 ): void => {
   if (notices.length > 0) {
-    const unreadNotices = notices.filter(isUnread);
+    const markedUnreadNotices = notices.filter(isMarkedUnread);
     const { backgroundColor } = badgeTheme;
 
     chrome.browserAction.setBadgeText({
       text:
-        unreadNotices.length > 0
-          ? unreadNotices.length.toString()
+        markedUnreadNotices.length > 0
+          ? markedUnreadNotices.length.toString()
           : notices.length.toString(),
       tabId
     });
     chrome.browserAction.setBadgeBackgroundColor({
       color:
-        unreadNotices.length > 0
-          ? backgroundColor.unread
-          : backgroundColor.read,
+        markedUnreadNotices.length > 0
+          ? backgroundColor.markedUnread
+          : backgroundColor.markedRead,
       tabId
     });
   } else {

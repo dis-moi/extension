@@ -1,7 +1,11 @@
 import { createSelector } from 'reselect';
 import { RouteComponentProps } from 'react-router';
 import { getLocation } from 'connected-react-router';
-import { getNotice, isUnread, shouldNoticeBeShown } from 'app/lmem/notice';
+import {
+  getNotice,
+  isMarkedUnread,
+  shouldNoticeBeShown
+} from 'app/lmem/notice';
 import { InstallationDetails } from 'app/lmem/installation';
 import { OpenState, MountedState, TitleState, UIState } from '../reducers/ui';
 import { State } from '../store';
@@ -13,11 +17,11 @@ export const getNoticesToDisplay = createSelector(
   notices => notices.filter(shouldNoticeBeShown)
 );
 
-export const getUnreadNotices = (state: State) =>
-  getNoticesToDisplay(state).filter(isUnread);
+export const getMarkedUnreadNotices = (state: State) =>
+  getNoticesToDisplay(state).filter(isMarkedUnread);
 
-export const hasUnreadNotices = (state: State) =>
-  getUnreadNotices(state).length > 0;
+export const hasMarkedUnreadNotices = (state: State) =>
+  getMarkedUnreadNotices(state).length > 0;
 
 export const getNoticeById = (
   state: State,

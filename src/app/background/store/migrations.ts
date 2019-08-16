@@ -53,6 +53,37 @@ interface StateV2 extends PersistedState {
   prefs: StateV2Prefs;
 }
 
+interface StateV3 extends PersistedState {
+  installationDetails: InstallationDetails;
+  ui: {
+    open: boolean;
+    mounted: boolean;
+    title: string;
+  };
+  notices: {
+    state: {
+      read: boolean;
+      liked: boolean;
+      justLiked?: boolean;
+      disliked: boolean;
+      justDisliked?: boolean;
+      dismissed: boolean;
+      justDismissed?: boolean;
+    };
+    id: number;
+    created: object;
+    modified: object;
+    intention: string;
+    contributor: object;
+    message: string;
+    source?: object;
+    ratings: object;
+    visibility: string;
+  }[];
+  tab: object | null;
+  router: object;
+}
+
 const migrations: MigrationManifest = {
   // 26-01-2017
   1: (persistedState: PersistedState): StateV1orV2 => {
@@ -133,7 +164,7 @@ const migrations: MigrationManifest = {
     )(previousState) as StateV2;
   },
   // March 2019 - Typescript migration
-  3: (persistedState: PersistedState): State => {
+  3: (persistedState: PersistedState): StateV3 => {
     const previousState = persistedState as StateV2;
 
     return R.compose(
@@ -142,6 +173,26 @@ const migrations: MigrationManifest = {
         previousState.prefs.onInstalledDetails
       ),
       R.dissocPath(['prefs', 'websites'])
+    )(previousState) as StateV3;
+  },
+
+  // August 2019 - rename readNotices to markedReadNotices
+  4: (persistedState: PersistedState): State => {
+    const previousState = persistedState as StateV3;
+    const { notices } = previousState;
+    // Benjamin: there must be a nicer way to do that with Ramda... ?
+    return R.compose(
+      R.assoc(
+        'notices',
+        R.map(
+          notice =>
+            R.compose(
+              R.assocPath(['state', 'markedRead'], notice.state.read || false),
+              R.dissocPath(['state', 'read'])
+            )(notice),
+          notices
+        )
+      )
     )(previousState) as State;
   }
 

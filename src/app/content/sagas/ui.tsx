@@ -7,7 +7,7 @@ import {
   isOpen as isNotificationOpen,
   isMounted as isNotificationMounted,
   getPathname,
-  hasUnreadNotices
+  hasMarkedUnreadNotices
 } from '../selectors';
 import { CLOSE, OPEN, NOTICES_FOUND } from '../../constants/ActionTypes';
 import { append, create, hide, show } from '../extensionIframe';
@@ -61,7 +61,7 @@ export function* closeSaga() {
 }
 
 export function* noticesFoundSaga() {
-  const shouldOpen = yield select(hasUnreadNotices);
+  const shouldOpen = yield select(hasMarkedUnreadNotices);
   if (shouldOpen) {
     yield put(open());
   }

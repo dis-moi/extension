@@ -22,7 +22,7 @@ const notice1: StatefulNotice = {
   contributor: { id: 1, name: 'Jalil', image: '' },
   visibility: 'public',
   ratings: { dislikes: 0, likes: 0 },
-  state: { disliked: false, dismissed: false, liked: false, read: false },
+  state: { disliked: false, dismissed: false, liked: false, markedRead: false },
   created: new Date(),
   modified: new Date()
 };
@@ -60,7 +60,7 @@ describe('content actions', function() {
   });
 
   it('likes notice', () => {
-    const id = 0; 
+    const id = 0;
     const action = likeNotice(id);
 
     expect(action.type)

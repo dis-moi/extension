@@ -17,7 +17,7 @@ export interface Notice {
 }
 
 export interface NoticeState {
-  read: boolean;
+  markedRead: boolean;
   liked: boolean;
   justLiked?: boolean;
   disliked: boolean;
@@ -116,11 +116,11 @@ export const undislikeNotice = (notice: StatefulNotice): StatefulNotice => ({
     justDisliked: false
   }
 });
-export const readNotice = (notice: StatefulNotice): StatefulNotice => ({
+export const markNoticeRead = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
   state: {
     ...notice.state,
-    read: true
+    markedRead: true
   }
 });
 
@@ -161,6 +161,6 @@ export const shouldNoticeBeShown = (notice: StatefulNotice): boolean =>
     (!notice.state.disliked || notice.state.justDisliked)) ||
   false;
 
-export const isRead = (notice: StatefulNotice) => notice.state.read;
+export const isMarkedRead = (notice: StatefulNotice) => notice.state.markedRead;
 
-export const isUnread = (notice: StatefulNotice) => !isRead(notice);
+export const isMarkedUnread = (notice: StatefulNotice) => !isMarkedRead(notice);
