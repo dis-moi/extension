@@ -7,7 +7,7 @@ export default (contribution: Contribution): Errors => {
   let errors: Errors = {
     contributor: {}
   };
-  const requiredPaths: any[] = [
+  const requiredPaths: string[][] = [
     ['intention'],
     ['message'],
     ['contributor', 'name'],
@@ -17,9 +17,7 @@ export default (contribution: Contribution): Errors => {
 
   requiredPaths.forEach(requiredPath => {
     if (!R.path(requiredPath, contribution)) {
-      // @ts-ignore
       errors = R.assocPath(requiredPath, requiredFieldMessage, errors);
-      console.log('=>', errors);
     }
   });
 
