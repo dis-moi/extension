@@ -6,4 +6,6 @@ import SubmitContribution from './SubmitContributionForm';
 
 storiesOf('forms/SubmitContribution', module)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
-  .add('normal', () => <SubmitContribution onSubmit={action('onSubmit')} />);
+  .add('normal', () => (
+    <SubmitContribution onSubmit={action('onSubmit')} errors={[]} />
+  ));

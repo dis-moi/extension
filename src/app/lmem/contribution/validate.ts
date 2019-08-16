@@ -1,30 +1,31 @@
+import * as R from 'ramda';
 import { Contribution } from 'app/lmem/notice';
 import isEmail from '../../utils/isEmail';
 import Errors from '../Errors';
 
 export default (contribution: Contribution): Errors => {
-  const errors: Errors = {};
-  const requiredFields: string[] = ['intention', 'message'];
+  let errors: Errors = {
+    contributor: {}
+  };
+  const requiredPaths: any[] = [
+    ['intention'],
+    ['message'],
+    ['contributor', 'name'],
+    ['contributor', 'email']
+  ];
   const requiredFieldMessage = 'Ce champs est obligatoire.';
 
-  requiredFields.forEach(requiredField => {
-    if (!contribution[requiredField]) {
-      errors[requiredField] = requiredFieldMessage;
+  requiredPaths.forEach(requiredPath => {
+    if (!R.path(requiredPath, contribution)) {
+      // @ts-ignore
+      errors = R.assocPath(requiredPath, requiredFieldMessage, errors);
+      console.log('=>', errors);
     }
   });
 
   const { contributor } = contribution;
-
-  errors.contributor = {};
-  if (!contributor || !contributor.name) {
-    errors.contributor.name = requiredFieldMessage;
-  }
-
-  if (!contributor || !contributor.email) {
-    errors.contributor.email = requiredFieldMessage;
-  }
-
   if (contributor && contributor.email && !isEmail(contributor.email)) {
+    // @ts-ignore
     errors.contributor.email = "L'email n'est pas valide";
   }
 

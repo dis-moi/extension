@@ -27,6 +27,7 @@ storiesOf('screens/Contribute/Preview', module)
         intention: 'approval',
         created: new Date()
       }}
+      errors={[]}
       modify={action('modify')}
       publish={action('publish')}
     />

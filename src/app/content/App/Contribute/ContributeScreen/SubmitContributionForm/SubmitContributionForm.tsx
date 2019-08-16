@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import { Field, InjectedFormProps } from 'redux-form';
-import { Form, Error } from 'components/atoms/Forms';
+import { Form } from 'components/atoms/Forms';
 import { CenterContainer, BorderButton } from 'components/atoms';
 import {
   InputField,
   IntentionsSelectorField,
   TextareaField
 } from 'components/organisms/Fields';
+import FormErrors from '../FormErrors';
 import { Contribution } from 'app/lmem/notice';
 import withReduxForm from './withReduxForm';
 
 export interface SubmitContributionFormOwnProps {
   onSubmit: (...args: any[]) => void;
+  errors: string[];
 }
 
 export type SubmitContributionFormProps = InjectedFormProps<
@@ -26,7 +28,7 @@ class SubmitContributionForm extends Component<SubmitContributionFormProps> {
   }
 
   render() {
-    const { handleSubmit, submitting, error, anyTouched } = this.props;
+    const { handleSubmit, submitting, error, errors } = this.props;
     return (
       <Form onSubmit={handleSubmit}>
         <Field name="url" type="hidden" component={InputField} />
@@ -58,8 +60,7 @@ class SubmitContributionForm extends Component<SubmitContributionFormProps> {
             prévisualiser et publier
           </BorderButton>
         </CenterContainer>
-
-        {anyTouched && error && <Error>{error}</Error>}
+        <FormErrors errors={errors} globalError={error} />
       </Form>
     );
   }
