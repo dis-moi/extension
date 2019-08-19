@@ -4,7 +4,9 @@ export interface Criterion {
   isSelected?: boolean;
 }
 
-export type Criteria = { [key: string]: Criterion };
+export interface Criteria {
+  [key: string]: Criterion;
+}
 
 export const selectCriterion = (criterion: Criterion): Criterion => ({
   ...criterion,

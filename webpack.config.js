@@ -5,6 +5,9 @@ const plugins = require('./webpack/config.plugins.js');
 const stats = require('./webpack/config.stats');
 
 module.exports = function webpack(env = {}, argv = {}) {
+  // No .env in develop yet, using argv.mode:
+  process.env.NODE_ENV = argv.mode;
+
   const srcPath = path.resolve(__dirname, 'src');
   return {
     resolve: {
@@ -18,9 +21,19 @@ module.exports = function webpack(env = {}, argv = {}) {
       path: path.join(__dirname, 'build', env.build),
       publicPath: '.'
     },
-    module: { rules: rules(argv.mode) },
+    module: { rules: rules(env, argv) },
     plugins: plugins(env, argv, path.join(__dirname, 'build')),
-    devtool: env.hmr ? 'eval-source-map' : 'source-map',
+    node: {
+      module: 'empty',
+      dgram: 'empty',
+      dns: 'mock',
+      fs: 'empty',
+      http2: 'empty',
+      net: 'empty',
+      tls: 'empty',
+      child_process: 'empty'
+    },
+    devtool: argv.watch ? 'eval-source-map' : 'source-map',
     stats
   };
 };

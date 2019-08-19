@@ -130,7 +130,7 @@ export const getNotice = <N extends Notice>(
 ): N | undefined => find((notice: N): boolean => notice.id === id, notices);
 
 export const isNoticeValid = (notice: {
-  [key: string]: any;
+  [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 }): notice is Notice => {
   if (Object(notice) !== notice) return false;
 

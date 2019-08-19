@@ -18,6 +18,7 @@ export const initSentry = () => {
   }
 };
 
+export { Scope };
 type ScopeCallback = (scope: Scope) => void;
 export const configureSentryScope = (scopeCallback: ScopeCallback) => {
   if (process.env.SENTRY_ENABLE) {
@@ -56,7 +57,7 @@ export const captureMessage = (
   }
 };
 
-export const captureException = (exception: any): string | undefined => {
+export const captureException = (exception: unknown): string | undefined => {
   if (process.env.SENTRY_ENABLE) {
     return sentryCaptureException(exception);
   } else {

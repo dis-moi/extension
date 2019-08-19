@@ -29,6 +29,7 @@ const withTitle = <TComponentProps extends {}>(title: string | undefined) => (
       return removeUITitle;
     }, []);
 
+    // eslint-disable-next-line
     // @ts-ignore -> We need a way to tell TypeScript that TComponentProps should not contain setUITitle, nor removeUITitle keys
     return <Component {...props} changeUITitle={setUITitle} />;
   };
@@ -36,6 +37,7 @@ const withTitle = <TComponentProps extends {}>(title: string | undefined) => (
   const ConnectedComponent = connect(
     null,
     mapDispatchToProps
+    // eslint-disable-next-line
     // @ts-ignore
   )(ComponentWithTitleEffect);
 

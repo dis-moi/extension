@@ -3,7 +3,7 @@ import flatten from 'flat';
 
 interface FlattenAction {
   type: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export default function mapEventFromAction(action: Action) {

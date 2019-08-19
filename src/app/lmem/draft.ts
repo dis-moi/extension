@@ -1,3 +1,3 @@
 import { MatchingContext } from './matchingContext';
 
-export interface Draft extends MatchingContext {}
+export interface Draft extends MatchingContext {} // eslint-disable-line

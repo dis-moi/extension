@@ -10,9 +10,7 @@ import { Textarea } from 'components/atoms/Forms';
 import Container from './Container';
 import ContentTitle from './ContentTitle';
 
-interface Props {}
-
-export const Help = (props: Props) => (
+export const Help = () => (
   <Container>
     <ContentTitle>Questions fréquentes</ContentTitle>
     <List>
@@ -46,4 +44,4 @@ export const Help = (props: Props) => (
   </Container>
 );
 
-export default withTitle<Props>('Bulles Pour cette page')(Help);
+export default withTitle<{}>('Bulles Pour cette page')(Help);

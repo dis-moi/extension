@@ -42,6 +42,7 @@ const enhancer =
     : applyMiddleware(...middlewares);
 
 export const store = createStore<BackgroundState, AppAction, null, null>(
+  // eslint-disable-next-line
   // @ts-ignore
   persistedReducers,
   enhancer

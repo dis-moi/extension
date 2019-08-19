@@ -1,16 +1,16 @@
-import React, { ReactNode } from 'react';
+import React, { HTMLAttributes, ReactNode } from 'react';
 import styled from 'styled-components';
 import { Theme } from 'app/theme';
 
 import LoadingRotator from 'components/atoms/LoadingRotator/LoadingRotator';
 import Loading from 'components/atoms/icons/Loading';
 
-export interface ButtonContainerProps {
+export interface ButtonContainerProps
+  extends HTMLAttributes<HTMLButtonElement> {
   theme?: Theme;
   href?: string;
   target?: '_blank';
   rel?: string;
-  onClick?: (...args: any[]) => any;
   className?: string;
 }
 
@@ -18,7 +18,6 @@ export interface ButtonProps extends ButtonContainerProps {
   loading?: boolean;
   children?: ReactNode | string;
   disabled?: boolean;
-  dangerouslySetInnerHTML?: any;
 }
 
 export const ButtonContainer = styled.button<ButtonContainerProps>`
