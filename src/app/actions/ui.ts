@@ -41,5 +41,10 @@ export const closeFailed = (e: Error): CloseFailedAction => ({
 
 export interface ClosedAction extends BaseAction {
   type: 'CLOSED';
+  payload: { cause: CloseCause };
 }
-export const closed = (): ClosedAction => ({ type: 'CLOSED' });
+export const closed = (cause: CloseCause): ClosedAction => ({
+  type: 'CLOSED',
+  payload: { cause },
+  meta: { sendToBackground: true }
+});
