@@ -1,9 +1,15 @@
 import { createMigrate } from 'redux-persist';
 import { MigrationManifest, PersistedState } from 'redux-persist/es/types';
 import * as R from 'ramda';
+import * as RA from 'ramda-adjunct';
 import { Criteria } from '../../lmem/criterion';
 import { InstallationDetails } from '../../lmem/installation';
 import { State } from '../../content/store';
+import { StatefulNotice } from '../../lmem/notice';
+
+const overProp = (prop: string) => R.over(R.lensProp(prop));
+const overState = overProp('state');
+const overNotices = overProp('notices');
 
 interface StateV0V1orV2 extends PersistedState {
   prefs?: {
@@ -53,6 +59,27 @@ interface StateV2 extends PersistedState {
   prefs: StateV2Prefs;
 }
 
+interface StatefulNoticeV3 {
+  state: {
+    read: boolean;
+    liked: boolean;
+    justLiked?: boolean;
+    disliked: boolean;
+    justDisliked?: boolean;
+    dismissed: boolean;
+    justDismissed?: boolean;
+  };
+  id: number;
+  created: object;
+  modified: object;
+  intention: string;
+  contributor: object;
+  message: string;
+  source?: object;
+  ratings: object;
+  visibility: string;
+}
+
 interface StateV3 extends PersistedState {
   installationDetails: InstallationDetails;
   ui: {
@@ -60,26 +87,7 @@ interface StateV3 extends PersistedState {
     mounted: boolean;
     title: string;
   };
-  notices: {
-    state: {
-      read: boolean;
-      liked: boolean;
-      justLiked?: boolean;
-      disliked: boolean;
-      justDisliked?: boolean;
-      dismissed: boolean;
-      justDismissed?: boolean;
-    };
-    id: number;
-    created: object;
-    modified: object;
-    intention: string;
-    contributor: object;
-    message: string;
-    source?: object;
-    ratings: object;
-    visibility: string;
-  }[];
+  notices: StatefulNoticeV3[];
   tab: object | null;
   router: object;
 }
@@ -179,21 +187,18 @@ const migrations: MigrationManifest = {
   // August 2019 - rename readNotices to markedReadNotices
   4: (persistedState: PersistedState): State => {
     const previousState = persistedState as StateV3;
-    const { notices } = previousState;
-    // Benjamin: there must be a nicer way to do that with Ramda... ?
-    return R.compose(
-      R.assoc(
-        'notices',
-        R.map(
-          notice =>
-            R.compose(
-              R.assocPath(['state', 'markedRead'], notice.state.read || false),
-              R.dissocPath(['state', 'read'])
-            )(notice),
-          notices
-        )
-      )
-    )(previousState) as State;
+
+    const renameReadToMarkedRead = (notice: StatefulNoticeV3): StatefulNotice =>
+      (overState(
+        RA.renameKeys({ read: 'markedRead' }),
+        notice
+      ) as unknown) as StatefulNotice; // Ramda-adjunct TypeScript definition assumes renameKeys input and output is the same type. There is room for improvement
+
+    // Ramda TypeScript definition assumes over input and output is the same type. There is room for improvement
+    return (overNotices(
+      R.map(renameReadToMarkedRead),
+      previousState
+    ) as unknown) as State;
   }
 
   // ADD NEW MIGRATIONS HEREUNDER
