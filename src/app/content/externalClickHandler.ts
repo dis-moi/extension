@@ -1,6 +1,7 @@
 import { Store } from 'redux';
 import { close } from 'app/actions/ui';
 import { isOpen } from './selectors';
+import { CloseCause } from '../lmem/ui';
 
 export const interactiveElementsSelectors: string[] = [
   'a',
@@ -31,6 +32,6 @@ export default (store: Store) => (e: MouseEvent) => {
   const interactive = isHtmlElementInteractive(element);
 
   if (!interactive && isOpen(state)) {
-    store.dispatch(close());
+    store.dispatch(close(CloseCause.ClickOutside));
   }
 };

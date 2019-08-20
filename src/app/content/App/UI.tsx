@@ -1,5 +1,5 @@
 import React, { ComponentType } from 'react';
-import { compose } from 'redux';
+import { compose, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import {
   Redirect,
@@ -19,6 +19,7 @@ import Loading from './Loading';
 import Error from './Error';
 import Notification from 'components/organisms/Notification';
 import { close } from '../../actions/ui';
+import { CloseCause } from '../../lmem/ui';
 
 const mapStateToProps = (state: State) => ({
   open: isOpen(state),
@@ -26,9 +27,9 @@ const mapStateToProps = (state: State) => ({
   noticeContext: isNoticeContext(state)
 });
 
-const mapDispatchToProps = {
-  close
-};
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  close: () => dispatch(close(CloseCause.CloseButton))
+});
 
 interface ConnectProps {
   open: boolean;

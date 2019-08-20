@@ -8,6 +8,7 @@ import {
   markNoticeRead,
   resourceLinkClicked
 } from '../../../src/app/actions/notices';
+import { CloseCause } from '../../../src/app/lmem/ui';
 
 const expect = chai.expect;
 chai.use(sinonChai);
@@ -52,7 +53,7 @@ describe('Analytics middleware', () => {
 
   it('tracks close action', () => {
     const { track, invoke } = create();
-    const action = close();
+    const action = close(CloseCause.CloseButton);
     invoke(action);
     expect(track).to.have.been.calledWith(action);
   });

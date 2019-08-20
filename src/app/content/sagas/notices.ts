@@ -1,13 +1,14 @@
-import { put, takeLatest, select, all } from 'redux-saga/effects';
+import { all, put, select, takeLatest } from 'redux-saga/effects';
 import { getNotices, getTab, hasNoticesToDisplay } from '../selectors';
 import {
+  markNoticeRead,
   noticesUpdated,
-  updateNoticesFailed,
-  markNoticeRead
+  updateNoticesFailed
 } from 'app/actions/notices';
 import { close } from '../../actions/ui';
 import { CLOSED } from 'app/constants/ActionTypes';
 import { StatefulNotice } from 'app/lmem/notice';
+import { CloseCause } from '../../lmem/ui';
 
 export function* updateNoticesSaga() {
   try {
@@ -17,7 +18,7 @@ export function* updateNoticesSaga() {
 
     const hasNotices = yield select(hasNoticesToDisplay);
     if (!hasNotices) {
-      yield put(close());
+      yield put(close(CloseCause.NoMoreNotice));
     }
   } catch (e) {
     yield put(updateNoticesFailed(e));
