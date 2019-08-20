@@ -26,7 +26,8 @@ export interface CloseAction extends BaseAction {
 }
 export const close = (cause: CloseCause): CloseAction => ({
   type: 'CLOSE',
-  payload: { cause }
+  payload: { cause },
+  meta: { sendToBackground: true }
 });
 
 export interface CloseFailedAction extends ErrorAction {
