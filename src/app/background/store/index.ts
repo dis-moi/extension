@@ -52,12 +52,3 @@ persistStore(store);
 listenTabs(store);
 
 sagaMiddleware.run(rootSaga);
-
-// FIXME
-// if (process.env.NODE_ENV !== 'production') {
-//   if (module.hot) {
-//     module.hot.accept('../reducers', () =>
-//       store.replaceReducer(require('../reducers'))
-//     );
-//   }
-//

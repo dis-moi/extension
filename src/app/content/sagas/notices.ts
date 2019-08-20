@@ -9,6 +9,7 @@ import { close } from '../../actions/ui';
 import { CLOSED } from 'app/constants/ActionTypes';
 import { StatefulNotice } from 'app/lmem/notice';
 import { CloseCause } from '../../lmem/ui';
+import { AppAction } from '../../actions';
 
 export function* updateNoticesSaga() {
   try {
@@ -26,10 +27,12 @@ export function* updateNoticesSaga() {
 }
 
 export function* markNoticesReadSaga() {
-  // FIXME find out if we need to guard some cases so we don’t accidentally mark read notices on some close cases.
   const notices = yield select(getNotices);
   yield all(notices.map(({ id }: StatefulNotice) => put(markNoticeRead(id))));
 }
+
+const isClosedByButtonAction = (action: AppAction) =>
+  action.type === CLOSED && action.payload.cause === CloseCause.CloseButton;
 
 export default function* noticesRootSaga() {
   yield all([
@@ -38,6 +41,6 @@ export default function* noticesRootSaga() {
       ['MARK_NOTICE_READ', 'FEEDBACK_ON_NOTICE'],
       updateNoticesSaga
     ),
-    yield takeLatest([CLOSED], markNoticesReadSaga)
+    yield takeLatest(isClosedByButtonAction, markNoticesReadSaga)
   ]);
 }
