@@ -1,6 +1,8 @@
 const path = require('path');
 
+const polyfills = ['core-js/stable', 'regenerator-runtime/runtime'];
+
 module.exports = (env, srcPath) => ({
-  background: [path.join(srcPath, './app/background/')],
-  content: [path.join(srcPath, './app/content/')]
+  background: [...polyfills, path.join(srcPath, './app/background/')],
+  content: [...polyfills, path.join(srcPath, './app/content/')]
 });
