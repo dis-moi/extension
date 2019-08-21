@@ -5,9 +5,9 @@ import {
   confirmDismissNotice as confirmDismiss
 } from 'app/actions/notices';
 import { getNoticesToDisplay } from '../../../selectors';
-import { State } from '../../../store';
+import { ContentState } from '../../../store';
 
-const mapStateToProps = (state: State) => ({
+const mapStateToProps = (state: ContentState) => ({
   notices: getNoticesToDisplay(state)
 });
 

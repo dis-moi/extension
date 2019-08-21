@@ -9,7 +9,7 @@ import {
   markNoticeRead,
   resourceLinkClicked
 } from 'app/actions/notices';
-import { State } from '../../../store';
+import { ContentState } from '../../../store';
 import { getNoticeById } from '../../../selectors';
 import { DetailsProps } from './types';
 import { StatefulNotice } from '../../../../lmem/notice';
@@ -19,7 +19,7 @@ export interface DetailsStateProps {
 }
 
 const mapStateToProps = (
-  state: State,
+  state: ContentState,
   props: DetailsProps & RouteComponentProps
 ): DetailsStateProps | undefined => ({
   notice: getNoticeById(state, props)

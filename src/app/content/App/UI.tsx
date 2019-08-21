@@ -8,7 +8,7 @@ import {
   Switch,
   withRouter
 } from 'react-router';
-import { State } from '../store';
+import { ContentState } from '../store';
 
 import { getTitle, isNoticeContext, isOpen } from '../selectors';
 import Notice from './Notice';
@@ -21,7 +21,7 @@ import Notification from 'components/organisms/Notification';
 import { close } from '../../actions/ui';
 import { CloseCause } from '../../lmem/ui';
 
-const mapStateToProps = (state: State) => ({
+const mapStateToProps = (state: ContentState) => ({
   open: isOpen(state),
   title: getTitle(state),
   noticeContext: isNoticeContext(state)
