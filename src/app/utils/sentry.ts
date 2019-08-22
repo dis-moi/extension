@@ -9,11 +9,15 @@ import {
 import { version } from '../../../package.json';
 
 export const initSentry = () => {
+  const blacklist = ['GlobalHandlers', 'ReportingObserver'];
   if (process.env.SENTRY_ENABLE) {
     init({
       dsn: process.env.SENTRY_DSN,
       environment: process.env.NODE_ENV,
-      release: `${version}-${process.env.BUILD}`
+      release: `${version}-${process.env.BUILD}`,
+      // defaultIntegrations: false,
+      integrations: integrations =>
+        integrations.filter(i => !blacklist.includes(i.name))
     });
   }
 };
