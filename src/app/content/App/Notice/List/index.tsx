@@ -60,5 +60,5 @@ export const ListScreen = ({
 
 export default compose(
   withConnect,
-  withTitle<Props>('Bulles nulles cette page')
+  withTitle<Props>('Bulles pour cette page')
 )(ListScreen);
