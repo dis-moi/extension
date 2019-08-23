@@ -1,10 +1,10 @@
 import * as R from 'ramda';
 import { Contribution } from 'app/lmem/notice';
 import isEmail from '../../utils/isEmail';
-import Errors from '../Errors';
+import ValidationErrors from '../ValidationErrors';
 
-export default (contribution: Contribution): Errors => {
-  let errors: Errors = {
+export default (contribution: Contribution): ValidationErrors => {
+  let errors: ValidationErrors = {
     contributor: {}
   };
   const requiredPaths: string[][] = [
