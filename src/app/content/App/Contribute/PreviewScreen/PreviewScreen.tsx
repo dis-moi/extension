@@ -14,7 +14,7 @@ const PreviewForm = styled(Form)`
   padding: 12px 16px 12px 16px;
   display: flex;
   justify-content: space-around;
-  width: 50%;
+  min-width: 60%;
   self-align: center;
   align-self: center;
 `;
