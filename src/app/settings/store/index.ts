@@ -9,12 +9,11 @@ export const history = createMemoryHistory();
 
 const sagaMiddleware = createSagaMiddleware();
 
-const middlewares = [sagaMiddleware];
+const middlewares = [routerMiddleware(history), sagaMiddleware];
 
 const applyMiddlewares =
   process.env.NODE_ENV !== 'production'
     ? applyMiddleware(
-        routerMiddleware(history),
         ...middlewares.concat([
           require('redux-immutable-state-invariant').default(),
           require('redux-logger').createLogger({
@@ -23,7 +22,8 @@ const applyMiddlewares =
           })
         ])
       )
-    : applyMiddleware(routerMiddleware(history));
+    : applyMiddleware(...middlewares);
+
 const addReduxDevTools = (window as any).__REDUX_DEVTOOLS_EXTENSION__
   ? (window as any).__REDUX_DEVTOOLS_EXTENSION__()
   : (f: any): any => f;

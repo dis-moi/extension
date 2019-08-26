@@ -1,7 +1,7 @@
 import React from 'react';
 import { Contributor } from 'app/lmem/contributor';
 import ContributorNav from 'components/organisms/ContributorNav/ContributorNav';
-import ContributorComponent from '../../../components/organisms/Contributor/ContributorLarge';
+import ContributorComponent from 'components/organisms/Contributor/ContributorLarge';
 import { SettingsState } from '../store/reducers';
 import { getContributors } from '../store/selectors/contributors.selectors';
 import { connect } from 'react-redux';

@@ -19,8 +19,7 @@ const {
   NODE_ENV,
   UNINSTALL_ORIGIN,
   HEAP_APPID,
-  ONBOARDING_ORIGIN,
-  REFRESH_MC_INTERVAL
+  ONBOARDING_ORIGIN
 } = process.env;
 
 if (NODE_ENV !== 'production') {

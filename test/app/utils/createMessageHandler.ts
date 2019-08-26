@@ -2,37 +2,77 @@ import chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
-import createMessageHandler from 'app/utils/createMessageHandler';
+// @ts-ignore
+global.chrome = { extension: { getURL: () => 'settings.html' } };
+
 import { noticesFound } from 'app/actions/notices';
+import createMessageHandler from 'webext/createMessageHandler';
 
 const expect = chai.expect;
 chai.use(sinonChai);
 
 describe('createMessageHandler', () => {
-  const emit = sinon.fake();
-  const sendResponse = sinon.fake();
-  const handleMessage = createMessageHandler(emit);
-  it('should not forward to the app an invalid action', () => {
+  it('emits INVALID_ACTION if received an invalid action', () => {
+    const emit = sinon.fake();
+    const handleMessage = createMessageHandler(emit);
     const action = { test: 'test' };
     const sender = {
       id: 'extensionId'
     };
 
-    handleMessage(action, sender, sendResponse);
+    handleMessage(action, sender);
 
-    expect(emit).to.not.have.been.called;
-    expect(sendResponse).to.have.been.called;
+    expect(emit).to.have.been.calledWithMatch({
+      type: `INVALID_ACTION`,
+      // We should assert the payload shape : new Error(`Received invalid action from background`),
+      error: true,
+      meta: { action, fromText: 'background' }
+    });
   });
 
-  it('should forward to the app a valid action', () => {
+  it('emits the valid action with meta.from content added', () => {
+    const emit = sinon.fake();
     const handleMessage = createMessageHandler(emit);
     const action = noticesFound([], { id: 1, url: '' });
     const sender = {
-      id: 'extensionId'
+      id: 'extensionId',
+      tab: {
+        url: 'somePage.html'
+      }
     };
 
-    handleMessage(action, sender, sendResponse);
+    // @ts-ignore
+    handleMessage(action, sender);
 
-    expect(emit).to.have.been.called;
+    expect(emit).to.have.been.calledWith({
+      ...action,
+      meta: {
+        ...action.meta,
+        from: 'content'
+      }
+    });
+  });
+
+  it('emits the valid action with meta.from settings added', () => {
+    const emit = sinon.fake();
+    const handleMessage = createMessageHandler(emit);
+    const action = noticesFound([], { id: 1, url: '' });
+    const sender = {
+      id: 'extensionId',
+      tab: {
+        url: 'settings.html'
+      }
+    };
+
+    // @ts-ignore
+    handleMessage(action, sender);
+
+    expect(emit).to.have.been.calledWith({
+      ...action,
+      meta: {
+        ...action.meta,
+        from: 'settings'
+      }
+    });
   });
 });

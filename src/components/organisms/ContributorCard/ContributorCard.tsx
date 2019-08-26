@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ContributorLarge from '../Contributor/ContributorLarge';
-import { Contributor } from '../../../app/lmem/contributor';
+import { Contributor } from 'app/lmem/contributor';
 
 const Container = styled.article`
   padding: 10px 15px;
