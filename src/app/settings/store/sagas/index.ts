@@ -1,5 +1,5 @@
-import communicateWithBackgroundSaga from '../../../sagas/communicateWithBackground';
+import createBackgroundChannelSaga from 'app/sagas/backgroundChannel';
 
 export default function* rootSaga() {
-  yield communicateWithBackgroundSaga('settings');
+  yield createBackgroundChannelSaga('settings');
 }
