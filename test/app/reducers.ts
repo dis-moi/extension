@@ -27,7 +27,7 @@ describe('prefsReducer reducer', function() {
         likedNotices: [],
         dislikedNotices: [],
         readNotices: [],
-        installationDetails
+        tosAccepted: true
       },
       action
     );
@@ -44,7 +44,7 @@ describe('prefsReducer reducer', function() {
         likedNotices: [],
         dislikedNotices: [],
         readNotices: [],
-        installationDetails
+        tosAccepted: true
       },
       action
     );
@@ -61,7 +61,7 @@ describe('prefsReducer reducer', function() {
         likedNotices: [],
         dislikedNotices: [],
         readNotices: [],
-        installationDetails
+        tosAccepted: true
       },
       action
     );
@@ -78,7 +78,7 @@ describe('prefsReducer reducer', function() {
         likedNotices: [],
         dislikedNotices: [],
         readNotices: [],
-        installationDetails
+        tosAccepted: true
       },
       action
     );
@@ -95,7 +95,7 @@ describe('prefsReducer reducer', function() {
         likedNotices: [42],
         dislikedNotices: [],
         readNotices: [],
-        installationDetails
+        tosAccepted: true
       },
       action
     );
@@ -112,7 +112,7 @@ describe('prefsReducer reducer', function() {
         likedNotices: [],
         dislikedNotices: [42],
         readNotices: [],
-        installationDetails
+        tosAccepted: true
       },
       action
     );
@@ -129,7 +129,7 @@ describe('prefsReducer reducer', function() {
         likedNotices: [],
         dislikedNotices: [],
         readNotices: [],
-        installationDetails
+        tosAccepted: true
       },
       action
     );

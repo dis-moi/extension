@@ -2,25 +2,19 @@
 import loadHeap from '../../lib/heap';
 import prepareDraftPreview from '../lmem/draft-preview/main';
 import { LMEM_BACKEND_ORIGIN } from 'app/constants/origins';
-import onInstalled from 'app/actions/install';
+import onInstalled from 'webext/onInstalled';
 import updateDraftNotices from 'app/actions/updateDraftNotices';
 import { configureSentryScope, initSentry } from 'app/utils/sentry';
 import { store } from './store';
-import { getInstallationDetails } from './selectors/prefs';
 import fetchContentScript from './services/fetchContentScript';
-import { BackgroundState } from './reducers';
+import { installed } from '../actions';
 
 initSentry();
 configureSentryScope(scope => {
   scope.setTag('context', 'background');
 });
 
-const {
-  NODE_ENV,
-  UNINSTALL_ORIGIN,
-  HEAP_APPID,
-  ONBOARDING_ORIGIN
-} = process.env;
+const { NODE_ENV, UNINSTALL_ORIGIN, HEAP_APPID } = process.env;
 
 if (NODE_ENV !== 'production') {
   console.info('NODE_ENV', NODE_ENV);
@@ -68,4 +62,6 @@ fetchContentScript('/js/grabDraftNotices.js').then(contentCode =>
   )
 );
 
-onInstalled(ONBOARDING_ORIGIN)(store);
+onInstalled.then(installedDetails =>
+  store.dispatch(installed(installedDetails))
+);

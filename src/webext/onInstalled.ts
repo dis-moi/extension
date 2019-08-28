@@ -1,5 +1,3 @@
-import InstalledDetails = chrome.runtime.InstalledDetails;
-
-export default new Promise<InstalledDetails>(resolve =>
+export default new Promise<chrome.runtime.InstalledDetails>(resolve =>
   chrome.runtime.onInstalled.addListener(details => resolve(details))
 );

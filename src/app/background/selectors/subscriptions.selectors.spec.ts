@@ -17,15 +17,16 @@ describe('background > selectors > getContributorsWithSubscriptionState', () => 
 
     const state: BackgroundState = {
       tabs: {},
+      installationDetails: {
+        version: '',
+        reason: 'INSTALL'
+      },
       prefs: {
-        installationDetails: {
-          version: '',
-          reason: 'INSTALL'
-        },
         likedNotices: [],
         dislikedNotices: [],
         dismissedNotices: [],
-        readNotices: []
+        readNotices: [],
+        tosAccepted: true
       },
       resources: {
         matchingContexts: [],

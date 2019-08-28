@@ -5,20 +5,15 @@ import {
   isIgnored,
   shouldNoticeBeShown
 } from 'app/lmem/notice';
-import { InstallationDetails } from 'app/lmem/installation';
 import { BackgroundState } from '../reducers';
 
 export const getPrefs = (state: BackgroundState) => state.prefs;
 
-export const getInstallationDetails = (state: BackgroundState) =>
-  getPrefs(state).installationDetails;
-export const getInstallationDate = createSelector(
-  getInstallationDetails,
-  (installationDetails: InstallationDetails) =>
-    installationDetails.datetime
-      ? new Date(installationDetails.datetime)
-      : undefined
+export const areTosAccepted = createSelector(
+  getPrefs,
+  prefs => prefs.tosAccepted
 );
+
 export const getDismissed = (state: BackgroundState) =>
   getPrefs(state).dismissedNotices;
 export const getLiked = (state: BackgroundState) =>
@@ -26,10 +21,6 @@ export const getLiked = (state: BackgroundState) =>
 export const getDisliked = (state: BackgroundState) =>
   getPrefs(state).dislikedNotices;
 export const getRead = (state: BackgroundState) => getPrefs(state).readNotices;
-
-export const getInitialContent = (state: BackgroundState) => ({
-  installationDetails: getInstallationDetails(state)
-});
 
 export const getAddStateToNotice = (state: BackgroundState) => {
   const dismissed = getDismissed(state);

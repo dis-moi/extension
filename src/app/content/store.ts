@@ -4,7 +4,7 @@ import { createMemoryHistory } from 'history';
 import { FormStateMap } from 'redux-form';
 import rootReducer from './reducers';
 import rootSaga from './sagas';
-import { InstallationDetailsState } from './reducers/installationDetails';
+import { InstallationDetailsState } from 'app/background/reducers/installationDetails';
 import { UIState } from './reducers/ui';
 import { NoticesState } from './reducers/notices';
 import { TabState } from './reducers/tab';
