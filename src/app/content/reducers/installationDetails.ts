@@ -6,7 +6,8 @@ import { AppAction } from '../../actions';
 export type InstallationDetailsState = InstallationDetails;
 
 const initialState: InstallationDetailsState = {
-  version
+  version,
+  reason: 'install'
 };
 
 export default (

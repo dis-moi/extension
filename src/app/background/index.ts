@@ -68,13 +68,4 @@ fetchContentScript('/js/grabDraftNotices.js').then(contentCode =>
   )
 );
 
-if (ONBOARDING_ORIGIN) {
-  const state: BackgroundState = store.getState();
-  if (!getInstallationDetails(state).datetime) {
-    onInstalled(ONBOARDING_ORIGIN)(store.dispatch);
-  }
-} else {
-  console.warn(
-    'No installation details: assuming "process.env.ONBOARDING_ORIGIN" is deliberately not defined.'
-  );
-}
+onInstalled(ONBOARDING_ORIGIN)(store);

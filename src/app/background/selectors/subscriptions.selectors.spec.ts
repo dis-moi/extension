@@ -19,7 +19,8 @@ describe('background > selectors > getContributorsWithSubscriptionState', () => 
       tabs: {},
       prefs: {
         installationDetails: {
-          version: ''
+          version: '',
+          reason: 'INSTALL'
         },
         likedNotices: [],
         dislikedNotices: [],

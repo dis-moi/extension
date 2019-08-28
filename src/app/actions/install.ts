@@ -1,7 +1,9 @@
-import { Dispatch } from 'redux';
+import { Store } from 'redux';
 import { InstallationDetails } from '../lmem/installation';
 import { BaseAction } from '.';
 import { version } from '../../../package.json';
+import onInstalled from '../../webext/onInstalled';
+import { getInstallationDate } from '../background/selectors/prefs';
 
 export interface InstalledAction extends BaseAction {
   type: 'INSTALLED';
@@ -17,25 +19,23 @@ export const installed = (
   payload: { details: installationDetails }
 });
 
-// Promise constructed when the module is first imported (very early)
-// in order to not miss the "install" event.
-const onInstalledPromise = new Promise<InstallationDetails>(resolve => {
-  chrome.runtime.onInstalled.addListener(details => {
-    if (details.reason !== 'install') return;
+export default (onboardingUrl?: string) => (store: Store) =>
+  onInstalled.then(installedDetails => {
+    const datetime = getInstallationDate(store.getState());
 
-    resolve({
-      ...details,
-      datetime: new Date(),
-      version
-    });
+    // @todo why not use this function to get the current version ?
+    // const version = chrome.runtime.getManifest().version;
+
+    const installationDetails: InstallationDetails = {
+      ...installedDetails,
+      version,
+      datetime: datetime || new Date(),
+      updatedAt: new Date()
+    };
+
+    store.dispatch(installed(installationDetails));
+
+    if (onboardingUrl) {
+      chrome.tabs.create({ url: onboardingUrl });
+    }
   });
-});
-
-export default function(onboardingUrl: string) {
-  return (dispatch: Dispatch) =>
-    onInstalledPromise.then((installationDetails: InstallationDetails) =>
-      onboardingUrl
-        ? chrome.tabs.create({ url: onboardingUrl })
-        : dispatch(installed(installationDetails))
-    );
-}

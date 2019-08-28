@@ -1,7 +1,7 @@
 import * as R from 'ramda';
 import { version } from '../../../../package.json';
-import { InstallationDetails } from '../../lmem/installation';
 import { AppAction } from 'app/actions';
+import { InstallationDetails } from 'app/lmem/installation';
 
 export interface PrefsState {
   installationDetails: InstallationDetails;
@@ -12,7 +12,7 @@ export interface PrefsState {
 }
 
 const initialPrefs: PrefsState = {
-  installationDetails: { version },
+  installationDetails: { version, reason: 'install' },
   dismissedNotices: [],
   likedNotices: [],
   dislikedNotices: [],

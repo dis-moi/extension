@@ -1,12 +1,8 @@
 import chai from 'chai';
 
-import {
-  noticesFound,
-  dismissNotice,
-  likeNotice
-} from '../../../src/app/actions/notices';
-import { init } from '../../../src/app/actions/tabs';
-import { StatefulNotice } from '../../../src/app/lmem/notice';
+import { noticesFound, dismissNotice, likeNotice } from 'app/actions/notices';
+import { init } from 'app/actions/tabs';
+import { StatefulNotice } from 'app/lmem/notice';
 import Tab from 'app/lmem/Tab';
 
 const expect = chai.expect;
@@ -30,7 +26,7 @@ const notice1: StatefulNotice = {
 describe('content actions', function() {
   const tab: Tab = { id: 1, url: 'http://tests.menant-benjamin.fr/' };
   it('init', () => {
-    const action = init({ version: '0.1' }, tab);
+    const action = init({ version: '0.1', reason: 'install' }, tab);
     expect(action.payload)
       .to.be.an('object')
       .to.include.all.keys('version');
