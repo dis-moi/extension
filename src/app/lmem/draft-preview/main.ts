@@ -1,7 +1,9 @@
+/* eslint-disable */
 import { debounce } from 'lodash-es';
 import { LMEM_BACKEND_ORIGIN } from '../../constants/origins';
-import TabChangeInfo = chrome.tabs.TabChangeInfo;
-import Tab = chrome.tabs.Tab;
+
+type TabChangeInfo = chrome.tabs.TabChangeInfo;
+type Tab = chrome.tabs.Tab;
 
 function isNoticeBackendURL(url: string) {
   const { origin, pathname, search } = new URL(url);

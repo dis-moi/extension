@@ -5,9 +5,7 @@ import Illustration from './Illustration';
 import Container from './Container';
 import SubscriptionsData from './SubscriptionsData';
 
-interface SubscriptionsScreenProps {}
-
-export const Subscriptions = (props: SubscriptionsScreenProps) => (
+export const Subscriptions = () => (
   <Container>
     <Illustration />
     <SubscriptionsData>
@@ -33,4 +31,4 @@ export const Subscriptions = (props: SubscriptionsScreenProps) => (
   </Container>
 );
 
-export default withTitle<SubscriptionsScreenProps>('Abonnement')(Subscriptions);
+export default withTitle<{}>('Abonnement')(Subscriptions);

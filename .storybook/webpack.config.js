@@ -1,14 +1,20 @@
-const path = require("path");
-const rules = require("../webpack/config.rules");
+const path = require('path');
+const rules = require('../webpack/config.rules');
+const basePlugins = require('../webpack/config.plugins.base');
 
-const env = { build: 'dev'};
+const env = { build: 'dev' };
+const argv = {
+  mode: 'development',
+  watch: true
+};
 
 module.exports = storybookBaseConfig => {
-  storybookBaseConfig.module.rules = rules(env, 'development');
-  storybookBaseConfig.resolve.extensions.push(".ts", ".tsx");
+  storybookBaseConfig.module.rules = rules(env, argv);
+  storybookBaseConfig.resolve.extensions.push('.ts', '.tsx');
   storybookBaseConfig.resolve.modules.push(
-    path.resolve(__dirname, "..", "src")
+    path.resolve(__dirname, '..', 'src')
   );
-  storybookBaseConfig.stats = require("../webpack/config.stats");
+  storybookBaseConfig.plugins.push(...basePlugins(env, 'development'));
+  storybookBaseConfig.stats = require('../webpack/config.stats');
   return storybookBaseConfig;
 };

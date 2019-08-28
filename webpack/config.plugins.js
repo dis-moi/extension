@@ -6,7 +6,9 @@ const AddAssetWebpackPlugin = require('add-asset-webpack-plugin');
 const ZipPlugin = require('zip-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const SentryWebpackPlugin = require('@sentry/webpack-plugin');
-
+const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const basePlugins = require('../webpack/config.plugins.base');
 const manifests = require('../manifest');
 const { version } = require('../package.json');
 
@@ -56,6 +58,7 @@ module.exports = (env = {}, argv = {}, outputPath) => {
   }
 
   const plugins = [
+    ...basePlugins(env, argv),
     new webpack.DefinePlugin({
       'process.env': {
         ...ENV[env.build],
@@ -63,6 +66,7 @@ module.exports = (env = {}, argv = {}, outputPath) => {
         SENTRY_ENABLE: env.sentry ? 'true' : 'false'
       }
     }),
+    new ModuleNotFoundPlugin(path.resolve(__dirname, '..')),
     new HtmlWebpackPlugin({
       template: './views/background.pug',
       filename: 'background.html',
@@ -85,12 +89,29 @@ module.exports = (env = {}, argv = {}, outputPath) => {
     );
   }
 
-  if (!env.hmr) {
+  if (!argv.watch) {
     plugins.push(
       new CleanWebpackPlugin(),
       new ZipPlugin({
         path: '..',
         filename: `lmem-v${version}-${env.build}.zip`
+      })
+    );
+  }
+
+  if (env.analyze) {
+    plugins.push(
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'server',
+        analyzerHost: '127.0.0.1',
+        analyzerPort: 8888,
+        defaultSizes: 'gzip',
+        openAnalyzer: true,
+        generateStatsFile: false,
+        statsOptions: {
+          source: false
+        },
+        logLevel: 'info'
       })
     );
   }

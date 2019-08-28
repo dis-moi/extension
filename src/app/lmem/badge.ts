@@ -7,6 +7,9 @@ export interface BadgeTheme {
   };
 }
 
+export const resetBadge = (tabId?: number) =>
+  chrome.browserAction.setBadgeText({ text: '', tabId });
+
 /**
  * Update text and background color of the badge based on the number of notices.
  *
@@ -43,6 +46,3 @@ export const updateBadge = (
     resetBadge(tabId);
   }
 };
-
-export const resetBadge = (tabId?: number) =>
-  chrome.browserAction.setBadgeText({ text: '', tabId });

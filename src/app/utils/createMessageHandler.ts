@@ -2,20 +2,24 @@ import { Action } from 'redux';
 import { END } from 'redux-saga';
 import { createErrorAction, StandardAction } from '../actions';
 
-import MessageSender = chrome.runtime.MessageSender;
+type MessageSender = chrome.runtime.MessageSender;
 
-export type SendResponse = ({}) => void;
-const isAction = (x: any): x is Action => typeof x === 'object' && 'type' in x;
+type ActionWithMeta = Action & { meta?: object };
+
+export type SendResponse = (response: {}) => void;
+const isAction = (x: unknown): x is ActionWithMeta =>
+  typeof x === 'object' && 'type' in (x as object);
 
 const createMessageHandler = (emit: (input: StandardAction | END) => void) => (
-  action: any,
+  action: unknown,
   sender: MessageSender,
   sendResponse: SendResponse
 ) => {
   if (isAction(action)) {
     console.info(`Received valid action "${action.type}" from:`, sender);
-    // @ts-ignore
-    emit({ ...action, meta: { ...action.meta, sender } });
+
+    const meta = action.meta || {};
+    emit({ ...action, meta: { ...meta, sender } });
     sendResponse({ ...action, type: `${action.type}_RECEIVED` });
   } else {
     const error = new Error(`Received invalid action.`);
@@ -24,11 +28,7 @@ const createMessageHandler = (emit: (input: StandardAction | END) => void) => (
       sender
     });
 
-    if (action.type) {
-      sendResponse({ ...invalidAction, type: `${action.type}_FAILURE` });
-    } else {
-      sendResponse(invalidAction);
-    }
+    sendResponse(invalidAction);
   }
 };
 

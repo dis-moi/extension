@@ -29,11 +29,15 @@ import {
 } from './notices';
 import { Action } from 'redux';
 import Tab from 'app/lmem/Tab';
-import MessageSender = chrome.runtime.MessageSender;
+import {
+  RemoveUITitleAction,
+  SetUITitleAction
+} from '../content/actions/ui/title';
+type MessageSender = chrome.runtime.MessageSender;
 
 export interface StandardAction extends Action {
-  payload?: any;
-  meta?: any;
+  payload?: unknown;
+  meta?: unknown;
   error?: true;
 }
 
@@ -46,7 +50,7 @@ export interface ErrorAction extends BaseAction {
   error: true;
 }
 
-export const createErrorAction = (type: any = 'ERROR') => (
+export const createErrorAction = (type: unknown = 'ERROR') => (
   e: Error,
   meta?: ActionMeta
 ): ErrorAction => ({
@@ -70,7 +74,7 @@ export interface ActionMeta {
   sendToBackground?: boolean;
   sendToTab?: boolean;
   tracked?: boolean;
-  action?: any;
+  action?: unknown;
   external?: boolean;
   sender?: MessageSender;
 }
@@ -99,4 +103,6 @@ export type AppAction =
   | NoticesFoundAction
   | FeedbackOnNoticeAction
   | ReadNoticeAction
+  | SetUITitleAction
+  | RemoveUITitleAction
   | (LocationChangeAction & { meta?: ActionMeta });

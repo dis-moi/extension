@@ -15,7 +15,7 @@ export const intentions: Intention[] = [
 
 type Referential<T> = { [key in Intention]: T };
 
-export const getTypeOrFallback = <T extends any>(
+export const getTypeOrFallback = <T extends unknown>(
   referential: Referential<T>
 ) => (intention?: Intention): T =>
   intention && intention in referential

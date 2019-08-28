@@ -1,0 +1,42 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "project": "tsconfig.json"
+  },
+  "settings": {
+    "react": {
+      "version": "detect" // React version. "detect" automatically picks the version you have installed.
+    }
+  },
+  "globals": {
+    "chrome": "readonly",
+    "fetch": "readonly"
+  },
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended",
+    "prettier-standard/prettier-file",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "plugins": ["react"],
+  "rules": {
+    // We don't actually set a display name for functional component
+    "react/display-name": 0,
+
+    /* TypeScript */
+    // We don't actually set the return type of React functional component
+    "@typescript-eslint/explicit-function-return-type": false,
+    // We don't actually always explicitly member accessility (componentDidMount ...)
+    "@typescript-eslint/explicit-member-accessibility": false,
+    "@typescript-eslint/no-explicit-any": ["error", { "ignoreRestArgs": true }],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "ignoreRestSiblings": true }
+    ]
+  }
+}

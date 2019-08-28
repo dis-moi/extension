@@ -48,6 +48,7 @@
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
     // "typeRoots": [],                       /* List of folders to include type definitions from. */
     "types": [
+      "node",
       "chrome",
       "mocha"
     ] /* Type declaration files to be included in compilation. */,
@@ -66,9 +67,5 @@
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
   },
   "include": ["./src/**/*", "./test/app/**/*"],
-  "exclude": ["./src/app/lmem/draft-preview/grabDraftNotices.js"],
-  "awesomeTypescriptLoaderOptions": {
-    "transpileOnly": false,
-    "useCache": false
-  }
+  "exclude": ["./src/app/lmem/draft-preview/grabDraftNotices.js"]
 }

@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+import { Scope } from '@sentry/browser';
+
 if (!(window as CustomWindow).__LMEM__CONTENT_SCRIPT_INJECTED__) {
   const { configureSentryScope, initSentry } = require('../utils/sentry');
 
@@ -6,7 +9,7 @@ if (!(window as CustomWindow).__LMEM__CONTENT_SCRIPT_INJECTED__) {
   } catch (error) {
     console.warn('Could not init Sentry in contentScript', error);
   }
-  configureSentryScope((scope: any) => {
+  configureSentryScope((scope: Scope) => {
     scope.setTag('context', 'content');
   });
 

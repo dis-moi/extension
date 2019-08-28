@@ -1,3 +1,4 @@
+/* eslint-disable */
 export const loadHeap = (appId: string): Promise<Heap> => {
 
   // heap lib injection in window object

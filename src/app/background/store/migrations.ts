@@ -7,16 +7,16 @@ import { State } from '../../content/store';
 
 interface StateV0V1orV2 extends PersistedState {
   prefs?: {
-    websites: any;
+    websites: unknown;
     criteria: Criteria;
-    editors: { [id: number]: any };
+    editors: { [id: number]: unknown };
     dismissedRecos: number[];
     approvedRecos: number[];
     onInstalledDetails: InstallationDetails;
   };
-  websites?: any;
+  websites?: unknown;
   criteria?: Criteria;
-  editors?: { [id: number]: any };
+  editors?: { [id: number]: unknown };
   dismissedRecos?: number[];
   approvedRecos?: number[];
   dismissedNotices?: number[];
@@ -26,9 +26,9 @@ interface StateV0V1orV2 extends PersistedState {
 }
 
 interface StateV1Prefs {
-  websites: any;
+  websites: unknown;
   criteria: Criteria;
-  editors: { [id: number]: any };
+  editors: { [id: number]: unknown };
   dismissedRecos?: number[];
   approvedRecos?: number[];
   dismissedNotices?: number[];
@@ -41,9 +41,9 @@ interface StateV1orV2 extends PersistedState {
 }
 
 interface StateV2Prefs {
-  websites: any;
+  websites: unknown;
   criteria: Criteria;
-  editors: { [id: number]: any };
+  editors: { [id: number]: unknown };
   dismissedNotices: number[];
   likedNotices: number[];
   dislikedNotices: number[];

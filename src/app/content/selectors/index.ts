@@ -8,6 +8,11 @@ import { State } from '../store';
 
 export const getNotices = (state: State) => state.notices;
 
+export const getNoticesToDisplay = createSelector(
+  getNotices,
+  notices => notices.filter(shouldNoticeBeShown)
+);
+
 export const getUnreadNotices = (state: State) =>
   getNoticesToDisplay(state).filter(isUnread);
 
@@ -27,11 +32,6 @@ export const getUI = (state: State): UIState => state.ui;
 export const isOpen = (state: State): OpenState => getUI(state).open;
 export const isMounted = (state: State): MountedState => getUI(state).mounted;
 export const getTitle = (state: State): TitleState => getUI(state).title;
-
-export const getNoticesToDisplay = createSelector(
-  getNotices,
-  notices => notices.filter(shouldNoticeBeShown)
-);
 
 export const hasNoticesToDisplay = createSelector(
   getNoticesToDisplay,

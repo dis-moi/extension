@@ -29,6 +29,7 @@ export const ListScreen = ({
   const transitions = useTransition(
     notices.slice(0, 2),
     notice => notice.id,
+    // eslint-disable-next-line
     // @ts-ignore
     transitionKeys
   );
@@ -59,5 +60,5 @@ export const ListScreen = ({
 
 export default compose(
   withConnect,
-  withTitle<Props>('Bulles Pour cette page')
+  withTitle<Props>('Bulles pour cette page')
 )(ListScreen);

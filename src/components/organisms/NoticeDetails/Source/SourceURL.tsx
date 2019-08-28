@@ -3,7 +3,7 @@ import Container from './Container';
 
 interface Props {
   children: string;
-  onClick?: (...args: any[]) => any;
+  onClick?: (...args: unknown[]) => void;
 }
 export const SourceURL = ({ children, ...props }: Props) => (
   <Container {...props} href={children}>
