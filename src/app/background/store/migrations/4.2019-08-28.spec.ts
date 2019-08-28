@@ -6,6 +6,7 @@ describe('migrations/4', () => {
   describe('if previous state has `readNotices` key', () => {
     const storeV3: StateV3 = {
       prefs: {
+        // @ts-ignore
         installationDetails: {
           datetime: new Date(),
           version: '1'
@@ -31,6 +32,7 @@ describe('migrations/4', () => {
   describe("if previous state doesn't have `readNotices` key", () => {
     const storeV3: StateV3 = {
       prefs: {
+        // @ts-ignore
         installationDetails: {
           datetime: new Date(),
           version: '1'
