@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Contributor } from 'app/lmem/contributor';
 import Avatar from 'components/atoms/Avatar/Avatar';
 import UserName from 'components/atoms/UserName/UserName';
 import Stat from 'components/atoms/Stat/Stat';
@@ -47,15 +48,18 @@ const StatsWrapper = styled.div`
   }
 `;
 
-export const Contributor = () => (
+interface Props {
+  contributor: Contributor;
+}
+export const ContributorCompact = ({ contributor }: Props) => (
   <ContributorWrapper>
     <Avatar />
 
     <ContributorInfos>
-      <UserName>Jean Michel</UserName>
+      <UserName>{contributor.name}</UserName>
 
       <StatsWrapper>
-        <Stat>120 Bulles</Stat>
+        <Stat>{contributor.contributions}</Stat>
       </StatsWrapper>
     </ContributorInfos>
 
@@ -63,4 +67,4 @@ export const Contributor = () => (
   </ContributorWrapper>
 );
 
-export default Contributor;
+export default ContributorCompact;

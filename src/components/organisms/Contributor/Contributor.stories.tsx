@@ -6,4 +6,6 @@ import { generateContributor } from '../../../../test/fakers/generateContributor
 
 storiesOf('organisms/Contributor', module)
   .add('large', () => <ContributorLarge contributor={generateContributor()} />)
-  .add('compact', () => <ContributorCompact />);
+  .add('compact', () => (
+    <ContributorCompact contributor={generateContributor()} />
+  ));
