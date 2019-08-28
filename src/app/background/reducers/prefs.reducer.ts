@@ -1,29 +1,24 @@
 import * as R from 'ramda';
-import { version } from '../../../../package.json';
 import { AppAction } from 'app/actions';
-import { InstallationDetails } from 'app/lmem/installation';
 
 export interface PrefsState {
-  installationDetails: InstallationDetails;
   dismissedNotices: number[];
   likedNotices: number[];
   dislikedNotices: number[];
   markedReadNotices: number[];
+  tosAccepted: boolean;
 }
 
 const initialPrefs: PrefsState = {
-  installationDetails: { version, reason: 'install' },
   dismissedNotices: [],
   likedNotices: [],
   dislikedNotices: [],
-  markedReadNotices: []
+  markedReadNotices: [],
+  tosAccepted: false
 };
 
 function prefsReducer(state: PrefsState = initialPrefs, action: AppAction) {
   switch (action.type) {
-    case 'INSTALLED': {
-      return { ...state, installationDetails: action.payload.details };
-    }
     case 'FEEDBACK_ON_NOTICE':
       switch (action.payload.feedback) {
         case 'dismiss':
@@ -77,6 +72,12 @@ function prefsReducer(state: PrefsState = initialPrefs, action: AppAction) {
         markedReadNotices: R.uniq(
           R.concat(state.markedReadNotices, [action.payload])
         )
+      };
+
+    case 'TOS_ACCEPTED':
+      return {
+        ...state,
+        tosAccepted: true
       };
 
     default:

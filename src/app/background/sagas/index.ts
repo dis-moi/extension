@@ -1,4 +1,5 @@
 import { fork, all } from 'redux-saga/effects';
+import install from './install';
 import tab from './tab';
 import badge from './badge';
 import externalMessage from './externalMessage';
@@ -13,6 +14,7 @@ import sendContributorsToOptions from './sendContributorsToOptions.saga';
 
 export default function* rootSaga() {
   yield all([
+    fork(install),
     fork(refreshMatchingContexts),
     fork(refreshContributors),
     fork(tab),

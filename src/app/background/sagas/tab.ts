@@ -35,12 +35,9 @@ import sendToTab from 'webext/sendActionToTab';
 import executeTabScript, {
   ExecuteContentScript
 } from 'webext/executeTabScript';
-import {
-  getInitialContent,
-  getNoticesToDisplay,
-  getIgnoredNotices
-} from '../selectors/prefs';
+import { getNoticesToDisplay, getIgnoredNotices } from '../selectors/prefs';
 import { findTriggeredContexts } from '../selectors';
+import { getInstallationDetails } from '../selectors/installationDetails';
 import { getTabs } from '../selectors/tabs';
 import Tab from '../../lmem/Tab';
 
@@ -71,8 +68,8 @@ export const contextTriggeredSaga = function*({
   meta: { tab }
 }: ContextTriggeredAction) {
   try {
-    const initialContent = yield select(getInitialContent);
-    yield put(init(initialContent.installationDetails, tab));
+    const installationDetails = yield select(getInstallationDetails);
+    yield put(init(installationDetails, tab));
 
     const toFetch = R.compose<MatchingContext[], string[], string[]>(
       R.uniq,

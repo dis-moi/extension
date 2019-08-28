@@ -13,7 +13,7 @@ import { AppAction } from '../../actions';
 const persistedReducers = persistReducer(
   {
     key: 'root',
-    whitelist: ['prefs', 'subscriptions'],
+    whitelist: ['prefs', 'subscriptions', 'installationDetails'],
     storage,
     version: 3,
     migrate,

@@ -7,7 +7,7 @@ import {
   TabRemovedAction,
   TabUpdatedAction
 } from './tabsLifecycle';
-import { InstalledAction } from './install';
+import { InstalledAction, InstallationDetailsAction } from './install';
 import {
   RefreshMatchingContextsFailedAction,
   ReceivedMatchingContextsAction
@@ -21,13 +21,13 @@ import {
   ContextTriggeredAction,
   ContextTriggerFailureAction
 } from './tabs';
-import { InstalledDetailsAction } from './filters';
 import { CloseAction, ClosedAction, OpenAction, OpenedAction } from './ui';
 import {
   FeedbackOnNoticeAction,
   NoticesFoundAction,
   MarkNoticeReadAction
 } from './notices';
+import { AcceptTosAction, TosAcceptedAction } from './tos';
 import {
   ContributionSubmissionFailed,
   ContributionSubmittedAction,
@@ -54,7 +54,6 @@ type MessageSender = chrome.runtime.MessageSender;
 
 export * from './badge';
 export * from './browser';
-export * from './filters';
 export * from './install';
 export * from './notices';
 export * from './refreshMatchingContexts';
@@ -151,7 +150,7 @@ export type AppAction =
   | ContextTriggerFailureAction
   | NoticeDisplayedAction
   | NoticeIgnoredAction
-  | InstalledDetailsAction
+  | InstallationDetailsAction
   | OpenAction
   | OpenedAction
   | CloseAction
@@ -170,4 +169,6 @@ export type AppAction =
   | ListenActionFailedAction
   | SubscribeAction
   | UnsubscribeAction
+  | AcceptTosAction
+  | TosAcceptedAction
   | (LocationChangeAction & { meta?: ActionMeta });

@@ -1,7 +1,7 @@
 import chai from 'chai';
 import prefsReducer from 'app/background/reducers/prefs.reducer';
 import resourcesReducer from 'app/background/reducers/resources.reducer';
-import { receivedMatchingContexts } from 'app/src/app/actions/refreshMatchingContexts';
+import { receivedMatchingContexts } from 'app/actions/refreshMatchingContexts';
 import {
   dismissNotice,
   likeNotice,
@@ -27,7 +27,7 @@ describe('prefsReducer reducer', function() {
         likedNotices: [],
         dislikedNotices: [],
         markedReadNotices: [],
-        installationDetails,
+        tosAccepted: true
       },
       action
     );
@@ -44,7 +44,7 @@ describe('prefsReducer reducer', function() {
         likedNotices: [],
         dislikedNotices: [],
         markedReadNotices: [],
-        installationDetails
+        tosAccepted: true
       },
       action
     );
@@ -61,7 +61,7 @@ describe('prefsReducer reducer', function() {
         likedNotices: [],
         dislikedNotices: [],
         markedReadNotices: [],
-        installationDetails
+        tosAccepted: true
       },
       action
     );
@@ -78,7 +78,7 @@ describe('prefsReducer reducer', function() {
         likedNotices: [],
         dislikedNotices: [],
         markedReadNotices: [],
-        installationDetails
+        tosAccepted: true
       },
       action
     );
@@ -95,7 +95,7 @@ describe('prefsReducer reducer', function() {
         likedNotices: [42],
         dislikedNotices: [],
         markedReadNotices: [],
-        installationDetails
+        tosAccepted: true
       },
       action
     );
@@ -112,7 +112,7 @@ describe('prefsReducer reducer', function() {
         likedNotices: [],
         dislikedNotices: [42],
         markedReadNotices: [],
-        installationDetails
+        tosAccepted: true
       },
       action
     );
@@ -129,7 +129,7 @@ describe('prefsReducer reducer', function() {
         likedNotices: [],
         dislikedNotices: [],
         markedReadNotices: [],
-        installationDetails
+        tosAccepted: true
       },
       action
     );
