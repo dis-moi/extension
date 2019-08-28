@@ -4,13 +4,13 @@ import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider } from 'styled-components';
 import theme from '../../theme';
 import store, { history } from '../store';
-import Content from './Subscriptions/Subscriptions';
+import SubscriptionsScreen from './SubscriptionsScreen/SubscriptionsScreen';
 
 const App = () => (
   <Provider store={store}>
     <ThemeProvider theme={theme}>
       <ConnectedRouter history={history}>
-        <Content />
+        <SubscriptionsScreen />
       </ConnectedRouter>
     </ThemeProvider>
   </Provider>

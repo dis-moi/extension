@@ -80,12 +80,7 @@ export const ContributorLarge = ({ contributor }: Props) => (
 
     <ContributionExample>Voir un exemple de ses bulles</ContributionExample>
 
-    <ContributorIntro>
-      Passionné d’infos et s’intox, je vous préviens parfois (mais pas toujours
-      ^^) quand vous êtes en train de consulter un hoax, c’est-à-dire un message
-      poignant, révoltant ou alarmant… mais faux ! Mes sources : Hoaxbuster,
-      HoaxKiller, Hoaxteam, Secuser.com.
-    </ContributorIntro>
+    <ContributorIntro>{contributor.intro}</ContributorIntro>
   </ContributorCard>
 );
 
