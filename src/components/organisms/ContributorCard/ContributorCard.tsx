@@ -1,10 +1,15 @@
 import React from 'react';
 import ContributorLarge from '../Contributor/ContributorLarge';
 import Container from './Container';
+import { Contributor } from 'app/lmem/contributor';
 
-export const ContributorNav = () => (
+interface Props {
+  contributor: Contributor;
+}
+
+export const ContributorNav = ({ contributor }: Props) => (
   <Container>
-    <ContributorLarge />
+    <ContributorLarge contributor={contributor} />
   </Container>
 );
 

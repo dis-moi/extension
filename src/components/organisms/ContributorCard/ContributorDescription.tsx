@@ -15,7 +15,7 @@ const PlaceholderDescription = styled(Description)`
 `;
 
 interface Props {
-  children: string;
+  children?: string;
 }
 const ContributorDescription = ({ children }: Props) =>
   children ? (

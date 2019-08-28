@@ -1,7 +1,7 @@
 import chai from 'chai';
 import prefsReducer from '../../src/app/background/reducers/prefs';
 import resourcesReducer from '../../src/app/background/reducers/resources';
-import { receivedMatchingContexts } from '../../src/app/actions/kraftBackend';
+import { receivedMatchingContexts } from '../../src/app/actions/refreshMatchingContexts';
 import {
   dismissNotice,
   likeNotice,

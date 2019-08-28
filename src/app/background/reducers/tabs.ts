@@ -1,11 +1,11 @@
+import * as R from 'ramda';
 import {
   TAB_CREATED,
   TAB_REMOVED,
   TAB_UPDATED
-} from '../../constants/browser/tabs';
-import { AppAction } from 'app/actions';
-import * as R from 'ramda';
+} from 'app/constants/browser/tabs';
 import Tab from 'app/lmem/Tab';
+import { AppAction } from 'app/actions';
 
 export interface TabsState {
   [tabId: string]: Tab;
@@ -13,14 +13,23 @@ export interface TabsState {
 
 export const initialState: TabsState = {};
 
+const addTabToList = (tab: Tab) => (state: TabsState): TabsState =>
+  R.assoc(tab.id.toString(), tab, state);
+const removeTabFromList = (tab: Tab) => (state: TabsState): TabsState =>
+  R.dissoc(tab.id.toString(), state);
+
+const markTabReady = (tab: Tab) => (state: TabsState): TabsState =>
+  R.assocPath([tab.id.toString(), 'ready'], true, state);
+
 export default function(state = initialState, action: AppAction) {
   switch (action.type) {
     case TAB_CREATED:
     case TAB_UPDATED:
-      return { ...state, [action.payload.tab.id]: action.payload.tab };
-
+      return addTabToList(action.payload.tab)(state);
     case TAB_REMOVED:
-      return R.dissoc<TabsState>(action.payload.tab.id.toString(), state);
+      return removeTabFromList(action.payload.tab)(state);
+    case 'LISTENING_ACTIONS_READY':
+      return action.meta.tab ? markTabReady(action.meta.tab)(state) : state;
 
     default:
       return state;
