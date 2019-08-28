@@ -1,5 +1,4 @@
 import React from 'react';
-
 import styled from 'styled-components';
 import BackgroundButton from 'components/atoms/Button/BackgroundButton/BackgroundButton';
 
@@ -28,12 +27,10 @@ const Button = styled(BackgroundButton)`
 `;
 
 const BottomLine = () => (
-  <>
-    <BottomLineBg>
-      <InfoLine>Choisir au minimum 1 contributeur</InfoLine>
-      <Button disabled>Terminer</Button>
-    </BottomLineBg>
-  </>
+  <BottomLineBg>
+    <InfoLine>Choisir au minimum 1 contributeur</InfoLine>
+    <Button disabled>Terminer</Button>
+  </BottomLineBg>
 );
 
 export default BottomLine;
