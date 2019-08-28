@@ -1,3 +1,4 @@
+import { eventChannel } from 'redux-saga';
 import {
   put,
   takeLatest,
@@ -7,18 +8,13 @@ import {
   all,
   take
 } from 'redux-saga/effects';
-import { findTriggeredContexts } from '../selectors';
-import {
-  getInitialContent,
-  getNoticesToDisplay,
-  getIgnoredNotices
-} from '../selectors/prefs';
-import { TAB_CREATED, TAB_UPDATED } from '../../constants/browser/tabs';
+import * as R from 'ramda';
+import { TAB_CREATED, TAB_UPDATED } from 'app/constants/browser/tabs';
 import {
   CONTEXT_TRIGGERED,
   MATCH_CONTEXT,
   NOTICES_FOUND
-} from '../../constants/ActionTypes';
+} from 'app/constants/ActionTypes';
 import {
   init,
   contextTriggered,
@@ -27,32 +23,38 @@ import {
   noticeIgnored,
   noticeDisplayed,
   contextTriggerFailure,
-  MatchContextAction,
-  ContextTriggeredAction,
-  contextNotTriggered
-} from 'app/actions/tabs';
-import {
+  contextNotTriggered,
   noNoticesDisplayed,
   noticesFound,
+  noticesUpdated,
+  createErrorAction,
+  MatchContextAction,
+  ContextTriggeredAction,
   NoticesFoundAction,
-  noticesUpdated
-} from 'app/actions/notices';
-import watchSingleMessageSaga from '../../utils/watchSingleMessageSaga';
-import { BaseAction, createErrorAction, TabAction } from '../../actions';
+  BaseAction,
+  TabAction,
+  TabCreatedAction,
+  TabUpdatedAction,
+  AppAction
+} from 'app/actions';
 import fetchContentScript from '../services/fetchContentScript';
+import { MatchingContext } from 'app/lmem/matchingContext';
+import { StatefulNotice, Notice, warnIfNoticeInvalid } from 'app/lmem/notice';
+import { fetchNotices } from 'api/fetchNotice';
+import listenActionsFromMessages from 'app/sagas/listenActionsFromMessages';
+import createBrowserActionListener from 'webext/createBrowserActionListener';
+import sendToTab from 'webext/sendActionToTab';
 import executeTabScript, {
   ExecuteContentScript
-} from '../services/executeTabScript';
-import createBrowserActionChannel from '../services/createBrowserActionChannel';
+} from 'webext/executeTabScript';
 import {
-  TabCreatedAction,
-  TabUpdatedAction
-} from '../../actions/tabsLifecycle';
-import * as R from 'ramda';
-import { MatchingContext } from '../../lmem/matchingContext';
-import { StatefulNotice, Notice, warnIfNoticeInvalid } from '../../lmem/notice';
-import sendToTab from '../services/sendToTab';
-import { fetchNotices } from '../../../api/fetchNotice';
+  getInitialContent,
+  getNoticesToDisplay,
+  getIgnoredNotices
+} from '../selectors/prefs';
+import { findTriggeredContexts } from '../selectors';
+import { getTabs } from '../selectors/tabs';
+import Tab from '../../lmem/Tab';
 
 export const tabSaga = (executeContentScript: ExecuteContentScript) =>
   function*({ payload: { tab } }: TabCreatedAction | TabUpdatedAction) {
@@ -116,22 +118,37 @@ export const contextTriggeredSaga = function*({
   }
 };
 
-export function* publishToTabSaga(action: TabAction) {
-  const {
-    meta: { tab }
-  } = action;
-  const response = yield call(sendToTab, tab.id, action);
+const waitForTabReadySaga = (tab: Tab) =>
+  function*() {
+    yield take((readyAction: AppAction) =>
+      Boolean(
+        readyAction.type === 'LISTENING_ACTIONS_READY' &&
+          readyAction.meta.tab &&
+          readyAction.meta.tab.id === tab.id
+      )
+    );
+  };
 
-  console.info(`Tab "${tab.url}" respond`, response);
+export function* publishToTabSaga(action: TabAction) {
+  const tab = action.meta.tab;
+  const tabs: { [id: string]: Tab } = yield select(getTabs);
+  if (!tabs[tab.id].ready) {
+    yield take((readyAction: AppAction) =>
+      Boolean(
+        readyAction.type === 'LISTENING_ACTIONS_READY' &&
+          readyAction.meta.tab!.id === tab.id
+      )
+    );
+  }
+  sendToTab(tab.id, action);
 }
 
 export function* watchBrowserActionSaga() {
-  const channel = yield call(createBrowserActionChannel);
+  const channel = yield call(() => eventChannel(createBrowserActionListener));
 
   while (true) {
     try {
-      const action = yield take(channel);
-      yield put(action);
+      yield put(yield take(channel));
     } catch (e) {
       createErrorAction()(e);
     }
@@ -146,7 +163,7 @@ export function* updateNoticesSaga({
 }
 
 export default function* tabRootSaga() {
-  yield fork(watchSingleMessageSaga);
+  yield fork(listenActionsFromMessages('background'));
   yield fork(watchBrowserActionSaga);
   const contentCode: string = yield call(
     fetchContentScript,

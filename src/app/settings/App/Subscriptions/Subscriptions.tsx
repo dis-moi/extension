@@ -7,6 +7,7 @@ import CenterContainer from 'components/atoms/CenterContainer';
 import ContributorNav from 'components/organisms/ContributorNav/ContributorNav';
 import Contributor from 'components/organisms/Contributor/ContributorLarge';
 import ContributorCompact from 'components/organisms/Contributor/ContributorCompact';
+import { generateContributor } from '../../../../../test/fakers/generateContributor';
 
 const BullesLogo = styled.div`
   width: 90px;
@@ -53,19 +54,19 @@ const Settings = () => (
     <Contributors2col>
       <ContributorsWidth>
         <ContributorsList>
-          <Contributor />
-          <Contributor />
-          <Contributor />
-          <Contributor />
-          <Contributor />
-          <Contributor />
-          <Contributor />
-          <Contributor />
-          <Contributor />
-          <Contributor />
-          <Contributor />
-          <Contributor />
-          <Contributor />
+          <Contributor contributor={generateContributor()} />
+          <Contributor contributor={generateContributor()} />
+          <Contributor contributor={generateContributor()} />
+          <Contributor contributor={generateContributor()} />
+          <Contributor contributor={generateContributor()} />
+          <Contributor contributor={generateContributor()} />
+          <Contributor contributor={generateContributor()} />
+          <Contributor contributor={generateContributor()} />
+          <Contributor contributor={generateContributor()} />
+          <Contributor contributor={generateContributor()} />
+          <Contributor contributor={generateContributor()} />
+          <Contributor contributor={generateContributor()} />
+          <Contributor contributor={generateContributor()} />
         </ContributorsList>
       </ContributorsWidth>
 

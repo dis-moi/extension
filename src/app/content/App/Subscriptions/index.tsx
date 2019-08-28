@@ -16,6 +16,7 @@ export const Subscriptions = ({
 }: SubscriptionsScreenProps) => (
   <Container>
     <Illustration />
+
     <SubscriptionsData>
       <div>
         <span>5</span>
@@ -34,6 +35,7 @@ export const Subscriptions = ({
         <span>Vues</span>
       </div>
     </SubscriptionsData>
+
     <BorderButton onClick={settingsRequested}>Gérer</BorderButton>
   </Container>
 );

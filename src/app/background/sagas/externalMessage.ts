@@ -1,6 +1,11 @@
+import { eventChannel } from '@redux-saga/core';
 import { put, call, take } from 'redux-saga/effects';
-import createExternalMessageChannel from '../services/createExternalMessageChannel';
-import { createErrorAction } from '../../actions';
+import { createErrorAction } from 'app/actions';
+import createActionsListener from 'webext/createActionsListener';
+
+const createExternalMessageChannel = () => {
+  return eventChannel(createActionsListener);
+};
 
 export default function* watchExternalMessageChannel() {
   const singleMessageChannel = yield call(createExternalMessageChannel);

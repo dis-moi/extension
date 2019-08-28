@@ -9,10 +9,9 @@ import {
 } from './tabsLifecycle';
 import { InstalledAction } from './install';
 import {
-  RefreshMatchingContextsAction,
   RefreshMatchingContextsFailedAction,
   ReceivedMatchingContextsAction
-} from './kraftBackend';
+} from './refreshMatchingContexts';
 import {
   InitAction,
   MatchContextAction,
@@ -33,9 +32,33 @@ import {
   RemoveUITitleAction,
   SetUITitleAction
 } from '../content/actions/ui/title';
-import { SettingsRequestedAction } from './settings';
+import { SettingsRequestedAction, SettingsTabOpened } from './settings';
+import {
+  ContributorsTransmittedAction,
+  ReceivedContributorsAction,
+  RefreshContributorsFailedAction
+} from './refreshContributors';
+import {
+  ListenActionFailedAction,
+  ListeningActionsReadyAction
+} from './webext';
+import { From } from '../../webext/From';
 
 type MessageSender = chrome.runtime.MessageSender;
+
+export * from './badge';
+export * from './browser';
+export * from './filters';
+export * from './install';
+export * from './notices';
+export * from './refreshMatchingContexts';
+export * from './refreshContributors';
+export * from './settings';
+export * from './tabs';
+export * from './tabsLifecycle';
+export * from './ui';
+export * from './updateDraftNotices';
+export * from './webext';
 
 export interface StandardAction extends Action {
   payload?: unknown;
@@ -79,6 +102,8 @@ export interface ActionMeta {
   action?: unknown;
   external?: boolean;
   sender?: MessageSender;
+  from?: From;
+  tab?: Tab;
 }
 
 export type AppAction =
@@ -88,11 +113,13 @@ export type AppAction =
   | TabUpdatedAction
   | TabRemovedAction
   | InstalledAction
-  | RefreshMatchingContextsAction
   | RefreshMatchingContextsFailedAction
   | ReceivedMatchingContextsAction
   | MatchContextAction
   | MatchContextFailureAction
+  | ReceivedContributorsAction
+  | RefreshContributorsFailedAction
+  | ContributorsTransmittedAction
   | ContextTriggeredAction
   | ContextTriggerFailureAction
   | NoticeDisplayedAction
@@ -108,4 +135,7 @@ export type AppAction =
   | SetUITitleAction
   | RemoveUITitleAction
   | SettingsRequestedAction
+  | SettingsTabOpened
+  | ListeningActionsReadyAction
+  | ListenActionFailedAction
   | (LocationChangeAction & { meta?: ActionMeta });

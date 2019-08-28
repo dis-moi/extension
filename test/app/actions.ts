@@ -2,19 +2,17 @@ import chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
-import {
-  receivedMatchingContexts,
-  refreshMatchingContextsEvery
-} from '../../src/app/actions/kraftBackend';
+import { receivedMatchingContexts } from 'app/actions/refreshMatchingContexts';
 
 import {
   contextTriggered,
   noticeDisplayed,
   noticeIgnored
-} from '../../src/app/actions/tabs';
+} from 'app/actions/tabs';
 import { MatchingContext } from '../../src/app/lmem/matchingContext';
 import { StatefulNotice } from '../../src/app/lmem/notice';
 import Tab from '../../src/app/lmem/Tab';
+import { generateContributor } from '../fakers/generateContributor';
 
 const expect = chai.expect;
 chai.use(sinonChai);
@@ -29,7 +27,7 @@ const notice: StatefulNotice = {
     label: 'Jalil',
     url: 'http://jalil'
   },
-  contributor: { id: 1, name: 'Jalil', image: '' },
+  contributor: generateContributor(),
   visibility: 'public',
   ratings: {
     dislikes: 0,
@@ -107,34 +105,5 @@ describe('background actions', function() {
     expect(action.payload.url).to.equal(trigger);
     expect(action.payload.notice).to.equal(dislikedNotice);
     expect(action.payload.reason).to.equal('dislike');
-  });
-
-  describe('auto refresh matching contexts', () => {
-    interface SuiteWithClock extends Mocha.Suite {
-      clock: { next: () => void; restore: () => void };
-    }
-    before(() => {
-      (this as SuiteWithClock).clock = sinon.useFakeTimers();
-    });
-
-    it('every x minutes', () => {
-      const self = this as SuiteWithClock;
-      const recursiveFn = refreshMatchingContextsEvery(10000);
-      const dispatch = sinon.fake();
-
-      recursiveFn(dispatch);
-      expect(dispatch).to.not.have.been.called;
-
-      self.clock.next();
-      self.clock.next();
-      expect(dispatch).to.have.been.calledTwice;
-      expect(dispatch.lastCall.lastArg.type)
-        .to.be.a('string')
-        .of.length.above(5);
-    });
-
-    after(() => {
-      (this as SuiteWithClock).clock.restore();
-    });
   });
 });

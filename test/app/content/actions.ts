@@ -19,7 +19,7 @@ const notice1: StatefulNotice = {
     label: 'Jalil',
     url: 'http://jalil'
   },
-  contributor: { id: 1, name: 'Jalil', image: '' },
+  contributor: { id: 1, name: 'Jalil', contributions: 42 },
   visibility: 'public',
   ratings: { dislikes: 0, likes: 0 },
   state: { disliked: false, dismissed: false, liked: false, read: false },
@@ -60,7 +60,7 @@ describe('content actions', function() {
   });
 
   it('likes notice', () => {
-    const id = 0; 
+    const id = 0;
     const action = likeNotice(id);
 
     expect(action.type)
