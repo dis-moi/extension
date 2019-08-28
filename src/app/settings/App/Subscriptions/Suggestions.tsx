@@ -6,6 +6,7 @@ import ContributorNav from 'components/organisms/ContributorNav/ContributorNav';
 import Contributor from 'components/organisms/Contributor/ContributorLarge';
 import Wrapper from './Wrapper';
 import BottomLine from './BottomLine';
+import { generateContributor } from '../../../../../test/fakers/generateContributor';
 
 const BullesLogo = styled.div`
   width: 90px;
@@ -35,19 +36,19 @@ const Settings = () => (
       <ContributorNav />
 
       <ContributorsList>
-        <Contributor />
-        <Contributor />
-        <Contributor />
-        <Contributor />
-        <Contributor />
-        <Contributor />
-        <Contributor />
-        <Contributor />
-        <Contributor />
-        <Contributor />
-        <Contributor />
-        <Contributor />
-        <Contributor />
+        <Contributor contributor={generateContributor()} />
+        <Contributor contributor={generateContributor()} />
+        <Contributor contributor={generateContributor()} />
+        <Contributor contributor={generateContributor()} />
+        <Contributor contributor={generateContributor()} />
+        <Contributor contributor={generateContributor()} />
+        <Contributor contributor={generateContributor()} />
+        <Contributor contributor={generateContributor()} />
+        <Contributor contributor={generateContributor()} />
+        <Contributor contributor={generateContributor()} />
+        <Contributor contributor={generateContributor()} />
+        <Contributor contributor={generateContributor()} />
+        <Contributor contributor={generateContributor()} />
       </ContributorsList>
     </ContributorsWidth>
 
