@@ -9,17 +9,5 @@ export default styled(BorderButton)`
   &:hover {
     color: ${props => props.theme.button};
     background-color: #fff;
-
-    svg {
-      fill: ${props => props.theme.button};
-    }
-  }
-
-  :disabled:hover {
-    color: #fff;
-  }
-
-  svg {
-    fill: #fff;
   }
 `;

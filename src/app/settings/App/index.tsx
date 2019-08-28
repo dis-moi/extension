@@ -3,8 +3,8 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider } from 'styled-components';
 import theme from '../../theme';
-import Content from './Settings';
 import store, { history } from '../store';
+import Content from './Subscriptions/Subscriptions';
 
 const App = () => (
   <Provider store={store}>
