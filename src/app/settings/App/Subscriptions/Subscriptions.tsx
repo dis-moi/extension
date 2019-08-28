@@ -1,6 +1,5 @@
 import React from 'react';
-
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Wrapper from './Wrapper';
 import Logo from 'components/atoms/icons/Logo';
 import Button from 'components/atoms/Button';
