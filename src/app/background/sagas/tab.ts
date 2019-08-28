@@ -118,6 +118,8 @@ export const contextTriggeredSaga = function*({
   }
 };
 
+/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 const waitForTabReadySaga = (tab: Tab) =>
   function*() {
     yield take((readyAction: AppAction) =>
@@ -136,7 +138,8 @@ export function* publishToTabSaga(action: TabAction) {
     yield take((readyAction: AppAction) =>
       Boolean(
         readyAction.type === 'LISTENING_ACTIONS_READY' &&
-          readyAction.meta.tab!.id === tab.id
+          readyAction.meta.tab &&
+          readyAction.meta.tab.id === tab.id
       )
     );
   }

@@ -47,17 +47,6 @@ const StatsWrapper = styled.div`
   }
 `;
 
-const StatIcon = styled.div`
-  & > svg {
-    stroke: ${props => props.theme.secondaryColor};
-    fill: #fff;
-    transform: scale(-1, 1);
-    width: 10px;
-    height: auto;
-    margin-right: 3px;
-  }
-`;
-
 export const Contributor = () => (
   <ContributorWrapper>
     <Avatar />
