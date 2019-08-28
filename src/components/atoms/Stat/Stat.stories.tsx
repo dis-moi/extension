@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
 import Stat from './Stat';
 import StatType from './StatType';
 
@@ -13,7 +13,7 @@ storiesOf('atoms/Stat', module)
   ))
   .add('J aime', () => (
     <Stat>
-      430 <StatType>J'aime</StatType>
+      430 <StatType>J&apos;aime</StatType>
     </Stat>
   ))
   .add('Abonnés', () => (

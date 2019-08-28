@@ -1,14 +1,14 @@
-import MessageSender = chrome.runtime.MessageSender;
-
 import { Action } from 'redux';
 import { BaseAction } from '../app/actions';
 import * as R from 'ramda';
 import assocTabIfNotGiven from './assocTabIfNotGiven';
 import { getSettingsUrl } from './openSettingsTab';
 
+type MessageSender = chrome.runtime.MessageSender;
 type Emit = (action: Action) => void;
 
-const isAction = (x: any): x is Action => typeof x === 'object' && 'type' in x;
+const isAction = (x: unknown): x is Action =>
+  typeof x === 'object' && 'type' in (x as object);
 
 const isSettingsPage = (url: string): boolean => url.includes(getSettingsUrl());
 
@@ -25,7 +25,7 @@ const addSenderToAction = <A extends BaseAction>(
   )(action);
 
 const createMessageHandler = (emit: Emit) => (
-  action: any,
+  action: unknown,
   sender: MessageSender
 ) => {
   const fromText = sender.tab

@@ -1,4 +1,4 @@
-const sendMessageToBackground = (message: any): void => {
+const sendMessageToBackground = (message: unknown): void => {
   chrome.runtime.sendMessage(message);
 };
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import BackgroundButton from 'components/atoms/Button/BackgroundButton';
 import Tab from 'components/atoms/Tab/Tab';
 import Container from './Container';
 

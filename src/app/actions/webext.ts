@@ -3,12 +3,14 @@ import { From } from 'webext/From';
 
 export interface ListeningActionsReadyAction extends BaseAction {
   type: 'LISTENING_ACTIONS_READY';
-  meta: ActionMeta;
+  meta: ActionMeta & {
+    from: From;
+  };
 }
 
 export const listeningActionsReady = (
   from: From,
-  meta: ActionMeta = {}
+  meta: ActionMeta
 ): ListeningActionsReadyAction => ({
   type: 'LISTENING_ACTIONS_READY',
   meta: { ...meta, from }

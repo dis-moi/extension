@@ -67,7 +67,7 @@ export const ContributorLarge = ({ contributor }: Props) => (
             {contributor.contributions} <StatType>Bulles</StatType>
           </Stat>
           <Stat>
-            120 <StatType>J'aime</StatType>
+            120 <StatType>J&apos;aime</StatType>
           </Stat>
           <Stat>
             120 <StatType>Abonnés</StatType>

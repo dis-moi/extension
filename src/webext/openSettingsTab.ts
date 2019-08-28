@@ -1,4 +1,4 @@
-import CreateProperties = chrome.tabs.CreateProperties;
+type CreateProperties = chrome.tabs.CreateProperties;
 
 export const getSettingsUrl = () => chrome.extension.getURL('settings.html');
 

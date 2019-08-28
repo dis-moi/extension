@@ -24,6 +24,7 @@ const applyMiddlewares =
       )
     : applyMiddleware(...middlewares);
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const addReduxDevTools = (window as any).__REDUX_DEVTOOLS_EXTENSION__
   ? (window as any).__REDUX_DEVTOOLS_EXTENSION__()
   : (f: any): any => f;

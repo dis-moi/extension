@@ -1,11 +1,12 @@
-import { configureSentryScope, initSentry } from '../utils/sentry';
+import { configureSentryScope, initSentry, Scope } from '../utils/sentry';
 
 initSentry();
 
-configureSentryScope((scope: any) => {
+configureSentryScope((scope: Scope) => {
   scope.setTag('context', 'settings');
 });
 
+/* eslint-disable import/first */
 import React from 'react';
 import { render } from 'react-dom';
 import App from './App';
