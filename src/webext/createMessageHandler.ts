@@ -15,14 +15,17 @@ const isSettingsPage = (url: string): boolean => url.includes(getSettingsUrl());
 const getTabContext = (tab?: chrome.tabs.Tab) =>
   tab && tab.url && isSettingsPage(tab.url) ? 'settings' : 'content';
 
-const addSenderToAction = <A extends BaseAction>(
-  sender: MessageSender,
-  action: A
-): A =>
+const addSenderToAction = <A extends BaseAction>(sender: MessageSender) =>
   R.pipe<A, A, A>(
     assocTabIfNotGiven(sender.tab),
     R.assocPath(['meta', 'from'], getTabContext(sender.tab))
-  )(action);
+  );
+
+type StripSendMeta<A extends BaseAction = BaseAction> = (action: A) => A;
+const stripSendMeta: StripSendMeta = R.pipe(
+  R.dissocPath(['meta', 'sendToBackground']),
+  R.dissocPath(['meta', 'sendToTab'])
+);
 
 const createMessageHandler = (emit: Emit) => (
   action: unknown,
@@ -33,7 +36,11 @@ const createMessageHandler = (emit: Emit) => (
     : 'background';
 
   if (isAction(action)) {
-    const actionWithSender = addSenderToAction(sender, action);
+    const actionWithSender = R.pipe(
+      addSenderToAction(sender),
+      stripSendMeta
+    )(action);
+
     emit(actionWithSender);
   } else {
     const error = new Error(`Received invalid action from ${fromText}`);
