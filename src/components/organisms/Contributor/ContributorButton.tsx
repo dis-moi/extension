@@ -18,15 +18,11 @@ interface Props {
   followed?: boolean;
 }
 
-const ContributorButton = ({ followed }: Props) =>
-  followed ? (
-    <Container>
-      <BackgroundButton>Abonné</BackgroundButton>
-    </Container>
-  ) : (
-    <Container>
-      <BorderButton>S&apos;abonner</BorderButton>
-    </Container>
-  );
+const ContributorButton = ({ followed }: Props) => (
+  <Container>
+    {followed && <BackgroundButton>Abonné</BackgroundButton>}
+    {!followed && <BorderButton>S&apos;abonner</BorderButton>}
+  </Container>
+);
 
 export default ContributorButton;
