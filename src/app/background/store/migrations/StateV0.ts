@@ -4,16 +4,16 @@ import { InstallationDetails } from '../../../lmem/installation';
 
 export interface StateV0V1orV2 extends PersistedState {
   prefs?: {
-    websites: any;
+    websites: unknown;
     criteria: Criteria;
-    editors: { [id: number]: any };
+    editors: { [id: number]: unknown };
     dismissedRecos: number[];
     approvedRecos: number[];
     onInstalledDetails: InstallationDetails;
   };
-  websites?: any;
+  websites?: unknown;
   criteria?: Criteria;
-  editors?: { [id: number]: any };
+  editors?: { [id: number]: unknown };
   dismissedRecos?: number[];
   approvedRecos?: number[];
   dismissedNotices?: number[];

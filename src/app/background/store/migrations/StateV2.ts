@@ -3,9 +3,9 @@ import { InstallationDetails } from '../../../lmem/installation';
 import { PersistedState } from 'redux-persist/es/types';
 
 interface StateV2Prefs {
-  websites: any;
+  websites: unknown;
   criteria: Criteria;
-  editors: { [id: number]: any };
+  editors: { [id: number]: unknown };
   dismissedNotices: number[];
   likedNotices: number[];
   dislikedNotices: number[];
