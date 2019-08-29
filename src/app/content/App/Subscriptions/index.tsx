@@ -8,11 +8,11 @@ import withConnect from './withConnect';
 import { compose } from 'redux';
 
 interface SubscriptionsScreenProps {
-  settingsRequested: () => void;
+  optionsRequested: () => void;
 }
 
 export const Subscriptions = ({
-  settingsRequested
+  optionsRequested
 }: SubscriptionsScreenProps) => (
   <Container>
     <Illustration />
@@ -36,7 +36,7 @@ export const Subscriptions = ({
       </div>
     </SubscriptionsData>
 
-    <BorderButton onClick={settingsRequested}>Gérer</BorderButton>
+    <BorderButton onClick={optionsRequested}>Gérer</BorderButton>
   </Container>
 );
 
