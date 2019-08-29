@@ -1,13 +1,4 @@
-import { eventChannel } from 'redux-saga';
-import {
-  put,
-  takeLatest,
-  select,
-  call,
-  fork,
-  all,
-  take
-} from 'redux-saga/effects';
+import { put, takeLatest, select, call, all, take } from 'redux-saga/effects';
 import * as R from 'ramda';
 import { TAB_CREATED, TAB_UPDATED } from 'app/constants/browser/tabs';
 import {
@@ -27,7 +18,6 @@ import {
   noNoticesDisplayed,
   noticesFound,
   noticesUpdated,
-  createErrorAction,
   MatchContextAction,
   ContextTriggeredAction,
   NoticesFoundAction,
@@ -41,8 +31,6 @@ import fetchContentScript from '../services/fetchContentScript';
 import { MatchingContext } from 'app/lmem/matchingContext';
 import { StatefulNotice, Notice, warnIfNoticeInvalid } from 'app/lmem/notice';
 import { fetchNotices } from 'api/fetchNotice';
-import listenActionsFromMessages from 'app/sagas/listenActionsFromMessages';
-import createBrowserActionListener from 'webext/createBrowserActionListener';
 import sendToTab from 'webext/sendActionToTab';
 import executeTabScript, {
   ExecuteContentScript
@@ -135,27 +123,9 @@ export function* publishToTabSaga(action: TabAction) {
   const tab = action.meta.tab;
   const tabs: { [id: string]: Tab } = yield select(getTabs);
   if (!tabs[tab.id].ready) {
-    yield take((readyAction: AppAction) =>
-      Boolean(
-        readyAction.type === 'LISTENING_ACTIONS_READY' &&
-          readyAction.meta.tab &&
-          readyAction.meta.tab.id === tab.id
-      )
-    );
+    yield waitForTabReadySaga(tab);
   }
   sendToTab(tab.id, action);
-}
-
-export function* watchBrowserActionSaga() {
-  const channel = yield call(() => eventChannel(createBrowserActionListener));
-
-  while (true) {
-    try {
-      yield put(yield take(channel));
-    } catch (e) {
-      createErrorAction()(e);
-    }
-  }
 }
 
 export function* updateNoticesSaga({
@@ -166,8 +136,6 @@ export function* updateNoticesSaga({
 }
 
 export default function* tabRootSaga() {
-  yield fork(listenActionsFromMessages('background'));
-  yield fork(watchBrowserActionSaga);
   const contentCode: string = yield call(
     fetchContentScript,
     '/js/content.bundle.js'

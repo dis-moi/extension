@@ -47,7 +47,7 @@ describe('createMessageHandler', () => {
     expect(emit).to.have.been.calledWith({
       ...action,
       meta: {
-        ...action.meta,
+        tab: { id: 1, url: '' },
         from: 'content'
       }
     });
@@ -70,7 +70,7 @@ describe('createMessageHandler', () => {
     expect(emit).to.have.been.calledWith({
       ...action,
       meta: {
-        ...action.meta,
+        tab: { id: 1, url: '' },
         from: 'settings'
       }
     });

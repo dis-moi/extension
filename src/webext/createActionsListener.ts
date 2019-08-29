@@ -4,10 +4,11 @@ import createMessageHandler from './createMessageHandler';
 type Emit = (action: Action) => void;
 
 const createActionsListener = (emit: Emit) => {
-  chrome.runtime.onMessage.addListener(createMessageHandler(emit));
+  const messageHandler = createMessageHandler(emit);
+  chrome.runtime.onMessage.addListener(messageHandler);
 
   return () => {
-    chrome.runtime.onMessage.removeListener(createMessageHandler(emit));
+    chrome.runtime.onMessage.removeListener(messageHandler);
   };
 };
 

@@ -4,9 +4,11 @@ import badge from './badge';
 import externalMessage from './externalMessage';
 import theme from '../../theme';
 import error from '../../sagas/error';
+import listenActionsFromMessages from '../../sagas/listenActionsFromMessages';
 import settings from './settings';
 import refreshMatchingContexts from './refreshMatchingContexts';
 import refreshContributors from './refreshContributors';
+import watchBrowserActionSaga from './browserAction.saga';
 
 export default function* rootSaga() {
   yield all([
@@ -14,7 +16,9 @@ export default function* rootSaga() {
     fork(refreshContributors),
     fork(tab),
     fork(badge(theme.badge)),
+    fork(listenActionsFromMessages('background')),
     fork(externalMessage),
+    fork(watchBrowserActionSaga),
     fork(settings),
     fork(error)
   ]);
