@@ -98,13 +98,13 @@ export const undislikeNotice = (id: number): FeedbackOnNoticeAction => ({
   meta: { sendToBackground: true }
 });
 
-export interface ReadNoticeAction extends BaseAction {
-  type: 'READ_NOTICE';
+export interface MarkNoticeReadAction extends BaseAction {
+  type: 'MARK_NOTICE_READ';
   payload: number;
 }
 
-export const readNotice = (id: number): ReadNoticeAction => ({
-  type: 'READ_NOTICE',
+export const markNoticeRead = (id: number): MarkNoticeReadAction => ({
+  type: 'MARK_NOTICE_READ',
   payload: id,
   meta: { sendToBackground: true }
 });

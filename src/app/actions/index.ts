@@ -25,7 +25,7 @@ import { CloseAction, ClosedAction, OpenAction, OpenedAction } from './ui';
 import {
   FeedbackOnNoticeAction,
   NoticesFoundAction,
-  ReadNoticeAction
+  MarkNoticeReadAction
 } from './notices';
 import { Action } from 'redux';
 import Tab from 'app/lmem/Tab';
@@ -102,7 +102,7 @@ export type AppAction =
   | ClosedAction
   | NoticesFoundAction
   | FeedbackOnNoticeAction
-  | ReadNoticeAction
+  | MarkNoticeReadAction
   | SetUITitleAction
   | RemoveUITitleAction
   | (LocationChangeAction & { meta?: ActionMeta });

@@ -63,7 +63,7 @@ export default class Notice extends PureComponent<Props, CountDownState> {
     type: 'Other',
     dismissed: false,
     disliked: false,
-    read: false,
+    markedRead: false,
     truncateTitleAt: Title.defaultProps.numberOfCharacters
   };
 
@@ -118,7 +118,7 @@ export default class Notice extends PureComponent<Props, CountDownState> {
         intention,
         message,
         contributor,
-        state: { dismissed, disliked, read }
+        state: { dismissed, disliked, markedRead }
       },
       truncateTitleAt,
       style
@@ -131,7 +131,7 @@ export default class Notice extends PureComponent<Props, CountDownState> {
         {!dismissed && !disliked && <DeleteButton onClick={this.onDismiss} />}
         <Content
           to={dismissed || intervalID ? undefined : `notices/details/${id}`}
-          read={read}
+          markedRead={markedRead}
         >
           {(dismissed || disliked) && intervalID ? (
             <>

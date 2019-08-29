@@ -1,26 +1,30 @@
 import { createSelector } from 'reselect';
 import { RouteComponentProps } from 'react-router';
 import { getLocation } from 'connected-react-router';
-import { getNotice, isUnread, shouldNoticeBeShown } from 'app/lmem/notice';
+import {
+  getNotice,
+  isMarkedUnread,
+  shouldNoticeBeShown
+} from 'app/lmem/notice';
 import { InstallationDetails } from 'app/lmem/installation';
 import { OpenState, MountedState, TitleState, UIState } from '../reducers/ui';
-import { State } from '../store';
+import { ContentState } from '../store';
 
-export const getNotices = (state: State) => state.notices;
+export const getNotices = (state: ContentState) => state.notices;
 
 export const getNoticesToDisplay = createSelector(
   getNotices,
   notices => notices.filter(shouldNoticeBeShown)
 );
 
-export const getUnreadNotices = (state: State) =>
-  getNoticesToDisplay(state).filter(isUnread);
+export const getMarkedUnreadNotices = (state: ContentState) =>
+  getNoticesToDisplay(state).filter(isMarkedUnread);
 
-export const hasUnreadNotices = (state: State) =>
-  getUnreadNotices(state).length > 0;
+export const hasMarkedUnreadNotices = (state: ContentState) =>
+  getMarkedUnreadNotices(state).length > 0;
 
 export const getNoticeById = (
-  state: State,
+  state: ContentState,
   {
     match: {
       params: { id }
@@ -28,18 +32,20 @@ export const getNoticeById = (
   }: RouteComponentProps<{ id?: string }>
 ) => getNotice(Number(id), getNotices(state));
 
-export const getUI = (state: State): UIState => state.ui;
-export const isOpen = (state: State): OpenState => getUI(state).open;
-export const isMounted = (state: State): MountedState => getUI(state).mounted;
-export const getTitle = (state: State): TitleState => getUI(state).title;
+export const getUI = (state: ContentState): UIState => state.ui;
+export const isOpen = (state: ContentState): OpenState => getUI(state).open;
+export const isMounted = (state: ContentState): MountedState =>
+  getUI(state).mounted;
+export const getTitle = (state: ContentState): TitleState => getUI(state).title;
 
 export const hasNoticesToDisplay = createSelector(
   getNoticesToDisplay,
   noticesToDisplay => noticesToDisplay.length > 0
 );
 
-export const getOnInstalledDetails = (state: State): InstallationDetails =>
-  state.installationDetails;
+export const getOnInstalledDetails = (
+  state: ContentState
+): InstallationDetails => state.installationDetails;
 
 export const getExtensionInstallationDate = createSelector(
   getOnInstalledDetails,
@@ -47,9 +53,9 @@ export const getExtensionInstallationDate = createSelector(
     details.datetime ? new Date(details.datetime) : undefined
 );
 
-export const getTab = (state: State) => state.tab;
+export const getTab = (state: ContentState) => state.tab;
 
-export const getPathname = (state: State) => getLocation(state).pathname;
+export const getPathname = (state: ContentState) => getLocation(state).pathname;
 
-export const isNoticeContext = (state: State) =>
+export const isNoticeContext = (state: ContentState) =>
   getPathname(state).includes('notice');

@@ -9,7 +9,7 @@ import {
   dislikeNotice,
   undislikeNotice,
   undismissNotice,
-  readNotice
+  markNoticeRead
 } from '../../src/app/actions/notices';
 import { MatchingContext } from '../../src/app/lmem/matchingContext';
 
@@ -38,7 +38,7 @@ describe('background reducer', function() {
         dismissedNotices: [],
         likedNotices: [],
         dislikedNotices: [],
-        readNotices: [],
+        markedReadNotices: [],
         installationDetails: { version: '0.1' }
       },
       action
@@ -55,7 +55,7 @@ describe('background reducer', function() {
         dismissedNotices: [],
         likedNotices: [],
         dislikedNotices: [],
-        readNotices: [],
+        markedReadNotices: [],
         installationDetails: { version: '0.1' }
       },
       action
@@ -72,7 +72,7 @@ describe('background reducer', function() {
         dismissedNotices: [],
         likedNotices: [],
         dislikedNotices: [],
-        readNotices: [],
+        markedReadNotices: [],
         installationDetails: { version: '0.1' }
       },
       action
@@ -89,7 +89,7 @@ describe('background reducer', function() {
         dismissedNotices: [42],
         likedNotices: [],
         dislikedNotices: [],
-        readNotices: [],
+        markedReadNotices: [],
         installationDetails: { version: '0.1' }
       },
       action
@@ -106,7 +106,7 @@ describe('background reducer', function() {
         dismissedNotices: [],
         likedNotices: [42],
         dislikedNotices: [],
-        readNotices: [],
+        markedReadNotices: [],
         installationDetails: { version: '0.1' }
       },
       action
@@ -123,7 +123,7 @@ describe('background reducer', function() {
         dismissedNotices: [],
         likedNotices: [],
         dislikedNotices: [42],
-        readNotices: [],
+        markedReadNotices: [],
         installationDetails: { version: '0.1' }
       },
       action
@@ -133,20 +133,20 @@ describe('background reducer', function() {
   });
 
   it('read notice', () => {
-    const action = readNotice(42);
+    const action = markNoticeRead(42);
 
     const nextState = prefsReducer(
       {
         dismissedNotices: [],
         likedNotices: [],
         dislikedNotices: [],
-        readNotices: [],
+        markedReadNotices: [],
         installationDetails: { version: '0.1' }
       },
       action
     );
 
-    expect(nextState.readNotices).to.have.lengthOf(1);
-    expect(nextState.readNotices[0]).to.equal(42);
+    expect(nextState.markedReadNotices).to.have.lengthOf(1);
+    expect(nextState.markedReadNotices[0]).to.equal(42);
   });
 });

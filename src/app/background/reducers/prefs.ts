@@ -8,7 +8,7 @@ export interface PrefsState {
   dismissedNotices: number[];
   likedNotices: number[];
   dislikedNotices: number[];
-  readNotices: number[];
+  markedReadNotices: number[];
 }
 
 const initialPrefs: PrefsState = {
@@ -16,10 +16,13 @@ const initialPrefs: PrefsState = {
   dismissedNotices: [],
   likedNotices: [],
   dislikedNotices: [],
-  readNotices: []
+  markedReadNotices: []
 };
 
-export function prefs(state: PrefsState = initialPrefs, action: AppAction) {
+export function prefs(
+  state: PrefsState = initialPrefs,
+  action: AppAction
+): PrefsState {
   switch (action.type) {
     case 'INSTALLED': {
       return { ...state, installationDetails: action.payload.details };
@@ -71,10 +74,12 @@ export function prefs(state: PrefsState = initialPrefs, action: AppAction) {
       }
       return state;
 
-    case 'READ_NOTICE':
+    case 'MARK_NOTICE_READ':
       return {
         ...state,
-        readNotices: R.uniq(R.concat(state.readNotices, [action.payload]))
+        markedReadNotices: R.uniq(
+          R.concat(state.markedReadNotices, [action.payload])
+        )
       };
 
     default:

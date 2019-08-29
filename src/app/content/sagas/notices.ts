@@ -1,7 +1,15 @@
-import { put, takeLatest, select } from 'redux-saga/effects';
+import { all, put, select, takeLatest } from 'redux-saga/effects';
 import { getNotices, getTab, hasNoticesToDisplay } from '../selectors';
-import { noticesUpdated, updateNoticesFailed } from '../../actions/notices';
+import {
+  markNoticeRead,
+  noticesUpdated,
+  updateNoticesFailed
+} from 'app/actions/notices';
 import { close } from '../../actions/ui';
+import { CLOSED } from 'app/constants/ActionTypes';
+import { StatefulNotice } from 'app/lmem/notice';
+import { CloseCause } from '../../lmem/ui';
+import { AppAction } from '../../actions';
 
 export function* updateNoticesSaga() {
   try {
@@ -11,13 +19,28 @@ export function* updateNoticesSaga() {
 
     const hasNotices = yield select(hasNoticesToDisplay);
     if (!hasNotices) {
-      yield put(close());
+      yield put(close(CloseCause.NoMoreNotice));
     }
   } catch (e) {
     yield put(updateNoticesFailed(e));
   }
 }
 
+export function* markNoticesReadSaga() {
+  const notices = yield select(getNotices);
+  yield all(notices.map(({ id }: StatefulNotice) => put(markNoticeRead(id))));
+}
+
+const isClosedByButtonAction = (action: AppAction) =>
+  action.type === CLOSED && action.payload.cause === CloseCause.CloseButton;
+
 export default function* noticesRootSaga() {
-  yield takeLatest(['READ_NOTICE', 'FEEDBACK_ON_NOTICE'], updateNoticesSaga);
+  yield all([
+    // FIXME change all strings to constants because it’s a pain the ass to refactor (i.e. rename)
+    yield takeLatest(
+      ['MARK_NOTICE_READ', 'FEEDBACK_ON_NOTICE'],
+      updateNoticesSaga
+    ),
+    yield takeLatest(isClosedByButtonAction, markNoticesReadSaga)
+  ]);
 }

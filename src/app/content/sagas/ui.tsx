@@ -2,12 +2,19 @@ import React from 'react';
 import { put, takeLatest, select, call } from 'redux-saga/effects';
 import { render } from 'react-dom';
 import { go, replace } from 'connected-react-router';
-import { open, opened, openFailed, closed, closeFailed } from 'app/actions/ui';
+import {
+  open,
+  opened,
+  openFailed,
+  closed,
+  closeFailed,
+  CloseAction
+} from 'app/actions/ui';
 import {
   isOpen as isNotificationOpen,
   isMounted as isNotificationMounted,
   getPathname,
-  hasUnreadNotices
+  hasMarkedUnreadNotices
 } from '../selectors';
 import { CLOSE, OPEN, NOTICES_FOUND } from '../../constants/ActionTypes';
 import { append, create, hide, show } from '../extensionIframe';
@@ -47,13 +54,13 @@ export function* openSaga() {
   }
 }
 
-export function* closeSaga() {
+export function* closeSaga(closeAction: CloseAction) {
   try {
     const isOpen = yield select(isNotificationOpen);
     if (isOpen) {
       hide();
       yield put(go(-history.entries.length));
-      yield put(closed());
+      yield put(closed(closeAction.payload.cause));
     }
   } catch (e) {
     yield put(closeFailed(e));
@@ -61,7 +68,7 @@ export function* closeSaga() {
 }
 
 export function* noticesFoundSaga() {
-  const shouldOpen = yield select(hasUnreadNotices);
+  const shouldOpen = yield select(hasMarkedUnreadNotices);
   if (shouldOpen) {
     yield put(open());
   }

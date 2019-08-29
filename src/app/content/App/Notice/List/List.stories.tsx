@@ -80,7 +80,7 @@ storiesOf('screens/Notice/List', module)
           message: `<p>${text('message(1)', firstMessage, 'first')}</p>`
         }),
         generateStatefulNotice({
-          read: true,
+          markedRead: true,
           dismissed: boolean('dismissed(2)', false, 'second'),
           intention: select(
             'intention(2)',

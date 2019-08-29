@@ -5,9 +5,10 @@ import { Action } from 'redux';
 import middleware from '../../../src/app/background/middlewares/analytics';
 import { close } from '../../../src/app/actions/ui';
 import {
-  readNotice,
+  markNoticeRead,
   resourceLinkClicked
 } from '../../../src/app/actions/notices';
+import { CloseCause } from '../../../src/app/lmem/ui';
 
 const expect = chai.expect;
 chai.use(sinonChai);
@@ -52,14 +53,14 @@ describe('Analytics middleware', () => {
 
   it('tracks close action', () => {
     const { track, invoke } = create();
-    const action = close();
+    const action = close(CloseCause.CloseButton);
     invoke(action);
     expect(track).to.have.been.calledWith(action);
   });
 
   it('tracks read notice action', () => {
     const { track, invoke } = create();
-    const action = readNotice(1);
+    const action = markNoticeRead(1);
     invoke(action);
     expect(track).to.have.been.calledWith(action);
   });

@@ -179,6 +179,7 @@
     "svg-url-loader": "^2.0.2",
     "ts-node": "^8.3.0",
     "tsconfig-paths": "^3.8.0",
+    "ramda-adjunct": "^2.19.0",
     "typeface-lato": "^0.0.54",
     "typeface-sedgwick-ave": "^0.0.54",
     "typescript": "^3.5.3",

@@ -1,4 +1,5 @@
 import { BaseAction, ErrorAction } from '.';
+import { CloseCause } from '../lmem/ui';
 
 export interface OpenAction extends BaseAction {
   type: 'OPEN';
@@ -21,8 +22,13 @@ export const openFailed = (e: Error): OpenFailedAction => ({
 
 export interface CloseAction extends BaseAction {
   type: 'CLOSE';
+  payload: { cause: CloseCause };
 }
-export const close = (): CloseAction => ({ type: 'CLOSE' });
+export const close = (cause: CloseCause): CloseAction => ({
+  type: 'CLOSE',
+  payload: { cause },
+  meta: { sendToBackground: true }
+});
 
 export interface CloseFailedAction extends ErrorAction {
   type: 'CLOSE_FAILED';
@@ -35,5 +41,10 @@ export const closeFailed = (e: Error): CloseFailedAction => ({
 
 export interface ClosedAction extends BaseAction {
   type: 'CLOSED';
+  payload: { cause: CloseCause };
 }
-export const closed = (): ClosedAction => ({ type: 'CLOSED' });
+export const closed = (cause: CloseCause): ClosedAction => ({
+  type: 'CLOSED',
+  payload: { cause },
+  meta: { sendToBackground: true }
+});
