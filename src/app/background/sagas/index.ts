@@ -5,10 +5,11 @@ import externalMessage from './externalMessage';
 import theme from '../../theme';
 import error from '../../sagas/error';
 import listenActionsFromMessages from '../../sagas/listenActionsFromMessages';
-import options from './options';
 import refreshMatchingContexts from './refreshMatchingContexts';
 import refreshContributors from './refreshContributors';
 import watchBrowserActionSaga from './browserAction.saga';
+import openOptionsWhenRequestedSaga from './openOptions.saga';
+import sendContributorsToOptionsSaga from './sendContributorsToOptions.saga';
 
 export default function* rootSaga() {
   yield all([
@@ -19,7 +20,8 @@ export default function* rootSaga() {
     fork(listenActionsFromMessages('background')),
     fork(externalMessage),
     fork(watchBrowserActionSaga),
-    fork(options),
+    fork(openOptionsWhenRequestedSaga),
+    fork(sendContributorsToOptionsSaga),
     fork(error)
   ]);
 }

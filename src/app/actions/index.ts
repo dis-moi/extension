@@ -43,6 +43,7 @@ import {
   ListeningActionsReadyAction
 } from './webext';
 import { From } from '../../webext/From';
+import { SubscribeAction, UnsubscribeAction } from './subscription';
 
 type MessageSender = chrome.runtime.MessageSender;
 
@@ -138,4 +139,6 @@ export type AppAction =
   | OptionsTabOpened
   | ListeningActionsReadyAction
   | ListenActionFailedAction
+  | SubscribeAction
+  | UnsubscribeAction
   | (LocationChangeAction & { meta?: ActionMeta });

@@ -1,26 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Contributor } from 'app/lmem/contributor';
-import Logo from 'components/atoms/icons/Logo';
+import { StatefulContributor } from 'app/lmem/contributor';
 import Button from 'components/atoms/Button';
 import CenterContainer from 'components/atoms/CenterContainer';
-import ContributorNav from 'components/organisms/ContributorNav/ContributorNav';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
 import ContributorCompact from 'components/organisms/Contributor/ContributorCompact';
-import Wrapper from '../ScreenWrapper';
 import withConnect from './withConnect';
 import Empty from './Empty';
 
-const BullesLogo = styled.div`
-  width: 90px;
-  height: auto;
-  margin-top: 30px;
-  margin-bottom: 30px;
-`;
-
-const ContributorsWidth = styled.section``;
-
-const Contributors2col = styled.div`
+const TwoColumns = styled.div`
   display: grid;
   grid-column-gap: 55px;
   grid-template-columns: auto 290px;
@@ -33,12 +21,12 @@ const ContributorsList = styled.div`
   grid-row-gap: 40px;
 `;
 
-const ContributorsAside = styled.aside`
+const Sidebar = styled.aside`
   ${Button} {
     margin-top: 10px;
   }
 `;
-const ContributorsAsideTitle = styled.h2`
+const SidebarTitle = styled.h2`
   margin: 0 0 5px;
   font-size: 20px;
   color: ${props => props.theme.activeColor};
@@ -46,50 +34,55 @@ const ContributorsAsideTitle = styled.h2`
 `;
 
 interface Props {
-  subscriptions: Contributor[];
-  suggestions6: Contributor[];
+  subscriptions: StatefulContributor[];
+  suggestions6: StatefulContributor[];
+  subscribe: (contributor: StatefulContributor) => () => void;
+  unsubscribe: (contributor: StatefulContributor) => () => void;
+  goToSuggestions: () => void;
 }
 
-const SubscriptionsScreen = ({ subscriptions, suggestions6 }: Props) => (
-  <Wrapper>
-    <BullesLogo>
-      <Logo />
-    </BullesLogo>
+export const SubscriptionsScreen = ({
+  subscriptions,
+  suggestions6,
+  subscribe,
+  unsubscribe,
+  goToSuggestions
+}: Props) => (
+  <>
+    {subscriptions.length === 0 ? (
+      <Empty goToSuggestions={goToSuggestions} />
+    ) : (
+      <TwoColumns>
+        <ContributorsList>
+          {subscriptions.map(contributor => (
+            <ContributorLarge
+              key={contributor.id}
+              contributor={contributor}
+              onSubscribe={subscribe(contributor)}
+              onUnsubscribe={unsubscribe(contributor)}
+            />
+          ))}
+        </ContributorsList>
 
-    <ContributorNav />
-
-    {subscriptions.length ? (
-      <Contributors2col>
-        <ContributorsWidth>
-          <ContributorsList>
-            {subscriptions.map(contributor => (
-              <ContributorLarge
-                key={contributor.id}
-                contributor={contributor}
-              />
-            ))}
-          </ContributorsList>
-        </ContributorsWidth>
-
-        <ContributorsAside>
-          <ContributorsAsideTitle>Suggestions</ContributorsAsideTitle>
+        <Sidebar>
+          <SidebarTitle>Suggestions</SidebarTitle>
 
           {suggestions6.map(contributor => (
             <ContributorCompact
               key={contributor.id}
               contributor={contributor}
+              onSubscribe={subscribe(contributor)}
+              onUnsubscribe={unsubscribe(contributor)}
             />
           ))}
 
           <CenterContainer>
             <Button>Voir plus</Button>
           </CenterContainer>
-        </ContributorsAside>
-      </Contributors2col>
-    ) : (
-      <Empty />
+        </Sidebar>
+      </TwoColumns>
     )}
-  </Wrapper>
+  </>
 );
 
 export default withConnect(SubscriptionsScreen);

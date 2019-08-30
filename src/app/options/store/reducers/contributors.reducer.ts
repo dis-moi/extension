@@ -1,7 +1,7 @@
-import { Contributor } from 'app/lmem/contributor';
+import { StatefulContributor } from 'app/lmem/contributor';
 import { AppAction } from 'app/actions';
 
-export type ContributorsState = Contributor[];
+export type ContributorsState = StatefulContributor[];
 
 const contributorsReducer = (
   state: ContributorsState = [],
