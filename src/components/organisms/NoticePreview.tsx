@@ -15,7 +15,7 @@ interface NoticePreviewProps {
 class NoticePreview extends PureComponent<NoticePreviewProps> {
   render() {
     const {
-      contribution: { intention, message, created, email },
+      contribution: { intention, message, created, contributor },
       children
     } = this.props;
 
@@ -24,7 +24,7 @@ class NoticePreview extends PureComponent<NoticePreviewProps> {
         <DetailsContent>
           <DetailsMeta>
             <Date>Le {format(created, 'DD/MM/YYYY')}</Date>
-            <Contributor>{email} :</Contributor>
+            <Contributor>{contributor.name} :</Contributor>
             <IntentionIcon active intention={intention} />
           </DetailsMeta>
 
