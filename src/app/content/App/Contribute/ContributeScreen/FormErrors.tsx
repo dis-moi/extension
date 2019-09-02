@@ -12,7 +12,7 @@ export const FormErrors = ({ errors, globalError }: FormErrorsProps) => {
       return <Error>{errors[0]}</Error>;
     }
 
-    return <Error>{globalError}</Error>;
+    return globalError ? <Error>{globalError}</Error> : null;
   }
 
   return null;
