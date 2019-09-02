@@ -5,8 +5,7 @@ import styled from 'styled-components';
 import { Contribution } from 'app/lmem/notice';
 import NoticePreview from 'components/organisms/NoticePreview';
 import { BorderButton, Button } from 'components/atoms';
-import { Form } from 'components/atoms/Forms';
-import FormErrors from '../ContributeScreen/FormErrors';
+import { Error, Form } from 'components/atoms/Forms';
 import { handleFormSubmit } from 'app/utils/form';
 import withReduxForm from './withReduxForm';
 
@@ -46,8 +45,8 @@ class PreviewScreen extends Component<PreviewScreenProps> {
       submitting,
       modify,
       publish,
-      error,
-      errors
+      dirty,
+      error
     } = this.props;
 
     return (
@@ -63,8 +62,8 @@ class PreviewScreen extends Component<PreviewScreenProps> {
           >
             Publier
           </BorderButton>
-          <FormErrors errors={errors} globalError={error} />
         </PreviewForm>
+        {dirty && error && <Error>{error}</Error>}
       </NoticePreview>
     );
   }
