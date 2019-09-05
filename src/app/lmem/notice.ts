@@ -17,7 +17,6 @@ export interface Notice {
 }
 
 export interface Contribution {
-  [key: string]: any;
   url: string;
   created: Date;
   intention: Intention;

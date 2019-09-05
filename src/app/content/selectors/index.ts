@@ -64,7 +64,7 @@ export const getExtensionInstallationDate = createSelector(
 
 export const getTab = (state: ContentState) => state.tab;
 
-export const getURL = (state: State) => {
+export const getURL = (state: ContentState) => {
   const tab = getTab(state);
   return tab ? tab.url : '';
 };
@@ -76,22 +76,22 @@ export const isNoticeContext = (state: ContentState) => {
   return pathname.includes('notice') || pathname.includes('preview');
 };
 
-export const getContribution = (state: State): Contribution =>
+export const getContribution = (state: ContentState): Contribution =>
   // @ts-ignore
-  getFormValues('contribution')(state);
+  getFormValues('contribution')(state); // eslint-disable-line
 
-export const getFormState = (formName: string) => (state: State) =>
+export const getFormState = (formName: string) => (state: ContentState) =>
   state.form[formName];
 
 export const getFormRegisteredFields = (formName: string) => (
-  state: State
+  state: ContentState
 ): RegisteredFieldState[] => {
   const form = getFormState(formName)(state);
   return R.path(['registeredFields'], form) || [];
 };
 
 export const getFlatFormErrors = (formName: string) => (
-  state: State
+  state: ContentState
 ): string[] => {
   const fieldsPaths = getRegisteredFieldsPaths(
     getFormRegisteredFields(formName)(state)
@@ -105,7 +105,7 @@ export const getFlatFormErrors = (formName: string) => (
       const touched = R.path(fieldPath.concat('touched'), metas);
 
       // @ts-ignore
-      return touched && errorMessage ? errorMessage.toString() : undefined;
+      return touched && errorMessage ? errorMessage.toString() : undefined; // eslint-disable-line
     }, {})
     .filter(errorMessage => errorMessage);
 };

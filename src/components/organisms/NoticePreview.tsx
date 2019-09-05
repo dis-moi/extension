@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { format } from 'date-fns';
-import { Contributor, CenterContainer } from '../atoms';
+import { Contributor } from '../atoms';
 import DetailsContainer from './NoticeDetails/DetailsContainer';
 import DetailsContent from './NoticeDetails/DetailsContent';
 import DetailsMeta from './NoticeDetails/DetailsMeta';

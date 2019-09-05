@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { replace } from 'connected-react-router';
 
 import { close } from 'app/actions/ui';
-import { State } from 'app/content/store';
+import { ContentState } from 'app/content/store';
 import { getContribution } from 'app/content/selectors';
 
 const mapDispatchToProps = {
@@ -11,7 +11,7 @@ const mapDispatchToProps = {
 };
 
 export default connect(
-  (state: State) => ({
+  (state: ContentState) => ({
     contribution: getContribution(state)
   }),
   mapDispatchToProps

@@ -1,4 +1,4 @@
-namespace SendInBlue {
+declare module 'SendInBlue' {
   export interface PersonEmail {
     name?: string;
     email: string;
