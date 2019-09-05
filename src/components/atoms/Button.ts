@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Theme } from '../../app/theme';
 
 export interface ButtonProps {
-  as?: string | React.ComponentType<any>;
+  as?: string | React.ComponentType<{}>;
   theme?: Theme;
   loading?: boolean;
   href?: string;

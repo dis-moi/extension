@@ -3,6 +3,7 @@ import { InjectedFormProps } from 'redux-form';
 import styled from 'styled-components';
 
 import { Contribution } from 'app/lmem/notice';
+import { FormMeta } from 'app/actions';
 import NoticePreview from 'components/organisms/NoticePreview';
 import { BorderButton, Button } from 'components/atoms';
 import { Error, Form } from 'components/atoms/Forms';
@@ -21,7 +22,7 @@ const PreviewForm = styled(Form)`
 export interface PreviewScreenOwnProps {
   contribution: Contribution;
   modify: () => void;
-  publish: (contribution: Contribution, meta: any) => void;
+  publish: (contribution: Contribution, meta: FormMeta) => void;
   errors: string[];
 }
 

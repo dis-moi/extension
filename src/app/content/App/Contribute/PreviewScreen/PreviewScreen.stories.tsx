@@ -18,7 +18,6 @@ storiesOf('screens/Contribute/Preview', module)
       contribution={{
         message:
           "Je tiens à dire que la canicule, c'est une bonne chose pour les vieux.",
-        name: 'Johan Dufour',
         url: 'https://weather.com',
         contributor: {
           email: 'johan.dufour@gmail.com',

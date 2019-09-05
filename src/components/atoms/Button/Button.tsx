@@ -21,7 +21,7 @@ export interface ButtonProps extends ButtonContainerProps {
   loading?: boolean;
   children?: ReactNode | string;
   disabled?: boolean;
-  dangerouslySetInnerHTML?: any;
+  dangerouslySetInnerHTML?: { __html: string };
 }
 
 export const ButtonContainer = styled.button<ButtonContainerProps>`

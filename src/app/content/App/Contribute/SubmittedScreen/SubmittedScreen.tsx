@@ -9,7 +9,6 @@ import { Contribution } from 'app/lmem/notice';
 
 export interface ContributionSubmittedScreenProps {
   contribution: Contribution;
-  close: () => void;
   goBack: () => void;
 }
 

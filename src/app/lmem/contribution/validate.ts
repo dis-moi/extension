@@ -24,7 +24,7 @@ export default (contribution: Contribution): ValidationErrors => {
   const { contributor } = contribution;
   if (contributor && contributor.email && !isEmail(contributor.email)) {
     // @ts-ignore
-    errors.contributor.email = "L'email n'est pas valide";
+    errors.contributor.email = "L'email n'est pas valide"; // eslint-disable-line
   }
 
   if (Object.keys(errors.contributor).length === 0) {
