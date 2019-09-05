@@ -1,21 +1,29 @@
-import { call, delay, put } from 'redux-saga/effects';
+import { call, delay, put, fork, takeLatest, select } from 'redux-saga/effects';
+import fetchMatchingContexts from 'api/fetchMatchingContexts';
 import {
   receivedMatchingContexts,
   refreshMatchingContextsFailed
 } from 'app/actions';
-import fetchMatchingContexts from 'api/fetchMatchingContexts';
+import { SUBSCRIBE, UNSUBSCRIBE } from 'app/constants/ActionTypes';
+import { getSubscriptions } from '../selectors/subscriptions.selectors';
 
 function* refreshMatchingContexts() {
   try {
-    yield put(receivedMatchingContexts(yield call(fetchMatchingContexts)));
+    yield put(
+      receivedMatchingContexts(
+        yield call(fetchMatchingContexts, yield select(getSubscriptions))
+      )
+    );
   } catch (e) {
     yield put(refreshMatchingContextsFailed(e));
   }
 }
 
-export default function* refreshMatchingContextsSaga() {
-  yield call(refreshMatchingContexts);
+function* refreshWhenSubscriptionsChanged() {
+  yield takeLatest([SUBSCRIBE, UNSUBSCRIBE], refreshMatchingContexts);
+}
 
+function* refreshEveryInterval() {
   const refreshInterval = Number(process.env.REFRESH_MC_INTERVAL);
 
   if (refreshInterval > 0) {
@@ -35,4 +43,11 @@ export default function* refreshMatchingContextsSaga() {
       'assuming "process.env.REFRESH_MC_INTERVAL" is deliberately not defined.'
     );
   }
+}
+
+export default function* refreshMatchingContextsSaga() {
+  yield call(refreshMatchingContexts);
+
+  yield fork(refreshWhenSubscriptionsChanged);
+  yield fork(refreshEveryInterval);
 }
