@@ -77,8 +77,7 @@ export const isNoticeContext = (state: ContentState) => {
 };
 
 export const getContribution = (state: ContentState): Contribution =>
-  // @ts-ignore
-  getFormValues('contribution')(state); // eslint-disable-line
+  getFormValues('contribution')(state) as Contribution;
 
 export const getFormState = (formName: string) => (state: ContentState) =>
   state.form[formName];
@@ -90,22 +89,28 @@ export const getFormRegisteredFields = (formName: string) => (
   return R.path(['registeredFields'], form) || [];
 };
 
+const getFieldPathErrorMessage = (state: ContentState, formName: string) => (
+  fieldPath: string[]
+) => R.path<string>(fieldPath, getFormSyncErrors(formName)(state));
+
+const isFieldPathTouched = (state: ContentState, formName: string) => (
+  fieldPath: string[]
+) =>
+  R.path<boolean>(fieldPath.concat('touched'), getFormMeta(formName)(state)) ||
+  false;
+
 export const getFlatFormErrors = (formName: string) => (
   state: ContentState
-): string[] => {
-  const fieldsPaths = getRegisteredFieldsPaths(
-    getFormRegisteredFields(formName)(state)
-  );
-  const metas = getFormMeta(formName)(state);
-  const syncErrors = getFormSyncErrors(formName)(state);
-
-  return fieldsPaths
-    .map(fieldPath => {
-      const errorMessage = R.path(fieldPath, syncErrors);
-      const touched = R.path(fieldPath.concat('touched'), metas);
-
-      // @ts-ignore
-      return touched && errorMessage ? errorMessage.toString() : undefined; // eslint-disable-line
-    }, {})
-    .filter(errorMessage => errorMessage);
-};
+): string[] =>
+  R.pipe(
+    getFormRegisteredFields(formName),
+    getRegisteredFieldsPaths,
+    R.map(
+      R.ifElse(
+        isFieldPathTouched(state, formName),
+        getFieldPathErrorMessage(state, formName),
+        R.always(undefined)
+      )
+    ),
+    R.filter(Boolean)
+  )(state);
