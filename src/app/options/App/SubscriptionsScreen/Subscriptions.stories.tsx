@@ -12,7 +12,7 @@ storiesOf('screens/SubscriptionsScreen', module)
         { ...generateContributor(), subscribed: true },
         generateContributor()
       ]}
-      suggestions6={[
+      suggestions={[
         generateContributor(),
         { ...generateContributor(), subscribed: true },
         generateContributor()
@@ -25,7 +25,7 @@ storiesOf('screens/SubscriptionsScreen', module)
   .add('subcriptions empty', () => (
     <SubscriptionsScreen
       subscriptions={[]}
-      suggestions6={[
+      suggestions={[
         generateContributor(),
         { ...generateContributor(), subscribed: true },
         generateContributor()
