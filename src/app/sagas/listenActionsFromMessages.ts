@@ -12,7 +12,7 @@ const listenActionsFromMessages = (from: From) =>
 
     yield put(
       listeningActionsReady(from, {
-        sendToBackground: from === 'content' || from === 'settings'
+        sendToBackground: from === 'content' || from === 'options'
       })
     );
 

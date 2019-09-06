@@ -9,7 +9,7 @@ export default (history: MemoryHistory) =>
     contributors: contributorsReducer
   });
 
-export interface SettingsState {
+export interface OptionsState {
   router: RouterState;
   contributors: ContributorsState;
 }

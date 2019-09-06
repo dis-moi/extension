@@ -2,7 +2,7 @@ import { Action } from 'redux';
 import { BaseAction } from '../app/actions';
 import * as R from 'ramda';
 import assocTabIfNotGiven from './assocTabIfNotGiven';
-import { getSettingsUrl } from './openSettingsTab';
+import { getOptionsUrl } from './openOptionsTab';
 
 type MessageSender = chrome.runtime.MessageSender;
 type Emit = (action: Action) => void;
@@ -10,10 +10,10 @@ type Emit = (action: Action) => void;
 const isAction = (x: unknown): x is Action =>
   typeof x === 'object' && 'type' in (x as object);
 
-const isSettingsPage = (url: string): boolean => url.includes(getSettingsUrl());
+const isOptionsPage = (url: string): boolean => url.includes(getOptionsUrl());
 
 const getTabContext = (tab?: chrome.tabs.Tab) =>
-  tab && tab.url && isSettingsPage(tab.url) ? 'settings' : 'content';
+  tab && tab.url && isOptionsPage(tab.url) ? 'options' : 'content';
 
 const addSenderToAction = <A extends BaseAction>(sender: MessageSender) =>
   R.pipe<A, A, A>(

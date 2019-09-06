@@ -12,5 +12,5 @@ storiesOf('screens/Subscriptions', module)
     </Router>
   ))
   .add('normal', () => (
-    <Subscriptions settingsRequested={action('settingsRequested')} />
+    <Subscriptions optionsRequested={action('optionsRequested')} />
   ));
