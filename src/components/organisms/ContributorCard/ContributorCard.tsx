@@ -9,7 +9,11 @@ interface Props {
 
 export const ContributorNav = ({ contributor }: Props) => (
   <Container>
-    <ContributorLarge contributor={contributor} />
+    <ContributorLarge
+      contributor={contributor}
+      onSubscribe={() => {}}
+      onUnsubscribe={() => {}}
+    />
   </Container>
 );
 

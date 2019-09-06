@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Contributor } from 'app/lmem/contributor';
+import { StatefulContributor } from 'app/lmem/contributor';
 import Avatar from 'components/atoms/Avatar/Avatar';
 import UserName from 'components/atoms/UserName/UserName';
 import Stat from 'components/atoms/Stat/Stat';
@@ -49,9 +49,15 @@ const StatsWrapper = styled.div`
 `;
 
 interface Props {
-  contributor: Contributor;
+  contributor: StatefulContributor;
+  onSubscribe: () => void;
+  onUnsubscribe: () => void;
 }
-export const ContributorCompact = ({ contributor }: Props) => (
+export const ContributorCompact = ({
+  contributor,
+  onSubscribe,
+  onUnsubscribe
+}: Props) => (
   <ContributorWrapper>
     <Avatar />
 
@@ -63,7 +69,11 @@ export const ContributorCompact = ({ contributor }: Props) => (
       </StatsWrapper>
     </ContributorInfos>
 
-    <ContributorButton />
+    <ContributorButton
+      subscribed={contributor.subscribed}
+      onSubscribe={onSubscribe}
+      onUnsubscribe={onUnsubscribe}
+    />
   </ContributorWrapper>
 );
 

@@ -122,6 +122,7 @@ const waitForTabReadySaga = (tab: Tab) =>
 export function* publishToTabSaga(action: TabAction) {
   const tab = action.meta.tab;
   const tabs: { [id: string]: Tab } = yield select(getTabs);
+  if (!tabs[tab.id]) return;
   if (!tabs[tab.id].ready) {
     yield waitForTabReadySaga(tab);
   }

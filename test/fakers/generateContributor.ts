@@ -16,8 +16,8 @@ export const generateContributor = ({
   name: name || Faker.name.findName(),
   contributions: contributions || Faker.random.number(),
   avatar: {
-    small: { url: 'http://small' },
-    normal: { url: 'http://normal' },
-    large: { url: 'http://large' }
+    small: { url: Faker.image.avatar() },
+    normal: { url: Faker.image.avatar() },
+    large: { url: Faker.image.avatar() }
   }
 });

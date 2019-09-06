@@ -1,19 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Contributor } from 'app/lmem/contributor';
-import Logo from 'components/atoms/icons/Logo';
-import ContributorNav from 'components/organisms/ContributorNav/ContributorNav';
+import { StatefulContributor } from 'app/lmem/contributor';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
-import Wrapper from '../ScreenWrapper';
 import BottomLine from './BottomLine';
 import withConnect from './withConnect';
-
-const BullesLogo = styled.div`
-  width: 90px;
-  height: auto;
-  margin-top: 30px;
-  margin-bottom: 30px;
-`;
 
 const ContributorsWidth = styled.section`
   padding-bottom: 250px;
@@ -27,27 +17,32 @@ const ContributorsList = styled.div`
 `;
 
 interface Props {
-  suggestions: Contributor[];
+  suggestions: StatefulContributor[];
+  subscribe: (contributor: StatefulContributor) => () => void;
+  unsubscribe: (contributor: StatefulContributor) => () => void;
 }
 
-const SuggestionsScreen = ({ suggestions }: Props) => (
-  <Wrapper>
-    <BullesLogo>
-      <Logo />
-    </BullesLogo>
-
+export const SuggestionsScreen = ({
+  suggestions,
+  subscribe,
+  unsubscribe
+}: Props) => (
+  <>
     <ContributorsWidth>
-      <ContributorNav />
-
       <ContributorsList>
         {suggestions.map(contributor => (
-          <ContributorLarge key={contributor.id} contributor={contributor} />
+          <ContributorLarge
+            key={contributor.id}
+            contributor={contributor}
+            onSubscribe={subscribe(contributor)}
+            onUnsubscribe={unsubscribe(contributor)}
+          />
         ))}
       </ContributorsList>
     </ContributorsWidth>
 
     <BottomLine />
-  </Wrapper>
+  </>
 );
 
 export default withConnect(SuggestionsScreen);
