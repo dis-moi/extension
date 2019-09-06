@@ -5,7 +5,7 @@ import {
   contributorsTransmitted,
   ContributorsTransmittedAction
 } from '../../../actions';
-import { generateContributor } from '../../../../../test/fakers/generateContributor';
+import { generateContributor } from 'test/fakers/generateContributor';
 
 describe('options > reducers > contributors', function() {
   it('is empty initially', () => {

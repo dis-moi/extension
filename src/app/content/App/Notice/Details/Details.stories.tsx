@@ -15,7 +15,7 @@ import {
   defaultMessage,
   defaultSourceUrl,
   generateStatefulNotice
-} from '../../../../../../test/fakers/generateNotice';
+} from 'test/fakers/generateNotice';
 import { Details } from '.';
 import { intentions } from '../../../../lmem/intention';
 import { subMonths } from 'date-fns';

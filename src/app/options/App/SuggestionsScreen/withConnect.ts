@@ -1,18 +1,12 @@
-import { connect } from 'react-redux';
-import { OptionsState } from '../../store/reducers';
-import {
-  getContributorsSuggestions,
-  makeGetNContributorsSuggestions
-} from '../../store/selectors/contributors.selectors';
 import { Dispatch } from 'redux';
-import { StatefulContributor } from '../../../lmem/contributor';
-import { subscribe, unsubscribe } from '../../../actions/subscription';
-
-const get6Suggestions = makeGetNContributorsSuggestions(6);
+import { connect } from 'react-redux';
+import { StatefulContributor } from 'app/lmem/contributor';
+import { subscribe, unsubscribe } from 'app/actions/subscription';
+import { OptionsState } from '../../store/reducers';
+import { getContributorsSuggestions } from '../../store/selectors/contributors.selectors';
 
 const mapStateToProps = (state: OptionsState) => ({
-  suggestions: getContributorsSuggestions(state),
-  suggestions6: get6Suggestions(state)
+  suggestions: getContributorsSuggestions(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

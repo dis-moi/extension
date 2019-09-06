@@ -35,7 +35,7 @@ const SidebarTitle = styled.h2`
 
 interface Props {
   subscriptions: StatefulContributor[];
-  suggestions6: StatefulContributor[];
+  suggestions: StatefulContributor[];
   subscribe: (contributor: StatefulContributor) => () => void;
   unsubscribe: (contributor: StatefulContributor) => () => void;
   goToSuggestions: () => void;
@@ -43,7 +43,7 @@ interface Props {
 
 export const SubscriptionsScreen = ({
   subscriptions,
-  suggestions6,
+  suggestions,
   subscribe,
   unsubscribe,
   goToSuggestions
@@ -67,7 +67,7 @@ export const SubscriptionsScreen = ({
         <Sidebar>
           <SidebarTitle>Suggestions</SidebarTitle>
 
-          {suggestions6.map(contributor => (
+          {suggestions.map(contributor => (
             <ContributorCompact
               key={contributor.id}
               contributor={contributor}

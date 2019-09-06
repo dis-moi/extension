@@ -2,7 +2,7 @@
 import { Location } from 'history';
 import { expect } from 'chai';
 import { OptionsState } from '../reducers';
-import { generateContributor } from '../../../../../test/fakers/generateContributor';
+import { generateContributor } from 'test/fakers/generateContributor';
 import {
   getContributors,
   getContributorsSuggestions,

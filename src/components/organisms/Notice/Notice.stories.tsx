@@ -13,7 +13,7 @@ import Notice from './Notice';
 import {
   defaultMessage,
   generateStatefulNotice
-} from '../../../../test/fakers/generateNotice';
+} from 'test/fakers/generateNotice';
 import Faker from 'faker';
 import { intentions } from '../../../app/lmem/intention';
 import Title from './Title';

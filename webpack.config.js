@@ -12,7 +12,10 @@ module.exports = function webpack(env = {}, argv = {}) {
   return {
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.jsx'],
-      modules: [srcPath, 'node_modules']
+      modules: [srcPath, 'node_modules'],
+      alias: {
+        test: path.resolve(__dirname, 'test')
+      }
     },
     entry: entry(env, srcPath),
     output: {

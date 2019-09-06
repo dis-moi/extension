@@ -13,7 +13,7 @@ const get6Suggestions = makeGetNContributorsSuggestions(6);
 
 const mapStateToProps = (state: OptionsState) => ({
   subscriptions: getSubscriptions(state),
-  suggestions6: get6Suggestions(state)
+  suggestions: get6Suggestions(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

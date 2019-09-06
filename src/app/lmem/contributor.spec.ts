@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import { expect } from 'chai';
 import { contributorIsSubscribed, StatefulContributor } from './contributor';
-import { generateContributor } from '../../../test/fakers/generateContributor';
+import { generateContributor } from 'test/fakers/generateContributor';
 
 describe('lmem > contributor > contributorIsSubscribed', () => {
   it("returns true if we're subscribed to it", () => {
