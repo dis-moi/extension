@@ -1,4 +1,6 @@
+import { Action } from 'redux';
 import { LocationChangeAction } from 'connected-react-router';
+import Tab from 'app/lmem/Tab';
 import { BrowserActionClickedAction } from './browser';
 import {
   TabCreatedAction,
@@ -7,10 +9,9 @@ import {
 } from './tabsLifecycle';
 import { InstalledAction } from './install';
 import {
-  RefreshMatchingContextsAction,
   RefreshMatchingContextsFailedAction,
   ReceivedMatchingContextsAction
-} from './kraftBackend';
+} from './refreshMatchingContexts';
 import {
   InitAction,
   MatchContextAction,
@@ -27,13 +28,39 @@ import {
   NoticesFoundAction,
   MarkNoticeReadAction
 } from './notices';
-import { Action } from 'redux';
-import Tab from 'app/lmem/Tab';
 import {
   RemoveUITitleAction,
   SetUITitleAction
 } from '../content/actions/ui/title';
+import { OptionsRequestedAction, OptionsTabOpened } from './options';
+import {
+  ContributorsTransmittedAction,
+  ReceivedContributorsAction,
+  RefreshContributorsFailedAction
+} from './refreshContributors';
+import {
+  ListenActionFailedAction,
+  ListeningActionsReadyAction
+} from './webext';
+import { From } from '../../webext/From';
+import { SubscribeAction, UnsubscribeAction } from './subscription';
+
 type MessageSender = chrome.runtime.MessageSender;
+
+export * from './badge';
+export * from './browser';
+export * from './filters';
+export * from './install';
+export * from './notices';
+export * from './refreshMatchingContexts';
+export * from './refreshContributors';
+export * from './options';
+export * from './tabs';
+export * from './tabsLifecycle';
+export * from './ui';
+export * from './updateDraftNotices';
+export * from './subscription';
+export * from './webext';
 
 export interface StandardAction extends Action {
   payload?: unknown;
@@ -77,6 +104,8 @@ export interface ActionMeta {
   action?: unknown;
   external?: boolean;
   sender?: MessageSender;
+  from?: From;
+  tab?: Tab;
 }
 
 export type AppAction =
@@ -86,11 +115,13 @@ export type AppAction =
   | TabUpdatedAction
   | TabRemovedAction
   | InstalledAction
-  | RefreshMatchingContextsAction
   | RefreshMatchingContextsFailedAction
   | ReceivedMatchingContextsAction
   | MatchContextAction
   | MatchContextFailureAction
+  | ReceivedContributorsAction
+  | RefreshContributorsFailedAction
+  | ContributorsTransmittedAction
   | ContextTriggeredAction
   | ContextTriggerFailureAction
   | NoticeDisplayedAction
@@ -105,4 +136,10 @@ export type AppAction =
   | MarkNoticeReadAction
   | SetUITitleAction
   | RemoveUITitleAction
+  | OptionsRequestedAction
+  | OptionsTabOpened
+  | ListeningActionsReadyAction
+  | ListenActionFailedAction
+  | SubscribeAction
+  | UnsubscribeAction
   | (LocationChangeAction & { meta?: ActionMeta });

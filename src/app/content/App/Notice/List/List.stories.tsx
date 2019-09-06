@@ -6,7 +6,7 @@ import { withKnobs, boolean, text, select } from '@storybook/addon-knobs/react';
 import {
   defaultMessage,
   generateStatefulNotice
-} from '../../../../../../test/fakers/generateNotice';
+} from 'test/fakers/generateNotice';
 import Faker from 'faker';
 import { intentions } from '../../../../lmem/intention';
 import Notification from 'components/organisms/Notification';

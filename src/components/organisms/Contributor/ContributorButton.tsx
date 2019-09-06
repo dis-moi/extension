@@ -15,18 +15,24 @@ const Container = styled.div`
 `;
 
 interface Props {
-  followed?: boolean;
+  subscribed?: boolean;
+  onSubscribe: () => void;
+  onUnsubscribe: () => void;
 }
 
-const ContributorButton = ({ followed }: Props) =>
-  followed ? (
-    <Container>
-      <BackgroundButton>Abonné</BackgroundButton>
-    </Container>
-  ) : (
-    <Container>
-      <BorderButton>Suivre</BorderButton>
-    </Container>
-  );
+const ContributorButton = ({
+  subscribed,
+  onSubscribe,
+  onUnsubscribe
+}: Props) => (
+  <Container>
+    {subscribed && (
+      <BackgroundButton onClick={onUnsubscribe}>Abonné</BackgroundButton>
+    )}
+    {!subscribed && (
+      <BorderButton onClick={onSubscribe}>S&apos;abonner</BorderButton>
+    )}
+  </Container>
+);
 
 export default ContributorButton;

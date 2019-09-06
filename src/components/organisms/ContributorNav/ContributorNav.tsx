@@ -1,13 +1,26 @@
 import React from 'react';
-import BackgroundButton from 'components/atoms/Button/BackgroundButton';
 import Tab from 'components/atoms/Tab/Tab';
+import { OptionsScreen } from 'app/options/screens';
 import Container from './Container';
 
-export const ContributorNav = () => (
+interface Props {
+  activeTab: OptionsScreen | null;
+  goToSubscriptions: () => void;
+  goToSuggestions: () => void;
+}
+
+export const ContributorNav = ({
+  activeTab,
+  goToSubscriptions,
+  goToSuggestions
+}: Props) => (
   <Container>
-    <Tab active>Mes abonnements</Tab>
-    <Tab>Suggestions</Tab>
-    <BackgroundButton>Inviter un ami</BackgroundButton>
+    <Tab active={activeTab === 'subscriptions'} onClick={goToSubscriptions}>
+      Mes abonnements
+    </Tab>
+    <Tab active={activeTab === 'suggestions'} onClick={goToSuggestions}>
+      Suggestions
+    </Tab>
   </Container>
 );
 

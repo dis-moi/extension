@@ -8,7 +8,7 @@ import Faker from 'faker';
 import {
   defaultSourceUrl,
   generateStatefulNotice
-} from '../../../../test/fakers/generateNotice';
+} from 'test/fakers/generateNotice';
 import { boolean, date, number, text } from '@storybook/addon-knobs';
 
 const defaultContributorName = Faker.name.findName();

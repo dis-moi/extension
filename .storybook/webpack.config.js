@@ -14,6 +14,11 @@ module.exports = storybookBaseConfig => {
   storybookBaseConfig.resolve.modules.push(
     path.resolve(__dirname, '..', 'src')
   );
+  storybookBaseConfig.resolve.alias.test = path.resolve(
+    __dirname,
+    '..',
+    'test'
+  );
   storybookBaseConfig.plugins.push(...basePlugins(env, 'development'));
   storybookBaseConfig.stats = require('../webpack/config.stats');
   return storybookBaseConfig;

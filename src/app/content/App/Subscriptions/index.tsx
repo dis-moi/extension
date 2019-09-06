@@ -4,10 +4,19 @@ import withTitle from 'app/hocs/withTitle';
 import Illustration from './Illustration';
 import Container from './Container';
 import SubscriptionsData from './SubscriptionsData';
+import withConnect from './withConnect';
+import { compose } from 'redux';
 
-export const Subscriptions = () => (
+interface SubscriptionsScreenProps {
+  optionsRequested: () => void;
+}
+
+export const Subscriptions = ({
+  optionsRequested
+}: SubscriptionsScreenProps) => (
   <Container>
     <Illustration />
+
     <SubscriptionsData>
       <div>
         <span>5</span>
@@ -27,8 +36,11 @@ export const Subscriptions = () => (
       </div>
     </SubscriptionsData>
 
-    <BorderButton>Gérer</BorderButton>
+    <BorderButton onClick={optionsRequested}>Gérer</BorderButton>
   </Container>
 );
 
-export default withTitle<{}>('Abonnement')(Subscriptions);
+export default compose(
+  withConnect,
+  withTitle<SubscriptionsScreenProps>('Abonnement')
+)(Subscriptions);

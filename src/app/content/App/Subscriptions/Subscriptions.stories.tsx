@@ -11,4 +11,6 @@ storiesOf('screens/Subscriptions', module)
       <Notification close={action('close')}>{getStory()}</Notification>
     </Router>
   ))
-  .add('normal', () => <Subscriptions />);
+  .add('normal', () => (
+    <Subscriptions optionsRequested={action('optionsRequested')} />
+  ));
