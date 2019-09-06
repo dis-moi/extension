@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { BackgroundState } from '../reducers';
-import { generateContributor } from '../../../../test/fakers/generateContributor';
+import { generateContributor } from 'test/fakers/generateContributor';
 import { getContributorsWithSubscriptionState } from './subscriptions.selectors';
 import * as R from 'ramda';
 import { Contributor } from '../../lmem/contributor';

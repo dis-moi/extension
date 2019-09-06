@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import { expect } from 'chai';
 import { subscribe, SubscribeAction } from '../../actions/subscription';
-import { generateContributor } from '../../../../test/fakers/generateContributor';
+import { generateContributor } from 'test/fakers/generateContributor';
 import subscriptionsReducer, {
   SubscriptionsState
 } from './subscriptions.reducer';
