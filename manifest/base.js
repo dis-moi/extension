@@ -23,6 +23,7 @@ module.exports = Object.freeze({
   background: {
     page: 'background.html'
   },
+  options_page: 'options.html',
   browser_action: {
     default_icon: {
       '16': 'img/logo/16x16.png',
