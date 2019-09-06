@@ -32,7 +32,7 @@ import {
   RemoveUITitleAction,
   SetUITitleAction
 } from '../content/actions/ui/title';
-import { SettingsRequestedAction, SettingsTabOpened } from './settings';
+import { OptionsRequestedAction, OptionsTabOpened } from './options';
 import {
   ContributorsTransmittedAction,
   ReceivedContributorsAction,
@@ -53,7 +53,7 @@ export * from './install';
 export * from './notices';
 export * from './refreshMatchingContexts';
 export * from './refreshContributors';
-export * from './settings';
+export * from './options';
 export * from './tabs';
 export * from './tabsLifecycle';
 export * from './ui';
@@ -134,8 +134,8 @@ export type AppAction =
   | MarkNoticeReadAction
   | SetUITitleAction
   | RemoveUITitleAction
-  | SettingsRequestedAction
-  | SettingsTabOpened
+  | OptionsRequestedAction
+  | OptionsTabOpened
   | ListeningActionsReadyAction
   | ListenActionFailedAction
   | (LocationChangeAction & { meta?: ActionMeta });

@@ -5,7 +5,7 @@ import externalMessage from './externalMessage';
 import theme from '../../theme';
 import error from '../../sagas/error';
 import listenActionsFromMessages from '../../sagas/listenActionsFromMessages';
-import settings from './settings';
+import options from './options';
 import refreshMatchingContexts from './refreshMatchingContexts';
 import refreshContributors from './refreshContributors';
 import watchBrowserActionSaga from './browserAction.saga';
@@ -19,7 +19,7 @@ export default function* rootSaga() {
     fork(listenActionsFromMessages('background')),
     fork(externalMessage),
     fork(watchBrowserActionSaga),
-    fork(settings),
+    fork(options),
     fork(error)
   ]);
 }

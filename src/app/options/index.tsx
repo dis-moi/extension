@@ -3,7 +3,7 @@ import { configureSentryScope, initSentry, Scope } from '../utils/sentry';
 initSentry();
 
 configureSentryScope((scope: Scope) => {
-  scope.setTag('context', 'settings');
+  scope.setTag('context', 'options');
 });
 
 /* eslint-disable import/first */

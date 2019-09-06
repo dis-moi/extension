@@ -78,8 +78,8 @@ module.exports = (env = {}, argv = {}, outputPath) => {
       inject: false
     }),
     new HtmlWebpackPlugin({
-      template: './views/settings.pug',
-      filename: 'settings.html',
+      template: './views/options.pug',
+      filename: 'options.html',
       inject: false
     }),
     new AddAssetWebpackPlugin(

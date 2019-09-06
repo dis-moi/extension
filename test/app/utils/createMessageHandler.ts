@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
 // @ts-ignore
-global.chrome = { extension: { getURL: () => 'settings.html' } };
+global.chrome = { extension: { getURL: () => 'options.html' } };
 
 import { noticesFound } from 'app/actions/notices';
 import createMessageHandler from 'webext/createMessageHandler';
@@ -53,14 +53,14 @@ describe('createMessageHandler', () => {
     });
   });
 
-  it('emits the valid action with meta.from settings added', () => {
+  it('emits the valid action with meta.from options added', () => {
     const emit = sinon.fake();
     const handleMessage = createMessageHandler(emit);
     const action = noticesFound([], { id: 1, url: '' });
     const sender = {
       id: 'extensionId',
       tab: {
-        url: 'settings.html'
+        url: 'options.html'
       }
     };
 
@@ -71,7 +71,7 @@ describe('createMessageHandler', () => {
       ...action,
       meta: {
         tab: { id: 1, url: '' },
-        from: 'settings'
+        from: 'options'
       }
     });
   });

@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import { settingsRequested } from 'app/actions/settings';
+import { optionsRequested } from 'app/actions/options';
 
 const mapDispatchToProps = {
-  settingsRequested
+  optionsRequested: optionsRequested
 };
 
 export default connect(

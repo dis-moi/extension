@@ -30,7 +30,7 @@ interface Props {
   suggestions: Contributor[];
 }
 
-const Settings = ({ suggestions }: Props) => (
+const SuggestionsScreen = ({ suggestions }: Props) => (
   <Wrapper>
     <BullesLogo>
       <Logo />
@@ -50,4 +50,4 @@ const Settings = ({ suggestions }: Props) => (
   </Wrapper>
 );
 
-export default withConnect(Settings);
+export default withConnect(SuggestionsScreen);

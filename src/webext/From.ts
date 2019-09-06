@@ -1,1 +1,1 @@
-export type From = 'content' | 'settings' | 'background';
+export type From = 'content' | 'options' | 'background';

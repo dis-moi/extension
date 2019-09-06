@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { SettingsState } from '../../store/reducers';
+import { OptionsState } from '../../store/reducers';
 import {
   getContributorsSuggestions,
   makeGetNContributorsSuggestions
@@ -7,7 +7,7 @@ import {
 
 const get6Suggestions = makeGetNContributorsSuggestions(6);
 
-const mapStateToProps = (state: SettingsState) => ({
+const mapStateToProps = (state: OptionsState) => ({
   suggestions: getContributorsSuggestions(state),
   suggestions6: get6Suggestions(state)
 });
