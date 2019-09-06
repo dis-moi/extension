@@ -1,5 +1,5 @@
 import { BaseAction, ErrorAction } from '.';
-import { Contributor } from 'app/lmem/contributor';
+import { Contributor, StatefulContributor } from 'app/lmem/contributor';
 
 export interface ReceivedContributorsAction extends BaseAction {
   type: 'api/UPDATE_CONTRIBUTORS';
@@ -26,10 +26,10 @@ export const refreshContributorsFailed = (
 
 export interface ContributorsTransmittedAction extends BaseAction {
   type: 'CONTRIBUTORS_TRANSMITTED';
-  payload: { contributors: Contributor[] };
+  payload: { contributors: StatefulContributor[] };
 }
 export const contributorsTransmitted = (
-  contributors: Contributor[]
+  contributors: StatefulContributor[]
 ): ContributorsTransmittedAction => ({
   type: 'CONTRIBUTORS_TRANSMITTED',
   payload: { contributors },

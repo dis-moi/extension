@@ -22,3 +22,5 @@ export const OPEN = 'OPEN';
 export const OPENED = 'OPENED';
 export const CLOSE = 'CLOSE';
 export const CLOSED = 'CLOSED';
+export const SUBSCRIBE = 'SUBSCRIBE';
+export const UNSUBSCRIBE = 'UNSUBSCRIBE';

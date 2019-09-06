@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'components/atoms/Button';
 import styled from 'styled-components';
-import { Contributor } from 'app/lmem/contributor';
+import { StatefulContributor } from 'app/lmem/contributor';
 import Avatar from 'components/atoms/Avatar/Avatar';
 import AvatarDefault from 'components/atoms/icons/AvatarDefault';
 import UserName from 'components/atoms/UserName/UserName';
@@ -49,14 +49,24 @@ const ContributionExample = styled(Button)`
 `;
 
 interface Props {
-  contributor: Contributor;
+  contributor: StatefulContributor;
+  onSubscribe: () => void;
+  onUnsubscribe: () => void;
 }
 
-export const ContributorLarge = ({ contributor }: Props) => (
+export const ContributorLarge = ({
+  contributor,
+  onSubscribe,
+  onUnsubscribe
+}: Props) => (
   <ContributorCard>
     <ContributorWrapper>
       <Avatar>
-        <AvatarDefault />
+        {contributor.avatar && contributor.avatar.normal.url ? (
+          <img src={contributor.avatar.normal.url} alt={contributor.name} />
+        ) : (
+          <AvatarDefault />
+        )}
       </Avatar>
 
       <ContributorInfos>
@@ -74,7 +84,11 @@ export const ContributorLarge = ({ contributor }: Props) => (
           </Stat>
         </StatsWrapper>
 
-        <ContributorButton />
+        <ContributorButton
+          subscribed={contributor.subscribed}
+          onSubscribe={onSubscribe}
+          onUnsubscribe={onUnsubscribe}
+        />
       </ContributorInfos>
     </ContributorWrapper>
 

@@ -1,12 +1,25 @@
-import { Contributor } from 'app/lmem/contributor';
+import {
+  Contributor,
+  contributorIsSubscribed,
+  sortSuggestedContributors,
+  StatefulContributor
+} from 'app/lmem/contributor';
 import { OptionsState } from '../reducers';
 import { createSelector } from 'reselect';
 import * as R from 'ramda';
 
-export const getSubscriptions = (state: OptionsState): Contributor[] =>
+export const getContributors = (state: OptionsState): StatefulContributor[] =>
   state.contributors;
 
-export const getContributorsSuggestions = getSubscriptions;
+export const getSubscriptions = createSelector(
+  [getContributors],
+  R.filter(contributorIsSubscribed)
+);
+
+export const getContributorsSuggestions = createSelector(
+  [getContributors],
+  sortSuggestedContributors
+);
 
 export const makeGetNContributorsSuggestions = (n: number) =>
   createSelector<OptionsState, Contributor[], Contributor[]>(

@@ -29,7 +29,11 @@ const EmptyButton = styled(BackgroundButton)`
   text-transform: uppercase;
 `;
 
-const Empty = () => (
+interface Props {
+  goToSuggestions: () => void;
+}
+
+const Empty = ({ goToSuggestions }: Props) => (
   <Wrapper>
     <EmptyTitle>Aucun abonnement.</EmptyTitle>
 
@@ -38,7 +42,9 @@ const Empty = () => (
       <br /> partie “Suggestions”
     </EmptyText>
 
-    <EmptyButton>Choisir mes contributeurs</EmptyButton>
+    <EmptyButton onClick={goToSuggestions}>
+      Choisir mes contributeurs
+    </EmptyButton>
   </Wrapper>
 );
 

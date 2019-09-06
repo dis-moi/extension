@@ -1,6 +1,6 @@
 import chai from 'chai';
-import prefsReducer from '../../src/app/background/reducers/prefs';
-import resourcesReducer from '../../src/app/background/reducers/resources';
+import prefsReducer from '../../src/app/background/reducers/prefs.reducer';
+import resourcesReducer from '../../src/app/background/reducers/resources.reducer';
 import { receivedMatchingContexts } from '../../src/app/actions/refreshMatchingContexts';
 import {
   dismissNotice,
@@ -15,21 +15,7 @@ import { MatchingContext } from '../../src/app/lmem/matchingContext';
 
 const expect = chai.expect;
 
-describe('background reducer', function() {
-  it('initial state + receivedMatchingContexts => state with offers', () => {
-    const matchingContexts: MatchingContext[] = [
-      { noticeUrl: 'http://1', urlRegex: '/1/', noticeId: 42 },
-      { noticeUrl: 'http://2', urlRegex: '/2/', noticeId: 42 }
-    ];
-    const action = receivedMatchingContexts(matchingContexts);
-
-    const nextState = resourcesReducer(undefined, action);
-
-    expect(nextState.matchingContexts).to.have.lengthOf(
-      matchingContexts.length
-    );
-  });
-
+describe('prefsReducer reducer', function() {
   it('dismiss notice', () => {
     const action = dismissNotice(1);
 

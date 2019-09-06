@@ -19,10 +19,7 @@ const initialPrefs: PrefsState = {
   markedReadNotices: []
 };
 
-export function prefs(
-  state: PrefsState = initialPrefs,
-  action: AppAction
-): PrefsState {
+function prefsReducer(state: PrefsState = initialPrefs, action: AppAction) {
   switch (action.type) {
     case 'INSTALLED': {
       return { ...state, installationDetails: action.payload.details };
@@ -87,4 +84,4 @@ export function prefs(
   }
 }
 
-export default prefs;
+export default prefsReducer;

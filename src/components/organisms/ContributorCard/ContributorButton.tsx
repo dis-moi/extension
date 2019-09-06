@@ -3,10 +3,10 @@ import BackgroundButton from 'components/atoms/Button/BackgroundButton/Backgroun
 import BorderButton from 'components/atoms/Button/BorderButton/BorderButton';
 
 interface Props {
-  followed?: boolean;
+  subscribed?: boolean;
 }
-const ContributorButton = ({ followed }: Props) =>
-  followed ? (
+const ContributorButton = ({ subscribed }: Props) =>
+  subscribed ? (
     <BackgroundButton>Abonn&eacute;</BackgroundButton>
   ) : (
     <BorderButton>Suivre</BorderButton>
