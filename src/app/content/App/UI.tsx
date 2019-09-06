@@ -25,7 +25,8 @@ import Contribute from './Contribute';
 const mapStateToProps = (state: ContentState) => ({
   open: isOpen(state),
   title: getTitle(state),
-  noticeContext: isNoticeContext(state)
+  noticeContext: isNoticeContext(state),
+  cguAccepted: false
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -37,6 +38,7 @@ interface ConnectProps {
   title: string;
   close: () => void;
   noticeContext: boolean;
+  cguAccepted: boolean;
 }
 
 interface ExternalProps {
@@ -45,7 +47,14 @@ interface ExternalProps {
 
 type UIProps = ExternalProps & ConnectProps & RouteComponentProps;
 
-const UI = ({ loaded, open, title, close, noticeContext }: UIProps) => {
+const UI = ({
+  loaded,
+  open,
+  title,
+  close,
+  noticeContext,
+  cguAccepted
+}: UIProps) => {
   if (open) {
     return loaded ? (
       <Notification
@@ -56,7 +65,10 @@ const UI = ({ loaded, open, title, close, noticeContext }: UIProps) => {
       >
         <Switch>
           <Redirect exact path="/" to="/notices" />
-          <Route path="/notices" component={Notice} />
+          <Route
+            path="/notices"
+            render={props => <Notice {...props} cguAccepted={cguAccepted} />}
+          />
           <Route path="/subscriptions" component={Subscriptions} />
           <Route path="/help" component={Help} />
           <Route path="/account" component={Account} />
