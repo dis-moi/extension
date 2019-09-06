@@ -1,5 +1,5 @@
 import { SagaIterator } from 'redux-saga';
-import { takeLatest, select, put } from 'redux-saga/effects';
+import { takeLatest, select, put, call } from 'redux-saga/effects';
 import { captureException } from 'app/utils/sentry';
 import {
   InstalledAction,
@@ -37,6 +37,14 @@ export function* installationDetailsSaga(): SagaIterator {
   try {
     const updatedFromLmem = yield select(isAnUpdateFromLmem);
     const tosAccepted = yield select(areTosAccepted);
+
+    // @todo should be checked each time the application boot? and ALSO after the install event?
+    if (updatedFromLmem) {
+      yield call(chrome.browserAction.setTitle, {
+        title: 'Le Même en Mieux devient Bulles'
+      });
+    }
+
     console.log('tosAccepted', tosAccepted);
     console.log('updatedFromLmem', updatedFromLmem);
     if (updatedFromLmem && !tosAccepted) {
