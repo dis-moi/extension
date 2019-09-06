@@ -59,6 +59,7 @@ export * from './tabs';
 export * from './tabsLifecycle';
 export * from './ui';
 export * from './updateDraftNotices';
+export * from './subscription';
 export * from './webext';
 
 export interface StandardAction extends Action {

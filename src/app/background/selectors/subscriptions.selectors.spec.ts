@@ -24,7 +24,7 @@ describe('background > selectors > getContributorsWithSubscriptionState', () => 
         likedNotices: [],
         dislikedNotices: [],
         dismissedNotices: [],
-        readNotices: []
+        markedReadNotices: []
       },
       resources: {
         matchingContexts: [],

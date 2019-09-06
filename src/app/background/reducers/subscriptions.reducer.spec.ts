@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import { expect } from 'chai';
-import { subscribe, SubscribeAction } from '../../actions/subscription';
+import { CloseCause } from 'app/lmem/ui';
+import { closed, subscribe, SubscribeAction } from 'app/actions';
 import { generateContributor } from 'test/fakers/generateContributor';
 import subscriptionsReducer, {
   SubscriptionsState
@@ -8,7 +9,8 @@ import subscriptionsReducer, {
 
 describe('background > reducers > subscriptions', function() {
   it('is empty initially', () => {
-    expect(subscriptionsReducer(undefined, { type: 'CLOSED' })).to.be.empty;
+    expect(subscriptionsReducer(undefined, closed(CloseCause.CloseButton))).to
+      .be.empty;
   });
   it('saves subscriptions', () => {
     const state: SubscriptionsState = [1, 2, 3];
