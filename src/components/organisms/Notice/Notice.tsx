@@ -8,13 +8,14 @@ import {
   Timer,
   CenterContainer
 } from '../../atoms';
+import Avatar from '../../atoms/Avatar/Avatar';
+import AvatarDefault from '../../atoms/icons/AvatarDefault';
 import Container, { height, marginTop } from './Container';
 import Content from './Content';
 import Deleted from './Deleted';
 import DeleteButton from './DeleteButton';
 import Title from './Title';
 import { StatefulNotice } from '../../../app/lmem/notice';
-import IntentionIcon from '../../atoms/Intentions/IntentionIcon';
 import {
   CountDownState,
   initialState as countdownInitialState
@@ -111,7 +112,6 @@ export default class Notice extends PureComponent<Props, CountDownState> {
     const {
       notice: {
         id,
-        intention,
         message,
         contributor,
         state: { dismissed, disliked, read }
@@ -139,7 +139,9 @@ export default class Notice extends PureComponent<Props, CountDownState> {
             </>
           ) : (
             <>
-              <IntentionIcon intention={intention} active />
+              <Avatar>
+                <AvatarDefault />
+              </Avatar>
               <Description>
                 <Title numberOfCharacters={truncateTitleAt}>
                   {stripHtml(message)}

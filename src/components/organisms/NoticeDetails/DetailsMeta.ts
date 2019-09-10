@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import Avatar from '../../atoms/Avatar/Avatar';
+import Contributor from '../../atoms/Contributor';
 
 export default styled.div`
     display: flex;
@@ -9,12 +11,12 @@ export default styled.div`
         margin-right: 6px;
     }
     
-    & > div:not(:last-child) {
+    & > ${Contributor} {
         font-weight: bold;
         color: ${props => props.theme.primaryColor};
     }
 
-    & > div:last-child {
+    & > ${Avatar} {
         width: 23px;
         height: 23px;
 

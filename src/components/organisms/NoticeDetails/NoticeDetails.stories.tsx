@@ -25,7 +25,7 @@ const commonProps = {
 
 storiesOf('organisms/NoticeDetails', module)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
-  .add('Approval', () => (
+  .add('Default', () => (
     <NoticeDetails
       {...commonProps}
       notice={generateStatefulNotice({

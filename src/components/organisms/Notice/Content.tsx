@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { LocationDescriptor } from 'history';
+import Avatar from 'components/atoms/Avatar/Avatar';
 
 interface ContentProps {
   to?: LocationDescriptor;
@@ -36,6 +37,17 @@ export default styled(Content)`
     transition: all 0.2s ease-in-out;
   }
 
+  ${Avatar} {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+
+    & > svg {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
   &[href]:hover {
     border-color: ${props => props.theme.activeColor};
 
@@ -54,17 +66,5 @@ export default styled(Content)`
 
   &:hover > div:nth-child(3) {
     stroke: ${props => props.theme.activeColor};
-  }
-
-  & > button {
-    margin-right: auto;
-    margin-left: auto;
-    font-size: 12px;
-    color: ${props => props.theme.secondaryColor};
-    text-align: center;
-
-    &:hover {
-      color: ${props => props.theme.activeColor};
-    }
   }
 `;

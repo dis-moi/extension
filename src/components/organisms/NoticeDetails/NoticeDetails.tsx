@@ -14,7 +14,8 @@ import Feedbacks from './Feedbacks';
 import Date from './Date';
 import { StatefulNotice } from '../../../app/lmem/notice';
 import { format } from 'date-fns';
-import IntentionIcon from '../../atoms/Intentions/IntentionIcon';
+import Avatar from '../../atoms/Avatar/Avatar';
+import AvatarDefault from '../../atoms/icons/AvatarDefault';
 import {
   CountDownState,
   initialState as countdownInitialState
@@ -126,7 +127,6 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
   render() {
     const {
       notice: {
-        intention,
         message,
         created,
         contributor,
@@ -143,8 +143,10 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
         <DetailsContent>
           <DetailsMeta>
             <Date>Le {format(created, 'DD/MM/YYYY')}</Date>
+            <Avatar>
+              <AvatarDefault />
+            </Avatar>
             <Contributor>{contributor.name} :</Contributor>
-            <IntentionIcon active intention={intention} />
           </DetailsMeta>
 
           <Message>{message}</Message>

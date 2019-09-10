@@ -31,56 +31,12 @@ const commonProps = {
 storiesOf('organisms/Notice', module)
   .addDecorator(withKnobs)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
-  .add('Approved', () => (
+  .add('Default', () => (
     <Notice
       {...commonProps}
       notice={generateStatefulNotice({
         dismissed: boolean('dismissed', false),
         intention: 'approval',
-        contributor: text('contributor', defaultContributorName),
-        message: `<p>${text('message', defaultMessage)}</p>`
-      })}
-    />
-  ))
-  .add('Disapproved', () => (
-    <Notice
-      notice={generateStatefulNotice({
-        dismissed: boolean('dismissed', false),
-        intention: 'disapproval',
-        contributor: text('contributor', defaultContributorName),
-        message: `<p>${text('message', defaultMessage)}</p>`
-      })}
-      {...commonProps}
-    />
-  ))
-  .add('Alternative', () => (
-    <Notice
-      {...commonProps}
-      notice={generateStatefulNotice({
-        intention: 'alternative',
-        dismissed: boolean('dismissed', false),
-        contributor: text('contributor', defaultContributorName),
-        message: `<p>${text('message', defaultMessage)}</p>`
-      })}
-    />
-  ))
-  .add('Information', () => (
-    <Notice
-      {...commonProps}
-      notice={generateStatefulNotice({
-        intention: 'information',
-        dismissed: boolean('dismissed', false),
-        contributor: text('contributor', defaultContributorName),
-        message: `<p>${text('message', defaultMessage)}</p>`
-      })}
-    />
-  ))
-  .add('Other', () => (
-    <Notice
-      {...commonProps}
-      notice={generateStatefulNotice({
-        intention: 'other',
-        dismissed: boolean('dismissed', false),
         contributor: text('contributor', defaultContributorName),
         message: `<p>${text('message', defaultMessage)}</p>`
       })}
