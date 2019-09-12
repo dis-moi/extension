@@ -1,35 +1,19 @@
 import { Redirect, Route, Switch } from 'react-router';
-import SubscriptionsScreen from './SubscriptionsScreen/SubscriptionsScreen';
-import SuggestionsScreen from './SuggestionsScreen/SuggestionsScreen';
 import React from 'react';
 import Wrapper from './ScreenWrapper';
-import Header from './Header';
-import ContributorNav from '../../../components/organisms/ContributorNav/ContributorNav';
-import withConnect from './withConnect';
-import { OptionsScreen } from '../screens';
+import Settings from './Settings';
+import Onboarding from './Onboarding';
+import Error from '../Error';
 
-interface Props {
-  currentScreen: OptionsScreen | null;
-  goToSubscriptions: () => void;
-  goToSuggestions: () => void;
-}
-
-const UI = ({ currentScreen, goToSuggestions, goToSubscriptions }: Props) => (
+const UI = () => (
   <Wrapper>
-    <Header />
-
-    <ContributorNav
-      activeTab={currentScreen}
-      goToSubscriptions={goToSubscriptions}
-      goToSuggestions={goToSuggestions}
-    />
-
     <Switch>
-      <Redirect exact path="/" to="/subscriptions" />
-      <Route path="/subscriptions" component={SubscriptionsScreen} />
-      <Route path="/suggestions" component={SuggestionsScreen} />
+      <Redirect exact path="/" to="/settings" />
+      <Route path="/settings" component={Settings} />
+      <Route path="/onboarding" component={Onboarding} />
+      <Route component={Error} />
     </Switch>
   </Wrapper>
 );
 
-export default withConnect(UI);
+export default UI;
