@@ -25,8 +25,9 @@ import { InstalledDetailsAction } from './filters';
 import { CloseAction, ClosedAction, OpenAction, OpenedAction } from './ui';
 import {
   FeedbackOnNoticeAction,
+  MarkNoticeReadAction,
   NoticesFoundAction,
-  MarkNoticeReadAction
+  UnfoldNoticeAction
 } from './notices';
 import {
   ContributionSubmissionFailed,
@@ -158,6 +159,7 @@ export type AppAction =
   | ClosedAction
   | NoticesFoundAction
   | FeedbackOnNoticeAction
+  | UnfoldNoticeAction
   | MarkNoticeReadAction
   | SetUITitleAction
   | RemoveUITitleAction

@@ -6,9 +6,9 @@ import { LocationDescriptor } from 'history';
 interface ContentProps {
   to?: LocationDescriptor;
   children: ReactNode;
-  markedRead: boolean;
+  isRead: boolean;
 }
-const Content = ({ to, markedRead, ...props }: ContentProps) => {
+const Content = ({ to, isRead, ...props }: ContentProps) => {
   if (to) {
     return <Link to={to} {...props} />;
   }
@@ -27,9 +27,9 @@ export default styled(Content)`
   margin-right: 11px;
   margin-left: 5px;
   text-decoration: none;
-  background-color: ${props => (props.markedRead ? 'transparent' : '#fff')};
+  background-color: ${props => (props.isRead ? 'transparent' : '#fff')};
   border-radius: 15px;
-  border: 2px solid ${props => (props.markedRead ? '#fff' : 'transparent')};
+  border: 2px solid ${props => (props.isRead ? '#fff' : 'transparent')};
 
   &,
   p {

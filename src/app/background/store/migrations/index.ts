@@ -4,12 +4,14 @@ import { migration1 } from './1.2017-01-26';
 import { migration2 } from './2.2019-02-11';
 import { migration3 } from './3.2019-03';
 import { migration4 } from './4.2019-08-28';
+import { migration5 } from './5.2019-09-12';
 
 const migrations: MigrationManifest = {
   1: migration1, // 26-01-2017
   2: migration2, // 2019-02-11
   3: migration3, // March 2019 - Typescript migration
-  4: migration4 // August 2019 - rename readNotices to markedReadNotices
+  4: migration4, // August 2019 - rename readNotices to markedReadNotices
+  5: migration5 // Septembre 2019 - rename markedReadNotices back to readNotices
 };
 
 export const migrate = createMigrate(migrations, {

@@ -10,7 +10,7 @@ import {
 import * as R from 'ramda';
 import {
   getNotice,
-  isMarkedUnread,
+  isUnread,
   shouldNoticeBeShown,
   Contribution
 } from 'app/lmem/notice';
@@ -26,11 +26,11 @@ export const getNoticesToDisplay = createSelector(
   notices => notices.filter(shouldNoticeBeShown)
 );
 
-export const getMarkedUnreadNotices = (state: ContentState) =>
-  getNoticesToDisplay(state).filter(isMarkedUnread);
+export const getUnreadNotices = (state: ContentState) =>
+  getNoticesToDisplay(state).filter(isUnread);
 
-export const hasMarkedUnreadNotices = (state: ContentState) =>
-  getMarkedUnreadNotices(state).length > 0;
+export const hasUnreadNotices = (state: ContentState) =>
+  getUnreadNotices(state).length > 0;
 
 export const getNoticeById = (
   state: ContentState,

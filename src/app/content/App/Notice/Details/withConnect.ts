@@ -6,7 +6,7 @@ import {
   dislikeNotice,
   confirmDislikeNotice,
   undislikeNotice,
-  markNoticeRead,
+  unfoldNotice,
   resourceLinkClicked
 } from 'app/actions/notices';
 import { ContentState } from '../../../store';
@@ -41,7 +41,7 @@ const mapDispatchToProps: DetailsDispatchProps = {
   dislike: dislikeNotice,
   confirmDislike: confirmDislikeNotice,
   undislike: undislikeNotice,
-  view: markNoticeRead,
+  view: unfoldNotice,
   followSource: resourceLinkClicked
 };
 

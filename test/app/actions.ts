@@ -37,7 +37,7 @@ const notice: StatefulNotice = {
     liked: false,
     disliked: false,
     dismissed: false,
-    markedRead: false
+    read: false
   },
   created: new Date(),
   modified: new Date()
@@ -87,7 +87,7 @@ describe('background actions', function() {
         dismissed: true,
         liked: false,
         disliked: false,
-        markedRead: false
+        read: false
       }
     };
     const action = noticeIgnored(dismissedNotice, trigger);
@@ -106,7 +106,7 @@ describe('background actions', function() {
         dismissed: false,
         liked: false,
         disliked: true,
-        markedRead: false
+        read: false
       }
     };
     const action = noticeIgnored(dislikedNotice, trigger);

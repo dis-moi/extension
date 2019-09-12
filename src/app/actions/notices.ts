@@ -98,6 +98,17 @@ export const undislikeNotice = (id: number): FeedbackOnNoticeAction => ({
   meta: { sendToBackground: true }
 });
 
+export interface UnfoldNoticeAction extends BaseAction {
+  type: 'UNFOLD_NOTICE';
+  payload: number;
+}
+
+export const unfoldNotice = (id: number): UnfoldNoticeAction => ({
+  type: 'UNFOLD_NOTICE',
+  payload: id,
+  meta: { sendToBackground: true }
+});
+
 export interface MarkNoticeReadAction extends BaseAction {
   type: 'MARK_NOTICE_READ';
   payload: number;
@@ -105,8 +116,7 @@ export interface MarkNoticeReadAction extends BaseAction {
 
 export const markNoticeRead = (id: number): MarkNoticeReadAction => ({
   type: 'MARK_NOTICE_READ',
-  payload: id,
-  meta: { sendToBackground: true }
+  payload: id
 });
 
 export interface NoticesUpdatedAction extends TabAction {

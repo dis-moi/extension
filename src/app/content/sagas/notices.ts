@@ -1,11 +1,12 @@
-import { all, put, select, takeLatest } from 'redux-saga/effects';
+import { all, put, select, takeLatest, takeEvery } from 'redux-saga/effects';
 import { getNotices, getTab, hasNoticesToDisplay } from '../selectors';
 import {
-  markNoticeRead,
   noticesUpdated,
-  updateNoticesFailed
+  updateNoticesFailed,
+  markNoticeRead,
+  UnfoldNoticeAction
 } from 'app/actions/notices';
-import { close } from '../../actions/ui';
+import { close } from 'app/actions/ui';
 import { CLOSED } from 'app/constants/ActionTypes';
 import { StatefulNotice } from 'app/lmem/notice';
 import { CloseCause } from '../../lmem/ui';
@@ -26,12 +27,16 @@ export function* updateNoticesSaga() {
   }
 }
 
-export function* markNoticesReadSaga() {
+function* markNoticesReadSaga() {
   const notices = yield select(getNotices);
   yield all(notices.map(({ id }: StatefulNotice) => put(markNoticeRead(id))));
 }
 
-const isClosedByButtonAction = (action: AppAction) =>
+function* markNoticeReadSaga(unfoldNoticeAction: UnfoldNoticeAction) {
+  yield put(markNoticeRead(unfoldNoticeAction.payload));
+}
+
+export const isClosedByButtonAction = (action: AppAction) =>
   action.type === CLOSED && action.payload.cause === CloseCause.CloseButton;
 
 export default function* noticesRootSaga() {
@@ -41,6 +46,7 @@ export default function* noticesRootSaga() {
       ['MARK_NOTICE_READ', 'FEEDBACK_ON_NOTICE'],
       updateNoticesSaga
     ),
-    yield takeLatest(isClosedByButtonAction, markNoticesReadSaga)
+    yield takeLatest(isClosedByButtonAction, markNoticesReadSaga),
+    yield takeEvery('UNFOLD_NOTICE', markNoticeReadSaga)
   ]);
 }

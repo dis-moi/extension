@@ -25,7 +25,7 @@ export interface Contribution {
 }
 
 export interface NoticeState {
-  markedRead: boolean;
+  read: boolean;
   liked: boolean;
   justLiked?: boolean;
   disliked: boolean;
@@ -128,7 +128,7 @@ export const markNoticeRead = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
   state: {
     ...notice.state,
-    markedRead: true
+    read: true
   }
 });
 
@@ -169,6 +169,6 @@ export const shouldNoticeBeShown = (notice: StatefulNotice): boolean =>
     (!notice.state.disliked || notice.state.justDisliked)) ||
   false;
 
-export const isMarkedRead = (notice: StatefulNotice) => notice.state.markedRead;
+export const isRead = (notice: StatefulNotice) => notice.state.read;
 
-export const isMarkedUnread = (notice: StatefulNotice) => !isMarkedRead(notice);
+export const isUnread = (notice: StatefulNotice) => !isRead(notice);

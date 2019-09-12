@@ -1,5 +1,5 @@
 import { BaseAction, ErrorAction } from '.';
-import { CloseCause } from '../lmem/ui';
+import { CloseCause } from 'app/lmem/ui';
 
 export interface OpenAction extends BaseAction {
   type: 'OPEN';
