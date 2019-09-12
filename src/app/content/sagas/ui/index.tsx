@@ -12,7 +12,6 @@ import { render } from 'react-dom';
 import { go, replace } from 'connected-react-router';
 import {
   close,
-  CloseAction,
   closed,
   closeFailed,
   noticeDisplayed,
@@ -21,10 +20,13 @@ import {
   openFailed,
   SHOW_BULLES_UPDATE_SERVICE_MESSAGE,
   TOGGLE_UI,
-  ToggleUIAction
+  OPENED,
+  CLOSE,
+  OPEN,
+  NOTICES_FOUND,
+  ToggleUIAction,
+  CloseAction
 } from 'app/actions';
-import { CLOSE, NOTICES_FOUND, OPEN, OPENED } from 'app/constants/ActionTypes';
-import Logger from 'app/utils/Logger';
 import {
   getNoticesToDisplay,
   getPathname,
@@ -32,6 +34,7 @@ import {
   isMounted as isNotificationMounted,
   isOpen as isNotificationOpen
 } from '../../selectors';
+import Logger from 'app/utils/Logger';
 import { append, create, hide, show } from '../../extensionIframe';
 import theme from '../../../theme';
 import App from '../../App';

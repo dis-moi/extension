@@ -1,5 +1,10 @@
 import * as R from 'ramda';
-import { AppAction } from 'app/actions';
+import {
+  FEEDBACK_ON_NOTICE,
+  MARK_NOTICE_READ,
+  TOS_ACCEPTED,
+  AppAction
+} from 'app/actions';
 
 export interface PrefsState {
   dismissedNotices: number[];
@@ -19,7 +24,7 @@ const initialPrefs: PrefsState = {
 
 function prefsReducer(state: PrefsState = initialPrefs, action: AppAction) {
   switch (action.type) {
-    case 'FEEDBACK_ON_NOTICE':
+    case FEEDBACK_ON_NOTICE:
       switch (action.payload.feedback) {
         case 'dismiss':
           return {
@@ -66,13 +71,13 @@ function prefsReducer(state: PrefsState = initialPrefs, action: AppAction) {
       }
       return state;
 
-    case 'MARK_NOTICE_READ':
+    case MARK_NOTICE_READ:
       return {
         ...state,
         readNotices: R.concat(state.readNotices, [action.payload])
       };
 
-    case 'TOS_ACCEPTED':
+    case TOS_ACCEPTED:
       return {
         ...state,
         tosAccepted: true

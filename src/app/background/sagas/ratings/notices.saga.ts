@@ -1,10 +1,16 @@
 import { SagaIterator } from '@redux-saga/types';
 import { ActionPattern, takeEvery, all, call } from '@redux-saga/core/effects';
 import * as R from 'ramda';
-
 import getSelectedTab from 'webext/getSelectedTab';
 import postRating, { Rating } from 'api/postRating';
-import { AppAction, FeedbackOnNoticeAction } from 'app/actions';
+import {
+  NOTICE_BADGED,
+  NOTICE_DISPLAYED,
+  OUTBOUND_LINK_CLICKED,
+  NOTICE_UNFOLDED,
+  AppAction,
+  FeedbackOnNoticeAction
+} from 'app/actions';
 import { captureException } from 'app/utils/sentry';
 import { RatingType } from 'app/lmem/rating';
 
@@ -35,19 +41,19 @@ export const transformers: {
     })
   },
   {
-    pattern: 'NOTICE/UNFOLDED',
+    pattern: NOTICE_UNFOLDED,
     transformer: createDefaultTransformer(RatingType.UNFOLD)
   },
   {
-    pattern: 'NOTICE/BADGED',
+    pattern: NOTICE_BADGED,
     transformer: createDefaultTransformer(RatingType.BADGED)
   },
   {
-    pattern: 'NOTICE/OUTBOUND_LINK_CLICKED',
+    pattern: OUTBOUND_LINK_CLICKED,
     transformer: createDefaultTransformer(RatingType.OUTBOUND_CLICK)
   },
   {
-    pattern: 'NOTICE/DISPLAYED',
+    pattern: NOTICE_DISPLAYED,
     transformer: createDefaultTransformer(RatingType.DISPLAY)
   }
 ];

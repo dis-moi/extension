@@ -1,5 +1,11 @@
 import * as R from 'ramda';
-import { AppAction } from 'app/actions';
+import {
+  NOTICES_FETCHED,
+  UPDATE_CONTRIBUTORS,
+  UPDATE_MATCHING_CONTEXTS,
+  UPDATE_RESTRICTED_CONTEXTS,
+  AppAction
+} from 'app/actions';
 import { MatchingContext, RestrictedContext } from 'app/lmem/matchingContext';
 import { Draft } from 'app/lmem/draft';
 import { Contributor } from 'app/lmem/contributor';
@@ -35,14 +41,14 @@ export default function(
   action: AppAction
 ) {
   switch (action.type) {
-    case 'api/UPDATE_MATCHING_CONTEXTS': {
+    case UPDATE_MATCHING_CONTEXTS: {
       return {
         ...state,
         matchingContexts: action.payload.matchingContexts
       };
     }
 
-    case 'api/UPDATE_RESTRICTED_CONTEXTS': {
+    case UPDATE_RESTRICTED_CONTEXTS: {
       return {
         ...state,
         restrictedContexts: toTrueRestrictedContexts(action.payload).concat(
@@ -51,14 +57,14 @@ export default function(
       };
     }
 
-    case 'api/UPDATE_CONTRIBUTORS': {
+    case UPDATE_CONTRIBUTORS: {
       return {
         ...state,
         contributors: action.payload.contributors
       };
     }
 
-    case 'NOTICES/FETCHED': {
+    case NOTICES_FETCHED: {
       return {
         ...state,
         notices: R.uniqWith(

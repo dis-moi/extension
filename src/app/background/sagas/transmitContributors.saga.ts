@@ -4,11 +4,12 @@ import Tab from 'app/lmem/tab';
 import {
   contributorsTransmitted,
   isTabReadyAction,
+  SUBSCRIBE,
+  UNSUBSCRIBE,
   ListeningActionsReadyAction
 } from 'app/actions';
 import assocTabIfNotGiven from 'webext/assocTabIfNotGiven';
 import { getContributorsWithSubscriptionState } from '../selectors/subscriptions.selectors';
-import { SUBSCRIBE, UNSUBSCRIBE } from '../../constants/ActionTypes';
 import { getTabsList } from '../selectors/tabs';
 import sendToTabSaga from './lib/sendToTab.saga';
 

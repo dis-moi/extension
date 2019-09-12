@@ -2,10 +2,10 @@ import { put, select, takeLatest } from 'redux-saga/effects';
 import { CloseCause } from 'app/lmem/ui';
 import {
   toggleUI,
-  BrowserActionClickedAction,
-  showBullesUpdateMessage
+  showBullesUpdateMessage,
+  BROWSER_ACTION_CLICKED,
+  BrowserActionClickedAction
 } from 'app/actions';
-import { BROWSER_ACTION_CLICKED } from 'app/constants/browser/action';
 import { areTosAccepted } from '../selectors/prefs';
 
 export function* browserActionClickedSaga(action: BrowserActionClickedAction) {

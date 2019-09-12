@@ -1,19 +1,23 @@
 import { BaseAction } from '../../../actions';
 
+export const SET_TITLE = 'UI/SET_TITLE';
+
 export interface SetUITitleAction extends BaseAction {
-  type: 'UI/SET_TITLE';
+  type: typeof SET_TITLE;
   payload?: string;
 }
 
 export const setUITitle = (title: string): SetUITitleAction => ({
-  type: 'UI/SET_TITLE',
+  type: SET_TITLE,
   payload: title
 });
 
+export const REMOVE_TITLE = 'UI/REMOVE_TITLE';
+
 export interface RemoveUITitleAction extends BaseAction {
-  type: 'UI/REMOVE_TITLE';
+  type: typeof REMOVE_TITLE;
 }
 
 export const removeUITitle = (): RemoveUITitleAction => ({
-  type: 'UI/REMOVE_TITLE'
+  type: REMOVE_TITLE
 });

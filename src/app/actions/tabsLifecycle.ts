@@ -1,6 +1,6 @@
-import { BaseAction, TabAction } from '.';
 import { ReceivedAction } from 'webext/createMessageHandler';
 import Tab from 'app/lmem/tab';
+import { BaseAction, TabAction } from '.';
 
 export const TAB_REMOVED = 'BROWSER/TAB_REMOVED';
 

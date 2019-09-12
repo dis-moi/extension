@@ -1,5 +1,5 @@
+import { AppAction, INSTALLATION_DETAILS } from 'app/actions';
 import { InstallationDetails } from 'app/lmem/installation';
-import { AppAction } from 'app/actions';
 import { version } from '../../../../package.json';
 
 export type InstallationDetailsState = InstallationDetails;
@@ -14,7 +14,7 @@ export default (
   action: AppAction
 ): InstallationDetailsState => {
   switch (action.type) {
-    case 'INSTALLATION_DETAILS':
+    case INSTALLATION_DETAILS:
       return action.payload.installationDetails;
 
     default:

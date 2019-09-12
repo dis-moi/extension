@@ -1,7 +1,5 @@
 import { put, takeLatest } from 'redux-saga/effects';
-import { INIT } from '../../constants/ActionTypes';
-import { updateInstallationDetails } from 'app/actions';
-import { InitAction } from 'app/actions/tabs';
+import { updateInstallationDetails, InitAction, INIT } from 'app/actions';
 
 export function* handleInitSaga({ payload: installationDetails }: InitAction) {
   yield put(updateInstallationDetails(installationDetails));

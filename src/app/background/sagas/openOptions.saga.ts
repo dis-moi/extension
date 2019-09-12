@@ -2,9 +2,10 @@ import { takeLatest, call, put } from 'redux-saga/effects';
 import Tab from 'app/lmem/tab';
 import openOptions from 'webext/openOptionsTab';
 import {
-  OptionsRequestedAction,
+  OPTIONS_REQUESTED,
   optionsTabOpened,
-  optionsTabOpenFailed
+  optionsTabOpenFailed,
+  OptionsRequestedAction
 } from 'app/actions';
 
 function* openOptionsSaga({ payload: pathname }: OptionsRequestedAction) {
@@ -19,5 +20,5 @@ function* openOptionsSaga({ payload: pathname }: OptionsRequestedAction) {
 }
 
 export default function* openOptionsWhenRequestedSaga() {
-  yield takeLatest('OPTIONS_REQUESTED', openOptionsSaga);
+  yield takeLatest(OPTIONS_REQUESTED, openOptionsSaga);
 }

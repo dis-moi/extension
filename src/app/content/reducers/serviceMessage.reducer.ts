@@ -1,4 +1,8 @@
-import { AppAction, SHOW_BULLES_UPDATE_SERVICE_MESSAGE } from 'app/actions';
+import {
+  CLOSED,
+  SHOW_BULLES_UPDATE_SERVICE_MESSAGE,
+  AppAction
+} from 'app/actions';
 
 export interface ServiceMessageState {
   showUpdateMessage: boolean;
@@ -18,7 +22,7 @@ export default (
         showUpdateMessage: true
       };
     }
-    case 'CLOSED': {
+    case CLOSED: {
       return {
         showUpdateMessage: false
       };
