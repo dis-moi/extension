@@ -12,13 +12,13 @@ const basicLocationProps: Location = {
 };
 
 describe('options > selectors > router', () => {
-  it('returns `subscriptions` if on `/subscriptions`', () => {
+  it('returns `subscriptions` if on `/settings/subscriptions`', () => {
     const state: OptionsState = {
       router: {
         action: 'POP',
         location: {
           ...basicLocationProps,
-          pathname: '/subscriptions'
+          pathname: '/settings/subscriptions'
         }
       },
       contributors: []
@@ -26,13 +26,13 @@ describe('options > selectors > router', () => {
     expect(getCurrentScreen(state)).to.equal('subscriptions');
   });
 
-  it('returns `suggestions` if on `/suggestions`', () => {
+  it('returns `suggestions` if on `/settings/suggestions`', () => {
     const state: OptionsState = {
       router: {
         action: 'POP',
         location: {
           ...basicLocationProps,
-          pathname: '/suggestions'
+          pathname: '/settings/suggestions'
         }
       },
       contributors: []

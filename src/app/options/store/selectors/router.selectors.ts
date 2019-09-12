@@ -12,8 +12,11 @@ export const getCurrentScreen = createSelector<
 >(
   [getLocation],
   ({ pathname }) => {
-    if (pathname === '/subscriptions' || pathname === '/suggestions') {
-      return R.tail(pathname) as OptionsScreen;
+    if (pathname.includes('settings')) {
+      return R.compose(
+        R.last,
+        R.split('/')
+      )(pathname) as OptionsScreen;
     }
     return null;
   }
