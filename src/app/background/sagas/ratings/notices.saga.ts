@@ -8,6 +8,7 @@ import {
   NOTICE_DISPLAYED,
   OUTBOUND_LINK_CLICKED,
   NOTICE_UNFOLDED,
+  FEEDBACK_ON_NOTICE,
   AppAction,
   FeedbackOnNoticeAction
 } from 'app/actions';
@@ -15,7 +16,7 @@ import { captureException } from 'app/utils/sentry';
 import { RatingType } from 'app/lmem/rating';
 
 export const isFeedBackRatingAction = (action: AppAction) =>
-  action.type === 'FEEDBACK_ON_NOTICE' &&
+  action.type === FEEDBACK_ON_NOTICE &&
   Object.values(RatingType).includes(action.payload.feedback);
 
 type RatingActionTransformer = (action: AppAction) => Rating;

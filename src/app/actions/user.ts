@@ -1,11 +1,12 @@
 import { BaseAction } from '.';
 
+export const LOGIN = 'LOGIN';
 export interface LoginAction extends BaseAction {
-  type: 'LOGIN';
+  type: typeof LOGIN;
   payload: string;
 }
 
 export const login = (userId: string): LoginAction => ({
-  type: 'LOGIN',
+  type: LOGIN,
   payload: userId
 });

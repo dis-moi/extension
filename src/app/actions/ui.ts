@@ -71,14 +71,15 @@ export const toggleUI = (tab: Tab, closeCause: CloseCause): ToggleUIAction => ({
   meta: { tab, sendToTab: true }
 });
 
+export const LOCATION_CHANGED = 'LOCATION_CHANGED';
 export interface LocationChangedAction extends BaseAction {
-  type: 'LOCATION_CHANGED';
+  type: typeof LOCATION_CHANGED;
   payload: LocationChangePayload;
 }
 export const locationChanged = ({
   payload
 }: LocationChangeAction): LocationChangedAction => ({
-  type: 'LOCATION_CHANGED',
+  type: LOCATION_CHANGED,
   payload,
   meta: { sendToBackground: true }
 });
