@@ -1,6 +1,7 @@
 import { SagaIterator } from 'redux-saga';
 import { takeLatest, select, put, call } from 'redux-saga/effects';
 import { captureException } from 'app/utils/sentry';
+import openOptions from 'webext/openOptionsTab';
 import {
   InstalledAction,
   updateInstallationDetails
@@ -47,11 +48,10 @@ export function* installationDetailsSaga(): SagaIterator {
 
     console.log('tosAccepted', tosAccepted);
     console.log('updatedFromLmem', updatedFromLmem);
-    if (updatedFromLmem && !tosAccepted) {
-      // open onboarding page at step 1
-    } else {
-      // open onboarding page at step 2
-    }
+    yield call(
+      openOptions,
+      !tosAccepted ? '/onboarding' : '/onboarding/subscriptions'
+    );
   } catch (e) {
     console.log(e);
   }

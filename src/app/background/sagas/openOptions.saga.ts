@@ -1,11 +1,15 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 import Tab from 'app/lmem/Tab';
 import openOptions from 'webext/openOptionsTab';
-import { optionsTabOpened, optionsTabOpenFailed } from '../../actions';
+import {
+  OptionsRequestedAction,
+  optionsTabOpened,
+  optionsTabOpenFailed
+} from 'app/actions';
 
-function* openOptionsSaga() {
+function* openOptionsSaga({ payload: pathname }: OptionsRequestedAction) {
   try {
-    const tab: chrome.tabs.Tab = yield call(openOptions);
+    const tab: chrome.tabs.Tab = yield call(openOptions, pathname);
     if (tab && tab.id) {
       yield put(optionsTabOpened(tab as Tab));
     }
