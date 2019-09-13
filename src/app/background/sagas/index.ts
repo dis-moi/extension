@@ -11,6 +11,7 @@ import refreshContributors from './refreshContributors';
 import browserAction from './browserAction.saga';
 import openOptions from './openOptions.saga';
 import sendContributorsToOptions from './sendContributorsToOptions.saga';
+import setup from './setup.saga';
 
 export default function* rootSaga() {
   yield all([
@@ -24,6 +25,7 @@ export default function* rootSaga() {
     fork(browserAction),
     fork(openOptions),
     fork(sendContributorsToOptions),
+    fork(setup),
     fork(error)
   ]);
 }

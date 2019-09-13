@@ -1,5 +1,6 @@
 import { BaseAction } from '.';
 import { InstallationDetails } from '../lmem/installation';
+import { ContributorId } from '../lmem/contributor';
 
 export interface InstalledAction extends BaseAction {
   type: 'INSTALLED';
@@ -31,6 +32,32 @@ export const updateInstallationDetails = (
   type: 'INSTALLATION_DETAILS',
   payload: {
     installationDetails
+  },
+  meta: {
+    sendToTab
+  }
+});
+
+export interface SetupAction extends BaseAction {
+  type: 'SETUP';
+  payload: {
+    subscriptions: ContributorId[];
+    showExamples: boolean;
+    redirectURl?: string;
+  };
+}
+
+export const setup = (
+  subscriptions: [],
+  showExamples: boolean,
+  redirectURl?: string,
+  sendToTab = true
+): SetupAction => ({
+  type: 'SETUP',
+  payload: {
+    subscriptions,
+    showExamples,
+    redirectURl
   },
   meta: {
     sendToTab
