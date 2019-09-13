@@ -39,14 +39,7 @@ export default styled(Content)`
 
   ${Avatar} {
     align-self: flex-start;
-    width: 40px;
-    height: 40px;
     margin-right: 10px;
-
-    & > svg {
-      width: 25px;
-      height: 25px;
-    }
   }
 
   &[href]:hover {

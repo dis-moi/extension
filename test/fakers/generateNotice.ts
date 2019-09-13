@@ -6,6 +6,8 @@ import { Intention } from '../../src/app/lmem/intention';
 import { Source } from '../../src/app/lmem/source';
 import { Contributor } from '../../src/app/lmem/contributor';
 import { Ratings } from '../../src/app/lmem/rating';
+import { generateContributor } from './generateContributor';
+
 
 interface Options {
   intention?: Intention;
@@ -14,7 +16,7 @@ interface Options {
   modified?: Date;
   likes?: number;
   dislikes?: number;
-  contributor?: string;
+  contributor?: Contributor;
   sourceName?: string;
   sourceUrl?: string;
   liked?: boolean;
@@ -43,24 +45,21 @@ export const generateStatefulNotice = ({
   dismissed,
   read,
   withSource = true
-}: Options = {}): StatefulNotice => ({
+}: Options = {}): StatefulNotice => {
+  const toto = ({
   id: Math.random() * 1000,
   intention: intention || 'approval',
   created: created || subMonths(new Date(), 1),
   modified: modified || subWeeks(new Date(), 1),
   message: message || defaultMessage,
   ratings: { likes: likes || 42, dislikes: dislikes || 2 },
-  contributor: {
-    id: 1,
-    name: contributor || Faker.name.findName(),
-    contributions: Faker.random.number()
-  },
+  contributor: contributor || generateContributor(),
   visibility: 'public',
   source: withSource
     ? {
-        label: sourceName || Faker.company.companyName(),
-        url: sourceUrl || defaultSourceUrl
-      }
+      label: sourceName || Faker.company.companyName(),
+      url: sourceUrl || defaultSourceUrl
+    }
     : undefined,
   state: {
     liked: Boolean(liked),
@@ -68,7 +67,9 @@ export const generateStatefulNotice = ({
     disliked: Boolean(disliked),
     read: Boolean(read)
   }
-});
+})
+console.log(toto)
+ return toto};
 
 type Transformer<T> = (obj: T) => T;
 
@@ -106,9 +107,9 @@ export const generateStatefulNoticeVariant = (
   const newSource: Source | undefined =
     sourceName || sourceUrl || withSource
       ? R.pipe(
-          assocIfGiven<Source, 'label'>('label', sourceName),
-          assocIfGiven<Source, 'url'>('url', sourceUrl)
-        )(notice.source || defaultSource)
+        assocIfGiven<Source, 'label'>('label', sourceName),
+        assocIfGiven<Source, 'url'>('url', sourceUrl)
+      )(notice.source || defaultSource)
       : undefined;
 
   const newContrib: Contributor = assocIfGiven<Contributor, 'name'>(

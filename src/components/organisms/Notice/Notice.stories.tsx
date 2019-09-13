@@ -17,6 +17,7 @@ import {
 import Faker from 'faker';
 import { intentions } from '../../../app/lmem/intention';
 import Title from './Title';
+import { generateContributor } from 'test/fakers/generateContributor';
 
 const defaultContributorName = Faker.name.findName();
 const longMessage =
@@ -37,7 +38,9 @@ storiesOf('organisms/Notice', module)
       notice={generateStatefulNotice({
         dismissed: boolean('dismissed', false),
         intention: 'approval',
-        contributor: text('contributor', defaultContributorName),
+        contributor: generateContributor({
+          name: text('contributor', defaultContributorName)
+        }),
         message: `<p>${text('message', defaultMessage)}</p>`
       })}
     />
@@ -48,7 +51,9 @@ storiesOf('organisms/Notice', module)
       notice={generateStatefulNotice({
         dismissed: true,
         intention: select('intention', intentions, 'approval'),
-        contributor: text('contributor', defaultContributorName),
+        contributor: generateContributor({
+          name: text('contributor', defaultContributorName)
+        }),
         message: `<p>${text('message', defaultMessage)}</p>`
       })}
     />
@@ -59,7 +64,9 @@ storiesOf('organisms/Notice', module)
       notice={generateStatefulNotice({
         read: true,
         intention: select('intention', intentions, 'approval'),
-        contributor: text('contributor', defaultContributorName),
+        contributor: generateContributor({
+          name: text('contributor', defaultContributorName)
+        }),
         message: `<p>${text('message', defaultMessage)}</p>`
       })}
     />
@@ -69,7 +76,9 @@ storiesOf('organisms/Notice', module)
       {...commonProps}
       notice={generateStatefulNotice({
         intention: select('intention', intentions, 'approval'),
-        contributor: text('contributor', defaultContributorName),
+        contributor: generateContributor({
+          name: text('contributor', defaultContributorName)
+        }),
         message: `<p>${text('message', longMessage)}</p>`
       })}
       truncateTitleAt={number(

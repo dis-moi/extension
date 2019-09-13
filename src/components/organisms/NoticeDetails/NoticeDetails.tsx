@@ -1,9 +1,16 @@
 import React, { PureComponent } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import styled from 'styled-components';
+import { format } from 'date-fns';
 import ThumbUp from 'components/atoms/icons/ThumbUp';
 import ThumbDown from 'components/atoms/icons/ThumbDown';
+import Avatar from 'components/molecules/Avatar/Avatar';
 import { Button, Contributor, Timer } from 'components/atoms';
+import { StatefulNotice } from 'app/lmem/notice';
+import {
+  CountDownState,
+  initialState as countdownInitialState
+} from 'app/lmem/countdown';
 import Source from './Source/Source';
 import SourceURL from './Source/SourceURL';
 import DetailsContainer from './DetailsContainer';
@@ -13,14 +20,6 @@ import DetailsDislike from './DetailsDislike';
 import Message from './Message';
 import Feedbacks from './Feedbacks';
 import Date from './Date';
-import { StatefulNotice } from '../../../app/lmem/notice';
-import { format } from 'date-fns';
-import Avatar from '../../molecules/Avatar/Avatar';
-import AvatarDefault from '../../atoms/icons/AvatarDefault';
-import {
-  CountDownState,
-  initialState as countdownInitialState
-} from '../../../app/lmem/countdown';
 
 const DetailsMetaValue = styled.div`
   margin-left: 10px;
@@ -147,16 +146,7 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
       <DetailsContainer>
         <DetailsContent>
           <DetailsMeta>
-            <Avatar>
-              {contributor.avatar && contributor.avatar.normal.url ? (
-                <img
-                  src={contributor.avatar.normal.url}
-                  alt={contributor.name}
-                />
-              ) : (
-                <AvatarDefault />
-              )}
-            </Avatar>
+            <Avatar contributor={contributor} size="small" />
             <DetailsMetaValue>
               <Date>Le {format(created, 'DD/MM/YYYY')}</Date>
               <Contributor>{contributor.name} :</Contributor>

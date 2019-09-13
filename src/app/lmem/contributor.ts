@@ -1,10 +1,10 @@
 import * as R from 'ramda';
 
-interface Avatar {
-  small: Picture;
-  normal: Picture;
-  large: Picture;
-}
+export type AvatarSize = 'small' | 'normal' | 'large';
+export type Avatar = {
+  [size in AvatarSize]: Picture;
+};
+
 interface Picture {
   url: string;
 }

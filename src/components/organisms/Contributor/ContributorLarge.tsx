@@ -2,8 +2,7 @@ import React from 'react';
 import Button from 'components/atoms/Button';
 import styled from 'styled-components';
 import { StatefulContributor } from 'app/lmem/contributor';
-import Avatar from 'components/atoms/Avatar/Avatar';
-import AvatarDefault from 'components/atoms/icons/AvatarDefault';
+import Avatar from 'components/molecules/Avatar/Avatar';
 import UserName from 'components/atoms/UserName/UserName';
 import Stat from 'components/atoms/Stat/Stat';
 import StatType from 'components/atoms/Stat/StatType';
@@ -68,13 +67,7 @@ export const ContributorLarge = ({
 }: Props) => (
   <ContributorCard>
     <ContributorWrapper>
-      <Avatar>
-        {contributor.avatar && contributor.avatar.normal.url ? (
-          <img src={contributor.avatar.normal.url} alt={contributor.name} />
-        ) : (
-          <AvatarDefault />
-        )}
-      </Avatar>
+      <Avatar size="normal" contributor={contributor} />
 
       <ContributorInfos>
         <UserName>{contributor.name}</UserName>

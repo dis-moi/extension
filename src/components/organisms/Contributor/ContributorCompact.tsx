@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { StatefulContributor } from 'app/lmem/contributor';
-import Avatar from 'components/atoms/Avatar/Avatar';
+import Avatar from 'components/molecules/Avatar/Avatar';
 import UserName from 'components/atoms/UserName/UserName';
 import Stat from 'components/atoms/Stat/Stat';
 import ContributorButton from './ContributorButton';
@@ -15,11 +15,6 @@ const ContributorWrapper = styled.div`
 
   &:first-of-type {
     border-top: 1px solid ${props => props.theme.bottomBar};
-  }
-
-  ${Avatar} {
-    width: 42px;
-    height: 42px;
   }
 
   ${UserName} {
@@ -60,7 +55,7 @@ export const ContributorCompact = ({
   onUnsubscribe
 }: Props) => (
   <ContributorWrapper>
-    <Avatar />
+    <Avatar contributor={contributor} size="small" />
 
     <ContributorInfos>
       <UserName>{contributor.name}</UserName>

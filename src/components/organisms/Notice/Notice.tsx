@@ -9,7 +9,6 @@ import {
   CenterContainer
 } from '../../atoms';
 import Avatar from '../../molecules/Avatar/Avatar';
-import AvatarDefault from '../../atoms/icons/AvatarDefault';
 import Container, { height, marginTop } from './Container';
 import Content from './Content';
 import Deleted from './Deleted';
@@ -139,16 +138,7 @@ export default class Notice extends PureComponent<Props, CountDownState> {
             </>
           ) : (
             <>
-              <Avatar>
-                {contributor.avatar && contributor.avatar.normal.url ? (
-                  <img
-                    src={contributor.avatar.normal.url}
-                    alt={contributor.name}
-                  />
-                ) : (
-                  <AvatarDefault />
-                )}
-              </Avatar>
+              <Avatar contributor={contributor} size="small" />
               <Description>
                 <Contributor>{contributor.name}</Contributor>
                 <Title numberOfCharacters={truncateTitleAt}>

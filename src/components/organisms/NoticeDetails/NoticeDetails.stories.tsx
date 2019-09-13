@@ -11,7 +11,6 @@ import {
 } from 'test/fakers/generateNotice';
 import { boolean, date, number, text } from '@storybook/addon-knobs';
 
-const defaultContributorName = Faker.name.findName();
 const defaultMessage = Faker.lorem.paragraph(3);
 const defaultDate = subMonths(new Date(), 1);
 const commonProps = {
@@ -29,7 +28,6 @@ storiesOf('organisms/NoticeDetails', module)
     <NoticeDetails
       {...commonProps}
       notice={generateStatefulNotice({
-        contributor: text('contributor', defaultContributorName),
         intention: 'approval',
         message: `<p>${text('message', defaultMessage)}</p>`,
         sourceUrl: text('source', defaultSourceUrl),

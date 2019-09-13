@@ -20,6 +20,7 @@ import { Details } from '.';
 import { intentions } from '../../../../lmem/intention';
 import { subMonths } from 'date-fns';
 import Notification from '../../../../../components/organisms/Notification';
+import { generateContributor } from 'test/fakers/generateContributor';
 
 const defaultContributorName = Faker.name.findName();
 const defaultDate = subMonths(new Date(), 1);
@@ -46,7 +47,9 @@ storiesOf('screens/Notice/Details', module)
     <Details
       {...commonProps}
       notice={generateStatefulNotice({
-        contributor: text('contributor', defaultContributorName),
+        contributor: generateContributor({
+          name: text('contributor', defaultContributorName)
+        }),
         intention: select('intention', intentions, 'approval'),
         message: `<p>${text('message', defaultMessage)}</p>`,
         sourceUrl: text('source', defaultSourceUrl),
