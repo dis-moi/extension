@@ -10,7 +10,12 @@ export default function subscriptionsReducer(
 ) {
   switch (action.type) {
     case SUBSCRIBE: {
-      return R.append(action.payload.contributor.id, state);
+      return R.append(
+        typeof action.payload.contributor !== 'number'
+          ? action.payload.contributor.id
+          : action.payload.contributor,
+        state
+      );
     }
     case UNSUBSCRIBE: {
       return R.without([action.payload.contributor.id], state);
