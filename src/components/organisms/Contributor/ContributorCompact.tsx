@@ -24,6 +24,9 @@ const ContributorWrapper = styled.div`
 
   ${UserName} {
     font-size: 16px;
+    width: 125px;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 `;
 
