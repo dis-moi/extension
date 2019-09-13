@@ -8,7 +8,8 @@ import error from '../../sagas/error';
 import listenActionsFromMessages from '../../sagas/listenActionsFromMessages';
 import refreshMatchingContexts from './refreshMatchingContexts';
 import refreshContributors from './refreshContributors';
-import browserAction from './browserAction.saga';
+import watchBrowserAction from './watchBrowserAction.saga';
+import handleBrowserAction from './handleBrowserAction.saga';
 import openOptions from './openOptions.saga';
 import sendContributorsToOptions from './sendContributorsToOptions.saga';
 import sendInstallationDetailsToOptions from './sendInstallationDetailsToOptions.saga';
@@ -24,7 +25,8 @@ export default function* rootSaga() {
     fork(badge(theme.badge)),
     fork(listenActionsFromMessages('background')),
     fork(externalMessage),
-    fork(browserAction),
+    fork(watchBrowserAction),
+    fork(handleBrowserAction),
     fork(openOptions),
     fork(sendContributorsToOptions),
     fork(sendInstallationDetailsToOptions),

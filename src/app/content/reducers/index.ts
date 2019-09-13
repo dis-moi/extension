@@ -7,6 +7,7 @@ import installationDetails from 'app/background/reducers/installationDetails';
 import ui from './ui';
 import notices from './notices';
 import tab from './tab';
+import serviceMessage from './serviceMessage.reducer';
 
 export default (history: MemoryHistory) =>
   combineReducers({
@@ -15,5 +16,6 @@ export default (history: MemoryHistory) =>
     notices,
     tab,
     router: connectRouter(history),
-    form
+    form,
+    serviceMessage
   });

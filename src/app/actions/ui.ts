@@ -1,5 +1,6 @@
-import { BaseAction, ErrorAction } from '.';
 import { CloseCause } from 'app/lmem/ui';
+import Tab from 'app/lmem/Tab';
+import { BaseAction, ErrorAction, TabAction } from '.';
 
 export interface OpenAction extends BaseAction {
   type: 'OPEN';
@@ -47,4 +48,16 @@ export const closed = (cause: CloseCause): ClosedAction => ({
   type: 'CLOSED',
   payload: { cause },
   meta: { sendToBackground: true }
+});
+
+export const SWITCH_UI = 'SWITCH_UI';
+export interface SwitchUIAction extends TabAction {
+  type: typeof SWITCH_UI;
+  payload: { closeCause: CloseCause };
+}
+
+export const switchUI = (tab: Tab, closeCause: CloseCause): SwitchUIAction => ({
+  type: SWITCH_UI,
+  payload: { closeCause },
+  meta: { tab, sendToTab: true }
 });
