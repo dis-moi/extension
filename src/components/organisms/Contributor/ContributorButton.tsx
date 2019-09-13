@@ -26,10 +26,10 @@ const ContributorButton = ({
   onUnsubscribe
 }: Props) => (
   <Container>
-    {subscribed && (
+    {!subscribed && (
       <BackgroundButton onClick={onUnsubscribe}>Abonné</BackgroundButton>
     )}
-    {!subscribed && (
+    {subscribed && (
       <BorderButton onClick={onSubscribe}>S&apos;abonner</BorderButton>
     )}
   </Container>

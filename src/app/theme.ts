@@ -98,7 +98,7 @@ export const theme: Theme = {
   text: '#404348',
   error: '#F01953',
   formError: '#DB0D0D',
-  button: '#1ECCB5',
+  button: '#0C52B4',
   contributorGrey: '#F5F5F5',
 
   // badge background colors

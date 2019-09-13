@@ -14,6 +14,10 @@ const ContributorCard = styled.div`
   background-color: #fff;
   border: 1px solid #dedede;
   border-radius: 8px;
+
+  ${UserName} {
+    max-width: 100%;
+  }
 `;
 
 const ContributorWrapper = styled.div`

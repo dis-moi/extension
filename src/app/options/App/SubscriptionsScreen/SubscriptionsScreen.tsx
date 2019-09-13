@@ -19,6 +19,7 @@ const ContributorsList = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-column-gap: 40px;
   grid-row-gap: 40px;
+  align-items: flex-start;
 `;
 
 const Sidebar = styled.aside`
@@ -26,6 +27,7 @@ const Sidebar = styled.aside`
     margin-top: 10px;
   }
 `;
+
 const SidebarTitle = styled.h2`
   margin: 0 0 5px;
   font-size: 20px;
