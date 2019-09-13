@@ -9,8 +9,10 @@ interface Picture {
   url: string;
 }
 
+export type ContributorId = number;
+
 export interface Contributor {
-  id: number;
+  id: ContributorId;
   name: string;
   image?: string;
   avatar?: Avatar;
