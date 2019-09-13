@@ -25,7 +25,8 @@ import {
   TabAction,
   TabCreatedAction,
   TabUpdatedAction,
-  AppAction
+  AppAction,
+  showBullesUpgradeServiceMessage
 } from 'app/actions';
 import fetchContentScript from '../services/fetchContentScript';
 import { MatchingContext } from 'app/lmem/matchingContext';
@@ -35,11 +36,17 @@ import sendToTab from 'webext/sendActionToTab';
 import executeTabScript, {
   ExecuteContentScript
 } from 'webext/executeTabScript';
-import { getNoticesToDisplay, getIgnoredNotices } from '../selectors/prefs';
+import {
+  getNoticesToDisplay,
+  getIgnoredNotices,
+  areTosAccepted
+} from '../selectors/prefs';
 import { findTriggeredContexts } from '../selectors';
 import { getInstallationDetails } from '../selectors/installationDetails';
 import { getTabs } from '../selectors/tabs';
 import Tab from '../../lmem/Tab';
+import { getUpgradeMessageLastShowDate } from '../selectors/bullesUpgrade.selectors';
+import { isToday } from 'date-fns';
 
 export const tabSaga = (executeContentScript: ExecuteContentScript) =>
   function*({ payload: { tab } }: TabCreatedAction | TabUpdatedAction) {
@@ -94,7 +101,16 @@ export const contextTriggeredSaga = function*({
     );
 
     if (noticesToShow.length > 0) {
-      yield put(noticesFound(noticesToShow, tab));
+      if (yield select(areTosAccepted)) {
+        yield put(noticesFound(noticesToShow, tab));
+      } else {
+        const lastUpgradeMessageDate = yield select(
+          getUpgradeMessageLastShowDate
+        );
+        if (!isToday(lastUpgradeMessageDate)) {
+          yield put(showBullesUpgradeServiceMessage());
+        }
+      }
     } else {
       yield put(noNoticesDisplayed(tab));
     }

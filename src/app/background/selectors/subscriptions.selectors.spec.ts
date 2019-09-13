@@ -41,7 +41,8 @@ describe('background > selectors > getContributorsWithSubscriptionState', () => 
           contributor9999
         ]
       },
-      subscriptions: [1, 42, 1024]
+      subscriptions: [1, 42, 1024],
+      bullesUpgrade: { lastServiceMessageShowDate: null }
     };
 
     const result: Contributor[] = getContributorsWithSubscriptionState(state);

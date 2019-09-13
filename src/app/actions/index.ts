@@ -49,6 +49,7 @@ import {
 } from './webext';
 import { From } from '../../webext/From';
 import { SubscribeAction, UnsubscribeAction } from './subscription';
+import { ShowBullesUpgradeServiceMessageAction } from './bullesUpgrade.actions';
 
 type MessageSender = chrome.runtime.MessageSender;
 
@@ -65,6 +66,7 @@ export * from './ui';
 export * from './updateDraftNotices';
 export * from './subscription';
 export * from './webext';
+export * from './bullesUpgrade.actions';
 
 export interface StandardAction extends Action {
   payload?: unknown;
@@ -171,4 +173,5 @@ export type AppAction =
   | UnsubscribeAction
   | AcceptTosAction
   | TosAcceptedAction
+  | ShowBullesUpgradeServiceMessageAction
   | (LocationChangeAction & { meta?: ActionMeta });
