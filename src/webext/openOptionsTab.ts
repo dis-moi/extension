@@ -1,7 +1,7 @@
 type CreateProperties = chrome.tabs.CreateProperties;
 
 export const getOptionsUrl = (pathname?: string) =>
-  chrome.extension.getURL(`options.html${pathname && `#${pathname}`}`);
+  chrome.extension.getURL(`options.html${pathname ? `#${pathname}` : ''}`);
 
 const createOptionsTabsDescription = (pathname?: string): CreateProperties => ({
   url: getOptionsUrl(pathname),
