@@ -3,10 +3,14 @@ import { BaseAction, ErrorAction } from './';
 
 export interface OptionsRequestedAction extends BaseAction {
   type: 'OPTIONS_REQUESTED';
+  payload?: string;
 }
 
-export const optionsRequested = (): OptionsRequestedAction => ({
+export const optionsRequested = (
+  pathname?: string
+): OptionsRequestedAction => ({
   type: 'OPTIONS_REQUESTED',
+  payload: pathname,
   meta: {
     sendToBackground: true
   }
