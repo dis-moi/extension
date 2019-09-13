@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { Contributor, Button, Timer } from '../../atoms';
-import ThumbUp from '../../atoms/icons/ThumbUp';
-import ThumbDown from '../../atoms/icons/ThumbDown';
+import styled from 'styled-components';
+import ThumbUp from 'components/atoms/icons/ThumbUp';
+import ThumbDown from 'components/atoms/icons/ThumbDown';
+import { Button, Contributor, Timer } from 'components/atoms';
 import Source from './Source/Source';
 import SourceURL from './Source/SourceURL';
 import DetailsContainer from './DetailsContainer';
@@ -14,12 +15,16 @@ import Feedbacks from './Feedbacks';
 import Date from './Date';
 import { StatefulNotice } from '../../../app/lmem/notice';
 import { format } from 'date-fns';
-import Avatar from '../../atoms/Avatar/Avatar';
+import Avatar from '../../molecules/Avatar/Avatar';
 import AvatarDefault from '../../atoms/icons/AvatarDefault';
 import {
   CountDownState,
   initialState as countdownInitialState
 } from '../../../app/lmem/countdown';
+
+const DetailsMetaValue = styled.div`
+  margin-left: 10px;
+`;
 
 interface NoticeDetailsProps extends RouteComponentProps {
   notice: StatefulNotice;
@@ -142,11 +147,20 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
       <DetailsContainer>
         <DetailsContent>
           <DetailsMeta>
-            <Date>Le {format(created, 'DD/MM/YYYY')}</Date>
             <Avatar>
-              <AvatarDefault />
+              {contributor.avatar && contributor.avatar.normal.url ? (
+                <img
+                  src={contributor.avatar.normal.url}
+                  alt={contributor.name}
+                />
+              ) : (
+                <AvatarDefault />
+              )}
             </Avatar>
-            <Contributor>{contributor.name} :</Contributor>
+            <DetailsMetaValue>
+              <Date>Le {format(created, 'DD/MM/YYYY')}</Date>
+              <Contributor>{contributor.name} :</Contributor>
+            </DetailsMetaValue>
           </DetailsMeta>
 
           <Message>{message}</Message>

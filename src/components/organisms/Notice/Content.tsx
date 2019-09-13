@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { LocationDescriptor } from 'history';
-import Avatar from 'components/atoms/Avatar/Avatar';
+import Avatar from 'components/molecules/Avatar/Avatar';
 
 interface ContentProps {
   to?: LocationDescriptor;
@@ -38,6 +38,7 @@ export default styled(Content)`
   }
 
   ${Avatar} {
+    align-self: flex-start;
     width: 40px;
     height: 40px;
     margin-right: 10px;

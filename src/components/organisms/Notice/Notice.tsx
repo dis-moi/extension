@@ -8,7 +8,7 @@ import {
   Timer,
   CenterContainer
 } from '../../atoms';
-import Avatar from '../../atoms/Avatar/Avatar';
+import Avatar from '../../molecules/Avatar/Avatar';
 import AvatarDefault from '../../atoms/icons/AvatarDefault';
 import Container, { height, marginTop } from './Container';
 import Content from './Content';
@@ -140,13 +140,20 @@ export default class Notice extends PureComponent<Props, CountDownState> {
           ) : (
             <>
               <Avatar>
-                <AvatarDefault />
+                {contributor.avatar && contributor.avatar.normal.url ? (
+                  <img
+                    src={contributor.avatar.normal.url}
+                    alt={contributor.name}
+                  />
+                ) : (
+                  <AvatarDefault />
+                )}
               </Avatar>
               <Description>
+                <Contributor>{contributor.name}</Contributor>
                 <Title numberOfCharacters={truncateTitleAt}>
                   {stripHtml(message)}
                 </Title>
-                <Contributor>Par : {contributor.name}</Contributor>
               </Description>
               <OpenButton />
             </>
