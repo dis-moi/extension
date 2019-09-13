@@ -6,7 +6,7 @@ import { subscribe } from '../../actions';
 export function* setupSaga({
   payload: { subscriptions }
 }: SetupAction): SagaIterator {
-  yield all(subscriptions.map(id => put(subscribe(id))));
+  yield all(subscriptions.map(id => put(subscribe(id, {}))));
 }
 
 export default function*() {
