@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(subscribe(contributor, { sendToBackground: true })),
   unsubscribe: (contributor: StatefulContributor) => () =>
     dispatch(unsubscribe(contributor, { sendToBackground: true })),
-  goToSuggestions: () => dispatch(push('/suggestions'))
+  goToSuggestions: () => dispatch(push('/settings/suggestions'))
 });
 
 export default connect(
