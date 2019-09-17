@@ -80,12 +80,6 @@ export const ContributorLarge = ({
           <Stat>
             {contributor.contributions} <StatType>Bulles</StatType>
           </Stat>
-          <Stat>
-            120 <StatType>J&apos;aime</StatType>
-          </Stat>
-          <Stat>
-            120 <StatType>Abonnés</StatType>
-          </Stat>
         </StatsWrapper>
 
         <ContributorButton
