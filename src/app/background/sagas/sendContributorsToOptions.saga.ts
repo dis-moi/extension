@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { takeEvery, select } from 'redux-saga/effects';
 import Tab from 'app/lmem/Tab';
 import sendToTab from 'webext/sendActionToTab';
