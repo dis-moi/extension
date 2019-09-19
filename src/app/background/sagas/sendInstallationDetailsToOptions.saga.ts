@@ -6,7 +6,7 @@ import {
   ListeningActionsReadyAction,
   updateInstallationDetails,
   TosAcceptedAction,
-  transmitTosState
+  transmitTosStatus
 } from 'app/actions';
 import sendToTab from 'webext/sendActionToTab';
 import assocTabIfNotGiven from 'webext/assocTabIfNotGiven';
@@ -23,7 +23,7 @@ function* sendTosStateToOptionsTab(
 ) {
   const tab = action.meta!.tab as chrome.tabs.Tab & Tab;
   const transmitAction = assocTabIfNotGiven(tab)(
-    transmitTosState(yield select(areTosAccepted))
+    transmitTosStatus(yield select(areTosAccepted))
   );
   sendToTab(tab.id, transmitAction);
 }

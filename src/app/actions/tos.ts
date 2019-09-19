@@ -17,15 +17,15 @@ export const tosAcceptanceFailure = (
 ): TosAcceptanceFailureAction =>
   createErrorAction('TOS_ACCEPTANCE_FAILURE')(e, meta);
 
-export const TRANSMIT_TOS_STATE = 'TRANSMIT_TOS_STATE';
-export interface TransmitTOSStateAction {
-  type: typeof TRANSMIT_TOS_STATE;
+export const TRANSMIT_TOS_STATUS = 'TRANSMIT_TOS_STATUS';
+export interface TransmitTOSStatusAction {
+  type: typeof TRANSMIT_TOS_STATUS;
   payload: boolean;
 }
 
-export const transmitTosState = (
+export const transmitTosStatus = (
   tosAccepted: boolean
-): TransmitTOSStateAction => ({
-  type: TRANSMIT_TOS_STATE,
+): TransmitTOSStatusAction => ({
+  type: TRANSMIT_TOS_STATUS,
   payload: tosAccepted
 });
