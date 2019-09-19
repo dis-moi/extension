@@ -66,7 +66,7 @@ export const ContributorCompact = ({
       <UserName>{contributor.name}</UserName>
 
       <StatsWrapper>
-        <Stat>{contributor.contributions}</Stat>
+        <Stat>{contributor.contributions} Bulles</Stat>
       </StatsWrapper>
     </ContributorInfos>
 
