@@ -8,6 +8,7 @@ import UserName from 'components/atoms/UserName/UserName';
 import Stat from 'components/atoms/Stat/Stat';
 import StatType from 'components/atoms/Stat/StatType';
 import ContributorButton from './ContributorButton';
+import BubbleIcon from 'components/atoms/icons/Bubble';
 
 const ContributorCard = styled.div`
   padding: 12px 15px 10px;
@@ -35,9 +36,11 @@ const ContributorInfos = styled.div`
 `;
 
 const StatsWrapper = styled.div`
-  display: grid;
-  grid-column-gap: 5px;
-  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+
+  ${BubbleIcon} {
+    margin-right: 6px;
+  }
 `;
 
 const ContributorIntro = styled.p`
@@ -78,7 +81,8 @@ export const ContributorLarge = ({
 
         <StatsWrapper>
           <Stat>
-            {contributor.contributions} <StatType>Bulles</StatType>
+            <BubbleIcon /> {contributor.contributions}{' '}
+            <StatType>Bulles</StatType>
           </Stat>
         </StatsWrapper>
 
