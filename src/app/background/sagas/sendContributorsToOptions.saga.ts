@@ -9,14 +9,14 @@ import {
 } from '../../actions';
 import { getContributorsWithSubscriptionState } from '../selectors/subscriptions.selectors';
 import { SUBSCRIBE, UNSUBSCRIBE } from '../../constants/ActionTypes';
+import { getOptionsTab } from '../selectors/tabs';
 
-const isOptionsTabReadyAction = (action: AppAction): boolean =>
+export const isOptionsTabReadyAction = (action: AppAction): boolean =>
   action.type === 'LISTENING_ACTIONS_READY' &&
   action.meta.from === 'options' &&
   !!action.meta.tab;
 
-function* sendContributorsToOptionsTab(action: ListeningActionsReadyAction) {
-  const tab = action.meta.tab as chrome.tabs.Tab & Tab;
+function* sendContributorsToTab(tab: chrome.tabs.Tab & Tab) {
   const contributors = yield select(getContributorsWithSubscriptionState);
   const contributorsTransmittedAction = assocTabIfNotGiven(tab)(
     contributorsTransmitted(contributors)
@@ -24,7 +24,19 @@ function* sendContributorsToOptionsTab(action: ListeningActionsReadyAction) {
   sendToTab(tab.id, contributorsTransmittedAction);
 }
 
+function* sendContributorsBackToTab(action: ListeningActionsReadyAction) {
+  const tab = action.meta.tab as chrome.tabs.Tab & Tab;
+  yield sendContributorsToTab(tab);
+}
+
+function* subscribeSaga() {
+  const optionsTab = yield select(getOptionsTab);
+  if (optionsTab) {
+    yield sendContributorsToTab(optionsTab);
+  }
+}
+
 export default function* sendContributorsToOptionsSaga() {
-  yield takeEvery(isOptionsTabReadyAction, sendContributorsToOptionsTab);
-  yield takeEvery([SUBSCRIBE, UNSUBSCRIBE], sendContributorsToOptionsTab);
+  yield takeEvery(isOptionsTabReadyAction, sendContributorsBackToTab);
+  yield takeEvery([SUBSCRIBE, UNSUBSCRIBE], subscribeSaga);
 }
