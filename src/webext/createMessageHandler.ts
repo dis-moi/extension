@@ -10,11 +10,7 @@ type Emit = (action: Action) => void;
 const isAction = (x: unknown): x is Action =>
   typeof x === 'object' && 'type' in (x as object);
 
-const isOptionsPage = (url: string): boolean => {
-  const alors = url.includes(getOptionsUrl());
-  console.log('alors', alors);
-  return alors;
-};
+const isOptionsPage = (url: string): boolean => url.includes(getOptionsUrl());
 
 const getTabContext = (tab?: chrome.tabs.Tab) =>
   tab && tab.url && isOptionsPage(tab.url) ? 'options' : 'content';
