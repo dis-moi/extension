@@ -24,8 +24,8 @@ export interface TransmitTOSStateAction {
 }
 
 export const transmitTosState = (
-  areTosAccepted: boolean
+  tosAccepted: boolean
 ): TransmitTOSStateAction => ({
   type: TRANSMIT_TOS_STATE,
-  payload: areTosAccepted
+  payload: tosAccepted
 });
