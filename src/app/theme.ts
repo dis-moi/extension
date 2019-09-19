@@ -104,8 +104,8 @@ export const theme: Theme = {
   // badge background colors
   badge: {
     backgroundColor: {
-      markedRead: '#9DA1A7',
-      markedUnread: '#DB0D0D'
+      hasAllNoticesRead: '#9DA1A7',
+      hasUnreadNotices: '#DB0D0D'
     }
   },
 

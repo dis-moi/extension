@@ -8,7 +8,7 @@ export interface PrefsState {
   dismissedNotices: number[];
   likedNotices: number[];
   dislikedNotices: number[];
-  markedReadNotices: number[];
+  readNotices: number[];
 }
 
 const initialPrefs: PrefsState = {
@@ -16,7 +16,7 @@ const initialPrefs: PrefsState = {
   dismissedNotices: [],
   likedNotices: [],
   dislikedNotices: [],
-  markedReadNotices: []
+  readNotices: []
 };
 
 function prefsReducer(state: PrefsState = initialPrefs, action: AppAction) {
@@ -71,12 +71,10 @@ function prefsReducer(state: PrefsState = initialPrefs, action: AppAction) {
       }
       return state;
 
-    case 'MARK_NOTICE_READ':
+    case 'UNFOLD_NOTICE':
       return {
         ...state,
-        markedReadNotices: R.uniq(
-          R.concat(state.markedReadNotices, [action.payload])
-        )
+        readNotices: R.uniq(R.concat(state.readNotices, [action.payload]))
       };
 
     default:

@@ -20,7 +20,7 @@ interface Options {
   liked?: boolean;
   disliked?: boolean;
   dismissed?: boolean;
-  markedRead?: boolean;
+  read?: boolean;
   withSource?: boolean;
 }
 
@@ -41,7 +41,7 @@ export const generateStatefulNotice = ({
   liked,
   disliked,
   dismissed,
-  markedRead,
+  read,
   withSource = true
 }: Options = {}): StatefulNotice => ({
   id: Math.random() * 1000,
@@ -66,7 +66,7 @@ export const generateStatefulNotice = ({
     liked: Boolean(liked),
     dismissed: Boolean(dismissed),
     disliked: Boolean(disliked),
-    markedRead: Boolean(markedRead)
+    read: Boolean(read)
   }
 });
 
@@ -95,7 +95,7 @@ export const generateStatefulNoticeVariant = (
     liked,
     disliked,
     dismissed,
-    markedRead,
+    read,
     withSource = true
   }: Options
 ): StatefulNotice => {
@@ -125,7 +125,7 @@ export const generateStatefulNoticeVariant = (
     assocIfGiven<NoticeState, 'liked'>('liked', liked),
     assocIfGiven<NoticeState, 'disliked'>('disliked', disliked),
     assocIfGiven<NoticeState, 'dismissed'>('dismissed', dismissed),
-    assocIfGiven<NoticeState, 'markedRead'>('markedRead', markedRead)
+    assocIfGiven<NoticeState, 'read'>('read', read)
   )(notice.state);
 
   return R.pipe(

@@ -22,7 +22,7 @@ const notice1: StatefulNotice = {
   contributor: { id: 1, name: 'Jalil', contributions: 42 },
   visibility: 'public',
   ratings: { dislikes: 0, likes: 0 },
-  state: { disliked: false, dismissed: false, liked: false, markedRead: false },
+  state: { disliked: false, dismissed: false, liked: false, read: false },
   created: new Date(),
   modified: new Date()
 };

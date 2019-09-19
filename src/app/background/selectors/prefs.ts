@@ -16,8 +16,7 @@ export const getLiked = (state: BackgroundState) =>
   getPrefs(state).likedNotices;
 export const getDisliked = (state: BackgroundState) =>
   getPrefs(state).dislikedNotices;
-export const getMarkedRead = (state: BackgroundState) =>
-  getPrefs(state).markedReadNotices;
+export const getRead = (state: BackgroundState) => getPrefs(state).readNotices;
 
 export const getInitialContent = (state: BackgroundState) => ({
   installationDetails: getInstallationDetails(state)
@@ -27,7 +26,7 @@ export const getAddStateToNotice = (state: BackgroundState) => {
   const dismissed = getDismissed(state);
   const liked = getLiked(state);
   const disliked = getDisliked(state);
-  const markedRead = getMarkedRead(state);
+  const read = getRead(state);
 
   return (notice: Notice): StatefulNotice => ({
     ...notice,
@@ -35,7 +34,7 @@ export const getAddStateToNotice = (state: BackgroundState) => {
       dismissed: dismissed.includes(notice.id),
       liked: liked.includes(notice.id),
       disliked: disliked.includes(notice.id),
-      markedRead: markedRead.includes(notice.id)
+      read: read.includes(notice.id)
     }
   });
 };
