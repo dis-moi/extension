@@ -62,6 +62,7 @@ export * from './refreshContributors';
 export * from './options';
 export * from './tabs';
 export * from './tabsLifecycle';
+export * from './tos';
 export * from './ui';
 export * from './updateDraftNotices';
 export * from './subscription';

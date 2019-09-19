@@ -17,27 +17,15 @@ export const tosAcceptanceFailure = (
 ): TosAcceptanceFailureAction =>
   createErrorAction('TOS_ACCEPTANCE_FAILURE')(e, meta);
 
-export interface FetchTosAcceptedAction extends BaseAction {
-  type: 'FETCH_TOS_ACCEPTED_REQUEST';
-}
-export const fetchTosAccepted = (): FetchTosAcceptedAction => ({
-  type: 'FETCH_TOS_ACCEPTED_REQUEST'
-});
-export interface FetchTosAcceptedSuccess extends BaseAction {
-  type: 'FETCH_TOS_ACCEPTED_SUCCESS';
+export const TRANSMIT_TOS_STATUS = 'TRANSMIT_TOS_STATUS';
+export interface TransmitTOSStatusAction {
+  type: typeof TRANSMIT_TOS_STATUS;
   payload: boolean;
 }
-export const fetchTosAcceptedSuccess = (
+
+export const transmitTosStatus = (
   tosAccepted: boolean
-): FetchTosAcceptedSuccess => ({
-  type: 'FETCH_TOS_ACCEPTED_SUCCESS',
+): TransmitTOSStatusAction => ({
+  type: TRANSMIT_TOS_STATUS,
   payload: tosAccepted
 });
-export interface FetchTosAcceptedFailure extends ErrorAction {
-  type: 'FETCH_TOS_ACCEPTED_FAILURE';
-}
-export const fetchTosAcceptedFailure = (
-  e: Error,
-  meta: ActionMeta
-): FetchTosAcceptedFailure =>
-  createErrorAction('FETCH_TOS_ACCEPTED_FAILURE')(e, meta);
