@@ -22,18 +22,6 @@ export const Subscriptions = ({
         <span>5</span>
         <span>Abonnements</span>
       </div>
-      <div>
-        <span>3</span>
-        <span>
-          Notices
-          <br />
-          publiées
-        </span>
-      </div>
-      <div>
-        <span>155</span>
-        <span>Vues</span>
-      </div>
     </SubscriptionsData>
 
     <BorderButton onClick={optionsRequested}>Gérer</BorderButton>
@@ -42,5 +30,5 @@ export const Subscriptions = ({
 
 export default compose(
   withConnect,
-  withTitle<SubscriptionsScreenProps>('Abonnement')
+  withTitle<SubscriptionsScreenProps>('Abonnements')
 )(Subscriptions);
