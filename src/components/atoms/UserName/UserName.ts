@@ -4,4 +4,7 @@ export default styled.h3`
   margin: 0;
   font-size: 17px;
   color: ${props => props.theme.activeColor};
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;

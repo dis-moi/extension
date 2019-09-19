@@ -21,6 +21,8 @@ const InfoLine = styled.p`
 `;
 
 const Button = styled(BackgroundButton)`
+  margin-right: auto;
+  margin-left: auto;
   padding: 15px 35px;
   height: auto;
   font-size: 24px;
