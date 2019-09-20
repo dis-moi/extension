@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ExternalLink } from 'components/atoms';
-import LmemLogo from 'assets/img/logo/logo-lmem-blue.png';
 import Logo from 'components/atoms/icons/Logo';
 import Wrapper from '../OnboardingAtoms/OnboardingWrapper';
 import Intro from '../OnboardingAtoms/OnboardingIntro';
@@ -9,6 +8,7 @@ import Title from '../OnboardingAtoms/OnboardingTitle';
 import SubTitle from '../OnboardingAtoms/OnboardingSubTitle';
 // import Steps from '../OnboardingAtoms/OnboardingSteps/OnboardingSteps';
 import OnboardinButton from '../OnboardingAtoms/OnboardingButton';
+import LMEMToBulles from '../OnboardingAtoms/LMEMToBulles';
 
 const TOSTitle = styled.h3`
   font-size: 28px;
@@ -69,15 +69,7 @@ export default ({
   <Wrapper>
     {updatedFromLmem ? (
       <>
-        <Intro>
-          <img src={LmemLogo} alt="" />
-          <Logo />
-
-          <Title>
-            Votre extension s&apos;ouvre à de nouveaux contributeurs
-            <br /> et change de nom.
-          </Title>
-        </Intro>
+        <LMEMToBulles />
 
         <TOSText>
           A partir d’aujourd’hui, vous pouvez vous abonner à des amis, media et
