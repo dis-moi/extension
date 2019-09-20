@@ -1,13 +1,19 @@
 import React from 'react';
 import Wrapper from '../OnboardingAtoms/OnboardingWrapper';
 import Intro from '../OnboardingAtoms/OnboardingIntro';
-import Logo from 'components/atoms/icons/Logo';
+import BullesLogo from 'components/atoms/icons/Logo';
 import SubTitle from '../OnboardingAtoms/OnboardingSubTitle';
+import OnboardingSteps from '../OnboardingAtoms/OnboardingSteps/OnboardingSteps';
 
-export default () => (
+interface SubscribeScreenProps {
+  updatedFromLmem: boolean;
+}
+
+export default ({ updatedFromLmem }: SubscribeScreenProps) => (
   <Wrapper>
     <Intro>
-      <Logo />
+      {updatedFromLmem ? <p>Le Même en mieux -- Bulles</p> : <BullesLogo />}
+      {updatedFromLmem && <OnboardingSteps />}
 
       <SubTitle>
         Choisissez vos contributeurs pour recevoir leurs messages durant votre
