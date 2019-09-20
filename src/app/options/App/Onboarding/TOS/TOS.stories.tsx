@@ -1,8 +1,8 @@
 import React from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
-import TOS from './TOS';
 import { action } from '@storybook/addon-actions';
+import TOS from './TOS';
 
 storiesOf('screens/Onboarding/ToS', module)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
@@ -17,6 +17,13 @@ storiesOf('screens/Onboarding/ToS', module)
     <TOS
       acceptTermsOfService={action('acceptTermsOfService')}
       termsOfServiceAccepted={false}
+      updatedFromLmem={false}
+    />
+  ))
+  .add('Bulles (TosAccepted)', () => (
+    <TOS
+      acceptTermsOfService={action('acceptTermsOfService')}
+      termsOfServiceAccepted={true}
       updatedFromLmem={false}
     />
   ));

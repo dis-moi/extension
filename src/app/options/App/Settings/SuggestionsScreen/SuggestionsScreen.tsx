@@ -15,7 +15,7 @@ const ContributorsList = styled.div`
   grid-row-gap: 40px;
 `;
 
-interface Props {
+export interface SuggestionsScreenProps {
   suggestions: StatefulContributor[];
   subscribe: (contributor: StatefulContributor) => () => void;
   unsubscribe: (contributor: StatefulContributor) => () => void;
@@ -25,7 +25,7 @@ export const SuggestionsScreen = ({
   suggestions,
   subscribe,
   unsubscribe
-}: Props) => (
+}: SuggestionsScreenProps) => (
   <>
     <ContributorsWidth>
       <ContributorsList>
