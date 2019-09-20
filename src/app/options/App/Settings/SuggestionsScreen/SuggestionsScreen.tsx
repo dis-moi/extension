@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { StatefulContributor } from 'app/lmem/contributor';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
-import BottomLine from './BottomLine';
 import withConnect from './withConnect';
 
 const ContributorsWidth = styled.section`
@@ -40,8 +39,6 @@ export const SuggestionsScreen = ({
         ))}
       </ContributorsList>
     </ContributorsWidth>
-
-    <BottomLine />
   </>
 );
 
