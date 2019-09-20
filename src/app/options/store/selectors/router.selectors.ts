@@ -1,12 +1,11 @@
-import { getLocation } from 'connected-react-router';
+import { getLocation, RouterRootState } from 'connected-react-router';
 import { Location } from 'history';
 import { createSelector } from 'reselect';
 import * as R from 'ramda';
 import { OptionsScreen } from '../../screens';
-import { OptionsState } from '../reducers';
 
 export const getCurrentScreen = createSelector<
-  OptionsState,
+  RouterRootState,
   Location,
   OptionsScreen | null
 >(
