@@ -13,7 +13,7 @@ const OnboardingStep = styled.li`
   border: 1px solid red;
 `;
 
-const OnboardingSteps = (
+const OnboardingSteps = () => (
   <OnboardingStepsList>
     <OnboardingStep>plop</OnboardingStep>
   </OnboardingStepsList>

@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ExternalLink } from 'components/atoms';
+import LmemLogo from 'assets/img/logo/logo-lmem-blue.png';
 import Logo from 'components/atoms/icons/Logo';
 import Wrapper from '../OnboardingAtoms/OnboardingWrapper';
 import Intro from '../OnboardingAtoms/OnboardingIntro';
 import Title from '../OnboardingAtoms/OnboardingTitle';
 import SubTitle from '../OnboardingAtoms/OnboardingSubTitle';
-import Steps from '../OnboardingAtoms/OnboardingSteps/OnboardingSteps';
+// import Steps from '../OnboardingAtoms/OnboardingSteps/OnboardingSteps';
 import OnboardinButton from '../OnboardingAtoms/OnboardingButton';
 
 const TOSTitle = styled.h3`
@@ -66,59 +67,89 @@ export default ({
   acceptTermsOfService
 }: TosProps) => (
   <Wrapper>
-    <Intro>
-      {updatedFromLmem && (
-        <>
-          <p>Le Même en mieux -- Bulles</p>
-          <TOSTitle>
-            Votre extension s&apos;ouvre à de nouveaux contributeurs et change
-            de nom.
-          </TOSTitle>
+    {updatedFromLmem ? (
+      <>
+        <Intro>
+          <img src={LmemLogo} alt="" />
+          <Logo />
 
-          <Steps />
-        </>
-      )}
-      <Logo />
+          <Title>
+            Votre extension s&apos;ouvre à de nouveaux contributeurs
+            <br /> et change de nom.
+          </Title>
+        </Intro>
 
-      <Title>Installation réussie !</Title>
-      <SubTitle>
-        Veuillez prendre connaissance des principes du service <br />
-        et des conditions générales d’utilisation.
-      </SubTitle>
-    </Intro>
+        <TOSText>
+          A partir d’aujourd’hui, vous pouvez vous abonner à des amis, media et
+          experts de votre choix.
+          <br />
+          Vous recevrez leurs messages en fonction de la page web que vous
+          visitez, comme pour Le Même en Mieux.
+        </TOSText>
 
-    <TOSTitle>Principes du service</TOSTitle>
+        <TOSText>
+          Cette évolution entraîne un changement de nom : l’extension s’appelle
+          désormais Bulles.
+        </TOSText>
 
-    <TOSList>
-      <TOSListItem>
-        <strong>Liberté d’information</strong> : Vous recevez l’information que
-        vous avez choisie.
-      </TOSListItem>
-      <TOSListItem>
-        <strong>Pas de publicité</strong>
-      </TOSListItem>
-      <TOSListItem>
-        <strong>
-          Anonymat: Pas d’email ni de compte nécessaires pour naviguer avec
-          Bulles
-        </strong>
-      </TOSListItem>
-      <TOSListItem>
-        <strong>Seules des données strictement utiles</strong> au fonctionnement
-        du service sont collectées
-      </TOSListItem>
-      <TOSListItem>
-        <strong>Aucune revente ni divulgation de données</strong>
-      </TOSListItem>
-    </TOSList>
+        <TOSText>
+          Nous avons également renforcé la protection de votre vie privée{' '}
+          <ExternalLink href="https://www.bulles.fr/vie-privee">
+            protection de votre vie privée
+          </ExternalLink>
+        </TOSText>
+        <TOSText>
+          <ExternalLink href="https://www.bulles.fr/evolutions">
+            Voir toutes les nouveautés
+          </ExternalLink>
+        </TOSText>
+      </>
+    ) : (
+      <>
+        <Intro>
+          <Logo />
 
-    <TOSText>
-      Ces principes ne se substituent pas à la lecture détaillée des Conditions
-      Générales d’utilisation que vous devez accepter (ci-dessous) pour naviguer
-      avec Bulles.
-    </TOSText>
+          <Title>Installation réussie !</Title>
+          <SubTitle>
+            Veuillez prendre connaissance des principes du service <br />
+            et des conditions générales d’utilisation.
+          </SubTitle>
+        </Intro>
 
-    <TOSTitle>Conditions générales d’utilisation</TOSTitle>
+        <TOSTitle>Principes du service</TOSTitle>
+
+        <TOSList>
+          <TOSListItem>
+            <strong>Liberté d’information</strong> : Vous recevez l’information
+            que vous avez choisie.
+          </TOSListItem>
+          <TOSListItem>
+            <strong>Pas de publicité</strong>
+          </TOSListItem>
+          <TOSListItem>
+            <strong>
+              Anonymat: Pas d’email ni de compte nécessaires pour naviguer avec
+              Bulles
+            </strong>
+          </TOSListItem>
+          <TOSListItem>
+            <strong>Seules des données strictement utiles</strong> au
+            fonctionnement du service sont collectées
+          </TOSListItem>
+          <TOSListItem>
+            <strong>Aucune revente ni divulgation de données</strong>
+          </TOSListItem>
+        </TOSList>
+
+        <TOSText>
+          Ces principes ne se substituent pas à la lecture détaillée des
+          Conditions Générales d’utilisation que vous devez accepter
+          (ci-dessous) pour naviguer avec Bulles.
+        </TOSText>
+
+        <TOSTitle>Conditions générales d’utilisation</TOSTitle>
+      </>
+    )}
     <TOSForm>
       <input
         type="checkbox"
@@ -128,7 +159,7 @@ export default ({
       />
       <label htmlFor="tos">
         J&apos;ai lu et j&apos;accepte les nouvelles{' '}
-        <ExternalLink>
+        <ExternalLink href="https://www.bulles.fr/cgu">
           conditions générales d&apos;utilisation (CGU)
         </ExternalLink>
         .
