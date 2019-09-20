@@ -1,8 +1,10 @@
 import React, { ReactNode } from 'react';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
+import { Theme } from 'app/theme';
 
 interface OnboardingStepContainer {
   active: boolean;
+  theme: Theme;
 }
 
 const OnboardingStepContainer = styled.li<OnboardingStepContainer>`
@@ -11,9 +13,10 @@ const OnboardingStepContainer = styled.li<OnboardingStepContainer>`
   align-items: center;
   width: 50%;
   font-size: 22px;
-  color: ${({ active }) => (active ? 'white' : 'grey')};
+  color: ${({ active, theme }) => (active ? 'white' : theme.primaryColor)};
   font-weight: 500;
-  background-color: ${({ active }) => (active ? 'blue' : 'transparent')};
+  background-color: ${({ active, theme }) =>
+    active ? theme.activeColor : 'transparent'};
 
   &:first-of-type {
     border-radius: 8px 0 0 8px;
@@ -32,7 +35,8 @@ const OnboardingStepContainer = styled.li<OnboardingStepContainer>`
       border-top: 35px solid transparent;
       border-bottom: 35px solid transparent;
 
-      border-left: 25px solid ${({ active }) => (active ? '#f4f4f4' : 'blue')};
+      border-left: 25px solid
+        ${({ active, theme }) => (active ? '#f4f4f4' : theme.activeColor)};
     }
   }
 `;
@@ -48,4 +52,4 @@ const OnboardingStep = ({ step, active, children }: OnboardingStepProps) => (
   </OnboardingStepContainer>
 );
 
-export default OnboardingStep;
+export default withTheme(OnboardingStep);
