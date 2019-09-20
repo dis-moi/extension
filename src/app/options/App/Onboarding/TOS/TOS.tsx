@@ -6,7 +6,6 @@ import Wrapper from '../OnboardingAtoms/OnboardingWrapper';
 import Intro from '../OnboardingAtoms/OnboardingIntro';
 import Title from '../OnboardingAtoms/OnboardingTitle';
 import SubTitle from '../OnboardingAtoms/OnboardingSubTitle';
-// import Steps from '../OnboardingAtoms/OnboardingSteps/OnboardingSteps';
 import OnboardinButton from '../OnboardingAtoms/OnboardingButton';
 import LMEMToBulles from '../OnboardingAtoms/LMEMToBulles';
 
@@ -158,6 +157,11 @@ export default ({
       </label>
     </TOSForm>
 
-    <OnboardinButton>Continuer</OnboardinButton>
+    <OnboardinButton
+      disabled={!termsOfServiceAccepted}
+      to={`/onboarding/subscriptions`}
+    >
+      Continuer
+    </OnboardinButton>
   </Wrapper>
 );
