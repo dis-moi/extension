@@ -11,6 +11,7 @@ import { generateContributor } from 'test/fakers/generateContributor';
 
 const Title2 = styled(Title)`
   margin-top: 0;
+  margin-bottom: 40px;
   color: ${props => props.theme.activeColor};
 `;
 
