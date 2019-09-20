@@ -11,4 +11,4 @@ storiesOf('screens', module)
       <Notification close={action('close')}>{getStory()}</Notification>
     </Router>
   ))
-  .add('Update', () => <Update />);
+  .add('Update', () => <Update openOnboarding={action('openOnboarding')} />);
