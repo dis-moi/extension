@@ -12,6 +12,10 @@ const LMEMToBullesWrapper = styled.header`
   align-items: center;
 `;
 
+const TitleLMEM = styled(Title)`
+  color: ${props => props.theme.activeColor};
+`;
+
 const LMEMToBulles = () => (
   <Intro>
     <LMEMToBullesWrapper>
@@ -19,10 +23,10 @@ const LMEMToBulles = () => (
       <BullesLogo />
     </LMEMToBullesWrapper>
 
-    <Title>
+    <TitleLMEM>
       Votre extension s&apos;ouvre à de nouveaux contributeurs
       <br /> et change de nom.
-    </Title>
+    </TitleLMEM>
   </Intro>
 );
 
