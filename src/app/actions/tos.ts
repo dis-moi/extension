@@ -3,11 +3,17 @@ import { ActionMeta, BaseAction, createErrorAction, ErrorAction } from '.';
 export interface AcceptTosAction extends BaseAction {
   type: 'ACCEPT_TOS';
 }
-export const acceptTOS = (): AcceptTosAction => ({ type: 'ACCEPT_TOS' });
+export const acceptTOS = (meta: ActionMeta): AcceptTosAction => ({
+  type: 'ACCEPT_TOS',
+  meta
+});
 export interface TosAcceptedAction extends BaseAction {
   type: 'TOS_ACCEPTED';
 }
-export const tosAccepted = (): TosAcceptedAction => ({ type: 'TOS_ACCEPTED' });
+export const tosAccepted = (meta: ActionMeta): TosAcceptedAction => ({
+  type: 'TOS_ACCEPTED',
+  meta
+});
 export interface TosAcceptanceFailureAction extends ErrorAction {
   type: 'TOS_ACCEPTANCE_FAILURE';
 }

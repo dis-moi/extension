@@ -3,7 +3,7 @@ import { MemoryRouter as Router } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { generateContributor } from 'test/fakers/generateContributor';
-import Subscribe from '../Subscribe';
+import Subscribe from './Subscribe';
 
 storiesOf('screens/Onboarding/Subscribe', module)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
@@ -18,6 +18,7 @@ storiesOf('screens/Onboarding/Subscribe', module)
       nbSubscriptions={0}
       subscribe={() => action('subscribe')}
       unsubscribe={() => action('unsubscribe')}
+      next={action('next')}
     />
   ))
   .add('Bulles', () => (
@@ -31,6 +32,7 @@ storiesOf('screens/Onboarding/Subscribe', module)
       nbSubscriptions={0}
       subscribe={() => action('subscribe')}
       unsubscribe={() => action('unsubscribe')}
+      next={action('next')}
     />
   ))
   .add('Bulles (1 subscriptions)', () => (
@@ -44,5 +46,6 @@ storiesOf('screens/Onboarding/Subscribe', module)
       nbSubscriptions={1}
       subscribe={() => action('subscribe')}
       unsubscribe={() => action('unsubscribe')}
+      next={action('next')}
     />
   ));

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import { Theme } from 'app/theme';
 
 interface OnboardingStepContainer {
@@ -52,4 +52,4 @@ const OnboardingStep = ({ step, active, children }: OnboardingStepProps) => (
   </OnboardingStepContainer>
 );
 
-export default withTheme(OnboardingStep);
+export default OnboardingStep;

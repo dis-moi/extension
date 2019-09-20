@@ -1,3 +1,4 @@
 import TOS from './TOS';
+import withConnect from './withConnect';
 
-export default TOS;
+export default withConnect(TOS);
