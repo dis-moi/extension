@@ -13,6 +13,7 @@ import openOptions from './openOptions.saga';
 import sendContributorsToOptions from './sendContributorsToOptions.saga';
 import sendInstallationDetailsToOptions from './sendInstallationDetailsToOptions.saga';
 import setup from './setup.saga';
+import tos from './tos.saga';
 
 export default function* rootSaga() {
   yield all([
@@ -28,6 +29,7 @@ export default function* rootSaga() {
     fork(sendContributorsToOptions),
     fork(sendInstallationDetailsToOptions),
     fork(setup),
-    fork(error)
+    fork(error),
+    fork(tos)
   ]);
 }

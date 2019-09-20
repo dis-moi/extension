@@ -39,13 +39,16 @@ const Button = styled(BackgroundButton)`
 interface SubscribeScreenProps extends SuggestionsScreenProps {
   updatedFromLmem: boolean;
   nbSubscriptions: number;
+  next: () => void;
 }
+
 export default ({
   updatedFromLmem,
   suggestions,
   subscribe,
   unsubscribe,
-  nbSubscriptions
+  nbSubscriptions,
+  next
 }: SubscribeScreenProps) => (
   <>
     <Intro>
@@ -68,7 +71,7 @@ export default ({
       {nbSubscriptions === 0 && (
         <InfoLine>Choisir au minimum 1 contributeur</InfoLine>
       )}
-      <Button disabled={nbSubscriptions === 0} to={`/onboarding/examples`}>
+      <Button disabled={nbSubscriptions === 0} onClick={next}>
         Terminer
       </Button>
     </BottomLineBg>

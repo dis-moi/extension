@@ -1,3 +1,4 @@
 import Subscribe from './Subscribe';
+import withConnect from './withConnect';
 
-export default Subscribe;
+export default withConnect(Subscribe);

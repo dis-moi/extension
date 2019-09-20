@@ -16,6 +16,11 @@ export const getSubscriptions = createSelector(
   R.filter(contributorIsSubscribed)
 );
 
+export const getNbSusbcriptions = createSelector(
+  [getSubscriptions],
+  subscriptions => subscriptions.length
+);
+
 export const getContributorsSuggestions = createSelector(
   [getContributors],
   sortSuggestedContributors

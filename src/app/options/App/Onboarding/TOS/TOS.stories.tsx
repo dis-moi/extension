@@ -11,6 +11,7 @@ storiesOf('screens/Onboarding/ToS', module)
       acceptTermsOfService={action('acceptTermsOfService')}
       termsOfServiceAccepted={false}
       updatedFromLmem={true}
+      next={action('next')}
     />
   ))
   .add('Bulles', () => (
@@ -18,6 +19,7 @@ storiesOf('screens/Onboarding/ToS', module)
       acceptTermsOfService={action('acceptTermsOfService')}
       termsOfServiceAccepted={false}
       updatedFromLmem={false}
+      next={action('next')}
     />
   ))
   .add('Bulles (TosAccepted)', () => (
@@ -25,5 +27,6 @@ storiesOf('screens/Onboarding/ToS', module)
       acceptTermsOfService={action('acceptTermsOfService')}
       termsOfServiceAccepted={true}
       updatedFromLmem={false}
+      next={action('next')}
     />
   ));
