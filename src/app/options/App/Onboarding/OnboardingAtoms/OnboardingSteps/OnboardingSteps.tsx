@@ -4,8 +4,10 @@ import OnboardingStep from './OnboardingStep';
 
 const OnboardingStepsList = styled.ul`
   display: flex;
-  max-width: 426px;
+  max-width: 750px;
   height: 69px;
+  padding: 0;
+  list-style-type: none;
   background-color: #f4f4f4;
   border-radius: 8px;
 `;
