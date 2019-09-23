@@ -1,8 +1,16 @@
 import React, { PureComponent } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { Contributor, Button, Timer } from '../../atoms';
-import ThumbUp from '../../atoms/icons/ThumbUp';
-import ThumbDown from '../../atoms/icons/ThumbDown';
+import styled from 'styled-components';
+import { format } from 'date-fns';
+import ThumbUp from 'components/atoms/icons/ThumbUp';
+import ThumbDown from 'components/atoms/icons/ThumbDown';
+import Avatar from 'components/molecules/Avatar/Avatar';
+import { Button, Contributor, Timer } from 'components/atoms';
+import { StatefulNotice } from 'app/lmem/notice';
+import {
+  CountDownState,
+  initialState as countdownInitialState
+} from 'app/lmem/countdown';
 import Source from './Source/Source';
 import SourceURL from './Source/SourceURL';
 import DetailsContainer from './DetailsContainer';
@@ -12,13 +20,10 @@ import DetailsDislike from './DetailsDislike';
 import Message from './Message';
 import Feedbacks from './Feedbacks';
 import Date from './Date';
-import { StatefulNotice } from '../../../app/lmem/notice';
-import { format } from 'date-fns';
-import IntentionIcon from '../../atoms/Intentions/IntentionIcon';
-import {
-  CountDownState,
-  initialState as countdownInitialState
-} from '../../../app/lmem/countdown';
+
+const DetailsMetaValue = styled.div`
+  margin-left: 10px;
+`;
 
 interface NoticeDetailsProps extends RouteComponentProps {
   notice: StatefulNotice;
@@ -126,7 +131,6 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
   render() {
     const {
       notice: {
-        intention,
         message,
         created,
         contributor,
@@ -142,9 +146,11 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
       <DetailsContainer>
         <DetailsContent>
           <DetailsMeta>
-            <Date>Le {format(created, 'DD/MM/YYYY')}</Date>
-            <Contributor>{contributor.name} :</Contributor>
-            <IntentionIcon active intention={intention} />
+            <Avatar contributor={contributor} size="small" />
+            <DetailsMetaValue>
+              <Date>Le {format(created, 'DD/MM/YYYY')}</Date>
+              <Contributor>{contributor.name} :</Contributor>
+            </DetailsMetaValue>
           </DetailsMeta>
 
           <Message>{message}</Message>

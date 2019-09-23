@@ -6,6 +6,7 @@ import { Intention } from '../../src/app/lmem/intention';
 import { Source } from '../../src/app/lmem/source';
 import { Contributor } from '../../src/app/lmem/contributor';
 import { Ratings } from '../../src/app/lmem/rating';
+import { generateContributor } from './generateContributor';
 
 interface Options {
   intention?: Intention;
@@ -14,7 +15,7 @@ interface Options {
   modified?: Date;
   likes?: number;
   dislikes?: number;
-  contributor?: string;
+  contributor?: Contributor;
   sourceName?: string;
   sourceUrl?: string;
   liked?: boolean;
@@ -50,11 +51,7 @@ export const generateStatefulNotice = ({
   modified: modified || subWeeks(new Date(), 1),
   message: message || defaultMessage,
   ratings: { likes: likes || 42, dislikes: dislikes || 2 },
-  contributor: {
-    id: 1,
-    name: contributor || Faker.name.findName(),
-    contributions: Faker.random.number()
-  },
+  contributor: contributor || generateContributor(),
   visibility: 'public',
   source: withSource
     ? {
@@ -111,10 +108,7 @@ export const generateStatefulNoticeVariant = (
         )(notice.source || defaultSource)
       : undefined;
 
-  const newContrib: Contributor = assocIfGiven<Contributor, 'name'>(
-    'name',
-    contributor
-  )(notice.contributor);
+  const newContrib: Contributor = contributor || notice.contributor;
 
   const newRatings: Ratings = R.pipe(
     assocIfGiven<Ratings, 'likes'>('likes', likes),

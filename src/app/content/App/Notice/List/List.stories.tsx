@@ -7,14 +7,12 @@ import {
   defaultMessage,
   generateStatefulNotice
 } from 'test/fakers/generateNotice';
-import Faker from 'faker';
+
 import { intentions } from '../../../../lmem/intention';
 import Notification from 'components/organisms/Notification';
 import { ListScreen } from '.';
 
-const firstContributorName = Faker.name.findName();
 const firstMessage = defaultMessage;
-const secondContributorName = Faker.name.findName();
 const secondMessage = `De nombreux clients mécontents de Pixmania et ses vendeurs s'expriment sur les réseaux sociaux depuis 2016. Les plaintes continuent en 2017, 2018 et encore en 2019 si l'on se réfère au forum Que Choisir.`;
 const commonProps = {
   close: action('close'),
@@ -39,7 +37,6 @@ storiesOf('screens/Notice/List', module)
         generateStatefulNotice({
           dismissed: boolean('dismissed', false),
           intention: select('intention', intentions, 'approval'),
-          contributor: text('contributor', firstContributorName),
           message: `<p>${text('message', firstMessage)}</p>`
         })
       ]}
@@ -52,7 +49,6 @@ storiesOf('screens/Notice/List', module)
         generateStatefulNotice({
           dismissed: boolean('dismissed(1)', false, 'first'),
           intention: select('intention(1)', intentions, 'approval', 'first'),
-          contributor: text('contributor(1)', firstContributorName, 'first'),
           message: `<p>${text('message(1)', firstMessage, 'first')}</p>`
         }),
         generateStatefulNotice({
@@ -63,7 +59,6 @@ storiesOf('screens/Notice/List', module)
             'disapproval',
             'second'
           ),
-          contributor: text('contributor(2)', secondContributorName, 'second'),
           message: `<p>${text('message(2)', secondMessage, 'second')}</p>`
         })
       ]}
@@ -76,7 +71,6 @@ storiesOf('screens/Notice/List', module)
         generateStatefulNotice({
           dismissed: boolean('dismissed(1)', false, 'first'),
           intention: select('intention(1)', intentions, 'approval', 'first'),
-          contributor: text('contributor(1)', firstContributorName, 'first'),
           message: `<p>${text('message(1)', firstMessage, 'first')}</p>`
         }),
         generateStatefulNotice({
@@ -88,7 +82,6 @@ storiesOf('screens/Notice/List', module)
             'disapproval',
             'second'
           ),
-          contributor: text('contributor(2)', secondContributorName, 'second'),
           message: `<p>${text('message(2)', secondMessage, 'second')}</p>`
         })
       ]}
