@@ -9,8 +9,8 @@ import {
   closed,
   closeFailed,
   CloseAction,
-  SWITCH_UI,
-  SwitchUIAction,
+  TOGGLE_UI,
+  ToggleUIAction,
   SHOW_BULLES_UPDATE_SERVICE_MESSAGE,
   close
 } from 'app/actions';
@@ -78,7 +78,7 @@ export function* noticesFoundSaga() {
   }
 }
 
-export function* switchUISaga(action: SwitchUIAction) {
+export function* toggleUISaga(action: ToggleUIAction) {
   const isOpen = yield select(isNotificationOpen);
   yield put(isOpen ? close(action.payload.closeCause) : open());
 }
@@ -87,8 +87,8 @@ export default function* backgroundRootSaga() {
   yield takeLatest(OPEN, openSaga);
   yield takeLatest(CLOSE, closeSaga);
   yield takeEvery(
-    [SWITCH_UI, SHOW_BULLES_UPDATE_SERVICE_MESSAGE],
-    switchUISaga
+    [TOGGLE_UI, SHOW_BULLES_UPDATE_SERVICE_MESSAGE],
+    toggleUISaga
   );
   yield takeLatest(NOTICES_FOUND, noticesFoundSaga);
 }

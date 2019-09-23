@@ -50,14 +50,14 @@ export const closed = (cause: CloseCause): ClosedAction => ({
   meta: { sendToBackground: true }
 });
 
-export const SWITCH_UI = 'SWITCH_UI';
-export interface SwitchUIAction extends TabAction {
-  type: typeof SWITCH_UI;
+export const TOGGLE_UI = 'TOGGLE_UI';
+export interface ToggleUIAction extends TabAction {
+  type: typeof TOGGLE_UI;
   payload: { closeCause: CloseCause };
 }
 
-export const switchUI = (tab: Tab, closeCause: CloseCause): SwitchUIAction => ({
-  type: SWITCH_UI,
+export const toggleUI = (tab: Tab, closeCause: CloseCause): ToggleUIAction => ({
+  type: TOGGLE_UI,
   payload: { closeCause },
   meta: { tab, sendToTab: true }
 });

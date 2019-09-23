@@ -1,7 +1,7 @@
 import { put, select, takeLatest } from 'redux-saga/effects';
 import { CloseCause } from 'app/lmem/ui';
 import {
-  switchUI,
+  toggleUI,
   BrowserActionClickedAction,
   showBullesUpdateMessage
 } from 'app/actions';
@@ -12,7 +12,7 @@ export function* browserActionClickedSaga(action: BrowserActionClickedAction) {
   const tosAccepted = yield select(areTosAccepted);
 
   if (tosAccepted) {
-    yield put(switchUI(action.payload.tab, CloseCause.BrowserAction));
+    yield put(toggleUI(action.payload.tab, CloseCause.BrowserAction));
   } else {
     yield put(showBullesUpdateMessage(action.payload.tab));
   }
