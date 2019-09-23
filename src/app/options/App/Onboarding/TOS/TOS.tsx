@@ -71,8 +71,6 @@ export default ({
 
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
-    console.log('HEREE', acceptTermsOfService);
-    // Update the document title using the browser API
     if (value) {
       acceptTermsOfService();
     }

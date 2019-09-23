@@ -46,14 +46,12 @@ export function* installationDetailsSaga(): SagaIterator {
       });
     }
 
-    console.log('tosAccepted', tosAccepted);
-    console.log('updatedFromLmem', updatedFromLmem);
     yield call(
       openOptions,
       !tosAccepted ? '/onboarding' : '/onboarding/subscriptions'
     );
-  } catch (e) {
-    console.log(e);
+  } catch (error) {
+    captureException(error);
   }
 }
 
