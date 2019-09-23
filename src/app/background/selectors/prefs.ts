@@ -1,15 +1,19 @@
+import { createSelector } from 'reselect';
 import {
   Notice,
   StatefulNotice,
   isIgnored,
   shouldNoticeBeShown
-} from '../../lmem/notice';
+} from 'app/lmem/notice';
 import { BackgroundState } from '../reducers';
 
 export const getPrefs = (state: BackgroundState) => state.prefs;
 
-export const getInstallationDetails = (state: BackgroundState) =>
-  getPrefs(state).installationDetails;
+export const areTosAccepted = createSelector(
+  getPrefs,
+  prefs => prefs.tosAccepted
+);
+
 export const getDismissed = (state: BackgroundState) =>
   getPrefs(state).dismissedNotices;
 export const getLiked = (state: BackgroundState) =>
@@ -17,10 +21,6 @@ export const getLiked = (state: BackgroundState) =>
 export const getDisliked = (state: BackgroundState) =>
   getPrefs(state).dislikedNotices;
 export const getRead = (state: BackgroundState) => getPrefs(state).readNotices;
-
-export const getInitialContent = (state: BackgroundState) => ({
-  installationDetails: getInstallationDetails(state)
-});
 
 export const getAddStateToNotice = (state: BackgroundState) => {
   const dismissed = getDismissed(state);

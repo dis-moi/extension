@@ -1,7 +1,5 @@
 /* eslint-disable no-unused-expressions */
-import { Location } from 'history';
 import { expect } from 'chai';
-import { OptionsState } from '../reducers';
 import { generateContributor } from 'test/fakers/generateContributor';
 import {
   getContributors,
@@ -9,13 +7,7 @@ import {
   getSubscriptions,
   makeGetNContributorsSuggestions
 } from './contributors.selectors';
-
-const basicLocationProps: Location = {
-  pathname: '',
-  hash: '',
-  search: '',
-  state: undefined
-};
+import { ContributorsState } from '../reducers/contributors.reducer';
 
 describe('options > selectors > contributors', () => {
   const contributorOne = generateContributor({ contributions: 100 });
@@ -25,11 +17,7 @@ describe('options > selectors > contributors', () => {
   };
   const contributorThree = generateContributor({ contributions: 55 });
 
-  const state: OptionsState = {
-    router: {
-      action: 'POP',
-      location: basicLocationProps
-    },
+  const state: { contributors: ContributorsState } = {
     contributors: [contributorOne, contributorTwo, contributorThree]
   };
 

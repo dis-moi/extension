@@ -1,7 +1,7 @@
 import chai from 'chai';
-import prefsReducer from '../../src/app/background/reducers/prefs.reducer';
-import resourcesReducer from '../../src/app/background/reducers/resources.reducer';
-import { receivedMatchingContexts } from '../../src/app/actions/refreshMatchingContexts';
+import prefsReducer from 'app/background/reducers/prefs.reducer';
+import resourcesReducer from 'app/background/reducers/resources.reducer';
+import { receivedMatchingContexts } from 'app/actions/refreshMatchingContexts';
 import {
   dismissNotice,
   likeNotice,
@@ -10,12 +10,14 @@ import {
   undislikeNotice,
   undismissNotice,
   unfoldNotice
-} from '../../src/app/actions/notices';
-import { MatchingContext } from '../../src/app/lmem/matchingContext';
+} from 'app/actions/notices';
+import { MatchingContext } from 'app/lmem/matchingContext';
 
 const expect = chai.expect;
 
 describe('prefsReducer reducer', function() {
+  const installationDetails = { version: '0.1', reason: 'install' };
+
   it('dismiss notice', () => {
     const action = dismissNotice(1);
 
@@ -25,7 +27,7 @@ describe('prefsReducer reducer', function() {
         likedNotices: [],
         dislikedNotices: [],
         readNotices: [],
-        installationDetails: { version: '0.1' }
+        tosAccepted: true
       },
       action
     );
@@ -42,7 +44,7 @@ describe('prefsReducer reducer', function() {
         likedNotices: [],
         dislikedNotices: [],
         readNotices: [],
-        installationDetails: { version: '0.1' }
+        tosAccepted: true
       },
       action
     );
@@ -59,7 +61,7 @@ describe('prefsReducer reducer', function() {
         likedNotices: [],
         dislikedNotices: [],
         readNotices: [],
-        installationDetails: { version: '0.1' }
+        tosAccepted: true
       },
       action
     );
@@ -76,7 +78,7 @@ describe('prefsReducer reducer', function() {
         likedNotices: [],
         dislikedNotices: [],
         readNotices: [],
-        installationDetails: { version: '0.1' }
+        tosAccepted: true
       },
       action
     );
@@ -93,7 +95,7 @@ describe('prefsReducer reducer', function() {
         likedNotices: [42],
         dislikedNotices: [],
         readNotices: [],
-        installationDetails: { version: '0.1' }
+        tosAccepted: true
       },
       action
     );
@@ -110,7 +112,7 @@ describe('prefsReducer reducer', function() {
         likedNotices: [],
         dislikedNotices: [42],
         readNotices: [],
-        installationDetails: { version: '0.1' }
+        tosAccepted: true
       },
       action
     );
@@ -127,7 +129,7 @@ describe('prefsReducer reducer', function() {
         likedNotices: [],
         dislikedNotices: [],
         readNotices: [],
-        installationDetails: { version: '0.1' }
+        tosAccepted: true
       },
       action
     );

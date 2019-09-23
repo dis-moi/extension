@@ -25,7 +25,8 @@ import {
   TabAction,
   TabCreatedAction,
   TabUpdatedAction,
-  AppAction
+  AppAction,
+  showBullesUpdateMessage
 } from 'app/actions';
 import fetchContentScript from '../services/fetchContentScript';
 import { MatchingContext } from 'app/lmem/matchingContext';
@@ -36,13 +37,16 @@ import executeTabScript, {
   ExecuteContentScript
 } from 'webext/executeTabScript';
 import {
-  getInitialContent,
   getNoticesToDisplay,
-  getIgnoredNotices
+  getIgnoredNotices,
+  areTosAccepted
 } from '../selectors/prefs';
 import { findTriggeredContexts } from '../selectors';
+import { getInstallationDetails } from '../selectors/installationDetails';
 import { getTabs } from '../selectors/tabs';
 import Tab from '../../lmem/Tab';
+import { getUpdateMessageLastShowDate } from '../selectors/bullesUpdate.selectors';
+import { isToday } from 'date-fns';
 
 export const tabSaga = (executeContentScript: ExecuteContentScript) =>
   function*({ payload: { tab } }: TabCreatedAction | TabUpdatedAction) {
@@ -71,8 +75,8 @@ export const contextTriggeredSaga = function*({
   meta: { tab }
 }: ContextTriggeredAction) {
   try {
-    const initialContent = yield select(getInitialContent);
-    yield put(init(initialContent.installationDetails, tab));
+    const installationDetails = yield select(getInstallationDetails);
+    yield put(init(installationDetails, tab));
 
     const toFetch = R.compose<MatchingContext[], string[], string[]>(
       R.uniq,
@@ -85,9 +89,26 @@ export const contextTriggeredSaga = function*({
     const noticesToShow: StatefulNotice[] = yield select(
       getNoticesToDisplay(validNotices)
     );
-    yield all(
-      noticesToShow.map(notice => put(noticeDisplayed(notice, tab.url)))
-    );
+
+    if (noticesToShow.length > 0) {
+      const tosAccepted = yield select(areTosAccepted);
+      if (tosAccepted) {
+        yield all(
+          noticesToShow.map(notice => put(noticeDisplayed(notice, tab.url)))
+        );
+        yield put(noticesFound(noticesToShow, tab));
+      } else {
+        const lastUpdateMessageDate = yield select(
+          getUpdateMessageLastShowDate
+        );
+        if (!isToday(lastUpdateMessageDate)) {
+          yield put(showBullesUpdateMessage(tab));
+        }
+        return;
+      }
+    } else {
+      yield put(noNoticesDisplayed(tab));
+    }
 
     const ignoredNotices: StatefulNotice[] = yield select(
       getIgnoredNotices(validNotices)
@@ -95,12 +116,6 @@ export const contextTriggeredSaga = function*({
     yield all(
       ignoredNotices.map(notice => put(noticeIgnored(notice, tab.url)))
     );
-
-    if (noticesToShow.length > 0) {
-      yield put(noticesFound(noticesToShow, tab));
-    } else {
-      yield put(noNoticesDisplayed(tab));
-    }
   } catch (e) {
     yield put(contextTriggerFailure(e, tab));
   }

@@ -1,41 +1,65 @@
-import { Dispatch } from 'redux';
-import { InstallationDetails } from '../lmem/installation';
 import { BaseAction } from '.';
-import { version } from '../../../package.json';
+import { InstallationDetails } from '../lmem/installation';
+import { ContributorId } from '../lmem/contributor';
 
 export interface InstalledAction extends BaseAction {
   type: 'INSTALLED';
   payload: {
-    details: InstallationDetails;
+    installedDetails: chrome.runtime.InstalledDetails;
   };
 }
 
 export const installed = (
-  installationDetails: InstallationDetails
+  installedDetails: chrome.runtime.InstalledDetails
 ): InstalledAction => ({
   type: 'INSTALLED',
-  payload: { details: installationDetails }
+  payload: {
+    installedDetails
+  }
 });
 
-// Promise constructed when the module is first imported (very early)
-// in order to not miss the "install" event.
-const onInstalledPromise = new Promise<InstallationDetails>(resolve => {
-  chrome.runtime.onInstalled.addListener(details => {
-    if (details.reason !== 'install') return;
-
-    resolve({
-      ...details,
-      datetime: new Date(),
-      version
-    });
-  });
-});
-
-export default function(onboardingUrl: string) {
-  return (dispatch: Dispatch) =>
-    onInstalledPromise.then((installationDetails: InstallationDetails) =>
-      onboardingUrl
-        ? chrome.tabs.create({ url: onboardingUrl })
-        : dispatch(installed(installationDetails))
-    );
+export interface InstallationDetailsAction extends BaseAction {
+  type: 'INSTALLATION_DETAILS';
+  payload: {
+    installationDetails: InstallationDetails;
+  };
 }
+
+export const updateInstallationDetails = (
+  installationDetails: InstallationDetails,
+  sendToTab = true
+): InstallationDetailsAction => ({
+  type: 'INSTALLATION_DETAILS',
+  payload: {
+    installationDetails
+  },
+  meta: {
+    sendToTab
+  }
+});
+
+export interface SetupAction extends BaseAction {
+  type: 'SETUP';
+  payload: {
+    subscriptions: ContributorId[];
+    showExamples: boolean;
+    redirectURl?: string;
+  };
+}
+
+export const setup = (
+  subscriptions: [],
+  showExamples: boolean,
+  redirectURl?: string,
+  sendToTab = true
+): SetupAction => ({
+  type: 'SETUP',
+  payload: {
+    subscriptions,
+    showExamples,
+    redirectURl
+  },
+  meta: {
+    sendToTab
+  }
+});

@@ -1,12 +1,14 @@
-import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import { OptionsState } from 'app/options/store/reducers';
+import { getSubscriptions } from 'app/options/store/selectors/contributors.selectors';
+import { isAnUpdateFromLmem } from 'app/background/selectors';
 import { StatefulContributor } from 'app/lmem/contributor';
-import { subscribe, unsubscribe } from 'app/actions/subscription';
-import { OptionsState } from '../../store/reducers';
-import { getContributorsSuggestions } from '../../store/selectors/contributors.selectors';
+import { subscribe, unsubscribe } from 'app/actions';
 
 const mapStateToProps = (state: OptionsState) => ({
-  suggestions: getContributorsSuggestions(state)
+  suggestions: getSubscriptions(state),
+  updatedFromLmem: isAnUpdateFromLmem(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

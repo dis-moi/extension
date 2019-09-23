@@ -1,8 +1,12 @@
-import { InstallationDetails } from '../../../lmem/installation';
 import { PersistedState } from 'redux-persist/es/types';
 
+interface InstallationDetailsV3 {
+  datetime?: Date;
+  version: string;
+}
+
 interface StateV3Prefs {
-  installationDetails: InstallationDetails;
+  installationDetails: InstallationDetailsV3;
   dismissedNotices: number[];
   likedNotices: number[];
   dislikedNotices: number[];

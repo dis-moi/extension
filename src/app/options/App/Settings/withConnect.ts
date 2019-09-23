@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { OptionsState } from '../store/reducers';
-import { getCurrentScreen } from '../store/selectors/router.selectors';
+import { OptionsState } from 'app/options/store/reducers';
+import { getCurrentScreen } from 'app/options/store/selectors/router.selectors';
 import { Dispatch } from 'redux';
 import { push } from 'connected-react-router';
 
@@ -9,8 +9,8 @@ const mapStateToProps = (state: OptionsState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  goToSubscriptions: () => dispatch(push('/subscriptions')),
-  goToSuggestions: () => dispatch(push('/suggestions'))
+  goToSubscriptions: () => dispatch(push('/settings/subscriptions')),
+  goToSuggestions: () => dispatch(push('/settings/suggestions'))
 });
 
 export default connect(

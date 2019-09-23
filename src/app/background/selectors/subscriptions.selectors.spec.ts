@@ -17,14 +17,16 @@ describe('background > selectors > getContributorsWithSubscriptionState', () => 
 
     const state: BackgroundState = {
       tabs: {},
+      installationDetails: {
+        version: '',
+        reason: 'INSTALL'
+      },
       prefs: {
-        installationDetails: {
-          version: ''
-        },
         likedNotices: [],
         dislikedNotices: [],
         dismissedNotices: [],
-        readNotices: []
+        readNotices: [],
+        tosAccepted: true
       },
       resources: {
         matchingContexts: [],
@@ -39,7 +41,8 @@ describe('background > selectors > getContributorsWithSubscriptionState', () => 
           contributor9999
         ]
       },
-      subscriptions: [1, 42, 1024]
+      subscriptions: [1, 42, 1024],
+      bullesUpdate: { lastUpdateMessageShowDate: null }
     };
 
     const result: Contributor[] = getContributorsWithSubscriptionState(state);

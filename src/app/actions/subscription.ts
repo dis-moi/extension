@@ -1,13 +1,13 @@
-import { Contributor } from 'app/lmem/contributor';
+import { Contributor, ContributorId } from 'app/lmem/contributor';
 import { SUBSCRIBE, UNSUBSCRIBE } from 'app/constants/ActionTypes';
 import { ActionMeta, BaseAction } from '.';
 
 export interface SubscribeAction extends BaseAction {
   type: typeof SUBSCRIBE;
-  payload: { contributor: Contributor };
+  payload: { contributor: Contributor | ContributorId };
 }
 export const subscribe = (
-  contributor: Contributor,
+  contributor: Contributor | ContributorId,
   meta?: ActionMeta
 ): SubscribeAction => ({
   type: SUBSCRIBE,

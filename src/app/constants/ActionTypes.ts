@@ -17,7 +17,6 @@ export const UNLIKE_NOTICE = 'UNLIKE_NOTICE';
 export const DISLIKE_NOTICE = 'DISLIKE_NOTICE';
 export const UNDISLIKE_NOTICE = 'UNDISLIKE_NOTICE';
 export const REPORT_NOTICE = 'REPORT_NOTICE';
-export const INSTALLED_DETAILS = 'INSTALLED_DETAILS';
 export const OPEN = 'OPEN';
 export const OPENED = 'OPENED';
 export const CLOSE = 'CLOSE';

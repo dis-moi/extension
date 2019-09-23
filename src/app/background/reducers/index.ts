@@ -1,25 +1,31 @@
 import { combineReducers } from 'redux';
 import { PersistedState } from 'redux-persist';
-import prefsReducer, { PrefsState } from './prefs.reducer';
-import resourcesReducer, { ResourcesState } from './resources.reducer';
-import tabsReducer, { TabsState } from './tabs.reducer';
-import subscriptionsReducer, {
-  SubscriptionsState
-} from './subscriptions.reducer';
+import prefs, { PrefsState } from './prefs.reducer';
+import installationDetails, {
+  InstallationDetailsState
+} from './installationDetails';
+import resources, { ResourcesState } from './resources.reducer';
+import tabs, { TabsState } from './tabs.reducer';
+import subscriptions, { SubscriptionsState } from './subscriptions.reducer';
+import bullesUpdate, { BullesUpdateState } from './bullesUpdate.reducer';
 
 export interface PersistedBackgroundState extends PersistedState {
   prefs: PrefsState;
+  installationDetails: InstallationDetailsState;
+  bullesUpdate: BullesUpdateState;
+  subscriptions: SubscriptionsState;
 }
 
 export interface BackgroundState extends PersistedBackgroundState {
   resources: ResourcesState;
   tabs: TabsState;
-  subscriptions: SubscriptionsState;
 }
 
 export default combineReducers({
-  prefs: prefsReducer,
-  resources: resourcesReducer,
-  tabs: tabsReducer,
-  subscriptions: subscriptionsReducer
+  prefs,
+  installationDetails,
+  resources,
+  tabs,
+  subscriptions,
+  bullesUpdate
 });

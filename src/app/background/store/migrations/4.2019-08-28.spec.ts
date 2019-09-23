@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import { expect } from 'chai';
 import { StateV3 } from './StateV3';
 import { migration4 } from './4.2019-08-28';
@@ -6,6 +7,7 @@ describe('migrations/4', () => {
   describe('if previous state has `readNotices` key', () => {
     const storeV3: StateV3 = {
       prefs: {
+        // @ts-ignore
         installationDetails: {
           datetime: new Date(),
           version: '1'
@@ -31,6 +33,7 @@ describe('migrations/4', () => {
   describe("if previous state doesn't have `readNotices` key", () => {
     const storeV3: StateV3 = {
       prefs: {
+        // @ts-ignore
         installationDetails: {
           datetime: new Date(),
           version: '1'
