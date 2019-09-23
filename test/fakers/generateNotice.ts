@@ -8,7 +8,6 @@ import { Contributor } from '../../src/app/lmem/contributor';
 import { Ratings } from '../../src/app/lmem/rating';
 import { generateContributor } from './generateContributor';
 
-
 interface Options {
   intention?: Intention;
   message?: string;
@@ -45,8 +44,7 @@ export const generateStatefulNotice = ({
   dismissed,
   read,
   withSource = true
-}: Options = {}): StatefulNotice => {
-  const toto = ({
+}: Options = {}): StatefulNotice => ({
   id: Math.random() * 1000,
   intention: intention || 'approval',
   created: created || subMonths(new Date(), 1),
@@ -57,9 +55,9 @@ export const generateStatefulNotice = ({
   visibility: 'public',
   source: withSource
     ? {
-      label: sourceName || Faker.company.companyName(),
-      url: sourceUrl || defaultSourceUrl
-    }
+        label: sourceName || Faker.company.companyName(),
+        url: sourceUrl || defaultSourceUrl
+      }
     : undefined,
   state: {
     liked: Boolean(liked),
@@ -67,9 +65,7 @@ export const generateStatefulNotice = ({
     disliked: Boolean(disliked),
     read: Boolean(read)
   }
-})
-console.log(toto)
- return toto};
+});
 
 type Transformer<T> = (obj: T) => T;
 
@@ -107,15 +103,12 @@ export const generateStatefulNoticeVariant = (
   const newSource: Source | undefined =
     sourceName || sourceUrl || withSource
       ? R.pipe(
-        assocIfGiven<Source, 'label'>('label', sourceName),
-        assocIfGiven<Source, 'url'>('url', sourceUrl)
-      )(notice.source || defaultSource)
+          assocIfGiven<Source, 'label'>('label', sourceName),
+          assocIfGiven<Source, 'url'>('url', sourceUrl)
+        )(notice.source || defaultSource)
       : undefined;
 
-  const newContrib: Contributor = assocIfGiven<Contributor, 'name'>(
-    'name',
-    contributor
-  )(notice.contributor);
+  const newContrib: Contributor = contributor || notice.contributor;
 
   const newRatings: Ratings = R.pipe(
     assocIfGiven<Ratings, 'likes'>('likes', likes),
