@@ -13,7 +13,7 @@ const createBrowserActionListener = (emit: Emit) => {
       if (process.env.SENTRY_ENABLE) {
         captureMessage(message);
       } else {
-        console.log(message);
+        throw new Error(message);
       }
     }
   };

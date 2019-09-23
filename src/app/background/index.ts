@@ -1,3 +1,4 @@
+/* eslint-disable no-console */ // Heap will be removed soon anyway
 // Early imports with high priority stuff involved, such as event listeners creation
 import loadHeap from '../../lib/heap';
 import prepareDraftPreview from '../lmem/draft-preview/main';

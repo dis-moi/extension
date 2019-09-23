@@ -3,6 +3,7 @@ import { Source } from './source';
 import { intentions, Intention } from './intention';
 import { Ratings } from './rating';
 import { Contributor, NewContributor } from './contributor';
+import { captureMessage } from '../utils/sentry';
 
 export interface Notice {
   id: number;
@@ -157,7 +158,7 @@ export const warnIfNoticeInvalid = (notice: Notice): boolean => {
   const valid = isNoticeValid(notice);
 
   if (!valid) {
-    console.warn('Invalid notice not displayed:', notice);
+    captureMessage(`Invalid notice not displayed: ${JSON.stringify(notice)}`);
   }
 
   return valid;

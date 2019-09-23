@@ -16,6 +16,7 @@ export default function* refreshContributorsSaga() {
   const refreshInterval = Number(process.env.REFRESH_CONTRIBUTORS_INTERVAL);
 
   if (refreshInterval > 0) {
+    // eslint-disable-next-line no-console
     console.info(
       `Contributors will be refreshed every ${refreshInterval /
         1000 /
@@ -27,6 +28,7 @@ export default function* refreshContributorsSaga() {
       yield call(refreshContributors);
     }
   } else {
+    // eslint-disable-next-line no-console
     console.warn(
       'Contributors auto-refresh disabled:',
       'assuming "process.env.REFRESH_CONTRIBUTORS_INTERVAL" is deliberately not defined.'
