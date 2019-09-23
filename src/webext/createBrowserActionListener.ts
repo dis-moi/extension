@@ -1,6 +1,7 @@
 import { Action } from 'redux';
-import { captureMessage } from '@sentry/browser';
 import { browserActionClicked } from 'app/actions/browser';
+import { captureMessage } from 'app/utils/sentry';
+import { Severity } from '@sentry/types';
 
 type Emit = (action: Action) => void;
 
@@ -9,12 +10,10 @@ const createBrowserActionListener = (emit: Emit) => {
     if (tab.id && tab.url) {
       emit(browserActionClicked({ id: tab.id, url: tab.url }));
     } else {
-      const message = `Tab has no id (${tab.id}) or URL (${tab.url}).`;
-      if (process.env.SENTRY_ENABLE) {
-        captureMessage(message);
-      } else {
-        throw new Error(message);
-      }
+      captureMessage(
+        `Tab has no id (${tab.id}) or URL (${tab.url}).`,
+        Severity.Log
+      );
     }
   };
 
