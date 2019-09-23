@@ -16,7 +16,7 @@ if (!(window as CustomWindow).__LMEM__CONTENT_SCRIPT_INJECTED__) {
         scope.setTag('context', 'content');
       });
     } catch (error) {
-      console.warn('Could not init Sentry in contentScript', error);
+      console.warn('Could not init Sentry in contentScript', error); // eslint-disable-line no-console
     }
 
     require('typeface-lato');
@@ -35,7 +35,7 @@ if (!(window as CustomWindow).__LMEM__CONTENT_SCRIPT_INJECTED__) {
         document.removeEventListener('click', handleExternalClick);
       });
     });
-  } catch (e) {
-    captureException(e);
+  } catch (error) {
+    captureException(error);
   }
 }

@@ -1,4 +1,5 @@
 import { Draft } from './draft';
+import { captureException } from '../utils/sentry';
 
 export interface MatchingContext {
   noticeId: number;
@@ -23,7 +24,7 @@ export const urlMatchesContext = (
     );
   } catch (err) {
     if (process.env.NODE_ENV !== 'test') {
-      console.error('MatchingContext ignored:', err);
+      captureException(err);
     }
     return false;
   }

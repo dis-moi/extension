@@ -27,6 +27,7 @@ function* refreshEveryInterval() {
   const refreshInterval = Number(process.env.REFRESH_MC_INTERVAL);
 
   if (refreshInterval > 0) {
+    // eslint-disable-next-line no-console
     console.info(
       `Matching contexts will be refreshed every ${refreshInterval /
         1000 /
@@ -38,6 +39,7 @@ function* refreshEveryInterval() {
       yield call(refreshMatchingContexts);
     }
   } else {
+    // eslint-disable-next-line no-console
     console.warn(
       'Matching contexts auto-refresh disabled:',
       'assuming "process.env.REFRESH_MC_INTERVAL" is deliberately not defined.'

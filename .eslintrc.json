@@ -28,6 +28,7 @@
   ],
   "plugins": ["react"],
   "rules": {
+    "no-console": "warn",
     // We don't actually set a display name for functional component
     "react/display-name": 0,
 

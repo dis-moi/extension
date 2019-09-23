@@ -1,3 +1,4 @@
+/* eslint-disable no-console */ // Heap will be removed soon anyway
 import mapEventFromAction from './eventsMapper';
 import { Action } from 'redux';
 
