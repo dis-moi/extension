@@ -69,7 +69,7 @@ const UI = ({
         hasNotices={noticeContext}
       >
         {showUpdateMessage ? (
-          <Update />
+          <Update openOnboarding={() => window.alert('Open onboarding')} />
         ) : (
           <Switch>
             <Redirect exact path="/" to="/notices" />
