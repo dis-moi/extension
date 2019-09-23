@@ -16,7 +16,7 @@ describe('background > selectors > bullesUpdate', () => {
           likedNotices: [],
           dislikedNotices: [],
           dismissedNotices: [],
-          markedReadNotices: [],
+          readNotices: [],
           tosAccepted: true
         },
         resources: {
