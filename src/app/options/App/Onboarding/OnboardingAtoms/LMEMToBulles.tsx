@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-
-// @ts-ignore
 import LmemLogo from 'assets/img/logo/logo-lmem-blue.png';
 import BullesLogo from 'components/atoms/icons/Logo';
 import Intro from './OnboardingIntro';
