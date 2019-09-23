@@ -4,8 +4,8 @@ import Faker from 'faker';
 import { NoticeState, StatefulNotice } from '../../src/app/lmem/notice';
 import { Intention } from '../../src/app/lmem/intention';
 import { Source } from '../../src/app/lmem/source';
-import { Ratings } from '../../src/app/lmem/rating';
 import { Contributor } from '../../src/app/lmem/contributor';
+import { Ratings } from '../../src/app/lmem/rating';
 
 interface Options {
   intention?: Intention;

@@ -19,6 +19,8 @@ import { OpenState, MountedState, TitleState, UIState } from '../reducers/ui';
 import { ContentState } from '../store';
 import { getRegisteredFieldsPaths } from '../../utils/form';
 
+export * from './serviceMessage.selectors';
+
 export const getNotices = (state: ContentState) => state.notices;
 
 export const getNoticesToDisplay = createSelector(

@@ -1,5 +1,5 @@
 import React from 'react';
-import { put, takeLatest, select, call } from 'redux-saga/effects';
+import { put, takeLatest, takeEvery, select, call } from 'redux-saga/effects';
 import { render } from 'react-dom';
 import { go, replace } from 'connected-react-router';
 import {
@@ -8,15 +8,19 @@ import {
   openFailed,
   closed,
   closeFailed,
-  CloseAction
-} from 'app/actions/ui';
+  CloseAction,
+  TOGGLE_UI,
+  ToggleUIAction,
+  SHOW_BULLES_UPDATE_SERVICE_MESSAGE,
+  close
+} from 'app/actions';
+import { CLOSE, OPEN, NOTICES_FOUND } from 'app/constants/ActionTypes';
 import {
   isOpen as isNotificationOpen,
   isMounted as isNotificationMounted,
   getPathname,
   hasUnreadNotices
 } from '../selectors';
-import { CLOSE, OPEN, NOTICES_FOUND } from '../../constants/ActionTypes';
 import { append, create, hide, show } from '../extensionIframe';
 import theme from '../../theme';
 import App from '../App';
@@ -74,8 +78,17 @@ export function* noticesFoundSaga() {
   }
 }
 
+export function* toggleUISaga(action: ToggleUIAction) {
+  const isOpen = yield select(isNotificationOpen);
+  yield put(isOpen ? close(action.payload.closeCause) : open());
+}
+
 export default function* backgroundRootSaga() {
   yield takeLatest(OPEN, openSaga);
   yield takeLatest(CLOSE, closeSaga);
+  yield takeEvery(
+    [TOGGLE_UI, SHOW_BULLES_UPDATE_SERVICE_MESSAGE],
+    toggleUISaga
+  );
   yield takeLatest(NOTICES_FOUND, noticesFoundSaga);
 }

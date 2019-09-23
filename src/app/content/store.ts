@@ -2,13 +2,14 @@ import { applyMiddleware, createStore } from 'redux';
 import { routerMiddleware, RouterState } from 'connected-react-router';
 import { createMemoryHistory } from 'history';
 import { FormStateMap } from 'redux-form';
-import rootReducer from './reducers';
-import rootSaga from './sagas';
+import createSagaMiddleware from '@redux-saga/core';
 import { InstallationDetailsState } from 'app/background/reducers/installationDetails';
+import rootReducer from './reducers';
 import { UIState } from './reducers/ui';
 import { NoticesState } from './reducers/notices';
 import { TabState } from './reducers/tab';
-import createSagaMiddleware from '@redux-saga/core';
+import { ServiceMessageState } from './reducers/serviceMessage.reducer';
+import rootSaga from './sagas';
 
 export const history = createMemoryHistory();
 
@@ -19,6 +20,7 @@ export interface ContentState {
   tab: TabState;
   router: RouterState;
   form: FormStateMap;
+  serviceMessage: ServiceMessageState;
 }
 
 const sagaMiddleware = createSagaMiddleware();

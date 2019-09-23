@@ -8,25 +8,30 @@ import {
   Switch,
   withRouter
 } from 'react-router';
+import Notification from 'components/organisms/Notification';
+import { CloseCause } from 'app/lmem/ui';
+import { close } from 'app/actions';
 import { ContentState } from '../store';
-
-import { getTitle, isNoticeContext, isOpen } from '../selectors';
+import {
+  getTitle,
+  isNoticeContext,
+  isOpen,
+  getShowUpdateMessage
+} from '../selectors';
 import Notice from './Notice';
 import Subscriptions from './Subscriptions';
 import Help from './Help';
 import Account from './Account';
 import Loading from './Loading';
 import Error from './Error';
-import Notification from 'components/organisms/Notification';
-import { close } from '../../actions/ui';
-import { CloseCause } from '../../lmem/ui';
 import Contribute from './Contribute';
+import Update from './Notice/Update';
 
 const mapStateToProps = (state: ContentState) => ({
   open: isOpen(state),
   title: getTitle(state),
   noticeContext: isNoticeContext(state),
-  cguAccepted: false
+  showUpdateMessage: getShowUpdateMessage(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -38,7 +43,7 @@ interface ConnectProps {
   title: string;
   close: () => void;
   noticeContext: boolean;
-  cguAccepted: boolean;
+  showUpdateMessage: boolean;
 }
 
 interface ExternalProps {
@@ -53,7 +58,7 @@ const UI = ({
   title,
   close,
   noticeContext,
-  cguAccepted
+  showUpdateMessage
 }: UIProps) => {
   if (open) {
     return loaded ? (
@@ -63,18 +68,19 @@ const UI = ({
         closed={!open}
         hasNotices={noticeContext}
       >
-        <Switch>
-          <Redirect exact path="/" to="/notices" />
-          <Route
-            path="/notices"
-            render={props => <Notice {...props} cguAccepted={cguAccepted} />}
-          />
-          <Route path="/subscriptions" component={Subscriptions} />
-          <Route path="/help" component={Help} />
-          <Route path="/account" component={Account} />
-          <Route path="/contribute" component={Contribute} />
-          <Route component={Error} />
-        </Switch>
+        {showUpdateMessage ? (
+          <Update />
+        ) : (
+          <Switch>
+            <Redirect exact path="/" to="/notices" />
+            <Route path="/notices" component={Notice} />
+            <Route path="/subscriptions" component={Subscriptions} />
+            <Route path="/help" component={Help} />
+            <Route path="/account" component={Account} />
+            <Route path="/contribute" component={Contribute} />
+            <Route component={Error} />
+          </Switch>
+        )}
       </Notification>
     ) : (
       <Loading />
