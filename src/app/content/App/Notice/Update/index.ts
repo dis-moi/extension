@@ -1,3 +1,4 @@
 import Update from './Update';
+import withConnect from './withConnect';
 
-export default Update;
+export default withConnect(Update);
