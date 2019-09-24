@@ -14,8 +14,8 @@ export interface TabsState {
 
 export const initialState: TabsState = {};
 
-const addTabToList = (tab: Tab) => (state: TabsState): TabsState =>
-  R.assoc(tab.id.toString(), tab, state);
+const addOrUpdateTab = (tab: Tab) => (state: TabsState): TabsState =>
+  R.assoc(tab.id.toString(), R.merge(state[tab.id.toString()], tab), state);
 const removeTabFromList = (tab: Tab) => (state: TabsState): TabsState =>
   R.dissoc(tab.id.toString(), state);
 
@@ -31,7 +31,7 @@ export default function(state = initialState, action: AppAction) {
       return markTabAsOptions(action.payload)(state);
     case TAB_CREATED:
     case TAB_UPDATED:
-      return addTabToList(action.payload.tab)(state);
+      return addOrUpdateTab(action.payload.tab)(state);
     case TAB_REMOVED:
       return removeTabFromList(action.payload.tab)(state);
     case 'LISTENING_ACTIONS_READY':
