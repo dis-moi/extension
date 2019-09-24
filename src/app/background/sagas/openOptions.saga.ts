@@ -1,5 +1,5 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
-import Tab from 'app/lmem/Tab';
+import Tab from 'app/lmem/tab';
 import openOptions from 'webext/openOptionsTab';
 import {
   OptionsRequestedAction,

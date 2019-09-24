@@ -1,11 +1,10 @@
 import { SagaIterator } from 'redux-saga';
 import { takeLatest, select, put } from 'redux-saga/effects';
 import { tosAccepted } from '../../actions';
-import { getOptionsTab } from '../selectors/tabs';
+import { getOptionsTabs } from '../selectors/tabs';
 
 export function* acceptTosSaga(): SagaIterator {
-  const optionsTab = yield select(getOptionsTab);
-  if (optionsTab) {
+  for (const optionsTab of yield select(getOptionsTabs)) {
     yield put(tosAccepted({ sendToTab: true, tab: optionsTab }));
   }
 }

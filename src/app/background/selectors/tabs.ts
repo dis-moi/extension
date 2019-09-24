@@ -1,16 +1,21 @@
-import { BackgroundState } from '../reducers';
-import { TabsState } from '../reducers/tabs.reducer';
 import { createSelector } from 'reselect';
-import Tab from '../../lmem/Tab';
+import * as R from 'ramda';
+import { isOptionsTab, isTabReady } from 'app/lmem/tab';
+import { TabsState } from '../reducers/tabs.reducer';
 
-export const getTabs = (state: BackgroundState): TabsState => state.tabs;
+export const getTabs = (state: { tabs: TabsState }): TabsState => state.tabs;
 
-export const isOptionsTab = (tab: Tab) => tab.options === true;
-
-export const getOptionsTab = createSelector(
+export const getTabsList = createSelector(
   [getTabs],
-  tabs =>
-    Object.keys(tabs)
-      .map(tabId => tabs[tabId])
-      .find(isOptionsTab)
+  Object.values
+);
+
+export const getReadyTabs = createSelector(
+  [getTabsList],
+  R.filter(isTabReady)
+);
+
+export const getOptionsTabs = createSelector(
+  [getTabsList],
+  R.filter(isOptionsTab)
 );

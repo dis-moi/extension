@@ -1,4 +1,4 @@
-import Tab from 'app/lmem/Tab';
+import Tab from 'app/lmem/tab';
 
 export type ExecuteContentScript = (tab: Tab) => Promise<unknown[]>;
 

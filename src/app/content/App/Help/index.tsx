@@ -44,4 +44,4 @@ export const Help = () => (
   </Container>
 );
 
-export default withTitle<{}>('Bulles Pour cette page')(Help);
+export default withTitle<{}>('Aide')(Help);

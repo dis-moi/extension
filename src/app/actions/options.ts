@@ -1,4 +1,4 @@
-import Tab from 'app/lmem/Tab';
+import Tab from 'app/lmem/tab';
 import { BaseAction, ErrorAction } from './';
 
 export interface OptionsRequestedAction extends BaseAction {

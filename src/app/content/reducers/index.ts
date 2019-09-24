@@ -8,6 +8,7 @@ import ui from './ui';
 import notices from './notices';
 import tab from './tab';
 import serviceMessage from './serviceMessage.reducer';
+import contributors from './contributors.reducer';
 
 export default (history: MemoryHistory) =>
   combineReducers({
@@ -17,5 +18,6 @@ export default (history: MemoryHistory) =>
     tab,
     router: connectRouter(history),
     form,
-    serviceMessage
+    serviceMessage,
+    contributors
   });

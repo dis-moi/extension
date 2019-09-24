@@ -9,6 +9,7 @@ import { UIState } from './reducers/ui';
 import { NoticesState } from './reducers/notices';
 import { TabState } from './reducers/tab';
 import { ServiceMessageState } from './reducers/serviceMessage.reducer';
+import { ContributorsState } from './reducers/contributors.reducer';
 import rootSaga from './sagas';
 
 export const history = createMemoryHistory();
@@ -21,6 +22,7 @@ export interface ContentState {
   router: RouterState;
   form: FormStateMap;
   serviceMessage: ServiceMessageState;
+  contributors: ContributorsState;
 }
 
 const sagaMiddleware = createSagaMiddleware();

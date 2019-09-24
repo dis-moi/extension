@@ -3,7 +3,7 @@ import chai from 'chai';
 import { noticesFound, dismissNotice, likeNotice } from 'app/actions/notices';
 import { init } from 'app/actions/tabs';
 import { StatefulNotice } from 'app/lmem/notice';
-import Tab from 'app/lmem/Tab';
+import Tab from 'app/lmem/tab';
 
 const expect = chai.expect;
 

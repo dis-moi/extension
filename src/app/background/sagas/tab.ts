@@ -1,5 +1,6 @@
 import { put, takeLatest, select, call, all, take } from 'redux-saga/effects';
 import * as R from 'ramda';
+import { isToday } from 'date-fns';
 import { TAB_CREATED, TAB_UPDATED } from 'app/constants/browser/tabs';
 import {
   CONTEXT_TRIGGERED,
@@ -30,6 +31,7 @@ import {
 } from 'app/actions';
 import fetchContentScript from '../services/fetchContentScript';
 import { MatchingContext } from 'app/lmem/matchingContext';
+import Tab from 'app/lmem/tab';
 import { StatefulNotice, Notice, warnIfNoticeInvalid } from 'app/lmem/notice';
 import { fetchNotices } from 'api/fetchNotice';
 import sendToTab from 'webext/sendActionToTab';
@@ -44,9 +46,7 @@ import {
 import { findTriggeredContexts } from '../selectors';
 import { getInstallationDetails } from '../selectors/installationDetails';
 import { getTabs } from '../selectors/tabs';
-import Tab from '../../lmem/Tab';
 import { getUpdateMessageLastShowDate } from '../selectors/bullesUpdate.selectors';
-import { isToday } from 'date-fns';
 
 export const tabSaga = (executeContentScript: ExecuteContentScript) =>
   function*({ payload: { tab } }: TabCreatedAction | TabUpdatedAction) {
