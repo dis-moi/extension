@@ -48,7 +48,7 @@ export function* installationDetailsSaga(): SagaIterator {
 
     yield call(
       openOptions,
-      !tosAccepted ? '/onboarding' : '/onboarding/subscriptions'
+      !tosAccepted ? '/onboarding' : '/onboarding/subscribe'
     );
   } catch (error) {
     captureException(error);
