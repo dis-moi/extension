@@ -12,8 +12,10 @@ const mapStateToProps = (state: OptionsState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  acceptTermsOfService: () => dispatch(acceptTOS({ sendToBackground: true })),
-  next: () => dispatch(push('/onboarding/subscribe'))
+  onContinue: () => {
+    dispatch(acceptTOS({ sendToBackground: true }));
+    dispatch(push('/onboarding/subscribe'));
+  }
 });
 
 export default connect(

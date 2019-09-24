@@ -28,7 +28,11 @@ import {
   NoticesFoundAction,
   UnfoldNoticeAction
 } from './notices';
-import { AcceptTosAction, TosAcceptedAction } from './tos';
+import {
+  AcceptTosAction,
+  TosAcceptedAction,
+  TransmitTOSStatusAction
+} from './tos';
 import {
   ContributionSubmissionFailed,
   ContributionSubmittedAction,
@@ -176,5 +180,6 @@ export type AppAction =
   | UnsubscribeAction
   | AcceptTosAction
   | TosAcceptedAction
+  | TransmitTOSStatusAction
   | ShowBullesUpdateMessageAction
   | (LocationChangeAction & { meta?: ActionMeta });

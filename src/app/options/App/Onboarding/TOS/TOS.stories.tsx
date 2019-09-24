@@ -8,25 +8,22 @@ storiesOf('screens/Onboarding/ToS', module)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
   .add('Lmem --> Bulles', () => (
     <TOS
-      acceptTermsOfService={action('acceptTermsOfService')}
       termsOfServiceAccepted={false}
       updatedFromLmem={true}
-      next={action('next')}
+      onContinue={action('onContinue')}
     />
   ))
   .add('Bulles', () => (
     <TOS
-      acceptTermsOfService={action('acceptTermsOfService')}
       termsOfServiceAccepted={false}
       updatedFromLmem={false}
-      next={action('next')}
+      onContinue={action('onContinue')}
     />
   ))
   .add('Bulles (TosAccepted)', () => (
     <TOS
-      acceptTermsOfService={action('acceptTermsOfService')}
       termsOfServiceAccepted={true}
       updatedFromLmem={false}
-      next={action('next')}
+      onContinue={action('onContinue')}
     />
   ));

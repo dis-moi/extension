@@ -24,7 +24,7 @@ export const tosAcceptanceFailure = (
   createErrorAction('TOS_ACCEPTANCE_FAILURE')(e, meta);
 
 export const TRANSMIT_TOS_STATUS = 'TRANSMIT_TOS_STATUS';
-export interface TransmitTOSStatusAction {
+export interface TransmitTOSStatusAction extends BaseAction {
   type: typeof TRANSMIT_TOS_STATUS;
   payload: boolean;
 }
