@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 import { LocationChangeAction } from 'connected-react-router';
-import Tab from 'app/lmem/Tab';
+import Tab from 'app/lmem/tab';
 import { BrowserActionClickedAction } from './browser';
 import {
   TabCreatedAction,

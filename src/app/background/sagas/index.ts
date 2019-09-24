@@ -11,7 +11,7 @@ import refreshContributors from './refreshContributors';
 import watchBrowserAction from './watchBrowserAction.saga';
 import handleBrowserAction from './handleBrowserAction.saga';
 import openOptions from './openOptions.saga';
-import sendContributorsToOptions from './sendContributorsToOptions.saga';
+import sendContributorsToOptions from './transmitContributors.saga';
 import sendInstallationDetailsToOptions from './sendInstallationDetailsToOptions.saga';
 import setup from './setup.saga';
 import tos from './tos.saga';

@@ -9,6 +9,8 @@ import { compose } from 'redux';
 
 interface SubscriptionsScreenProps {
   optionsRequested: () => void;
+  nbTotalContributors?: number;
+  nbSubscribedContributors?: number;
 }
 
 const SubscriptionInfo = styled.div`
@@ -16,15 +18,20 @@ const SubscriptionInfo = styled.div`
   font-size: 18px;
 `;
 
+const pluralize = (nb: number | undefined) => (nb && nb > 1 ? 's' : '');
+
 export const Subscriptions = ({
-  optionsRequested
+  optionsRequested,
+  nbSubscribedContributors,
+  nbTotalContributors
 }: SubscriptionsScreenProps) => (
   <Container>
     <Illustration />
 
     <SubscriptionInfo>
-      Votre extension est abonnée à <strong>8</strong> contributeurs sur{' '}
-      <strong>18</strong> possibles.
+      Votre extension est abonnée à <strong>{nbSubscribedContributors}</strong>{' '}
+      contributeur{pluralize(nbSubscribedContributors)} sur{' '}
+      <strong>{nbTotalContributors}</strong> possibles.
     </SubscriptionInfo>
 
     <BorderButton onClick={optionsRequested}>Gérer</BorderButton>

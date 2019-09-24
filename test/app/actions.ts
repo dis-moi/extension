@@ -11,7 +11,7 @@ import {
 } from 'app/actions/tabs';
 import { MatchingContext } from '../../src/app/lmem/matchingContext';
 import { StatefulNotice } from '../../src/app/lmem/notice';
-import Tab from '../../src/app/lmem/Tab';
+import Tab from '../../src/app/lmem/tab';
 import { generateContributor } from '../fakers/generateContributor';
 
 const expect = chai.expect;

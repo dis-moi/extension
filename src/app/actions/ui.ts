@@ -1,5 +1,5 @@
 import { CloseCause } from 'app/lmem/ui';
-import Tab from 'app/lmem/Tab';
+import Tab from 'app/lmem/tab';
 import { BaseAction, ErrorAction, TabAction } from '.';
 
 export interface OpenAction extends BaseAction {

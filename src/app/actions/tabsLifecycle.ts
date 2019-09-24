@@ -1,5 +1,5 @@
 import { TabAction } from '.';
-import Tab from 'app/lmem/Tab';
+import Tab from 'app/lmem/tab';
 
 export interface TabCreatedAction extends TabAction {
   type: 'BROWSER/TAB_CREATED';

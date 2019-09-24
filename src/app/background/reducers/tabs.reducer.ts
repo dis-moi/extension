@@ -4,9 +4,8 @@ import {
   TAB_REMOVED,
   TAB_UPDATED
 } from 'app/constants/browser/tabs';
-import Tab from 'app/lmem/Tab';
-import { AppAction } from 'app/actions';
-import { isOptionsTabReadyAction } from '../sagas/sendContributorsToOptions.saga';
+import Tab from 'app/lmem/tab';
+import { AppAction, isTabReadyAction } from 'app/actions';
 
 export interface TabsState {
   [tabId: string]: Tab;
@@ -38,7 +37,7 @@ export default function(state = initialState, action: AppAction) {
       return action.meta.tab
         ? R.pipe(
             markTabReady(action.meta.tab),
-            isOptionsTabReadyAction(action)
+            isTabReadyAction(action)
               ? markTabAsOptions(action.meta.tab)
               : R.identity
           )(state)

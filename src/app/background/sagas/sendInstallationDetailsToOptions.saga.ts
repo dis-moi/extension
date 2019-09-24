@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { takeEvery, select } from 'redux-saga/effects';
-import Tab from 'app/lmem/Tab';
+import Tab from 'app/lmem/tab';
 import {
   AppAction,
   ListeningActionsReadyAction,

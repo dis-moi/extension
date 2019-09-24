@@ -1,5 +1,5 @@
 import { TabAction } from './';
-import Tab from 'app/lmem/Tab';
+import Tab from 'app/lmem/tab';
 
 export const SHOW_BULLES_UPDATE_SERVICE_MESSAGE =
   'SHOW_BULLES_UPDATE_SERVICE_MESSAGE';

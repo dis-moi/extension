@@ -1,21 +1,16 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { takeEvery, select } from 'redux-saga/effects';
-import Tab from 'app/lmem/Tab';
+import Tab from 'app/lmem/tab';
+import {
+  contributorsTransmitted,
+  isTabReadyAction,
+  ListeningActionsReadyAction
+} from 'app/actions';
 import sendToTab from 'webext/sendActionToTab';
 import assocTabIfNotGiven from 'webext/assocTabIfNotGiven';
-import {
-  AppAction,
-  contributorsTransmitted,
-  ListeningActionsReadyAction
-} from '../../actions';
 import { getContributorsWithSubscriptionState } from '../selectors/subscriptions.selectors';
 import { SUBSCRIBE, UNSUBSCRIBE } from '../../constants/ActionTypes';
-import { getOptionsTab } from '../selectors/tabs';
-
-export const isOptionsTabReadyAction = (action: AppAction): boolean =>
-  action.type === 'LISTENING_ACTIONS_READY' &&
-  action.meta.from === 'options' &&
-  !!action.meta.tab;
+import { getTabsList } from '../selectors/tabs';
 
 function* sendContributorsToTab(tab: chrome.tabs.Tab & Tab) {
   const contributors = yield select(getContributorsWithSubscriptionState);
@@ -31,13 +26,12 @@ function* sendContributorsBackToTab(action: ListeningActionsReadyAction) {
 }
 
 function* subscribeSaga() {
-  const optionsTab = yield select(getOptionsTab);
-  if (optionsTab) {
-    yield sendContributorsToTab(optionsTab);
+  for (const tab of yield select(getTabsList)) {
+    yield sendContributorsToTab(tab);
   }
 }
 
-export default function* sendContributorsToOptionsSaga() {
-  yield takeEvery(isOptionsTabReadyAction, sendContributorsBackToTab);
+export default function* transmitContributorsSaga() {
+  yield takeEvery(isTabReadyAction, sendContributorsBackToTab);
   yield takeEvery([SUBSCRIBE, UNSUBSCRIBE], subscribeSaga);
 }

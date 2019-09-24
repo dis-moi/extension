@@ -1,4 +1,4 @@
-import Tab from 'app/lmem/Tab';
+import Tab from 'app/lmem/tab';
 
 const getCurrentTab = (): Promise<Tab> =>
   new Promise(resolve => {

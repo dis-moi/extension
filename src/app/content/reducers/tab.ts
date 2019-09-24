@@ -1,5 +1,5 @@
 import { AppAction } from 'app/actions';
-import Tab from 'app/lmem/Tab';
+import Tab from 'app/lmem/tab';
 
 export const initialState = null;
 

@@ -1,4 +1,4 @@
-import { ActionMeta, BaseAction, ErrorAction } from './index';
+import { ActionMeta, AppAction, BaseAction, ErrorAction } from './index';
 import { From } from 'webext/From';
 
 export interface ListeningActionsReadyAction extends BaseAction {
@@ -15,6 +15,9 @@ export const listeningActionsReady = (
   type: 'LISTENING_ACTIONS_READY',
   meta: { ...meta, from }
 });
+
+export const isTabReadyAction = (action: AppAction): boolean =>
+  action.type === 'LISTENING_ACTIONS_READY' && !!action.meta.tab;
 
 export interface ListenActionFailedAction extends ErrorAction {
   type: 'LISTEN_ACTION_FAILED';

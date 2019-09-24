@@ -7,7 +7,7 @@ import {
 import { InstallationDetails } from 'app/lmem/installation';
 import { MatchingContext } from 'app/lmem/matchingContext';
 import { BaseAction, TabAction, TabErrorAction } from '.';
-import Tab from 'app/lmem/Tab';
+import Tab from 'app/lmem/tab';
 
 export interface InitAction extends TabAction {
   type: 'INIT';
