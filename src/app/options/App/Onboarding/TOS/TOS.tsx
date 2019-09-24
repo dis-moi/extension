@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ExternalLink } from 'components/atoms';
 import Logo from 'components/atoms/icons/Logo';
@@ -8,6 +8,9 @@ import Title from '../OnboardingAtoms/OnboardingTitle';
 import SubTitle from '../OnboardingAtoms/OnboardingSubTitle';
 import OnboardinButton from '../OnboardingAtoms/OnboardingButton';
 import LMEMToBulles from '../OnboardingAtoms/LMEMToBulles';
+import TOSAlreadyAccepted from './TOSAlreadyAccepted';
+import TOSText from './TOSText';
+import TOSCheckbox from './TOSCheckbox';
 
 const TOSTitle = styled.h3`
   font-size: 28px;
@@ -36,45 +39,18 @@ const TOSListItem = styled.li`
   }
 `;
 
-const TOSText = styled.p`
-  font-size: 18px;
-`;
-
-const TOSForm = styled.form`
-  display: flex;
-  align-items: center;
-  font-size: 20px;
-
-  [type='checkbox'] {
-    align-self: baseline;
-  }
-
-  label {
-    margin-left: 12px;
-  }
-`;
-
 interface TosProps {
   updatedFromLmem: boolean;
   termsOfServiceAccepted: boolean;
-  acceptTermsOfService: () => void;
-  next: () => void;
+  onContinue: () => void;
 }
 
 export default ({
   updatedFromLmem,
   termsOfServiceAccepted,
-  acceptTermsOfService,
-  next
+  onContinue
 }: TosProps) => {
-  const [value, handleChange] = useState(false);
-
-  // Similar to componentDidMount and componentDidUpdate:
-  useEffect(() => {
-    if (value) {
-      acceptTermsOfService();
-    }
-  });
+  const [acceptTosChecked, setTosChecked] = useState(false);
 
   return (
     <Wrapper>
@@ -153,23 +129,17 @@ export default ({
           <TOSTitle>Conditions générales d’utilisation</TOSTitle>
         </>
       )}
-      <TOSForm>
-        <input
-          type="checkbox"
-          id="tos"
-          onChange={event => handleChange(event.target.checked)}
-          checked={termsOfServiceAccepted}
-        />
-        <label htmlFor="tos">
-          J&apos;ai lu et j&apos;accepte les nouvelles{' '}
-          <ExternalLink href="https://www.bulles.fr/cgu">
-            conditions générales d&apos;utilisation (CGU)
-          </ExternalLink>
-          .
-        </label>
-      </TOSForm>
 
-      <OnboardinButton disabled={!termsOfServiceAccepted} onClick={next}>
+      {termsOfServiceAccepted ? (
+        <TOSAlreadyAccepted />
+      ) : (
+        <TOSCheckbox onChange={setTosChecked} checked={acceptTosChecked} />
+      )}
+
+      <OnboardinButton
+        disabled={!acceptTosChecked && !termsOfServiceAccepted}
+        onClick={onContinue}
+      >
         Continuer
       </OnboardinButton>
     </Wrapper>
