@@ -1,3 +1,4 @@
+import { PersistedState } from 'redux-persist';
 import { findMatchingOffersAccordingToPreferences } from '../../lmem/matchingContext';
 import { getDraftNotices, getMatchingContexts } from './resources';
 import { BackgroundState } from '../reducers';
@@ -27,4 +28,11 @@ export const isAnUpdateFromLmem = createSelector(
       isBulleVersionNumber(version)
     );
   }
+);
+
+export const getPersistState = (state: PersistedState) => state._persist;
+
+export const isRehydrated = createSelector(
+  [getPersistState],
+  persistState => (persistState ? persistState.rehydrated : false)
 );
