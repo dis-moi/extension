@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import BullesLogo from 'components/atoms/icons/Logo';
+import BullesLogo from 'components/atoms/LogoBeta';
 import Intro from '../OnboardingAtoms/OnboardingIntro';
 import Title from '../OnboardingAtoms/OnboardingTitle';
 import {

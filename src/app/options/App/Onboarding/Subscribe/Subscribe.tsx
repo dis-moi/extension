@@ -5,7 +5,7 @@ import {
   SuggestionsScreen,
   SuggestionsScreenProps
 } from '../../Settings/SuggestionsScreen/SuggestionsScreen';
-import BullesLogo from 'components/atoms/icons/Logo';
+import BullesLogo from 'components/atoms/LogoBeta';
 import BackgroundButton from 'components/atoms/Button/BackgroundButton/BackgroundButton';
 import Intro from '../OnboardingAtoms/OnboardingIntro';
 import SubTitle from '../OnboardingAtoms/OnboardingSubTitle';

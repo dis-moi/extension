@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ExternalLink } from 'components/atoms';
-import Logo from 'components/atoms/icons/Logo';
+import LogoBeta from 'components/atoms/LogoBeta';
 import Wrapper from '../OnboardingAtoms/OnboardingWrapper';
 import Intro from '../OnboardingAtoms/OnboardingIntro';
 import Title from '../OnboardingAtoms/OnboardingTitle';
@@ -86,7 +86,7 @@ export default ({
       ) : (
         <>
           <Intro>
-            <Logo />
+            <LogoBeta />
 
             <Title>Installation réussie !</Title>
             <SubTitle>
