@@ -19,7 +19,6 @@ const ContributorWrapper = styled.div`
 
   ${UserName} {
     font-size: 16px;
-    width: 125px;
   }
 `;
 
@@ -58,7 +57,9 @@ export const ContributorCompact = ({
     <Avatar contributor={contributor} size="small" />
 
     <ContributorInfos>
-      <UserName>{contributor.name}</UserName>
+      <UserName>
+        <span>{contributor.name}</span>
+      </UserName>
 
       <StatsWrapper>
         <Stat>{contributor.contributions} Bulles</Stat>
