@@ -1,10 +1,15 @@
 import { getContributors } from './resources';
-import { BackgroundState } from '../reducers';
 import { createSelector } from 'reselect';
 import { Contributor, StatefulContributor } from '../../lmem/contributor';
 import * as R from 'ramda';
+import { SubscriptionsState } from '../reducers/subscriptions.reducer';
 
-export const getSubscriptions = (state: BackgroundState) => state.subscriptions;
+export interface StateWithSubscriptions {
+  subscriptions: SubscriptionsState;
+}
+
+export const getSubscriptions = (state: StateWithSubscriptions) =>
+  state.subscriptions;
 
 const addSubscriptionState = (subscriptions: number[]) => (
   contributor: Contributor
@@ -15,4 +20,9 @@ export const getContributorsWithSubscriptionState = createSelector(
   [getContributors, getSubscriptions],
   (contributors: Contributor[], subscriptions: number[]) =>
     R.map(addSubscriptionState(subscriptions), contributors)
+);
+
+export const getNbSubscriptions = createSelector(
+  [getSubscriptions],
+  subscriptions => subscriptions.length
 );

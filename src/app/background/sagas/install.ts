@@ -7,7 +7,11 @@ import {
   InstalledAction,
   updateInstallationDetails
 } from 'app/actions/install';
-import { isAnUpdateFromLmem, isRehydrated } from 'app/background/selectors';
+import {
+  isAnUpdateFromLmem,
+  isOnboardingRequired,
+  isRehydrated
+} from 'app/background/selectors';
 import { areTosAccepted } from 'app/background/selectors/prefs';
 import { getInstallationDate } from 'app/background/selectors/installationDetails';
 import { InstallationDetails } from 'app/lmem/installation';
@@ -43,7 +47,6 @@ export function* installedSaga({
 export function* installationDetailsSaga(): SagaIterator {
   try {
     const updatedFromLmem = yield select(isAnUpdateFromLmem);
-    const tosAccepted = yield select(areTosAccepted);
 
     // @todo should be checked each time the application boot? and ALSO after the install event?
     if (updatedFromLmem) {
@@ -52,10 +55,14 @@ export function* installationDetailsSaga(): SagaIterator {
       });
     }
 
-    yield call(
-      openOptions,
-      !tosAccepted ? '/onboarding' : '/onboarding/subscribe'
-    );
+    const onboardingRequired = yield select(isOnboardingRequired);
+    const tosAccepted = yield select(areTosAccepted);
+    if (onboardingRequired) {
+      yield call(
+        openOptions,
+        !tosAccepted ? '/onboarding' : '/onboarding/subscribe'
+      );
+    }
   } catch (error) {
     captureException(error);
   }
