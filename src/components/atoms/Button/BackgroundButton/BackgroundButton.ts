@@ -3,7 +3,6 @@ import BorderButton from 'components/atoms/Button/BorderButton';
 
 export default styled(BorderButton)`
   color: #fff;
-  text-transform: none;
   background-color: ${props => props.theme.button};
 
   &:hover {
