@@ -61,29 +61,33 @@ const UI = ({
   showUpdateMessage
 }: UIProps) => {
   if (open) {
-    return loaded ? (
+    return (
       <Notification
         title={title}
         close={close}
         closed={!open}
         hasNotices={noticeContext}
       >
-        {showUpdateMessage ? (
-          <Update />
+        {loaded ? (
+          <>
+            {showUpdateMessage ? (
+              <Update />
+            ) : (
+              <Switch>
+                <Redirect exact path="/" to="/notices" />
+                <Route path="/notices" component={Notice} />
+                <Route path="/subscriptions" component={Subscriptions} />
+                <Route path="/help" component={Help} />
+                <Route path="/account" component={Account} />
+                <Route path="/contribute" component={Contribute} />
+                <Route component={Error} />
+              </Switch>
+            )}
+          </>
         ) : (
-          <Switch>
-            <Redirect exact path="/" to="/notices" />
-            <Route path="/notices" component={Notice} />
-            <Route path="/subscriptions" component={Subscriptions} />
-            <Route path="/help" component={Help} />
-            <Route path="/account" component={Account} />
-            <Route path="/contribute" component={Contribute} />
-            <Route component={Error} />
-          </Switch>
+          <Loading />
         )}
       </Notification>
-    ) : (
-      <Loading />
     );
   }
 
