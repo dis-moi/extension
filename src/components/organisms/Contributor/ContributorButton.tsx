@@ -14,6 +14,11 @@ const Container = styled.div`
   }
 `;
 
+const ContributorBorderButton = styled(BorderButton)`
+  color: ${props => props.theme.primaryColor};
+  border-color: ${props => props.theme.primaryColor};
+`;
+
 interface Props {
   subscribed?: boolean;
   onSubscribe: () => void;
@@ -26,7 +31,11 @@ const ContributorButton = ({
   onUnsubscribe
 }: Props) => (
   <Container>
-    {subscribed && <BorderButton onClick={onUnsubscribe}>Abonné</BorderButton>}
+    {subscribed && (
+      <ContributorBorderButton onClick={onUnsubscribe}>
+        Abonné
+      </ContributorBorderButton>
+    )}
     {!subscribed && (
       <BackgroundButton onClick={onSubscribe}>S&apos;abonner</BackgroundButton>
     )}
