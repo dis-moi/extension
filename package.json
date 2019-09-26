@@ -1,6 +1,6 @@
 {
   "name": "lmem-recommendations",
-  "version": "2.3.10",
+  "version": "2.3.11",
   "description": "LMEM Recommendations web extensions using React+Redux.",
   "engines": {
     "node": ">=8"
