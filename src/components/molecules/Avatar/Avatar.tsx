@@ -11,6 +11,7 @@ const Wrapper = styled.div<WrapperProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
   width: ${props => (props.size === 'small' ? '40px' : '90px')};
   height: ${props => (props.size === 'small' ? '40px' : '90px')};
   background-color: ${props => props.theme.contributorGrey};

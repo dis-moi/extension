@@ -16,7 +16,7 @@ const ContributorCard = styled.div`
   border-radius: 8px;
 
   ${UserName} {
-    max-width: 100%;
+    margin-bottom: 5px;
   }
 `;
 
@@ -25,13 +25,7 @@ const ContributorWrapper = styled.div`
 `;
 
 const ContributorInfos = styled.div`
-  flex-grow: 1;
-  margin-right: 36px;
   margin-left: 15px;
-
-  ${UserName} {
-    margin-bottom: 5px;
-  }
 `;
 
 const StatsWrapper = styled.div`
@@ -70,7 +64,9 @@ export const ContributorLarge = ({
       <Avatar size="normal" contributor={contributor} />
 
       <ContributorInfos>
-        <UserName>{contributor.name}</UserName>
+        <UserName>
+          <span>{contributor.name}</span>
+        </UserName>
 
         <StatsWrapper>
           <Stat>
