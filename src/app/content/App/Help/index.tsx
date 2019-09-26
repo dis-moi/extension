@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BorderButton,
+  BackgroundButton,
   CenterContainer,
   List,
   ExternalLink
@@ -38,7 +38,7 @@ export const Help = () => (
       <Textarea rows={5} placeholder="Écrire votre message ici" required />
 
       <CenterContainer>
-        <BorderButton>Envoyer</BorderButton>
+        <BackgroundButton>Envoyer</BackgroundButton>
       </CenterContainer>
     </form>
   </Container>

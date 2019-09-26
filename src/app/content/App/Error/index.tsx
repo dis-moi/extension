@@ -2,7 +2,7 @@ import React from 'react';
 import Container from './Container';
 import ContentTitle from './ContentTitle';
 import Content from './Content';
-import BorderButton from '../../../../components/atoms/Button/BorderButton';
+import BackgroundButton from 'components/atoms/Button/BackgroundButton';
 import Illustration from './Illustration';
 
 export default () => (
@@ -13,6 +13,6 @@ export default () => (
       Quelque chose s’est mal passé. Veuillez actualiser le plugin ou réessayer
       plus tard.
     </Content>
-    <BorderButton>Actualiser</BorderButton>
+    <BackgroundButton>Actualiser</BackgroundButton>
   </Container>
 );

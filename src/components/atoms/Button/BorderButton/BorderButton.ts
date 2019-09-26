@@ -22,16 +22,16 @@ export default styled(Button)<ButtonProps>`
   }
 
   &:hover {
-    background-color: ${props => props.theme.basicButton.hover};
-    border-color: ${props => props.theme.basicButton.hover};
+    background-color: ${props => props.theme.button};
+    border-color: ${props => props.theme.button};
 
     svg {
       fill: #fff;
     }
   }
   &:focus {
-    background-color: ${props => props.theme.basicButton.clicked};
-    border-color: ${props => props.theme.basicButton.clicked};
+    background-color: ${props => props.theme.button};
+    border-color: ${props => props.theme.button};
   }
 
   svg {
