@@ -12,6 +12,10 @@ import SubTitle from '../OnboardingAtoms/OnboardingSubTitle';
 import OnboardingSteps from '../OnboardingAtoms/OnboardingSteps/OnboardingSteps';
 import LMEMToBulles from '../OnboardingAtoms/LMEMToBulles';
 
+const Title = styled(SubTitle)`
+  margin-top: 20px;
+`;
+
 const BottomLineBg = styled.section`
   position: fixed;
   bottom: 0;
@@ -55,10 +59,10 @@ export default ({
       {updatedFromLmem ? <LMEMToBulles /> : <BullesLogo />}
       {updatedFromLmem && <OnboardingSteps activeStep={2} />}
 
-      <SubTitle>
+      <Title>
         Choisissez vos contributeurs pour recevoir leurs messages durant votre
         navigation
-      </SubTitle>
+      </Title>
     </Intro>
 
     <SuggestionsScreen
