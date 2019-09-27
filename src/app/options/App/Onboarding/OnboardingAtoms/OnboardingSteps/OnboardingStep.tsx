@@ -64,7 +64,7 @@ const OnboardingStep = ({
 
   return (
     <OnboardingStepContainer active={active}>
-      <Step>{!isStepCompleted() ? <>{String(step)}</> : <Check />}</Step>
+      <Step>{!isStepCompleted() ? String(step) : <Check />}</Step>
       {children}
     </OnboardingStepContainer>
   );
