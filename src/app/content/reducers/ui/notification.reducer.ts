@@ -1,0 +1,35 @@
+import * as R from 'ramda';
+import { CLOSED, OPENED } from 'app/constants/ActionTypes';
+import { AppAction } from 'app/actions';
+import { END_LOADING } from '../../actions/ui/open.actions';
+
+export interface NotificationState {
+  mounted: boolean;
+  open: boolean;
+  loaded: boolean;
+}
+
+const initialState: NotificationState = {
+  mounted: false,
+  open: false,
+  loaded: false
+};
+
+export default (state: NotificationState = initialState, action: AppAction) => {
+  switch (action.type) {
+    case OPENED:
+      return R.pipe(
+        R.assoc('mounted', true),
+        R.assoc('open', true)
+      )(state);
+    case END_LOADING:
+      return R.assoc('loaded', state.open, state);
+    case CLOSED:
+      return R.pipe(
+        R.assoc('open', false),
+        R.assoc('loaded', false)
+      )(state);
+    default:
+      return state;
+  }
+};

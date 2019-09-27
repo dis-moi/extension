@@ -1,30 +1,31 @@
 import React from 'react';
-import { put, takeLatest, takeEvery, select, call } from 'redux-saga/effects';
+import { call, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 import { render } from 'react-dom';
 import { go, replace } from 'connected-react-router';
 import {
+  close,
+  CloseAction,
+  closed,
+  closeFailed,
   open,
   opened,
   openFailed,
-  closed,
-  closeFailed,
-  CloseAction,
-  TOGGLE_UI,
-  ToggleUIAction,
   SHOW_BULLES_UPDATE_SERVICE_MESSAGE,
-  close
+  TOGGLE_UI,
+  ToggleUIAction
 } from 'app/actions';
-import { CLOSE, OPEN, NOTICES_FOUND } from 'app/constants/ActionTypes';
+import { CLOSE, NOTICES_FOUND, OPEN, OPENED } from 'app/constants/ActionTypes';
 import {
-  isOpen as isNotificationOpen,
-  isMounted as isNotificationMounted,
   getPathname,
-  hasUnreadNotices
-} from '../selectors';
-import { append, create, hide, show } from '../extensionIframe';
-import theme from '../../theme';
-import App from '../App';
-import { history } from '../store';
+  hasUnreadNotices,
+  isMounted as isNotificationMounted,
+  isOpen as isNotificationOpen
+} from '../../selectors';
+import { append, create, hide, show } from '../../extensionIframe';
+import theme from '../../../theme';
+import App from '../../App';
+import { history } from '../../store';
+import { fakeLoadingSaga } from './fakeLoading.saga';
 
 const iframe = create(theme.iframe.style);
 let contentDocument: Document;
@@ -83,7 +84,7 @@ export function* toggleUISaga(action: ToggleUIAction) {
   yield put(isOpen ? close(action.payload.closeCause) : open());
 }
 
-export default function* backgroundRootSaga() {
+export default function* UISaga() {
   yield takeLatest(OPEN, openSaga);
   yield takeLatest(CLOSE, closeSaga);
   yield takeEvery(
@@ -91,4 +92,5 @@ export default function* backgroundRootSaga() {
     toggleUISaga
   );
   yield takeLatest(NOTICES_FOUND, noticesFoundSaga);
+  yield takeLatest(OPENED, fakeLoadingSaga);
 }

@@ -16,7 +16,8 @@ import {
   getTitle,
   isNoticeContext,
   isOpen,
-  getShowUpdateMessage
+  getShowUpdateMessage,
+  isLoaded
 } from '../selectors';
 import Notice from './Notice';
 import Subscriptions from './Subscriptions';
@@ -29,6 +30,7 @@ import Update from './Notice/Update';
 
 const mapStateToProps = (state: ContentState) => ({
   open: isOpen(state),
+  loaded: isLoaded(state),
   title: getTitle(state),
   noticeContext: isNoticeContext(state),
   showUpdateMessage: getShowUpdateMessage(state)
@@ -40,22 +42,19 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 interface ConnectProps {
   open: boolean;
+  loaded: boolean;
   title: string;
   close: () => void;
   noticeContext: boolean;
   showUpdateMessage: boolean;
 }
 
-interface ExternalProps {
-  loaded: boolean;
-}
-
-type UIProps = ExternalProps & ConnectProps & RouteComponentProps;
+type UIProps = ConnectProps & RouteComponentProps;
 
 const UI = ({
-  loaded,
   open,
   title,
+  loaded,
   close,
   noticeContext,
   showUpdateMessage
@@ -94,10 +93,10 @@ const UI = ({
   return null;
 };
 
-export default compose<ComponentType<ExternalProps>>(
-  withRouter,
+export default compose<ComponentType<{}>>(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )
+  ),
+  withRouter
 )(UI);

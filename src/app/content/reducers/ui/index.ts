@@ -1,18 +1,15 @@
 import { combineReducers } from 'redux';
-import mounted, { MountedState } from './mounted';
-import open, { OpenState } from './open';
+import notification, { NotificationState } from './notification.reducer';
 import title, { TitleState } from './title';
 
-export { MountedState, OpenState, TitleState };
+export { NotificationState, TitleState };
 
 export interface UIState {
-  mounted: MountedState;
-  open: OpenState;
+  notification: NotificationState;
   title: TitleState;
 }
 
 export default combineReducers({
-  mounted,
-  open,
+  notification,
   title
 });
