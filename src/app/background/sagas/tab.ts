@@ -1,4 +1,4 @@
-import { put, takeLatest, select, call, all, take } from 'redux-saga/effects';
+import { put, takeEvery, select, call, all, take } from 'redux-saga/effects';
 import * as R from 'ramda';
 import { isToday } from 'date-fns';
 import { TAB_CREATED, TAB_UPDATED } from 'app/constants/browser/tabs';
@@ -158,16 +158,13 @@ export default function* tabRootSaga() {
   );
   const executeTabContentScript = yield call(executeTabScript, contentCode);
 
-  yield takeLatest(
-    [TAB_CREATED, TAB_UPDATED],
-    tabSaga(executeTabContentScript)
-  );
-  yield takeLatest(MATCH_CONTEXT, matchContextSaga);
-  yield takeLatest(CONTEXT_TRIGGERED, contextTriggeredSaga);
-  yield takeLatest(
+  yield takeEvery([TAB_CREATED, TAB_UPDATED], tabSaga(executeTabContentScript));
+  yield takeEvery(MATCH_CONTEXT, matchContextSaga);
+  yield takeEvery(CONTEXT_TRIGGERED, contextTriggeredSaga);
+  yield takeEvery(
     (action: BaseAction) => Boolean(action.meta && action.meta.sendToTab),
     publishToTabSaga
   );
 
-  yield takeLatest(NOTICES_FOUND, updateNoticesSaga);
+  yield takeEvery(NOTICES_FOUND, updateNoticesSaga);
 }
