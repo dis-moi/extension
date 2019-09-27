@@ -14,6 +14,7 @@ import TOSCheckbox from './TOSCheckbox';
 import OnboardingSteps from '../OnboardingAtoms/OnboardingSteps/OnboardingSteps';
 
 const TOSTitle = styled.h3`
+  margin-bottom: 20px;
   font-size: 28px;
   font-weight: bold;
   text-align: center;
@@ -28,8 +29,8 @@ const TOSList = styled.ol`
 `;
 
 const TOSListItem = styled.li`
-  margin-bottom: 20px;
-  font-size: 22px;
+  margin-bottom: 10px;
+  font-size: 18px;
 
   &:before {
     content: counter(TOS) '.';
@@ -109,10 +110,8 @@ export default ({
               <strong>Pas de publicité</strong>
             </TOSListItem>
             <TOSListItem>
-              <strong>
-                Anonymat: Pas d’email ni de compte nécessaires pour naviguer
-                avec Bulles
-              </strong>
+              <strong>Anonymat:</strong> Pas d’email ni de compte nécessaires
+              pour naviguer avec Bulles
             </TOSListItem>
             <TOSListItem>
               <strong>Seules des données strictement utiles</strong> au
