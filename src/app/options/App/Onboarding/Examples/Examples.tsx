@@ -4,8 +4,7 @@ import styled from 'styled-components';
 import BullesLogo from 'components/atoms/LogoBeta';
 import Intro from '../OnboardingAtoms/OnboardingIntro';
 import Title from '../OnboardingAtoms/OnboardingTitle';
-import {
-  SuggestionsScreen,
+import SuggestionsScreen, {
   SuggestionsScreenProps
 } from '../../Settings/SuggestionsScreen/SuggestionsScreen';
 import Wrapper from '../OnboardingAtoms/OnboardingWrapper';
@@ -42,6 +41,8 @@ export default ({
       suggestions={suggestions}
       subscribe={subscribe}
       unsubscribe={unsubscribe}
+      showExampleLink
+      highlightExampleLink
     />
   </>
 );

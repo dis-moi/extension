@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {
-  SuggestionsScreen,
+import SuggestionsScreen, {
   SuggestionsScreenProps
 } from '../../Settings/SuggestionsScreen/SuggestionsScreen';
 import BullesLogo from 'components/atoms/LogoBeta';
