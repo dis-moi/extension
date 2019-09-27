@@ -2,15 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 const MessageBlock = styled.div`
+  padding-top: 6px;
+
   p {
-    margin: 6px 0 12px;
+    margin: 0;
     font-size: 15px;
     line-height: 1.4;
     color: ${props => props.theme.primaryColor};
-
-    &:last-of-type {
-      margin-bottom: 0;
-    }
   }
 `;
 
