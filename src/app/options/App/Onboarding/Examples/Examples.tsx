@@ -30,8 +30,11 @@ export default ({
     <Intro>
       {updatedFromLmem ? <LMEMToBulles /> : <BullesLogo />}
 
-      <Title>Installation réussie !</Title>
-      <Title2>Découvrez des exemples de vos contributeurs !</Title2>
+      <Title>
+        Félicitations, vous êtes maintenant abonné : vous revevrez les messages
+        de vos contributeurs durant votre navigation.
+      </Title>
+      <Title2>Ci-dessous vous pouvez tester quelques exemples.</Title2>
     </Intro>
 
     <SuggestionsScreen
