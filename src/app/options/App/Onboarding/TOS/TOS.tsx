@@ -11,6 +11,7 @@ import LMEMToBulles from '../OnboardingAtoms/LMEMToBulles';
 import TOSAlreadyAccepted from './TOSAlreadyAccepted';
 import TOSText from './TOSText';
 import TOSCheckbox from './TOSCheckbox';
+import OnboardingSteps from '../OnboardingAtoms/OnboardingSteps/OnboardingSteps';
 
 const TOSTitle = styled.h3`
   font-size: 28px;
@@ -58,9 +59,11 @@ export default ({
         <>
           <LMEMToBulles />
 
+          <OnboardingSteps activeStep={1} />
+
           <TOSText>
-            A partir d’aujourd’hui, vous pouvez vous abonner à des amis, media
-            et experts de votre choix.
+            À partir d’aujourd’hui, vous pouvez vous abonner à des{' '}
+            <strong>amis, media et experts de votre choix.</strong>
             <br />
             Vous recevrez leurs messages en fonction de la page web que vous
             visitez, comme pour Le Même en Mieux.
