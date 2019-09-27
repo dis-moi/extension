@@ -87,4 +87,16 @@ storiesOf('screens/Notice/List', module)
       ]}
     />
   ))
+  .add('Deleted', () => (
+    <ListScreen
+      {...commonProps}
+      notices={[
+        generateStatefulNotice({
+          dismissed: boolean('dismissed(1)', true, 'first'),
+          intention: select('intention(1)', intentions, 'approval', 'first'),
+          message: `<p>${text('message(1)', firstMessage, 'first')}</p>`
+        })
+      ]}
+    />
+  ))
   .add('empty', () => <ListScreen {...commonProps} notices={[]} />);
