@@ -1,6 +1,6 @@
 import { Redirect, Route, RouteComponentProps, Switch } from 'react-router';
-import SubscriptionsScreen from './SubscriptionsScreen/SubscriptionsScreen';
-import SuggestionsScreen from './SuggestionsScreen/SuggestionsScreen';
+import SubscriptionsScreen from './SubscriptionsScreen';
+import SuggestionsScreen from './SuggestionsScreen';
 import React from 'react';
 import Header from './Header';
 import ContributorNav from 'components/organisms/ContributorNav/ContributorNav';

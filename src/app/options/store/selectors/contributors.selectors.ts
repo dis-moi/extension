@@ -24,7 +24,10 @@ export const getNbSusbcriptions = createSelector(
 
 export const getContributorsSuggestions = createSelector(
   [getContributors],
-  sortSuggestedContributors
+  R.pipe(
+    R.reject(contributorIsSubscribed),
+    sortSuggestedContributors
+  )
 );
 
 export const makeGetNContributorsSuggestions = (n: number) =>

@@ -39,8 +39,7 @@ describe('options > selectors > contributors', () => {
     it('returns contributors sorted by contributions', () => {
       expect(getContributorsSuggestions(state)).to.eql([
         contributorOne,
-        contributorThree,
-        contributorTwo
+        contributorThree
       ]);
     });
   });
@@ -50,16 +49,14 @@ describe('options > selectors > contributors', () => {
       it('returns a selector for all the suggestions', () => {
         expect(makeGetNContributorsSuggestions(10)(state)).to.eql([
           contributorOne,
-          contributorThree,
-          contributorTwo
+          contributorThree
         ]);
       });
     });
     describe('with limit lower than available suggestions', () => {
       it('returns a selector for first N suggestions', () => {
-        expect(makeGetNContributorsSuggestions(2)(state)).to.eql([
-          contributorOne,
-          contributorThree
+        expect(makeGetNContributorsSuggestions(1)(state)).to.eql([
+          contributorOne
         ]);
       });
     });
