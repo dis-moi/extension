@@ -6,6 +6,7 @@
  */
 
 const version = require('../package.json').version;
+const icons = require('./icons');
 
 module.exports = Object.freeze({
   name: 'Le Même en Mieux',
@@ -15,11 +16,7 @@ module.exports = Object.freeze({
     'Gratuit et sans pub, respecte votre vie privée.',
   version,
   manifest_version: 2,
-  icons: {
-    '16': 'img/logo/16x16.png',
-    '48': 'img/logo/48x48.png',
-    '128': 'img/logo/128x128.png'
-  },
+  icons,
   background: {
     page: 'background.html'
   },
