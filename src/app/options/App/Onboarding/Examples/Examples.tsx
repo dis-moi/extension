@@ -8,7 +8,7 @@ import {
   SuggestionsScreen,
   SuggestionsScreenProps
 } from '../../Settings/SuggestionsScreen/SuggestionsScreen';
-import LMEMToBulles from '../OnboardingAtoms/LMEMToBulles';
+import Wrapper from '../OnboardingAtoms/OnboardingWrapper';
 
 const Title2 = styled(Title)`
   margin-top: 0;
@@ -21,21 +21,22 @@ interface ExamplesScreenProps extends SuggestionsScreenProps {
 }
 
 export default ({
-  updatedFromLmem,
   suggestions,
   subscribe,
   unsubscribe
 }: ExamplesScreenProps) => (
   <>
-    <Intro>
-      {updatedFromLmem ? <LMEMToBulles /> : <BullesLogo />}
+    <Wrapper>
+      <Intro>
+        <BullesLogo />
 
-      <Title>
-        Félicitations, vous êtes maintenant abonné : vous revevrez les messages
-        de vos contributeurs durant votre navigation.
-      </Title>
-      <Title2>Ci-dessous vous pouvez tester quelques exemples.</Title2>
-    </Intro>
+        <Title>
+          Félicitations, vous êtes maintenant abonné : vous revevrez les
+          messages de vos contributeurs durant votre navigation.
+        </Title>
+        <Title2>Ci-dessous vous pouvez tester quelques exemples.</Title2>
+      </Intro>
+    </Wrapper>
 
     <SuggestionsScreen
       suggestions={suggestions}
