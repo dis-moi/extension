@@ -1,4 +1,5 @@
 import React from 'react';
+import { history } from '../../store';
 import Container from './Container';
 import ContentTitle from './ContentTitle';
 import Content from './Content';
@@ -10,9 +11,8 @@ export default () => (
     <Illustration />
     <ContentTitle>Oops !</ContentTitle>
     <Content>
-      Quelque chose s’est mal passé. Veuillez actualiser le plugin ou réessayer
-      plus tard.
+      Quelque chose s’est mal passé. Veuillez réessayer plus tard.
     </Content>
-    <BackgroundButton>Actualiser</BackgroundButton>
+    <BackgroundButton onClick={history.goBack}>Retour</BackgroundButton>
   </Container>
 );
