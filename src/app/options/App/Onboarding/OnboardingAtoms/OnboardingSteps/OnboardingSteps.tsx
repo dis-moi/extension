@@ -20,10 +20,10 @@ interface OnboardingStepsProps {
 
 const OnboardingSteps = ({ activeStep }: OnboardingStepsProps) => (
   <OnboardingStepsList>
-    <OnboardingStep step={String(1)} active={activeStep === 1}>
+    <OnboardingStep step={1} active={activeStep === 1} totalSteps={2}>
       Découvrir et accepter l&apos;évolution
     </OnboardingStep>
-    <OnboardingStep step={String(2)} active={activeStep === 2}>
+    <OnboardingStep step={2} active={activeStep === 2} totalSteps={2}>
       Choisir vos contributeurs
     </OnboardingStep>
   </OnboardingStepsList>

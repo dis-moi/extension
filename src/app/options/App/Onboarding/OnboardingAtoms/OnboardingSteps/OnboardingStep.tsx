@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 import { Theme } from 'app/theme';
+import Check from 'components/atoms/icons/Check';
 
 interface OnboardingStepContainer {
   active: boolean;
@@ -40,16 +41,33 @@ const OnboardingStepContainer = styled.li<OnboardingStepContainer>`
     }
   }
 `;
+
+const Step = styled.span`
+  margin-right: 10px;
+  font-size: 32px;
+`;
+
 interface OnboardingStepProps {
-  step: string;
+  step: number;
   active: boolean;
+  totalSteps: number;
   children: ReactNode;
 }
 
-const OnboardingStep = ({ step, active, children }: OnboardingStepProps) => (
-  <OnboardingStepContainer active={active}>
-    {step} - {children}
-  </OnboardingStepContainer>
-);
+const OnboardingStep = ({
+  step,
+  active,
+  children,
+  totalSteps
+}: OnboardingStepProps) => {
+  const isStepCompleted = () => !active && step < totalSteps;
+
+  return (
+    <OnboardingStepContainer active={active}>
+      <Step>{!isStepCompleted() ? <>{String(step)}</> : <Check />}</Step>
+      {children}
+    </OnboardingStepContainer>
+  );
+};
 
 export default OnboardingStep;
