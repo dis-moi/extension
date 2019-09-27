@@ -13,6 +13,7 @@ const TOSForm = styled.form`
 
   label {
     margin-left: 12px;
+    font-size: 16px;
   }
 `;
 
