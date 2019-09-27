@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { StatefulContributor } from 'app/lmem/contributor';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
-import withConnect from './withConnect';
 
 const ContributorsWidth = styled.section`
   padding-bottom: 250px;
@@ -19,12 +18,16 @@ export interface SuggestionsScreenProps {
   suggestions: StatefulContributor[];
   subscribe: (contributor: StatefulContributor) => () => void;
   unsubscribe: (contributor: StatefulContributor) => () => void;
+  showExampleLink?: boolean;
+  highlightExampleLink?: boolean;
 }
 
-export const SuggestionsScreen = ({
+const SuggestionsScreen = ({
   suggestions,
   subscribe,
-  unsubscribe
+  unsubscribe,
+  showExampleLink,
+  highlightExampleLink
 }: SuggestionsScreenProps) => (
   <>
     <ContributorsWidth>
@@ -35,6 +38,8 @@ export const SuggestionsScreen = ({
             contributor={contributor}
             onSubscribe={subscribe(contributor)}
             onUnsubscribe={unsubscribe(contributor)}
+            showExampleLink={showExampleLink}
+            highlightExampleLink={highlightExampleLink}
           />
         ))}
       </ContributorsList>
@@ -42,4 +47,9 @@ export const SuggestionsScreen = ({
   </>
 );
 
-export default withConnect(SuggestionsScreen);
+SuggestionsScreen.defaultProps = {
+  showExampleLink: false,
+  highlightExampleLink: false
+};
+
+export default SuggestionsScreen;

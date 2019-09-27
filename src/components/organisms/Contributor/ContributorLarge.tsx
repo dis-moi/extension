@@ -42,22 +42,31 @@ const ContributorIntro = styled.p`
   color: ${props => props.theme.formBorder};
 `;
 
-const ContributionExample = styled(Button)`
+interface ContributionExampleProps {
+  highlighted?: boolean;
+}
+
+const ContributionExample = styled(Button)<ContributionExampleProps>`
   margin-top: 25px;
   font-size: 12px;
-  color: ${props => props.theme.activeColor};
+  color: ${props =>
+    props.highlighted ? props.theme.highlightedLink : props.theme.activeColor};
 `;
 
 interface Props {
   contributor: StatefulContributor;
   onSubscribe: () => void;
   onUnsubscribe: () => void;
+  showExampleLink?: boolean;
+  highlightExampleLink?: boolean;
 }
 
-export const ContributorLarge = ({
+const ContributorLarge = ({
   contributor,
   onSubscribe,
-  onUnsubscribe
+  onUnsubscribe,
+  showExampleLink,
+  highlightExampleLink
 }: Props) => (
   <ContributorCard>
     <ContributorWrapper>
@@ -83,10 +92,19 @@ export const ContributorLarge = ({
       </ContributorInfos>
     </ContributorWrapper>
 
-    <ContributionExample>Voir un exemple de ses bulles</ContributionExample>
+    {showExampleLink && (
+      <ContributionExample highlighted={highlightExampleLink}>
+        Voir un exemple de ses bulles
+      </ContributionExample>
+    )}
 
     <ContributorIntro>{contributor.intro}</ContributorIntro>
   </ContributorCard>
 );
+
+ContributorLarge.defaultProps = {
+  showExampleLink: false,
+  highlightExampleLink: false
+};
 
 export default ContributorLarge;

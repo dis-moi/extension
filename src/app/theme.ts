@@ -24,6 +24,7 @@ export interface Theme {
   navInactive: string;
   navActive: string;
   link: string;
+  highlightedLink: string;
   accountListBg: string;
 
   // color list:
@@ -88,6 +89,7 @@ export const theme: Theme = {
   navInactive: '#a6b1c0',
   navActive: '#4378A5',
   link: '#1974C3',
+  highlightedLink: '#F21360',
   accountListBg: '#fff',
 
   // color list:
