@@ -6,6 +6,7 @@ const Wrapper = styled.main`
   margin: 0 auto;
   padding-right: 20px;
   padding-bottom: 20px;
+  color: ${props => props.theme.primaryColor};
 `;
 
 export default Wrapper;
