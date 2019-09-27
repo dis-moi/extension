@@ -98,7 +98,9 @@ const ContributorLarge = ({
       </ContributionExample>
     )}
 
-    <ContributorIntro>{contributor.intro}</ContributorIntro>
+    <ContributorIntro>
+      {contributor.intro || 'Description non renseignée'}
+    </ContributorIntro>
   </ContributorCard>
 );
 
