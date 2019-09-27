@@ -5,6 +5,10 @@ import TOSText from './TOSText';
 
 const Text = styled(TOSText)`
   font-size: 16px;
+
+  a {
+    color: ${props => props.theme.activeColor};
+  }
 `;
 
 const TOSAlreadyAccepted = () => (
