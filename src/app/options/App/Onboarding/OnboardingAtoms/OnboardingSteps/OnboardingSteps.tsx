@@ -6,8 +6,7 @@ const OnboardingStepsList = styled.ul`
   display: flex;
   max-width: 750px;
   height: 70px;
-  margin-right: auto;
-  margin-left: auto;
+  margin: 40px auto;
   padding: 0;
   list-style-type: none;
   background-color: #f4f4f4;

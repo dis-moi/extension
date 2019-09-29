@@ -10,7 +10,7 @@ import SuggestionsScreen, {
 import Wrapper from '../OnboardingAtoms/OnboardingWrapper';
 
 const Title2 = styled(Title)`
-  margin-top: 0;
+  margin-top: 20px;
   margin-bottom: 40px;
   color: ${props => props.theme.activeColor};
 `;
