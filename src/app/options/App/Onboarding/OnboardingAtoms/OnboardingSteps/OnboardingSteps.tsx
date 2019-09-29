@@ -4,7 +4,7 @@ import OnboardingStep from './OnboardingStep';
 
 const OnboardingStepsList = styled.ul`
   display: flex;
-  max-width: 750px;
+  max-width: 860px;
   height: 70px;
   margin: 40px auto;
   padding: 0;
