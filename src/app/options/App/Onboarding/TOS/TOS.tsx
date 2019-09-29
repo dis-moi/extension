@@ -76,7 +76,7 @@ export default ({
           </TOSText>
 
           <TOSText>
-            Nous avons également renforcé la protection de votre vie privée{' '}
+            Nous avons également renforcé la{' '}
             <ExternalLink href="https://www.bulles.fr/vie-privee">
               protection de votre vie privée
             </ExternalLink>
