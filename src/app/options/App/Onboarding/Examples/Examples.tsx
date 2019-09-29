@@ -30,8 +30,9 @@ export default ({
         <BullesLogo />
 
         <Title>
-          Félicitations, vous êtes maintenant abonné : vous revevrez les
-          messages de vos contributeurs durant votre navigation.
+          Félicitations, vous êtes maintenant abonné : <br />
+          vous recevrez les messages de vos contributeurs durant votre
+          navigation.
         </Title>
         <Title2>Ci-dessous vous pouvez tester quelques exemples.</Title2>
       </Intro>
