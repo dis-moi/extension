@@ -4,9 +4,14 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { generateContributor } from 'test/fakers/generateContributor';
 import Subscribe from './Subscribe';
+import Wrapper from '../../ScreenWrapper';
 
 storiesOf('screens/Onboarding/Subscribe', module)
-  .addDecorator(getStory => <Router>{getStory()}</Router>)
+  .addDecorator(getStory => (
+    <Router>
+      <Wrapper>{getStory()}</Wrapper>
+    </Router>
+  ))
   .add('Lmem --> Bulles', () => (
     <Subscribe
       updatedFromLmem={true}
