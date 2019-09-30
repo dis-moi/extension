@@ -4,7 +4,7 @@ import openReducer from './notification.reducer';
 import { closed, opened } from '../../../actions';
 import * as R from 'ramda';
 import { CloseCause } from '../../../lmem/ui';
-import { endLoading } from '../../actions/ui/open.actions';
+import { loaded } from '../../actions/ui/open.actions';
 
 interface StateOptions {
   mounted?: boolean;
@@ -62,9 +62,9 @@ describe('content > reducers > openReducer', () => {
         openReducer(getStateWith({ loaded: false }), opened())
       ).to.have.property('loaded', false);
     });
-    it('becomes true when END_LOADING', () => {
+    it('becomes true when LOADED', () => {
       expect(
-        openReducer(getStateWith({ loaded: false, open: true }), endLoading())
+        openReducer(getStateWith({ loaded: false, open: true }), loaded())
       ).to.have.property('loaded', true);
     });
     it('becomes false when CLOSED', () => {
@@ -75,9 +75,9 @@ describe('content > reducers > openReducer', () => {
         )
       ).to.have.property('loaded', false);
     });
-    it('stays false END_LOADING but already closed', () => {
+    it('stays false LOADED but already closed', () => {
       expect(
-        openReducer(getStateWith({ loaded: false, open: false }), endLoading())
+        openReducer(getStateWith({ loaded: false, open: false }), loaded())
       ).to.have.property('loaded', false);
     });
   });

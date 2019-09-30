@@ -55,7 +55,7 @@ import {
 import { From } from '../../webext/From';
 import { SubscribeAction, UnsubscribeAction } from './subscription';
 import { ShowBullesUpdateMessageAction } from './bullesUpdate.actions';
-import { EndLoadingAction } from '../content/actions/ui/open.actions';
+import { LoadedAction } from '../content/actions/ui/open.actions';
 
 type MessageSender = chrome.runtime.MessageSender;
 
@@ -183,5 +183,5 @@ export type AppAction =
   | TosAcceptedAction
   | TransmitTOSStatusAction
   | ShowBullesUpdateMessageAction
-  | EndLoadingAction
+  | LoadedAction
   | (LocationChangeAction & { meta?: ActionMeta });
