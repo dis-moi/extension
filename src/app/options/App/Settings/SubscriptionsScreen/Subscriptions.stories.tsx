@@ -1,10 +1,12 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { SubscriptionsScreen } from './SubscriptionsScreen';
 import { action } from '@storybook/addon-actions';
 import { generateContributor } from 'test/fakers/generateContributor';
+import Wrapper from '../../ScreenWrapper';
+import { SubscriptionsScreen } from './SubscriptionsScreen';
 
 storiesOf('screens/SubscriptionsScreen', module)
+  .addDecorator(getStory => <Wrapper>{getStory()}</Wrapper>)
   .add('subcriptions', () => (
     <SubscriptionsScreen
       subscriptions={[
