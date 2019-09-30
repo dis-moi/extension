@@ -39,6 +39,14 @@ const Button = styled(BackgroundButton)`
   padding: 15px 35px;
   height: auto;
   font-size: 24px;
+  background-color: #2a842a;
+  border-color: #2a842a;
+
+  &:hover {
+    color: #fff;
+    background-color: #145514;
+    border-color: #145514;
+  }
 `;
 
 interface SubscribeScreenProps extends SuggestionsScreenProps {
