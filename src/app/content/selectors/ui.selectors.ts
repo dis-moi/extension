@@ -1,3 +1,4 @@
+import * as R from 'ramda';
 import { createSelector } from 'reselect';
 import { UIState } from '../reducers/ui';
 
@@ -7,19 +8,24 @@ export interface StateWithUI {
 
 export const getUI = (state: StateWithUI): UIState => state.ui;
 
-export const isOpen = createSelector(
-  [getUI],
-  ui => ui.notification.open
-);
-export const isMounted = createSelector(
-  [getUI],
-  ui => ui.notification.mounted
-);
-export const isLoaded = createSelector(
-  [getUI],
-  ui => ui.notification.loaded
-);
 export const getTitle = createSelector(
   [getUI],
-  ui => ui.title
+  R.prop('title')
+);
+
+const getNotification = createSelector(
+  [getUI],
+  R.prop('notification')
+);
+export const isOpen = createSelector(
+  [getNotification],
+  R.prop('open')
+);
+export const isMounted = createSelector(
+  [getNotification],
+  R.prop('mounted')
+);
+export const isLoaded = createSelector(
+  [getNotification],
+  R.prop('loaded')
 );
