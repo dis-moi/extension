@@ -5,7 +5,7 @@ import SuggestionsScreen, {
   SuggestionsScreenProps
 } from '../../Settings/SuggestionsScreen/SuggestionsScreen';
 import BullesLogo from 'components/atoms/LogoBeta';
-import BackgroundButton from 'components/atoms/Button/BackgroundButton/BackgroundButton';
+import OnboardingButton from '../OnboardingAtoms/OnboardingButton';
 import Intro from '../OnboardingAtoms/OnboardingIntro';
 import SubTitle from '../OnboardingAtoms/OnboardingSubTitle';
 import OnboardingSteps from '../OnboardingAtoms/OnboardingSteps/OnboardingSteps';
@@ -31,22 +31,6 @@ const InfoLine = styled.p`
   font-size: 17px;
   font-weight: bold;
   color: #ba1b1b;
-`;
-
-const Button = styled(BackgroundButton)`
-  margin-right: auto;
-  margin-left: auto;
-  padding: 15px 35px;
-  height: auto;
-  font-size: 24px;
-  background-color: #2a842a;
-  border-color: #2a842a;
-
-  &:hover {
-    color: #fff;
-    background-color: #145514;
-    border-color: #145514;
-  }
 `;
 
 interface SubscribeScreenProps extends SuggestionsScreenProps {
@@ -84,9 +68,9 @@ export default ({
       {nbSubscriptions === 0 && (
         <InfoLine>Choisir au minimum 1 contributeur</InfoLine>
       )}
-      <Button disabled={nbSubscriptions === 0} onClick={next}>
+      <OnboardingButton disabled={nbSubscriptions === 0} onClick={next}>
         Terminer
-      </Button>
+      </OnboardingButton>
     </BottomLineBg>
   </>
 );
