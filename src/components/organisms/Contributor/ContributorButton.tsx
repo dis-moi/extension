@@ -13,6 +13,14 @@ const Container = styled.div`
   }
 `;
 
+const ContributorBackgroundButton = styled(BackgroundButton)`
+  &:hover {
+    color: #fff;
+    background-color: #062e65;
+    border-color: #062e65;
+  }
+`;
+
 const ContributorBorderButton = styled(BorderButton)`
   color: ${props => props.theme.primaryColor};
   border-color: ${props => props.theme.primaryColor};
@@ -36,7 +44,9 @@ const ContributorButton = ({
       </ContributorBorderButton>
     )}
     {!subscribed && (
-      <BackgroundButton onClick={onSubscribe}>S&apos;abonner</BackgroundButton>
+      <ContributorBackgroundButton onClick={onSubscribe}>
+        S&apos;abonner
+      </ContributorBackgroundButton>
     )}
   </Container>
 );
