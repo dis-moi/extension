@@ -62,6 +62,7 @@ export const SubscriptionsScreen = ({
               contributor={contributor}
               onSubscribe={subscribe(contributor)}
               onUnsubscribe={unsubscribe(contributor)}
+              showExampleLink
             />
           ))}
         </ContributorsList>
