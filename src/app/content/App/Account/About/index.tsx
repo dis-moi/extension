@@ -14,10 +14,10 @@ export interface AboutProps {
 
 export const About = ({ installationDate, extensionVersion }: AboutProps) => (
   <Container>
-    <Title>Le Même En Mieux V{extensionVersion}</Title>
+    <Title>Bulles V{extensionVersion}</Title>
     <Content>
-      Le Même en Mieux est un assistant d’achat indépendant des vendeurs et des
-      marques.
+      Lorsque vous visitez une page du web, Bulles vous permet de lire les
+      messages de vos relations et en poster à votre tour.
     </Content>
 
     {installationDate && (
