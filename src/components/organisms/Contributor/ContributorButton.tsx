@@ -14,6 +14,8 @@ const Container = styled.div`
 `;
 
 const ContributorBackgroundButton = styled(BackgroundButton)`
+  min-width: 150px;
+
   &:hover {
     color: #fff;
     background-color: #062e65;
@@ -22,9 +24,13 @@ const ContributorBackgroundButton = styled(BackgroundButton)`
 `;
 
 const ContributorBorderButton = styled(BorderButton)`
-  color: ${props => props.theme.primaryColor};
-  border-color: ${props => props.theme.primaryColor};
-  min-width: 136px;
+  &,
+  &:hover {
+    color: ${props => props.theme.primaryColor};
+    background-color: #fff;
+    border-color: ${props => props.theme.primaryColor};
+    min-width: 150px;
+  }
 `;
 
 interface Props {
