@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import { optionsRequested } from 'app/actions/options';
 import { ContentState } from '../../store';
 import {
@@ -11,9 +12,9 @@ const mapStateToProps = (state: ContentState) => ({
   nbSubscribedContributors: getNbSubscribedContributors(state)
 });
 
-const mapDispatchToProps = {
-  optionsRequested: optionsRequested
-};
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  openSubscriptions: () => dispatch(optionsRequested('/settings/subscriptions'))
+});
 
 export default connect(
   mapStateToProps,
