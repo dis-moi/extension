@@ -8,7 +8,7 @@ import withConnect from './withConnect';
 import { compose } from 'redux';
 
 interface SubscriptionsScreenProps {
-  optionsRequested: () => void;
+  openSubscriptions: () => void;
   nbTotalContributors?: number;
   nbSubscribedContributors?: number;
 }
@@ -21,7 +21,7 @@ const SubscriptionInfo = styled.div`
 const pluralize = (nb: number | undefined) => (nb && nb > 1 ? 's' : '');
 
 export const Subscriptions = ({
-  optionsRequested,
+  openSubscriptions,
   nbSubscribedContributors,
   nbTotalContributors
 }: SubscriptionsScreenProps) => (
@@ -34,7 +34,7 @@ export const Subscriptions = ({
       <strong>{nbTotalContributors}</strong> possibles.
     </SubscriptionInfo>
 
-    <BorderButton onClick={optionsRequested}>Gérer</BorderButton>
+    <BorderButton onClick={openSubscriptions}>Gérer</BorderButton>
   </Container>
 );
 
