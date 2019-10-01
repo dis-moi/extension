@@ -6,6 +6,8 @@ export default styled.h1.attrs({ children: <Logo /> })`
   margin: 0 0 0 auto;
 
   & svg {
+    width: auto;
+    height: 24px;
     vertical-align: middle;
   }
 `;

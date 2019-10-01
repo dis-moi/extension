@@ -14,10 +14,10 @@ export interface AboutProps {
 
 export const About = ({ installationDate, extensionVersion }: AboutProps) => (
   <Container>
-    <Title>Le Même En Mieux V{extensionVersion}</Title>
+    <Title>Bulles V{extensionVersion}</Title>
     <Content>
-      Le Même en Mieux est un assistant d’achat indépendant des vendeurs et des
-      marques.
+      Lorsque vous visitez une page du web, Bulles vous permet de lire les
+      messages de vos relations et en poster à votre tour.
     </Content>
 
     {installationDate && (
@@ -27,29 +27,16 @@ export const About = ({ installationDate, extensionVersion }: AboutProps) => (
       </Content>
     )}
 
-    <Content>
-      Pour découvrir ou faire découvrir le Même en Mieux autour de vous,{' '}
-      <ExternalLink href="https://choisir.lmem.net/decouvrir-exemples/">
-        rendez-vous sur cette page d’exemples
-      </ExternalLink>
-      .
-    </Content>
-
     <nav>
-      <ExternalLink href="https://choisir.lmem.net/questions-frequentes-aide/">
-        Aide
-      </ExternalLink>{' '}
-      - <ExternalLink href="https://www.lmem.net/projet">À propos</ExternalLink>{' '}
+      <ExternalLink href="http://www.bulles.fr/aide">Aide</ExternalLink> -{' '}
+      <ExternalLink href="http://www.bulles.fr/a-propos">À propos</ExternalLink>{' '}
+      - <ExternalLink href="http://www.bulles.fr/contact">Contact</ExternalLink>{' '}
       -{' '}
-      <ExternalLink href="https://www.lmem.net/contact.html">
-        Contact
-      </ExternalLink>{' '}
-      -{' '}
-      <ExternalLink href="https://choisir.lmem.net/charte-de-respect-de-la-vie-privee-5-regles-dor/">
+      <ExternalLink href="http://www.bulles.fr/vie-privee">
         Vie privée
       </ExternalLink>{' '}
-      - <ExternalLink href="https://www.lmem.net/cgu.html">CGU</ExternalLink> -{' '}
-      <ExternalLink href="https://choisir.lmem.net/desinstaller-meme-mieux/">
+      - <ExternalLink href="http://www.bulles.fr/cgu">CGU</ExternalLink> -{' '}
+      <ExternalLink href="http://www.bulles.fr/desinstaller">
         Désinstaller
       </ExternalLink>
     </nav>
