@@ -5,6 +5,7 @@ import { ExternalLink } from 'components/atoms';
 const TOSForm = styled.form`
   display: flex;
   align-items: center;
+  justify-content: center;
   font-size: 20px;
 
   [type='checkbox'] {

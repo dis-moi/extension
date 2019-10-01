@@ -5,6 +5,7 @@ import TOSText from './TOSText';
 
 const Text = styled(TOSText)`
   font-size: 16px;
+  text-align: center;
 
   a {
     color: ${props => props.theme.activeColor};
