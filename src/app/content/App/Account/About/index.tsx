@@ -27,14 +27,6 @@ export const About = ({ installationDate, extensionVersion }: AboutProps) => (
       </Content>
     )}
 
-    <Content>
-      Pour découvrir ou faire découvrir le Même en Mieux autour de vous,{' '}
-      <ExternalLink href="https://choisir.lmem.net/decouvrir-exemples/">
-        rendez-vous sur cette page d’exemples
-      </ExternalLink>
-      .
-    </Content>
-
     <nav>
       <ExternalLink href="https://choisir.lmem.net/questions-frequentes-aide/">
         Aide
