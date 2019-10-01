@@ -28,20 +28,15 @@ export const About = ({ installationDate, extensionVersion }: AboutProps) => (
     )}
 
     <nav>
-      <ExternalLink href="https://choisir.lmem.net/questions-frequentes-aide/">
-        Aide
-      </ExternalLink>{' '}
-      - <ExternalLink href="https://www.lmem.net/projet">À propos</ExternalLink>{' '}
+      <ExternalLink href="http://www.bulles.fr/aide">Aide</ExternalLink> -{' '}
+      <ExternalLink href="http://www.bulles.fr/a-propos">À propos</ExternalLink>{' '}
+      - <ExternalLink href="http://www.bulles.fr/contact">Contact</ExternalLink>{' '}
       -{' '}
-      <ExternalLink href="https://www.lmem.net/contact.html">
-        Contact
-      </ExternalLink>{' '}
-      -{' '}
-      <ExternalLink href="https://choisir.lmem.net/charte-de-respect-de-la-vie-privee-5-regles-dor/">
+      <ExternalLink href="http://www.bulles.fr/vie-privee">
         Vie privée
       </ExternalLink>{' '}
-      - <ExternalLink href="https://www.lmem.net/cgu.html">CGU</ExternalLink> -{' '}
-      <ExternalLink href="https://choisir.lmem.net/desinstaller-meme-mieux/">
+      - <ExternalLink href="http://www.bulles.fr/cgu">CGU</ExternalLink> -{' '}
+      <ExternalLink href="http://www.bulles.fr/desinstaller">
         Désinstaller
       </ExternalLink>
     </nav>
