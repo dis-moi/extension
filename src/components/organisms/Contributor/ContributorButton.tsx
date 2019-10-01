@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import BackgroundButton from 'components/atoms/Button/BackgroundButton/BackgroundButton';
 import BorderButton from 'components/atoms/Button/BorderButton/BorderButton';
@@ -24,6 +24,7 @@ const ContributorBackgroundButton = styled(BackgroundButton)`
 const ContributorBorderButton = styled(BorderButton)`
   color: ${props => props.theme.primaryColor};
   border-color: ${props => props.theme.primaryColor};
+  min-width: 136px;
 `;
 
 interface Props {
@@ -36,19 +37,27 @@ const ContributorButton = ({
   subscribed,
   onSubscribe,
   onUnsubscribe
-}: Props) => (
-  <Container>
-    {subscribed && (
-      <ContributorBorderButton onClick={onUnsubscribe}>
-        Abonné
-      </ContributorBorderButton>
-    )}
-    {!subscribed && (
-      <ContributorBackgroundButton onClick={onSubscribe}>
-        S&apos;abonner
-      </ContributorBackgroundButton>
-    )}
-  </Container>
-);
+}: Props) => {
+  const [subscribedButtonHovered, setSubscribedButtonHovered] = useState(false);
+
+  return (
+    <Container>
+      {subscribed && (
+        <ContributorBorderButton
+          onClick={onUnsubscribe}
+          onPointerEnter={() => setSubscribedButtonHovered(true)}
+          onPointerLeave={() => setSubscribedButtonHovered(false)}
+        >
+          {subscribedButtonHovered ? 'Se désabonner' : 'Abonné'}
+        </ContributorBorderButton>
+      )}
+      {!subscribed && (
+        <ContributorBackgroundButton onClick={onSubscribe}>
+          S&apos;abonner
+        </ContributorBackgroundButton>
+      )}
+    </Container>
+  );
+};
 
 export default ContributorButton;
