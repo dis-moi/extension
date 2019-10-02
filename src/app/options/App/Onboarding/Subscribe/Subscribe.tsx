@@ -11,6 +11,12 @@ import SubTitle from '../OnboardingAtoms/OnboardingSubTitle';
 import OnboardingSteps from '../OnboardingAtoms/OnboardingSteps/OnboardingSteps';
 import LMEMToBulles from '../OnboardingAtoms/LMEMToBulles';
 
+interface SubscribeScreenProps extends SuggestionsScreenProps {
+  updatedFromLmem: boolean;
+  nbSubscriptions: number;
+  next: () => void;
+}
+
 const Title = styled(SubTitle)`
   margin-top: 20px;
 `;
@@ -20,17 +26,35 @@ const BottomLineBg = styled.section`
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 200px;
-  padding-top: 30px;
-  text-align: center;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: #fafafa;
 `;
 
 const InfoLine = styled.p`
-  margin: 0 0 16px;
+  margin: 16px 0;
   font-size: 17px;
   font-weight: bold;
   color: #ba1b1b;
+`;
+
+const SuggestionsWrapper = styled.div`
+  padding-top: ${({ updatedFromLmem }) =>
+    updatedFromLmem ? '180px' : '400px'};
+
+  & > section {
+    padding-bottom: 150px;
+  }
+`;
+
+const SubscribeIntro = styled(Intro)`
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #fff;
 `;
 
 interface SubscribeScreenProps extends SuggestionsScreenProps {
@@ -48,7 +72,7 @@ export default ({
   next
 }: SubscribeScreenProps) => (
   <>
-    <Intro>
+    <SubscribeIntro>
       {updatedFromLmem ? <LMEMToBulles /> : <BullesLogo />}
       {updatedFromLmem && <OnboardingSteps activeStep={2} />}
 
@@ -56,13 +80,15 @@ export default ({
         Choisissez vos contributeurs pour recevoir leurs messages durant votre
         navigation
       </Title>
-    </Intro>
+    </SubscribeIntro>
 
-    <SuggestionsScreen
-      suggestions={suggestions}
-      subscribe={subscribe}
-      unsubscribe={unsubscribe}
-    />
+    <SuggestionsWrapper>
+      <SuggestionsScreen
+        suggestions={suggestions}
+        subscribe={subscribe}
+        unsubscribe={unsubscribe}
+      />
+    </SuggestionsWrapper>
 
     <BottomLineBg>
       {nbSubscriptions === 0 && (
