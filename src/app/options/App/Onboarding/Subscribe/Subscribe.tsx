@@ -43,7 +43,7 @@ const InfoLine = styled.p`
 
 const SuggestionsWrapper = styled.div`
   padding-top: ${({ updatedFromLmem }) =>
-    updatedFromLmem ? '180px' : '400px'};
+    updatedFromLmem ? '400px' : '180px'};
 
   & > section {
     padding-bottom: 150px;
@@ -82,7 +82,7 @@ export default ({
       </Title>
     </SubscribeIntro>
 
-    <SuggestionsWrapper>
+    <SuggestionsWrapper updatedFromLmem={updatedFromLmem}>
       <SuggestionsScreen
         suggestions={suggestions}
         subscribe={subscribe}
