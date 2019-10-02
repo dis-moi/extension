@@ -35,7 +35,8 @@ const BottomLineBg = styled.section`
 `;
 
 const InfoLine = styled.p`
-  margin: 16px 0;
+  margin: 0;
+  padding-top: 16px;
   font-size: 17px;
   font-weight: bold;
   color: #ba1b1b;
