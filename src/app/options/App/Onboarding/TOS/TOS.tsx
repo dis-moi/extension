@@ -14,6 +14,7 @@ import TOSCheckbox from './TOSCheckbox';
 import OnboardingSteps from '../OnboardingAtoms/OnboardingSteps/OnboardingSteps';
 
 const TOSTitle = styled.h3`
+  margin-top: 40px;
   margin-bottom: 20px;
   font-size: 28px;
   font-weight: bold;
