@@ -11,12 +11,6 @@ import SubTitle from '../OnboardingAtoms/OnboardingSubTitle';
 import OnboardingSteps from '../OnboardingAtoms/OnboardingSteps/OnboardingSteps';
 import LMEMToBulles from '../OnboardingAtoms/LMEMToBulles';
 
-interface SubscribeScreenProps extends SuggestionsScreenProps {
-  updatedFromLmem: boolean;
-  nbSubscriptions: number;
-  next: () => void;
-}
-
 const Title = styled(SubTitle)`
   margin-top: 20px;
 `;
@@ -42,7 +36,11 @@ const InfoLine = styled.p`
   color: #ba1b1b;
 `;
 
-const SuggestionsWrapper = styled.div`
+interface SuggestionsWrapperProps {
+  updatedFromLmem: boolean;
+}
+
+const SuggestionsWrapper = styled.div<SuggestionsWrapperProps>`
   padding-top: ${updatedFromLmem => (updatedFromLmem ? '400px' : '180px')};
 
   & > section {
