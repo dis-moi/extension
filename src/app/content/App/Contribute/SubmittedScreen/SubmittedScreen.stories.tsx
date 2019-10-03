@@ -11,19 +11,4 @@ storiesOf('screens/Contribute/Submitted', module)
       <Notification>{getStory()}</Notification>
     </Router>
   ))
-  .add('normal', () => (
-    <SubmittedScreen
-      goBack={action('goBack')}
-      contribution={{
-        message:
-          "Je tiens à dire que la canicule, c'est une bonne chose pour les vieux.",
-        url: 'https://weather.com',
-        contributor: {
-          email: 'johan.dufour@gmail.com',
-          name: 'Johan Dufour'
-        },
-        intention: 'approval',
-        created: new Date()
-      }}
-    />
-  ));
+  .add('normal', () => <SubmittedScreen goBack={action('goBack')} />);
