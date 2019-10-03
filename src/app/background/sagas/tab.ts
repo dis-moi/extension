@@ -2,11 +2,7 @@ import { put, takeEvery, select, call, all, take } from 'redux-saga/effects';
 import * as R from 'ramda';
 import { isToday } from 'date-fns';
 import { TAB_CREATED, TAB_UPDATED } from 'app/constants/browser/tabs';
-import {
-  CONTEXT_TRIGGERED,
-  MATCH_CONTEXT,
-  NOTICES_FOUND
-} from 'app/constants/ActionTypes';
+import { CONTEXT_TRIGGERED, MATCH_CONTEXT } from 'app/constants/ActionTypes';
 import {
   init,
   contextTriggered,
@@ -18,11 +14,8 @@ import {
   contextNotTriggered,
   noNoticesDisplayed,
   noticesFound,
-  noticesUpdated,
   MatchContextAction,
   ContextTriggeredAction,
-  NoticesFoundAction,
-  BaseAction,
   TabAction,
   TabCreatedAction,
   TabUpdatedAction,
@@ -134,7 +127,7 @@ const waitForTabReadySaga = (tab: Tab) =>
     );
   };
 
-export function* publishToTabSaga(action: TabAction) {
+export function* sendToTabSaga(action: TabAction) {
   const tab = action.meta.tab;
   const tabs: { [id: string]: Tab } = yield select(getTabs);
   if (!tabs[tab.id]) return;
@@ -144,12 +137,8 @@ export function* publishToTabSaga(action: TabAction) {
   sendToTab(tab.id, action);
 }
 
-export function* updateNoticesSaga({
-  payload: { notices },
-  meta: { tab }
-}: NoticesFoundAction) {
-  yield put(noticesUpdated(notices, { tab }));
-}
+const shouldActionBeSentToTab = (action: AppAction) =>
+  Boolean(action.meta && action.meta.sendToTab);
 
 export default function* tabRootSaga() {
   const contentCode: string = yield call(
@@ -161,10 +150,5 @@ export default function* tabRootSaga() {
   yield takeEvery([TAB_CREATED, TAB_UPDATED], tabSaga(executeTabContentScript));
   yield takeEvery(MATCH_CONTEXT, matchContextSaga);
   yield takeEvery(CONTEXT_TRIGGERED, contextTriggeredSaga);
-  yield takeEvery(
-    (action: BaseAction) => Boolean(action.meta && action.meta.sendToTab),
-    publishToTabSaga
-  );
-
-  yield takeEvery(NOTICES_FOUND, updateNoticesSaga);
+  yield takeEvery(shouldActionBeSentToTab, sendToTabSaga);
 }
