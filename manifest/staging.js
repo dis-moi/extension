@@ -6,9 +6,13 @@ module.exports = {
   name: 'LMEM - STAGING',
   content_security_policy: csp({
     directives: {
-      'default-src': ['https://staging-notices.lmem.net'],
+      'default-src': [
+        'https://staging-notices.lmem.net',
+        'https://notices.lmem.net'
+      ],
       'connect-src': [
         'https://staging-notices.lmem.net',
+        'https://notices.lmem.net',
         'https://sentry.io/api/*'
       ],
       'script-src': [
@@ -20,10 +24,13 @@ module.exports = {
       'object-src': ["'self'"],
       'img-src': [
         "'self'",
+        'https://staging-notices.lmem.net',
+        'https://notices.lmem.net',
         'https://heapanalytics.com',
         'https://cdn.heapanalytics.com',
         'data:'
       ],
+      'font-src': ["'self'", 'data:'],
       'style-src': ["'unsafe-inline'"]
     }
   })
