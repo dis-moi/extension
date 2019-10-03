@@ -18,7 +18,7 @@ export default ({ contribution, goBack }: ContributionSubmittedScreenProps) => (
     <ContentTitle>Félicitations !</ContentTitle>
     <Content>
       Votre bulle sera publiée d’ici 24h sur :
-      <ExternalLink>{contribution.url}</ExternalLink>
+      <ExternalLink href={contribution.url}>{contribution.url}</ExternalLink>
     </Content>
 
     <CenterContainer>
