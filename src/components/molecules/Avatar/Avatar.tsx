@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Contributor, AvatarSize } from 'app/lmem/contributor';
+import { AvatarSize, Avatar as AvatarType } from 'app/lmem/contributor';
 import AvatarDefault from '../../atoms/icons/AvatarDefault';
 
 interface WrapperProps {
@@ -30,7 +30,10 @@ const Wrapper = styled.div<WrapperProps>`
 `;
 
 interface Props {
-  contributor: Contributor;
+  contributor: {
+    name: string;
+    avatar?: AvatarType;
+  };
   size: AvatarSize;
   className?: string;
 }
