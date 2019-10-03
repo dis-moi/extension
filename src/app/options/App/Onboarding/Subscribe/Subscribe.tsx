@@ -43,8 +43,7 @@ const InfoLine = styled.p`
 `;
 
 const SuggestionsWrapper = styled.div`
-  padding-top: ${({ updatedFromLmem }) =>
-    updatedFromLmem ? '400px' : '180px'};
+  padding-top: ${updatedFromLmem => (updatedFromLmem ? '400px' : '180px')};
 
   & > section {
     padding-bottom: 150px;
