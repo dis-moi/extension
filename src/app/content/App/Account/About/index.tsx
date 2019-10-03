@@ -22,8 +22,7 @@ export const About = ({ installationDate, extensionVersion }: AboutProps) => (
 
     {installationDate && (
       <Content>
-        Vous l’avez installé le
-        <Time>{installationDate}</Time>.
+        Vous l’avez installé le <Time>{installationDate}</Time>.
       </Content>
     )}
 
