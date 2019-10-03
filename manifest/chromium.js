@@ -15,10 +15,12 @@ module.exports = {
       'object-src': ["'self'"],
       'img-src': [
         "'self'",
+        'https://notices.lmem.net',
         'https://heapanalytics.com',
         'https://cdn.heapanalytics.com',
         'data:'
       ],
+      'font-src': ["'self'", 'data:'],
       'style-src': ["'unsafe-inline'"]
     }
   })
