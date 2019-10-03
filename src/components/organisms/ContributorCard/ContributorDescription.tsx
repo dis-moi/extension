@@ -19,7 +19,7 @@ interface Props {
 }
 const ContributorDescription = ({ children }: Props) =>
   children ? (
-    <Description>{children}</Description>
+    <Description dangerouslySetInnerHTML={{ __html: children }} />
   ) : (
     <PlaceholderDescription>
       Cet utilisateur n’a pas encore ajouté une description.
