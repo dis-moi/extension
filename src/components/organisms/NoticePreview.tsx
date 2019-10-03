@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import styled from 'styled-components';
 import { format } from 'date-fns';
 import { Contributor } from '../atoms';
 import DetailsContainer from './NoticeDetails/DetailsContainer';
@@ -6,8 +7,12 @@ import DetailsContent from './NoticeDetails/DetailsContent';
 import DetailsMeta from './NoticeDetails/DetailsMeta';
 import Message from './NoticeDetails/Message';
 import Date from './NoticeDetails/Date';
-import IntentionIcon from '../atoms/Intentions/IntentionIcon';
 import { Contribution } from 'app/lmem/notice';
+import Avatar from 'components/molecules/Avatar/Avatar';
+
+const DetailsMetaValue = styled.div`
+  margin-left: 10px;
+`;
 
 interface NoticePreviewProps {
   contribution: Contribution;
@@ -15,7 +20,7 @@ interface NoticePreviewProps {
 class NoticePreview extends PureComponent<NoticePreviewProps> {
   render() {
     const {
-      contribution: { intention, message, created, contributor },
+      contribution: { message, created, contributor },
       children
     } = this.props;
 
@@ -23,9 +28,11 @@ class NoticePreview extends PureComponent<NoticePreviewProps> {
       <DetailsContainer>
         <DetailsContent>
           <DetailsMeta>
-            <Date>Le {format(created, 'DD/MM/YYYY')}</Date>
-            <Contributor>{contributor.name} :</Contributor>
-            <IntentionIcon active intention={intention} />
+            <Avatar contributor={contributor} size="small" />
+            <DetailsMetaValue>
+              <Date>Le {format(created, 'DD/MM/YYYY')}</Date>
+              <Contributor>{contributor.name} :</Contributor>
+            </DetailsMetaValue>
           </DetailsMeta>
 
           <Message>{message}</Message>
