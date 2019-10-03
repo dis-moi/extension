@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Contribution } from 'app/lmem/notice';
 import { FormMeta } from 'app/actions';
 import NoticePreview from 'components/organisms/NoticePreview';
-import { BorderButton, Button } from 'components/atoms';
+import { BackgroundButton, Button } from 'components/atoms';
 import { Error, Form } from 'components/atoms/Forms';
 import { handleFormSubmit } from 'app/utils/form';
 import withReduxForm from './withReduxForm';
@@ -15,7 +15,6 @@ const PreviewForm = styled(Form)`
   display: flex;
   justify-content: space-around;
   min-width: 60%;
-  self-align: center;
   align-self: center;
 `;
 
@@ -56,13 +55,13 @@ class PreviewScreen extends Component<PreviewScreenProps> {
           onSubmit={handleFormSubmit({ handleSubmit, form })(publish)}
         >
           <Button onClick={modify}>Modifier</Button>
-          <BorderButton
+          <BackgroundButton
             type="submit"
             disabled={this.isButtonDisabled}
             loading={submitting}
           >
             Publier
-          </BorderButton>
+          </BackgroundButton>
         </PreviewForm>
         {dirty && error && <Error>{error}</Error>}
       </NoticePreview>

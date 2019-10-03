@@ -49,6 +49,8 @@ export interface Theme {
 
   basicButton: ButtonTheme;
 
+  backgroundButton: ButtonTheme;
+
   // notice type colors
   intentions: {
     disapproval: IntentionStyle;
@@ -124,6 +126,14 @@ export const theme: Theme = {
     hover: '#0E8D7C',
     pressed: '#09574C',
     clicked: '#06332C',
+    disabled: '#BAB8B8'
+  },
+
+  backgroundButton: {
+    default: '#0C52B4',
+    hover: '#062e65',
+    pressed: '#145514',
+    clicked: '#145514',
     disabled: '#BAB8B8'
   },
 

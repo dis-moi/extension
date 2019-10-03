@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import BorderButton from 'components/atoms/Button/BorderButton/BorderButton';
+import BackgroundButton from 'components/atoms/Button/BackgroundButton/BackgroundButton';
 import withTitle from 'app/hocs/withTitle';
 import Illustration from './Illustration';
 import Container from './Container';
@@ -34,7 +34,7 @@ export const Subscriptions = ({
       <strong>{nbTotalContributors}</strong> possibles.
     </SubscriptionInfo>
 
-    <BorderButton onClick={openSubscriptions}>Gérer</BorderButton>
+    <BackgroundButton onClick={openSubscriptions}>Gérer</BackgroundButton>
   </Container>
 );
 
