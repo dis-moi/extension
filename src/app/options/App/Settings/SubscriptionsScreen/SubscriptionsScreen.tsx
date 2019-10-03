@@ -80,7 +80,7 @@ export const SubscriptionsScreen = ({
           ))}
 
           <CenterContainer>
-            <Button>Voir plus</Button>
+            <Button onClick={goToSuggestions}>Voir plus</Button>
           </CenterContainer>
         </Sidebar>
       </TwoColumns>
