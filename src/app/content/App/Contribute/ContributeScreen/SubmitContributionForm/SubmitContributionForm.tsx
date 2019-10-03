@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, InjectedFormProps } from 'redux-form';
 import { Form } from 'components/atoms/Forms';
-import { CenterContainer, BorderButton } from 'components/atoms';
+import { CenterContainer, BackgroundButton } from 'components/atoms';
 import {
   InputField,
   IntentionsSelectorField,
@@ -52,13 +52,13 @@ class SubmitContributionForm extends Component<SubmitContributionFormProps> {
           component={TextareaField}
         />
         <CenterContainer>
-          <BorderButton
+          <BackgroundButton
             type="submit"
             disabled={this.isButtonDisabled}
             loading={submitting}
           >
             prévisualiser et publier
-          </BorderButton>
+          </BackgroundButton>
         </CenterContainer>
         <FormErrors errors={errors} globalError={error} />
       </Form>
