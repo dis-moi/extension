@@ -16,7 +16,7 @@ import OnboardingSteps from '../OnboardingAtoms/OnboardingSteps/OnboardingSteps'
 const TOSTitle = styled.h3`
   margin-top: 40px;
   margin-bottom: 20px;
-  font-size: 28px;
+  font-size: 25px;
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
@@ -31,14 +31,14 @@ const TOSList = styled.ol`
 
 const TOSListItem = styled.li`
   margin-bottom: 10px;
-  font-size: 18px;
+  font-size: 16px;
 
   &:before {
     content: counter(TOS) '.';
     counter-increment: TOS;
-    margin-right: 16px;
+    margin-right: 12px;
     font-weight: bold;
-    font-size: 23px;
+    font-size: 20px;
   }
 `;
 
@@ -95,12 +95,12 @@ export default ({
 
             <Title>Installation réussie !</Title>
             <SubTitle>
-              Veuillez prendre connaissance des principes du service <br />
-              et des conditions générales d’utilisation.
+              Pour finaliser l’installation, veuillez lire et accepter <br />
+              les conditions générales d’utilisation.
             </SubTitle>
           </Intro>
 
-          <TOSTitle>Principes du service</TOSTitle>
+          <TOSTitle>Nos engagements</TOSTitle>
 
           <TOSList>
             <TOSListItem>
@@ -124,7 +124,7 @@ export default ({
           </TOSList>
 
           <TOSText>
-            Ces principes ne se substituent pas à la lecture détaillée des
+            Ces engagements ne se substituent pas à la lecture détaillée des
             Conditions Générales d’utilisation que vous devez accepter
             (ci-dessous) pour naviguer avec Bulles.
           </TOSText>
