@@ -9,8 +9,7 @@ export const receivedContributors = (
   contributors: Contributor[]
 ): ReceivedContributorsAction => ({
   type: 'api/UPDATE_CONTRIBUTORS',
-  payload: { contributors },
-  meta: { tracked: false }
+  payload: { contributors }
 });
 
 export interface RefreshContributorsFailedAction extends ErrorAction {
@@ -32,6 +31,5 @@ export const contributorsTransmitted = (
   contributors: StatefulContributor[]
 ): ContributorsTransmittedAction => ({
   type: 'CONTRIBUTORS_TRANSMITTED',
-  payload: { contributors },
-  meta: { tracked: false }
+  payload: { contributors }
 });

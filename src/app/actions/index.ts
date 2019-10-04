@@ -133,7 +133,6 @@ export interface FormMeta {
 export interface ActionMeta {
   sendToBackground?: boolean;
   sendToTab?: boolean;
-  tracked?: boolean;
   action?: unknown;
   external?: boolean;
   sender?: MessageSender;

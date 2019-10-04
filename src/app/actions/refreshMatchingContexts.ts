@@ -9,8 +9,7 @@ export const receivedMatchingContexts = (
   matchingContexts: MatchingContext[]
 ): ReceivedMatchingContextsAction => ({
   type: 'api/UPDATE_MATCHING_CONTEXTS',
-  payload: { matchingContexts },
-  meta: { tracked: false }
+  payload: { matchingContexts }
 });
 
 export interface RefreshMatchingContextsFailedAction extends ErrorAction {
