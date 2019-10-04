@@ -41,18 +41,9 @@ interface SuggestionsWrapperProps {
 }
 
 const SuggestionsWrapper = styled.div<SuggestionsWrapperProps>`
-  padding-top: ${updatedFromLmem => (updatedFromLmem ? '400px' : '180px')};
-
   & > section {
     padding-bottom: 150px;
   }
-`;
-
-const SubscribeIntro = styled(Intro)`
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: #fff;
 `;
 
 interface SubscribeScreenProps extends SuggestionsScreenProps {
@@ -70,7 +61,7 @@ export default ({
   next
 }: SubscribeScreenProps) => (
   <>
-    <SubscribeIntro>
+    <Intro>
       {updatedFromLmem ? <LMEMToBulles /> : <BullesLogo />}
       {updatedFromLmem && <OnboardingSteps activeStep={2} />}
 
@@ -78,7 +69,7 @@ export default ({
         Choisissez vos contributeurs pour recevoir leurs messages durant votre
         navigation
       </Title>
-    </SubscribeIntro>
+    </Intro>
 
     <SuggestionsWrapper updatedFromLmem={updatedFromLmem}>
       <SuggestionsScreen
