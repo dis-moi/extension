@@ -21,7 +21,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "yarn lint:ts && yarn lint:css",
     "lint:ts": "eslint 'src/**/*.{js,ts,tsx}'",
-    "lint:css": "stylelint './src/**/*.js'",
+    "lint:css": "stylelint './src/**/*.ts' './src/**/*.tsx'",
     "analyze": "webpack --mode=production --env.build=chromium --env.analyze",
     "storybook": "start-storybook --ci -p 6007 -c .storybook",
     "build-storybook": "build-storybook"
