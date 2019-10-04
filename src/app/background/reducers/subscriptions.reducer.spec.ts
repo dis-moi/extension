@@ -1,16 +1,17 @@
-/* eslint-disable no-unused-expressions */
+/* eslint-disable no-unused-expressions, @typescript-eslint/ban-ts-ignore */
 import { expect } from 'chai';
-import { CloseCause } from 'app/lmem/ui';
-import { closed, subscribe, SubscribeAction } from 'app/actions';
+import { subscribe, SubscribeAction } from 'app/actions';
 import { generateContributor } from 'test/fakers/generateContributor';
 import subscriptionsReducer, {
   SubscriptionsState
 } from './subscriptions.reducer';
 
+const unknownAction = { type: 'UNKNOWN' };
+
 describe('background > reducers > subscriptions', function() {
   it('is empty initially', () => {
-    expect(subscriptionsReducer(undefined, closed(CloseCause.CloseButton))).to
-      .be.empty;
+    // @ts-ignore
+    expect(subscriptionsReducer(undefined, unknownAction)).to.be.empty;
   });
   it('saves subscriptions', () => {
     const state: SubscriptionsState = [1, 2, 3];

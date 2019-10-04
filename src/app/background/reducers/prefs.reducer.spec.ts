@@ -1,7 +1,5 @@
-import chai from 'chai';
+import { expect } from 'chai';
 import prefsReducer from 'app/background/reducers/prefs.reducer';
-import resourcesReducer from 'app/background/reducers/resources.reducer';
-import { receivedMatchingContexts } from 'app/actions/refreshMatchingContexts';
 import {
   dismissNotice,
   likeNotice,
@@ -9,15 +7,10 @@ import {
   dislikeNotice,
   undislikeNotice,
   undismissNotice,
-  unfoldNotice
+  markNoticeRead
 } from 'app/actions/notices';
-import { MatchingContext } from 'app/lmem/matchingContext';
-
-const expect = chai.expect;
 
 describe('prefsReducer reducer', function() {
-  const installationDetails = { version: '0.1', reason: 'install' };
-
   it('dismiss notice', () => {
     const action = dismissNotice(1);
 
@@ -121,7 +114,7 @@ describe('prefsReducer reducer', function() {
   });
 
   it('read notice', () => {
-    const action = unfoldNotice(42);
+    const action = markNoticeRead(42);
 
     const nextState = prefsReducer(
       {

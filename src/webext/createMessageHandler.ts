@@ -1,6 +1,7 @@
 import { Action } from 'redux';
-import { BaseAction } from '../app/actions';
 import * as R from 'ramda';
+import Tab from 'app/lmem/tab';
+import { BaseAction } from 'app/actions';
 import assocTabIfNotGiven from './assocTabIfNotGiven';
 import { getOptionsUrl } from './openOptionsTab';
 
@@ -12,20 +13,35 @@ const isAction = (x: unknown): x is Action =>
 
 const isOptionsPage = (url: string): boolean => url.includes(getOptionsUrl());
 
+type PossibleOriginInBackground = 'options' | 'content';
+
 const getTabContext = (tab?: chrome.tabs.Tab) =>
   tab && tab.url && isOptionsPage(tab.url) ? 'options' : 'content';
 
+type SetMetaFrom<A> = (
+  a: A
+) => A & { meta: { from: PossibleOriginInBackground } };
+const setMetaFrom = <A>(from: PossibleOriginInBackground) =>
+  R.assocPath(['meta', 'from'], from) as SetMetaFrom<A>;
+
+type ActionWithTab = Action & { meta: { tab: chrome.tabs.Tab & Tab } };
 const addSenderToAction = <A extends BaseAction>(sender: MessageSender) =>
-  R.pipe<A, A, A>(
+  R.pipe<A, ActionWithTab, ReceivedAction>(
     assocTabIfNotGiven(sender.tab),
-    R.assocPath(['meta', 'from'], getTabContext(sender.tab))
+    setMetaFrom(getTabContext(sender.tab))
   );
 
-type StripSendMeta<A extends BaseAction = BaseAction> = (action: A) => A;
-const stripSendMeta: StripSendMeta = R.pipe(
+const stripSendMeta = R.pipe<ReceivedAction, ReceivedAction, ReceivedAction>(
   R.dissocPath(['meta', 'sendToBackground']),
   R.dissocPath(['meta', 'sendToTab'])
 );
+
+export interface ReceivedAction extends Action {
+  meta: {
+    tab: chrome.tabs.Tab & Tab;
+    from: PossibleOriginInBackground;
+  };
+}
 
 const createMessageHandler = (emit: Emit) => (
   action: unknown,
@@ -36,7 +52,7 @@ const createMessageHandler = (emit: Emit) => (
     : 'background';
 
   if (isAction(action)) {
-    const actionWithSender = R.pipe(
+    const actionWithSender: ReceivedAction = R.pipe(
       addSenderToAction(sender),
       stripSendMeta
     )(action);

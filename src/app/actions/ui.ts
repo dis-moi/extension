@@ -27,8 +27,7 @@ export interface CloseAction extends BaseAction {
 }
 export const close = (cause: CloseCause): CloseAction => ({
   type: 'CLOSE',
-  payload: { cause },
-  meta: { sendToBackground: true }
+  payload: { cause }
 });
 
 export interface CloseFailedAction extends ErrorAction {
@@ -46,8 +45,7 @@ export interface ClosedAction extends BaseAction {
 }
 export const closed = (cause: CloseCause): ClosedAction => ({
   type: 'CLOSED',
-  payload: { cause },
-  meta: { sendToBackground: true }
+  payload: { cause }
 });
 
 export const TOGGLE_UI = 'TOGGLE_UI';

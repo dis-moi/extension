@@ -66,10 +66,10 @@ function prefsReducer(state: PrefsState = initialPrefs, action: AppAction) {
       }
       return state;
 
-    case 'UNFOLD_NOTICE':
+    case 'MARK_NOTICE_READ':
       return {
         ...state,
-        readNotices: R.uniq(R.concat(state.readNotices, [action.payload]))
+        readNotices: R.concat(state.readNotices, [action.payload])
       };
 
     case 'TOS_ACCEPTED':
