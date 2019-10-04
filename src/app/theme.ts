@@ -126,7 +126,7 @@ export const theme: Theme = {
     hover: '#0E8D7C',
     pressed: '#09574C',
     clicked: '#06332C',
-    disabled: '#BAB8B8'
+    disabled: '#4D4D4D'
   },
 
   backgroundButton: {
