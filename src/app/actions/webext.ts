@@ -1,16 +1,16 @@
-import { ActionMeta, AppAction, BaseAction, ErrorAction } from './index';
+import { AppAction, ErrorAction, TabAction, TabMeta } from './index';
 import { From } from 'webext/From';
 
-export interface ListeningActionsReadyAction extends BaseAction {
+export interface ListeningActionsReadyAction extends TabAction {
   type: 'LISTENING_ACTIONS_READY';
-  meta: ActionMeta & {
+  meta: TabMeta & {
     from: From;
   };
 }
 
 export const listeningActionsReady = (
   from: From,
-  meta: ActionMeta
+  meta: TabMeta
 ): ListeningActionsReadyAction => ({
   type: 'LISTENING_ACTIONS_READY',
   meta: { ...meta, from }

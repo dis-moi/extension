@@ -6,7 +6,8 @@ import {
   ListeningActionsReadyAction,
   updateInstallationDetails,
   TosAcceptedAction,
-  transmitTosStatus
+  transmitTosStatus,
+  TabAction
 } from 'app/actions';
 import sendToTab from 'webext/sendActionToTab';
 import assocTabIfNotGiven from 'webext/assocTabIfNotGiven';
@@ -28,20 +29,23 @@ function* sendTosStateToOptionsTab(
   sendToTab(tab.id, transmitAction);
 }
 
-function* sendInstallationDetailsToOptionsTab(
-  action: ListeningActionsReadyAction
-) {
-  const tab = action.meta.tab as chrome.tabs.Tab & Tab;
+function* sendBackInstallationDetails({ meta: { tab } }: TabAction) {
   const installationDetails = yield select(getInstallationDetails);
-  const transmitAction = assocTabIfNotGiven(tab)(
+  const transmitAction = assocTabIfNotGiven(tab as chrome.tabs.Tab & Tab)(
     updateInstallationDetails(installationDetails)
   );
   sendToTab(tab.id, transmitAction);
+}
 
+function* sendInstallationDetailsToOptionsTab(
+  action: ListeningActionsReadyAction
+) {
+  yield sendBackInstallationDetails(action);
   yield sendTosStateToOptionsTab(action);
 }
 
 export default function* sendInstallationDetailsToOptionsSaga() {
   yield takeEvery(isOptionsTabReadyAction, sendInstallationDetailsToOptionsTab);
+  yield takeEvery('FETCH_INSTALLATION_DETAILS', sendBackInstallationDetails);
   yield takeEvery('TOS_ACCEPTED', sendTosStateToOptionsTab);
 }

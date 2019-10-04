@@ -1,6 +1,7 @@
-import { BaseAction } from '.';
+import { BaseAction, TabAction } from '.';
 import { InstallationDetails } from '../lmem/installation';
 import { ContributorId } from '../lmem/contributor';
+import Tab from '../lmem/tab';
 
 export interface InstalledAction extends BaseAction {
   type: 'INSTALLED';
@@ -17,6 +18,10 @@ export const installed = (
     installedDetails
   }
 });
+
+export interface FetchInstallationDetailsAction extends BaseAction {
+  type: 'FETCH_INSTALLATIONS_DETAILS';
+}
 
 export interface InstallationDetailsAction extends BaseAction {
   type: 'INSTALLATION_DETAILS';
@@ -45,13 +50,16 @@ export interface SetupAction extends BaseAction {
     showExamples: boolean;
     redirectURl?: string;
   };
+  meta: {
+    tab: Tab;
+  };
 }
 
 export const setup = (
   subscriptions: [],
   showExamples: boolean,
-  redirectURl?: string,
-  sendToTab = true
+  tab: Tab,
+  redirectURl?: string
 ): SetupAction => ({
   type: 'SETUP',
   payload: {
@@ -60,6 +68,22 @@ export const setup = (
     redirectURl
   },
   meta: {
-    sendToTab
+    tab
+  }
+});
+
+export interface SetupCompletedAction extends TabAction {
+  type: 'SETUP_COMPLETED';
+  meta: {
+    sendToTab: true;
+    tab: Tab;
+  };
+}
+
+export const setupCompleted = (tab: Tab): SetupCompletedAction => ({
+  type: 'SETUP_COMPLETED',
+  meta: {
+    sendToTab: true,
+    tab
   }
 });
