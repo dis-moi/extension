@@ -36,4 +36,17 @@ storiesOf('screens/SubscriptionsScreen', module)
       unsubscribe={() => action('unsubscribe')}
       goToSuggestions={action('goToSuggestions')}
     />
+  ))
+  .add('suggestions empty', () => (
+    <SubscriptionsScreen
+      subscriptions={[
+        generateContributor(),
+        { ...generateContributor(), subscribed: true },
+        generateContributor()
+      ]}
+      suggestions={[]}
+      subscribe={() => action('subscribe')}
+      unsubscribe={() => action('unsubscribe')}
+      goToSuggestions={action('goToSuggestions')}
+    />
   ));

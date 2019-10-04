@@ -35,6 +35,12 @@ const SidebarTitle = styled.h2`
   font-weight: bold;
 `;
 
+const SidebarEmpty = styled.p`
+  text-align: center;
+  font-size: 16px;
+  color: ${props => props.theme.primaryColor};
+`;
+
 interface Props {
   subscriptions: StatefulContributor[];
   suggestions: StatefulContributor[];
@@ -69,19 +75,23 @@ export const SubscriptionsScreen = ({
 
         <Sidebar>
           <SidebarTitle>Suggestions</SidebarTitle>
-
-          {suggestions.map(contributor => (
-            <ContributorCompact
-              key={contributor.id}
-              contributor={contributor}
-              onSubscribe={subscribe(contributor)}
-              onUnsubscribe={unsubscribe(contributor)}
-            />
-          ))}
-
-          <CenterContainer>
-            <Button onClick={goToSuggestions}>Voir plus</Button>
-          </CenterContainer>
+          {suggestions.length > 0 ? (
+            <>
+              {suggestions.map(contributor => (
+                <ContributorCompact
+                  key={contributor.id}
+                  contributor={contributor}
+                  onSubscribe={subscribe(contributor)}
+                  onUnsubscribe={unsubscribe(contributor)}
+                />
+              ))}
+              <CenterContainer>
+                <Button onClick={goToSuggestions}>Voir plus</Button>
+              </CenterContainer>
+            </>
+          ) : (
+            <SidebarEmpty>Pas de suggestions pour le moment.</SidebarEmpty>
+          )}
         </Sidebar>
       </TwoColumns>
     )}
