@@ -34,7 +34,7 @@ export const Help = () => (
     <ContentTitle>Contacter le support de Bulles</ContentTitle>
     <Content>
       Merci de nous écrire à{' '}
-      <Link href="mailto:support@lmem.net">support@lmem.net</Link>.
+      <Link href="mailto:support@bulles.fr">support@bulles.fr</Link>.
     </Content>
   </Container>
 );
