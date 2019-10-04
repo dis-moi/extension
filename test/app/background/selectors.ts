@@ -2,6 +2,7 @@ import chai from 'chai';
 import reducer from 'app/background/reducers';
 import { updateInstallationDetails } from 'app/actions/install';
 import { isAnUpdateFromLmem } from 'app/background/selectors';
+import { version } from '../../../package.json';
 
 const expect = chai.expect;
 
@@ -10,7 +11,7 @@ describe('background selectors', function() {
     it("can tell if it's not an update from LMEM", () => {
       const action = updateInstallationDetails({
         reason: 'install',
-        version: '2.3.2'
+        version
       });
       const nextState = reducer(undefined, action);
 
@@ -21,7 +22,7 @@ describe('background selectors', function() {
       const action = updateInstallationDetails({
         reason: 'update',
         previousVersion: '0.1.0',
-        version: '2.3.2'
+        version
       });
       const nextState = reducer(undefined, action);
 
