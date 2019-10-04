@@ -1,9 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import SuggestionsScreen, {
-  SuggestionsScreenProps
-} from '../../Settings/SuggestionsScreen/SuggestionsScreen';
+import SuggestionsScreen from '../../Settings/SuggestionsScreen';
 import BullesLogo from 'components/atoms/LogoBeta';
 import OnboardingButton from '../OnboardingAtoms/OnboardingButton';
 import Intro from '../OnboardingAtoms/OnboardingIntro';
@@ -36,17 +33,13 @@ const InfoLine = styled.p`
   color: #ba1b1b;
 `;
 
-interface SuggestionsWrapperProps {
-  updatedFromLmem: boolean;
-}
-
-const SuggestionsWrapper = styled.div<SuggestionsWrapperProps>`
+const SuggestionsWrapper = styled.div`
   & > section {
     padding-bottom: 150px;
   }
 `;
 
-interface SubscribeScreenProps extends SuggestionsScreenProps {
+interface SubscribeScreenProps {
   updatedFromLmem: boolean;
   nbSubscriptions: number;
   next: () => void;
@@ -54,9 +47,6 @@ interface SubscribeScreenProps extends SuggestionsScreenProps {
 
 export default ({
   updatedFromLmem,
-  suggestions,
-  subscribe,
-  unsubscribe,
   nbSubscriptions,
   next
 }: SubscribeScreenProps) => (
@@ -71,12 +61,8 @@ export default ({
       </Title>
     </Intro>
 
-    <SuggestionsWrapper updatedFromLmem={updatedFromLmem}>
-      <SuggestionsScreen
-        suggestions={suggestions}
-        subscribe={subscribe}
-        unsubscribe={unsubscribe}
-      />
+    <SuggestionsWrapper>
+      <SuggestionsScreen />
     </SuggestionsWrapper>
 
     <BottomLineBg>

@@ -1,39 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { findContributorIn, StatefulContributor } from 'app/lmem/contributor';
-import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
 import * as R from 'ramda';
+import { findContributorIn, StatefulContributor } from 'app/lmem/contributor';
+import ContributorCompact from 'components/organisms/Contributor/ContributorCompact';
+import CenterContainer from 'components/atoms/CenterContainer';
+import Button from 'components/atoms/Button';
 
-const ContributorsList = styled.section`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-column-gap: 40px;
-  grid-row-gap: 40px;
+const Sidebar = styled.aside`
+  ${Button} {
+    margin-top: 10px;
+  }
 `;
 
-const ContributorsListEmpty = styled.p`
+const SidebarTitle = styled.h2`
+  margin: 0 0 5px;
+  font-size: 20px;
+  color: ${props => props.theme.activeColor};
+  font-weight: bold;
+`;
+
+const SidebarEmpty = styled.p`
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
   color: ${props => props.theme.primaryColor};
 `;
 
-export interface SuggestionsScreenProps {
+interface Props {
   subscriptions: StatefulContributor[];
   suggestions: StatefulContributor[];
   subscribe: (contributor: StatefulContributor) => () => void;
   unsubscribe: (contributor: StatefulContributor) => () => void;
-  showExampleLink?: boolean;
-  highlightExampleLink?: boolean;
+  goToSuggestions: () => void;
 }
 
-const SuggestionsScreen = ({
+const SuggestionsSidebar = ({
   subscriptions,
   suggestions,
   subscribe,
   unsubscribe,
-  showExampleLink,
-  highlightExampleLink
-}: SuggestionsScreenProps) => {
+  goToSuggestions
+}: Props) => {
   const [initialSuggestions, setInitialSuggestions] = useState(suggestions);
 
   useEffect(() => {
@@ -43,33 +49,29 @@ const SuggestionsScreen = ({
   const suggestionsToRender = initialSuggestions.map(
     findContributorIn(R.concat(subscriptions, suggestions))
   );
+
   return (
-    <>
+    <Sidebar>
+      <SidebarTitle>Suggestions</SidebarTitle>
       {suggestionsToRender.length > 0 ? (
-        <ContributorsList>
+        <>
           {suggestionsToRender.map(contributor => (
-            <ContributorLarge
+            <ContributorCompact
               key={contributor.id}
               contributor={contributor}
               onSubscribe={subscribe(contributor)}
               onUnsubscribe={unsubscribe(contributor)}
-              showExampleLink={showExampleLink}
-              highlightExampleLink={highlightExampleLink}
             />
           ))}
-        </ContributorsList>
+          <CenterContainer>
+            <Button onClick={goToSuggestions}>Voir plus</Button>
+          </CenterContainer>
+        </>
       ) : (
-        <ContributorsListEmpty>
-          Pas de suggestions pour le moment.
-        </ContributorsListEmpty>
+        <SidebarEmpty>Pas de suggestions pour le moment.</SidebarEmpty>
       )}
-    </>
+    </Sidebar>
   );
 };
 
-SuggestionsScreen.defaultProps = {
-  showExampleLink: false,
-  highlightExampleLink: false
-};
-
-export default SuggestionsScreen;
+export default SuggestionsSidebar;
