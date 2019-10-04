@@ -41,7 +41,8 @@ interface SuggestionsWrapperProps {
 }
 
 const SuggestionsWrapper = styled.div<SuggestionsWrapperProps>`
-  padding-top: ${updatedFromLmem => (updatedFromLmem ? '400px' : '180px')};
+  padding-top: ${({ updatedFromLmem }) =>
+    updatedFromLmem ? '400px' : '180px'};
 
   & > section {
     padding-bottom: 150px;
