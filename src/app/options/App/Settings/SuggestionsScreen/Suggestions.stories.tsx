@@ -17,4 +17,11 @@ storiesOf('screens/SuggestionsScreen', module)
       subscribe={() => action('subscribe')}
       unsubscribe={() => action('unsubscribe')}
     />
+  ))
+  .add('no suggestions', () => (
+    <SuggestionsScreen
+      suggestions={[]}
+      subscribe={() => action('subscribe')}
+      unsubscribe={() => action('unsubscribe')}
+    />
   ));
