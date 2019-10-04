@@ -5,7 +5,7 @@ import contributors, { ContributorsState } from './contributors.reducer';
 import tosAccepted, { TosAcceptedState } from './tosAccepted.reducer';
 import installationDetails, {
   InstallationDetailsState
-} from 'app/background/reducers/installationDetails';
+} from 'app/background/store/reducers/installationDetails';
 
 export default (history: History) =>
   combineReducers({

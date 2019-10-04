@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { OptionsState } from 'app/options/store/reducers';
-import { isAnUpdateFromLmem } from 'app/background/selectors';
+import { isAnUpdateFromLmem } from 'app/background/store/selectors';
 import { areTosAccepted } from 'app/options/store/selectors';
 import { acceptTOS } from 'app/actions/tos';
 import { push } from 'connected-react-router';

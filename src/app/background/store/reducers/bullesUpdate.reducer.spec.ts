@@ -2,7 +2,7 @@
 import { expect } from 'chai';
 import { useFakeTimers } from 'sinon';
 import bullesUpdate, { BullesUpdateState } from './bullesUpdate.reducer';
-import { showBullesUpdateMessage } from '../../actions';
+import { showBullesUpdateMessage } from 'app/actions';
 
 describe('background > reducers > bullesUpdate', () => {
   it('has null lastUpdateMessageShowDate initially', () => {

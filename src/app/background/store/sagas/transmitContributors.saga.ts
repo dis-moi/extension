@@ -9,7 +9,7 @@ import {
 import sendToTab from 'webext/sendActionToTab';
 import assocTabIfNotGiven from 'webext/assocTabIfNotGiven';
 import { getContributorsWithSubscriptionState } from '../selectors/subscriptions.selectors';
-import { SUBSCRIBE, UNSUBSCRIBE } from '../../constants/ActionTypes';
+import { SUBSCRIBE, UNSUBSCRIBE } from 'app/constants/ActionTypes';
 import { getTabsList } from '../selectors/tabs';
 
 function* sendContributorsToTab(tab: chrome.tabs.Tab & Tab) {

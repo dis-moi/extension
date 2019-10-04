@@ -1,5 +1,5 @@
-import { AppAction } from '../../actions';
 import { Dispatch } from 'redux';
+import { AppAction } from 'app/actions';
 
 type Track = (action: AppAction) => void;
 

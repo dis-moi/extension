@@ -1,4 +1,4 @@
-import { find } from 'ramda';
+import * as R from 'ramda';
 import { Source } from './source';
 import { intentions, Intention } from './intention';
 import { Ratings } from './rating';
@@ -41,7 +41,7 @@ export interface StatefulNotice extends Notice {
 
 export enum NoticeFeedbackType {
   DISMISS = 'dismiss',
-  CONFIRM_DISMISS = 'confirmDissmiss',
+  CONFIRM_DISMISS = 'confirmDismiss',
   UNDISMISS = 'undismiss',
   LIKE = 'like',
   UNLIKE = 'unlike',
@@ -133,10 +133,48 @@ export const markNoticeRead = (notice: StatefulNotice): StatefulNotice => ({
   }
 });
 
+type NoticeTransformer<N extends Notice = Notice> = (notice: N) => N;
+export const findAndTransformNotice = <N extends Notice>(
+  noticeId: number,
+  transformer: NoticeTransformer<N>
+) => R.map(R.ifElse(R.eqProps('id', noticeId), transformer, R.identity));
+
+export const findNoticeAndApplyFeedback = (
+  noticeId: number,
+  feedbackType: NoticeFeedbackType
+) => (notices: StatefulNotice[]) => {
+  switch (feedbackType) {
+    case 'dismiss':
+      return findAndTransformNotice(noticeId, dismissNotice)(notices);
+
+    case 'confirmDismiss':
+      return findAndTransformNotice(noticeId, confirmDismissNotice)(notices);
+
+    case 'undismiss':
+      return findAndTransformNotice(noticeId, undismissNotice)(notices);
+
+    case 'like':
+      return findAndTransformNotice(noticeId, likeNotice)(notices);
+
+    case 'unlike':
+      return findAndTransformNotice(noticeId, unlikeNotice)(notices);
+
+    case 'dislike':
+      return findAndTransformNotice(noticeId, dislikeNotice)(notices);
+
+    case 'confirmDislike':
+      return findAndTransformNotice(noticeId, confirmDislikeNotice)(notices);
+
+    case 'undislike':
+      return findAndTransformNotice(noticeId, undislikeNotice)(notices);
+  }
+  return notices;
+};
+
 export const getNotice = <N extends Notice>(
   id: number,
   notices: N[]
-): N | undefined => find((notice: N): boolean => notice.id === id, notices);
+): N | undefined => R.find((notice: N): boolean => notice.id === id, notices);
 
 export const isNoticeValid = (notice: {
   [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -164,11 +202,15 @@ export const warnIfNoticeInvalid = (notice: Notice): boolean => {
   return valid;
 };
 
-export const shouldNoticeBeShown = (notice: StatefulNotice): boolean =>
-  (isNoticeValid(notice) &&
-    (!notice.state.dismissed || notice.state.justDismissed) &&
-    (!notice.state.disliked || notice.state.justDisliked)) ||
-  false;
+export const shouldNoticeBeShown = (notice: StatefulNotice): boolean => {
+  console.log('shouldNoticeBeShown');
+  return (
+    (isNoticeValid(notice) &&
+      (!notice.state.dismissed || notice.state.justDismissed) &&
+      (!notice.state.disliked || notice.state.justDisliked)) ||
+    false
+  );
+};
 
 export const isRead = (notice: StatefulNotice) => notice.state.read;
 

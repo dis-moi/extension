@@ -1,11 +1,11 @@
 import { fork, all } from 'redux-saga/effects';
+import theme from 'app/theme';
+import error from 'app/sagas/error';
+import listenActionsFromMessages from 'app/sagas/listenActionsFromMessages';
 import install from './install';
 import tab from './tab';
 import badge from './badge';
 import externalMessage from './externalMessage';
-import theme from '../../theme';
-import error from '../../sagas/error';
-import listenActionsFromMessages from '../../sagas/listenActionsFromMessages';
 import refreshMatchingContexts from './refreshMatchingContexts';
 import refreshContributors from './refreshContributors';
 import watchBrowserAction from './watchBrowserAction.saga';

@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { InstallationDetails } from '../../lmem/installation';
+import { InstallationDetails } from 'app/lmem/installation';
 
 export const getInstallationDetails = (state: {
   installationDetails: InstallationDetails;

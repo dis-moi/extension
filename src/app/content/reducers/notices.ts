@@ -1,16 +1,10 @@
 import { LOCATION_CHANGE } from 'connected-react-router';
 import {
-  dislikeNotice,
-  dismissNotice,
-  likeNotice,
-  undislikeNotice,
-  undismissNotice,
-  unlikeNotice,
-  StatefulNotice,
   markNoticeRead,
-  confirmDismissNotice,
-  confirmDislikeNotice
-} from '../../lmem/notice';
+  findAndTransformNotice,
+  StatefulNotice,
+  findNoticeAndApplyFeedback
+} from 'app/lmem/notice';
 import { AppAction } from 'app/actions';
 
 export type NoticesState = StatefulNotice[];
@@ -21,57 +15,13 @@ export default (state: NoticesState = [], action: AppAction): NoticesState => {
       return action.payload.notices;
 
     case 'MARK_NOTICE_READ':
-      return state.map(notice =>
-        notice.id === action.payload ? markNoticeRead(notice) : notice
-      );
+      return findAndTransformNotice(action.payload, markNoticeRead)(state);
 
     case 'FEEDBACK_ON_NOTICE':
-      switch (action.payload.feedback) {
-        case 'dismiss':
-          return state.map(notice =>
-            notice.id === action.payload.id ? dismissNotice(notice) : notice
-          );
-
-        case 'confirmDismiss':
-          return state.map(notice =>
-            notice.id === action.payload.id
-              ? confirmDismissNotice(notice)
-              : notice
-          );
-
-        case 'undismiss':
-          return state.map(notice =>
-            notice.id === action.payload.id ? undismissNotice(notice) : notice
-          );
-
-        case 'like':
-          return state.map(notice =>
-            notice.id === action.payload.id ? likeNotice(notice) : notice
-          );
-
-        case 'unlike':
-          return state.map(notice =>
-            notice.id === action.payload.id ? unlikeNotice(notice) : notice
-          );
-
-        case 'dislike':
-          return state.map(notice =>
-            notice.id === action.payload.id ? dislikeNotice(notice) : notice
-          );
-
-        case 'confirmDislike':
-          return state.map(notice =>
-            notice.id === action.payload.id
-              ? confirmDislikeNotice(notice)
-              : notice
-          );
-
-        case 'undislike':
-          return state.map(notice =>
-            notice.id === action.payload.id ? undislikeNotice(notice) : notice
-          );
-      }
-      return state;
+      return findNoticeAndApplyFeedback(
+        action.payload.id,
+        action.payload.feedback
+      )(state);
 
     case LOCATION_CHANGE:
       return state.map(notice => ({

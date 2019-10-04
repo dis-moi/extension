@@ -3,7 +3,7 @@ import { routerMiddleware, RouterState } from 'connected-react-router';
 import { createMemoryHistory } from 'history';
 import { FormStateMap } from 'redux-form';
 import createSagaMiddleware from '@redux-saga/core';
-import { InstallationDetailsState } from 'app/background/reducers/installationDetails';
+import { InstallationDetailsState } from 'app/background/store/reducers/installationDetails';
 import rootReducer from './reducers';
 import { UIState } from './reducers/ui';
 import { NoticesState } from './reducers/notices';

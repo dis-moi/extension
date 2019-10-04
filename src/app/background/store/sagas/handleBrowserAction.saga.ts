@@ -6,7 +6,7 @@ import {
   showBullesUpdateMessage
 } from 'app/actions';
 import { BROWSER_ACTION_CLICKED } from 'app/constants/browser/action';
-import { areTosAccepted } from '../selectors/prefs';
+import { areTosAccepted } from '../selectors/prefs.selectors';
 
 export function* browserActionClickedSaga(action: BrowserActionClickedAction) {
   const tosAccepted = yield select(areTosAccepted);

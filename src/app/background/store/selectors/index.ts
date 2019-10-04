@@ -1,12 +1,12 @@
 import { PersistedState } from 'redux-persist';
-import { findMatchingOffersAccordingToPreferences } from '../../lmem/matchingContext';
+import { findMatchingOffersAccordingToPreferences } from 'app/lmem/matchingContext';
 import { getDraftNotices, getMatchingContexts } from './resources';
 import { BackgroundState } from '../reducers';
 import { createSelector } from 'reselect';
 import { InstallationDetails } from 'app/lmem/installation';
 import isBulleVersionNumber from 'app/lmem/isBulleVersionNumber';
 import { getInstallationDetails } from './installationDetails';
-import { areTosAccepted } from './prefs';
+import { areTosAccepted } from './prefs.selectors';
 import { getNbSubscriptions } from './subscriptions.selectors';
 
 export const findTriggeredContexts = (state: BackgroundState) => (

@@ -11,11 +11,11 @@ import {
   isAnUpdateFromLmem,
   isOnboardingRequired,
   isRehydrated
-} from 'app/background/selectors';
-import { areTosAccepted } from 'app/background/selectors/prefs';
-import { getInstallationDate } from 'app/background/selectors/installationDetails';
+} from 'app/background/store/selectors';
+import { areTosAccepted } from 'app/background/store/selectors/prefs.selectors';
+import { getInstallationDate } from 'app/background/store/selectors/installationDetails';
 import { InstallationDetails } from 'app/lmem/installation';
-import { version } from '../../../../package.json';
+import { version } from '../../../../../package.json';
 
 export function* installedSaga({
   payload: { installedDetails }

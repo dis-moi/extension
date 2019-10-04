@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import prefsReducer from 'app/background/reducers/prefs.reducer';
+import prefsReducer from 'app/background/store/reducers/prefs.reducer';
 import {
   dismissNotice,
   likeNotice,

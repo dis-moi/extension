@@ -11,7 +11,7 @@ import {
 import sendToTab from 'webext/sendActionToTab';
 import assocTabIfNotGiven from 'webext/assocTabIfNotGiven';
 import { getInstallationDetails } from '../selectors/installationDetails';
-import { areTosAccepted } from '../selectors/prefs';
+import { areTosAccepted } from '../selectors/prefs.selectors';
 
 const isOptionsTabReadyAction = (action: AppAction): boolean =>
   action.type === 'LISTENING_ACTIONS_READY' &&

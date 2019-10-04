@@ -1,7 +1,7 @@
 import chai from 'chai';
-import reducer from 'app/background/reducers';
+import reducer from 'app/background/store/reducers';
 import { updateInstallationDetails } from 'app/actions/install';
-import { isAnUpdateFromLmem } from 'app/background/selectors';
+import { isAnUpdateFromLmem } from 'app/background/store/selectors';
 
 const expect = chai.expect;
 

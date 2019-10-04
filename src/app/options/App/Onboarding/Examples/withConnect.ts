@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { OptionsState } from 'app/options/store/reducers';
 import { getSubscriptions } from 'app/options/store/selectors/contributors.selectors';
-import { isAnUpdateFromLmem } from 'app/background/selectors';
+import { isAnUpdateFromLmem } from 'app/background/store/selectors';
 import { StatefulContributor } from 'app/lmem/contributor';
 import { subscribe, unsubscribe } from 'app/actions';
 

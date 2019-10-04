@@ -5,7 +5,7 @@ import {
   getContributorsSuggestions,
   getNbSusbcriptions
 } from 'app/options/store/selectors/contributors.selectors';
-import { isAnUpdateFromLmem } from 'app/background/selectors';
+import { isAnUpdateFromLmem } from 'app/background/store/selectors';
 import { StatefulContributor } from 'app/lmem/contributor';
 import { subscribe, unsubscribe } from 'app/actions';
 import { push } from 'connected-react-router';

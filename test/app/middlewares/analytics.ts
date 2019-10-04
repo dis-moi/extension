@@ -2,7 +2,7 @@ import chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import { Action } from 'redux';
-import middleware from '../../../src/app/background/middlewares/analytics';
+import middleware from '../../../src/app/background/store/middlewares/analytics';
 import { close } from '../../../src/app/actions/ui';
 import {
   unfoldNotice,

@@ -22,7 +22,6 @@ import {
   AppAction,
   showBullesUpdateMessage
 } from 'app/actions';
-import fetchContentScript from '../services/fetchContentScript';
 import { MatchingContext } from 'app/lmem/matchingContext';
 import Tab from 'app/lmem/tab';
 import { StatefulNotice, Notice, warnIfNoticeInvalid } from 'app/lmem/notice';
@@ -31,11 +30,12 @@ import sendToTab from 'webext/sendActionToTab';
 import executeTabScript, {
   ExecuteContentScript
 } from 'webext/executeTabScript';
+import fetchContentScript from '../../services/fetchContentScript';
 import {
   getNoticesToDisplay,
   getIgnoredNotices,
   areTosAccepted
-} from '../selectors/prefs';
+} from '../selectors/prefs.selectors';
 import { findTriggeredContexts } from '../selectors';
 import { getInstallationDetails } from '../selectors/installationDetails';
 import { getTabs } from '../selectors/tabs';
@@ -79,9 +79,9 @@ export const contextTriggeredSaga = function*({
     const notices = yield call(fetchNotices, toFetch);
     const validNotices: Notice[] = notices.filter(warnIfNoticeInvalid);
 
-    const noticesToShow: StatefulNotice[] = yield select(
-      getNoticesToDisplay(validNotices)
-    );
+    const noticesToShow: StatefulNotice[] = yield select(getNoticesToDisplay, {
+      notices: validNotices
+    });
 
     if (noticesToShow.length > 0) {
       const tosAccepted = yield select(areTosAccepted);
@@ -103,9 +103,9 @@ export const contextTriggeredSaga = function*({
       yield put(noNoticesDisplayed(tab));
     }
 
-    const ignoredNotices: StatefulNotice[] = yield select(
-      getIgnoredNotices(validNotices)
-    );
+    const ignoredNotices: StatefulNotice[] = yield select(getIgnoredNotices, {
+      notices: validNotices
+    });
     yield all(
       ignoredNotices.map(notice => put(noticeIgnored(notice, tab.url)))
     );

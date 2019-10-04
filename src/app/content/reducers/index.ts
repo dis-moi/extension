@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import { MemoryHistory } from 'history';
 import { reducer as form } from 'redux-form';
 
-import installationDetails from 'app/background/reducers/installationDetails';
+import installationDetails from 'app/background/store/reducers/installationDetails';
 import ui from './ui';
 import notices from './notices';
 import tab from './tab';

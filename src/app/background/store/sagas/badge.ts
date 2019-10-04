@@ -1,6 +1,5 @@
 import { SagaIterator } from 'redux-saga';
 import { takeLatest, call, select } from 'redux-saga/effects';
-import { Notice } from 'app/lmem/notice';
 import { BadgeTheme, updateBadge, resetBadge } from 'app/lmem/badge';
 import {
   FeedbackOnNoticeAction,
@@ -12,9 +11,8 @@ import {
   TabAction
 } from 'app/actions';
 import { ReceivedAction } from 'webext/createMessageHandler';
-import { getNoticesToDisplay } from '../selectors/prefs';
-
-const noticeFromId = (id: number) => ({ id } as Notice);
+import { getTabNoticesToDisplay } from '../selectors/noticesInTabs.selectors';
+import * as R from 'ramda';
 
 type BadgeImpactingAction = (
   | MarkNoticeReadAction
@@ -23,26 +21,21 @@ type BadgeImpactingAction = (
   ReceivedAction;
 export const updateBadgeSaga = (badgeTheme: BadgeTheme) =>
   function*(action: BadgeImpactingAction): SagaIterator {
+    console.log('in updateBadgeSaga');
     try {
-      const notices =
-        action.type === 'NOTICES_FOUND'
-          ? (action as NoticesFoundAction).payload.notices
-          : [
-              noticeFromId(
-                action.type === 'MARK_NOTICE_READ'
-                  ? (action as MarkNoticeReadAction).payload
-                  : (action as FeedbackOnNoticeAction).payload.id
-              )
-            ];
+      console.log('WHHHHHHHHHHHHHHHAT');
+      const state = yield select(R.identity);
 
-      /* FIXME (JAR): I don't like this because we don't really have real notices in `notices`
-         but we may have { id: number } objects.
-         It works because we only filter based on id, and then count them,
-         but this is fragile and Im' not hayppy with it.
-         I think we should maintain a list of actives notices for each tab. */
+      console.log('state', state);
 
-      const noticesToDisplay = yield select(getNoticesToDisplay(notices));
+      const not = getTabNoticesToDisplay(state, { tab: action.meta.tab });
 
+      console.log('not', not);
+
+      const noticesToDisplay = yield select(getTabNoticesToDisplay, {
+        tab: action.meta.tab
+      });
+      console.log('notices to badge', noticesToDisplay);
       yield call(updateBadge, noticesToDisplay, badgeTheme, action.meta.tab.id);
     } catch (e) {
       badgeUpdateFailed(e);
@@ -61,10 +54,20 @@ const isTabChangedAction = (action: AppAction): boolean =>
   action.type === 'BROWSER/TAB_CREATED' ||
   action.type === 'BROWSER/TAB_UPDATED';
 
-const isActionImpactingBadge = (action: AppAction): boolean =>
-  action.type === 'MARK_NOTICE_READ' ||
-  action.type === 'NOTICES_FOUND' ||
-  action.type === 'FEEDBACK_ON_NOTICE';
+const isActionImpactingBadge = (action: AppAction): boolean => {
+  console.log('===> ', action.type);
+  console.log(
+    'so ? ',
+    action.type === 'MARK_NOTICE_READ' ||
+      action.type === 'NOTICES_FOUND' ||
+      action.type === 'FEEDBACK_ON_NOTICE'
+  );
+  return (
+    action.type === 'MARK_NOTICE_READ' ||
+    action.type === 'NOTICES_FOUND' ||
+    action.type === 'FEEDBACK_ON_NOTICE'
+  );
+};
 
 export default (badgeTheme: BadgeTheme) =>
   function* tabRootSaga() {

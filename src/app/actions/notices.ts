@@ -1,4 +1,4 @@
-import { StatefulNotice } from 'app/lmem/notice';
+import { NoticeFeedbackType, StatefulNotice } from 'app/lmem/notice';
 import Tab from 'app/lmem/tab';
 import { ActionMeta, BaseAction, TabAction } from '.';
 
@@ -35,66 +35,56 @@ export const noNoticesDisplayed = (tab: Tab): NoNoticesDisplayedAction => ({
   }
 });
 
-export type feedbackType =
-  | 'dismiss'
-  | 'confirmDismiss'
-  | 'undismiss'
-  | 'like'
-  | 'unlike'
-  | 'dislike'
-  | 'confirmDislike'
-  | 'undislike';
-
 export interface FeedbackOnNoticeAction extends BaseAction {
   type: 'FEEDBACK_ON_NOTICE';
-  payload: { id: number; feedback: feedbackType };
+  payload: { id: number; feedback: NoticeFeedbackType };
 }
 
 export const dismissNotice = (id: number): FeedbackOnNoticeAction => ({
   type: 'FEEDBACK_ON_NOTICE',
-  payload: { id, feedback: 'dismiss' },
+  payload: { id, feedback: NoticeFeedbackType.DISMISS },
   meta: { sendToBackground: true }
 });
 
 export const confirmDismissNotice = (id: number): FeedbackOnNoticeAction => ({
   type: 'FEEDBACK_ON_NOTICE',
-  payload: { id, feedback: 'confirmDismiss' },
+  payload: { id, feedback: NoticeFeedbackType.CONFIRM_DISMISS },
   meta: { sendToBackground: true }
 });
 
 export const undismissNotice = (id: number): FeedbackOnNoticeAction => ({
   type: 'FEEDBACK_ON_NOTICE',
-  payload: { id, feedback: 'undismiss' },
+  payload: { id, feedback: NoticeFeedbackType.UNDISMISS },
   meta: { sendToBackground: true }
 });
 
 export const likeNotice = (id: number): FeedbackOnNoticeAction => ({
   type: 'FEEDBACK_ON_NOTICE',
-  payload: { id, feedback: 'like' },
+  payload: { id, feedback: NoticeFeedbackType.LIKE },
   meta: { sendToBackground: true }
 });
 
 export const unlikeNotice = (id: number): FeedbackOnNoticeAction => ({
   type: 'FEEDBACK_ON_NOTICE',
-  payload: { id, feedback: 'unlike' },
+  payload: { id, feedback: NoticeFeedbackType.UNLIKE },
   meta: { sendToBackground: true }
 });
 
 export const dislikeNotice = (id: number): FeedbackOnNoticeAction => ({
   type: 'FEEDBACK_ON_NOTICE',
-  payload: { id, feedback: 'dislike' },
+  payload: { id, feedback: NoticeFeedbackType.DISLIKE },
   meta: { sendToBackground: true }
 });
 
 export const confirmDislikeNotice = (id: number): FeedbackOnNoticeAction => ({
   type: 'FEEDBACK_ON_NOTICE',
-  payload: { id, feedback: 'confirmDislike' },
+  payload: { id, feedback: NoticeFeedbackType.CONFIRM_DISLIKE },
   meta: { sendToBackground: true }
 });
 
 export const undislikeNotice = (id: number): FeedbackOnNoticeAction => ({
   type: 'FEEDBACK_ON_NOTICE',
-  payload: { id, feedback: 'undislike' },
+  payload: { id, feedback: NoticeFeedbackType.UNDISLIKE },
   meta: { sendToBackground: true }
 });
 

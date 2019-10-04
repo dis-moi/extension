@@ -3,9 +3,9 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
 import { composeWithDevTools } from 'remote-redux-devtools';
-import rootReducer, { BackgroundState } from '../reducers';
-import middlewares, { sagaMiddleware } from '../middlewares';
-import rootSaga from '../sagas';
+import rootReducer, { BackgroundState } from './reducers';
+import middlewares, { sagaMiddleware } from './middlewares';
+import rootSaga from './sagas';
 import listenTabs from './listenTabs';
 import migrate from './migrations';
 import { AppAction } from '../../actions';

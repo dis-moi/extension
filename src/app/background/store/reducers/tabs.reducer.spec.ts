@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
 import { expect } from 'chai';
+import { tabUpdated } from 'app/actions';
 import tabsReducer from './tabs.reducer';
-import { tabUpdated } from '../../actions';
 
 describe('background > reducers > tabs', () => {
   describe('when receiving TAB_UPDATED', () => {
