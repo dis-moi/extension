@@ -7,7 +7,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 100px;
   color: #66696a;
 `;
 

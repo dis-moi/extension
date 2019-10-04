@@ -15,19 +15,12 @@ module.exports = {
         'https://notices.lmem.net',
         'https://sentry.io/api/*'
       ],
-      'script-src': [
-        "'self'",
-        "'unsafe-eval'",
-        'https://heapanalytics.com',
-        'https://cdn.heapanalytics.com'
-      ],
+      'script-src': ["'self'", "'unsafe-eval'"],
       'object-src': ["'self'"],
       'img-src': [
         "'self'",
         'https://staging-notices.lmem.net',
         'https://notices.lmem.net',
-        'https://heapanalytics.com',
-        'https://cdn.heapanalytics.com',
         'data:'
       ],
       'font-src': ["'self'", 'data:'],

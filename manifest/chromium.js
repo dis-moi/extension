@@ -7,19 +7,9 @@ module.exports = {
     directives: {
       'default-src': ['https://notices.lmem.net'],
       'connect-src': ['https://notices.lmem.net', 'https://sentry.io/api/*'],
-      'script-src': [
-        "'self'",
-        'https://heapanalytics.com',
-        'https://cdn.heapanalytics.com'
-      ],
+      'script-src': ["'self'"],
       'object-src': ["'self'"],
-      'img-src': [
-        "'self'",
-        'https://notices.lmem.net',
-        'https://heapanalytics.com',
-        'https://cdn.heapanalytics.com',
-        'data:'
-      ],
+      'img-src': ["'self'", 'https://notices.lmem.net', 'data:'],
       'font-src': ["'self'", 'data:'],
       'style-src': ["'unsafe-inline'"]
     }

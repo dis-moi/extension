@@ -3,15 +3,17 @@ import styled from 'styled-components';
 import { StatefulContributor } from 'app/lmem/contributor';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
 
-const ContributorsWidth = styled.section`
-  padding-bottom: 250px;
-`;
-
-const ContributorsList = styled.div`
+const ContributorsList = styled.section`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-column-gap: 40px;
   grid-row-gap: 40px;
+`;
+
+const ContributorsListEmpty = styled.p`
+  text-align: center;
+  font-size: 18px;
+  color: ${props => props.theme.primaryColor};
 `;
 
 export interface SuggestionsScreenProps {
@@ -30,7 +32,7 @@ const SuggestionsScreen = ({
   highlightExampleLink
 }: SuggestionsScreenProps) => (
   <>
-    <ContributorsWidth>
+    {suggestions.length > 0 ? (
       <ContributorsList>
         {suggestions.map(contributor => (
           <ContributorLarge
@@ -43,7 +45,11 @@ const SuggestionsScreen = ({
           />
         ))}
       </ContributorsList>
-    </ContributorsWidth>
+    ) : (
+      <ContributorsListEmpty>
+        Pas de suggestions pour le moment.
+      </ContributorsListEmpty>
+    )}
   </>
 );
 

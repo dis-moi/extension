@@ -15,11 +15,12 @@ import {
   Contribution
 } from 'app/lmem/notice';
 import { InstallationDetails } from 'app/lmem/installation';
-import { OpenState, MountedState, TitleState, UIState } from '../reducers/ui';
 import { ContentState } from '../store';
 import { getRegisteredFieldsPaths } from '../../utils/form';
 
+export * from './contributors.selectors';
 export * from './serviceMessage.selectors';
+export * from './ui.selectors';
 
 export const getNotices = (state: ContentState) => state.notices;
 
@@ -42,12 +43,6 @@ export const getNoticeById = (
     }
   }: RouteComponentProps<{ id?: string }>
 ) => getNotice(Number(id), getNotices(state));
-
-export const getUI = (state: ContentState): UIState => state.ui;
-export const isOpen = (state: ContentState): OpenState => getUI(state).open;
-export const isMounted = (state: ContentState): MountedState =>
-  getUI(state).mounted;
-export const getTitle = (state: ContentState): TitleState => getUI(state).title;
 
 export const hasNoticesToDisplay = createSelector(
   getNoticesToDisplay,

@@ -11,5 +11,5 @@ export interface BrowserActionClickedAction extends TabAction {
 export const browserActionClicked = (tab: Tab): BrowserActionClickedAction => ({
   type: 'BROWSER/BROWSER_ACTION_CLICKED',
   payload: { tab },
-  meta: { tab, tracked: false }
+  meta: { tab }
 });
