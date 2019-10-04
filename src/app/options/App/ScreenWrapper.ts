@@ -5,5 +5,6 @@ export default styled.main`
   font-family: 'Lato', sans-serif;
   max-width: 100%;
   margin: 0 auto;
+  padding: 50px 0;
   background-color: #fff;
 `;
