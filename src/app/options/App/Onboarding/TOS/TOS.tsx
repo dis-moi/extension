@@ -63,12 +63,19 @@ export default ({
 
           <OnboardingSteps activeStep={1} />
 
+          <TOSText>Votre extension navigateur évolue.</TOSText>
+
           <TOSText>
-            À partir d’aujourd’hui, vous pouvez vous abonner à des{' '}
-            <strong>amis, media et experts de votre choix.</strong>
-            <br />
-            Vous recevrez leurs messages en fonction de la page web que vous
-            visitez, comme pour Le Même en Mieux.
+            Le principe reste le même : vous recevez des messages en fonction de
+            la page web que vous visitez.
+          </TOSText>
+
+          <TOSText>
+            <strong>
+              Nouveauté&nbsp;:&nbsp;vous pouvez vous abonner aux amis, media et
+              experts que vous voulez,
+            </strong>{' '}
+            en plus du guide Le Même en Mieux.
           </TOSText>
 
           <TOSText>
@@ -79,7 +86,7 @@ export default ({
           <TOSText>
             Nous avons également renforcé la{' '}
             <ExternalLink href="https://www.bulles.fr/vie-privee">
-              protection de votre vie privée
+              protection de votre vie privée.
             </ExternalLink>
           </TOSText>
           <TOSText>
