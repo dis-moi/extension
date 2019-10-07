@@ -31,7 +31,7 @@ function* markNoticesReadSaga() {
 function* markNoticeReadSaga(unfoldNoticeAction: UnfoldNoticeAction) {
   const notices = yield select(getNotices);
   const unfoldedNotice: StatefulNotice = notices.find(
-    R.eqProps('id', unfoldNoticeAction.payload)
+    R.propEq('id', unfoldNoticeAction.payload)
   );
   if (!unfoldedNotice.state.read) {
     yield put(
