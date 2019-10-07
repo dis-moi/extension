@@ -20,7 +20,7 @@ export default () => (
         <BullesLogo />
 
         <Title>
-          Félicitations, vous êtes maintenant abonné·e : vous revevrez les
+          Félicitations, vous êtes maintenant abonné·e : vous recevrez les
           messages de vos contributeurs durant votre navigation.
         </Title>
 
