@@ -22,7 +22,7 @@ const BottomLineBg = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #fafafa;
+  background-color: rgba(250, 250, 250, 0.9);
 `;
 
 const InfoLine = styled.p`
