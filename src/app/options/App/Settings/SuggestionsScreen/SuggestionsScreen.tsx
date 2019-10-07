@@ -6,8 +6,8 @@ import ContributorLarge from 'components/organisms/Contributor/ContributorLarge'
 const ContributorsList = styled.section`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-column-gap: 40px;
-  grid-row-gap: 40px;
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
 `;
 
 const ContributorsListEmpty = styled.p`
