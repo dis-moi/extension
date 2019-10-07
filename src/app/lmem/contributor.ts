@@ -34,9 +34,10 @@ export const contributorIsSubscribed = (
 ): boolean => Boolean(contributor.subscribed);
 
 type SortSuggestedContributors = (contributors: Contributor[]) => Contributor[];
-export const sortSuggestedContributors: SortSuggestedContributors = R.sortWith([
-  R.descend(R.prop('contributions'))
-]);
+
+export const sortContributorsByContributions: SortSuggestedContributors = R.sortWith(
+  [R.descend(R.prop('contributions'))]
+);
 
 export const findContributorIn = (contributors: Contributor[]) => (
   contributor: Contributor
