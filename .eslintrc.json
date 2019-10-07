@@ -21,8 +21,6 @@
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
-    "plugin:prettier/recommended",
-    "prettier-standard/prettier-file",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended"
   ],
