@@ -1,6 +1,6 @@
 import { SagaIterator } from 'redux-saga';
 import { takeLatest, call, select } from 'redux-saga/effects';
-import { Notice } from 'app/lmem/notice';
+import { StatefulNotice } from 'app/lmem/notice';
 import { BadgeTheme, updateBadge, resetBadge } from 'app/lmem/badge';
 import {
   FeedbackOnNoticeAction,
@@ -14,7 +14,14 @@ import {
 import { ReceivedAction } from 'webext/createMessageHandler';
 import { getNoticesToDisplay } from '../selectors/prefs';
 
-const noticeFromId = (id: number) => ({ id } as Notice);
+const noticeFromId = (id: number) =>
+  ({
+    id,
+    message: '',
+    contributor: { name: '' },
+    intention: 'alternative',
+    state: { dismissed: false, disliked: false }
+  } as StatefulNotice);
 
 type BadgeImpactingAction = (
   | MarkNoticeReadAction

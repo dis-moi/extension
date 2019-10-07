@@ -1,11 +1,12 @@
 import { all, put, select, takeLatest, takeEvery } from 'redux-saga/effects';
-import { getNotices, hasNoticesToDisplay } from '../selectors';
+import * as R from 'ramda';
 import { markNoticeRead, UnfoldNoticeAction } from 'app/actions/notices';
 import { close } from 'app/actions/ui';
 import { CLOSED } from 'app/constants/ActionTypes';
 import { StatefulNotice } from 'app/lmem/notice';
-import { CloseCause } from '../../lmem/ui';
-import { AppAction, createErrorAction } from '../../actions';
+import { CloseCause } from 'app/lmem/ui';
+import { AppAction, createErrorAction } from 'app/actions';
+import { getNotices, hasNoticesToDisplay } from '../selectors';
 
 export function* closeIfNoMoreNoticeToDisplaySaga() {
   try {
@@ -28,9 +29,15 @@ function* markNoticesReadSaga() {
 }
 
 function* markNoticeReadSaga(unfoldNoticeAction: UnfoldNoticeAction) {
-  yield put(
-    markNoticeRead(unfoldNoticeAction.payload, { sendToBackground: true })
+  const notices = yield select(getNotices);
+  const unfoldedNotice: StatefulNotice = notices.find(
+    R.propEq('id', unfoldNoticeAction.payload)
   );
+  if (!unfoldedNotice.state.read) {
+    yield put(
+      markNoticeRead(unfoldNoticeAction.payload, { sendToBackground: true })
+    );
+  }
 }
 
 export const isClosedByButtonAction = (action: AppAction) =>
