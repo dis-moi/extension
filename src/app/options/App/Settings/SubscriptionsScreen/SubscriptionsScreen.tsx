@@ -1,12 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { StatefulContributor } from 'app/lmem/contributor';
-import Button from 'components/atoms/Button';
-import CenterContainer from 'components/atoms/CenterContainer';
+import * as R from 'ramda';
+import { findContributorIn, StatefulContributor } from 'app/lmem/contributor';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
-import ContributorCompact from 'components/organisms/Contributor/ContributorCompact';
-import withConnect from './withConnect';
 import Empty from './Empty';
+import SuggestionsSidebar from './SuggestionsSidebar';
 
 const TwoColumns = styled.div`
   display: grid;
@@ -20,25 +18,6 @@ const ContributorsList = styled.div`
   grid-column-gap: 40px;
   grid-row-gap: 40px;
   align-items: flex-start;
-`;
-
-const Sidebar = styled.aside`
-  ${Button} {
-    margin-top: 10px;
-  }
-`;
-
-const SidebarTitle = styled.h2`
-  margin: 0 0 5px;
-  font-size: 20px;
-  color: ${props => props.theme.activeColor};
-  font-weight: bold;
-`;
-
-const SidebarEmpty = styled.p`
-  text-align: center;
-  font-size: 16px;
-  color: ${props => props.theme.primaryColor};
 `;
 
 interface Props {
@@ -55,47 +34,48 @@ export const SubscriptionsScreen = ({
   subscribe,
   unsubscribe,
   goToSuggestions
-}: Props) => (
-  <>
-    {subscriptions.length === 0 ? (
-      <Empty goToSuggestions={goToSuggestions} />
-    ) : (
-      <TwoColumns>
-        <ContributorsList>
-          {subscriptions.map(contributor => (
-            <ContributorLarge
-              key={contributor.id}
-              contributor={contributor}
-              onSubscribe={subscribe(contributor)}
-              onUnsubscribe={unsubscribe(contributor)}
-              showExampleLink
-            />
-          ))}
-        </ContributorsList>
+}: Props) => {
+  const [initialSubscriptions, setInitialSubscriptions] = useState(
+    subscriptions
+  );
 
-        <Sidebar>
-          <SidebarTitle>Suggestions</SidebarTitle>
-          {suggestions.length > 0 ? (
-            <>
-              {suggestions.map(contributor => (
-                <ContributorCompact
-                  key={contributor.id}
-                  contributor={contributor}
-                  onSubscribe={subscribe(contributor)}
-                  onUnsubscribe={unsubscribe(contributor)}
-                />
-              ))}
-              <CenterContainer>
-                <Button onClick={goToSuggestions}>Voir plus</Button>
-              </CenterContainer>
-            </>
-          ) : (
-            <SidebarEmpty>Pas de suggestions pour le moment.</SidebarEmpty>
-          )}
-        </Sidebar>
-      </TwoColumns>
-    )}
-  </>
-);
+  useEffect(() => {
+    if (initialSubscriptions.length === 0)
+      setInitialSubscriptions(subscriptions);
+  }, [subscriptions]);
 
-export default withConnect(SubscriptionsScreen);
+  const subscriptionsToRender = initialSubscriptions.map(
+    findContributorIn(R.concat(subscriptions, suggestions))
+  );
+
+  return (
+    <>
+      {subscriptionsToRender.length === 0 ? (
+        <Empty goToSuggestions={goToSuggestions} />
+      ) : (
+        <TwoColumns>
+          <ContributorsList>
+            {subscriptionsToRender.map(contributor => (
+              <ContributorLarge
+                key={contributor.id}
+                contributor={contributor}
+                onSubscribe={subscribe(contributor)}
+                onUnsubscribe={unsubscribe(contributor)}
+                showExampleLink
+              />
+            ))}
+          </ContributorsList>
+          <SuggestionsSidebar
+            subscriptions={subscriptions}
+            suggestions={suggestions}
+            subscribe={subscribe}
+            unsubscribe={unsubscribe}
+            goToSuggestions={goToSuggestions}
+          />
+        </TwoColumns>
+      )}
+    </>
+  );
+};
+
+export default SubscriptionsScreen;

@@ -4,9 +4,7 @@ import styled from 'styled-components';
 import BullesLogo from 'components/atoms/LogoBeta';
 import Intro from '../OnboardingAtoms/OnboardingIntro';
 import Title from '../OnboardingAtoms/OnboardingTitle';
-import SuggestionsScreen, {
-  SuggestionsScreenProps
-} from '../../Settings/SuggestionsScreen/SuggestionsScreen';
+import SuggestionsScreen from '../../Settings/SuggestionsScreen';
 import Wrapper from '../OnboardingAtoms/OnboardingWrapper';
 
 const Title2 = styled(Title)`
@@ -15,15 +13,7 @@ const Title2 = styled(Title)`
   color: ${props => props.theme.activeColor};
 `;
 
-interface ExamplesScreenProps extends SuggestionsScreenProps {
-  updatedFromLmem: boolean;
-}
-
-export default ({
-  suggestions,
-  subscribe,
-  unsubscribe
-}: ExamplesScreenProps) => (
+export default () => (
   <>
     <Wrapper>
       <Intro>
@@ -38,12 +28,6 @@ export default ({
       </Intro>
     </Wrapper>
 
-    <SuggestionsScreen
-      suggestions={suggestions}
-      subscribe={subscribe}
-      unsubscribe={unsubscribe}
-      showExampleLink
-      highlightExampleLink
-    />
+    <SuggestionsScreen showExampleLink highlightExampleLink />
   </>
 );

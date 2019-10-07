@@ -37,3 +37,7 @@ type SortSuggestedContributors = (contributors: Contributor[]) => Contributor[];
 export const sortSuggestedContributors: SortSuggestedContributors = R.sortWith([
   R.descend(R.prop('contributions'))
 ]);
+
+export const findContributorIn = (contributors: Contributor[]) => (
+  contributor: Contributor
+) => R.find(R.propEq('id', contributor.id), contributors) as Contributor;
