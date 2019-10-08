@@ -26,6 +26,8 @@ interface Props {
   subscribe: (contributor: StatefulContributor) => () => void;
   unsubscribe: (contributor: StatefulContributor) => () => void;
   goToSuggestions: () => void;
+  highlightExampleLink?: boolean;
+  noSidebar?: boolean;
 }
 
 export const SubscriptionsScreen = ({
@@ -33,7 +35,9 @@ export const SubscriptionsScreen = ({
   suggestions,
   subscribe,
   unsubscribe,
-  goToSuggestions
+  goToSuggestions,
+  highlightExampleLink,
+  noSidebar
 }: Props) => {
   const [initialSubscriptions, setInitialSubscriptions] = useState(
     subscriptions
@@ -48,33 +52,40 @@ export const SubscriptionsScreen = ({
     findContributorIn(R.concat(subscriptions, suggestions))
   );
 
+  if (subscriptionsToRender.length === 0) {
+    return <Empty goToSuggestions={goToSuggestions} />;
+  }
+
+  const contributorsList = (
+    <ContributorsList>
+      {subscriptionsToRender.map(contributor => (
+        <ContributorLarge
+          key={contributor.id}
+          contributor={contributor}
+          onSubscribe={subscribe(contributor)}
+          onUnsubscribe={unsubscribe(contributor)}
+          showExampleLink
+          highlightExampleLink={highlightExampleLink}
+        />
+      ))}
+    </ContributorsList>
+  );
+
+  if (noSidebar) {
+    return contributorsList;
+  }
+
   return (
-    <>
-      {subscriptionsToRender.length === 0 ? (
-        <Empty goToSuggestions={goToSuggestions} />
-      ) : (
-        <TwoColumns>
-          <ContributorsList>
-            {subscriptionsToRender.map(contributor => (
-              <ContributorLarge
-                key={contributor.id}
-                contributor={contributor}
-                onSubscribe={subscribe(contributor)}
-                onUnsubscribe={unsubscribe(contributor)}
-                showExampleLink
-              />
-            ))}
-          </ContributorsList>
-          <SuggestionsSidebar
-            subscriptions={subscriptions}
-            suggestions={suggestions}
-            subscribe={subscribe}
-            unsubscribe={unsubscribe}
-            goToSuggestions={goToSuggestions}
-          />
-        </TwoColumns>
-      )}
-    </>
+    <TwoColumns>
+      {contributorsList}
+      <SuggestionsSidebar
+        subscriptions={subscriptions}
+        suggestions={suggestions}
+        subscribe={subscribe}
+        unsubscribe={unsubscribe}
+        goToSuggestions={goToSuggestions}
+      />
+    </TwoColumns>
   );
 };
 

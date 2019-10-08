@@ -1,16 +1,16 @@
 import React from 'react';
-import Button from 'components/atoms/Button';
 import styled from 'styled-components';
 import { StatefulContributor } from 'app/lmem/contributor';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import UserName from 'components/atoms/UserName/UserName';
 import Stat from 'components/atoms/Stat/Stat';
 import StatType from 'components/atoms/Stat/StatType';
-import ContributorButton from './ContributorButton';
 import BubbleIcon from 'components/atoms/icons/Bubble';
+import { ExternalLink } from 'components/atoms';
+import ContributorButton from './ContributorButton';
 
 const ContributorCard = styled.div`
-  padding: 12px 15px 10px;
+  padding: 12px 15px 20px;
   background-color: #fff;
   border: 1px solid #dedede;
   border-radius: 8px;
@@ -46,11 +46,13 @@ interface ContributionExampleProps {
   highlighted?: boolean;
 }
 
-const ContributionExample = styled(Button)<ContributionExampleProps>`
-  margin-top: 25px;
+const ContributionExample = styled(ExternalLink)<ContributionExampleProps>`
+  display: inline-block;
+  margin-top: 18px;
   font-size: 12px;
   color: ${props =>
     props.highlighted ? props.theme.highlightedLink : props.theme.activeColor};
+  text-transform: ${props => (props.highlighted ? 'uppercase' : 'none')};
 `;
 
 interface Props {
@@ -92,15 +94,18 @@ const ContributorLarge = ({
       </ContributorInfos>
     </ContributorWrapper>
 
-    {showExampleLink && (
-      <ContributionExample highlighted={highlightExampleLink}>
-        Voir un exemple de ses bulles
-      </ContributionExample>
-    )}
-
     <ContributorIntro>
       {contributor.intro || 'Description non renseignée'}
     </ContributorIntro>
+
+    {showExampleLink && contributor.contribution.example.matchingUrl && (
+      <ContributionExample
+        href={contributor.contribution.example.matchingUrl}
+        highlighted={highlightExampleLink}
+      >
+        Voir un exemple de ses bulles
+      </ContributionExample>
+    )}
   </ContributorCard>
 );
 

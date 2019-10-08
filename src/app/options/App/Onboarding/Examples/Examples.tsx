@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import BullesLogo from 'components/atoms/LogoBeta';
+import SubscriptionsScreen from '../../Settings/SubscriptionsScreen';
 import Intro from '../OnboardingAtoms/OnboardingIntro';
 import Title from '../OnboardingAtoms/OnboardingTitle';
-import SuggestionsScreen from '../../Settings/SuggestionsScreen';
 import Wrapper from '../OnboardingAtoms/OnboardingWrapper';
 
 const Title2 = styled(Title)`
@@ -28,6 +27,6 @@ export default () => (
       </Intro>
     </Wrapper>
 
-    <SuggestionsScreen showExampleLink highlightExampleLink />
+    <SubscriptionsScreen noSidebar highlightExampleLink />
   </>
 );

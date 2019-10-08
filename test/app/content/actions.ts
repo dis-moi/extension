@@ -1,9 +1,9 @@
 import chai from 'chai';
-
 import { noticesFound, dismissNotice, likeNotice } from 'app/actions/notices';
 import { init } from 'app/actions/tabs';
 import { StatefulNotice } from 'app/lmem/notice';
 import Tab from 'app/lmem/tab';
+import { generateContributor } from 'test/fakers/generateContributor';
 
 const expect = chai.expect;
 
@@ -11,11 +11,7 @@ const notice1: StatefulNotice = {
   id: 1,
   intention: 'approval',
   message: 'This is a notice',
-  source: {
-    label: 'Jalil',
-    url: 'http://jalil'
-  },
-  contributor: { id: 1, name: 'Jalil', contributions: 42 },
+  contributor: generateContributor({ id: 1, name: 'Jalil', contributions: 42 }),
   visibility: 'public',
   ratings: { dislikes: 0, likes: 0 },
   state: { disliked: false, dismissed: false, liked: false, read: false },
