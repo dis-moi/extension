@@ -51,6 +51,7 @@ const ContributionExample = styled(ExternalLink)<ContributionExampleProps>`
   font-size: 12px;
   color: ${props =>
     props.highlighted ? props.theme.highlightedLink : props.theme.activeColor};
+  text-transform: ${props => (props.highlighted ? 'uppercase' : 'none')};
 `;
 
 interface Props {
@@ -92,6 +93,10 @@ const ContributorLarge = ({
       </ContributorInfos>
     </ContributorWrapper>
 
+    <ContributorIntro>
+      {contributor.intro || 'Description non renseignée'}
+    </ContributorIntro>
+
     {showExampleLink && contributor.contribution.example.matchingUrl && (
       <ContributionExample
         href={contributor.contribution.example.matchingUrl}
@@ -100,10 +105,6 @@ const ContributorLarge = ({
         Voir un exemple de ses bulles
       </ContributionExample>
     )}
-
-    <ContributorIntro>
-      {contributor.intro || 'Description non renseignée'}
-    </ContributorIntro>
   </ContributorCard>
 );
 

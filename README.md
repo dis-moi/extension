@@ -54,6 +54,12 @@ You'll find a bunch of env variables defined in `./webpack/config.plugins.js`.
 yarn start
 ```
 
+```bash
+# watch files change (do not reload the extension though)
+# start Webpack Dev Server with production content
+yarn start:productionApi
+```
+
 - [Load unpacked extension's `./build/dev/` folder to Chrome.](https://developer.chrome.com/extensions/getstarted#unpacked)
 
 ## Storybook
