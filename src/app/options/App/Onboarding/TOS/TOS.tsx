@@ -4,7 +4,6 @@ import { ExternalLink } from 'components/atoms';
 import LogoBeta from 'components/atoms/LogoBeta';
 import Wrapper from '../OnboardingAtoms/OnboardingWrapper';
 import Intro from '../OnboardingAtoms/OnboardingIntro';
-import Title from '../OnboardingAtoms/OnboardingTitle';
 import SubTitle from '../OnboardingAtoms/OnboardingSubTitle';
 import OnboardinButton from '../OnboardingAtoms/OnboardingButton';
 import LMEMToBulles from '../OnboardingAtoms/LMEMToBulles';
@@ -13,9 +12,14 @@ import TOSText from './TOSText';
 import TOSCheckbox from './TOSCheckbox';
 import OnboardingSteps from '../OnboardingAtoms/OnboardingSteps/OnboardingSteps';
 
+const Title = styled(SubTitle)`
+  margin-top: 32px;
+  margin-bottom: 0;
+`;
+
 const TOSTitle = styled.h3`
-  margin-top: 40px;
-  margin-bottom: 20px;
+  margin-top: 32px;
+  margin-bottom: 16px;
   font-size: 25px;
   font-weight: bold;
   text-align: center;
@@ -23,14 +27,14 @@ const TOSTitle = styled.h3`
 `;
 
 const TOSList = styled.ol`
-  margin-bottom: 2rem;
+  margin-bottom: 16px;
   padding-left: 0;
   counter-reset: TOS;
   list-style-type: none;
 `;
 
 const TOSListItem = styled.li`
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   font-size: 16px;
 
   &:before {
@@ -38,7 +42,7 @@ const TOSListItem = styled.li`
     counter-increment: TOS;
     margin-right: 12px;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
   }
 `;
 
@@ -100,11 +104,10 @@ export default ({
           <Intro>
             <LogoBeta />
 
-            <Title>Installation réussie !</Title>
-            <SubTitle>
+            <Title>
               Pour finaliser l’installation, veuillez lire et accepter <br />
               les conditions générales d’utilisation.
-            </SubTitle>
+            </Title>
           </Intro>
 
           <TOSTitle>Nos engagements</TOSTitle>
