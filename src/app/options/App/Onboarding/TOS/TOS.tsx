@@ -48,7 +48,7 @@ const TOSListItem = styled.li`
 
 interface TosProps {
   updatedFromLmem: boolean;
-  termsOfServiceAccepted: boolean;
+  termsOfServiceAccepted?: boolean;
   onContinue: () => void;
 }
 
@@ -143,11 +143,12 @@ export default ({
         </>
       )}
 
-      {termsOfServiceAccepted ? (
-        <TOSAlreadyAccepted />
-      ) : (
-        <TOSCheckbox onChange={setTosChecked} checked={acceptTosChecked} />
-      )}
+      {termsOfServiceAccepted !== undefined &&
+        (termsOfServiceAccepted ? (
+          <TOSAlreadyAccepted />
+        ) : (
+          <TOSCheckbox onChange={setTosChecked} checked={acceptTosChecked} />
+        ))}
 
       <OnboardinButton
         disabled={!acceptTosChecked && !termsOfServiceAccepted}

@@ -11,7 +11,7 @@ interface Props extends RouteComponentProps {
   currentScreen: OptionsScreen | null;
   goToSubscriptions: () => void;
   goToSuggestions: () => void;
-  tosAccepted: boolean;
+  tosAccepted?: boolean;
 }
 
 const UI = ({
@@ -21,7 +21,9 @@ const UI = ({
   match,
   tosAccepted
 }: Props) =>
-  tosAccepted ? (
+  tosAccepted === false ? (
+    <Redirect to={'/onboarding'} />
+  ) : (
     <>
       <Header />
 
@@ -43,8 +45,6 @@ const UI = ({
         />
       </Switch>
     </>
-  ) : (
-    <Redirect to={'/onboarding'} />
   );
 
 export default withConnect(UI);
