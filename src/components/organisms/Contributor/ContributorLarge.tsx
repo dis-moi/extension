@@ -10,7 +10,7 @@ import { ExternalLink } from 'components/atoms';
 import ContributorButton from './ContributorButton';
 
 const ContributorCard = styled.div`
-  padding: 12px 15px 10px;
+  padding: 12px 15px 20px;
   background-color: #fff;
   border: 1px solid #dedede;
   border-radius: 8px;
@@ -47,7 +47,8 @@ interface ContributionExampleProps {
 }
 
 const ContributionExample = styled(ExternalLink)<ContributionExampleProps>`
-  margin-top: 25px;
+  display: inline-block;
+  margin-top: 18px;
   font-size: 12px;
   color: ${props =>
     props.highlighted ? props.theme.highlightedLink : props.theme.activeColor};
