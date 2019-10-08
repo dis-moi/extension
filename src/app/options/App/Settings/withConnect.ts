@@ -1,11 +1,13 @@
+import { Dispatch } from 'redux';
+import { push } from 'connected-react-router';
 import { connect } from 'react-redux';
 import { OptionsState } from 'app/options/store/reducers';
 import { getCurrentScreen } from 'app/options/store/selectors/router.selectors';
-import { Dispatch } from 'redux';
-import { push } from 'connected-react-router';
+import { areTosAccepted } from '../../store/selectors';
 
 const mapStateToProps = (state: OptionsState) => ({
-  currentScreen: getCurrentScreen(state)
+  currentScreen: getCurrentScreen(state),
+  tosAccepted: areTosAccepted(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
