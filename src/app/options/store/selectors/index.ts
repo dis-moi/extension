@@ -1,4 +1,7 @@
-import { TosAcceptedState } from '../reducers/tosAccepted.reducer';
+import { TosState } from '../reducers/tos.reducer';
 
-export const areTosAccepted = (state: { tosAccepted: TosAcceptedState }) =>
-  state.tosAccepted;
+interface StateWithTos {
+  tos: TosState;
+}
+
+export const areTosAccepted = (state: StateWithTos) => state.tos.tosAccepted;
