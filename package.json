@@ -7,6 +7,7 @@
   },
   "scripts": {
     "start": "webpack --watch --progress --mode=development --env.build=dev",
+    "start:productionApi": "webpack --watch --progress --mode=development --env.build=dev --env.api=production",
     "build:staging": "webpack --mode=production --env.build=staging",
     "release:staging": "webpack --mode=production --env.build=staging --env.sentry",
     "build:firefox": "webpack --mode=production --env.build=firefox",

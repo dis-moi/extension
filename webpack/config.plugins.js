@@ -19,6 +19,11 @@ const BUILD_CONFIG = {
     REFRESH_MC_INTERVAL: '5*60*1000',
     REFRESH_CONTRIBUTORS_INTERVAL: '5*60*1000'
   },
+  devOnProductionApi: {
+    LMEM_BACKEND_ORIGIN: '"https://notices.lmem.net/api/v3/"',
+    REFRESH_MC_INTERVAL: '5*60*1000',
+    REFRESH_CONTRIBUTORS_INTERVAL: '5*60*1000'
+  },
   staging: {
     LMEM_BACKEND_ORIGIN: '"https://staging-notices.lmem.net/api/v3/"',
     UNINSTALL_ORIGIN: "'https://www.lmem.net/desinstallation'",
@@ -42,6 +47,11 @@ const BUILD_CONFIG = {
     SENTRY_DSN: '"https://a22936b545a54f37b153b3f9e2c98790@sentry.io/1404847"'
   }
 };
+
+const getBuildConfig = (build, api) =>
+  build === 'dev' && api === 'production'
+    ? BUILD_CONFIG['devOnProductionApi']
+    : BUILD_CONFIG[build];
 
 const selectEnvVarsToInject = R.pick([
   'SEND_CONTRIBUTION_FROM',
@@ -77,7 +87,7 @@ module.exports = (env = {}, argv = {}, outputPath) => {
     ...basePlugins(env, argv),
     new webpack.DefinePlugin({
       'process.env': {
-        ...BUILD_CONFIG[env.build],
+        ...getBuildConfig(env.build, env.api),
         ...processENVVarsToInject(process.env),
         BUILD: JSON.stringify(env.build),
         SENTRY_ENABLE: env.sentry ? 'true' : 'false'
