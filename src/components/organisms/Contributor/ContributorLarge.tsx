@@ -1,13 +1,13 @@
 import React from 'react';
-import Button from 'components/atoms/Button';
 import styled from 'styled-components';
 import { StatefulContributor } from 'app/lmem/contributor';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import UserName from 'components/atoms/UserName/UserName';
 import Stat from 'components/atoms/Stat/Stat';
 import StatType from 'components/atoms/Stat/StatType';
-import ContributorButton from './ContributorButton';
 import BubbleIcon from 'components/atoms/icons/Bubble';
+import { ExternalLink } from 'components/atoms';
+import ContributorButton from './ContributorButton';
 
 const ContributorCard = styled.div`
   padding: 12px 15px 10px;
@@ -46,7 +46,7 @@ interface ContributionExampleProps {
   highlighted?: boolean;
 }
 
-const ContributionExample = styled(Button)<ContributionExampleProps>`
+const ContributionExample = styled(ExternalLink)<ContributionExampleProps>`
   margin-top: 25px;
   font-size: 12px;
   color: ${props =>
@@ -92,8 +92,11 @@ const ContributorLarge = ({
       </ContributorInfos>
     </ContributorWrapper>
 
-    {showExampleLink && (
-      <ContributionExample highlighted={highlightExampleLink}>
+    {showExampleLink && contributor.contribution.example.matchingUrl && (
+      <ContributionExample
+        href={contributor.contribution.example.matchingUrl}
+        highlighted={highlightExampleLink}
+      >
         Voir un exemple de ses bulles
       </ContributionExample>
     )}

@@ -2,6 +2,7 @@
 import { expect } from 'chai';
 import contributors from './contributors.reducer';
 import { contributorsTransmitted } from '../../actions';
+import { generateStatefulContributor } from 'test/fakers/generateContributor';
 
 describe('content > reducers > contributors', () => {
   // @ts-ignore
@@ -12,19 +13,23 @@ describe('content > reducers > contributors', () => {
   });
   describe('when given CONTRIBUTORS_TRANSMITTED', () => {
     const contributorsAction = contributorsTransmitted([
-      { id: 1, name: 'John Doe', contributions: 25 },
-      {
+      generateStatefulContributor({
+        id: 1,
+        name: 'John Doe',
+        contributions: 25
+      }),
+      generateStatefulContributor({
         id: 2,
         name: 'Johnnie Walker',
         contributions: 12,
         subscribed: true
-      },
-      {
+      }),
+      generateStatefulContributor({
         id: 3,
         name: 'Louis Armstrong',
         contributions: 42,
         subscribed: true
-      }
+      })
     ]);
 
     const newState = contributors(initialState, contributorsAction);

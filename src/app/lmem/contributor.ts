@@ -18,6 +18,13 @@ export interface Contributor {
   avatar?: Avatar;
   intro?: string;
   contributions: number;
+  contribution: {
+    example: {
+      matchingUrl: string;
+      noticeId: number;
+      noticeUrl: string;
+    };
+  };
 }
 
 export interface NewContributor {

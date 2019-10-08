@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import * as R from 'ramda';
 import { findContributorIn, StatefulContributor } from 'app/lmem/contributor';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
-import * as R from 'ramda';
 
 const ContributorsList = styled.section`
   display: grid;
@@ -30,9 +30,7 @@ const SuggestionsScreen = ({
   subscriptions,
   suggestions,
   subscribe,
-  unsubscribe,
-  showExampleLink,
-  highlightExampleLink
+  unsubscribe
 }: SuggestionsScreenProps) => {
   const [initialSuggestions, setInitialSuggestions] = useState(suggestions);
 
@@ -43,6 +41,7 @@ const SuggestionsScreen = ({
   const suggestionsToRender = initialSuggestions.map(
     findContributorIn(R.concat(subscriptions, suggestions))
   );
+
   return (
     <>
       {suggestionsToRender.length > 0 ? (
@@ -53,8 +52,7 @@ const SuggestionsScreen = ({
               contributor={contributor}
               onSubscribe={subscribe(contributor)}
               onUnsubscribe={unsubscribe(contributor)}
-              showExampleLink={showExampleLink}
-              highlightExampleLink={highlightExampleLink}
+              showExampleLink
             />
           ))}
         </ContributorsList>
@@ -65,11 +63,6 @@ const SuggestionsScreen = ({
       )}
     </>
   );
-};
-
-SuggestionsScreen.defaultProps = {
-  showExampleLink: false,
-  highlightExampleLink: false
 };
 
 export default SuggestionsScreen;

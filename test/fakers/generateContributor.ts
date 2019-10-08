@@ -1,11 +1,15 @@
 import Faker from 'faker';
-import { Contributor, Avatar } from 'app/lmem/contributor';
+import { Contributor } from 'app/lmem/contributor';
 
 interface Options {
   id?: number;
   name?: string;
   contributions?: number;
   noAvatar?: boolean;
+}
+
+interface StatefulOptions extends Options {
+  subscribed?: boolean;
 }
 
 export const generateContributor = ({
@@ -17,10 +21,26 @@ export const generateContributor = ({
   id: id || 42,
   name: name || Faker.name.findName(),
   contributions: contributions || Faker.random.number(),
-  avatar: noAvatar ? undefined :
-    {
-      small: { url: Faker.image.avatar() },
-      normal: { url: Faker.image.avatar() },
-      large: { url: Faker.image.avatar() }
+  contribution: {
+    example: {
+      matchingUrl: 'http://www.bulles.fr',
+      noticeId: 1,
+      noticeUrl: 'http://'
     }
+  },
+  avatar: noAvatar
+    ? undefined
+    : {
+        small: { url: Faker.image.avatar() },
+        normal: { url: Faker.image.avatar() },
+        large: { url: Faker.image.avatar() }
+      }
+});
+
+export const generateStatefulContributor = ({
+  subscribed,
+  ...rest
+}: StatefulOptions = {}) => ({
+  ...generateContributor(rest),
+  subscribed: subscribed === undefined ? false : subscribed
 });

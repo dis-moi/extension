@@ -26,6 +26,7 @@ interface Props {
   subscribe: (contributor: StatefulContributor) => () => void;
   unsubscribe: (contributor: StatefulContributor) => () => void;
   goToSuggestions: () => void;
+  highlightExampleLink?: boolean;
 }
 
 export const SubscriptionsScreen = ({
@@ -33,7 +34,8 @@ export const SubscriptionsScreen = ({
   suggestions,
   subscribe,
   unsubscribe,
-  goToSuggestions
+  goToSuggestions,
+  highlightExampleLink
 }: Props) => {
   const [initialSubscriptions, setInitialSubscriptions] = useState(
     subscriptions
@@ -62,6 +64,7 @@ export const SubscriptionsScreen = ({
                 onSubscribe={subscribe(contributor)}
                 onUnsubscribe={unsubscribe(contributor)}
                 showExampleLink
+                highlightExampleLink={highlightExampleLink}
               />
             ))}
           </ContributorsList>
