@@ -52,7 +52,6 @@ const SuggestionsScreen = ({
               contributor={contributor}
               onSubscribe={subscribe(contributor)}
               onUnsubscribe={unsubscribe(contributor)}
-              showExampleLink
             />
           ))}
         </ContributorsList>

@@ -27,6 +27,6 @@ export default () => (
       </Intro>
     </Wrapper>
 
-    <SubscriptionsScreen highlightExampleLink />
+    <SubscriptionsScreen noSidebar highlightExampleLink />
   </>
 );
