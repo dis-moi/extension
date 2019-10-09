@@ -36,7 +36,14 @@ const StatsWrapper = styled.div`
   }
 `;
 
-const ContributorIntro = styled.p`
+interface IntroProps {
+  intro: string;
+}
+const ContributorIntro = styled.p.attrs<IntroProps>(
+  ({ intro }: IntroProps) => ({
+    dangerouslySetInnerHTML: { __html: intro }
+  })
+)<IntroProps>`
   margin: 20px 0 0;
   font-size: 15px;
   color: ${props => props.theme.formBorder};
@@ -94,9 +101,9 @@ const ContributorLarge = ({
       </ContributorInfos>
     </ContributorWrapper>
 
-    <ContributorIntro>
-      {contributor.intro || 'Description non renseignée'}
-    </ContributorIntro>
+    <ContributorIntro
+      intro={contributor.intro || 'Description non renseignée'}
+    />
 
     {showExampleLink && contributor.contribution.example.matchingUrl && (
       <ContributionExample
