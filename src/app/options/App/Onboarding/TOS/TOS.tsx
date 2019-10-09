@@ -17,6 +17,10 @@ const Title = styled(SubTitle)`
   margin-bottom: 0;
 `;
 
+const TitleLMEM = styled(Title)`
+  color: ${props => props.theme.activeColor};
+`;
+
 const TOSTitle = styled.h3`
   margin-top: 32px;
   margin-bottom: 16px;
@@ -63,7 +67,14 @@ export default ({
     <Wrapper>
       {updatedFromLmem ? (
         <>
-          <LMEMToBulles />
+          <Intro>
+            <LMEMToBulles />
+
+            <TitleLMEM>
+              Votre extension s&apos;ouvre à de nouveaux contributeurs
+              <br /> et change de nom.
+            </TitleLMEM>
+          </Intro>
 
           <OnboardingSteps activeStep={1} />
 
