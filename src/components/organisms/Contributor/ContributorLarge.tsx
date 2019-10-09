@@ -39,7 +39,7 @@ const StatsWrapper = styled.div`
 interface IntroProps {
   intro: string;
 }
-const ContributorIntro = styled.p.attrs<IntroProps>(
+const ContributorIntro = styled.div.attrs<IntroProps>(
   ({ intro }: IntroProps) => ({
     dangerouslySetInnerHTML: { __html: intro }
   })
@@ -47,6 +47,10 @@ const ContributorIntro = styled.p.attrs<IntroProps>(
   margin: 20px 0 0;
   font-size: 15px;
   color: ${props => props.theme.formBorder};
+
+  & > p {
+    margin: 0;
+  }
 `;
 
 interface ContributionExampleProps {
@@ -59,7 +63,7 @@ const ContributionExample = styled(ExternalLink)<ContributionExampleProps>`
   font-size: 12px;
   color: ${props =>
     props.highlighted ? props.theme.highlightedLink : props.theme.activeColor};
-  text-transform: ${props => (props.highlighted ? 'uppercase' : 'none')};
+  text-transform: uppercase;
 `;
 
 interface Props {
