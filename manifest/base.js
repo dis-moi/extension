@@ -11,8 +11,7 @@ const icons = require('./icons');
 module.exports = Object.freeze({
   name: 'Bulles',
   description:
-    'Amis, media, experts vous informent directement sur les pages web visitées. ' +
-    'Vous aussi, postez librement des messages sur n’importe quelle page du web. ',
+    'Amis, media, experts vous informent directement sur les pages web visitées. ',
   version,
   manifest_version: 2,
   icons,
