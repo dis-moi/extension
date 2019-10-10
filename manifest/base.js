@@ -36,9 +36,9 @@ module.exports = Object.freeze({
     'unlimitedStorage',
     'http://*/*',
     'https://*/*'
-  ],
-  web_accessible_resources: ['img/*', 'fonts/*'],
+  ]
+  /* web_accessible_resources: ['img/*', 'fonts/*'],
   externally_connectable: {
     matches: ['https://*.lmem.net/*']
-  }
+  } */
 });
