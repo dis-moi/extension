@@ -9,5 +9,9 @@ storiesOf('forms/SubmitContribution', module)
   .addDecorator(formStoreDecorator)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
   .add('normal', () => (
-    <SubmitContribution onSubmit={action('onSubmit')} errors={[]} />
+    <SubmitContribution
+      onUrlChange={action('onUrlChange')}
+      onSubmit={action('onSubmit')}
+      errors={[]}
+    />
   ));

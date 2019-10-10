@@ -59,13 +59,6 @@ export const getExtensionInstallationDate = createSelector(
     details.datetime ? new Date(details.datetime) : undefined
 );
 
-export const getTab = (state: ContentState) => state.tab;
-
-export const getURL = (state: ContentState) => {
-  const tab = getTab(state);
-  return tab ? tab.url : '';
-};
-
 export const getPathname = (state: ContentState) => getLocation(state).pathname;
 
 export const isNoticeContext = (state: ContentState) => {
