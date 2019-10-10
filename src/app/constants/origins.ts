@@ -6,4 +6,4 @@ function originFromEnv(key: string) {
   return origin;
 }
 
-export const LMEM_BACKEND_ORIGIN = originFromEnv('LMEM_BACKEND_ORIGIN');
+export const BACKEND_ORIGIN = originFromEnv('BACKEND_ORIGIN');

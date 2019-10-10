@@ -3,24 +3,24 @@ const base = require('./base');
 
 module.exports = {
   ...base,
-  name: 'LMEM - STAGING',
+  name: 'Bulles - STAGING',
   content_security_policy: csp({
     directives: {
       'default-src': [
-        'https://staging-notices.lmem.net',
-        'https://notices.lmem.net'
+        'https://staging-notices.bulles.fr',
+        'https://notices.bulles.fr'
       ],
       'connect-src': [
-        'https://staging-notices.lmem.net',
-        'https://notices.lmem.net',
+        'https://staging-notices.bulles.fr',
+        'https://notices.bulles.fr',
         'https://sentry.io/api/*'
       ],
       'script-src': ["'self'", "'unsafe-eval'"],
       'object-src': ["'self'"],
       'img-src': [
         "'self'",
-        'https://staging-notices.lmem.net',
-        'https://notices.lmem.net',
+        'https://staging-notices.bulles.fr',
+        'https://notices.bulles.fr',
         'data:'
       ],
       'font-src': ["'self'", 'data:'],

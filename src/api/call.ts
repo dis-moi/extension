@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch';
-import { LMEM_BACKEND_ORIGIN } from 'app/constants/origins';
+import { BACKEND_ORIGIN } from 'app/constants/origins';
 import * as R from 'ramda';
 
 type GetParamValue = string | string[];
@@ -23,7 +23,7 @@ const buildQueryString: BuildQueryString = R.pipe(
 );
 
 export const get = (path: string, data: object = {}) => {
-  const endpoint = path.startsWith('http') ? path : LMEM_BACKEND_ORIGIN + path;
+  const endpoint = path.startsWith('http') ? path : BACKEND_ORIGIN + path;
   const queryString = R.isEmpty(data) ? '' : buildQueryString(data);
   return fetch(`${endpoint}${queryString}`).then(response => {
     if (response.status >= 400) {
@@ -34,7 +34,7 @@ export const get = (path: string, data: object = {}) => {
 };
 
 export const post = (path: string, data: {} | []) =>
-  fetch(path.startsWith('http') ? path : LMEM_BACKEND_ORIGIN + path, {
+  fetch(path.startsWith('http') ? path : BACKEND_ORIGIN + path, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

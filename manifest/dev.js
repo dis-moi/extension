@@ -3,7 +3,7 @@ const base = require('./base');
 
 module.exports = {
   ...base,
-  name: 'LMEM - DEV',
+  name: 'Bulles - DEV',
   content_security_policy: csp({
     directives: {
       'script-src': ["'self'", "'unsafe-eval'"],

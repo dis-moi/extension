@@ -9,11 +9,10 @@ const version = require('../package.json').version;
 const icons = require('./icons');
 
 module.exports = Object.freeze({
-  name: 'Le Même en Mieux',
-  short_name: 'LMEM',
+  name: 'Bulles',
   description:
-    'Qualité, prix, éthique : s’il existe un meilleur choix, vous le saurez. ' +
-    'Gratuit et sans pub, respecte votre vie privée.',
+    'Amis, media, experts vous informent directement sur les pages web visitées. ' +
+    'Vous aussi, postez librement des messages sur n’importe quelle page du web. ',
   version,
   manifest_version: 2,
   icons,
@@ -27,7 +26,7 @@ module.exports = Object.freeze({
       '48': 'img/logo/48x48.png',
       '128': 'img/logo/128x128.png'
     },
-    default_title: 'Le Même en Mieux'
+    default_title: 'Bulles'
   },
   permissions: [
     'geolocation',

@@ -1,7 +1,7 @@
 {
-  "name": "lmem-recommendations",
+  "name": "bulles-webextension",
   "version": "2.3.24",
-  "description": "LMEM Recommendations web extensions using React+Redux.",
+  "description": "Bulles Recommendations web extensions using React+Redux.",
   "engines": {
     "node": ">=8"
   },
@@ -17,8 +17,8 @@
     "build": "yarn build:staging && yarn build:production",
     "release": "yarn release:staging && yarn release:production",
     "clean": "rm -rf build",
-    "test": "LMEM_BACKEND_ORIGIN='' mocha --require ts-node/register --require tsconfig-paths/register 'src/**/*.spec.ts' 'test/app/*.ts' 'test/app/**/*.ts'",
-    "test:watch": "LMEM_BACKEND_ORIGIN='' mocha --require ts-node/register --require tsconfig-paths/register 'src/**/*.spec.ts' 'test/app/*.ts' 'test/app/**/*.ts' --watch --watch-extensions ts",
+    "test": "BACKEND_ORIGIN='' mocha --require ts-node/register --require tsconfig-paths/register 'src/**/*.spec.ts' 'test/app/*.ts' 'test/app/**/*.ts'",
+    "test:watch": "BACKEND_ORIGIN='' mocha --require ts-node/register --require tsconfig-paths/register 'src/**/*.spec.ts' 'test/app/*.ts' 'test/app/**/*.ts' --watch --watch-extensions ts",
     "typecheck": "tsc --noEmit",
     "lint": "yarn lint:ts && yarn lint:css",
     "lint:ts": "eslint 'src/**/*.{js,ts,tsx}'",
@@ -44,7 +44,7 @@
     "type": "git",
     "url": "https://github.com/insitu-project/recommendations-webextension"
   },
-  "homepage": "https://www.lmem.net",
+  "homepage": "https://www.bulles.fr",
   "author": "INSITU SAS (https://github.com/insitu-project)",
   "contributors": [
     "Benjamin Menant (https://github.com/bmenant)",
