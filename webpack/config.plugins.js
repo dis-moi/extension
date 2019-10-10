@@ -15,33 +15,31 @@ const { version } = require('../package.json');
 
 const BUILD_CONFIG = {
   dev: {
-    LMEM_BACKEND_ORIGIN: '"https://staging-notices.lmem.net/api/v3/"',
+    BACKEND_ORIGIN: '"https://staging-notices.bulles.fr/api/v3/"',
     REFRESH_MC_INTERVAL: '5*60*1000',
     REFRESH_CONTRIBUTORS_INTERVAL: '5*60*1000'
   },
   devOnProductionApi: {
-    LMEM_BACKEND_ORIGIN: '"https://notices.lmem.net/api/v3/"',
+    BACKEND_ORIGIN: '"https://notices.bulles.fr/api/v3/"',
     REFRESH_MC_INTERVAL: '5*60*1000',
     REFRESH_CONTRIBUTORS_INTERVAL: '5*60*1000'
   },
   staging: {
-    LMEM_BACKEND_ORIGIN: '"https://staging-notices.lmem.net/api/v3/"',
-    UNINSTALL_ORIGIN: "'https://www.lmem.net/desinstallation'",
+    BACKEND_ORIGIN: '"https://staging-notices.bulles.fr/api/v3/"',
+    UNINSTALL_ORIGIN: "'https://www.bulles.fr/desinstallation'",
     REFRESH_MC_INTERVAL: '5*60*1000',
     REFRESH_CONTRIBUTORS_INTERVAL: '5*60*1000',
     SENTRY_DSN: '"https://a22936b545a54f37b153b3f9e2c98790@sentry.io/1404847"'
   },
   chromium: {
-    LMEM_BACKEND_ORIGIN: '"https://notices.lmem.net/api/v3/"',
-    UNINSTALL_ORIGIN: "'https://www.lmem.net/desinstallation'",
+    BACKEND_ORIGIN: '"https://notices.bulles.fr/api/v3/"',
+    UNINSTALL_ORIGIN: "'https://www.bulles.fr/desinstallation'",
     REFRESH_MC_INTERVAL: '30*60*1000',
     REFRESH_CONTRIBUTORS_INTERVAL: '30*60*1000',
-    ONBOARDING_ORIGIN: '"https://bienvenue.lmem.net?extensionInstalled"',
     SENTRY_DSN: '"https://a22936b545a54f37b153b3f9e2c98790@sentry.io/1404847"'
   },
   firefox: {
-    LMEM_BACKEND_ORIGIN: '"https://notices.lmem.net/api/v3/"',
-    ONBOARDING_ORIGIN: '"https://bienvenue.lmem.net?extensionInstalled"',
+    BACKEND_ORIGIN: '"https://notices.bulles.fr/api/v3/"',
     REFRESH_MC_INTERVAL: '30*60*1000',
     REFRESH_CONTRIBUTORS_INTERVAL: '30*60*1000',
     SENTRY_DSN: '"https://a22936b545a54f37b153b3f9e2c98790@sentry.io/1404847"'
@@ -126,7 +124,7 @@ module.exports = (env = {}, argv = {}, outputPath) => {
       new CleanWebpackPlugin(),
       new ZipPlugin({
         path: '..',
-        filename: `lmem-v${version}-${env.build}.zip`
+        filename: `bulles-v${version}-${env.build}.zip`
       })
     );
   }

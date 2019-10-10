@@ -1,5 +1,5 @@
 interface CustomWindow extends Window {
-  __LMEM__CONTENT_SCRIPT_INJECTED__?: boolean;
+  __BULLES__CONTENT_SCRIPT_INJECTED__?: boolean;
 }
 
 interface AppEnv extends NodeJS.ProcessEnv {

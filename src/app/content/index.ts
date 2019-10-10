@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { Scope } from '@sentry/browser';
 
-if (!(window as CustomWindow).__LMEM__CONTENT_SCRIPT_INJECTED__) {
+if (!(window as CustomWindow).__BULLES__CONTENT_SCRIPT_INJECTED__) {
   const {
     captureException,
     configureSentryScope,
@@ -26,7 +26,7 @@ if (!(window as CustomWindow).__LMEM__CONTENT_SCRIPT_INJECTED__) {
     const externalClickHandler = require('./externalClickHandler').default;
     const handleExternalClick = externalClickHandler(store);
 
-    (window as CustomWindow).__LMEM__CONTENT_SCRIPT_INJECTED__ = true;
+    (window as CustomWindow).__BULLES__CONTENT_SCRIPT_INJECTED__ = true;
 
     documentReady.then(() => {
       document.addEventListener('click', handleExternalClick);
