@@ -9,8 +9,8 @@ module.exports = {
       'script-src': ["'self'", "'unsafe-eval'"],
       'object-src': ["'self'"]
     }
-  }),
-  externally_connectable: {
+  })
+  /*externally_connectable: {
     matches: [...base.externally_connectable.matches, '*://localhost/*']
-  }
+  }*/
 };
