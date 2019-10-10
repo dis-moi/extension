@@ -12,11 +12,6 @@ import TOSText from './TOSText';
 import TOSCheckbox from './TOSCheckbox';
 import OnboardingSteps from '../OnboardingAtoms/OnboardingSteps/OnboardingSteps';
 
-
-const BullesWrapper = styled(Wrapper)`
-  background: red;
-`;
-
 const Title = styled(SubTitle)`
   margin-top: 32px;
   margin-bottom: 0;
@@ -65,9 +60,9 @@ export default ({
   const [acceptTosChecked, setTosChecked] = useState(false);
 
   return (
-    <>
-    {updatedFromLmem ? (
-      <Wrapper>
+    <Wrapper bulles={!updatedFromLmem}>
+      {updatedFromLmem ? (
+        <>
           <LMEMToBulles />
 
           <OnboardingSteps activeStep={1} />
@@ -103,15 +98,16 @@ export default ({
               Voir toutes les nouveautés
             </ExternalLink>
           </TOSText>
+        </>
       ) : (
-        <BullesWrapper>
+        <>
           <Intro>
             <LogoBeta />
 
             <Title>
               Pour finaliser l’installation, veuillez lire et accepter <br />
               les conditions générales d’utilisation.
-          </Title>
+            </Title>
           </Intro>
 
           <TOSTitle>Nos engagements</TOSTitle>
@@ -120,18 +116,18 @@ export default ({
             <TOSListItem>
               <strong>Liberté d’information</strong> : Vous recevez
               l’information que vous avez choisie.
-          </TOSListItem>
+            </TOSListItem>
             <TOSListItem>
               <strong>Pas de publicité</strong>
             </TOSListItem>
             <TOSListItem>
               <strong>Anonymat:</strong> Pas d’email ni de compte nécessaires
               pour naviguer avec Bulles
-          </TOSListItem>
+            </TOSListItem>
             <TOSListItem>
               <strong>Seules des données strictement utiles</strong> au
               fonctionnement du service sont collectées
-          </TOSListItem>
+            </TOSListItem>
             <TOSListItem>
               <strong>Aucune revente ni divulgation de données</strong>
             </TOSListItem>
@@ -144,27 +140,22 @@ export default ({
           </TOSText>
 
           <TOSTitle>Conditions générales d’utilisation</TOSTitle>
-        )}
+        </>
+      )}
 
       {termsOfServiceAccepted !== undefined &&
         (termsOfServiceAccepted ? (
           <TOSAlreadyAccepted />
-          ) : (
-            <TOSCheckbox onChange={setTosChecked} checked={acceptTosChecked} />
-            ))}
+        ) : (
+          <TOSCheckbox onChange={setTosChecked} checked={acceptTosChecked} />
+        ))}
 
       <OnboardinButton
         disabled={!acceptTosChecked && !termsOfServiceAccepted}
         onClick={onContinue}
-        >
+      >
         Continuer
       </OnboardinButton>
-
-      { updatedFromLmem ? (
-          </Wrapper>
-        ):(
-          </BullesWrapper>
-        )
-      }
-    </>
+    </Wrapper>
   );
+};
