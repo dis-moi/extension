@@ -1,5 +1,5 @@
 import { SagaIterator } from 'redux-saga';
-import { takeLatest, select, put, call, take } from 'redux-saga/effects';
+import { takeLatest, select, put, call, take, all } from 'redux-saga/effects';
 import { REHYDRATE } from 'redux-persist';
 import { captureException } from 'app/utils/sentry';
 import openOptions from 'webext/openOptionsTab';
@@ -16,6 +16,10 @@ import { areTosAccepted } from 'app/background/selectors/prefs';
 import { getInstallationDate } from 'app/background/selectors/installationDetails';
 import { InstallationDetails } from 'app/lmem/installation';
 import { version } from '../../../../package.json';
+import { subscribe } from 'app/actions';
+
+// @todo plz remove me after the beta
+const lmemContributorIds = [24, 25, 16];
 
 export function* installedSaga({
   payload: { installedDetails }
@@ -53,6 +57,7 @@ export function* installationDetailsSaga(): SagaIterator {
       yield call(chrome.browserAction.setTitle, {
         title: 'Le Même en Mieux devient Bulles'
       });
+      yield all(lmemContributorIds.map(id => put(subscribe(id))));
     }
 
     const onboardingRequired = yield select(isOnboardingRequired);
