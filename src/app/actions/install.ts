@@ -47,6 +47,7 @@ export interface SetupAction extends BaseAction {
   };
 }
 
+// FIXME it seems that this action is never used ??
 export const setup = (
   subscriptions: [],
   showExamples: boolean,

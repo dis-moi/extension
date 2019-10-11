@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import SuggestionsScreen from '../../Settings/SuggestionsScreen';
+import { lmemContributorIds } from 'app/lmemContributors';
 import BullesLogo from 'components/atoms/LogoBeta';
+import SuggestionsScreen from '../../Settings/SuggestionsScreen';
 import OnboardingButton from '../OnboardingAtoms/OnboardingButton';
 import Intro from '../OnboardingAtoms/OnboardingIntro';
 import SubTitle from '../OnboardingAtoms/OnboardingSubTitle';
@@ -62,7 +63,9 @@ export default ({
     </Intro>
 
     <SuggestionsWrapper>
-      <SuggestionsScreen />
+      <SuggestionsScreen
+        preselectedContributorsIds={updatedFromLmem ? lmemContributorIds : null}
+      />
     </SuggestionsWrapper>
 
     <BottomLineBg>
