@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.0.0...v3.0.1) (2019-10-11)
+
+
+### Bug Fixes
+
+* new version ([1b95d4e](https://github.com/insitu-project/recommendations-webextension/commit/1b95d4e))
+
 # [3.0.0](https://github.com/insitu-project/recommendations-webextension/compare/v2.3.2...v3.0.0) (2019-10-11)
 
 
