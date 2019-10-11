@@ -1,3 +1,10 @@
+## [3.0.2](https://github.com/insitu-project/recommendations-webextension/compare/v3.0.1...v3.0.2) (2019-10-11)
+
+
+### Bug Fixes
+
+* **firefox:** remove options_page entry in manifest ([#454](https://github.com/insitu-project/recommendations-webextension/issues/454)) ([224d339](https://github.com/insitu-project/recommendations-webextension/commit/224d339))
+
 ## [3.0.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.0.0...v3.0.1) (2019-10-11)
 
 
