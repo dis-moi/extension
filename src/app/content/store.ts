@@ -7,7 +7,6 @@ import { InstallationDetailsState } from 'app/background/reducers/installationDe
 import rootReducer from './reducers';
 import { UIState } from './reducers/ui';
 import { NoticesState } from './reducers/notices';
-import { TabState } from './reducers/tab';
 import { ServiceMessageState } from './reducers/serviceMessage.reducer';
 import { ContributorsState } from './reducers/contributors.reducer';
 import rootSaga from './sagas';
@@ -18,7 +17,6 @@ export interface ContentState {
   installationDetails: InstallationDetailsState;
   ui: UIState;
   notices: NoticesState;
-  tab: TabState;
   router: RouterState;
   form: FormStateMap;
   serviceMessage: ServiceMessageState;
