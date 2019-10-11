@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import * as R from 'ramda';
-import { findContributorIn, StatefulContributor } from 'app/lmem/contributor';
+import {
+  findContributorIn,
+  sortContributorsByContributions,
+  StatefulContributor
+} from 'app/lmem/contributor';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
 
 const ContributorsList = styled.section`
@@ -24,13 +28,23 @@ export interface SuggestionsScreenProps {
   unsubscribe: (contributor: StatefulContributor) => () => void;
   showExampleLink?: boolean;
   highlightExampleLink?: boolean;
+  preselectedContributorsIds?: number[] | null;
 }
+
+const addPreselectedContributors = (
+  allContributors: StatefulContributor[],
+  preselectedContributorsIds: number[]
+) =>
+  R.concat(preselectedContributorsIds.map((id: number) =>
+    R.find(R.propEq('id', id), allContributors)
+  ) as StatefulContributor[]);
 
 const SuggestionsScreen = ({
   subscriptions,
   suggestions,
   subscribe,
-  unsubscribe
+  unsubscribe,
+  preselectedContributorsIds
 }: SuggestionsScreenProps) => {
   const [initialSuggestions, setInitialSuggestions] = useState(suggestions);
 
@@ -38,9 +52,15 @@ const SuggestionsScreen = ({
     if (initialSuggestions.length === 0) setInitialSuggestions(suggestions);
   }, [suggestions]);
 
-  const suggestionsToRender = initialSuggestions.map(
-    findContributorIn(R.concat(subscriptions, suggestions))
-  );
+  const allContributors = R.concat(subscriptions, suggestions);
+
+  const suggestionsToRender = R.pipe(
+    R.map(findContributorIn(allContributors)),
+    preselectedContributorsIds
+      ? addPreselectedContributors(allContributors, preselectedContributorsIds)
+      : R.identity,
+    sortContributorsByContributions
+  )(initialSuggestions);
 
   return (
     <>

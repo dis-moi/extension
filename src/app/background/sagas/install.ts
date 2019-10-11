@@ -17,9 +17,7 @@ import { getInstallationDate } from 'app/background/selectors/installationDetail
 import { InstallationDetails } from 'app/lmem/installation';
 import { version } from '../../../../package.json';
 import { subscribe } from 'app/actions';
-
-// @todo plz remove me after the beta
-const lmemContributorIds = [24, 25, 16];
+import { lmemContributorIds } from 'app/lmemContributors';
 
 export function* installedSaga({
   payload: { installedDetails }
