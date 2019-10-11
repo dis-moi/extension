@@ -59,6 +59,7 @@ const SuggestionsScreen = ({
     preselectedContributorsIds
       ? addPreselectedContributors(allContributors, preselectedContributorsIds)
       : R.identity,
+    R.uniqBy(R.prop('id')),
     sortContributorsByContributions
   )(initialSuggestions);
 
