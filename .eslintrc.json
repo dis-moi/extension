@@ -16,6 +16,7 @@
   },
   "globals": {
     "chrome": "readonly",
+    "browser": "readonly",
     "fetch": "readonly"
   },
   "extends": [

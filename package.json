@@ -7,6 +7,7 @@
   },
   "scripts": {
     "start": "webpack --watch --progress --mode=development --env.build=dev",
+    "start:firefoxProduction": "webpack --watch --progress --mode=development --env.build=dev --env.firefox --env.api=production",
     "start:productionApi": "webpack --watch --progress --mode=development --env.build=dev --env.api=production",
     "build:staging": "webpack --mode=production --env.build=staging",
     "release:staging": "webpack --mode=production --env.build=staging --env.sentry",
@@ -73,6 +74,7 @@
     "@types/chai": "^4.1.7",
     "@types/chrome": "^0.0.81",
     "@types/faker": "^4.1.5",
+    "@types/firefox-webext-browser": "^70.0.1",
     "@types/flat": "^0.0.28",
     "@types/history": "^4.7.2",
     "@types/isomorphic-fetch": "^0.0.35",
@@ -191,6 +193,7 @@
     "typeface-sedgwick-ave": "^0.0.54",
     "typescript": "^3.5.3",
     "url-loader": "^2.1.0",
+    "webextension-polyfill": "^0.5.0",
     "webpack": "^4.39.2",
     "webpack-bundle-analyzer": "^3.4.1",
     "webpack-cli": "^3.1.2",

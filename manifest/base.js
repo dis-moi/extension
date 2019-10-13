@@ -18,6 +18,13 @@ module.exports = Object.freeze({
   background: {
     page: 'background.html'
   },
+  content_scripts: [
+    {
+      matches: ['*://*/*'],
+      js: ['js/browser-polyfill.js', 'js/content.bundle.js'],
+      run_at: 'document_end'
+    }
+  ],
   browser_action: {
     default_icon: {
       '16': 'img/logo/16x16.png',
