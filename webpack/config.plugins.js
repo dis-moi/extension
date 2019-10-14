@@ -28,21 +28,18 @@ const BUILD_CONFIG = {
     BACKEND_ORIGIN: '"https://staging-notices.bulles.fr/api/v3/"',
     UNINSTALL_ORIGIN: "'https://www.bulles.fr/desinstallation'",
     REFRESH_MC_INTERVAL: '5*60*1000',
-    REFRESH_CONTRIBUTORS_INTERVAL: '5*60*1000',
-    SENTRY_DSN: '"https://a22936b545a54f37b153b3f9e2c98790@sentry.io/1404847"'
+    REFRESH_CONTRIBUTORS_INTERVAL: '5*60*1000'
   },
   chromium: {
     BACKEND_ORIGIN: '"https://notices.bulles.fr/api/v3/"',
     UNINSTALL_ORIGIN: "'https://www.bulles.fr/desinstallation'",
     REFRESH_MC_INTERVAL: '30*60*1000',
-    REFRESH_CONTRIBUTORS_INTERVAL: '30*60*1000',
-    SENTRY_DSN: '"https://a22936b545a54f37b153b3f9e2c98790@sentry.io/1404847"'
+    REFRESH_CONTRIBUTORS_INTERVAL: '30*60*1000'
   },
   firefox: {
     BACKEND_ORIGIN: '"https://notices.bulles.fr/api/v3/"',
     REFRESH_MC_INTERVAL: '30*60*1000',
-    REFRESH_CONTRIBUTORS_INTERVAL: '30*60*1000',
-    SENTRY_DSN: '"https://a22936b545a54f37b153b3f9e2c98790@sentry.io/1404847"'
+    REFRESH_CONTRIBUTORS_INTERVAL: '30*60*1000'
   }
 };
 
