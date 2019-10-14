@@ -1,3 +1,10 @@
+## [3.1.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.1.0...v3.1.1) (2019-10-14)
+
+
+### Bug Fixes
+
+* **sentry:** remove SENTRY_DSN from code, already in ENV variable ([#458](https://github.com/insitu-project/recommendations-webextension/issues/458)) ([c42d933](https://github.com/insitu-project/recommendations-webextension/commit/c42d933))
+
 # [3.1.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.0.2...v3.1.0) (2019-10-14)
 
 
