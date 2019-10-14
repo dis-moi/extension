@@ -1,5 +1,10 @@
 const forbiddenTabs = [
   /^about:.*/,
+  /.*\.pdf$/i,
+  /.*\.jpeg$/i,
+  /.*\.jpg$/i,
+  /.*\.png$/i,
+  /.*\.gif$/i,
   /.*accounts-static\.cdn\.mozilla\.net.*/,
   /.*accounts\.firefox\.com.*/,
   /.*addons\.cdn\.mozilla\.net.*/,
