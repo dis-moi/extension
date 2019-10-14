@@ -8,10 +8,10 @@ import {
   TosAcceptedAction,
   transmitTosStatus
 } from 'app/actions';
-import sendToTab from 'webext/sendActionToTab';
 import assocTabIfNotGiven from 'webext/assocTabIfNotGiven';
 import { getInstallationDetails } from '../selectors/installationDetails';
 import { areTosAccepted } from '../selectors/prefs';
+import sendToTabSaga from './lib/sendToTab.saga';
 
 const isOptionsTabReadyAction = (action: AppAction): boolean =>
   action.type === 'LISTENING_ACTIONS_READY' &&
@@ -25,7 +25,7 @@ function* sendTosStateToOptionsTab(
   const transmitAction = assocTabIfNotGiven(tab)(
     transmitTosStatus(yield select(areTosAccepted))
   );
-  sendToTab(tab.id, transmitAction);
+  yield sendToTabSaga(tab, transmitAction);
 }
 
 function* sendInstallationDetailsToOptionsTab(
@@ -36,8 +36,7 @@ function* sendInstallationDetailsToOptionsTab(
   const transmitAction = assocTabIfNotGiven(tab)(
     updateInstallationDetails(installationDetails)
   );
-  sendToTab(tab.id, transmitAction);
-
+  yield sendToTabSaga(tab, transmitAction);
   yield sendTosStateToOptionsTab(action);
 }
 

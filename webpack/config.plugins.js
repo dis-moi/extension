@@ -52,7 +52,8 @@ const selectEnvVarsToInject = R.pick([
   'SEND_CONTRIBUTION_FROM',
   'SEND_CONTRIBUTION_TO',
   'SEND_IN_BLUE_TOKEN',
-  'SENTRY_DSN'
+  'SENTRY_DSN',
+  'NODE_ENV'
 ]);
 const formatEnvVars = R.map(value => `"${value}"`);
 
@@ -68,6 +69,10 @@ module.exports = (env = {}, argv = {}, outputPath) => {
     { from: 'src/assets', to: buildPath },
     {
       from: 'src/app/lmem/draft-preview/grabDraftNotices.js',
+      to: path.join(buildPath, 'js')
+    },
+    {
+      from: 'node_modules/webextension-polyfill/dist/browser-polyfill.js',
       to: path.join(buildPath, 'js')
     }
   ];
@@ -85,7 +90,8 @@ module.exports = (env = {}, argv = {}, outputPath) => {
         ...getBuildConfig(env.build, env.api),
         ...processENVVarsToInject(process.env),
         BUILD: JSON.stringify(env.build),
-        SENTRY_ENABLE: env.sentry ? 'true' : 'false'
+        SENTRY_ENABLE: env.sentry ? 'true' : 'false',
+        FIREFOX_BUILD: env.build === 'firefox' ? 'true' : 'false'
       }
     }),
     new ModuleNotFoundPlugin(path.resolve(__dirname, '..')),
@@ -101,7 +107,7 @@ module.exports = (env = {}, argv = {}, outputPath) => {
     }),
     new AddAssetWebpackPlugin(
       'manifest.json',
-      JSON.stringify(manifests[env.build], null, 2)
+      JSON.stringify(manifests[env.firefox ? 'firefoxDev' : env.build], null, 2)
     ),
     new CopyWebpackPlugin(copyConfig)
   ];

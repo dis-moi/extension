@@ -1,7 +1,11 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-var-requires, import/first */
+import Logger from 'app/utils/Logger';
+Logger.info('Content script injected...');
+
 import { Scope } from '@sentry/browser';
 
 if (!(window as CustomWindow).__BULLES__CONTENT_SCRIPT_INJECTED__) {
+  Logger.info('Running content script ...');
   const {
     captureException,
     configureSentryScope,
@@ -9,14 +13,11 @@ if (!(window as CustomWindow).__BULLES__CONTENT_SCRIPT_INJECTED__) {
   } = require('../utils/sentry');
 
   try {
-    try {
+    if (!process.env.FIREFOX_BUILD) {
       initSentry();
-
       configureSentryScope((scope: Scope) => {
         scope.setTag('context', 'content');
       });
-    } catch (error) {
-      console.warn('Could not init Sentry in contentScript', error); // eslint-disable-line no-console
     }
 
     require('typeface-lato');
