@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.0.2...v3.1.0) (2019-10-14)
+
+
+### Features
+
+* **onboarding:** change text ([#456](https://github.com/insitu-project/recommendations-webextension/issues/456)) ([#457](https://github.com/insitu-project/recommendations-webextension/issues/457)) ([3cc4834](https://github.com/insitu-project/recommendations-webextension/commit/3cc4834))
+
 ## [3.0.2](https://github.com/insitu-project/recommendations-webextension/compare/v3.0.1...v3.0.2) (2019-10-11)
 
 
