@@ -14,7 +14,7 @@ interface WindowWithLevel extends Window {
 }
 
 const defaultLevel =
-  process.env.NODE_ENV === 'production' ? Level.ERROR : Level.INFO;
+  process.env.NODE_ENV === 'production' ? Level.TRACE : Level.INFO;
 
 const log = (level: Level, messages: unknown[]) => {
   const { BULLES_LOG_LEVEL } = window as WindowWithLevel;

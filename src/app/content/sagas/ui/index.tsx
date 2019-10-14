@@ -15,6 +15,7 @@ import {
   ToggleUIAction
 } from 'app/actions';
 import { CLOSE, NOTICES_FOUND, OPEN, OPENED } from 'app/constants/ActionTypes';
+import Logger from 'app/utils/Logger';
 import {
   getPathname,
   hasUnreadNotices,
@@ -41,9 +42,15 @@ export function* openSaga() {
         yield put(replace('/'));
       }
 
-      if (isMounted && contentDocument.visibilityState === 'visible') {
+      if (
+        isMounted &&
+        contentDocument &&
+        contentDocument.visibilityState === 'visible'
+      ) {
+        Logger.info('UI already mounted, showing it !');
         show();
       } else {
+        Logger.info('Mounting UI !');
         contentDocument = yield call(append, iframe);
         const root = document.createElement('div');
         contentDocument.body.appendChild(root);

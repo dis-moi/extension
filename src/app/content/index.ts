@@ -13,14 +13,11 @@ if (!(window as CustomWindow).__BULLES__CONTENT_SCRIPT_INJECTED__) {
   } = require('../utils/sentry');
 
   try {
-    try {
+    if (!process.env.FIREFOX_BUILD) {
       initSentry();
-
       configureSentryScope((scope: Scope) => {
         scope.setTag('context', 'content');
       });
-    } catch (error) {
-      Logger.warn('Could not init Sentry in contentScript', error);
     }
 
     require('typeface-lato');

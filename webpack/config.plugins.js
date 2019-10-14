@@ -93,7 +93,8 @@ module.exports = (env = {}, argv = {}, outputPath) => {
         ...getBuildConfig(env.build, env.api),
         ...processENVVarsToInject(process.env),
         BUILD: JSON.stringify(env.build),
-        SENTRY_ENABLE: env.sentry ? 'true' : 'false'
+        SENTRY_ENABLE: env.sentry ? 'true' : 'false',
+        FIREFOX_BUILD: env.build === 'firefox' ? 'true' : 'false'
       }
     }),
     new ModuleNotFoundPlugin(path.resolve(__dirname, '..')),
