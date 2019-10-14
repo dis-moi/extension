@@ -10,7 +10,7 @@ import { version } from '../../../package.json';
 import Logger from './Logger';
 
 export const initSentry = () => {
-  const blacklist = ['GlobalHandlers', 'ReportingObserver'];
+  const blacklist = ['GlobalHandlers', 'ReportingObserver', 'CaptureConsole'];
   if (process.env.SENTRY_ENABLE) {
     init({
       dsn: process.env.SENTRY_DSN,
