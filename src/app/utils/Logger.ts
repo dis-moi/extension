@@ -17,10 +17,9 @@ const defaultLevel =
   process.env.NODE_ENV === 'production' ? Level.ERROR : Level.INFO;
 
 const log = (level: Level, messages: unknown[]) => {
-  const definedLevel: Level | undefined = (window as WindowWithLevel)
-    .BULLES_LOG_LEVEL;
+  const { BULLES_LOG_LEVEL } = window as WindowWithLevel;
   const treshold: Level =
-    definedLevel === undefined ? defaultLevel : definedLevel;
+    BULLES_LOG_LEVEL === undefined ? defaultLevel : BULLES_LOG_LEVEL;
   if (level >= treshold) {
     if (level >= Level.ERROR)
       console.error(
@@ -42,7 +41,7 @@ const Logger = {
   info: (...messages: unknown[]) => log(Level.INFO, messages),
   warn: (...messages: unknown[]) => log(Level.WARN, messages),
   error: (...messages: unknown[]) => log(Level.ERROR, messages),
-  fatar: (...messages: unknown[]) => log(Level.FATAL, messages)
+  fatal: (...messages: unknown[]) => log(Level.FATAL, messages)
 };
 
 export default Logger;
