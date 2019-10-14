@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import {
   init,
   configureScope,
@@ -8,6 +7,7 @@ import {
   captureException as sentryCaptureException
 } from '@sentry/browser';
 import { version } from '../../../package.json';
+import Logger from './Logger';
 
 export const initSentry = () => {
   const blacklist = ['GlobalHandlers', 'ReportingObserver'];
@@ -40,23 +40,24 @@ export const captureMessage = (
   } else {
     switch (level) {
       case Severity.Fatal:
+        Logger.fatal(message);
+        break;
       case Severity.Error:
       case Severity.Critical:
-        console.error(message);
+        Logger.error(message);
         break;
       case Severity.Warning:
-        console.warn(message);
+        Logger.warn(message);
         break;
-
       case Severity.Info:
-        console.info(message);
+        Logger.info(message);
         break;
       case Severity.Debug:
-        console.debug(message);
+        Logger.debug(message);
         break;
       case Severity.Log:
       default:
-        console.log(message);
+        Logger.trace(message);
         break;
     }
   }
@@ -66,6 +67,6 @@ export const captureException = (exception: unknown): string | undefined => {
   if (process.env.SENTRY_ENABLE) {
     return sentryCaptureException(exception);
   } else {
-    console.error(exception);
+    Logger.error(exception);
   }
 };

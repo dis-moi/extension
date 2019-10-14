@@ -2,7 +2,6 @@ import { createStore, applyMiddleware } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
-import { composeWithDevTools } from 'remote-redux-devtools';
 import rootReducer, { BackgroundState } from '../reducers';
 import middlewares, { sagaMiddleware } from '../middlewares';
 import rootSaga from '../sagas';
@@ -27,22 +26,16 @@ const persistedReducers = persistReducer(
   rootReducer
 );
 
-const composeEnhancers = composeWithDevTools({
-  /* redux-remote-devtools options */
-});
-
 const enhancer =
   process.env.NODE_ENV !== 'production'
-    ? composeEnhancers(
-        applyMiddleware(
-          ...middlewares.concat([
-            require('redux-immutable-state-invariant').default(),
-            require('redux-logger').createLogger({
-              level: 'info',
-              collapsed: true
-            })
-          ])
-        )
+    ? applyMiddleware(
+        ...middlewares.concat([
+          require('redux-immutable-state-invariant').default(),
+          require('redux-logger').createLogger({
+            level: 'info',
+            collapsed: true
+          })
+        ])
       )
     : applyMiddleware(...middlewares);
 
