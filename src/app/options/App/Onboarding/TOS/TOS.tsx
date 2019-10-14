@@ -78,19 +78,15 @@ export default ({
 
           <OnboardingSteps activeStep={1} />
 
-          <TOSText>Votre extension navigateur évolue.</TOSText>
-
           <TOSText>
-            Le principe reste le même : vous recevez des messages en fonction de
-            la page web que vous visitez.
+            L&apos;extension Même en Mieux devient Bulles et permet maintenant à
+            chacun de poster des messages sur les pages du web.
           </TOSText>
 
           <TOSText>
-            <strong>
-              Nouveauté&nbsp;:&nbsp;vous pouvez vous abonner aux amis, media et
-              experts que vous voulez,
-            </strong>{' '}
-            en plus du guide Le Même en Mieux.
+            Amis, média, experts peuvent ainsi vous informer directement sur les
+            pages visitées. Le Même en Mieux devient un contributeur comme les
+            autres.
           </TOSText>
 
           <TOSText>
@@ -99,10 +95,11 @@ export default ({
           </TOSText>
 
           <TOSText>
-            Nous avons également renforcé la{' '}
+            Le{' '}
             <ExternalLink href="https://www.bulles.fr/vie-privee">
-              protection de votre vie privée.
-            </ExternalLink>
+              respect de votre vie privée
+            </ExternalLink>{' '}
+            a également été renforcé.
           </TOSText>
           <TOSText>
             <ExternalLink href="https://www.bulles.fr/evolutions">
