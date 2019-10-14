@@ -1,3 +1,16 @@
+# [3.2.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.1.1...v3.2.0) (2019-10-14)
+
+
+### Bug Fixes
+
+* **sentry:** disable sentry in content script on Firefox ([#461](https://github.com/insitu-project/recommendations-webextension/issues/461)) ([4f7355a](https://github.com/insitu-project/recommendations-webextension/commit/4f7355a))
+
+
+### Features
+
+* **matching:** avoid PDF and images ([#459](https://github.com/insitu-project/recommendations-webextension/issues/459)) ([ad72d23](https://github.com/insitu-project/recommendations-webextension/commit/ad72d23))
+* **onboarding:** change text ([#456](https://github.com/insitu-project/recommendations-webextension/issues/456)) ([87ceebf](https://github.com/insitu-project/recommendations-webextension/commit/87ceebf))
+
 ## [3.1.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.1.0...v3.1.1) (2019-10-14)
 
 
