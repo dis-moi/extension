@@ -7,6 +7,7 @@ interface AppEnv extends NodeJS.ProcessEnv {
   SEND_CONTRIBUTION_TO: string;
   SEND_IN_BLUE_TOKEN: string;
   SENTRY_DSN: string;
+  BUILD: 'firefox' | 'chromium' | 'dev' | 'build';
 }
 
 declare module '*.png' {
