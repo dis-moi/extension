@@ -1,5 +1,5 @@
 import { SagaIterator } from 'redux-saga';
-import { takeLatest, call, select } from 'redux-saga/effects';
+import { takeLatest, call, select, all, put } from 'redux-saga/effects';
 import { StatefulNotice } from 'app/lmem/notice';
 import { BadgeTheme, updateBadge, resetBadge } from 'app/lmem/badge';
 import {
@@ -9,7 +9,8 @@ import {
   badgeResetFailed,
   badgeUpdateFailed,
   AppAction,
-  TabAction
+  TabAction,
+  noticeBadged
 } from 'app/actions';
 import { ReceivedAction } from 'webext/createMessageHandler';
 import { getNoticesToDisplay } from '../selectors/prefs';
@@ -49,6 +50,10 @@ export const updateBadgeSaga = (badgeTheme: BadgeTheme) =>
          I think we should maintain a list of actives notices for each tab. */
 
       const noticesToDisplay = yield select(getNoticesToDisplay(notices));
+
+      yield all(
+        noticesToDisplay.map(({ id }: StatefulNotice) => put(noticeBadged(id)))
+      );
 
       yield call(updateBadge, noticesToDisplay, badgeTheme, action.meta.tab.id);
     } catch (e) {
