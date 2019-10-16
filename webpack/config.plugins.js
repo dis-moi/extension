@@ -117,6 +117,7 @@ module.exports = (env = {}, argv = {}, outputPath) => {
       new SentryWebpackPlugin({
         include: `./build/${env.build}/js`,
         ignore: ['test.*.js*'],
+        urlPrefix: '~/js',
         release: getRelease(env.build)
       })
     );
