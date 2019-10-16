@@ -70,10 +70,13 @@ export const captureMessage = (
   }
 };
 
-export const captureException = (exception: unknown): string | undefined => {
+export const captureException = (
+  exception: unknown,
+  message = ''
+): string | undefined => {
   if (process.env.SENTRY_ENABLE && sentryInitialized) {
     return sentryCaptureException(exception);
   } else {
-    Logger.error(exception);
+    Logger.error(message || `CatchedError: ${message}`);
   }
 };

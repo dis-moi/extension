@@ -5,6 +5,7 @@ import Tab from 'app/lmem/tab';
 import Logger from 'app/utils/Logger';
 import sendToTab from 'webext/sendActionToTab';
 import isAuthorizedTab from 'webext/isAuthorizedTab';
+import { captureException } from 'app/utils/sentry';
 
 const MAX_RETRIES = 100;
 
@@ -18,12 +19,19 @@ function* trySendToTab(
     yield call(sendToTab, tab.id, action);
     Logger.debug(`sent ${action.type} to ${tab.id}(${tab.url}) !`);
   } catch (error) {
-    Logger.debug(
-      `Could not communicate with tab ${tab.id} because ${error.message}, will retry ...`,
-      error
-    );
-    yield delay(200);
-    yield call(trySendToTab, tab, action, remainingRetries - 1);
+    if (remainingRetries > 1) {
+      Logger.debug(
+        `Could not communicate with tab ${tab.id} because ${error.message}, will retry ...`,
+        error
+      );
+      yield delay(200);
+      yield call(trySendToTab, tab, action, remainingRetries - 1);
+    } else {
+      captureException(
+        error,
+        `Could not communicate with tab ${tab.id} after ${MAX_RETRIES} attempts`
+      );
+    }
   }
 }
 
