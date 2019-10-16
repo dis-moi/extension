@@ -5,6 +5,7 @@ const forbiddenTabs = [
   /.*\.jpg$/i,
   /.*\.png$/i,
   /.*\.gif$/i,
+  /^chrome:.*/,
   /.*accounts-static\.cdn\.mozilla\.net.*/,
   /.*accounts\.firefox\.com.*/,
   /.*addons\.cdn\.mozilla\.net.*/,
