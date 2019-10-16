@@ -6,7 +6,7 @@ import {
   captureMessage as sentryCaptureMessage,
   captureException as sentryCaptureException
 } from '@sentry/browser';
-import { version } from '../../../package.json';
+import { getRelease } from '../../../sentry';
 import Logger from './Logger';
 
 let sentryInitialized = false;
@@ -18,7 +18,7 @@ export const initSentry = () => {
       init({
         dsn: process.env.SENTRY_DSN,
         environment: process.env.NODE_ENV,
-        release: `${version}-${process.env.BUILD}`,
+        release: getRelease(process.env.BUILD),
         integrations: integrations =>
           integrations.filter(i => !blacklist.includes(i.name))
       });

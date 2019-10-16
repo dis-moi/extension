@@ -12,6 +12,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const basePlugins = require('../webpack/config.plugins.base');
 const manifests = require('../manifest');
 const { version } = require('../package.json');
+const { getRelease } = require('../sentry');
 
 const BUILD_CONFIG = {
   dev: {
@@ -90,8 +91,7 @@ module.exports = (env = {}, argv = {}, outputPath) => {
         ...getBuildConfig(env.build, env.api),
         ...processENVVarsToInject(process.env),
         BUILD: JSON.stringify(env.build),
-        SENTRY_ENABLE: env.sentry ? 'true' : 'false',
-        FIREFOX_BUILD: env.build === 'firefox' ? 'true' : 'false'
+        SENTRY_ENABLE: env.sentry ? 'true' : 'false'
       }
     }),
     new ModuleNotFoundPlugin(path.resolve(__dirname, '..')),
@@ -117,7 +117,7 @@ module.exports = (env = {}, argv = {}, outputPath) => {
       new SentryWebpackPlugin({
         include: `./build/${env.build}/js`,
         ignore: ['test.*.js*'],
-        release: `web-extension@${version}-${env.build}`
+        release: getRelease(env.build)
       })
     );
   }
