@@ -35,7 +35,7 @@ export const noNoticesDisplayed = (tab: Tab): NoNoticesDisplayedAction => ({
   }
 });
 
-export type feedbackType =
+export type FeedbackType =
   | 'dismiss'
   | 'confirmDismiss'
   | 'undismiss'
@@ -47,56 +47,41 @@ export type feedbackType =
 
 export interface FeedbackOnNoticeAction extends BaseAction {
   type: 'FEEDBACK_ON_NOTICE';
-  payload: { id: number; feedback: feedbackType };
+  payload: { id: number; feedback: FeedbackType };
 }
 
-export const dismissNotice = (id: number): FeedbackOnNoticeAction => ({
+export const createFeedbackOnNoticeAction = (
+  id: number,
+  feedback: FeedbackType
+): FeedbackOnNoticeAction => ({
   type: 'FEEDBACK_ON_NOTICE',
-  payload: { id, feedback: 'dismiss' },
+  payload: { id, feedback },
   meta: { sendToBackground: true }
 });
 
-export const confirmDismissNotice = (id: number): FeedbackOnNoticeAction => ({
-  type: 'FEEDBACK_ON_NOTICE',
-  payload: { id, feedback: 'confirmDismiss' },
-  meta: { sendToBackground: true }
-});
+export const dismissNotice = (id: number) =>
+  createFeedbackOnNoticeAction(id, 'dismiss');
 
-export const undismissNotice = (id: number): FeedbackOnNoticeAction => ({
-  type: 'FEEDBACK_ON_NOTICE',
-  payload: { id, feedback: 'undismiss' },
-  meta: { sendToBackground: true }
-});
+export const confirmDismissNotice = (id: number) =>
+  createFeedbackOnNoticeAction(id, 'confirmDismiss');
 
-export const likeNotice = (id: number): FeedbackOnNoticeAction => ({
-  type: 'FEEDBACK_ON_NOTICE',
-  payload: { id, feedback: 'like' },
-  meta: { sendToBackground: true }
-});
+export const undismissNotice = (id: number) =>
+  createFeedbackOnNoticeAction(id, 'undismiss');
 
-export const unlikeNotice = (id: number): FeedbackOnNoticeAction => ({
-  type: 'FEEDBACK_ON_NOTICE',
-  payload: { id, feedback: 'unlike' },
-  meta: { sendToBackground: true }
-});
+export const likeNotice = (id: number) =>
+  createFeedbackOnNoticeAction(id, 'like');
 
-export const dislikeNotice = (id: number): FeedbackOnNoticeAction => ({
-  type: 'FEEDBACK_ON_NOTICE',
-  payload: { id, feedback: 'dislike' },
-  meta: { sendToBackground: true }
-});
+export const unlikeNotice = (id: number) =>
+  createFeedbackOnNoticeAction(id, 'unlike');
 
-export const confirmDislikeNotice = (id: number): FeedbackOnNoticeAction => ({
-  type: 'FEEDBACK_ON_NOTICE',
-  payload: { id, feedback: 'confirmDislike' },
-  meta: { sendToBackground: true }
-});
+export const dislikeNotice = (id: number) =>
+  createFeedbackOnNoticeAction(id, 'dislike');
 
-export const undislikeNotice = (id: number): FeedbackOnNoticeAction => ({
-  type: 'FEEDBACK_ON_NOTICE',
-  payload: { id, feedback: 'undislike' },
-  meta: { sendToBackground: true }
-});
+export const confirmDislikeNotice = (id: number) =>
+  createFeedbackOnNoticeAction(id, 'confirmDislike');
+
+export const undislikeNotice = (id: number) =>
+  createFeedbackOnNoticeAction(id, 'undislike');
 
 export interface UnfoldNoticeAction extends BaseAction {
   type: 'UNFOLD_NOTICE';
@@ -129,5 +114,25 @@ export interface ResourceLinkClickedAction extends BaseAction {
 
 export const resourceLinkClicked = (id: number): ResourceLinkClickedAction => ({
   type: 'NOTICE/RESOURCE_LINK_CLICKED',
+  payload: id
+});
+
+export interface NoticeBadgedAction extends BaseAction {
+  type: 'NOTICE_BADGED';
+  payload: number;
+}
+
+export const noticeBadged = (id: number): NoticeBadgedAction => ({
+  type: 'NOTICE_BADGED',
+  payload: id
+});
+
+export interface OutboundLinkClickedAction extends BaseAction {
+  type: 'NOTICE/OUTBOUND_LINK_CLICKED';
+  payload: number;
+}
+
+export const outboundLinkClicked = (id: number): OutboundLinkClickedAction => ({
+  type: 'NOTICE/OUTBOUND_LINK_CLICKED',
   payload: id
 });

@@ -49,8 +49,9 @@ export const isChangeOnNoticeAction = (action: AppAction) =>
 export default function* noticesRootSaga() {
   yield all([
     // FIXME change all strings to constants because it’s a pain the ass to refactor (i.e. rename)
-    yield takeLatest(isChangeOnNoticeAction, closeIfNoMoreNoticeToDisplaySaga),
-    yield takeLatest(isClosedByButtonAction, markNoticesReadSaga),
-    yield takeEvery('UNFOLD_NOTICE', markNoticeReadSaga)
+    takeLatest(isChangeOnNoticeAction, closeIfNoMoreNoticeToDisplaySaga),
+    takeLatest(isClosedByButtonAction, markNoticesReadSaga),
+    takeEvery('UNFOLD_NOTICE', markNoticeReadSaga),
+    takeLatest('NOTICE_DISPLAYED', markNoticeReadSaga)
   ]);
 }

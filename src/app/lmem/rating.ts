@@ -9,6 +9,8 @@ export enum RatingType {
   UNFOLD = 'unfold',
   CLICK_MESSAGE = 'click-message',
   CLICK_SOURCE = 'click-source',
+  OUTBOUND_CLICK = 'outbound-click',
+  BADGED = 'badge',
   REPORT = 'report'
 }
 

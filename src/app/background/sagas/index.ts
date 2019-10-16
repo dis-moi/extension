@@ -11,6 +11,7 @@ import refreshContributors from './refreshContributors';
 import watchBrowserAction from './watchBrowserAction.saga';
 import handleBrowserAction from './handleBrowserAction.saga';
 import openOptions from './openOptions.saga';
+import ratings from './ratings.saga';
 import sendContributorsToOptions from './transmitContributors.saga';
 import sendInstallationDetailsToOptions from './sendInstallationDetailsToOptions.saga';
 import setup from './setup.saga';
@@ -28,6 +29,7 @@ export default function* rootSaga() {
     fork(watchBrowserAction),
     fork(handleBrowserAction),
     fork(openOptions),
+    fork(ratings),
     fork(sendContributorsToOptions),
     fork(sendInstallationDetailsToOptions),
     fork(setup),
