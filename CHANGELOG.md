@@ -1,3 +1,16 @@
+# [3.3.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.2.0...v3.3.0) (2019-10-16)
+
+
+### Bug Fixes
+
+* **messages:** apply sendToTab max retries ! ([#465](https://github.com/insitu-project/recommendations-webextension/issues/465)) ([3f8d4aa](https://github.com/insitu-project/recommendations-webextension/commit/3f8d4aa))
+* **sentry:** set consistent Sentry release name ([#464](https://github.com/insitu-project/recommendations-webextension/issues/464)) ([68399ce](https://github.com/insitu-project/recommendations-webextension/commit/68399ce))
+
+
+### Features
+
+* **chromium:** forbid_chrome_special_tabs ([#466](https://github.com/insitu-project/recommendations-webextension/issues/466)) ([d193dce](https://github.com/insitu-project/recommendations-webextension/commit/d193dce))
+
 # [3.2.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.1.1...v3.2.0) (2019-10-14)
 
 
