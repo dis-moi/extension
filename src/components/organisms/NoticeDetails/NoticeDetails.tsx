@@ -34,6 +34,7 @@ interface NoticeDetailsProps extends RouteComponentProps {
   undislike: (id: number) => void;
   view?: (id: number) => void;
   followSource?: (id: number) => void;
+  clickMessage?: (id: number) => void;
 }
 class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
   constructor(props: NoticeDetailsProps) {
@@ -118,6 +119,16 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
     }
   };
 
+  handleMessageClick = () => {
+    const {
+      clickMessage,
+      notice: { id }
+    } = this.props;
+    if (clickMessage) {
+      clickMessage(id);
+    }
+  };
+
   componentDidMount(): void {
     const {
       view,
@@ -153,7 +164,7 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
             </DetailsMetaValue>
           </DetailsMeta>
 
-          <Message>{message}</Message>
+          <Message onClick={this.handleMessageClick}>{message}</Message>
           {source && source.url && (
             <Source>
               En savoir plus :{' '}

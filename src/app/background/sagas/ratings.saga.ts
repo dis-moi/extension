@@ -7,7 +7,7 @@ import postRating, { Rating } from 'api/postRating';
 import {
   AppAction,
   FeedbackOnNoticeAction,
-  NoticeDisplayedAction,
+  NoticeDisplayedAction
 } from 'app/actions';
 import { captureException } from 'app/utils/sentry';
 import { RatingType } from 'app/lmem/rating';
@@ -42,7 +42,7 @@ export const transformers: {
     })
   },
   {
-    pattern: ['UNFOLD_NOTICE', 'NOTICE_BADGED'],
+    pattern: ['UNFOLD_NOTICE', 'NOTICE_BADGED', 'NOTICE/OUTBOUND_LINK_CLICKED'],
     transformer: ({ payload: id }: AppAction) => ({
       noticeId: id as number,
       rating: RatingType.UNFOLD
