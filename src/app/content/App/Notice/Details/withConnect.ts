@@ -7,7 +7,8 @@ import {
   confirmDislikeNotice,
   undislikeNotice,
   unfoldNotice,
-  resourceLinkClicked
+  resourceLinkClicked,
+  outboundLinkClicked
 } from 'app/actions/notices';
 import { ContentState } from '../../../store';
 import { getNoticeById } from '../../../selectors';
@@ -33,6 +34,7 @@ export interface DetailsDispatchProps {
   undislike: (id: number) => void;
   view: (id: number) => void;
   followSource: (id: number) => void;
+  clickMessage?: (id: number) => void;
 }
 
 const mapDispatchToProps: DetailsDispatchProps = {
@@ -42,7 +44,8 @@ const mapDispatchToProps: DetailsDispatchProps = {
   confirmDislike: confirmDislikeNotice,
   undislike: undislikeNotice,
   view: unfoldNotice,
-  followSource: resourceLinkClicked
+  followSource: resourceLinkClicked,
+  clickMessage: outboundLinkClicked
 };
 
 export default connect(

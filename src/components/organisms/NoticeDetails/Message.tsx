@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import styled from 'styled-components';
 
 const MessageBlock = styled.div`
@@ -14,9 +14,13 @@ const MessageBlock = styled.div`
 
 interface Props {
   children: string;
+  onClick?: MouseEventHandler;
 }
-const Message = ({ children }: Props) => (
-  <MessageBlock dangerouslySetInnerHTML={{ __html: children }} />
+const Message = ({ children, onClick }: Props) => (
+  <MessageBlock
+    onClick={onClick}
+    dangerouslySetInnerHTML={{ __html: children }}
+  />
 );
 
 export default Message;
