@@ -1,6 +1,33 @@
-import { StatefulNotice } from 'app/lmem/notice';
+import {
+  ignoringReason,
+  IgnoringReason,
+  Notice,
+  StatefulNotice
+} from 'app/lmem/notice';
 import Tab from 'app/lmem/tab';
 import { ActionMeta, BaseAction, TabAction } from '.';
+
+export interface NoticeDisplayedAction extends BaseAction {
+  type: 'NOTICE/DISPLAYED';
+  payload: number;
+}
+export const noticeDisplayed = (id: number): NoticeDisplayedAction => ({
+  type: 'NOTICE/DISPLAYED',
+  payload: id,
+  meta: { sendToBackground: true }
+});
+
+export interface NoticeIgnoredAction extends BaseAction {
+  type: 'NOTICE_IGNORED';
+  payload: { notice: Notice; reason: IgnoringReason; url: string };
+}
+export const noticeIgnored = (
+  notice: StatefulNotice,
+  url: string
+): NoticeIgnoredAction => ({
+  type: 'NOTICE_IGNORED',
+  payload: { notice, reason: ignoringReason(notice), url }
+});
 
 export interface NoticesFoundAction extends TabAction {
   type: 'NOTICES_FOUND';
@@ -122,9 +149,10 @@ export interface NoticeBadgedAction extends BaseAction {
   payload: number;
 }
 
-export const noticeBadged = (id: number): NoticeBadgedAction => ({
+export const noticeBadged = (id: number, tab?: Tab): NoticeBadgedAction => ({
   type: 'NOTICE/BADGED',
-  payload: id
+  payload: id,
+  meta: { tab }
 });
 
 export interface OutboundLinkClickedAction extends BaseAction {

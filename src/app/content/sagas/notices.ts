@@ -51,7 +51,6 @@ export default function* noticesRootSaga() {
     // FIXME change all strings to constants because it’s a pain the ass to refactor (i.e. rename)
     takeLatest(isChangeOnNoticeAction, closeIfNoMoreNoticeToDisplaySaga),
     takeLatest(isClosedByButtonAction, markNoticesReadSaga),
-    takeEvery('UNFOLD_NOTICE', markNoticeReadSaga),
-    takeLatest('NOTICE_DISPLAYED', markNoticeReadSaga)
+    takeEvery('UNFOLD_NOTICE', markNoticeReadSaga)
   ]);
 }
