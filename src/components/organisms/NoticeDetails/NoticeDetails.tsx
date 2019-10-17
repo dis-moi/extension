@@ -119,13 +119,17 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
     }
   };
 
-  handleMessageClick = () => {
+  // eslint-disable-next-line
+  // @ts-ignore
+  handleMessageClick = (e: MouseEvent<HTMLDivElement>) => {
     const {
       clickMessage,
       notice: { id }
     } = this.props;
     if (clickMessage) {
-      clickMessage(id);
+      if (e.target.tagName.toLowerCase() === 'a') {
+        clickMessage(id);
+      }
     }
   };
 
