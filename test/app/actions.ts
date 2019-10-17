@@ -4,11 +4,8 @@ import sinonChai from 'sinon-chai';
 
 import { receivedMatchingContexts } from 'app/actions/refreshMatchingContexts';
 
-import {
-  contextTriggered,
-  noticeDisplayed,
-  noticeIgnored
-} from 'app/actions/tabs';
+import { contextTriggered } from 'app/actions/tabs';
+import { noticeDisplayed, noticeIgnored } from 'app/actions/notices';
 import { MatchingContext } from '../../src/app/lmem/matchingContext';
 import { StatefulNotice } from '../../src/app/lmem/notice';
 import Tab from '../../src/app/lmem/tab';
@@ -70,13 +67,12 @@ describe('background actions', function() {
 
   it('noticeDisplayed', () => {
     const trigger = 'http://trigger';
-    const action = noticeDisplayed(notice, trigger);
+    const action = noticeDisplayed(notice.id);
 
     expect(action.type)
       .to.be.a('string')
       .of.length.above(5);
-    expect(action.payload.url).to.equal(trigger);
-    expect(action.payload.notice).to.equal(notice);
+    expect(action.payload).to.equal(notice.id);
   });
 
   it('noticeIgnored when notice dismissed', () => {
