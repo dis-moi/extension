@@ -1,12 +1,6 @@
-import {
-  ignoringReason,
-  StatefulNotice,
-  IgnoringReason,
-  Notice
-} from 'app/lmem/notice';
 import { InstallationDetails } from 'app/lmem/installation';
 import { MatchingContext } from 'app/lmem/matchingContext';
-import { BaseAction, TabAction, TabErrorAction } from '.';
+import { TabAction, TabErrorAction } from '.';
 import Tab from 'app/lmem/tab';
 
 export interface InitAction extends TabAction {
@@ -81,31 +75,4 @@ export const contextTriggerFailure = (
   payload: error,
   meta: { tab },
   error: true
-});
-
-export interface NoticeDisplayedAction extends BaseAction {
-  type: 'NOTICE_DISPLAYED';
-  payload: {
-    notice: Notice;
-    url: string;
-  };
-}
-export const noticeDisplayed = (
-  notice: Notice,
-  url: string
-): NoticeDisplayedAction => ({
-  type: 'NOTICE_DISPLAYED',
-  payload: { notice, url }
-});
-
-export interface NoticeIgnoredAction extends BaseAction {
-  type: 'NOTICE_IGNORED';
-  payload: { notice: Notice; reason: IgnoringReason; url: string };
-}
-export const noticeIgnored = (
-  notice: StatefulNotice,
-  url: string
-): NoticeIgnoredAction => ({
-  type: 'NOTICE_IGNORED',
-  payload: { notice, reason: ignoringReason(notice), url }
 });

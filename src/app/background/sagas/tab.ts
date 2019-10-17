@@ -9,7 +9,6 @@ import {
   matchContext,
   matchContextFailure,
   noticeIgnored,
-  noticeDisplayed,
   contextTriggerFailure,
   contextNotTriggered,
   noNoticesDisplayed,
@@ -20,7 +19,8 @@ import {
   TabUpdatedAction,
   AppAction,
   showBullesUpdateMessage,
-  TabAction
+  TabAction,
+  noticeBadged
 } from 'app/actions';
 import { MatchingContext } from 'app/lmem/matchingContext';
 import { StatefulNotice, Notice, warnIfNoticeInvalid } from 'app/lmem/notice';
@@ -83,9 +83,7 @@ export const contextTriggeredSaga = function*({
     if (noticesToShow.length > 0) {
       const tosAccepted = yield select(areTosAccepted);
       if (tosAccepted) {
-        yield all(
-          noticesToShow.map(notice => put(noticeDisplayed(notice, tab.url)))
-        );
+        yield all(noticesToShow.map(({ id }) => put(noticeBadged(id, tab))));
         yield put(noticesFound(noticesToShow, tab));
       } else {
         const lastUpdateMessageDate = yield select(
