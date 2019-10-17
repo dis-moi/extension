@@ -9,7 +9,6 @@ import { compose } from 'redux';
 
 interface SubscriptionsScreenProps {
   openSubscriptions: () => void;
-  nbTotalContributors?: number;
   nbSubscribedContributors?: number;
 }
 
@@ -22,19 +21,19 @@ const pluralize = (nb: number | undefined) => (nb && nb > 1 ? 's' : '');
 
 export const Subscriptions = ({
   openSubscriptions,
-  nbSubscribedContributors,
-  nbTotalContributors
+  nbSubscribedContributors
 }: SubscriptionsScreenProps) => (
   <Container>
     <Illustration />
 
     <SubscriptionInfo>
-      Votre extension est abonnée à <strong>{nbSubscribedContributors}</strong>{' '}
-      contributeur{pluralize(nbSubscribedContributors)} sur{' '}
-      <strong>{nbTotalContributors}</strong> possibles.
+      Vous êtes abonné(e)s à <strong>{nbSubscribedContributors}</strong>{' '}
+      contributeur(ice){pluralize(nbSubscribedContributors)}.
     </SubscriptionInfo>
 
-    <BackgroundButton onClick={openSubscriptions}>Gérer</BackgroundButton>
+    <BackgroundButton onClick={openSubscriptions}>
+      Gérer mes abonnements
+    </BackgroundButton>
   </Container>
 );
 
