@@ -1,5 +1,12 @@
 import React from 'react';
-import { call, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
+import {
+  all,
+  call,
+  put,
+  select,
+  takeEvery,
+  takeLatest
+} from 'redux-saga/effects';
 import { render } from 'react-dom';
 import { go, replace } from 'connected-react-router';
 import {
@@ -7,6 +14,7 @@ import {
   CloseAction,
   closed,
   closeFailed,
+  noticeDisplayed,
   open,
   opened,
   openFailed,
@@ -17,6 +25,7 @@ import {
 import { CLOSE, NOTICES_FOUND, OPEN, OPENED } from 'app/constants/ActionTypes';
 import Logger from 'app/utils/Logger';
 import {
+  getNoticesToDisplay,
   getPathname,
   hasUnreadNotices,
   isMounted as isNotificationMounted,
@@ -27,6 +36,7 @@ import theme from '../../../theme';
 import App from '../../App';
 import { history } from '../../store';
 import { fakeLoadingSaga } from './fakeLoading.saga';
+import { StatefulNotice } from 'app/lmem/notice';
 
 const iframe = create(theme.iframe.style);
 let contentDocument: Document;
@@ -35,6 +45,10 @@ export function* openSaga() {
   try {
     const isOpen = yield select(isNotificationOpen);
     const isMounted = yield select(isNotificationMounted);
+    const noticesToDisplay = yield select(getNoticesToDisplay);
+    yield all(
+      noticesToDisplay.map(({ id }: StatefulNotice) => put(noticeDisplayed(id)))
+    );
 
     if (!isOpen) {
       const location = yield select(getPathname);

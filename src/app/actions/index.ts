@@ -16,8 +16,6 @@ import {
   InitAction,
   MatchContextAction,
   MatchContextFailureAction,
-  NoticeIgnoredAction,
-  NoticeDisplayedAction,
   ContextTriggeredAction,
   ContextTriggerFailureAction
 } from './tabs';
@@ -25,6 +23,8 @@ import { CloseAction, ClosedAction, OpenAction, OpenedAction } from './ui';
 import {
   FeedbackOnNoticeAction,
   MarkNoticeReadAction,
+  NoticeDisplayedAction,
+  NoticeIgnoredAction,
   NoticesFoundAction,
   UnfoldNoticeAction
 } from './notices';

@@ -1,14 +1,10 @@
 import { SagaIterator } from '@redux-saga/types';
-import { ActionPattern, takeLatest, all, call } from '@redux-saga/core/effects';
+import { ActionPattern, takeEvery, all, call } from '@redux-saga/core/effects';
 import * as R from 'ramda';
 
 import getSelectedTab from 'webext/getSelectedTab';
 import postRating, { Rating } from 'api/postRating';
-import {
-  AppAction,
-  FeedbackOnNoticeAction,
-  NoticeDisplayedAction
-} from 'app/actions';
+import { AppAction, FeedbackOnNoticeAction } from 'app/actions';
 import { captureException } from 'app/utils/sentry';
 import { RatingType } from 'app/lmem/rating';
 
@@ -32,20 +28,31 @@ export const transformers: {
     })
   },
   {
-    pattern: 'NOTICE_DISPLAYED',
-    // eslint-disable-next-line
-    // @ts-ignore
-    transformer: ({ payload: { notice, url } }: NoticeDisplayedAction) => ({
-      noticeId: notice.id,
-      rating: RatingType.DISPLAY,
-      url
-    })
-  },
-  {
-    pattern: ['UNFOLD_NOTICE', 'NOTICE_BADGED', 'NOTICE/OUTBOUND_LINK_CLICKED'],
+    pattern: 'UNFOLD_NOTICE',
     transformer: ({ payload: id }: AppAction) => ({
       noticeId: id as number,
       rating: RatingType.UNFOLD
+    })
+  },
+  {
+    pattern: 'NOTICE/BADGED',
+    transformer: ({ payload: id }: AppAction) => ({
+      noticeId: id as number,
+      rating: RatingType.BADGED
+    })
+  },
+  {
+    pattern: 'NOTICE/OUTBOUND_LINK_CLICKED',
+    transformer: ({ payload: id }: AppAction) => ({
+      noticeId: id as number,
+      rating: RatingType.OUTBOUND_CLICK
+    })
+  },
+  {
+    pattern: 'NOTICE/DISPLAYED',
+    transformer: ({ payload: id }: AppAction) => ({
+      noticeId: id as number,
+      rating: RatingType.DISPLAY
     })
   }
 ];
@@ -68,7 +75,7 @@ export const createPostRatingSaga = (transformer: RatingActionTransformer) =>
 export default function* ratingsRootSaga() {
   yield all(
     transformers.map(({ pattern, transformer }) =>
-      takeLatest(pattern, createPostRatingSaga(transformer))
+      takeEvery(pattern, createPostRatingSaga(transformer))
     )
   );
 }
