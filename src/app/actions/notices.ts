@@ -118,12 +118,12 @@ export const resourceLinkClicked = (id: number): ResourceLinkClickedAction => ({
 });
 
 export interface NoticeBadgedAction extends BaseAction {
-  type: 'NOTICE_BADGED';
+  type: 'NOTICE/BADGED';
   payload: number;
 }
 
 export const noticeBadged = (id: number): NoticeBadgedAction => ({
-  type: 'NOTICE_BADGED',
+  type: 'NOTICE/BADGED',
   payload: id
 });
 
@@ -134,5 +134,6 @@ export interface OutboundLinkClickedAction extends BaseAction {
 
 export const outboundLinkClicked = (id: number): OutboundLinkClickedAction => ({
   type: 'NOTICE/OUTBOUND_LINK_CLICKED',
-  payload: id
+  payload: id,
+  meta: { sendToBackground: true }
 });
