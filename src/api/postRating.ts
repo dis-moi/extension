@@ -18,7 +18,7 @@ const postRating = ({
     ratingType: rating,
     context: {
       url,
-      geolocation: geolocation || ''
+      geolocation
     }
   });
 
