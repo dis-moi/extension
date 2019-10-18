@@ -18,7 +18,6 @@ import { InstallationDetails } from 'app/lmem/installation';
 import { ContentState } from '../store';
 import { getRegisteredFieldsPaths } from '../../utils/form';
 
-export * from './contributors.selectors';
 export * from './serviceMessage.selectors';
 export * from './ui.selectors';
 

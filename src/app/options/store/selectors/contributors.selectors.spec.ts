@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { generateContributor } from 'test/fakers/generateContributor';
 import {
   getContributorsSuggestions,
+  getNbTotalContributors,
   getSortedContributors,
   getSubscriptions,
   makeGetNContributorsSuggestions
@@ -20,6 +21,12 @@ describe('options > selectors > contributors', () => {
   const state: { contributors: ContributorsState } = {
     contributors: [contributorOne, contributorTwo, contributorThree]
   };
+
+  describe('getNbTotalContributors', () => {
+    it('returns number of total contributors', () => {
+      expect(getNbTotalContributors(state)).to.equal(3);
+    });
+  });
 
   describe('getSortedContributors', () => {
     it('returns contributors state, sorted by nb of contributors', () => {

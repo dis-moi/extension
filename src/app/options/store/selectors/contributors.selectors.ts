@@ -8,12 +8,22 @@ import {
 } from 'app/lmem/contributor';
 import { ContributorsState } from '../reducers/contributors.reducer';
 
-interface StateWithContributors {
+export interface StateWithContributors {
   contributors: ContributorsState;
 }
 
-const getContributors = (state: StateWithContributors): StatefulContributor[] =>
-  state.contributors;
+export const getContributors = (
+  state: StateWithContributors
+): StatefulContributor[] => state.contributors;
+
+export const getNbTotalContributors = createSelector<
+  StateWithContributors,
+  ContributorsState,
+  number | undefined
+>(
+  [getContributors],
+  contributors => contributors.length
+);
 
 export const getSortedContributors = createSelector(
   [getContributors],
