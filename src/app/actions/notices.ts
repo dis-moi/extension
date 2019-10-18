@@ -1,5 +1,5 @@
 import {
-  ignoringReason,
+  getIgnoringReason,
   IgnoringReason,
   Notice,
   StatefulNotice
@@ -26,7 +26,7 @@ export const noticeIgnored = (
   url: string
 ): NoticeIgnoredAction => ({
   type: 'NOTICE_IGNORED',
-  payload: { notice, reason: ignoringReason(notice), url }
+  payload: { notice, reason: getIgnoringReason(notice), url }
 });
 
 export interface NoticesFoundAction extends TabAction {
