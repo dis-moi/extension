@@ -33,8 +33,7 @@ interface NoticeDetailsProps extends RouteComponentProps {
   confirmDislike: (id: number) => void;
   undislike: (id: number) => void;
   view?: (id: number) => void;
-  followSource?: (id: number) => void;
-  clickMessage?: (id: number) => void;
+  outboundLinkClicked?: (id: number) => void;
 }
 class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
   constructor(props: NoticeDetailsProps) {
@@ -111,11 +110,11 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
 
   handleFollowSource = () => {
     const {
-      followSource,
+      outboundLinkClicked,
       notice: { id }
     } = this.props;
-    if (followSource) {
-      followSource(id);
+    if (outboundLinkClicked) {
+      outboundLinkClicked(id);
     }
   };
 
@@ -123,12 +122,12 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
   // @ts-ignore
   handleMessageClick = (e: MouseEvent<HTMLDivElement>) => {
     const {
-      clickMessage,
+      outboundLinkClicked,
       notice: { id }
     } = this.props;
-    if (clickMessage) {
+    if (outboundLinkClicked) {
       if (e.target.tagName.toLowerCase() === 'a') {
-        clickMessage(id);
+        outboundLinkClicked(id);
       }
     }
   };
