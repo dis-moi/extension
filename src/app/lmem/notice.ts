@@ -54,7 +54,7 @@ export enum NoticeFeedbackType {
 export type IgnoringReason = 'dislike' | 'dismiss' | 'other';
 export const isIgnored = (notice: StatefulNotice): boolean =>
   notice.state.dismissed || notice.state.disliked;
-export const ignoringReason = (notice: StatefulNotice): IgnoringReason =>
+export const getIgnoringReason = (notice: StatefulNotice): IgnoringReason =>
   notice.state.dismissed ? 'dismiss' : 'dislike';
 
 export const dismissNotice = (notice: StatefulNotice): StatefulNotice => ({
