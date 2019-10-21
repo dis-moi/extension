@@ -21,7 +21,15 @@ storiesOf('screens/Subscriptions', module)
   .add('few subscriptions', () => (
     <Subscriptions
       openSubscriptions={action('openSubscriptions')}
-      subscribedContributors={Array.from(Array(5), () => generateContributor())}
+      subscribedContributors={Array.from(Array(3), () => generateContributor())}
+    />
+  ))
+  .add('some subscriptions', () => (
+    <Subscriptions
+      openSubscriptions={action('openSubscriptions')}
+      subscribedContributors={Array.from(Array(13), () =>
+        generateContributor()
+      )}
     />
   ))
   .add('a lot of subscriptions', () => (
