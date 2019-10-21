@@ -10,14 +10,14 @@ const TwoColumns = styled.div`
   display: grid;
   grid-column-gap: 55px;
   grid-template-columns: auto 290px;
+  align-items: flex-start;
 `;
 
 const ContributorsList = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-column-gap: 40px;
-  grid-row-gap: 40px;
-  align-items: flex-start;
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
 `;
 
 interface Props {
