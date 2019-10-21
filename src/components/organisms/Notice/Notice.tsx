@@ -59,10 +59,6 @@ export default class Notice extends PureComponent<Props, CountDownState> {
     this.state = countdownInitialState;
   }
 
-  static defaultProps = {
-    truncateTitleAt: Title.defaultProps.numberOfCharacters
-  };
-
   onDismiss = () => {
     this.props.dismiss(this.props.notice.id);
     this.startCountdown();
@@ -115,7 +111,6 @@ export default class Notice extends PureComponent<Props, CountDownState> {
         contributor,
         state: { dismissed, disliked, read }
       },
-      truncateTitleAt,
       style
     } = this.props;
 
@@ -141,9 +136,7 @@ export default class Notice extends PureComponent<Props, CountDownState> {
               <Avatar contributor={contributor} size="small" />
               <Description>
                 <Contributor>{contributor.name}</Contributor>
-                <Title numberOfCharacters={truncateTitleAt}>
-                  {stripHtml(message)}
-                </Title>
+                <Title isRead={read}>{stripHtml(message)}</Title>
               </Description>
               <OpenButton />
             </>
