@@ -1,8 +1,13 @@
 import * as R from 'ramda';
-import { AppAction } from 'app/actions';
+import { AppAction, ContributorAction } from 'app/actions';
 import { SUBSCRIBE, UNSUBSCRIBE } from 'app/constants/ActionTypes';
 
 export type SubscriptionsState = number[];
+
+export const getContributorId = ({
+  payload: { contributor }
+}: ContributorAction) =>
+  typeof contributor !== 'number' ? contributor.id : contributor;
 
 export default function subscriptionsReducer(
   state: SubscriptionsState = [],
@@ -10,15 +15,10 @@ export default function subscriptionsReducer(
 ) {
   switch (action.type) {
     case SUBSCRIBE: {
-      return R.append(
-        typeof action.payload.contributor !== 'number'
-          ? action.payload.contributor.id
-          : action.payload.contributor,
-        state
-      );
+      return R.append(getContributorId(action), state);
     }
     case UNSUBSCRIBE: {
-      return R.without([action.payload.contributor.id], state);
+      return R.without([getContributorId(action)], state);
     }
     default:
       return state;
