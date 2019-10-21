@@ -3,7 +3,6 @@ import * as R from 'ramda';
 import styled from 'styled-components';
 import BackgroundButton from 'components/atoms/Button/BackgroundButton/BackgroundButton';
 
-import Illustration from './Illustration';
 import Container from './Container';
 import Avatar from '../../../../components/molecules/Avatar/Avatar';
 import { StatefulContributor } from '../../../lmem/contributor';
@@ -14,8 +13,21 @@ export interface SubscriptionsScreenProps {
   subscribedContributors: StatefulContributor[];
 }
 
+const SubscriptionList = styled.div`
+  margin-bottom: 20px;
+
+  ul {
+    display: flex;
+    list-style-type: none;
+  }
+
+  li:not(:first-of-type) {
+    margin-left: 10px;
+  }
+`;
+
 const SubscriptionInfo = styled.div`
-  margin-bottom: 35px;
+  margin-bottom: 20px;
   font-size: 18px;
 `;
 
@@ -29,7 +41,27 @@ const Subscriptions = ({
   subscribedContributors
 }: SubscriptionsScreenProps) => (
   <Container>
-    <Illustration />
+    <SubscriptionList>
+      {R.splitEvery(
+        nbContributorsPerRow,
+        subscribedContributors.slice(0, nbContributorsPerRow * maxNbRows)
+      ).map((contributorsChunk, chunkIndex) => (
+        <ul key={`chunk${chunkIndex}`}>
+          {contributorsChunk.map(contributor => (
+            <li key={`contributor${contributor.id}`}>
+              <Avatar contributor={contributor} size="small" />
+            </li>
+          ))}
+        </ul>
+      ))}
+      {subscribedContributors.length > nbContributorsPerRow * maxNbRows && (
+        <tr>
+          <td colSpan={nbContributorsPerRow}>
+            <button onClick={openSubscriptions}>...</button>
+          </td>
+        </tr>
+      )}
+    </SubscriptionList>
 
     <SubscriptionInfo>
       Vous êtes abonné(e)s à <strong>{subscribedContributors.length}</strong>{' '}
@@ -39,31 +71,6 @@ const Subscriptions = ({
     <BackgroundButton onClick={openSubscriptions}>
       Gérer mes abonnements
     </BackgroundButton>
-
-    <table>
-      <caption>Trolls</caption>
-      <tbody>
-        {R.splitEvery(
-          nbContributorsPerRow,
-          subscribedContributors.slice(0, nbContributorsPerRow * maxNbRows)
-        ).map((contributorsChunk, chunkIndex) => (
-          <tr key={`chunk${chunkIndex}`}>
-            {contributorsChunk.map(contributor => (
-              <td key={`contributor${contributor.id}`}>
-                <Avatar contributor={contributor} size="small" />
-              </td>
-            ))}
-          </tr>
-        ))}
-        {subscribedContributors.length > nbContributorsPerRow * maxNbRows && (
-          <tr>
-            <td colSpan={nbContributorsPerRow}>
-              <button onClick={openSubscriptions}>...</button>
-            </td>
-          </tr>
-        )}
-      </tbody>
-    </table>
   </Container>
 );
 
