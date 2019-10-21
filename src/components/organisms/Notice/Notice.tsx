@@ -136,7 +136,7 @@ export default class Notice extends PureComponent<Props, CountDownState> {
               <Avatar contributor={contributor} size="small" />
               <Description>
                 <Contributor>{contributor.name}</Contributor>
-                <Title isRead={read}>{stripHtml(message)}</Title>
+                <Title>{stripHtml(message)}</Title>
               </Description>
               <OpenButton />
             </>
