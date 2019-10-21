@@ -28,9 +28,9 @@ export default styled(Content)`
   margin-right: 11px;
   margin-left: 5px;
   text-decoration: none;
-  background-color: ${props => (props.isRead ? 'transparent' : '#fff')};
+  background-color: ${props => (props.isRead ? props.theme.noticeBg : '#fff')};
   border-radius: 15px;
-  border: 2px solid ${props => (props.isRead ? '#fff' : 'transparent')};
+  border: 2px solid ${props => (props.isRead ? '#fff' : props.theme.noticeBg)};
 
   &,
   p {
