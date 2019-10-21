@@ -43,34 +43,40 @@ const Subscriptions = ({
   <Container>
     <SubscriptionList>
       {R.splitEvery(
-        nbContributorsPerRow,
-        subscribedContributors.slice(0, nbContributorsPerRow * maxNbRows)
-      ).map((contributorsChunk, chunkIndex) => (
-        <ul key={`chunk${chunkIndex}`}>
-          {contributorsChunk.map(contributor => (
-            <li key={`contributor${contributor.id}`}>
-              <Avatar contributor={contributor} size="small" />
-            </li>
-          ))}
-        </ul>
-      ))}
-      {subscribedContributors.length > nbContributorsPerRow * maxNbRows && (
-        <tr>
-          <td colSpan={nbContributorsPerRow}>
-            <button onClick={openSubscriptions}>...</button>
-          </td>
-        </tr>
-      )}
-    </SubscriptionList>
+          nbContributorsPerRow,
+          subscribedContributors
+            .slice(0, nbContributorsPerRow * maxNbRows)
+            .filter(
+              (contributor, i, slicedSubscribedContributors) =>
+                !(
+                  slicedSubscribedContributors.length % nbContributorsPerRow ===
+                    0 && i === slicedSubscribedContributors.length - 1
+                )
+            )
+        ).map((contributorsChunk, chunkIndex, slicedSubscribedContributors) => (
+            <ul key={`chunk${chunkIndex}`}>
+            {contributorsChunk.map(contributor => (
+                <li key={`contributor${contributor.id}`}>
+                    <Avatar contributor={contributor} size="small" />
+                </li>
+            ))}
+            {chunkIndex === slicedSubscribedContributors.length - 1 && (
+              <li>
+                <button onClick={openSubscriptions}>...</button>
+              </li>
+            )}
+          </ul>
+        ))}
+      </SubscriptionList>
 
-    <SubscriptionInfo>
-      Vous êtes abonné(e)s à <strong>{subscribedContributors.length}</strong>{' '}
-      contributeur(ice){pluralize(subscribedContributors.length)}.
-    </SubscriptionInfo>
+      <SubscriptionInfo>
+          Vous êtes abonné(e)s à <strong>{subscribedContributors.length}</strong>{' '}
+          contributeur(ice){pluralize(subscribedContributors.length)}.
+      </SubscriptionInfo>
 
-    <BackgroundButton onClick={openSubscriptions}>
-      Gérer mes abonnements
-    </BackgroundButton>
+      <BackgroundButton onClick={openSubscriptions}>
+          Gérer mes abonnements
+      </BackgroundButton>
   </Container>
 );
 
