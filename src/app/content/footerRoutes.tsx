@@ -1,30 +1,25 @@
-import React, { ReactElement } from 'react';
 import { LocationDescriptor } from 'history';
-import BubbleIcon from '../../components/organisms/Notification/NotificationFooter/BubbleIcon';
-import CheckListIcon from '../../components/organisms/Notification/NotificationFooter/CheckListIcon';
-import HelpIcon from '../../components/organisms/Notification/NotificationFooter/HelpIcon';
-import AccountIcon from '../../components/organisms/Notification/NotificationFooter/AccountIcon';
 
 export interface FooterRoute {
   location: LocationDescriptor;
-  element: ReactElement;
+  element: string;
 }
 
 export const footerRoutes: FooterRoute[] = [
   {
     location: '/notices',
-    element: <BubbleIcon />
+    element: 'Bulles'
   },
   {
     location: '/subscriptions',
-    element: <CheckListIcon />
+    element: 'Abonnements'
   },
   {
     location: '/help',
-    element: <HelpIcon />
+    element: 'Aide'
   },
   {
     location: '/account',
-    element: <AccountIcon />
+    element: 'Mon compte'
   }
 ];
