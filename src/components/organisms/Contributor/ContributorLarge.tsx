@@ -51,6 +51,10 @@ const ContributorIntro = styled.div.attrs<IntroProps>(
   & > p {
     margin: 0;
   }
+
+  a {
+    color: ${props => props.theme.activeColor};
+  }
 `;
 
 interface ContributionExampleProps {
