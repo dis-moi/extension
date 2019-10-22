@@ -54,7 +54,7 @@ const ContributorButton = ({
           onPointerEnter={() => setSubscribedButtonHovered(true)}
           onPointerLeave={() => setSubscribedButtonHovered(false)}
         >
-          {subscribedButtonHovered ? 'Se désabonner' : 'Abonné'}
+          {subscribedButtonHovered ? 'Se désabonner' : 'Abonné·e'}
         </ContributorBorderButton>
       )}
       {!subscribed && (
