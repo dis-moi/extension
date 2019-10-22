@@ -13,6 +13,11 @@ const ContributorsList = styled.section`
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-column-gap: 30px;
   grid-row-gap: 30px;
+
+  @media (max-width: 975px) {
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+  }
 `;
 
 const ContributorsListEmpty = styled.p`

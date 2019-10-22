@@ -13,10 +13,14 @@ const SubscribeIntro = styled(Intro)`
   position: fixed;
   width: 100%;
   background-color: #fff;
+
+  @media (max-width: 820px) {
+    position: relative;
+  }
 `;
 
 const Title = styled(SubTitle)`
-  width: 100%;
+  width: 98%;
   margin-top: 20px;
   margin-bottom: 20px;
 `;
@@ -47,6 +51,12 @@ const SuggestionsWrapper = styled.div`
   margin-top: 110px;
   margin-bottom: 120px;
   overflow-y: scroll;
+
+  @media (max-width: 820px) {
+    height: auto;
+    margin-top: 0;
+    overflow-y: inherit;
+  }
 `;
 
 interface SubscribeScreenProps {
