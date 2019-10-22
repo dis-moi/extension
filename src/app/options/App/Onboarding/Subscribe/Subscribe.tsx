@@ -57,8 +57,8 @@ export default ({
       {updatedFromLmem && <OnboardingSteps activeStep={2} />}
 
       <Title>
-        Choisissez vos contributeurs pour recevoir leurs messages durant votre
-        navigation
+        Choisissez vos contributeur·ice·s pour recevoir leurs messages durant
+        votre navigation
       </Title>
     </Intro>
 
@@ -70,7 +70,7 @@ export default ({
 
     <BottomLineBg>
       {nbSubscriptions === 0 && (
-        <InfoLine>Choisir au minimum 1 contributeur</InfoLine>
+        <InfoLine>Choisir au minimum 1 contributeur·ice</InfoLine>
       )}
       <OnboardingButton disabled={nbSubscriptions === 0} onClick={next}>
         Terminer

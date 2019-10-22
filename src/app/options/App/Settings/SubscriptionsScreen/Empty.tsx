@@ -37,12 +37,12 @@ const Empty = ({ goToSuggestions }: Props) => (
     <EmptyTitle>Aucun abonnement.</EmptyTitle>
 
     <EmptyText>
-      Veuillez vous abonner à des contributeurs dans la
+      Veuillez vous abonner à des contributeur·ice·s dans la
       <br /> partie “Suggestions”
     </EmptyText>
 
     <EmptyButton onClick={goToSuggestions}>
-      Choisir mes contributeurs
+      Choisir mes contributeur·ice·s
     </EmptyButton>
   </Wrapper>
 );

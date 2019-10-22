@@ -20,7 +20,7 @@ export default () => (
 
         <Title>
           Félicitations, vous êtes maintenant abonné·e : vous recevrez les
-          messages de vos contributeurs durant votre navigation.
+          messages de vos contributeur·ice·s durant votre navigation.
         </Title>
 
         <Title2>Ci-dessous vous pouvez tester quelques exemples.</Title2>

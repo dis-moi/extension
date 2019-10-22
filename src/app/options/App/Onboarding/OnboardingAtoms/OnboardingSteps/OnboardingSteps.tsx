@@ -23,7 +23,7 @@ const OnboardingSteps = ({ activeStep }: OnboardingStepsProps) => (
       Découvrir et accepter l&apos;évolution
     </OnboardingStep>
     <OnboardingStep step={2} active={activeStep === 2} totalSteps={2}>
-      Choisir vos contributeurs
+      Choisir vos contributeur·ice·s
     </OnboardingStep>
   </OnboardingStepsList>
 );
