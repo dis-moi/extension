@@ -10,7 +10,9 @@ import OnboardingSteps from '../OnboardingAtoms/OnboardingSteps/OnboardingSteps'
 import LMEMToBulles from '../OnboardingAtoms/LMEMToBulles';
 
 const Title = styled(SubTitle)`
+  width: 100%;
   margin-top: 20px;
+  margin-bottom: 20px;
 `;
 
 const BottomLineBg = styled.section`
