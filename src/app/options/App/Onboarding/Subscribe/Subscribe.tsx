@@ -9,6 +9,12 @@ import SubTitle from '../OnboardingAtoms/OnboardingSubTitle';
 import OnboardingSteps from '../OnboardingAtoms/OnboardingSteps/OnboardingSteps';
 import LMEMToBulles from '../OnboardingAtoms/LMEMToBulles';
 
+const SubscribeIntro = styled(Intro)`
+  position: fixed;
+  width: 100%;
+  background-color: #fff;
+`;
+
 const Title = styled(SubTitle)`
   width: 100%;
   margin-top: 20px;
@@ -37,9 +43,10 @@ const InfoLine = styled.p`
 `;
 
 const SuggestionsWrapper = styled.div`
-  & > section {
-    padding-bottom: 150px;
-  }
+  height: calc(100vh - 270px);
+  margin-top: 110px;
+  margin-bottom: 120px;
+  overflow-y: scroll;
 `;
 
 interface SubscribeScreenProps {
@@ -54,7 +61,7 @@ export default ({
   next
 }: SubscribeScreenProps) => (
   <>
-    <Intro>
+    <SubscribeIntro>
       {updatedFromLmem ? <LMEMToBulles /> : <BullesLogo />}
       {updatedFromLmem && <OnboardingSteps activeStep={2} />}
 
@@ -62,7 +69,7 @@ export default ({
         Choisissez vos contributeurs pour recevoir leurs messages durant votre
         navigation
       </Title>
-    </Intro>
+    </SubscribeIntro>
 
     <SuggestionsWrapper>
       <SuggestionsScreen
