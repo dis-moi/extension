@@ -62,6 +62,67 @@ yarn start:productionApi
 
 - [Load unpacked extension's `./build/dev/` folder to Chrome.](https://developer.chrome.com/extensions/getstarted#unpacked)
 
+
+## Deployment
+
+### Staging
+
+```
+/!\ Warning this may be subject to change
+```
+
+Make sure develop is up to date:
+```
+git checkout develop
+git pull develop
+yarn
+```
+
+The version number need to be changed, either manually:
+- Go to `package.json` and increment the version number there.
+
+> /!\ **OR** automatically using semantic release... @todo
+
+Commit & push:
+```
+git commit -m "feat(staging): bump version number"
+git push origin HEAD
+```
+
+> The **feat** flag, in the commit, forces `semantic-release`, to increment the minor version number of the future production release.
+
+Then run the release script:
+```
+yarn release:staging
+```
+This creates an archive in the `build/` directory:
+```
+bulles-vX.X.X-staging.zip
+```
+
+Then open the [chrome webstore](https://chrome.google.com/u/1/webstore/devconsole/g10525161170329704473?hl=fr) with the following account:
+```
+extensions.lmem@gmail.com
+```
+> Ask for the password to a super user! *OR* A super user may add your own google account to the developer group.
+
+- Click on the staging build
+![Chrome webstore dashboard](doc/chrome-webstore-dashboard.png)
+> The staging build is the one is only a few users and a status *Published* but *Non listed*.
+
+- Click on the package tab
+![Package tab](doc/package.png)
+
+- Finally click on the publish button
+![Publish button](doc/publish.png)
+
+> The publication may take a moment (10 to 30mins) to be visible in the store.
+
+### Production
+```
+@todo
+```
+
 ## Storybook
 
 There is a Storybook for components design, exploration, testing and documentation. It's hot reloaded.
