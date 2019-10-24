@@ -1,12 +1,12 @@
 import React from 'react';
 import * as R from 'ramda';
+import * as RA from 'ramda-adjunct';
 import styled from 'styled-components';
 import BackgroundButton from 'components/atoms/Button/BackgroundButton/BackgroundButton';
-
 import Illustration from './Illustration';
 import Container from './Container';
-import Avatar from '../../../../components/molecules/Avatar/Avatar';
-import { StatefulContributor } from '../../../lmem/contributor';
+import { StatefulContributor } from 'app/lmem/contributor';
+import SubscriptionsListRow from './SubscriptionsRow/SubscriptionsRow';
 
 export interface SubscriptionsScreenProps {
   openSubscriptions: () => void;
@@ -16,32 +16,6 @@ export interface SubscriptionsScreenProps {
 
 const Subscription = styled.div`
   margin-bottom: 20px;
-`;
-
-const SubscriptionList = styled.ul`
-  display: flex;
-  padding-left: 0;
-  list-style-type: none;
-`;
-
-const SubscriptionListItem = styled.li`
-  &:not(:first-of-type) {
-    margin-left: 10px;
-  }
-`;
-
-const SeeSubscriptions = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  line-height: 1;
-  font-weight: bold;
-  background-color: ${props => props.theme.contributorGrey};
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
 `;
 
 const SubscriptionInfo = styled.div`
@@ -54,6 +28,34 @@ const pluralize = (nb: number | undefined) => (nb && nb > 1 ? '·s' : '');
 const nbContributorsPerRow = 6;
 const maxNbRows = 3;
 
+type HasLengthMultipleOfResult<T = object> = (array: Array<T>) => boolean;
+const hasLengthMultipleOf = (x: number): HasLengthMultipleOfResult =>
+  R.compose(
+    R.equals(0),
+    R.modulo(R.__, x),
+    R.length
+  );
+
+type AllButLast = (
+  contributors: StatefulContributor[]
+) => StatefulContributor[];
+const allButLast: AllButLast = R.init;
+
+const toColumnsAndRows = (openSubscriptions: () => void) =>
+  R.pipe(
+    R.take(nbContributorsPerRow * maxNbRows),
+    R.when(hasLengthMultipleOf(nbContributorsPerRow), allButLast),
+    R.splitEvery(nbContributorsPerRow),
+    RA.mapIndexed((contributors: StatefulContributor[], rowIndex, rows) => (
+      <SubscriptionsListRow
+        contributors={contributors}
+        rowIndex={rowIndex}
+        lastRow={rowIndex === rows.length - 1}
+        openSubscriptions={openSubscriptions}
+      />
+    ))
+  );
+
 const Subscriptions = ({
   openSubscriptions,
   subscribedContributors
@@ -61,33 +63,7 @@ const Subscriptions = ({
   <Container>
     <Subscription>
       {subscribedContributors.length === 0 && <Illustration />}
-      {R.splitEvery(
-        nbContributorsPerRow,
-        subscribedContributors
-          .slice(0, nbContributorsPerRow * maxNbRows)
-          .filter(
-            (contributor, i, slicedSubscribedContributors) =>
-              !(
-                slicedSubscribedContributors.length % nbContributorsPerRow ===
-                  0 && i === slicedSubscribedContributors.length - 1
-              )
-          )
-      ).map((contributorsChunk, chunkIndex, slicedSubscribedContributors) => (
-        <SubscriptionList key={`chunk${chunkIndex}`}>
-          {contributorsChunk.map(contributor => (
-            <SubscriptionListItem key={`contributor${contributor.id}`}>
-              <Avatar contributor={contributor} size="small" />
-            </SubscriptionListItem>
-          ))}
-          {chunkIndex === slicedSubscribedContributors.length - 1 && (
-            <SubscriptionListItem>
-              <SeeSubscriptions onClick={openSubscriptions} title="Voir tout">
-                ...
-              </SeeSubscriptions>
-            </SubscriptionListItem>
-          )}
-        </SubscriptionList>
-      ))}
+      {toColumnsAndRows(openSubscriptions)(subscribedContributors)}
     </Subscription>
 
     <SubscriptionInfo>
