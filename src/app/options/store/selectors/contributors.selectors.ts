@@ -54,3 +54,5 @@ export const makeGetNContributorsSuggestions = (n: number) =>
     [getContributorsSuggestions],
     R.take(n)
   );
+
+export const get5ContributorsSuggestions = makeGetNContributorsSuggestions(5);
