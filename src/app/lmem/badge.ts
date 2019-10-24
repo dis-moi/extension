@@ -1,4 +1,6 @@
 import { StatefulNotice, isUnread } from './notice';
+import icons from '../../../manifest/icons';
+import greyIcons from '../../../manifest/icons-grey';
 
 export interface BadgeTheme {
   backgroundColor: {
@@ -7,8 +9,10 @@ export interface BadgeTheme {
   };
 }
 
-export const resetBadge = (tabId?: number) =>
+export const resetBadge = (tabId?: number) => {
   chrome.browserAction.setBadgeText({ text: '', tabId });
+  chrome.browserAction.setIcon({ path: greyIcons });
+};
 
 /**
  * Update text and background color of the badge based on the number of notices.
@@ -25,6 +29,8 @@ export const updateBadge = (
   tabId?: number
 ): void => {
   if (notices.length > 0) {
+    chrome.browserAction.setIcon({ path: icons });
+
     const unreadNotices = notices.filter(isUnread);
     const { backgroundColor } = badgeTheme;
 

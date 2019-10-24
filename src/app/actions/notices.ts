@@ -1,6 +1,6 @@
 import { StatefulNotice } from 'app/lmem/notice';
 import Tab from 'app/lmem/tab';
-import { BaseAction, ErrorAction, TabAction, TabMeta } from '.';
+import { ActionMeta, BaseAction, TabAction } from '.';
 
 export interface NoticesFoundAction extends TabAction {
   type: 'NOTICES_FOUND';
@@ -105,8 +105,7 @@ export interface UnfoldNoticeAction extends BaseAction {
 
 export const unfoldNotice = (id: number): UnfoldNoticeAction => ({
   type: 'UNFOLD_NOTICE',
-  payload: id,
-  meta: { sendToBackground: true }
+  payload: id
 });
 
 export interface MarkNoticeReadAction extends BaseAction {
@@ -114,33 +113,13 @@ export interface MarkNoticeReadAction extends BaseAction {
   payload: number;
 }
 
-export const markNoticeRead = (id: number): MarkNoticeReadAction => ({
+export const markNoticeRead = (
+  id: number,
+  meta?: ActionMeta
+): MarkNoticeReadAction => ({
   type: 'MARK_NOTICE_READ',
-  payload: id
-});
-
-export interface NoticesUpdatedAction extends TabAction {
-  type: 'NOTICES_UPDATED';
-  payload: StatefulNotice[];
-}
-
-export const noticesUpdated = (
-  payload: StatefulNotice[],
-  meta: TabMeta
-): NoticesUpdatedAction => ({
-  type: 'NOTICES_UPDATED',
-  payload,
+  payload: id,
   meta
-});
-
-export interface UpdateNoticeFailedAction extends ErrorAction {
-  type: 'UPDATE_NOTICE_FAILED';
-}
-
-export const updateNoticesFailed = (e: Error): UpdateNoticeFailedAction => ({
-  type: 'UPDATE_NOTICE_FAILED',
-  payload: e,
-  error: true
 });
 
 export interface ResourceLinkClickedAction extends BaseAction {

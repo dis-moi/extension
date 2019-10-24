@@ -3,13 +3,13 @@ import { Dispatch } from 'redux';
 import { optionsRequested } from 'app/actions/options';
 import { ContentState } from '../../store';
 import {
-  getNbSubscribedContributors,
-  getNbTotalContributors
-} from '../../selectors/contributors.selectors';
+  getNbTotalContributors,
+  getSubscriptions
+} from 'app/options/store/selectors/contributors.selectors';
 
 const mapStateToProps = (state: ContentState) => ({
   nbTotalContributors: getNbTotalContributors(state),
-  nbSubscribedContributors: getNbSubscribedContributors(state)
+  subscribedContributors: getSubscriptions(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

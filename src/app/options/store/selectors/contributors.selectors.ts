@@ -1,19 +1,37 @@
-import {
-  Contributor,
-  contributorIsSubscribed,
-  sortSuggestedContributors,
-  StatefulContributor
-} from 'app/lmem/contributor';
 import { createSelector } from 'reselect';
 import * as R from 'ramda';
+import {
+  contributorIsSubscribed,
+  sortContributorsByContributions,
+  Contributor,
+  StatefulContributor
+} from 'app/lmem/contributor';
 import { ContributorsState } from '../reducers/contributors.reducer';
 
-export const getContributors = (state: {
+export interface StateWithContributors {
   contributors: ContributorsState;
-}): StatefulContributor[] => state.contributors;
+}
+
+export const getContributors = (
+  state: StateWithContributors
+): StatefulContributor[] => state.contributors;
+
+export const getNbTotalContributors = createSelector<
+  StateWithContributors,
+  ContributorsState,
+  number | undefined
+>(
+  [getContributors],
+  contributors => contributors.length
+);
+
+export const getSortedContributors = createSelector(
+  [getContributors],
+  sortContributorsByContributions
+);
 
 export const getSubscriptions = createSelector(
-  [getContributors],
+  [getSortedContributors],
   R.filter(contributorIsSubscribed)
 );
 
@@ -23,11 +41,8 @@ export const getNbSusbcriptions = createSelector(
 );
 
 export const getContributorsSuggestions = createSelector(
-  [getContributors],
-  R.pipe(
-    R.reject(contributorIsSubscribed),
-    sortSuggestedContributors
-  )
+  [getSortedContributors],
+  R.reject(contributorIsSubscribed)
 );
 
 export const makeGetNContributorsSuggestions = (n: number) =>
@@ -39,3 +54,5 @@ export const makeGetNContributorsSuggestions = (n: number) =>
     [getContributorsSuggestions],
     R.take(n)
   );
+
+export const get5ContributorsSuggestions = makeGetNContributorsSuggestions(5);

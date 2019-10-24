@@ -10,7 +10,7 @@ describe('background selectors', function() {
     it("can tell if it's not an update from LMEM", () => {
       const action = updateInstallationDetails({
         reason: 'install',
-        version: '2.3.2'
+        version: '3.0.0'
       });
       const nextState = reducer(undefined, action);
 
@@ -21,7 +21,7 @@ describe('background selectors', function() {
       const action = updateInstallationDetails({
         reason: 'update',
         previousVersion: '0.1.0',
-        version: '2.3.2'
+        version: '3.0.0'
       });
       const nextState = reducer(undefined, action);
 

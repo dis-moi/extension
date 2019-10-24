@@ -4,7 +4,6 @@ import { ExternalLink } from 'components/atoms';
 import LogoBeta from 'components/atoms/LogoBeta';
 import Wrapper from '../OnboardingAtoms/OnboardingWrapper';
 import Intro from '../OnboardingAtoms/OnboardingIntro';
-import Title from '../OnboardingAtoms/OnboardingTitle';
 import SubTitle from '../OnboardingAtoms/OnboardingSubTitle';
 import OnboardinButton from '../OnboardingAtoms/OnboardingButton';
 import LMEMToBulles from '../OnboardingAtoms/LMEMToBulles';
@@ -13,37 +12,47 @@ import TOSText from './TOSText';
 import TOSCheckbox from './TOSCheckbox';
 import OnboardingSteps from '../OnboardingAtoms/OnboardingSteps/OnboardingSteps';
 
+const Title = styled(SubTitle)`
+  margin-top: 32px;
+  margin-bottom: 0;
+`;
+
+const TitleLMEM = styled(Title)`
+  color: ${props => props.theme.activeColor};
+`;
+
 const TOSTitle = styled.h3`
-  margin-bottom: 20px;
-  font-size: 28px;
+  margin-top: 32px;
+  margin-bottom: 16px;
+  font-size: 25px;
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
 `;
 
 const TOSList = styled.ol`
-  margin-bottom: 2rem;
+  margin-bottom: 16px;
   padding-left: 0;
   counter-reset: TOS;
   list-style-type: none;
 `;
 
 const TOSListItem = styled.li`
-  margin-bottom: 10px;
-  font-size: 18px;
+  margin-bottom: 6px;
+  font-size: 16px;
 
   &:before {
     content: counter(TOS) '.';
     counter-increment: TOS;
-    margin-right: 16px;
+    margin-right: 12px;
     font-weight: bold;
-    font-size: 23px;
+    font-size: 18px;
   }
 `;
 
 interface TosProps {
   updatedFromLmem: boolean;
-  termsOfServiceAccepted: boolean;
+  termsOfServiceAccepted?: boolean;
   onContinue: () => void;
 }
 
@@ -58,16 +67,26 @@ export default ({
     <Wrapper>
       {updatedFromLmem ? (
         <>
-          <LMEMToBulles />
+          <Intro>
+            <LMEMToBulles />
+
+            <TitleLMEM>
+              Votre extension s&apos;ouvre à de nouveaux contributeur·ice·s
+              <br /> et change de nom.
+            </TitleLMEM>
+          </Intro>
 
           <OnboardingSteps activeStep={1} />
 
           <TOSText>
-            À partir d’aujourd’hui, vous pouvez vous abonner à des{' '}
-            <strong>amis, media et experts de votre choix.</strong>
-            <br />
-            Vous recevrez leurs messages en fonction de la page web que vous
-            visitez, comme pour Le Même en Mieux.
+            L&apos;extension Même en Mieux devient Bulles et permet maintenant à
+            chacun de poster des messages sur les pages du web.
+          </TOSText>
+
+          <TOSText>
+            Amis, média, experts peuvent ainsi vous informer directement sur les
+            pages visitées. Le Même en Mieux devient un contributeur comme les
+            autres.
           </TOSText>
 
           <TOSText>
@@ -76,10 +95,11 @@ export default ({
           </TOSText>
 
           <TOSText>
-            Nous avons également renforcé la{' '}
+            Le{' '}
             <ExternalLink href="https://www.bulles.fr/vie-privee">
-              protection de votre vie privée
-            </ExternalLink>
+              respect de votre vie privée
+            </ExternalLink>{' '}
+            a également été renforcé.
           </TOSText>
           <TOSText>
             <ExternalLink href="https://www.bulles.fr/evolutions">
@@ -92,14 +112,13 @@ export default ({
           <Intro>
             <LogoBeta />
 
-            <Title>Installation réussie !</Title>
-            <SubTitle>
-              Veuillez prendre connaissance des principes du service <br />
-              et des conditions générales d’utilisation.
-            </SubTitle>
+            <Title>
+              Pour finaliser l’installation, veuillez lire et accepter <br />
+              les conditions générales d’utilisation.
+            </Title>
           </Intro>
 
-          <TOSTitle>Principes du service</TOSTitle>
+          <TOSTitle>Nos engagements</TOSTitle>
 
           <TOSList>
             <TOSListItem>
@@ -123,7 +142,7 @@ export default ({
           </TOSList>
 
           <TOSText>
-            Ces principes ne se substituent pas à la lecture détaillée des
+            Ces engagements ne se substituent pas à la lecture détaillée des
             Conditions Générales d’utilisation que vous devez accepter
             (ci-dessous) pour naviguer avec Bulles.
           </TOSText>
@@ -132,11 +151,12 @@ export default ({
         </>
       )}
 
-      {termsOfServiceAccepted ? (
-        <TOSAlreadyAccepted />
-      ) : (
-        <TOSCheckbox onChange={setTosChecked} checked={acceptTosChecked} />
-      )}
+      {termsOfServiceAccepted !== undefined &&
+        (termsOfServiceAccepted ? (
+          <TOSAlreadyAccepted />
+        ) : (
+          <TOSCheckbox onChange={setTosChecked} checked={acceptTosChecked} />
+        ))}
 
       <OnboardinButton
         disabled={!acceptTosChecked && !termsOfServiceAccepted}

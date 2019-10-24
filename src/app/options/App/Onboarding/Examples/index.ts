@@ -1,4 +1,1 @@
-import Examples from './Examples';
-import withConnect from './withConnect';
-
-export default withConnect(Examples);
+export { default } from './Examples';

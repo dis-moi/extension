@@ -1,13 +1,5 @@
-interface Heap {
-  loaded: boolean;
-  userId: string;
-  load: (appId: string, options: { forceSSL: boolean }) => void;
-  track: (actionType: string, data: {}) => void;
-}
-
 interface CustomWindow extends Window {
-  heap?: Heap;
-  __LMEM__CONTENT_SCRIPT_INJECTED__?: boolean;
+  __BULLES__CONTENT_SCRIPT_INJECTED__?: boolean;
 }
 
 interface AppEnv extends NodeJS.ProcessEnv {
@@ -15,6 +7,7 @@ interface AppEnv extends NodeJS.ProcessEnv {
   SEND_CONTRIBUTION_TO: string;
   SEND_IN_BLUE_TOKEN: string;
   SENTRY_DSN: string;
+  BUILD: 'firefox' | 'chromium' | 'dev' | 'build';
 }
 
 declare module '*.png' {

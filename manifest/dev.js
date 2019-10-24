@@ -3,14 +3,15 @@ const base = require('./base');
 
 module.exports = {
   ...base,
-  name: 'LMEM - DEV',
+  name: 'Bulles - DEV',
+  options_page: 'options.html',
   content_security_policy: csp({
     directives: {
       'script-src': ["'self'", "'unsafe-eval'"],
       'object-src': ["'self'"]
     }
-  }),
-  externally_connectable: {
+  })
+  /*externally_connectable: {
     matches: [...base.externally_connectable.matches, '*://localhost/*']
-  }
+  }*/
 };

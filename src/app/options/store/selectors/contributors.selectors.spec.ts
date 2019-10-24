@@ -2,8 +2,9 @@
 import { expect } from 'chai';
 import { generateContributor } from 'test/fakers/generateContributor';
 import {
-  getContributors,
   getContributorsSuggestions,
+  getNbTotalContributors,
+  getSortedContributors,
   getSubscriptions,
   makeGetNContributorsSuggestions
 } from './contributors.selectors';
@@ -21,12 +22,18 @@ describe('options > selectors > contributors', () => {
     contributors: [contributorOne, contributorTwo, contributorThree]
   };
 
-  describe('getContributors', () => {
-    it('returns contributors state', () => {
-      expect(getContributors(state)).to.eql([
+  describe('getNbTotalContributors', () => {
+    it('returns number of total contributors', () => {
+      expect(getNbTotalContributors(state)).to.equal(3);
+    });
+  });
+
+  describe('getSortedContributors', () => {
+    it('returns contributors state, sorted by nb of contributors', () => {
+      expect(getSortedContributors(state)).to.eql([
         contributorOne,
-        contributorTwo,
-        contributorThree
+        contributorThree,
+        contributorTwo
       ]);
     });
   });

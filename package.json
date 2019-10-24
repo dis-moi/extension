@@ -1,12 +1,14 @@
 {
-  "name": "lmem-recommendations",
-  "version": "2.3.14",
-  "description": "LMEM Recommendations web extensions using React+Redux.",
+  "name": "bulles-webextension",
+  "version": "3.4.1",
+  "description": "Bulles Recommendations web extensions using React+Redux.",
   "engines": {
     "node": ">=8"
   },
   "scripts": {
     "start": "webpack --watch --progress --mode=development --env.build=dev",
+    "start:firefoxProduction": "webpack --watch --progress --mode=development --env.build=dev --env.firefox --env.api=production",
+    "start:productionApi": "webpack --watch --progress --mode=development --env.build=dev --env.api=production",
     "build:staging": "webpack --mode=production --env.build=staging",
     "release:staging": "webpack --mode=production --env.build=staging --env.sentry",
     "build:firefox": "webpack --mode=production --env.build=firefox",
@@ -16,12 +18,12 @@
     "build": "yarn build:staging && yarn build:production",
     "release": "yarn release:staging && yarn release:production",
     "clean": "rm -rf build",
-    "test": "LMEM_BACKEND_ORIGIN='' mocha --require ts-node/register --require tsconfig-paths/register 'src/**/*.spec.ts' 'test/app/*.ts' 'test/app/**/*.ts'",
-    "test:watch": "LMEM_BACKEND_ORIGIN='' mocha --require ts-node/register --require tsconfig-paths/register 'src/**/*.spec.ts' 'test/app/*.ts' 'test/app/**/*.ts' --watch --watch-extensions ts",
+    "test": "BACKEND_ORIGIN='' mocha -r ts-node/register -r tsconfig-paths/register -r jsdom-global/register 'src/**/*.spec.ts' 'test/app/*.ts' 'test/app/**/*.ts'",
     "typecheck": "tsc --noEmit",
     "lint": "yarn lint:ts && yarn lint:css",
     "lint:ts": "eslint 'src/**/*.{js,ts,tsx}'",
     "lint:css": "stylelint './src/**/*.ts' './src/**/*.tsx'",
+    "verify": "yarn test && yarn typecheck && yarn lint",
     "analyze": "webpack --mode=production --env.build=chromium --env.analyze",
     "storybook": "start-storybook --ci -p 6007 -c .storybook",
     "build-storybook": "build-storybook"
@@ -43,7 +45,7 @@
     "type": "git",
     "url": "https://github.com/insitu-project/recommendations-webextension"
   },
-  "homepage": "https://www.lmem.net",
+  "homepage": "https://www.bulles.fr",
   "author": "INSITU SAS (https://github.com/insitu-project)",
   "contributors": [
     "Benjamin Menant (https://github.com/bmenant)",
@@ -72,6 +74,7 @@
     "@types/chai": "^4.1.7",
     "@types/chrome": "^0.0.81",
     "@types/faker": "^4.1.5",
+    "@types/firefox-webext-browser": "^70.0.1",
     "@types/flat": "^0.0.28",
     "@types/history": "^4.7.2",
     "@types/isomorphic-fetch": "^0.0.35",
@@ -142,7 +145,8 @@
     "html-webpack-plugin": "^3.2.0",
     "husky": "^3.0.4",
     "isomorphic-fetch": "^2.2.1",
-    "jsdom": "^12.2.0",
+    "jsdom": "^15.1.1",
+    "jsdom-global": "^3.0.2",
     "lint-staged": "^8.1.5",
     "mocha": "^6.0.2",
     "null-loader": "^0.1.1",
@@ -190,6 +194,7 @@
     "typeface-sedgwick-ave": "^0.0.54",
     "typescript": "^3.5.3",
     "url-loader": "^2.1.0",
+    "webextension-polyfill": "^0.5.0",
     "webpack": "^4.39.2",
     "webpack-bundle-analyzer": "^3.4.1",
     "webpack-cli": "^3.1.2",

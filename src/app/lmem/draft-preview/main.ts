@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { debounce } from 'lodash-es';
-import { LMEM_BACKEND_ORIGIN } from '../../constants/origins';
+import { BACKEND_ORIGIN } from '../../constants/origins';
 
 type TabChangeInfo = chrome.tabs.TabChangeInfo;
 type Tab = chrome.tabs.Tab;
@@ -9,7 +9,7 @@ function isNoticeBackendURL(url: string) {
   const { origin, pathname, search } = new URL(url);
 
   return (
-    origin === LMEM_BACKEND_ORIGIN &&
+    origin === BACKEND_ORIGIN &&
     pathname.includes('/admin') &&
     search.includes('action=list') &&
     search.includes('entity=Notice')

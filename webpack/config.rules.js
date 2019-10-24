@@ -87,12 +87,5 @@ module.exports = (env, argv) => {
     }
   ];
 
-  if (env.build === 'firefox') {
-    rules.push({
-      test: /lib\/heap/,
-      use: [{ loader: 'null-loader' }]
-    });
-  }
-
   return rules;
 };

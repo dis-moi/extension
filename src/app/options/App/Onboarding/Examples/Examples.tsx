@@ -1,12 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import BullesLogo from 'components/atoms/LogoBeta';
+import SubscriptionsScreen from '../../Settings/SubscriptionsScreen';
 import Intro from '../OnboardingAtoms/OnboardingIntro';
 import Title from '../OnboardingAtoms/OnboardingTitle';
-import SuggestionsScreen, {
-  SuggestionsScreenProps
-} from '../../Settings/SuggestionsScreen/SuggestionsScreen';
 import Wrapper from '../OnboardingAtoms/OnboardingWrapper';
 
 const Title2 = styled(Title)`
@@ -15,35 +12,21 @@ const Title2 = styled(Title)`
   color: ${props => props.theme.activeColor};
 `;
 
-interface ExamplesScreenProps extends SuggestionsScreenProps {
-  updatedFromLmem: boolean;
-}
-
-export default ({
-  suggestions,
-  subscribe,
-  unsubscribe
-}: ExamplesScreenProps) => (
+export default () => (
   <>
     <Wrapper>
       <Intro>
         <BullesLogo />
 
         <Title>
-          Félicitations, vous êtes maintenant abonné·e : vous revevrez les
-          messages de vos contributeurs durant votre navigation.
+          Félicitations, vous êtes maintenant abonné·e : vous recevrez les
+          messages de vos contributeur·ice·s durant votre navigation.
         </Title>
 
         <Title2>Ci-dessous vous pouvez tester quelques exemples.</Title2>
       </Intro>
     </Wrapper>
 
-    <SuggestionsScreen
-      suggestions={suggestions}
-      subscribe={subscribe}
-      unsubscribe={unsubscribe}
-      showExampleLink
-      highlightExampleLink
-    />
+    <SubscriptionsScreen noSidebar highlightExampleLink />
   </>
 );

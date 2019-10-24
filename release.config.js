@@ -34,11 +34,11 @@ const release = Object.freeze({
       path: '@semantic-release/github',
       assets: [
         {
-          path: 'build/lmem-v*-firefox.zip',
+          path: 'build/bulles-v*-firefox.zip',
           label: 'Firefox Package'
         },
         {
-          path: 'build/lmem-v*-chromium.zip',
+          path: 'build/bulles-v*-chromium.zip',
           label: 'Chromium Package'
         }
       ]
@@ -46,7 +46,7 @@ const release = Object.freeze({
     //FIXME: semantic-release-chrome does not take globs on assets pathnames
     //{
     //  path: 'semantic-release-chrome',
-    //  asset: 'build/lmem-v*-chromium.zip',
+    //  asset: 'build/bulles-v*-chromium.zip',
     //  extensionId: 'fpjlnlnbacohacebkadbbjebbipcknbg',
     //},
   ]

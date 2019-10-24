@@ -1,8 +1,9 @@
-import { configure, addDecorator } from '@storybook/react';
+import { configure, addDecorator, RenderFunction } from '@storybook/react';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import store from './store';
+import formStore from './formStore';
+import optionsStore from 'app/options/store';
 import theme from '../src/app/theme';
 import 'typeface-lato';
 import 'typeface-sedgwick-ave';
@@ -13,13 +14,25 @@ const Global = createGlobalStyle`
   }
 `;
 
+export const formStoreDecorator = (getStory: RenderFunction) => (
+  <Provider store={formStore}>
+    <>{getStory()}</>
+  </Provider>
+);
+
+export const optionsStoreDecorator = (getStory: RenderFunction) => (
+  <Provider store={optionsStore}>
+    <>{getStory()}</>
+  </Provider>
+);
+
 addDecorator(getStory => (
-  <Provider store={store}>
+  <>
     <Global />
     <ThemeProvider theme={theme}>
       <>{getStory()}</>
     </ThemeProvider>
-  </Provider>
+  </>
 ));
 
 // automatically import all files ending in *.stories.js

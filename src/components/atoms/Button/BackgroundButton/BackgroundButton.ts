@@ -6,8 +6,8 @@ export default styled(BorderButton)`
   background-color: ${props => props.theme.button};
 
   &:hover {
-    color: ${props => props.theme.button};
-    background-color: #fff;
+    background-color: ${props => props.theme.backgroundButton.hover};
+    border-color: ${props => props.theme.backgroundButton.hover};
 
     svg {
       fill: ${props => props.theme.button};

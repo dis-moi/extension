@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import {
   init,
   configureScope,
@@ -7,26 +6,34 @@ import {
   captureMessage as sentryCaptureMessage,
   captureException as sentryCaptureException
 } from '@sentry/browser';
-import { version } from '../../../package.json';
+import { getRelease } from '../../../sentry';
+import Logger from './Logger';
+
+let sentryInitialized = false;
 
 export const initSentry = () => {
-  const blacklist = ['GlobalHandlers', 'ReportingObserver'];
+  const blacklist = ['GlobalHandlers', 'ReportingObserver', 'CaptureConsole'];
   if (process.env.SENTRY_ENABLE) {
-    init({
-      dsn: process.env.SENTRY_DSN,
-      environment: process.env.NODE_ENV,
-      release: `${version}-${process.env.BUILD}`,
-      // defaultIntegrations: false,
-      integrations: integrations =>
-        integrations.filter(i => !blacklist.includes(i.name))
-    });
+    try {
+      init({
+        dsn: process.env.SENTRY_DSN,
+        environment: process.env.NODE_ENV,
+        release: getRelease(process.env.BUILD),
+        integrations: integrations =>
+          integrations.filter(i => !blacklist.includes(i.name))
+      });
+      sentryInitialized = true;
+      Logger.info('Sentry initialized');
+    } catch (error) {
+      Logger.warn('Could not init Sentry in contentScript', error);
+    }
   }
 };
 
 export { Scope };
 type ScopeCallback = (scope: Scope) => void;
 export const configureSentryScope = (scopeCallback: ScopeCallback) => {
-  if (process.env.SENTRY_ENABLE) {
+  if (process.env.SENTRY_ENABLE && sentryInitialized) {
     configureScope(scopeCallback);
   }
 };
@@ -35,37 +42,41 @@ export const captureMessage = (
   message: string,
   level?: Severity
 ): string | undefined => {
-  if (process.env.SENTRY_ENABLE) {
+  if (process.env.SENTRY_ENABLE && sentryInitialized) {
     return sentryCaptureMessage(message, level);
   } else {
     switch (level) {
       case Severity.Fatal:
+        Logger.fatal(message);
+        break;
       case Severity.Error:
       case Severity.Critical:
-        console.error(message);
+        Logger.error(message);
         break;
       case Severity.Warning:
-        console.warn(message);
+        Logger.warn(message);
         break;
-
       case Severity.Info:
-        console.info(message);
+        Logger.info(message);
         break;
       case Severity.Debug:
-        console.debug(message);
+        Logger.debug(message);
         break;
       case Severity.Log:
       default:
-        console.log(message);
+        Logger.trace(message);
         break;
     }
   }
 };
 
-export const captureException = (exception: unknown): string | undefined => {
-  if (process.env.SENTRY_ENABLE) {
+export const captureException = (
+  exception: unknown,
+  message = ''
+): string | undefined => {
+  if (process.env.SENTRY_ENABLE && sentryInitialized) {
     return sentryCaptureException(exception);
   } else {
-    console.error(exception);
+    Logger.error(message || `CatchedError: ${message}`);
   }
 };

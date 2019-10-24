@@ -6,18 +6,18 @@ import {
   isTabReadyAction,
   ListeningActionsReadyAction
 } from 'app/actions';
-import sendToTab from 'webext/sendActionToTab';
 import assocTabIfNotGiven from 'webext/assocTabIfNotGiven';
 import { getContributorsWithSubscriptionState } from '../selectors/subscriptions.selectors';
 import { SUBSCRIBE, UNSUBSCRIBE } from '../../constants/ActionTypes';
 import { getTabsList } from '../selectors/tabs';
+import sendToTabSaga from './lib/sendToTab.saga';
 
 function* sendContributorsToTab(tab: chrome.tabs.Tab & Tab) {
   const contributors = yield select(getContributorsWithSubscriptionState);
   const contributorsTransmittedAction = assocTabIfNotGiven(tab)(
     contributorsTransmitted(contributors)
   );
-  sendToTab(tab.id, contributorsTransmittedAction);
+  yield sendToTabSaga(tab, contributorsTransmittedAction);
 }
 
 function* sendContributorsBackToTab(action: ListeningActionsReadyAction) {

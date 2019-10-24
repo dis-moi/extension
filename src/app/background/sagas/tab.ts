@@ -1,12 +1,8 @@
-import { put, takeEvery, select, call, all, take } from 'redux-saga/effects';
+import { put, takeEvery, select, call, all } from 'redux-saga/effects';
 import * as R from 'ramda';
 import { isToday } from 'date-fns';
 import { TAB_CREATED, TAB_UPDATED } from 'app/constants/browser/tabs';
-import {
-  CONTEXT_TRIGGERED,
-  MATCH_CONTEXT,
-  NOTICES_FOUND
-} from 'app/constants/ActionTypes';
+import { CONTEXT_TRIGGERED, MATCH_CONTEXT } from 'app/constants/ActionTypes';
 import {
   init,
   contextTriggered,
@@ -18,26 +14,17 @@ import {
   contextNotTriggered,
   noNoticesDisplayed,
   noticesFound,
-  noticesUpdated,
   MatchContextAction,
   ContextTriggeredAction,
-  NoticesFoundAction,
-  BaseAction,
-  TabAction,
   TabCreatedAction,
   TabUpdatedAction,
   AppAction,
-  showBullesUpdateMessage
+  showBullesUpdateMessage,
+  TabAction
 } from 'app/actions';
-import fetchContentScript from '../services/fetchContentScript';
 import { MatchingContext } from 'app/lmem/matchingContext';
-import Tab from 'app/lmem/tab';
 import { StatefulNotice, Notice, warnIfNoticeInvalid } from 'app/lmem/notice';
 import { fetchNotices } from 'api/fetchNotice';
-import sendToTab from 'webext/sendActionToTab';
-import executeTabScript, {
-  ExecuteContentScript
-} from 'webext/executeTabScript';
 import {
   getNoticesToDisplay,
   getIgnoredNotices,
@@ -45,14 +32,17 @@ import {
 } from '../selectors/prefs';
 import { findTriggeredContexts } from '../selectors';
 import { getInstallationDetails } from '../selectors/installationDetails';
-import { getTabs } from '../selectors/tabs';
 import { getUpdateMessageLastShowDate } from '../selectors/bullesUpdate.selectors';
+import sendToTabSaga from './lib/sendToTab.saga';
+import isAuthorizedTab from '../../../webext/isAuthorizedTab';
 
-export const tabSaga = (executeContentScript: ExecuteContentScript) =>
-  function*({ payload: { tab } }: TabCreatedAction | TabUpdatedAction) {
-    yield call(executeContentScript, tab);
+export function* tabSaga({
+  payload: { tab }
+}: TabCreatedAction | TabUpdatedAction) {
+  if (isAuthorizedTab(tab)) {
     yield put(matchContext(tab));
-  };
+  }
+}
 
 export function* matchContextSaga({ meta: { tab } }: MatchContextAction) {
   try {
@@ -121,50 +111,15 @@ export const contextTriggeredSaga = function*({
   }
 };
 
-/* eslint-disable no-unused-vars */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-const waitForTabReadySaga = (tab: Tab) =>
-  function*() {
-    yield take((readyAction: AppAction) =>
-      Boolean(
-        readyAction.type === 'LISTENING_ACTIONS_READY' &&
-          readyAction.meta.tab &&
-          readyAction.meta.tab.id === tab.id
-      )
-    );
-  };
-
-export function* publishToTabSaga(action: TabAction) {
-  const tab = action.meta.tab;
-  const tabs: { [id: string]: Tab } = yield select(getTabs);
-  if (!tabs[tab.id]) return;
-  if (!tabs[tab.id].ready) {
-    yield waitForTabReadySaga(tab);
-  }
-  sendToTab(tab.id, action);
-}
-
-export function* updateNoticesSaga({
-  payload: { notices },
-  meta: { tab }
-}: NoticesFoundAction) {
-  yield put(noticesUpdated(notices, { tab }));
+const shouldActionBeSentToTab = (action: AppAction) =>
+  Boolean(action.meta && action.meta.sendToTab);
+function* sendActionToTab(action: TabAction) {
+  yield sendToTabSaga(action.meta.tab, action);
 }
 
 export default function* tabRootSaga() {
-  const contentCode: string = yield call(
-    fetchContentScript,
-    '/js/content.bundle.js'
-  );
-  const executeTabContentScript = yield call(executeTabScript, contentCode);
-
-  yield takeEvery([TAB_CREATED, TAB_UPDATED], tabSaga(executeTabContentScript));
+  yield takeEvery([TAB_CREATED, TAB_UPDATED], tabSaga);
   yield takeEvery(MATCH_CONTEXT, matchContextSaga);
   yield takeEvery(CONTEXT_TRIGGERED, contextTriggeredSaga);
-  yield takeEvery(
-    (action: BaseAction) => Boolean(action.meta && action.meta.sendToTab),
-    publishToTabSaga
-  );
-
-  yield takeEvery(NOTICES_FOUND, updateNoticesSaga);
+  yield takeEvery(shouldActionBeSentToTab, sendActionToTab);
 }

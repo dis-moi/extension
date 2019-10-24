@@ -10,25 +10,19 @@ export default styled(ReactRouterNavLink).attrs({
   replace: true,
   activeClassName: 'active'
 })<NavLinkProps>`
-  box-sizing: border-box;
-  width: 40px;
-  padding-top: 5px;
-  padding-bottom: 6px;
+  padding-top: 10px;
+  padding-bottom: 12px;
+  font-size: 12px;
+  font-weight: 900;
+  color: ${props => props.theme.badge.backgroundColor.hasAllNoticesRead};
+  text-transform: uppercase;
   text-align: center;
+  text-decoration: none;
   border-top: 2px solid transparent;
   transition: all 0.2s ease-in-out;
 
-  & > svg {
-    transition: all 0.2s ease-in-out;
-    height: 28px;
-    fill: ${props => props.theme.navInactive};
-  }
-
   &.${props => props.activeClassName}, &:hover {
     border-top: 2px solid ${props => props.theme.navActive};
-
-    & > svg {
-      fill: ${props => props.theme.navActive};
-    }
+    color: ${props => props.theme.activeColor};
   }
 `;

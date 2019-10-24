@@ -55,6 +55,7 @@ import {
 import { From } from '../../webext/From';
 import { SubscribeAction, UnsubscribeAction } from './subscription';
 import { ShowBullesUpdateMessageAction } from './bullesUpdate.actions';
+import { LoadedAction } from '../content/actions/ui/open.actions';
 
 type MessageSender = chrome.runtime.MessageSender;
 
@@ -132,7 +133,6 @@ export interface FormMeta {
 export interface ActionMeta {
   sendToBackground?: boolean;
   sendToTab?: boolean;
-  tracked?: boolean;
   action?: unknown;
   external?: boolean;
   sender?: MessageSender;
@@ -182,4 +182,5 @@ export type AppAction =
   | TosAcceptedAction
   | TransmitTOSStatusAction
   | ShowBullesUpdateMessageAction
+  | LoadedAction
   | (LocationChangeAction & { meta?: ActionMeta });

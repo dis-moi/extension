@@ -9,11 +9,20 @@ storiesOf('screens/SuggestionsScreen', module)
   .addDecorator(getStory => <Wrapper>{getStory()}</Wrapper>)
   .add('suggestions', () => (
     <SuggestionsScreen
+      subscriptions={[]}
       suggestions={[
         generateContributor(),
         { ...generateContributor(), subscribed: true },
         generateContributor()
       ]}
+      subscribe={() => action('subscribe')}
+      unsubscribe={() => action('unsubscribe')}
+    />
+  ))
+  .add('no suggestions', () => (
+    <SuggestionsScreen
+      subscriptions={[]}
+      suggestions={[]}
       subscribe={() => action('subscribe')}
       unsubscribe={() => action('unsubscribe')}
     />

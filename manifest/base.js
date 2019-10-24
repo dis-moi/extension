@@ -6,31 +6,32 @@
  */
 
 const version = require('../package.json').version;
+const icons = require('./icons');
 
 module.exports = Object.freeze({
-  name: 'Le Même en Mieux',
-  short_name: 'LMEM',
+  name: 'Bulles',
   description:
-    'Qualité, prix, éthique : s’il existe un meilleur choix, vous le saurez. ' +
-    'Gratuit et sans pub, respecte votre vie privée.',
+    'Amis, media, experts vous informent directement sur les pages web visitées. ',
   version,
   manifest_version: 2,
-  icons: {
-    '16': 'img/logo/16x16.png',
-    '48': 'img/logo/48x48.png',
-    '128': 'img/logo/128x128.png'
-  },
+  icons,
   background: {
     page: 'background.html'
   },
-  options_page: 'options.html',
+  content_scripts: [
+    {
+      matches: ['*://*/*'],
+      js: ['js/browser-polyfill.js', 'js/content.bundle.js'],
+      run_at: 'document_end'
+    }
+  ],
   browser_action: {
     default_icon: {
       '16': 'img/logo/16x16.png',
       '48': 'img/logo/48x48.png',
       '128': 'img/logo/128x128.png'
     },
-    default_title: 'Le Même en Mieux'
+    default_title: 'Bulles'
   },
   permissions: [
     'geolocation',
@@ -39,9 +40,9 @@ module.exports = Object.freeze({
     'unlimitedStorage',
     'http://*/*',
     'https://*/*'
-  ],
-  web_accessible_resources: ['img/*', 'fonts/*'],
+  ]
+  /* web_accessible_resources: ['img/*', 'fonts/*'],
   externally_connectable: {
     matches: ['https://*.lmem.net/*']
-  }
+  } */
 });

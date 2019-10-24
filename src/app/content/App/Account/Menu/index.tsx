@@ -8,18 +8,10 @@ type MenuProps = RouteComponentProps;
 
 export const Menu = ({ match }: MenuProps) => (
   <Account>
-    <ExternalLink
-      target="_blank"
-      rel="noopener noreferrer"
-      href="http://www.bulles.fr/vie-privee"
-    >
+    <ExternalLink href="http://www.bulles.fr/vie-privee">
       Mes données
       <OpenButton />
     </ExternalLink>
-    <Link to={`${match.url}/filters`}>
-      Mes filtres
-      <OpenButton />
-    </Link>
     <Link to={`${match.url}/about`}>
       À propos
       <OpenButton />

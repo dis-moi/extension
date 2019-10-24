@@ -12,45 +12,49 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const basePlugins = require('../webpack/config.plugins.base');
 const manifests = require('../manifest');
 const { version } = require('../package.json');
+const { getRelease } = require('../sentry');
 
 const BUILD_CONFIG = {
   dev: {
-    LMEM_BACKEND_ORIGIN: '"https://staging-notices.lmem.net/api/v3/"',
+    BACKEND_ORIGIN: '"https://staging-notices.bulles.fr/api/v3/"',
+    REFRESH_MC_INTERVAL: '5*60*1000',
+    REFRESH_CONTRIBUTORS_INTERVAL: '5*60*1000'
+  },
+  devOnProductionApi: {
+    BACKEND_ORIGIN: '"https://notices.bulles.fr/api/v3/"',
     REFRESH_MC_INTERVAL: '5*60*1000',
     REFRESH_CONTRIBUTORS_INTERVAL: '5*60*1000'
   },
   staging: {
-    LMEM_BACKEND_ORIGIN: '"https://staging-notices.lmem.net/api/v3/"',
-    UNINSTALL_ORIGIN: "'https://www.lmem.net/desinstallation'",
-    HEAP_APPID: '"234457910"', // testing
+    BACKEND_ORIGIN: '"https://staging-notices.bulles.fr/api/v3/"',
+    UNINSTALL_ORIGIN: "'https://www.bulles.fr/desinstallation'",
     REFRESH_MC_INTERVAL: '5*60*1000',
-    REFRESH_CONTRIBUTORS_INTERVAL: '5*60*1000',
-    SENTRY_DSN: '"https://a22936b545a54f37b153b3f9e2c98790@sentry.io/1404847"'
+    REFRESH_CONTRIBUTORS_INTERVAL: '5*60*1000'
   },
   chromium: {
-    LMEM_BACKEND_ORIGIN: '"https://notices.lmem.net/api/v3/"',
-    UNINSTALL_ORIGIN: "'https://www.lmem.net/desinstallation'",
+    BACKEND_ORIGIN: '"https://notices.bulles.fr/api/v3/"',
+    UNINSTALL_ORIGIN: "'https://www.bulles.fr/desinstallation'",
     REFRESH_MC_INTERVAL: '30*60*1000',
-    REFRESH_CONTRIBUTORS_INTERVAL: '30*60*1000',
-    ONBOARDING_ORIGIN: '"https://bienvenue.lmem.net?extensionInstalled"',
-    HEAP_APPID: '"3705584166"', // production
-    SENTRY_DSN: '"https://a22936b545a54f37b153b3f9e2c98790@sentry.io/1404847"'
+    REFRESH_CONTRIBUTORS_INTERVAL: '30*60*1000'
   },
   firefox: {
-    LMEM_BACKEND_ORIGIN: '"https://notices.lmem.net/api/v3/"',
-    ONBOARDING_ORIGIN: '"https://bienvenue.lmem.net?extensionInstalled"',
+    BACKEND_ORIGIN: '"https://notices.bulles.fr/api/v3/"',
     REFRESH_MC_INTERVAL: '30*60*1000',
-    REFRESH_CONTRIBUTORS_INTERVAL: '30*60*1000',
-    // No analytics with Firefox // HEAP_APPID: '"3705584166"',
-    SENTRY_DSN: '"https://a22936b545a54f37b153b3f9e2c98790@sentry.io/1404847"'
+    REFRESH_CONTRIBUTORS_INTERVAL: '30*60*1000'
   }
 };
+
+const getBuildConfig = (build, api) =>
+  build === 'dev' && api === 'production'
+    ? BUILD_CONFIG['devOnProductionApi']
+    : BUILD_CONFIG[build];
 
 const selectEnvVarsToInject = R.pick([
   'SEND_CONTRIBUTION_FROM',
   'SEND_CONTRIBUTION_TO',
   'SEND_IN_BLUE_TOKEN',
-  'SENTRY_DSN'
+  'SENTRY_DSN',
+  'NODE_ENV'
 ]);
 const formatEnvVars = R.map(value => `"${value}"`);
 
@@ -67,6 +71,10 @@ module.exports = (env = {}, argv = {}, outputPath) => {
     {
       from: 'src/app/lmem/draft-preview/grabDraftNotices.js',
       to: path.join(buildPath, 'js')
+    },
+    {
+      from: 'node_modules/webextension-polyfill/dist/browser-polyfill.js',
+      to: path.join(buildPath, 'js')
     }
   ];
   if (argv.mode !== 'production') {
@@ -80,7 +88,7 @@ module.exports = (env = {}, argv = {}, outputPath) => {
     ...basePlugins(env, argv),
     new webpack.DefinePlugin({
       'process.env': {
-        ...BUILD_CONFIG[env.build],
+        ...getBuildConfig(env.build, env.api),
         ...processENVVarsToInject(process.env),
         BUILD: JSON.stringify(env.build),
         SENTRY_ENABLE: env.sentry ? 'true' : 'false'
@@ -99,7 +107,7 @@ module.exports = (env = {}, argv = {}, outputPath) => {
     }),
     new AddAssetWebpackPlugin(
       'manifest.json',
-      JSON.stringify(manifests[env.build], null, 2)
+      JSON.stringify(manifests[env.firefox ? 'firefoxDev' : env.build], null, 2)
     ),
     new CopyWebpackPlugin(copyConfig)
   ];
@@ -109,7 +117,8 @@ module.exports = (env = {}, argv = {}, outputPath) => {
       new SentryWebpackPlugin({
         include: `./build/${env.build}/js`,
         ignore: ['test.*.js*'],
-        release: `web-extension@${version}-${env.build}`
+        urlPrefix: '~/js',
+        release: getRelease(env.build)
       })
     );
   }
@@ -119,7 +128,7 @@ module.exports = (env = {}, argv = {}, outputPath) => {
       new CleanWebpackPlugin(),
       new ZipPlugin({
         path: '..',
-        filename: `lmem-v${version}-${env.build}.zip`
+        filename: `bulles-v${version}-${env.build}.zip`
       })
     );
   }

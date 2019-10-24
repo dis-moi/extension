@@ -18,6 +18,13 @@ export interface Contributor {
   avatar?: Avatar;
   intro?: string;
   contributions: number;
+  contribution: {
+    example: {
+      matchingUrl: string;
+      noticeId: number;
+      noticeUrl: string;
+    };
+  };
 }
 
 export interface NewContributor {
@@ -34,6 +41,11 @@ export const contributorIsSubscribed = (
 ): boolean => Boolean(contributor.subscribed);
 
 type SortSuggestedContributors = (contributors: Contributor[]) => Contributor[];
-export const sortSuggestedContributors: SortSuggestedContributors = R.sortWith([
-  R.descend(R.prop('contributions'))
-]);
+
+export const sortContributorsByContributions: SortSuggestedContributors = R.sortWith(
+  [R.descend(R.prop('contributions'))]
+);
+
+export const findContributorIn = (contributors: Contributor[]) => (
+  contributor: Contributor
+) => R.find(R.propEq('id', contributor.id), contributors) as Contributor;

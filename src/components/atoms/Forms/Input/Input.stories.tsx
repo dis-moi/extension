@@ -16,7 +16,7 @@ storiesOf('atoms/Forms/Input', module)
       error
     />
   ))
-  .add('email', () => <Input placeholder="coucou@lmem.net" type="email" />)
+  .add('email', () => <Input placeholder="coucou@bulles.fr" type="email" />)
   .add('email with error', () => (
-    <Input placeholder="coucou@lmem.net" type="email" error />
+    <Input placeholder="coucou@bulles.fr" type="email" error />
   ));

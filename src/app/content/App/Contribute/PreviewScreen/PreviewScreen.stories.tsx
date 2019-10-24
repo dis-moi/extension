@@ -4,8 +4,10 @@ import { storiesOf } from '@storybook/react';
 import Notification from 'components/organisms/Notification';
 import PreviewScreen from './PreviewScreen';
 import { action } from '@storybook/addon-actions';
+import { formStoreDecorator } from '../../../../../../.storybook/config';
 
 storiesOf('screens/Contribute/Preview', module)
+  .addDecorator(formStoreDecorator)
   .addDecorator(getStory => (
     <Router>
       <Notification title="Prévisualisation" hasNotices>

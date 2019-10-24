@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import SuggestionsScreen, {
-  SuggestionsScreenProps
-} from '../../Settings/SuggestionsScreen/SuggestionsScreen';
+import { lmemContributorIds } from 'app/lmemContributors';
 import BullesLogo from 'components/atoms/LogoBeta';
+import SuggestionsScreen from '../../Settings/SuggestionsScreen';
 import OnboardingButton from '../OnboardingAtoms/OnboardingButton';
 import Intro from '../OnboardingAtoms/OnboardingIntro';
 import SubTitle from '../OnboardingAtoms/OnboardingSubTitle';
@@ -20,20 +18,29 @@ const BottomLineBg = styled.section`
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 200px;
-  padding-top: 30px;
-  text-align: center;
-  background-color: #fafafa;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(250, 250, 250, 0.9);
 `;
 
 const InfoLine = styled.p`
-  margin: 0 0 16px;
+  margin: 0;
+  padding-top: 16px;
   font-size: 17px;
   font-weight: bold;
   color: #ba1b1b;
 `;
 
-interface SubscribeScreenProps extends SuggestionsScreenProps {
+const SuggestionsWrapper = styled.div`
+  & > section {
+    padding-bottom: 150px;
+  }
+`;
+
+interface SubscribeScreenProps {
   updatedFromLmem: boolean;
   nbSubscriptions: number;
   next: () => void;
@@ -41,9 +48,6 @@ interface SubscribeScreenProps extends SuggestionsScreenProps {
 
 export default ({
   updatedFromLmem,
-  suggestions,
-  subscribe,
-  unsubscribe,
   nbSubscriptions,
   next
 }: SubscribeScreenProps) => (
@@ -53,20 +57,20 @@ export default ({
       {updatedFromLmem && <OnboardingSteps activeStep={2} />}
 
       <Title>
-        Choisissez vos contributeurs pour recevoir leurs messages durant votre
-        navigation
+        Choisissez vos contributeur·ice·s pour recevoir leurs messages durant
+        votre navigation
       </Title>
     </Intro>
 
-    <SuggestionsScreen
-      suggestions={suggestions}
-      subscribe={subscribe}
-      unsubscribe={unsubscribe}
-    />
+    <SuggestionsWrapper>
+      <SuggestionsScreen
+        preselectedContributorsIds={updatedFromLmem ? lmemContributorIds : null}
+      />
+    </SuggestionsWrapper>
 
     <BottomLineBg>
       {nbSubscriptions === 0 && (
-        <InfoLine>Choisir au minimum 1 contributeur</InfoLine>
+        <InfoLine>Choisir au minimum 1 contributeur·ice</InfoLine>
       )}
       <OnboardingButton disabled={nbSubscriptions === 0} onClick={next}>
         Terminer

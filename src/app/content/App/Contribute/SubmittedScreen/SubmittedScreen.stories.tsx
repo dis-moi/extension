@@ -4,26 +4,13 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Notification from 'components/organisms/Notification';
 import SubmittedScreen from './SubmittedScreen';
+import { formStoreDecorator } from '../../../../../../.storybook/config';
 
 storiesOf('screens/Contribute/Submitted', module)
+  .addDecorator(formStoreDecorator)
   .addDecorator(getStory => (
     <Router>
       <Notification>{getStory()}</Notification>
     </Router>
   ))
-  .add('normal', () => (
-    <SubmittedScreen
-      goBack={action('goBack')}
-      contribution={{
-        message:
-          "Je tiens à dire que la canicule, c'est une bonne chose pour les vieux.",
-        url: 'https://weather.com',
-        contributor: {
-          email: 'johan.dufour@gmail.com',
-          name: 'Johan Dufour'
-        },
-        intention: 'approval',
-        created: new Date()
-      }}
-    />
-  ));
+  .add('normal', () => <SubmittedScreen goBack={action('goBack')} />);
