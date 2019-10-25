@@ -39,6 +39,7 @@ const BUILD_CONFIG = {
   },
   firefox: {
     BACKEND_ORIGIN: '"https://notices.bulles.fr/api/v3/"',
+    UNINSTALL_ORIGIN: "'https://www.bulles.fr/desinstallation'",
     REFRESH_MC_INTERVAL: '30*60*1000',
     REFRESH_CONTRIBUTORS_INTERVAL: '30*60*1000'
   }
