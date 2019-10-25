@@ -46,6 +46,11 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
     outline: 1px dotted ${props => props.theme.activeColor};
   }
 
+  ${LoadingRotator} svg {
+    width: 18px;
+    height: 18px;
+  }
+
   &:disabled {
     color: #fff;
     cursor: auto;
@@ -62,11 +67,6 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
   &:disabled:visited {
     background-color: ${props => props.theme.basicButton.disabled};
     border-color: ${props => props.theme.basicButton.disabled};
-  }
-
-  ${LoadingRotator} svg {
-    width: 18px;
-    height: 18px;
   }
 `;
 

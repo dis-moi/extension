@@ -5,6 +5,10 @@ export default styled(BorderButton)`
   color: #fff;
   background-color: ${props => props.theme.button};
 
+  svg {
+    fill: #fff;
+  }
+
   &:hover {
     background-color: ${props => props.theme.backgroundButton.hover};
     border-color: ${props => props.theme.backgroundButton.hover};
@@ -16,9 +20,5 @@ export default styled(BorderButton)`
 
   :disabled:hover {
     color: #fff;
-  }
-
-  svg {
-    fill: #fff;
   }
 `;
