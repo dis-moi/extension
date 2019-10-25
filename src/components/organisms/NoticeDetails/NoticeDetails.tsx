@@ -154,7 +154,7 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
           </DetailsMeta>
 
           <Message>{message}</Message>
-          {source && (
+          {source && source.url && (
             <Source>
               En savoir plus :{' '}
               <SourceURL onClick={this.handleFollowSource}>
