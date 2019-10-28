@@ -1,32 +1,14 @@
-import { TabAction } from '.';
-import Tab from 'app/lmem/tab';
+import { BaseAction } from '.';
+import { ReceivedAction } from 'webext/createMessageHandler';
 
-export interface TabCreatedAction extends TabAction {
-  type: 'BROWSER/TAB_CREATED';
-  payload: { tab: Tab };
-}
-export const tabCreated = (tab: Tab): TabCreatedAction => ({
-  type: 'BROWSER/TAB_CREATED',
-  payload: { tab },
-  meta: { tab }
-});
+export const TAB_REMOVED = 'BROWSER/TAB_REMOVED';
 
-export interface TabUpdatedAction extends TabAction {
-  type: 'BROWSER/TAB_UPDATED';
-  payload: { tab: Tab };
+export interface TabRemovedAction extends BaseAction {
+  type: typeof TAB_REMOVED;
 }
-export const tabUpdated = (tab: Tab): TabUpdatedAction => ({
-  type: 'BROWSER/TAB_UPDATED',
-  payload: { tab },
-  meta: { tab }
-});
+export type ReceivedTabRemovedAction = ReceivedAction & TabRemovedAction;
 
-export interface TabRemovedAction extends TabAction {
-  type: 'BROWSER/TAB_REMOVED';
-  payload: { tab: Tab };
-}
-export const tabRemoved = (tab: Tab): TabRemovedAction => ({
-  type: 'BROWSER/TAB_REMOVED',
-  payload: { tab },
-  meta: { tab }
+export const tabRemoved = (): TabRemovedAction => ({
+  type: TAB_REMOVED,
+  meta: { sendToBackground: true }
 });

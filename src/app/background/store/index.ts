@@ -5,7 +5,6 @@ import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
 import rootReducer, { BackgroundState } from '../reducers';
 import middlewares, { sagaMiddleware } from '../middlewares';
 import rootSaga from '../sagas';
-import listenTabs from './listenTabs';
 import migrate from './migrations';
 import { AppAction } from '../../actions';
 
@@ -46,7 +45,5 @@ export const store = createStore<BackgroundState, AppAction, null, null>(
   enhancer
 );
 persistStore(store);
-
-listenTabs(store);
 
 sagaMiddleware.run(rootSaga);

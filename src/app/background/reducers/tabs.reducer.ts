@@ -1,11 +1,13 @@
 import * as R from 'ramda';
-import {
-  TAB_CREATED,
-  TAB_REMOVED,
-  TAB_UPDATED
-} from 'app/constants/browser/tabs';
 import Tab from 'app/lmem/tab';
-import { AppAction, isTabReadyAction } from 'app/actions';
+import {
+  isTabReadyAction,
+  NAVIGATED_TO_URL,
+  AppAction,
+  ReceivedNavigatedToUrlAction,
+  TAB_REMOVED,
+  ReceivedTabRemovedAction
+} from 'app/actions';
 
 export interface TabsState {
   [tabId: string]: Tab;
@@ -28,11 +30,14 @@ export default function(state = initialState, action: AppAction) {
   switch (action.type) {
     case 'OPTIONS_TAB_OPENED':
       return markTabAsOptions(action.payload)(state);
-    case TAB_CREATED:
-    case TAB_UPDATED:
-      return addOrUpdateTab(action.payload.tab)(state);
+    case NAVIGATED_TO_URL:
+      return addOrUpdateTab((action as ReceivedNavigatedToUrlAction).meta.tab)(
+        state
+      );
     case TAB_REMOVED:
-      return removeTabFromList(action.payload.tab)(state);
+      return removeTabFromList((action as ReceivedTabRemovedAction).meta.tab)(
+        state
+      );
     case 'LISTENING_ACTIONS_READY':
       return action.meta.tab
         ? R.pipe(

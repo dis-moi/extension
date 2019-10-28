@@ -29,7 +29,7 @@ function* trySendToTab(
     } else {
       captureException(
         error,
-        `Could not communicate with tab ${tab.id} after ${MAX_RETRIES} attempts`
+        `Could not communicate with tab ${tab.id} after ${MAX_RETRIES} attempts : ${error.message}`
       );
     }
   }
