@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, MouseEvent } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import styled from 'styled-components';
 import { format } from 'date-fns';
@@ -118,15 +118,13 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
     }
   };
 
-  // eslint-disable-next-line
-  // @ts-ignore
-  handleMessageClick = (e: MouseEvent<HTMLDivElement>) => {
+  handleMessageClick = (e: MouseEvent) => {
     const {
       outboundLinkClicked,
       notice: { id }
     } = this.props;
     if (outboundLinkClicked) {
-      if (e.target.tagName.toLowerCase() === 'a') {
+      if ((e.target as HTMLElement).tagName.toLowerCase() === 'a') {
         outboundLinkClicked(id);
       }
     }
