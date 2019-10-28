@@ -1,7 +1,6 @@
 import { put, takeEvery, select, call, all } from 'redux-saga/effects';
 import * as R from 'ramda';
 import { isToday } from 'date-fns';
-import { TAB_CREATED, TAB_UPDATED } from 'app/constants/browser/tabs';
 import { CONTEXT_TRIGGERED, MATCH_CONTEXT } from 'app/constants/ActionTypes';
 import {
   init,
@@ -13,14 +12,14 @@ import {
   contextNotTriggered,
   noNoticesDisplayed,
   noticesFound,
-  MatchContextAction,
-  ContextTriggeredAction,
-  TabCreatedAction,
-  TabUpdatedAction,
-  AppAction,
   showBullesUpdateMessage,
+  noticeBadged,
+  NAVIGATED_TO_URL,
+  AppAction,
+  MatchContextAction,
   TabAction,
-  noticeBadged
+  ContextTriggeredAction,
+  ReceivedNavigatedToUrlAction
 } from 'app/actions';
 import { MatchingContext } from 'app/lmem/matchingContext';
 import { StatefulNotice, Notice, warnIfNoticeInvalid } from 'app/lmem/notice';
@@ -36,9 +35,7 @@ import { getUpdateMessageLastShowDate } from '../selectors/bullesUpdate.selector
 import sendToTabSaga from './lib/sendToTab.saga';
 import isAuthorizedTab from '../../../webext/isAuthorizedTab';
 
-export function* tabSaga({
-  payload: { tab }
-}: TabCreatedAction | TabUpdatedAction) {
+export function* tabSaga({ meta: { tab } }: ReceivedNavigatedToUrlAction) {
   if (isAuthorizedTab(tab)) {
     yield put(matchContext(tab));
   }
@@ -116,7 +113,7 @@ function* sendActionToTab(action: TabAction) {
 }
 
 export default function* tabRootSaga() {
-  yield takeEvery([TAB_CREATED, TAB_UPDATED], tabSaga);
+  yield takeEvery(NAVIGATED_TO_URL, tabSaga);
   yield takeEvery(MATCH_CONTEXT, matchContextSaga);
   yield takeEvery(CONTEXT_TRIGGERED, contextTriggeredSaga);
   yield takeEvery(shouldActionBeSentToTab, sendActionToTab);

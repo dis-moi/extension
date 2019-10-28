@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
 import { expect } from 'chai';
 import tabsReducer from './tabs.reducer';
-import { tabUpdated } from '../../actions';
+import { navigatedToUrl } from '../../actions';
 
 describe('background > reducers > tabs', () => {
-  describe('when receiving TAB_UPDATED', () => {
+  describe('when receiving NAVIGATED_TO_URL', () => {
     // @ts-ignore
     const state = tabsReducer(undefined, { type: 'UNKNOWN' });
     state['42'] = {
@@ -14,12 +14,16 @@ describe('background > reducers > tabs', () => {
       options: true
     };
 
-    const tabUpdatedAction = tabUpdated({
-      id: 42,
-      url: 'urlChanged',
-      // @ts-ignore
-      newInfo: 'toKeep'
-    });
+    const tabUpdatedAction = {
+      ...navigatedToUrl('urlChanged'),
+      meta: {
+        tab: {
+          id: 42,
+          url: 'urlChanged',
+          newInfo: 'toKeep'
+        }
+      }
+    };
 
     it('saves new or updated tab info', () => {
       expect(tabsReducer(state, tabUpdatedAction)).to.have.nested.property(
@@ -36,7 +40,7 @@ describe('background > reducers > tabs', () => {
       );
     });
 
-    it('keeps existing tab info when receiving TAB_UPDATED', () => {
+    it('keeps existing tab info when receiving NAVIGATED_TO_URL', () => {
       expect(tabsReducer(state, tabUpdatedAction)).to.have.nested.property(
         '42.ready',
         true

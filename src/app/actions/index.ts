@@ -2,11 +2,6 @@ import { Action } from 'redux';
 import { LocationChangeAction } from 'connected-react-router';
 import Tab from 'app/lmem/tab';
 import { BrowserActionClickedAction } from './browser';
-import {
-  TabCreatedAction,
-  TabRemovedAction,
-  TabUpdatedAction
-} from './tabsLifecycle';
 import { InstalledAction, InstallationDetailsAction } from './install';
 import {
   RefreshMatchingContextsFailedAction,
@@ -17,12 +12,15 @@ import {
   MatchContextAction,
   MatchContextFailureAction,
   ContextTriggeredAction,
-  ContextTriggerFailureAction
+  ContextTriggerFailureAction,
+  NavigatedToUrlAction,
+  ContextNotTriggeredAction
 } from './tabs';
 import { CloseAction, ClosedAction, OpenAction, OpenedAction } from './ui';
 import {
   FeedbackOnNoticeAction,
   MarkNoticeReadAction,
+  NoNoticesDisplayedAction,
   NoticeDisplayedAction,
   NoticeIgnoredAction,
   NoticesFoundAction,
@@ -56,10 +54,12 @@ import { From } from '../../webext/From';
 import { SubscribeAction, UnsubscribeAction } from './subscription';
 import { ShowBullesUpdateMessageAction } from './bullesUpdate.actions';
 import { LoadedAction } from '../content/actions/ui/open.actions';
+import { TabRemovedAction } from './tabsLifecycle';
 
 type MessageSender = chrome.runtime.MessageSender;
 
 export * from './badge';
+export * from './tabsLifecycle';
 export * from './browser';
 export * from './install';
 export * from './notices';
@@ -67,7 +67,6 @@ export * from './refreshMatchingContexts';
 export * from './refreshContributors';
 export * from './options';
 export * from './tabs';
-export * from './tabsLifecycle';
 export * from './tos';
 export * from './ui';
 export * from './updateDraftNotices';
@@ -143,10 +142,11 @@ export interface ActionMeta {
 export type AppAction =
   | InitAction
   | BrowserActionClickedAction
-  | TabCreatedAction
-  | TabUpdatedAction
-  | TabRemovedAction
+  | NavigatedToUrlAction
   | InstalledAction
+  | TabRemovedAction
+  | ContextNotTriggeredAction
+  | NoNoticesDisplayedAction
   | RefreshMatchingContextsFailedAction
   | ReceivedMatchingContextsAction
   | MatchContextAction

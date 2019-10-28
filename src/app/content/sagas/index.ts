@@ -5,6 +5,8 @@ import init from './init';
 import contribution from './contribution';
 import notices from './notices';
 import ui from './ui';
+import watchUrlsSaga from './watchUrls.saga';
+import watchUnloadSaga from './watchUnload.saga';
 
 export default function* rootSaga() {
   yield all([
@@ -13,6 +15,8 @@ export default function* rootSaga() {
     fork(contribution),
     fork(notices),
     fork(ui),
-    fork(error)
+    fork(error),
+    fork(watchUrlsSaga),
+    fork(watchUnloadSaga)
   ]);
 }

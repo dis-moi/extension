@@ -58,7 +58,8 @@ export interface NoNoticesDisplayedAction extends TabAction {
 export const noNoticesDisplayed = (tab: Tab): NoNoticesDisplayedAction => ({
   type: 'NO_NOTICES_DISPLAYED',
   meta: {
-    tab
+    tab,
+    sendToTab: true
   }
 });
 

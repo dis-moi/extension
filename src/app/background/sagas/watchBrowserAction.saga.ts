@@ -10,7 +10,7 @@ function* watchBrowserActionSaga() {
     try {
       yield put(yield take(channel));
     } catch (e) {
-      createErrorAction()(e);
+      yield put(createErrorAction()(e));
     }
   }
 }

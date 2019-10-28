@@ -71,12 +71,12 @@ export const captureMessage = (
 };
 
 export const captureException = (
-  exception: unknown,
+  exception: Error,
   message = ''
 ): string | undefined => {
   if (process.env.SENTRY_ENABLE && sentryInitialized) {
     return sentryCaptureException(exception);
   } else {
-    Logger.error(message || `CatchedError: ${message}`);
+    Logger.error(message || `CatchedError: ${message || exception.message}`);
   }
 };

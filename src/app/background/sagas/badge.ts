@@ -1,15 +1,13 @@
 import { SagaIterator } from 'redux-saga';
 import { takeLatest, call, select } from 'redux-saga/effects';
 import { StatefulNotice } from 'app/lmem/notice';
-import { BadgeTheme, updateBadge, resetBadge } from 'app/lmem/badge';
+import { BadgeTheme, updateBadge } from 'app/lmem/badge';
 import {
   FeedbackOnNoticeAction,
   MarkNoticeReadAction,
   NoticesFoundAction,
-  badgeResetFailed,
   badgeUpdateFailed,
-  AppAction,
-  TabAction
+  AppAction
 } from 'app/actions';
 import { ReceivedAction } from 'webext/createMessageHandler';
 import { getNoticesToDisplay } from '../selectors/prefs';
@@ -31,6 +29,14 @@ type BadgeImpactingAction = (
 export const updateBadgeSaga = (badgeTheme: BadgeTheme) =>
   function*(action: BadgeImpactingAction): SagaIterator {
     try {
+      if (
+        action.type === 'LMEM/CONTEXT_NOT_TRIGGERED' ||
+        action.type === 'NO_NOTICES_DISPLAYED'
+      ) {
+        yield call(updateBadge, [], badgeTheme, action.meta.tab.id);
+        return;
+      }
+
       const notices =
         action.type === 'NOTICES_FOUND'
           ? (action as NoticesFoundAction).payload.notices
@@ -56,25 +62,14 @@ export const updateBadgeSaga = (badgeTheme: BadgeTheme) =>
     }
   };
 
-export function* resetBadgeSaga({ meta: { tab } }: TabAction): SagaIterator {
-  try {
-    resetBadge(tab.id);
-  } catch (e) {
-    badgeResetFailed(e);
-  }
-}
-
-const isTabChangedAction = (action: AppAction): boolean =>
-  action.type === 'BROWSER/TAB_CREATED' ||
-  action.type === 'BROWSER/TAB_UPDATED';
-
 const isActionImpactingBadge = (action: AppAction): boolean =>
   action.type === 'MARK_NOTICE_READ' ||
   action.type === 'NOTICES_FOUND' ||
-  action.type === 'FEEDBACK_ON_NOTICE';
+  action.type === 'FEEDBACK_ON_NOTICE' ||
+  action.type === 'LMEM/CONTEXT_NOT_TRIGGERED' ||
+  action.type === 'NO_NOTICES_DISPLAYED';
 
 export default (badgeTheme: BadgeTheme) =>
   function* tabRootSaga() {
     yield takeLatest(isActionImpactingBadge, updateBadgeSaga(badgeTheme));
-    yield takeLatest(isTabChangedAction, resetBadgeSaga);
   };
