@@ -1,6 +1,6 @@
 {
   "name": "bulles-webextension",
-  "version": "3.4.1",
+  "version": "3.4.2",
   "description": "Bulles Recommendations web extensions using React+Redux.",
   "engines": {
     "node": ">=8"
