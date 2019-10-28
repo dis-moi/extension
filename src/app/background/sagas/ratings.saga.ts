@@ -12,7 +12,14 @@ const isFeedBackRatingAction = (action: AppAction) =>
   action.type === 'FEEDBACK_ON_NOTICE' &&
   Object.values(RatingType).includes(action.payload.feedback);
 
-export type RatingActionTransformer = (action: AppAction) => Rating;
+type RatingActionTransformer = (action: AppAction) => Rating;
+
+const createDefaultTransformer = (
+  ratingType: RatingType
+): RatingActionTransformer => ({ payload: id }: AppAction) => ({
+  noticeId: id as number,
+  rating: ratingType
+});
 
 export const transformers: {
   pattern: ActionPattern;
@@ -29,31 +36,19 @@ export const transformers: {
   },
   {
     pattern: 'UNFOLD_NOTICE',
-    transformer: ({ payload: id }: AppAction) => ({
-      noticeId: id as number,
-      rating: RatingType.UNFOLD
-    })
+    transformer: createDefaultTransformer(RatingType.UNFOLD)
   },
   {
     pattern: 'NOTICE/BADGED',
-    transformer: ({ payload: id }: AppAction) => ({
-      noticeId: id as number,
-      rating: RatingType.BADGED
-    })
+    transformer: createDefaultTransformer(RatingType.BADGED)
   },
   {
     pattern: 'NOTICE/OUTBOUND_LINK_CLICKED',
-    transformer: ({ payload: id }: AppAction) => ({
-      noticeId: id as number,
-      rating: RatingType.OUTBOUND_CLICK
-    })
+    transformer: createDefaultTransformer(RatingType.OUTBOUND_CLICK)
   },
   {
     pattern: 'NOTICE/DISPLAYED',
-    transformer: ({ payload: id }: AppAction) => ({
-      noticeId: id as number,
-      rating: RatingType.DISPLAY
-    })
+    transformer: createDefaultTransformer(RatingType.DISPLAY)
   }
 ];
 
