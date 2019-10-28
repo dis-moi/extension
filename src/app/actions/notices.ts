@@ -117,7 +117,8 @@ export interface UnfoldNoticeAction extends BaseAction {
 
 export const unfoldNotice = (id: number): UnfoldNoticeAction => ({
   type: 'UNFOLD_NOTICE',
-  payload: id
+  payload: id,
+  meta: { sendToBackground: true }
 });
 
 export interface MarkNoticeReadAction extends BaseAction {
