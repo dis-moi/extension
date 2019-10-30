@@ -14,7 +14,7 @@ module.exports = {
       'connect-src': [
         'https://staging-notices.bulles.fr',
         'https://notices.bulles.fr',
-        'https://sentry.io/api/*'
+        'https://sentry.io'
       ],
       'script-src': ["'self'", "'unsafe-eval'"],
       'object-src': ["'self'"],
