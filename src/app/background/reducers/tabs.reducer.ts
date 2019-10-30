@@ -1,11 +1,10 @@
 import * as R from 'ramda';
 import Tab from 'app/lmem/tab';
 import {
-  isTabReadyAction,
   NAVIGATED_TO_URL,
+  TAB_REMOVED,
   AppAction,
   ReceivedNavigatedToUrlAction,
-  TAB_REMOVED,
   ReceivedTabRemovedAction
 } from 'app/actions';
 
@@ -41,8 +40,9 @@ export default function(state = initialState, action: AppAction) {
     case 'LISTENING_ACTIONS_READY':
       return action.meta.tab
         ? R.pipe(
+            addOrUpdateTab(action.meta.tab),
             markTabReady(action.meta.tab),
-            isTabReadyAction(action)
+            action.meta.from === 'options' && action.meta.tab
               ? markTabAsOptions(action.meta.tab)
               : R.identity
           )(state)
