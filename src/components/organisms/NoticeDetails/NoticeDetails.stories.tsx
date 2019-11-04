@@ -45,6 +45,15 @@ storiesOf('organisms/NoticeDetails', module)
       notice={generateStatefulNotice({ dismissed: true })}
     />
   ))
+  .add('Liked', () => (
+    <NoticeDetails
+      {...commonProps}
+      notice={generateStatefulNotice({
+        liked: true,
+        likes: number('likes', 1)
+      })}
+    />
+  ))
   .add('Disliked', () => (
     <NoticeDetails
       {...commonProps}
