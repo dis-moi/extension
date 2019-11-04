@@ -1,10 +1,13 @@
 import { createSelector } from 'reselect';
 import * as R from 'ramda';
-import { BackgroundState } from '../reducers';
-import { BullesUpdateState } from '../reducers/bullesUpdate.reducer';
+import {
+  BullesUpdateState,
+  BullesUpdateStateSlice
+} from '../reducers/bullesUpdate.reducer';
 
-const getBullesUpdateState = (state: BackgroundState): BullesUpdateState =>
-  state.bullesUpdate;
+const getBullesUpdateState = (
+  state: BullesUpdateStateSlice
+): BullesUpdateState => state.bullesUpdate;
 
 export const getUpdateMessageLastShowDate = createSelector(
   [getBullesUpdateState],
