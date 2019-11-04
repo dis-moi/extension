@@ -28,9 +28,9 @@ export default styled(Content)`
   margin-right: 11px;
   margin-left: 5px;
   text-decoration: none;
-  background-color: ${props => (props.isRead ? props.theme.noticeBg : '#fff')};
+  background-color: #fff;
   border-radius: 15px;
-  border: 2px solid ${props => (props.isRead ? '#fff' : props.theme.noticeBg)};
+  border: #fff;
 
   &,
   p {
@@ -60,5 +60,14 @@ export default styled(Content)`
 
   &:hover > div:nth-child(3) {
     stroke: ${props => props.theme.activeColor};
+  }
+
+  p {
+    font-weight: ${props => (props.isRead ? '500' : 'bold')};
+  }
+
+  [class^='Contributor'],
+  [class^='Title'] {
+    opacity: ${props => (props.isRead ? '.5' : '1')};
   }
 `;
