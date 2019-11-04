@@ -33,11 +33,17 @@ import { findTriggeredContexts } from '../selectors';
 import { getInstallationDetails } from '../selectors/installationDetails';
 import { getUpdateMessageLastShowDate } from '../selectors/bullesUpdate.selectors';
 import sendToTabSaga from './lib/sendToTab.saga';
-import isAuthorizedTab from '../../../webext/isAuthorizedTab';
+import { isTabAuthorized } from '../selectors/resources';
+import { disable } from 'webext/browserAction';
+import { resetBadge } from 'app/lmem/badge';
 
 export function* tabSaga({ meta: { tab } }: ReceivedNavigatedToUrlAction) {
-  if (isAuthorizedTab(tab)) {
+  const tabAuthorized = yield select(isTabAuthorized(tab));
+  if (tabAuthorized) {
     yield put(matchContext(tab));
+  } else {
+    yield call(disable, tab);
+    yield call(resetBadge, tab.id);
   }
 }
 

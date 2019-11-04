@@ -10,8 +10,11 @@ export interface MatchingContext {
 }
 
 export interface RestrictedContext {
-  urlRegex: string;
+  urlRegex: RegExp;
 }
+
+export const toPatterns = (restrictedContexts: RestrictedContext[]) =>
+  restrictedContexts.map(restrictedContext => restrictedContext.urlRegex);
 
 export const urlMatchesContext = (
   url: string,
