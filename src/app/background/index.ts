@@ -3,15 +3,11 @@
 import prepareDraftPreview from '../lmem/draft-preview/main';
 import { BACKEND_ORIGIN } from 'app/constants/origins';
 import onInstalled from 'webext/onInstalled';
-import {
-  updateDraftNotices,
-  installed,
-  updateRestrictedContexts
-} from 'app/actions';
+import updateDraftNotices from 'app/actions/updateDraftNotices';
 import { configureSentryScope, initSentry } from 'app/utils/sentry';
 import { store } from './store';
 import fetchContentScript from './services/fetchContentScript';
-import fetchRestrictedContexts from 'api/fetchRestrictedContexts';
+import { installed } from '../actions';
 
 initSentry();
 configureSentryScope(scope => {
@@ -24,10 +20,6 @@ if (NODE_ENV !== 'production') {
   console.info('NODE_ENV', NODE_ENV);
 }
 console.info(`BACKEND_ORIGIN "${BACKEND_ORIGIN}"`);
-
-fetchRestrictedContexts().then(restrictedContexts =>
-  store.dispatch(updateRestrictedContexts(restrictedContexts))
-);
 
 // Load content code when the extension is loaded
 fetchContentScript('/js/grabDraftNotices.js').then(contentCode =>

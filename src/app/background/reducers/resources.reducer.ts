@@ -1,27 +1,16 @@
 import { AppAction } from 'app/actions';
-import { MatchingContext, RestrictedContext } from 'app/lmem/matchingContext';
+import { MatchingContext } from 'app/lmem/matchingContext';
 import { Draft } from 'app/lmem/draft';
 import { Contributor } from 'app/lmem/contributor';
-import forbiddenTabs from 'webext/forbiddenTabs';
 
 export interface ResourcesState {
   matchingContexts: MatchingContext[];
-  restrictedContexts: RestrictedContext[];
   contributors: Contributor[];
   drafts: Draft[];
 }
 
-const regexpsToRestrictedContexts = (regexps: RegExp[]) =>
-  regexps.map(urlRegex => ({ urlRegex }));
-
-const toTrueRestrictedContexts = (restrictedContexts: RestrictedContext[]) =>
-  restrictedContexts.map(({ urlRegex }) => ({
-    urlRegex: new RegExp(urlRegex)
-  }));
-
 const initialResources: ResourcesState = {
   matchingContexts: [],
-  restrictedContexts: regexpsToRestrictedContexts(forbiddenTabs),
   contributors: [],
   drafts: []
 };
@@ -35,15 +24,6 @@ export default function(
       return {
         ...state,
         matchingContexts: action.payload.matchingContexts
-      };
-    }
-
-    case 'api/UPDATE_RESTRICTED_CONTEXTS': {
-      return {
-        ...state,
-        restrictedContexts: toTrueRestrictedContexts(action.payload).concat(
-          regexpsToRestrictedContexts(forbiddenTabs)
-        )
       };
     }
 

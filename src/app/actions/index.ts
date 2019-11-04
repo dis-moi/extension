@@ -55,7 +55,6 @@ import { SubscribeAction, UnsubscribeAction } from './subscription';
 import { ShowBullesUpdateMessageAction } from './bullesUpdate.actions';
 import { LoadedAction } from '../content/actions/ui/open.actions';
 import { TabRemovedAction } from './tabsLifecycle';
-import { UpdateRestrictedContextsAction } from './restrictedContexts';
 
 type MessageSender = chrome.runtime.MessageSender;
 
@@ -65,13 +64,12 @@ export * from './browser';
 export * from './install';
 export * from './notices';
 export * from './refreshMatchingContexts';
-export * from './restrictedContexts';
 export * from './refreshContributors';
 export * from './options';
 export * from './tabs';
 export * from './tos';
 export * from './ui';
-export { default as updateDraftNotices } from './updateDraftNotices';
+export * from './updateDraftNotices';
 export * from './subscription';
 export * from './webext';
 export * from './bullesUpdate.actions';
@@ -151,7 +149,6 @@ export type AppAction =
   | NoNoticesDisplayedAction
   | RefreshMatchingContextsFailedAction
   | ReceivedMatchingContextsAction
-  | UpdateRestrictedContextsAction
   | MatchContextAction
   | MatchContextFailureAction
   | ReceivedContributorsAction

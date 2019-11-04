@@ -1,4 +1,4 @@
-const forbiddenTabs: RegExp[] = [
+const forbiddenTabs = [
   /^about:.*/,
   /.*\.pdf$/i,
   /.*\.jpeg$/i,
