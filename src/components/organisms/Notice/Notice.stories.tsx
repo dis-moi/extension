@@ -2,21 +2,14 @@ import React from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import {
-  withKnobs,
-  text,
-  boolean,
-  select,
-  number
-} from '@storybook/addon-knobs';
+import { withKnobs, text, boolean, select } from '@storybook/addon-knobs';
 import Notice from './Notice';
 import {
   defaultMessage,
   generateStatefulNotice
 } from 'test/fakers/generateNotice';
 import Faker from 'faker';
-import { intentions } from '../../../app/lmem/intention';
-import Title from './Title';
+import { intentions } from 'app/lmem/intention';
 import { generateContributor } from 'test/fakers/generateContributor';
 
 const defaultContributorName = Faker.name.findName();
@@ -81,9 +74,5 @@ storiesOf('organisms/Notice', module)
         }),
         message: `<p>${text('message', longMessage)}</p>`
       })}
-      truncateTitleAt={number(
-        'truncateTitleAt',
-        Title.defaultProps.numberOfCharacters
-      )}
     />
   ));

@@ -1,8 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
-import Truncated from '../../atoms/Truncated';
 
-export const TitleContainer = styled.p`
+export default styled.p`
   position: relative;
   display: block;
   height: 63px;
@@ -27,26 +25,3 @@ export const TitleContainer = styled.p`
     );
   }
 `;
-
-interface Props {
-  children: string;
-  numberOfCharacters?: number;
-}
-
-const NoticeTitle = ({ children, numberOfCharacters }: Props) => (
-  <TitleContainer>
-    <Truncated
-      numberOfCharacters={
-        numberOfCharacters || NoticeTitle.defaultProps.numberOfCharacters
-      }
-    >
-      {children}
-    </Truncated>
-  </TitleContainer>
-);
-
-NoticeTitle.defaultProps = {
-  numberOfCharacters: 92
-};
-
-export default NoticeTitle;
