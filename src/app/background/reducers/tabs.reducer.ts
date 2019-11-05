@@ -5,12 +5,17 @@ import {
   TAB_REMOVED,
   AppAction,
   ReceivedNavigatedToUrlAction,
-  ReceivedTabRemovedAction
+  ReceivedTabRemovedAction,
+  NoticesFoundAction
 } from 'app/actions';
+import { StatefulNotice } from '../../lmem/notice';
 
 export interface TabsState {
   [tabId: string]: Tab;
 }
+
+export const toNoticesIds = (notices: StatefulNotice[]) =>
+  notices.map(({ id }) => id);
 
 export const initialState: TabsState = {};
 
@@ -47,7 +52,11 @@ export default function(state = initialState, action: AppAction) {
               : R.identity
           )(state)
         : state;
-
+    case 'NOTICES_FOUND':
+      return addOrUpdateTab({
+        ...(action as NoticesFoundAction).meta.tab,
+        notices: toNoticesIds(action.payload.notices)
+      })(state);
     default:
       return state;
   }
