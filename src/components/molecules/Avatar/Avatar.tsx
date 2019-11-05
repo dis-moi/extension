@@ -29,7 +29,7 @@ const Wrapper = styled.div<WrapperProps>`
   }
 `;
 
-interface Props {
+interface AvatarProps {
   contributor: {
     name: string;
     avatar?: AvatarType;
@@ -38,7 +38,7 @@ interface Props {
   className?: string;
 }
 
-const Avatar = styled(({ contributor, size, className }: Props) => (
+const Avatar = ({ contributor, size, className }: AvatarProps) => (
   <Wrapper size={size} className={className}>
     {contributor.avatar && contributor.avatar[size].url ? (
       <img src={contributor.avatar.normal.url} alt={contributor.name} />
@@ -46,6 +46,6 @@ const Avatar = styled(({ contributor, size, className }: Props) => (
       <AvatarDefault />
     )}
   </Wrapper>
-))``;
+);
 
-export default Avatar;
+export default styled(Avatar)``;
