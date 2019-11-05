@@ -11,7 +11,8 @@ import LMEMToBulles from '../OnboardingAtoms/LMEMToBulles';
 
 const SubscribeIntro = styled(Intro)`
   position: fixed;
-  width: 100%;
+  width: 1340px;
+  max-width: 100%;
   background-color: #fff;
 
   @media (max-width: 820px) {
