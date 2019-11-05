@@ -1,6 +1,5 @@
 import { SagaIterator } from 'redux-saga';
 import { takeLatest, call, select } from 'redux-saga/effects';
-import { StatefulNotice } from 'app/lmem/notice';
 import { BadgeTheme, updateBadge } from 'app/lmem/badge';
 import {
   FeedbackOnNoticeAction,
@@ -10,16 +9,8 @@ import {
   AppAction
 } from 'app/actions';
 import { ReceivedAction } from 'webext/createMessageHandler';
-import { getNoticesToDisplay } from '../selectors/prefs';
-
-const noticeFromId = (id: number) =>
-  ({
-    id,
-    message: '',
-    contributor: { name: '' },
-    intention: 'alternative',
-    state: { dismissed: false, disliked: false }
-  } as StatefulNotice);
+import { getNumberOfNoticesOnTab } from '../selectors/tabs';
+import { getNumberOfUnreadNoticesOnTab } from '../selectors';
 
 type BadgeImpactingAction = (
   | MarkNoticeReadAction
@@ -33,30 +24,24 @@ export const updateBadgeSaga = (badgeTheme: BadgeTheme) =>
         action.type === 'LMEM/CONTEXT_NOT_TRIGGERED' ||
         action.type === 'NO_NOTICES_DISPLAYED'
       ) {
-        yield call(updateBadge, [], badgeTheme, action.meta.tab.id);
+        yield call(updateBadge, 0, 0, badgeTheme, action.meta.tab.id);
         return;
       }
 
-      const notices =
-        action.type === 'NOTICES_FOUND'
-          ? (action as NoticesFoundAction).payload.notices
-          : [
-              noticeFromId(
-                action.type === 'MARK_NOTICE_READ'
-                  ? (action as MarkNoticeReadAction).payload
-                  : (action as FeedbackOnNoticeAction).payload.id
-              )
-            ];
+      const noticesNumber = yield select(
+        getNumberOfNoticesOnTab(action.meta.tab.id)
+      );
+      const unreadNoticesNumber = yield select(
+        getNumberOfUnreadNoticesOnTab(action.meta.tab.id)
+      );
 
-      /* FIXME (JAR): I don't like this because we don't really have real notices in `notices`
-         but we may have { id: number } objects.
-         It works because we only filter based on id, and then count them,
-         but this is fragile and Im' not hayppy with it.
-         I think we should maintain a list of actives notices for each tab. */
-
-      const noticesToDisplay = yield select(getNoticesToDisplay(notices));
-
-      yield call(updateBadge, noticesToDisplay, badgeTheme, action.meta.tab.id);
+      yield call(
+        updateBadge,
+        noticesNumber,
+        unreadNoticesNumber,
+        badgeTheme,
+        action.meta.tab.id
+      );
     } catch (e) {
       badgeUpdateFailed(e);
     }
