@@ -57,6 +57,12 @@ export default function(state = initialState, action: AppAction) {
         ...(action as NoticesFoundAction).meta.tab,
         notices: toNoticesIds(action.payload.notices)
       })(state);
+    case 'LMEM/CONTEXT_NOT_TRIGGERED':
+    case 'NO_NOTICES_DISPLAYED':
+      return addOrUpdateTab({
+        ...action.meta.tab,
+        notices: []
+      })(state);
     default:
       return state;
   }
