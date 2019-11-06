@@ -20,6 +20,7 @@ module.exports = Object.freeze({
   },
   content_scripts: [
     {
+      exclude_globs: ['*.pdf', '*.Pdf', '*.PDF'],
       matches: ['*://*/*'],
       js: ['js/browser-polyfill.js', 'js/content.bundle.js'],
       run_at: 'document_end'
