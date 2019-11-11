@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import * as R from 'ramda';
 import { findContributorIn, StatefulContributor } from 'app/lmem/contributor';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
 import Empty from './Empty';
@@ -23,6 +22,7 @@ const ContributorsList = styled.div`
 interface Props {
   subscriptions: StatefulContributor[];
   suggestions: StatefulContributor[];
+  allContributors: StatefulContributor[];
   subscribe: (contributor: StatefulContributor) => () => void;
   unsubscribe: (contributor: StatefulContributor) => () => void;
   goToSuggestions: () => void;
@@ -33,6 +33,7 @@ interface Props {
 export const SubscriptionsScreen = ({
   subscriptions,
   suggestions,
+  allContributors,
   subscribe,
   unsubscribe,
   goToSuggestions,
@@ -49,7 +50,7 @@ export const SubscriptionsScreen = ({
   }, [subscriptions]);
 
   const subscriptionsToRender = initialSubscriptions.map(
-    findContributorIn(R.concat(subscriptions, suggestions))
+    findContributorIn(allContributors)
   );
 
   if (subscriptionsToRender.length === 0) {
@@ -81,6 +82,7 @@ export const SubscriptionsScreen = ({
       <SuggestionsSidebar
         subscriptions={subscriptions}
         suggestions={suggestions}
+        allContributors={allContributors}
         subscribe={subscribe}
         unsubscribe={unsubscribe}
         goToSuggestions={goToSuggestions}
