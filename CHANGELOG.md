@@ -1,3 +1,20 @@
+# [3.4.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.3.1...v3.4.0) (2019-10-21)
+
+
+### Bug Fixes
+
+* **contributor:** corrected message markup ([7682945](https://github.com/insitu-project/recommendations-webextension/commit/7682945))
+* **contributors list:** corrected display with real content ([2ead891](https://github.com/insitu-project/recommendations-webextension/commit/2ead891))
+* **subscription:** changed text and button label ([3cb877c](https://github.com/insitu-project/recommendations-webextension/commit/3cb877c))
+* **Suggestions screen:** changed grid gutters ([8083130](https://github.com/insitu-project/recommendations-webextension/commit/8083130))
+
+
+### Features
+
+* **subscription:** added case of no subscription ([1eec39c](https://github.com/insitu-project/recommendations-webextension/commit/1eec39c))
+* **subscriptions:** add a list of subscribed contributors on subscriptions tab ([60f4dc9](https://github.com/insitu-project/recommendations-webextension/commit/60f4dc9))
+* **subscriptions:** show button on last subscriber slot of a line ([a0c9562](https://github.com/insitu-project/recommendations-webextension/commit/a0c9562))
+
 ## [3.3.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.3.0...v3.3.1) (2019-10-17)
 
 
