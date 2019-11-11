@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, MouseEvent } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import styled from 'styled-components';
 import { format } from 'date-fns';
@@ -33,7 +33,7 @@ interface NoticeDetailsProps extends RouteComponentProps {
   confirmDislike: (id: number) => void;
   undislike: (id: number) => void;
   view?: (id: number) => void;
-  followSource?: (id: number) => void;
+  outboundLinkClicked?: (id: number) => void;
 }
 class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
   constructor(props: NoticeDetailsProps) {
@@ -110,11 +110,23 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
 
   handleFollowSource = () => {
     const {
-      followSource,
+      outboundLinkClicked,
       notice: { id }
     } = this.props;
-    if (followSource) {
-      followSource(id);
+    if (outboundLinkClicked) {
+      outboundLinkClicked(id);
+    }
+  };
+
+  handleMessageClick = (e: MouseEvent) => {
+    const {
+      outboundLinkClicked,
+      notice: { id }
+    } = this.props;
+    if (outboundLinkClicked) {
+      if ((e.target as HTMLElement).tagName.toLowerCase() === 'a') {
+        outboundLinkClicked(id);
+      }
     }
   };
 
@@ -153,8 +165,8 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
             </DetailsMetaValue>
           </DetailsMeta>
 
-          <Message>{message}</Message>
-          {source && (
+          <Message onClick={this.handleMessageClick}>{message}</Message>
+          {source && source.url && (
             <Source>
               En savoir plus :{' '}
               <SourceURL onClick={this.handleFollowSource}>

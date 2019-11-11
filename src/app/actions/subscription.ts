@@ -2,9 +2,12 @@ import { Contributor, ContributorId } from 'app/lmem/contributor';
 import { SUBSCRIBE, UNSUBSCRIBE } from 'app/constants/ActionTypes';
 import { ActionMeta, BaseAction } from '.';
 
-export interface SubscribeAction extends BaseAction {
-  type: typeof SUBSCRIBE;
+export interface ContributorAction extends BaseAction {
   payload: { contributor: Contributor | ContributorId };
+}
+
+export interface SubscribeAction extends ContributorAction {
+  type: typeof SUBSCRIBE;
 }
 export const subscribe = (
   contributor: Contributor | ContributorId,
@@ -15,9 +18,8 @@ export const subscribe = (
   meta
 });
 
-export interface UnsubscribeAction extends BaseAction {
+export interface UnsubscribeAction extends ContributorAction {
   type: typeof UNSUBSCRIBE;
-  payload: { contributor: Contributor };
 }
 export const unsubscribe = (
   contributor: Contributor,

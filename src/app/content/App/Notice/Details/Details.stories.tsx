@@ -31,7 +31,8 @@ const commonProps = {
   confirmDislike: action('confirmDislike'),
   undislike: action('undislike'),
   view: action('view'),
-  followSource: action('followSource')
+  followSource: action('followSource'),
+  outboundLinkClicked: action('outboundLinkClicked')
 };
 
 storiesOf('screens/Notice/Details', module)

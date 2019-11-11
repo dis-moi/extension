@@ -6,9 +6,9 @@ export default styled.nav`
   justify-content: space-between;
   max-height: 40px;
   min-height: 40px;
-  padding-right: 38px;
+  padding-right: 14px;
   padding-bottom: 5px;
-  padding-left: 38px;
+  padding-left: 14px;
   margin-top: auto;
   background-color: #fff;
   border-top: 1px solid ${props => props.theme.bottomBar};

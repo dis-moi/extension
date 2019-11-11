@@ -1,4 +1,3 @@
-import { StatefulNotice, isUnread } from './notice';
 import icons from '../../../manifest/icons';
 import greyIcons from '../../../manifest/icons-grey';
 
@@ -17,38 +16,33 @@ export const resetBadge = (tabId?: number) => {
 /**
  * Update text and background color of the badge based on the number of notices.
  *
- * @param {StatefulNotice[]} notices
+ * @param {number} noticesNumber
+ * @param {number} unreadNoticesNumber
  * @param {BadgeTheme} badgeTheme
  * @param {number} tabId Limits the change to when a particular tab is selected.
  *
  * @return {void}
  */
 export const updateBadge = (
-  notices: StatefulNotice[],
+  noticesNumber: number,
+  unreadNoticesNumber: number,
   badgeTheme: BadgeTheme,
   tabId?: number
 ): void => {
-  if (notices.length > 0) {
-    chrome.browserAction.setIcon({ path: icons });
-
-    const unreadNotices = notices.filter(isUnread);
+  chrome.browserAction.setIcon({ path: icons });
+  if (noticesNumber > 0) {
     const { backgroundColor } = badgeTheme;
 
     chrome.browserAction.setBadgeText({
-      text:
-        unreadNotices.length > 0
-          ? unreadNotices.length.toString()
-          : notices.length.toString(),
+      text: noticesNumber.toString(),
       tabId
     });
     chrome.browserAction.setBadgeBackgroundColor({
       color:
-        unreadNotices.length > 0
+        unreadNoticesNumber > 0
           ? backgroundColor.hasUnreadNotices
           : backgroundColor.hasAllNoticesRead,
       tabId
     });
-  } else {
-    resetBadge(tabId);
   }
 };

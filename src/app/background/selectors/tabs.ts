@@ -19,3 +19,21 @@ export const getOptionsTabs = createSelector(
   [getTabsList],
   R.filter(isOptionsTab)
 );
+
+export const getTabById = (tabId: number) =>
+  createSelector(
+    [getTabs],
+    tabs => tabs[tabId]
+  );
+
+export const getNoticesIdsOnTab = (tabId: number) =>
+  createSelector(
+    getTabById(tabId),
+    tab => tab.notices
+  );
+
+export const getNumberOfNoticesOnTab = (tabId: number) =>
+  createSelector(
+    getNoticesIdsOnTab(tabId),
+    noticesIds => (noticesIds ? noticesIds.length : 0)
+  );

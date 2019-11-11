@@ -1,13 +1,8 @@
-import {
-  ignoringReason,
-  StatefulNotice,
-  IgnoringReason,
-  Notice
-} from 'app/lmem/notice';
 import { InstallationDetails } from 'app/lmem/installation';
 import { MatchingContext } from 'app/lmem/matchingContext';
-import { BaseAction, TabAction, TabErrorAction } from '.';
 import Tab from 'app/lmem/tab';
+import { ReceivedAction } from 'webext/createMessageHandler';
+import { BaseAction, TabAction, TabErrorAction } from '.';
 
 export interface InitAction extends TabAction {
   type: 'INIT';
@@ -21,6 +16,24 @@ export const init = (
   type: 'INIT',
   payload: installationDetails,
   meta: { tab, sendToTab: true }
+});
+
+export const NAVIGATED_TO_URL = 'NAVIGATED_TO_URL';
+export interface NavigatedToUrlAction extends BaseAction {
+  type: typeof NAVIGATED_TO_URL;
+  payload: {
+    url: string;
+  };
+}
+export type ReceivedNavigatedToUrlAction = NavigatedToUrlAction &
+  ReceivedAction;
+
+export const navigatedToUrl = (url: string): NavigatedToUrlAction => ({
+  type: NAVIGATED_TO_URL,
+  payload: { url },
+  meta: {
+    sendToBackground: true
+  }
 });
 
 export interface MatchContextAction extends TabAction {
@@ -67,7 +80,7 @@ export const contextNotTriggered = (
 ): ContextNotTriggeredAction => ({
   type: 'LMEM/CONTEXT_NOT_TRIGGERED',
   payload: triggeredContexts,
-  meta: { tab }
+  meta: { tab, sendToTab: true }
 });
 
 export interface ContextTriggerFailureAction extends TabErrorAction {
@@ -81,31 +94,4 @@ export const contextTriggerFailure = (
   payload: error,
   meta: { tab },
   error: true
-});
-
-export interface NoticeDisplayedAction extends BaseAction {
-  type: 'NOTICE_DISPLAYED';
-  payload: {
-    notice: Notice;
-    url: string;
-  };
-}
-export const noticeDisplayed = (
-  notice: Notice,
-  url: string
-): NoticeDisplayedAction => ({
-  type: 'NOTICE_DISPLAYED',
-  payload: { notice, url }
-});
-
-export interface NoticeIgnoredAction extends BaseAction {
-  type: 'NOTICE_IGNORED';
-  payload: { notice: Notice; reason: IgnoringReason; url: string };
-}
-export const noticeIgnored = (
-  notice: StatefulNotice,
-  url: string
-): NoticeIgnoredAction => ({
-  type: 'NOTICE_IGNORED',
-  payload: { notice, reason: ignoringReason(notice), url }
 });

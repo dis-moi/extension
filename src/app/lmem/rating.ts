@@ -7,8 +7,8 @@ export enum RatingType {
   UNDISMISS = 'undismiss',
   DISPLAY = 'display',
   UNFOLD = 'unfold',
-  CLICK_MESSAGE = 'click-message',
-  CLICK_SOURCE = 'click-source',
+  OUTBOUND_CLICK = 'outbound-click',
+  BADGED = 'badge',
   REPORT = 'report'
 }
 

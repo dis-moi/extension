@@ -6,8 +6,9 @@ import { createSelector } from 'reselect';
 import { InstallationDetails } from 'app/lmem/installation';
 import isBulleVersionNumber from 'app/lmem/isBulleVersionNumber';
 import { getInstallationDetails } from './installationDetails';
-import { areTosAccepted } from './prefs';
+import { areTosAccepted, getRead } from './prefs';
 import { getNbSubscriptions } from './subscriptions.selectors';
+import { getNoticesIdsOnTab } from './tabs';
 
 export const findTriggeredContexts = (state: BackgroundState) => (
   url: string
@@ -55,3 +56,12 @@ export const isRehydrated = createSelector(
   [getPersistState],
   persistState => (persistState ? persistState.rehydrated : false)
 );
+
+export const getNumberOfUnreadNoticesOnTab = (tabId: number) =>
+  createSelector(
+    [getNoticesIdsOnTab(tabId), getRead],
+    (noticesIds, readNoticesIds) =>
+      noticesIds
+        ? noticesIds.filter(noticeId => !readNoticesIds.includes(noticeId))
+        : 0
+  );

@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { LocationDescriptor } from 'history';
 import Avatar from 'components/molecules/Avatar/Avatar';
+import { Contributor, OpenButton } from 'components/atoms';
+import Title from './Title';
 
 interface ContentProps {
   to?: LocationDescriptor;
@@ -17,7 +19,7 @@ const Content = ({ to, isRead, ...props }: ContentProps) => {
   return <div {...props} />;
 };
 
-export default styled(Content)`
+export default styled(Content)<ContentProps>`
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
@@ -28,9 +30,9 @@ export default styled(Content)`
   margin-right: 11px;
   margin-left: 5px;
   text-decoration: none;
-  background-color: ${props => (props.isRead ? 'transparent' : '#fff')};
+  background-color: #fff;
   border-radius: 15px;
-  border: 2px solid ${props => (props.isRead ? '#fff' : 'transparent')};
+  border: #fff;
 
   &,
   p {
@@ -54,11 +56,20 @@ export default styled(Content)`
     width: 100%;
   }
 
-  & [class^='OpenButton'] {
+  & [class^='${OpenButton}'] {
     height: auto;
   }
 
   &:hover > div:nth-child(3) {
     stroke: ${props => props.theme.activeColor};
+  }
+
+  p {
+    font-weight: ${props => (props.isRead ? '500' : 'bold')};
+  }
+
+  [class^='${Contributor}'],
+  [class^='${Title}'] {
+    opacity: ${props => (props.isRead ? '.5' : '1')};
   }
 `;

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import * as R from 'ramda';
 import { findContributorIn, StatefulContributor } from 'app/lmem/contributor';
 import ContributorCompact from 'components/organisms/Contributor/ContributorCompact';
 import CenterContainer from 'components/atoms/CenterContainer';
@@ -28,14 +27,15 @@ const SidebarEmpty = styled.p`
 interface Props {
   subscriptions: StatefulContributor[];
   suggestions: StatefulContributor[];
+  allContributors: StatefulContributor[];
   subscribe: (contributor: StatefulContributor) => () => void;
   unsubscribe: (contributor: StatefulContributor) => () => void;
   goToSuggestions: () => void;
 }
 
 const SuggestionsSidebar = ({
-  subscriptions,
   suggestions,
+  allContributors,
   subscribe,
   unsubscribe,
   goToSuggestions
@@ -47,7 +47,7 @@ const SuggestionsSidebar = ({
   }, [suggestions]);
 
   const suggestionsToRender = initialSuggestions.map(
-    findContributorIn(R.concat(subscriptions, suggestions))
+    findContributorIn(allContributors)
   );
 
   return (

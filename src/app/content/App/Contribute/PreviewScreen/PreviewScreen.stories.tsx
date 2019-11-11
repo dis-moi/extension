@@ -32,4 +32,22 @@ storiesOf('screens/Contribute/Preview', module)
       modify={action('modify')}
       publish={action('publish')}
     />
+  ))
+  .add('with a link', () => (
+    <PreviewScreen
+      contribution={{
+        message:
+          "Tombe, tombe, tombe la https://fr.wikipedia.org/wiki/Pluie Tout le monde est à l'abri Y'a que mon petit frère qu'est sous la gouttière pêchant des poissons pour toute la maison...",
+        url: 'https://weather.com',
+        contributor: {
+          email: 'johan.dufour@gmail.com',
+          name: 'Johan Dufour'
+        },
+        intention: 'approval',
+        created: new Date()
+      }}
+      errors={[]}
+      modify={action('modify')}
+      publish={action('publish')}
+    />
   ));

@@ -1,7 +1,6 @@
 import { put, takeEvery, select, call, all } from 'redux-saga/effects';
 import * as R from 'ramda';
 import { isToday } from 'date-fns';
-import { TAB_CREATED, TAB_UPDATED } from 'app/constants/browser/tabs';
 import { CONTEXT_TRIGGERED, MATCH_CONTEXT } from 'app/constants/ActionTypes';
 import {
   init,
@@ -9,18 +8,18 @@ import {
   matchContext,
   matchContextFailure,
   noticeIgnored,
-  noticeDisplayed,
   contextTriggerFailure,
   contextNotTriggered,
   noNoticesDisplayed,
   noticesFound,
-  MatchContextAction,
-  ContextTriggeredAction,
-  TabCreatedAction,
-  TabUpdatedAction,
-  AppAction,
   showBullesUpdateMessage,
-  TabAction
+  noticeBadged,
+  NAVIGATED_TO_URL,
+  AppAction,
+  MatchContextAction,
+  TabAction,
+  ContextTriggeredAction,
+  ReceivedNavigatedToUrlAction
 } from 'app/actions';
 import { MatchingContext } from 'app/lmem/matchingContext';
 import { StatefulNotice, Notice, warnIfNoticeInvalid } from 'app/lmem/notice';
@@ -34,13 +33,17 @@ import { findTriggeredContexts } from '../selectors';
 import { getInstallationDetails } from '../selectors/installationDetails';
 import { getUpdateMessageLastShowDate } from '../selectors/bullesUpdate.selectors';
 import sendToTabSaga from './lib/sendToTab.saga';
-import isAuthorizedTab from '../../../webext/isAuthorizedTab';
+import { isTabAuthorized } from '../selectors/resources';
+import { disable } from 'webext/browserAction';
+import { resetBadge } from 'app/lmem/badge';
 
-export function* tabSaga({
-  payload: { tab }
-}: TabCreatedAction | TabUpdatedAction) {
-  if (isAuthorizedTab(tab)) {
+export function* tabSaga({ meta: { tab } }: ReceivedNavigatedToUrlAction) {
+  const tabAuthorized = yield select(isTabAuthorized(tab));
+  if (tabAuthorized) {
     yield put(matchContext(tab));
+  } else {
+    yield call(disable, tab);
+    yield call(resetBadge, tab.id);
   }
 }
 
@@ -83,9 +86,7 @@ export const contextTriggeredSaga = function*({
     if (noticesToShow.length > 0) {
       const tosAccepted = yield select(areTosAccepted);
       if (tosAccepted) {
-        yield all(
-          noticesToShow.map(notice => put(noticeDisplayed(notice, tab.url)))
-        );
+        yield all(noticesToShow.map(({ id }) => put(noticeBadged(id, tab))));
         yield put(noticesFound(noticesToShow, tab));
       } else {
         const lastUpdateMessageDate = yield select(
@@ -118,7 +119,7 @@ function* sendActionToTab(action: TabAction) {
 }
 
 export default function* tabRootSaga() {
-  yield takeEvery([TAB_CREATED, TAB_UPDATED], tabSaga);
+  yield takeEvery(NAVIGATED_TO_URL, tabSaga);
   yield takeEvery(MATCH_CONTEXT, matchContextSaga);
   yield takeEvery(CONTEXT_TRIGGERED, contextTriggeredSaga);
   yield takeEvery(shouldActionBeSentToTab, sendActionToTab);

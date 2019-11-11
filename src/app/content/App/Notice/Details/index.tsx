@@ -17,7 +17,7 @@ export const Details = ({
   confirmDislike,
   undislike,
   view,
-  followSource
+  outboundLinkClicked
 }: DetailsScreenProps) => {
   if (notice) {
     return (
@@ -29,7 +29,7 @@ export const Details = ({
         confirmDislike={confirmDislike}
         undislike={undislike}
         view={view}
-        followSource={followSource}
+        outboundLinkClicked={outboundLinkClicked}
       />
     );
   }

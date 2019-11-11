@@ -54,7 +54,7 @@ export enum NoticeFeedbackType {
 export type IgnoringReason = 'dislike' | 'dismiss' | 'other';
 export const isIgnored = (notice: StatefulNotice): boolean =>
   notice.state.dismissed || notice.state.disliked;
-export const ignoringReason = (notice: StatefulNotice): IgnoringReason =>
+export const getIgnoringReason = (notice: StatefulNotice): IgnoringReason =>
   notice.state.dismissed ? 'dismiss' : 'dislike';
 
 export const dismissNotice = (notice: StatefulNotice): StatefulNotice => ({
@@ -84,8 +84,16 @@ export const undismissNotice = (notice: StatefulNotice): StatefulNotice => ({
     justDismissed: false
   }
 });
+
+export const incrementRating = (rating?: number) => (rating || 0) + 1;
+export const decrementRating = (rating?: number) => (!rating ? 0 : rating - 1);
+
 export const likeNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
+  ratings: {
+    ...notice.ratings,
+    likes: incrementRating(notice.ratings.likes)
+  },
   state: {
     ...notice.state,
     liked: true,
@@ -94,6 +102,10 @@ export const likeNotice = (notice: StatefulNotice): StatefulNotice => ({
 });
 export const unlikeNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
+  ratings: {
+    ...notice.ratings,
+    likes: decrementRating(notice.ratings.likes)
+  },
   state: {
     ...notice.state,
     liked: false,
@@ -102,6 +114,10 @@ export const unlikeNotice = (notice: StatefulNotice): StatefulNotice => ({
 });
 export const dislikeNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
+  ratings: {
+    ...notice.ratings,
+    dislikes: incrementRating(notice.ratings.dislikes)
+  },
   state: {
     ...notice.state,
     disliked: true,
@@ -119,6 +135,10 @@ export const confirmDislikeNotice = (
 });
 export const undislikeNotice = (notice: StatefulNotice): StatefulNotice => ({
   ...notice,
+  ratings: {
+    ...notice.ratings,
+    dislikes: decrementRating(notice.ratings.dislikes)
+  },
   state: {
     ...notice.state,
     disliked: false,

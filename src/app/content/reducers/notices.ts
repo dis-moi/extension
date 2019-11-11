@@ -20,6 +20,10 @@ export default (state: NoticesState = [], action: AppAction): NoticesState => {
     case 'NOTICES_FOUND':
       return action.payload.notices;
 
+    case 'NO_NOTICES_DISPLAYED':
+    case 'LMEM/CONTEXT_NOT_TRIGGERED':
+      return [];
+
     case 'MARK_NOTICE_READ':
       return state.map(notice =>
         notice.id === action.payload ? markNoticeRead(notice) : notice

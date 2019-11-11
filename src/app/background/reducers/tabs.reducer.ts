@@ -1,15 +1,21 @@
 import * as R from 'ramda';
-import {
-  TAB_CREATED,
-  TAB_REMOVED,
-  TAB_UPDATED
-} from 'app/constants/browser/tabs';
 import Tab from 'app/lmem/tab';
-import { AppAction, isTabReadyAction } from 'app/actions';
+import {
+  NAVIGATED_TO_URL,
+  TAB_REMOVED,
+  AppAction,
+  ReceivedNavigatedToUrlAction,
+  ReceivedTabRemovedAction,
+  NoticesFoundAction
+} from 'app/actions';
+import { StatefulNotice } from '../../lmem/notice';
 
 export interface TabsState {
   [tabId: string]: Tab;
 }
+
+export const toNoticesIds = (notices: StatefulNotice[]) =>
+  notices.map(({ id }) => id);
 
 export const initialState: TabsState = {};
 
@@ -28,21 +34,35 @@ export default function(state = initialState, action: AppAction) {
   switch (action.type) {
     case 'OPTIONS_TAB_OPENED':
       return markTabAsOptions(action.payload)(state);
-    case TAB_CREATED:
-    case TAB_UPDATED:
-      return addOrUpdateTab(action.payload.tab)(state);
+    case NAVIGATED_TO_URL:
+      return addOrUpdateTab((action as ReceivedNavigatedToUrlAction).meta.tab)(
+        state
+      );
     case TAB_REMOVED:
-      return removeTabFromList(action.payload.tab)(state);
+      return removeTabFromList((action as ReceivedTabRemovedAction).meta.tab)(
+        state
+      );
     case 'LISTENING_ACTIONS_READY':
       return action.meta.tab
         ? R.pipe(
+            addOrUpdateTab(action.meta.tab),
             markTabReady(action.meta.tab),
-            isTabReadyAction(action)
+            action.meta.from === 'options' && action.meta.tab
               ? markTabAsOptions(action.meta.tab)
               : R.identity
           )(state)
         : state;
-
+    case 'NOTICES_FOUND':
+      return addOrUpdateTab({
+        ...(action as NoticesFoundAction).meta.tab,
+        notices: toNoticesIds(action.payload.notices)
+      })(state);
+    case 'LMEM/CONTEXT_NOT_TRIGGERED':
+    case 'NO_NOTICES_DISPLAYED':
+      return addOrUpdateTab({
+        ...action.meta.tab,
+        notices: []
+      })(state);
     default:
       return state;
   }

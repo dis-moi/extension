@@ -1,19 +1,46 @@
 import { createSelector } from 'reselect';
-import { Contributor } from 'app/lmem/contributor';
-import { BackgroundState } from '../reducers';
+import { ResourcesState } from '../reducers/resources.reducer';
+import { isTabAuthorizedByPatterns } from 'webext/isAuthorizedTab';
+import { toPatterns } from '../../lmem/matchingContext';
+import Tab from '../../lmem/tab';
 
 export const findItemById = <Item extends { id: number }>(id: number) => (
   items: Item[]
 ): Item | undefined => items.find(item => id === item.id);
 
-export const getMatchingContexts = (state: BackgroundState) =>
-  state.resources.matchingContexts;
+export const getResources = (state: { resources: ResourcesState }) =>
+  state.resources;
 
-export const getDraftNotices = (state: BackgroundState) =>
-  state.resources.drafts;
+export const getRestrictedContexts = createSelector(
+  [getResources],
+  resources => resources.restrictedContexts
+);
 
-export const getContributors = (state: BackgroundState): Contributor[] =>
-  state.resources.contributors;
+export const getRestrictedContextsPatterns = createSelector(
+  [getRestrictedContexts],
+  restrictedContexts => toPatterns(restrictedContexts)
+);
+
+export const isTabAuthorized = (tab: Tab | chrome.tabs.Tab) =>
+  createSelector(
+    [getRestrictedContextsPatterns],
+    patterns => isTabAuthorizedByPatterns(patterns)(tab)
+  );
+
+export const getMatchingContexts = createSelector(
+  [getResources],
+  resources => resources.matchingContexts
+);
+
+export const getDraftNotices = createSelector(
+  [getResources],
+  resources => resources.drafts
+);
+
+export const getContributors = createSelector(
+  [getResources],
+  resources => resources.contributors
+);
 
 export const getContributorById = (id: number) =>
   createSelector(

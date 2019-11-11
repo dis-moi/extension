@@ -13,6 +13,11 @@ const ContributorsList = styled.section`
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-column-gap: 30px;
   grid-row-gap: 30px;
+
+  @media (max-width: 975px) {
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+  }
 `;
 
 const ContributorsListEmpty = styled.p`
@@ -22,8 +27,8 @@ const ContributorsListEmpty = styled.p`
 `;
 
 export interface SuggestionsScreenProps {
-  subscriptions: StatefulContributor[];
   suggestions: StatefulContributor[];
+  allContributors: StatefulContributor[];
   subscribe: (contributor: StatefulContributor) => () => void;
   unsubscribe: (contributor: StatefulContributor) => () => void;
   showExampleLink?: boolean;
@@ -40,7 +45,7 @@ const addPreselectedContributors = (
   ) as StatefulContributor[]);
 
 const SuggestionsScreen = ({
-  subscriptions,
+  allContributors,
   suggestions,
   subscribe,
   unsubscribe,
@@ -51,8 +56,6 @@ const SuggestionsScreen = ({
   useEffect(() => {
     if (initialSuggestions.length === 0) setInitialSuggestions(suggestions);
   }, [suggestions]);
-
-  const allContributors = R.concat(subscriptions, suggestions);
 
   const suggestionsToRender = R.pipe(
     R.map(findContributorIn(allContributors)),

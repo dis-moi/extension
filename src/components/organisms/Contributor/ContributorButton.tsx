@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import BackgroundButton from 'components/atoms/Button/BackgroundButton/BackgroundButton';
 import BorderButton from 'components/atoms/Button/BorderButton/BorderButton';
+import Check from 'components/atoms/icons/CheckSmall';
 
 const Container = styled.div`
   display: flex;
@@ -54,7 +55,14 @@ const ContributorButton = ({
           onPointerEnter={() => setSubscribedButtonHovered(true)}
           onPointerLeave={() => setSubscribedButtonHovered(false)}
         >
-          {subscribedButtonHovered ? 'Se désabonner' : 'Abonné'}
+          {subscribedButtonHovered ? (
+            'Se désabonner'
+          ) : (
+            <>
+              <Check />
+              &nbsp;Abonné
+            </>
+          )}
         </ContributorBorderButton>
       )}
       {!subscribed && (

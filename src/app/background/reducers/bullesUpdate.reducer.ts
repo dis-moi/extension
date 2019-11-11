@@ -4,6 +4,10 @@ export interface BullesUpdateState {
   lastUpdateMessageShowDate: null | Date;
 }
 
+export interface BullesUpdateStateSlice {
+  bullesUpdate: BullesUpdateState;
+}
+
 const initialState: BullesUpdateState = {
   lastUpdateMessageShowDate: null
 };

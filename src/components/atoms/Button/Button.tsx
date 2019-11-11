@@ -42,6 +42,10 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
     color: ${props => props.theme.activeColor};
   }
 
+  &:focus {
+    outline: 1px dotted ${props => props.theme.activeColor};
+  }
+
   &:active {
     outline: 1px dotted ${props => props.theme.activeColor};
   }
