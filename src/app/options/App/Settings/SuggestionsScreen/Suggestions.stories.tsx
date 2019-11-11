@@ -2,26 +2,29 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import SuggestionsScreen from './SuggestionsScreen';
-import { generateContributor } from 'test/fakers/generateContributor';
+import { generateStatefulContributor } from 'test/fakers/generateContributor';
 import Wrapper from '../../ScreenWrapper';
 
 storiesOf('screens/SuggestionsScreen', module)
   .addDecorator(getStory => <Wrapper>{getStory()}</Wrapper>)
-  .add('suggestions', () => (
-    <SuggestionsScreen
-      subscriptions={[]}
-      suggestions={[
-        generateContributor(),
-        { ...generateContributor(), subscribed: true },
-        generateContributor()
-      ]}
-      subscribe={() => action('subscribe')}
-      unsubscribe={() => action('unsubscribe')}
-    />
-  ))
+  .add('suggestions', () => {
+    const suggestions = [
+      generateStatefulContributor({ subscribed: false }),
+      generateStatefulContributor({ subscribed: true }),
+      generateStatefulContributor({ subscribed: false })
+    ];
+    return (
+      <SuggestionsScreen
+        suggestions={suggestions}
+        allContributors={suggestions}
+        subscribe={() => action('subscribe')}
+        unsubscribe={() => action('unsubscribe')}
+      />
+    );
+  })
   .add('no suggestions', () => (
     <SuggestionsScreen
-      subscriptions={[]}
+      allContributors={[]}
       suggestions={[]}
       subscribe={() => action('subscribe')}
       unsubscribe={() => action('unsubscribe')}

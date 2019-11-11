@@ -18,7 +18,7 @@ export const generateContributor = ({
   contributions,
   noAvatar
 }: Options = {}): Contributor => ({
-  id: id || 42,
+  id: id || Faker.random.number(),
   name: name || Faker.name.findName(),
   contributions: contributions || Faker.random.number(),
   contribution: {

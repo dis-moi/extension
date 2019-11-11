@@ -27,8 +27,8 @@ const ContributorsListEmpty = styled.p`
 `;
 
 export interface SuggestionsScreenProps {
-  subscriptions: StatefulContributor[];
   suggestions: StatefulContributor[];
+  allContributors: StatefulContributor[];
   subscribe: (contributor: StatefulContributor) => () => void;
   unsubscribe: (contributor: StatefulContributor) => () => void;
   showExampleLink?: boolean;
@@ -45,7 +45,7 @@ const addPreselectedContributors = (
   ) as StatefulContributor[]);
 
 const SuggestionsScreen = ({
-  subscriptions,
+  allContributors,
   suggestions,
   subscribe,
   unsubscribe,
@@ -56,8 +56,6 @@ const SuggestionsScreen = ({
   useEffect(() => {
     if (initialSuggestions.length === 0) setInitialSuggestions(suggestions);
   }, [suggestions]);
-
-  const allContributors = R.concat(subscriptions, suggestions);
 
   const suggestionsToRender = R.pipe(
     R.map(findContributorIn(allContributors)),
