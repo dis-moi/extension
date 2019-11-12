@@ -63,5 +63,6 @@ export const getNumberOfUnreadNoticesOnTab = (tabId: number) =>
     (noticesIds, readNoticesIds) =>
       noticesIds
         ? noticesIds.filter(noticeId => !readNoticesIds.includes(noticeId))
+            .length
         : 0
   );
