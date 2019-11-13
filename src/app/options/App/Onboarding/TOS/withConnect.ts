@@ -14,7 +14,7 @@ const mapStateToProps = (state: OptionsState) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   onContinue: () => {
     dispatch(acceptTOS({ sendToBackground: true }));
-    dispatch(push('/onboarding/subscribe'));
+    dispatch(push('/onboarding/examples'));
   }
 });
 

@@ -14,9 +14,11 @@ import {
 } from 'app/background/selectors';
 import { getInstallationDate } from 'app/background/selectors/installationDetails';
 import { InstallationDetails } from 'app/lmem/installation';
+import { Contributor } from 'app/lmem/contributor';
 import { version } from '../../../../package.json';
 import { subscribe } from 'app/actions';
 import { lmemContributorIds } from 'app/lmemContributors';
+import { retrieveContributorsSaga } from './refreshContributors';
 import { loginSaga } from './user.saga';
 
 export function* installedSaga({
@@ -57,6 +59,8 @@ export function* installationDetailsSaga(): SagaIterator {
 
     const onboardingRequired = yield select(isOnboardingRequired);
     if (onboardingRequired) {
+      const contributors = yield call(retrieveContributorsSaga);
+      yield all(contributors.map(({ id }: Contributor) => put(subscribe(id))));
       yield call(openOptions, '/onboarding');
     }
   } catch (error) {

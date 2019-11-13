@@ -1,6 +1,7 @@
-import { call, delay, put } from 'redux-saga/effects';
+import { call, delay, put, select } from 'redux-saga/effects';
 import { receivedContributors, refreshContributorsFailed } from 'app/actions';
 import fetchContributors from 'api/fetchContributors';
+import { getContributors } from '../selectors/resources';
 
 function* refreshContributors() {
   try {
@@ -34,4 +35,14 @@ export default function* refreshContributorsSaga() {
       'assuming "process.env.REFRESH_CONTRIBUTORS_INTERVAL" is deliberately not defined.'
     );
   }
+}
+
+export function* retrieveContributorsSaga() {
+  let contributors = yield select(getContributors);
+  if (contributors.length === 0) {
+    yield put(receivedContributors(yield call(fetchContributors)));
+    contributors = yield select(getContributors);
+  }
+
+  return contributors;
 }
