@@ -122,10 +122,6 @@ export default ({
 
           <TOSList>
             <TOSListItem>
-              <strong>Liberté d’information</strong> : Vous recevez
-              l’information que vous avez choisie.
-            </TOSListItem>
-            <TOSListItem>
               <strong>Pas de publicité</strong>
             </TOSListItem>
             <TOSListItem>
