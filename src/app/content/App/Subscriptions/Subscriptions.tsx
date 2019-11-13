@@ -93,14 +93,14 @@ const Subscriptions = ({
     <SubscriptionInfo>
       {subscribedContributors.length === 0 && (
         <>
-          Vous n&apos;êtes abonné·e à aucun·e contributeur·ice, c&apos;est
-          nécessaire au bon fonctionnement de l&apos;extension.
+          Vous ne suivez aucun·e contributeur·trice, c&apos;est nécessaire au
+          bon fonctionnement de l&apos;extension.
         </>
       )}
       {subscribedContributors.length > 0 && (
         <>
-          Vous êtes abonné·e à <br />
-          <strong>{subscribedContributors.length}</strong> contributeur·ice
+          Vous suivez <br />
+          <strong>{subscribedContributors.length}</strong> contributeur·trice
           {pluralize(subscribedContributors.length)}.
         </>
       )}

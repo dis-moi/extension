@@ -37,7 +37,7 @@ const Empty = ({ goToSuggestions }: Props) => (
     <EmptyTitle>Aucun abonnement.</EmptyTitle>
 
     <EmptyText>
-      Veuillez vous abonner à des contributeur·ice·s dans la
+      Veuillez suivre des contributeur·trice·s dans la
       <br /> partie “Suggestions”
     </EmptyText>
 

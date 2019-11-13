@@ -56,18 +56,18 @@ const ContributorButton = ({
           onPointerLeave={() => setSubscribedButtonHovered(false)}
         >
           {subscribedButtonHovered ? (
-            'Se désabonner'
+            'Ne plus suivre'
           ) : (
             <>
               <Check />
-              &nbsp;Abonné·e
+              &nbsp;Suivi·e
             </>
           )}
         </ContributorBorderButton>
       )}
       {!subscribed && (
         <ContributorBackgroundButton onClick={onSubscribe}>
-          S&apos;abonner
+          Suivre
         </ContributorBackgroundButton>
       )}
     </Container>
