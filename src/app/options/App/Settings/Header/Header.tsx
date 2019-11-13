@@ -8,7 +8,9 @@ const HeaderNav = styled.nav``;
 
 const HeaderNavItem = styled(ExternalLink)`
   font-size: 16px;
-  color: ${props => props.theme.primaryColor} & + & {
+  color: ${props => props.theme.primaryColor};
+
+  & + & {
     margin-left: 16px;
   }
 `;
