@@ -17,13 +17,14 @@ export default () => (
     <Wrapper>
       <Intro>
         <BullesLogo />
-
+        <Title2>
+          Voici votre réseau d&apos;informateurs sur les pages web que vous
+          visitez.
+        </Title2>
         <Title>
-          Félicitations, vous êtes maintenant abonné·e : vous recevrez les
-          messages de vos contributeur·ice·s durant votre navigation.
+          Si les bulles de l&apos;un d&apos;entre eux ne vous intéressent pas,
+          vous pouvez à tout moment vous désabonner.
         </Title>
-
-        <Title2>Ci-dessous vous pouvez tester quelques exemples.</Title2>
       </Intro>
     </Wrapper>
 
