@@ -46,14 +46,29 @@ const ContributorButton = ({
   onUnsubscribe
 }: Props) => {
   const [subscribedButtonHovered, setSubscribedButtonHovered] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+
+  const handleSubscribe = () => {
+    setLoading(true);
+    const timer = setTimeout(() => {
+      if (subscribed) {
+        onUnsubscribe();
+      } else {
+        onSubscribe();
+      }
+      setLoading(false);
+      clearTimeout(timer);
+    }, 600);
+  };
 
   return (
     <Container>
       {subscribed && (
         <ContributorBorderButton
-          onClick={onUnsubscribe}
+          onClick={handleSubscribe}
           onPointerEnter={() => setSubscribedButtonHovered(true)}
           onPointerLeave={() => setSubscribedButtonHovered(false)}
+          loading={isLoading}
         >
           {subscribedButtonHovered ? (
             'Se désabonner'
@@ -66,7 +81,10 @@ const ContributorButton = ({
         </ContributorBorderButton>
       )}
       {!subscribed && (
-        <ContributorBackgroundButton onClick={onSubscribe}>
+        <ContributorBackgroundButton
+          onClick={handleSubscribe}
+          loading={isLoading}
+        >
           S&apos;abonner
         </ContributorBackgroundButton>
       )}
