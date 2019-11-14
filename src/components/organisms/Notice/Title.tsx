@@ -10,6 +10,11 @@ export default styled.p`
   line-height: 1.3;
   overflow: hidden;
 
+  &:hover {
+    color: ${props => props.theme.activeColor};
+    cursor: pointer;
+  }
+
   &:after {
     content: '';
     text-align: right;
