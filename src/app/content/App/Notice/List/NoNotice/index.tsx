@@ -2,7 +2,7 @@ import React from 'react';
 import Title from './Title';
 import ButtonContainer from './ButtonContainer';
 import Illustration from './Illustration';
-import BorderButton from 'components/atoms/Button/BorderButton';
+import BackgroundButton from 'components/atoms/Button/BackgroundButton';
 import { Link } from 'react-router-dom';
 
 export default () => (
@@ -10,9 +10,9 @@ export default () => (
     <Title>Pas de Bulle ici</Title>
     <ButtonContainer>
       <Illustration />
-      <BorderButton as={Link} to="/contribute">
+      <BackgroundButton as={Link} to="/contribute">
         Créer une Bulle
-      </BorderButton>
+      </BackgroundButton>
     </ButtonContainer>
   </>
 );

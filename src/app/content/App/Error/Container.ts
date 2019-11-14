@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import BorderButton from 'components/atoms/Button/BorderButton/BorderButton';
+import BackgroundButton from 'components/atoms/Button/BackgroundButton';
 
 export default styled.article`
   padding: 29px 24px 26px;
   text-align: center;
 
-  ${BorderButton} {
+  ${BackgroundButton} {
     margin: 0 auto;
   }
 `;

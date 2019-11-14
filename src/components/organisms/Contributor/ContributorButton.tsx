@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import BackgroundButton from 'components/atoms/Button/BackgroundButton/BackgroundButton';
-import BorderButton from 'components/atoms/Button/BorderButton/BorderButton';
 import Check from 'components/atoms/icons/CheckSmall';
 
 const Container = styled.div`
@@ -14,22 +13,15 @@ const Container = styled.div`
   }
 `;
 
-const ContributorBackgroundButton = styled(BackgroundButton)`
+const Button = styled(BackgroundButton)`
   min-width: 150px;
 
-  &:hover {
-    color: #fff;
-    background-color: #062e65;
-    border-color: #062e65;
-  }
-`;
-
-const ContributorBorderButton = styled(BorderButton)`
   &,
   &:hover {
-    color: ${props => props.theme.primaryColor};
-    background-color: #fff;
-    border-color: ${props => props.theme.primaryColor};
+    color: ${({ bordered, theme }) => (bordered ? theme.primaryColor : '#fff')};
+    background-color: ${({ bordered }) => (bordered ? '#fff' : '#062e65')};
+    border-color: ${({ bordered, theme }) =>
+      bordered ? theme.primaryColor : '#062e65'};
     min-width: 150px;
   }
 `;
@@ -45,7 +37,7 @@ const ContributorButton = ({
   onSubscribe,
   onUnsubscribe
 }: Props) => {
-  const [subscribedButtonHovered, setSubscribedButtonHovered] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const [isLoading, setLoading] = useState(false);
 
   const handleSubscribe = () => {
@@ -63,31 +55,26 @@ const ContributorButton = ({
 
   return (
     <Container>
-      {subscribed && (
-        <ContributorBorderButton
-          onClick={handleSubscribe}
-          onPointerEnter={() => setSubscribedButtonHovered(true)}
-          onPointerLeave={() => setSubscribedButtonHovered(false)}
-          loading={isLoading}
-        >
-          {subscribedButtonHovered ? (
+      <Button
+        onClick={handleSubscribe}
+        onPointerEnter={() => setHovered(true)}
+        onPointerLeave={() => setHovered(false)}
+        loading={isLoading}
+        bordered={!!subscribed}
+      >
+        {subscribed ? (
+          hovered ? (
             'Se désabonner'
           ) : (
             <>
               <Check />
               &nbsp;Abonné
             </>
-          )}
-        </ContributorBorderButton>
-      )}
-      {!subscribed && (
-        <ContributorBackgroundButton
-          onClick={handleSubscribe}
-          loading={isLoading}
-        >
-          S&apos;abonner
-        </ContributorBackgroundButton>
-      )}
+          )
+        ) : (
+          "S'abonner"
+        )}
+      </Button>
     </Container>
   );
 };

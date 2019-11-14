@@ -1,3 +1,5 @@
-import BackgroundButton from './BackgroundButton';
+import BackgroundButton, { BackgroundButtonProps } from './BackgroundButton';
+
+export { BackgroundButtonProps };
 
 export default BackgroundButton;
