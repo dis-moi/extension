@@ -29,7 +29,7 @@ export const updateBadge = (
   badgeTheme: BadgeTheme,
   tabId?: number
 ): void => {
-  chrome.browserAction.setIcon({ path: icons });
+  chrome.browserAction.setIcon({ path: icons, tabId });
   if (noticesNumber > 0) {
     const { backgroundColor } = badgeTheme;
 
