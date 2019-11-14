@@ -12,7 +12,7 @@ export const footerRoutes: FooterRoute[] = [
   },
   {
     location: '/subscriptions',
-    element: 'Mon réseau'
+    element: 'Abonnements'
   },
   {
     location: '/help',
