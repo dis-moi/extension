@@ -25,6 +25,12 @@ const DetailsMetaValue = styled.div`
   margin-left: 10px;
 `;
 
+const DetailsScroll = styled.div`
+  margin-top: 10px;
+  max-height: 225px;
+  overflow-y: scroll;
+`;
+
 interface NoticeDetailsProps extends RouteComponentProps {
   notice: StatefulNotice;
   like: (id: number) => void;
@@ -165,15 +171,17 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
             </DetailsMetaValue>
           </DetailsMeta>
 
-          <Message onClick={this.handleMessageClick}>{message}</Message>
-          {source && source.url && (
-            <Source>
-              En savoir plus :{' '}
-              <SourceURL onClick={this.handleFollowSource}>
-                {source.url}
-              </SourceURL>
-            </Source>
-          )}
+          <DetailsScroll>
+            <Message onClick={this.handleMessageClick}>{message}</Message>
+            {source && source.url && (
+              <Source>
+                En savoir plus :{' '}
+                <SourceURL onClick={this.handleFollowSource}>
+                  {source.url}
+                </SourceURL>
+              </Source>
+            )}
+          </DetailsScroll>
 
           <Feedbacks>
             <Button onClick={this.handleLikeClick}>
