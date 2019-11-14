@@ -31,6 +31,35 @@ const DetailsScroll = styled.div`
   overflow-y: auto;
 `;
 
+const AvatarNotice = styled(Avatar)`
+  position: relative;
+
+  &:hover {
+    cursor: pointer;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000000;
+      border-radius: 50%;
+      opacity: 0.29;
+    }
+  }
+`;
+
+const ContributorNotice = styled(Contributor)`
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`;
+
 interface NoticeDetailsProps extends RouteComponentProps {
   notice: StatefulNotice;
   like: (id: number) => void;
@@ -167,10 +196,10 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
       <DetailsContainer>
         <DetailsContent>
           <DetailsMeta>
-            <Avatar contributor={contributor} size="small" />
+            <AvatarNotice contributor={contributor} size="small" />
             <DetailsMetaValue>
               <Date>Le {format(created, 'DD/MM/YYYY')}</Date>
-              <Contributor>{contributor.name} :</Contributor>
+              <ContributorNotice>{contributor.name} :</ContributorNotice>
             </DetailsMetaValue>
           </DetailsMeta>
 
