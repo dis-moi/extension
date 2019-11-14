@@ -57,6 +57,8 @@ const SuggestionsScreen = ({
     if (initialSuggestions.length === 0) setInitialSuggestions(suggestions);
   }, [suggestions]);
 
+  if (allContributors.length === 0) return null;
+
   const suggestionsToRender = R.pipe(
     R.map(findContributorIn(allContributors)),
     preselectedContributorsIds
