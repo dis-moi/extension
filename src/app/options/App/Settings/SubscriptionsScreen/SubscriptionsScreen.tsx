@@ -49,6 +49,8 @@ export const SubscriptionsScreen = ({
       setInitialSubscriptions(subscriptions);
   }, [subscriptions]);
 
+  if (allContributors.length === 0) return null;
+
   const subscriptionsToRender = initialSubscriptions.map(
     findContributorIn(allContributors)
   );
