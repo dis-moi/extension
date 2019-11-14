@@ -38,6 +38,35 @@ const Description = styled.div`
   width: 245px;
 `;
 
+const AvatarNotice = styled(Avatar)`
+  position: relative;
+
+  &:hover {
+    cursor: pointer;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000000;
+      border-radius: 50%;
+      opacity: 0.29;
+    }
+  }
+`;
+
+const ContributorNotice = styled(Contributor)`
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`;
+
 export interface NoticeTransitionProps {
   item: StatefulNotice;
   props: object;
@@ -119,10 +148,12 @@ export default class Notice extends PureComponent<Props, CountDownState> {
     return (
       <Container style={style}>
         {!dismissed && !disliked && <DeleteButton onClick={this.onDismiss} />}
-        <Content
+        {/* <Content
           to={dismissed || intervalID ? undefined : `notices/details/${id}`}
           isRead={read}
-        >
+        > */}
+        {/* Avant y'avait un lien global, mais ça c'était avant */}
+        <Content isRead={read}>
           {(dismissed || disliked) && intervalID ? (
             <>
               <Deleted>Cette bulle ne s’affichera plus !</Deleted>
@@ -133,10 +164,21 @@ export default class Notice extends PureComponent<Props, CountDownState> {
             </>
           ) : (
             <>
-              <Avatar contributor={contributor} size="small" />
+              <AvatarNotice contributor={contributor} size="small" />{' '}
+              {/* Faut lier sur l'écran du contributeur, ça serait cool si le hover impactait les 2 */}
               <Description>
-                <Contributor>{contributor.name}</Contributor>
-                <Title>{stripHtml(message)}</Title>
+                <ContributorNotice>{contributor.name}</ContributorNotice>{' '}
+                {/* Faut lier sur l'écran du contributeur, ça serait cool si le hover impactait les 2 */}
+                <Title
+                  to={
+                    dismissed || intervalID
+                      ? undefined
+                      : `notices/details/${id}`
+                  }
+                >
+                  {stripHtml(message)}
+                </Title>{' '}
+                {/* Lien vers le détail de la notice */}
               </Description>
               <OpenButton />
             </>
