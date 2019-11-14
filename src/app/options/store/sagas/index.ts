@@ -1,6 +1,10 @@
-import { fork } from 'redux-saga/effects';
+import { fork, all } from 'redux-saga/effects';
 import createBackgroundChannelSaga from 'app/sagas/backgroundChannel';
+import watchUnloadSaga from '../../../content/sagas/watchUnload.saga';
 
 export default function* rootSaga() {
-  yield fork(createBackgroundChannelSaga('options'));
+  yield all([
+    fork(createBackgroundChannelSaga('options')),
+    fork(watchUnloadSaga)
+  ]);
 }
