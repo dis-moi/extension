@@ -1,15 +1,27 @@
 import {
   init,
   configureScope,
-  Scope,
-  Severity,
   captureMessage as sentryCaptureMessage,
   captureException as sentryCaptureException
 } from '@sentry/browser';
+import { Scope, Severity, Event, EventHint } from '@sentry/types';
 import { getRelease } from '../../../sentry';
 import Logger from './Logger';
 
 let sentryInitialized = false;
+
+const beforeSend = (event: Event, hint: EventHint) => {
+  const error = hint.originalException;
+  if (
+    error &&
+    typeof error === 'object' &&
+    error.message &&
+    error.message.match(/ResizeObserver loop limit exceeded/i)
+  ) {
+    return null;
+  }
+  return event;
+};
 
 export const initSentry = () => {
   const blacklist = ['GlobalHandlers', 'ReportingObserver', 'CaptureConsole'];
@@ -20,7 +32,8 @@ export const initSentry = () => {
         environment: process.env.NODE_ENV,
         release: getRelease(process.env.BUILD),
         integrations: integrations =>
-          integrations.filter(i => !blacklist.includes(i.name))
+          integrations.filter(i => !blacklist.includes(i.name)),
+        beforeSend
       });
       sentryInitialized = true;
       Logger.info('Sentry initialized');

@@ -22,7 +22,9 @@ export const interactiveElementsSelectors: string[] = [
   '[onclick]'
 ];
 
-export const isHtmlElementInteractive = (element: HTMLElement) =>
+export const isHtmlElementInteractive = (element?: HTMLElement) =>
+  element &&
+  element.matches &&
   interactiveElementsSelectors.some(selector => element.matches(selector));
 
 export default (store: Store) => (e: MouseEvent) => {
