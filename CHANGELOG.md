@@ -1,3 +1,58 @@
+# [3.5.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.4.0...v3.5.0) (2019-11-11)
+
+
+### Bug Fixes
+
+* **background:** tabs reducer ([6cf9d5a](https://github.com/insitu-project/recommendations-webextension/commit/6cf9d5a))
+* **badge-behavior:** clear notices in tab when context not triggered and there are no notices left to display ([26c0ddb](https://github.com/insitu-project/recommendations-webextension/commit/26c0ddb))
+* **contributor intro:** changes link color ([e4c4337](https://github.com/insitu-project/recommendations-webextension/commit/e4c4337))
+* **details:** update UI likes and dislikes number on user interaction ([38c8c35](https://github.com/insitu-project/recommendations-webextension/commit/38c8c35))
+* **extension nav:** changed text abonnements to mon réseau ([bf68df8](https://github.com/insitu-project/recommendations-webextension/commit/bf68df8))
+* **firefox:** add uninstall URL for firefox too ([047f20a](https://github.com/insitu-project/recommendations-webextension/commit/047f20a))
+* **link-in-preview:** add target blank and same rel directives as external links ([2d9a4c7](https://github.com/insitu-project/recommendations-webextension/commit/2d9a4c7))
+* **Notice:** deleted useless code ([92d7831](https://github.com/insitu-project/recommendations-webextension/commit/92d7831))
+* **notice-details:** don't show source label if there is no source URL ([e57e963](https://github.com/insitu-project/recommendations-webextension/commit/e57e963))
+* **onboarding subscribe:** added opacity to bottom line ([458bba4](https://github.com/insitu-project/recommendations-webextension/commit/458bba4))
+* **onboarding subscribe:** added responsiveness ([3b48848](https://github.com/insitu-project/recommendations-webextension/commit/3b48848))
+* **onboarding subscribe:** fixed header, footer and scroll only for contributors ([e605908](https://github.com/insitu-project/recommendations-webextension/commit/e605908))
+* **onboarding subscribe:** reduce header height ([5866c00](https://github.com/insitu-project/recommendations-webextension/commit/5866c00))
+* **options:** fix subscriptions screen live update ([b2c71a7](https://github.com/insitu-project/recommendations-webextension/commit/b2c71a7))
+* do not try to inject in PDF documents ([c3b7ac5](https://github.com/insitu-project/recommendations-webextension/commit/c3b7ac5))
+* **ratings:** call ratings sagas in root saga ([6d1b5fc](https://github.com/insitu-project/recommendations-webextension/commit/6d1b5fc))
+* **ratings:** change the way `NOTICE_DISPLAYED` and `NOTICE_BADGED` actions are triggered ([3a954ff](https://github.com/insitu-project/recommendations-webextension/commit/3a954ff))
+* **ratings:** fix outbound link clicked with a filter on target tag name ([2c92534](https://github.com/insitu-project/recommendations-webextension/commit/2c92534))
+* **ratings:** fix tests ([d4065c6](https://github.com/insitu-project/recommendations-webextension/commit/d4065c6))
+* **ratings:** set geolocation as optional ([c684255](https://github.com/insitu-project/recommendations-webextension/commit/c684255))
+* **ratings:** unfold rating now sent to the background ([0d15fed](https://github.com/insitu-project/recommendations-webextension/commit/0d15fed))
+* **sentry:** fix sentry connect-src ([346c245](https://github.com/insitu-project/recommendations-webextension/commit/346c245))
+* **subscribe intro:** center content ([e87294f](https://github.com/insitu-project/recommendations-webextension/commit/e87294f))
+* **Subscrition screen:** removed useless SVG margin ([a7216cd](https://github.com/insitu-project/recommendations-webextension/commit/a7216cd))
+
+
+### Features
+
+* **badge-behavior:** implements new badge behavior ([6a51e75](https://github.com/insitu-project/recommendations-webextension/commit/6a51e75))
+* **ContributorButton:** added checkmark when subscribed ([43cbd02](https://github.com/insitu-project/recommendations-webextension/commit/43cbd02))
+* version 3.4.3 ([65eea75](https://github.com/insitu-project/recommendations-webextension/commit/65eea75))
+* **extension navigation:** replaced icon with text ([74c399b](https://github.com/insitu-project/recommendations-webextension/commit/74c399b))
+* bump version ([5255b2a](https://github.com/insitu-project/recommendations-webextension/commit/5255b2a))
+* version 3.4.4 ([afdeaa0](https://github.com/insitu-project/recommendations-webextension/commit/afdeaa0))
+* **ratings:** handle contributor ratings actions ([14d1d18](https://github.com/insitu-project/recommendations-webextension/commit/14d1d18))
+* version 3.4.5 ([049414b](https://github.com/insitu-project/recommendations-webextension/commit/049414b))
+* **header links:** added and designed links ([7cde9f4](https://github.com/insitu-project/recommendations-webextension/commit/7cde9f4))
+* **notice list:** changes notice read display ([aef210c](https://github.com/insitu-project/recommendations-webextension/commit/aef210c))
+* **notice list:** truncate after 3 lines ([57d71e6](https://github.com/insitu-project/recommendations-webextension/commit/57d71e6))
+* **permissions:** change permission 'tabs' to 'activeTab' ([1d2751d](https://github.com/insitu-project/recommendations-webextension/commit/1d2751d))
+* **preview:** add html clickable link in preview (cheap version) ([abf822b](https://github.com/insitu-project/recommendations-webextension/commit/abf822b))
+* **ratings:** create `getSelectedTab` from old ratings middleware ([dea980d](https://github.com/insitu-project/recommendations-webextension/commit/dea980d))
+* **ratings:** create ratings saga to track actions that may trigger a rating ([509a0ab](https://github.com/insitu-project/recommendations-webextension/commit/509a0ab))
+* **ratings:** fallback to eventually detect a click on an outbound link ([7bbabe3](https://github.com/insitu-project/recommendations-webextension/commit/7bbabe3))
+* **restricted-contexts:** add restricted contexts ([30fcc8a](https://github.com/insitu-project/recommendations-webextension/commit/30fcc8a))
+* **restricted-contexts:** add restricted contexts ([2b50564](https://github.com/insitu-project/recommendations-webextension/commit/2b50564))
+* **staging:** bump version number ([ec6f8be](https://github.com/insitu-project/recommendations-webextension/commit/ec6f8be))
+* **staging:** bump version number ([96e787f](https://github.com/insitu-project/recommendations-webextension/commit/96e787f))
+* **suggestions:** limit suggestions number to 5 on subscriptions screen ([65af1a9](https://github.com/insitu-project/recommendations-webextension/commit/65af1a9))
+
 # [3.4.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.3.1...v3.4.0) (2019-10-21)
 
 
