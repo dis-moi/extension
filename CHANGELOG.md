@@ -1,3 +1,26 @@
+# [3.6.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.5.0...v3.6.0) (2019-11-15)
+
+
+### Bug Fixes
+
+* **badge:** fix default badge update being applied to all tabs... ([4df337e](https://github.com/insitu-project/recommendations-webextension/commit/4df337e))
+* **badge-background:** fix the count of read notices ([8f681d3](https://github.com/insitu-project/recommendations-webextension/commit/8f681d3))
+* **contributor button:** added median dot ([dbad110](https://github.com/insitu-project/recommendations-webextension/commit/dbad110))
+* set logger level right ([9b97a00](https://github.com/insitu-project/recommendations-webextension/commit/9b97a00))
+* **options:** options tab does not unload ([52e3e1a](https://github.com/insitu-project/recommendations-webextension/commit/52e3e1a))
+* **options:** wait for contributors before rendering screens ([d76761c](https://github.com/insitu-project/recommendations-webextension/commit/d76761c))
+* **options header:** added missing semicolon to display margin ([d6bd772](https://github.com/insitu-project/recommendations-webextension/commit/d6bd772))
+* **service-message:** change text and button for generic ones ([44d8a17](https://github.com/insitu-project/recommendations-webextension/commit/44d8a17))
+
+
+### Features
+
+* version 3.5.1 ([78efc59](https://github.com/insitu-project/recommendations-webextension/commit/78efc59))
+* **close:** fix element that could be undefined in isHtmlElementInteractive ([52aa11b](https://github.com/insitu-project/recommendations-webextension/commit/52aa11b))
+* **NoticeDetails:** add scroll to prevent long Notice to be displayed poorly ([8d70ebf](https://github.com/insitu-project/recommendations-webextension/commit/8d70ebf))
+* **notification:** rename Mon Réseau to Abonnements ([f89ee31](https://github.com/insitu-project/recommendations-webextension/commit/f89ee31))
+* version 3.5.2 ([4be407a](https://github.com/insitu-project/recommendations-webextension/commit/4be407a))
+
 # [3.5.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.4.0...v3.5.0) (2019-11-11)
 
 
