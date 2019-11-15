@@ -14,7 +14,8 @@ module.exports = {
       'connect-src': [
         'https://staging-notices.bulles.fr',
         'https://notices.bulles.fr',
-        'https://sentry.io'
+        'https://sentry.io',
+        'https://stats.lmem.net/matomo.php'
       ],
       'script-src': ["'self'", "'unsafe-eval'"],
       'object-src': ["'self'"],

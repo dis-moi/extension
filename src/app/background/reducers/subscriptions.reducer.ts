@@ -9,6 +9,11 @@ export const getContributorId = ({
 }: ContributorAction) =>
   typeof contributor !== 'number' ? contributor.id : contributor;
 
+export const getContributorName = ({
+  payload: { contributor }
+}: ContributorAction) =>
+  typeof contributor !== 'number' ? contributor.name : '';
+
 export default function subscriptionsReducer(
   state: SubscriptionsState = [],
   action: AppAction

@@ -8,7 +8,7 @@ import { AppAction, FeedbackOnNoticeAction } from 'app/actions';
 import { captureException } from 'app/utils/sentry';
 import { RatingType } from 'app/lmem/rating';
 
-const isFeedBackRatingAction = (action: AppAction) =>
+export const isFeedBackRatingAction = (action: AppAction) =>
   action.type === 'FEEDBACK_ON_NOTICE' &&
   Object.values(RatingType).includes(action.payload.feedback);
 
@@ -35,7 +35,7 @@ export const transformers: {
     })
   },
   {
-    pattern: 'UNFOLD_NOTICE',
+    pattern: 'NOTICE/UNFOLDED',
     transformer: createDefaultTransformer(RatingType.UNFOLD)
   },
   {

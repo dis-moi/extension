@@ -9,6 +9,7 @@ import { getInstallationDetails } from './installationDetails';
 import { areTosAccepted, getRead } from './prefs';
 import { getNbSubscriptions } from './subscriptions.selectors';
 import { getNoticesIdsOnTab } from './tabs';
+import { getNotice } from '../../lmem/notice';
 
 export const findTriggeredContexts = (state: BackgroundState) => (
   url: string
@@ -66,3 +67,10 @@ export const getNumberOfUnreadNoticesOnTab = (tabId: number) =>
             .length
         : 0
   );
+
+export const getNotices = (state: BackgroundState) => {
+  return state.resources.notices;
+};
+
+export const getNoticeById = (id: number) => (state: BackgroundState) =>
+  getNotice(Number(id), getNotices(state));

@@ -1,13 +1,16 @@
+import * as R from 'ramda';
 import { AppAction } from 'app/actions';
 import { MatchingContext, RestrictedContext } from 'app/lmem/matchingContext';
 import { Draft } from 'app/lmem/draft';
 import { Contributor } from 'app/lmem/contributor';
 import forbiddenTabs from 'webext/forbiddenTabs';
+import { Notice } from 'app/lmem/notice';
 
 export interface ResourcesState {
   matchingContexts: MatchingContext[];
   restrictedContexts: RestrictedContext[];
   contributors: Contributor[];
+  notices: Notice[];
   drafts: Draft[];
 }
 
@@ -23,7 +26,8 @@ const initialResources: ResourcesState = {
   matchingContexts: [],
   restrictedContexts: regexpsToRestrictedContexts(forbiddenTabs),
   contributors: [],
-  drafts: []
+  drafts: [],
+  notices: []
 };
 
 export default function(
@@ -54,6 +58,15 @@ export default function(
       };
     }
 
+    case 'NOTICES/FETCHED': {
+      return {
+        ...state,
+        notices: R.uniqWith(
+          R.eqProps('id'),
+          R.concat(state.notices, action.payload)
+        )
+      };
+    }
     /* Will be used ?
     case 'UNINSTALL': {
       console.warn(

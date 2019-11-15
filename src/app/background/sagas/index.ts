@@ -17,6 +17,13 @@ import sendInstallationDetailsToOptions from './sendInstallationDetailsToOptions
 import setup from './setup.saga';
 import tos from './tos.saga';
 import awaitRehydratationSaga from './lib/awaitRehydratation.saga';
+import tracking from './tracking';
+import MatomoTracker from 'app/matomo';
+
+const tracker =
+  process.env.TRACKING_SITE_ID && process.env.TRACKING_URL
+    ? new MatomoTracker(process.env.TRACKING_SITE_ID, process.env.TRACKING_URL)
+    : undefined;
 
 export default function* rootSaga() {
   yield call(awaitRehydratationSaga);
@@ -37,6 +44,7 @@ export default function* rootSaga() {
     fork(sendInstallationDetailsToOptions),
     fork(setup),
     fork(error),
-    fork(tos)
+    fork(tos),
+    fork(tracking(tracker))
   ]);
 }

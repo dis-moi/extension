@@ -32,7 +32,7 @@ export interface DetailsDispatchProps {
   confirmDislike: (id: number) => void;
   undislike: (id: number) => void;
   view: (id: number) => void;
-  outboundLinkClicked: (id: number) => void;
+  outboundLinkClicked: (id: number, url?: string) => void;
 }
 
 const mapDispatchToProps: DetailsDispatchProps = {

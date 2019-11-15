@@ -39,7 +39,7 @@ interface NoticeDetailsProps extends RouteComponentProps {
   confirmDislike: (id: number) => void;
   undislike: (id: number) => void;
   view?: (id: number) => void;
-  outboundLinkClicked?: (id: number) => void;
+  outboundLinkClicked?: (id: number, url?: string) => void;
 }
 class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
   constructor(props: NoticeDetailsProps) {
@@ -117,10 +117,10 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
   handleFollowSource = () => {
     const {
       outboundLinkClicked,
-      notice: { id }
+      notice: { id, source }
     } = this.props;
     if (outboundLinkClicked) {
-      outboundLinkClicked(id);
+      outboundLinkClicked(id, source && source.url);
     }
   };
 
@@ -131,7 +131,10 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
     } = this.props;
     if (outboundLinkClicked) {
       if ((e.target as HTMLElement).tagName.toLowerCase() === 'a') {
-        outboundLinkClicked(id);
+        outboundLinkClicked(
+          id,
+          (e.target as HTMLElement).getAttribute('href') || undefined
+        );
       }
     }
   };
