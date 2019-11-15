@@ -4,7 +4,7 @@ import {
   captureMessage as sentryCaptureMessage,
   captureException as sentryCaptureException
 } from '@sentry/browser';
-import { Scope, Severity, Event, EventHint } from '@sentry/types/dist';
+import { Scope, Severity, Event, EventHint } from '@sentry/types';
 import { getRelease } from '../../../sentry';
 import Logger from './Logger';
 
