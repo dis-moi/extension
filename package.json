@@ -9,6 +9,7 @@
     "start": "webpack --watch --progress --mode=development --env.build=dev",
     "start:firefoxProduction": "webpack --watch --progress --mode=development --env.build=dev --env.firefox --env.api=production",
     "start:productionApi": "webpack --watch --progress --mode=development --env.build=dev --env.api=production",
+    "start:devApi": "webpack --watch --progress --mode=development --env.build=dev --env.api=dev",
     "build:staging": "webpack --mode=production --env.build=staging",
     "release:staging": "webpack --mode=production --env.build=staging --env.sentry",
     "build:firefox": "webpack --mode=production --env.build=firefox",
