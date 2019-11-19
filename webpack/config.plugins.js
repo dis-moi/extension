@@ -14,41 +14,52 @@ const manifests = require('../manifest');
 const { version } = require('../package.json');
 const { getRelease } = require('../sentry');
 
+const hours = millis => `${millis}*60*1000`;
+
 const BUILD_CONFIG = {
   dev: {
     BACKEND_ORIGIN: '"https://staging-notices.bulles.fr/api/v3/"',
-    REFRESH_MC_INTERVAL: '5*60*1000',
+    REFRESH_MC_INTERVAL: hours(5),
     REFRESH_CONTRIBUTORS_INTERVAL: '5*60*1000'
   },
   devOnProductionApi: {
     BACKEND_ORIGIN: '"https://notices.bulles.fr/api/v3/"',
-    REFRESH_MC_INTERVAL: '5*60*1000',
+    REFRESH_MC_INTERVAL: hours(5),
+    REFRESH_CONTRIBUTORS_INTERVAL: '5*60*1000'
+  },
+  devOnDevApi: {
+    BACKEND_ORIGIN: '"http://localhost:8088/api/v3/"',
+    REFRESH_MC_INTERVAL: hours(5),
     REFRESH_CONTRIBUTORS_INTERVAL: '5*60*1000'
   },
   staging: {
     BACKEND_ORIGIN: '"https://staging-notices.bulles.fr/api/v3/"',
     UNINSTALL_ORIGIN: "'https://www.bulles.fr/desinstallation'",
-    REFRESH_MC_INTERVAL: '5*60*1000',
+    REFRESH_MC_INTERVAL: hours(5),
     REFRESH_CONTRIBUTORS_INTERVAL: '5*60*1000'
   },
   chromium: {
     BACKEND_ORIGIN: '"https://notices.bulles.fr/api/v3/"',
     UNINSTALL_ORIGIN: "'https://www.bulles.fr/desinstallation'",
-    REFRESH_MC_INTERVAL: '30*60*1000',
+    REFRESH_MC_INTERVAL: hours(30),
     REFRESH_CONTRIBUTORS_INTERVAL: '30*60*1000'
   },
   firefox: {
     BACKEND_ORIGIN: '"https://notices.bulles.fr/api/v3/"',
     UNINSTALL_ORIGIN: "'https://www.bulles.fr/desinstallation'",
-    REFRESH_MC_INTERVAL: '30*60*1000',
+    REFRESH_MC_INTERVAL: hours(30),
     REFRESH_CONTRIBUTORS_INTERVAL: '30*60*1000'
   }
 };
 
+const getApiForDev = api => {
+  if (api === 'production') return 'devOnProductionApi';
+  if (api === 'dev') return 'devOnDevApi';
+  return 'dev';
+};
+
 const getBuildConfig = (build, api) =>
-  build === 'dev' && api === 'production'
-    ? BUILD_CONFIG['devOnProductionApi']
-    : BUILD_CONFIG[build];
+  build === 'dev' ? BUILD_CONFIG[getApiForDev(api)] : BUILD_CONFIG[build];
 
 const selectEnvVarsToInject = R.pick([
   'SEND_CONTRIBUTION_FROM',
