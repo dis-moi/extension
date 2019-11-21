@@ -1,6 +1,5 @@
 import { SagaIterator } from 'redux-saga';
-import { takeLatest, select, put, call, take, all } from 'redux-saga/effects';
-import { REHYDRATE } from 'redux-persist';
+import { takeLatest, select, put, call, all } from 'redux-saga/effects';
 import { captureException } from 'app/utils/sentry';
 import openOptions from 'webext/openOptionsTab';
 import {
@@ -9,8 +8,7 @@ import {
 } from 'app/actions/install';
 import {
   isAnUpdateFromLmem,
-  isOnboardingRequired,
-  isRehydrated
+  isOnboardingRequired
 } from 'app/background/selectors';
 import { areTosAccepted } from 'app/background/selectors/prefs';
 import { getInstallationDate } from 'app/background/selectors/installationDetails';
@@ -34,11 +32,6 @@ export function* installedSaga({
       datetime: datetime || new Date(),
       updatedAt: new Date()
     };
-
-    const rehydrated = yield select(isRehydrated);
-    if (!rehydrated) {
-      yield take(REHYDRATE);
-    }
 
     yield put(updateInstallationDetails(installationDetails, false));
   } catch (e) {
