@@ -1,3 +1,17 @@
+# [3.7.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.6.0...v3.7.0) (2019-11-21)
+
+
+### Bug Fixes
+
+* add Phoenix saga ([2b4948b](https://github.com/insitu-project/recommendations-webextension/commit/2b4948b))
+* Sagas don't wait for store to be rehydrated ([4551673](https://github.com/insitu-project/recommendations-webextension/commit/4551673))
+* tab communication issue breaks subscription UX ([a8e518e](https://github.com/insitu-project/recommendations-webextension/commit/a8e518e))
+
+
+### Features
+
+* version 3.6.1 ([e284654](https://github.com/insitu-project/recommendations-webextension/commit/e284654))
+
 # [3.6.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.5.0...v3.6.0) (2019-11-15)
 
 
