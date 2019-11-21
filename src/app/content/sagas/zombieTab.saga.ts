@@ -16,6 +16,6 @@ function* sendListeningBackToBackgroundIfStillAliveSaga() {
   yield call(sendListeningBackToBackgroundSaga);
 }
 
-export default function* phoenixSaga() {
+export default function* zombieTabSaga() {
   yield takeEvery(TAB_REMOVED, sendListeningBackToBackgroundIfStillAliveSaga);
 }
