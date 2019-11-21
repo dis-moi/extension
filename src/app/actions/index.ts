@@ -54,7 +54,7 @@ import { From } from '../../webext/From';
 import { SubscribeAction, UnsubscribeAction } from './subscription';
 import { ShowBullesUpdateMessageAction } from './bullesUpdate.actions';
 import { LoadedAction } from '../content/actions/ui/open.actions';
-import { TabRemovedAction } from './tabsLifecycle';
+import { TabDiedAction, TabRemovedAction } from './tabsLifecycle';
 import { UpdateRestrictedContextsAction } from './restrictedContexts';
 
 type MessageSender = chrome.runtime.MessageSender;
@@ -147,6 +147,7 @@ export type AppAction =
   | NavigatedToUrlAction
   | InstalledAction
   | TabRemovedAction
+  | TabDiedAction
   | ContextNotTriggeredAction
   | NoNoticesDisplayedAction
   | RefreshMatchingContextsFailedAction

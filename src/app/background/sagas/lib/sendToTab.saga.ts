@@ -1,13 +1,13 @@
 import { SagaIterator } from 'redux-saga';
-import { delay, call } from 'redux-saga/effects';
-import { AppAction } from 'app/actions';
+import { delay, call, put } from 'redux-saga/effects';
+import { AppAction, tabDied } from 'app/actions';
 import Tab from 'app/lmem/tab';
 import Logger from 'app/utils/Logger';
 import sendToTab from 'webext/sendActionToTab';
 import isAuthorizedTab from 'webext/isAuthorizedTab';
 import { captureException } from 'app/utils/sentry';
 
-const MAX_RETRIES = 100;
+const MAX_RETRIES = 5;
 
 function* trySendToTab(
   tab: Tab,
@@ -27,9 +27,10 @@ function* trySendToTab(
       yield delay(200);
       yield call(trySendToTab, tab, action, remainingRetries - 1);
     } else {
+      yield put(tabDied(tab));
       captureException(
         error,
-        `Could not communicate with tab ${tab.id} after ${MAX_RETRIES} attempts : ${error.message}`
+        `Could not communicate with tab ${tab.id} (${tab.url}) after ${MAX_RETRIES} attempts : ${error.message}`
       );
     }
   }

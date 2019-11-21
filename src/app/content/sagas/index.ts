@@ -7,6 +7,7 @@ import notices from './notices';
 import ui from './ui';
 import watchUrlsSaga from './watchUrls.saga';
 import watchUnloadSaga from './watchUnload.saga';
+import zombieTabSaga from './zombieTab.saga';
 
 export default function* rootSaga() {
   yield all([
@@ -17,6 +18,7 @@ export default function* rootSaga() {
     fork(ui),
     fork(error),
     fork(watchUrlsSaga),
-    fork(watchUnloadSaga)
+    fork(watchUnloadSaga),
+    fork(zombieTabSaga)
   ]);
 }
