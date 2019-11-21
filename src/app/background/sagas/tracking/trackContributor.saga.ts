@@ -6,10 +6,7 @@ import {
   createErrorAction,
   getURLFromActionMeta
 } from 'app/actions';
-import {
-  getContributorId,
-  getContributorName
-} from 'app/background/reducers/subscriptions.reducer';
+import { getContributorName } from 'app/background/reducers/subscriptions.reducer';
 
 export const trackContributorActionSaga = (tracker: Tracker) =>
   function*(action: ContributorAction): SagaIterator {
@@ -18,7 +15,7 @@ export const trackContributorActionSaga = (tracker: Tracker) =>
         category: 'Contributor',
         action: action.type.toLowerCase(),
         name: getContributorName(action),
-        value: getContributorId(action) as number,
+        value: 0,
         url: getURLFromActionMeta(action)
       });
     } catch (e) {

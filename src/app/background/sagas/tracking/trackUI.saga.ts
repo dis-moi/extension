@@ -31,7 +31,7 @@ export const trackInstallSaga = (tracker: Tracker) =>
         category: 'Extension',
         action: action.payload.installationDetails.reason,
         name: action.payload.installationDetails.version,
-        value: 0x5e7
+        value: 0
       });
     } catch (e) {
       createErrorAction()(e);
@@ -57,7 +57,7 @@ export const trackCloseSaga = (tracker: Tracker) =>
         category: 'UI',
         action: 'close',
         name: action.payload.cause.toString(),
-        value: 0xc105e,
+        value: 0,
         url: getURLFromActionMeta(action)
       });
     } catch (e) {
@@ -72,7 +72,7 @@ export const trackBrowserActionClickedSaga = (tracker: Tracker) =>
         category: 'UI',
         action: 'click',
         name: 'BrowserAction',
-        value: 0xac710c11c
+        value: 0
       });
     } catch (e) {
       createErrorAction()(e);
