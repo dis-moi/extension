@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { takeEvery, select } from 'redux-saga/effects';
+import { takeEvery, select, fork } from 'redux-saga/effects';
 import Tab from 'app/lmem/tab';
 import {
   contributorsTransmitted,
@@ -27,7 +27,7 @@ function* sendContributorsBackToTab(action: ListeningActionsReadyAction) {
 
 function* subscribeSaga() {
   for (const tab of yield select(getTabsList)) {
-    yield sendContributorsToTab(tab);
+    yield fork(sendContributorsToTab, tab);
   }
 }
 
