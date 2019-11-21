@@ -6,7 +6,7 @@ import { tabRemoved } from 'app/actions';
 type Emit = (action: Action) => void;
 
 const createUnloadListener = (emit: Emit) => {
-  window.addEventListener('unload', function() {
+  window.addEventListener('beforeunload', function() {
     emit(tabRemoved());
   });
 

@@ -6,7 +6,8 @@ import {
   AppAction,
   ReceivedNavigatedToUrlAction,
   ReceivedTabRemovedAction,
-  NoticesFoundAction
+  NoticesFoundAction,
+  TAB_DIED
 } from 'app/actions';
 import { StatefulNotice } from '../../lmem/notice';
 
@@ -39,6 +40,7 @@ export default function(state = initialState, action: AppAction) {
         state
       );
     case TAB_REMOVED:
+    case TAB_DIED:
       return removeTabFromList((action as ReceivedTabRemovedAction).meta.tab)(
         state
       );

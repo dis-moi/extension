@@ -1,4 +1,4 @@
-import { fork, all } from 'redux-saga/effects';
+import { fork, all, call } from 'redux-saga/effects';
 import install from './install';
 import tab from './tab';
 import badge from './badge';
@@ -16,8 +16,11 @@ import sendContributorsToOptions from './transmitContributors.saga';
 import sendInstallationDetailsToOptions from './sendInstallationDetailsToOptions.saga';
 import setup from './setup.saga';
 import tos from './tos.saga';
+import awaitRehydratationSaga from './lib/awaitRehydratation.saga';
 
 export default function* rootSaga() {
+  yield call(awaitRehydratationSaga);
+
   yield all([
     fork(install),
     fork(refreshMatchingContexts),
