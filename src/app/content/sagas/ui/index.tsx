@@ -5,7 +5,8 @@ import {
   put,
   select,
   takeEvery,
-  takeLatest
+  takeLatest,
+  delay
 } from 'redux-saga/effects';
 import { render } from 'react-dom';
 import { go, replace } from 'connected-react-router';
@@ -37,6 +38,7 @@ import App from '../../App';
 import { history } from '../../store';
 import { fakeLoadingSaga } from './fakeLoading.saga';
 import { StatefulNotice } from 'app/lmem/notice';
+import { LOADED } from '../../actions/ui/open.actions';
 
 const iframe = create(theme.iframe.style);
 let contentDocument: Document;
@@ -45,17 +47,13 @@ export function* openSaga() {
   try {
     const isOpen = yield select(isNotificationOpen);
     const isMounted = yield select(isNotificationMounted);
-    const noticesToDisplay = yield select(getNoticesToDisplay);
-    yield all(
-      noticesToDisplay.map(({ id }: StatefulNotice) => put(noticeDisplayed(id)))
-    );
+
+    const location = yield select(getPathname);
+    if (location) {
+      yield put(replace('/'));
+    }
 
     if (!isOpen) {
-      const location = yield select(getPathname);
-      if (location) {
-        yield put(replace('/'));
-      }
-
       if (
         isMounted &&
         contentDocument &&
@@ -105,6 +103,14 @@ export function* toggleUISaga(action: ToggleUIAction) {
   yield put(isOpen ? close(action.payload.closeCause) : open());
 }
 
+export function* loadedSaga() {
+  const noticesToDisplay = yield select(getNoticesToDisplay);
+  yield delay(100);
+  yield all(
+    noticesToDisplay.map(({ id }: StatefulNotice) => put(noticeDisplayed(id)))
+  );
+}
+
 export default function* UISaga() {
   yield takeLatest(OPEN, openSaga);
   yield takeLatest(CLOSE, closeSaga);
@@ -114,4 +120,5 @@ export default function* UISaga() {
   );
   yield takeLatest(NOTICES_FOUND, noticesFoundSaga);
   yield takeLatest(OPENED, fakeLoadingSaga);
+  yield takeLatest(LOADED, loadedSaga);
 }

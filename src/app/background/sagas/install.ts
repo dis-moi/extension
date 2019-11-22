@@ -16,12 +16,15 @@ import { InstallationDetails } from 'app/lmem/installation';
 import { version } from '../../../../package.json';
 import { subscribe } from 'app/actions';
 import { lmemContributorIds } from 'app/lmemContributors';
+import { loginSaga } from './user.saga';
 
 export function* installedSaga({
   payload: { installedDetails }
 }: InstalledAction): SagaIterator {
   try {
     const datetime = yield select(getInstallationDate);
+
+    yield call(loginSaga);
 
     // @todo why not use this function to get the current version ?
     // const version = chrome.runtime.getManifest().version;

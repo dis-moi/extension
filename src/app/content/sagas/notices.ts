@@ -6,7 +6,7 @@ import { CLOSED } from 'app/constants/ActionTypes';
 import { StatefulNotice } from 'app/lmem/notice';
 import { CloseCause } from 'app/lmem/ui';
 import { AppAction, createErrorAction } from 'app/actions';
-import { getNotices, hasNoticesToDisplay } from '../selectors';
+import { getNotices, hasNoticesToDisplay, isOpen } from '../selectors';
 
 export function* closeIfNoMoreNoticeToDisplaySaga() {
   try {
@@ -47,7 +47,10 @@ export const isChangeOnNoticeAction = (action: AppAction) =>
   action.type === 'MARK_NOTICE_READ' || action.type === 'FEEDBACK_ON_NOTICE';
 
 function* closeUISaga() {
-  yield put(close(CloseCause.NoMoreNotice));
+  const open = yield select(isOpen);
+  if (open) {
+    yield put(close(CloseCause.NoMoreNotice));
+  }
 }
 
 export default function* noticesRootSaga() {
@@ -55,7 +58,7 @@ export default function* noticesRootSaga() {
     // FIXME change all strings to constants because it’s a pain the ass to refactor (i.e. rename)
     takeLatest(isChangeOnNoticeAction, closeIfNoMoreNoticeToDisplaySaga),
     takeLatest(isClosedByButtonAction, markNoticesReadSaga),
-    takeEvery('UNFOLD_NOTICE', markNoticeReadSaga),
+    takeEvery('NOTICE/UNFOLDED', markNoticeReadSaga),
     takeEvery(
       ['NO_NOTICES_DISPLAYED', 'LMEM/CONTEXT_NOT_TRIGGERED'],
       closeUISaga

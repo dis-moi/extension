@@ -7,7 +7,7 @@ module.exports = {
   content_security_policy: csp({
     directives: {
       'default-src': ['https://notices.bulles.fr'],
-      'connect-src': ['https://notices.bulles.fr', 'https://sentry.io'],
+      'connect-src': ['https://notices.bulles.fr', 'https://sentry.io', 'https://stats.lmem.net'],
       'script-src': ["'self'"],
       'object-src': ["'self'"],
       'img-src': ["'self'", 'https://notices.bulles.fr', 'data:'],

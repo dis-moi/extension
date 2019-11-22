@@ -7,6 +7,16 @@ import {
 import Tab from 'app/lmem/tab';
 import { ActionMeta, BaseAction, TabAction } from '.';
 
+export interface NoticesFetchedAction extends BaseAction {
+  type: 'NOTICES/FETCHED';
+  payload: Notice[];
+}
+
+export const noticesFetched = (notices: Notice[]): NoticesFetchedAction => ({
+  type: 'NOTICES/FETCHED',
+  payload: notices
+});
+
 export interface NoticeDisplayedAction extends BaseAction {
   type: 'NOTICE/DISPLAYED';
   payload: number;
@@ -112,12 +122,12 @@ export const undislikeNotice = (id: number) =>
   createFeedbackOnNoticeAction(id, 'undislike');
 
 export interface UnfoldNoticeAction extends BaseAction {
-  type: 'UNFOLD_NOTICE';
+  type: 'NOTICE/UNFOLDED';
   payload: number;
 }
 
 export const unfoldNotice = (id: number): UnfoldNoticeAction => ({
-  type: 'UNFOLD_NOTICE',
+  type: 'NOTICE/UNFOLDED',
   payload: id,
   meta: { sendToBackground: true }
 });
@@ -149,6 +159,7 @@ export const resourceLinkClicked = (id: number): ResourceLinkClickedAction => ({
 export interface NoticeBadgedAction extends BaseAction {
   type: 'NOTICE/BADGED';
   payload: number;
+  meta: { tab?: Tab };
 }
 
 export const noticeBadged = (id: number, tab?: Tab): NoticeBadgedAction => ({
@@ -160,10 +171,14 @@ export const noticeBadged = (id: number, tab?: Tab): NoticeBadgedAction => ({
 export interface OutboundLinkClickedAction extends BaseAction {
   type: 'NOTICE/OUTBOUND_LINK_CLICKED';
   payload: number;
+  meta: ActionMeta & { url?: string };
 }
 
-export const outboundLinkClicked = (id: number): OutboundLinkClickedAction => ({
+export const outboundLinkClicked = (
+  id: number,
+  url?: string
+): OutboundLinkClickedAction => ({
   type: 'NOTICE/OUTBOUND_LINK_CLICKED',
   payload: id,
-  meta: { sendToBackground: true }
+  meta: { sendToBackground: true, url }
 });

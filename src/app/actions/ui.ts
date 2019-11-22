@@ -1,3 +1,7 @@
+import {
+  LocationChangeAction,
+  LocationChangePayload
+} from 'connected-react-router';
 import { CloseCause } from 'app/lmem/ui';
 import Tab from 'app/lmem/tab';
 import { BaseAction, ErrorAction, TabAction } from '.';
@@ -27,7 +31,8 @@ export interface CloseAction extends BaseAction {
 }
 export const close = (cause: CloseCause): CloseAction => ({
   type: 'CLOSE',
-  payload: { cause }
+  payload: { cause },
+  meta: { sendToBackground: true }
 });
 
 export interface CloseFailedAction extends ErrorAction {
@@ -58,4 +63,16 @@ export const toggleUI = (tab: Tab, closeCause: CloseCause): ToggleUIAction => ({
   type: TOGGLE_UI,
   payload: { closeCause },
   meta: { tab, sendToTab: true }
+});
+
+export interface LocationChangedAction extends BaseAction {
+  type: 'LOCATION_CHANGED';
+  payload: LocationChangePayload;
+}
+export const locationChanged = ({
+  payload
+}: LocationChangeAction): LocationChangedAction => ({
+  type: 'LOCATION_CHANGED',
+  payload,
+  meta: { sendToBackground: true }
 });
