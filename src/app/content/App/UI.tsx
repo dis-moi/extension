@@ -16,7 +16,7 @@ import {
   getTitle,
   isNoticeContext,
   isOpen,
-  getShowUpdateMessage,
+  getServiceMessage,
   isLoaded
 } from '../selectors';
 import Notice from './Notice';
@@ -26,14 +26,14 @@ import Account from './Account';
 import Loading from './Loading';
 import Error from './Error';
 import Contribute from './Contribute';
-import Update from './Notice/Update';
+import ServiceMessage from './ServiceMessage';
 
 const mapStateToProps = (state: ContentState) => ({
   open: isOpen(state),
   loaded: isLoaded(state),
   title: getTitle(state),
   noticeContext: isNoticeContext(state),
-  showUpdateMessage: getShowUpdateMessage(state)
+  serviceMessage: getServiceMessage(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -46,7 +46,7 @@ interface ConnectProps {
   title: string;
   close: () => void;
   noticeContext: boolean;
-  showUpdateMessage: boolean;
+  serviceMessage: string;
 }
 
 type UIProps = ConnectProps & RouteComponentProps;
@@ -57,7 +57,7 @@ const UI = ({
   loaded,
   close,
   noticeContext,
-  showUpdateMessage
+  serviceMessage
 }: UIProps) => {
   if (open) {
     return (
@@ -69,8 +69,8 @@ const UI = ({
       >
         {loaded ? (
           <>
-            {showUpdateMessage ? (
-              <Update />
+            {serviceMessage ? (
+              <ServiceMessage />
             ) : (
               <Switch>
                 <Redirect exact path="/" to="/notices" />

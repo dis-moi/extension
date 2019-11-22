@@ -15,8 +15,8 @@ const persistedReducers = persistReducer(
       'prefs',
       'subscriptions',
       'installationDetails',
-      'bullesUpdate',
-      'user'
+      'user',
+      'serviceMessage'
     ],
     storage,
     version: 3,

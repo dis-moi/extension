@@ -14,7 +14,6 @@ import {
   contextNotTriggered,
   noNoticesDisplayed,
   noticesFound,
-  showBullesUpdateMessage,
   noticeBadged,
   AppAction,
   MatchContextAction,
@@ -33,11 +32,12 @@ import {
 } from '../selectors/prefs';
 import { findTriggeredContexts } from '../selectors';
 import { getInstallationDetails } from '../selectors/installationDetails';
-import { getUpdateMessageLastShowDate } from '../selectors/bullesUpdate.selectors';
+import { getServiceMessageLastShowDate } from '../selectors/serviceMessage.selectors';
 import sendToTabSaga from './lib/sendToTab.saga';
 import { isTabAuthorized } from '../selectors/resources';
 import { disable } from 'webext/browserAction';
 import { resetBadge } from 'app/lmem/badge';
+import serviceMessageSaga from './serviceMessage.saga';
 
 export function* tabSaga({ meta: { tab } }: ReceivedNavigatedToUrlAction) {
   const tabAuthorized = yield select(isTabAuthorized(tab));
@@ -67,7 +67,8 @@ export function* matchContextSaga({ meta: { tab } }: MatchContextAction) {
 
 export const contextTriggeredSaga = function*({
   payload: triggeredContexts,
-  meta: { tab }
+  meta: { tab },
+  type
 }: ContextTriggeredAction) {
   try {
     const installationDetails = yield select(getInstallationDetails);
@@ -92,11 +93,15 @@ export const contextTriggeredSaga = function*({
         yield put(noticesFound(noticesToShow, tab));
         yield all(noticesToShow.map(({ id }) => put(noticeBadged(id, tab))));
       } else {
-        const lastUpdateMessageDate = yield select(
-          getUpdateMessageLastShowDate
+        const lastServiceMessageDate = yield select(
+          getServiceMessageLastShowDate
         );
-        if (!isToday(lastUpdateMessageDate)) {
-          yield put(showBullesUpdateMessage(tab));
+        if (!isToday(lastServiceMessageDate)) {
+          yield call(serviceMessageSaga, {
+            payload: triggeredContexts,
+            meta: { tab },
+            type
+          });
         }
         return;
       }
