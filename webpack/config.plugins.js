@@ -37,7 +37,6 @@ const BUILD_CONFIG = {
     UNINSTALL_ORIGIN: "'https://www.bulles.fr/desinstallation'",
     REFRESH_MC_INTERVAL: hours(5),
     REFRESH_CONTRIBUTORS_INTERVAL: '5*60*1000',
-    /* @todo here for testing purpose only, should be removed after testing to not pollute stats */
     TRACKING_URL: "'https://stats.lmem.net/matomo.php'",
     TRACKING_SITE_ID: "'5'"
   },
@@ -47,14 +46,14 @@ const BUILD_CONFIG = {
     REFRESH_MC_INTERVAL: hours(30),
     REFRESH_CONTRIBUTORS_INTERVAL: '30*60*1000',
     TRACKING_URL: "'https://stats.lmem.net/matomo.php'",
-    TRACKING_SITE_ID: "'5'"
+    TRACKING_SITE_ID: "'6'"
   },
   firefox: {
     BACKEND_ORIGIN: '"https://notices.bulles.fr/api/v3/"',
     UNINSTALL_ORIGIN: "'https://www.bulles.fr/desinstallation'",
     REFRESH_MC_INTERVAL: hours(30),
     TRACKING_URL: "'https://stats.lmem.net/matomo.php'",
-    TRACKING_SITE_ID: "'5'"
+    TRACKING_SITE_ID: "'6'"
   }
 };
 
