@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { BackgroundButton } from 'components/atoms';
+import { Action } from 'app/content/reducers/serviceMessage.reducer';
 
 const Content = styled.section`
   margin-top: 50px;
@@ -22,16 +23,21 @@ const Button = styled(BackgroundButton)`
   margin-right: auto;
 `;
 
-interface UpdateScreenProps {
-  openOnboarding: () => void;
+interface ServiceMessageScreenProps {
+  serviceMessage: string;
+  action?: Action | null;
+  openOnboarding: (pathname: string) => () => void;
 }
 
-export default ({ openOnboarding }: UpdateScreenProps) => (
+export default ({
+  serviceMessage,
+  action,
+  openOnboarding
+}: ServiceMessageScreenProps) => (
   <Content>
-    <Text>
-      Pour voir des bulles ou en créer, merci d&apos;accepter les Conditions
-      Générales d&apos;Utilisation.
-    </Text>
-    <Button onClick={openOnboarding}>Lire et accepter les CGU</Button>
+    <Text>{serviceMessage}</Text>
+    {action && (
+      <Button onClick={openOnboarding(action.url)}>{action.label}</Button>
+    )}
   </Content>
 );

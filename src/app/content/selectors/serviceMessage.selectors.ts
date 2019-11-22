@@ -10,7 +10,17 @@ export const getServiceMessageState = (
   state: StateWithServiceMessage
 ): ServiceMessageState => state.serviceMessage;
 
-export const getShowUpdateMessage = createSelector(
+export const getServiceMessage = createSelector(
   [getServiceMessageState],
-  R.prop('showUpdateMessage')
+  R.prop('serviceMessage')
+);
+
+export const hasServiceMessage = createSelector(
+  [getServiceMessage],
+  serviceMessage => !!serviceMessage
+);
+
+export const getServiceMessageAction = createSelector(
+  [getServiceMessageState],
+  R.prop('action')
 );
