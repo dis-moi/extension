@@ -1,27 +1,29 @@
 /* eslint-disable no-unused-expressions */
 import { expect } from 'chai';
 import {
-  getShowUpdateMessage,
+  hasServiceMessage,
   StateWithServiceMessage
 } from './serviceMessage.selectors';
 
 describe('content > selectors > serviceMessage', () => {
-  describe('showUpdateMessage', () => {
-    it('returns false if showUpdateMessage is false', () => {
+  describe('serviceMessage', () => {
+    it('returns false if there is no serviceMessage', () => {
       const state: StateWithServiceMessage = {
         serviceMessage: {
-          showUpdateMessage: false
+          serviceMessage: null,
+          action: null
         }
       };
-      expect(getShowUpdateMessage(state)).to.be.false;
+      expect(hasServiceMessage(state)).to.be.false;
     });
-    it('returns true if showUpdateMessage is true', () => {
+    it('returns true if serviceMessage is true', () => {
       const state: StateWithServiceMessage = {
         serviceMessage: {
-          showUpdateMessage: true
+          serviceMessage: "Hey I'm a service message.",
+          action: null
         }
       };
-      expect(getShowUpdateMessage(state)).to.be.true;
+      expect(hasServiceMessage(state)).to.be.true;
     });
   });
 });

@@ -1,15 +1,18 @@
-import {
-  CLOSED,
-  SHOW_BULLES_UPDATE_SERVICE_MESSAGE,
-  AppAction
-} from 'app/actions';
+import { CLOSED, SHOW_SERVICE_MESSAGE, AppAction } from 'app/actions';
+
+export interface Action {
+  label: string;
+  url: string;
+}
 
 export interface ServiceMessageState {
-  showUpdateMessage: boolean;
+  serviceMessage: string | null;
+  action: Action | null;
 }
 
 const initialState: ServiceMessageState = {
-  showUpdateMessage: false
+  serviceMessage: null,
+  action: null
 };
 
 export default (
@@ -17,14 +20,16 @@ export default (
   action: AppAction
 ): ServiceMessageState => {
   switch (action.type) {
-    case SHOW_BULLES_UPDATE_SERVICE_MESSAGE: {
+    case SHOW_SERVICE_MESSAGE: {
       return {
-        showUpdateMessage: true
+        serviceMessage: action.payload.message,
+        action: action.payload.action
       };
     }
     case CLOSED: {
       return {
-        showUpdateMessage: false
+        serviceMessage: null,
+        action: null
       };
     }
     default:

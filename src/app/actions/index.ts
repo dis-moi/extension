@@ -60,7 +60,7 @@ import {
 } from './webext';
 import { From } from '../../webext/From';
 import { SubscribeAction, UnsubscribeAction } from './subscription';
-import { ShowBullesUpdateMessageAction } from './bullesUpdate.actions';
+import { ShowServiceMessageAction } from './serviceMessage.actions';
 import { LoadedAction } from '../content/actions/ui/open.actions';
 import { TabDiedAction, TabRemovedAction } from './tabsLifecycle';
 import { UpdateRestrictedContextsAction } from './restrictedContexts';
@@ -84,7 +84,7 @@ export * from './ui';
 export { default as updateDraftNotices } from './updateDraftNotices';
 export * from './subscription';
 export * from './webext';
-export * from './bullesUpdate.actions';
+export * from './serviceMessage.actions';
 
 export interface StandardAction extends Action {
   payload?: unknown;
@@ -198,7 +198,7 @@ export type AppAction =
   | AcceptTosAction
   | TosAcceptedAction
   | TransmitTOSStatusAction
-  | ShowBullesUpdateMessageAction
+  | ShowServiceMessageAction
   | LoadedAction
   | NoticesFetchedAction
   | LocationChangedAction

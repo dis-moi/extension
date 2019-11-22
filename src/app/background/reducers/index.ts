@@ -7,13 +7,13 @@ import installationDetails, {
 import resources, { ResourcesState } from './resources.reducer';
 import tabs, { TabsState } from './tabs.reducer';
 import subscriptions, { SubscriptionsState } from './subscriptions.reducer';
-import bullesUpdate, { BullesUpdateState } from './bullesUpdate.reducer';
 import user, { UserState } from './user';
+import serviceMessage, { ServiceMessageState } from './serviceMessage.reducer';
 
 export interface PersistedBackgroundState extends PersistedState {
   prefs: PrefsState;
   installationDetails: InstallationDetailsState;
-  bullesUpdate: BullesUpdateState;
+  serviceMessage: ServiceMessageState;
   subscriptions: SubscriptionsState;
   user: UserState;
 }
@@ -29,6 +29,6 @@ export default combineReducers({
   resources,
   tabs,
   subscriptions,
-  bullesUpdate,
-  user
+  user,
+  serviceMessage
 });
