@@ -2,11 +2,13 @@
 import { takeEvery, select } from 'redux-saga/effects';
 import Tab from 'app/lmem/tab';
 import {
+  updateInstallationDetails,
+  transmitTosStatus,
+  TOS_ACCEPTED,
+  LISTENING_ACTIONS_READY,
   AppAction,
   ListeningActionsReadyAction,
-  updateInstallationDetails,
-  TosAcceptedAction,
-  transmitTosStatus
+  TosAcceptedAction
 } from 'app/actions';
 import assocTabIfNotGiven from 'webext/assocTabIfNotGiven';
 import { getInstallationDetails } from '../selectors/installationDetails';
@@ -14,7 +16,7 @@ import { areTosAccepted } from '../selectors/prefs';
 import sendToTabSaga from './lib/sendToTab.saga';
 
 const isOptionsTabReadyAction = (action: AppAction): boolean =>
-  action.type === 'LISTENING_ACTIONS_READY' &&
+  action.type === LISTENING_ACTIONS_READY &&
   action.meta.from === 'options' &&
   !!action.meta.tab;
 
@@ -42,5 +44,5 @@ function* sendInstallationDetailsToOptionsTab(
 
 export default function* sendInstallationDetailsToOptionsSaga() {
   yield takeEvery(isOptionsTabReadyAction, sendInstallationDetailsToOptionsTab);
-  yield takeEvery('TOS_ACCEPTED', sendTosStateToOptionsTab);
+  yield takeEvery(TOS_ACCEPTED, sendTosStateToOptionsTab);
 }

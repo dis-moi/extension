@@ -2,9 +2,10 @@ import { call, delay, put, fork, takeLatest, select } from 'redux-saga/effects';
 import fetchMatchingContexts from 'api/fetchMatchingContexts';
 import {
   receivedMatchingContexts,
-  refreshMatchingContextsFailed
+  refreshMatchingContextsFailed,
+  SUBSCRIBE,
+  UNSUBSCRIBE
 } from 'app/actions';
-import { SUBSCRIBE, UNSUBSCRIBE } from 'app/constants/ActionTypes';
 import { getSubscriptions } from '../selectors/subscriptions.selectors';
 
 function* refreshMatchingContexts() {

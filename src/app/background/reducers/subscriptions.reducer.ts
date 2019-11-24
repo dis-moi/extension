@@ -1,6 +1,10 @@
 import * as R from 'ramda';
-import { AppAction, ContributorAction } from 'app/actions';
-import { SUBSCRIBE, UNSUBSCRIBE } from 'app/constants/ActionTypes';
+import {
+  SUBSCRIBE,
+  UNSUBSCRIBE,
+  AppAction,
+  ContributorAction
+} from 'app/actions';
 
 export type SubscriptionsState = number[];
 

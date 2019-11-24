@@ -6,50 +6,56 @@ import { CloseCause } from 'app/lmem/ui';
 import Tab from 'app/lmem/tab';
 import { BaseAction, ErrorAction, TabAction } from '.';
 
+export const OPEN = 'OPEN';
 export interface OpenAction extends BaseAction {
-  type: 'OPEN';
+  type: typeof OPEN;
 }
-export const open = (): OpenAction => ({ type: 'OPEN' });
+export const open = (): OpenAction => ({ type: OPEN });
 
+export const OPENED = 'OPENED';
 export interface OpenedAction extends BaseAction {
-  type: 'OPENED';
+  type: typeof OPENED;
 }
-export const opened = (): OpenedAction => ({ type: 'OPENED' });
+export const opened = (): OpenedAction => ({ type: OPENED });
 
+export const OPEN_FAILED = 'OPEN_FAILED';
 export interface OpenFailedAction extends ErrorAction {
-  type: 'OPEN_FAILED';
+  type: typeof OPEN_FAILED;
 }
 export const openFailed = (e: Error): OpenFailedAction => ({
-  type: 'OPEN_FAILED',
+  type: OPEN_FAILED,
   payload: e,
   error: true
 });
 
+export const CLOSE = 'CLOSE';
 export interface CloseAction extends BaseAction {
-  type: 'CLOSE';
+  type: typeof CLOSE;
   payload: { cause: CloseCause };
 }
 export const close = (cause: CloseCause): CloseAction => ({
-  type: 'CLOSE',
+  type: CLOSE,
   payload: { cause },
   meta: { sendToBackground: true }
 });
 
+export const CLOSE_FAILED = 'CLOSE_FAILED';
 export interface CloseFailedAction extends ErrorAction {
-  type: 'CLOSE_FAILED';
+  type: typeof CLOSE_FAILED;
 }
 export const closeFailed = (e: Error): CloseFailedAction => ({
-  type: 'CLOSE_FAILED',
+  type: CLOSE_FAILED,
   payload: e,
   error: true
 });
 
+export const CLOSED = 'CLOSED';
 export interface ClosedAction extends BaseAction {
-  type: 'CLOSED';
+  type: typeof CLOSED;
   payload: { cause: CloseCause };
 }
 export const closed = (cause: CloseCause): ClosedAction => ({
-  type: 'CLOSED',
+  type: CLOSED,
   payload: { cause }
 });
 
@@ -65,14 +71,15 @@ export const toggleUI = (tab: Tab, closeCause: CloseCause): ToggleUIAction => ({
   meta: { tab, sendToTab: true }
 });
 
+export const LOCATION_CHANGED = 'LOCATION_CHANGED';
 export interface LocationChangedAction extends BaseAction {
-  type: 'LOCATION_CHANGED';
+  type: typeof LOCATION_CHANGED;
   payload: LocationChangePayload;
 }
 export const locationChanged = ({
   payload
 }: LocationChangeAction): LocationChangedAction => ({
-  type: 'LOCATION_CHANGED',
+  type: LOCATION_CHANGED,
   payload,
   meta: { sendToBackground: true }
 });

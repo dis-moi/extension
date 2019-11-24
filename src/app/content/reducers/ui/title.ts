@@ -1,4 +1,5 @@
 import { AppAction } from 'app/actions';
+import { REMOVE_TITLE, SET_TITLE } from '../../actions/ui/title';
 
 const initialState = null;
 
@@ -6,10 +7,10 @@ export type TitleState = string | null;
 
 export default (state: TitleState = initialState, action: AppAction) => {
   switch (action.type) {
-    case 'UI/SET_TITLE':
+    case SET_TITLE:
       return action.payload;
 
-    case 'UI/REMOVE_TITLE':
+    case REMOVE_TITLE:
       return null;
 
     default:

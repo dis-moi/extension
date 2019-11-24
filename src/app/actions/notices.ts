@@ -7,40 +7,44 @@ import {
 import Tab from 'app/lmem/tab';
 import { ActionMeta, BaseAction, TabAction } from '.';
 
+export const NOTICES_FETCHED = 'NOTICES/FETCHED';
 export interface NoticesFetchedAction extends BaseAction {
-  type: 'NOTICES/FETCHED';
+  type: typeof NOTICES_FETCHED;
   payload: Notice[];
 }
 
 export const noticesFetched = (notices: Notice[]): NoticesFetchedAction => ({
-  type: 'NOTICES/FETCHED',
+  type: NOTICES_FETCHED,
   payload: notices
 });
 
+export const NOTICE_DISPLAYED = 'NOTICE_DISPLAYED';
 export interface NoticeDisplayedAction extends BaseAction {
-  type: 'NOTICE/DISPLAYED';
+  type: typeof NOTICE_DISPLAYED;
   payload: number;
 }
 export const noticeDisplayed = (id: number): NoticeDisplayedAction => ({
-  type: 'NOTICE/DISPLAYED',
+  type: NOTICE_DISPLAYED,
   payload: id,
   meta: { sendToBackground: true }
 });
 
+export const NOTICE_IGNORED = 'NOTICE_IGNORED';
 export interface NoticeIgnoredAction extends BaseAction {
-  type: 'NOTICE_IGNORED';
+  type: typeof NOTICE_IGNORED;
   payload: { notice: Notice; reason: IgnoringReason; url: string };
 }
 export const noticeIgnored = (
   notice: StatefulNotice,
   url: string
 ): NoticeIgnoredAction => ({
-  type: 'NOTICE_IGNORED',
+  type: NOTICE_IGNORED,
   payload: { notice, reason: getIgnoringReason(notice), url }
 });
 
+export const NOTICES_FOUND = 'NOTICES_FOUND';
 export interface NoticesFoundAction extends TabAction {
-  type: 'NOTICES_FOUND';
+  type: typeof NOTICES_FOUND;
   payload: {
     notices: StatefulNotice[];
   };
@@ -50,7 +54,7 @@ export const noticesFound = (
   notices: StatefulNotice[],
   tab: Tab
 ): NoticesFoundAction => ({
-  type: 'NOTICES_FOUND',
+  type: NOTICES_FOUND,
   payload: {
     notices
   },
@@ -61,12 +65,13 @@ export const noticesFound = (
 });
 
 // Context was triggered but they were no notices left to display
+export const NO_NOTICES_DISPLAYED = 'NO_NOTICES_DISPLAYED';
 export interface NoNoticesDisplayedAction extends TabAction {
-  type: 'NO_NOTICES_DISPLAYED';
+  type: typeof NO_NOTICES_DISPLAYED;
 }
 
 export const noNoticesDisplayed = (tab: Tab): NoNoticesDisplayedAction => ({
-  type: 'NO_NOTICES_DISPLAYED',
+  type: NO_NOTICES_DISPLAYED,
   meta: {
     tab,
     sendToTab: true
@@ -83,8 +88,9 @@ export type FeedbackType =
   | 'confirmDislike'
   | 'undislike';
 
+export const FEEDBACK_ON_NOTICE = 'FEEDBACK_ON_NOTICE';
 export interface FeedbackOnNoticeAction extends BaseAction {
-  type: 'FEEDBACK_ON_NOTICE';
+  type: typeof FEEDBACK_ON_NOTICE;
   payload: { id: number; feedback: FeedbackType };
 }
 
@@ -92,7 +98,7 @@ export const createFeedbackOnNoticeAction = (
   id: number,
   feedback: FeedbackType
 ): FeedbackOnNoticeAction => ({
-  type: 'FEEDBACK_ON_NOTICE',
+  type: FEEDBACK_ON_NOTICE,
   payload: { id, feedback },
   meta: { sendToBackground: true }
 });
@@ -121,19 +127,21 @@ export const confirmDislikeNotice = (id: number) =>
 export const undislikeNotice = (id: number) =>
   createFeedbackOnNoticeAction(id, 'undislike');
 
+export const NOTICE_UNFOLDED = 'NOTICE/UNFOLDED';
 export interface UnfoldNoticeAction extends BaseAction {
-  type: 'NOTICE/UNFOLDED';
+  type: typeof NOTICE_UNFOLDED;
   payload: number;
 }
 
 export const unfoldNotice = (id: number): UnfoldNoticeAction => ({
-  type: 'NOTICE/UNFOLDED',
+  type: NOTICE_UNFOLDED,
   payload: id,
   meta: { sendToBackground: true }
 });
 
+export const MARK_NOTICE_READ = 'MARK_NOTICE_READ';
 export interface MarkNoticeReadAction extends BaseAction {
-  type: 'MARK_NOTICE_READ';
+  type: typeof MARK_NOTICE_READ;
   payload: number;
 }
 
@@ -141,35 +149,27 @@ export const markNoticeRead = (
   id: number,
   meta?: ActionMeta
 ): MarkNoticeReadAction => ({
-  type: 'MARK_NOTICE_READ',
+  type: MARK_NOTICE_READ,
   payload: id,
   meta
 });
 
-export interface ResourceLinkClickedAction extends BaseAction {
-  type: 'NOTICE/RESOURCE_LINK_CLICKED';
-  payload: number;
-}
-
-export const resourceLinkClicked = (id: number): ResourceLinkClickedAction => ({
-  type: 'NOTICE/RESOURCE_LINK_CLICKED',
-  payload: id
-});
-
+export const NOTICE_BADGED = 'NOTICE/BADGED';
 export interface NoticeBadgedAction extends BaseAction {
-  type: 'NOTICE/BADGED';
+  type: typeof NOTICE_BADGED;
   payload: number;
   meta: { tab?: Tab };
 }
 
 export const noticeBadged = (id: number, tab?: Tab): NoticeBadgedAction => ({
-  type: 'NOTICE/BADGED',
+  type: NOTICE_BADGED,
   payload: id,
   meta: { tab }
 });
 
+export const OUTBOUND_LINK_CLICKED = 'NOTICE/OUTBOUND_LINK_CLICKED';
 export interface OutboundLinkClickedAction extends BaseAction {
-  type: 'NOTICE/OUTBOUND_LINK_CLICKED';
+  type: typeof OUTBOUND_LINK_CLICKED;
   payload: number;
   meta: ActionMeta & { url?: string };
 }
@@ -178,7 +178,7 @@ export const outboundLinkClicked = (
   id: number,
   url?: string
 ): OutboundLinkClickedAction => ({
-  type: 'NOTICE/OUTBOUND_LINK_CLICKED',
+  type: OUTBOUND_LINK_CLICKED,
   payload: id,
   meta: { sendToBackground: true, url }
 });

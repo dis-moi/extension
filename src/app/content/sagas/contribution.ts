@@ -1,10 +1,10 @@
 import { put, takeLatest, call } from 'redux-saga/effects';
 import { go, replace } from 'connected-react-router';
 import { reset } from 'redux-form';
-
 import {
   contributionSubmissionFailed,
   contributionSubmitted,
+  SUBMIT_CONTRIBUTION,
   SubmitContributionAction
 } from 'app/actions/contribution';
 import { createSubmissionError } from 'app/utils/form';
@@ -40,5 +40,5 @@ export function* submitContributionSaga({
 }
 
 export default function*() {
-  yield takeLatest('CONTRIBUTION/SUBMIT', submitContributionSaga);
+  yield takeLatest(SUBMIT_CONTRIBUTION, submitContributionSaga);
 }

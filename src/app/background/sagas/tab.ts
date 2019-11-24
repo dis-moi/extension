@@ -1,8 +1,10 @@
 import { put, takeEvery, select, call, all } from 'redux-saga/effects';
 import * as R from 'ramda';
 import { isToday } from 'date-fns';
-import { CONTEXT_TRIGGERED, MATCH_CONTEXT } from 'app/constants/ActionTypes';
 import {
+  CONTEXT_TRIGGERED,
+  MATCH_CONTEXT,
+  NAVIGATED_TO_URL,
   init,
   contextTriggered,
   matchContext,
@@ -14,7 +16,6 @@ import {
   noticesFound,
   showBullesUpdateMessage,
   noticeBadged,
-  NAVIGATED_TO_URL,
   AppAction,
   MatchContextAction,
   TabAction,

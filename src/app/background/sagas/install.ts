@@ -3,8 +3,10 @@ import { takeLatest, select, put, call, all } from 'redux-saga/effects';
 import { captureException } from 'app/utils/sentry';
 import openOptions from 'webext/openOptionsTab';
 import {
-  InstalledAction,
-  updateInstallationDetails
+  INSTALLATION_DETAILS,
+  INSTALLED,
+  updateInstallationDetails,
+  InstalledAction
 } from 'app/actions/install';
 import {
   isAnUpdateFromLmem,
@@ -68,6 +70,6 @@ export function* installationDetailsSaga(): SagaIterator {
 }
 
 export default function* installSaga() {
-  yield takeLatest('INSTALLED', installedSaga);
-  yield takeLatest('INSTALLATION_DETAILS', installationDetailsSaga);
+  yield takeLatest(INSTALLED, installedSaga);
+  yield takeLatest(INSTALLATION_DETAILS, installationDetailsSaga);
 }

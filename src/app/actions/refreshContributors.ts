@@ -1,35 +1,38 @@
 import { BaseAction, ErrorAction } from '.';
 import { Contributor, StatefulContributor } from 'app/lmem/contributor';
 
+export const UPDATE_CONTRIBUTORS = 'api/UPDATE_CONTRIBUTORS';
 export interface ReceivedContributorsAction extends BaseAction {
-  type: 'api/UPDATE_CONTRIBUTORS';
+  type: typeof UPDATE_CONTRIBUTORS;
   payload: { contributors: Contributor[] };
 }
 export const receivedContributors = (
   contributors: Contributor[]
 ): ReceivedContributorsAction => ({
-  type: 'api/UPDATE_CONTRIBUTORS',
+  type: UPDATE_CONTRIBUTORS,
   payload: { contributors }
 });
 
+export const REFRESH_CONTRIBUTORS_FAILED = 'REFRESH_CONTRIBUTORS_FAILED';
 export interface RefreshContributorsFailedAction extends ErrorAction {
-  type: 'REFRESH_CONTRIBUTORS_FAILED';
+  type: typeof REFRESH_CONTRIBUTORS_FAILED;
 }
 export const refreshContributorsFailed = (
   e: Error
 ): RefreshContributorsFailedAction => ({
-  type: 'REFRESH_CONTRIBUTORS_FAILED',
+  type: REFRESH_CONTRIBUTORS_FAILED,
   payload: e,
   error: true
 });
 
+export const CONTRIBUTORS_TRANSMITTED = 'CONTRIBUTORS_TRANSMITTED';
 export interface ContributorsTransmittedAction extends BaseAction {
-  type: 'CONTRIBUTORS_TRANSMITTED';
+  type: typeof CONTRIBUTORS_TRANSMITTED;
   payload: { contributors: StatefulContributor[] };
 }
 export const contributorsTransmitted = (
   contributors: StatefulContributor[]
 ): ContributorsTransmittedAction => ({
-  type: 'CONTRIBUTORS_TRANSMITTED',
+  type: CONTRIBUTORS_TRANSMITTED,
   payload: { contributors }
 });

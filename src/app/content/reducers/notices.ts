@@ -6,30 +6,37 @@ import {
   undislikeNotice,
   undismissNotice,
   unlikeNotice,
-  StatefulNotice,
   markNoticeRead,
   confirmDismissNotice,
-  confirmDislikeNotice
-} from '../../lmem/notice';
-import { AppAction } from 'app/actions';
+  confirmDislikeNotice,
+  StatefulNotice
+} from 'app/lmem/notice';
+import {
+  FEEDBACK_ON_NOTICE,
+  MARK_NOTICE_READ,
+  NOTICES_FOUND,
+  NO_NOTICES_DISPLAYED,
+  CONTEXT_NOT_TRIGGERED,
+  AppAction
+} from 'app/actions';
 
 export type NoticesState = StatefulNotice[];
 
 export default (state: NoticesState = [], action: AppAction): NoticesState => {
   switch (action.type) {
-    case 'NOTICES_FOUND':
+    case NOTICES_FOUND:
       return action.payload.notices;
 
-    case 'NO_NOTICES_DISPLAYED':
-    case 'LMEM/CONTEXT_NOT_TRIGGERED':
+    case NO_NOTICES_DISPLAYED:
+    case CONTEXT_NOT_TRIGGERED:
       return [];
 
-    case 'MARK_NOTICE_READ':
+    case MARK_NOTICE_READ:
       return state.map(notice =>
         notice.id === action.payload ? markNoticeRead(notice) : notice
       );
 
-    case 'FEEDBACK_ON_NOTICE':
+    case FEEDBACK_ON_NOTICE:
       switch (action.payload.feedback) {
         case 'dismiss':
           return state.map(notice =>

@@ -1,4 +1,5 @@
 import { AppAction } from 'app/actions';
+import { LOGIN } from '../../actions/user';
 
 export type UserState = string | null;
 
@@ -9,7 +10,7 @@ export default (
   action: AppAction
 ): UserState => {
   switch (action.type) {
-    case 'LOGIN':
+    case LOGIN:
       return action.payload;
 
     default:
