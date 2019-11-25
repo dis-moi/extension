@@ -1,3 +1,17 @@
+## [3.7.2](https://github.com/insitu-project/recommendations-webextension/compare/v3.7.1...v3.7.2) (2019-11-25)
+
+
+### Bug Fixes
+
+* release number ([7d749b6](https://github.com/insitu-project/recommendations-webextension/commit/7d749b6))
+
+## [3.7.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.7.0...v3.7.1) (2019-11-25)
+
+
+### Bug Fixes
+
+* **notice details:** scroll displays only when necessary ([3a48c86](https://github.com/insitu-project/recommendations-webextension/commit/3a48c86))
+
 # [3.7.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.6.0...v3.7.0) (2019-11-21)
 
 
