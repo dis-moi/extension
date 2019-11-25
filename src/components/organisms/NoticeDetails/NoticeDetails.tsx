@@ -28,7 +28,7 @@ const DetailsMetaValue = styled.div`
 const DetailsScroll = styled.div`
   margin-top: 10px;
   max-height: 225px;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 interface NoticeDetailsProps extends RouteComponentProps {
