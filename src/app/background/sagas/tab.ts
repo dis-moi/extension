@@ -37,7 +37,7 @@ import sendToTabSaga from './lib/sendToTab.saga';
 import { isTabAuthorized } from '../selectors/resources';
 import { disable } from 'webext/browserAction';
 import { resetBadge } from 'app/lmem/badge';
-import serviceMessageSaga from './serviceMessage.saga';
+import serviceMessageSaga from './serviceMessageSaga';
 
 export function* tabSaga({ meta: { tab } }: ReceivedNavigatedToUrlAction) {
   const tabAuthorized = yield select(isTabAuthorized(tab));
