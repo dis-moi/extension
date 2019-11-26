@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { BackgroundButton } from 'components/atoms';
-import { Action } from 'app/content/reducers/serviceMessage.reducer';
+import { ServiceMessageAction } from 'app/content/reducers/serviceMessage.reducer';
 
 const Content = styled.section`
   margin-top: 50px;
@@ -25,7 +25,7 @@ const Button = styled(BackgroundButton)`
 
 interface ServiceMessageScreenProps {
   serviceMessage: string;
-  action?: Action | null;
+  action?: ServiceMessageAction | null;
   openOnboarding: (pathname: string) => () => void;
 }
 
