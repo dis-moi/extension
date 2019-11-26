@@ -12,7 +12,9 @@ function* refreshMatchingContexts() {
   try {
     const subscriptions = yield select(getSubscriptions);
     const matchingContexts =
-      subscriptions > 0 ? yield call(fetchMatchingContexts, subscriptions) : [];
+      subscriptions.length > 0
+        ? yield call(fetchMatchingContexts, subscriptions)
+        : [];
     yield put(receivedMatchingContexts(matchingContexts));
   } catch (e) {
     yield put(refreshMatchingContextsFailed(e));
