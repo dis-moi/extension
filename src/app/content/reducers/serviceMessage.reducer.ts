@@ -1,13 +1,13 @@
 import { CLOSED, SHOW_SERVICE_MESSAGE, AppAction } from 'app/actions';
 
-export interface Action {
+export interface ServiceMessageAction {
   label: string;
   url: string;
 }
 
 export interface ServiceMessageState {
   serviceMessage: string | null;
-  action: Action | null;
+  action: ServiceMessageAction | null;
 }
 
 const initialState: ServiceMessageState = {

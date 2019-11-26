@@ -7,7 +7,7 @@ import {
 } from 'app/actions';
 import { areTosAccepted } from '../selectors/prefs';
 import { getNbSubscriptions } from '../selectors/subscriptions.selectors';
-import serviceMessageSaga from './serviceMessage.saga';
+import serviceMessageSaga from './serviceMessageSaga';
 
 export function* browserActionClickedSaga(action: BrowserActionClickedAction) {
   const tosAccepted = yield select(areTosAccepted);
