@@ -4,7 +4,7 @@ import ContributorNav from 'components/organisms/ContributorNav/ContributorNav';
 import { OptionsScreen } from '../../screens';
 import SubscriptionsScreen from './SubscriptionsScreen';
 import SuggestionsScreen from './SuggestionsScreen';
-import Header from './Header';
+import Header from '../Header';
 import withConnect from './withConnect';
 
 interface Props extends RouteComponentProps {
