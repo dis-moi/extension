@@ -1,6 +1,21 @@
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { LocationDescriptor } from 'history';
 
-export default styled.p`
+interface TitleProps {
+  to?: LocationDescriptor;
+  children: ReactNode;
+}
+const Title = ({ to, ...props }: TitleProps) => {
+  if (to) {
+    return <Link to={to} {...props} />;
+  }
+
+  return <p {...props} />;
+};
+
+export default styled(Title)<TitleProps>`
   position: relative;
   display: block;
   height: 63px;
