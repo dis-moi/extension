@@ -1,3 +1,20 @@
+# [3.8.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.7.2...v3.8.0) (2019-11-27)
+
+
+### Bug Fixes
+
+* **notice details:** scroll displays only when necessary ([45b4f15](https://github.com/insitu-project/recommendations-webextension/commit/45b4f15))
+* **onboarding:** empty contributors list ([d1e3ce6](https://github.com/insitu-project/recommendations-webextension/commit/d1e3ce6))
+* **tracking:** don't try to close UI on a not triggered context if not opened ([2d1ed1b](https://github.com/insitu-project/recommendations-webextension/commit/2d1ed1b))
+* **tracking:** set event value to 0 since it's summed by Matomo ([30a9a5e](https://github.com/insitu-project/recommendations-webextension/commit/30a9a5e))
+
+
+### Features
+
+* **tracking:** add dedicated pro tracking site id ([c2b30cb](https://github.com/insitu-project/recommendations-webextension/commit/c2b30cb))
+* **tracking:** implement tracking via Matomo ([dfae648](https://github.com/insitu-project/recommendations-webextension/commit/dfae648))
+* version 3.7.1 ([75d7d20](https://github.com/insitu-project/recommendations-webextension/commit/75d7d20))
+
 ## [3.7.2](https://github.com/insitu-project/recommendations-webextension/compare/v3.7.1...v3.7.2) (2019-11-25)
 
 
