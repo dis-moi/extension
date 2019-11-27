@@ -1,6 +1,7 @@
 import { fork, all } from 'redux-saga/effects';
 import error from 'app/sagas/error';
 import backgroundChannel from 'app/sagas/backgroundChannel';
+import locationChange from 'app/sagas/locationChange.saga';
 import init from './init';
 import contribution from './contribution';
 import notices from './notices';
@@ -12,6 +13,7 @@ import zombieTabSaga from './zombieTab.saga';
 export default function* rootSaga() {
   yield all([
     fork(backgroundChannel('content')),
+    fork(locationChange),
     fork(init),
     fork(contribution),
     fork(notices),

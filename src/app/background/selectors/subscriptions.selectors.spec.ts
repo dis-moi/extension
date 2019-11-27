@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import * as R from 'ramda';
-import { BackgroundState } from '../reducers';
+import { ResourcesState } from 'app/background/reducers/resources.reducer';
+import { SubscriptionsState } from 'app/background//reducers/subscriptions.reducer';
 import { generateContributor } from 'test/fakers/generateContributor';
 import {
   getContributorsWithSubscriptionState,
@@ -20,19 +21,10 @@ describe('background > selectors > subscriptions ', () => {
       const contributor1024 = generateContributor({ id: 1024 });
       const contributor9999 = generateContributor({ id: 9999 });
 
-      const state: BackgroundState = {
-        tabs: {},
-        installationDetails: {
-          version: '',
-          reason: 'INSTALL'
-        },
-        prefs: {
-          likedNotices: [],
-          dislikedNotices: [],
-          dismissedNotices: [],
-          readNotices: [],
-          tosAccepted: true
-        },
+      const state: {
+        resources: ResourcesState;
+        subscriptions: SubscriptionsState;
+      } = {
         resources: {
           matchingContexts: [],
           restrictedContexts: [],
@@ -45,10 +37,10 @@ describe('background > selectors > subscriptions ', () => {
             contributor54,
             contributor1024,
             contributor9999
-          ]
+          ],
+          notices: []
         },
-        subscriptions: [1, 42, 1024],
-        bullesUpdate: { lastUpdateMessageShowDate: null }
+        subscriptions: [1, 42, 1024]
       };
 
       const result: Contributor[] = getContributorsWithSubscriptionState(state);

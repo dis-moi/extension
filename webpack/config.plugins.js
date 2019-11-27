@@ -36,19 +36,24 @@ const BUILD_CONFIG = {
     BACKEND_ORIGIN: '"https://staging-notices.bulles.fr/api/v3/"',
     UNINSTALL_ORIGIN: "'https://www.bulles.fr/desinstallation'",
     REFRESH_MC_INTERVAL: hours(5),
-    REFRESH_CONTRIBUTORS_INTERVAL: '5*60*1000'
+    REFRESH_CONTRIBUTORS_INTERVAL: '5*60*1000',
+    TRACKING_URL: "'https://stats.lmem.net/matomo.php'",
+    TRACKING_SITE_ID: "'5'"
   },
   chromium: {
     BACKEND_ORIGIN: '"https://notices.bulles.fr/api/v3/"',
     UNINSTALL_ORIGIN: "'https://www.bulles.fr/desinstallation'",
     REFRESH_MC_INTERVAL: hours(30),
-    REFRESH_CONTRIBUTORS_INTERVAL: '30*60*1000'
+    REFRESH_CONTRIBUTORS_INTERVAL: '30*60*1000',
+    TRACKING_URL: "'https://stats.lmem.net/matomo.php'",
+    TRACKING_SITE_ID: "'6'"
   },
   firefox: {
     BACKEND_ORIGIN: '"https://notices.bulles.fr/api/v3/"',
     UNINSTALL_ORIGIN: "'https://www.bulles.fr/desinstallation'",
     REFRESH_MC_INTERVAL: hours(30),
-    REFRESH_CONTRIBUTORS_INTERVAL: '30*60*1000'
+    TRACKING_URL: "'https://stats.lmem.net/matomo.php'",
+    TRACKING_SITE_ID: "'6'"
   }
 };
 
@@ -66,7 +71,9 @@ const selectEnvVarsToInject = R.pick([
   'SEND_CONTRIBUTION_TO',
   'SEND_IN_BLUE_TOKEN',
   'SENTRY_DSN',
-  'NODE_ENV'
+  'NODE_ENV',
+  'TRACKING_URL',
+  'TRACKING_SITE_ID'
 ]);
 const formatEnvVars = R.map(value => `"${value}"`);
 

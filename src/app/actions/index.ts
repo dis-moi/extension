@@ -16,14 +16,22 @@ import {
   NavigatedToUrlAction,
   ContextNotTriggeredAction
 } from './tabs';
-import { CloseAction, ClosedAction, OpenAction, OpenedAction } from './ui';
+import {
+  CloseAction,
+  ClosedAction,
+  OpenAction,
+  OpenedAction,
+  LocationChangedAction
+} from './ui';
 import {
   FeedbackOnNoticeAction,
   MarkNoticeReadAction,
   NoNoticesDisplayedAction,
   NoticeDisplayedAction,
   NoticeIgnoredAction,
+  NoticesFetchedAction,
   NoticesFoundAction,
+  OutboundLinkClickedAction,
   UnfoldNoticeAction
 } from './notices';
 import {
@@ -56,6 +64,8 @@ import { ShowBullesUpdateMessageAction } from './bullesUpdate.actions';
 import { LoadedAction } from '../content/actions/ui/open.actions';
 import { TabDiedAction, TabRemovedAction } from './tabsLifecycle';
 import { UpdateRestrictedContextsAction } from './restrictedContexts';
+import { LoginAction } from './user';
+import * as R from 'ramda';
 
 type MessageSender = chrome.runtime.MessageSender;
 
@@ -141,6 +151,9 @@ export interface ActionMeta {
   tab?: Tab;
 }
 
+export const getURLFromActionMeta = (action: BaseAction): string =>
+  R.path(['meta', 'tab', 'url'], action) as string;
+
 export type AppAction =
   | InitAction
   | BrowserActionClickedAction
@@ -187,4 +200,8 @@ export type AppAction =
   | TransmitTOSStatusAction
   | ShowBullesUpdateMessageAction
   | LoadedAction
+  | NoticesFetchedAction
+  | LocationChangedAction
+  | OutboundLinkClickedAction
+  | LoginAction
   | (LocationChangeAction & { meta?: ActionMeta });

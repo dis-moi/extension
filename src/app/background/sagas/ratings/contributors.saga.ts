@@ -1,11 +1,10 @@
 import { SagaIterator } from '@redux-saga/types';
 import { call, takeEvery } from '@redux-saga/core/effects';
-import { ContributorAction } from 'app/actions';
+import { ContributorAction, SUBSCRIBE, UNSUBSCRIBE } from 'app/actions';
 import { captureException } from 'app/utils/sentry';
 import ContributorRatingType from 'app/lmem/ContributorRatingType';
 import postContributorRating from 'api/postContributorRating';
 import { getContributorId } from 'app/background/reducers/subscriptions.reducer';
-import { SUBSCRIBE, UNSUBSCRIBE } from 'app/constants/ActionTypes';
 
 const postContributorFeedback = (ratingType: ContributorRatingType) =>
   function* contributorRatingSaga(action: ContributorAction): SagaIterator {

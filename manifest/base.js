@@ -34,7 +34,7 @@ module.exports = Object.freeze({
     },
     default_title: 'Bulles'
   },
-  permissions: ['activeTab', 'geolocation', 'storage', 'unlimitedStorage']
+  permissions: ['activeTab', 'storage']
   /* web_accessible_resources: ['img/*', 'fonts/*'],
   externally_connectable: {
     matches: ['https://*.lmem.net/*']

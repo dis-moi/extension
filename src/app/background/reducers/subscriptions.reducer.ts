@@ -1,6 +1,10 @@
 import * as R from 'ramda';
-import { AppAction, ContributorAction } from 'app/actions';
-import { SUBSCRIBE, UNSUBSCRIBE } from 'app/constants/ActionTypes';
+import {
+  SUBSCRIBE,
+  UNSUBSCRIBE,
+  AppAction,
+  ContributorAction
+} from 'app/actions';
 
 export type SubscriptionsState = number[];
 
@@ -8,6 +12,11 @@ export const getContributorId = ({
   payload: { contributor }
 }: ContributorAction) =>
   typeof contributor !== 'number' ? contributor.id : contributor;
+
+export const getContributorName = ({
+  payload: { contributor }
+}: ContributorAction) =>
+  typeof contributor !== 'number' ? contributor.name : '';
 
 export default function subscriptionsReducer(
   state: SubscriptionsState = [],

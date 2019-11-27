@@ -1,6 +1,6 @@
 export enum CloseCause {
-  CloseButton,
-  ClickOutside,
-  BrowserAction,
-  NoMoreNotice
+  CloseButton = 'CloseButton',
+  ClickOutside = 'ClickOutside',
+  BrowserAction = 'BrowserAction',
+  NoMoreNotice = 'NoMoreNotice'
 }

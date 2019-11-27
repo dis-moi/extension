@@ -1,15 +1,22 @@
 import { SagaIterator } from '@redux-saga/types';
 import { ActionPattern, takeEvery, all, call } from '@redux-saga/core/effects';
 import * as R from 'ramda';
-
 import getSelectedTab from 'webext/getSelectedTab';
 import postRating, { Rating } from 'api/postRating';
-import { AppAction, FeedbackOnNoticeAction } from 'app/actions';
+import {
+  NOTICE_BADGED,
+  NOTICE_DISPLAYED,
+  OUTBOUND_LINK_CLICKED,
+  NOTICE_UNFOLDED,
+  FEEDBACK_ON_NOTICE,
+  AppAction,
+  FeedbackOnNoticeAction
+} from 'app/actions';
 import { captureException } from 'app/utils/sentry';
 import { RatingType } from 'app/lmem/rating';
 
-const isFeedBackRatingAction = (action: AppAction) =>
-  action.type === 'FEEDBACK_ON_NOTICE' &&
+export const isFeedBackRatingAction = (action: AppAction) =>
+  action.type === FEEDBACK_ON_NOTICE &&
   Object.values(RatingType).includes(action.payload.feedback);
 
 type RatingActionTransformer = (action: AppAction) => Rating;
@@ -35,19 +42,19 @@ export const transformers: {
     })
   },
   {
-    pattern: 'UNFOLD_NOTICE',
+    pattern: NOTICE_UNFOLDED,
     transformer: createDefaultTransformer(RatingType.UNFOLD)
   },
   {
-    pattern: 'NOTICE/BADGED',
+    pattern: NOTICE_BADGED,
     transformer: createDefaultTransformer(RatingType.BADGED)
   },
   {
-    pattern: 'NOTICE/OUTBOUND_LINK_CLICKED',
+    pattern: OUTBOUND_LINK_CLICKED,
     transformer: createDefaultTransformer(RatingType.OUTBOUND_CLICK)
   },
   {
-    pattern: 'NOTICE/DISPLAYED',
+    pattern: NOTICE_DISPLAYED,
     transformer: createDefaultTransformer(RatingType.DISPLAY)
   }
 ];

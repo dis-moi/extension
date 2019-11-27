@@ -1,6 +1,5 @@
 import * as R from 'ramda';
-import { CLOSED, OPENED } from 'app/constants/ActionTypes';
-import { AppAction } from 'app/actions';
+import { CLOSED, OPENED, AppAction } from 'app/actions';
 import { LOADED } from '../../actions/ui/open.actions';
 
 export interface NotificationState {

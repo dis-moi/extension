@@ -1,12 +1,22 @@
 import { all, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 import * as R from 'ramda';
-import { markNoticeRead, UnfoldNoticeAction } from 'app/actions/notices';
-import { close } from 'app/actions/ui';
-import { CLOSED } from 'app/constants/ActionTypes';
 import { StatefulNotice } from 'app/lmem/notice';
 import { CloseCause } from 'app/lmem/ui';
-import { AppAction, createErrorAction } from 'app/actions';
-import { getNotices, hasNoticesToDisplay } from '../selectors';
+import { getNotices, hasNoticesToDisplay, isOpen } from '../selectors';
+import {
+  close,
+  createErrorAction,
+  markNoticeRead,
+  CLOSED,
+  FEEDBACK_ON_NOTICE,
+  MARK_NOTICE_READ,
+  NO_NOTICES_DISPLAYED,
+  CONTEXT_NOT_TRIGGERED,
+  NOTICE_UNFOLDED,
+  ClosedAction,
+  AppAction,
+  UnfoldNoticeAction
+} from 'app/actions';
 
 export function* closeIfNoMoreNoticeToDisplaySaga() {
   try {
@@ -41,24 +51,24 @@ function* markNoticeReadSaga(unfoldNoticeAction: UnfoldNoticeAction) {
 }
 
 export const isClosedByButtonAction = (action: AppAction) =>
-  action.type === CLOSED && action.payload.cause === CloseCause.CloseButton;
+  action.type === CLOSED &&
+  (action as ClosedAction).payload.cause === CloseCause.CloseButton;
 
 export const isChangeOnNoticeAction = (action: AppAction) =>
-  action.type === 'MARK_NOTICE_READ' || action.type === 'FEEDBACK_ON_NOTICE';
+  action.type === MARK_NOTICE_READ || action.type === FEEDBACK_ON_NOTICE;
 
 function* closeUISaga() {
-  yield put(close(CloseCause.NoMoreNotice));
+  const open = yield select(isOpen);
+  if (open) {
+    yield put(close(CloseCause.NoMoreNotice));
+  }
 }
 
 export default function* noticesRootSaga() {
   yield all([
-    // FIXME change all strings to constants because it’s a pain the ass to refactor (i.e. rename)
     takeLatest(isChangeOnNoticeAction, closeIfNoMoreNoticeToDisplaySaga),
     takeLatest(isClosedByButtonAction, markNoticesReadSaga),
-    takeEvery('UNFOLD_NOTICE', markNoticeReadSaga),
-    takeEvery(
-      ['NO_NOTICES_DISPLAYED', 'LMEM/CONTEXT_NOT_TRIGGERED'],
-      closeUISaga
-    )
+    takeEvery(NOTICE_UNFOLDED, markNoticeReadSaga),
+    takeEvery([NO_NOTICES_DISPLAYED, CONTEXT_NOT_TRIGGERED], closeUISaga)
   ]);
 }

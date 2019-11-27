@@ -4,11 +4,13 @@ import Tab from 'app/lmem/tab';
 import {
   contributorsTransmitted,
   isTabReadyAction,
+  SUBSCRIBE,
+  UNSUBSCRIBE,
+  UPDATE_CONTRIBUTORS,
   ListeningActionsReadyAction
 } from 'app/actions';
 import assocTabIfNotGiven from 'webext/assocTabIfNotGiven';
 import { getContributorsWithSubscriptionState } from '../selectors/subscriptions.selectors';
-import { SUBSCRIBE, UNSUBSCRIBE } from '../../constants/ActionTypes';
 import { getTabsList } from '../selectors/tabs';
 import sendToTabSaga from './lib/sendToTab.saga';
 
@@ -25,7 +27,7 @@ function* sendContributorsBackToTab(action: ListeningActionsReadyAction) {
   yield sendContributorsToTab(tab);
 }
 
-function* subscribeSaga() {
+function* updateContributorsInTabs() {
   for (const tab of yield select(getTabsList)) {
     yield fork(sendContributorsToTab, tab);
   }
@@ -33,5 +35,8 @@ function* subscribeSaga() {
 
 export default function* transmitContributorsSaga() {
   yield takeEvery(isTabReadyAction, sendContributorsBackToTab);
-  yield takeEvery([SUBSCRIBE, UNSUBSCRIBE], subscribeSaga);
+  yield takeEvery(
+    [SUBSCRIBE, UNSUBSCRIBE, UPDATE_CONTRIBUTORS],
+    updateContributorsInTabs
+  );
 }

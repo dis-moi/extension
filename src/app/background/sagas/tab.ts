@@ -1,8 +1,10 @@
 import { put, takeEvery, select, call, all } from 'redux-saga/effects';
 import * as R from 'ramda';
 import { isToday } from 'date-fns';
-import { CONTEXT_TRIGGERED, MATCH_CONTEXT } from 'app/constants/ActionTypes';
 import {
+  CONTEXT_TRIGGERED,
+  MATCH_CONTEXT,
+  NAVIGATED_TO_URL,
   init,
   contextTriggered,
   matchContext,
@@ -14,12 +16,12 @@ import {
   noticesFound,
   showBullesUpdateMessage,
   noticeBadged,
-  NAVIGATED_TO_URL,
   AppAction,
   MatchContextAction,
   TabAction,
   ContextTriggeredAction,
-  ReceivedNavigatedToUrlAction
+  ReceivedNavigatedToUrlAction,
+  noticesFetched
 } from 'app/actions';
 import { MatchingContext } from 'app/lmem/matchingContext';
 import { StatefulNotice, Notice, warnIfNoticeInvalid } from 'app/lmem/notice';
@@ -77,6 +79,7 @@ export const contextTriggeredSaga = function*({
     )(triggeredContexts);
 
     const notices = yield call(fetchNotices, toFetch);
+    yield put(noticesFetched(notices));
     const validNotices: Notice[] = notices.filter(warnIfNoticeInvalid);
 
     const noticesToShow: StatefulNotice[] = yield select(
@@ -86,8 +89,8 @@ export const contextTriggeredSaga = function*({
     if (noticesToShow.length > 0) {
       const tosAccepted = yield select(areTosAccepted);
       if (tosAccepted) {
-        yield all(noticesToShow.map(({ id }) => put(noticeBadged(id, tab))));
         yield put(noticesFound(noticesToShow, tab));
+        yield all(noticesToShow.map(({ id }) => put(noticeBadged(id, tab))));
       } else {
         const lastUpdateMessageDate = yield select(
           getUpdateMessageLastShowDate

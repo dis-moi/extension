@@ -1,11 +1,13 @@
 import { take, call, put, takeEvery } from 'redux-saga/effects';
 import {
-  listeningActionsReady,
+  CLOSED,
   NAVIGATED_TO_URL,
+  NOTICES_FOUND,
+  OPENED,
   TAB_REMOVED,
-  TOGGLE_UI
+  TOGGLE_UI,
+  listeningActionsReady
 } from 'app/actions';
-import { CLOSED, NOTICES_FOUND, OPENED } from '../../constants/ActionTypes';
 
 function* sendListeningBackToBackgroundSaga() {
   yield put(listeningActionsReady('content', { sendToBackground: true }));

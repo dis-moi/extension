@@ -1,13 +1,22 @@
-import { AppAction } from 'app/actions';
+import * as R from 'ramda';
+import {
+  NOTICES_FETCHED,
+  UPDATE_CONTRIBUTORS,
+  UPDATE_MATCHING_CONTEXTS,
+  UPDATE_RESTRICTED_CONTEXTS,
+  AppAction
+} from 'app/actions';
 import { MatchingContext, RestrictedContext } from 'app/lmem/matchingContext';
 import { Draft } from 'app/lmem/draft';
 import { Contributor } from 'app/lmem/contributor';
 import forbiddenTabs from 'webext/forbiddenTabs';
+import { Notice } from 'app/lmem/notice';
 
 export interface ResourcesState {
   matchingContexts: MatchingContext[];
   restrictedContexts: RestrictedContext[];
   contributors: Contributor[];
+  notices: Notice[];
   drafts: Draft[];
 }
 
@@ -23,7 +32,8 @@ const initialResources: ResourcesState = {
   matchingContexts: [],
   restrictedContexts: regexpsToRestrictedContexts(forbiddenTabs),
   contributors: [],
-  drafts: []
+  drafts: [],
+  notices: []
 };
 
 export default function(
@@ -31,14 +41,14 @@ export default function(
   action: AppAction
 ) {
   switch (action.type) {
-    case 'api/UPDATE_MATCHING_CONTEXTS': {
+    case UPDATE_MATCHING_CONTEXTS: {
       return {
         ...state,
         matchingContexts: action.payload.matchingContexts
       };
     }
 
-    case 'api/UPDATE_RESTRICTED_CONTEXTS': {
+    case UPDATE_RESTRICTED_CONTEXTS: {
       return {
         ...state,
         restrictedContexts: toTrueRestrictedContexts(action.payload).concat(
@@ -47,13 +57,22 @@ export default function(
       };
     }
 
-    case 'api/UPDATE_CONTRIBUTORS': {
+    case UPDATE_CONTRIBUTORS: {
       return {
         ...state,
         contributors: action.payload.contributors
       };
     }
 
+    case NOTICES_FETCHED: {
+      return {
+        ...state,
+        notices: R.uniqWith(
+          R.eqProps('id'),
+          R.concat(state.notices, action.payload)
+        )
+      };
+    }
     /* Will be used ?
     case 'UNINSTALL': {
       console.warn(

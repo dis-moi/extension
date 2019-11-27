@@ -1,12 +1,13 @@
 import { BaseAction } from '.';
 
+export const UPDATE_DRAFT_NOTICES = 'UPDATE_DRAFT_NOTICES';
 interface UpdateDraftNoticesAction extends BaseAction {
-  type: 'UPDATE_DRAFT_NOTICES';
+  type: typeof UPDATE_DRAFT_NOTICES;
   payload: { drafts: {} };
 }
 
 const updateDraftNotices = (drafts: {}): UpdateDraftNoticesAction => ({
-  type: 'UPDATE_DRAFT_NOTICES',
+  type: UPDATE_DRAFT_NOTICES,
   payload: { drafts }
 });
 
