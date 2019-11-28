@@ -3,13 +3,16 @@ import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
 import theme from './theme';
 
-const isHexColor = (color: any) => /^#(?:[0-9a-f]{3}){1,2}$/i.test(color);
-const isObject = (object: any) =>
-  object != null && object.constructor.name === 'Object';
+const isHexColor = (color: ObjectWithColors | string): boolean =>
+  typeof color === 'string' && /^#(?:[0-9a-f]{3}){1,2}$/i.test(color);
+
+const isObject = (
+  object: ObjectWithColors | string
+): object is ObjectWithColors =>
+  object !== null && object.constructor.name === 'Object';
 
 const ColorListItemContainer = styled.li`
   margin: 0;
-  padding: 0;
   text-indent: 0;
   list-style-type: none;
   border-radius: 5px;
@@ -63,21 +66,24 @@ interface ColorListProps {
 const ColorList = ({ colors }: ColorListProps) => {
   return (
     <ColorListContainer>
-      {Object.keys(colors).map(key => (
-        <>
-          {isHexColor(colors[key]) && (
-            <ColorListItem key={key} name={key} color={String(colors[key])} />
-          )}
-          {isObject(colors[key]) && (
+      {Object.keys(colors).map(key => {
+        const subValue = colors[key];
+        if (typeof subValue === 'string' && isHexColor(subValue)) {
+          return <ColorListItem key={key} name={key} color={subValue} />;
+        }
+        if (isObject(subValue)) {
+          return (
             <ColorListItemContainer key={key}>
               <h2>{key}</h2>
-              <ColorList colors={colors[key]} />
+              <ColorList colors={subValue} />
             </ColorListItemContainer>
-          )}
-        </>
-      ))}
+          );
+        }
+      })}
     </ColorListContainer>
   );
 };
 
-storiesOf('theme', module).add('theme', () => <ColorList colors={theme} />);
+storiesOf('theme', module).add('theme', () => (
+  <ColorList colors={(theme as unknown) as ObjectWithColors} />
+));
