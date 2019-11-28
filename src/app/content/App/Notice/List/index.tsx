@@ -18,13 +18,15 @@ export interface Props {
   dismiss: (id: number) => void;
   confirmDismiss: (id: number) => void;
   undismiss: (id: number) => void;
+  clickContributor: (id: number) => void;
 }
 
 export const ListScreen = ({
   notices,
   dismiss,
   confirmDismiss,
-  undismiss
+  undismiss,
+  clickContributor
 }: Props) => {
   const transitions = useTransition(
     notices.slice(0, 2),
@@ -45,6 +47,7 @@ export const ListScreen = ({
             confirmDismiss={confirmDismiss}
             undismiss={undismiss}
             style={props}
+            clickContributor={clickContributor}
           />
         ))}
       </ListContainer>

@@ -6,6 +6,11 @@ import Notification from 'components/organisms/Notification';
 import Subscriptions from './Subscriptions';
 import { generateContributor } from 'test/fakers/generateContributor';
 
+const commonProps = {
+  openSubscriptions: action('openSubscriptions'),
+  clickContributor: action('clickContributor')
+};
+
 storiesOf('screens/Subscriptions', module)
   .addDecorator(getStory => (
     <Router>
@@ -13,20 +18,17 @@ storiesOf('screens/Subscriptions', module)
     </Router>
   ))
   .add('no subscriptions', () => (
-    <Subscriptions
-      openSubscriptions={action('openSubscriptions')}
-      subscribedContributors={[]}
-    />
+    <Subscriptions {...commonProps} subscribedContributors={[]} />
   ))
   .add('few subscriptions', () => (
     <Subscriptions
-      openSubscriptions={action('openSubscriptions')}
+      {...commonProps}
       subscribedContributors={Array.from(Array(3), () => generateContributor())}
     />
   ))
   .add('some subscriptions', () => (
     <Subscriptions
-      openSubscriptions={action('openSubscriptions')}
+      {...commonProps}
       subscribedContributors={Array.from(Array(13), () =>
         generateContributor()
       )}
@@ -34,7 +36,7 @@ storiesOf('screens/Subscriptions', module)
   ))
   .add('a lot of subscriptions', () => (
     <Subscriptions
-      openSubscriptions={action('openSubscriptions')}
+      {...commonProps}
       subscribedContributors={Array.from(Array(50), () =>
         generateContributor()
       )}

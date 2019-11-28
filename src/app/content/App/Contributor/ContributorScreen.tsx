@@ -2,22 +2,28 @@ import React from 'react';
 import styled from 'types/styled-components';
 import DetailsContent from 'components/organisms/NoticeDetails/DetailsContent';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
-import { Contributor } from 'app/lmem/contributor';
+import { StatefulContributor } from 'app/lmem/contributor';
 
-interface Props {
-  contributor: Contributor;
+export interface ContributorScreenProps {
+  contributor: StatefulContributor;
+  subscribe: () => void;
+  unsubscribe: () => void;
 }
 
 const Content = styled(DetailsContent)`
   padding: 0;
 `;
 
-export const ContributorScreen = ({ contributor }: Props) => (
+export const ContributorScreen = ({
+  contributor,
+  subscribe,
+  unsubscribe
+}: ContributorScreenProps) => (
   <Content>
     <ContributorLarge
       contributor={contributor}
-      onSubscribe={() => {}}
-      onUnsubscribe={() => {}}
+      onSubscribe={subscribe}
+      onUnsubscribe={unsubscribe}
     />
   </Content>
 );
