@@ -14,10 +14,10 @@ import { close } from 'app/actions';
 import { ContentState } from '../store';
 import {
   getTitle,
+  hasServiceMessage,
+  isLoaded,
   isNoticeContext,
-  isOpen,
-  getServiceMessage,
-  isLoaded
+  isOpen
 } from '../selectors';
 import Notice from './Notice';
 import Subscriptions from './Subscriptions';
@@ -33,7 +33,7 @@ const mapStateToProps = (state: ContentState) => ({
   loaded: isLoaded(state),
   title: getTitle(state),
   noticeContext: isNoticeContext(state),
-  serviceMessage: getServiceMessage(state)
+  hasServiceMessage: hasServiceMessage(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -46,7 +46,7 @@ interface ConnectProps {
   title: string;
   close: () => void;
   noticeContext: boolean;
-  serviceMessage: string;
+  hasServiceMessage: boolean;
 }
 
 type UIProps = ConnectProps & RouteComponentProps;
@@ -57,7 +57,7 @@ const UI = ({
   loaded,
   close,
   noticeContext,
-  serviceMessage
+  hasServiceMessage
 }: UIProps) => {
   if (open) {
     return (
@@ -69,7 +69,7 @@ const UI = ({
       >
         {loaded ? (
           <>
-            {serviceMessage ? (
+            {hasServiceMessage ? (
               <ServiceMessage />
             ) : (
               <Switch>
