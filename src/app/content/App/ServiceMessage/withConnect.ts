@@ -8,7 +8,7 @@ import {
 import { ContentState } from '../../store';
 
 const mapStateToProps = (state: ContentState) => ({
-  serviceMessage: getServiceMessage(state),
+  serviceMessage: getServiceMessage(state) as string,
   action: getServiceMessageAction(state)
 });
 
