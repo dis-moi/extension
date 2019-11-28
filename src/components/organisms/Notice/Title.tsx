@@ -16,6 +16,7 @@ const Title = ({ to, ...props }: TitleProps) => {
 };
 
 export default styled(Title)<TitleProps>`
+  text-decoration: none;
   position: relative;
   display: block;
   height: 63px;

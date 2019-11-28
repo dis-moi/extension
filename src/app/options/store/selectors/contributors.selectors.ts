@@ -7,6 +7,7 @@ import {
   StatefulContributor
 } from 'app/lmem/contributor';
 import { ContributorsState } from '../reducers/contributors.reducer';
+import { findItemById } from 'app/utils/findItemById';
 
 export interface StateWithContributors {
   contributors: ContributorsState;
@@ -56,3 +57,9 @@ export const makeGetNContributorsSuggestions = (n: number) =>
   );
 
 export const get5ContributorsSuggestions = makeGetNContributorsSuggestions(5);
+
+export const getContributorById = (id: number) =>
+  createSelector(
+    [getContributors],
+    findItemById(id)
+  );

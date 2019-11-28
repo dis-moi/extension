@@ -7,18 +7,19 @@ import {
   Button,
   Timer,
   CenterContainer
-} from '../../atoms';
-import Avatar from '../../molecules/Avatar/Avatar';
+} from 'components/atoms';
+import InteractiveAvatar from 'components/molecules/InteractiveAvatar';
 import Container, { height, marginTop } from './Container';
 import Content from './Content';
 import Deleted from './Deleted';
 import DeleteButton from './DeleteButton';
 import Title from './Title';
-import { StatefulNotice } from '../../../app/lmem/notice';
+import { StatefulNotice } from 'app/lmem/notice';
 import {
   CountDownState,
   initialState as countdownInitialState
-} from '../../../app/lmem/countdown';
+} from 'app/lmem/countdown';
+import { Link } from 'react-router-dom';
 
 export const transitionKeys = {
   from: {
@@ -38,29 +39,7 @@ const Description = styled.div`
   width: 245px;
 `;
 
-const AvatarNotice = styled(Avatar)`
-  position: relative;
-
-  &:hover {
-    cursor: pointer;
-
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #000000;
-      border-radius: 50%;
-      opacity: 0.29;
-    }
-  }
-`;
-
-const ContributorNotice = styled(Contributor)`
+const ContributorName = styled(Contributor)`
   &:hover {
     text-decoration: underline;
     cursor: pointer;
@@ -78,6 +57,7 @@ interface Props {
   dismiss: (id: number) => void;
   confirmDismiss: (id: number) => void;
   undismiss: (id: number) => void;
+  clickContributor: (id: number) => void;
   truncateTitleAt?: number;
   style?: object;
 }
@@ -128,6 +108,14 @@ export default class Notice extends PureComponent<Props, CountDownState> {
     }
   };
 
+  onContributorClicked = () => {
+    const {
+      notice: { contributor },
+      clickContributor
+    } = this.props;
+    clickContributor(contributor.id);
+  };
+
   componentWillUnmount(): void {
     this.stopCountdown();
   }
@@ -148,11 +136,6 @@ export default class Notice extends PureComponent<Props, CountDownState> {
     return (
       <Container style={style}>
         {!dismissed && !disliked && <DeleteButton onClick={this.onDismiss} />}
-        {/* <Content
-          to={dismissed || intervalID ? undefined : `notices/details/${id}`}
-          isRead={read}
-        > */}
-        {/* Avant y'avait un lien global, mais ça c'était avant */}
         <Content isRead={read}>
           {(dismissed || disliked) && intervalID ? (
             <>
@@ -164,11 +147,15 @@ export default class Notice extends PureComponent<Props, CountDownState> {
             </>
           ) : (
             <>
-              <AvatarNotice contributor={contributor} size="small" />{' '}
-              {/* Faut lier sur l'écran du contributeur, ça serait cool si le hover impactait les 2 */}
+              <InteractiveAvatar
+                onClick={this.onContributorClicked}
+                contributor={contributor}
+                size="small"
+              />
               <Description>
-                <ContributorNotice>{contributor.name}</ContributorNotice>{' '}
-                {/* Faut lier sur l'écran du contributeur, ça serait cool si le hover impactait les 2 */}
+                <ContributorName onClick={this.onContributorClicked}>
+                  {contributor.name}
+                </ContributorName>
                 <Title
                   to={
                     dismissed || intervalID
@@ -177,10 +164,14 @@ export default class Notice extends PureComponent<Props, CountDownState> {
                   }
                 >
                   {stripHtml(message)}
-                </Title>{' '}
-                {/* Lien vers le détail de la notice */}
+                </Title>
               </Description>
-              <OpenButton />
+              <OpenButton
+                as={Link}
+                to={
+                  dismissed || intervalID ? undefined : `notices/details/${id}`
+                }
+              />
             </>
           )}
         </Content>

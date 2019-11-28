@@ -1,5 +1,4 @@
 import React, { PureComponent, MouseEvent } from 'react';
-import { RouteComponentProps, withRouter } from 'react-router';
 import styled from 'styled-components';
 import { format } from 'date-fns';
 import ThumbUp from 'components/atoms/icons/ThumbUp';
@@ -60,8 +59,11 @@ const ContributorNotice = styled(Contributor)`
   }
 `;
 
-interface NoticeDetailsProps extends RouteComponentProps {
+export interface NoticeDetailsDataProps {
   notice: StatefulNotice;
+}
+
+export interface NoticeDetailsMethodsProps {
   like: (id: number) => void;
   unlike: (id: number) => void;
   dislike: (id: number) => void;
@@ -69,7 +71,13 @@ interface NoticeDetailsProps extends RouteComponentProps {
   undislike: (id: number) => void;
   view?: (id: number) => void;
   outboundLinkClicked?: (id: number, url?: string) => void;
+  goBack: () => void;
+  clickContributor: (id: number) => void;
 }
+
+export type NoticeDetailsProps = NoticeDetailsDataProps &
+  NoticeDetailsMethodsProps;
+
 class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
   constructor(props: NoticeDetailsProps) {
     super(props);
@@ -94,10 +102,10 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
       const {
         notice: { id },
         confirmDislike,
-        history
+        goBack
       } = this.props;
       confirmDislike(id);
-      history.goBack();
+      goBack();
     }
   };
 
@@ -168,6 +176,14 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
     }
   };
 
+  handleContributorClicked = () => {
+    const {
+      clickContributor,
+      notice: { contributor }
+    } = this.props;
+    clickContributor(contributor.id);
+  };
+
   componentDidMount(): void {
     const {
       view,
@@ -196,10 +212,16 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
       <DetailsContainer>
         <DetailsContent>
           <DetailsMeta>
-            <AvatarNotice contributor={contributor} size="small" />
+            <AvatarNotice
+              contributor={contributor}
+              size="small"
+              onClick={this.handleContributorClicked}
+            />
             <DetailsMetaValue>
               <Date>Le {format(created, 'DD/MM/YYYY')}</Date>
-              <ContributorNotice>{contributor.name} :</ContributorNotice>
+              <ContributorNotice onClick={this.handleContributorClicked}>
+                {contributor.name} :
+              </ContributorNotice>
             </DetailsMetaValue>
           </DetailsMeta>
 
@@ -241,4 +263,4 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
   }
 }
 
-export default withRouter(NoticeDetails);
+export default NoticeDetails;

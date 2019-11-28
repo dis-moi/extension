@@ -3,10 +3,7 @@ import { ResourcesState } from '../reducers/resources.reducer';
 import { isTabAuthorizedByPatterns } from 'webext/isAuthorizedTab';
 import { toPatterns } from '../../lmem/matchingContext';
 import Tab from '../../lmem/tab';
-
-export const findItemById = <Item extends { id: number }>(id: number) => (
-  items: Item[]
-): Item | undefined => items.find(item => id === item.id);
+import { findItemById } from 'app/utils/findItemById';
 
 export const getResources = (state: { resources: ResourcesState }) =>
   state.resources;

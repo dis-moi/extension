@@ -1,13 +1,18 @@
 import React from 'react';
 import { compose } from 'redux';
 import withTitle from 'app/hocs/withTitle';
-import NoticeDetails from 'components/organisms/NoticeDetails/NoticeDetails';
-import withConnect, {
-  DetailsDispatchProps,
-  DetailsStateProps
-} from './withConnect';
+import NoticeDetails, {
+  NoticeDetailsMethodsProps
+} from 'components/organisms/NoticeDetails/NoticeDetails';
+import { StatefulNotice } from 'app/lmem/notice';
+import withConnect from './withConnect';
 
-export type DetailsScreenProps = DetailsDispatchProps & DetailsStateProps;
+export interface DetailsScreenDataProps {
+  notice?: StatefulNotice;
+}
+
+export type DetailsScreenProps = DetailsScreenDataProps &
+  NoticeDetailsMethodsProps;
 
 export const Details = ({
   notice,
@@ -17,7 +22,9 @@ export const Details = ({
   confirmDislike,
   undislike,
   view,
-  outboundLinkClicked
+  outboundLinkClicked,
+  goBack,
+  clickContributor
 }: DetailsScreenProps) => {
   if (notice) {
     return (
@@ -30,6 +37,8 @@ export const Details = ({
         undislike={undislike}
         view={view}
         outboundLinkClicked={outboundLinkClicked}
+        goBack={goBack}
+        clickContributor={clickContributor}
       />
     );
   }

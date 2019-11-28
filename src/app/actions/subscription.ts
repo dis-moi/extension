@@ -23,7 +23,7 @@ export interface UnsubscribeAction extends ContributorAction {
   type: typeof UNSUBSCRIBE;
 }
 export const unsubscribe = (
-  contributor: Contributor,
+  contributor: Contributor | ContributorId,
   meta?: ActionMeta
 ): UnsubscribeAction => ({
   type: UNSUBSCRIBE,
