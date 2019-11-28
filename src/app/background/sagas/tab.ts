@@ -1,4 +1,4 @@
-import { put, takeEvery, select, call, all } from 'redux-saga/effects';
+import { all, call, put, select, takeEvery } from 'redux-saga/effects';
 import * as R from 'ramda';
 import { isToday } from 'date-fns';
 import {
@@ -6,29 +6,29 @@ import {
   MATCH_CONTEXT,
   NAVIGATED_TO_URL,
   init,
+  contextNotTriggered,
   contextTriggered,
+  contextTriggerFailure,
   matchContext,
   matchContextFailure,
-  noticeIgnored,
-  contextTriggerFailure,
-  contextNotTriggered,
   noNoticesDisplayed,
-  noticesFound,
   noticeBadged,
+  noticeIgnored,
+  noticesFound,
+  noticesFetched,
   AppAction,
-  MatchContextAction,
-  TabAction,
   ContextTriggeredAction,
+  MatchContextAction,
   ReceivedNavigatedToUrlAction,
-  noticesFetched
+  TabAction
 } from 'app/actions';
 import { MatchingContext } from 'app/lmem/matchingContext';
-import { StatefulNotice, Notice, warnIfNoticeInvalid } from 'app/lmem/notice';
+import { Notice, StatefulNotice, warnIfNoticeInvalid } from 'app/lmem/notice';
 import { fetchNotices } from 'api/fetchNotice';
 import {
-  getNoticesToDisplay,
+  areTosAccepted,
   getIgnoredNotices,
-  areTosAccepted
+  getNoticesToDisplay
 } from '../selectors/prefs';
 import { findTriggeredContexts } from '../selectors';
 import { getInstallationDetails } from '../selectors/installationDetails';
@@ -37,7 +37,7 @@ import sendToTabSaga from './lib/sendToTab.saga';
 import { isTabAuthorized } from '../selectors/resources';
 import { disable } from 'webext/browserAction';
 import { resetBadge } from 'app/lmem/badge';
-import serviceMessageSaga from './serviceMessageSaga';
+import serviceMessageSaga from './serviceMessage.saga';
 
 export function* tabSaga({ meta: { tab } }: ReceivedNavigatedToUrlAction) {
   const tabAuthorized = yield select(isTabAuthorized(tab));

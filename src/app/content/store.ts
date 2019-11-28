@@ -7,7 +7,7 @@ import { InstallationDetailsState } from 'app/background/reducers/installationDe
 import rootReducer from './reducers';
 import { UIState } from './reducers/ui';
 import { NoticesState } from './reducers/notices';
-import { ServiceMessageState } from './reducers/sserviceMessage.saga'';
+import { ServiceMessageState } from './reducers/serviceMessage.reducer';
 import rootSaga from './sagas';
 import { ContributorsState } from 'app/options/store/reducers/contributors.reducer';
 
