@@ -1,4 +1,4 @@
-import { put, select, takeLatest, call } from 'redux-saga/effects';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { CloseCause } from 'app/lmem/ui';
 import {
   BROWSER_ACTION_CLICKED,
@@ -7,7 +7,7 @@ import {
 } from 'app/actions';
 import { areTosAccepted } from '../selectors/prefs';
 import { getNbSubscriptions } from '../selectors/subscriptions.selectors';
-import serviceMessageSaga from './serviceMessageSaga';
+import serviceMessageSaga from './serviceMessage.saga';
 
 export function* browserActionClickedSaga(action: BrowserActionClickedAction) {
   const tosAccepted = yield select(areTosAccepted);
