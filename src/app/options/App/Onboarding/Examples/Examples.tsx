@@ -4,6 +4,7 @@ import SubscriptionsScreen from '../../Settings/SubscriptionsScreen';
 import Intro from '../OnboardingAtoms/OnboardingIntro';
 import Title from '../OnboardingAtoms/OnboardingTitle';
 import Wrapper from '../OnboardingAtoms/OnboardingWrapper';
+import OnboardingButton from '../OnboardingAtoms/OnboardingButton';
 import Header from '../../Header';
 
 const Title2 = styled(Title)`
@@ -12,7 +13,36 @@ const Title2 = styled(Title)`
   color: ${props => props.theme.activeColor};
 `;
 
-export default () => (
+const SuggestionsWrapper = styled.div`
+  height: calc(100vh - 440px);
+  margin-bottom: 150px;
+  overflow-y: scroll;
+  @media (max-width: 820px) {
+    height: auto;
+    margin-top: 0;
+    overflow-y: inherit;
+  }
+`;
+
+const BottomLineBg = styled.section`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  background-color: rgba(250, 250, 250, 0.7);
+`;
+
+interface ExamplesScreenProps {
+  next: () => void;
+}
+
+export default ({ next }: ExamplesScreenProps) => (
   <>
     <Header />
     <Wrapper>
@@ -28,6 +58,13 @@ export default () => (
       </Intro>
     </Wrapper>
 
-    <SubscriptionsScreen noSidebar highlightExampleLink />
+    <SuggestionsWrapper>
+      <SubscriptionsScreen noSidebar highlightExampleLink />
+    </SuggestionsWrapper>
+
+    <BottomLineBg>
+      <OnboardingButton onClick={next}>Fermer</OnboardingButton>
+      et reprendre ma navigation normale
+    </BottomLineBg>
   </>
 );
