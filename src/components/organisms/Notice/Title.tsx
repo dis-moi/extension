@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { LocationDescriptor } from 'history';
+import Arrow from 'assets/img/arrow.svg';
 
 interface TitleProps {
   to?: LocationDescriptor;
@@ -20,7 +21,8 @@ export default styled(Title)<TitleProps>`
   position: relative;
   display: block;
   height: 63px;
-  margin: 0 10px 0 0;
+  margin: 0;
+  padding-right: 10px;
   color: ${props => props.theme.primaryColor};
   font-weight: bold;
   line-height: 1.3;
@@ -29,6 +31,18 @@ export default styled(Title)<TitleProps>`
   &:hover {
     color: ${props => props.theme.activeColor};
     cursor: pointer;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 3px;
+    display: block;
+    width: 7px;
+    height: 12px;
+    background: url(${Arrow}) 0 0 no-repeat;
+    z-index: 2;
   }
 
   &:after {

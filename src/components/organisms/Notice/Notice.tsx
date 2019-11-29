@@ -1,13 +1,7 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import { stripHtml } from 'app/utils/stripHtml';
-import {
-  Contributor,
-  OpenButton,
-  Button,
-  Timer,
-  CenterContainer
-} from 'components/atoms';
+import { Contributor, Button, Timer, CenterContainer } from 'components/atoms';
 import InteractiveAvatar from 'components/molecules/InteractiveAvatar';
 import Container, { height, marginTop } from './Container';
 import Content from './Content';
@@ -19,7 +13,6 @@ import {
   CountDownState,
   initialState as countdownInitialState
 } from 'app/lmem/countdown';
-import { Link } from 'react-router-dom';
 
 export const transitionKeys = {
   from: {
@@ -166,12 +159,6 @@ export default class Notice extends PureComponent<Props, CountDownState> {
                   {stripHtml(message)}
                 </Title>
               </Description>
-              <OpenButton
-                as={Link}
-                to={
-                  dismissed || intervalID ? undefined : `notices/details/${id}`
-                }
-              />
             </>
           )}
         </Content>
