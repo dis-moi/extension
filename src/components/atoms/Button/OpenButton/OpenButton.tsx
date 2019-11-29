@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import OpenIcon from '../../icons/Arrow';
 
 export default styled.div.attrs({ children: <OpenIcon /> })`
-  padding: 0;
-  margin-left: auto;
-  border: none;
-  cursor: pointer;
+  align-self: flex-end;
   width: auto;
   height: 13px;
+  margin-left: auto;
+  padding: 0;
+  border: none;
   stroke: ${props => props.theme.primaryColor};
   transform: rotate(180deg);
+  cursor: pointer;
 `;

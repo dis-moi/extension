@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export default styled.p`
   position: relative;
   display: block;
-  height: 63px;
+  max-height: 63px;
   margin: 0 10px 0 0;
   color: ${props => props.theme.primaryColor};
   font-weight: bold;
