@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
-import { goBack, push } from 'connected-react-router';
+import { goBack } from 'connected-react-router';
 import {
-  likeNotice,
-  unlikeNotice,
-  dislikeNotice,
-  confirmDislikeNotice,
-  undislikeNotice,
-  unfoldNotice,
+  likeNotice as like,
+  unlikeNotice as unlike,
+  dislikeNotice as dislike,
+  confirmDislikeNotice as confirmDislike,
+  undislikeNotice as undislike,
+  unfoldNotice as view,
   outboundLinkClicked
 } from 'app/actions/notices';
+import clickContributor from 'app/content/actions/goToContributor';
 import { ContentState } from 'app/content/store';
 import { getNoticeById } from 'app/content/selectors';
-import { Dispatch } from 'redux';
 import { DetailsScreenProps } from './';
 
 const mapStateToProps = (
@@ -22,19 +22,17 @@ const mapStateToProps = (
   notice: getNoticeById(state, props)
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  like: (id: number) => dispatch(likeNotice(id)),
-  unlike: (id: number) => dispatch(unlikeNotice(id)),
-  dislike: (id: number) => dispatch(dislikeNotice(id)),
-  confirmDislike: (id: number) => dispatch(confirmDislikeNotice(id)),
-  undislike: (id: number) => dispatch(undislikeNotice(id)),
-  view: (id: number) => dispatch(unfoldNotice(id)),
-  outboundLinkClicked: (id: number, url?: string) =>
-    dispatch(outboundLinkClicked(id, url)),
-  goBack: () => dispatch(goBack()),
-  clickContributor: (contributorId: number) =>
-    dispatch(push(`/contributor/${contributorId}`))
-});
+const mapDispatchToProps = {
+  like,
+  unlike,
+  dislike,
+  confirmDislike,
+  undislike,
+  view,
+  outboundLinkClicked,
+  goBack,
+  clickContributor
+};
 
 export default connect(
   mapStateToProps,

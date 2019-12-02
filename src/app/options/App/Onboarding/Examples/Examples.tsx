@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import SubscriptionsScreen from '../../Settings/SubscriptionsScreen';
-import Intro from '../OnboardingAtoms/OnboardingIntro';
-import Title from '../OnboardingAtoms/OnboardingTitle';
-import Wrapper from '../OnboardingAtoms/OnboardingWrapper';
-import OnboardingButton from '../OnboardingAtoms/OnboardingButton';
+import Intro from '../atoms/OnboardingIntro';
+import Title from '../atoms/OnboardingTitle';
+import Wrapper from '../atoms/OnboardingWrapper';
+import OnboardingButton from '../atoms/OnboardingButton';
 import Header from '../../Header';
 
 const Title2 = styled(Title)`
