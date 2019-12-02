@@ -1,35 +1,37 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
-import { StatefulContributor } from 'app/lmem/contributor';
 import { subscribe, unsubscribe } from 'app/actions/subscription';
+import { StateWithContributors } from 'app/options/store/selectors/contributors.selectors';
 import {
-  getContributorById,
-  StateWithContributors
-} from 'app/options/store/selectors/contributors.selectors';
+  getCurrentContributor,
+  getContributorIdFromRouteParam
+} from 'app/content/selectors';
 import { ContributorScreenProps } from './ContributorScreen';
+import { StatefulContributor } from 'app/lmem/contributor';
 
 export type ConnectedContributorScreenProps = ContributorScreenProps &
   RouteComponentProps<{ id: string }>;
 
 const mapStateToProps = (
   state: StateWithContributors,
-  { match: { params } }: ConnectedContributorScreenProps
+  props: ConnectedContributorScreenProps
 ) => ({
-  contributor: getContributorById(Number(params.id))(
-    state
-  ) as StatefulContributor
+  contributor: getCurrentContributor(state, props) as StatefulContributor
 });
 
 const mapDispatchToProps = (
   dispatch: Dispatch,
-  { match: { params } }: ConnectedContributorScreenProps
-) => ({
-  subscribe: () =>
-    dispatch(subscribe(Number(params.id), { sendToBackground: true })),
-  unsubscribe: () =>
-    dispatch(unsubscribe(Number(params.id), { sendToBackground: true }))
-});
+  props: ConnectedContributorScreenProps
+) => {
+  const contributorId = Number(getContributorIdFromRouteParam({}, props));
+  return {
+    subscribe: () =>
+      dispatch(subscribe(contributorId, { sendToBackground: true })),
+    unsubscribe: () =>
+      dispatch(unsubscribe(contributorId, { sendToBackground: true }))
+  };
+};
 
 export default connect(
   mapStateToProps,

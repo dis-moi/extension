@@ -101,12 +101,25 @@ export default class Notice extends PureComponent<Props, CountDownState> {
     }
   };
 
-  onContributorClicked = () => {
+  get isInteractive(): boolean {
     const {
-      notice: { contributor },
-      clickContributor
+      notice: {
+        state: { dismissed }
+      }
     } = this.props;
-    clickContributor(contributor.id);
+    const { intervalID } = this.state;
+
+    return !dismissed && !intervalID;
+  }
+
+  onContributorClicked = () => {
+    if (this.isInteractive) {
+      const {
+        notice: { contributor },
+        clickContributor
+      } = this.props;
+      clickContributor(contributor.id);
+    }
   };
 
   componentWillUnmount(): void {
@@ -150,11 +163,7 @@ export default class Notice extends PureComponent<Props, CountDownState> {
                   {contributor.name}
                 </ContributorName>
                 <Title
-                  to={
-                    dismissed || intervalID
-                      ? undefined
-                      : `notices/details/${id}`
-                  }
+                  to={this.isInteractive ? `notices/details/${id}` : undefined}
                 >
                   {stripHtml(message)}
                 </Title>

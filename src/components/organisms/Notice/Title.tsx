@@ -2,6 +2,8 @@ import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { LocationDescriptor } from 'history';
+// eslint-disable-next-line
+// @ts-ignore
 import Arrow from 'assets/img/arrow.svg';
 
 interface TitleProps {

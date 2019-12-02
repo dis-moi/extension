@@ -1,5 +1,5 @@
-import { takeEvery } from 'redux-saga/effects';
-import { AppAction } from 'app/actions';
+import { takeEvery, put } from 'redux-saga/effects';
+import { AppAction, createErrorAction } from 'app/actions';
 import sendMessageToBackground from 'webext/sendMessageToBackground';
 
 const shouldBeSentToBackground = (action: AppAction): boolean =>
@@ -7,8 +7,14 @@ const shouldBeSentToBackground = (action: AppAction): boolean =>
     ? action.meta.sendToBackground
     : false;
 
-function* sendActionsToBackgroundSaga() {
-  yield takeEvery(shouldBeSentToBackground, sendMessageToBackground);
+function* sendMessageToBackgroundSaga(action: AppAction) {
+  try {
+    sendMessageToBackground(action);
+  } catch (e) {
+    yield put(createErrorAction()(e));
+  }
 }
 
-export default sendActionsToBackgroundSaga;
+export default function* sendActionsToBackgroundSaga() {
+  yield takeEvery(shouldBeSentToBackground, sendMessageToBackgroundSaga);
+}

@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ExternalLink } from 'components/atoms';
 import LogoBeta from 'components/atoms/LogoBeta';
-import Wrapper from '../OnboardingAtoms/OnboardingWrapper';
-import Intro from '../OnboardingAtoms/OnboardingIntro';
-import SubTitle from '../OnboardingAtoms/OnboardingSubTitle';
-import OnboardinButton from '../OnboardingAtoms/OnboardingButton';
-import LMEMToBulles from '../OnboardingAtoms/LMEMToBulles';
+import Wrapper from '../atoms/OnboardingWrapper';
+import Intro from '../atoms/OnboardingIntro';
+import SubTitle from '../atoms/OnboardingSubTitle';
+import OnboardinButton from '../atoms/OnboardingButton';
+import LMEMToBulles from '../atoms/LMEMToBulles';
 import TOSAlreadyAccepted from './TOSAlreadyAccepted';
 import TOSText from './TOSText';
 import TOSCheckbox from './TOSCheckbox';
-import OnboardingSteps from '../OnboardingAtoms/OnboardingSteps/OnboardingSteps';
+import OnboardingSteps from '../atoms/OnboardingSteps/OnboardingSteps';
 
 const Title = styled(SubTitle)`
   margin-top: 32px;

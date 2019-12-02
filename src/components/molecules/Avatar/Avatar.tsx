@@ -39,8 +39,8 @@ interface AvatarProps {
   onClick?: () => void;
 }
 
-const Avatar = ({ contributor, size, className, ...props }: AvatarProps) => (
-  <Wrapper size={size} className={className} {...props}>
+const Avatar = ({ contributor, size, className, onClick }: AvatarProps) => (
+  <Wrapper size={size} className={className} onClick={onClick}>
     {contributor.avatar && contributor.avatar[size].url ? (
       <img src={contributor.avatar.normal.url} alt={contributor.name} />
     ) : (
