@@ -172,7 +172,6 @@
     "redux-logger": "^3.0.6",
     "redux-persist": "^5.10.0",
     "redux-saga": "^1.0.2",
-    "redux-thunk": "^2.0.1",
     "regenerator-runtime": "^0.13.3",
     "remote-redux-devtools": "^0.5.13",
     "reselect": "^4.0.0",
