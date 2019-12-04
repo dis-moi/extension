@@ -1,6 +1,6 @@
 import { PersistedState } from 'redux-persist';
 import { findMatchingOffersAccordingToPreferences } from '../../lmem/matchingContext';
-import { getDraftNotices, getMatchingContexts } from './resources';
+import { getMatchingContexts } from './resources';
 import { BackgroundState } from '../reducers';
 import { createSelector } from 'reselect';
 import { InstallationDetails } from 'app/lmem/installation';
@@ -13,12 +13,7 @@ import { getNotice } from '../../lmem/notice';
 
 export const findTriggeredContexts = (state: BackgroundState) => (
   url: string
-) =>
-  findMatchingOffersAccordingToPreferences(
-    url,
-    getMatchingContexts(state),
-    getDraftNotices(state)
-  );
+) => findMatchingOffersAccordingToPreferences(url, getMatchingContexts(state));
 
 export const isAnUpdate = createSelector(
   getInstallationDetails,

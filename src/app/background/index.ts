@@ -1,16 +1,10 @@
 /* eslint-disable no-console */
 // Early imports with high priority stuff involved, such as event listeners creation
-import prepareDraftPreview from '../lmem/draft-preview/main';
 import { BACKEND_ORIGIN } from 'app/constants/origins';
 import onInstalled from 'webext/onInstalled';
-import {
-  updateDraftNotices,
-  installed,
-  updateRestrictedContexts
-} from 'app/actions';
+import { installed, updateRestrictedContexts } from 'app/actions';
 import { configureSentryScope, initSentry } from 'app/utils/sentry';
 import { store } from './store';
-import fetchContentScript from './services/fetchContentScript';
 import fetchRestrictedContexts from 'api/fetchRestrictedContexts';
 
 initSentry();
@@ -27,13 +21,6 @@ console.info(`BACKEND_ORIGIN "${BACKEND_ORIGIN}"`);
 
 fetchRestrictedContexts().then(restrictedContexts =>
   store.dispatch(updateRestrictedContexts(restrictedContexts))
-);
-
-// Load content code when the extension is loaded
-fetchContentScript('/js/grabDraftNotices.js').then(contentCode =>
-  prepareDraftPreview(chrome.tabs, contentCode, (draftOffers: {}) =>
-    store.dispatch(updateDraftNotices(draftOffers))
-  )
 );
 
 onInstalled.then(installedDetails => {
