@@ -53,9 +53,9 @@ module.exports = Object.freeze({
     },
     default_title: 'Bulles'
   },
-  permissions: ['activeTab', 'storage']
-  /* web_accessible_resources: ['img/*', 'fonts/*'],
-  externally_connectable: {
-    matches: ['https://*.lmem.net/*']
-  } */
+  permissions: ['activeTab', 'storage'],
+  web_accessible_resources: ['img/*', 'fonts/*'],
+  // externally_connectable: {
+  //   matches: ['https://*.lmem.net/*']
+  // }
 });

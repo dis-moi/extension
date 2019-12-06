@@ -69,7 +69,7 @@ export function* openSaga({ payload: openedFrom }: OpenAction) {
       } else {
         Logger.info('Mounting UI !');
         contentDocument = yield call(append, iframe);
-        const root = document.createElement('div');
+        const root = contentDocument.createElement('div');
         contentDocument.body.appendChild(root);
         const renderAppInIframe = () =>
           render(<App contentDocument={contentDocument} />, root);
