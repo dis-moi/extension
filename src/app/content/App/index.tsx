@@ -6,7 +6,8 @@ import theme from '../../theme';
 import UI from './UI';
 import store, { history } from '../store';
 import { configureSentryScope } from '../../utils/sentry';
-import GlobalStyle from '../GlobalStyle';
+import FontsStyle from 'components/atoms/FontsStyle';
+import GlobalStyle from './GlobalStyle';
 
 interface AppProps {
   contentDocument: Document;
@@ -22,6 +23,7 @@ export default ({ contentDocument }: AppProps) => {
   return (
     <StyleSheetManager target={contentDocument.head}>
       <Provider store={store}>
+        <FontsStyle />
         <GlobalStyle />
         <ThemeProvider theme={theme}>
           <ConnectedRouter history={history}>
