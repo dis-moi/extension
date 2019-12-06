@@ -19,13 +19,6 @@ export const findTriggeredContexts = (state: BackgroundState) => (
     getDraftNotices(state)
   );
 
-export const isAnUpdate = createSelector(
-  getInstallationDetails,
-  (installationDetails: InstallationDetails) =>
-    installationDetails.reason === 'update' ||
-    installationDetails.reason === 'browser_update'
-);
-
 export const isAnUpdateFromLmem = createSelector(
   getInstallationDetails,
   (installationDetails: InstallationDetails) => {
