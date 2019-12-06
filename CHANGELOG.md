@@ -1,3 +1,18 @@
+# [3.9.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.8.0...v3.9.0) (2019-12-06)
+
+
+### Bug Fixes
+
+* broken imports ([214ef1f](https://github.com/insitu-project/recommendations-webextension/commit/214ef1f))
+* tell TS we know `serviceMessage` is defined at this point ([7148121](https://github.com/insitu-project/recommendations-webextension/commit/7148121))
+* **onboarding:** onboarding process was opened on every extension update ([ae3e2b1](https://github.com/insitu-project/recommendations-webextension/commit/ae3e2b1))
+* **service-message:** fix test on number of subscriptions ([995467b](https://github.com/insitu-project/recommendations-webextension/commit/995467b))
+
+
+### Features
+
+* **service-message:** add generic service message screen ([250fe43](https://github.com/insitu-project/recommendations-webextension/commit/250fe43))
+
 # [3.8.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.7.2...v3.8.0) (2019-11-27)
 
 
