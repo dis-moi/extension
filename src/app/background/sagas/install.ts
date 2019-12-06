@@ -12,7 +12,6 @@ import {
   isAnUpdateFromLmem,
   isOnboardingRequired
 } from 'app/background/selectors';
-import { areTosAccepted } from 'app/background/selectors/prefs';
 import { getInstallationDate } from 'app/background/selectors/installationDetails';
 import { InstallationDetails } from 'app/lmem/installation';
 import { version } from '../../../../package.json';
@@ -57,12 +56,8 @@ export function* installationDetailsSaga(): SagaIterator {
     }
 
     const onboardingRequired = yield select(isOnboardingRequired);
-    const tosAccepted = yield select(areTosAccepted);
     if (onboardingRequired) {
-      yield call(
-        openOptions,
-        !tosAccepted ? '/onboarding' : '/onboarding/subscribe'
-      );
+      yield call(openOptions, '/onboarding');
     }
   } catch (error) {
     captureException(error);
