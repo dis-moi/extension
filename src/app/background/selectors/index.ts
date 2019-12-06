@@ -7,7 +7,6 @@ import { InstallationDetails } from 'app/lmem/installation';
 import isBulleVersionNumber from 'app/lmem/isBulleVersionNumber';
 import { getInstallationDetails } from './installationDetails';
 import { areTosAccepted, getRead } from './prefs';
-import { getNbSubscriptions } from './subscriptions.selectors';
 import { getNoticesIdsOnTab } from './tabs';
 import { getNotice } from '../../lmem/notice';
 
@@ -19,12 +18,6 @@ export const findTriggeredContexts = (state: BackgroundState) => (
     getMatchingContexts(state),
     getDraftNotices(state)
   );
-
-export const isAnUpdate = createSelector(
-  getInstallationDetails,
-  (installationDetails: InstallationDetails) =>
-    installationDetails.reason === 'update'
-);
 
 export const isAnUpdateFromLmem = createSelector(
   getInstallationDetails,
@@ -41,9 +34,8 @@ export const isAnUpdateFromLmem = createSelector(
 );
 
 export const isInstallationComplete = createSelector(
-  [isAnUpdate, areTosAccepted, getNbSubscriptions],
-  (updated, tosAccepted, nbSubscriptions) =>
-    updated && tosAccepted && nbSubscriptions > 0
+  [areTosAccepted],
+  tosAccepted => tosAccepted
 );
 
 export const isOnboardingRequired = createSelector(

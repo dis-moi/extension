@@ -113,7 +113,7 @@ export default ({
             <LogoBeta />
 
             <Title>
-              Pour finaliser l’installation, veuillez lire et accepter <br />
+              Pour naviguer avec Bulles, veuillez lire et accepter <br />
               les conditions générales d’utilisation.
             </Title>
           </Intro>

@@ -14,10 +14,10 @@ import { close } from 'app/actions';
 import { ContentState } from '../store';
 import {
   getTitle,
+  hasServiceMessage,
+  isLoaded,
   isNoticeContext,
-  isOpen,
-  getShowUpdateMessage,
-  isLoaded
+  isOpen
 } from '../selectors';
 import Notice from './Notice';
 import Subscriptions from './Subscriptions';
@@ -26,14 +26,14 @@ import Account from './Account';
 import Loading from './Loading';
 import Error from './Error';
 import Contribute from './Contribute';
-import Update from './Notice/Update';
+import ServiceMessage from './ServiceMessage';
 
 const mapStateToProps = (state: ContentState) => ({
   open: isOpen(state),
   loaded: isLoaded(state),
   title: getTitle(state),
   noticeContext: isNoticeContext(state),
-  showUpdateMessage: getShowUpdateMessage(state)
+  hasServiceMessage: hasServiceMessage(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -46,7 +46,7 @@ interface ConnectProps {
   title: string;
   close: () => void;
   noticeContext: boolean;
-  showUpdateMessage: boolean;
+  hasServiceMessage: boolean;
 }
 
 type UIProps = ConnectProps & RouteComponentProps;
@@ -57,7 +57,7 @@ const UI = ({
   loaded,
   close,
   noticeContext,
-  showUpdateMessage
+  hasServiceMessage
 }: UIProps) => {
   if (open) {
     return (
@@ -69,8 +69,8 @@ const UI = ({
       >
         {loaded ? (
           <>
-            {showUpdateMessage ? (
-              <Update />
+            {hasServiceMessage ? (
+              <ServiceMessage />
             ) : (
               <Switch>
                 <Redirect exact path="/" to="/notices" />

@@ -1,20 +1,22 @@
-import { put, select, takeLatest } from 'redux-saga/effects';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { CloseCause } from 'app/lmem/ui';
 import {
-  toggleUI,
-  showBullesUpdateMessage,
   BROWSER_ACTION_CLICKED,
+  toggleUI,
   BrowserActionClickedAction
 } from 'app/actions';
 import { areTosAccepted } from '../selectors/prefs';
+import { getNbSubscriptions } from '../selectors/subscriptions.selectors';
+import serviceMessageSaga from './serviceMessage.saga';
 
 export function* browserActionClickedSaga(action: BrowserActionClickedAction) {
   const tosAccepted = yield select(areTosAccepted);
+  const nbSubscriptions = yield select(getNbSubscriptions);
 
-  if (tosAccepted) {
+  if (tosAccepted && nbSubscriptions > 0) {
     yield put(toggleUI(action.payload.tab, CloseCause.BrowserAction));
   } else {
-    yield put(showBullesUpdateMessage(action.payload.tab));
+    yield call(serviceMessageSaga, action);
   }
 }
 
