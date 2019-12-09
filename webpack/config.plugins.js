@@ -9,6 +9,7 @@ const SentryWebpackPlugin = require('@sentry/webpack-plugin');
 const R = require('ramda');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const basePlugins = require('../webpack/config.plugins.base');
 const manifests = require('../manifest');
 const { version } = require('../package.json');
@@ -128,7 +129,8 @@ module.exports = (env = {}, argv = {}, outputPath) => {
       'manifest.json',
       JSON.stringify(manifests[env.firefox ? 'firefoxDev' : env.build], null, 2)
     ),
-    new CopyWebpackPlugin(copyConfig)
+    new CopyWebpackPlugin(copyConfig),
+    new LodashModuleReplacementPlugin,
   ];
 
   if (env.sentry) {
