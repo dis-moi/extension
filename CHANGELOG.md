@@ -1,3 +1,19 @@
+# [3.10.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.9.0...v3.10.0) (2019-12-13)
+
+
+### Features
+
+* **contributor-screen:** add various links to contributor screen ([0b70813](https://github.com/insitu-project/recommendations-webextension/commit/0b70813))
+* **extension contributor screen:** added screen and its stories ([87994be](https://github.com/insitu-project/recommendations-webextension/commit/87994be))
+* **notice details:** added new hover behavior for contributor ([232346c](https://github.com/insitu-project/recommendations-webextension/commit/232346c))
+* **notice list:** added new hover behavior ([6df4b26](https://github.com/insitu-project/recommendations-webextension/commit/6df4b26))
+* **notice list:** moved arrow in link ([84b3865](https://github.com/insitu-project/recommendations-webextension/commit/84b3865))
+* **onboarding:** add 'Contribute' and 'Help' link in header ([0269f3f](https://github.com/insitu-project/recommendations-webextension/commit/0269f3f))
+* **onboarding:** remove onboarding subscriptions step and subscribe to all contributors instead ([a01d938](https://github.com/insitu-project/recommendations-webextension/commit/a01d938))
+* **onboarding examples screen:** added missing BottomBar and styled scroll ([c0528df](https://github.com/insitu-project/recommendations-webextension/commit/c0528df))
+* **storage:** switch from "local storage" to "browser sync storage" ([8cc2b9b](https://github.com/insitu-project/recommendations-webextension/commit/8cc2b9b))
+* **wording:** change "Abonner" related word to "Suivre" ([6ff7606](https://github.com/insitu-project/recommendations-webextension/commit/6ff7606))
+
 # [3.9.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.8.0...v3.9.0) (2019-12-06)
 
 
