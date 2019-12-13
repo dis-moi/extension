@@ -19,7 +19,9 @@ const commonProps = {
   dislike: action('dislike'),
   confirmDislike: action('confirmDislike'),
   undislike: action('undislike'),
-  view: action('view')
+  view: action('view'),
+  goBack: action('goBack'),
+  clickContributor: action('clickContributor')
 };
 
 storiesOf('organisms/NoticeDetails', module)

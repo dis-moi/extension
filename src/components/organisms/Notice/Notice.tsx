@@ -1,24 +1,18 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import { stripHtml } from 'app/utils/stripHtml';
-import {
-  Contributor,
-  OpenButton,
-  Button,
-  Timer,
-  CenterContainer
-} from '../../atoms';
-import Avatar from '../../molecules/Avatar/Avatar';
+import { Contributor, Button, Timer, CenterContainer } from 'components/atoms';
+import InteractiveAvatar from 'components/molecules/InteractiveAvatar';
 import Container, { height, marginTop } from './Container';
 import Content from './Content';
 import Deleted from './Deleted';
 import DeleteButton from './DeleteButton';
 import Title from './Title';
-import { StatefulNotice } from '../../../app/lmem/notice';
+import { StatefulNotice } from 'app/lmem/notice';
 import {
   CountDownState,
   initialState as countdownInitialState
-} from '../../../app/lmem/countdown';
+} from 'app/lmem/countdown';
 
 export const transitionKeys = {
   from: {
@@ -38,6 +32,13 @@ const Description = styled.div`
   width: 245px;
 `;
 
+const ContributorName = styled(Contributor)`
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`;
+
 export interface NoticeTransitionProps {
   item: StatefulNotice;
   props: object;
@@ -49,6 +50,7 @@ interface Props {
   dismiss: (id: number) => void;
   confirmDismiss: (id: number) => void;
   undismiss: (id: number) => void;
+  clickContributor: (id: number) => void;
   truncateTitleAt?: number;
   style?: object;
 }
@@ -99,6 +101,27 @@ export default class Notice extends PureComponent<Props, CountDownState> {
     }
   };
 
+  get isInteractive(): boolean {
+    const {
+      notice: {
+        state: { dismissed }
+      }
+    } = this.props;
+    const { intervalID } = this.state;
+
+    return !dismissed && !intervalID;
+  }
+
+  onContributorClicked = () => {
+    if (this.isInteractive) {
+      const {
+        notice: { contributor },
+        clickContributor
+      } = this.props;
+      clickContributor(contributor.id);
+    }
+  };
+
   componentWillUnmount(): void {
     this.stopCountdown();
   }
@@ -119,10 +142,7 @@ export default class Notice extends PureComponent<Props, CountDownState> {
     return (
       <Container style={style}>
         {!dismissed && !disliked && <DeleteButton onClick={this.onDismiss} />}
-        <Content
-          to={dismissed || intervalID ? undefined : `notices/details/${id}`}
-          isRead={read}
-        >
+        <Content isRead={read}>
           {(dismissed || disliked) && intervalID ? (
             <>
               <Deleted>Cette bulle ne s’affichera plus !</Deleted>
@@ -133,12 +153,21 @@ export default class Notice extends PureComponent<Props, CountDownState> {
             </>
           ) : (
             <>
-              <Avatar contributor={contributor} size="small" />
+              <InteractiveAvatar
+                onClick={this.onContributorClicked}
+                contributor={contributor}
+                size="small"
+              />
               <Description>
-                <Contributor>{contributor.name}</Contributor>
-                <Title>{stripHtml(message)}</Title>
+                <ContributorName onClick={this.onContributorClicked}>
+                  {contributor.name}
+                </ContributorName>
+                <Title
+                  to={this.isInteractive ? `notices/details/${id}` : undefined}
+                >
+                  {stripHtml(message)}
+                </Title>
               </Description>
-              <OpenButton />
             </>
           )}
         </Content>

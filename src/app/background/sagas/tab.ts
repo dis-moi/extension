@@ -38,6 +38,7 @@ import { isTabAuthorized } from '../selectors/resources';
 import { disable } from 'webext/browserAction';
 import { resetBadge } from 'app/lmem/badge';
 import serviceMessageSaga from './serviceMessage.saga';
+import { getNbSubscriptions } from '../selectors/subscriptions.selectors';
 
 export function* tabSaga({ meta: { tab } }: ReceivedNavigatedToUrlAction) {
   const tabAuthorized = yield select(isTabAuthorized(tab));
@@ -89,7 +90,8 @@ export const contextTriggeredSaga = function*({
 
     if (noticesToShow.length > 0) {
       const tosAccepted = yield select(areTosAccepted);
-      if (tosAccepted) {
+      const nbSubscriptions = yield select(getNbSubscriptions);
+      if (tosAccepted && nbSubscriptions > 0) {
         yield put(noticesFound(noticesToShow, tab));
         yield all(noticesToShow.map(({ id }) => put(noticeBadged(id, tab))));
       } else {

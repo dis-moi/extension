@@ -1,27 +1,31 @@
 import { createStore, applyMiddleware } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage
+import createBrowserStorage from 'webext/createBrowserStorage';
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
 import rootReducer, { BackgroundState } from '../reducers';
 import middlewares, { sagaMiddleware } from '../middlewares';
 import rootSaga from '../sagas';
 import migrate from './migrations';
-import { AppAction } from '../../actions';
+import { AppAction } from 'app/actions';
+
+export const persistConfig = {
+  key: 'root',
+  whitelist: [
+    'prefs',
+    'subscriptions',
+    'installationDetails',
+    'user',
+    'serviceMessage'
+  ],
+  version: 3,
+  migrate,
+  stateReconciler: autoMergeLevel2
+};
 
 const persistedReducers = persistReducer(
   {
-    key: 'root',
-    whitelist: [
-      'prefs',
-      'subscriptions',
-      'installationDetails',
-      'user',
-      'serviceMessage'
-    ],
-    storage,
-    version: 3,
-    migrate,
-    stateReconciler: autoMergeLevel2
+    ...persistConfig,
+    storage: createBrowserStorage('sync')
   },
   rootReducer
 );

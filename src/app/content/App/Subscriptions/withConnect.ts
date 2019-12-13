@@ -6,6 +6,7 @@ import {
   getNbTotalContributors,
   getSubscriptions
 } from 'app/options/store/selectors/contributors.selectors';
+import { push } from 'connected-react-router';
 
 const mapStateToProps = (state: ContentState) => ({
   nbTotalContributors: getNbTotalContributors(state),
@@ -13,7 +14,9 @@ const mapStateToProps = (state: ContentState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  openSubscriptions: () => dispatch(optionsRequested('/settings/subscriptions'))
+  openSubscriptions: () =>
+    dispatch(optionsRequested('/settings/subscriptions')),
+  clickContributor: (id: number) => dispatch(push(`/contributor/${id}`))
 });
 
 export default connect(

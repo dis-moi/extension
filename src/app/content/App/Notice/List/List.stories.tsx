@@ -18,7 +18,8 @@ const commonProps = {
   close: action('close'),
   dismiss: action('dismiss'),
   confirmDismiss: action('confirmDismiss'),
-  undismiss: action('undismiss')
+  undismiss: action('undismiss'),
+  clickContributor: action('clickContributor')
 };
 
 storiesOf('screens/Notice/List', module)

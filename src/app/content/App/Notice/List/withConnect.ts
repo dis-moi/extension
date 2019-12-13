@@ -4,8 +4,9 @@ import {
   undismissNotice as undismiss,
   confirmDismissNotice as confirmDismiss
 } from 'app/actions/notices';
-import { getNoticesToDisplay } from '../../../selectors';
-import { ContentState } from '../../../store';
+import clickContributor from 'app/content/actions/goToContributor';
+import { getNoticesToDisplay } from 'app/content/selectors';
+import { ContentState } from 'app/content/store';
 
 const mapStateToProps = (state: ContentState) => ({
   notices: getNoticesToDisplay(state)
@@ -14,7 +15,8 @@ const mapStateToProps = (state: ContentState) => ({
 const mapDispatchToProps = {
   dismiss,
   undismiss,
-  confirmDismiss
+  confirmDismiss,
+  clickContributor
 };
 
 export default connect(

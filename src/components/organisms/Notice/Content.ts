@@ -1,6 +1,5 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { LocationDescriptor } from 'history';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import { Contributor, OpenButton } from 'components/atoms';
@@ -11,15 +10,8 @@ interface ContentProps {
   children: ReactNode;
   isRead: boolean;
 }
-const Content = ({ to, isRead, ...props }: ContentProps) => {
-  if (to) {
-    return <Link to={to} {...props} />;
-  }
 
-  return <div {...props} />;
-};
-
-export default styled(Content)<ContentProps>`
+export default styled.div<ContentProps>`
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;

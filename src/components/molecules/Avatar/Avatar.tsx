@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { AvatarSize, Avatar as AvatarType } from 'app/lmem/contributor';
-import AvatarDefault from '../../atoms/icons/AvatarDefault';
+import AvatarDefault from 'components/atoms/icons/AvatarDefault';
 
 interface WrapperProps {
   size: AvatarSize;
@@ -36,10 +36,11 @@ interface AvatarProps {
   };
   size: AvatarSize;
   className?: string;
+  onClick?: () => void;
 }
 
-const Avatar = ({ contributor, size, className }: AvatarProps) => (
-  <Wrapper size={size} className={className}>
+const Avatar = ({ contributor, size, className, onClick }: AvatarProps) => (
+  <Wrapper size={size} className={className} onClick={onClick}>
     {contributor.avatar && contributor.avatar[size].url ? (
       <img src={contributor.avatar.normal.url} alt={contributor.name} />
     ) : (

@@ -17,9 +17,9 @@ import {
   generateStatefulNotice
 } from 'test/fakers/generateNotice';
 import { Details } from '.';
-import { intentions } from '../../../../lmem/intention';
+import { intentions } from 'app/lmem/intention';
 import { subMonths } from 'date-fns';
-import Notification from '../../../../../components/organisms/Notification';
+import Notification from 'components/organisms/Notification';
 import { generateContributor } from 'test/fakers/generateContributor';
 
 const defaultContributorName = Faker.name.findName();
@@ -32,7 +32,9 @@ const commonProps = {
   undislike: action('undislike'),
   view: action('view'),
   followSource: action('followSource'),
-  outboundLinkClicked: action('outboundLinkClicked')
+  outboundLinkClicked: action('outboundLinkClicked'),
+  goBack: action('goBack'),
+  clickContributor: action('clickContributor')
 };
 
 storiesOf('screens/Notice/Details', module)

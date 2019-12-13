@@ -17,7 +17,9 @@ import {
 import { InstallationDetails } from 'app/lmem/installation';
 import { ContentState } from '../store';
 import { getRegisteredFieldsPaths } from '../../utils/form';
-
+import { getContributors } from 'app/options/store/selectors/contributors.selectors';
+import { findItemById } from '../../utils/findItemById';
+import { StatefulContributor } from '../../lmem/contributor';
 export * from './serviceMessage.selectors';
 export * from './ui.selectors';
 
@@ -103,3 +105,16 @@ export const getFlatFormErrors = (formName: string) => (
     ),
     R.filter(Boolean)
   )(state);
+
+export const makeGetRouteParam = (param: string) => (
+  state: unknown,
+  { match: { params } }: RouteComponentProps<{ [_key: string]: string }>
+) => params[param];
+
+export const getContributorIdFromRouteParam = makeGetRouteParam('id');
+
+export const getCurrentContributor = createSelector(
+  [getContributors, getContributorIdFromRouteParam],
+  (contributors, contributorId) =>
+    findItemById<StatefulContributor>(Number(contributorId))(contributors)
+);

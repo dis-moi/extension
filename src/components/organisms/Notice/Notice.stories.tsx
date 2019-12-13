@@ -19,7 +19,8 @@ const longMessage =
 const commonProps = {
   dismiss: action('dismiss'),
   confirmDismiss: action('confirmDismiss'),
-  undismiss: action('undismiss')
+  undismiss: action('undismiss'),
+  clickContributor: action('clickContributor')
 };
 
 storiesOf('organisms/Notice', module)

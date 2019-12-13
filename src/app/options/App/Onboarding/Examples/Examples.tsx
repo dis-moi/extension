@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import BullesLogo from 'components/atoms/LogoBeta';
 import SubscriptionsScreen from '../../Settings/SubscriptionsScreen';
-import Intro from '../OnboardingAtoms/OnboardingIntro';
-import Title from '../OnboardingAtoms/OnboardingTitle';
-import Wrapper from '../OnboardingAtoms/OnboardingWrapper';
+import Intro from '../atoms/OnboardingIntro';
+import Title from '../atoms/OnboardingTitle';
+import Wrapper from '../atoms/OnboardingWrapper';
+import OnboardingButton from '../atoms/OnboardingButton';
+import Header from '../../Header';
 
 const Title2 = styled(Title)`
   margin-top: 20px;
@@ -12,21 +13,58 @@ const Title2 = styled(Title)`
   color: ${props => props.theme.activeColor};
 `;
 
-export default () => (
+const SuggestionsWrapper = styled.div`
+  height: calc(100vh - 440px);
+  margin-bottom: 150px;
+  overflow-y: scroll;
+  @media (max-width: 820px) {
+    height: auto;
+    margin-top: 0;
+    overflow-y: inherit;
+  }
+`;
+
+const BottomLineBg = styled.section`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  background-color: rgba(250, 250, 250, 0.7);
+`;
+
+interface ExamplesScreenProps {
+  next: () => void;
+}
+
+export default ({ next }: ExamplesScreenProps) => (
   <>
+    <Header />
     <Wrapper>
       <Intro>
-        <BullesLogo />
-
+        <Title2>
+          Voici votre réseau d&apos;informateurs sur les pages web que vous
+          visitez.
+        </Title2>
         <Title>
-          Félicitations, vous êtes maintenant abonné·e : vous recevrez les
-          messages de vos contributeur·ice·s durant votre navigation.
+          Si les bulles de l&apos;un d&apos;entre eux ne vous intéressent pas,
+          vous pouvez à tout moment vous désabonner.
         </Title>
-
-        <Title2>Ci-dessous vous pouvez tester quelques exemples.</Title2>
       </Intro>
     </Wrapper>
 
-    <SubscriptionsScreen noSidebar highlightExampleLink />
+    <SuggestionsWrapper>
+      <SubscriptionsScreen noSidebar highlightExampleLink />
+    </SuggestionsWrapper>
+
+    <BottomLineBg>
+      <OnboardingButton onClick={next}>Fermer</OnboardingButton>
+      et reprendre ma navigation normale
+    </BottomLineBg>
   </>
 );
