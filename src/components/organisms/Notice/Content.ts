@@ -56,12 +56,11 @@ export default styled.div<ContentProps>`
     stroke: ${props => props.theme.activeColor};
   }
 
-  p {
+  ${Title} {
     font-weight: ${props => (props.isRead ? '500' : 'bold')};
   }
 
-  [class^='${Contributor}'],
-  [class^='${Title}'] {
+  ${Contributor}, ${Title} {
     opacity: ${props => (props.isRead ? '.5' : '1')};
   }
 `;
