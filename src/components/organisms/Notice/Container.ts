@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { animated } from 'react-spring';
 
 // for animation purpose
-export const marginTop = 18;
+export const marginBottom = 18;
 export const height = 100;
 
 interface Props {
@@ -18,12 +18,6 @@ export default styled(animated.article)<Props>`
   align-items: center;
   justify-content: flex-end;
   font-size: ${props => (props.details ? '15px' : '16px')};
-
-  &:first-of-type {
-    margin-top: ${marginTop}px;
-  }
-
-  & + & {
-    margin-top: ${marginTop}px;
-  }
+  margin-bottom: 18px;
+  backface-visibility: hidden;
 `;
