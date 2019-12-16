@@ -8,15 +8,19 @@ import {
 import { areTosAccepted } from '../selectors/prefs';
 import { getNbSubscriptions } from '../selectors/subscriptions.selectors';
 import serviceMessageSaga from './serviceMessage.saga';
+import { getNumberOfUnreadNoticesOnTab } from '../selectors';
 
-export function* browserActionClickedSaga(action: BrowserActionClickedAction) {
+export function* browserActionClickedSaga({
+  meta: { tab }
+}: BrowserActionClickedAction) {
   const tosAccepted = yield select(areTosAccepted);
   const nbSubscriptions = yield select(getNbSubscriptions);
+  const nbNotices = yield select(getNumberOfUnreadNoticesOnTab(tab.id));
 
   if (tosAccepted && nbSubscriptions > 0) {
-    yield put(toggleUI(action.payload.tab, CloseCause.BrowserAction));
+    yield put(toggleUI(tab, CloseCause.BrowserAction));
   } else {
-    yield call(serviceMessageSaga, action);
+    yield call(serviceMessageSaga, tab, nbNotices);
   }
 }
 

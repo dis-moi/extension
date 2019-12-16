@@ -13,14 +13,20 @@ storiesOf('screens/ServiceMessage', module)
   ))
   .add('With an action', () => (
     <ServiceMessage
-      serviceMessage="I'm a service message!"
+      messages={["I'm a service message!"]}
       action={{ label: "I'm an action", url: '/onboarding' }}
       openOnboarding={() => action('openOnboarding')}
     />
   ))
   .add('Without an action', () => (
     <ServiceMessage
-      serviceMessage="I'm a service message!"
+      messages={["I'm a service message!"]}
+      openOnboarding={() => action('openOnboarding')}
+    />
+  ))
+  .add('With many paragraphs', () => (
+    <ServiceMessage
+      messages={["I'm a service message!", 'And here is a second one']}
       openOnboarding={() => action('openOnboarding')}
     />
   ));
