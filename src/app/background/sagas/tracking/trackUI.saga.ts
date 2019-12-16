@@ -7,7 +7,8 @@ import {
   NoticesFoundAction,
   createErrorAction,
   getURLFromActionMeta,
-  InstallationDetailsAction
+  InstallationDetailsAction,
+  BrowserActionClickedAction
 } from 'app/actions';
 
 export const startTrackingSaga = (tracker: Tracker) =>
@@ -66,13 +67,14 @@ export const trackCloseSaga = (tracker: Tracker) =>
   };
 
 export const trackBrowserActionClickedSaga = (tracker: Tracker) =>
-  function*(): SagaIterator {
+  function*(action: BrowserActionClickedAction): SagaIterator {
     try {
       yield call(tracker.trackEvent, {
         category: 'UI',
         action: 'click',
         name: 'BrowserAction',
-        value: 0
+        value: 0,
+        url: getURLFromActionMeta(action)
       });
     } catch (e) {
       createErrorAction()(e);
