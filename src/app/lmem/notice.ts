@@ -193,3 +193,6 @@ export const shouldNoticeBeShown = (notice: StatefulNotice): boolean =>
 export const isRead = (notice: StatefulNotice) => notice.state.read;
 
 export const isUnread = (notice: StatefulNotice) => !isRead(notice);
+
+export const compareUnread = (a: StatefulNotice, b: StatefulNotice) =>
+  +!isUnread(a) - +!isUnread(b);

@@ -12,7 +12,8 @@ import {
   getNotice,
   isUnread,
   shouldNoticeBeShown,
-  Contribution
+  Contribution,
+  compareUnread
 } from 'app/lmem/notice';
 import { InstallationDetails } from 'app/lmem/installation';
 import { ContentState } from '../store';
@@ -27,7 +28,7 @@ export const getNotices = (state: ContentState) => state.notices;
 
 export const getNoticesToDisplay = createSelector(
   getNotices,
-  notices => notices.filter(shouldNoticeBeShown)
+  notices => notices.filter(shouldNoticeBeShown).sort(compareUnread)
 );
 
 export const getUnreadNotices = (state: ContentState) =>
