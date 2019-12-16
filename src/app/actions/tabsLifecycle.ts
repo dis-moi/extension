@@ -1,6 +1,6 @@
 import { ReceivedAction } from 'webext/createMessageHandler';
 import Tab from 'app/lmem/tab';
-import { BaseAction, TabAction } from '.';
+import { BaseAction, StandardAction, TabAction } from '.';
 
 export const TAB_REMOVED = 'BROWSER/TAB_REMOVED';
 
@@ -22,4 +22,14 @@ export interface TabDiedAction extends TabAction {
 export const tabDied = (tab: Tab): TabDiedAction => ({
   type: TAB_DIED,
   meta: { tab }
+});
+
+export const TAB_ACTIVATED = 'BROWSER/TAB_ACTIVATED';
+export interface TabActivatedAction extends StandardAction {
+  type: typeof TAB_ACTIVATED;
+  meta: { tabId: number };
+}
+export const tabActivated = (tabId: number): TabActivatedAction => ({
+  type: TAB_ACTIVATED,
+  meta: { tabId }
 });
