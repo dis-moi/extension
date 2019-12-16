@@ -6,12 +6,12 @@ export interface ServiceMessageAction {
 }
 
 export interface ServiceMessageState {
-  serviceMessage: string | null;
+  messages: string[];
   action: ServiceMessageAction | null;
 }
 
 const initialState: ServiceMessageState = {
-  serviceMessage: null,
+  messages: [],
   action: null
 };
 
@@ -22,13 +22,13 @@ export default (
   switch (action.type) {
     case SHOW_SERVICE_MESSAGE: {
       return {
-        serviceMessage: action.payload.message,
+        messages: action.payload.messages,
         action: action.payload.action
       };
     }
     case CLOSED: {
       return {
-        serviceMessage: null,
+        messages: [],
         action: null
       };
     }

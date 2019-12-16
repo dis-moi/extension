@@ -10,7 +10,7 @@ describe('content > selectors > serviceMessage', () => {
     it('returns false if there is no serviceMessage', () => {
       const state: StateWithServiceMessage = {
         serviceMessage: {
-          serviceMessage: null,
+          messages: [],
           action: null
         }
       };
@@ -19,7 +19,7 @@ describe('content > selectors > serviceMessage', () => {
     it('returns true if serviceMessage is true', () => {
       const state: StateWithServiceMessage = {
         serviceMessage: {
-          serviceMessage: "Hey I'm a service message.",
+          messages: ["Hey I'm a service message."],
           action: null
         }
       };
