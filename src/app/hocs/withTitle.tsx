@@ -1,4 +1,4 @@
-import React, { ComponentType, useEffect } from 'react';
+import React, { ComponentType, useLayoutEffect } from 'react';
 import { connect } from 'react-redux';
 import { removeUITitle, setUITitle } from '../content/actions/ui/title';
 
@@ -24,7 +24,7 @@ const withTitle = <TComponentProps extends {}>(title: string | undefined) => (
     removeUITitle,
     ...props
   }: TitleProps & TComponentProps) => {
-    useEffect(() => {
+    useLayoutEffect(() => {
       setUITitle(title || '');
       return removeUITitle;
     }, []);

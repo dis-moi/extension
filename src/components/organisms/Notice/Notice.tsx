@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { stripHtml } from 'app/utils/stripHtml';
 import { Contributor, Button, Timer, CenterContainer } from 'components/atoms';
 import InteractiveAvatar from 'components/molecules/InteractiveAvatar';
-import Container, { height, marginTop } from './Container';
+import Container, { height, marginBottom } from './Container';
 import Content from './Content';
 import Deleted from './Deleted';
 import DeleteButton from './DeleteButton';
@@ -17,15 +17,19 @@ import {
 export const transitionKeys = {
   from: {
     height,
-    marginTop,
+    marginBottom,
     opacity: 0,
-    transform: 'translate3d(0%,200%,0)'
+    transform: 'translate3d(0%,100%,0)'
   },
   enter: { opacity: 1, transform: 'translate3d(0%,0%,0)' },
   leave: () => async (next: (...args: any[]) => Promise<{}>) => {
     await next({ opacity: 0, transform: 'translate3d(100%,0%,0)' });
-    await next({ height: 0, marginTop: 0 });
-  }
+    await next({ height: 0, marginBottom: 0 });
+  },
+  trail: 250,
+  unique: true,
+  reset: false,
+  config: { tension: 180, friction: 20 }
 };
 
 const Description = styled.div`
