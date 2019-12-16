@@ -8,6 +8,7 @@ import error from '../../sagas/error';
 import listenActionsFromMessages from '../../sagas/listenActionsFromMessages';
 import refreshMatchingContexts from './refreshMatchingContexts';
 import refreshContributors from './refreshContributors';
+import watchActivatedTab from './watchActivatedTab.saga';
 import watchBrowserAction from './watchBrowserAction.saga';
 import handleBrowserAction from './handleBrowserAction.saga';
 import openOptions from './openOptions.saga';
@@ -37,6 +38,7 @@ export default function* rootSaga() {
     fork(listenActionsFromMessages('background')),
     fork(externalMessage),
     fork(watchBrowserAction),
+    fork(watchActivatedTab),
     fork(handleBrowserAction),
     fork(openOptions),
     fork(ratings),
