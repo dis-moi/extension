@@ -68,8 +68,7 @@ export function* matchContextSaga({ meta: { tab } }: MatchContextAction) {
 
 export const contextTriggeredSaga = function*({
   payload: triggeredContexts,
-  meta: { tab },
-  type
+  meta: { tab }
 }: ContextTriggeredAction) {
   try {
     const installationDetails = yield select(getInstallationDetails);
@@ -99,11 +98,7 @@ export const contextTriggeredSaga = function*({
           getServiceMessageLastShowDate
         );
         if (!isToday(lastServiceMessageDate)) {
-          yield call(serviceMessageSaga, {
-            payload: triggeredContexts,
-            meta: { tab },
-            type
-          });
+          yield call(serviceMessageSaga, tab, noticesToShow.length);
         }
         return;
       }

@@ -24,18 +24,20 @@ const Button = styled(BackgroundButton)`
 `;
 
 interface ServiceMessageScreenProps {
-  serviceMessage: string;
+  messages: string[];
   action?: ServiceMessageAction | null;
   openOnboarding: (pathname: string) => () => void;
 }
 
 export default ({
-  serviceMessage,
+  messages,
   action,
   openOnboarding
 }: ServiceMessageScreenProps) => (
   <Content>
-    <Text>{serviceMessage}</Text>
+    {messages.map((message, i) => (
+      <Text key={`messages[${i}]`}>{message}</Text>
+    ))}
     {action && (
       <Button onClick={openOnboarding(action.url)}>{action.label}</Button>
     )}

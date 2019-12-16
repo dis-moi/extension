@@ -7,17 +7,21 @@ export interface ShowServiceMessageAction extends TabAction {
   type: typeof SHOW_SERVICE_MESSAGE;
   payload: {
     date: Date;
-    message: string;
+    messages: string[];
     action: ServiceMessageAction | null;
   };
 }
 export const showServiceMessage = (
-  message: string,
+  messages: string[],
   tab: Tab,
   action: ServiceMessageAction | null = null
 ): ShowServiceMessageAction => ({
   type: SHOW_SERVICE_MESSAGE,
-  payload: { date: new Date(), message, action },
+  payload: {
+    date: new Date(),
+    messages,
+    action
+  },
   meta: {
     tab,
     sendToTab: true
