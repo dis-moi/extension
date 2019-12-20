@@ -31,10 +31,14 @@ const release = Object.freeze({
       cmd: 'yarn run release:production'
     },
     {
+      path: '@semantic-release/exec',
+      cmd: 'yarn run sign:firefox'
+    },
+    {
       path: '@semantic-release/github',
       assets: [
         {
-          path: 'build/bulles-v*-firefox.zip',
+          path: 'build/bulles-*-an+fx.xpi',
           label: 'Firefox Package'
         },
         {

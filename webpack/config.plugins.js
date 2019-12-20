@@ -147,7 +147,8 @@ module.exports = (env = {}, argv = {}, outputPath) => {
       new CleanWebpackPlugin(),
       new ZipPlugin({
         path: '..',
-        filename: `bulles-v${version}-${env.build}.zip`
+        filename: `bulles-v${version}-${env.build}-unsigned`,
+        extension: env.build === 'firefox' ? 'xpi' : 'zip',
       })
     );
   }
