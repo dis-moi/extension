@@ -119,9 +119,53 @@ extensions.lmem@gmail.com
 > The publication may take a moment (10 to 30mins) to be visible in the store.
 
 ### Production
+1. Prepare a PR from the branch `develop` to `master` and merge it.
+
+2. Make you sure have access to semaphore and wait until the last master built is completed with success:
+https://semaphoreci.com/lmem/extension/branches/master
+
+ - Then click on the last master build and click "Deploy manually".
+ - Tick `production` checkbox
+
+> This will trigger the semantic release pipeline, see `release.config.js` in the root directory for more details.
+
+3. Check that the build is available on github.
+
+
+4. Upload the build to the store
+> **/!\** Next steps depends on the target:
+
+#### Chrome
+
+4.1 0pen the [chrome webstore](https://chrome.google.com/u/1/webstore/devconsole/g10525161170329704473?hl=fr) with the following account:
+```
+extensions.lmem@gmail.com
+```
+> Ask for the password to a super user! *OR* A super user may add your own google account to the developer group.
+
+- Click on the production build
+![Chrome webstore dashboard](doc/chrome-webstore-dashboard.png)
+> The production build is the one is more users and a status *Published* and *Public*.
+
+- Click on the package tab
+![Package tab](doc/package.png)
+
+- Finally click on the publish button
+![Publish button](doc/publish.png)
+
+> The publication may take a moment (10 to 30mins) to be visible in the store.
+
+#### Firefox
+
 ```
 @todo
 ```
+
+### Automating things!
+> @todo
+> https://github.com/DrewML/chrome-webstore-upload/blob/master/How%20to%20generate%20Google%20API%20keys.md
+> https://gokatz.me/blog/automate-your-chrome-extension-deployment-in-minutes/
+
 
 ## Storybook
 
