@@ -8,6 +8,7 @@ import {
   MARK_NOTICE_READ,
   NOTICES_FOUND,
   NO_NOTICES_DISPLAYED,
+  CONTEXT_TRIGGERED,
   CONTEXT_NOT_TRIGGERED,
   AppAction,
   MarkNoticeReadAction,
@@ -56,6 +57,7 @@ const isActionImpactingBadge = (action: AppAction): boolean =>
   action.type === MARK_NOTICE_READ ||
   action.type === NOTICES_FOUND ||
   action.type === FEEDBACK_ON_NOTICE ||
+  action.type === CONTEXT_TRIGGERED ||
   action.type === CONTEXT_NOT_TRIGGERED ||
   action.type === NO_NOTICES_DISPLAYED;
 
