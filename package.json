@@ -13,6 +13,7 @@
     "build:staging": "webpack --mode=production --env.build=staging",
     "release:staging": "webpack --mode=production --env.build=staging --env.sentry",
     "build:firefox": "webpack --mode=production --env.build=firefox",
+    "sign:firefox": "node --experimental-modules bin/web-ext-sign.mjs",
     "build:chromium": "webpack --mode=production --env.build=chromium",
     "build:production": "yarn build:chromium && yarn build:firefox",
     "release:production": "yarn build:chromium --env.sentry && yarn build:firefox --env.sentry",
@@ -201,5 +202,8 @@
     "webpack-cli": "^3.1.2",
     "webpack-filter-warnings-plugin": "^1.2.1",
     "zip-webpack-plugin": "^3.0.0"
+  },
+  "devDependencies": {
+    "sign-addon": "^2.0.4"
   }
 }
