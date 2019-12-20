@@ -1,3 +1,18 @@
+# [3.11.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.10.0...v3.11.0) (2019-12-20)
+
+
+### Bug Fixes
+
+* **badge:** add context triggered to the list of action affecting badge ([b325053](https://github.com/insitu-project/recommendations-webextension/commit/b325053))
+* **badge:** badge not updating when switching to a not yet registered tab ([131ee41](https://github.com/insitu-project/recommendations-webextension/commit/131ee41))
+
+
+### Features
+
+* **deploy:** add Firefox build signing process ([7b52646](https://github.com/insitu-project/recommendations-webextension/commit/7b52646))
+* **notices:** show unread notices first ([24ffa8e](https://github.com/insitu-project/recommendations-webextension/commit/24ffa8e))
+* **service-message:** change service message when there is at least one notice ont tab ([b79e79d](https://github.com/insitu-project/recommendations-webextension/commit/b79e79d))
+
 # [3.10.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.9.0...v3.10.0) (2019-12-13)
 
 
