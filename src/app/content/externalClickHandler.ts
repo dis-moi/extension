@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react';
 import { Store } from 'redux';
 import { close } from 'app/actions/ui';
 import { isOpen } from './selectors';
@@ -22,7 +23,7 @@ export const interactiveElementsSelectors: string[] = [
   '[onclick]'
 ];
 
-export const isHtmlElementInteractive = (element?: HTMLElement) =>
+export const isHtmlElementInteractive = (element?: HTMLElement | null) =>
   element &&
   element.matches &&
   interactiveElementsSelectors.some(selector => element.matches(selector));
@@ -31,7 +32,11 @@ export default (store: Store) => (e: MouseEvent) => {
   const state = store.getState();
 
   const element = e.target as HTMLElement;
-  const interactive = isHtmlElementInteractive(element);
+  const parentElement = element.parentElement;
+
+  const interactive =
+    isHtmlElementInteractive(element) ||
+    isHtmlElementInteractive(parentElement);
 
   if (!interactive && isOpen(state)) {
     store.dispatch(close(CloseCause.ClickOutside));
