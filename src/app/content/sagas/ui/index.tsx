@@ -18,6 +18,8 @@ import {
   open,
   opened,
   openFailed,
+  OpenFrom,
+  OpenAction,
   TOGGLE_UI,
   OPENED,
   CLOSE,
@@ -41,11 +43,12 @@ import { history } from '../../store';
 import { fakeLoadingSaga } from './fakeLoading.saga';
 import { StatefulNotice } from 'app/lmem/notice';
 import { LOADED } from '../../actions/ui/open.actions';
+import { CloseCause } from '../../../lmem/ui';
 
 const iframe = create(theme.iframe.style);
 let contentDocument: Document;
 
-export function* openSaga() {
+export function* openSaga({ payload: openedFrom }: OpenAction) {
   try {
     const isOpen = yield select(isNotificationOpen);
     const isMounted = yield select(isNotificationMounted);
@@ -73,7 +76,7 @@ export function* openSaga() {
         yield call(renderAppInIframe);
       }
 
-      yield put(opened());
+      yield put(opened(openedFrom));
     }
   } catch (e) {
     yield put(openFailed(e));
@@ -96,13 +99,19 @@ export function* closeSaga(closeAction: CloseAction) {
 export function* noticesFoundSaga() {
   const shouldOpen = yield select(hasUnreadNotices);
   if (shouldOpen) {
-    yield put(open());
+    yield put(open(OpenFrom.UnreadNotices));
   }
 }
 
-export function* toggleUISaga(action: ToggleUIAction) {
+export function* toggleUISaga({ payload: { closeCause } }: ToggleUIAction) {
   const isOpen = yield select(isNotificationOpen);
-  yield put(isOpen ? close(action.payload.closeCause) : open());
+  if (isOpen) {
+    yield put(close(closeCause));
+  } else {
+    yield put(
+      open(CloseCause.BrowserAction ? OpenFrom.BrowserAction : OpenFrom.Unknown)
+    );
+  }
 }
 
 export function* loadedSaga() {
