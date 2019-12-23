@@ -6,12 +6,21 @@ import { CloseCause } from 'app/lmem/ui';
 import Tab from 'app/lmem/tab';
 import { BaseAction, ErrorAction, TabAction } from '.';
 
+export enum OpenFrom {
+  BrowserAction,
+  UnreadNotices,
+  ServiceMessage,
+  Unknown
+}
+
 export const OPEN = 'OPEN';
 export interface OpenAction extends BaseAction {
   type: typeof OPEN;
+  payload: OpenFrom;
 }
-export const open = (tab?: Tab): OpenAction => ({
+export const open = (from: OpenFrom, tab?: Tab): OpenAction => ({
   type: OPEN,
+  payload: from,
   meta: {
     sendToTab: !!tab,
     tab
@@ -21,8 +30,12 @@ export const open = (tab?: Tab): OpenAction => ({
 export const OPENED = 'OPENED';
 export interface OpenedAction extends BaseAction {
   type: typeof OPENED;
+  payload?: OpenFrom;
 }
-export const opened = (): OpenedAction => ({ type: OPENED });
+export const opened = (from?: OpenFrom): OpenedAction => ({
+  type: OPENED,
+  payload: from
+});
 
 export const OPEN_FAILED = 'OPEN_FAILED';
 export interface OpenFailedAction extends ErrorAction {
