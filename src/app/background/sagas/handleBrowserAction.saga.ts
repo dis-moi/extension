@@ -3,7 +3,8 @@ import { CloseCause } from 'app/lmem/ui';
 import {
   BROWSER_ACTION_CLICKED,
   toggleUI,
-  BrowserActionClickedAction
+  BrowserActionClickedAction,
+  createErrorAction
 } from 'app/actions';
 import { areTosAccepted } from '../selectors/prefs';
 import { getNbSubscriptions } from '../selectors/subscriptions.selectors';
@@ -13,14 +14,18 @@ import { getNumberOfUnreadNoticesOnTab } from '../selectors';
 export function* browserActionClickedSaga({
   meta: { tab }
 }: BrowserActionClickedAction) {
-  const tosAccepted = yield select(areTosAccepted);
-  const nbSubscriptions = yield select(getNbSubscriptions);
-  const nbNotices = yield select(getNumberOfUnreadNoticesOnTab(tab.id));
+  try {
+    const tosAccepted = yield select(areTosAccepted);
+    const nbSubscriptions = yield select(getNbSubscriptions);
+    const nbNotices = yield select(getNumberOfUnreadNoticesOnTab(tab.id));
 
-  if (tosAccepted && nbSubscriptions > 0) {
-    yield put(toggleUI(tab, CloseCause.BrowserAction));
-  } else {
-    yield call(serviceMessageSaga, tab, nbNotices);
+    if (tosAccepted && nbSubscriptions > 0) {
+      yield put(toggleUI(tab, CloseCause.BrowserAction));
+    } else {
+      yield call(serviceMessageSaga, tab, nbNotices);
+    }
+  } catch (e) {
+    yield put(createErrorAction()(e));
   }
 }
 
