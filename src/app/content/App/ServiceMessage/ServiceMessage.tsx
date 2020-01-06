@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { BackgroundButton } from 'components/atoms';
-import { ServiceMessageAction } from 'app/content/reducers/serviceMessage.reducer';
+import { ServiceMessageAction } from 'app/lmem/ServiceMessage';
 
 const Content = styled.section`
   margin-top: 50px;

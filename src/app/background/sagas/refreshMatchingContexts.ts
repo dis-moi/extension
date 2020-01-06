@@ -10,12 +10,11 @@ import { getSubscriptions } from '../selectors/subscriptions.selectors';
 
 function* refreshMatchingContexts() {
   try {
-    const subscriptions = yield select(getSubscriptions);
-    const matchingContexts =
-      subscriptions.length > 0
-        ? yield call(fetchMatchingContexts, subscriptions)
-        : [];
-    yield put(receivedMatchingContexts(matchingContexts));
+    yield put(
+      receivedMatchingContexts(
+        yield call(fetchMatchingContexts, yield select(getSubscriptions))
+      )
+    );
   } catch (e) {
     yield put(refreshMatchingContextsFailed(e));
   }

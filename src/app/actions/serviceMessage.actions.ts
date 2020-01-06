@@ -1,27 +1,18 @@
 import { TabAction } from './';
 import Tab from 'app/lmem/tab';
-import { ServiceMessageAction } from '../content/reducers/serviceMessage.reducer';
+import ServiceMessage from 'app/lmem/ServiceMessage';
 
 export const SHOW_SERVICE_MESSAGE = 'SHOW_SERVICE_MESSAGE';
 export interface ShowServiceMessageAction extends TabAction {
   type: typeof SHOW_SERVICE_MESSAGE;
-  payload: {
-    date: Date;
-    messages: string[];
-    action: ServiceMessageAction | null;
-  };
+  payload: ServiceMessage;
 }
 export const showServiceMessage = (
-  messages: string[],
-  tab: Tab,
-  action: ServiceMessageAction | null = null
+  serviceMessage: ServiceMessage,
+  tab: Tab
 ): ShowServiceMessageAction => ({
   type: SHOW_SERVICE_MESSAGE,
-  payload: {
-    date: new Date(),
-    messages,
-    action
-  },
+  payload: { ...serviceMessage, lastShownDate: new Date() },
   meta: {
     tab,
     sendToTab: true
