@@ -1,6 +1,5 @@
 import { all, call, put, select, takeEvery } from 'redux-saga/effects';
 import * as R from 'ramda';
-import { isToday } from 'date-fns';
 import {
   CONTEXT_TRIGGERED,
   MATCH_CONTEXT,
@@ -32,7 +31,6 @@ import {
 } from '../selectors/prefs';
 import { findTriggeredContexts } from '../selectors';
 import { getInstallationDetails } from '../selectors/installationDetails';
-import { getServiceMessageLastShowDate } from '../selectors/serviceMessage.selectors';
 import sendToTabSaga from './lib/sendToTab.saga';
 import { isTabAuthorized } from '../selectors/resources';
 import { disable } from 'webext/browserAction';
@@ -74,6 +72,8 @@ export const contextTriggeredSaga = function*({
     const installationDetails = yield select(getInstallationDetails);
     yield put(init(installationDetails, tab));
 
+    const tosAccepted = yield select(areTosAccepted);
+    const nbSubscriptions = yield select(getNbSubscriptions);
     const toFetch = R.compose<MatchingContext[], string[], string[]>(
       R.uniq,
       R.map(tc => tc.noticeUrl)
@@ -83,25 +83,19 @@ export const contextTriggeredSaga = function*({
     yield put(noticesFetched(notices));
     const validNotices: Notice[] = notices.filter(warnIfNoticeInvalid);
 
+    // Break saga execution if the "installation is not complete".
+    if (!tosAccepted || nbSubscriptions === 0) {
+      yield call(serviceMessageSaga, tab, validNotices.length);
+
+      return;
+    }
+
     const noticesToShow: StatefulNotice[] = yield select(
       getNoticesToDisplay(validNotices)
     );
-
     if (noticesToShow.length > 0) {
-      const tosAccepted = yield select(areTosAccepted);
-      const nbSubscriptions = yield select(getNbSubscriptions);
-      if (tosAccepted && nbSubscriptions > 0) {
-        yield put(noticesFound(noticesToShow, tab));
-        yield all(noticesToShow.map(({ id }) => put(noticeBadged(id, tab))));
-      } else {
-        const lastServiceMessageDate = yield select(
-          getServiceMessageLastShowDate
-        );
-        if (!isToday(lastServiceMessageDate)) {
-          yield call(serviceMessageSaga, tab, noticesToShow.length);
-        }
-        return;
-      }
+      yield put(noticesFound(noticesToShow, tab));
+      yield all(noticesToShow.map(({ id }) => put(noticeBadged(id, tab))));
     } else {
       yield put(noNoticesDisplayed(tab));
     }

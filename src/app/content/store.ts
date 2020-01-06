@@ -13,15 +13,17 @@ import { ContributorsState } from 'app/options/store/reducers/contributors.reduc
 
 export const history = createMemoryHistory();
 
-export interface ContentState {
+export interface StateWithServiceMessage {
+  serviceMessage: ServiceMessageState;
+}
+export type ContentState = StateWithServiceMessage & {
   installationDetails: InstallationDetailsState;
   ui: UIState;
   notices: NoticesState;
   router: RouterState;
   form: FormStateMap;
-  serviceMessage: ServiceMessageState;
   contributors: ContributorsState;
-}
+};
 
 const sagaMiddleware = createSagaMiddleware();
 

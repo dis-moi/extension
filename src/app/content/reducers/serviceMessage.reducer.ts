@@ -1,18 +1,12 @@
 import { CLOSED, SHOW_SERVICE_MESSAGE, AppAction } from 'app/actions';
+import ServiceMessage from 'app/lmem/ServiceMessage';
 
-export interface ServiceMessageAction {
-  label: string;
-  url: string;
-}
-
-export interface ServiceMessageState {
-  messages: string[];
-  action: ServiceMessageAction | null;
-}
+export type ServiceMessageState = ServiceMessage;
 
 const initialState: ServiceMessageState = {
   messages: [],
-  action: null
+  action: null,
+  lastShownDate: null
 };
 
 export default (
@@ -21,13 +15,11 @@ export default (
 ): ServiceMessageState => {
   switch (action.type) {
     case SHOW_SERVICE_MESSAGE: {
-      return {
-        messages: action.payload.messages,
-        action: action.payload.action
-      };
+      return action.payload;
     }
     case CLOSED: {
       return {
+        lastShownDate: null,
         messages: [],
         action: null
       };
