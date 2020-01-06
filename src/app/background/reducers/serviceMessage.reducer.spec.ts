@@ -14,10 +14,17 @@ describe('background > reducers > serviceMessage', () => {
   it('saves the lastShownDate from SHOW_SERVICE_MESSAGE action', () => {
     const now = new Date();
     const clock = useFakeTimers(now.getTime());
-    const action = showServiceMessage(["Hey there I'm a service message"], {
-      id: 1,
-      url: ''
-    });
+    const action = showServiceMessage(
+      {
+        messages: ["Hey there I'm a service message"],
+        lastShownDate: null,
+        action: null
+      },
+      {
+        id: 1,
+        url: ''
+      }
+    );
     const state: ServiceMessageState = {
       lastShownDate: null
     };

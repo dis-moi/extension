@@ -1,9 +1,11 @@
 import { put, select } from 'redux-saga/effects';
 import * as R from 'ramda';
-import { showServiceMessage } from 'app/actions';
+import { createErrorAction, open, showServiceMessage } from 'app/actions';
 import { areTosAccepted } from '../selectors/prefs';
 import { getNbSubscriptions } from '../selectors/subscriptions.selectors';
 import Tab from 'app/lmem/tab';
+import { getServiceMessageLastShowDate } from '../selectors/serviceMessage.selectors';
+import { isToday } from 'date-fns';
 
 export const buildMessages = (messages: string[], nbNotices = 0): string[] => {
   const firstMessage =
@@ -15,22 +17,45 @@ export const buildMessages = (messages: string[], nbNotices = 0): string[] => {
 };
 
 export default function* serviceMessageSaga(tab: Tab, nbNotices = 0) {
-  const tosAccepted = yield select(areTosAccepted);
-  const nbSubscriptions = yield select(getNbSubscriptions);
+  try {
+    const tosAccepted = yield select(areTosAccepted);
+    const nbSubscriptions = yield select(getNbSubscriptions);
+    const lastShownDate = yield select(getServiceMessageLastShowDate);
 
-  if (!tosAccepted) {
-    yield put(
-      showServiceMessage(buildMessages([], nbNotices), tab, {
-        label: 'Lire et accepter les CGU',
-        url: '/onboarding'
-      })
-    );
-  } else if (tosAccepted && nbSubscriptions === 0) {
-    yield put(
-      showServiceMessage(buildMessages([], nbNotices), tab, {
-        label: 'Choisir mes contributeurs',
-        url: '/settings/suggestions'
-      })
-    );
+    if (!tosAccepted) {
+      yield put(
+        showServiceMessage(
+          {
+            messages: buildMessages([], nbNotices),
+            action: {
+              label: 'Lire et accepter les CGU',
+              url: '/onboarding'
+            },
+            lastShownDate: null
+          },
+          tab
+        )
+      );
+    } else if (tosAccepted && nbSubscriptions === 0) {
+      yield put(
+        showServiceMessage(
+          {
+            messages: buildMessages([], nbNotices),
+            action: {
+              label: 'Choisir mes contributeurs',
+              url: '/settings/suggestions'
+            },
+            lastShownDate: null
+          },
+          tab
+        )
+      );
+    }
+
+    if (!isToday(lastShownDate)) {
+      yield put(open(tab));
+    }
+  } catch (e) {
+    yield put(createErrorAction()(e));
   }
 }

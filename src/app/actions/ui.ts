@@ -10,7 +10,13 @@ export const OPEN = 'OPEN';
 export interface OpenAction extends BaseAction {
   type: typeof OPEN;
 }
-export const open = (): OpenAction => ({ type: OPEN });
+export const open = (tab?: Tab): OpenAction => ({
+  type: OPEN,
+  meta: {
+    sendToTab: !!tab,
+    tab
+  }
+});
 
 export const OPENED = 'OPENED';
 export interface OpenedAction extends BaseAction {

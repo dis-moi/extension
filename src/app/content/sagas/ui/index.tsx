@@ -18,7 +18,6 @@ import {
   open,
   opened,
   openFailed,
-  SHOW_SERVICE_MESSAGE,
   TOGGLE_UI,
   OPENED,
   CLOSE,
@@ -117,7 +116,7 @@ export function* loadedSaga() {
 export default function* UISaga() {
   yield takeLatest(OPEN, openSaga);
   yield takeLatest(CLOSE, closeSaga);
-  yield takeEvery([TOGGLE_UI, SHOW_SERVICE_MESSAGE], toggleUISaga);
+  yield takeEvery(TOGGLE_UI, toggleUISaga);
   yield takeLatest(NOTICES_FOUND, noticesFoundSaga);
   yield takeLatest(OPENED, fakeLoadingSaga);
   yield takeLatest(LOADED, loadedSaga);

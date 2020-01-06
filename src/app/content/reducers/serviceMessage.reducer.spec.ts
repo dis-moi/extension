@@ -14,16 +14,24 @@ describe('content > reducers > serviceMessage', () => {
   it('shows update message when receive SHOW_SERVICE_MESSAGE', () => {
     const state: ServiceMessageState = {
       messages: [],
-      action: null
+      action: null,
+      lastShownDate: null
     };
     expect(
-      serviceMessage(state, showServiceMessage(['message'], { id: 1, url: '' }))
+      serviceMessage(
+        state,
+        showServiceMessage(
+          { messages: ['message'], lastShownDate: null, action: null },
+          { id: 1, url: '' }
+        )
+      )
     ).to.have.deep.property('messages', ['message']);
   });
   it('removes the update message when UI is CLOSED', () => {
     const state: ServiceMessageState = {
       messages: [],
-      action: null
+      action: null,
+      lastShownDate: null
     };
     expect(
       serviceMessage(state, closed(CloseCause.CloseButton))

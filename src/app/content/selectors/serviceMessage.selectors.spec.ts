@@ -1,9 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import { expect } from 'chai';
-import {
-  hasServiceMessage,
-  StateWithServiceMessage
-} from './serviceMessage.selectors';
+import { hasServiceMessage } from './serviceMessage.selectors';
+import { StateWithServiceMessage } from '../store';
 
 describe('content > selectors > serviceMessage', () => {
   describe('serviceMessage', () => {
@@ -11,7 +9,8 @@ describe('content > selectors > serviceMessage', () => {
       const state: StateWithServiceMessage = {
         serviceMessage: {
           messages: [],
-          action: null
+          action: null,
+          lastShownDate: null
         }
       };
       expect(hasServiceMessage(state)).to.be.false;
@@ -20,7 +19,8 @@ describe('content > selectors > serviceMessage', () => {
       const state: StateWithServiceMessage = {
         serviceMessage: {
           messages: ["Hey I'm a service message."],
-          action: null
+          action: null,
+          lastShownDate: null
         }
       };
       expect(hasServiceMessage(state)).to.be.true;

@@ -19,7 +19,7 @@ export default (
   switch (action.type) {
     case SHOW_SERVICE_MESSAGE: {
       return {
-        lastShownDate: action.payload.date
+        lastShownDate: action.payload.lastShownDate
       };
     }
 
