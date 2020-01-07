@@ -1,3 +1,19 @@
+# [3.12.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.11.0...v3.12.0) (2020-01-07)
+
+
+### Bug Fixes
+
+* **browser-action:** add missing try catch to avoid crashes on error ([4c73cf9](https://github.com/insitu-project/recommendations-webextension/commit/4c73cf9))
+* **firefox:** fix "Close onboarding" button not closing the options page ([f3521a1](https://github.com/insitu-project/recommendations-webextension/commit/f3521a1))
+* **ui:** enhance detection of external button click ([208c36a](https://github.com/insitu-project/recommendations-webextension/commit/208c36a))
+
+
+### Features
+
+* **exclusion:** update manifest to exclude more contexts ([b785619](https://github.com/insitu-project/recommendations-webextension/commit/b785619))
+* **loader:** don't show loader when the UI is opened from the browser action ([274756d](https://github.com/insitu-project/recommendations-webextension/commit/274756d))
+* **pdf:** add PDF viewer detection function ([0244b9a](https://github.com/insitu-project/recommendations-webextension/commit/0244b9a))
+
 # [3.11.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.10.0...v3.11.0) (2019-12-20)
 
 
