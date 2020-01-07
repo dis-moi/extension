@@ -1,3 +1,49 @@
+# [3.11.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.10.0...v3.11.0) (2019-12-20)
+
+
+### Bug Fixes
+
+* **badge:** add context triggered to the list of action affecting badge ([b325053](https://github.com/insitu-project/recommendations-webextension/commit/b325053))
+* **badge:** badge not updating when switching to a not yet registered tab ([131ee41](https://github.com/insitu-project/recommendations-webextension/commit/131ee41))
+
+
+### Features
+
+* **deploy:** add Firefox build signing process ([7b52646](https://github.com/insitu-project/recommendations-webextension/commit/7b52646))
+* **notices:** show unread notices first ([24ffa8e](https://github.com/insitu-project/recommendations-webextension/commit/24ffa8e))
+* **service-message:** change service message when there is at least one notice ont tab ([b79e79d](https://github.com/insitu-project/recommendations-webextension/commit/b79e79d))
+
+# [3.10.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.9.0...v3.10.0) (2019-12-13)
+
+
+### Features
+
+* **contributor-screen:** add various links to contributor screen ([0b70813](https://github.com/insitu-project/recommendations-webextension/commit/0b70813))
+* **extension contributor screen:** added screen and its stories ([87994be](https://github.com/insitu-project/recommendations-webextension/commit/87994be))
+* **notice details:** added new hover behavior for contributor ([232346c](https://github.com/insitu-project/recommendations-webextension/commit/232346c))
+* **notice list:** added new hover behavior ([6df4b26](https://github.com/insitu-project/recommendations-webextension/commit/6df4b26))
+* **notice list:** moved arrow in link ([84b3865](https://github.com/insitu-project/recommendations-webextension/commit/84b3865))
+* **onboarding:** add 'Contribute' and 'Help' link in header ([0269f3f](https://github.com/insitu-project/recommendations-webextension/commit/0269f3f))
+* **onboarding:** remove onboarding subscriptions step and subscribe to all contributors instead ([a01d938](https://github.com/insitu-project/recommendations-webextension/commit/a01d938))
+* **onboarding examples screen:** added missing BottomBar and styled scroll ([c0528df](https://github.com/insitu-project/recommendations-webextension/commit/c0528df))
+* **storage:** switch from "local storage" to "browser sync storage" ([8cc2b9b](https://github.com/insitu-project/recommendations-webextension/commit/8cc2b9b))
+* **wording:** change "Abonner" related word to "Suivre" ([6ff7606](https://github.com/insitu-project/recommendations-webextension/commit/6ff7606))
+
+# [3.9.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.8.0...v3.9.0) (2019-12-06)
+
+
+### Bug Fixes
+
+* broken imports ([214ef1f](https://github.com/insitu-project/recommendations-webextension/commit/214ef1f))
+* tell TS we know `serviceMessage` is defined at this point ([7148121](https://github.com/insitu-project/recommendations-webextension/commit/7148121))
+* **onboarding:** onboarding process was opened on every extension update ([ae3e2b1](https://github.com/insitu-project/recommendations-webextension/commit/ae3e2b1))
+* **service-message:** fix test on number of subscriptions ([995467b](https://github.com/insitu-project/recommendations-webextension/commit/995467b))
+
+
+### Features
+
+* **service-message:** add generic service message screen ([250fe43](https://github.com/insitu-project/recommendations-webextension/commit/250fe43))
+
 # [3.8.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.7.2...v3.8.0) (2019-11-27)
 
 
