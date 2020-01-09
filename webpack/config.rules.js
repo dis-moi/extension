@@ -65,16 +65,21 @@ module.exports = (env, argv) => {
           use: [{ loader: 'style-loader' }, { loader: 'css-loader' }]
         },
         {
-          test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-          loader: 'url-loader'
-        },
-        {
-          test: /\.png?$/,
+          test: /\.(png)$/,
           loader: 'file-loader',
           options: {
             name: '[path][name].[ext]',
             context: 'src/assets/',
             publicPath: '/'
+          }
+        },
+        {
+          test: /\.(woff2?)$/,
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'fonts',
+            publicPath: '/fonts'
           }
         },
         {

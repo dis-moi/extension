@@ -20,6 +20,8 @@ if (!(window as CustomWindow).__BULLES__CONTENT_SCRIPT_INJECTED__) {
       });
     }
 
+    require('typeface-lato');
+    require('typeface-sedgwick-ave');
     const store = require('./store').default;
     const documentReady = require('../utils/documentReady').default;
     const externalClickHandler = require('./externalClickHandler').default;
