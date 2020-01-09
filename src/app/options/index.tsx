@@ -10,5 +10,7 @@ configureSentryScope((scope: Scope) => {
 import React from 'react';
 import { render } from 'react-dom';
 import App from './App';
+import 'typeface-lato';
+import 'typeface-sedgwick-ave';
 
 render(<App />, document.getElementById('root'));
