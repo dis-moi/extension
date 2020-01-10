@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 const LogoWrapper = styled.div`
+  position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100%;
   height: auto;
