@@ -28,6 +28,7 @@ interface Props {
   goToSuggestions: () => void;
   highlightExampleLink?: boolean;
   noSidebar?: boolean;
+  className?: string;
 }
 
 export const SubscriptionsScreen = ({
@@ -38,7 +39,8 @@ export const SubscriptionsScreen = ({
   unsubscribe,
   goToSuggestions,
   highlightExampleLink,
-  noSidebar
+  noSidebar,
+  className
 }: Props) => {
   const [initialSubscriptions, setInitialSubscriptions] = useState(
     subscriptions
@@ -60,7 +62,7 @@ export const SubscriptionsScreen = ({
   }
 
   const contributorsList = (
-    <ContributorsList>
+    <ContributorsList className={className}>
       {subscriptionsToRender.map(contributor => (
         <ContributorLarge
           key={contributor.id}
@@ -79,7 +81,7 @@ export const SubscriptionsScreen = ({
   }
 
   return (
-    <TwoColumns>
+    <TwoColumns className={className}>
       {contributorsList}
       <SuggestionsSidebar
         subscriptions={subscriptions}
@@ -93,4 +95,4 @@ export const SubscriptionsScreen = ({
   );
 };
 
-export default SubscriptionsScreen;
+export default styled(SubscriptionsScreen)``;
