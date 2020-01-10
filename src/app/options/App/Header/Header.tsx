@@ -1,17 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-import Logo from 'components/atoms/LogoBeta';
+import Logo from 'components/atoms/Logo';
 import LogoWrapper from './LogoWrapper';
 import { ExternalLink } from 'components/atoms';
 
-const HeaderNav = styled.nav``;
+const HeaderNav = styled.nav`
+  position: absolute;
+  top: 0;
+  right: 10px;
+`;
 
 const HeaderNavItem = styled(ExternalLink)`
-  font-size: 16px;
+  font-size: 12px;
   color: ${props => props.theme.primaryColor};
 
   & + & {
-    margin-left: 16px;
+    margin-left: 32px;
   }
 `;
 
@@ -20,10 +24,10 @@ const Header = () => (
     <Logo />
 
     <HeaderNav>
+      <HeaderNavItem href="https://www.bulles.fr/aide/">Aide</HeaderNavItem>
       <HeaderNavItem href="https://www.bulles.fr/devenir-contributeur/">
         Devenir contributeur
       </HeaderNavItem>
-      <HeaderNavItem href="https://www.bulles.fr/aide/">Aide</HeaderNavItem>
     </HeaderNav>
   </LogoWrapper>
 );
