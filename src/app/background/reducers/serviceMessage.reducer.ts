@@ -1,4 +1,4 @@
-import { AppAction, SHOW_SERVICE_MESSAGE } from 'app/actions';
+import { AppAction, SERVICE_MESSAGE } from 'app/actions';
 
 export interface ServiceMessageState {
   lastShownDate: null | Date;
@@ -17,7 +17,7 @@ export default (
   action: AppAction
 ): ServiceMessageState => {
   switch (action.type) {
-    case SHOW_SERVICE_MESSAGE: {
+    case SERVICE_MESSAGE: {
       return {
         lastShownDate: action.payload.lastShownDate
       };

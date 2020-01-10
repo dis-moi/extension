@@ -1,11 +1,8 @@
-import { Action } from 'redux';
-import { tabActivated } from 'app/actions';
-
-type Emit = (action: Action) => void;
+type Emit = (tabId: number) => void;
 
 export default (emit: Emit) => {
   const handleTabActivated = ({ tabId }: chrome.tabs.TabActiveInfo) => {
-    emit(tabActivated(tabId));
+    emit(tabId);
   };
 
   chrome.tabs.onActivated.addListener(handleTabActivated);

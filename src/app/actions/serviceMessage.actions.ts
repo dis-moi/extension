@@ -2,17 +2,30 @@ import { TabAction } from './';
 import Tab from 'app/lmem/tab';
 import ServiceMessage from 'app/lmem/ServiceMessage';
 
-export const SHOW_SERVICE_MESSAGE = 'SHOW_SERVICE_MESSAGE';
+export const SERVICE_MESSAGE = 'SERVICE_MESSAGE';
 export interface ShowServiceMessageAction extends TabAction {
-  type: typeof SHOW_SERVICE_MESSAGE;
+  type: typeof SERVICE_MESSAGE;
   payload: ServiceMessage;
 }
 export const showServiceMessage = (
   serviceMessage: ServiceMessage,
   tab: Tab
 ): ShowServiceMessageAction => ({
-  type: SHOW_SERVICE_MESSAGE,
+  type: SERVICE_MESSAGE,
   payload: { ...serviceMessage, lastShownDate: new Date() },
+  meta: {
+    tab,
+    sendToTab: true
+  }
+});
+
+export const clearServiceMessage = (tab: Tab): ShowServiceMessageAction => ({
+  type: SERVICE_MESSAGE,
+  payload: {
+    messages: [],
+    action: null,
+    lastShownDate: null
+  },
   meta: {
     tab,
     sendToTab: true

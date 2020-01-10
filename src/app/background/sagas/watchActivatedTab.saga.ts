@@ -1,7 +1,7 @@
 import { call, put, take, select } from '@redux-saga/core/effects';
 import { eventChannel } from '@redux-saga/core';
 import createActivatedTabListener from 'webext/createActivatedTabListener';
-import { createErrorAction } from 'app/actions';
+import { createErrorAction, tabActivated } from 'app/actions';
 import { getTabById } from '../selectors/tabs';
 import { disable } from 'webext/browserAction';
 import { resetBadge } from 'app/lmem/badge';
@@ -11,10 +11,11 @@ export default function*() {
 
   while (true) {
     try {
-      const {
-        meta: { tabId }
-      } = yield take(channel);
+      const tabId = yield take(channel);
       const tab = yield select(getTabById(tabId));
+      if (tab && tab.url) {
+        yield put(tabActivated(tab));
+      }
 
       if (!tab || !tab.url) {
         yield call(resetBadge, tabId);
