@@ -95,8 +95,17 @@ module.exports = (env = {}, argv = {}, outputPath) => {
     {
       from: 'node_modules/webextension-polyfill/dist/browser-polyfill.js',
       to: path.join(buildPath, 'js')
+    },
+    {
+      from: 'node_modules/typeface-lato/files/',
+      to: path.join(buildPath, 'fonts/')
+    },
+    {
+      from: 'node_modules/typeface-sedgwick-ave/files/',
+      to: path.join(buildPath, 'fonts/')
     }
   ];
+
   if (argv.mode !== 'production') {
     copyConfig.push({
       from: 'test/integration',
@@ -130,7 +139,7 @@ module.exports = (env = {}, argv = {}, outputPath) => {
       JSON.stringify(manifests[env.firefox ? 'firefoxDev' : env.build], null, 2)
     ),
     new CopyWebpackPlugin(copyConfig),
-    new LodashModuleReplacementPlugin,
+    new LodashModuleReplacementPlugin()
   ];
 
   if (env.sentry) {
@@ -150,7 +159,7 @@ module.exports = (env = {}, argv = {}, outputPath) => {
       new ZipPlugin({
         path: '..',
         filename: `bulles-v${version}-${env.build}-unsigned`,
-        extension: env.build === 'firefox' ? 'xpi' : 'zip',
+        extension: env.build === 'firefox' ? 'xpi' : 'zip'
       })
     );
   }
