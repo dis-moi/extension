@@ -1,5 +1,5 @@
 import { SagaIterator } from '@redux-saga/types';
-import { call } from '@redux-saga/core/effects';
+import { call, put } from '@redux-saga/core/effects';
 import Tracker from 'types/Tracker';
 import {
   ContributorAction,
@@ -19,6 +19,6 @@ export const trackContributorActionSaga = (tracker: Tracker) =>
         url: getURLFromActionMeta(action)
       });
     } catch (e) {
-      createErrorAction()(e);
+      yield put(createErrorAction()(e));
     }
   };
