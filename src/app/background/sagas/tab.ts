@@ -17,9 +17,13 @@ import {
   noticesFetched,
   AppAction,
   ContextTriggeredAction,
+  ContextNotTriggeredAction,
   MatchContextAction,
-  ReceivedNavigatedToUrlAction,
-  TabAction
+  TabAction,
+  CONTEXT_NOT_TRIGGERED,
+  createErrorAction,
+  TAB_ACTIVATED,
+  clearServiceMessage
 } from 'app/actions';
 import { MatchingContext } from 'app/lmem/matchingContext';
 import { Notice, StatefulNotice, warnIfNoticeInvalid } from 'app/lmem/notice';
@@ -38,7 +42,7 @@ import { resetBadge } from 'app/lmem/badge';
 import serviceMessageSaga from './serviceMessage.saga';
 import { getNbSubscriptions } from '../selectors/subscriptions.selectors';
 
-export function* tabSaga({ meta: { tab } }: ReceivedNavigatedToUrlAction) {
+export function* tabSaga({ meta: { tab } }: TabAction) {
   const tabAuthorized = yield select(isTabAuthorized(tab));
   if (tabAuthorized) {
     yield put(matchContext(tab));
@@ -88,6 +92,8 @@ export const contextTriggeredSaga = function*({
       yield call(serviceMessageSaga, tab, validNotices.length);
 
       return;
+    } else {
+      yield put(clearServiceMessage(tab));
     }
 
     const noticesToShow: StatefulNotice[] = yield select(
@@ -111,6 +117,23 @@ export const contextTriggeredSaga = function*({
   }
 };
 
+export const contextNotTriggeredSaga = function*({
+  meta: { tab }
+}: ContextNotTriggeredAction) {
+  try {
+    const tosAccepted = yield select(areTosAccepted);
+    const nbSubscriptions = yield select(getNbSubscriptions);
+    // Break saga execution if the "installation is not complete".
+    if (!tosAccepted || nbSubscriptions === 0) {
+      yield call(serviceMessageSaga, tab, 0);
+
+      return;
+    }
+  } catch (e) {
+    yield put(createErrorAction()(e));
+  }
+};
+
 const shouldActionBeSentToTab = (action: AppAction) =>
   Boolean(action.meta && action.meta.sendToTab);
 function* sendActionToTab(action: TabAction) {
@@ -119,7 +142,9 @@ function* sendActionToTab(action: TabAction) {
 
 export default function* tabRootSaga() {
   yield takeEvery(NAVIGATED_TO_URL, tabSaga);
+  yield takeEvery(TAB_ACTIVATED, tabSaga);
   yield takeEvery(MATCH_CONTEXT, matchContextSaga);
   yield takeEvery(CONTEXT_TRIGGERED, contextTriggeredSaga);
+  yield takeEvery(CONTEXT_NOT_TRIGGERED, contextNotTriggeredSaga);
   yield takeEvery(shouldActionBeSentToTab, sendActionToTab);
 }

@@ -27,9 +27,9 @@ export const tabDied = (tab: Tab): TabDiedAction => ({
 export const TAB_ACTIVATED = 'BROWSER/TAB_ACTIVATED';
 export interface TabActivatedAction extends StandardAction {
   type: typeof TAB_ACTIVATED;
-  meta: { tabId: number };
+  meta: { tab: Tab };
 }
-export const tabActivated = (tabId: number): TabActivatedAction => ({
+export const tabActivated = (tab: Tab): TabActivatedAction => ({
   type: TAB_ACTIVATED,
-  meta: { tabId }
+  meta: { tab }
 });

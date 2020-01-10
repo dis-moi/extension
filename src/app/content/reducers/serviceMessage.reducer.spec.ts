@@ -11,7 +11,7 @@ describe('content > reducers > serviceMessage', () => {
       serviceMessage(undefined, { type: 'UNKNOWN' })
     ).to.have.deep.property('messages', []);
   });
-  it('shows update message when receive SHOW_SERVICE_MESSAGE', () => {
+  it('shows update message when receive SERVICE_MESSAGE', () => {
     const state: ServiceMessageState = {
       messages: [],
       action: null,
