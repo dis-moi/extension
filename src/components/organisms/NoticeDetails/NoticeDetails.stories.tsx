@@ -12,6 +12,7 @@ import {
 import { boolean, date, number, text } from '@storybook/addon-knobs';
 
 const defaultMessage = Faker.lorem.paragraph(3);
+const longMessage = Faker.lorem.paragraph(10);
 const defaultDate = subMonths(new Date(), 1);
 const commonProps = {
   like: action('like'),
@@ -38,6 +39,14 @@ storiesOf('organisms/NoticeDetails', module)
         dislikes: number('dislikes', 2),
         liked: boolean('liked', false),
         disliked: boolean('disliked', false)
+      })}
+    />
+  ))
+  .add('Long message', () => (
+    <NoticeDetails
+      {...commonProps}
+      notice={generateStatefulNotice({
+        message: `<p>${text('message', longMessage)}</p>`
       })}
     />
   ))
