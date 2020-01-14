@@ -24,7 +24,7 @@ export interface OptionalTrackingParameters {
 
   // Optional User info
   urlref?: string; // The full HTTP Referrer URL. This value is used to determine how someone got to your website (ie, through a website, search engine or campaign).
-  // _cvar — Visit scope custom variables. This is a JSON encoded string of the custom variable array (see below for an example value).
+  _cvar?: string; // Visit scope custom variables. This is a JSON encoded string of the custom variable array (see below for an example value).
   // _idvc — The current count of visits for this visitor. To set this value correctly, it would be required to store the value for each visitor in your application (using sessions or persisting in a database). Then you would manually increment the counts by one on each new visit or "session", depending on how you choose to define a visit. This value is used to populate the report Visitors > Engagement > Visits by visit number.
   // _viewts — The UNIX timestamp of this visitor's previous visit. This parameter is used to populate the report Visitors > Engagement > Visits by days since last visit.
   // _idts — The UNIX timestamp of this visitor's first visit. This could be set to the date where the user first started using your software/app, or when he/she created an account. This parameter is used to populate the Goals > Days to Conversion report.
@@ -134,6 +134,7 @@ export default class MatomoTracker implements Tracker {
   private readonly trackerUrl: string;
   private pageViewId?: string;
   public userId?: string;
+  public tosAccepted?: boolean;
 
   constructor(siteId: number | string, trackerUrl: string) {
     this.siteId = siteId;
@@ -150,6 +151,9 @@ export default class MatomoTracker implements Tracker {
         rec: 1,
         _id: this.userId,
         uid: this.userId,
+        _cvar: JSON.stringify({
+          1: ['CGU acceptées', this.tosAccepted ? 'oui' : 'non']
+        }),
         ...parameters
       } as TrackingParameters)}`
     );

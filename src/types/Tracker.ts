@@ -29,6 +29,7 @@ export interface OutboundLink {
 
 export default interface Tracker {
   userId?: string;
+  tosAccepted?: boolean;
   trackPageView(pageView: PageView): void;
   trackEvent(trackingEvent: TrackingEvent): void;
   trackContentImpression(contentImpression: ContentImpression): void;

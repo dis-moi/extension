@@ -1,5 +1,5 @@
 import { SagaIterator } from '@redux-saga/types';
-import { call, takeEvery, takeLatest } from '@redux-saga/core/effects';
+import { call, select, takeEvery, takeLatest } from '@redux-saga/core/effects';
 import Tracker from 'types/Tracker';
 import {
   BROWSER_ACTION_CLICKED,
@@ -13,6 +13,7 @@ import {
   OUTBOUND_LINK_CLICKED,
   SUBSCRIBE,
   UNSUBSCRIBE,
+  TOS_ACCEPTED,
   createErrorAction,
   AppAction
 } from 'app/actions';
@@ -34,12 +35,18 @@ import {
   trackNoticeOutboundClickSaga,
   trackNoticeUnfoldedSaga
 } from './trackNotice.saga';
+import { areTosAccepted } from '../../selectors/prefs';
 
 export default (tracker?: Tracker) =>
   function*(): SagaIterator {
     try {
       if (tracker) {
         tracker.userId = yield call(loginSaga);
+        tracker.tosAccepted = yield select(areTosAccepted);
+
+        yield takeLatest(TOS_ACCEPTED, function*() {
+          tracker.tosAccepted = yield select(areTosAccepted);
+        });
 
         yield takeLatest(INSTALLATION_DETAILS, trackInstallSaga(tracker));
 
