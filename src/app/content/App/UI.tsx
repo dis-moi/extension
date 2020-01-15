@@ -26,6 +26,7 @@ import Account from './Account';
 import Loading from './Loading';
 import Error from './Error';
 import Contribute from './Contribute';
+import Question from './Question';
 import ServiceMessage from './ServiceMessage';
 import ContributeScreen from './Contributor';
 
@@ -80,6 +81,7 @@ const UI = ({
                 <Route path="/help" component={Help} />
                 <Route path="/account" component={Account} />
                 <Route path="/contribute" component={Contribute} />
+                <Route path="/question" component={Question} />
                 <Route path="/contributor/:id" component={ContributeScreen} />
                 <Route component={Error} />
               </Switch>

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import Link from './Link';
+import Anchor from './Anchor';
 
-export default styled(Link).attrs({
+export default styled(Anchor).attrs({
   target: '_blank',
   rel: 'noopener noreferrer'
 })``;

@@ -71,6 +71,11 @@ export const isNoticeContext = (state: ContentState) => {
 export const getContribution = (state: ContentState): Contribution =>
   getFormValues('contribution')(state) as Contribution;
 
+export const getQuestion = (state: ContentState): Contribution => ({
+  ...(getFormValues('question')(state) as Contribution),
+  intention: 'other'
+});
+
 export const getFormState = (formName: string) => (state: ContentState) =>
   state.form[formName];
 

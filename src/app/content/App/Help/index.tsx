@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, ExternalLink, Link } from 'components/atoms';
+import { List, ExternalLink, Anchor } from 'components/atoms';
 import withTitle from 'app/hocs/withTitle';
 import Container from './Container';
 import ContentTitle from './ContentTitle';
@@ -34,7 +34,7 @@ export const Help = () => (
     <ContentTitle>Contacter le support de Bulles</ContentTitle>
     <Content>
       Merci de nous écrire à{' '}
-      <Link href="mailto:support@bulles.fr">support@bulles.fr</Link>.
+      <Anchor href="mailto:support@bulles.fr">support@bulles.fr</Anchor>.
     </Content>
   </Container>
 );

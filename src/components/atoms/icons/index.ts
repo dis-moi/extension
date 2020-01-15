@@ -1,3 +1,16 @@
+export { default as Alternative } from './Alternative';
 export { default as Arrow } from './Arrow';
+export { default as AvatarDefault } from './AvatarDefault';
+export { default as Bubble } from './Bubble';
+export { default as Check } from './Check';
+export { default as CheckSmall } from './CheckSmall';
 export { default as Close } from './Close';
+export { default as Information } from './Information';
+export { default as Loading } from './Loading';
 export { default as Logo } from './Logo';
+export { default as LogoBeta } from './LogoBeta';
+export { default as Other } from './Other';
+export { default as Question } from './Question';
+export { default as ThumbDown } from './ThumbDown';
+export { default as ThumbUp } from './ThumbUp';
+export { default as Write } from './Write';
