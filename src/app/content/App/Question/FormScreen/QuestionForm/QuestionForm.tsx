@@ -2,35 +2,32 @@ import React, { useEffect } from 'react';
 import { Field, InjectedFormProps } from 'redux-form';
 import { Form } from 'components/atoms/Forms';
 import { CenterContainer, BackgroundButton } from 'components/atoms';
-import {
-  InputField,
-  IntentionsSelectorField,
-  TextareaField
-} from 'components/organisms/Fields';
+import { InputField, TextareaField } from 'components/organisms/Fields';
 import FormErrors from 'components/molecules/FormErrors';
 import { Contribution } from 'app/lmem/notice';
 import withReduxForm from './withReduxForm';
 
-export interface SubmitContributionFormOwnProps {
+export interface QuestionFormOwnProps {
   onUrlChange: (url: string) => void;
   onSubmit: (...args: any[]) => void;
   errors: string[];
+  error?: string;
 }
 
-export type SubmitContributionFormProps = InjectedFormProps<
+export type QuestionFormProps = InjectedFormProps<
   Contribution,
-  SubmitContributionFormOwnProps
+  QuestionFormOwnProps
 > &
-  SubmitContributionFormOwnProps;
+  QuestionFormOwnProps;
 
-const SubmitContributionForm = ({
+const QuestionForm = ({
   valid,
   handleSubmit,
   submitting,
   error,
   errors,
   onUrlChange
-}: SubmitContributionFormProps) => {
+}: QuestionFormProps) => {
   useEffect(() => {
     onUrlChange(window.location.href);
   }, [window.location.href]);
@@ -38,7 +35,7 @@ const SubmitContributionForm = ({
   return (
     <Form onSubmit={handleSubmit}>
       <Field name="url" type="hidden" component={InputField} />
-      <Field name="intention" component={IntentionsSelectorField} />
+
       <Field
         name="contributor.name"
         type="text"
@@ -53,7 +50,9 @@ const SubmitContributionForm = ({
       />
       <Field
         name="message"
-        placeholder="Ecrire le message que vous souhaitez publier"
+        placeholder={`Indiquez votre question.
+Précisez éventuellement le nom de l'informateur que vous souhaitez solliciter.
+`}
         rows={5}
         component={TextareaField}
       />
@@ -63,7 +62,7 @@ const SubmitContributionForm = ({
           disabled={!valid || submitting}
           loading={submitting}
         >
-          prévisualiser et publier
+          prévisualiser
         </BackgroundButton>
       </CenterContainer>
       <FormErrors errors={errors} globalError={error} />
@@ -71,4 +70,4 @@ const SubmitContributionForm = ({
   );
 };
 
-export default withReduxForm(SubmitContributionForm);
+export default withReduxForm(QuestionForm);

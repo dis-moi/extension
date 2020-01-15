@@ -4,6 +4,7 @@ import backgroundChannel from 'app/sagas/backgroundChannel';
 import locationChange from 'app/sagas/locationChange.saga';
 import init from './init';
 import contribution from './contribution';
+import question from './question';
 import notices from './notices';
 import ui from './ui';
 import watchUrlsSaga from './watchUrls.saga';
@@ -16,6 +17,7 @@ export default function* rootSaga() {
     fork(locationChange),
     fork(init),
     fork(contribution),
+    fork(question),
     fork(notices),
     fork(ui),
     fork(error),

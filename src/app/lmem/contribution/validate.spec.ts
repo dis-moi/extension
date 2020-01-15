@@ -78,7 +78,7 @@ describe('lmem/contribution/validate', () => {
     expect(errors).to.have.property('message', 'Ce champs est obligatoire.');
     expect(errors).to.have.nested.property(
       'contributor.email',
-      "L'email n'est pas valide"
+      "L'email n'est pas valide."
     );
   });
   it('returns empty object for valid contribution', () => {

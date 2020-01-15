@@ -43,7 +43,7 @@ const validateContributorEmail = (contribution: Contribution) => (
   errors: Errors
 ): Errors =>
   hasInvalidContributorEmail(contribution)
-    ? R.assocPath(['contributor', 'email'], "L'email n'est pas valide", errors)
+    ? R.assocPath(['contributor', 'email'], "L'email n'est pas valide.", errors)
     : errors;
 
 const validateContribution = (contribution: Contribution): Errors =>

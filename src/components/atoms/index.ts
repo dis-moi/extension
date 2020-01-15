@@ -16,4 +16,5 @@ export { default as Timer } from './Timer';
 export { default as List } from './List';
 export { default as ExternalLink } from './ExternalLink';
 export { default as Link } from './Link';
+export { default as Anchor } from './Anchor';
 export { default as Title } from './Title';

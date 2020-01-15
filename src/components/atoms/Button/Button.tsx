@@ -24,7 +24,35 @@ export interface ButtonProps extends ButtonContainerProps {
   dangerouslySetInnerHTML?: { __html: string };
 }
 
-export const ButtonContainer = styled.button<ButtonContainerProps>`
+export const ButtonContainer = styled.button<ButtonContainerProps>``;
+
+const Button = ({
+  loading,
+  children,
+  target,
+  rel,
+  href,
+  className,
+  ...props
+}: ButtonProps) => (
+  <ButtonContainer
+    className={className}
+    href={href}
+    target={target}
+    rel={rel}
+    {...props}
+  >
+    {loading ? (
+      <LoadingRotator>
+        <Loading />
+      </LoadingRotator>
+    ) : (
+      children
+    )}
+  </ButtonContainer>
+);
+
+export default styled(Button)`
   box-sizing: border-box;
   padding: 0;
   font-weight: bold;
@@ -37,6 +65,7 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  font-size: 15px;
 
   &:hover {
     color: ${props => props.theme.activeColor};
@@ -73,31 +102,3 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
     height: 18px;
   }
 `;
-
-const Button = ({
-  loading,
-  children,
-  target,
-  rel,
-  href,
-  className,
-  ...props
-}: ButtonProps) => (
-  <ButtonContainer
-    className={className}
-    href={href}
-    target={target}
-    rel={rel}
-    {...props}
-  >
-    {loading ? (
-      <LoadingRotator>
-        <Loading />
-      </LoadingRotator>
-    ) : (
-      children
-    )}
-  </ButtonContainer>
-);
-
-export default styled(Button)``;

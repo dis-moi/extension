@@ -1,12 +1,7 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { style } from './Anchor';
 
-export default styled.a`
-  color: ${props => props.theme.activeColor};
-  text-decoration: underline;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-
-  &:hover {
-    color: ${props => props.theme.secondaryColor};
-  }
+export default styled(Link)`
+  ${style}
 `;

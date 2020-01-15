@@ -8,7 +8,6 @@ export default styled(Button)<ButtonProps>`
   min-width: 130px;
   height: 28px;
   padding: 0 12px;
-  font-size: 15px;
   color: ${props => props.theme.button};
   text-decoration: none;
   background-color: #fff;
