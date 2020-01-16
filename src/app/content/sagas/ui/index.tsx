@@ -55,7 +55,9 @@ export function* openSaga({ payload: openedFrom }: OpenAction) {
 
     const location = yield select(getPathname);
     if (location) {
-      yield put(replace('/'));
+      if (location !== '/notices') {
+        yield put(replace('/'));
+      }
     }
 
     if (!isOpen) {
