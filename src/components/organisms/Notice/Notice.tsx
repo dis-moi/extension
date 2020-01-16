@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
+import { animated } from 'react-spring/renderprops';
 import { stripHtml } from 'app/utils/stripHtml';
 import { Contributor, Button, Timer, CenterContainer } from 'components/atoms';
 import InteractiveAvatar from 'components/molecules/InteractiveAvatar';
-import Container, { height, marginBottom } from './Container';
+import Container from './Container';
 import Content from './Content';
 import Deleted from './Deleted';
 import DeleteButton from './DeleteButton';
@@ -13,24 +14,6 @@ import {
   CountDownState,
   initialState as countdownInitialState
 } from 'app/lmem/countdown';
-
-export const transitionKeys = {
-  from: {
-    height,
-    marginBottom,
-    opacity: 0,
-    transform: 'translate3d(0%,100%,0)'
-  },
-  enter: { opacity: 1, transform: 'translate3d(0%,0%,0)' },
-  leave: () => async (next: (...args: any[]) => Promise<{}>) => {
-    await next({ opacity: 0, transform: 'translate3d(100%,0%,0)' });
-    await next({ height: 0, marginBottom: 0 });
-  },
-  trail: 250,
-  unique: true,
-  reset: false,
-  config: { tension: 180, friction: 20 }
-};
 
 const Description = styled.div`
   width: 245px;
@@ -43,12 +26,6 @@ const ContributorName = styled(Contributor)`
   }
 `;
 
-export interface NoticeTransitionProps {
-  item: StatefulNotice;
-  props: object;
-  key: string;
-}
-
 interface Props {
   notice: StatefulNotice;
   dismiss: (id: number) => void;
@@ -59,7 +36,7 @@ interface Props {
   style?: object;
 }
 
-export default class Notice extends PureComponent<Props, CountDownState> {
+class Notice extends PureComponent<Props, CountDownState> {
   constructor(props: Props) {
     super(props);
     this.state = countdownInitialState;
@@ -179,3 +156,5 @@ export default class Notice extends PureComponent<Props, CountDownState> {
     );
   }
 }
+
+export default animated(Notice);
