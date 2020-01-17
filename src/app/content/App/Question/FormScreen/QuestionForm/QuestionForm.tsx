@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import styled from 'styled-components';
 import { Field, InjectedFormProps } from 'redux-form';
 import { Form } from 'components/atoms/Forms';
 import { CenterContainer, BackgroundButton } from 'components/atoms';
@@ -13,6 +14,10 @@ export interface QuestionFormOwnProps {
   errors: string[];
   error?: string;
 }
+
+const Textarea = styled(TextareaField)`
+  height: 160px;
+`;
 
 export type QuestionFormProps = InjectedFormProps<
   Contribution,
@@ -51,11 +56,12 @@ const QuestionForm = ({
       <Field
         name="message"
         placeholder={`Indiquez votre question.
-Précisez éventuellement le nom de l'informateur que vous souhaitez solliciter.
+Précisez éventuellement le nom du média, de l'expert ou de l'informateur que vous souhaitez solliciter.
 `}
         rows={5}
-        component={TextareaField}
+        component={Textarea}
       />
+      <FormErrors errors={errors} globalError={error} />
       <CenterContainer>
         <BackgroundButton
           type="submit"
@@ -65,7 +71,6 @@ Précisez éventuellement le nom de l'informateur que vous souhaitez solliciter.
           prévisualiser
         </BackgroundButton>
       </CenterContainer>
-      <FormErrors errors={errors} globalError={error} />
     </Form>
   );
 };

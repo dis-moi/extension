@@ -1,37 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link as ReactRouterDomLink } from 'react-router-dom';
 import styled from 'styled-components';
-import BorderButton from '../BorderButton';
-import AddIcon from './AddIcon';
-import { ButtonProps } from '../Button';
+import { Link } from 'components/atoms';
+import { Write } from '../../icons';
 
-const ButtonLink = styled(BorderButton)<ButtonProps>`
-  display: flex;
+
+const LinkNoNotice = styled(Link)`
+  display: flex; 
   align-items: center;
-  color: ${props => props.theme.secondaryColor};
-  text-transform: uppercase;
-  border-color: #fff;
-
-  & > svg {
-    width: 12px;
-    height: 12px;
-    margin-right: 5px;
-    fill: ${props => props.theme.secondaryColor};
-  }
-
+  font-size: 13px;
+  color: ${props => props.theme.activeColor};
+  
   &:hover {
-    background-color: ${props => props.theme.secondaryColor};
-    border-color: ${props => props.theme.secondaryColor};
-
-    & > svg {
-      fill: #fff;
-    }
+  color: ${props => props.theme.primaryColor};
   }
 `;
 
-export default ({ ...props }) => (
-  <ButtonLink as={Link} to="/contribute" {...props}>
-    <AddIcon />
-    Créer votre bulle
-  </ButtonLink>
+export default () => (
+  <LinkNoNotice to="/contribute">
+    <Write/>
+    Poster une information
+  </LinkNoNotice>
 );
