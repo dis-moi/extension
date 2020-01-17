@@ -1,6 +1,5 @@
 import { find } from 'ramda';
 import { Source } from './source';
-import { intentions, Intention } from './intention';
 import { Ratings } from './rating';
 import { Contributor, NewContributor } from './contributor';
 import { captureMessage } from '../utils/sentry';
@@ -9,7 +8,6 @@ export interface Notice {
   id: number;
   created: Date;
   modified: Date;
-  intention: Intention;
   contributor: Contributor;
   message: string;
   source?: Source;
@@ -20,7 +18,6 @@ export interface Notice {
 export interface Contribution {
   url: string;
   created: Date;
-  intention: Intention;
   contributor: NewContributor;
   message: string;
 }
@@ -163,14 +160,12 @@ export const isNoticeValid = (notice: {
 }): notice is Notice => {
   if (Object(notice) !== notice) return false;
 
-  const { contributor, message, intention } = notice;
+  const { contributor, message } = notice;
 
   return (
     typeof message === 'string' &&
     Object(contributor) === contributor &&
-    typeof contributor.name === 'string' &&
-    typeof intention === 'string' &&
-    intentions.includes(intention as Intention)
+    typeof contributor.name === 'string'
   );
 };
 

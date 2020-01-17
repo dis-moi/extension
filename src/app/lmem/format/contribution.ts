@@ -12,7 +12,6 @@ export const formatContributionHtmlEmail = (contribution: Contribution) => `
     <li><strong>date: </strong>${formatDate(contribution.created)}</li>
     <li><strong>e-mail: </strong>${contribution.contributor.email}</li>
     <li><strong>url: </strong>${contribution.url}</li>
-    <li><strong>intention: </strong>${contribution.intention}</li>
   </ul>
   <p>${contribution.message}</p>
 </body></html>
@@ -24,6 +23,5 @@ export const formatContributionTextEmail = (contribution: Contribution) =>
 date: ${formatDate(contribution.created)}\n
 e-mail: ${contribution.contributor.email}\n
 url: ${contribution.url}\n
-intention: ${contribution.intention}\n
 message: ${contribution.message}\n
 `;

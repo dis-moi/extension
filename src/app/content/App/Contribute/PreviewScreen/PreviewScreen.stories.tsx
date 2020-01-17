@@ -25,7 +25,6 @@ storiesOf('screens/Contribute/Preview', module)
           email: 'johan.dufour@gmail.com',
           name: 'Johan Dufour'
         },
-        intention: 'approval',
         created: new Date()
       }}
       errors={[]}
@@ -43,7 +42,6 @@ storiesOf('screens/Contribute/Preview', module)
           email: 'johan.dufour@gmail.com',
           name: 'Johan Dufour'
         },
-        intention: 'approval',
         created: new Date()
       }}
       errors={[]}

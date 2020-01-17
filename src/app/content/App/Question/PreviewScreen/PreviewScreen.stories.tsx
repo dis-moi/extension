@@ -25,8 +25,7 @@ storiesOf('screens/Question/Preview', module)
           email: 'johan.dufour@gmail.com',
           name: 'Johan Dufour'
         },
-        created: new Date(),
-        intention: 'other'
+        created: new Date()
       }}
       errors={[]}
       modify={action('modify')}
@@ -43,8 +42,7 @@ storiesOf('screens/Question/Preview', module)
           email: 'johan.dufour@gmail.com',
           name: 'Johan Dufour'
         },
-        created: new Date(),
-        intention: 'other'
+        created: new Date()
       }}
       errors={[]}
       modify={action('modify')}

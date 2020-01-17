@@ -11,20 +11,10 @@ describe('lmem/contribution/validate', () => {
     // @ts-ignore
     expect(validateContribution({})).to.not.be.empty;
   });
-  it('rejects contribution missing intention', () => {
-    expect(
-      // @ts-ignore
-      validateContribution({
-        message: 'message',
-        contributor: { name: 'name', email: 'email@domain.com' }
-      })
-    ).to.not.be.empty;
-  });
   it('rejects contribution missing message', () => {
     expect(
       // @ts-ignore
       validateContribution({
-        intention: 'alternative',
         contributor: { name: 'name', email: 'email@domain.com' }
       })
     ).to.not.be.empty;
@@ -33,7 +23,6 @@ describe('lmem/contribution/validate', () => {
     expect(
       // @ts-ignore
       validateContribution({
-        intention: 'alternative',
         message: 'message'
       })
     ).to.not.be.empty;
@@ -41,7 +30,6 @@ describe('lmem/contribution/validate', () => {
   it('rejects contribution missing contributor name', () => {
     expect(
       validateContribution({
-        intention: 'alternative',
         message: 'message',
         // @ts-ignore
         contributor: { email: 'email@domain.com' }
@@ -51,7 +39,6 @@ describe('lmem/contribution/validate', () => {
   it('rejects contribution missing contributor email', () => {
     expect(
       validateContribution({
-        intention: 'alternative',
         message: 'message',
         // @ts-ignore
         contributor: { name: 'name' }
@@ -62,7 +49,6 @@ describe('lmem/contribution/validate', () => {
     expect(
       // @ts-ignore
       validateContribution({
-        intention: 'alternative',
         message: 'message',
         contributor: { name: 'name', email: 'email' }
       })
@@ -71,7 +57,6 @@ describe('lmem/contribution/validate', () => {
   it('sums up all the error messages', () => {
     // @ts-ignore
     const errors = validateContribution({
-      intention: 'alternative',
       contributor: { name: 'name', email: 'email' }
     });
 
@@ -85,7 +70,6 @@ describe('lmem/contribution/validate', () => {
     expect(
       // @ts-ignore
       validateContribution({
-        intention: 'alternative',
         message: 'message',
         contributor: { name: 'name', email: 'email@domain.com' }
       })

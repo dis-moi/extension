@@ -7,7 +7,6 @@ describe('isNoticeValid', function() {
   it('Object with missing contributor is not valid', () => {
     const notice = {
       message: 'Que vous ayez un usage basique, avancé, professionnel [...]',
-      intention: 'approval',
       source: {
         url: 'http://choisir.lmem.net/samsung-galaxy-s6'
       }
@@ -22,23 +21,6 @@ describe('isNoticeValid', function() {
         id: 1,
         name: 'Maarten Samson'
       },
-      intention: 'approval',
-      source: {
-        url: 'http://choisir.lmem.net/samsung-galaxy-s6'
-      }
-    };
-
-    expect(isNoticeValid(notice)).to.be.false;
-  });
-
-  it('Object with wrong criterion is not valid', () => {
-    const notice = {
-      message: 'Que vous ayez un usage basique, avancé, professionnel [...]',
-      contributor: {
-        id: 1,
-        name: 'Maarten Samson'
-      },
-      intention: 'health',
       source: {
         url: 'http://choisir.lmem.net/samsung-galaxy-s6'
       }
@@ -54,7 +36,6 @@ describe('isNoticeValid', function() {
         id: 1,
         name: 'Maarten Samson'
       },
-      intention: 'approval',
       source: {
         url: 'http://choisir.lmem.net/samsung-galaxy-s6'
       }
@@ -69,8 +50,7 @@ describe('isNoticeValid', function() {
       contributor: {
         id: 1,
         name: 'Maarten Samson'
-      },
-      intention: 'approval'
+      }
     };
 
     expect(isNoticeValid(notice)).to.be.true;

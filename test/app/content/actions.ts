@@ -9,7 +9,6 @@ const expect = chai.expect;
 
 const notice1: StatefulNotice = {
   id: 1,
-  intention: 'approval',
   message: 'This is a notice',
   contributor: generateContributor({ id: 1, name: 'Jalil', contributions: 42 }),
   visibility: 'public',

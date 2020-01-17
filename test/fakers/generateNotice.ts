@@ -6,7 +6,6 @@ import { Contributor } from 'app/lmem/contributor';
 import { generateContributor } from './generateContributor';
 
 interface Options {
-  intention?: Intention;
   message?: string;
   created?: Date;
   modified?: Date;
@@ -27,7 +26,6 @@ export const defaultSourceUrl =
 export const defaultMessage = `L’économie est (vraiment) un sport de combat : “La boule puante de MM. Cahuc et Zylberberg contre le “négationnisme” des économistes critiques le confirme : le combat idéologique tombe parfois dans le caniveau. Depuis vingt ans pourtant, s’est construit en France une contre-expertise économique crédible qui veut fournir aux dominés des outils pour penser (et résister à) la pseudo” construit en France une contre-expertise`;
 
 export const generateStatefulNotice = ({
-  intention,
   message,
   created,
   modified,
@@ -43,7 +41,6 @@ export const generateStatefulNotice = ({
   withSource = true
 }: Options = {}): StatefulNotice => ({
   id: Math.random() * 1000,
-  intention: intention || 'approval',
   created: created || subMonths(new Date(), 1),
   modified: modified || subWeeks(new Date(), 1),
   message: message || defaultMessage,
