@@ -4,7 +4,6 @@ import isEmail from '../../utils/isEmail';
 import ValidationErrors from '../ValidationErrors';
 
 export interface ContributionValidationErrors extends ValidationErrors {
-  intention?: string;
   message?: string;
   contributor?: {
     name?: string;
@@ -26,12 +25,7 @@ const validateRequiredPaths = (contribution: Contribution) => (
         ? err
         : setRequiredFieldError(err)(requiredPath),
     errors
-  )([
-    ['intention'],
-    ['message'],
-    ['contributor', 'name'],
-    ['contributor', 'email']
-  ]);
+  )([['message'], ['contributor', 'name'], ['contributor', 'email']]);
 
 const hasInvalidContributorEmail = R.compose(
   R.not,

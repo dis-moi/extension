@@ -2,14 +2,7 @@ import React from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import {
-  withKnobs,
-  text,
-  select,
-  date,
-  number,
-  boolean
-} from '@storybook/addon-knobs';
+import { withKnobs, text, date, number, boolean } from '@storybook/addon-knobs';
 import Faker from 'faker';
 import {
   defaultMessage,
@@ -17,7 +10,6 @@ import {
   generateStatefulNotice
 } from 'test/fakers/generateNotice';
 import { Details } from '.';
-import { intentions } from 'app/lmem/intention';
 import { subMonths } from 'date-fns';
 import Notification from 'components/organisms/Notification';
 import { generateContributor } from 'test/fakers/generateContributor';
@@ -54,7 +46,6 @@ storiesOf('screens/Notice/Details', module)
         contributor: generateContributor({
           name: text('contributor', defaultContributorName)
         }),
-        intention: select('intention', intentions, 'approval'),
         message: `<p>${text('message', defaultMessage)}</p>`,
         sourceUrl: text('source', defaultSourceUrl),
         created: date('created', defaultDate),
@@ -72,7 +63,6 @@ storiesOf('screens/Notice/Details', module)
         contributor: generateContributor({
           name: text('contributor', defaultContributorName)
         }),
-        intention: select('intention', intentions, 'approval'),
         message: `<p>${text('message', longMessage)}</p>`,
         sourceUrl: text('source', defaultSourceUrl),
         created: date('created', defaultDate),

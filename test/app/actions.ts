@@ -1,9 +1,6 @@
 import chai from 'chai';
-import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
-
 import { receivedMatchingContexts } from 'app/actions/refreshMatchingContexts';
-
 import { contextTriggered } from 'app/actions/tabs';
 import { noticeDisplayed, noticeIgnored } from 'app/actions/notices';
 import { MatchingContext } from '../../src/app/lmem/matchingContext';
@@ -18,7 +15,6 @@ const tab: Tab = { id: 1, url: 'http://tests.menant-benjamin.fr/' };
 
 const notice: StatefulNotice = {
   id: 1,
-  intention: 'approval',
   message: 'This is a notice',
   source: {
     label: 'Jalil',

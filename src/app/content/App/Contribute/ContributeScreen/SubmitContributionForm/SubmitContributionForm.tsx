@@ -2,11 +2,7 @@ import React, { useEffect } from 'react';
 import { Field, InjectedFormProps } from 'redux-form';
 import { Form } from 'components/atoms/Forms';
 import { CenterContainer, BackgroundButton } from 'components/atoms';
-import {
-  InputField,
-  IntentionsSelectorField,
-  TextareaField
-} from 'components/organisms/Fields';
+import { InputField, TextareaField } from 'components/organisms/Fields';
 import FormErrors from 'components/molecules/FormErrors';
 import { Contribution } from 'app/lmem/notice';
 import withReduxForm from './withReduxForm';
@@ -38,7 +34,6 @@ const SubmitContributionForm = ({
   return (
     <Form onSubmit={handleSubmit}>
       <Field name="url" type="hidden" component={InputField} />
-      <Field name="intention" component={IntentionsSelectorField} />
       <Field
         name="contributor.name"
         type="text"

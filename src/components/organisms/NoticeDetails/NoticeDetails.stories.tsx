@@ -31,7 +31,6 @@ storiesOf('organisms/NoticeDetails', module)
     <NoticeDetails
       {...commonProps}
       notice={generateStatefulNotice({
-        intention: 'approval',
         message: `<p>${text('message', defaultMessage)}</p>`,
         sourceUrl: text('source', defaultSourceUrl),
         created: date('created', defaultDate),
