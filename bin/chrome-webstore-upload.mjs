@@ -2,21 +2,24 @@ import path from 'path';
 import fs from 'fs';
 import createWebstore from 'chrome-webstore-upload';
 import packageJson from '../package.json';
-import dotenv from 'dotenv';
+import loadEnv from '../loadEnv';
+import packageNaming from '../webpack/packageNaming';
 
-dotenv.config({ path: path.resolve('.env') });
+const { getPackagePath } = packageNaming;
+
+loadEnv({ path: path.resolve('.') });
 
 const { version } = packageJson;
-const buildPath = path.resolve(
-  `build/bulles-v${version}-chromium-unsigned.zip`
-);
 const target = 'default';
 const {
   CHROME_EXTENSION_ID,
   CHROME_CLIENT_ID,
   CHROME_CLIENT_SECRET,
-  CHROME_REFRESH_TOKEN
+  CHROME_REFRESH_TOKEN,
+  NODE_ENV
 } = process.env;
+
+const packagePath = getPackagePath(version, 'chromium', NODE_ENV);
 
 const webStore = createWebstore({
   extensionId: CHROME_EXTENSION_ID,
@@ -27,7 +30,7 @@ const webStore = createWebstore({
 
 webStore.fetchToken().then(token => {
   // token is a string
-  const fileStream = fs.createReadStream(buildPath);
+  const fileStream = fs.createReadStream(packagePath);
   webStore.uploadExisting(fileStream, token).then(resource => {
     // https://developer.chrome.com/webstore/webstore_api/items#resource
     const { uploadState } = resource;

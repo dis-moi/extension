@@ -2,6 +2,7 @@ import { call, delay, put, select } from 'redux-saga/effects';
 import { receivedContributors, refreshContributorsFailed } from 'app/actions';
 import fetchContributors from 'api/fetchContributors';
 import { getContributors } from '../selectors/resources';
+import minutesToMilliseconds from 'app/utils/minutesToMilliseconds';
 
 function* refreshContributors() {
   try {
@@ -14,14 +15,14 @@ function* refreshContributors() {
 export default function* refreshContributorsSaga() {
   yield call(refreshContributors);
 
-  const refreshInterval = Number(process.env.REFRESH_CONTRIBUTORS_INTERVAL);
+  const refreshInterval = minutesToMilliseconds(
+    Number(process.env.REFRESH_CONTRIBUTORS_INTERVAL)
+  );
 
   if (refreshInterval > 0) {
     // eslint-disable-next-line no-console
     console.info(
-      `Contributors will be refreshed every ${refreshInterval /
-        1000 /
-        60} minutes.`
+      `Contributors will be refreshed every ${process.env.REFRESH_CONTRIBUTORS_INTERVAL} minutes.`
     );
 
     while (true) {
