@@ -1,3 +1,5 @@
+const { getPackagePath } = require('./webpack/packageNaming');
+
 const release = Object.freeze({
   verifyConditions: [
     '@semantic-release/changelog',
@@ -28,21 +30,33 @@ const release = Object.freeze({
   publish: [
     {
       path: '@semantic-release/exec',
-      cmd: 'yarn run release:production'
+      cmd: 'yarn run release'
     },
     {
       path: '@semantic-release/exec',
-      cmd: 'yarn run sign:firefox'
+      cmd: 'yarn run sign:firefox:staging'
+    },
+    {
+      path: '@semantic-release/exec',
+      cmd: 'yarn run upload:chrome:staging'
     },
     {
       path: '@semantic-release/github',
       assets: [
         {
-          path: 'build/bulles-*-an+fx.xpi',
+          path: getPackagePath('*', 'firefox', 'staging'),
+          label: 'Firefox Package - staging'
+        },
+        {
+          path: getPackagePath('*', 'firefox', 'production'),
           label: 'Firefox Package'
         },
         {
-          path: 'build/bulles-v*-chromium.zip',
+          path: getPackagePath('*', 'chromium', 'staging'),
+          label: 'Chromium Package - staging'
+        },
+        {
+          path: getPackagePath('*', 'chromium', 'production'),
           label: 'Chromium Package'
         }
       ]

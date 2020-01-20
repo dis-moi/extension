@@ -44,7 +44,20 @@ token=4d786d88c7d9436282c35b4eb82ae2dfeaff5ee296e3404ba3654ab62c151b73
 
 ## Environments
 
-You'll find a bunch of env variables defined in `./webpack/config.plugins.js`.
+Environment variables are taken from multiple `.env` files.
+
+From highest to lowest priority:
+- `.env.${NODE_ENV}.local`
+- `.env.${NODE_ENV}`
+- `.env.local`
+- `.env`
+
+In development you should create a copy of `.env.development.example` to `.env.development` and adjust the values.
+To run automation, create a copy of `.env.example` to `.env` and adjust values.
+
+> **Note:** The test environment ignores local files.
+
+> **Note 2:** This configuration was inspired by [Parcel](https://parceljs.org/env.html#%F0%9F%8C%B3-variables-d'environnement)  
 
 ## Development
 

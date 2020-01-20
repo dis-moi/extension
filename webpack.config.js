@@ -1,14 +1,17 @@
 const path = require('path');
-const dotenv = require('dotenv');
+const loadEnv = require('./loadEnv');
 const entry = require('./webpack/config.entry');
 const rules = require('./webpack/config.rules');
 const plugins = require('./webpack/config.plugins.js');
 const stats = require('./webpack/config.stats');
+const { getBuildPath } = require('./webpack/packageNaming');
+
+// const {} = packageNaming;
 
 const isEmail = value =>
   /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value);
 
-dotenv.config({ path: path.resolve('.env') });
+loadEnv({ path: path.resolve(__dirname) });
 
 const {
   SEND_CONTRIBUTION_TO,
@@ -27,11 +30,21 @@ if (!isEmail(SEND_CONTRIBUTION_TO)) {
 }
 
 module.exports = function webpack(env = {}, argv = {}) {
-  // No .env in develop yet, using argv.mode:
-  process.env.NODE_ENV = argv.mode;
+  env = {
+    PLATFORM: 'chromium',
+    ...process.env,
+    ...env
+  };
 
   const srcPath = path.resolve(__dirname, 'src');
+
+  const { NODE_ENV, PLATFORM } = env;
+  const buildPath = path.resolve(__dirname, getBuildPath(PLATFORM, NODE_ENV));
+
+  console.info('Building package to: ', buildPath);
+
   return {
+    mode: NODE_ENV === 'production' ? 'production' : 'development',
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.jsx'],
       modules: [srcPath, 'node_modules'],
@@ -43,11 +56,11 @@ module.exports = function webpack(env = {}, argv = {}) {
     output: {
       filename: 'js/[name].bundle.js',
       chunkFilename: 'js/[id].chunk.js',
-      path: path.join(__dirname, 'build', env.build),
+      path: buildPath,
       publicPath: '.'
     },
     module: { rules: rules(env, argv) },
-    plugins: plugins(env, argv, path.join(__dirname, 'build')),
+    plugins: plugins(env, argv, buildPath),
     node: {
       module: 'empty',
       dgram: 'empty',

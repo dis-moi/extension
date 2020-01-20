@@ -1,17 +1,24 @@
 import path from 'path';
+import fs from 'fs';
 import signAddon from 'sign-addon';
 import pjson from '../package.json';
-import dotenv from 'dotenv';
+import loadEnv from '../loadEnv';
+import packageNaming from '../webpack/packageNaming';
 
-dotenv.config({ path: path.resolve('.env') });
+const { getPackageDir, getPackagePath } = packageNaming;
 
-const { FIREFOX_API_KEY, FIREFOX_API_SECRET } = process.env;
+loadEnv({ path: path.resolve() });
+
+const { FIREFOX_API_KEY, FIREFOX_API_SECRET, NODE_ENV } = process.env;
 const { version } = pjson;
+
+const packageDir = path.resolve(getPackageDir('firefox', NODE_ENV));
+const packagePath = path.resolve(getPackagePath(version, 'firefox', NODE_ENV));
 
 signAddon
   .default({
     // Required arguments:
-    xpiPath: path.resolve(`build/bulles-v${version}-firefox-unsigned.xpi`),
+    xpiPath: packagePath,
     version,
     apiKey: FIREFOX_API_KEY,
     apiSecret: FIREFOX_API_SECRET,
@@ -28,7 +35,7 @@ signAddon
     channel: 'unlisted',
     // Save downloaded files to this directory.
     // Default: current working directory.
-    downloadDir: path.resolve('build/'),
+    downloadDir: packageDir,
     // Number of milleseconds to wait before aborting the request.
     // Default: 2 minutes.
     timeout: undefined,
@@ -53,6 +60,17 @@ signAddon
   .then(result => {
     if (result.success) {
       console.log('The following signed files were downloaded:');
+      fs.rename(result.downloadedFiles[0], packagePath, error => {
+        if (error) {
+          throw error;
+        }
+        console.log(
+          `${result.downloadedFiles[0]}
+renamed to 
+${packagePath}.`
+        );
+      });
+
       console.log(result.downloadedFiles);
       console.log('Your extension ID is:');
       console.log(result.id);

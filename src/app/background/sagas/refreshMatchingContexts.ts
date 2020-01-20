@@ -7,6 +7,7 @@ import {
   UNSUBSCRIBE
 } from 'app/actions';
 import { getSubscriptions } from '../selectors/subscriptions.selectors';
+import minutesToMilliseconds from 'app/utils/minutesToMilliseconds';
 
 function* refreshMatchingContexts() {
   try {
@@ -25,7 +26,9 @@ function* refreshWhenSubscriptionsChanged() {
 }
 
 function* refreshEveryInterval() {
-  const refreshInterval = Number(process.env.REFRESH_MC_INTERVAL);
+  const refreshInterval = minutesToMilliseconds(
+    Number(process.env.REFRESH_MC_INTERVAL)
+  );
 
   if (refreshInterval > 0) {
     // eslint-disable-next-line no-console

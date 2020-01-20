@@ -7,65 +7,14 @@ const ZipPlugin = require('zip-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const SentryWebpackPlugin = require('@sentry/webpack-plugin');
 const R = require('ramda');
+const getManifest = require('../manifest/getManifest');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const basePlugins = require('../webpack/config.plugins.base');
-const manifests = require('../manifest');
 const { version } = require('../package.json');
 const { getRelease } = require('../sentry');
-
-const hours = millis => `${millis}*60*1000`;
-
-const BUILD_CONFIG = {
-  dev: {
-    BACKEND_ORIGIN: '"https://staging-notices.bulles.fr/api/v3/"',
-    REFRESH_MC_INTERVAL: hours(5),
-    REFRESH_CONTRIBUTORS_INTERVAL: '5*60*1000'
-  },
-  devOnProductionApi: {
-    BACKEND_ORIGIN: '"https://notices.bulles.fr/api/v3/"',
-    REFRESH_MC_INTERVAL: hours(5),
-    REFRESH_CONTRIBUTORS_INTERVAL: '5*60*1000'
-  },
-  devOnDevApi: {
-    BACKEND_ORIGIN: '"http://localhost:8088/api/v3/"',
-    REFRESH_MC_INTERVAL: hours(5),
-    REFRESH_CONTRIBUTORS_INTERVAL: '5*60*1000'
-  },
-  staging: {
-    BACKEND_ORIGIN: '"https://staging-notices.bulles.fr/api/v3/"',
-    UNINSTALL_ORIGIN: "'https://www.bulles.fr/desinstallation'",
-    REFRESH_MC_INTERVAL: hours(5),
-    REFRESH_CONTRIBUTORS_INTERVAL: '5*60*1000',
-    TRACKING_URL: "'https://stats.lmem.net/matomo.php'",
-    TRACKING_SITE_ID: "'5'"
-  },
-  chromium: {
-    BACKEND_ORIGIN: '"https://notices.bulles.fr/api/v3/"',
-    UNINSTALL_ORIGIN: "'https://www.bulles.fr/desinstallation'",
-    REFRESH_MC_INTERVAL: hours(30),
-    REFRESH_CONTRIBUTORS_INTERVAL: '30*60*1000',
-    TRACKING_URL: "'https://stats.lmem.net/matomo.php'",
-    TRACKING_SITE_ID: "'6'"
-  },
-  firefox: {
-    BACKEND_ORIGIN: '"https://notices.bulles.fr/api/v3/"',
-    UNINSTALL_ORIGIN: "'https://www.bulles.fr/desinstallation'",
-    REFRESH_MC_INTERVAL: hours(30),
-    TRACKING_URL: "'https://stats.lmem.net/matomo.php'",
-    TRACKING_SITE_ID: "'6'"
-  }
-};
-
-const getApiForDev = api => {
-  if (api === 'production') return 'devOnProductionApi';
-  if (api === 'dev') return 'devOnDevApi';
-  return 'dev';
-};
-
-const getBuildConfig = (build, api) =>
-  build === 'dev' ? BUILD_CONFIG[getApiForDev(api)] : BUILD_CONFIG[build];
+const { getPackageName, getPackageExtension } = require('./packageNaming');
 
 const selectEnvVarsToInject = R.pick([
   'SEND_CONTRIBUTION_FROM',
@@ -73,8 +22,13 @@ const selectEnvVarsToInject = R.pick([
   'SEND_IN_BLUE_TOKEN',
   'SENTRY_DSN',
   'NODE_ENV',
+  'BACKEND_ORIGIN',
+  'UNINSTALL_ORIGIN',
+  'REFRESH_MC_INTERVAL',
+  'REFRESH_CONTRIBUTORS_INTERVAL',
   'TRACKING_URL',
-  'TRACKING_SITE_ID'
+  'TRACKING_SITE_ID',
+  'SENTRY_ENABLED'
 ]);
 const formatEnvVars = R.map(value => `"${value}"`);
 
@@ -83,9 +37,8 @@ const processENVVarsToInject = R.pipe(
   formatEnvVars
 );
 
-module.exports = (env = {}, argv = {}, outputPath) => {
-  const buildPath = path.join(outputPath, env.build);
-
+module.exports = (env = {}, argv = {}, buildPath) => {
+  const { NODE_ENV, SENTRY_ENABLED, PLATFORM, ANALYZE } = env;
   const copyConfig = [
     { from: 'src/assets', to: buildPath },
     {
@@ -106,22 +59,17 @@ module.exports = (env = {}, argv = {}, outputPath) => {
     }
   ];
 
-  if (argv.mode !== 'production') {
+  if (NODE_ENV !== 'production') {
     copyConfig.push({
       from: 'test/integration',
-      to: path.join(outputPath, env.build, 'test', 'integration')
+      to: path.join(buildPath, 'test', 'integration')
     });
   }
 
   const plugins = [
     ...basePlugins(env, argv),
     new webpack.DefinePlugin({
-      'process.env': {
-        ...getBuildConfig(env.build, env.api),
-        ...processENVVarsToInject(process.env),
-        BUILD: JSON.stringify(env.build),
-        SENTRY_ENABLE: env.sentry ? 'true' : 'false'
-      }
+      'process.env': processENVVarsToInject(process.env)
     }),
     new ModuleNotFoundPlugin(path.resolve(__dirname, '..')),
     new HtmlWebpackPlugin({
@@ -134,21 +82,18 @@ module.exports = (env = {}, argv = {}, outputPath) => {
       filename: 'options.html',
       inject: false
     }),
-    new AddAssetWebpackPlugin(
-      'manifest.json',
-      JSON.stringify(manifests[env.firefox ? 'firefoxDev' : env.build], null, 2)
-    ),
+    new AddAssetWebpackPlugin('manifest.json', getManifest(NODE_ENV, PLATFORM)),
     new CopyWebpackPlugin(copyConfig),
     new LodashModuleReplacementPlugin()
   ];
 
-  if (env.sentry) {
+  if (SENTRY_ENABLED) {
     plugins.push(
       new SentryWebpackPlugin({
-        include: `./build/${env.build}/js`,
+        include: path.resolve(buildPath, 'js'),
         ignore: ['test.*.js*'],
         urlPrefix: '~/js',
-        release: getRelease(env.build)
+        release: getRelease(PLATFORM, NODE_ENV)
       })
     );
   }
@@ -158,13 +103,13 @@ module.exports = (env = {}, argv = {}, outputPath) => {
       new CleanWebpackPlugin(),
       new ZipPlugin({
         path: '..',
-        filename: `bulles-v${version}-${env.build}-unsigned`,
-        extension: env.build === 'firefox' ? 'xpi' : 'zip'
+        filename: getPackageName(version, PLATFORM, NODE_ENV),
+        extension: getPackageExtension(PLATFORM)
       })
     );
   }
 
-  if (env.analyze) {
+  if (ANALYZE) {
     plugins.push(
       new BundleAnalyzerPlugin({
         analyzerMode: 'server',
