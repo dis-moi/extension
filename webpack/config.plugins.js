@@ -69,7 +69,7 @@ module.exports = (env = {}, argv = {}, buildPath) => {
   const plugins = [
     ...basePlugins(env, argv),
     new webpack.DefinePlugin({
-      'process.env': processENVVarsToInject(process.env)
+      'process.env': processENVVarsToInject(env)
     }),
     new ModuleNotFoundPlugin(path.resolve(__dirname, '..')),
     new HtmlWebpackPlugin({

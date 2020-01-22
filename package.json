@@ -26,7 +26,7 @@
     "lint:ts": "eslint 'src/**/*.{js,ts,tsx}'",
     "lint:css": "stylelint './src/**/*.js'",
     "verify": "yarn test && yarn typecheck && yarn lint",
-    "analyze": "webpack --mode=production --env.PLATFORM=chromium --env.ANALYZE",
+    "analyze": "webpack --mode=production --env.NODE_ENV=production --env.PLATFORM=chromium --env.ANALYZE",
     "storybook": "start-storybook --ci -p 6007 -c .storybook",
     "build-storybook": "build-storybook"
   },
