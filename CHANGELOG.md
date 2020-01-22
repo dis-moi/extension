@@ -1,3 +1,38 @@
+# [3.13.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.12.0...v3.13.0) (2020-01-22)
+
+
+### Bug Fixes
+
+* **badge:** add context triggered to the list of action affecting badge ([90e610e](https://github.com/insitu-project/recommendations-webextension/commit/90e610e))
+* **badge:** badge not updating when switching to a not yet registered tab ([c371455](https://github.com/insitu-project/recommendations-webextension/commit/c371455))
+* **browser-action:** add missing try catch to avoid crashes on error ([ec5bc6b](https://github.com/insitu-project/recommendations-webextension/commit/ec5bc6b))
+* **build:** set BABEL_ENV to `production` by default for `staging` environment ([9ff410f](https://github.com/insitu-project/recommendations-webextension/commit/9ff410f))
+* **build:** use new PLATFORM env variable instead of BUILD ([f2a583d](https://github.com/insitu-project/recommendations-webextension/commit/f2a583d))
+* **environment:** fix environments variable passed to webpack not being injected ([a3a981d](https://github.com/insitu-project/recommendations-webextension/commit/a3a981d))
+* **error-message:** fix some errors not being yields ([d4b10cd](https://github.com/insitu-project/recommendations-webextension/commit/d4b10cd))
+* **firefox:** fix "Close onboarding" button not closing the options page ([218b279](https://github.com/insitu-project/recommendations-webextension/commit/218b279))
+* **open:** do not replace current path if already on the right one ([cea9c4d](https://github.com/insitu-project/recommendations-webextension/commit/cea9c4d))
+* **service-message:** do not open UI for a service message when there are no notices ([1829923](https://github.com/insitu-project/recommendations-webextension/commit/1829923))
+* **SubscriptionScreen:** allow `SubscriptionsScreen.tsx` to be styled ([0901f73](https://github.com/insitu-project/recommendations-webextension/commit/0901f73))
+* **svg-loading:** fix SVG file webpack loader ([68e70f2](https://github.com/insitu-project/recommendations-webextension/commit/68e70f2))
+* **ui:** enhance detection of external button click ([0d8d1a4](https://github.com/insitu-project/recommendations-webextension/commit/0d8d1a4))
+
+
+### Features
+
+* **automation:** setup staging and prod releases automations ([70e1d10](https://github.com/insitu-project/recommendations-webextension/commit/70e1d10))
+* **contributor button:** changed subscribed text value ([2419133](https://github.com/insitu-project/recommendations-webextension/commit/2419133))
+* **deploy:** add Firefox build signing process ([519ddf9](https://github.com/insitu-project/recommendations-webextension/commit/519ddf9))
+* **deploy:** add script to upload and publish on chrome webstore ([69476e3](https://github.com/insitu-project/recommendations-webextension/commit/69476e3))
+* **exclusion:** update manifest to exclude more contexts ([af51f97](https://github.com/insitu-project/recommendations-webextension/commit/af51f97))
+* **loader:** don't show loader when the UI is opened from the browser action ([84cd79c](https://github.com/insitu-project/recommendations-webextension/commit/84cd79c))
+* **notices:** show unread notices first ([7b046cb](https://github.com/insitu-project/recommendations-webextension/commit/7b046cb))
+* **onboarding examples:** changed header, changed texts. ([46d1df0](https://github.com/insitu-project/recommendations-webextension/commit/46d1df0))
+* **pdf:** add PDF viewer detection function ([9c17674](https://github.com/insitu-project/recommendations-webextension/commit/9c17674))
+* **service-message:** change service message when there is at least one notice ont tab ([57cf803](https://github.com/insitu-project/recommendations-webextension/commit/57cf803))
+* **service-message:** update UI on tab activation ([05e9d13](https://github.com/insitu-project/recommendations-webextension/commit/05e9d13))
+* **tracking:** add tracking of tos acceptation ([8642b6c](https://github.com/insitu-project/recommendations-webextension/commit/8642b6c))
+
 # [3.12.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.11.0...v3.12.0) (2020-01-07)
 
 
