@@ -25,12 +25,12 @@ const beforeSend = (event: Event, hint: EventHint) => {
 
 export const initSentry = () => {
   const blacklist = ['GlobalHandlers', 'ReportingObserver', 'CaptureConsole'];
-  if (process.env.SENTRY_ENABLE) {
+  if (process.env.SENTRY_ENABLED) {
     try {
       init({
         dsn: process.env.SENTRY_DSN,
         environment: process.env.NODE_ENV,
-        release: getRelease(process.env.BUILD),
+        release: getRelease(process.env.PLATFORM, process.env.NODE_ENV),
         integrations: integrations =>
           integrations.filter(i => !blacklist.includes(i.name)),
         beforeSend
@@ -46,7 +46,7 @@ export const initSentry = () => {
 export { Scope };
 type ScopeCallback = (scope: Scope) => void;
 export const configureSentryScope = (scopeCallback: ScopeCallback) => {
-  if (process.env.SENTRY_ENABLE && sentryInitialized) {
+  if (process.env.SENTRY_ENABLED && sentryInitialized) {
     configureScope(scopeCallback);
   }
 };
@@ -55,7 +55,7 @@ export const captureMessage = (
   message: string,
   level?: Severity
 ): string | undefined => {
-  if (process.env.SENTRY_ENABLE && sentryInitialized) {
+  if (process.env.SENTRY_ENABLED && sentryInitialized) {
     return sentryCaptureMessage(message, level);
   } else {
     switch (level) {
@@ -87,7 +87,7 @@ export const captureException = (
   exception: Error,
   message = ''
 ): string | undefined => {
-  if (process.env.SENTRY_ENABLE && sentryInitialized) {
+  if (process.env.SENTRY_ENABLED && sentryInitialized) {
     return sentryCaptureException(exception);
   } else {
     Logger.error(message || `CatchedError: ${message || exception.message}`);

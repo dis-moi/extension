@@ -1,6 +1,6 @@
 import Tracker from 'types/Tracker';
 import { SagaIterator } from '@redux-saga/types';
-import { call } from '@redux-saga/core/effects';
+import { call, put } from '@redux-saga/core/effects';
 import {
   CloseAction,
   LocationChangedAction,
@@ -21,7 +21,7 @@ export const startTrackingSaga = (tracker: Tracker) =>
         title: '/'
       });
     } catch (e) {
-      createErrorAction()(e);
+      yield put(createErrorAction()(e));
     }
   };
 
@@ -35,7 +35,7 @@ export const trackInstallSaga = (tracker: Tracker) =>
         value: 0
       });
     } catch (e) {
-      createErrorAction()(e);
+      yield put(createErrorAction()(e));
     }
   };
 
@@ -47,7 +47,7 @@ export const trackLocationChangeSaga = (tracker: Tracker) =>
         title: action.payload.location.pathname
       });
     } catch (e) {
-      createErrorAction()(e);
+      yield put(createErrorAction()(e));
     }
   };
 
@@ -62,7 +62,7 @@ export const trackCloseSaga = (tracker: Tracker) =>
         url: getURLFromActionMeta(action)
       });
     } catch (e) {
-      createErrorAction()(e);
+      yield put(createErrorAction()(e));
     }
   };
 
@@ -77,6 +77,6 @@ export const trackBrowserActionClickedSaga = (tracker: Tracker) =>
         url: getURLFromActionMeta(action)
       });
     } catch (e) {
-      createErrorAction()(e);
+      yield put(createErrorAction()(e));
     }
   };

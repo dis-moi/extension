@@ -60,7 +60,7 @@ const ContributorButton = ({
           ) : (
             <>
               <Check />
-              &nbsp;Suivi·e
+              &nbsp;Abonné·e
             </>
           )}
         </ContributorBorderButton>

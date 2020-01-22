@@ -13,15 +13,13 @@ if (!(window as CustomWindow).__BULLES__CONTENT_SCRIPT_INJECTED__) {
   } = require('../utils/sentry');
 
   try {
-    if ((process.env as AppEnv).BUILD !== 'firefox') {
+    if ((process.env as AppEnv).PLATFORM !== 'firefox') {
       initSentry();
       configureSentryScope((scope: Scope) => {
         scope.setTag('context', 'content');
       });
     }
 
-    require('typeface-lato');
-    require('typeface-sedgwick-ave');
     const store = require('./store').default;
     const documentReady = require('../utils/documentReady').default;
     const externalClickHandler = require('./externalClickHandler').default;

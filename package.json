@@ -6,17 +6,17 @@
     "node": ">=8"
   },
   "scripts": {
-    "start": "webpack --watch --progress --mode=development --env.build=dev",
-    "start:firefoxProduction": "webpack --watch --progress --mode=development --env.build=dev --env.firefox --env.api=production",
-    "start:productionApi": "webpack --watch --progress --mode=development --env.build=dev --env.api=production",
-    "start:devApi": "webpack --watch --progress --mode=development --env.build=dev --env.api=dev",
-    "build:staging": "webpack --mode=production --env.build=staging",
-    "release:staging": "webpack --mode=production --env.build=staging --env.sentry",
-    "build:firefox": "webpack --mode=production --env.build=firefox",
+    "start": "webpack --watch --progress --mode=development",
+    "build:staging": "yarn build:chromium --env.NODE_ENV=staging && yarn build:firefox --env.NODE_ENV=staging",
+    "release:staging": "yarn build:chromium --env.NODE_ENV=staging --env.SENTRY_ENABLED && yarn build:firefox --env.NODE_ENV=staging --env.SENTRY_ENABLED",
+    "build:firefox": "webpack --mode=production --env.PLATFORM=firefox",
     "sign:firefox": "node --experimental-modules bin/web-ext-sign.mjs",
-    "build:chromium": "webpack --mode=production --env.build=chromium",
-    "build:production": "yarn build:chromium && yarn build:firefox",
-    "release:production": "yarn build:chromium --env.sentry && yarn build:firefox --env.sentry",
+    "sign:firefox:staging": "NODE_ENV=staging yarn sign:firefox",
+    "upload:chrome": "node --experimental-modules bin/chrome-webstore-upload",
+    "upload:chrome:staging": "NODE_ENV=staging node --experimental-modules bin/chrome-webstore-upload.mjs",
+    "build:chromium": "webpack --mode=production --env.PLATFORM=chromium",
+    "build:production": "yarn build:chromium --env.NODE_ENV=production && yarn build:firefox --env.NODE_ENV=production",
+    "release:production": "yarn build:chromium --env.NODE_ENV=production --env.SENTRY_ENABLED && yarn build:firefox --env.NODE_ENV=production --env.SENTRY_ENABLED",
     "build": "yarn build:staging && yarn build:production",
     "release": "yarn release:staging && yarn release:production",
     "clean": "rm -rf build",
@@ -26,7 +26,7 @@
     "lint:ts": "eslint 'src/**/*.{js,ts,tsx}'",
     "lint:css": "stylelint './src/**/*.js'",
     "verify": "yarn test && yarn typecheck && yarn lint",
-    "analyze": "webpack --mode=production --env.build=chromium --env.analyze",
+    "analyze": "webpack --mode=production --env.NODE_ENV=production --env.PLATFORM=chromium --env.ANALYZE",
     "storybook": "start-storybook --ci -p 6007 -c .storybook",
     "build-storybook": "build-storybook"
   },
@@ -150,6 +150,7 @@
     "jsdom": "^15.1.1",
     "jsdom-global": "^3.0.2",
     "lint-staged": "^8.1.5",
+    "lodash-webpack-plugin": "^0.11.5",
     "mocha": "^6.0.2",
     "null-loader": "^0.1.1",
     "prettier": "^1.18.2",
@@ -168,7 +169,7 @@
     "react-spring": "^8.0.20",
     "redbox-react": "^1.6.0",
     "redux": "^4.0.1",
-    "redux-form": "^8.2.6",
+    "redux-form": "8.2.3",
     "redux-immutable-state-invariant": "^2.1.0",
     "redux-logger": "^3.0.6",
     "redux-persist": "^5.10.0",
@@ -204,6 +205,7 @@
     "zip-webpack-plugin": "^3.0.0"
   },
   "devDependencies": {
+    "chrome-webstore-upload": "^0.2.2",
     "sign-addon": "^2.0.4"
   }
 }

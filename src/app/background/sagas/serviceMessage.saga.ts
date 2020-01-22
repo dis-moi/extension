@@ -57,7 +57,7 @@ export default function* serviceMessageSaga(tab: Tab, nbNotices = 0) {
       );
     }
 
-    if (!isToday(lastShownDate)) {
+    if (!isToday(lastShownDate) && nbNotices > 0) {
       yield put(open(OpenFrom.ServiceMessage, tab));
     }
   } catch (e) {

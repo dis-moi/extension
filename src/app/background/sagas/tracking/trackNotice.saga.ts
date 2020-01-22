@@ -1,5 +1,5 @@
 import { SagaIterator } from '@redux-saga/types';
-import { call, select } from '@redux-saga/core/effects';
+import { call, select, put } from '@redux-saga/core/effects';
 import Tracker from 'types/Tracker';
 import truncate from 'app/utils/truncate';
 import { stripHtml } from 'app/utils/stripHtml';
@@ -39,7 +39,7 @@ export const trackNoticeBadgedSaga = (tracker: Tracker) =>
         });
       }
     } catch (e) {
-      createErrorAction()(e);
+      yield put(createErrorAction()(e));
     }
   };
 
@@ -54,7 +54,7 @@ export const trackNoticeDisplayedSaga = (tracker: Tracker) =>
         url: getURLFromActionMeta(action)
       });
     } catch (e) {
-      createErrorAction()(e);
+      yield put(createErrorAction()(e));
     }
   };
 
@@ -69,7 +69,7 @@ export const trackNoticeUnfoldedSaga = (tracker: Tracker) =>
         url: getURLFromActionMeta(action)
       });
     } catch (e) {
-      createErrorAction()(e);
+      yield put(createErrorAction()(e));
     }
   };
 
@@ -88,7 +88,7 @@ export const trackNoticeFeedbackSaga = (tracker: Tracker) =>
         url: getURLFromActionMeta(action)
       });
     } catch (e) {
-      createErrorAction()(e);
+      yield put(createErrorAction()(e));
     }
   };
 
@@ -101,6 +101,6 @@ export const trackNoticeOutboundClickSaga = (tracker: Tracker) =>
         });
       }
     } catch (e) {
-      createErrorAction()(e);
+      yield put(createErrorAction()(e));
     }
   };

@@ -24,6 +24,7 @@ import { generateContributor } from 'test/fakers/generateContributor';
 
 const defaultContributorName = Faker.name.findName();
 const defaultDate = subMonths(new Date(), 1);
+const longMessage = Faker.lorem.paragraph(12);
 const commonProps = {
   like: action('like'),
   unlike: action('unlike'),
@@ -55,6 +56,24 @@ storiesOf('screens/Notice/Details', module)
         }),
         intention: select('intention', intentions, 'approval'),
         message: `<p>${text('message', defaultMessage)}</p>`,
+        sourceUrl: text('source', defaultSourceUrl),
+        created: date('created', defaultDate),
+        likes: number('likes', 42),
+        dislikes: number('dislikes', 2),
+        liked: boolean('liked', false),
+        disliked: boolean('disliked', false)
+      })}
+    />
+  ))
+  .add('long message', () => (
+    <Details
+      {...commonProps}
+      notice={generateStatefulNotice({
+        contributor: generateContributor({
+          name: text('contributor', defaultContributorName)
+        }),
+        intention: select('intention', intentions, 'approval'),
+        message: `<p>${text('message', longMessage)}</p>`,
         sourceUrl: text('source', defaultSourceUrl),
         created: date('created', defaultDate),
         likes: number('likes', 42),
