@@ -13,7 +13,7 @@ if (!(window as CustomWindow).__BULLES__CONTENT_SCRIPT_INJECTED__) {
   } = require('../utils/sentry');
 
   try {
-    if ((process.env as AppEnv).BUILD !== 'firefox') {
+    if ((process.env as AppEnv).PLATFORM !== 'firefox') {
       initSentry();
       configureSentryScope((scope: Scope) => {
         scope.setTag('context', 'content');
