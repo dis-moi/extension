@@ -44,7 +44,6 @@ module.exports = function webpack(env = {}, argv = {}) {
   console.info('Building package to: ', buildPath);
 
   return {
-    mode: NODE_ENV === 'production' ? 'production' : 'development',
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.jsx'],
       modules: [srcPath, 'node_modules'],
