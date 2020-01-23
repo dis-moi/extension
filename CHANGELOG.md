@@ -1,3 +1,11 @@
+## [3.13.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.13.0...v3.13.1) (2020-01-23)
+
+
+### Bug Fixes
+
+* **build:** let webpack handle mode flag like before ([385a1c8](https://github.com/insitu-project/recommendations-webextension/commit/385a1c8))
+* **manifest:** load firefox production manifest file for firefox staging ([24acf33](https://github.com/insitu-project/recommendations-webextension/commit/24acf33))
+
 # [3.13.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.12.0...v3.13.0) (2020-01-22)
 
 
