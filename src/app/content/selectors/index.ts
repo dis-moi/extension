@@ -65,7 +65,11 @@ export const getPathname = (state: ContentState) => getLocation(state).pathname;
 
 export const isNoticeContext = (state: ContentState) => {
   const pathname = getPathname(state);
-  return pathname.includes('notice') || pathname.includes('preview');
+  return (
+    pathname.includes('notice') ||
+    pathname.includes('contribute') ||
+    pathname.includes('question')
+  );
 };
 
 export const getContribution = (state: ContentState): Contribution =>
