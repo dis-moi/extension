@@ -8,6 +8,10 @@ const getManifestFilename = (env, platform) => {
     return 'dev';
   } else if (env === 'production') {
     return platform;
+  } else if (env === 'staging') {
+    if (platform === 'firefox') {
+      return 'firefox';
+    }
   }
 
   return env;
