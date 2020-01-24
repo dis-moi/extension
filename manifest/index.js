@@ -1,13 +1,8 @@
-const dev = require('./dev');
-const firefoxDev = require('./firefoxDev');
-const staging = require('./staging');
-const chromium = require('./chromium');
-const firefox = require('./firefox');
+const getManifestFilepath = (env, platform) => `./${env}/${platform}.js`;
 
-module.exports = {
-  dev,
-  staging,
-  chromium,
-  firefox,
-  firefoxDev
+const getManifest = (env, platform) => {
+  console.log(getManifestFilepath(env, platform));
+  return JSON.stringify(require(getManifestFilepath(env, platform)), null, 2);
 };
+
+module.exports = getManifest;

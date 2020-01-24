@@ -9,7 +9,12 @@ const { getPackageDir, getPackagePath } = packageNaming;
 
 loadEnv({ path: path.resolve() });
 
-const { FIREFOX_API_KEY, FIREFOX_API_SECRET, NODE_ENV } = process.env;
+const {
+  FIREFOX_API_KEY,
+  FIREFOX_API_SECRET,
+  NODE_ENV,
+  FIREFOX_EXTENSION_ID
+} = process.env;
 const { version } = pjson;
 
 const packageDir = path.resolve(getPackageDir('firefox', NODE_ENV));
@@ -28,11 +33,11 @@ signAddon
     // The explicit extension ID.
     // WebExtensions do not require an ID.
     // See the notes below about dealing with IDs.
-    // id: 'your-addon-id@somewhere',
+    id: FIREFOX_EXTENSION_ID,
     // The release channel (listed or unlisted).
     // Ignored for new add-ons, which are always unlisted.
     // Default: most recently used channel.
-    channel: 'unlisted',
+    channel: NODE_ENV === 'production' ? 'listed' : 'unlisted',
     // Save downloaded files to this directory.
     // Default: current working directory.
     downloadDir: packageDir,

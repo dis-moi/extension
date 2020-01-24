@@ -9,16 +9,20 @@
     "start": "webpack --watch --progress --mode=development",
     "build:staging": "yarn build:chromium --env.NODE_ENV=staging && yarn build:firefox --env.NODE_ENV=staging",
     "release:staging": "yarn build:chromium --env.NODE_ENV=staging --env.SENTRY_ENABLED && yarn build:firefox --env.NODE_ENV=staging --env.SENTRY_ENABLED",
+    "build:proding": "yarn build:chromium --env.NODE_ENV=proding && yarn build:firefox --env.NODE_ENV=proding",
+    "release:proding": "yarn build:chromium --env.NODE_ENV=proding --env.SENTRY_ENABLED && yarn build:firefox --env.NODE_ENV=proding --env.SENTRY_ENABLED",
     "build:firefox": "webpack --mode=production --env.PLATFORM=firefox",
     "sign:firefox": "node --experimental-modules bin/web-ext-sign.mjs",
     "sign:firefox:staging": "NODE_ENV=staging yarn sign:firefox",
+    "sign:firefox:proding": "NODE_ENV=proding yarn sign:firefox",
     "upload:chrome": "node --experimental-modules bin/chrome-webstore-upload",
     "upload:chrome:staging": "NODE_ENV=staging node --experimental-modules bin/chrome-webstore-upload.mjs",
+    "upload:chrome:proding": "NODE_ENV=proding node --experimental-modules bin/chrome-webstore-upload.mjs",
     "build:chromium": "webpack --mode=production --env.PLATFORM=chromium",
     "build:production": "yarn build:chromium --env.NODE_ENV=production && yarn build:firefox --env.NODE_ENV=production",
     "release:production": "yarn build:chromium --env.NODE_ENV=production --env.SENTRY_ENABLED && yarn build:firefox --env.NODE_ENV=production --env.SENTRY_ENABLED",
-    "build": "yarn build:staging && yarn build:production",
-    "release": "yarn release:staging && yarn release:production",
+    "build": "yarn build:staging && yarn build:production && yarn build:proding",
+    "release": "yarn release:staging && yarn release:production && yarn build:proding",
     "clean": "rm -rf build",
     "test": "BACKEND_ORIGIN='' mocha -r ts-node/register -r tsconfig-paths/register -r jsdom-global/register 'src/**/*.spec.ts' 'test/app/*.ts' 'test/app/**/*.ts'",
     "typecheck": "tsc --noEmit",
@@ -28,7 +32,9 @@
     "verify": "yarn test && yarn typecheck && yarn lint",
     "analyze": "webpack --mode=production --env.NODE_ENV=production --env.PLATFORM=chromium --env.ANALYZE",
     "storybook": "start-storybook --ci -p 6007 -c .storybook",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "deploy": "DEPLOY=staging yarn semantic-release --dry-run",
+    "deploy:production": "DEPLOY=production yarn semantic-release --dry-run"
   },
   "husky": {
     "hooks": {
