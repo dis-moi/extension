@@ -33,8 +33,8 @@
     "analyze": "webpack --mode=production --env.NODE_ENV=production --env.PLATFORM=chromium --env.ANALYZE",
     "storybook": "start-storybook --ci -p 6007 -c .storybook",
     "build-storybook": "build-storybook",
-    "deploy": "DEPLOY=staging yarn semantic-release --dry-run",
-    "deploy:production": "DEPLOY=production yarn semantic-release --dry-run"
+    "deploy": "DEPLOY=staging yarn semantic-release",
+    "deploy:production": "DEPLOY=production yarn semantic-release"
   },
   "husky": {
     "hooks": {
