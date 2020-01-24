@@ -1,3 +1,10 @@
+## [3.13.2](https://github.com/insitu-project/recommendations-webextension/compare/v3.13.1...v3.13.2) (2020-01-24)
+
+
+### Bug Fixes
+
+* **environment:** remove dry run flag on deploy ([779fd65](https://github.com/insitu-project/recommendations-webextension/commit/779fd65))
+
 ## [3.13.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.13.0...v3.13.1) (2020-01-23)
 
 
