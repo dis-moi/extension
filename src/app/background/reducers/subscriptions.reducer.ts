@@ -18,6 +18,7 @@ export const getContributorName = ({
 }: ContributorAction) =>
   typeof contributor !== 'number' ? contributor.name : '';
 
+
 export default function subscriptionsReducer(
   state: SubscriptionsState = [],
   action: AppAction

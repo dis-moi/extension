@@ -1,15 +1,31 @@
-import { StatefulContributor } from 'app/lmem/contributor';
-import { AppAction, CONTRIBUTORS_TRANSMITTED } from 'app/actions';
+import {Contributor, StatefulContributor} from 'app/lmem/contributor';
+import {AppAction, CONTRIBUTORS_TRANSMITTED, UNSUBSCRIBE} from 'app/actions';
+import * as R from "ramda";
 
 export type ContributorsState = StatefulContributor[];
 
+export const findContributorIn = (contributors: Contributor[]) => (
+    contributor: Contributor
+) => R.findIndex(R.propEq('id', contributor.id), contributors) as Contributor;
+
+
 const contributorsReducer = (
   state: ContributorsState = [],
-  action: AppAction
+  { type , payload }: AppAction
 ): ContributorsState => {
-  if (action.type === CONTRIBUTORS_TRANSMITTED) {
-    return action.payload.contributors;
+  switch (type) {
+    case CONTRIBUTORS_TRANSMITTED:
+      return payload.contributors;
+
+    case UNSUBSCRIBE:
+      return [
+        ...state,
+
+        findContributorIn(state)
+      ]
+
   }
+
   return state;
 };
 
