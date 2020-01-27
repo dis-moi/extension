@@ -23,7 +23,7 @@ export default ({ contentDocument }: AppProps) => {
   return (
     <StyleSheetManager target={contentDocument.head}>
       <Provider store={store}>
-        <FontsStyle />
+        <FontsStyle getURL={browser.runtime.getURL} />
         <GlobalStyle />
         <ThemeProvider theme={theme}>
           <ConnectedRouter history={history}>
