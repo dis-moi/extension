@@ -26,7 +26,8 @@ import {
   trackBrowserActionClickedSaga,
   trackCloseSaga,
   trackInstallSaga,
-  trackLocationChangeSaga
+  trackLocationChangeSaga,
+  trackTosAcceptedSaga
 } from './trackUI.saga';
 import {
   trackNoticeBadgedSaga,
@@ -46,6 +47,7 @@ export default (tracker?: Tracker) =>
 
         yield takeLatest(TOS_ACCEPTED, function*() {
           tracker.tosAccepted = yield select(areTosAccepted);
+          yield call(trackTosAcceptedSaga, tracker);
         });
 
         yield takeLatest(INSTALLATION_DETAILS, trackInstallSaga(tracker));
