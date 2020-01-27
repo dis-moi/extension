@@ -28,7 +28,8 @@ const selectEnvVarsToInject = R.pick([
   'REFRESH_CONTRIBUTORS_INTERVAL',
   'TRACKING_URL',
   'TRACKING_SITE_ID',
-  'SENTRY_ENABLED'
+  'SENTRY_ENABLED',
+  'PLATFORM'
 ]);
 const formatEnvVars = R.map(value => `"${value}"`);
 
