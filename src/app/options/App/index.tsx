@@ -9,7 +9,7 @@ import UI from './UI';
 
 const App = () => (
   <Provider store={store}>
-    <FontsStyle />
+    <FontsStyle getURL={(path: string) => path} />
     <ThemeProvider theme={theme}>
       <ConnectedRouter history={history}>
         <UI />
