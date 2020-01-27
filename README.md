@@ -59,6 +59,16 @@ To run automation, create a copy of `.env.example` to `.env` and adjust values.
 
 > **Note 2:** This configuration was inspired by [Parcel](https://parceljs.org/env.html#%F0%9F%8C%B3-variables-d'environnement)  
 
+List of environments:
+- `staging` : staging extension on `staging` API
+- `proding` : staging extension on `production` API
+- `production`: production ready extension on `production` API
+
+You can build any variations of the extension by playing with environment variables and this `webpack` command:
+```
+NODE_ENV=production|proding|staging webpack --mode=production --env.PLATFORM=firefox|chromium --env.SENTRY_ENABLED
+```
+
 ## Development
 
 ```bash
@@ -78,107 +88,43 @@ yarn start:productionApi
 
 ## Deployment
 
+> For each `feature`, `fix`, etc... we create a new branch and then a PR with `master` as the target branch. 
+
+Once the PR is merged into `master` a build is triggered on [SemaphoreCI](https://semaphoreci.com/lmem/extension/)
+> see [build configuration](https://semaphoreci.com/lmem/extension/settings)
+
 ### Staging
+Once the build passes, an automatic deploy to `staging` "server" is triggered. 
+Roughly, this deploy process bumps the version number in `package.json` and build each packages for each **platform** and each **environment**:
 
-```
-/!\ Warning this may be subject to change
-```
+Once built each package is released on [Github](https://github.com/insitu-project/recommendations-webextension/releases) and on both stores as `unlisted` version.
+> The publication on the Chrome store may take a while -- days -- to be validated.
 
-Make sure develop is up to date:
-```
-git checkout develop
-git pull develop
-yarn
-```
-
-The version number need to be changed, either manually:
-- Go to `package.json` and increment the version number there.
-
-> /!\ **OR** automatically using semantic release... @todo
-
-Commit & push:
-```
-git commit -m "feat(staging): bump version number"
-git push origin HEAD
-```
-
-> The **feat** flag, in the commit, forces `semantic-release`, to increment the minor version number of the future production release.
-
-Then run the release script:
-```
-yarn release:staging
-```
-This creates an archive in the `build/` directory:
-```
-bulles-vX.X.X-staging.zip
-```
-
-Then open the [chrome webstore](https://chrome.google.com/u/1/webstore/devconsole/g10525161170329704473?hl=fr) with the following account:
-```
-extensions.lmem@gmail.com
-```
-> Ask for the password to a super user! *OR* A super user may add your own google account to the developer group.
-
-- Click on the staging build
-![Chrome webstore dashboard](doc/chrome-webstore-dashboard.png)
-> The staging build is the one is only a few users and a status *Published* but *Non listed*.
-
-- Click on the package tab
-![Package tab](doc/package.png)
-
-- Finally click on the publish button
-![Publish button](doc/publish.png)
-
-> The publication may take a moment (10 to 30mins) to be visible in the store.
+> See the detailed `staging` deploy steps `./release.config.staging.js` in project root directory.
 
 ### Production
-1. Prepare a PR from the branch `develop` to `master` and merge it.
+The `production` deployment process is manual, and is triggered once the staging has been functionally validated.
 
-2. Make you sure have access to semaphore and wait until the last master built is completed with success:
+> See the detailed deploy steps `./release.config.staging.js` in project root directory.
+
+Make you sure have access to semaphore and wait until the last master built is completed with success:
 https://semaphoreci.com/lmem/extension/branches/master
 
  - Then click on the last master build and click "Deploy manually".
  - Tick `production` checkbox
 
-> This will trigger the semantic release pipeline, see `release.config.js` in the root directory for more details.
+## Notes / FAQ
 
-3. Check that the build is available on github.
+The **feat** flag, in the commit, forces `semantic-release`, to increment the minor version number of the future production release.
 
-
-4. Upload the build to the store
-> **/!\** Next steps depends on the target:
-
-#### Chrome
-
-4.1 0pen the [chrome webstore](https://chrome.google.com/u/1/webstore/devconsole/g10525161170329704473?hl=fr) with the following account:
+[chrome webstore](https://chrome.google.com/u/1/webstore/devconsole/g10525161170329704473?hl=fr) account:
 ```
 extensions.lmem@gmail.com
 ```
 > Ask for the password to a super user! *OR* A super user may add your own google account to the developer group.
 
-- Click on the production build
-![Chrome webstore dashboard](doc/chrome-webstore-dashboard.png)
-> The production build is the one is more users and a status *Published* and *Public*.
-
-- Click on the package tab
-![Package tab](doc/package.png)
-
-- Finally click on the publish button
-![Publish button](doc/publish.png)
-
-> The publication may take a moment (10 to 30mins) to be visible in the store.
-
-#### Firefox
-
-```
-@todo
-```
-
-### Automating things!
-> @todo
-> https://github.com/DrewML/chrome-webstore-upload/blob/master/How%20to%20generate%20Google%20API%20keys.md
-> https://gokatz.me/blog/automate-your-chrome-extension-deployment-in-minutes/
-
+To generate your own tokens and deploy from your local environment :
+https://github.com/DrewML/chrome-webstore-upload/blob/master/How%20to%20generate%20Google%20API%20keys.md
 
 ## Storybook
 
