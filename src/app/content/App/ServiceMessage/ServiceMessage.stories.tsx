@@ -26,7 +26,7 @@ storiesOf('screens/ServiceMessage', module)
   ))
   .add('With many paragraphs', () => (
     <ServiceMessage
-      messages={["I'm a service message!", 'And here is a second one']}
+      messages={["Here's the first paragraph!", "And here's a second one."]}
       openOnboarding={() => action('openOnboarding')}
     />
   ));

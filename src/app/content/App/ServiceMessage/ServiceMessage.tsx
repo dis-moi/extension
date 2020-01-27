@@ -5,9 +5,10 @@ import { ServiceMessageAction } from 'app/lmem/ServiceMessage';
 
 const Content = styled.section`
   margin-top: 50px;
-  font-size: 14px;
+  font-size: 16px;
   color: ${props => props.theme.primaryColor};
   text-align: center;
+  font-weight: bold;
 `;
 
 const Text = styled.p`
