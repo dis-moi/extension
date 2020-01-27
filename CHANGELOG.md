@@ -1,3 +1,10 @@
+## [3.13.4](https://github.com/insitu-project/recommendations-webextension/compare/v3.13.3...v3.13.4) (2020-01-27)
+
+
+### Bug Fixes
+
+* **firefox:** revert animations refactoring because of a crash with firefox ([a6bdf90](https://github.com/insitu-project/recommendations-webextension/commit/a6bdf90)), closes [#192](https://github.com/insitu-project/recommendations-webextension/issues/192)
+
 ## [3.13.3](https://github.com/insitu-project/recommendations-webextension/compare/v3.13.2...v3.13.3) (2020-01-27)
 
 
