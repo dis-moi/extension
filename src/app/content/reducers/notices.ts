@@ -1,4 +1,5 @@
 import { LOCATION_CHANGE } from 'connected-react-router';
+import * as R from 'ramda';
 import {
   dislikeNotice,
   dismissNotice,
@@ -17,13 +18,21 @@ import {
   NOTICES_FOUND,
   NO_NOTICES_DISPLAYED,
   CONTEXT_NOT_TRIGGERED,
-  AppAction
+  AppAction,
+  UNSUBSCRIBE
 } from 'app/actions';
+import { getContributorId } from 'app/background/reducers/subscriptions.reducer';
 
 export type NoticesState = StatefulNotice[];
 
 export default (state: NoticesState = [], action: AppAction): NoticesState => {
   switch (action.type) {
+    case UNSUBSCRIBE:
+      return R.reject(
+        R.pathEq(['contributor', 'id'], getContributorId(action)),
+        state
+      );
+
     case NOTICES_FOUND:
       return action.payload.notices;
 
