@@ -80,3 +80,18 @@ export const trackBrowserActionClickedSaga = (tracker: Tracker) =>
       yield put(createErrorAction()(e));
     }
   };
+
+export const trackTosAcceptedSaga = (tracker: Tracker) =>
+  function*(action: BrowserActionClickedAction): SagaIterator {
+    try {
+      yield call(tracker.trackEvent, {
+        category: 'Extension',
+        action: 'tos_accepted',
+        name: 'CGU Acceptées',
+        value: 0,
+        url: getURLFromActionMeta(action)
+      });
+    } catch (e) {
+      yield put(createErrorAction()(e));
+    }
+  };
