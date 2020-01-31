@@ -18,6 +18,7 @@ import sendInstallationDetailsToOptions from './sendInstallationDetailsToOptions
 import setup from './setup.saga';
 import tos from './tos.saga';
 import awaitRehydratationSaga from './lib/awaitRehydratation.saga';
+import subscriptionsSaga from './subscriptions';
 import tracking from './tracking';
 import MatomoTracker from 'app/matomo';
 
@@ -47,6 +48,7 @@ export default function* rootSaga() {
     fork(setup),
     fork(error),
     fork(tos),
-    fork(tracking(tracker))
+    fork(tracking(tracker)),
+    fork(subscriptionsSaga)
   ]);
 }
