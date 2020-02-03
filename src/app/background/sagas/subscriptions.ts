@@ -1,13 +1,18 @@
 import { SagaIterator } from 'redux-saga';
 import { call, select, put, takeLatest } from 'redux-saga/effects';
-import { createErrorAction, SUBSCRIBE, UNSUBSCRIBE } from 'app/actions';
-import { getUserId } from 'app/background/selectors/user';
+import {
+  createErrorAction,
+  STARTUP,
+  SUBSCRIBE,
+  UNSUBSCRIBE
+} from 'app/actions';
 import { getSubscriptions } from 'app/background/selectors/subscriptions.selectors';
 import postSubscriptions from 'api/postSubscriptions';
+import { loginSaga } from './user.saga';
 
 function* postSubscriptionsSaga(): SagaIterator {
   try {
-    const extensionId = yield select(getUserId);
+    const extensionId = yield call(loginSaga);
     const subscriptions = yield select(getSubscriptions);
 
     yield call(postSubscriptions, {
@@ -20,5 +25,5 @@ function* postSubscriptionsSaga(): SagaIterator {
 }
 
 export default function*() {
-  yield takeLatest([SUBSCRIBE, UNSUBSCRIBE], postSubscriptionsSaga);
+  yield takeLatest([SUBSCRIBE, UNSUBSCRIBE, STARTUP], postSubscriptionsSaga);
 }

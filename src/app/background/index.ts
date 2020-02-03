@@ -3,10 +3,12 @@
 import prepareDraftPreview from '../lmem/draft-preview/main';
 import { BACKEND_ORIGIN } from 'app/constants/origins';
 import onInstalled from 'webext/onInstalled';
+import onStartup from 'webext/onStartup';
 import {
   updateDraftNotices,
   installed,
-  updateRestrictedContexts
+  updateRestrictedContexts,
+  startup
 } from 'app/actions';
 import { configureSentryScope, initSentry } from 'app/utils/sentry';
 import { store } from './store';
@@ -43,3 +45,5 @@ onInstalled.then(installedDetails => {
 
   store.dispatch(installed(installedDetails));
 });
+
+onStartup.then(() => store.dispatch(startup()));
