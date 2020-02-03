@@ -4,6 +4,10 @@ const base = require('../base');
 module.exports = {
   ...base,
   name: `${base.name} - development`,
+  background: {
+    ...base.background,
+    persistent: false
+  },
   permissions: [...base.permissions, '*://*/*'],
   content_security_policy: csp({
     directives: {

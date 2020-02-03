@@ -75,11 +75,6 @@ module.exports = (env = {}, argv = {}, buildPath) => {
       'process.env': processENVVarsToInject(env)
     }),
     new ModuleNotFoundPlugin(path.resolve(__dirname, '..')),
-    new HtmlWebpackPlugin({
-      template: './views/background.pug',
-      filename: 'background.html',
-      inject: false
-    }),
     new CopyWebpackPlugin(copyConfig),
     new LodashModuleReplacementPlugin()
   ];
