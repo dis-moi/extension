@@ -1,4 +1,10 @@
-import { ActionMeta, AppAction, BaseAction, ErrorAction } from './index';
+import {
+  ActionMeta,
+  AppAction,
+  BaseAction,
+  ErrorAction,
+  StandardAction
+} from './index';
 import { From } from 'webext/From';
 
 export const LISTENING_ACTIONS_READY = 'LISTENING_ACTIONS_READY';
@@ -28,4 +34,23 @@ export const listenActionFailed = (e: Error): ListenActionFailedAction => ({
   type: LISTEN_ACTION_FAILED,
   payload: e,
   error: true
+});
+
+export interface LifecycleAction extends StandardAction {
+  meta: {
+    at: Date;
+  };
+}
+
+export const STARTUP = 'STARTUP';
+export interface StartupAction extends LifecycleAction {
+  type: typeof STARTUP;
+  meta: {
+    at: Date;
+  };
+}
+
+export const startup = (): StartupAction => ({
+  type: STARTUP,
+  meta: { at: new Date() }
 });
