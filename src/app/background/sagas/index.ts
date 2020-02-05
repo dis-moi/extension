@@ -17,7 +17,7 @@ import sendContributorsToOptions from './transmitContributors.saga';
 import sendInstallationDetailsToOptions from './sendInstallationDetailsToOptions.saga';
 import setup from './setup.saga';
 import tos from './tos.saga';
-import awaitRehydratationSaga from './lib/awaitRehydratation.saga';
+import awaitRehydrationSaga from './lib/awaitRehydration.saga';
 import subscriptionsSaga from './subscriptions';
 import tracking from './tracking';
 import MatomoTracker from 'app/matomo';
@@ -28,10 +28,10 @@ const tracker =
     : undefined;
 
 export default function* rootSaga() {
-  yield call(awaitRehydratationSaga);
+  yield fork(install);
+  yield call(awaitRehydrationSaga);
 
   yield all([
-    fork(install),
     fork(refreshMatchingContexts),
     fork(refreshContributors),
     fork(tab),

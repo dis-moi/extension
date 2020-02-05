@@ -20,6 +20,7 @@ import { subscribe } from 'app/actions';
 import { lmemContributorIds } from 'app/lmemContributors';
 import { retrieveContributorsSaga } from './refreshContributors';
 import { loginSaga } from './user.saga';
+import awaitRehydrationSaga from './lib/awaitRehydration.saga';
 
 export function* installedSaga({
   payload: { installedDetails }
@@ -38,6 +39,8 @@ export function* installedSaga({
       datetime: datetime || new Date(),
       updatedAt: new Date()
     };
+
+    yield call(awaitRehydrationSaga);
 
     yield put(updateInstallationDetails(installationDetails, false));
   } catch (e) {
