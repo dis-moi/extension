@@ -3,7 +3,7 @@ import { REHYDRATE } from 'redux-persist/es/constants';
 import { isRehydrated } from '../../selectors';
 import Logger from '../../../utils/Logger';
 
-function* awaitRehydratationSaga() {
+function* awaitRehydrationSaga() {
   Logger.debug('Checking store rehydratation ...');
   const rehydrated = yield select(isRehydrated);
   Logger.debug(`Store is ${rehydrated ? '' : 'not '}rehydrated!`);
@@ -14,4 +14,4 @@ function* awaitRehydratationSaga() {
   Logger.info('Store rehydrated check done');
 }
 
-export default awaitRehydratationSaga;
+export default awaitRehydrationSaga;
