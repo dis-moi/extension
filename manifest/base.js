@@ -21,13 +21,13 @@ module.exports = Object.freeze({
   content_scripts: [
     {
       exclude_globs: [
-        '*.pdf',
-        '*.Pdf',
-        '*.PDF',
-        '*.jpeg',
-        '*.jpg',
-        '*.png',
-        '*.gif'
+        '*.pdf*',
+        '*.Pdf*',
+        '*.PDF*',
+        '*.jpeg*',
+        '*.jpg*',
+        '*.png*',
+        '*.gif*'
       ],
       matches: ['*://*/*'],
       exclude_matches: [
