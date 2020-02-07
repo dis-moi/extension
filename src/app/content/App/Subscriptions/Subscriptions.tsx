@@ -44,7 +44,7 @@ const SubscriptionInfo = styled.div`
   font-size: 18px;
 `;
 
-const pluralize = (nb: number | undefined) => (nb && nb > 1 ? '·s' : '');
+const pluralize = (nb: number | undefined) => (nb && nb > 1 ? '(s)' : '');
 
 const nbContributorsPerRow = 6;
 const maxNbRows = 3;
@@ -104,14 +104,14 @@ const Subscriptions = ({
       <SubscriptionInfo>
         {subscribedContributors.length === 0 && (
           <>
-            Vous ne suivez aucun·e contributeur·trice, c&apos;est nécessaire au
-            bon fonctionnement de l&apos;extension.
+            Vous ne suivez aucun(e) contributeur(trice), c&apos;est nécessaire
+            au bon fonctionnement de l&apos;extension.
           </>
         )}
         {subscribedContributors.length > 0 && (
           <>
             Vous suivez <br />
-            <strong>{subscribedContributors.length}</strong> contributeur·trice
+            <strong>{subscribedContributors.length}</strong> contributeur(trice)
             {pluralize(subscribedContributors.length)}.
           </>
         )}
