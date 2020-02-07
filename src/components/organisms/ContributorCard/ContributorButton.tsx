@@ -7,7 +7,7 @@ interface Props {
 }
 const ContributorButton = ({ subscribed }: Props) =>
   subscribed ? (
-    <BackgroundButton>Suivi·e</BackgroundButton>
+    <BackgroundButton>Suivi(e)</BackgroundButton>
   ) : (
     <BorderButton>Suivre</BorderButton>
   );

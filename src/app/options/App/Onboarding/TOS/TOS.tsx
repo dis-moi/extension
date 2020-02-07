@@ -71,7 +71,7 @@ export default ({
             <LMEMToBulles />
 
             <TitleLMEM>
-              Votre extension s&apos;ouvre à de nouveaux contributeur·ice·s
+              Votre extension s&apos;ouvre à de nouveaux contributeur(ice)s
               <br /> et change de nom.
             </TitleLMEM>
           </Intro>
