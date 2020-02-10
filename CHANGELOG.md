@@ -1,3 +1,20 @@
+# [3.14.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.13.4...v3.14.0) (2020-02-10)
+
+
+### Bug Fixes
+
+* **firefox:** font style could'nt load on Firefox ([361648f](https://github.com/insitu-project/recommendations-webextension/commit/361648f))
+* **onboarding:** fix onboarding not opening automatically on install ([ed05407](https://github.com/insitu-project/recommendations-webextension/commit/ed05407))
+* **pdf:** fix more PDF injection cases which are breaking printing PDF feature ([e86c021](https://github.com/insitu-project/recommendations-webextension/commit/e86c021))
+* **unsubscribe:** update notices on an unsubscribe event from content ([f3d6d59](https://github.com/insitu-project/recommendations-webextension/commit/f3d6d59))
+
+
+### Features
+
+* **subscriptions:** log subscriptions list per extension on subscribe and unsubscribe ([166af2c](https://github.com/insitu-project/recommendations-webextension/commit/166af2c))
+* **subscriptions:** update subscriptions on browser startup ([f68f705](https://github.com/insitu-project/recommendations-webextension/commit/f68f705))
+* **tracking:** also track ToS acceptance as an event ([2486855](https://github.com/insitu-project/recommendations-webextension/commit/2486855))
+
 ## [3.13.4](https://github.com/insitu-project/recommendations-webextension/compare/v3.13.3...v3.13.4) (2020-01-27)
 
 
