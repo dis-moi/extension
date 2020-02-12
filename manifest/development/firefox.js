@@ -4,7 +4,7 @@ const base = require('../base');
 module.exports = {
   ...base,
   name: 'Bulles - development',
-  permissions: [...base.permissions, '*://*/*'],
+  permissions: [...base.permissions, 'tabs', '*://*/*'],
   content_security_policy: csp({
     directives: {
       'script-src': ["'self'", "'unsafe-eval'"],
