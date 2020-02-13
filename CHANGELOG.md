@@ -1,3 +1,10 @@
+## [3.14.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.14.0...v3.14.1) (2020-02-13)
+
+
+### Bug Fixes
+
+* broken Firefox communication without `tabs` permission ([67e9573](https://github.com/insitu-project/recommendations-webextension/commit/67e9573))
+
 # [3.14.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.13.4...v3.14.0) (2020-02-10)
 
 
