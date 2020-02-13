@@ -20,6 +20,8 @@ const Subtitle = styled.p`
 
 const SuggestionsWrapper = styled.div`
   height: calc(100vh - 220px);
+  padding-right: 10px;
+  padding-left: 10px;
   overflow-y: scroll;
 
   ${SubscriptionsScreen} {
