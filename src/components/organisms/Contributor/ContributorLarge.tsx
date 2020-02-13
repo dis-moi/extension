@@ -46,7 +46,7 @@ const ContributorIntro = styled.div.attrs<IntroProps>(
 )<IntroProps>`
   margin: 20px 0 0;
   font-size: 15px;
-  color: ${props => props.theme.formBorder};
+  color: ${props => props.theme.contributorIntro};
 
   & > p {
     margin: 0;
