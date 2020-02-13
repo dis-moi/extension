@@ -1,4 +1,4 @@
-import { applyMiddleware, compose, createStore } from 'redux';
+import { Action, applyMiddleware, compose, createStore } from 'redux';
 import { routerMiddleware } from 'connected-react-router';
 import { createHashHistory } from 'history';
 import rootReducer from './reducers';
@@ -18,7 +18,13 @@ const applyMiddlewares =
           require('redux-immutable-state-invariant').default(),
           require('redux-logger').createLogger({
             level: 'info',
-            collapsed: true
+            collapsed: true,
+            titleFormatter: (
+              action: Action,
+              time: string,
+              took: number
+            ): string =>
+              `[OPTIONS] @ ${time} ${action.type} (in ${took.toFixed(2)} ms)`
           })
         ])
       )

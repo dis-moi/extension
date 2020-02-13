@@ -10,7 +10,7 @@ import {
   ListeningActionsReadyAction,
   TosAcceptedAction
 } from 'app/actions';
-import assocTabIfNotGiven from 'webext/assocTabIfNotGiven';
+import assocMetaIfNotGiven from 'webext/assocMetaIfNotGiven';
 import { getInstallationDetails } from '../selectors/installationDetails';
 import { areTosAccepted } from '../selectors/prefs';
 import sendToTabSaga from './lib/sendToTab.saga';
@@ -24,7 +24,7 @@ function* sendTosStateToOptionsTab(
   action: ListeningActionsReadyAction | TosAcceptedAction
 ) {
   const tab = action.meta!.tab as chrome.tabs.Tab & Tab;
-  const transmitAction = assocTabIfNotGiven(tab)(
+  const transmitAction = assocMetaIfNotGiven('tab', tab)(
     transmitTosStatus(yield select(areTosAccepted))
   );
   yield sendToTabSaga(tab, transmitAction);
@@ -35,7 +35,7 @@ function* sendInstallationDetailsToOptionsTab(
 ) {
   const tab = action.meta.tab as chrome.tabs.Tab & Tab;
   const installationDetails = yield select(getInstallationDetails);
-  const transmitAction = assocTabIfNotGiven(tab)(
+  const transmitAction = assocMetaIfNotGiven('tab', tab)(
     updateInstallationDetails(installationDetails)
   );
   yield sendToTabSaga(tab, transmitAction);

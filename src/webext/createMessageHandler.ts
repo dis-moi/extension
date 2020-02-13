@@ -2,7 +2,7 @@ import { Action } from 'redux';
 import * as R from 'ramda';
 import Tab from 'app/lmem/tab';
 import { BaseAction } from 'app/actions';
-import assocTabIfNotGiven from './assocTabIfNotGiven';
+import assocMetaIfNotGiven from './assocMetaIfNotGiven';
 import { getOptionsUrl } from './openOptionsTab';
 
 type MessageSender = chrome.runtime.MessageSender;
@@ -15,20 +15,50 @@ const isOptionsPage = (url: string): boolean => url.includes(getOptionsUrl());
 
 type PossibleOriginInBackground = 'options' | 'content';
 
-const getTabContext = (tab?: chrome.tabs.Tab) =>
-  tab && tab.url && isOptionsPage(tab.url) ? 'options' : 'content';
+/**
+ * If `from` is specified by sender, we keep it,
+ * otherwise we try to detect it from URL.
+ * @param action
+ * @param tab
+ */
+const getTabFrom = (
+  action: Action,
+  tab?: chrome.tabs.Tab
+): PossibleOriginInBackground =>
+  R.pipe<
+    Action,
+    PossibleOriginInBackground | undefined,
+    PossibleOriginInBackground
+  >(
+    R.path(['meta', 'from']),
+    R.defaultTo<PossibleOriginInBackground>(
+      tab && tab.url && isOptionsPage(tab.url) ? 'options' : 'content'
+    )
+  )(action);
 
-type SetMetaFrom<A> = (
-  a: A
-) => A & { meta: { from: PossibleOriginInBackground } };
-const setMetaFrom = <A>(from: PossibleOriginInBackground) =>
-  R.assocPath(['meta', 'from'], from) as SetMetaFrom<A>;
+/**
+ * Chrome keeps the `url` property in `sender.tab` but Firefox does not,
+ * without the `tabs` permission, but still gives it in `sender.url` for some reason.
+ * @param sender
+ */
+const getTabFromSender = (sender: MessageSender): chrome.tabs.Tab => ({
+  ...(sender.tab as chrome.tabs.Tab),
+  url: sender.tab && sender.tab.url ? sender.tab.url : sender.url
+});
 
-type ActionWithTab = Action & { meta: { tab: chrome.tabs.Tab & Tab } };
+type ActionWithTab = Action & { meta: { tab: chrome.tabs.Tab } };
+
 const addSenderToAction = <A extends BaseAction>(sender: MessageSender) =>
   R.pipe<A, ActionWithTab, ReceivedAction>(
-    assocTabIfNotGiven(sender.tab),
-    setMetaFrom(getTabContext(sender.tab))
+    assocMetaIfNotGiven<'tab', chrome.tabs.Tab>(
+      'tab',
+      getTabFromSender(sender)
+    ),
+    action =>
+      assocMetaIfNotGiven<'from', PossibleOriginInBackground>(
+        'from',
+        getTabFrom(action, sender.tab)
+      )(action)
   );
 
 const stripSendMeta = R.pipe<ReceivedAction, ReceivedAction, ReceivedAction>(
@@ -38,7 +68,7 @@ const stripSendMeta = R.pipe<ReceivedAction, ReceivedAction, ReceivedAction>(
 
 export interface ReceivedAction extends Action {
   meta: {
-    tab: chrome.tabs.Tab & Tab;
+    tab: chrome.tabs.Tab;
     from: PossibleOriginInBackground;
   };
 }
