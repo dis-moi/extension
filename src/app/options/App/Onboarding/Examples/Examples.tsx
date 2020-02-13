@@ -15,6 +15,7 @@ const Title2 = styled(Title)`
 
 const Subtitle = styled.p`
   margin-top: 0;
+  font-size: 16px;
 `;
 
 const SuggestionsWrapper = styled.div`
@@ -58,7 +59,7 @@ export default ({ next }: ExamplesScreenProps) => (
         <Title2>Votre réseau d’informateurs</Title2>
         <Subtitle>
           Pour découvrir et profiter au mieux du service, vous êtes actuellement
-          abonné·e à tous les contributeurs .
+          abonné·e à tous les contributeurs.
         </Subtitle>
       </Intro>
     </Wrapper>
