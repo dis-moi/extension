@@ -7,6 +7,7 @@
   },
   "scripts": {
     "start": "webpack --watch --progress --mode=development",
+    "start:firefox": "webpack --watch --progress --mode=development --env.PLATFORM=firefox",
     "build:staging": "NODE_ENV=staging yarn build:chromium && NODE_ENV=staging yarn build:firefox",
     "release:staging": "NODE_ENV=staging yarn build:chromium --env.SENTRY_ENABLED && NODE_ENV=staging yarn build:firefox --env.SENTRY_ENABLED",
     "build:proding": "NODE_ENV=proding yarn build:chromium && NODE_ENV=proding yarn build:firefox",

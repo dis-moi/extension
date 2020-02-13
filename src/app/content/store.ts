@@ -1,4 +1,4 @@
-import { applyMiddleware, createStore } from 'redux';
+import { Action, applyMiddleware, createStore } from 'redux';
 import { routerMiddleware, RouterState } from 'connected-react-router';
 import { createMemoryHistory } from 'history';
 import { FormStateMap } from 'redux-form';
@@ -37,7 +37,13 @@ const enhancer =
           require('redux-immutable-state-invariant').default(),
           require('redux-logger').createLogger({
             level: 'info',
-            collapsed: true
+            collapsed: true,
+            titleFormatter: (
+              action: Action,
+              time: string,
+              took: number
+            ): string =>
+              `[CONTENT] @ ${time} ${action.type} (in ${took.toFixed(2)} ms)`
           })
         ])
       )

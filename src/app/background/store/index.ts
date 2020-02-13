@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, Action } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import createBrowserStorage from 'webext/createBrowserStorage';
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
@@ -37,7 +37,13 @@ const enhancer =
           require('redux-immutable-state-invariant').default(),
           require('redux-logger').createLogger({
             level: 'info',
-            collapsed: true
+            collapsed: true,
+            titleFormatter: (
+              action: Action,
+              time: string,
+              took: number
+            ): string =>
+              `[BACKGROUND] @ ${time} ${action.type} (in ${took.toFixed(2)} ms)`
           })
         ])
       )
