@@ -1,3 +1,13 @@
+## [3.14.2](https://github.com/insitu-project/recommendations-webextension/compare/v3.14.1...v3.14.2) (2020-02-14)
+
+
+### Bug Fixes
+
+* **contributor card:** changed intro text color ([54d9340](https://github.com/insitu-project/recommendations-webextension/commit/54d9340))
+* **contributors list examples:** added padding left and right to help see the scroll bar ([717b1a5](https://github.com/insitu-project/recommendations-webextension/commit/717b1a5))
+* **onboarding examples:** edited subtitle sentence ([05927a4](https://github.com/insitu-project/recommendations-webextension/commit/05927a4))
+* **onboarding examples:** edited subtitle styles, and removed useless space in content ([bb189cd](https://github.com/insitu-project/recommendations-webextension/commit/bb189cd))
+
 ## [3.14.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.14.0...v3.14.1) (2020-02-13)
 
 
