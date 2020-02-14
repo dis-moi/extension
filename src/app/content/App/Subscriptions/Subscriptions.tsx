@@ -104,8 +104,8 @@ const Subscriptions = ({
       <SubscriptionInfo>
         {subscribedContributors.length === 0 && (
           <>
-            Vous ne suivez aucun(e) contributeur(trice), c&apos;est nécessaire
-            au bon fonctionnement de l&apos;extension.
+            Vous ne suivez actuellement aucun(e) contributeur(trice). <br />
+            Pour le bon fonctionnement de l&apos;extension, abonnez-vous !
           </>
         )}
         {subscribedContributors.length > 0 && (
