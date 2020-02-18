@@ -22,9 +22,7 @@ export const showServiceMessage = (
 export const clearServiceMessage = (tab: Tab): ShowServiceMessageAction => ({
   type: SERVICE_MESSAGE,
   payload: {
-    messages: [],
-    action: null,
-    lastShownDate: null
+    messages: []
   },
   meta: {
     tab,

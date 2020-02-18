@@ -1,34 +1,15 @@
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
 import { expect } from 'chai';
 import { useFakeTimers } from 'sinon';
-import serviceMessage, { ServiceMessageState } from './serviceMessage.reducer';
-import { showServiceMessage } from 'app/actions';
+import serviceMessage from './serviceMessage.reducer';
+import { opened, OpenFrom } from 'app/actions';
 
 describe('background > reducers > serviceMessage', () => {
-  it('has null lastShownDate initially', () => {
-    // @ts-ignore
-    expect(serviceMessage(undefined, { type: 'UNKNOWN_ACTION' })).to.eql({
-      lastShownDate: null
-    });
-  });
-  it('saves the lastShownDate from SERVICE_MESSAGE action', () => {
+  it('saves the lastShownDate when OPENED from a service message action', () => {
     const now = new Date();
     const clock = useFakeTimers(now.getTime());
-    const action = showServiceMessage(
-      {
-        messages: ["Hey there I'm a service message"],
-        lastShownDate: null,
-        action: null
-      },
-      {
-        id: 1,
-        url: ''
-      }
-    );
-    const state: ServiceMessageState = {
-      lastShownDate: null
-    };
-    expect(serviceMessage(state, action)).to.eql({
+    const action = opened(OpenFrom.ServiceMessage, now);
+    expect(serviceMessage(undefined, action)).to.eql({
       lastShownDate: now
     });
     clock.restore();

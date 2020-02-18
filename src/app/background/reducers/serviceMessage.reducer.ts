@@ -1,4 +1,4 @@
-import { AppAction, SERVICE_MESSAGE } from 'app/actions';
+import { AppAction, OPENED, OpenFrom } from 'app/actions';
 
 export interface ServiceMessageState {
   lastShownDate: null | Date;
@@ -8,7 +8,7 @@ export interface ServiceMessageStateSlice {
   serviceMessage: ServiceMessageState;
 }
 
-const initialState: ServiceMessageState = {
+export const initialState: ServiceMessageState = {
   lastShownDate: null
 };
 
@@ -16,14 +16,11 @@ export default (
   state: ServiceMessageState = initialState,
   action: AppAction
 ): ServiceMessageState => {
-  switch (action.type) {
-    case SERVICE_MESSAGE: {
-      return {
-        lastShownDate: action.payload.lastShownDate
-      };
-    }
-
-    default:
-      return state;
+  if (action.type === OPENED && action.payload === OpenFrom.ServiceMessage) {
+    return {
+      lastShownDate: action.meta.at
+    };
   }
+
+  return state;
 };

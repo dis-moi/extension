@@ -5,6 +5,6 @@ export interface ServiceMessageAction {
 
 export default interface ServiceMessageState {
   messages: string[];
-  action: ServiceMessageAction | null;
-  lastShownDate: null | Date;
+  action?: ServiceMessageAction;
+  lastShownDate?: Date;
 }
