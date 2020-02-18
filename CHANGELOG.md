@@ -1,3 +1,10 @@
+## [3.14.3](https://github.com/insitu-project/recommendations-webextension/compare/v3.14.2...v3.14.3) (2020-02-18)
+
+
+### Bug Fixes
+
+* **inclusive content:** replaced median dot by parenthesis ([847f872](https://github.com/insitu-project/recommendations-webextension/commit/847f872))
+
 ## [3.14.2](https://github.com/insitu-project/recommendations-webextension/compare/v3.14.1...v3.14.2) (2020-02-14)
 
 
