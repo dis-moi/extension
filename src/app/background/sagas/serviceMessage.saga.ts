@@ -35,8 +35,7 @@ export default function* serviceMessageSaga(tab: Tab, nbNotices = 0) {
             action: {
               label: 'Lire et accepter les CGU',
               url: '/onboarding'
-            },
-            lastShownDate: null
+            }
           },
           tab
         )
@@ -49,8 +48,7 @@ export default function* serviceMessageSaga(tab: Tab, nbNotices = 0) {
             action: {
               label: 'Choisir mes contributeurs',
               url: '/settings/suggestions'
-            },
-            lastShownDate: null
+            }
           },
           tab
         )

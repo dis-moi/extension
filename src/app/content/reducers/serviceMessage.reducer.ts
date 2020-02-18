@@ -4,9 +4,7 @@ import ServiceMessage from 'app/lmem/ServiceMessage';
 export type ServiceMessageState = ServiceMessage;
 
 const initialState: ServiceMessageState = {
-  messages: [],
-  action: null,
-  lastShownDate: null
+  messages: []
 };
 
 export default (

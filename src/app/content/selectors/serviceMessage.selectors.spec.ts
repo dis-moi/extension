@@ -8,9 +8,7 @@ describe('content > selectors > serviceMessage', () => {
     it('returns false if there is no serviceMessage', () => {
       const state: StateWithServiceMessage = {
         serviceMessage: {
-          messages: [],
-          action: null,
-          lastShownDate: null
+          messages: []
         }
       };
       expect(hasServiceMessage(state)).to.be.false;
@@ -18,9 +16,7 @@ describe('content > selectors > serviceMessage', () => {
     it('returns true if serviceMessage is true', () => {
       const state: StateWithServiceMessage = {
         serviceMessage: {
-          messages: ["Hey I'm a service message."],
-          action: null,
-          lastShownDate: null
+          messages: ["Hey I'm a service message."]
         }
       };
       expect(hasServiceMessage(state)).to.be.true;

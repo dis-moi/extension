@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
 import { expect } from 'chai';
 import serviceMessage, { ServiceMessageState } from './serviceMessage.reducer';
-import { CloseCause } from 'app/lmem/ui';
-import { closed, showServiceMessage } from 'app/actions';
+import { clearServiceMessage, showServiceMessage } from 'app/actions';
 
 describe('content > reducers > serviceMessage', () => {
   it('initialize to []', () => {
@@ -13,28 +12,21 @@ describe('content > reducers > serviceMessage', () => {
   });
   it('shows update message when receive SERVICE_MESSAGE', () => {
     const state: ServiceMessageState = {
-      messages: [],
-      action: null,
-      lastShownDate: null
+      messages: []
     };
     expect(
       serviceMessage(
         state,
-        showServiceMessage(
-          { messages: ['message'], lastShownDate: null, action: null },
-          { id: 1, url: '' }
-        )
+        showServiceMessage({ messages: ['message'] }, { id: 1, url: '' })
       )
     ).to.have.deep.property('messages', ['message']);
   });
   it('removes the update message when UI is CLOSED', () => {
     const state: ServiceMessageState = {
-      messages: [],
-      action: null,
-      lastShownDate: null
+      messages: ['Update required!']
     };
     expect(
-      serviceMessage(state, closed(CloseCause.CloseButton))
+      serviceMessage(state, clearServiceMessage({ id: 1, url: '' }))
     ).to.have.deep.property('messages', []);
   });
 });

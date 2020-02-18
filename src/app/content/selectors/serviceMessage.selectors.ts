@@ -19,5 +19,5 @@ export const hasServiceMessage = createSelector(
 
 export const getServiceMessageAction = createSelector(
   [getServiceMessageState],
-  R.prop('action')
+  (state: ServiceMessageState) => R.prop('action', state)
 );
