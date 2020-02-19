@@ -35,7 +35,8 @@
     "storybook": "start-storybook --ci -p 6007 -c .storybook",
     "build-storybook": "build-storybook",
     "deploy": "DEPLOY=staging yarn semantic-release",
-    "deploy:production": "DEPLOY=production yarn semantic-release"
+    "deploy:production": "DEPLOY=production yarn semantic-release",
+    "deploy:chrome": "yarn run upload:chrome:staging && yarn run upload:chrome:proding"
   },
   "husky": {
     "hooks": {
