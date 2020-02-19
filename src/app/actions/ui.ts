@@ -4,7 +4,7 @@ import {
 } from 'connected-react-router';
 import { CloseCause } from 'app/lmem/ui';
 import Tab from 'app/lmem/tab';
-import { ActionMeta, BaseAction, ErrorAction, TabAction } from '.';
+import { BaseAction, ErrorAction, TabAction, TimestampedAction } from '.';
 
 export enum OpenFrom {
   BrowserAction,
@@ -28,10 +28,9 @@ export const open = (from: OpenFrom, tab?: Tab): OpenAction => ({
 });
 
 export const OPENED = 'OPENED';
-export interface OpenedAction extends BaseAction {
+export interface OpenedAction extends TimestampedAction {
   type: typeof OPENED;
   payload?: OpenFrom;
-  meta: { at: Date } & ActionMeta;
 }
 export const opened = (
   from?: OpenFrom,
