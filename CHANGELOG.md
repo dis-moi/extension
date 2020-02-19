@@ -1,3 +1,10 @@
+## [3.14.4](https://github.com/insitu-project/recommendations-webextension/compare/v3.14.3...v3.14.4) (2020-02-19)
+
+
+### Bug Fixes
+
+* **service-message:** ensure UI was opened before setting last shown date ([d82e0d3](https://github.com/insitu-project/recommendations-webextension/commit/d82e0d3))
+
 ## [3.14.3](https://github.com/insitu-project/recommendations-webextension/compare/v3.14.2...v3.14.3) (2020-02-18)
 
 
