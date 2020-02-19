@@ -96,6 +96,10 @@ export interface BaseAction extends StandardAction {
   meta?: ActionMeta;
 }
 
+export interface TimestampedAction extends BaseAction {
+  meta: { at: Date } & ActionMeta;
+}
+
 export interface ErrorAction extends BaseAction {
   payload: Error;
   error: true;
