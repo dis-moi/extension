@@ -37,10 +37,6 @@ const release = Object.freeze({
       path: '@semantic-release/exec',
       cmd: 'yarn run sign:firefox:staging'
     },
-    {
-      path: '@semantic-release/exec',
-      cmd: 'yarn run upload:chrome:staging'
-    },
 
     // proding
     {
@@ -50,10 +46,6 @@ const release = Object.freeze({
     {
       path: '@semantic-release/exec',
       cmd: 'yarn run sign:firefox:proding'
-    },
-    {
-      path: '@semantic-release/exec',
-      cmd: 'yarn run upload:chrome:proding'
     },
 
     {
