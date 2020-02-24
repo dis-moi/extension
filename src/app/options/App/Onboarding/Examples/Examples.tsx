@@ -74,7 +74,7 @@ export default ({ next }: ExamplesScreenProps) => (
       <OnboardingButton onClick={next}>
         Fermer la page abonnement
       </OnboardingButton>
-      et reprendre ma navigation normale… avec Bulles !
+      et reprendre ma navigation normale… avec Dismoi !
     </BottomLineBg>
   </>
 );
