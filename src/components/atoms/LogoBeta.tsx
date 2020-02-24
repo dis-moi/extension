@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import LogoBeta from './icons/LogoBeta';
+import LogoBeta from './icons/Logo';
 
 const LogoWrapper = styled.div`
   height: 42px;

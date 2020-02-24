@@ -113,7 +113,7 @@ export default ({
             <LogoBeta />
 
             <Title>
-              Pour naviguer avec Bulles, veuillez lire et accepter <br />
+              Pour naviguer avec Dismoi, veuillez lire et accepter <br />
               les conditions générales d’utilisation.
             </Title>
           </Intro>
@@ -126,7 +126,7 @@ export default ({
             </TOSListItem>
             <TOSListItem>
               <strong>Anonymat:</strong> Pas d’email ni de compte nécessaires
-              pour naviguer avec Bulles
+              pour naviguer avec Dismoi
             </TOSListItem>
             <TOSListItem>
               <strong>Seules des données strictement utiles</strong> au
@@ -140,7 +140,7 @@ export default ({
           <TOSText>
             Ces engagements ne se substituent pas à la lecture détaillée des
             Conditions Générales d’utilisation que vous devez accepter
-            (ci-dessous) pour naviguer avec Bulles.
+            (ci-dessous) pour naviguer avec Dismoi.
           </TOSText>
 
           <TOSTitle>Conditions générales d’utilisation</TOSTitle>
