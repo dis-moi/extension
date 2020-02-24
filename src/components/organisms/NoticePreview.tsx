@@ -15,6 +15,13 @@ const DetailsMetaValue = styled.div`
   margin-left: 10px;
 `;
 
+const Container = styled(DetailsContainer)`
+  margin: 10px 13px;
+  height: calc(100% - 20px);
+  background-color: #fff;
+  border-radius: 8px;
+`;
+
 interface NoticePreviewProps {
   contribution: Contribution;
 }
@@ -26,7 +33,7 @@ class NoticePreview extends PureComponent<NoticePreviewProps> {
     } = this.props;
 
     return (
-      <DetailsContainer>
+      <Container>
         <DetailsContent>
           <DetailsMeta>
             <Avatar contributor={contributor} size="small" />
@@ -39,7 +46,7 @@ class NoticePreview extends PureComponent<NoticePreviewProps> {
           <Message>{linkify(message)}</Message>
         </DetailsContent>
         {children}
-      </DetailsContainer>
+      </Container>
     );
   }
 }
