@@ -31,7 +31,7 @@ export const Help = () => (
       </li>
     </List>
 
-    <ContentTitle>Contacter le support de Bulles</ContentTitle>
+    <ContentTitle>Contacter le support de Dismoi</ContentTitle>
     <Content>
       Merci de nous écrire à{' '}
       <Anchor href="mailto:support@bulles.fr">support@bulles.fr</Anchor>.
