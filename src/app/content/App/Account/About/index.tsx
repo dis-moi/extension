@@ -14,9 +14,9 @@ export interface AboutProps {
 
 export const About = ({ installationDate, extensionVersion }: AboutProps) => (
   <Container>
-    <Title>Bulles V{extensionVersion}</Title>
+    <Title>Dismoi V{extensionVersion}</Title>
     <Content>
-      Lorsque vous visitez une page du web, Bulles vous permet de lire les
+      Lorsque vous visitez une page du web, Dismoi vous permet de lire les
       messages de vos relations et en poster à votre tour.
     </Content>
 
