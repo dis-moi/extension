@@ -7,7 +7,7 @@ export default styled.h1.attrs({ children: <Logo /> })`
 
   & svg {
     width: auto;
-    height: 24px;
+    height: 22px;
     vertical-align: middle;
   }
 `;
