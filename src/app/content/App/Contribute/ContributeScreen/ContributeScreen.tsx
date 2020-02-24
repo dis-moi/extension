@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { ContentWrapper } from 'components/atoms';
+import { ContentWrapperBackground } from 'components/atoms';
 import SubmitContributionForm from './SubmitContributionForm';
 
 export const ContributeScreen = () => (
-  <ContentWrapper>
+  <ContentWrapperBackground>
     <SubmitContributionForm />
-  </ContentWrapper>
+  </ContentWrapperBackground>
 );
 
 export default ContributeScreen;

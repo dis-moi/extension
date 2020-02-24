@@ -10,7 +10,7 @@ import NoticeItem, {
 import ListContainer from './ListContainer';
 import { StatefulNotice } from 'app/lmem/notice';
 import withTitle from 'app/hocs/withTitle';
-import NoNotice from './NoNotice';
+import NoNotice from '../NoNotice';
 import withConnect from './withConnect';
 
 export interface Props {

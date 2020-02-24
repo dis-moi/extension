@@ -18,6 +18,10 @@ const PreviewForm = styled(Form)`
   align-self: center;
 `;
 
+const CancelButton = styled(Button)`
+  margin-right: 20px;
+`;
+
 export interface PreviewScreenOwnProps {
   contribution: Contribution;
   modify: () => void;
@@ -54,7 +58,7 @@ class PreviewScreen extends Component<PreviewScreenProps> {
         <PreviewForm
           onSubmit={handleFormSubmit({ handleSubmit, form })(publish)}
         >
-          <Button onClick={modify}>Modifier</Button>
+          <CancelButton onClick={modify}>Modifier</CancelButton>
           <BackgroundButton
             type="submit"
             disabled={this.isButtonDisabled}

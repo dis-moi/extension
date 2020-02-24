@@ -1,11 +1,11 @@
 import React from 'react';
-import { ContentWrapper } from 'components/atoms';
+import { ContentWrapperBackground } from 'components/atoms';
 import QuestionForm from './QuestionForm';
 
 export const FormScreen = () => (
-  <ContentWrapper>
+  <ContentWrapperBackground>
     <QuestionForm />
-  </ContentWrapper>
+  </ContentWrapperBackground>
 );
 
 export default FormScreen;
