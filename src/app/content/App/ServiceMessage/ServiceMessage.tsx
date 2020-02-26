@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BackgroundButton } from 'components/atoms';
 import { ServiceMessageAction } from 'app/lmem/ServiceMessage';
+import ServiceMessageActionButton from './ServiceMessageActionButton';
 
 const Content = styled.section`
   margin-top: 50px;
@@ -17,11 +17,6 @@ const Text = styled.p`
   &:last-of-type {
     margin-bottom: 34px;
   }
-`;
-
-const Button = styled(BackgroundButton)`
-  margin-left: auto;
-  margin-right: auto;
 `;
 
 interface ServiceMessageScreenProps {
@@ -40,7 +35,7 @@ export default ({
       <Text key={`messages[${i}]`}>{message}</Text>
     ))}
     {action && (
-      <Button onClick={openOnboarding(action.url)}>{action.label}</Button>
+      <ServiceMessageActionButton {...action} openOnboarding={openOnboarding} />
     )}
   </Content>
 );

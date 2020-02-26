@@ -11,6 +11,7 @@ import { getNbSubscriptions } from '../selectors/subscriptions.selectors';
 import Tab from 'app/lmem/tab';
 import { getServiceMessageLastShowDate } from '../selectors/serviceMessage.selectors';
 import { isToday } from 'date-fns';
+import { LinkType } from 'app/lmem/ServiceMessage';
 
 export const buildMessages = (messages: string[], nbNotices = 0): string[] => {
   const firstMessage =
@@ -34,7 +35,8 @@ export default function* serviceMessageSaga(tab: Tab, nbNotices = 0) {
             messages: buildMessages([], nbNotices),
             action: {
               label: 'Lire et accepter les CGU',
-              url: '/onboarding'
+              url: '/onboarding',
+              type: LinkType.Options
             }
           },
           tab
@@ -47,7 +49,8 @@ export default function* serviceMessageSaga(tab: Tab, nbNotices = 0) {
             messages: buildMessages([], nbNotices),
             action: {
               label: 'Choisir mes contributeurs',
-              url: '/settings/suggestions'
+              url: '/settings/suggestions',
+              type: LinkType.Options
             }
           },
           tab
