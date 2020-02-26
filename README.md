@@ -1,4 +1,4 @@
-# Bulle.io - Web Extension
+# Dismoi - Web Extension
 
 [![Build Status](https://semaphoreci.com/api/v1/projects/02861938-a833-4f0e-938d-9bb2cd5ae49f/965710/shields_badge.svg)](https://semaphoreci.com/bmenant_lmem/extension)
 
