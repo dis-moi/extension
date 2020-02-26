@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Notification from 'components/organisms/Notification';
 import ServiceMessage from './ServiceMessage';
+import { LinkType } from 'app/lmem/ServiceMessage';
 
 storiesOf('screens/ServiceMessage', module)
   .addDecorator(getStory => (
@@ -14,7 +15,11 @@ storiesOf('screens/ServiceMessage', module)
   .add('With an action', () => (
     <ServiceMessage
       messages={["I'm a service message!"]}
-      action={{ label: "I'm an action", url: '/onboarding' }}
+      action={{
+        label: "I'm an action",
+        url: '/onboarding',
+        type: LinkType.Options
+      }}
       openOnboarding={() => action('openOnboarding')}
     />
   ))
