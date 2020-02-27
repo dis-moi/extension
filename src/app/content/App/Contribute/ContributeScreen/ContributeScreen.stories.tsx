@@ -9,7 +9,9 @@ storiesOf('screens/Contribute/Submit', module)
   .addDecorator(formStoreDecorator)
   .addDecorator(getStory => (
     <Router>
-      <Notification title="créer une bulle ici">{getStory()}</Notification>
+      <Notification title="poster une information ici">
+        {getStory()}
+      </Notification>
     </Router>
   ))
   .add('normal', () => <ContributeScreen />);
