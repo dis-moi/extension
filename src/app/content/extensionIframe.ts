@@ -29,7 +29,11 @@ export const append = (iframe: HTMLIFrameElement): Promise<Document | null> =>
 export const show = () => {
   const frame = document.querySelector(`#${iFrameId}`);
   if (frame) {
-    (frame as HTMLIFrameElement).style.removeProperty('display');
+    (frame as HTMLIFrameElement).style.setProperty(
+      'display',
+      'block',
+      'important'
+    );
   }
 };
 

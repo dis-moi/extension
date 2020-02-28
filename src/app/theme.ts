@@ -76,6 +76,7 @@ export interface Theme {
       width: string;
       height: string;
       left: string;
+      display: string;
     };
   };
 }
@@ -172,7 +173,8 @@ export const theme: Theme = {
       transition: 'height .1s',
       width: '390px',
       height: '423px',
-      left: 'auto'
+      left: 'auto',
+      display: 'block'
     }
   }
 };
