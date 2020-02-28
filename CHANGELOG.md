@@ -1,3 +1,14 @@
+# [3.15.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.14.4...v3.15.0) (2020-02-28)
+
+
+### Features
+
+* **question:** add question button, form, preview and confirmation screen ([89480b2](https://github.com/insitu-project/recommendations-webextension/commit/89480b2))
+* **question:** cleaned and removed duplicate code from question and contribute ([480a2b0](https://github.com/insitu-project/recommendations-webextension/commit/480a2b0))
+* **question:** improve display ([32013c8](https://github.com/insitu-project/recommendations-webextension/commit/32013c8))
+* **question:** refactored AddNoticeButton ([f53234c](https://github.com/insitu-project/recommendations-webextension/commit/f53234c))
+* **question:** styled as designed ([afbb3e3](https://github.com/insitu-project/recommendations-webextension/commit/afbb3e3))
+
 ## [3.14.4](https://github.com/insitu-project/recommendations-webextension/compare/v3.14.3...v3.14.4) (2020-02-19)
 
 
