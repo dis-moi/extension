@@ -1,3 +1,21 @@
+# [3.16.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.15.0...v3.16.0) (2020-02-28)
+
+
+### Bug Fixes
+
+* **serviceMessage:** update story ([3a5ad56](https://github.com/insitu-project/recommendations-webextension/commit/3a5ad56))
+
+
+### Features
+
+* **Dismoi branding:** changed logo on notice screens ([541c87f](https://github.com/insitu-project/recommendations-webextension/commit/541c87f))
+* **Dismoi branding:** changed logo on onboarding screens ([709d04e](https://github.com/insitu-project/recommendations-webextension/commit/709d04e))
+* **Dismoi branding:** changed logos to 'Bulles devient Dismoi' ([ce91b93](https://github.com/insitu-project/recommendations-webextension/commit/ce91b93))
+* **Dismoi branding:** changed wording bulles to contribution or information ([b84655b](https://github.com/insitu-project/recommendations-webextension/commit/b84655b))
+* **Dismoi branding:** edited TOS Bulles beta logo to be 'Bulles devient Dismoi' and replaced Bulles name by Dismoi ([abe1b51](https://github.com/insitu-project/recommendations-webextension/commit/abe1b51))
+* **Dismoi branding:** renamed Bulles to Dismoi in Examples content ([a14d2c2](https://github.com/insitu-project/recommendations-webextension/commit/a14d2c2))
+* **Dismoi branding:** replaced Bulles by Dismoi in notice content ([dae8edf](https://github.com/insitu-project/recommendations-webextension/commit/dae8edf))
+
 # [3.15.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.14.4...v3.15.0) (2020-02-28)
 
 
