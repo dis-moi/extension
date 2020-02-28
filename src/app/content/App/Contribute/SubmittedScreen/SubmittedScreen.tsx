@@ -1,9 +1,13 @@
 import React from 'react';
 
-import { Button, CenterContainer } from 'components/atoms';
-import Container from './Container';
-import Content from './Content';
-import ContentTitle from './ContentTitle';
+import {
+  Button,
+  CenterContainer,
+  ContentWrapperBackground
+} from 'components/atoms';
+import Container from 'components/organisms/Contribute/Container';
+import Content from 'components/organisms/Contribute/Content';
+import ContentTitle from 'components/organisms/Contribute/ContentTitle';
 import Illustration from './Illustration';
 
 export interface ContributionSubmittedScreenProps {
@@ -12,15 +16,17 @@ export interface ContributionSubmittedScreenProps {
 
 export default ({ goBack }: ContributionSubmittedScreenProps) => (
   <Container>
-    <Illustration />
-    <ContentTitle>Félicitations !</ContentTitle>
-    <Content>
-      Votre bulle sera publiée d’ici 24h, une confirmation vous sera envoyée par
-      email.
-    </Content>
+    <ContentWrapperBackground>
+      <Illustration />
+      <ContentTitle>Félicitations !</ContentTitle>
+      <Content>
+        Votre bulle sera publiée d’ici 24h, une confirmation vous sera envoyée
+        par email.
+      </Content>
 
-    <CenterContainer>
-      <Button onClick={goBack}>Retour aux Bulles</Button>
-    </CenterContainer>
+      <CenterContainer>
+        <Button onClick={goBack}>Retour aux Bulles</Button>
+      </CenterContainer>
+    </ContentWrapperBackground>
   </Container>
 );
