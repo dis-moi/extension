@@ -39,14 +39,35 @@ const BottomLineBg = styled.section`
   position: fixed;
   bottom: 0;
   left: 0;
+  display: flex;
+  justify-content: center;
   width: 100%;
   height: 150px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding-top: 60px;
   font-size: 16px;
   background-color: rgba(250, 250, 250, 0.8);
+`;
+
+const OnboardingButtonWrapper = styled.div`
+  & + & {
+    margin-left: 30px;
+  }
+`;
+
+const Button = styled(OnboardingButton)`
+  text-transform: none;
+  font-size: 20px;
+  margin: 0 auto;
+`;
+
+const Button2 = styled(Button)`
+  background-color: ${props => props.theme.button};
+  border-color: ${props => props.theme.button};
+
+  &:hover {
+    background-color: ${props => props.theme.backgroundButton.hover};
+    border-color: ${props => props.theme.backgroundButton.hover};
+  }
 `;
 
 interface ExamplesScreenProps {
@@ -71,10 +92,14 @@ export default ({ next }: ExamplesScreenProps) => (
     </SuggestionsWrapper>
 
     <BottomLineBg>
-      <OnboardingButton onClick={next}>
-        Fermer la page abonnement
-      </OnboardingButton>
-      et reprendre ma navigation normale… avec Bulles !
+      <OnboardingButtonWrapper>
+        <Button onClick={next}>Valider la sélection</Button>
+        et reprendre ma navigation normale
+      </OnboardingButtonWrapper>
+
+      <OnboardingButtonWrapper>
+        <Button2>Voir tous les contributeurs</Button2>
+      </OnboardingButtonWrapper>
     </BottomLineBg>
   </>
 );
