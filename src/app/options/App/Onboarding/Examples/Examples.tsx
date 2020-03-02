@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import SubscriptionsScreen from '../../Settings/SubscriptionsScreen';
 import Intro from '../atoms/OnboardingIntro';
 import Title from '../atoms/OnboardingTitle';
@@ -81,8 +82,8 @@ export default ({ next }: ExamplesScreenProps) => (
       <Intro>
         <Title2>Votre réseau d’informateurs</Title2>
         <Subtitle>
-          Vous êtes abonné(e) à tous les contributeurs pour découvrir et
-          bénéficier au mieux du service.
+          Pour vous simplifier la vie, nous vous avons pré-abonné(e) à une
+          sélection de contributeurs.
         </Subtitle>
       </Intro>
     </Wrapper>
@@ -98,7 +99,9 @@ export default ({ next }: ExamplesScreenProps) => (
       </OnboardingButtonWrapper>
 
       <OnboardingButtonWrapper>
-        <Button2>Voir tous les contributeurs</Button2>
+        <Button2 as={Link} to="/settings/subscriptions">
+          Voir tous les contributeurs
+        </Button2>
       </OnboardingButtonWrapper>
     </BottomLineBg>
   </>
