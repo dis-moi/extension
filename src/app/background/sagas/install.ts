@@ -14,11 +14,12 @@ import {
 } from 'app/background/selectors';
 import { getInstallationDate } from 'app/background/selectors/installationDetails';
 import { InstallationDetails } from 'app/lmem/installation';
-import { Contributor } from 'app/lmem/contributor';
 import { version } from '../../../../package.json';
 import { subscribe } from 'app/actions';
-import { lmemContributorIds } from 'app/lmemContributors';
-import { retrieveContributorsSaga } from './refreshContributors';
+import {
+  lmemContributorIds,
+  preselectedContributorIds
+} from 'app/lmemContributors';
 import { loginSaga } from './user.saga';
 import awaitRehydrationSaga from './lib/awaitRehydration.saga';
 
@@ -62,8 +63,12 @@ export function* installationDetailsSaga(): SagaIterator {
 
     const onboardingRequired = yield select(isOnboardingRequired);
     if (onboardingRequired) {
-      const contributors = yield call(retrieveContributorsSaga);
-      yield all(contributors.map(({ id }: Contributor) => put(subscribe(id))));
+      yield all(
+        preselectedContributorIds.map(contributorId =>
+          put(subscribe(contributorId))
+        )
+      );
+
       yield call(openOptions, '/onboarding');
     }
   } catch (error) {

@@ -60,8 +60,8 @@ export default ({ next }: ExamplesScreenProps) => (
       <Intro>
         <Title2>Votre réseau d’informateurs</Title2>
         <Subtitle>
-          Vous êtes abonné(e) à tous les contributeurs pour découvrir et
-          bénéficier au mieux du service.
+          Pour vous simplifier la vie, nous vous avons pré-abonné à une
+          selection de contributeurs.
         </Subtitle>
       </Intro>
     </Wrapper>
