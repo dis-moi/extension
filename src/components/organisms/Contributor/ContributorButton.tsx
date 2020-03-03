@@ -28,6 +28,7 @@ const ContributorBorderButton = styled(BorderButton)`
   &,
   &:hover {
     color: ${props => props.theme.primaryColor};
+    text-transform: none;
     background-color: #fff;
     border-color: ${props => props.theme.primaryColor};
     min-width: 150px;
