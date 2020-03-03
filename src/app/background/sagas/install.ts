@@ -9,6 +9,7 @@ import {
   InstalledAction
 } from 'app/actions/install';
 import {
+  isAnUpdate,
   isAnUpdateFromLmem,
   isOnboardingRequired
 } from 'app/background/selectors';
@@ -69,7 +70,10 @@ export function* installationDetailsSaga(): SagaIterator {
         )
       );
 
-      yield call(openOptions, '/onboarding');
+      const updated = yield select(isAnUpdate);
+      if (!updated) {
+        yield call(openOptions, '/onboarding');
+      }
     }
   } catch (error) {
     captureException(error);
