@@ -8,7 +8,8 @@ import {
   createErrorAction,
   getURLFromActionMeta,
   InstallationDetailsAction,
-  BrowserActionClickedAction
+  BrowserActionClickedAction,
+  TosAcceptedAction
 } from 'app/actions';
 
 export const startTrackingSaga = (tracker: Tracker) =>
@@ -82,7 +83,7 @@ export const trackBrowserActionClickedSaga = (tracker: Tracker) =>
   };
 
 export const trackTosAcceptedSaga = (tracker: Tracker) =>
-  function*(action: BrowserActionClickedAction): SagaIterator {
+  function*(action: TosAcceptedAction): SagaIterator {
     try {
       yield call(tracker.trackEvent, {
         category: 'Extension',
