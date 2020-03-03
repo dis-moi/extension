@@ -82,8 +82,8 @@ export default ({ next }: ExamplesScreenProps) => (
       <Intro>
         <Title2>Votre réseau d’informateurs</Title2>
         <Subtitle>
-          Pour vous simplifier la vie, nous vous avons pré-abonné(e) à une
-          sélection de contributeurs.
+          Pour simplifier votre choix, nous vous avons concocté une sélection de
+          contributeurs.
         </Subtitle>
       </Intro>
     </Wrapper>
