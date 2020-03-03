@@ -17,7 +17,9 @@ const ServiceMessageLine = () => {
   return (
     <ServiceMessageLineMessage>
       Bulles devient Dismoi -{' '}
-      <ExternalLink href="dzadazd">en savoir plus</ExternalLink>
+      <ExternalLink href="http://www.dismoi.io/bulles-dismoi">
+        en savoir plus
+      </ExternalLink>
     </ServiceMessageLineMessage>
   );
 };
