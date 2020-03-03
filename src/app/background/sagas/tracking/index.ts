@@ -15,7 +15,8 @@ import {
   UNSUBSCRIBE,
   TOS_ACCEPTED,
   createErrorAction,
-  AppAction
+  AppAction,
+  TosAcceptedAction
 } from 'app/actions';
 import { isFeedBackRatingAction } from 'app/background/sagas/ratings/notices.saga';
 import { loginSaga } from 'app/background/sagas/user.saga';
@@ -45,9 +46,9 @@ export default (tracker?: Tracker) =>
         tracker.userId = yield call(loginSaga);
         tracker.tosAccepted = yield select(areTosAccepted);
 
-        yield takeLatest(TOS_ACCEPTED, function*() {
+        yield takeLatest(TOS_ACCEPTED, function*(action: TosAcceptedAction) {
           tracker.tosAccepted = yield select(areTosAccepted);
-          yield call(trackTosAcceptedSaga, tracker);
+          yield call(trackTosAcceptedSaga(tracker), action);
         });
 
         yield takeLatest(INSTALLATION_DETAILS, trackInstallSaga(tracker));
