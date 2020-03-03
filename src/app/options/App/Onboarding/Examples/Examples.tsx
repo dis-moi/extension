@@ -61,7 +61,7 @@ const Button = styled(OnboardingButton)`
   margin: 0 auto;
 `;
 
-const Button2 = styled(Button)`
+const SecondaryButton = styled(Button)`
   background-color: ${props => props.theme.button};
   border-color: ${props => props.theme.button};
 
@@ -99,9 +99,9 @@ export default ({ next }: ExamplesScreenProps) => (
       </OnboardingButtonWrapper>
 
       <OnboardingButtonWrapper>
-        <Button2 as={Link} to="/settings/subscriptions">
+        <SecondaryButton as={Link} to="/settings/subscriptions">
           Voir tous les contributeurs
-        </Button2>
+        </SecondaryButton>
       </OnboardingButtonWrapper>
     </BottomLineBg>
   </>
