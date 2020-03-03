@@ -1,17 +1,17 @@
 import styled from 'styled-components';
-import { Theme } from '../../app/theme';
+import { Theme } from 'app/theme';
 
-export const style = `
-  color: ${({ theme }: { theme: Theme }) => theme.activeColor};
+export const style = ({ theme }: { theme: Theme }) => `
+  color: ${theme.activeColor};
   text-decoration: underline;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    color: ${({ theme }: { theme: Theme }) => theme.secondaryColor};
+    color: ${theme.secondaryColor};
   }
 `;
 
 export default styled.a`
-  ${style}
+  ${({ theme }: { theme: Theme }) => style({ theme })}
 `;
