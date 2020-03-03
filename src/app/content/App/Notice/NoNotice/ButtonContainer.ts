@@ -5,10 +5,9 @@ export default styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 93px;
+  margin-top: 30px;
 
   & > a {
-    margin-top: -10px;
-    margin-left: 16px;
+    margin-top: 10px;
   }
 `;
