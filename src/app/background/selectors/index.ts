@@ -33,6 +33,11 @@ export const isAnUpdateFromLmem = createSelector(
   }
 );
 
+export const isAnUpdate = createSelector(
+  getInstallationDetails,
+  ({ reason }: InstallationDetails) => reason !== 'install'
+);
+
 export const isInstallationComplete = createSelector(
   [areTosAccepted],
   tosAccepted => tosAccepted
