@@ -16,7 +16,7 @@ const ServiceMessageLineMessage = styled.div`
 const ServiceMessageLine = () => {
   return (
     <ServiceMessageLineMessage>
-      Bulles devient Dismoi -{' '}
+      15-03-2020 : Bulles devient Dismoi -{' '}
       <ExternalLink href="http://www.dismoi.io/bulles-dismoi">
         en savoir plus
       </ExternalLink>
