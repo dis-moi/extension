@@ -37,6 +37,7 @@ const Description = styled.div`
 `;
 
 const ContributorName = styled(Contributor)`
+  display: inline-block;
   &:hover {
     text-decoration: underline;
     cursor: pointer;
