@@ -1,3 +1,18 @@
+# [3.17.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.16.0...v3.17.0) (2020-03-03)
+
+
+### Bug Fixes
+
+* **ContributorButton:** removed uppercase ([1a6839a](https://github.com/insitu-project/recommendations-webextension/commit/1a6839a))
+* **UI:** fix cases where iframes are hidden in host page CSS ([7c8713b](https://github.com/insitu-project/recommendations-webextension/commit/7c8713b))
+
+
+### Features
+
+* **onboarding:** first draft of two buttons in the bottom bar ([d212ecb](https://github.com/insitu-project/recommendations-webextension/commit/d212ecb))
+* **Onboarding bottom bar:** renamed secondary button ([ec63bdc](https://github.com/insitu-project/recommendations-webextension/commit/ec63bdc))
+* **subscriptions:** auto-subscribe to a selection of contributors on installation ([6c32ab6](https://github.com/insitu-project/recommendations-webextension/commit/6c32ab6))
+
 # [3.16.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.15.0...v3.16.0) (2020-02-28)
 
 
