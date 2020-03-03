@@ -5,19 +5,15 @@ import Title from './Title';
 import ButtonContainer from './ButtonContainer';
 import { BackgroundButton } from 'components/atoms';
 import AddNoticeButton from 'components/atoms/Button/AddNoticeButton/AddNoticeButton';
-import { Question } from 'components/atoms/icons';
+
+const Container = styled(ButtonContainer)`
+  font-size: 16px;
+`;
 
 const Button = styled(BackgroundButton)`
-  max-width: 236px;
   height: auto;
-  margin-bottom: 60px;
-  padding: 7px 16px;
-
-  svg {
-    width: 52px;
-    height: auto;
-    margin-right: 10px;
-  }
+  padding: 10px 16px;
+  margin-bottom: 16px;
 `;
 
 export default () => (
@@ -26,12 +22,12 @@ export default () => (
       Pour l&apos;instant, aucun de vos contributeurs n&apos;a posté
       d&apos;information sur cette page.
     </Title>
-    <ButtonContainer>
+    <Container>
       <Button as={ReactRouterDomLink} to="/question">
-        <Question />
-        Demander une info, un avis, un conseil
+        Demander une info, un conseil
       </Button>
+      <>ou</>
       <AddNoticeButton />
-    </ButtonContainer>
+    </Container>
   </>
 );
