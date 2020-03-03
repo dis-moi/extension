@@ -10,8 +10,8 @@ import { areTosAccepted } from '../selectors/prefs';
 import { getNbSubscriptions } from '../selectors/subscriptions.selectors';
 import Tab from 'app/lmem/tab';
 import { getServiceMessageLastShowDate } from '../selectors/serviceMessage.selectors';
-import { isToday } from 'date-fns';
 import { LinkType } from 'app/lmem/ServiceMessage';
+import { isWithinLastHours } from 'app/utils/areWithinHours';
 
 export const buildMessages = (messages: string[], nbNotices = 0): string[] => {
   const firstMessage =
@@ -58,7 +58,7 @@ export default function* serviceMessageSaga(tab: Tab, nbNotices = 0) {
       );
     }
 
-    if (!isToday(lastShownDate) && nbNotices > 0) {
+    if (!isWithinLastHours(lastShownDate, 4) && nbNotices > 0) {
       yield put(open(OpenFrom.ServiceMessage, tab));
     }
   } catch (e) {
