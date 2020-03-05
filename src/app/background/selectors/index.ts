@@ -4,7 +4,6 @@ import { getDraftNotices, getMatchingContexts } from './resources';
 import { BackgroundState } from '../reducers';
 import { createSelector } from 'reselect';
 import { InstallationDetails } from 'app/lmem/installation';
-import isBulleVersionNumber from 'app/lmem/isBulleVersionNumber';
 import { getInstallationDetails } from './installationDetails';
 import { areTosAccepted, getRead } from './prefs';
 import { getNoticesIdsOnTab } from './tabs';
@@ -18,20 +17,6 @@ export const findTriggeredContexts = (state: BackgroundState) => (
     getMatchingContexts(state),
     getDraftNotices(state)
   );
-
-export const isAnUpdateFromLmem = createSelector(
-  getInstallationDetails,
-  (installationDetails: InstallationDetails) => {
-    const { reason, previousVersion, version } = installationDetails;
-
-    return (
-      !!previousVersion &&
-      reason === 'update' &&
-      !isBulleVersionNumber(previousVersion) &&
-      isBulleVersionNumber(version)
-    );
-  }
-);
 
 export const isAnUpdate = createSelector(
   getInstallationDetails,

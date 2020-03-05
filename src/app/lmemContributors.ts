@@ -1,6 +1,3 @@
-// @todo plz remove me after the beta
-export const lmemContributorIds = [24, 25, 16];
-
 // @todo remove this one shot feature
 export const preselectedContributorIds = [
   13,

@@ -11,24 +11,9 @@ storiesOf('screens/Onboarding/ToS', module)
       <Wrapper>{getStory()}</Wrapper>
     </Router>
   ))
-  .add('Lmem --> Bulles', () => (
-    <TOS
-      termsOfServiceAccepted={false}
-      updatedFromLmem={true}
-      onContinue={action('onContinue')}
-    />
-  ))
   .add('Bulles', () => (
-    <TOS
-      termsOfServiceAccepted={false}
-      updatedFromLmem={false}
-      onContinue={action('onContinue')}
-    />
+    <TOS termsOfServiceAccepted={false} onContinue={action('onContinue')} />
   ))
   .add('Bulles (TosAccepted)', () => (
-    <TOS
-      termsOfServiceAccepted={true}
-      updatedFromLmem={false}
-      onContinue={action('onContinue')}
-    />
+    <TOS termsOfServiceAccepted={true} onContinue={action('onContinue')} />
   ));
