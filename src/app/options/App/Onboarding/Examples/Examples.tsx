@@ -43,8 +43,7 @@ const BottomLineBg = styled.section`
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 150px;
-  padding-top: 60px;
+  padding: 30px 0;
   font-size: 16px;
   background-color: rgba(250, 250, 250, 0.8);
 `;
@@ -57,6 +56,7 @@ const OnboardingButtonWrapper = styled.div`
 
 const Button = styled(OnboardingButton)`
   text-transform: none;
+  font-weight: normal;
   font-size: 20px;
   margin: 0 auto;
 `;
