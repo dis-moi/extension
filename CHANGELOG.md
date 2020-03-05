@@ -1,3 +1,10 @@
+## [3.18.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.18.0...v3.18.1) (2020-03-05)
+
+
+### Bug Fixes
+
+* **NoNotice:** changed a bit the display ([e83ac44](https://github.com/insitu-project/recommendations-webextension/commit/e83ac44))
+
 # [3.18.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.17.2...v3.18.0) (2020-03-05)
 
 
