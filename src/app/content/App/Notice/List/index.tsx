@@ -10,7 +10,6 @@ import NoticeItem, {
 import ListContainer from './ListContainer';
 import { StatefulNotice } from 'app/lmem/notice';
 import withTitle from 'app/hocs/withTitle';
-import NoNotice from '../NoNotice';
 import withConnect from './withConnect';
 import ServiceMessageLine from 'components/molecules/ServiceMessageLine/ServiceMessageLine';
 
@@ -54,12 +53,9 @@ export const ListScreen = ({
           )
         )}
       </ListContainer>
-      {notices.length === 0 && <NoNotice />}
-      {notices.length > 0 && (
-        <AddNoticeContainer>
-          <AddNoticeButton />
-        </AddNoticeContainer>
-      )}
+      <AddNoticeContainer>
+        <AddNoticeButton />
+      </AddNoticeContainer>
       <ServiceMessageLine />
     </>
   );
