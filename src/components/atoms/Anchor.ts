@@ -13,5 +13,5 @@ export const style = ({ theme }: { theme: Theme }) => `
 `;
 
 export default styled.a`
-  ${({ theme }: { theme: Theme }) => style({ theme })}
+  ${style}
 `;
