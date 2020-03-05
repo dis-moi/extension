@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import LogoBeta from 'components/atoms/LogoBeta';
+import LogoDismoi from 'components/atoms/LogoDismoi';
 import Wrapper from '../atoms/OnboardingWrapper';
 import Intro from '../atoms/OnboardingIntro';
 import SubTitle from '../atoms/OnboardingSubTitle';
@@ -54,7 +54,7 @@ export default ({ termsOfServiceAccepted, onContinue }: TosProps) => {
   return (
     <Wrapper>
       <Intro>
-        <LogoBeta />
+        <LogoDismoi />
 
         <Title>
           Pour naviguer avec Dismoi, veuillez lire et accepter <br />

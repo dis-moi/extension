@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Logo from 'components/atoms/Logo';
+import LogoDismoi from 'components/atoms/LogoDismoi';
 import LogoWrapper from './LogoWrapper';
 import { ExternalLink } from 'components/atoms';
 
@@ -21,7 +21,7 @@ const HeaderNavItem = styled(ExternalLink)`
 
 const Header = () => (
   <LogoWrapper>
-    <Logo />
+    <LogoDismoi />
 
     <HeaderNav>
       <HeaderNavItem href="https://www.bulles.fr/aide/">Aide</HeaderNavItem>
