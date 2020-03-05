@@ -4,9 +4,9 @@ import { ExternalLink } from '../../atoms';
 
 const ServiceMessageLineMessage = styled.div`
   position: absolute;
-  bottom: 8px;
+  bottom: 12px;
   width: 100%;
-  padding-top: 8px;
+  padding-top: 12px;
   font-size: 12px;
   font-weight: bold;
   text-align: center;
