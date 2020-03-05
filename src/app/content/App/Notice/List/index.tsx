@@ -1,5 +1,4 @@
 import React from 'react';
-import { compose } from 'redux';
 import { useTransition } from 'react-spring';
 
 import { AddNoticeContainer, AddNoticeButton } from 'components/atoms';
@@ -9,7 +8,6 @@ import NoticeItem, {
 } from 'components/organisms/Notice/Notice';
 import ListContainer from './ListContainer';
 import { StatefulNotice } from 'app/lmem/notice';
-import withTitle from 'app/hocs/withTitle';
 import withConnect from './withConnect';
 import ServiceMessageLine from 'components/molecules/ServiceMessageLine/ServiceMessageLine';
 
@@ -61,7 +59,4 @@ export const ListScreen = ({
   );
 };
 
-export default compose(
-  withConnect,
-  withTitle<Props>('Informations pour cette page')
-)(ListScreen);
+export default withConnect(ListScreen);
