@@ -1,3 +1,10 @@
+## [3.17.2](https://github.com/insitu-project/recommendations-webextension/compare/v3.17.1...v3.17.2) (2020-03-05)
+
+
+### Bug Fixes
+
+* **tracking:** fix `tos_accepted` tracking event not being transmitted ([af46e6e](https://github.com/insitu-project/recommendations-webextension/commit/af46e6e))
+
 ## [3.17.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.17.0...v3.17.1) (2020-03-05)
 
 
