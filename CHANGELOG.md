@@ -1,3 +1,15 @@
+# [3.19.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.18.1...v3.19.0) (2020-03-05)
+
+
+### Bug Fixes
+
+* **links:** fix link style not being applied ([8585be9](https://github.com/insitu-project/recommendations-webextension/commit/8585be9))
+
+
+### Features
+
+* remove Lmem-to-Bulles update specific code ([275987e](https://github.com/insitu-project/recommendations-webextension/commit/275987e))
+
 ## [3.18.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.18.0...v3.18.1) (2020-03-05)
 
 
