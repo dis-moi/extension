@@ -16,6 +16,7 @@ const Container = styled.div`
 
 const ContributorBackgroundButton = styled(BackgroundButton)`
   min-width: 150px;
+  text-transform: none;
 
   &:hover {
     color: #fff;
