@@ -7,9 +7,7 @@ import NoNoticeScreen from './NoNoticeScreen';
 storiesOf('screens/Notice', module)
   .addDecorator(getStory => (
     <Router>
-      <Notification title="Informations relatives à cette page" hasNotices>
-        {getStory()}
-      </Notification>
+      <Notification>{getStory()}</Notification>
     </Router>
   ))
   .add('NoNotice', () => <NoNoticeScreen />);
