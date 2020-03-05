@@ -8,19 +8,12 @@ import {
   updateInstallationDetails,
   InstalledAction
 } from 'app/actions/install';
-import {
-  isAnUpdate,
-  isAnUpdateFromLmem,
-  isOnboardingRequired
-} from 'app/background/selectors';
+import { isAnUpdate, isOnboardingRequired } from 'app/background/selectors';
 import { getInstallationDate } from 'app/background/selectors/installationDetails';
 import { InstallationDetails } from 'app/lmem/installation';
 import { version } from '../../../../package.json';
 import { subscribe } from 'app/actions';
-import {
-  lmemContributorIds,
-  preselectedContributorIds
-} from 'app/lmemContributors';
+import { preselectedContributorIds } from 'app/lmemContributors';
 import { loginSaga } from './user.saga';
 import awaitRehydrationSaga from './lib/awaitRehydration.saga';
 
@@ -52,16 +45,6 @@ export function* installedSaga({
 
 export function* installationDetailsSaga(): SagaIterator {
   try {
-    const updatedFromLmem = yield select(isAnUpdateFromLmem);
-
-    // @todo should be checked each time the application boot? and ALSO after the install event?
-    if (updatedFromLmem) {
-      yield call(chrome.browserAction.setTitle, {
-        title: 'Le Même en Mieux devient Bulles'
-      });
-      yield all(lmemContributorIds.map(id => put(subscribe(id))));
-    }
-
     const onboardingRequired = yield select(isOnboardingRequired);
     if (onboardingRequired) {
       yield all(
