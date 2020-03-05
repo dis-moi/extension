@@ -1,3 +1,12 @@
+## [3.19.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.19.0...v3.19.1) (2020-03-05)
+
+
+### Bug Fixes
+
+* **Contributor button:** removed uppercase on follow button ([c112100](https://github.com/insitu-project/recommendations-webextension/commit/c112100))
+* **Onboarding BottomBar:** changed bar height and button font-weight ([ea544ac](https://github.com/insitu-project/recommendations-webextension/commit/ea544ac))
+* **Onboarding/Logo:** added Dismoi logo. ([c392a1b](https://github.com/insitu-project/recommendations-webextension/commit/c392a1b))
+
 # [3.19.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.18.1...v3.19.0) (2020-03-05)
 
 
