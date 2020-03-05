@@ -1,3 +1,15 @@
+# [3.18.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.17.2...v3.18.0) (2020-03-05)
+
+
+### Bug Fixes
+
+* **ContributorName:** not full width anymore ([b4e9b54](https://github.com/insitu-project/recommendations-webextension/commit/b4e9b54))
+
+
+### Features
+
+* **onboarding:** don't open onboarding on updates ([ca1059c](https://github.com/insitu-project/recommendations-webextension/commit/ca1059c))
+
 ## [3.17.2](https://github.com/insitu-project/recommendations-webextension/compare/v3.17.1...v3.17.2) (2020-03-05)
 
 
