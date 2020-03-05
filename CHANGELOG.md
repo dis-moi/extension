@@ -1,3 +1,10 @@
+## [3.17.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.17.0...v3.17.1) (2020-03-05)
+
+
+### Bug Fixes
+
+* **branding:** fix some of the logo that weren't transparents ([1302255](https://github.com/insitu-project/recommendations-webextension/commit/1302255))
+
 # [3.17.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.16.0...v3.17.0) (2020-03-03)
 
 
