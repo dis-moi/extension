@@ -1,3 +1,10 @@
+## [3.19.2](https://github.com/insitu-project/recommendations-webextension/compare/v3.19.1...v3.19.2) (2020-03-06)
+
+
+### Bug Fixes
+
+* **extension position:** changed top and right size ([554b9f0](https://github.com/insitu-project/recommendations-webextension/commit/554b9f0))
+
 ## [3.19.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.19.0...v3.19.1) (2020-03-05)
 
 
