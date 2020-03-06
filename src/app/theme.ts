@@ -166,8 +166,8 @@ export const theme: Theme = {
       'min-height': 'initial',
       'max-height': 'initial',
       position: 'fixed',
-      top: '20px',
-      right: '20px',
+      top: '0',
+      right: '10px',
       'z-index': 2147483647, // Max z-index value (signed 32bits integer)
       border: 'none',
       transition: 'height .1s',
