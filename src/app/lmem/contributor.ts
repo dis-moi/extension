@@ -46,6 +46,14 @@ export const sortContributorsByContributions: SortSuggestedContributors = R.sort
   [R.descend(R.prop('contributions'))]
 );
 
+export const createFindContributorById = (contributors: Contributor[]) => (
+  id: number
+) => R.find(R.propEq('id', id), contributors) as Contributor;
+
 export const findContributorIn = (contributors: Contributor[]) => (
   contributor: Contributor
-) => R.find(R.propEq('id', contributor.id), contributors) as Contributor;
+) => createFindContributorById(contributors)(contributor.id);
+
+export const createContributorExists = (contributors: Contributor[]) => (
+  id: number
+): boolean => !!createFindContributorById(contributors)(id);

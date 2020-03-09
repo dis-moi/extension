@@ -1,12 +1,11 @@
 import { createSelector } from 'reselect';
-import { ResourcesState } from '../reducers/resources.reducer';
 import { isTabAuthorizedByPatterns } from 'webext/isAuthorizedTab';
 import { toPatterns } from '../../lmem/matchingContext';
 import Tab from '../../lmem/tab';
 import { findItemById } from 'app/utils/findItemById';
+import { StateWithResources } from '../reducers';
 
-export const getResources = (state: { resources: ResourcesState }) =>
-  state.resources;
+export const getResources = (state: StateWithResources) => state.resources;
 
 export const getRestrictedContexts = createSelector(
   [getResources],

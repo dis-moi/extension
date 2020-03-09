@@ -12,10 +12,13 @@ import { Contributor } from 'app/lmem/contributor';
 import forbiddenTabs from 'webext/forbiddenTabs';
 import { Notice } from 'app/lmem/notice';
 
-export interface ResourcesState {
+export interface StateWithContributors {
+  contributors: Contributor[];
+}
+
+export interface ResourcesState extends StateWithContributors {
   matchingContexts: MatchingContext[];
   restrictedContexts: RestrictedContext[];
-  contributors: Contributor[];
   notices: Notice[];
   drafts: Draft[];
 }
