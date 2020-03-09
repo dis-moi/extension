@@ -10,18 +10,31 @@ import subscriptions, { SubscriptionsState } from './subscriptions.reducer';
 import user, { UserState } from './user';
 import serviceMessage, { ServiceMessageState } from './serviceMessage.reducer';
 
-export interface PersistedBackgroundState extends PersistedState {
+export interface StateWithSubscriptions {
+  subscriptions: SubscriptionsState;
+}
+
+export interface PersistedBackgroundState
+  extends PersistedState,
+    StateWithSubscriptions {
   prefs: PrefsState;
   installationDetails: InstallationDetailsState;
   serviceMessage: ServiceMessageState;
-  subscriptions: SubscriptionsState;
   user: UserState;
 }
 
-export interface BackgroundState extends PersistedBackgroundState {
+export interface StateWithResources {
   resources: ResourcesState;
+}
+
+export interface StateWithTabs {
   tabs: TabsState;
 }
+
+export interface BackgroundState
+  extends PersistedBackgroundState,
+    StateWithResources,
+    StateWithTabs {}
 
 export default combineReducers({
   prefs,
