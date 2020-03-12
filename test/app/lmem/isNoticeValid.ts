@@ -6,10 +6,7 @@ const expect = chai.expect;
 describe('isNoticeValid', function() {
   it('Object with missing contributor is not valid', () => {
     const notice = {
-      message: 'Que vous ayez un usage basique, avancé, professionnel [...]',
-      source: {
-        url: 'http://choisir.lmem.net/samsung-galaxy-s6'
-      }
+      message: 'Que vous ayez un usage basique, avancé, professionnel [...]'
     };
 
     expect(isNoticeValid(notice)).to.be.false;
@@ -20,9 +17,6 @@ describe('isNoticeValid', function() {
       contributor: {
         id: 1,
         name: 'Maarten Samson'
-      },
-      source: {
-        url: 'http://choisir.lmem.net/samsung-galaxy-s6'
       }
     };
 
@@ -35,9 +29,6 @@ describe('isNoticeValid', function() {
       contributor: {
         id: 1,
         name: 'Maarten Samson'
-      },
-      source: {
-        url: 'http://choisir.lmem.net/samsung-galaxy-s6'
       }
     };
 

@@ -16,10 +16,6 @@ const tab: Tab = { id: 1, url: 'http://tests.menant-benjamin.fr/' };
 const notice: StatefulNotice = {
   id: 1,
   message: 'This is a notice',
-  source: {
-    label: 'Jalil',
-    url: 'http://jalil'
-  },
   contributor: generateContributor(),
   visibility: 'public',
   ratings: {

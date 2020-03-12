@@ -1,5 +1,4 @@
 import { find } from 'ramda';
-import { Source } from './source';
 import { Ratings } from './rating';
 import { Contributor, NewContributor } from './contributor';
 import { captureMessage } from '../utils/sentry';
@@ -10,7 +9,6 @@ export interface Notice {
   modified: Date;
   contributor: Contributor;
   message: string;
-  source?: Source;
   ratings: Ratings;
   visibility: 'public' | 'private';
 }
