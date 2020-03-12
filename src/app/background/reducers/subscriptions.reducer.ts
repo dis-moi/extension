@@ -3,7 +3,8 @@ import {
   SUBSCRIBE,
   UNSUBSCRIBE,
   AppAction,
-  ContributorAction
+  ContributorAction,
+  UPDATE_CONTRIBUTORS
 } from 'app/actions';
 
 export type SubscriptionsState = number[];
@@ -29,6 +30,11 @@ export default function subscriptionsReducer(
     case UNSUBSCRIBE: {
       return R.without([getContributorId(action)], state);
     }
+    case UPDATE_CONTRIBUTORS:
+      return R.intersection(
+        R.map(contributor => contributor.id, action.payload.contributors),
+        state
+      );
     default:
       return state;
   }
