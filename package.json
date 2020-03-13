@@ -25,7 +25,7 @@
     "release:production": "NODE_ENV=production yarn build:chromium --env.SENTRY_ENABLED && NODE_ENV=production yarn build:firefox --env.SENTRY_ENABLED",
     "release:production:firefox": "NODE_ENV=production yarn build:firefox --env.SENTRY_ENABLED",
     "build": "yarn build:staging && yarn build:production && yarn build:proding",
-    "release": "yarn release:staging && yarn release:production && yarn build:proding",
+    "release": "yarn release:staging && yarn release:production && yarn release:proding",
     "clean": "rm -rf build",
     "test": "BACKEND_ORIGIN='' mocha -r ts-node/register -r tsconfig-paths/register -r jsdom-global/register 'src/**/*.spec.ts' 'test/app/*.ts' 'test/app/**/*.ts'",
     "typecheck": "tsc --noEmit",
