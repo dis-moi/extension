@@ -10,8 +10,6 @@ import {
   CountDownState,
   initialState as countdownInitialState
 } from 'app/lmem/countdown';
-import Source from './Source/Source';
-import SourceURL from './Source/SourceURL';
 import DetailsContainer from './DetailsContainer';
 import DetailsContent from './DetailsContent';
 import DetailsMeta from './DetailsMeta';
@@ -151,16 +149,6 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
     this.stopCountdown();
   };
 
-  handleFollowSource = () => {
-    const {
-      outboundLinkClicked,
-      notice: { id, source }
-    } = this.props;
-    if (outboundLinkClicked) {
-      outboundLinkClicked(id, source && source.url);
-    }
-  };
-
   handleMessageClick = (e: MouseEvent) => {
     const {
       outboundLinkClicked,
@@ -200,7 +188,6 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
         message,
         created,
         contributor,
-        source,
         ratings: { likes, dislikes },
         state: { liked, disliked, dismissed }
       }
@@ -227,14 +214,6 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
 
           <DetailsScroll>
             <Message onClick={this.handleMessageClick}>{message}</Message>
-            {source && source.url && (
-              <Source>
-                En savoir plus :{' '}
-                <SourceURL onClick={this.handleFollowSource}>
-                  {source.url}
-                </SourceURL>
-              </Source>
-            )}
           </DetailsScroll>
 
           <Feedbacks>

@@ -5,10 +5,7 @@ import { action } from '@storybook/addon-actions';
 import NoticeDetails from './NoticeDetails';
 import { subMonths } from 'date-fns';
 import Faker from 'faker';
-import {
-  defaultSourceUrl,
-  generateStatefulNotice
-} from 'test/fakers/generateNotice';
+import { generateStatefulNotice } from 'test/fakers/generateNotice';
 import { boolean, date, number, text } from '@storybook/addon-knobs';
 
 const defaultMessage = Faker.lorem.paragraph(3);
@@ -32,7 +29,6 @@ storiesOf('organisms/NoticeDetails', module)
       {...commonProps}
       notice={generateStatefulNotice({
         message: `<p>${text('message', defaultMessage)}</p>`,
-        sourceUrl: text('source', defaultSourceUrl),
         created: date('created', defaultDate),
         likes: number('likes', 42),
         dislikes: number('dislikes', 2),
@@ -68,11 +64,5 @@ storiesOf('organisms/NoticeDetails', module)
     <NoticeDetails
       {...commonProps}
       notice={generateStatefulNotice({ disliked: true })}
-    />
-  ))
-  .add('No source', () => (
-    <NoticeDetails
-      {...commonProps}
-      notice={generateStatefulNotice({ withSource: false })}
     />
   ));

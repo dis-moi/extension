@@ -6,7 +6,6 @@ import { withKnobs, text, date, number, boolean } from '@storybook/addon-knobs';
 import Faker from 'faker';
 import {
   defaultMessage,
-  defaultSourceUrl,
   generateStatefulNotice
 } from 'test/fakers/generateNotice';
 import { Details } from '.';
@@ -24,7 +23,6 @@ const commonProps = {
   confirmDislike: action('confirmDislike'),
   undislike: action('undislike'),
   view: action('view'),
-  followSource: action('followSource'),
   outboundLinkClicked: action('outboundLinkClicked'),
   goBack: action('goBack'),
   clickContributor: action('clickContributor')
@@ -47,7 +45,6 @@ storiesOf('screens/Notice/Details', module)
           name: text('contributor', defaultContributorName)
         }),
         message: `<p>${text('message', defaultMessage)}</p>`,
-        sourceUrl: text('source', defaultSourceUrl),
         created: date('created', defaultDate),
         likes: number('likes', 42),
         dislikes: number('dislikes', 2),
@@ -64,7 +61,6 @@ storiesOf('screens/Notice/Details', module)
           name: text('contributor', defaultContributorName)
         }),
         message: `<p>${text('message', longMessage)}</p>`,
-        sourceUrl: text('source', defaultSourceUrl),
         created: date('created', defaultDate),
         likes: number('likes', 42),
         dislikes: number('dislikes', 2),
