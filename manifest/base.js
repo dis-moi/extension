@@ -9,7 +9,7 @@ const version = require('../package.json').version;
 const icons = require('./icons');
 
 module.exports = Object.freeze({
-  name: 'Bulles',
+  name: 'Dismoi',
   description:
     'Amis, media, experts vous informent directement sur les pages web visitées. ',
   version,
@@ -51,7 +51,7 @@ module.exports = Object.freeze({
       '48': 'img/logo/48x48.png',
       '128': 'img/logo/128x128.png'
     },
-    default_title: 'Bulles'
+    default_title: 'Dismoi'
   },
   permissions: ['activeTab', 'storage'],
   web_accessible_resources: ['img/*', 'fonts/*'],
