@@ -18,9 +18,8 @@ export const getRestrictedContextsPatterns = createSelector(
 );
 
 export const isTabAuthorized = (tab: Tab | chrome.tabs.Tab) =>
-  createSelector(
-    [getRestrictedContextsPatterns],
-    patterns => isTabAuthorizedByPatterns(patterns)(tab)
+  createSelector([getRestrictedContextsPatterns], patterns =>
+    isTabAuthorizedByPatterns(patterns)(tab)
   );
 
 export const getMatchingContexts = createSelector(
@@ -34,7 +33,4 @@ export const getContributors = createSelector(
 );
 
 export const getContributorById = (id: number) =>
-  createSelector(
-    [getContributors],
-    findItemById(id)
-  );
+  createSelector([getContributors], findItemById(id));

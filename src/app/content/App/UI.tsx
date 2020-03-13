@@ -99,8 +99,5 @@ const UI = ({
 
 export default compose<ComponentType<{}>>(
   withRouter,
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )
+  connect(mapStateToProps, mapDispatchToProps)
 )(UI);

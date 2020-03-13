@@ -11,7 +11,7 @@ export const formStoreDecorator: DecoratorFunction<StoryFnReactReturnType> = get
   </Provider>
 );
 
-export const optionsStoreDecorator: DecoratorFunction = getStory => (
+export const optionsStoreDecorator: DecoratorFunction<StoryFnReactReturnType> = getStory => (
   <Provider store={optionsStore}>
     <>{getStory()}</>
   </Provider>

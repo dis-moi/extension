@@ -17,7 +17,7 @@ import { RatingType } from 'app/lmem/rating';
 
 export const isFeedBackRatingAction = (action: AppAction) =>
   action.type === FEEDBACK_ON_NOTICE &&
-  Object.values(RatingType).includes(action.payload.feedback);
+  (Object.values(RatingType) as string[]).includes(action.payload.feedback);
 
 type RatingActionTransformer = (action: AppAction) => Rating;
 

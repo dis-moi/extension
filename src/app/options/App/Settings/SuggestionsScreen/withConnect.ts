@@ -22,7 +22,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(unsubscribe(contributor, { sendToBackground: true }))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-);
+export default connect(mapStateToProps, mapDispatchToProps);

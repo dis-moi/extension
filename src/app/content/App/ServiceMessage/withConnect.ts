@@ -17,7 +17,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(optionsRequested(pathname))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-);
+export default connect(mapStateToProps, mapDispatchToProps);

@@ -35,10 +35,7 @@ const addReduxDevTools = (window as any).__REDUX_DEVTOOLS_EXTENSION__
   ? (window as any).__REDUX_DEVTOOLS_EXTENSION__()
   : (f: any): any => f;
 
-const enhancer = compose(
-  applyMiddlewares,
-  addReduxDevTools
-);
+const enhancer = compose(applyMiddlewares, addReduxDevTools);
 
 const store = createStore(rootReducer(history), enhancer);
 

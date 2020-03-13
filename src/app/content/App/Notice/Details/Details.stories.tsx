@@ -45,7 +45,7 @@ storiesOf('screens/Notice/Details', module)
           name: text('contributor', defaultContributorName)
         }),
         message: `<p>${text('message', defaultMessage)}</p>`,
-        created: date('created', defaultDate),
+        created: new Date(date('created', defaultDate)),
         likes: number('likes', 42),
         dislikes: number('dislikes', 2),
         liked: boolean('liked', false),
@@ -61,7 +61,7 @@ storiesOf('screens/Notice/Details', module)
           name: text('contributor', defaultContributorName)
         }),
         message: `<p>${text('message', longMessage)}</p>`,
-        created: date('created', defaultDate),
+        created: new Date(date('created', defaultDate)),
         likes: number('likes', 42),
         dislikes: number('dislikes', 2),
         liked: boolean('liked', false),

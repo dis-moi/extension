@@ -26,9 +26,8 @@ export * from './ui.selectors';
 
 export const getNotices = (state: ContentState) => state.notices;
 
-export const getNoticesToDisplay = createSelector(
-  getNotices,
-  notices => notices.filter(shouldNoticeBeShown).sort(compareUnread)
+export const getNoticesToDisplay = createSelector(getNotices, notices =>
+  notices.filter(shouldNoticeBeShown).sort(compareUnread)
 );
 
 export const getUnreadNotices = (state: ContentState) =>

@@ -21,7 +21,8 @@ import { getNumberOfUnreadNoticesOnTab } from '../selectors';
 type BadgeImpactingAction = (
   | MarkNoticeReadAction
   | NoticesFoundAction
-  | FeedbackOnNoticeAction) &
+  | FeedbackOnNoticeAction
+) &
   ReceivedAction;
 export const updateBadgeSaga = (badgeTheme: BadgeTheme) =>
   function*(action: BadgeImpactingAction): SagaIterator {

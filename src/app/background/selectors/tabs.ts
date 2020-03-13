@@ -5,15 +5,9 @@ import { TabsState } from '../reducers/tabs.reducer';
 
 export const getTabs = (state: { tabs: TabsState }): TabsState => state.tabs;
 
-export const getTabsList = createSelector(
-  [getTabs],
-  Object.values
-);
+export const getTabsList = createSelector([getTabs], Object.values);
 
-export const getReadyTabs = createSelector(
-  [getTabsList],
-  R.filter(isTabReady)
-);
+export const getReadyTabs = createSelector([getTabsList], R.filter(isTabReady));
 
 export const getOptionsTabs = createSelector(
   [getTabsList],
@@ -21,19 +15,12 @@ export const getOptionsTabs = createSelector(
 );
 
 export const getTabById = (tabId: number) =>
-  createSelector(
-    [getTabs],
-    tabs => tabs[tabId]
-  );
+  createSelector([getTabs], tabs => tabs[tabId]);
 
 export const getNoticesIdsOnTab = (tabId: number) =>
-  createSelector(
-    getTabById(tabId),
-    tab => tab.notices
-  );
+  createSelector(getTabById(tabId), tab => tab.notices);
 
 export const getNumberOfNoticesOnTab = (tabId: number) =>
-  createSelector(
-    getNoticesIdsOnTab(tabId),
-    noticesIds => (noticesIds ? noticesIds.length : 0)
+  createSelector(getNoticesIdsOnTab(tabId), noticesIds =>
+    noticesIds ? noticesIds.length : 0
   );

@@ -40,9 +40,11 @@ const addPreselectedContributors = (
   allContributors: StatefulContributor[],
   preselectedContributorsIds: number[]
 ) =>
-  R.concat(preselectedContributorsIds.map((id: number) =>
-    R.find(R.propEq('id', id), allContributors)
-  ) as StatefulContributor[]);
+  R.concat(
+    preselectedContributorsIds.map((id: number) =>
+      R.find(R.propEq('id', id), allContributors)
+    ) as StatefulContributor[]
+  );
 
 const SuggestionsScreen = ({
   allContributors,

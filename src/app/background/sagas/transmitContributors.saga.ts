@@ -16,9 +16,10 @@ import sendToTabSaga from './lib/sendToTab.saga';
 
 function* sendContributorsToTab(tab: chrome.tabs.Tab & Tab) {
   const contributors = yield select(getContributorsWithSubscriptionState);
-  const contributorsTransmittedAction = assocMetaIfNotGiven('tab', tab)(
-    contributorsTransmitted(contributors)
-  );
+  const contributorsTransmittedAction = assocMetaIfNotGiven(
+    'tab',
+    tab
+  )(contributorsTransmitted(contributors));
   yield sendToTabSaga(tab, contributorsTransmittedAction);
 }
 

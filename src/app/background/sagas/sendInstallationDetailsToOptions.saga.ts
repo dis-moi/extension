@@ -24,9 +24,10 @@ function* sendTosStateToOptionsTab(
   action: ListeningActionsReadyAction | TosAcceptedAction
 ) {
   const tab = action.meta!.tab as chrome.tabs.Tab & Tab;
-  const transmitAction = assocMetaIfNotGiven('tab', tab)(
-    transmitTosStatus(yield select(areTosAccepted))
-  );
+  const transmitAction = assocMetaIfNotGiven(
+    'tab',
+    tab
+  )(transmitTosStatus(yield select(areTosAccepted)));
   yield sendToTabSaga(tab, transmitAction);
 }
 
@@ -35,9 +36,10 @@ function* sendInstallationDetailsToOptionsTab(
 ) {
   const tab = action.meta.tab as chrome.tabs.Tab & Tab;
   const installationDetails = yield select(getInstallationDetails);
-  const transmitAction = assocMetaIfNotGiven('tab', tab)(
-    updateInstallationDetails(installationDetails)
-  );
+  const transmitAction = assocMetaIfNotGiven(
+    'tab',
+    tab
+  )(updateInstallationDetails(installationDetails));
   yield sendToTabSaga(tab, transmitAction);
   yield sendTosStateToOptionsTab(action);
 }
