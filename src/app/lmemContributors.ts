@@ -19,5 +19,7 @@ export const preselectedContributorIds = [
   46,
   49,
   50,
-  51
+  51,
+  53,
+  54
 ];
