@@ -1,3 +1,11 @@
+## [3.19.3](https://github.com/insitu-project/recommendations-webextension/compare/v3.19.2...v3.19.3) (2020-03-13)
+
+
+### Bug Fixes
+
+* **subscriptions:** fix calculation of the number of subscription in background script ([d21b980](https://github.com/insitu-project/recommendations-webextension/commit/d21b980))
+* **subscriptions:** Update subscriptions as well when updating contributors ([20bf619](https://github.com/insitu-project/recommendations-webextension/commit/20bf619))
+
 ## [3.19.2](https://github.com/insitu-project/recommendations-webextension/compare/v3.19.1...v3.19.2) (2020-03-06)
 
 
