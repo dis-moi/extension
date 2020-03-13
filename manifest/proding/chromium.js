@@ -1,9 +1,10 @@
 const csp = require('content-security-policy-builder');
 const production = require('../production/chromium');
+const base = require('../base');
 
 module.exports = {
   ...production,
-  name: 'Bulles - proding',
+  name: `${base.name} - proding`,
   content_security_policy: csp({
     directives: {
       'default-src': ['https://notices.bulles.fr'],
@@ -18,5 +19,9 @@ module.exports = {
       'font-src': ["'self'", 'data:'],
       'style-src': ["'unsafe-inline'"]
     }
-  })
+  }),
+  browser_action: {
+    ...base.browser_action,
+    default_title: `${base.browser_action.default_title} - proding`,
+  },
 };
