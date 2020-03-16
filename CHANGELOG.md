@@ -1,3 +1,10 @@
+# [3.20.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.19.3...v3.20.0) (2020-03-16)
+
+
+### Features
+
+* rename package.json’s name ([9c00997](https://github.com/insitu-project/recommendations-webextension/commit/9c00997))
+
 ## [3.19.3](https://github.com/insitu-project/recommendations-webextension/compare/v3.19.2...v3.19.3) (2020-03-13)
 
 
