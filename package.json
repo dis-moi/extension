@@ -1,5 +1,5 @@
 {
-  "name": "bulles-webextension",
+  "name": "dismoi-webextension",
   "version": "3.19.3",
   "description": "Bulles Recommendations web extensions using React+Redux.",
   "engines": {
