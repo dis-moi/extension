@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ExternalLink } from 'components/atoms';
+import { WEBSITE_DOMAIN } from '../../../../lmem';
 
 const TOSForm = styled.form`
   display: flex;
@@ -33,7 +34,7 @@ const TOSCheckbox = ({ onChange, checked }: Props) => (
     />
     <label htmlFor="tos">
       J&apos;ai lu et j&apos;accepte les nouvelles{' '}
-      <ExternalLink href="https://www.bulles.fr/cgu">
+      <ExternalLink href={`https://${WEBSITE_DOMAIN}/cgu`}>
         conditions générales d&apos;utilisation (CGU)
       </ExternalLink>
       .

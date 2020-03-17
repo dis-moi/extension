@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import LogoDismoi from 'components/atoms/LogoDismoi';
 import LogoWrapper from './LogoWrapper';
 import { ExternalLink } from 'components/atoms';
+import { WEBSITE_DOMAIN } from 'app/lmem';
 
 const HeaderNav = styled.nav`
   position: absolute;
@@ -24,8 +25,10 @@ const Header = () => (
     <LogoDismoi />
 
     <HeaderNav>
-      <HeaderNavItem href="https://www.bulles.fr/aide/">Aide</HeaderNavItem>
-      <HeaderNavItem href="https://www.bulles.fr/devenir-contributeur/">
+      <HeaderNavItem href={`https://${WEBSITE_DOMAIN}/aide/`}>
+        Aide
+      </HeaderNavItem>
+      <HeaderNavItem href={`https://${WEBSITE_DOMAIN}/devenir-contributeur/`}>
         Devenir contributeur
       </HeaderNavItem>
     </HeaderNav>
