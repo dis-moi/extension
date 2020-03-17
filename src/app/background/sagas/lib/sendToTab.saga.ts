@@ -5,7 +5,6 @@ import Tab from 'app/lmem/tab';
 import Logger from 'app/utils/Logger';
 import sendToTab from 'webext/sendActionToTab';
 import isAuthorizedTab from 'webext/isAuthorizedTab';
-import { captureException } from 'app/utils/sentry';
 
 const MAX_RETRIES = 5;
 
@@ -28,10 +27,6 @@ function* trySendToTab(
       yield call(trySendToTab, tab, action, remainingRetries - 1);
     } else {
       yield put(tabDied(tab));
-      captureException(
-        error,
-        `Could not communicate with tab ${tab.id} (${tab.url}) after ${MAX_RETRIES} attempts : ${error.message}`
-      );
     }
   }
 }
