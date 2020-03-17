@@ -6,6 +6,7 @@ import Title from './Title';
 import Content from './Content';
 import Container from './Container';
 import withConnect from './withConnect';
+import { WEBSITE_DOMAIN } from 'app/lmem';
 
 export interface AboutProps {
   installationDate?: Date;
@@ -27,15 +28,22 @@ export const About = ({ installationDate, extensionVersion }: AboutProps) => (
     )}
 
     <nav>
-      <ExternalLink href="http://www.bulles.fr/aide">Aide</ExternalLink> -{' '}
-      <ExternalLink href="http://www.bulles.fr/a-propos">À propos</ExternalLink>{' '}
-      - <ExternalLink href="http://www.bulles.fr/contact">Contact</ExternalLink>{' '}
+      <ExternalLink href={`https://${WEBSITE_DOMAIN}/aide`}>Aide</ExternalLink>{' '}
       -{' '}
-      <ExternalLink href="http://www.bulles.fr/vie-privee">
+      <ExternalLink href={`https://${WEBSITE_DOMAIN}/a-propos`}>
+        À propos
+      </ExternalLink>{' '}
+      -{' '}
+      <ExternalLink href={`https://${WEBSITE_DOMAIN}/contact`}>
+        Contact
+      </ExternalLink>{' '}
+      -{' '}
+      <ExternalLink href={`https://${WEBSITE_DOMAIN}/vie-privee`}>
         Vie privée
       </ExternalLink>{' '}
-      - <ExternalLink href="http://www.bulles.fr/cgu">CGU</ExternalLink> -{' '}
-      <ExternalLink href="http://www.bulles.fr/desinstaller">
+      - <ExternalLink href={`https://${WEBSITE_DOMAIN}/cgu`}>CGU</ExternalLink>{' '}
+      -{' '}
+      <ExternalLink href={`https://${WEBSITE_DOMAIN}/desinstaller`}>
         Désinstaller
       </ExternalLink>
     </nav>
