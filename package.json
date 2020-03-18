@@ -1,6 +1,6 @@
 {
   "name": "dismoi-webextension",
-  "version": "3.20.0",
+  "version": "3.21.0",
   "description": "Bulles Recommendations web extensions using React+Redux.",
   "engines": {
     "node": ">=8"

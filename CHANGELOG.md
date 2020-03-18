@@ -1,3 +1,10 @@
+# [3.21.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.20.0...v3.21.0) (2020-03-18)
+
+
+### Features
+
+* change contribution email ([5984673](https://github.com/insitu-project/recommendations-webextension/commit/5984673))
+
 # [3.20.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.19.3...v3.20.0) (2020-03-16)
 
 
