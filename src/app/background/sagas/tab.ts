@@ -41,6 +41,7 @@ import { disable } from 'webext/browserAction';
 import { resetBadge } from 'app/lmem/badge';
 import serviceMessageSaga from './serviceMessage.saga';
 import { getNbSubscriptions } from '../selectors/subscriptions.selectors';
+import { regressiveRetry } from '../../sagas/effects/regressiveRetry';
 
 export function* tabSaga({ meta: { tab } }: TabAction) {
   const tabAuthorized = yield select(isTabAuthorized(tab));
@@ -84,7 +85,18 @@ export const contextTriggeredSaga = function*({
       R.map(tc => tc.noticeUrl)
     )(triggeredContexts);
 
-    const notices = yield call(fetchNotices, toFetch);
+    const notices = yield call(
+      regressiveRetry,
+      { maximumAttempts: 5 },
+      fetchNotices,
+      toFetch
+    );
+
+    if (!notices)
+      yield put(
+        contextTriggerFailure(new Error('Could not fetch notices'), tab)
+      );
+
     yield put(noticesFetched(notices));
     const validNotices: Notice[] = notices.filter(warnIfNoticeInvalid);
 

@@ -8,16 +8,24 @@ import {
 } from 'app/actions';
 import { getSubscriptions } from '../selectors/subscriptions.selectors';
 import minutesToMilliseconds from 'app/utils/minutesToMilliseconds';
+import { regressiveRetry } from '../../sagas/effects/regressiveRetry';
 
 function* refreshMatchingContexts() {
-  try {
-    yield put(
-      receivedMatchingContexts(
-        yield call(fetchMatchingContexts, yield select(getSubscriptions))
-      )
-    );
-  } catch (e) {
-    yield put(refreshMatchingContextsFailed(e));
+  const matchingContexts = yield call(
+    regressiveRetry,
+    {
+      maximumRetryDelayInMinutes: 10,
+      maximumAttempts: 10,
+      onError: function*(error: Error) {
+        yield put(refreshMatchingContextsFailed(error));
+      }
+    },
+    fetchMatchingContexts,
+    yield select(getSubscriptions)
+  );
+
+  if (matchingContexts) {
+    yield put(receivedMatchingContexts(matchingContexts));
   }
 }
 
@@ -25,7 +33,10 @@ function* refreshWhenSubscriptionsChanged() {
   yield takeLatest([SUBSCRIBE, UNSUBSCRIBE], refreshMatchingContexts);
 }
 
-function* refreshEveryInterval() {
+export default function* refreshMatchingContextsSaga() {
+  yield fork(refreshWhenSubscriptionsChanged);
+  yield call(refreshMatchingContexts);
+
   const refreshInterval = minutesToMilliseconds(
     Number(process.env.REFRESH_MC_INTERVAL)
   );
@@ -49,11 +60,4 @@ function* refreshEveryInterval() {
       'assuming "process.env.REFRESH_MC_INTERVAL" is deliberately not defined.'
     );
   }
-}
-
-export default function* refreshMatchingContextsSaga() {
-  yield call(refreshMatchingContexts);
-
-  yield fork(refreshWhenSubscriptionsChanged);
-  yield fork(refreshEveryInterval);
 }

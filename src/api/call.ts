@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import { BACKEND_ORIGIN } from 'app/constants/origins';
 import * as R from 'ramda';
+import { APIStatusCodeError } from './APIStatusCodeError';
 
 type GetParamValue = string | string[];
 type GetParams = {} | { [key: string]: GetParamValue };
@@ -27,7 +28,7 @@ export const get = (path: string, data: object = {}) => {
   const queryString = R.isEmpty(data) ? '' : buildQueryString(data);
   return fetch(`${endpoint}${queryString}`).then(response => {
     if (response.status >= 400) {
-      throw new Error('Bad response from server');
+      throw new APIStatusCodeError(response);
     }
     return response.json();
   });
