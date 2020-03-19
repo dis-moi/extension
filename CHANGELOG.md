@@ -1,3 +1,10 @@
+# [3.22.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.21.0...v3.22.0) (2020-03-19)
+
+
+### Features
+
+* **branding:** change website URL following (re)branding ([a2621b6](https://github.com/insitu-project/recommendations-webextension/commit/a2621b6))
+
 # [3.21.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.20.0...v3.21.0) (2020-03-18)
 
 
