@@ -7,7 +7,6 @@ import {
   AppAction
 } from 'app/actions';
 import { MatchingContext, RestrictedContext } from 'app/lmem/matchingContext';
-import { Draft } from 'app/lmem/draft';
 import { Contributor } from 'app/lmem/contributor';
 import forbiddenTabs from 'webext/forbiddenTabs';
 import { Notice } from 'app/lmem/notice';
@@ -20,7 +19,6 @@ export interface ResourcesState extends StateWithContributors {
   matchingContexts: MatchingContext[];
   restrictedContexts: RestrictedContext[];
   notices: Notice[];
-  drafts: Draft[];
 }
 
 const regexpsToRestrictedContexts = (regexps: RegExp[]) =>
@@ -35,7 +33,6 @@ const initialResources: ResourcesState = {
   matchingContexts: [],
   restrictedContexts: regexpsToRestrictedContexts(forbiddenTabs),
   contributors: [],
-  drafts: [],
   notices: []
 };
 

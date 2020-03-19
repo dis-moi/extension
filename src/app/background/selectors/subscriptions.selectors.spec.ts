@@ -26,7 +26,6 @@ describe('background > selectors > subscriptions ', () => {
         resources: {
           matchingContexts: [],
           restrictedContexts: [],
-          drafts: [],
           contributors: [
             contributor1,
             contributor2,
@@ -68,7 +67,6 @@ describe('background > selectors > subscriptions ', () => {
         resources: {
           matchingContexts: [],
           restrictedContexts: [],
-          drafts: [],
           contributors: [
             contributor1,
             contributor2,
@@ -101,7 +99,6 @@ describe('background > selectors > subscriptions ', () => {
         resources: {
           matchingContexts: [],
           restrictedContexts: [],
-          drafts: [],
           contributors: [
             contributor1,
             contributor2,

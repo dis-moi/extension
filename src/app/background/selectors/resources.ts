@@ -28,11 +28,6 @@ export const getMatchingContexts = createSelector(
   resources => resources.matchingContexts
 );
 
-export const getDraftNotices = createSelector(
-  [getResources],
-  resources => resources.drafts
-);
-
 export const getContributors = createSelector(
   [getResources],
   resources => resources.contributors

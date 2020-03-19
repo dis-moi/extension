@@ -1,4 +1,3 @@
-import { Draft } from './draft';
 import { captureException } from '../utils/sentry';
 
 export interface MatchingContext {
@@ -18,7 +17,7 @@ export const toPatterns = (restrictedContexts: RestrictedContext[]) =>
 
 export const urlMatchesContext = (
   url: string,
-  { urlRegex, excludeUrlRegex }: MatchingContext | Draft
+  { urlRegex, excludeUrlRegex }: MatchingContext
 ): boolean => {
   try {
     return (
@@ -33,26 +32,10 @@ export const urlMatchesContext = (
   }
 };
 
-export const findMatchingMatchingContexts = (
+export const findMatchingOffersAccordingToPreferences = (
   url: string,
-  allMatchingContexts: MatchingContext[] | Draft[]
-): MatchingContext[] =>
-  allMatchingContexts.filter((context: MatchingContext | Draft) =>
+  matchingContexts: MatchingContext[]
+) =>
+  matchingContexts.filter((context: MatchingContext) =>
     urlMatchesContext(url, context)
   );
-
-export function findMatchingOffersAccordingToPreferences(
-  url: string,
-  matchingContexts: MatchingContext[],
-  drafts: Draft[]
-) {
-  const matchingDraftMatchingContexts = findMatchingMatchingContexts(
-    url,
-    drafts
-  );
-
-  // prioritize previews over public offers
-  return matchingDraftMatchingContexts.length >= 1
-    ? matchingDraftMatchingContexts
-    : findMatchingMatchingContexts(url, matchingContexts);
-}

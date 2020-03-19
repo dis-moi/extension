@@ -10,12 +10,8 @@ const offers: MatchingContext[] = [
   { urlRegex: 'www.samsung.com', noticeUrl: 'http://b', noticeId: 42 },
   { urlRegex: 'arrested.com', noticeUrl: 'http://b', noticeId: 42 }
 ];
-const draftNotices = [
-  { urlRegex: 'www.wordpress.com', noticeUrl: 'http://b', noticeId: 42 }
-];
 
 const matchingURL = 'https://www.samsung.com/blabla';
-const matchingDraftURL = 'https://www.wordpress.com/lol';
 const nonMatchingURL = 'https://soundcloud.com/capt-lovelace/meteo-marine';
 
 describe('findMatchingOffersAccordingToPreferences', function() {
@@ -28,8 +24,7 @@ describe('findMatchingOffersAccordingToPreferences', function() {
 
     const matches = findMatchingOffersAccordingToPreferences(
       matchingURL,
-      offersWithWeirdCase,
-      []
+      offersWithWeirdCase
     );
 
     expect(matches).to.be.an('array');
@@ -51,8 +46,7 @@ describe('findMatchingOffersAccordingToPreferences', function() {
 
       const matches = findMatchingOffersAccordingToPreferences(
         matchingURL,
-        offersWithExclusion,
-        []
+        offersWithExclusion
       );
 
       expect(matches).to.be.an('array');
@@ -71,8 +65,7 @@ describe('findMatchingOffersAccordingToPreferences', function() {
 
       const matches = findMatchingOffersAccordingToPreferences(
         matchingURL,
-        offersWithExclusion,
-        []
+        offersWithExclusion
       );
 
       expect(matches).to.be.an('array');
@@ -93,8 +86,7 @@ describe('findMatchingOffersAccordingToPreferences', function() {
 
       const matches = findMatchingOffersAccordingToPreferences(
         matchingURL,
-        offersWithExclusion,
-        []
+        offersWithExclusion
       );
 
       expect(matches).to.be.an('array');
@@ -111,8 +103,7 @@ describe('findMatchingOffersAccordingToPreferences', function() {
     it('should not screw up the matching engine', () => {
       const matches = findMatchingOffersAccordingToPreferences(
         matchingURL,
-        nastyOffers,
-        []
+        nastyOffers
       );
 
       expect(findMatchingOffersAccordingToPreferences).to.not.throw(
@@ -125,12 +116,11 @@ describe('findMatchingOffersAccordingToPreferences', function() {
     });
   });
 
-  describe('empty prefs, no draft', () => {
+  describe('empty prefs', () => {
     it('should match when the url matches an offer', () => {
       const matching = findMatchingOffersAccordingToPreferences(
         matchingURL,
-        offers,
-        []
+        offers
       );
 
       expect(matching).to.be.an('array');
@@ -141,55 +131,11 @@ describe('findMatchingOffersAccordingToPreferences', function() {
     it('should not match when the url does not match any offer', () => {
       const matching = findMatchingOffersAccordingToPreferences(
         nonMatchingURL,
-        offers,
-        []
+        offers
       );
 
       expect(matching).to.be.an('array');
       expect(matching).to.be.of.length(0);
-    });
-  });
-
-  describe('draft notices', () => {
-    it('should match a draft notice', () => {
-      const matching = findMatchingOffersAccordingToPreferences(
-        matchingDraftURL,
-        offers,
-        draftNotices
-      );
-
-      expect(matching).to.be.an('array');
-      expect(matching).to.be.of.length(1);
-      expect(matching[0]).to.equal(draftNotices[0]);
-    });
-
-    it('should favor draft previews over public offers', () => {
-      const draftRec = {
-        urlRegex: 'www.wordpress.com',
-        noticeUrl: 'http://b',
-        noticeId: 42,
-        notice: {
-          visibility: 'private'
-        }
-      };
-      const publicRec = {
-        urlRegex: 'www.wordpress.com',
-        noticeUrl: 'http://b',
-        noticeId: 42,
-        notice: {
-          visibility: 'public'
-        }
-      };
-
-      const matching = findMatchingOffersAccordingToPreferences(
-        matchingDraftURL,
-        [publicRec],
-        [draftRec]
-      );
-
-      expect(matching).to.be.an('array');
-      expect(matching).to.be.of.length(1);
-      expect(matching[0]).to.equal(draftRec);
     });
   });
 });

@@ -43,10 +43,6 @@ module.exports = (env = {}, argv = {}, buildPath) => {
   const copyConfig = [
     { from: 'src/assets', to: buildPath },
     {
-      from: 'src/app/lmem/draft-preview/grabDraftNotices.js',
-      to: path.join(buildPath, 'js')
-    },
-    {
       from: 'node_modules/webextension-polyfill/dist/browser-polyfill.js',
       to: path.join(buildPath, 'js')
     },

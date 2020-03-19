@@ -81,7 +81,6 @@ export * from './options';
 export * from './tabs';
 export * from './tos';
 export * from './ui';
-export { default as updateDraftNotices } from './updateDraftNotices';
 export * from './subscription';
 export * from './webext';
 export * from './serviceMessage.actions';
