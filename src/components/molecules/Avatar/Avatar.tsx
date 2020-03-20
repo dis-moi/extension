@@ -12,13 +12,13 @@ const Wrapper = styled.div<WrapperProps>`
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  width: ${props => (props.size === 'small' ? '40px' : '90px')};
-  height: ${props => (props.size === 'small' ? '40px' : '90px')};
+  width: ${props => (props.size === 'small' ? '40px' : '60px')};
+  height: ${props => (props.size === 'small' ? '40px' : '60px')};
   background-color: ${props => props.theme.contributorGrey};
   border-radius: 50%;
 
   & > img {
-    width: ${props => (props.size === 'small' ? '40px' : '90px')};
+    width: ${props => (props.size === 'small' ? '40px' : '60px')};
     height: auto;
     border-radius: 50%;
   }
