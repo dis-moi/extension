@@ -54,6 +54,7 @@ export function* tabSaga({ meta: { tab } }: TabAction) {
 
 export function* matchContextSaga({ meta: { tab } }: MatchContextAction) {
   try {
+    yield put(clearServiceMessage(tab));
     const triggeredContexts = yield select(state =>
       findTriggeredContexts(state)(tab.url)
     );
