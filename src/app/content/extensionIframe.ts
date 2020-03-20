@@ -9,7 +9,7 @@ export const create = (style: {
   iframe.width = '390px';
   iframe.height = '423px';
   iframe.srcdoc =
-    '<!doctype html><html lang="fr"><head><title>Bulles</title><meta charset="utf-8"></head><body /></html>';
+    '<!doctype html><html lang="fr"><head><title>Dismoi</title><meta charset="utf-8"></head><body /></html>';
 
   Object.keys(style).forEach(key =>
     iframe.style.setProperty(key, String(style[key]), 'important')
