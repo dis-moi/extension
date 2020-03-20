@@ -1,3 +1,10 @@
+## [3.22.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.22.0...v3.22.1) (2020-03-20)
+
+
+### Bug Fixes
+
+* **avatar:** changed sized on large onboarding ([e83603a](https://github.com/insitu-project/recommendations-webextension/commit/e83603a))
+
 # [3.22.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.21.0...v3.22.0) (2020-03-19)
 
 
