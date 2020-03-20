@@ -8,7 +8,7 @@ storiesOf('atoms/Stat', module)
   .addDecorator(withKnobs)
   .add('Bulles', () => (
     <Stat>
-      120 <StatType>Bulles</StatType>
+      120 <StatType>contributions</StatType>
     </Stat>
   ))
   .add('J aime', () => (
