@@ -8,7 +8,7 @@ export interface FooterRoute {
 export const footerRoutes: FooterRoute[] = [
   {
     location: '/notices',
-    element: 'Bulles'
+    element: 'Contributions'
   },
   {
     location: '/subscriptions',
