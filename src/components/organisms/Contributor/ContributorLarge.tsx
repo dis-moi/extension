@@ -97,7 +97,7 @@ const ContributorLarge = ({
         <StatsWrapper>
           <Stat>
             <BubbleIcon /> {contributor.contributions}{' '}
-            <StatType>Bulles</StatType>
+            <StatType>contributions</StatType>
           </Stat>
         </StatsWrapper>
 
@@ -118,7 +118,7 @@ const ContributorLarge = ({
         href={contributor.contribution.example.matchingUrl}
         highlighted={highlightExampleLink}
       >
-        Voir un exemple de ses bulles
+        Voir un exemple de ses contributions
       </ContributionExample>
     )}
   </ContributorCard>

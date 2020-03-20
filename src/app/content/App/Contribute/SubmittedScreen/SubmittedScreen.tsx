@@ -25,7 +25,7 @@ export default ({ goBack }: ContributionSubmittedScreenProps) => (
       </Content>
 
       <CenterContainer>
-        <Button onClick={goBack}>Retour aux Bulles</Button>
+        <Button onClick={goBack}>Retour aux contributions</Button>
       </CenterContainer>
     </ContentWrapperBackground>
   </Container>
