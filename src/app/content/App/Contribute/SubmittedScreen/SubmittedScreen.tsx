@@ -20,8 +20,8 @@ export default ({ goBack }: ContributionSubmittedScreenProps) => (
       <Illustration />
       <ContentTitle>Félicitations !</ContentTitle>
       <Content>
-        Votre bulle sera publiée d’ici 24h, une confirmation vous sera envoyée
-        par email.
+        Votre contribution sera publiée d’ici 24h, une confirmation vous sera
+        envoyée par email.
       </Content>
 
       <CenterContainer>

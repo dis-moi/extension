@@ -16,7 +16,7 @@ import { isWithinLastHours } from 'app/utils/areWithinHours';
 export const buildMessages = (messages: string[], nbNotices = 0): string[] => {
   const firstMessage =
     nbNotices > 0
-      ? 'Il existe une bulle sur cette page. Pour la visualiser, veuillez finaliser votre configuration.'
+      ? 'Il existe une contribution sur cette page. Pour la visualiser, veuillez finaliser votre configuration.'
       : 'Pour poster et recevoir des messages, veuillez finaliser votre configuration.';
 
   return R.prepend(firstMessage, messages);

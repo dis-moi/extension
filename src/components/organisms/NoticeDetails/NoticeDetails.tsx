@@ -229,7 +229,7 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
 
           {(disliked || dismissed) && intervalID && (
             <DetailsDislike>
-              Merci pour votre retour, cette bulle ne s’affichera plus
+              Merci pour votre retour, cette contribution ne s’affichera plus
               <div>
                 <Button onClick={this.handleCancelDislike}>Annuler</Button>
                 <Timer>({countdown}s)</Timer>

@@ -48,5 +48,5 @@ export const Details = ({
 
 export default compose(
   withConnect,
-  withTitle<DetailsScreenProps>('Détail de la bulle')
+  withTitle<DetailsScreenProps>('Détail de la contribution')
 )(Details);

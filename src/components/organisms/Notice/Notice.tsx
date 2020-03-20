@@ -150,7 +150,7 @@ export default class Notice extends PureComponent<Props, CountDownState> {
         <Content isRead={read}>
           {(dismissed || disliked) && intervalID ? (
             <>
-              <Deleted>Cette bulle ne s’affichera plus !</Deleted>
+              <Deleted>Cette contribution ne s’affichera plus !</Deleted>
               <CenterContainer>
                 <Button onClick={this.onUndismiss}>Annuler</Button>
                 <Timer>({countdown}s)</Timer>
