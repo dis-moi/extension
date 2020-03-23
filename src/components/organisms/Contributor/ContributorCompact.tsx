@@ -38,7 +38,6 @@ const StatsWrapper = styled.div`
   ${Stat} {
     flex-direction: row;
     align-items: center;
-    margin-right: 10px;
     font-size: 12px;
   }
 `;
@@ -62,7 +61,7 @@ export const ContributorCompact = ({
       </UserName>
 
       <StatsWrapper>
-        <Stat>{contributor.contributions} contributions</Stat>
+        <Stat>{contributor.contributions} contrib.</Stat>
       </StatsWrapper>
     </ContributorInfos>
 
