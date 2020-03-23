@@ -37,7 +37,7 @@ export const Help = () => (
     <ContentTitle>Contacter le support de Dismoi</ContentTitle>
     <Content>
       Merci de nous écrire à{' '}
-      <Anchor href="mailto:support@bulles.fr">support@bulles.fr</Anchor>.
+      <Anchor href="mailto:support@dismoi.io">support@dismoi.io</Anchor>.
     </Content>
   </Container>
 );
