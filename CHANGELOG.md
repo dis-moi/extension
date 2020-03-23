@@ -1,3 +1,12 @@
+## [3.22.2](https://github.com/insitu-project/recommendations-webextension/compare/v3.22.1...v3.22.2) (2020-03-23)
+
+
+### Bug Fixes
+
+* **wording:** replaced bulle by contribution ([c383601](https://github.com/insitu-project/recommendations-webextension/commit/c383601))
+* **wording:** replaced bulles by contributions ([6e6e629](https://github.com/insitu-project/recommendations-webextension/commit/6e6e629))
+* **wording:** replaced missing bulles by contributions ([492267e](https://github.com/insitu-project/recommendations-webextension/commit/492267e))
+
 ## [3.22.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.22.0...v3.22.1) (2020-03-20)
 
 
