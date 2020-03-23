@@ -1,3 +1,12 @@
+## [3.22.3](https://github.com/insitu-project/recommendations-webextension/compare/v3.22.2...v3.22.3) (2020-03-23)
+
+
+### Bug Fixes
+
+* **ContributorCompact:** changed wording contributeurs to contrib. ([fc3aa21](https://github.com/insitu-project/recommendations-webextension/commit/fc3aa21))
+* **extension/help:** changed support mail ([1ad9053](https://github.com/insitu-project/recommendations-webextension/commit/1ad9053))
+* **service-message:** The service message won't stay if subscriptions changed ([c178c48](https://github.com/insitu-project/recommendations-webextension/commit/c178c48))
+
 ## [3.22.2](https://github.com/insitu-project/recommendations-webextension/compare/v3.22.1...v3.22.2) (2020-03-23)
 
 
