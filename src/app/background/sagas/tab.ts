@@ -42,6 +42,7 @@ import { resetBadge } from 'app/lmem/badge';
 import serviceMessageSaga from './serviceMessage.saga';
 import { getNbSubscriptions } from '../selectors/subscriptions.selectors';
 import { regressiveRetry } from '../../sagas/effects/regressiveRetry';
+import { Level } from '../../utils/Logger';
 
 export function* tabSaga({ meta: { tab } }: TabAction) {
   const tabAuthorized = yield select(isTabAuthorized(tab));
@@ -143,7 +144,7 @@ export const contextNotTriggeredSaga = function*({
       return;
     }
   } catch (e) {
-    yield put(createErrorAction()(e));
+    yield put(createErrorAction()(e, { severity: Level.ERROR }));
   }
 };
 

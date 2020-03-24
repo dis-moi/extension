@@ -6,6 +6,7 @@ import {
   StandardAction
 } from './index';
 import { From } from 'webext/From';
+import { Level } from '../utils/Logger';
 
 export const LISTENING_ACTIONS_READY = 'LISTENING_ACTIONS_READY';
 export interface ListeningActionsReadyAction extends BaseAction {
@@ -33,7 +34,8 @@ export interface ListenActionFailedAction extends ErrorAction {
 export const listenActionFailed = (e: Error): ListenActionFailedAction => ({
   type: LISTEN_ACTION_FAILED,
   payload: e,
-  error: true
+  error: true,
+  meta: { severity: Level.WARN }
 });
 
 export interface LifecycleAction extends StandardAction {

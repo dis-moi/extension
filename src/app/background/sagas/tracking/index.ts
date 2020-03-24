@@ -38,6 +38,7 @@ import {
   trackNoticeUnfoldedSaga
 } from './trackNotice.saga';
 import { areTosAccepted } from '../../selectors/prefs';
+import { Level } from '../../../utils/Logger';
 
 export default (tracker?: Tracker) =>
   function*(): SagaIterator {
@@ -84,6 +85,6 @@ export default (tracker?: Tracker) =>
         yield takeLatest(CLOSE, trackCloseSaga(tracker));
       }
     } catch (e) {
-      createErrorAction()(e);
+      createErrorAction()(e, { severity: Level.WARN });
     }
   };

@@ -12,6 +12,7 @@ import Tab from 'app/lmem/tab';
 import { getServiceMessageLastShowDate } from '../selectors/serviceMessage.selectors';
 import { LinkType } from 'app/lmem/ServiceMessage';
 import { isWithinLastHours } from 'app/utils/areWithinHours';
+import { Level } from '../../utils/Logger';
 
 export const buildMessages = (messages: string[], nbNotices = 0): string[] => {
   const firstMessage =
@@ -62,6 +63,6 @@ export default function* serviceMessageSaga(tab: Tab, nbNotices = 0) {
       yield put(open(OpenFrom.ServiceMessage, tab));
     }
   } catch (e) {
-    yield put(createErrorAction()(e));
+    yield put(createErrorAction()(e, { severity: Level.ERROR }));
   }
 }

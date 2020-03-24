@@ -3,6 +3,7 @@ import { MatchingContext } from 'app/lmem/matchingContext';
 import Tab from 'app/lmem/tab';
 import { ReceivedAction } from 'webext/createMessageHandler';
 import { BaseAction, TabAction, TabErrorAction } from '.';
+import { Level } from '../utils/Logger';
 
 export const INIT = 'INIT';
 export interface InitAction extends TabAction {
@@ -56,7 +57,7 @@ export const matchContextFailure = (
 ): MatchContextFailureAction => ({
   type: MATCH_CONTEXT_FAILURE,
   payload: error,
-  meta: { tab },
+  meta: { tab, severity: Level.ERROR },
   error: true
 });
 
@@ -98,6 +99,6 @@ export const contextTriggerFailure = (
 ): ContextTriggerFailureAction => ({
   type: CONTEXT_TRIGGER_FAILURE,
   payload: error,
-  meta: { tab },
+  meta: { tab, severity: Level.ERROR },
   error: true
 });

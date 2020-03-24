@@ -1,5 +1,6 @@
 import { Contribution } from 'app/lmem/notice';
 import { BaseAction, FormAction, FormMeta, ErrorAction } from '.';
+import { Level } from '../utils/Logger';
 
 export const SUBMIT_CONTRIBUTION = 'CONTRIBUTION/SUBMIT';
 export interface SubmitContributionAction extends FormAction {
@@ -36,5 +37,6 @@ export const contributionSubmissionFailed = (
 ): ContributionSubmissionFailed => ({
   type: CONTRIBUTION_SUBMISSION_FAILED,
   payload: e,
-  error: true
+  error: true,
+  meta: { severity: Level.ERROR }
 });

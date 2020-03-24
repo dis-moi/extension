@@ -1,5 +1,6 @@
 import Tab from 'app/lmem/tab';
 import { BaseAction, ErrorAction } from './';
+import { Level } from '../utils/Logger';
 
 export const OPTIONS_REQUESTED = 'OPTIONS_REQUESTED';
 export interface OptionsRequestedAction extends BaseAction {
@@ -38,5 +39,6 @@ export const optionsTabOpenFailed = (
 ): OptionsTabOpenFailedAction => ({
   type: OPTIONS_TAB_OPEN_FAILED,
   error: true,
-  payload: error
+  payload: error,
+  meta: { severity: Level.ERROR }
 });

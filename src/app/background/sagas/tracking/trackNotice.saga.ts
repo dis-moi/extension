@@ -17,6 +17,7 @@ import {
   getNumberOfUnreadNoticesOnTab
 } from 'app/background/selectors';
 import { getNumberOfNoticesOnTab } from 'app/background/selectors/tabs';
+import { Level } from '../../../utils/Logger';
 
 export const trackNoticeBadgedSaga = (tracker: Tracker) =>
   function*(action: NoticeBadgedAction): SagaIterator {
@@ -39,7 +40,7 @@ export const trackNoticeBadgedSaga = (tracker: Tracker) =>
         });
       }
     } catch (e) {
-      yield put(createErrorAction()(e));
+      yield put(createErrorAction()(e, { severity: Level.WARN }));
     }
   };
 
@@ -54,7 +55,7 @@ export const trackNoticeDisplayedSaga = (tracker: Tracker) =>
         url: getURLFromActionMeta(action)
       });
     } catch (e) {
-      yield put(createErrorAction()(e));
+      yield put(createErrorAction()(e, { severity: Level.WARN }));
     }
   };
 
@@ -69,7 +70,7 @@ export const trackNoticeUnfoldedSaga = (tracker: Tracker) =>
         url: getURLFromActionMeta(action)
       });
     } catch (e) {
-      yield put(createErrorAction()(e));
+      yield put(createErrorAction()(e, { severity: Level.WARN }));
     }
   };
 
@@ -88,7 +89,7 @@ export const trackNoticeFeedbackSaga = (tracker: Tracker) =>
         url: getURLFromActionMeta(action)
       });
     } catch (e) {
-      yield put(createErrorAction()(e));
+      yield put(createErrorAction()(e, { severity: Level.WARN }));
     }
   };
 
@@ -101,6 +102,6 @@ export const trackNoticeOutboundClickSaga = (tracker: Tracker) =>
         });
       }
     } catch (e) {
-      yield put(createErrorAction()(e));
+      yield put(createErrorAction()(e, { severity: Level.WARN }));
     }
   };

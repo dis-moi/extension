@@ -1,12 +1,13 @@
 import {
-  init,
-  configureScope,
+  addBreadcrumb as sentryAddBreadcrumb,
+  captureException as sentryCaptureException,
   captureMessage as sentryCaptureMessage,
-  captureException as sentryCaptureException
+  configureScope,
+  init
 } from '@sentry/browser';
-import { Scope, Severity, Event, EventHint } from '@sentry/types';
+import { Event, EventHint, Scope, Severity } from '@sentry/types';
 import { getRelease } from '../../../sentry';
-import Logger from './Logger';
+import Logger, { Level } from './Logger';
 
 let sentryInitialized = false;
 
@@ -91,5 +92,31 @@ export const captureException = (
     return sentryCaptureException(exception);
   } else {
     Logger.error(message || `CatchedError: ${message || exception.message}`);
+  }
+};
+
+type SeverityToSentry = {
+  [localSeverity in Level]: Severity;
+};
+export const severityToSentry: SeverityToSentry = {
+  [Level.FATAL]: Severity.Fatal,
+  [Level.ERROR]: Severity.Error,
+  [Level.WARN]: Severity.Warning,
+  [Level.INFO]: Severity.Info,
+  [Level.DEBUG]: Severity.Debug,
+  [Level.TRACE]: Severity.Debug
+};
+
+export const addBreadcrumb = (
+  message: string,
+  severity: Level,
+  data?: object
+) => {
+  if (process.env.SENTRY_ENABLED && sentryInitialized) {
+    return sentryAddBreadcrumb({
+      message,
+      data,
+      level: severityToSentry[severity]
+    });
   }
 };

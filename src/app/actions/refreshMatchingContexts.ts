@@ -1,5 +1,6 @@
 import { MatchingContext } from 'app/lmem/matchingContext';
 import { BaseAction, ErrorAction } from '.';
+import { Level } from '../utils/Logger';
 
 export const UPDATE_MATCHING_CONTEXTS = 'api/UPDATE_MATCHING_CONTEXTS';
 export interface ReceivedMatchingContextsAction extends BaseAction {
@@ -23,5 +24,6 @@ export const refreshMatchingContextsFailed = (
 ): RefreshMatchingContextsFailedAction => ({
   type: REFRESH_MATCHING_CONTEXTS_FAILED,
   payload: e,
-  error: true
+  error: true,
+  meta: { severity: Level.WARN }
 });

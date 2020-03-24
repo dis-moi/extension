@@ -66,6 +66,7 @@ import { TabDiedAction, TabRemovedAction } from './tabsLifecycle';
 import { UpdateRestrictedContextsAction } from './restrictedContexts';
 import { LoginAction } from './user';
 import * as R from 'ramda';
+import { Level } from '../utils/Logger';
 
 type MessageSender = chrome.runtime.MessageSender;
 
@@ -102,11 +103,14 @@ export interface TimestampedAction extends BaseAction {
 export interface ErrorAction extends BaseAction {
   payload: Error;
   error: true;
+  meta: ActionMeta & {
+    severity: Level;
+  };
 }
 
 export const createErrorAction = (type: unknown = 'ERROR') => (
   e: Error,
-  meta?: ActionMeta
+  meta: ActionMetaWithSeverity
 ): ErrorAction => ({
   type,
   payload: e,
@@ -152,6 +156,10 @@ export interface ActionMeta {
   sender?: MessageSender;
   from?: From;
   tab?: Tab;
+}
+
+export interface ActionMetaWithSeverity {
+  severity: Level;
 }
 
 export const getURLFromActionMeta = (action: BaseAction): string =>

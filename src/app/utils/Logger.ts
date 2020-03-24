@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-enum Level {
+export enum Level {
   TRACE = 0,
   DEBUG = 1,
   INFO = 2,

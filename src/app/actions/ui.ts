@@ -5,6 +5,7 @@ import {
 import { CloseCause } from 'app/lmem/ui';
 import Tab from 'app/lmem/tab';
 import { BaseAction, ErrorAction, TabAction, TimestampedAction } from '.';
+import { Level } from '../utils/Logger';
 
 export enum OpenFrom {
   BrowserAction,
@@ -51,7 +52,8 @@ export interface OpenFailedAction extends ErrorAction {
 export const openFailed = (e: Error): OpenFailedAction => ({
   type: OPEN_FAILED,
   payload: e,
-  error: true
+  error: true,
+  meta: { severity: Level.ERROR }
 });
 
 export const CLOSE = 'CLOSE';
@@ -72,7 +74,8 @@ export interface CloseFailedAction extends ErrorAction {
 export const closeFailed = (e: Error): CloseFailedAction => ({
   type: CLOSE_FAILED,
   payload: e,
-  error: true
+  error: true,
+  meta: { severity: Level.ERROR }
 });
 
 export const CLOSED = 'CLOSED';

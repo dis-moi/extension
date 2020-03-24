@@ -1,5 +1,6 @@
 import { Contribution } from 'app/lmem/notice';
 import { BaseAction, FormAction, FormMeta, ErrorAction } from '.';
+import { Level } from '../utils/Logger';
 
 export const SUBMIT_QUESTION = 'QUESTION/SUBMIT';
 export interface SubmitQuestionAction extends FormAction {
@@ -36,5 +37,6 @@ export const questionSubmissionFailed = (
 ): QuestionSubmissionFailed => ({
   type: QUESTION_SUBMISSION_FAILED,
   payload: e,
-  error: true
+  error: true,
+  meta: { severity: Level.ERROR }
 });
