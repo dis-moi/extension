@@ -1,46 +1,47 @@
-# Dismoi - Web Extension
-
-[![Build Status](https://semaphoreci.com/api/v1/projects/02861938-a833-4f0e-938d-9bb2cd5ae49f/965710/shields_badge.svg)](https://semaphoreci.com/bmenant_lmem/extension)
-
-At its early stages, this software was a fork of [Crossbuilder](https://github.com/zalmoxisus/crossbuilder).
-However, the software has evolved to better embrace our project needs and specificities.
-As a result, the upstream codebase haven’t be merged for a while and it is unlikely to happen ever again.
+# Dismoi - extension
+[![Build Status](https://semaphoreci.com/api/v1/projects/02861938-a833-4f0e-938d-9bb2cd5ae49f/965692/shields_badge.svg)](https://semaphoreci.com/lmem/extension)
 
 ## Structure
-
-- `src/app/`: React application (will be imported in the apps bellow).
-- `src/assets/`: web app fonts, images, etc.
-- `src/lib/`: external _non npm_ modules.
-- `manifest/`: base and environment specific web-extension manifests.
-- `test/app/`: tests for Redux actions and reducers, and for React components (using [enzyme](http://airbnb.io/enzyme/)).
-- `test/integration/`: runtime tests for built web-extensions.
+- `src/`
+    - `api/` APIs related code ([Dismoi backend](https://github.com/dis-moi/backend), [sendinblue](https://fr.sendinblue.com/), ...)
+        - `app/` apps and commons
+            - `background/` maintain the long-term state (see [background script](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/background) on the mdn)
+            - `options/` manage subscriptions
+            - `content/` injected in the web pages
+    - `assets/` fonts, images, etc.
+    - `components/` components library, organised with the [atomic design methodology](https://atomicdesign.bradfrost.com/)
+- `manifest/` base and environment specific web-extension manifests
+- `test/` `@deprecated` prefer using a `*.spec.ts` in the same directory 
+    - `app/` for Redux actions and reducers, and for React components (using [enzyme](http://airbnb.io/enzyme/)).
+    - `integration/` runtime tests for built web-extensions.
 
 ## Installation
 
-First install [yarn](https://yarnpkg.com/) and [nvm](https://github.com/creationix/nvm) (optional).
+1. Install [yarn](https://yarnpkg.com/)
+> https://classic.yarnpkg.com/en/docs/install
 
-```bash
-# git clone...
-nvm use lts/carbon
+2. Install dependencies
+```
 yarn
 ```
 
-### Sentry
+3. Create a copy of `.env.development.example` to `.env.development` and adjust the values.
 
-To configure Sentry error reporting, you should create a `.sentryclirc` file at the root of the project directory:
+## Development
 
+1. Start the extension
 ```
-[defaults]
-project=web-extension
-org=lmem
-
-[auth]
-token=4d786d88c7d9436282c35b4eb82ae2dfeaff5ee296e3404ba3654ab62c151b73
+yarn start
 ```
+> Watch files changes (but do not reload the content script though)
 
-> **Note 1:** You'll find your token here https://sentry.io/settings/account/api/auth-tokens/
+2. Open [chrome://extensions/](chrome://extensions/), 
+    - activate **Developer mode**
+    - click **Load unpackeed**
+    - and load `build/development/chromium` folder 
 
-> **Note 2:** If you ever need to change the Sentry DSN go to `./webpack/config.plugins.js`.
+> Chrom(e|ium) browser is recommend for development.
+> see https://developer.chrome.com/extensions/getstarted#manifest
 
 ## Environments
 
@@ -69,22 +70,32 @@ You can build any variations of the extension by playing with environment variab
 NODE_ENV=production|proding|staging webpack --mode=production --env.PLATFORM=firefox|chromium --env.SENTRY_ENABLED
 ```
 
-## Development
+## Conventional Commits
 
-```bash
-# watch files change (do not reload the extension though)
-# start Webpack Dev Server
-yarn start
+We follow [conventional commits](https://conventionalcommits.org/) since version 1.0.0 and
+we use [Semantic Release](https://github.com/semantic-release/semantic-release) to build and publish new releases.
+
+## Redux DevTools
+
+We use [Redux DevTools](https://extension.remotedev.io/) to inspect Redux actions and state changes.
+Once installed, from the Redux DevTools extension’s context menu, choose “Open Remote DevTools” for remote monitoring.
+
+
+## Sentry
+To configure Sentry error reporting, you should create a `.sentryclirc` file at the root of the project directory:
+
+```
+[defaults]
+project=web-extension
+org=lmem
+
+[auth]
+token=4d786d88c7d9436282c35b4eb82ae2dfeaff5ee296e3404ba3654ab62c151b73
 ```
 
-```bash
-# watch files change (do not reload the extension though)
-# start Webpack Dev Server with production content
-yarn start:productionApi
-```
+> **Note 1:** You'll find your token here https://sentry.io/settings/account/api/auth-tokens/
 
-- [Load unpacked extension's `./build/dev/` folder to Chrome.](https://developer.chrome.com/extensions/getstarted#unpacked)
-
+> **Note 2:** You can change the `SENTRY_DSN` from environment files.
 
 ## Deployment
 
@@ -145,41 +156,13 @@ yarn build-storybook
 
 It is automatically deployed to https://storybook.lmem.net on every `develop` branch update.
 
-### Conventional Commits
-
-We follow [conventional commits](https://conventionalcommits.org/) since version 1.0.0 and
-we use [Semantic Release](https://github.com/semantic-release/semantic-release) to build and publish new releases.
-
-### Redux DevTools
-
-We use [Redux DevTools](https://extension.remotedev.io/) to inspect Redux actions and state changes.
-Once installed, from the Redux DevTools extension’s context menu, choose “Open Remote DevTools” for remote monitoring.
-
-## Build Web extension
-
-### Production
+## Build
 
 To build all production packages (Chromium, Firefox, etc).
 
 ```bash
 # build files to './build/{browser}/'
 yarn build:production
-```
-
-### Staging
-
-To build a staging package...
-
-```bash
-# build files to './build/staging/'
-yarn build:staging
-```
-
-### Development
-
-```bash
-# build files to './build/dev/'
-yarn build:dev
 ```
 
 ## Test
@@ -189,7 +172,12 @@ yarn build:dev
 yarn test
 ```
 
-## Lint
+### Integration tests
+
+> https://github.com/dis-moi/extension/pull/289
+
+
+### Lint
 
 You can lint both TypeScript and CSS by running:
 
@@ -199,7 +187,7 @@ yarn lint
 
 ### TypeScript
 
-Code style rules are available in `tslint.json`.
+Code style rules are available in [`.eslintrc.json`](.eslintrc.json).
 
 You can manually lint .ts files running the following command:
 
@@ -216,10 +204,6 @@ You can manually the styled components running the following command:
 ```bash
 yarn lint:css
 ```
-
-### Integration tests
-
-Inspect the extension _background_ to get its console and run `window.integrationTest()`.
 
 ## LICENSE
 
