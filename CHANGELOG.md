@@ -1,3 +1,10 @@
+## [3.22.5](https://github.com/insitu-project/recommendations-webextension/compare/v3.22.4...v3.22.5) (2020-03-30)
+
+
+### Bug Fixes
+
+* TypeScript typing ([ddffa54](https://github.com/insitu-project/recommendations-webextension/commit/ddffa54))
+
 ## [3.22.4](https://github.com/insitu-project/recommendations-webextension/compare/v3.22.3...v3.22.4) (2020-03-30)
 
 
