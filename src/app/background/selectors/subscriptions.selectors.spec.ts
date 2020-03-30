@@ -84,37 +84,5 @@ describe('background > selectors > subscriptions ', () => {
 
       expect(nbSubscriptions).to.equal(3);
     });
-
-    it("does'nt count the subscriptions on non existent contributors", () => {
-      const state: StateWithResources & StateWithSubscriptions = {
-        subscriptions: [
-          // exists
-          1,
-          42,
-          1024,
-          // doesn't exist
-          8,
-          23
-        ],
-        resources: {
-          matchingContexts: [],
-          restrictedContexts: [],
-          contributors: [
-            contributor1,
-            contributor2,
-            contributor3,
-            contributor42,
-            contributor54,
-            contributor1024,
-            contributor9999
-          ],
-          notices: []
-        }
-      };
-
-      const nbSubscriptions = getNbSubscriptions(state);
-
-      expect(nbSubscriptions).to.equal(3);
-    });
   });
 });
