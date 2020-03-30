@@ -1,5 +1,4 @@
 import { fork, all } from 'redux-saga/effects';
-import error from 'app/sagas/error';
 import backgroundChannel from 'app/sagas/backgroundChannel';
 import locationChange from 'app/sagas/locationChange.saga';
 import init from './init';
@@ -20,7 +19,6 @@ export default function* rootSaga() {
     fork(question),
     fork(notices),
     fork(ui),
-    fork(error),
     fork(watchUrlsSaga),
     fork(watchUnloadSaga),
     fork(zombieTabSaga)

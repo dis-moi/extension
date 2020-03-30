@@ -3,10 +3,9 @@
 import { BACKEND_ORIGIN } from 'app/constants/origins';
 import onInstalled from 'webext/onInstalled';
 import onStartup from 'webext/onStartup';
-import { installed, updateRestrictedContexts, startup } from 'app/actions';
+import { installed, startup } from 'app/actions';
 import { configureSentryScope, initSentry } from 'app/utils/sentry';
 import { store } from './store';
-import fetchRestrictedContexts from 'api/fetchRestrictedContexts';
 
 initSentry();
 configureSentryScope(scope => {
@@ -19,10 +18,6 @@ if (NODE_ENV !== 'production') {
   console.info('NODE_ENV', NODE_ENV);
 }
 console.info(`BACKEND_ORIGIN "${BACKEND_ORIGIN}"`);
-
-fetchRestrictedContexts().then(restrictedContexts =>
-  store.dispatch(updateRestrictedContexts(restrictedContexts))
-);
 
 onInstalled.then(installedDetails => {
   if (typeof UNINSTALL_ORIGIN === 'string') {

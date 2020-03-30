@@ -12,7 +12,6 @@ import {
   AppAction,
   FeedbackOnNoticeAction
 } from 'app/actions';
-import { captureException } from 'app/utils/sentry';
 import { RatingType } from 'app/lmem/rating';
 
 export const isFeedBackRatingAction = (action: AppAction) =>
@@ -61,16 +60,17 @@ export const transformers: {
 
 export const createPostRatingSaga = (transformer: RatingActionTransformer) =>
   function* postRatingSaga(action: AppAction): SagaIterator {
-    try {
-      let rating = transformer(action);
-      if (!rating.url) {
-        const selectedTab = yield call(getSelectedTab);
-        rating = R.assoc('url', selectedTab.url, rating);
-      }
+    let rating = transformer(action);
+    if (!rating.url) {
+      const selectedTab = yield call(getSelectedTab);
+      rating = R.assoc('url', selectedTab.url, rating);
+    }
 
+    try {
       yield call(postRating, rating);
     } catch (e) {
-      captureException(e);
+      // That’s just one like missing …
+      // … and we don’t retry because we don’t want to count twice
     }
   };
 

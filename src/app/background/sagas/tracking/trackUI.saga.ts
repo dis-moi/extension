@@ -2,15 +2,16 @@ import Tracker from 'types/Tracker';
 import { SagaIterator } from '@redux-saga/types';
 import { call, put } from '@redux-saga/core/effects';
 import {
+  BrowserActionClickedAction,
   CloseAction,
-  LocationChangedAction,
-  NoticesFoundAction,
   createErrorAction,
   getURLFromActionMeta,
   InstallationDetailsAction,
-  BrowserActionClickedAction,
+  LocationChangedAction,
+  NoticesFoundAction,
   TosAcceptedAction
 } from 'app/actions';
+import { Level } from '../../../utils/Logger';
 
 export const startTrackingSaga = (tracker: Tracker) =>
   function*(action: NoticesFoundAction): SagaIterator {
@@ -22,7 +23,7 @@ export const startTrackingSaga = (tracker: Tracker) =>
         title: '/'
       });
     } catch (e) {
-      yield put(createErrorAction()(e));
+      yield put(createErrorAction()(e, { severity: Level.WARN }));
     }
   };
 
@@ -36,7 +37,7 @@ export const trackInstallSaga = (tracker: Tracker) =>
         value: 0
       });
     } catch (e) {
-      yield put(createErrorAction()(e));
+      yield put(createErrorAction()(e, { severity: Level.WARN }));
     }
   };
 
@@ -48,7 +49,7 @@ export const trackLocationChangeSaga = (tracker: Tracker) =>
         title: action.payload.location.pathname
       });
     } catch (e) {
-      yield put(createErrorAction()(e));
+      yield put(createErrorAction()(e, { severity: Level.WARN }));
     }
   };
 
@@ -63,7 +64,7 @@ export const trackCloseSaga = (tracker: Tracker) =>
         url: getURLFromActionMeta(action)
       });
     } catch (e) {
-      yield put(createErrorAction()(e));
+      yield put(createErrorAction()(e, { severity: Level.WARN }));
     }
   };
 
@@ -78,7 +79,7 @@ export const trackBrowserActionClickedSaga = (tracker: Tracker) =>
         url: getURLFromActionMeta(action)
       });
     } catch (e) {
-      yield put(createErrorAction()(e));
+      yield put(createErrorAction()(e, { severity: Level.WARN }));
     }
   };
 
@@ -93,6 +94,6 @@ export const trackTosAcceptedSaga = (tracker: Tracker) =>
         url: getURLFromActionMeta(action)
       });
     } catch (e) {
-      yield put(createErrorAction()(e));
+      yield put(createErrorAction()(e, { severity: Level.WARN }));
     }
   };

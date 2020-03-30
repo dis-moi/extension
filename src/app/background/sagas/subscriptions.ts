@@ -1,27 +1,19 @@
-import { SagaIterator } from 'redux-saga';
-import { call, select, put, takeLatest } from 'redux-saga/effects';
-import {
-  createErrorAction,
-  STARTUP,
-  SUBSCRIBE,
-  UNSUBSCRIBE
-} from 'app/actions';
+import { call, select, takeLatest } from 'redux-saga/effects';
+import { STARTUP, SUBSCRIBE, UNSUBSCRIBE } from 'app/actions';
 import { getSubscriptions } from 'app/background/selectors/subscriptions.selectors';
 import postSubscriptions from 'api/postSubscriptions';
 import { loginSaga } from './user.saga';
+import { createCallAndRetry } from '../../sagas/effects/callAndRetry';
 
-function* postSubscriptionsSaga(): SagaIterator {
-  try {
-    const extensionId = yield call(loginSaga);
-    const subscriptions = yield select(getSubscriptions);
+function* postSubscriptionsSaga() {
+  const extensionId = yield call(loginSaga);
+  const subscriptions = yield select(getSubscriptions);
 
-    yield call(postSubscriptions, {
-      extensionId,
-      subscriptions
-    });
-  } catch (e) {
-    yield put(createErrorAction()(e));
-  }
+  const callAndRetry = createCallAndRetry({
+    maximumAttempts: 10
+  });
+
+  yield callAndRetry(postSubscriptions, { extensionId, subscriptions });
 }
 
 export default function*() {

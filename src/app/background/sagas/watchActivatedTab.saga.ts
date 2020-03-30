@@ -5,6 +5,7 @@ import { createErrorAction, tabActivated } from 'app/actions';
 import { getTabById } from '../selectors/tabs';
 import { disable } from 'webext/browserAction';
 import { resetBadge } from 'app/lmem/badge';
+import { Level } from '../../utils/Logger';
 
 export default function*() {
   const channel = yield call(() => eventChannel(createActivatedTabListener));
@@ -22,7 +23,7 @@ export default function*() {
         yield call(disable, tabId);
       }
     } catch (e) {
-      yield put(createErrorAction()(e));
+      yield put(createErrorAction()(e, { severity: Level.ERROR }));
     }
   }
 }

@@ -4,7 +4,6 @@ import tab from './tab';
 import badge from './badge';
 import externalMessage from './externalMessage';
 import theme from '../../theme';
-import error from '../../sagas/error';
 import listenActionsFromMessages from '../../sagas/listenActionsFromMessages';
 import refreshMatchingContexts from './refreshMatchingContexts';
 import refreshContributors from './refreshContributors';
@@ -21,6 +20,7 @@ import awaitRehydrationSaga from './lib/awaitRehydration.saga';
 import subscriptionsSaga from './subscriptions';
 import tracking from './tracking';
 import MatomoTracker from 'app/matomo';
+import { fetchRestrictedContextsSaga } from './fetchRestrictedContexts.saga';
 
 const tracker =
   process.env.TRACKING_SITE_ID && process.env.TRACKING_URL
@@ -32,6 +32,7 @@ export default function* rootSaga() {
   yield call(awaitRehydrationSaga);
 
   yield all([
+    fork(fetchRestrictedContextsSaga),
     fork(refreshMatchingContexts),
     fork(refreshContributors),
     fork(tab),
@@ -46,7 +47,6 @@ export default function* rootSaga() {
     fork(sendContributorsToOptions),
     fork(sendInstallationDetailsToOptions),
     fork(setup),
-    fork(error),
     fork(tos),
     fork(tracking(tracker)),
     fork(subscriptionsSaga)

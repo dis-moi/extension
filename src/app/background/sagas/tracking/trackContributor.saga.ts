@@ -7,6 +7,7 @@ import {
   getURLFromActionMeta
 } from 'app/actions';
 import { getContributorName } from 'app/background/reducers/subscriptions.reducer';
+import { Level } from '../../../utils/Logger';
 
 export const trackContributorActionSaga = (tracker: Tracker) =>
   function*(action: ContributorAction): SagaIterator {
@@ -19,6 +20,6 @@ export const trackContributorActionSaga = (tracker: Tracker) =>
         url: getURLFromActionMeta(action)
       });
     } catch (e) {
-      yield put(createErrorAction()(e));
+      yield put(createErrorAction()(e, { severity: Level.WARN }));
     }
   };

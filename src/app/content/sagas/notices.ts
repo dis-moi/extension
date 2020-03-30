@@ -4,19 +4,20 @@ import { StatefulNotice } from 'app/lmem/notice';
 import { CloseCause } from 'app/lmem/ui';
 import { getNotices, hasNoticesToDisplay, isOpen } from '../selectors';
 import {
+  AppAction,
   close,
-  createErrorAction,
-  markNoticeRead,
   CLOSED,
+  ClosedAction,
+  CONTEXT_NOT_TRIGGERED,
+  createErrorAction,
   FEEDBACK_ON_NOTICE,
   MARK_NOTICE_READ,
+  markNoticeRead,
   NO_NOTICES_DISPLAYED,
-  CONTEXT_NOT_TRIGGERED,
   NOTICE_UNFOLDED,
-  ClosedAction,
-  AppAction,
   UnfoldNoticeAction
 } from 'app/actions';
+import { Level } from '../../utils/Logger';
 
 export function* closeIfNoMoreNoticeToDisplaySaga() {
   try {
@@ -25,7 +26,7 @@ export function* closeIfNoMoreNoticeToDisplaySaga() {
       yield put(close(CloseCause.NoMoreNotice));
     }
   } catch (e) {
-    yield put(createErrorAction()(e));
+    yield put(createErrorAction()(e, { severity: Level.ERROR }));
   }
 }
 
