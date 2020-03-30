@@ -2,20 +2,17 @@ import { call, delay, put } from 'redux-saga/effects';
 import { receivedContributors, refreshContributorsFailed } from 'app/actions';
 import fetchContributors from 'api/fetchContributors';
 import minutesToMilliseconds from 'app/utils/minutesToMilliseconds';
-import { regressiveRetry } from '../../sagas/effects/regressiveRetry';
+import { createCallAndRetry } from '../../sagas/effects/callAndRetry';
 
 function* refreshContributors() {
-  const contributors = yield call(
-    regressiveRetry,
-    {
-      maximumRetryDelayInMinutes: 120,
-      maximumAttempts: 6,
-      onError: function*(error: Error) {
-        yield put(refreshContributorsFailed(error));
-      }
-    },
-    fetchContributors
-  );
+  const callAndRetry = createCallAndRetry({
+    maximumRetryDelayInMinutes: 120,
+    maximumAttempts: 6,
+    onError: function*(error: Error) {
+      yield put(refreshContributorsFailed(error));
+    }
+  });
+  const contributors = yield callAndRetry(fetchContributors);
 
   if (contributors) {
     yield put(receivedContributors(contributors));

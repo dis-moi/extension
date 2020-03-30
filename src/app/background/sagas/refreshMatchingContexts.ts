@@ -8,18 +8,17 @@ import {
 } from 'app/actions';
 import { getSubscriptions } from '../selectors/subscriptions.selectors';
 import minutesToMilliseconds from 'app/utils/minutesToMilliseconds';
-import { regressiveRetry } from '../../sagas/effects/regressiveRetry';
+import { createCallAndRetry } from '../../sagas/effects/callAndRetry';
 
 function* refreshMatchingContexts() {
-  const matchingContexts = yield call(
-    regressiveRetry,
-    {
-      maximumRetryDelayInMinutes: 10,
-      maximumAttempts: 10,
-      onError: function*(error: Error) {
-        yield put(refreshMatchingContextsFailed(error));
-      }
-    },
+  const callAndRetry = createCallAndRetry({
+    maximumRetryDelayInMinutes: 10,
+    maximumAttempts: 10,
+    onError: function*(error: Error) {
+      yield put(refreshMatchingContextsFailed(error));
+    }
+  });
+  const matchingContexts = yield callAndRetry(
     fetchMatchingContexts,
     yield select(getSubscriptions)
   );
