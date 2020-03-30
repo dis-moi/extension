@@ -1,3 +1,10 @@
+## [3.22.4](https://github.com/insitu-project/recommendations-webextension/compare/v3.22.3...v3.22.4) (2020-03-30)
+
+
+### Bug Fixes
+
+* **service-message:** This is a quickfix to avoid confusing service message when the contributors are not fetched ([22a918f](https://github.com/insitu-project/recommendations-webextension/commit/22a918f))
+
 ## [3.22.3](https://github.com/insitu-project/recommendations-webextension/compare/v3.22.2...v3.22.3) (2020-03-23)
 
 
