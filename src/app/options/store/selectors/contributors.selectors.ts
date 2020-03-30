@@ -21,10 +21,7 @@ export const getNbTotalContributors = createSelector<
   StateWithContributors,
   ContributorsState,
   number | undefined
->(
-  [getContributors],
-  contributors => contributors.length
-);
+>([getContributors], contributors => contributors.length);
 
 export const getSortedContributors = createSelector(
   [getContributors],
@@ -51,15 +48,9 @@ export const makeGetNContributorsSuggestions = (n: number) =>
     { contributors: ContributorsState },
     Contributor[],
     Contributor[]
-  >(
-    [getContributorsSuggestions],
-    R.take(n)
-  );
+  >([getContributorsSuggestions], R.take(n));
 
 export const get5ContributorsSuggestions = makeGetNContributorsSuggestions(5);
 
 export const getContributorById = (id: number) =>
-  createSelector(
-    [getContributors],
-    findItemById(id)
-  );
+  createSelector([getContributors], findItemById(id));

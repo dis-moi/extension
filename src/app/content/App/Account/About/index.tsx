@@ -50,7 +50,4 @@ export const About = ({ installationDate, extensionVersion }: AboutProps) => (
   </Container>
 );
 
-export default compose(
-  withConnect,
-  withTitle<AboutProps>('À propos')
-)(About);
+export default compose(withConnect, withTitle<AboutProps>('À propos'))(About);

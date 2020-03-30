@@ -3,7 +3,7 @@ import { MemoryRouter as Router } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import SubmitContribution from './QuestionForm';
-import { formStoreDecorator } from '../../../../../../../.storybook/config';
+import { formStoreDecorator } from '../../../../../../../.storybook/decorators';
 
 storiesOf('forms/QuestionForm', module)
   .addDecorator(formStoreDecorator)

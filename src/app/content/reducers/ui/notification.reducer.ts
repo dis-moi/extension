@@ -17,17 +17,11 @@ const initialState: NotificationState = {
 export default (state: NotificationState = initialState, action: AppAction) => {
   switch (action.type) {
     case OPENED:
-      return R.pipe(
-        R.assoc('mounted', true),
-        R.assoc('open', true)
-      )(state);
+      return R.pipe(R.assoc('mounted', true), R.assoc('open', true))(state);
     case LOADED:
       return R.assoc('loaded', state.open, state);
     case CLOSED:
-      return R.pipe(
-        R.assoc('open', false),
-        R.assoc('loaded', false)
-      )(state);
+      return R.pipe(R.assoc('open', false), R.assoc('loaded', false))(state);
     default:
       return state;
   }

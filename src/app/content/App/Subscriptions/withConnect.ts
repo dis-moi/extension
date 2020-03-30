@@ -19,7 +19,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   clickContributor: (id: number) => dispatch(push(`/contributor/${id}`))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-);
+export default connect(mapStateToProps, mapDispatchToProps);

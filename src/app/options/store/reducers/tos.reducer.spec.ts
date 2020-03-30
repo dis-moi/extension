@@ -19,8 +19,8 @@ describe('options > reducers > tosAccepted', function() {
     expect(
       tosAcceptedReducer(initialState, transmitTosStatus(false))
     ).to.be.eql({ tosAccepted: false });
-    expect(tosAcceptedReducer(initialState, transmitTosStatus(true))).to.be.eql(
-      { tosAccepted: true }
-    );
+    expect(
+      tosAcceptedReducer(initialState, transmitTosStatus(true))
+    ).to.be.eql({ tosAccepted: true });
   });
 });

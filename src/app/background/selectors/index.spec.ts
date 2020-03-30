@@ -1,16 +1,17 @@
 import chai from 'chai';
+import { Action } from 'redux';
 import reducer, { BackgroundState } from 'app/background/reducers';
 import prefsReducer from 'app/background/reducers/prefs.reducer';
 import { isOnboardingRequired } from 'app/background/selectors';
-import { isInstallationComplete } from './index';
 import { tosAccepted } from '../../actions';
+import { isInstallationComplete } from './';
 
 const expect = chai.expect;
 
 describe('background selectors', function() {
   describe('onboarding selectors', function() {
     const state: BackgroundState = {
-      ...reducer(undefined, { type: 'anyAction' }),
+      ...reducer(undefined, { type: 'anyAction' } as Action),
       subscriptions: [1, 42, 1024],
       prefs: prefsReducer(undefined, tosAccepted({}))
     };

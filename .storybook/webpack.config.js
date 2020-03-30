@@ -8,18 +8,12 @@ const argv = {
   watch: true
 };
 
-module.exports = storybookBaseConfig => {
-  storybookBaseConfig.module.rules = rules(env, argv);
-  storybookBaseConfig.resolve.extensions.push('.ts', '.tsx');
-  storybookBaseConfig.resolve.modules.push(
-    path.resolve(__dirname, '..', 'src')
-  );
-  storybookBaseConfig.resolve.alias.test = path.resolve(
-    __dirname,
-    '..',
-    'test'
-  );
-  storybookBaseConfig.plugins.push(...basePlugins(env, 'development'));
-  storybookBaseConfig.stats = require('../webpack/config.stats');
-  return storybookBaseConfig;
+module.exports = ({ config }) => {
+  config.module.rules = rules(env, argv);
+  config.resolve.extensions.push('.ts', '.tsx');
+  config.resolve.modules.push(path.resolve(__dirname, '..', 'src'));
+  config.resolve.alias.test = path.resolve(__dirname, '..', 'test');
+  config.plugins.push(...basePlugins(env, 'development'));
+  config.stats = require('../webpack/config.stats');
+  return config;
 };

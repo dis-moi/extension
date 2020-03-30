@@ -9,9 +9,7 @@ export { default as BorderButton } from './Button/BorderButton';
 export { default as OpenButton } from './Button/OpenButton';
 
 export { default as ContentWrapper } from './ContentWrapper';
-export {
-  default as ContentWrapperBackground
-} from './ContentWrapperBackground';
+export { default as ContentWrapperBackground } from './ContentWrapperBackground';
 export { default as CenterContainer } from './CenterContainer';
 export { default as Contributor } from './Contributor';
 export { default as Time } from './Time';

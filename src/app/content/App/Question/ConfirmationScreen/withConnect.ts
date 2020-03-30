@@ -7,7 +7,4 @@ const mapDispatchToProps = {
   goBack: () => replace('/')
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-);
+export default connect(null, mapDispatchToProps);

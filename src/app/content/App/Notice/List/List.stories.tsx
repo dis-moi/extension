@@ -2,7 +2,7 @@ import React from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean, text } from '@storybook/addon-knobs/react';
+import { withKnobs, boolean, text } from '@storybook/addon-knobs';
 import {
   defaultMessage,
   generateStatefulNotice

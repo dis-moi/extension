@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Examples from './Examples';
 import Wrapper from '../../ScreenWrapper';
-import { optionsStoreDecorator } from '../../../../../../.storybook/config';
+import { optionsStoreDecorator } from '../../../../../../.storybook/decorators';
 
 storiesOf('screens/Onboarding/Examples', module)
   .addDecorator(optionsStoreDecorator)

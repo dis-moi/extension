@@ -16,3 +16,4 @@ storybook-static/*
 .env
 .env.development
 *.local
+yarn-error.log

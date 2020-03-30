@@ -30,9 +30,8 @@ export const isOnboardingRequired = createSelector(
 
 export const getPersistState = (state: PersistedState) => state._persist;
 
-export const isRehydrated = createSelector(
-  [getPersistState],
-  persistState => (persistState ? persistState.rehydrated : false)
+export const isRehydrated = createSelector([getPersistState], persistState =>
+  persistState ? persistState.rehydrated : false
 );
 
 export const getNumberOfUnreadNoticesOnTab = (tabId: number) =>

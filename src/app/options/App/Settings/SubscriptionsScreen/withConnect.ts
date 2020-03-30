@@ -24,7 +24,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   goToSuggestions: () => dispatch(push('/settings/suggestions'))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-);
+export default connect(mapStateToProps, mapDispatchToProps);
