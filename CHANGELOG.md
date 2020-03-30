@@ -1,3 +1,12 @@
+# [3.23.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.22.5...v3.23.0) (2020-03-30)
+
+
+### Features
+
+* capture ErrorActions to Sentry based on level ([4e396d7](https://github.com/insitu-project/recommendations-webextension/commit/4e396d7))
+* createErrorAction defaults to ERROR severity ([8510a13](https://github.com/insitu-project/recommendations-webextension/commit/8510a13))
+* regressive retries of API calls and silent logging instead of Sentry ([8e40107](https://github.com/insitu-project/recommendations-webextension/commit/8e40107))
+
 ## [3.22.5](https://github.com/insitu-project/recommendations-webextension/compare/v3.22.4...v3.22.5) (2020-03-30)
 
 
