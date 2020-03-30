@@ -2,26 +2,26 @@ import { Action } from 'redux';
 import { LocationChangeAction } from 'connected-react-router';
 import Tab from 'app/lmem/tab';
 import { BrowserActionClickedAction } from './browser';
-import { InstalledAction, InstallationDetailsAction } from './install';
+import { InstallationDetailsAction, InstalledAction } from './install';
 import {
-  RefreshMatchingContextsFailedAction,
-  ReceivedMatchingContextsAction
+  ReceivedMatchingContextsAction,
+  RefreshMatchingContextsFailedAction
 } from './refreshMatchingContexts';
 import {
+  ContextNotTriggeredAction,
+  ContextTriggeredAction,
+  ContextTriggerFailureAction,
   InitAction,
   MatchContextAction,
   MatchContextFailureAction,
-  ContextTriggeredAction,
-  ContextTriggerFailureAction,
-  NavigatedToUrlAction,
-  ContextNotTriggeredAction
+  NavigatedToUrlAction
 } from './tabs';
 import {
   CloseAction,
   ClosedAction,
+  LocationChangedAction,
   OpenAction,
-  OpenedAction,
-  LocationChangedAction
+  OpenedAction
 } from './ui';
 import {
   FeedbackOnNoticeAction,
@@ -110,12 +110,15 @@ export interface ErrorAction extends BaseAction {
 
 export const createErrorAction = (type: unknown = 'ERROR') => (
   e: Error,
-  meta: ActionMetaWithSeverity
+  meta: ActionMeta | ActionMetaWithSeverity
 ): ErrorAction => ({
   type,
   payload: e,
   error: true,
-  meta
+  meta: {
+    ...meta,
+    severity: 'severity' in meta ? meta.severity : Level.ERROR
+  }
 });
 
 export interface FormAction extends BaseAction {
@@ -158,7 +161,7 @@ export interface ActionMeta {
   tab?: Tab;
 }
 
-export interface ActionMetaWithSeverity {
+export interface ActionMetaWithSeverity extends ActionMeta {
   severity: Level;
 }
 
