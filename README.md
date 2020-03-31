@@ -1,145 +1,91 @@
 # Dismoi - extension
+
 [![Build Status](https://semaphoreci.com/api/v1/projects/02861938-a833-4f0e-938d-9bb2cd5ae49f/965692/shields_badge.svg)](https://semaphoreci.com/lmem/extension)
 
-## Structure
-- `src/`
-    - `api/` APIs related code ([Dismoi backend](https://github.com/dis-moi/backend), [sendinblue](https://fr.sendinblue.com/), ...)
-        - `app/` apps and commons
-            - `background/` maintain the long-term state (see [background script](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/background) on the mdn)
-            - `options/` manage subscriptions
-            - `content/` injected in the web pages
-    - `assets/` fonts, images, etc.
-    - `components/` components library, organised with the [atomic design methodology](https://atomicdesign.bradfrost.com/)
-- `manifest/` base and environment specific web-extension manifests
-- `test/` `@deprecated` prefer using a `*.spec.ts` in the same directory 
-    - `app/` for Redux actions and reducers, and for React components (using [enzyme](http://airbnb.io/enzyme/)).
-    - `integration/` runtime tests for built web-extensions.
+> _Dis moi_ means _Tell me_ in :fr: French.
+
+**Dismoi** is a web extension empowering anyone to post additional information on a web page.
+When you follow someone, its information will show up when you visit the commented web page.
+
+To lean more about the uses cases, visits the :fr: [**Dismoi** website](https://www.dismoi.io/).
+
+> At the time of writing, information are stored in database and exposed via the [**Dismoi** Backend](https://github.com/dis-moi/backend).
 
 ## Installation
 
-1. Install [yarn](https://yarnpkg.com/)
-> https://classic.yarnpkg.com/en/docs/install
+You can find the latest _tests_ version of **Dismoi** extension on the [releases page](https://github.com/dis-moi/extension/releases).
 
-2. Install dependencies
-```
-yarn
-```
+For the latest production version of **Dismoi** extension visit the official addon page of you favorite browser:
 
-3. Create a copy of `.env.development.example` to `.env.development` and adjust the values.
+- [**Dismoi** Firefox](https://addons.mozilla.org/fr/firefox/addon/dismoi/)
+- [**Dismoi** Chrom\*](https://chrome.google.com/webstore/detail/bulles/fpjlnlnbacohacebkadbbjebbipcknbg)
+
+## Permissions
+
+The **Dismoi** extension requires the following permissions :
+
+- `activeTab` The extension is able to follow your navigation on the active tab, when you browse to a new `URL` you may receive a new information.
+- `storage` The extension use the [`sync` storage area](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/storage/sync) to store and sync across browser instance the following informations :
+  - `prefs` The contributions you dismissed, disliked, liked, read. Also if you accepted the :fr: [Term of Service](https://www.dismoi.io/cgu/).
+  - `subscriptions` Which contributors you are following.
+  - `installationDetails` The extension version, date of installation, date of last update.
+  - `user` A generated unique identifier.
+  - `serviceMessage` The last time you saw the service message, to avoid showing it up again.
+- `matches: ['*://*/*']` To _potentially_ notify you on any page you are visiting.
+  > In the near future we wan't to use the [declarative content API](https://developer.chrome.com/extensions/declarativeContent), to avoid injecting js anywhere and further protect your private life (see #275).
 
 ## Development
 
-1. Start the extension
+1. Clone the repository
+
+```bash
+git clone git@github.com:dis-moi/extension.git dismoi-extension
 ```
+
+2. Install [yarn](https://yarnpkg.com/)
+
+   > https://classic.yarnpkg.com/en/docs/install
+
+3. Install dependencies
+
+```bash
+yarn
+```
+
+4. Create a copy of `.env.development.example` to `.env.development` and adjust the values.
+
+   > Read further on [environments](docs/CONTRIBUTING.md#Environments).
+
+5. Start the extension
+
+```bash
 yarn start
 ```
+
 > Watch files changes (but do not reload the content script though)
 
-2. Open [chrome://extensions/](chrome://extensions/), 
-    - activate **Developer mode**
-    - click **Load unpackeed**
-    - and load `build/development/chromium` folder 
+6. Open [chrome://extensions/](chrome://extensions/),
+   - activate **Developer mode**
+   - click **Load unpacked**
+   - and load `build/development/chromium` folder
 
 > Chrom(e|ium) browser is recommend for development.
 > see https://developer.chrome.com/extensions/getstarted#manifest
 
-## Environments
+For further reading, refer to the [**Dismoi** contributing guidelines](docs/CONTRIBUTING.md).
 
-Environment variables are taken from multiple `.env` files.
+## Test
 
-From highest to lowest priority:
-- `.env.${NODE_ENV}.local`
-- `.env.${NODE_ENV}`
-- `.env.local`
-- `.env`
-
-In development you should create a copy of `.env.development.example` to `.env.development` and adjust the values.
-To run automation, create a copy of `.env.example` to `.env` and adjust values.
-
-> **Note:** The test environment ignores local files.
-
-> **Note 2:** This configuration was inspired by [Parcel](https://parceljs.org/env.html#%F0%9F%8C%B3-variables-d'environnement)  
-
-List of environments:
-- `staging` : staging extension on `staging` API
-- `proding` : staging extension on `production` API
-- `production`: production ready extension on `production` API
-
-You can build any variations of the extension by playing with environment variables and this `webpack` command:
-```
-NODE_ENV=production|proding|staging webpack --mode=production --env.PLATFORM=firefox|chromium --env.SENTRY_ENABLED
+```bash
+# test everything
+yarn test
 ```
 
-## Conventional Commits
-
-We follow [conventional commits](https://conventionalcommits.org/) since version 1.0.0 and
-we use [Semantic Release](https://github.com/semantic-release/semantic-release) to build and publish new releases.
-
-## Redux DevTools
-
-We use [Redux DevTools](https://extension.remotedev.io/) to inspect Redux actions and state changes.
-Once installed, from the Redux DevTools extension’s context menu, choose “Open Remote DevTools” for remote monitoring.
-
-
-## Sentry
-To configure Sentry error reporting, you should create a `.sentryclirc` file at the root of the project directory:
-
-```
-[defaults]
-project=web-extension
-org=lmem
-
-[auth]
-token=4d786d88c7d9436282c35b4eb82ae2dfeaff5ee296e3404ba3654ab62c151b73
-```
-
-> **Note 1:** You'll find your token here https://sentry.io/settings/account/api/auth-tokens/
-
-> **Note 2:** You can change the `SENTRY_DSN` from environment files.
-
-## Deployment
-
-> For each `feature`, `fix`, etc... we create a new branch and then a PR with `master` as the target branch. 
-
-Once the PR is merged into `master` a build is triggered on [SemaphoreCI](https://semaphoreci.com/lmem/extension/)
-> see [build configuration](https://semaphoreci.com/lmem/extension/settings)
-
-### Staging
-Once the build passes, an automatic deploy to `staging` "server" is triggered. 
-Roughly, this deploy process bumps the version number in `package.json` and build each packages for each **platform** and each **environment**:
-
-Once built each package is released on [Github](https://github.com/insitu-project/recommendations-webextension/releases) and on both stores as `unlisted` version.
-> The publication on the Chrome store may take a while -- days -- to be validated.
-
-> See the detailed `staging` deploy steps `./release.config.staging.js` in project root directory.
-
-### Production
-The `production` deployment process is manual, and is triggered once the staging has been functionally validated.
-
-> See the detailed deploy steps `./release.config.staging.js` in project root directory.
-
-Make you sure have access to semaphore and wait until the last master built is completed with success:
-https://semaphoreci.com/lmem/extension/branches/master
-
- - Then click on the last master build and click "Deploy manually".
- - Tick `production` checkbox
-
-## Notes / FAQ
-
-The **feat** flag, in the commit, forces `semantic-release`, to increment the minor version number of the future production release.
-
-[chrome webstore](https://chrome.google.com/u/1/webstore/devconsole/g10525161170329704473?hl=fr) account:
-```
-extensions.lmem@gmail.com
-```
-> Ask for the password to a super user! *OR* A super user may add your own google account to the developer group.
-
-To generate your own tokens and deploy from your local environment :
-https://github.com/DrewML/chrome-webstore-upload/blob/master/How%20to%20generate%20Google%20API%20keys.md
+> For integration tests see https://github.com/dis-moi/extension/pull/289
 
 ## Storybook
 
-There is a Storybook for components design, exploration, testing and documentation. It's hot reloaded.
+There is a Storybook for [**Dismoi** components](https://storybook.lmem.net) design, exploration, testing and documentation. It's hot reloaded.
 Storybook may be run with the following command:
 
 ```bash
@@ -155,55 +101,6 @@ yarn build-storybook
 ```
 
 It is automatically deployed to https://storybook.lmem.net on every `develop` branch update.
-
-## Build
-
-To build all production packages (Chromium, Firefox, etc).
-
-```bash
-# build files to './build/{browser}/'
-yarn build:production
-```
-
-## Test
-
-```bash
-# test everything
-yarn test
-```
-
-### Integration tests
-
-> https://github.com/dis-moi/extension/pull/289
-
-
-### Lint
-
-You can lint both TypeScript and CSS by running:
-
-```bash
-yarn lint
-```
-
-### TypeScript
-
-Code style rules are available in [`.eslintrc.json`](.eslintrc.json).
-
-You can manually lint .ts files running the following command:
-
-```bash
-yarn lint:ts
-```
-
-### Styles
-
-Styling rules are available in `.stylelintrc`.
-
-You can manually the styled components running the following command:
-
-```bash
-yarn lint:css
-```
 
 ## LICENSE
 
