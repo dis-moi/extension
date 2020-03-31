@@ -1,3 +1,10 @@
+## [3.23.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.23.0...v3.23.1) (2020-03-31)
+
+
+### Bug Fixes
+
+* ESLint, Prettier and TypeScript errors since storybook upgrade ([1e57bf2](https://github.com/insitu-project/recommendations-webextension/commit/1e57bf2bc351e266b3af6b29741d9c8b7165ae94))
+
 # [3.23.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.22.5...v3.23.0) (2020-03-30)
 
 
