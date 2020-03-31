@@ -10,13 +10,12 @@ type OnErrorCallback = (error: Error, failures: number) => void;
 type Options = {
   maximumAttempts: number;
   maximumRetryDelayInMinutes: number;
-  onError: OnErrorCallback;
+  onError?: OnErrorCallback;
 };
 
 const defaultOptions: Options = {
   maximumAttempts: 10000,
-  maximumRetryDelayInMinutes: 60 * 24,
-  onError: () => {}
+  maximumRetryDelayInMinutes: 60 * 24
 };
 
 export const createCallAndRetry = (options: Partial<Options>) =>
@@ -33,7 +32,9 @@ export const createCallAndRetry = (options: Partial<Options>) =>
       try {
         return yield call(fn, ...args);
       } catch (e) {
-        yield call(o.onError, e, attemptNumber);
+        if ('onError' in o && o.onError) {
+          yield call(o.onError, e, attemptNumber);
+        }
         if (attemptNumber < o.maximumAttempts) {
           yield delay(
             Math.min(
