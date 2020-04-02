@@ -1,14 +1,11 @@
 import { SagaIterator } from 'redux-saga';
 import { takeLatest, select, put, call, all } from 'redux-saga/effects';
 import { captureException } from 'app/utils/sentry';
-import openOptions from 'webext/openOptionsTab';
 import {
-  INSTALLATION_DETAILS,
   INSTALLED,
   updateInstallationDetails,
   InstalledAction
 } from 'app/actions/install';
-import { isAnUpdate, isOnboardingRequired } from 'app/background/selectors';
 import { getInstallationDate } from 'app/background/selectors/installationDetails';
 import { InstallationDetails } from 'app/lmem/installation';
 import { version } from '../../../../package.json';
@@ -38,32 +35,20 @@ export function* installedSaga({
     yield call(awaitRehydrationSaga);
 
     yield put(updateInstallationDetails(installationDetails, false));
-  } catch (e) {
-    captureException(e);
-  }
-}
 
-export function* installationDetailsSaga(): SagaIterator {
-  try {
-    const onboardingRequired = yield select(isOnboardingRequired);
-    if (onboardingRequired) {
+    const { reason } = installedDetails;
+    if (reason === 'install') {
       yield all(
         preselectedContributorIds.map(contributorId =>
           put(subscribe(contributorId))
         )
       );
-
-      const updated = yield select(isAnUpdate);
-      if (!updated) {
-        yield call(openOptions, '/onboarding');
-      }
     }
-  } catch (error) {
-    captureException(error);
+  } catch (e) {
+    captureException(e);
   }
 }
 
 export default function* installSaga() {
   yield takeLatest(INSTALLED, installedSaga);
-  yield takeLatest(INSTALLATION_DETAILS, installationDetailsSaga);
 }
