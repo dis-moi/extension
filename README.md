@@ -44,7 +44,7 @@ git clone git@github.com:dis-moi/extension.git dismoi-extension
 
 2. Install [yarn](https://yarnpkg.com/)
 
-   > https://classic.yarnpkg.com/en/docs/install
+> https://classic.yarnpkg.com/en/docs/install
 
 3. Install dependencies
 
@@ -54,7 +54,7 @@ yarn
 
 4. Create a copy of `.env.development.example` to `.env.development` and adjust the values.
 
-   > Read further on [environments](docs/CONTRIBUTING.md#Environments).
+> Read further on [environments](docs/CONTRIBUTING.md#Environments).
 
 5. Start the extension
 
