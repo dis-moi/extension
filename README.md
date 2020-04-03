@@ -32,7 +32,7 @@ The **Dismoi** extension requires the following permissions :
   - `user` A generated unique identifier.
   - `serviceMessage` The last time you saw the service message, to avoid showing it up again.
 - `matches: ['*://*/*']` To _potentially_ notify you on any page you are visiting.
-  > In the near future we wan't to use the [declarative content API](https://developer.chrome.com/extensions/declarativeContent), to avoid injecting js anywhere and further protect your private life (see #275).
+  > In the near future we wan't to use the [declarative content API](https://developer.chrome.com/extensions/declarativeContent), to avoid injecting Js everywhere and further protect your private life (see #275).
 
 ## Development
 
@@ -44,7 +44,7 @@ git clone git@github.com:dis-moi/extension.git dismoi-extension
 
 2. Install [yarn](https://yarnpkg.com/)
 
-   > https://classic.yarnpkg.com/en/docs/install
+> https://classic.yarnpkg.com/en/docs/install
 
 3. Install dependencies
 
@@ -54,7 +54,7 @@ yarn
 
 4. Create a copy of `.env.development.example` to `.env.development` and adjust the values.
 
-   > Read further on [environments](docs/CONTRIBUTING.md#Environments).
+> Read further on [environments](docs/CONTRIBUTING.md#Environments).
 
 5. Start the extension
 
