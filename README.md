@@ -4,10 +4,10 @@
 
 > _Dis moi_ means _Tell me_ in :fr: French.
 
-**Dismoi** is a web extension empowering anyone to post additional information on a web page.
-When you follow someone, its information will show up when you visit the commented web page.
+**Dismoi** is a web extension that allows anyone to post information directly on any web page.
+When you follow someone, its information shows up when you visit the commented web page.
 
-To lean more about the uses cases, visits the :fr: [**Dismoi** website](https://www.dismoi.io/).
+To lean more about the uses cases, visit the :fr: [**Dismoi** website](https://www.dismoi.io/).
 
 > At the time of writing, information are stored in database and exposed via the [**Dismoi** Backend](https://github.com/dis-moi/backend).
 
