@@ -22,6 +22,6 @@ module.exports = {
   }),
   browser_action: {
     ...base.browser_action,
-    default_title: `${base.browser_action.default_title} - staging`,
-  },
+    default_title: `${base.browser_action.default_title} - staging`
+  }
 };

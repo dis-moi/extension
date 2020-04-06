@@ -10,7 +10,7 @@ mocha.setup({
 
 chai.use(chaiAsPromised);
 
-window.integrationTest = function () {
+window.integrationTest = function() {
   loadBasicTests();
   loadNavigationsTests();
 

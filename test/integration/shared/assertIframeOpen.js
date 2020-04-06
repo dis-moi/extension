@@ -5,19 +5,20 @@ export default function assertIframeOpen(tabId) {
       runAt: 'document_start'
     });
 
-    chrome.runtime.onMessage.addListener((msg, { tab: { id: messageTabId } }) => {
-      console.log('message from content', msg, messageTabId, tabId);
-      if (messageTabId !== tabId || msg.type !== 'IFRAME_OPEN'){
-        return; // ignore messages from other tabs or other content script
-      }
+    chrome.runtime.onMessage.addListener(
+      (msg, { tab: { id: messageTabId } }) => {
+        console.log('message from content', msg, messageTabId, tabId);
+        if (messageTabId !== tabId || msg.type !== 'IFRAME_OPEN') {
+          return; // ignore messages from other tabs or other content script
+        }
 
-      if (msg.error) {
-        reject(msg.error);
-        return;
-      }
+        if (msg.error) {
+          reject(msg.error);
+          return;
+        }
 
-      resolve(msg.ok);
-    });
+        resolve(msg.ok);
+      }
+    );
   });
-
 }
