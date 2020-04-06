@@ -66,7 +66,7 @@ const release = Object.freeze({
         {
           path: getPackagePath('*', 'chromium', 'proding'),
           label: 'Chromium Package - proding'
-        },
+        }
       ]
     }
   ]

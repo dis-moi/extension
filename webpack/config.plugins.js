@@ -33,10 +33,7 @@ const selectEnvVarsToInject = R.pick([
 ]);
 const formatEnvVars = R.map(value => `"${value}"`);
 
-const processENVVarsToInject = R.pipe(
-  selectEnvVarsToInject,
-  formatEnvVars
-);
+const processENVVarsToInject = R.pipe(selectEnvVarsToInject, formatEnvVars);
 
 module.exports = (env = {}, argv = {}, buildPath) => {
   const { NODE_ENV, SENTRY_ENABLED, PLATFORM, ANALYZE } = env;

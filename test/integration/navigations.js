@@ -4,17 +4,16 @@
 import assertIframeOpen from './shared/assertIframeOpen';
 
 const MATCHING_URL = 'http://tests.menant-benjamin.fr';
-const NON_MATCHING_URL = 'http://thevarguy.com/open-source-application-software-companies/open-source-hardware-what-it-means-and-why-it-matters';
+const NON_MATCHING_URL =
+  'http://thevarguy.com/open-source-application-software-companies/open-source-hardware-what-it-means-and-why-it-matters';
 
 const expect = chai.expect;
 
 const IFRAME_SHOULD_OPEN_WITHIN_DELAY = 8 * 1000;
 
-
-export default function () {
+export default function() {
   describe('Basic tests', () => {
-
-    it('should open the iframe on a matching url after a refresh', function () {
+    it('should open the iframe on a matching url after a refresh', function() {
       this.timeout(IFRAME_SHOULD_OPEN_WITHIN_DELAY * 2);
       let tabId;
 
@@ -24,7 +23,7 @@ export default function () {
 
           setTimeout(() => {
             chrome.tabs.reload(tabId, () => {
-                            // waiting for the page to actually refresh
+              // waiting for the page to actually refresh
               setTimeout(() => {
                 resolve(assertIframeOpen(tabId));
               }, 1500);
@@ -33,18 +32,16 @@ export default function () {
         });
       });
 
-      const result = Promise.all([
-        expect(iframeOpenedP).to.eventually.be.true
-      ]);
+      const result = Promise.all([expect(iframeOpenedP).to.eventually.be.true]);
 
       result
-            .then(() => chrome.tabs.remove(tabId))
-            .catch(() => chrome.tabs.remove(tabId));
+        .then(() => chrome.tabs.remove(tabId))
+        .catch(() => chrome.tabs.remove(tabId));
 
       return result;
     });
 
-    it('should open the iframe on a matching url after navigation from a non-matching URL', function () {
+    it('should open the iframe on a matching url after navigation from a non-matching URL', function() {
       this.timeout(IFRAME_SHOULD_OPEN_WITHIN_DELAY * 2);
       let tabId;
 
@@ -54,7 +51,7 @@ export default function () {
 
           setTimeout(() => {
             chrome.tabs.update(tabId, { url: MATCHING_URL }, () => {
-                            // waiting for the page to actually refresh
+              // waiting for the page to actually refresh
               setTimeout(() => {
                 resolve(assertIframeOpen(tabId));
               }, 1500);
@@ -63,17 +60,13 @@ export default function () {
         });
       });
 
-      const result = Promise.all([
-        expect(iframeOpenedP).to.eventually.be.true
-      ]);
+      const result = Promise.all([expect(iframeOpenedP).to.eventually.be.true]);
 
       result
-            .then(() => chrome.tabs.remove(tabId))
-            .catch(() => chrome.tabs.remove(tabId));
+        .then(() => chrome.tabs.remove(tabId))
+        .catch(() => chrome.tabs.remove(tabId));
 
       return result;
     });
-
-
   });
 }
