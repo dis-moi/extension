@@ -1,3 +1,10 @@
+# [3.24.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.23.1...v3.24.0) (2020-04-06)
+
+
+### Features
+
+* **onboarding:** Onboarding doesn't pop up on install anymore. ([f36a047](https://github.com/insitu-project/recommendations-webextension/commit/f36a047281b28850c7b66116c0f1ffec197af7f3))
+
 ## [3.23.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.23.0...v3.23.1) (2020-03-31)
 
 
