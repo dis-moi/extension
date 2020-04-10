@@ -10,10 +10,9 @@ import refreshContributors from './refreshContributors';
 import watchActivatedTab from './watchActivatedTab.saga';
 import watchBrowserAction from './watchBrowserAction.saga';
 import handleBrowserAction from './handleBrowserAction.saga';
-import openOptions from './openOptions.saga';
+import options from './options.saga';
 import ratings from './ratings';
 import sendContributorsToOptions from './transmitContributors.saga';
-import sendInstallationDetailsToOptions from './sendInstallationDetailsToOptions.saga';
 import setup from './setup.saga';
 import tos from './tos.saga';
 import awaitRehydrationSaga from './lib/awaitRehydration.saga';
@@ -42,10 +41,9 @@ export default function* rootSaga() {
     fork(watchBrowserAction),
     fork(watchActivatedTab),
     fork(handleBrowserAction),
-    fork(openOptions),
+    fork(options),
     fork(ratings),
     fork(sendContributorsToOptions),
-    fork(sendInstallationDetailsToOptions),
     fork(setup),
     fork(tos),
     fork(tracking(tracker)),

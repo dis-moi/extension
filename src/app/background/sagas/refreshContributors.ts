@@ -1,10 +1,15 @@
-import { call, delay, put } from 'redux-saga/effects';
-import { receivedContributors, refreshContributorsFailed } from 'app/actions';
+import { fork, delay, put, takeLatest } from 'redux-saga/effects';
+import {
+  receivedContributors,
+  REFRESH_CONTRIBUTORS,
+  refreshContributors,
+  refreshContributorsFailed
+} from 'app/actions';
 import fetchContributors from 'api/fetchContributors';
 import minutesToMilliseconds from 'app/utils/minutesToMilliseconds';
 import { createCallAndRetry } from '../../sagas/effects/callAndRetry';
 
-function* refreshContributors() {
+function* refreshContributorsSaga() {
   const callAndRetry = createCallAndRetry({
     maximumRetryDelayInMinutes: 120,
     maximumAttempts: 6,
@@ -19,9 +24,7 @@ function* refreshContributors() {
   }
 }
 
-export default function* refreshContributorsSaga() {
-  yield call(refreshContributors);
-
+export function* refreshContributorsPeriodicallySaga() {
   const refreshInterval = minutesToMilliseconds(
     Number(process.env.REFRESH_CONTRIBUTORS_INTERVAL)
   );
@@ -33,8 +36,8 @@ export default function* refreshContributorsSaga() {
     );
 
     while (true) {
+      yield put(refreshContributors());
       yield delay(refreshInterval);
-      yield call(refreshContributors);
     }
   } else {
     // eslint-disable-next-line no-console
@@ -43,4 +46,9 @@ export default function* refreshContributorsSaga() {
       'assuming "process.env.REFRESH_CONTRIBUTORS_INTERVAL" is deliberately not defined.'
     );
   }
+}
+
+export default function*() {
+  yield takeLatest(REFRESH_CONTRIBUTORS, refreshContributorsSaga);
+  yield fork(refreshContributorsPeriodicallySaga);
 }
