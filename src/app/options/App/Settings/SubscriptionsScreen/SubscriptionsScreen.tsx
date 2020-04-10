@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { findContributorIn, StatefulContributor } from 'app/lmem/contributor';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
+import ContributorsListEmpty from 'app/options/App/Settings/ContributorsListEmpty';
 import Empty from './Empty';
 import SuggestionsSidebar from './SuggestionsSidebar';
 
@@ -51,7 +52,15 @@ export const SubscriptionsScreen = ({
       setInitialSubscriptions(subscriptions);
   }, [subscriptions]);
 
-  if (allContributors.length === 0) return null;
+  if (allContributors.length === 0) {
+    return (
+      <ContributorsListEmpty>
+        L&apos;extension essaie de retrouver votre liste de contributeurs.
+        <br /> Si le problème persiste, veuillez désactiver et réactiver votre
+        extension, ou la désinstaller et la réinstaller.
+      </ContributorsListEmpty>
+    );
+  }
 
   const subscriptionsToRender = initialSubscriptions.map(
     findContributorIn(allContributors)
