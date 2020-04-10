@@ -7,6 +7,7 @@ import {
   StatefulContributor
 } from 'app/lmem/contributor';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
+import ContributorsListEmpty from 'app/options/App/Settings/ContributorsListEmpty';
 
 const ContributorsList = styled.section`
   display: grid;
@@ -18,12 +19,6 @@ const ContributorsList = styled.section`
     grid-column-gap: 15px;
     grid-row-gap: 15px;
   }
-`;
-
-const ContributorsListEmpty = styled.p`
-  text-align: center;
-  font-size: 18px;
-  color: ${props => props.theme.primaryColor};
 `;
 
 export interface SuggestionsScreenProps {
@@ -59,7 +54,15 @@ const SuggestionsScreen = ({
     if (initialSuggestions.length === 0) setInitialSuggestions(suggestions);
   }, [suggestions]);
 
-  if (allContributors.length === 0) return null;
+  if (allContributors.length === 0) {
+    return (
+      <ContributorsListEmpty>
+        L&apos;extension essaie de retrouver la liste de contributeurs.
+        <br /> Si le problème persiste, veuillez désactiver et réactiver votre
+        extension, ou la désinstaller et la réinstaller.
+      </ContributorsListEmpty>
+    );
+  }
 
   const suggestionsToRender = R.pipe(
     R.map(findContributorIn(allContributors)),

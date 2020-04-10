@@ -1,4 +1,4 @@
-import { BaseAction, ErrorAction } from '.';
+import { ActionMeta, BaseAction, ErrorAction } from '.';
 import { Contributor, StatefulContributor } from 'app/lmem/contributor';
 import { Level } from '../utils/Logger';
 
@@ -12,6 +12,17 @@ export const receivedContributors = (
 ): ReceivedContributorsAction => ({
   type: UPDATE_CONTRIBUTORS,
   payload: { contributors }
+});
+
+export const REFRESH_CONTRIBUTORS = 'REFRESH_CONTRIBUTORS';
+export interface RefreshContributorsAction extends BaseAction {
+  type: typeof REFRESH_CONTRIBUTORS;
+}
+export const refreshContributors = (
+  meta?: ActionMeta
+): RefreshContributorsAction => ({
+  type: REFRESH_CONTRIBUTORS,
+  meta
 });
 
 export const REFRESH_CONTRIBUTORS_FAILED = 'REFRESH_CONTRIBUTORS_FAILED';
