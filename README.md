@@ -72,7 +72,11 @@ yarn start
 > Chrom(e|ium) browser is recommend for development.
 > see https://developer.chrome.com/extensions/getstarted#manifest
 
-For further reading, refer to the [**Dismoi** contributing guidelines](docs/CONTRIBUTING.md).
+## Contributing
+
+You’re welcome to help!
+
+> For further reading, refer to the [**Dismoi** contributing guidelines](docs/CONTRIBUTING.md).
 
 ## Test
 
@@ -101,6 +105,11 @@ yarn build-storybook
 ```
 
 It is automatically deployed to https://storybook.lmem.net on every `develop` branch update.
+
+## Links
+
+- 🌐 Web: https://www.dismoi.io
+- 🐦 Twitter: https://twitter.com/DisMoiCompagnon
 
 ## LICENSE
 
