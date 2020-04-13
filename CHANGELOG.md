@@ -1,3 +1,10 @@
+# [3.25.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.24.0...v3.25.0) (2020-04-13)
+
+
+### Features
+
+* **contributors:** Add refresh contributors action. ([86e9021](https://github.com/insitu-project/recommendations-webextension/commit/86e90214aaf4af3e5f79136e2b089449ecb04e7d))
+
 # [3.24.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.23.1...v3.24.0) (2020-04-06)
 
 
