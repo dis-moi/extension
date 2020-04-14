@@ -21,5 +21,6 @@ export const preselectedContributorIds = [
   50,
   51,
   53,
-  54
+  54,
+  55 // CaptainFact.io
 ];
