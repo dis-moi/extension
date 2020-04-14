@@ -1,3 +1,10 @@
+# [3.26.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.25.0...v3.26.0) (2020-04-14)
+
+
+### Features
+
+* **preselection:** Add [Captainfact.io](https://captainfact.io/) to the list of preselected contributors. ([51c1274](https://github.com/insitu-project/recommendations-webextension/commit/51c12748cdb8b01ad0a73e28f32230e13a6dbada))
+
 # [3.25.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.24.0...v3.25.0) (2020-04-13)
 
 
