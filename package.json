@@ -20,6 +20,7 @@
     "upload:chrome": "node --experimental-modules bin/chrome-webstore-upload",
     "upload:chrome:staging": "NODE_ENV=staging node --experimental-modules bin/chrome-webstore-upload.mjs",
     "upload:chrome:proding": "NODE_ENV=proding node --experimental-modules bin/chrome-webstore-upload.mjs",
+    "upload:chrome:production": "NODE_ENV=production node --experimental-modules bin/chrome-webstore-upload.mjs",
     "build:chromium": "webpack --mode=production --env.PLATFORM=chromium",
     "build:production": "NODE_ENV=production yarn build:chromium && NODE_ENV=production yarn build:firefox",
     "release:production": "NODE_ENV=production yarn build:chromium --env.SENTRY_ENABLED && NODE_ENV=production yarn build:firefox --env.SENTRY_ENABLED",
