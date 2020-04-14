@@ -2,13 +2,14 @@ import chai from 'chai';
 import {
   findMatchingOffersAccordingToPreferences,
   MatchingContext
-} from '../../../src/app/lmem/matchingContext';
+} from 'app/lmem/matchingContext';
+import generateMatchingContext from 'test/fakers/generateMatchingContext';
 
 const expect = chai.expect;
 
 const offers: MatchingContext[] = [
-  { urlRegex: 'www.samsung.com', noticeUrl: 'http://b', noticeId: 42 },
-  { urlRegex: 'arrested.com', noticeUrl: 'http://b', noticeId: 42 }
+  generateMatchingContext({ urlRegex: 'www.samsung.com' }),
+  generateMatchingContext({ urlRegex: 'arrested.com' })
 ];
 
 const matchingURL = 'https://www.samsung.com/blabla';
@@ -17,9 +18,9 @@ const nonMatchingURL = 'https://soundcloud.com/capt-lovelace/meteo-marine';
 describe('findMatchingOffersAccordingToPreferences', function() {
   it('should be case insensitive', () => {
     const offersWithWeirdCase: MatchingContext[] = [
-      { urlRegex: 's.*', noticeUrl: 'http://s', noticeId: 42 },
-      { urlRegex: 'SamSung', noticeUrl: 'http://S', noticeId: 42 },
-      { urlRegex: 'doesNotMatch', noticeUrl: 'http://d', noticeId: 42 }
+      generateMatchingContext({ urlRegex: 's.*' }),
+      generateMatchingContext({ urlRegex: 'SamSung' }),
+      generateMatchingContext({ urlRegex: 'doesNotMatch' })
     ];
 
     const matches = findMatchingOffersAccordingToPreferences(
@@ -36,12 +37,10 @@ describe('findMatchingOffersAccordingToPreferences', function() {
   describe('exclusion', () => {
     it('should exclude matching exclusion of otherwise matching url', () => {
       const offersWithExclusion: MatchingContext[] = [
-        {
+        generateMatchingContext({
           urlRegex: 'samsung',
-          excludeUrlRegex: 'blabla',
-          noticeUrl: 'http://b',
-          noticeId: 42
-        }
+          excludeUrlRegex: 'blabla'
+        })
       ];
 
       const matches = findMatchingOffersAccordingToPreferences(
@@ -55,12 +54,10 @@ describe('findMatchingOffersAccordingToPreferences', function() {
 
     it('should not exclude non matching exclusion of matching url', () => {
       const offersWithExclusion = [
-        {
+        generateMatchingContext({
           urlRegex: 'samsung',
-          excludeUrlRegex: 'nono',
-          noticeUrl: 'http://b',
-          noticeId: 42
-        }
+          excludeUrlRegex: 'nono'
+        })
       ];
 
       const matches = findMatchingOffersAccordingToPreferences(
@@ -75,12 +72,10 @@ describe('findMatchingOffersAccordingToPreferences', function() {
 
     it('should exclude its matching context if regex is invalid', () => {
       const offersWithExclusion: MatchingContext[] = [
-        {
+        generateMatchingContext({
           urlRegex: 'samsung',
-          excludeUrlRegex: 'isNasty)',
-          noticeUrl: 'http://b',
-          noticeId: 42
-        }, // SyntaxError: Invalid RegExp: Unmatched ')',
+          excludeUrlRegex: 'isNasty)'
+        }), // SyntaxError: Invalid RegExp: Unmatched ')',
         ...offers
       ];
 
@@ -97,7 +92,9 @@ describe('findMatchingOffersAccordingToPreferences', function() {
 
   describe('invalid regex', () => {
     const nastyOffers = [
-      { urlRegex: 'isNasty)', noticeUrl: 'http://b', noticeId: 42 }
+      generateMatchingContext({
+        urlRegex: 'isNasty'
+      })
     ].concat(offers); // SyntaxError: Invalid RegExp: Unmatched ')'
 
     it('should not screw up the matching engine', () => {

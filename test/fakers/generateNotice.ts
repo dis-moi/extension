@@ -29,18 +29,22 @@ export const generateStatefulNotice = ({
   disliked,
   dismissed,
   read
-}: Options = {}): StatefulNotice => ({
-  id: Math.random() * 1000,
-  created: created || subMonths(new Date(), 1),
-  modified: modified || subWeeks(new Date(), 1),
-  message: message || defaultMessage,
-  ratings: { likes: likes || 42, dislikes: dislikes || 2 },
-  contributor: contributor || generateContributor(),
-  visibility: 'public',
-  state: {
-    liked: Boolean(liked),
-    dismissed: Boolean(dismissed),
-    disliked: Boolean(disliked),
-    read: Boolean(read)
-  }
-});
+}: Options = {}): StatefulNotice => {
+  const id = Math.random() * 1000;
+  return {
+    id,
+    url: `http://backend.dismoi.io/notices/${id}`,
+    created: created || subMonths(new Date(), 1),
+    modified: modified || subWeeks(new Date(), 1),
+    message: message || defaultMessage,
+    ratings: { likes: likes || 42, dislikes: dislikes || 2 },
+    contributor: contributor || generateContributor(),
+    visibility: 'public',
+    state: {
+      liked: Boolean(liked),
+      dismissed: Boolean(dismissed),
+      disliked: Boolean(disliked),
+      read: Boolean(read)
+    }
+  };
+};

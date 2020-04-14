@@ -1,5 +1,6 @@
 import { put, takeEvery } from 'redux-saga/effects';
-import { AppAction, createErrorAction } from 'app/actions';
+import { AppAction } from 'app/actions';
+import { createErrorAction } from 'app/actions/helpers';
 import sendMessageToBackground from 'webext/sendMessageToBackground';
 import { Level } from '../utils/Logger';
 

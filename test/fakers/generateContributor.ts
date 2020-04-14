@@ -34,7 +34,8 @@ export const generateContributor = ({
         small: { url: Faker.image.avatar() },
         normal: { url: Faker.image.avatar() },
         large: { url: Faker.image.avatar() }
-      }
+      },
+  noticesUrls: ['http://backend.dismoi.io/notices/1']
 });
 
 export const generateStatefulContributor = ({

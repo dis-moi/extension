@@ -2,12 +2,13 @@ import { expect } from 'chai';
 import resourcesReducer from './';
 import { receivedMatchingContexts } from 'app/actions/refreshMatchingContexts';
 import { MatchingContext } from 'app/lmem/matchingContext';
+import generateMatchingContext from 'test/fakers/generateMatchingContext';
 
 describe('background > reducers > resources', function() {
   it('initial state + receivedMatchingContexts => state with offers', () => {
     const matchingContexts: MatchingContext[] = [
-      { noticeUrl: 'http://1', urlRegex: '/1/', noticeId: 42 },
-      { noticeUrl: 'http://2', urlRegex: '/2/', noticeId: 42 }
+      generateMatchingContext(),
+      generateMatchingContext()
     ];
 
     const action = receivedMatchingContexts(matchingContexts);

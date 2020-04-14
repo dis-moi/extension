@@ -1,40 +1,17 @@
-import { call, delay, put, fork, takeLatest, select } from 'redux-saga/effects';
-import fetchMatchingContexts from 'api/fetchMatchingContexts';
+import { delay, put, takeLatest, select, fork } from 'redux-saga/effects';
 import {
-  receivedMatchingContexts,
-  refreshMatchingContextsFailed,
+  REFRESH_MATCHING_CONTEXTS,
+  refreshMatchingContexts,
   SUBSCRIBE,
   UNSUBSCRIBE
 } from 'app/actions';
+import refreshMatchingContextsSaga from 'app/store/sagas/refreshMatchingContexts.saga';
 import { getSubscriptions } from '../selectors/subscriptions.selectors';
 import minutesToMilliseconds from 'app/utils/minutesToMilliseconds';
-import { createCallAndRetry } from '../../sagas/effects/callAndRetry';
 
-function* refreshMatchingContexts() {
-  const callAndRetry = createCallAndRetry({
-    maximumRetryDelayInMinutes: 10,
-    maximumAttempts: 10,
-    onError: function*(error: Error) {
-      yield put(refreshMatchingContextsFailed(error));
-    }
-  });
-  const matchingContexts = yield callAndRetry(
-    fetchMatchingContexts,
-    yield select(getSubscriptions)
-  );
-
-  if (matchingContexts) {
-    yield put(receivedMatchingContexts(matchingContexts));
-  }
-}
-
-function* refreshWhenSubscriptionsChanged() {
-  yield takeLatest([SUBSCRIBE, UNSUBSCRIBE], refreshMatchingContexts);
-}
-
-export default function* refreshMatchingContextsSaga() {
-  yield fork(refreshWhenSubscriptionsChanged);
-  yield call(refreshMatchingContexts);
+export function* refreshMatchingContextsPeriodicallySaga() {
+  const subscriptions = yield select(getSubscriptions);
+  yield put(refreshMatchingContexts(subscriptions));
 
   const refreshInterval = minutesToMilliseconds(
     Number(process.env.REFRESH_MC_INTERVAL)
@@ -50,7 +27,7 @@ export default function* refreshMatchingContextsSaga() {
 
     while (true) {
       yield delay(refreshInterval);
-      yield call(refreshMatchingContexts);
+      yield put(refreshMatchingContexts(subscriptions));
     }
   } else {
     // eslint-disable-next-line no-console
@@ -59,4 +36,12 @@ export default function* refreshMatchingContextsSaga() {
       'assuming "process.env.REFRESH_MC_INTERVAL" is deliberately not defined.'
     );
   }
+}
+
+export default function* refreshMatchingContextsRootSaga() {
+  yield takeLatest(
+    [SUBSCRIBE, UNSUBSCRIBE, REFRESH_MATCHING_CONTEXTS],
+    refreshMatchingContextsSaga
+  );
+  yield fork(refreshMatchingContextsPeriodicallySaga);
 }

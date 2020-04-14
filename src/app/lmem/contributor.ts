@@ -25,6 +25,7 @@ export interface Contributor {
       noticeUrl: string;
     };
   };
+  noticesUrls: string[];
 }
 
 export interface NewContributor {

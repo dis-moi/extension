@@ -17,11 +17,11 @@ import {
 } from 'app/lmem/notice';
 import { InstallationDetails } from 'app/lmem/installation';
 import { ContentState } from '../store';
-import { getRegisteredFieldsPaths } from '../../utils/form';
+import { getRegisteredFieldsPaths } from 'app/utils/form';
 import { getContributors } from 'app/options/store/selectors/contributors.selectors';
-import { findItemById } from '../../utils/findItemById';
-import { StatefulContributor } from '../../lmem/contributor';
-import { makeGetRouteParam } from '../../store/selectors';
+import { findItemById } from 'app/utils/findItemById';
+import { StatefulContributor } from 'app/lmem/contributor';
+import { makeGetRouteParam } from 'app/store/selectors';
 export * from './serviceMessage.selectors';
 export * from './ui.selectors';
 

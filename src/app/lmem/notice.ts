@@ -5,6 +5,7 @@ import { captureMessage } from '../utils/sentry';
 
 export interface Notice {
   id: number;
+  url: string;
   created: Date;
   modified: Date;
   contributor: Contributor;

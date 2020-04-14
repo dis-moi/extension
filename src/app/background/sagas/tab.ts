@@ -21,10 +21,10 @@ import {
   MatchContextAction,
   TabAction,
   CONTEXT_NOT_TRIGGERED,
-  createErrorAction,
   TAB_ACTIVATED,
   clearServiceMessage
 } from 'app/actions';
+import { createErrorAction } from 'app/actions/helpers';
 import { MatchingContext } from 'app/lmem/matchingContext';
 import { Notice, StatefulNotice, warnIfNoticeInvalid } from 'app/lmem/notice';
 import { fetchNotices } from 'api/fetchNotice';

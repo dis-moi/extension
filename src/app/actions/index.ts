@@ -108,19 +108,6 @@ export interface ErrorAction extends BaseAction {
   };
 }
 
-export const createErrorAction = (type: unknown = 'ERROR') => (
-  e: Error,
-  meta: ActionMeta | ActionMetaWithSeverity
-): ErrorAction => ({
-  type,
-  payload: e,
-  error: true,
-  meta: {
-    ...meta,
-    severity: 'severity' in meta ? meta.severity : Level.ERROR
-  }
-});
-
 export interface FormAction extends BaseAction {
   payload: {};
   meta: ActionMeta & FormMeta;

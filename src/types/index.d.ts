@@ -14,3 +14,6 @@ declare module '*.png' {
   const value: string;
   export = value;
 }
+
+// @see https://en.wikipedia.org/wiki/Three-valued_logic
+export type trilean = boolean | undefined;

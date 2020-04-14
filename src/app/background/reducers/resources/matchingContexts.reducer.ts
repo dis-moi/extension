@@ -8,7 +8,7 @@ export const initialState: MatchingContexts = [];
 export default (state: MatchingContexts = initialState, action: AppAction) => {
   switch (action.type) {
     case UPDATE_MATCHING_CONTEXTS:
-      return action.payload.matchingContexts;
+      return action.payload;
 
     default:
       return state;

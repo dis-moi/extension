@@ -9,7 +9,6 @@ import {
   CLOSED,
   ClosedAction,
   CONTEXT_NOT_TRIGGERED,
-  createErrorAction,
   FEEDBACK_ON_NOTICE,
   MARK_NOTICE_READ,
   markNoticeRead,
@@ -17,6 +16,7 @@ import {
   NOTICE_UNFOLDED,
   UnfoldNoticeAction
 } from 'app/actions';
+import { createErrorAction } from 'app/actions/helpers';
 import { Level } from '../../utils/Logger';
 
 export function* closeIfNoMoreNoticeToDisplaySaga() {

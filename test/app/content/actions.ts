@@ -4,19 +4,11 @@ import { init } from 'app/actions/tabs';
 import { StatefulNotice } from 'app/lmem/notice';
 import Tab from 'app/lmem/tab';
 import { generateContributor } from 'test/fakers/generateContributor';
+import { generateStatefulNotice } from 'test/fakers/generateNotice';
 
 const expect = chai.expect;
 
-const notice1: StatefulNotice = {
-  id: 1,
-  message: 'This is a notice',
-  contributor: generateContributor({ id: 1, name: 'Jalil', contributions: 42 }),
-  visibility: 'public',
-  ratings: { dislikes: 0, likes: 0 },
-  state: { disliked: false, dismissed: false, liked: false, read: false },
-  created: new Date(),
-  modified: new Date()
-};
+const notice1: StatefulNotice = generateStatefulNotice();
 
 describe('content actions', function() {
   const tab: Tab = { id: 1, url: 'http://tests.menant-benjamin.fr/' };

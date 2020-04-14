@@ -3,6 +3,7 @@ import Logger from 'app/utils/Logger';
 Logger.info('Content script injected...');
 
 import { Scope } from '@sentry/browser';
+import { AppEnv, CustomWindow } from 'types';
 
 if (!(window as CustomWindow).__BULLES__CONTENT_SCRIPT_INJECTED__) {
   Logger.info('Running content script ...');
