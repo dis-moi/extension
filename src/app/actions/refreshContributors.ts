@@ -5,13 +5,13 @@ import { Level } from '../utils/Logger';
 export const UPDATE_CONTRIBUTORS = 'api/UPDATE_CONTRIBUTORS';
 export interface ReceivedContributorsAction extends BaseAction {
   type: typeof UPDATE_CONTRIBUTORS;
-  payload: { contributors: Contributor[] };
+  payload: Contributor[];
 }
 export const receivedContributors = (
   contributors: Contributor[]
 ): ReceivedContributorsAction => ({
   type: UPDATE_CONTRIBUTORS,
-  payload: { contributors }
+  payload: contributors
 });
 
 export const REFRESH_CONTRIBUTORS = 'REFRESH_CONTRIBUTORS';

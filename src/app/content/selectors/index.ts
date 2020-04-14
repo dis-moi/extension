@@ -21,6 +21,7 @@ import { getRegisteredFieldsPaths } from '../../utils/form';
 import { getContributors } from 'app/options/store/selectors/contributors.selectors';
 import { findItemById } from '../../utils/findItemById';
 import { StatefulContributor } from '../../lmem/contributor';
+import { makeGetRouteParam } from '../../store/selectors';
 export * from './serviceMessage.selectors';
 export * from './ui.selectors';
 
@@ -112,11 +113,6 @@ export const getFlatFormErrors = (formName: string) => (
     ),
     R.filter(Boolean)
   )(state);
-
-export const makeGetRouteParam = (param: string) => (
-  state: unknown,
-  { match: { params } }: RouteComponentProps<{ [_key: string]: string }>
-) => params[param];
 
 export const getContributorIdFromRouteParam = makeGetRouteParam('id');
 

@@ -32,7 +32,7 @@ export default function subscriptionsReducer(
     }
     case UPDATE_CONTRIBUTORS:
       return R.intersection(
-        R.map(contributor => contributor.id, action.payload.contributors),
+        R.map(contributor => contributor.id, action.payload),
         state
       );
     default:

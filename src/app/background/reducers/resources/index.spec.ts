@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import resourcesReducer from './resources.reducer';
+import resourcesReducer from './';
 import { receivedMatchingContexts } from 'app/actions/refreshMatchingContexts';
 import { MatchingContext } from 'app/lmem/matchingContext';
 
