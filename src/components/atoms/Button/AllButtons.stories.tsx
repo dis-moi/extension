@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { Button, BorderButton, AddNoticeButton } from '../';
+import { Button, BorderButton } from '../';
+import AddNoticeButton from './AddNoticeButton';
 import { BackgroundButton, OpenButton } from './index';
 import Tab from '../Tab/Tab';
 import ContributorButton from 'components/organisms/Contributor/ContributorButton';
