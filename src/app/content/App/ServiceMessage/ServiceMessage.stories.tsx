@@ -6,7 +6,7 @@ import Notification from 'components/organisms/Notification';
 import ServiceMessage from './ServiceMessage';
 import { LinkType } from 'app/lmem/ServiceMessage';
 
-storiesOf('screens/ServiceMessage', module)
+storiesOf('Extension/ServiceMessage', module)
   .addDecorator(getStory => (
     <Router>
       <Notification close={action('close')}>{getStory()}</Notification>

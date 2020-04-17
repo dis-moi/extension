@@ -6,7 +6,7 @@ import PreviewScreen from './PreviewScreen';
 import { action } from '@storybook/addon-actions';
 import { formStoreDecorator } from '../../../../../../.storybook/decorators';
 
-storiesOf('screens/Contribute/Preview', module)
+storiesOf('Extension/Contribute/02-Preview', module)
   .addDecorator(formStoreDecorator)
   .addDecorator(getStory => (
     <Router>

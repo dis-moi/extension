@@ -5,12 +5,12 @@ import { action } from '@storybook/addon-actions';
 import Notification from 'components/organisms/Notification';
 import { About } from '.';
 
-storiesOf('screens/About', module)
+storiesOf('Extension/Account', module)
   .addDecorator(getStory => (
     <Router>
       <Notification close={action('close')}>{getStory()}</Notification>
     </Router>
   ))
-  .add('normal', () => (
+  .add('About', () => (
     <About extensionVersion="1.2.3" installationDate={new Date()} />
   ));

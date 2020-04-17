@@ -3,6 +3,6 @@ import { MemoryRouter as Router } from 'react-router';
 import { storiesOf } from '@storybook/react';
 import AddNoticeButton from './AddNoticeButton';
 
-storiesOf('atoms/Buttons/AddNoticeButton', module)
+storiesOf('Components/Atoms/Buttons', module)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
-  .add('normal', () => <AddNoticeButton />);
+  .add('AddNoticeButton', () => <AddNoticeButton />);

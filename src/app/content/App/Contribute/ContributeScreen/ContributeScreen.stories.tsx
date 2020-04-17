@@ -5,7 +5,7 @@ import Notification from 'components/organisms/Notification';
 import ContributeScreen from './ContributeScreen';
 import { formStoreDecorator } from '../../../../../../.storybook/decorators';
 
-storiesOf('screens/Contribute/Submit', module)
+storiesOf('Extension/Contribute', module)
   .addDecorator(formStoreDecorator)
   .addDecorator(getStory => (
     <Router>
@@ -14,4 +14,4 @@ storiesOf('screens/Contribute/Submit', module)
       </Notification>
     </Router>
   ))
-  .add('normal', () => <ContributeScreen />);
+  .add('01-Submit', () => <ContributeScreen />);

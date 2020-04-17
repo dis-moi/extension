@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import ContributorNav from './ContributorNav';
 import { action } from '@storybook/addon-actions';
 
-storiesOf('organisms/ContributorNav', module)
+storiesOf('Components/Organisms/ContributorNav', module)
   .add('on subscriptions screen', () => (
     <ContributorNav
       activeTab={'subscriptions'}

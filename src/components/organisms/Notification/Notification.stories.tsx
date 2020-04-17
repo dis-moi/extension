@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Notification from '.';
 
-storiesOf('organisms/Notification', module)
+storiesOf('Components/Organisms/Notification', module)
   .add('normal', () => (
     <Router>
       <Notification />

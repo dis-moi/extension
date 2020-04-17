@@ -11,7 +11,7 @@ const commonProps = {
   clickContributor: action('clickContributor')
 };
 
-storiesOf('screens/Subscriptions', module)
+storiesOf('Extension/Subscriptions', module)
   .addDecorator(getStory => (
     <Router>
       <Notification close={action('close')}>{getStory()}</Notification>

@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import Notification from 'components/organisms/Notification';
 import { Menu } from '.';
 
-storiesOf('screens/Menu', module)
+storiesOf('Extension/Account', module)
   .addDecorator(getStory => (
     <Router>
       <Notification close={action('close')}>{getStory()}</Notification>
