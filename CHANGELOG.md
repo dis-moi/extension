@@ -1,3 +1,18 @@
+# [3.27.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.26.0...v3.27.0) (2020-04-17)
+
+
+### Bug Fixes
+
+* **AddNoticeButton:** removed useless icon ([d9ed643](https://github.com/insitu-project/recommendations-webextension/commit/d9ed643ffd1399b2d7360ca8a443ac9f6f6dd5a7))
+
+
+### Features
+
+* **ButtonsList:** adds components ([ec41849](https://github.com/insitu-project/recommendations-webextension/commit/ec418497b53e3851e9731fd35d6a39789b6aa41b))
+* **ButtonsList:** adds missing buttons ([a83b929](https://github.com/insitu-project/recommendations-webextension/commit/a83b929912fe42d36686d0387e916c1bcd0c6a36))
+* **ButtonsList:** corrected loading props ([840ed4c](https://github.com/insitu-project/recommendations-webextension/commit/840ed4c3bc9b4c25172bba533b02ceb060638749))
+* **ButtonsList:** starts to list buttons used in app ([e9d8498](https://github.com/insitu-project/recommendations-webextension/commit/e9d8498a2e8f0331587b76f39491584e548abb92))
+
 # [3.26.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.25.0...v3.26.0) (2020-04-14)
 
 
