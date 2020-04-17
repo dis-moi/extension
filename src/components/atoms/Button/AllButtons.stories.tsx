@@ -1,19 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
-import { Button, BorderButton /* , AddNoticeButton */ } from '../index';
+import { Button, BorderButton, AddNoticeButton } from '../';
 import { BackgroundButton, OpenButton } from './index';
 import Tab from '../Tab/Tab';
-import ContributorButton from '../../organisms/Contributor/ContributorButton';
-import DeleteButton from '../../organisms/Notice/DeleteButton';
-import Feedbacks from '../../organisms/NoticeDetails/Feedbacks';
-import ThumbUp from '../icons/ThumbUp';
-import ThumbDown from '../icons/ThumbDown';
-import BackButton from '../../organisms/Notification/NotificationHeader/BackButton';
-import CloseButton from '../../organisms/Notification/NotificationHeader/CloseButton';
-import Empty from '../../../app/options/App/Settings/SubscriptionsScreen/Empty';
-import OnboardinButton from '../../../app/options/App/Onboarding/atoms/OnboardingButton';
+import ContributorButton from 'components/organisms/Contributor/ContributorButton';
+import DeleteButton from 'components/organisms/Notice/DeleteButton';
+import Feedbacks from 'components/organisms/NoticeDetails/Feedbacks';
+import { ThumbUp, ThumbDown } from 'components/atoms/icons';
+import BackButton from 'components/organisms/Notification/NotificationHeader/BackButton';
+import CloseButton from 'components/organisms/Notification/NotificationHeader/CloseButton';
+import NavLink from 'components/organisms/Notification/NotificationFooter/NavLink';
+import Empty from 'app/options/App/Settings/SubscriptionsScreen/Empty';
+import OnboardinButton from 'app/options/App/Onboarding/atoms/OnboardingButton';
+import { MemoryRouter as Router } from 'react-router';
 
 const ButtonsListBackground = styled.div`
   padding: 20px;
@@ -102,7 +104,9 @@ const ButtonsList = () => {
           <OpenButton />
         </div>
 
-        <div>Need help on AddNoticeButton</div>
+        <div>
+          <AddNoticeButton />
+        </div>
       </ButtonsListWrapper>
 
       <ButtonsListWrapper>
@@ -118,10 +122,18 @@ const ButtonsList = () => {
       <h2>Contributor</h2>
       <ButtonsListWrapper>
         <div>
-          <ContributorButton subscribed={true} />
+          <ContributorButton
+            subscribed={true}
+            onSubscribe={action('subscribe')}
+            onUnsubscribe={action('unsubscribe')}
+          />
         </div>
         <div>
-          <ContributorButton subscribed={false} />
+          <ContributorButton
+            subscribed={false}
+            onSubscribe={action('subscribe')}
+            onUnsubscribe={action('unsubscribe')}
+          />
         </div>
       </ButtonsListWrapper>
       <h2>Notice</h2>
@@ -165,10 +177,17 @@ const ButtonsList = () => {
       </ButtonsListWrapper>
       <h3>Footer</h3>
       <ButtonsListWrapper>
-        <div>Need help here too</div>
+        <div>
+          <NavLink to={'/url'}>Contributions</NavLink>
+        </div>
+        <div>
+          <NavLink to={'/url'} className="active">
+            Contributions
+          </NavLink>
+        </div>
       </ButtonsListWrapper>
       <h2>Subscription screen empty</h2>
-      <Empty />
+      <Empty goToSuggestions={action('goToSuggestions')} />
       <h2>Onboarding</h2>
       <ButtonsListWrapper>
         <div>
@@ -193,4 +212,6 @@ const ButtonsList = () => {
   );
 };
 
-storiesOf('theme', module).add('buttons', () => <ButtonsList />);
+storiesOf('theme', module)
+  .addDecorator(getStory => <Router>{getStory()}</Router>)
+  .add('buttons', () => <ButtonsList />);
