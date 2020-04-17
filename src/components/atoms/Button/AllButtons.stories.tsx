@@ -69,10 +69,10 @@ const ButtonsList = () => {
           <BorderButton disabled={true}>Border Button</BorderButton>
         </div>
         <div>
-          <BorderButton loading={'true'}>Border Button</BorderButton>
+          <BorderButton loading>Border Button</BorderButton>
         </div>
         <div>
-          <BorderButton disabled={true} loading={'true'}>
+          <BorderButton disabled={true} loading>
             Border Button
           </BorderButton>
         </div>
@@ -88,10 +88,10 @@ const ButtonsList = () => {
           </BackgroundButton>
         </div>
         <div>
-          <BackgroundButton loading={true}>Background Button</BackgroundButton>
+          <BackgroundButton loading>Background Button</BackgroundButton>
         </div>
         <div>
-          <BackgroundButton loading={true} disabled={true}>
+          <BackgroundButton loading disabled={true}>
             Background Button
           </BackgroundButton>
         </div>
