@@ -5,10 +5,10 @@ import { action } from '@storybook/addon-actions';
 import Notification from 'components/organisms/Notification';
 import { Loading } from '.';
 
-storiesOf('screens/Loading', module)
+storiesOf('Extension', module)
   .addDecorator(getStory => (
     <Router>
       <Notification close={action('close')}>{getStory()}</Notification>
     </Router>
   ))
-  .add('normal', () => <Loading />);
+  .add('Loading', () => <Loading />);

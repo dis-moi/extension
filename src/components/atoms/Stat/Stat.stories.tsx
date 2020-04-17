@@ -4,7 +4,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import Stat from './Stat';
 import StatType from './StatType';
 
-storiesOf('atoms/Stat', module)
+storiesOf('Components/Atoms/Stat', module)
   .addDecorator(withKnobs)
   .add('Bulles', () => (
     <Stat>

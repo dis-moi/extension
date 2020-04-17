@@ -20,7 +20,7 @@ const commonProps = {
   clickContributor: action('clickContributor')
 };
 
-storiesOf('screens/Notice/List', module)
+storiesOf('Extension/Notice/List', module)
   .addDecorator(withKnobs)
   .addDecorator(getStory => (
     <Router>
@@ -81,5 +81,4 @@ storiesOf('screens/Notice/List', module)
         })
       ]}
     />
-  ))
-  .add('empty', () => <ListScreen {...commonProps} notices={[]} />);
+  ));

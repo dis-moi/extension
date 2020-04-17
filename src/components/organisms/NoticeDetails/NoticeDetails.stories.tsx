@@ -22,7 +22,7 @@ const commonProps = {
   clickContributor: action('clickContributor')
 };
 
-storiesOf('organisms/NoticeDetails', module)
+storiesOf('Components/Organisms/NoticeDetails', module)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
   .add('Default', () => (
     <NoticeDetails

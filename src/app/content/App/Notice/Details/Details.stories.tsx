@@ -28,7 +28,7 @@ const commonProps = {
   clickContributor: action('clickContributor')
 };
 
-storiesOf('screens/Notice/Details', module)
+storiesOf('Extension/Notice/Details', module)
   .addDecorator(withKnobs)
   .addDecorator(getStory => (
     <Router>

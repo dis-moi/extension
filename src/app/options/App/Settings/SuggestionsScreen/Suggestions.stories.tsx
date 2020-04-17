@@ -5,7 +5,7 @@ import SuggestionsScreen from './SuggestionsScreen';
 import { generateStatefulContributor } from 'test/fakers/generateContributor';
 import Wrapper from '../../ScreenWrapper';
 
-storiesOf('screens/SuggestionsScreen', module)
+storiesOf('Settings/SuggestionsScreen', module)
   .addDecorator(getStory => <Wrapper>{getStory()}</Wrapper>)
   .add('suggestions', () => {
     const suggestions = [

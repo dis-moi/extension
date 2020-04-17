@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import * as icons from './';
 
-storiesOf('atoms', module).add('icons', () => (
+storiesOf('Components/Atoms', module).add('Icons', () => (
   <main
     style={{
       display: 'grid',

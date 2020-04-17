@@ -6,6 +6,6 @@ import Faker from 'faker';
 
 const defaultUserName = Faker.name.findName();
 
-storiesOf('atoms/UserName', module)
+storiesOf('Components/Atoms/UserName', module)
   .addDecorator(withKnobs)
   .add('normal', () => <UserName>{text('content', defaultUserName)}</UserName>);

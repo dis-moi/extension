@@ -6,11 +6,11 @@ import Examples from './Examples';
 import Wrapper from '../../ScreenWrapper';
 import { optionsStoreDecorator } from '../../../../../../.storybook/decorators';
 
-storiesOf('screens/Onboarding/Examples', module)
+storiesOf('Onboarding', module)
   .addDecorator(optionsStoreDecorator)
   .addDecorator(getStory => (
     <Router>
       <Wrapper>{getStory()}</Wrapper>
     </Router>
   ))
-  .add('default', () => <Examples next={action('next')} />);
+  .add('Examples', () => <Examples next={action('next')} />);

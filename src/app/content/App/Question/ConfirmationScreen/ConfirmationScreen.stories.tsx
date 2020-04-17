@@ -6,7 +6,7 @@ import Notification from 'components/organisms/Notification';
 import ConfirmationScreen from './ConfirmationScreen';
 import { formStoreDecorator } from '../../../../../../.storybook/decorators';
 
-storiesOf('screens/Question', module)
+storiesOf('Extension/Question', module)
   .addDecorator(formStoreDecorator)
   .addDecorator(getStory => (
     <Router>

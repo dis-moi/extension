@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import Button from './Button';
 
-storiesOf('atoms/Buttons/Button', module)
+storiesOf('Components/Atoms/Buttons/Button', module)
   .addDecorator(withKnobs)
   .add('normal', () => (
     <Button dangerouslySetInnerHTML={{ __html: text('content', 'Ajouter') }} />
