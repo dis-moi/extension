@@ -1,3 +1,10 @@
+# [3.28.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.27.0...v3.28.0) (2020-04-20)
+
+
+### Features
+
+* **notice:** Show notice last update date instead of creation date on detailed view. ([e245966](https://github.com/insitu-project/recommendations-webextension/commit/e245966bb7293f979707f8a9e584e66588848cb6))
+
 # [3.27.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.26.0...v3.27.0) (2020-04-17)
 
 
