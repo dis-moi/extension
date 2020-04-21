@@ -14,8 +14,8 @@ module.exports = {
   browser_action: {
     ...base.browser_action,
     default_title: `${base.browser_action.default_title} - development`
-  }
-  /*externally_connectable: {
+  },
+  externally_connectable: {
     matches: [...base.externally_connectable.matches, '*://localhost/*']
-  }*/
+  }
 };
