@@ -39,7 +39,9 @@ const ProfileList = ({
         <section key={contributor.id}>
           <Avatar size="normal" contributor={contributor} />
           <UserName>
-            <Link to={`/profiles/${contributor.id}`}>{contributor.name}</Link>
+            <Link to={`/les-contributeurs/${contributor.id}`}>
+              {contributor.name}
+            </Link>
           </UserName>
           <Stat>
             <BubbleIcon /> {contributor.contributions}{' '}

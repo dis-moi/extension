@@ -9,6 +9,7 @@ import theme from 'app/theme';
 import store, { history } from '../store';
 import Profiles from './Profiles';
 import Error from './Error';
+import Subscriptions from './Subscriptions';
 
 const App = () => (
   <Provider store={store}>
@@ -16,8 +17,9 @@ const App = () => (
     <ThemeProvider theme={theme}>
       <ConnectedRouter history={history}>
         <Switch>
-          <Redirect exact path="/" to="/profiles" />
-          <Route path="/profiles" component={Profiles} />
+          <Redirect exact path="/" to="/les-contributeurs" />
+          <Route path="/les-contributeurs" component={Profiles} />
+          <Route path="/mes-abonnements" component={Subscriptions} />
           <Route component={Error} />
         </Switch>
       </ConnectedRouter>
