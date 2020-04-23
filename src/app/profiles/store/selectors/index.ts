@@ -20,6 +20,11 @@ export const getContributorFromRouteParam = createSelector(
     findItemById<StatefulContributor>(Number(id))(contributors)
 );
 
+export const getFeaturedNoticeId = createSelector(
+  [getContributorFromRouteParam],
+  contributor => contributor?.contribution.example?.noticeId
+);
+
 export const areContributorsLoading = createSelector(
   [getContributorsCollection],
   contributorsCollection =>
@@ -37,7 +42,7 @@ export const getNotices = createSelector(
   noticesCollection => noticesCollection.items
 );
 
-export const getContributorNoticesFromRouteParam = createSelector(
+export const getContributorNotices = createSelector(
   [makeGetRouteParam('id'), getNotices],
   (contributorId, notices) =>
     notices.filter(notice => notice.contributor.id === Number(contributorId))
@@ -45,3 +50,15 @@ export const getContributorNoticesFromRouteParam = createSelector(
 
 export const getContributorById = (id: number) =>
   createSelector([getContributors], findItemById(id));
+
+export const getFeaturedNotice = createSelector(
+  [getFeaturedNoticeId, getNotices],
+  (featuredNoticeId, notices) =>
+    notices.find(({ id }) => id === featuredNoticeId)
+);
+
+export const getContributorNoticesButFeaturedOne = createSelector(
+  [getFeaturedNoticeId, getContributorNotices],
+  (featuredNoticeId, notices) =>
+    notices.filter(({ id }) => id !== featuredNoticeId)
+);

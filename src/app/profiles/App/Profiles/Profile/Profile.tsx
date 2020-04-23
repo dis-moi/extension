@@ -6,12 +6,14 @@ import { Loading } from 'components/atoms/icons';
 import Error from '../../Error';
 import ProfileNoticeList from './ProfileNoticeList';
 import { trilean } from 'types';
+import FeaturedNotice from './FeaturedNotice';
 
 export interface ProfileProps {
   loading: trilean;
   contributor?: StatefulContributor;
   noticesLoading: trilean;
   notices: Notice[];
+  featuredNotice?: Notice;
   subscribe: () => void;
   unsubscribe: () => void;
   fetchContributorNotices: () => void;
@@ -24,6 +26,7 @@ export const Profile = ({
   unsubscribe,
   fetchContributorNotices,
   noticesLoading,
+  featuredNotice,
   notices
 }: ProfileProps) => {
   useEffect(() => {
@@ -48,6 +51,7 @@ export const Profile = ({
         onSubscribe={subscribe}
         onUnsubscribe={unsubscribe}
       />
+      <FeaturedNotice loading={noticesLoading} notice={featuredNotice} />
       <ProfileNoticeList loading={noticesLoading} notices={notices} />
     </>
   );

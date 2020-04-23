@@ -5,8 +5,9 @@ import { subscribe, unsubscribe } from 'app/actions/subscription';
 import {
   areContributorsLoading,
   getContributorFromRouteParam,
+  getFeaturedNotice,
   areNoticesLoading,
-  getContributorNoticesFromRouteParam
+  getContributorNoticesButFeaturedOne
 } from 'app/profiles/store/selectors';
 import { ProfilesState } from 'app/profiles/store/reducers';
 import { fetchContributorNotices } from 'app/profiles/store/actions';
@@ -22,8 +23,9 @@ const mapStateToProps = (
 ) => ({
   loading: areContributorsLoading(state),
   contributor: getContributorFromRouteParam(state, props),
+  featuredNotice: getFeaturedNotice(state, props),
   noticesLoading: areNoticesLoading(state),
-  notices: getContributorNoticesFromRouteParam(state, props)
+  notices: getContributorNoticesButFeaturedOne(state, props)
 });
 
 const mapDispatchToProps = (
