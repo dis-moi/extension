@@ -8,10 +8,6 @@ export interface ButtonTheme {
   disabled: string;
 }
 
-export interface IntentionStyle {
-  background: string;
-}
-
 export interface Theme {
   main: string;
   // colors
@@ -28,7 +24,6 @@ export interface Theme {
   accountListBg: string;
 
   // color list:
-  inactiveIntentionBg: string;
   bottomBar: string;
   topBarNavInactiveDeleteBg: string;
   formBorder: string;
@@ -41,25 +36,10 @@ export interface Theme {
 
   badge: BadgeTheme;
 
-  // new types:
-  approval: string;
-  disapproval: string;
-  information: string;
-  alternative: string;
-  other: string;
-
   basicButton: ButtonTheme;
 
   backgroundButton: ButtonTheme;
 
-  // notice type colors
-  intentions: {
-    disapproval: IntentionStyle;
-    alternative: IntentionStyle;
-    approval: IntentionStyle;
-    information: IntentionStyle;
-    other: IntentionStyle;
-  };
   // iframe
   iframe: {
     style: {
@@ -97,7 +77,6 @@ export const theme: Theme = {
   accountListBg: '#fff',
 
   // color list:
-  inactiveIntentionBg: '#EBEBEB',
   bottomBar: '#DDDDDD',
   topBarNavInactiveDeleteBg: '#A6B1C0',
   formBorder: '#707070',
@@ -116,13 +95,6 @@ export const theme: Theme = {
     }
   },
 
-  // new types:
-  approval: '#34C16C',
-  disapproval: '#F70B7B',
-  information: '#E3C51F',
-  alternative: '#49B6D6',
-  other: '#EB950C',
-
   // Button colors
   basicButton: {
     default: '#1ECCB5',
@@ -140,24 +112,6 @@ export const theme: Theme = {
     disabled: '#BAB8B8'
   },
 
-  // notice type colors
-  intentions: {
-    disapproval: {
-      background: '#F70B7B'
-    },
-    alternative: {
-      background: '#49B6D6'
-    },
-    approval: {
-      background: '#34C16C'
-    },
-    information: {
-      background: '#E3C51F'
-    },
-    other: {
-      background: '#EB950C'
-    }
-  },
   // iframe
   iframe: {
     style: {
