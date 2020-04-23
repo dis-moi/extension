@@ -5,10 +5,10 @@ import { Filters } from './Filters';
 import { action } from '@storybook/addon-actions';
 import Notification from 'components/organisms/Notification';
 
-storiesOf('screens/Filters', module)
+storiesOf('Extension/Account', module)
   .addDecorator(getStory => (
     <Router>
       <Notification close={action('close')}>{getStory()}</Notification>
     </Router>
   ))
-  .add('normal', () => <Filters />);
+  .add('Filters', () => <Filters />);
