@@ -1,4 +1,3 @@
-export { default as Alternative } from './Alternative';
 export { default as Arrow } from './Arrow';
 export { default as AvatarDefault } from './AvatarDefault';
 export { default as Bubble } from './Bubble';
