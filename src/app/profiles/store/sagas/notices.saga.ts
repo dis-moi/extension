@@ -5,7 +5,7 @@ import {
   FETCH_CONTRIBUTOR_NOTICES,
   fetchContributorNotices,
   FetchContributorNoticesAction
-} from '../actions';
+} from '../actions/notices';
 import { fetchContributorRequest } from 'app/actions/contributor';
 import fetchNoticesSaga from 'app/store/sagas/fetchNotices.saga';
 

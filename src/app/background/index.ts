@@ -6,6 +6,9 @@ import onStartup from 'webext/onStartup';
 import { installed, startup } from 'app/actions';
 import { configureSentryScope, initSentry } from 'app/utils/sentry';
 import { store } from './store';
+import { connect } from 'app/store/actions/connection';
+
+type Port = browser.runtime.Port;
 
 initSentry();
 configureSentryScope(scope => {
@@ -28,3 +31,6 @@ onInstalled.then(installedDetails => {
 });
 
 onStartup.then(() => store.dispatch(startup()));
+browser.runtime.onConnectExternal.addListener((port: Port) =>
+  store.dispatch(connect(port))
+);

@@ -1,5 +1,5 @@
-import { Action } from 'redux';
 import { LocationChangeAction } from 'connected-react-router';
+import { StandardAction } from 'app/store/types';
 import Tab from 'app/lmem/tab';
 import { BrowserActionClickedAction } from './browser';
 import { InstallationDetailsAction, InstalledAction } from './install';
@@ -68,7 +68,7 @@ import { LoginAction } from './user';
 import * as R from 'ramda';
 import { Level } from '../utils/Logger';
 
-type MessageSender = chrome.runtime.MessageSender;
+type MessageSender = browser.runtime.MessageSender;
 
 export * from './badge';
 export * from './tabsLifecycle';
@@ -85,12 +85,6 @@ export * from './ui';
 export * from './subscription';
 export * from './webext';
 export * from './serviceMessage.actions';
-
-export interface StandardAction extends Action {
-  payload?: unknown;
-  meta?: unknown;
-  error?: true;
-}
 
 export interface BaseAction extends StandardAction {
   meta?: ActionMeta;
@@ -143,8 +137,10 @@ export interface ActionMeta {
   sendToTab?: boolean;
   action?: unknown;
   external?: boolean;
+  receiver?: MessageSender;
   sender?: MessageSender;
   from?: From;
+  fromText?: string;
   tab?: Tab;
 }
 

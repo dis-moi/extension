@@ -88,7 +88,9 @@ export const ProfileNoticeListItem = ({
       <Paragraph dangerouslySetInnerHTML={{ __html: notice.message }} />
       <NoticeBottomLine>
         Visible depuis le {format(notice.created, 'DD/MM/YYYY')}
-        <BorderButton onClick={seeInContext}>Voir en context</BorderButton>
+        <BorderButton onClick={seeInContext} disabled={!notice.exampleUrl}>
+          Voir en context
+        </BorderButton>
       </NoticeBottomLine>
     </Box>
   );

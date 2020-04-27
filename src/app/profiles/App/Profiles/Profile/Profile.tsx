@@ -128,8 +128,8 @@ export const Profile = ({
   const handleSeeNoticeInContext = (notice?: Notice) => () => {
     if (connected) {
       if (contributor?.subscribed) {
-        if (notice) {
-          window.location.href = notice.url;
+        if (notice && notice.exampleUrl) {
+          window.location.href = notice.exampleUrl;
         }
       } else {
         setSubscribePopinOpened(true);

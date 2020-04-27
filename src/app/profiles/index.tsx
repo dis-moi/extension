@@ -1,4 +1,5 @@
 import { configureSentryScope, initSentry, Scope } from '../utils/sentry';
+import './browser';
 
 initSentry();
 

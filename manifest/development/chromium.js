@@ -16,6 +16,7 @@ module.exports = {
     default_title: `${base.browser_action.default_title} - development`
   },
   externally_connectable: {
-    matches: [...base.externally_connectable.matches, '*://localhost/*']
+    matches: [...base.externally_connectable.matches, '*://localhost/*'],
+    accepts_tls_channel_id: false
   }
 };

@@ -6,7 +6,7 @@ import { Severity } from '@sentry/types';
 type Emit = (action: Action) => void;
 
 const createBrowserActionListener = (emit: Emit) => {
-  const handleClick = (tab: chrome.tabs.Tab) => {
+  const handleClick = (tab: browser.tabs.Tab) => {
     if (tab.id && tab.url) {
       emit(browserActionClicked({ id: tab.id, url: tab.url }));
     } else {
@@ -17,11 +17,11 @@ const createBrowserActionListener = (emit: Emit) => {
     }
   };
 
-  chrome.browserAction.onClicked.addListener(handleClick);
+  browser.browserAction.onClicked.addListener(handleClick);
 
   // unsubscribe
   return () => {
-    chrome.browserAction.onClicked.removeListener(handleClick);
+    browser.browserAction.onClicked.removeListener(handleClick);
   };
 };
 

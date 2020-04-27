@@ -56,7 +56,7 @@ function* optionsTabReadySaga(action: ListeningActionsReadyAction) {
   const transmitAction = assocMetaIfNotGiven(
     'tab',
     tab
-  )(updateInstallationDetails(installationDetails));
+  )(updateInstallationDetails(installationDetails, { sendToTab: true }));
   yield sendToTabSaga(tab, transmitAction);
   yield sendTosStateToOptionsTab(action);
 }

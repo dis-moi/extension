@@ -1,10 +1,5 @@
-import {
-  ActionMeta,
-  AppAction,
-  BaseAction,
-  ErrorAction,
-  StandardAction
-} from './index';
+import { StandardAction } from 'app/store/types';
+import { ActionMeta, AppAction, BaseAction, ErrorAction } from './index';
 import { From } from 'webext/From';
 import { Level } from '../utils/Logger';
 

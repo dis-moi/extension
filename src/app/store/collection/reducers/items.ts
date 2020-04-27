@@ -8,6 +8,11 @@ export interface ItemsAction<I extends Item> {
   payload: I[];
 }
 
+export interface ItemAction<I extends Item> {
+  type: string;
+  payload: I;
+}
+
 export type ItemsState<I extends Item> = I[];
 
 export const initialState = [];

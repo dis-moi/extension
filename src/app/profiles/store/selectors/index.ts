@@ -1,41 +1,58 @@
 import { createSelector } from 'reselect';
+import * as R from 'ramda';
 import { findItemById } from 'app/utils/findItemById';
-import { Contributor, StatefulContributor } from 'app/lmem/contributor';
+import {
+  Contributor,
+  contributorIsSubscribed,
+  StatefulContributor
+} from 'app/lmem/contributor';
+import { Subscription, Subscriptions } from 'app/lmem/subscription';
 import { Notice, NoticeItem } from 'app/lmem/notice';
-import { ProfilesState } from 'app/profiles/store/reducers';
 import { makeGetRouteParam } from 'app/store/selectors';
-import { isCollectionLoading } from 'app/store/collection/selectors';
+import { getContributors } from './contributors';
+import { getNotices as getNoticesItems } from './notices';
+import { getSubscriptions } from './subscriptions';
 
-export const getContributorsCollection = (state: ProfilesState) =>
-  state.contributors;
+export const createContributorEnhancer = (subscriptions: Subscriptions) => (
+  contributor: Contributor
+): StatefulContributor => ({
+  ...contributor,
+  subscribed:
+    subscriptions.findIndex(
+      (subscription: Subscription) => subscription === contributor.id
+    ) !== -1
+});
 
-export const getContributors = createSelector(
-  [getContributorsCollection],
-  contributorsCollection => contributorsCollection.items
+export const enhanceContributors = (
+  contributors: Contributor[],
+  subscriptions: Subscriptions
+): StatefulContributor[] =>
+  contributors.map(createContributorEnhancer(subscriptions));
+
+export const getStatefulContributors = createSelector(
+  [getContributors, getSubscriptions],
+  enhanceContributors
+);
+
+export const getSimilarProfiles = createSelector(
+  [getStatefulContributors],
+  R.reject(contributorIsSubscribed)
+);
+
+export const getSubscribedContributors = createSelector(
+  [getStatefulContributors],
+  enhancedContributors =>
+    enhancedContributors.filter(({ subscribed }) => subscribed)
 );
 
 export const getContributorFromRouteParam = createSelector(
-  [getContributors, makeGetRouteParam('id')],
-  (contributors, id) =>
-    findItemById<StatefulContributor>(Number(id))(contributors)
+  [getStatefulContributors, makeGetRouteParam('id')],
+  (contributors, id) => findItemById<Contributor>(Number(id))(contributors)
 );
 
 export const getFeaturedNoticeId = createSelector(
   [getContributorFromRouteParam],
-  contributor => contributor?.contribution.example?.noticeId
-);
-
-export const areContributorsLoading = createSelector(
-  [getContributorsCollection],
-  contributorsCollection =>
-    isCollectionLoading<Contributor>(contributorsCollection)
-);
-
-export const getNoticesCollection = (state: ProfilesState) => state.notices;
-
-export const areNoticesLoading = createSelector(
-  [getNoticesCollection],
-  noticesCollection => isCollectionLoading<NoticeItem>(noticesCollection)
+  contributor => contributor?.contribution?.example?.noticeId
 );
 
 export const enhanceNotice = (contributors: Contributor[]) => (
@@ -50,22 +67,21 @@ export const enhanceNotice = (contributors: Contributor[]) => (
 });
 
 export const getNotices = createSelector(
-  [getNoticesCollection, getContributors],
-  (noticesCollection, contributors) =>
-    noticesCollection.items.map(enhanceNotice(contributors))
+  [getNoticesItems, getContributors],
+  (noticesItems, contributors) => noticesItems.map(enhanceNotice(contributors))
 );
 
 export const getContributorNotices = createSelector(
   [makeGetRouteParam('id'), getNotices],
   (contributorId, notices) =>
-    notices.filter(notice => notice.contributor.id === Number(contributorId))
+    notices.filter(notice => notice?.contributor?.id === Number(contributorId))
 );
 
 export const getContributorById = (id: number) =>
   createSelector([getContributors], findItemById(id));
 
 export const getFeaturedNotice = createSelector(
-  [getFeaturedNoticeId, getNotices, getContributors],
+  [getFeaturedNoticeId, getNotices],
   (featuredNoticeId, notices) =>
     notices.find(({ id }) => id === featuredNoticeId)
 );
