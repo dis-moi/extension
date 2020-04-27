@@ -17,9 +17,9 @@ const mapStateToProps = (state: OptionsState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   subscribe: (contributor: StatefulContributor) => () =>
-    dispatch(subscribe(contributor, { sendToBackground: true })),
+    dispatch(subscribe(contributor.id, { sendToBackground: true })),
   unsubscribe: (contributor: StatefulContributor) => () =>
-    dispatch(unsubscribe(contributor, { sendToBackground: true }))
+    dispatch(unsubscribe(contributor.id, { sendToBackground: true }))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps);

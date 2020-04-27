@@ -34,7 +34,9 @@ export function* installedSaga({
 
     yield call(awaitRehydrationSaga);
 
-    yield put(updateInstallationDetails(installationDetails, false));
+    yield put(
+      updateInstallationDetails(installationDetails, { sendToTab: false })
+    );
 
     const { reason } = installedDetails;
     if (reason === 'install') {

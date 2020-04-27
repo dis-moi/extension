@@ -7,7 +7,7 @@ import { SubscriptionsScreen } from './SubscriptionsScreen';
 
 storiesOf('Settings/SubscriptionsScreen', module)
   .addDecorator(getStory => <Wrapper>{getStory()}</Wrapper>)
-  .add('subcriptions', () => {
+  .add('subscriptions', () => {
     const subscriptions = [
       generateStatefulContributor({ subscribed: false }),
       generateStatefulContributor({ subscribed: true }),

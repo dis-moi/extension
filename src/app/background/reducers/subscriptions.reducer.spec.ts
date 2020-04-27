@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-expressions, @typescript-eslint/ban-ts-ignore */
 import { expect } from 'chai';
 import { subscribe, SubscribeAction } from 'app/actions';
-import { generateContributor } from 'test/fakers/generateContributor';
 import subscriptionsReducer, {
   SubscriptionsState
 } from './subscriptions.reducer';
@@ -15,9 +14,7 @@ describe('background > reducers > subscriptions', function() {
   });
   it('saves subscriptions', () => {
     const state: SubscriptionsState = [1, 2, 3];
-    const subscribeTo42: SubscribeAction = subscribe(
-      generateContributor({ id: 42 })
-    );
+    const subscribeTo42: SubscribeAction = subscribe(42);
 
     const expectedSubscriptions = [1, 2, 3, 42];
 
@@ -27,9 +24,7 @@ describe('background > reducers > subscriptions', function() {
   });
   it('saves unsubscriptions', () => {
     const state: SubscriptionsState = [1, 2, 3];
-    const unsubscribeFrom2: SubscribeAction = subscribe(
-      generateContributor({ id: 2 })
-    );
+    const unsubscribeFrom2: SubscribeAction = subscribe(2);
 
     expect(subscriptionsReducer(state, unsubscribeFrom2)).to.include.members([
       1,

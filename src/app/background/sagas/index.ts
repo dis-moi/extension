@@ -2,7 +2,6 @@ import { fork, all, call } from 'redux-saga/effects';
 import install from './install';
 import tab from './tab';
 import badge from './badge';
-import externalMessage from './externalMessage';
 import theme from '../../theme';
 import listenActionsFromMessages from '../../sagas/listenActionsFromMessages';
 import refreshMatchingContexts from './refreshMatchingContexts';
@@ -20,6 +19,8 @@ import subscriptionsSaga from './subscriptions';
 import tracking from './tracking';
 import MatomoTracker from 'app/matomo';
 import { fetchRestrictedContextsSaga } from './fetchRestrictedContexts.saga';
+import connectSaga from './connect.saga';
+import installationDetailsSaga from './installationDetails.saga';
 
 const tracker =
   process.env.TRACKING_SITE_ID && process.env.TRACKING_URL
@@ -29,7 +30,6 @@ const tracker =
 export default function* rootSaga() {
   yield fork(install);
   yield call(awaitRehydrationSaga);
-
   yield all([
     fork(fetchRestrictedContextsSaga),
     fork(refreshMatchingContexts),
@@ -37,7 +37,6 @@ export default function* rootSaga() {
     fork(tab),
     fork(badge(theme.badge)),
     fork(listenActionsFromMessages('background')),
-    fork(externalMessage),
     fork(watchBrowserAction),
     fork(watchActivatedTab),
     fork(handleBrowserAction),
@@ -47,6 +46,8 @@ export default function* rootSaga() {
     fork(setup),
     fork(tos),
     fork(tracking(tracker)),
-    fork(subscriptionsSaga)
+    fork(subscriptionsSaga),
+    fork(installationDetailsSaga),
+    fork(connectSaga)
   ]);
 }

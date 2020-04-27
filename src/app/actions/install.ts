@@ -1,8 +1,9 @@
-import { BaseAction } from '.';
-import { InstallationDetails } from '../lmem/installation';
-import { ContributorId } from '../lmem/contributor';
+import { ActionMeta, BaseAction, ErrorAction } from '.';
+import { InstallationDetails } from 'app/lmem/installation';
+import { ContributorId } from 'app/lmem/contributor';
+import { Level } from 'app/utils/Logger';
 
-export const INSTALLED = 'INSTALLED';
+export const INSTALLED = 'EXTENSION/INSTALLED';
 export interface InstalledAction extends BaseAction {
   type: typeof INSTALLED;
   payload: {
@@ -19,7 +20,37 @@ export const installed = (
   }
 });
 
-export const INSTALLATION_DETAILS = 'INSTALLATION_DETAILS';
+export const FETCH_INSTALLATION_DETAILS =
+  'EXTENSION/FETCH_INSTALLATION_DETAILS';
+export interface FetchInstallationDetailsAction extends BaseAction {
+  type: typeof FETCH_INSTALLATION_DETAILS;
+}
+export const fetchInstallationDetails = (
+  meta?: ActionMeta
+): FetchInstallationDetailsAction => ({
+  type: FETCH_INSTALLATION_DETAILS,
+  meta
+});
+
+export const FETCH_INSTALLATION_DETAILS_FAILURE =
+  'EXTENSION/FETCH_INSTALLATION_DETAILS_FAILURE';
+export interface FetchInstallationDetailsFailureAction extends ErrorAction {
+  type: typeof FETCH_INSTALLATION_DETAILS_FAILURE;
+}
+export const fetchInstallationDetailsFailure = (
+  error: Error,
+  meta?: ActionMeta
+): FetchInstallationDetailsFailureAction => ({
+  type: FETCH_INSTALLATION_DETAILS_FAILURE,
+  payload: error,
+  error: true,
+  meta: {
+    ...meta,
+    severity: Level.ERROR
+  }
+});
+
+export const INSTALLATION_DETAILS = 'EXTENSION/INSTALLATION_DETAILS';
 export interface InstallationDetailsAction extends BaseAction {
   type: typeof INSTALLATION_DETAILS;
   payload: {
@@ -29,15 +60,13 @@ export interface InstallationDetailsAction extends BaseAction {
 
 export const updateInstallationDetails = (
   installationDetails: InstallationDetails,
-  sendToTab = true
+  meta?: ActionMeta
 ): InstallationDetailsAction => ({
   type: INSTALLATION_DETAILS,
   payload: {
     installationDetails
   },
-  meta: {
-    sendToTab
-  }
+  meta
 });
 
 export const SETUP = 'SETUP';
