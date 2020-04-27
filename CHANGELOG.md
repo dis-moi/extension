@@ -1,3 +1,10 @@
+## [3.28.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.28.0...v3.28.1) (2020-04-27)
+
+
+### Bug Fixes
+
+* **styling:** Fix styled-component messing with host page ([3a83aa5](https://github.com/insitu-project/recommendations-webextension/commit/3a83aa59f063e1b53291ef2344f8046eccd2f4f5))
+
 # [3.28.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.27.0...v3.28.0) (2020-04-20)
 
 
