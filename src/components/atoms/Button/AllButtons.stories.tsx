@@ -212,6 +212,6 @@ const ButtonsList = () => {
   );
 };
 
-storiesOf('theme', module)
+storiesOf('Theme', module)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
-  .add('buttons', () => <ButtonsList />);
+  .add('Buttons', () => <ButtonsList />);
