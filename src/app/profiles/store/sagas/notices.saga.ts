@@ -25,7 +25,7 @@ function* fetchContributorNoticesSaga({
   payload: contributorId
 }: FetchContributorNoticesAction) {
   const contributor = yield call(retrieveContributorSaga, contributorId);
-  yield put(fetchNoticesRequest(contributor.noticesUrls));
+  yield put(fetchNoticesRequest(Object.values(contributor.noticesUrls)));
 }
 
 export default function* noticesRootSaga() {
