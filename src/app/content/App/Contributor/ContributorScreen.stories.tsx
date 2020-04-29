@@ -6,13 +6,13 @@ import ContributorScreen from './ContributorScreen';
 import { MemoryRouter as Router } from 'react-router';
 import { generateContributor } from 'test/fakers/generateContributor';
 
-storiesOf('screens/Contributor', module)
+storiesOf('Extension', module)
   .addDecorator(getStory => (
     <Router>
       <Notification close={action('close')}>{getStory()}</Notification>
     </Router>
   ))
-  .add('normal', () => (
+  .add('Contributor', () => (
     <ContributorScreen
       contributor={generateContributor()}
       subscribe={action('subscribe')}
