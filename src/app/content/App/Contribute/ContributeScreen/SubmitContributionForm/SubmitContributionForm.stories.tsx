@@ -5,10 +5,10 @@ import { action } from '@storybook/addon-actions';
 import SubmitContribution from './SubmitContributionForm';
 import { formStoreDecorator } from '../../../../../../../.storybook/decorators';
 
-storiesOf('forms/SubmitContribution', module)
+storiesOf('Components/Molecules', module)
   .addDecorator(formStoreDecorator)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
-  .add('normal', () => (
+  .add('SubmitContribution', () => (
     <SubmitContribution
       onUrlChange={action('onUrlChange')}
       onSubmit={action('onSubmit')}

@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import SubmitContribution from './QuestionForm';
 import { formStoreDecorator } from '../../../../../../../.storybook/decorators';
 
-storiesOf('forms/QuestionForm', module)
+storiesOf('Components/Molecules/QuestionForm', module)
   .addDecorator(formStoreDecorator)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
   .add('normal', () => (
