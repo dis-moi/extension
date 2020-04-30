@@ -9,6 +9,7 @@ import ContributorLarge from 'components/organisms/Contributor/ContributorLarge'
 import { Background, PageContainer, ProfileIntro } from '../Components';
 import FeaturedNotice from './FeaturedNotice';
 import ProfileNoticeList from './ProfileNoticeList';
+import SuggestionsSidebar from '../../../../options/App/Settings/SubscriptionsScreen/SuggestionsSidebar';
 
 export interface ProfileProps {
   loading: trilean;
@@ -61,6 +62,14 @@ export const Profile = ({
           <FeaturedNotice loading={noticesLoading} notice={featuredNotice} />
           <ProfileNoticeList loading={noticesLoading} notices={notices} />
         </PageContainer>
+        <SuggestionsSidebar
+          subscriptions={[]}
+          suggestions={[contributor, contributor]}
+          allContributors={[contributor, contributor]}
+          subscribe={() => {}}
+          unsubscribe={() => {}}
+          goToSuggestions={() => {}}
+        />
       </Background>
     </>
   );
