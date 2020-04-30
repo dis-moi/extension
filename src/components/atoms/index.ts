@@ -18,6 +18,9 @@ export { default as ExternalLink } from './ExternalLink';
 export { default as Link } from './Link';
 export { default as Anchor } from './Anchor';
 export { default as Title } from './Title';
+
 export { default as Box } from './Box/Box';
 
+// Text elements
 export { default as Title2 } from './Titles/Title2';
+export { default as Paragraph } from './Paragraph/Paragraph';

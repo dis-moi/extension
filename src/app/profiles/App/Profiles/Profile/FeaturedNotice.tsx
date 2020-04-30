@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from 'components/atoms';
+import { BorderButton, Box, Paragraph } from 'components/atoms';
 import { Loading } from 'components/atoms/icons';
 import { Notice } from 'app/lmem/notice';
 import { trilean } from 'types';
@@ -22,7 +22,16 @@ export const FeaturedNotice = ({ loading, notice }: ProfileNoticeListProps) => {
     return null;
   }
 
-  return <Box dangerouslySetInnerHTML={{ __html: notice.message }} />;
+  return (
+    <Box>
+      <p>Message épinglé sur blabla.fr/sdsqdfdsf… et d&apos;autres pages web</p>
+      <Paragraph dangerouslySetInnerHTML={{ __html: notice.message }} />
+      <div>
+        Visible depuis le 01/02/20
+        <BorderButton>Voir en context</BorderButton>
+      </div>
+    </Box>
+  );
 };
 
 export default FeaturedNotice;
