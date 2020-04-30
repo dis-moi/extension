@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
-import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
 import { StatefulContributor } from 'app/lmem/contributor';
 import { Notice } from 'app/lmem/notice';
+import { trilean } from 'types';
+import Error from '../../Error';
 import { Title2 } from 'components/atoms';
 import { Loading } from 'components/atoms/icons';
-import Error from '../../Error';
-import ProfileNoticeList from './ProfileNoticeList';
-import { trilean } from 'types';
+import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
+import { Background, PageContainer, ProfileIntro } from '../Components';
 import FeaturedNotice from './FeaturedNotice';
-import { Background, PageContainer } from '../Components';
+import ProfileNoticeList from './ProfileNoticeList';
 
 export interface ProfileProps {
   loading: trilean;
@@ -50,11 +50,13 @@ export const Profile = ({
     <>
       <Background>
         <PageContainer>
-          <ContributorLarge
-            contributor={contributor}
-            onSubscribe={subscribe}
-            onUnsubscribe={unsubscribe}
-          />
+          <ProfileIntro>
+            <ContributorLarge
+              contributor={contributor}
+              onSubscribe={subscribe}
+              onUnsubscribe={unsubscribe}
+            />
+          </ProfileIntro>
           <Title2>La contribution phare de Lutangar</Title2>
           <FeaturedNotice loading={noticesLoading} notice={featuredNotice} />
           <ProfileNoticeList loading={noticesLoading} notices={notices} />

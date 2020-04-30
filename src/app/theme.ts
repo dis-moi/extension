@@ -34,6 +34,9 @@ export interface Theme {
   contributorGrey: string;
   contributorIntro: string;
 
+  titleColor: string;
+  textColor: string;
+
   badge: BadgeTheme;
   basicButton: ButtonTheme;
   backgroundButton: ButtonTheme;
@@ -88,6 +91,9 @@ export const theme: Theme = {
   button: '#0C52B4',
   contributorGrey: '#F5F5F5',
   contributorIntro: '#100E0E',
+
+  titleColor: '#000',
+  textColor: '#22252B',
 
   // badge background colors
   badge: {

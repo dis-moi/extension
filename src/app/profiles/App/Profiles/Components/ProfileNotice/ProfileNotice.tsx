@@ -12,6 +12,7 @@ const NoticeBottomLine = styled.div`
   display: flex;
   align-items: center;
   margin-top: ${props => props.theme.fontSizeDefault};
+  font-size: 14px;
 
   & > ${BorderButton} {
     margin-left: 20px;

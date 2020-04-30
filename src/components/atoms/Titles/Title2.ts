@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 const Title2 = styled.h2`
-  font-size: 20px;
+  margin-bottom: 10px;
+  font-size: 19px;
+  font-weight: 900;
   color: ${props => props.theme.titleColor};
 `;
 
