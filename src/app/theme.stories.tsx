@@ -84,6 +84,6 @@ const ColorList = ({ colors }: ColorListProps) => {
   );
 };
 
-storiesOf('theme', module).add('theme', () => (
+storiesOf('Theme', module).add('Colors', () => (
   <ColorList colors={(theme as unknown) as ObjectWithColors} />
 ));

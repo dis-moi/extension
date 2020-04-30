@@ -6,11 +6,11 @@ import Notification from 'components/organisms/Notification';
 import SubmittedScreen from './SubmittedScreen';
 import { formStoreDecorator } from '../../../../../../.storybook/decorators';
 
-storiesOf('screens/Contribute/Submitted', module)
+storiesOf('Extension/Contribute', module)
   .addDecorator(formStoreDecorator)
   .addDecorator(getStory => (
     <Router>
       <Notification>{getStory()}</Notification>
     </Router>
   ))
-  .add('normal', () => <SubmittedScreen goBack={action('goBack')} />);
+  .add('03-Submitted', () => <SubmittedScreen goBack={action('goBack')} />);

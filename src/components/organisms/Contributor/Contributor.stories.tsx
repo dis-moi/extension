@@ -5,7 +5,7 @@ import ContributorCompact from './ContributorCompact';
 import { generateStatefulContributor } from 'test/fakers/generateContributor';
 import { action } from '@storybook/addon-actions';
 
-storiesOf('organisms/Contributor', module)
+storiesOf('Components/Organisms/Contributor', module)
   .add('large unsubscribed', () => (
     <ContributorLarge
       contributor={generateStatefulContributor({ subscribed: false })}

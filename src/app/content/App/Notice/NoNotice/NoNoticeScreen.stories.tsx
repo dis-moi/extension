@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import Notification from 'components/organisms/Notification';
 import NoNoticeScreen from './NoNoticeScreen';
 
-storiesOf('screens/Notice', module)
+storiesOf('Extension/Notice', module)
   .addDecorator(getStory => (
     <Router>
       <Notification>{getStory()}</Notification>

@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import NotificationHeader from '.';
 
-storiesOf('molecules/NotificationHeader', module)
+storiesOf('Components/Molecules/NotificationHeader', module)
   .add('normal', () => (
     <Router>
       <NotificationHeader close={action('close')} />

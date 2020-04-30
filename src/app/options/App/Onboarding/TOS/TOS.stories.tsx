@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import TOS from './TOS';
 import Wrapper from '../../ScreenWrapper';
 
-storiesOf('screens/Onboarding/ToS', module)
+storiesOf('Onboarding/ToS', module)
   .addDecorator(getStory => (
     <Router>
       <Wrapper>{getStory()}</Wrapper>

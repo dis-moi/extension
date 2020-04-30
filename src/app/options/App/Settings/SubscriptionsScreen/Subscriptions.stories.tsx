@@ -5,7 +5,7 @@ import { generateStatefulContributor } from 'test/fakers/generateContributor';
 import Wrapper from '../../ScreenWrapper';
 import { SubscriptionsScreen } from './SubscriptionsScreen';
 
-storiesOf('screens/SubscriptionsScreen', module)
+storiesOf('Settings/SubscriptionsScreen', module)
   .addDecorator(getStory => <Wrapper>{getStory()}</Wrapper>)
   .add('subcriptions', () => {
     const subscriptions = [

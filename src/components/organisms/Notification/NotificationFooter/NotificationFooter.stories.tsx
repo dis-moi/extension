@@ -3,7 +3,7 @@ import { StaticRouter as Router } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import NotificationFooter from './NotificationFooter';
 
-storiesOf('molecules/NotificationFooter', module)
+storiesOf('Components/Molecules/NotificationFooter', module)
   .add('On nothing', () => (
     <Router>
       <NotificationFooter />

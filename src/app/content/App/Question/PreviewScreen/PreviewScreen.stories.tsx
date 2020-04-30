@@ -7,7 +7,7 @@ import { action } from '@storybook/addon-actions';
 import { formStoreDecorator } from '../../../../../../.storybook/decorators';
 import { WEBSITE_DOMAIN } from 'app/lmem';
 
-storiesOf('screens/Question/Preview', module)
+storiesOf('Extension/Question/Preview', module)
   .addDecorator(formStoreDecorator)
   .addDecorator(getStory => (
     <Router>

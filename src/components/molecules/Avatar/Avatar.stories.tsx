@@ -4,7 +4,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import Avatar from './Avatar';
 import { generateContributor } from 'test/fakers/generateContributor';
 
-storiesOf('molecules/Avatar', module)
+storiesOf('Components/Molecules/Avatar', module)
   .addDecorator(withKnobs)
   .add('normal', () => (
     <Avatar contributor={generateContributor()} size="normal" />

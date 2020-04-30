@@ -186,7 +186,7 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
     const {
       notice: {
         message,
-        created,
+        modified,
         contributor,
         ratings: { likes, dislikes },
         state: { liked, disliked, dismissed }
@@ -205,7 +205,7 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
               onClick={this.handleContributorClicked}
             />
             <DetailsMetaValue>
-              <Date>Le {format(created, 'DD/MM/YYYY')}</Date>
+              <Date>Le {format(modified, 'DD/MM/YYYY')}</Date>
               <ContributorNotice onClick={this.handleContributorClicked}>
                 {contributor.name} :
               </ContributorNotice>
