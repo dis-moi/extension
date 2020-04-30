@@ -1,14 +1,22 @@
 import React from 'react';
+import styled from 'styled-components';
+import { Box, Title2 } from 'components/atoms';
 import { Loading } from 'components/atoms/icons';
 import { Notice } from 'app/lmem/notice';
 import { trilean } from 'types';
+
+const ProfileNoticeList = styled.section`
+  & > Box {
+    margin-top: 20px;
+  }
+`;
 
 export interface ProfileNoticeListProps {
   loading: trilean;
   notices: Notice[];
 }
 
-export const ProfileNoticeList = ({
+export const ProfileNoticeListContent = ({
   loading,
   notices = []
 }: ProfileNoticeListProps) => {
@@ -25,15 +33,16 @@ export const ProfileNoticeList = ({
   }
 
   return (
-    <ul>
+    <ProfileNoticeList>
+      <Title2>Ses dernières contributions</Title2>
       {notices.map(notice => (
-        <li
+        <Box
           key={notice.id}
           dangerouslySetInnerHTML={{ __html: notice.message }}
         />
       ))}
-    </ul>
+    </ProfileNoticeList>
   );
 };
 
-export default ProfileNoticeList;
+export default ProfileNoticeListContent;

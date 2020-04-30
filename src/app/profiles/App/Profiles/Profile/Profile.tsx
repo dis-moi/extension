@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
 import { StatefulContributor } from 'app/lmem/contributor';
 import { Notice } from 'app/lmem/notice';
+import { Title2 } from 'components/atoms';
 import { Loading } from 'components/atoms/icons';
 import Error from '../../Error';
 import ProfileNoticeList from './ProfileNoticeList';
@@ -54,6 +55,7 @@ export const Profile = ({
             onSubscribe={subscribe}
             onUnsubscribe={unsubscribe}
           />
+          <Title2>La contribution phare de Lutangar</Title2>
           <FeaturedNotice loading={noticesLoading} notice={featuredNotice} />
           <ProfileNoticeList loading={noticesLoading} notices={notices} />
         </PageContainer>

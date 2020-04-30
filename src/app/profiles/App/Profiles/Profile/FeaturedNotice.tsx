@@ -1,4 +1,5 @@
 import React from 'react';
+import { Box } from 'components/atoms';
 import { Loading } from 'components/atoms/icons';
 import { Notice } from 'app/lmem/notice';
 import { trilean } from 'types';
@@ -21,12 +22,7 @@ export const FeaturedNotice = ({ loading, notice }: ProfileNoticeListProps) => {
     return null;
   }
 
-  return (
-    <article
-      style={{ border: '1px solid red' }}
-      dangerouslySetInnerHTML={{ __html: notice.message }}
-    />
-  );
+  return <Box dangerouslySetInnerHTML={{ __html: notice.message }} />;
 };
 
 export default FeaturedNotice;
