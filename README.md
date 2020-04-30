@@ -4,8 +4,8 @@
 
 > _Dis moi_ means _Tell me_ in :fr: French.
 
-**Dismoi** is a web extension that allows anyone to post information directly on any web page.
-When you follow someone, its information shows up when you visit the commented web page.
+**Dismoi** is a web extension that allows anyone to post information directly on any web page you browse. 
+If you follow a contributor, his information messages are displayed at the time you visit the pages he has commented on.
 
 To lean more about the uses cases, visit the :fr: [**Dismoi** website](https://www.dismoi.io/).
 
@@ -113,20 +113,19 @@ It is automatically deployed to https://storybook.lmem.net on every `develop` br
 
 ## LICENSE
 
-[GNU GPL v3](LICENSE)
+[GNU AGPL V3](LICENSE)
 
-> Le Même en Mieux est un assistant d’achat indépendant des vendeurs et des marques.
-> Copyright (C) 2016 INSITU SAS
+> Copyright (C) 2016-2020 INSITU SAS
 >
 > This program is free software: you can redistribute it and/or modify
-> it under the terms of the GNU General Public License as published by
+> it under the terms of the GNU Affero General Public License as published by
 > the Free Software Foundation, either version 3 of the License, or
 > (at your option) any later version.
 >
 > This program is distributed in the hope that it will be useful,
 > but WITHOUT ANY WARRANTY; without even the implied warranty of
-> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-> GNU General Public License for more details.
+> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
+> GNU AFFERO GENERAL PUBLIC LICENSE for more details.
 >
 > You should have received a copy of the GNU General Public License
 > along with this program. If not, see <http://www.gnu.org/licenses/>.
