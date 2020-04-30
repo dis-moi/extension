@@ -35,10 +35,12 @@ export interface Theme {
   contributorIntro: string;
 
   badge: BadgeTheme;
-
   basicButton: ButtonTheme;
-
   backgroundButton: ButtonTheme;
+
+  // sizes:
+  radius: string;
+  fontSizeDefault: string;
 
   // iframe
   iframe: {
@@ -94,6 +96,10 @@ export const theme: Theme = {
       hasUnreadNotices: '#DB0D0D'
     }
   },
+
+  // sizes:
+  radius: '8px',
+  fontSizeDefault: '16px',
 
   // Button colors
   basicButton: {

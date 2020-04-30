@@ -7,6 +7,7 @@ import Error from '../../Error';
 import ProfileNoticeList from './ProfileNoticeList';
 import { trilean } from 'types';
 import FeaturedNotice from './FeaturedNotice';
+import { Background, PageContainer } from '../Components';
 
 export interface ProfileProps {
   loading: trilean;
@@ -46,13 +47,17 @@ export const Profile = ({
 
   return (
     <>
-      <ContributorLarge
-        contributor={contributor}
-        onSubscribe={subscribe}
-        onUnsubscribe={unsubscribe}
-      />
-      <FeaturedNotice loading={noticesLoading} notice={featuredNotice} />
-      <ProfileNoticeList loading={noticesLoading} notices={notices} />
+      <Background>
+        <PageContainer>
+          <ContributorLarge
+            contributor={contributor}
+            onSubscribe={subscribe}
+            onUnsubscribe={unsubscribe}
+          />
+          <FeaturedNotice loading={noticesLoading} notice={featuredNotice} />
+          <ProfileNoticeList loading={noticesLoading} notices={notices} />
+        </PageContainer>
+      </Background>
     </>
   );
 };
