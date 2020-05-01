@@ -4,7 +4,15 @@ import { StatefulContributor } from 'app/lmem/contributor';
 import { Notice } from 'app/lmem/notice';
 import { trilean } from 'types';
 import Error from '../../Error';
-import { Box, Button, Paragraph, Sidebar, Title2, TwoColumns } from 'components/atoms';
+import {
+  Box,
+  Button,
+  ButtonWithIcon,
+  Paragraph,
+  Sidebar,
+  Title2,
+  TwoColumns
+} from 'components/atoms';
 import { Loading } from 'components/atoms/icons';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
 import { Background, PageContainer, ProfileIntro } from '../Components';
@@ -18,6 +26,10 @@ const MainCol = styled.div``;
 const SidebarBox = styled(Box)`
   margin-bottom: 40px;
   padding: 10px;
+
+  ${Button} {
+    font-size: 13px;
+  }
 `;
 
 export interface ProfileProps {
@@ -78,9 +90,11 @@ export const Profile = ({
             </MainCol>
             <Sidebar>
               <SidebarBox>
-                <Paragraph>DisMoi permet aux internautes, médias et experts de vous
-                informer directement sur les pages web que vous visitez.</Paragraph>
-                <Button>Ajouter à mon navigateur</Button>
+                <Paragraph>
+                  DisMoi permet aux internautes, médias et experts de vous
+                  informer directement sur les pages web que vous visitez.
+                </Paragraph>
+                <ButtonWithIcon>Ajouter à mon navigateur</ButtonWithIcon>
               </SidebarBox>
               <Title2>Profils similaires</Title2>
               <SidebarBox>

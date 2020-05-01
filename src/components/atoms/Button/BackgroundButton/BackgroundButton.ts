@@ -3,14 +3,14 @@ import BorderButton from 'components/atoms/Button/BorderButton';
 
 export default styled(BorderButton)`
   color: #fff;
-  background-color: ${props => props.theme.button};
+  background-color: ${props => props.theme.Button.default};
 
   &:hover {
-    background-color: ${props => props.theme.backgroundButton.hover};
-    border-color: ${props => props.theme.backgroundButton.hover};
+    background-color: ${props => props.theme.Button.hover};
+    border-color: ${props => props.theme.Button.hover};
 
     svg {
-      fill: ${props => props.theme.button};
+      fill: ${props => props.theme.Button.default};
     }
   }
 

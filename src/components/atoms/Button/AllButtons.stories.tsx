@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { Button, BorderButton } from '../';
+import { Button, BorderButton, ButtonWithIcon } from '../';
 import AddNoticeButton from './AddNoticeButton';
 import { BackgroundButton, OpenButton } from './index';
 import Tab from '../Tab/Tab';
@@ -44,12 +44,12 @@ const OnboardingBottomLineButton = styled(OnboardinButton)`
 `;
 
 const OnboardingBottomLineSecondaryButton = styled(OnboardingBottomLineButton)`
-  background-color: ${props => props.theme.button};
-  border-color: ${props => props.theme.button};
+  background-color: ${props => props.theme.Button.default};
+  border-color: ${props => props.theme.Button.default};
 
   &:hover {
-    background-color: ${props => props.theme.backgroundButton.hover};
-    border-color: ${props => props.theme.backgroundButton.hover};
+    background-color: ${props => props.theme.Button.hover};
+    border-color: ${props => props.theme.Button.hover};
   }
 `;
 
@@ -103,6 +103,9 @@ const ButtonsList = () => {
       <ButtonsListWrapper>
         <div>
           <OpenButton />
+        </div>
+        <div>
+          <ButtonWithIcon>Ajouter à mon navigateur</ButtonWithIcon>
         </div>
 
         <div>

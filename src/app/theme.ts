@@ -3,13 +3,13 @@ import { BadgeTheme } from './lmem/badge';
 export interface ButtonTheme {
   default: string;
   hover: string;
-  pressed: string;
-  clicked: string;
   disabled: string;
+  radius: string;
 }
 
 export interface Theme {
   main: string;
+
   // colors
   primaryColor: string;
   activeColor: string;
@@ -38,8 +38,7 @@ export interface Theme {
   textColor: string;
 
   badge: BadgeTheme;
-  basicButton: ButtonTheme;
-  backgroundButton: ButtonTheme;
+  Button: ButtonTheme;
 
   // sizes:
   radius: string;
@@ -110,20 +109,11 @@ export const theme: Theme = {
   marginM: '30px',
 
   // Button colors
-  basicButton: {
-    default: '#1ECCB5',
-    hover: '#0E8D7C',
-    pressed: '#09574C',
-    clicked: '#06332C',
-    disabled: '#4D4D4D'
-  },
-
-  backgroundButton: {
+  Button: {
     default: '#0C52B4',
-    hover: '#062e65',
-    pressed: '#145514',
-    clicked: '#145514',
-    disabled: '#BAB8B8'
+    hover: '#05224B',
+    disabled: '#BAB8B8',
+    radius: '5px'
   },
 
   // iframe

@@ -2,10 +2,12 @@ export { default as Truncated } from './Truncated';
 
 export { default as AddNoticeContainer } from './AddNoticeContainer';
 
+// Buttons
 export { default as Button } from './Button';
 export { default as BackgroundButton } from './Button/BackgroundButton';
 export { default as BorderButton } from './Button/BorderButton';
 export { default as OpenButton } from './Button/OpenButton';
+export { default as ButtonWithIcon } from './Button/ButtonWithIcon';
 
 export { default as ContentWrapper } from './ContentWrapper';
 export { default as ContentWrapperBackground } from './ContentWrapperBackground';

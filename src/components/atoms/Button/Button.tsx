@@ -56,27 +56,27 @@ export default styled(Button)`
   box-sizing: border-box;
   padding: 0;
   font-weight: bold;
+  font-size: ${props => props.theme.fontSizeDefault};
   line-height: 1;
   color: ${props => props.theme.secondaryColor};
   text-transform: uppercase;
   text-decoration: underline;
   background: none;
   border: none;
-  border-radius: 5px;
+  border-radius: ${props => props.theme.Button.radius};
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  font-size: 15px;
 
   &:hover {
-    color: ${props => props.theme.activeColor};
+    color: ${props => props.theme.Button.hover};
   }
 
   &:focus {
-    outline: 1px dotted ${props => props.theme.activeColor};
+    outline: 1px dotted ${props => props.theme.Button.hover};
   }
 
   &:active {
-    outline: 1px dotted ${props => props.theme.activeColor};
+    outline: 1px dotted ${props => props.theme.Button.hover};
   }
 
   &:disabled {
@@ -93,8 +93,8 @@ export default styled(Button)`
   &:disabled:hover,
   &:disabled:active,
   &:disabled:visited {
-    background-color: ${props => props.theme.basicButton.disabled};
-    border-color: ${props => props.theme.basicButton.disabled};
+    background-color: ${props => props.theme.Button.disabled};
+    border-color: ${props => props.theme.Button.disabled};
   }
 
   ${LoadingRotator} svg {
