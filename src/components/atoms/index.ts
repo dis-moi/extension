@@ -21,6 +21,10 @@ export { default as Title } from './Title';
 
 export { default as Box } from './Box/Box';
 
+// Layout elements
+export { default as TwoColumns } from './Layout/TwoColumns';
+export { default as Sidebar } from './Layout/Sidebar';
+
 // Text elements
 export { default as Title2 } from './Titles/Title2';
 export { default as Paragraph } from './Paragraph/Paragraph';

@@ -1,22 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { findContributorIn, StatefulContributor } from 'app/lmem/contributor';
-import ContributorCompact from 'components/organisms/Contributor/ContributorCompact';
 import CenterContainer from 'components/atoms/CenterContainer';
 import Button from 'components/atoms/Button';
-
-const Sidebar = styled.aside`
-  ${Button} {
-    margin-top: 10px;
-  }
-`;
-
-const SidebarTitle = styled.h2`
-  margin: 0 0 5px;
-  font-size: 20px;
-  color: ${props => props.theme.activeColor};
-  font-weight: bold;
-`;
+import ContributorCompact from 'components/organisms/Contributor/ContributorCompact';
 
 const SidebarEmpty = styled.p`
   text-align: center;
@@ -51,8 +38,7 @@ const SuggestionsSidebar = ({
   );
 
   return (
-    <Sidebar>
-      <SidebarTitle>Suggestions</SidebarTitle>
+    <>
       {suggestionsToRender.length > 0 ? (
         <>
           {suggestionsToRender.map(contributor => (
@@ -70,7 +56,7 @@ const SuggestionsSidebar = ({
       ) : (
         <SidebarEmpty>Pas de suggestions pour le moment.</SidebarEmpty>
       )}
-    </Sidebar>
+    </>
   );
 };
 

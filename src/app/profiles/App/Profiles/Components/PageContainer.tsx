@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const PageContainer = styled.div`
   max-width: 100%;
-  width: 880px;
+  width: 996px;
   margin: 0 auto;
 `;
 

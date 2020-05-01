@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const Title2 = styled.h2`
+  margin-top: 0;
   margin-bottom: 10px;
   font-size: 19px;
   font-weight: 900;
