@@ -105,7 +105,7 @@ export const SubscriptionsScreen = ({
           allContributors={allContributors}
           subscribe={subscribe}
           unsubscribe={unsubscribe}
-          goToSuggestions={goToSuggestions}
+          seeMore={goToSuggestions}
         />
       </SidebarWrapper>
     </TwoColumns>

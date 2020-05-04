@@ -18,8 +18,7 @@ import ContributorLarge from 'components/organisms/Contributor/ContributorLarge'
 import { Background, PageContainer, ProfileIntro } from '../Components';
 import FeaturedNotice from './FeaturedNotice';
 import ProfileNoticeList from './ProfileNoticeList';
-
-import SuggestionsSidebar from '../../../../options/App/Settings/SubscriptionsScreen/SuggestionsSidebar';
+import SimilarProfiles from './SimilarProfiles';
 
 const MainCol = styled.div``;
 
@@ -98,14 +97,7 @@ export const Profile = ({
               </SidebarBox>
               <Title2>Profils similaires</Title2>
               <SidebarBox>
-                <SuggestionsSidebar
-                  subscriptions={[]}
-                  suggestions={[contributor, contributor]}
-                  allContributors={[contributor, contributor]}
-                  subscribe={() => {}}
-                  unsubscribe={() => {}}
-                  goToSuggestions={() => {}}
-                />
+                <SimilarProfiles />
               </SidebarBox>
             </Sidebar>
           </TwoColumns>
