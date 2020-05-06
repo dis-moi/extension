@@ -24,10 +24,14 @@ export const FeaturedNotice = ({ loading, notice }: ProfileNoticeListProps) => {
 
   return (
     <Box>
-      <p>Message épinglé sur blabla.fr/sdsqdfdsf… et d&apos;autres pages web</p>
+      <p>
+        Message épinglé sur{' '}
+        {notice.contributor.contribution.example.matchingUrl} et d&apos;autres
+        pages web
+      </p>
       <Paragraph dangerouslySetInnerHTML={{ __html: notice.message }} />
       <div>
-        Visible depuis le 01/02/20
+        Visible depuis le {notice.created}
         <BorderButton>Voir en context</BorderButton>
       </div>
     </Box>
