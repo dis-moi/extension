@@ -17,6 +17,7 @@ import NavLink from 'components/organisms/Notification/NotificationFooter/NavLin
 import Empty from 'app/options/App/Settings/SubscriptionsScreen/Empty';
 import OnboardinButton from 'app/options/App/Onboarding/atoms/OnboardingButton';
 import { MemoryRouter as Router } from 'react-router';
+import Download from '../icons/Download';
 
 const ButtonsListBackground = styled.div`
   padding: 20px;
@@ -105,7 +106,9 @@ const ButtonsList = () => {
           <OpenButton />
         </div>
         <div>
-          <ButtonWithIcon>Ajouter à mon navigateur</ButtonWithIcon>
+          <ButtonWithIcon>
+            Ajouter à mon navigateur <Download />
+          </ButtonWithIcon>
         </div>
 
         <div>

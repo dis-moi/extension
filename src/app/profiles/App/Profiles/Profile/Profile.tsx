@@ -13,7 +13,7 @@ import {
   Title2,
   TwoColumns
 } from 'components/atoms';
-import { Loading } from 'components/atoms/icons';
+import { Download, Loading } from 'components/atoms/icons';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
 import { Background, PageContainer, ProfileIntro } from '../Components';
 import FeaturedNotice from './FeaturedNotice';
@@ -93,7 +93,9 @@ export const Profile = ({
                   DisMoi permet aux internautes, médias et experts de vous
                   informer directement sur les pages web que vous visitez.
                 </Paragraph>
-                <ButtonWithIcon>Ajouter à mon navigateur</ButtonWithIcon>
+                <ButtonWithIcon>
+                  Ajouter à mon navigateur <Download />
+                </ButtonWithIcon>
               </SidebarBox>
               <Title2>Profils similaires</Title2>
               <SidebarBox>
