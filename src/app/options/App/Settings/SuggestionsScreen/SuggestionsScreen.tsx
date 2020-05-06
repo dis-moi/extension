@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import * as R from 'ramda';
 import {
   findContributorIn,
@@ -7,19 +6,8 @@ import {
   StatefulContributor
 } from 'app/lmem/contributor';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
+import ContributorsList from 'components/organisms/Contributor/ContributorsList';
 import ContributorsListEmpty from 'app/options/App/Settings/ContributorsListEmpty';
-
-const ContributorsList = styled.section`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-column-gap: 30px;
-  grid-row-gap: 30px;
-
-  @media (max-width: 975px) {
-    grid-column-gap: 15px;
-    grid-row-gap: 15px;
-  }
-`;
 
 export interface SuggestionsScreenProps {
   suggestions: StatefulContributor[];

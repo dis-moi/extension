@@ -1,14 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { StatefulContributor } from 'app/lmem/contributor';
-import Avatar from 'components/molecules/Avatar';
-import UserName from 'components/atoms/UserName/UserName';
-import Stat from 'components/atoms/Stat/Stat';
-import BubbleIcon from 'components/atoms/icons/Bubble';
-import StatType from 'components/atoms/Stat/StatType';
-import ContributorButton from 'components/organisms/Contributor/ContributorButton';
 import { Loading } from 'components/atoms/icons';
 import { trilean } from 'types';
+import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
+import ContributorsList from 'components/organisms/Contributor/ContributorsList';
+import { Background, PageContainer } from '../Components';
 
 export interface ProfileListProps {
   loading: trilean;
@@ -34,28 +30,20 @@ const ProfileList = ({
   }
 
   return (
-    <>
-      {contributors.map(contributor => (
-        <section key={contributor.id}>
-          <Avatar size="normal" contributor={contributor} />
-          <UserName>
-            <Link to={`/les-contributeurs/${contributor.id}`}>
-              {contributor.name}
-            </Link>
-          </UserName>
-          <Stat>
-            <BubbleIcon /> {contributor.contributions}{' '}
-            <StatType>contributions</StatType>
-          </Stat>
-          <ContributorButton
-            subscribed={contributor.subscribed}
-            onSubscribe={subscribe(contributor)}
-            onUnsubscribe={unsubscribe(contributor)}
-          />
-          <p>{contributor.intro}</p>
-        </section>
-      ))}
-    </>
+    <Background>
+      <PageContainer>
+        <ContributorsList>
+          {contributors.map(contributor => (
+            <ContributorLarge
+              key={contributor.id}
+              contributor={contributor}
+              onSubscribe={subscribe(contributor)}
+              onUnsubscribe={unsubscribe(contributor)}
+            />
+          ))}
+        </ContributorsList>
+      </PageContainer>
+    </Background>
   );
 };
 
