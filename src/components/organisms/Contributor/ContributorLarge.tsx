@@ -129,4 +129,4 @@ ContributorLarge.defaultProps = {
   highlightExampleLink: false
 };
 
-export default ContributorLarge;
+export default styled(ContributorLarge)``;
