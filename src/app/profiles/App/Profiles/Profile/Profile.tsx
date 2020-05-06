@@ -29,6 +29,10 @@ const SidebarBox = styled(Box)`
   ${Button} {
     font-size: 13px;
   }
+
+  ${ButtonWithIcon} {
+    margin: 16px auto 0;
+  }
 `;
 
 export interface ProfileProps {
@@ -80,23 +84,29 @@ export const Profile = ({
                   onUnsubscribe={unsubscribe}
                 />
               </ProfileIntro>
+
               <Title2>La contribution phare de Lutangar</Title2>
+
               <FeaturedNotice
                 loading={noticesLoading}
                 notice={featuredNotice}
               />
+
               <ProfileNoticeList loading={noticesLoading} notices={notices} />
             </MainCol>
+
             <Sidebar>
               <SidebarBox>
                 <Paragraph>
                   DisMoi permet aux internautes, médias et experts de vous
                   informer directement sur les pages web que vous visitez.
                 </Paragraph>
+
                 <ButtonWithIcon>
                   Ajouter à mon navigateur <Download />
                 </ButtonWithIcon>
               </SidebarBox>
+
               <Title2>Profils similaires</Title2>
               <SidebarBox>
                 <SimilarProfiles />
