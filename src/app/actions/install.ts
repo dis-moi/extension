@@ -1,17 +1,18 @@
 import { BaseAction } from '.';
 import { InstallationDetails } from '../lmem/installation';
 import { ContributorId } from '../lmem/contributor';
+import { InstalledDetails } from 'webext/types';
 
 export const INSTALLED = 'INSTALLED';
 export interface InstalledAction extends BaseAction {
   type: typeof INSTALLED;
   payload: {
-    installedDetails: chrome.runtime.InstalledDetails;
+    installedDetails: InstalledDetails;
   };
 }
 
 export const installed = (
-  installedDetails: chrome.runtime.InstalledDetails
+  installedDetails: InstalledDetails
 ): InstalledAction => ({
   type: INSTALLED,
   payload: {

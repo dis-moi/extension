@@ -21,7 +21,7 @@ console.info(`BACKEND_ORIGIN "${BACKEND_ORIGIN}"`);
 
 onInstalled.then(installedDetails => {
   if (typeof UNINSTALL_ORIGIN === 'string') {
-    chrome.runtime.setUninstallURL(UNINSTALL_ORIGIN);
+    browser.runtime.setUninstallURL(UNINSTALL_ORIGIN);
   }
 
   store.dispatch(installed(installedDetails));

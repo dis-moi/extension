@@ -1,10 +1,6 @@
-import Tab from 'app/lmem/tab';
-
-const getSelectedTab = (): Promise<Tab> =>
-  new Promise(resolve => {
-    chrome.tabs.query({ active: true, currentWindow: true }, ([selectedTab]) =>
-      resolve(selectedTab as Tab)
-    );
-  });
+const getSelectedTab = () =>
+  browser.tabs
+    .query({ active: true, currentWindow: true })
+    .then(([selectedTab]) => selectedTab);
 
 export default getSelectedTab;

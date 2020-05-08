@@ -1,3 +1,2 @@
-import getCurrentTab from './getCurrentTab';
-
-export default () => getCurrentTab().then(tab => chrome.tabs.remove(tab.id));
+export default () =>
+  browser.tabs.getCurrent().then(({ id }) => browser.tabs.remove(id || []));

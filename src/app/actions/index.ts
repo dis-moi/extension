@@ -68,7 +68,7 @@ import { LoginAction } from './user';
 import * as R from 'ramda';
 import { Level } from '../utils/Logger';
 
-type MessageSender = chrome.runtime.MessageSender;
+type MessageSender = browser.runtime.MessageSender;
 
 export * from './badge';
 export * from './tabsLifecycle';
