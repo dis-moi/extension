@@ -13,7 +13,7 @@ import Subscriptions from './Subscriptions';
 
 const App = () => (
   <Provider store={store}>
-    <FontsStyle getURL={(path: string) => path} />
+    <FontsStyle getURL={(path: string) => `.${path}`} />
     <ThemeProvider theme={theme}>
       <ConnectedRouter history={history}>
         <Switch>
