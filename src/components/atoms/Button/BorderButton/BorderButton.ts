@@ -2,9 +2,7 @@ import styled from 'styled-components';
 import Button, { ButtonProps } from 'components/atoms/Button/Button';
 
 export default styled(Button)<ButtonProps>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
   min-width: 130px;
   height: 28px;
   padding: 0 12px;
