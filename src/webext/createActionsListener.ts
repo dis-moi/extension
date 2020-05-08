@@ -6,11 +6,11 @@ type Emit = (action: Action) => void;
 
 const createActionsListener = (emit: Emit) => {
   const messageHandler = createMessageHandler(emit);
-  chrome.runtime.onMessage.addListener(messageHandler);
+  browser.runtime.onMessage.addListener(messageHandler);
   Logger.info('Listening actions ...');
 
   return () => {
-    chrome.runtime.onMessage.removeListener(messageHandler);
+    browser.runtime.onMessage.removeListener(messageHandler);
   };
 };
 

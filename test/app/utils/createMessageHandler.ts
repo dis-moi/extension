@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
 // @ts-ignore
-global.chrome = { extension: { getURL: () => 'options.html' } };
+global.browser = { extension: { getURL: () => 'options.html' } };
 
 import { noticesFound } from 'app/actions/notices';
 import createMessageHandler from 'webext/createMessageHandler';

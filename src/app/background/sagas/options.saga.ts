@@ -28,7 +28,7 @@ const isOptionsTabReadyAction = (action: AppAction): boolean =>
 
 function* openOptionsSaga({ payload: pathname }: OptionsRequestedAction) {
   try {
-    const tab: chrome.tabs.Tab = yield call(openOptions, pathname);
+    const tab: browser.tabs.Tab = yield call(openOptions, pathname);
     if (tab && tab.id) {
       yield put(optionsTabOpened(tab as Tab));
     }
@@ -40,7 +40,7 @@ function* openOptionsSaga({ payload: pathname }: OptionsRequestedAction) {
 function* sendTosStateToOptionsTab(
   action: ListeningActionsReadyAction | TosAcceptedAction
 ) {
-  const tab = action.meta!.tab as chrome.tabs.Tab & Tab;
+  const tab = action.meta!.tab as browser.tabs.Tab & Tab;
   const transmitAction = assocMetaIfNotGiven(
     'tab',
     tab
@@ -51,7 +51,7 @@ function* sendTosStateToOptionsTab(
 function* optionsTabReadySaga(action: ListeningActionsReadyAction) {
   yield put(refreshContributors());
 
-  const tab = action.meta.tab as chrome.tabs.Tab & Tab;
+  const tab = action.meta.tab as browser.tabs.Tab & Tab;
   const installationDetails = yield select(getInstallationDetails);
   const transmitAction = assocMetaIfNotGiven(
     'tab',

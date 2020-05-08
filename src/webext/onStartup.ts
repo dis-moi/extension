@@ -1,3 +1,3 @@
 export default new Promise<{}>(resolve =>
-  chrome.runtime.onStartup.addListener(() => resolve({}))
+  browser.runtime.onStartup.addListener(() => resolve({}))
 );

@@ -14,7 +14,7 @@ import { getContributorsWithSubscriptionState } from '../selectors/subscriptions
 import { getTabsList } from '../selectors/tabs';
 import sendToTabSaga from './lib/sendToTab.saga';
 
-function* sendContributorsToTab(tab: chrome.tabs.Tab & Tab) {
+function* sendContributorsToTab(tab: browser.tabs.Tab & Tab) {
   const contributors = yield select(getContributorsWithSubscriptionState);
   const contributorsTransmittedAction = assocMetaIfNotGiven(
     'tab',
@@ -24,7 +24,7 @@ function* sendContributorsToTab(tab: chrome.tabs.Tab & Tab) {
 }
 
 function* sendContributorsBackToTab(action: ListeningActionsReadyAction) {
-  const tab = action.meta.tab as chrome.tabs.Tab & Tab;
+  const tab = action.meta.tab as browser.tabs.Tab & Tab;
   yield sendContributorsToTab(tab);
 }
 
