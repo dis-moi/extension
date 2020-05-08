@@ -76,6 +76,7 @@ interface Props {
   onUnsubscribe: () => void;
   showExampleLink?: boolean;
   highlightExampleLink?: boolean;
+  showContributionsLink?: boolean;
 }
 
 const ContributorLarge = ({
@@ -83,7 +84,8 @@ const ContributorLarge = ({
   onSubscribe,
   onUnsubscribe,
   showExampleLink,
-  highlightExampleLink
+  highlightExampleLink,
+  showContributionsLink
 }: Props) => (
   <ContributorCard>
     <ContributorWrapper>
@@ -121,12 +123,21 @@ const ContributorLarge = ({
         Voir un exemple de ses contributions
       </ContributionExample>
     )}
+    {showContributionsLink && (
+      <ContributionExample
+        href={contributor.contribution.example.matchingUrl}
+        highlighted={highlightExampleLink}
+      >
+        Voir ses contributions
+      </ContributionExample>
+    )}
   </ContributorCard>
 );
 
 ContributorLarge.defaultProps = {
-  showExampleLink: false,
-  highlightExampleLink: false
+  showExamshowExampleLinkpleLink: false,
+  highlightExampleLink: false,
+  showContributionsLink: false
 };
 
 export default styled(ContributorLarge)``;

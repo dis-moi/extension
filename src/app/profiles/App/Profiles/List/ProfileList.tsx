@@ -11,8 +11,7 @@ export interface ProfileListProps {
   contributors: StatefulContributor[];
   subscribe: (contributor: StatefulContributor) => () => void;
   unsubscribe: (contributor: StatefulContributor) => () => void;
-  showExampleLink?: boolean;
-  highlightExampleLink?: boolean;
+  showContributionsLink?: boolean;
 }
 
 const ProfileList = ({
@@ -39,6 +38,7 @@ const ProfileList = ({
               contributor={contributor}
               onSubscribe={subscribe(contributor)}
               onUnsubscribe={unsubscribe(contributor)}
+              showContributionsLink
             />
           ))}
         </ContributorsList>
