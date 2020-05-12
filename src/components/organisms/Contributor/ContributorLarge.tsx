@@ -8,33 +8,12 @@ import StatType from 'components/atoms/Stat/StatType';
 import BubbleIcon from 'components/atoms/icons/Bubble';
 import { ExternalLink } from 'components/atoms';
 import ContributorButton from './ContributorButton';
-
-const ContributorCard = styled.div`
-  padding: 12px 15px 20px;
-  background-color: #fff;
-  border: 1px solid #dedede;
-  border-radius: 8px;
-
-  ${UserName} {
-    margin-bottom: 5px;
-  }
-`;
-
-const ContributorWrapper = styled.div`
-  display: flex;
-`;
-
-const ContributorInfos = styled.div`
-  margin-left: 15px;
-`;
-
-const StatsWrapper = styled.div`
-  width: 100%;
-
-  ${BubbleIcon} {
-    margin-right: 6px;
-  }
-`;
+import {
+  ContributorCard,
+  ContributorWrapper,
+  ContributorInfos,
+  StatsWrapper
+} from 'components/atoms/Contributor/index';
 
 interface IntroProps {
   intro: string;

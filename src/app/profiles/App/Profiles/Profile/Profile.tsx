@@ -14,9 +14,6 @@ import {
   TwoColumns
 } from 'components/atoms';
 import { Download, Loading } from 'components/atoms/icons';
-import ContributorLarge, {
-  ContributorLink
-} from 'components/organisms/Contributor/ContributorLarge';
 import { Background, PageContainer, ProfileIntro } from '../Components';
 import FeaturedNotice from './FeaturedNotice';
 import ProfileNoticeList from './ProfileNoticeList';
@@ -79,20 +76,11 @@ export const Profile = ({
         <PageContainer>
           <TwoColumns>
             <MainCol>
-              <ProfileIntro>
-                <ContributorLarge
-                  contributor={contributor}
-                  onSubscribe={subscribe}
-                  onUnsubscribe={unsubscribe}
-                  link={
-                    <ContributorLink
-                      href={contributor.contribution.example.matchingUrl}
-                    >
-                      My website
-                    </ContributorLink>
-                  }
-                />
-              </ProfileIntro>
+              <ProfileIntro
+                contributor={contributor}
+                subscribe={subscribe}
+                unsubscribe={unsubscribe}
+              />
 
               <Title2>La contribution phare de Lutangar</Title2>
 
