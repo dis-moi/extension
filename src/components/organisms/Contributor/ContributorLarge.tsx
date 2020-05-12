@@ -61,7 +61,7 @@ interface ContributionExampleProps {
   highlighted?: boolean;
 }
 
-const ContributionExample = styled(ExternalLink)<ContributionExampleProps>`
+export const ContributorLink = styled(ExternalLink)<ContributionExampleProps>`
   display: inline-block;
   margin-top: 18px;
   font-size: 12px;
@@ -74,19 +74,15 @@ interface Props {
   contributor: StatefulContributor;
   onSubscribe: () => void;
   onUnsubscribe: () => void;
-  showExampleLink?: boolean;
-  highlightExampleLink?: boolean;
-  showContributionsLink?: boolean;
   className?: string;
+  link?: React.ReactElement;
 }
 
 const ContributorLarge = ({
   contributor,
   onSubscribe,
   onUnsubscribe,
-  showExampleLink,
-  highlightExampleLink,
-  showContributionsLink,
+  link,
   className
 }: Props) => (
   <ContributorCard className={className}>
@@ -116,20 +112,7 @@ const ContributorLarge = ({
     <ContributorIntro
       intro={contributor.intro || 'Description non renseignée'}
     />
-
-    {showExampleLink && contributor.contribution.example.matchingUrl && (
-      <ContributionExample
-        href={contributor.contribution.example.matchingUrl}
-        highlighted={highlightExampleLink}
-      >
-        Voir un exemple de ses contributions
-      </ContributionExample>
-    )}
-    {showContributionsLink && (
-      <ContributionExample href={contributor.contribution.example.matchingUrl}>
-        Voir ses contributions
-      </ContributionExample>
-    )}
+    {link}
   </ContributorCard>
 );
 

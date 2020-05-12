@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { findContributorIn, StatefulContributor } from 'app/lmem/contributor';
 import { Sidebar, Title2, TwoColumns } from 'components/atoms';
-import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
+import Button from 'components/atoms/Button';
+import ContributorLarge, {
+  ContributorLink
+} from 'components/organisms/Contributor/ContributorLarge';
 import ContributorsListEmpty from 'app/options/App/Settings/ContributorsListEmpty';
 import Empty from './Empty';
 import SuggestionsSidebar from './SuggestionsSidebar';
-import Button from 'components/atoms/Button';
 
 const SidebarWrapper = styled(Sidebar)`
   ${Button} {
@@ -83,8 +85,14 @@ export const SubscriptionsScreen = ({
           contributor={contributor}
           onSubscribe={subscribe(contributor)}
           onUnsubscribe={unsubscribe(contributor)}
-          showExampleLink
-          highlightExampleLink={highlightExampleLink}
+          link={
+            <ContributorLink
+              href={contributor.contribution.example.matchingUrl}
+              highlighted={highlightExampleLink}
+            >
+              Voir un exemple de ses contributions
+            </ContributorLink>
+          }
         />
       ))}
     </ContributorsList>

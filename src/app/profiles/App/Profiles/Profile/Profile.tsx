@@ -14,7 +14,9 @@ import {
   TwoColumns
 } from 'components/atoms';
 import { Download, Loading } from 'components/atoms/icons';
-import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
+import ContributorLarge, {
+  ContributorLink
+} from 'components/organisms/Contributor/ContributorLarge';
 import { Background, PageContainer, ProfileIntro } from '../Components';
 import FeaturedNotice from './FeaturedNotice';
 import ProfileNoticeList from './ProfileNoticeList';
@@ -82,6 +84,13 @@ export const Profile = ({
                   contributor={contributor}
                   onSubscribe={subscribe}
                   onUnsubscribe={unsubscribe}
+                  link={
+                    <ContributorLink
+                      href={contributor.contribution.example.matchingUrl}
+                    >
+                      My website
+                    </ContributorLink>
+                  }
                 />
               </ProfileIntro>
 
