@@ -77,6 +77,7 @@ interface Props {
   showExampleLink?: boolean;
   highlightExampleLink?: boolean;
   showContributionsLink?: boolean;
+  className?: string;
 }
 
 const ContributorLarge = ({
@@ -85,9 +86,10 @@ const ContributorLarge = ({
   onUnsubscribe,
   showExampleLink,
   highlightExampleLink,
-  showContributionsLink
+  showContributionsLink,
+  className
 }: Props) => (
-  <ContributorCard>
+  <ContributorCard className={className}>
     <ContributorWrapper>
       <Avatar size="normal" contributor={contributor} />
 
