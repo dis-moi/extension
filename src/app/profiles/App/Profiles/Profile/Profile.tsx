@@ -108,9 +108,9 @@ export const Profile = ({
               </SidebarBox>
 
               <Title2>Profils similaires</Title2>
-              <SidebarBox>
+              {/*<SidebarBox>
                 <SimilarProfiles />
-              </SidebarBox>
+              </SidebarBox>*/}
             </Sidebar>
           </TwoColumns>
         </PageContainer>

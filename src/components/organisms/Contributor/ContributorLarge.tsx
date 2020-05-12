@@ -126,10 +126,7 @@ const ContributorLarge = ({
       </ContributionExample>
     )}
     {showContributionsLink && (
-      <ContributionExample
-        href={contributor.contribution.example.matchingUrl}
-        highlighted={highlightExampleLink}
-      >
+      <ContributionExample href={contributor.contribution.example.matchingUrl}>
         Voir ses contributions
       </ContributionExample>
     )}
