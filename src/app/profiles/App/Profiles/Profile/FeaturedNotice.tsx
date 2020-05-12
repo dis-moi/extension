@@ -1,4 +1,5 @@
 import React from 'react';
+import { format } from 'date-fns';
 import { BorderButton, Box, Paragraph } from 'components/atoms';
 import { Loading } from 'components/atoms/icons';
 import { Notice } from 'app/lmem/notice';
@@ -31,7 +32,7 @@ export const FeaturedNotice = ({ loading, notice }: ProfileNoticeListProps) => {
       </p>
       <Paragraph dangerouslySetInnerHTML={{ __html: notice.message }} />
       <div>
-        Visible depuis le {notice.created}
+        Visible depuis le {format(notice.created, 'DD/MM/YYYY')}
         <BorderButton>Voir en context</BorderButton>
       </div>
     </Box>
