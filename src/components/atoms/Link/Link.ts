@@ -5,8 +5,6 @@ import { style } from './Anchor';
 export default styled(Link)`
   ${style}
   font-weight: normal;
-  display: inline-flex;
-  align-items: baseline;
   text-decoration: none;
 
   & > svg {

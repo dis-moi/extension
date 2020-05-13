@@ -9,8 +9,9 @@ import {
 } from 'components/atoms/Contributor/index';
 import UserName from 'components/atoms/UserName/UserName';
 import Avatar from 'components/molecules/Avatar/Avatar';
-import ExternalLink from 'components/atoms/ExternalLink';
+import ExternalLink from 'components/atoms/Link/ExternalLink';
 import { StatefulContributor } from 'app/lmem/contributor';
+import { LinkIcon } from 'components/atoms/icons';
 
 const ProfileIntroContent = styled.section`
   margin-bottom: 40px;
@@ -82,7 +83,7 @@ export const ProfileIntro = ({
           onUnsubscribe={unsubscribe}
           link={
             <ExternalLink href={contributor.contribution.example.matchingUrl}>
-              My website
+              <LinkIcon /> My website
             </ExternalLink>
           }
         />
