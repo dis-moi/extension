@@ -7,6 +7,8 @@ import { ThemeProvider } from 'styled-components';
 import FontsStyle from 'components/atoms/FontsStyle';
 import theme from 'app/theme';
 import store, { history } from '../store';
+import Background from './Background';
+import PageContainer from './PageContainer';
 import Profiles from './Profiles';
 import Error from './Error';
 import Subscriptions from './Subscriptions';
@@ -16,12 +18,16 @@ const App = () => (
     <FontsStyle getURL={(path: string) => `.${path}`} />
     <ThemeProvider theme={theme}>
       <ConnectedRouter history={history}>
-        <Switch>
-          <Redirect exact path="/" to="/les-contributeurs" />
-          <Route path="/les-contributeurs" component={Profiles} />
-          <Route path="/mes-abonnements" component={Subscriptions} />
-          <Route component={Error} />
-        </Switch>
+        <Background>
+          <PageContainer>
+            <Switch>
+              <Redirect exact path="/" to="/les-contributeurs" />
+              <Route path="/les-contributeurs" component={Profiles} />
+              <Route path="/mes-abonnements" component={Subscriptions} />
+              <Route component={Error} />
+            </Switch>
+          </PageContainer>
+        </Background>
       </ConnectedRouter>
     </ThemeProvider>
   </Provider>

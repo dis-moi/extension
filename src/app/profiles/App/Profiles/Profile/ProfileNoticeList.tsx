@@ -4,6 +4,7 @@ import { Box, Title2 } from 'components/atoms';
 import { Loading } from 'components/atoms/icons';
 import { Notice } from 'app/lmem/notice';
 import { trilean } from 'types';
+import ProfileNoticeListItem from './ProfileNoticeListItem';
 
 const ProfileNoticeList = styled.section`
   & > Box {
@@ -36,10 +37,9 @@ export const ProfileNoticeListContent = ({
     <ProfileNoticeList>
       <Title2>Ses dernières contributions</Title2>
       {notices.map(notice => (
-        <Box
-          key={notice.id}
-          dangerouslySetInnerHTML={{ __html: notice.message }}
-        />
+        <Box key={notice.id}>
+          <ProfileNoticeListItem notice={notice} />
+        </Box>
       ))}
     </ProfileNoticeList>
   );

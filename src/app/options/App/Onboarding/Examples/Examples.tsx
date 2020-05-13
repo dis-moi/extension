@@ -89,7 +89,7 @@ export default ({ next }: ExamplesScreenProps) => (
     </Wrapper>
 
     <SuggestionsWrapper>
-      <SubscriptionsScreen noSidebar highlightExampleLink />
+      <SubscriptionsScreen noSidebar />
     </SuggestionsWrapper>
 
     <BottomLineBg>

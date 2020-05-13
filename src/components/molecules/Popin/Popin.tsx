@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 import { BackgroundButton, Box, Paragraph } from '../../atoms';
 import { Close } from '../../atoms/icons';
+import CloseButton from '../../organisms/Notification/NotificationHeader/CloseButton';
 
 const PopinWrapper = styled.div`
   position: fixed;
@@ -47,20 +48,30 @@ const PopinList = styled.div`
   text-align: left;
 `;
 
-const PopinParagraph = styled(Paragraph)`
+export const PopinParagraph = styled(Paragraph)`
   &:not(:last-child) {
     margin-bottom: 16px;
   }
 `;
 
-const Popin = () => {
+interface PopinProps {
+  children: ReactNode;
+  opened: boolean;
+  setOpened: (opened: boolean) => void;
+}
+
+const Popin = ({ children, opened, setOpened }: PopinProps) => {
+  if (!opened) {
+    return null;
+  }
+
   return (
     <PopinWrapper>
       <PopinContent>
         <PopinClose>
-          <Close />
+          <CloseButton onClick={() => setOpened(false)} />
         </PopinClose>
-
+        {children}
         <PopinList>
           <PopinParagraph>
             Dismoi est actuellement disponible sur les navigateurs Chrome,

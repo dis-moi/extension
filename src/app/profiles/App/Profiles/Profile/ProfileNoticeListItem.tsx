@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { format } from 'date-fns';
 import { BorderButton, Box, Paragraph } from 'components/atoms';
+import { Notice } from 'app/lmem/notice';
 
 const NoticeTopLine = styled.div`
   margin-bottom: ${props => props.theme.fontSizeDefault};
@@ -19,26 +21,26 @@ const NoticeBottomLine = styled.div`
   }
 `;
 
-export const ProfileNotice = () => {
+export interface ProfileNoticeListItemProps {
+  notice: Notice;
+}
+
+export const ProfileNoticeListItem = ({
+  notice
+}: ProfileNoticeListItemProps) => {
   return (
     <Box>
       <NoticeTopLine>
-        <NoticeHighlight>
-          Message épinglé sur blabla.fr/sdsqdfdsf…
-        </NoticeHighlight>{' '}
-        et d&apos;autres pages web
+        <NoticeHighlight>Message épinglé sur {notice.url}</NoticeHighlight> et
+        d&apos;autres pages web
       </NoticeTopLine>
-      <Paragraph>
-        Nous avons utilisé GrooveHQ de 2015 à 2017 en support à nos utilisateurs
-        grand public. Excédés par les manquements répétés du service, nous
-        l&apos;avons résilié. <a href="yolo.fr">En savoir plus</a>
-      </Paragraph>
+      <Paragraph dangerouslySetInnerHTML={{ __html: notice.message }} />
       <NoticeBottomLine>
-        Visible depuis le 01/02/20
+        Visible depuis le {format(notice.created, 'DD/MM/YYYY')}
         <BorderButton>Voir en context</BorderButton>
       </NoticeBottomLine>
     </Box>
   );
 };
 
-export default ProfileNotice;
+export default ProfileNoticeListItem;

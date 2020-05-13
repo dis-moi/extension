@@ -6,7 +6,6 @@ import UserName from 'components/atoms/UserName/UserName';
 import Stat from 'components/atoms/Stat/Stat';
 import StatType from 'components/atoms/Stat/StatType';
 import BubbleIcon from 'components/atoms/icons/Bubble';
-import { ExternalLink } from 'components/atoms';
 import ContributorButton from './ContributorButton';
 import {
   ContributorCard,
@@ -23,7 +22,7 @@ const ContributorIntro = styled.div.attrs<IntroProps>(
     dangerouslySetInnerHTML: { __html: intro }
   })
 )<IntroProps>`
-  margin: 20px 0 0;
+  margin: 20px 0 18px 0;
   font-size: 15px;
   color: ${props => props.theme.contributorIntro};
 
@@ -36,20 +35,7 @@ const ContributorIntro = styled.div.attrs<IntroProps>(
   }
 `;
 
-interface ContributionExampleProps {
-  highlighted?: boolean;
-}
-
-export const ContributorLink = styled(ExternalLink)<ContributionExampleProps>`
-  display: inline-block;
-  margin-top: 18px;
-  font-size: 12px;
-  color: ${props =>
-    props.highlighted ? props.theme.highlightedLink : props.theme.activeColor};
-  text-transform: uppercase;
-`;
-
-interface Props {
+interface ContributorLargeProps {
   contributor: StatefulContributor;
   onSubscribe: () => void;
   onUnsubscribe: () => void;
@@ -63,7 +49,7 @@ const ContributorLarge = ({
   onUnsubscribe,
   link,
   className
-}: Props) => (
+}: ContributorLargeProps) => (
   <ContributorCard className={className}>
     <ContributorWrapper>
       <Avatar size="normal" contributor={contributor} />
@@ -94,11 +80,5 @@ const ContributorLarge = ({
     {link}
   </ContributorCard>
 );
-
-ContributorLarge.defaultProps = {
-  showExamshowExampleLinkpleLink: false,
-  highlightExampleLink: false,
-  showContributionsLink: false
-};
 
 export default styled(ContributorLarge)``;

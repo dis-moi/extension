@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { StatefulContributor } from 'app/lmem/contributor';
 import { Notice } from 'app/lmem/notice';
 import { trilean } from 'types';
 import Error from '../../Error';
 import {
+  BackgroundButton,
   Box,
   Button,
   ButtonWithIcon,
@@ -14,10 +15,13 @@ import {
   TwoColumns
 } from 'components/atoms';
 import { Download, Loading } from 'components/atoms/icons';
-import { Background, PageContainer, ProfileIntro } from '../Components';
-import FeaturedNotice from './FeaturedNotice';
-import ProfileNoticeList from './ProfileNoticeList';
 import SimilarProfiles from './SimilarProfiles';
+import FeaturedNotice from './FeaturedNotice';
+import ProfileIntro from './ProfileIntro';
+import ProfileNoticeList from './ProfileNoticeList';
+import Popin, {
+  PopinParagraph
+} from '../../../../../components/molecules/Popin/Popin';
 
 const MainCol = styled.div``;
 
@@ -58,6 +62,8 @@ export const Profile = ({
   useEffect(() => {
     fetchContributorNotices();
   }, []);
+  const [popinOpened, setPopinOpened] = useState(false);
+
   if (typeof loading === 'undefined') {
     return null;
   }
@@ -71,48 +77,47 @@ export const Profile = ({
   }
 
   return (
-    <>
-      <Background>
-        <PageContainer>
-          <TwoColumns>
-            <MainCol>
-              <ProfileIntro
-                contributor={contributor}
-                subscribe={subscribe}
-                unsubscribe={unsubscribe}
-              />
+    <TwoColumns>
+      <MainCol>
+        <ProfileIntro
+          contributor={contributor}
+          subscribe={() => setPopinOpened(true)}
+          unsubscribe={unsubscribe}
+        />
 
-              <Title2>La contribution phare de Lutangar</Title2>
+        <Title2>La contribution phare de Lutangar</Title2>
 
-              <FeaturedNotice
-                loading={noticesLoading}
-                notice={featuredNotice}
-              />
+        <FeaturedNotice loading={noticesLoading} notice={featuredNotice} />
 
-              <ProfileNoticeList loading={noticesLoading} notices={notices} />
-            </MainCol>
+        <ProfileNoticeList loading={noticesLoading} notices={notices} />
+      </MainCol>
 
-            <Sidebar>
-              <SidebarBox>
-                <Paragraph>
-                  DisMoi permet aux internautes, médias et experts de vous
-                  informer directement sur les pages web que vous visitez.
-                </Paragraph>
+      <Sidebar>
+        <SidebarBox>
+          <Paragraph>
+            DisMoi permet aux internautes, médias et experts de vous informer
+            directement sur les pages web que vous visitez.
+          </Paragraph>
 
-                <ButtonWithIcon>
-                  Ajouter à mon navigateur <Download />
-                </ButtonWithIcon>
-              </SidebarBox>
+          <ButtonWithIcon>
+            Ajouter à mon navigateur <Download />
+          </ButtonWithIcon>
+        </SidebarBox>
 
-              <Title2>Profils similaires</Title2>
-              {/*<SidebarBox>
-                <SimilarProfiles />
-              </SidebarBox>*/}
-            </Sidebar>
-          </TwoColumns>
-        </PageContainer>
-      </Background>
-    </>
+        <Title2>Profils similaires</Title2>
+        <SidebarBox>
+          <SimilarProfiles />
+        </SidebarBox>
+      </Sidebar>
+      <Popin opened={popinOpened} setOpened={setPopinOpened}>
+        <PopinParagraph>
+          Pour voir les contributions de {contributor.name}, veuillez d’abord
+          ajouter Dismoi à votre navigateur.
+        </PopinParagraph>
+
+        <BackgroundButton>Ajouter Dismoi à mon navigateur</BackgroundButton>
+      </Popin>
+    </TwoColumns>
   );
 };
 
