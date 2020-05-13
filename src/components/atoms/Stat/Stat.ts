@@ -6,4 +6,8 @@ export default styled.div`
   font-weight: bold;
   font-size: 14px;
   color: ${props => props.theme.grey};
+
+  & > svg {
+    margin-right: 6px;
+  }
 `;

@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
+import { StatefulContributor } from 'app/lmem/contributor';
 import {
   ContributorCard,
   ContributorInfos,
   ContributorWrapper,
   StatsWrapper
 } from 'components/atoms/Contributor/index';
+import { LinkIcon } from 'components/atoms/icons';
+import ExternalLink from 'components/atoms/Link/ExternalLink';
 import UserName from 'components/atoms/UserName/UserName';
 import Avatar from 'components/molecules/Avatar/Avatar';
-import ExternalLink from 'components/atoms/Link/ExternalLink';
-import { StatefulContributor } from 'app/lmem/contributor';
-import { LinkIcon } from 'components/atoms/icons';
+import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
 
 const ProfileIntroContent = styled.section`
   margin-bottom: 40px;
@@ -42,16 +42,21 @@ const ProfileIntroContent = styled.section`
     ${ContributorInfos} {
       display: grid;
       grid-template-columns: auto 1fr;
-      grid-template-rows: 1fr 1fr;
       grid-column-gap: 24px;
       margin: 10px 0 0;
 
       ${UserName} {
         display: inline;
+        font-size: 22px;
+        color: ${props => props.theme.titleColor};
       }
 
       ${StatsWrapper} {
         grid-row: 2 /3;
+
+        & + div {
+          margin-top: -5px;
+        }
       }
     }
   }

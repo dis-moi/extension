@@ -19,15 +19,17 @@ import SimilarProfiles from './SimilarProfiles';
 import FeaturedNotice from './FeaturedNotice';
 import ProfileIntro from './ProfileIntro';
 import ProfileNoticeList from './ProfileNoticeList';
-import Popin, {
-  PopinParagraph
-} from '../../../../../components/molecules/Popin/Popin';
+import Popin, { PopinParagraph } from 'components/molecules/Popin/Popin';
 
 const MainCol = styled.div``;
 
 const SidebarBox = styled(Box)`
-  margin-bottom: 40px;
+  margin-bottom: ${props => props.theme.marginL};
   padding: 10px;
+
+  &:first-of-type {
+    margin-top: ${props => props.theme.marginM};
+  }
 
   ${Button} {
     font-size: 13px;
@@ -52,7 +54,7 @@ export interface ProfileProps {
 export const Profile = ({
   loading,
   contributor,
-  subscribe,
+  // subscribe,
   unsubscribe,
   fetchContributorNotices,
   noticesLoading,
