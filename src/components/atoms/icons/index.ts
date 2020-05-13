@@ -12,3 +12,4 @@ export { default as ThumbDown } from './ThumbDown';
 export { default as ThumbUp } from './ThumbUp';
 export { default as Write } from './Write';
 export { default as Download } from './Download';
+export { default as LinkIcon } from './Link';
