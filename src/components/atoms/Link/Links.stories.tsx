@@ -7,9 +7,9 @@ import { Arrow, LinkIcon } from '../icons';
 storiesOf('Components/Atoms/Links', module)
   .addDecorator(withKnobs)
   .add('Anchor', () => <Anchor>Link</Anchor>)
-  .add('Link', () => <Link>Link</Link>)
+  .add('Link', () => <Link to="/">Link</Link>)
   .add('Link with icon', () => (
-    <Link>
+    <Link to="/">
       Link <Arrow />
     </Link>
   ))
