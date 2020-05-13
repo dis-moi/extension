@@ -13,6 +13,8 @@ export interface Theme {
   // colors
   primaryColor: string;
   activeColor: string;
+  grey: string;
+
   otherText: string;
   secondaryColor: string;
   deletedText: string;
@@ -26,7 +28,6 @@ export interface Theme {
   // color list:
   bottomBar: string;
   topBarNavInactiveDeleteBg: string;
-  formBorder: string;
   text: string;
   error: string;
   formError: string;
@@ -44,6 +45,7 @@ export interface Theme {
   radius: string;
   fontSizeDefault: string;
   marginM: string;
+  marginL: string;
 
   // iframe
   iframe: {
@@ -71,6 +73,8 @@ export const theme: Theme = {
   // colors
   primaryColor: '#404348',
   activeColor: '#0C52B4',
+  grey: '#808080',
+
   otherText: '#787993',
   secondaryColor: '#5F656C',
   deletedText: '#484046',
@@ -84,7 +88,6 @@ export const theme: Theme = {
   // color list:
   bottomBar: '#DDDDDD',
   topBarNavInactiveDeleteBg: '#A6B1C0',
-  formBorder: '#707070',
   text: '#404348',
   error: '#F01953',
   formError: '#DB0D0D',
@@ -107,6 +110,7 @@ export const theme: Theme = {
   radius: '8px',
   fontSizeDefault: '16px',
   marginM: '30px',
+  marginL: '40px',
 
   // Button colors
   Button: {
