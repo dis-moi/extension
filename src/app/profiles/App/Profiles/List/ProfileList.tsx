@@ -4,7 +4,7 @@ import { Arrow, Loading } from 'components/atoms/icons';
 import { trilean } from 'types';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
 import ContributorsList from 'components/organisms/Contributor/ContributorsList';
-import Link from 'components/atoms/Link';
+import Link from 'components/atoms/Link/Link';
 
 export interface ProfileListProps {
   loading: trilean;
