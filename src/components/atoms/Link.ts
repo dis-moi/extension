@@ -4,4 +4,14 @@ import { style } from './Anchor';
 
 export default styled(Link)`
   ${style}
+  font-weight: normal;
+  display: inline-flex;
+  align-items: baseline;
+  text-decoration: none;
+
+  & > svg {
+    stroke: ${props => props.theme.Button.default};
+    transform: rotate(180deg);
+    margin-left: 5px;
+  }
 `;
