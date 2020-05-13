@@ -1,3 +1,10 @@
+# [3.30.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.29.0...v3.30.0) (2020-05-13)
+
+
+### Features
+
+* **subscriptions:** Set "LeMonde avec Wirecutter" and "Amazon antidote" as default subscriptions ([61b14ed](https://github.com/insitu-project/recommendations-webextension/commit/61b14ed53dd75d2d89b01ef60c23378ea4e7720f))
+
 # [3.29.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.28.1...v3.29.0) (2020-04-29)
 
 
