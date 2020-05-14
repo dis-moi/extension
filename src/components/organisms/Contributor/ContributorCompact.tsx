@@ -53,9 +53,11 @@ export const ContributorCompact = ({
   onUnsubscribe
 }: Props) => (
   <ContributorWrapper>
+    {/* @todo add link on avatar */}
     <Avatar contributor={contributor} size="small" />
 
     <ContributorInfos>
+      {/* @todo add link on username */}
       <UserName>
         <span>{contributor.name}</span>
       </UserName>

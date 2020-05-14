@@ -56,9 +56,11 @@ const ContributorLarge = ({
 }: ContributorLargeProps) => (
   <ContributorCard className={className}>
     <ContributorWrapper>
+      {/* @todo add link on avatar */}
       <Avatar size="normal" contributor={contributor} />
 
       <ContributorInfos>
+        {/* @todo add link on username */}
         <UserName>
           <span>{contributor.name}</span>
         </UserName>
