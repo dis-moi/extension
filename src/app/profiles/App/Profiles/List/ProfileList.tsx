@@ -1,14 +1,39 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
-import { Arrow, Loading } from 'components/atoms/icons';
 import { trilean } from 'types';
+import { Title2 } from 'components/atoms';
+import { Arrow, Loading } from 'components/atoms/icons';
+import Link from 'components/atoms/Link/Link';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
 import ContributorsList from 'components/organisms/Contributor/ContributorsList';
-import Link from 'components/atoms/Link/Link';
 import NotConnectedPopin, {
   NotConnectedPopinState
 } from '../NotConnectedPopin';
 import BrowserNotSupportedPopin from '../BrowserNotSupportedPopin';
+import Avatar from 'components/molecules/Avatar/Avatar';
+import StatsWrapper from 'components/atoms/Contributor/StatsWrapper';
+
+const Title = styled(Title2)`
+  margin-bottom: 20px;
+  font-size: 26px;
+`;
+
+const Contributor = styled(ContributorLarge)`
+  ${Avatar} {
+    &,
+    & > img {
+      width: 90px;
+      height: 90px;
+    }
+  }
+
+  ${StatsWrapper} {
+    svg {
+      display: none;
+    }
+  }
+`;
 
 export interface ProfileListProps {
   loading: trilean;
@@ -60,9 +85,10 @@ const ProfileList = ({
 
   return (
     <>
+      <Title>Les contributeurs</Title>
       <ContributorsList>
         {contributors.map(contributor => (
-          <ContributorLarge
+          <Contributor
             key={contributor.id}
             contributor={contributor}
             onSubscribe={handleSubscribe(contributor)}

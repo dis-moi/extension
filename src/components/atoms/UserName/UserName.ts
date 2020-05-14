@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export default styled.h3`
   margin: 0;
-  font-size: 17px;
+  font-size: ${props => props.theme.fontSizeDefault};
   color: ${props => props.theme.activeColor};
 
   display: table;

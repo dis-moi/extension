@@ -22,8 +22,8 @@ const ContributorIntro = styled.div.attrs<IntroProps>(
     dangerouslySetInnerHTML: { __html: intro }
   })
 )<IntroProps>`
-  margin: 20px 0 18px 0;
-  font-size: 15px;
+  margin: 16px 0 10px 0;
+  font-size: 16px;
   color: ${props => props.theme.contributorIntro};
 
   & > p {
