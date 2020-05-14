@@ -69,7 +69,7 @@ const ProfileList = ({
             onUnsubscribe={handleUnsubscribe(contributor)}
             link={
               <Link to={`/les-contributeurs/${contributor.id}`}>
-                Voir un exemple de ses contributions
+                Voir ses contributions
                 <Arrow />
               </Link>
             }
