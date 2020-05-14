@@ -4,8 +4,7 @@ import Button, { ButtonProps } from 'components/atoms/Button/Button';
 export default styled(Button)<ButtonProps>`
   display: inline-block;
   min-width: 130px;
-  height: 28px;
-  padding: 0 12px;
+  padding: 3px 12px;
   color: ${props => props.theme.Button.default};
   text-decoration: none;
   text-transform: none;
@@ -27,6 +26,7 @@ export default styled(Button)<ButtonProps>`
       fill: #fff;
     }
   }
+
   &:focus {
     background-color: ${props => props.theme.Button.hover};
     border-color: ${props => props.theme.Button.hover};

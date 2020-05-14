@@ -101,4 +101,8 @@ export default styled(Button)`
     width: 18px;
     height: 18px;
   }
+
+  @media (max-width: ${props => props.theme.tabletWidth}) {
+    font-size: 18px;
+  }
 `;

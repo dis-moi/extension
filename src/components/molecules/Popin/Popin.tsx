@@ -4,6 +4,7 @@ import { BackgroundButton, Box } from '../../atoms';
 import CloseButton from '../../organisms/Notification/NotificationHeader/CloseButton';
 
 const PopinWrapper = styled.div`
+  box-sizing: border-box;
   position: fixed;
   top: 0;
   left: 0;
@@ -13,8 +14,12 @@ const PopinWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  padding: 15px;
   background-color: rgba(5, 34, 75, 0.6);
+
+  @media (max-width: ${props => props.theme.tabletWidth}) {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
 `;
 
 const PopinContent = styled(Box)`
@@ -33,6 +38,16 @@ const PopinContent = styled(Box)`
 
   ${BackgroundButton} {
     margin-top: 20px;
+  }
+
+  @media (max-width: ${props => props.theme.tabletWidth}) {
+    min-width: 0;
+    padding-right: 30px;
+    padding-left: 30px;
+
+    ${BackgroundButton} {
+      width: 100%;
+    }
   }
 `;
 

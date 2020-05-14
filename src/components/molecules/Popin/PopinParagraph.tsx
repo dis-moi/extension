@@ -9,7 +9,7 @@ const PopinParagraph = styled(Paragraph)`
   align-items: flex-end;
   text-align: left;
 
-  &:not(:last-child) {
+  &:not(:last-of-type) {
     margin-bottom: 16px;
   }
 
