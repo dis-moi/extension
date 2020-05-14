@@ -44,8 +44,11 @@ export interface Theme {
   // sizes:
   radius: string;
   fontSizeDefault: string;
+  marginS: string;
   marginM: string;
   marginL: string;
+  tabletWidth: string;
+  desktopWidth: string;
 
   // iframe
   iframe: {
@@ -109,8 +112,11 @@ export const theme: Theme = {
   // sizes:
   radius: '8px',
   fontSizeDefault: '16px',
+  marginS: '20px',
   marginM: '30px',
   marginL: '40px',
+  tabletWidth: '768px',
+  desktopWidth: '992px',
 
   // Button colors
   Button: {

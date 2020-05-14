@@ -10,4 +10,8 @@ export default styled.div`
   & > svg {
     margin-right: 6px;
   }
+
+  @media (max-width: ${props => props.theme.tabletWidth}) {
+    font-size: 16px;
+  }
 `;

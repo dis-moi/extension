@@ -15,4 +15,8 @@ export default styled.h3`
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  @media (max-width: ${props => props.theme.tabletWidth}) {
+    font-size: 20px;
+  }
 `;

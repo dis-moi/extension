@@ -15,8 +15,21 @@ import Avatar from 'components/molecules/Avatar/Avatar';
 import StatsWrapper from 'components/atoms/Contributor/StatsWrapper';
 
 const Title = styled(Title2)`
+  padding-top: 30px;
   margin-bottom: 20px;
   font-size: 26px;
+
+  @media (max-width: ${props => props.theme.tabletWidth}) {
+    padding-top: 15px;
+  }
+`;
+
+const List = styled(ContributorsList)`
+  margin-bottom: 70px;
+
+  @media (max-width: ${props => props.theme.tabletWidth}) {
+    margin-bottom: 60px;
+  }
 `;
 
 const Contributor = styled(ContributorLarge)`
@@ -86,7 +99,7 @@ const ProfileList = ({
   return (
     <>
       <Title>Les contributeurs</Title>
-      <ContributorsList>
+      <List>
         {contributors.map(contributor => (
           <Contributor
             key={contributor.id}
@@ -101,7 +114,7 @@ const ProfileList = ({
             }
           />
         ))}
-      </ContributorsList>
+      </List>
 
       <NotConnectedPopin
         {...notConnectedPopinState}

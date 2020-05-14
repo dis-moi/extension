@@ -12,4 +12,8 @@ export default styled(Link)`
     transform: rotate(180deg);
     margin-left: 5px;
   }
+
+  @media (max-width: ${props => props.theme.tabletWidth}) {
+    font-size: 18px;
+  }
 `;

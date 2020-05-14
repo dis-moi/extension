@@ -1,10 +1,16 @@
 import styled from 'styled-components';
 
 const PageContainer = styled.div`
+  box-sizing: border-box;
   max-width: 100%;
-  width: 996px;
+  width: 992px;
   margin: 0 auto;
   font-family: 'Lato', sans-serif;
+
+  @media (max-width: 1005px) {
+    padding-right: ${props => props.theme.marginS};
+    padding-left: ${props => props.theme.marginS};
+  }
 `;
 
 export default PageContainer;

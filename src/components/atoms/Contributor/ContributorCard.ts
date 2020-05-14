@@ -14,6 +14,10 @@ const ContributorCard = styled.div`
 
   ${StatsWrapper} {
     margin-bottom: 10px;
+
+    @media (max-width: ${props => props.theme.tabletWidth}) {
+      margin-bottom: 5px;
+    }
   }
 `;
 
