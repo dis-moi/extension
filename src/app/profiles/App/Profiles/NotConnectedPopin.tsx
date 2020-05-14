@@ -1,9 +1,9 @@
 import React from 'react';
 import Popin, {
-  PopinParagraph,
   PopinProps,
   PopinState
 } from 'components/molecules/Popin/Popin';
+import PopinParagraph from 'components/molecules/Popin/PopinParagraph';
 import { BackgroundButton } from 'components/atoms';
 import { StatefulContributor } from 'app/lmem/contributor';
 

@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
-import { BackgroundButton, Box, Paragraph } from '../../atoms';
-import { Close } from '../../atoms/icons';
+import { BackgroundButton, Box } from '../../atoms';
 import CloseButton from '../../organisms/Notification/NotificationHeader/CloseButton';
 
 const PopinWrapper = styled.div`
@@ -53,12 +52,6 @@ const PopinClose = styled.div`
 
 export const PopinList = styled.div`
   text-align: left;
-`;
-
-export const PopinParagraph = styled(Paragraph)`
-  &:not(:last-child) {
-    margin-bottom: 16px;
-  }
 `;
 
 export interface PopinState {

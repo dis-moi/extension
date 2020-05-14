@@ -1,9 +1,6 @@
 import React from 'react';
-import Popin, {
-  PopinList,
-  PopinParagraph,
-  PopinProps
-} from 'components/molecules/Popin/Popin';
+import Popin, { PopinList, PopinProps } from 'components/molecules/Popin/Popin';
+import PopinParagraph from 'components/molecules/Popin/PopinParagraph';
 
 const BrowserNotSupportedPopin = ({ opened, setOpened }: PopinProps) => (
   <Popin opened={opened} setOpened={setOpened}>
