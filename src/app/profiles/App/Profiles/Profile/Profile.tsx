@@ -126,7 +126,7 @@ export const Profile = ({
           subscribe={handleSubscribe(contributor)}
           unsubscribe={handleUnsubscribe(contributor)}
         />
-        <Title2>La contribution phare de Lutangar</Title2>
+        <Title2>La contribution phare de {contributor.name}</Title2>
         <FeaturedNotice loading={noticesLoading} notice={featuredNotice} />
         <ProfileNoticeList
           loading={noticesLoading}

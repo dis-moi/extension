@@ -4,6 +4,10 @@ const TwoColumns = styled.div`
   display: grid;
   grid-template-columns: auto 310px;
   grid-column-gap: ${props => props.theme.marginM};
+
+  @media (max-width: ${props => props.theme.desktopWidth}) {
+    display: block;
+  }
 `;
 
 export default TwoColumns;
