@@ -1,4 +1,3 @@
-import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import { subscribe, unsubscribe } from 'app/actions/subscription';
@@ -7,11 +6,10 @@ import {
   getContributorFromRouteParam,
   getFeaturedNotice,
   areNoticesLoading,
-  getContributorNoticesButFeaturedOne
+  getContributorNoticesButFeaturedOne,
+  getContributors
 } from 'app/profiles/store/selectors';
 import { ProfilesState } from 'app/profiles/store/reducers';
-import { fetchContributorNotices } from 'app/profiles/store/actions';
-import { getContributorIdFromRouteParam } from 'app/content/selectors';
 import { ProfileProps } from './Profile';
 
 export type ConnectedProfileScreenProps = ProfileProps &
@@ -23,24 +21,16 @@ const mapStateToProps = (
 ) => ({
   loading: areContributorsLoading(state),
   contributor: getContributorFromRouteParam(state, props),
+  contributors: getContributors(state),
+  contributorsLoading: areContributorsLoading(state),
   featuredNotice: getFeaturedNotice(state, props),
   noticesLoading: areNoticesLoading(state),
   notices: getContributorNoticesButFeaturedOne(state, props)
 });
 
-const mapDispatchToProps = (
-  dispatch: Dispatch,
-  props: ConnectedProfileScreenProps
-) => {
-  const contributorId = Number(getContributorIdFromRouteParam({}, props));
-  return {
-    subscribe: () =>
-      dispatch(subscribe(contributorId, { sendToBackground: true })),
-    unsubscribe: () =>
-      dispatch(unsubscribe(contributorId, { sendToBackground: true })),
-    fetchContributorNotices: () =>
-      dispatch(fetchContributorNotices(contributorId))
-  };
+const mapDispatchToProps = {
+  subscribe,
+  unsubscribe
 };
 
 export default connect(mapStateToProps, mapDispatchToProps);

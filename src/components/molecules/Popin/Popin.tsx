@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
-import { BackgroundButton, Box } from '../../atoms';
+import { BackgroundButton, Box, Paragraph } from '../../atoms';
+import { Close } from '../../atoms/icons';
 import CloseButton from '../../organisms/Notification/NotificationHeader/CloseButton';
 
 const PopinWrapper = styled.div`
@@ -40,11 +41,32 @@ const PopinClose = styled.div`
   position: absolute;
   top: 12px;
   right: 12px;
+  display: block;
+  width: 10px;
+  height: 10px;
+
+  & > svg {
+    width: 10px;
+    height: 10px;
+  }
 `;
 
-interface PopinProps {
-  children: ReactNode;
+export const PopinList = styled.div`
+  text-align: left;
+`;
+
+export const PopinParagraph = styled(Paragraph)`
+  &:not(:last-child) {
+    margin-bottom: 16px;
+  }
+`;
+
+export interface PopinState {
   opened: boolean;
+}
+
+export interface PopinProps extends PopinState {
+  children?: ReactNode;
   setOpened: (opened: boolean) => void;
 }
 
@@ -54,8 +76,12 @@ const Popin = ({ children, opened, setOpened }: PopinProps) => {
   }
 
   return (
-    <PopinWrapper>
-      <PopinContent>
+    <PopinWrapper onClick={() => setOpened(false)}>
+      <PopinContent
+        onClick={e => {
+          e.stopPropagation();
+        }}
+      >
         <PopinClose>
           <CloseButton onClick={() => setOpened(false)} />
         </PopinClose>

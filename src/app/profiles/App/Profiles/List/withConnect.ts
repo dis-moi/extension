@@ -1,6 +1,4 @@
-import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { StatefulContributor } from 'app/lmem/contributor';
 import { subscribe, unsubscribe } from 'app/actions/subscription';
 import {
   areContributorsLoading,
@@ -13,11 +11,9 @@ const mapStateToProps = (state: ProfilesState) => ({
   contributors: getContributors(state)
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  subscribe: (contributor: StatefulContributor) => () =>
-    dispatch(subscribe(contributor, { sendToBackground: true })),
-  unsubscribe: (contributor: StatefulContributor) => () =>
-    dispatch(unsubscribe(contributor, { sendToBackground: true }))
-});
+const mapDispatchToProps = {
+  subscribe,
+  unsubscribe
+};
 
 export default connect(mapStateToProps, mapDispatchToProps);

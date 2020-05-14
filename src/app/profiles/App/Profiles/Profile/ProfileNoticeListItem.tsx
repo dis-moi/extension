@@ -23,10 +23,12 @@ const NoticeBottomLine = styled.div`
 
 export interface ProfileNoticeListItemProps {
   notice: Notice;
+  seeInContext: () => void;
 }
 
 export const ProfileNoticeListItem = ({
-  notice
+  notice,
+  seeInContext
 }: ProfileNoticeListItemProps) => {
   return (
     <Box>
@@ -37,7 +39,7 @@ export const ProfileNoticeListItem = ({
       <Paragraph dangerouslySetInnerHTML={{ __html: notice.message }} />
       <NoticeBottomLine>
         Visible depuis le {format(notice.created, 'DD/MM/YYYY')}
-        <BorderButton>Voir en context</BorderButton>
+        <BorderButton onClick={seeInContext}>Voir en context</BorderButton>
       </NoticeBottomLine>
     </Box>
   );

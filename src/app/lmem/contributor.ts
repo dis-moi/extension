@@ -35,6 +35,7 @@ export interface NewContributor {
 
 export interface StatefulContributor extends Contributor {
   subscribed?: boolean;
+  subscribing: boolean;
 }
 
 export const contributorIsSubscribed = (

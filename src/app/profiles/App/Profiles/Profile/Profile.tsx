@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { StatefulContributor } from 'app/lmem/contributor';
+import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
 import { Notice } from 'app/lmem/notice';
 import { trilean } from 'types';
 import Error from '../../Error';
 import {
-  BackgroundButton,
   Box,
   Button,
   ButtonWithIcon,
@@ -19,7 +18,12 @@ import SimilarProfiles from './SimilarProfiles';
 import FeaturedNotice from './FeaturedNotice';
 import ProfileIntro from './ProfileIntro';
 import ProfileNoticeList from './ProfileNoticeList';
-import Popin, { PopinParagraph } from 'components/molecules/Popin/Popin';
+import CenterContainer from 'components/atoms/CenterContainer';
+import BrowserNotSupportedPopin from '../BrowserNotSupportedPopin';
+import SubscribePopin from '../SubscribePopin';
+import NotConnectedPopin, {
+  NotConnectedPopinState
+} from '../NotConnectedPopin';
 
 const MainCol = styled.div``;
 
@@ -46,25 +50,33 @@ export interface ProfileProps {
   noticesLoading: trilean;
   notices: Notice[];
   featuredNotice?: Notice;
-  subscribe: () => void;
-  unsubscribe: () => void;
-  fetchContributorNotices: () => void;
+  subscribe: (contributorId: ContributorId) => void;
+  unsubscribe: (contributorId: ContributorId) => void;
+  contributors: StatefulContributor[];
+  contributorsLoading: trilean;
+  connected?: boolean;
 }
 
 export const Profile = ({
   loading,
   contributor,
-  // subscribe,
+  subscribe,
   unsubscribe,
-  fetchContributorNotices,
   noticesLoading,
   featuredNotice,
-  notices
+  notices,
+  contributors,
+  contributorsLoading,
+  connected
 }: ProfileProps) => {
-  useEffect(() => {
-    fetchContributorNotices();
-  }, []);
-  const [popinOpened, setPopinOpened] = useState(false);
+  const [notConnectedPopinState, setNotConnectedPopinState] = useState<
+    NotConnectedPopinState
+  >({ opened: false, contributor });
+  const [
+    browserNotSupportedPopinOpened,
+    setBrowserNotSupportedPopinOpened
+  ] = useState(false);
+  const [subscribePopinOpened, setSubscribePopinOpened] = useState(false);
 
   if (typeof loading === 'undefined') {
     return null;
@@ -78,20 +90,49 @@ export const Profile = ({
     return <Error />;
   }
 
+  const handleSubscribe = (contributor: StatefulContributor) => () => {
+    if (connected) {
+      subscribe(contributor.id);
+    } else {
+      setNotConnectedPopinState({ opened: true, contributor });
+    }
+  };
+
+  const handleUnsubscribe = (contributor: StatefulContributor) => () => {
+    if (connected) {
+      unsubscribe(contributor.id);
+    } else {
+      setNotConnectedPopinState({ opened: true, contributor });
+    }
+  };
+
+  const handleSeeNoticeInContext = (notice: Notice) => () => {
+    if (connected) {
+      if (contributor?.subscribed) {
+        window.location.href = notice.url;
+      } else {
+        setSubscribePopinOpened(true);
+      }
+    } else {
+      setNotConnectedPopinState({ opened: true, contributor });
+    }
+  };
+
   return (
     <TwoColumns>
       <MainCol>
         <ProfileIntro
           contributor={contributor}
-          subscribe={() => setPopinOpened(true)}
-          unsubscribe={unsubscribe}
+          subscribe={handleSubscribe(contributor)}
+          unsubscribe={handleUnsubscribe(contributor)}
         />
-
         <Title2>La contribution phare de Lutangar</Title2>
-
         <FeaturedNotice loading={noticesLoading} notice={featuredNotice} />
-
-        <ProfileNoticeList loading={noticesLoading} notices={notices} />
+        <ProfileNoticeList
+          loading={noticesLoading}
+          notices={notices}
+          seeNoticeInContext={handleSeeNoticeInContext}
+        />
       </MainCol>
 
       <Sidebar>
@@ -108,17 +149,47 @@ export const Profile = ({
 
         <Title2>Profils similaires</Title2>
         <SidebarBox>
-          <SimilarProfiles />
+          <SimilarProfiles
+            contributors={contributors}
+            loading={contributorsLoading}
+            subscribe={handleSubscribe}
+            unsubscribe={handleUnsubscribe}
+          >
+            <CenterContainer>
+              <Button to="/les-contributeurs">Voir plus</Button>
+            </CenterContainer>
+          </SimilarProfiles>
         </SidebarBox>
       </Sidebar>
-      <Popin opened={popinOpened} setOpened={setPopinOpened}>
-        <PopinParagraph>
-          Pour voir les contributions de {contributor.name}, veuillez d’abord
-          ajouter Dismoi à votre navigateur.
-        </PopinParagraph>
 
-        <BackgroundButton>Ajouter Dismoi à mon navigateur</BackgroundButton>
-      </Popin>
+      <NotConnectedPopin
+        {...notConnectedPopinState}
+        setOpened={(opened: boolean) =>
+          setNotConnectedPopinState({
+            ...notConnectedPopinState,
+            opened
+          })
+        }
+        addToBrowser={() => {
+          setNotConnectedPopinState({
+            ...notConnectedPopinState,
+            opened: false
+          });
+          setBrowserNotSupportedPopinOpened(true);
+        }}
+      />
+
+      <BrowserNotSupportedPopin
+        opened={browserNotSupportedPopinOpened}
+        setOpened={setBrowserNotSupportedPopinOpened}
+      />
+
+      <SubscribePopin
+        contributor={contributor}
+        subscribe={subscribe}
+        opened={subscribePopinOpened}
+        setOpened={setSubscribePopinOpened}
+      />
     </TwoColumns>
   );
 };

@@ -10,6 +10,7 @@ interface Options {
 
 interface StatefulOptions extends Options {
   subscribed?: boolean;
+  subscribing?: boolean;
 }
 
 export const generateContributor = ({
@@ -40,8 +41,10 @@ export const generateContributor = ({
 
 export const generateStatefulContributor = ({
   subscribed,
+  subscribing,
   ...rest
 }: StatefulOptions = {}) => ({
   ...generateContributor(rest),
-  subscribed: subscribed === undefined ? false : subscribed
+  subscribed: subscribed === undefined ? false : subscribed,
+  subscribing: subscribing === undefined ? false : subscribing
 });

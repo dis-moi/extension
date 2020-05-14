@@ -15,11 +15,13 @@ const ProfileNoticeList = styled.section`
 export interface ProfileNoticeListProps {
   loading: trilean;
   notices: Notice[];
+  seeNoticeInContext: (notice: Notice) => () => void;
 }
 
 export const ProfileNoticeListContent = ({
   loading,
-  notices = []
+  notices = [],
+  seeNoticeInContext
 }: ProfileNoticeListProps) => {
   if (typeof loading === 'undefined') {
     return null;
@@ -38,7 +40,10 @@ export const ProfileNoticeListContent = ({
       <Title2>Ses dernières contributions</Title2>
       {notices.map(notice => (
         <Box key={notice.id}>
-          <ProfileNoticeListItem notice={notice} />
+          <ProfileNoticeListItem
+            notice={notice}
+            seeInContext={seeNoticeInContext(notice)}
+          />
         </Box>
       ))}
     </ProfileNoticeList>
