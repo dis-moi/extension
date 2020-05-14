@@ -22,6 +22,15 @@ const PopinParagraph = styled(Paragraph)`
     min-width: 0;
     margin-top: 0;
   }
+
+  @media (max-width: ${props => props.theme.tabletWidth}) {
+    strong {
+      margin-bottom: 0;
+    }
+    ${BackgroundButton} {
+      margin-top: 10px;
+    }
+  }
 `;
 
 export default PopinParagraph;
