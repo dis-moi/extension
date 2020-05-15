@@ -17,6 +17,6 @@ const LinkNoNotice = styled(Link)`
 export default () => (
   <LinkNoNotice to="/contribute">
     <Write />
-    Poster une information
+    Poster une info, un conseil
   </LinkNoNotice>
 );
