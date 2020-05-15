@@ -42,6 +42,7 @@ export const ProfileNoticeListContent = ({
       <Title2>Ses dernières contributions</Title2>
       {notices.map(notice => (
         <ProfileNoticeListItem
+          loading={false}
           notice={notice}
           seeInContext={seeNoticeInContext(notice)}
           key={notice.id}

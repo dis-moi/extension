@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { format } from 'date-fns';
 import { BorderButton, Box, Paragraph } from 'components/atoms';
 import { Notice } from 'app/lmem/notice';
+import { Loading } from 'components/atoms/icons';
+import { trilean } from 'types';
 
 const NoticeTopLine = styled.div`
   margin-bottom: ${props => props.theme.fontSizeDefault};
@@ -22,16 +24,32 @@ const NoticeBottomLine = styled.div`
 `;
 
 export interface ProfileNoticeListItemProps {
-  notice: Notice;
+  notice?: Notice;
+  loading?: trilean;
   seeInContext: () => void;
+  className?: string;
 }
 
 export const ProfileNoticeListItem = ({
+  loading,
   notice,
-  seeInContext
+  seeInContext,
+  className
 }: ProfileNoticeListItemProps) => {
+  if (typeof loading === 'undefined') {
+    return null;
+  }
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (!notice) {
+    return null;
+  }
+
   return (
-    <Box>
+    <Box className={className}>
       <NoticeTopLine>
         <NoticeHighlight>Message épinglé sur {notice.url}</NoticeHighlight> et
         d&apos;autres pages web
@@ -45,4 +63,4 @@ export const ProfileNoticeListItem = ({
   );
 };
 
-export default ProfileNoticeListItem;
+export default styled(ProfileNoticeListItem)``;

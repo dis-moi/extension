@@ -106,10 +106,12 @@ export const Profile = ({
     }
   };
 
-  const handleSeeNoticeInContext = (notice: Notice) => () => {
+  const handleSeeNoticeInContext = (notice?: Notice) => () => {
     if (connected) {
       if (contributor?.subscribed) {
-        window.location.href = notice.url;
+        if (notice) {
+          window.location.href = notice.url;
+        }
       } else {
         setSubscribePopinOpened(true);
       }
@@ -127,7 +129,11 @@ export const Profile = ({
           unsubscribe={handleUnsubscribe(contributor)}
         />
         <Title2>La contribution phare de {contributor.name}</Title2>
-        <FeaturedNotice loading={noticesLoading} notice={featuredNotice} />
+        <FeaturedNotice
+            loading={noticesLoading}
+            notice={featuredNotice}
+            seeInContext={handleSeeNoticeInContext(featuredNotice)}
+        />
         <ProfileNoticeList
           loading={noticesLoading}
           notices={notices}
