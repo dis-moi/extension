@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
 import { trilean } from 'types';
-import { Title2 } from 'components/atoms';
+import { Button, CenterContainer, Title2 } from 'components/atoms';
 import { Arrow, Loading } from 'components/atoms/icons';
 import Link from 'components/atoms/Link/Link';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
@@ -27,8 +27,22 @@ const Title = styled(Title2)`
 const List = styled(ContributorsList)`
   margin-bottom: 70px;
 
+  & + ${CenterContainer} {
+    margin-top: -50px;
+    margin-bottom: 70px;
+
+    ${Button} {
+      font-size: 12px;
+    }
+  }
+
   @media (max-width: ${props => props.theme.tabletWidth}) {
     margin-bottom: 60px;
+
+    & + ${CenterContainer} {
+      margin-top: -40px;
+      margin-bottom: 60px;
+    }
   }
 `;
 
@@ -114,6 +128,10 @@ const ProfileList = ({
           </Contributor>
         ))}
       </List>
+
+      <CenterContainer>
+        <Button>Voir plus</Button>
+      </CenterContainer>
 
       <NotConnectedPopin
         {...notConnectedPopinState}
