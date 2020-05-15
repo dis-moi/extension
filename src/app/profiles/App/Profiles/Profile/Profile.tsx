@@ -25,7 +25,15 @@ import NotConnectedPopin, {
   NotConnectedPopinState
 } from '../NotConnectedPopin';
 
-const MainCol = styled.div``;
+const MainCol = styled.div`
+  ${CenterContainer} {
+    margin-top: 20px;
+
+    ${Button} {
+      font-size: 12px;
+    }
+  }
+`;
 
 const SidebarBox = styled(Box)`
   margin-bottom: ${props => props.theme.marginL};
@@ -139,6 +147,9 @@ export const Profile = ({
           notices={notices}
           seeNoticeInContext={handleSeeNoticeInContext}
         />
+        <CenterContainer>
+          <Button>Voir plus</Button>
+        </CenterContainer>
       </MainCol>
 
       <Sidebar>

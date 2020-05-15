@@ -25,23 +25,11 @@ const Title = styled(Title2)`
 `;
 
 const List = styled(ContributorsList)`
-  margin-bottom: 70px;
-
   & + ${CenterContainer} {
-    margin-top: -50px;
-    margin-bottom: 70px;
+    margin-top: 20px;
 
     ${Button} {
       font-size: 12px;
-    }
-  }
-
-  @media (max-width: ${props => props.theme.tabletWidth}) {
-    margin-bottom: 60px;
-
-    & + ${CenterContainer} {
-      margin-top: -40px;
-      margin-bottom: 60px;
     }
   }
 `;

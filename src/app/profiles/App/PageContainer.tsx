@@ -4,7 +4,7 @@ const PageContainer = styled.div`
   box-sizing: border-box;
   max-width: 100%;
   width: 992px;
-  margin: 0 auto;
+  margin: 0 auto 70px;
   font-family: 'Lato', sans-serif;
 
   @media (max-width: 1005px) {
