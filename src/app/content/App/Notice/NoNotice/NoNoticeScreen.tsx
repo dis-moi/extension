@@ -5,7 +5,6 @@ import Title from './Title';
 import ButtonContainer from './ButtonContainer';
 import { BackgroundButton } from 'components/atoms';
 import AddNoticeButton from 'components/atoms/Button/AddNoticeButton/AddNoticeButton';
-import ServiceMessageLine from 'components/molecules/ServiceMessageLine/ServiceMessageLine';
 
 const Container = styled(ButtonContainer)`
   font-size: 16px;
@@ -30,7 +29,5 @@ export default () => (
       <>ou</>
       <AddNoticeButton />
     </Container>
-
-    <ServiceMessageLine />
   </>
 );
