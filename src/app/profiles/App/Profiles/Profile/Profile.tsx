@@ -130,9 +130,9 @@ export const Profile = ({
         />
         <Title2>La contribution phare de {contributor.name}</Title2>
         <FeaturedNotice
-            loading={noticesLoading}
-            notice={featuredNotice}
-            seeInContext={handleSeeNoticeInContext(featuredNotice)}
+          loading={noticesLoading}
+          notice={featuredNotice}
+          seeInContext={handleSeeNoticeInContext(featuredNotice)}
         />
         <ProfileNoticeList
           loading={noticesLoading}

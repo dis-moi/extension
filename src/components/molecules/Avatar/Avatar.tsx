@@ -1,13 +1,15 @@
 import React from 'react';
+import { LocationDescriptor, LocationState } from 'history';
 import styled from 'styled-components';
 import { AvatarSize, Avatar as AvatarType } from 'app/lmem/contributor';
 import AvatarDefault from 'components/atoms/icons/AvatarDefault';
+import Link from 'components/atoms/Link';
 
 interface WrapperProps {
   size: AvatarSize;
 }
 
-const Wrapper = styled.div<WrapperProps>`
+const Wrapper = styled(Link)<WrapperProps>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,7 +31,7 @@ const Wrapper = styled.div<WrapperProps>`
   }
 `;
 
-interface AvatarProps {
+interface AvatarProps<S = LocationState> {
   contributor: {
     name: string;
     avatar?: AvatarType;
@@ -37,10 +39,11 @@ interface AvatarProps {
   size: AvatarSize;
   className?: string;
   onClick?: () => void;
+  to?: LocationDescriptor<S>;
 }
 
-const Avatar = ({ contributor, size, className, onClick }: AvatarProps) => (
-  <Wrapper size={size} className={className} onClick={onClick}>
+const Avatar = ({ contributor, size, className, onClick, to }: AvatarProps) => (
+  <Wrapper size={size} className={className} onClick={onClick} to={to}>
     {contributor.avatar && contributor.avatar[size].url ? (
       <img src={contributor.avatar.normal.url} alt={contributor.name} />
     ) : (

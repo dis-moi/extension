@@ -40,6 +40,7 @@ const SimilarProfiles = ({
           contributor={contributor}
           onSubscribe={subscribe(contributor)}
           onUnsubscribe={unsubscribe(contributor)}
+          to={`/les-contributeurs/${contributor.id}`}
         />
       ))}
       {children}

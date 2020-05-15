@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { LocationDescriptor, LocationState } from 'history';
 import { StatefulContributor } from 'app/lmem/contributor';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import UserName from 'components/atoms/UserName/UserName';
@@ -13,6 +14,7 @@ import {
   ContributorInfos,
   StatsWrapper
 } from 'components/atoms/Contributor/index';
+import Link from 'components/atoms/Link';
 
 interface IntroProps {
   intro: string;
@@ -39,30 +41,30 @@ const ContributorIntro = styled.div.attrs<IntroProps>(
   }
 `;
 
-interface ContributorLargeProps {
+interface ContributorLargeProps<S = LocationState> {
   contributor: StatefulContributor;
   onSubscribe: () => void;
   onUnsubscribe: () => void;
   className?: string;
-  link?: React.ReactElement;
+  children?: React.ReactElement;
+  to?: LocationDescriptor<S>;
 }
 
 const ContributorLarge = ({
   contributor,
   onSubscribe,
   onUnsubscribe,
-  link,
-  className
+  children,
+  className,
+  to
 }: ContributorLargeProps) => (
   <ContributorCard className={className}>
     <ContributorWrapper>
-      {/* @todo add link on avatar */}
-      <Avatar size="normal" contributor={contributor} />
+      <Avatar size="normal" contributor={contributor} to={to} />
 
       <ContributorInfos>
-        {/* @todo add link on username */}
         <UserName>
-          <span>{contributor.name}</span>
+          <Link to={to}>{contributor.name}</Link>
         </UserName>
 
         <StatsWrapper>
@@ -83,7 +85,7 @@ const ContributorLarge = ({
     <ContributorIntro
       intro={contributor.intro || 'Description non renseignée'}
     />
-    {link}
+    {children}
   </ContributorCard>
 );
 

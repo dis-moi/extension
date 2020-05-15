@@ -86,12 +86,12 @@ export const ProfileIntro = ({
           contributor={contributor}
           onSubscribe={subscribe}
           onUnsubscribe={unsubscribe}
-          link={
-            <ExternalLink href={contributor.contribution.example.matchingUrl}>
-              <LinkIcon /> My website
-            </ExternalLink>
-          }
-        />
+          to={`/les-contributeurs/${contributor.id}`}
+        >
+          <ExternalLink href={contributor.contribution.example.matchingUrl}>
+            <LinkIcon /> My website
+          </ExternalLink>
+        </ContributorLarge>
       </ProfileIntroContent>
     </>
   );

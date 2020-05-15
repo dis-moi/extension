@@ -106,13 +106,13 @@ const ProfileList = ({
             contributor={contributor}
             onSubscribe={handleSubscribe(contributor)}
             onUnsubscribe={handleUnsubscribe(contributor)}
-            link={
-              <Link to={`/les-contributeurs/${contributor.id}`}>
-                Voir ses contributions
-                <Arrow />
-              </Link>
-            }
-          />
+            to={`/les-contributeurs/${contributor.id}`}
+          >
+            <Link to={`/les-contributeurs/${contributor.id}`}>
+              Voir ses contributions
+              <Arrow />
+            </Link>
+          </Contributor>
         ))}
       </List>
 
