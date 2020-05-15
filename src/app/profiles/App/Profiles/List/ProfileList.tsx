@@ -53,7 +53,6 @@ export interface ProfileListProps {
   contributors: StatefulContributor[];
   subscribe: (contributorId: ContributorId) => void;
   unsubscribe: (contributorId: ContributorId) => void;
-  showContributionsLink?: boolean;
   connected?: boolean;
 }
 
