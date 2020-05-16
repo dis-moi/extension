@@ -25,7 +25,7 @@ storiesOf('Components/Molecules/Popin', module)
     </Popin>
   ))
   .add('With link', () => (
-    <Popin opened={true} setOpened={action('setOpened')}>
+    <Popin size={'large'} opened={true} setOpened={action('setOpened')}>
       <PopinParagraph>
         Dismoi est actuellement disponible sur les navigateurs Chrome, Firefox
         Edge et Opéra

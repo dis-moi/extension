@@ -3,6 +3,16 @@ import styled from 'styled-components';
 import { BackgroundButton, Box } from '../../atoms';
 import CloseButton from '../../organisms/Notification/NotificationHeader/CloseButton';
 
+export interface PopinState {
+  opened: boolean;
+}
+
+export interface PopinProps extends PopinState {
+  children?: ReactNode;
+  setOpened: (opened: boolean) => void;
+  size?: string;
+}
+
 const PopinWrapper = styled.div`
   box-sizing: border-box;
   position: fixed;
@@ -22,13 +32,12 @@ const PopinWrapper = styled.div`
   }
 `;
 
-const PopinContent = styled(Box)`
+const PopinContent = styled(Box)<PopinProps>`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 450px;
-  max-width: 550px;
+  max-width: ${props => (props.size === 'large' ? '550px' : ' 450px')};
   margin-right: auto;
   margin-left: auto;
   padding-top: 34px;
@@ -65,20 +74,7 @@ const PopinClose = styled.div`
   }
 `;
 
-export const PopinList = styled.div`
-  text-align: left;
-`;
-
-export interface PopinState {
-  opened: boolean;
-}
-
-export interface PopinProps extends PopinState {
-  children?: ReactNode;
-  setOpened: (opened: boolean) => void;
-}
-
-const Popin = ({ children, opened, setOpened }: PopinProps) => {
+const Popin = ({ children, opened, setOpened, size }: PopinProps) => {
   if (!opened) {
     return null;
   }
@@ -86,6 +82,7 @@ const Popin = ({ children, opened, setOpened }: PopinProps) => {
   return (
     <PopinWrapper onClick={() => setOpened(false)}>
       <PopinContent
+        size={size}
         onClick={e => {
           e.stopPropagation();
         }}
