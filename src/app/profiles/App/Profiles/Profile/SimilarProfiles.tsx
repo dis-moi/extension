@@ -50,6 +50,11 @@ const SimilarProfiles = ({
 
 export default styled(SimilarProfiles)`
   ${ContributorCompact} {
-    background-color: lime;
+    &:first-child {
+      border-top: none;
+    }
+    &:last-child {
+      border-bottom: none;
+    }
   }
 `;
