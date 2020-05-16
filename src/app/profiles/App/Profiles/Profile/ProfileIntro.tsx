@@ -86,7 +86,6 @@ export const ProfileIntro = ({
           contributor={contributor}
           onSubscribe={subscribe}
           onUnsubscribe={unsubscribe}
-          to={`/les-contributeurs/${contributor.id}`}
         >
           <ExternalLink href={contributor.contribution.example.matchingUrl}>
             <LinkIcon /> My website
