@@ -41,7 +41,7 @@ const Aside = styled(Sidebar)`
   }
 `;
 
-const SidebarBox = styled(Box)`
+export const SidebarBox = styled(Box)`
   margin-bottom: ${props => props.theme.marginL};
   padding: 10px;
 
@@ -171,14 +171,13 @@ export const Profile = ({
         </SidebarBox>
 
         <Title2>Profils similaires</Title2>
-        <SidebarBox>
-          <SimilarProfiles
-            contributors={contributors}
-            loading={contributorsLoading}
-            subscribe={handleSubscribe}
-            unsubscribe={handleUnsubscribe}
-          />
-        </SidebarBox>
+
+        <SimilarProfiles
+          contributors={contributors}
+          loading={contributorsLoading}
+          subscribe={handleSubscribe}
+          unsubscribe={handleUnsubscribe}
+        />
         <CenterContainer>
           <Button to="/les-contributeurs">Voir plus</Button>
         </CenterContainer>

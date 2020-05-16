@@ -49,14 +49,16 @@ interface Props<S = LocationState> {
   onSubscribe: () => void;
   onUnsubscribe: () => void;
   to?: LocationDescriptor<S>;
+  className?: string;
 }
 export const ContributorCompact = ({
   contributor,
   onSubscribe,
   onUnsubscribe,
-  to
+  to,
+  className
 }: Props) => (
-  <Wrapper>
+  <Wrapper className={className}>
     <Avatar contributor={contributor} size="small" to={to} />
 
     <ContributorInfos>
@@ -77,4 +79,4 @@ export const ContributorCompact = ({
   </Wrapper>
 );
 
-export default ContributorCompact;
+export default styled(ContributorCompact)``;
