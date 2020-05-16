@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { ProfileNoticeListItem } from './ProfileNoticeListItem';
 
-const FeaturedNotice = styled(ProfileNoticeListItem)`
-  background-color: red;
-`;
+const FeaturedNotice = styled(ProfileNoticeListItem)``;
 
 export default FeaturedNotice;
