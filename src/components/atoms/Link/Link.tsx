@@ -20,12 +20,6 @@ export default styled(Link)`
   font-weight: normal;
   text-decoration: none;
 
-  & > svg {
-    stroke: ${props => props.theme.Button.default};
-    transform: rotate(180deg);
-    margin-left: 5px;
-  }
-
   @media (max-width: ${props => props.theme.tabletWidth}) {
     font-size: 18px;
   }

@@ -4,7 +4,7 @@ import LogoDismoi from 'components/atoms/LogoDismoi';
 import Wrapper from '../atoms/OnboardingWrapper';
 import Intro from '../atoms/OnboardingIntro';
 import SubTitle from '../atoms/OnboardingSubTitle';
-import OnboardinButton from '../atoms/OnboardingButton';
+import OnboardingButton from '../atoms/OnboardingButton';
 import TOSAlreadyAccepted from './TOSAlreadyAccepted';
 import TOSText from './TOSText';
 import TOSCheckbox from './TOSCheckbox';
@@ -96,12 +96,12 @@ export default ({ termsOfServiceAccepted, onContinue }: TosProps) => {
           <TOSCheckbox onChange={setTosChecked} checked={acceptTosChecked} />
         ))}
 
-      <OnboardinButton
+      <OnboardingButton
         disabled={!acceptTosChecked && !termsOfServiceAccepted}
         onClick={onContinue}
       >
         Continuer
-      </OnboardinButton>
+      </OnboardingButton>
     </Wrapper>
   );
 };
