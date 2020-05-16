@@ -11,7 +11,6 @@ import NotConnectedPopin, {
   NotConnectedPopinState
 } from '../NotConnectedPopin';
 import BrowserNotSupportedPopin from '../BrowserNotSupportedPopin';
-import Avatar from 'components/molecules/Avatar/Avatar';
 import StatsWrapper from 'components/atoms/Contributor/StatsWrapper';
 
 const Title = styled(Title2)`
@@ -35,14 +34,6 @@ const List = styled(ContributorsList)`
 `;
 
 const Contributor = styled(ContributorLarge)`
-  ${Avatar} {
-    &,
-    & > img {
-      width: 90px;
-      height: 90px;
-    }
-  }
-
   ${StatsWrapper} {
     svg {
       display: none;
