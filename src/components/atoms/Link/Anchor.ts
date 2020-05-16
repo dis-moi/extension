@@ -7,11 +7,14 @@ export const style = ({ theme }: { theme: Theme }) => `
   color: ${theme.Button.default};
   font-weight: bold;
   text-decoration: underline;
-  cursor: pointer;
   transition: all 0.2s ease-in-out;
-
-  &:hover {
-    color: ${theme.Button.hover};
+  
+  &[href] {
+    cursor: pointer;
+    
+    &:hover {
+      color: ${theme.Button.hover};
+    }
   }
 `;
 
