@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { BackgroundButton, Box } from '../../atoms';
 import CloseButton from '../../organisms/Notification/NotificationHeader/CloseButton';
 
+export type PopinSize = 'small' | 'large';
+
 export interface PopinState {
   opened: boolean;
 }
@@ -10,7 +12,7 @@ export interface PopinState {
 export interface PopinProps extends PopinState {
   children?: ReactNode;
   setOpened: (opened: boolean) => void;
-  size?: string;
+  size?: PopinSize;
 }
 
 const PopinWrapper = styled.div`
@@ -32,7 +34,11 @@ const PopinWrapper = styled.div`
   }
 `;
 
-const PopinContent = styled(Box)<PopinProps>`
+interface PopinContentProps {
+  size?: PopinSize;
+}
+
+const PopinContent = styled(Box)<PopinContentProps>`
   position: relative;
   display: flex;
   flex-direction: column;

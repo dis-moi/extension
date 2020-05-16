@@ -24,7 +24,7 @@ storiesOf('Components/Molecules/Popin', module)
       <BackgroundButton>Suivre</BackgroundButton>
     </Popin>
   ))
-  .add('With link', () => (
+  .add('With link and large', () => (
     <Popin size={'large'} opened={true} setOpened={action('setOpened')}>
       <PopinParagraph>
         Dismoi est actuellement disponible sur les navigateurs Chrome, Firefox
