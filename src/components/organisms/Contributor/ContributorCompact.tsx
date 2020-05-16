@@ -7,9 +7,9 @@ import UserName from 'components/atoms/UserName/UserName';
 import Stat from 'components/atoms/Stat/Stat';
 import ContributorButton from './ContributorButton';
 import Link from 'components/atoms/Link';
+import ContributorWrapper from 'components/atoms/Contributor/ContributorWrapper';
 
-const ContributorWrapper = styled.div`
-  display: flex;
+const Wrapper = styled(ContributorWrapper)`
   align-items: center;
   padding-top: 10px;
   padding-bottom: 14px;
@@ -56,7 +56,7 @@ export const ContributorCompact = ({
   onUnsubscribe,
   to
 }: Props) => (
-  <ContributorWrapper>
+  <Wrapper>
     <Avatar contributor={contributor} size="small" to={to} />
 
     <ContributorInfos>
@@ -74,7 +74,7 @@ export const ContributorCompact = ({
       onSubscribe={onSubscribe}
       onUnsubscribe={onUnsubscribe}
     />
-  </ContributorWrapper>
+  </Wrapper>
 );
 
 export default ContributorCompact;

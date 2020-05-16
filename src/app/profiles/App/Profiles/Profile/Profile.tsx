@@ -35,6 +35,12 @@ const MainCol = styled.div`
   }
 `;
 
+const Aside = styled(Sidebar)`
+  ${CenterContainer} {
+    margin-top: -30px;
+  }
+`;
+
 const SidebarBox = styled(Box)`
   margin-bottom: ${props => props.theme.marginL};
   padding: 10px;
@@ -152,7 +158,7 @@ export const Profile = ({
         </CenterContainer>
       </MainCol>
 
-      <Sidebar>
+      <Aside>
         <SidebarBox>
           <Paragraph>
             DisMoi permet aux internautes, médias et experts de vous informer
@@ -171,13 +177,12 @@ export const Profile = ({
             loading={contributorsLoading}
             subscribe={handleSubscribe}
             unsubscribe={handleUnsubscribe}
-          >
-            <CenterContainer>
-              <Button to="/les-contributeurs">Voir plus</Button>
-            </CenterContainer>
-          </SimilarProfiles>
+          />
         </SidebarBox>
-      </Sidebar>
+        <CenterContainer>
+          <Button to="/les-contributeurs">Voir plus</Button>
+        </CenterContainer>
+      </Aside>
 
       <NotConnectedPopin
         {...notConnectedPopinState}

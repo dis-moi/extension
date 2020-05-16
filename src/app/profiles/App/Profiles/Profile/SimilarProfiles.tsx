@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StatefulContributor } from 'app/lmem/contributor';
 import ContributorCompact from 'components/organisms/Contributor/ContributorCompact';
 import Loading from 'components/atoms/icons/Loading';
@@ -8,15 +8,13 @@ interface SimilarProfilesProps {
   contributors: StatefulContributor[];
   subscribe: (contributor: StatefulContributor) => () => void;
   unsubscribe: (contributor: StatefulContributor) => () => void;
-  children: ReactElement;
 }
 
 const SimilarProfiles = ({
   loading = false,
   contributors,
   subscribe,
-  unsubscribe,
-  children
+  unsubscribe
 }: SimilarProfilesProps) => {
   const [initialContributors, setInitialSuggestions] = useState(contributors);
 
@@ -40,10 +38,8 @@ const SimilarProfiles = ({
           contributor={contributor}
           onSubscribe={subscribe(contributor)}
           onUnsubscribe={unsubscribe(contributor)}
-          to={`/les-contributeurs/${contributor.id}`}
         />
       ))}
-      {children}
     </>
   );
 };

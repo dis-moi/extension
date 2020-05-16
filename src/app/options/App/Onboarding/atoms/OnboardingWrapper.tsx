@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BackgroundButton } from '../../../../../components/atoms';
+import { BackgroundButton } from 'components/atoms';
 
 const Wrapper = styled.main`
   width: 900px;
