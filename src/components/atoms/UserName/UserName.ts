@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from '../Link';
 
 export default styled.h3`
   margin: 0;
@@ -10,9 +11,10 @@ export default styled.h3`
   width: 100%;
   white-space: nowrap;
 
-  & > span {
+  ${Link} {
     display: table-cell;
     overflow: hidden;
+    font-weight: bold;
     text-overflow: ellipsis;
   }
 
