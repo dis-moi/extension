@@ -2,12 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
 import { trilean } from 'types';
-import {
-  Button,
-  CenterContainer,
-  Title2,
-  LoadingRotator
-} from 'components/atoms';
+import { Button, CenterContainer, Title2 } from 'components/atoms';
 import { Arrow, LogoLetter } from 'components/atoms/icons';
 import Link from 'components/atoms/Link/Link';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
@@ -17,17 +12,7 @@ import NotConnectedPopin, {
 } from '../NotConnectedPopin';
 import BrowserNotSupportedPopin from '../BrowserNotSupportedPopin';
 import StatsWrapper from 'components/atoms/Contributor/StatsWrapper';
-
-const LoadingWrapper = styled(LoadingRotator)`
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-`;
+import LoadingWrapper from '../LoadingWrapper';
 
 const Title = styled(Title2)`
   padding-top: 30px;

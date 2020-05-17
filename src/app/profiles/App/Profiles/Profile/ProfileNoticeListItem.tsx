@@ -1,10 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { format } from 'date-fns';
-import { BorderButton, Box, Paragraph } from 'components/atoms';
+import { BorderButton, Box, LoadingRotator, Paragraph } from 'components/atoms';
 import { Notice } from 'app/lmem/notice';
-import { Loading } from 'components/atoms/icons';
+import { LogoLetter } from 'components/atoms/icons';
 import { trilean } from 'types';
+
+const Loading = styled(LoadingRotator)`
+  margin-bottom: 20px;
+`;
 
 const NoticeTopLine = styled.div`
   margin-bottom: ${props => props.theme.fontSizeDefault};
@@ -41,7 +45,11 @@ export const ProfileNoticeListItem = ({
   }
 
   if (loading) {
-    return <Loading />;
+    return (
+      <Loading>
+        <LogoLetter />
+      </Loading>
+    );
   }
 
   if (!notice) {

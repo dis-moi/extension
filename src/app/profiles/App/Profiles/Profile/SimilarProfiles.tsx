@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { StatefulContributor } from 'app/lmem/contributor';
 import ContributorCompact from 'components/organisms/Contributor/ContributorCompact';
-import Loading from 'components/atoms/icons/Loading';
 import { SidebarBox } from './Profile';
+import { LogoLetter } from 'components/atoms/icons';
+import { CenterContainer, LoadingRotator } from 'components/atoms';
 
 interface SimilarProfilesProps {
   loading?: boolean;
@@ -12,6 +13,11 @@ interface SimilarProfilesProps {
   unsubscribe: (contributor: StatefulContributor) => () => void;
   className?: string;
 }
+
+const Loader = styled(CenterContainer)`
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
 
 const SimilarProfiles = ({
   loading = false,
@@ -27,7 +33,13 @@ const SimilarProfiles = ({
   }, [contributors]);
 
   if (loading) {
-    return <Loading />;
+    return (
+      <Loader>
+        <LoadingRotator>
+          <LogoLetter />
+        </LoadingRotator>
+      </Loader>
+    );
   }
 
   if (initialContributors.length === 0) {

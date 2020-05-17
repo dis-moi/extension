@@ -1,18 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Title2 } from 'components/atoms';
-import { Loading } from 'components/atoms/icons';
+import { LogoLetter } from 'components/atoms/icons';
 import { Notice } from 'app/lmem/notice';
 import { trilean } from 'types';
 import ProfileNoticeListItem from './ProfileNoticeListItem';
+import { LoadingRotator } from 'components/atoms';
 
-const ProfileNoticeList = styled.section`
-  margin-top: 40px;
-
-  @media {
-    margin-top: 20px;
-  }
-`;
+const ProfileNoticeList = styled.section``;
 
 export interface ProfileNoticeListProps {
   loading: trilean;
@@ -30,7 +24,11 @@ export const ProfileNoticeListContent = ({
   }
 
   if (loading) {
-    return <Loading />;
+    return (
+      <LoadingRotator>
+        <LogoLetter />
+      </LoadingRotator>
+    );
   }
 
   if (notices.length === 0) {
@@ -39,7 +37,6 @@ export const ProfileNoticeListContent = ({
 
   return (
     <ProfileNoticeList>
-      <Title2>Ses dernières contributions</Title2>
       {notices.map(notice => (
         <ProfileNoticeListItem
           loading={false}

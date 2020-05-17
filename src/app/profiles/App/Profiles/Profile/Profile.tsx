@@ -13,7 +13,7 @@ import {
   Title2,
   TwoColumns
 } from 'components/atoms';
-import { Download, Loading } from 'components/atoms/icons';
+import { Download, LogoLetter } from 'components/atoms/icons';
 import SimilarProfiles from './SimilarProfiles';
 import FeaturedNotice from './FeaturedNotice';
 import ProfileIntro from './ProfileIntro';
@@ -24,6 +24,7 @@ import SubscribePopin from '../SubscribePopin';
 import NotConnectedPopin, {
   NotConnectedPopinState
 } from '../NotConnectedPopin';
+import LoadingWrapper from '../LoadingWrapper';
 
 const MainCol = styled.div`
   ${CenterContainer} {
@@ -36,7 +37,7 @@ const MainCol = styled.div`
 `;
 
 const Aside = styled(Sidebar)`
-  ${CenterContainer} {
+  ${SimilarProfiles} + ${CenterContainer} {
     margin-top: -30px;
   }
 `;
@@ -97,7 +98,11 @@ export const Profile = ({
   }
 
   if (loading) {
-    return <Loading />;
+    return (
+      <LoadingWrapper>
+        <LogoLetter />
+      </LoadingWrapper>
+    );
   }
 
   if (!contributor) {
@@ -148,6 +153,8 @@ export const Profile = ({
           notice={featuredNotice}
           seeInContext={handleSeeNoticeInContext(featuredNotice)}
         />
+
+        <Title2>Ses dernières contributions</Title2>
         <ProfileNoticeList
           loading={noticesLoading}
           notices={notices}
@@ -179,7 +186,7 @@ export const Profile = ({
           unsubscribe={handleUnsubscribe}
         />
         <CenterContainer>
-          <Button to="/les-contributeurs">Voir plus</Button>
+          <Button to="/les-contributeurs">Voir tout</Button>
         </CenterContainer>
       </Aside>
 
