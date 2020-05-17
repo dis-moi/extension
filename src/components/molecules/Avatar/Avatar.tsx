@@ -26,7 +26,7 @@ const Wrapper = styled(Link)<WrapperProps>`
   }
 
   svg {
-    width: ${props => (props.size === 'small' ? '25px' : '83px')};
+    width: ${props => (props.size === 'small' ? '25px' : '53px')};
     height: auto;
   }
 `;

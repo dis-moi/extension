@@ -39,6 +39,23 @@ const Contributor = styled(ContributorLarge)`
       display: none;
     }
   }
+
+  & > ${Link} {
+    display: flex;
+    align-items: center;
+
+    svg {
+      stroke: ${props => props.theme.Button.default};
+      margin-left: 5px;
+      transform: rotate(180deg);
+    }
+
+    &:hover {
+      svg {
+        stroke: ${props => props.theme.Button.hover};
+      }
+    }
+  }
 `;
 
 export interface ProfileListProps {
