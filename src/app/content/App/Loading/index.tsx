@@ -1,10 +1,10 @@
 import React from 'react';
-import Illustration from './Illustration';
 import Container from './Container';
+import LoadingBig from 'components/atoms/icons/LoadingBig';
 
 export const Loading = () => (
   <Container>
-    <Illustration />
+    <LoadingBig />
     Chargement…
   </Container>
 );
