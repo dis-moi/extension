@@ -174,17 +174,12 @@ export const Profile = ({
           </ButtonWithIcon>
         </SidebarBox>
 
-        <Title2>Profils similaires</Title2>
-
         <SimilarProfiles
           contributors={contributors}
           loading={contributorsLoading}
           subscribe={handleSubscribe}
           unsubscribe={handleUnsubscribe}
         />
-        <CenterContainer>
-          <Button to="/les-contributeurs">Voir tout</Button>
-        </CenterContainer>
       </Aside>
 
       <NotConnectedPopin

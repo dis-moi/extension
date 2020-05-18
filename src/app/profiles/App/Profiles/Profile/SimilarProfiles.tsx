@@ -4,7 +4,12 @@ import { StatefulContributor } from 'app/lmem/contributor';
 import ContributorCompact from 'components/organisms/Contributor/ContributorCompact';
 import { SidebarBox } from './Profile';
 import { LogoLetter } from 'components/atoms/icons';
-import { CenterContainer, LoadingRotator } from 'components/atoms';
+import {
+  Button,
+  CenterContainer,
+  LoadingRotator,
+  Title2
+} from 'components/atoms';
 
 interface SimilarProfilesProps {
   loading?: boolean;
@@ -47,16 +52,22 @@ const SimilarProfiles = ({
   }
 
   return (
-    <SidebarBox className={className}>
-      {initialContributors.map(contributor => (
-        <ContributorCompact
-          key={contributor.id}
-          contributor={contributor}
-          onSubscribe={subscribe(contributor)}
-          onUnsubscribe={unsubscribe(contributor)}
-        />
-      ))}
-    </SidebarBox>
+    <>
+      <Title2>Profils similaires</Title2>
+      <SidebarBox className={className}>
+        {initialContributors.map(contributor => (
+          <ContributorCompact
+            key={contributor.id}
+            contributor={contributor}
+            onSubscribe={subscribe(contributor)}
+            onUnsubscribe={unsubscribe(contributor)}
+          />
+        ))}
+      </SidebarBox>
+      <CenterContainer>
+        <Button to="/les-contributeurs">Voir tout</Button>
+      </CenterContainer>
+    </>
   );
 };
 
