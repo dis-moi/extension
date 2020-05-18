@@ -57,10 +57,14 @@ export const ProfileNoticeListItem = ({
 
   return (
     <Box className={className}>
-      <NoticeTopLine>
-        <NoticeHighlight>Message épinglé sur {notice.url}</NoticeHighlight> et
-        d&apos;autres pages web
-      </NoticeTopLine>
+      {notice.exampleUrl && (
+        <NoticeTopLine>
+          <NoticeHighlight>
+            Message épinglé sur {notice.exampleUrl}
+          </NoticeHighlight>{' '}
+          et d&apos;autres pages web
+        </NoticeTopLine>
+      )}
       <Paragraph dangerouslySetInnerHTML={{ __html: notice.message }} />
       <NoticeBottomLine>
         Visible depuis le {format(notice.created, 'DD/MM/YYYY')}

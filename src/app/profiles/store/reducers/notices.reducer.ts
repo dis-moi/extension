@@ -6,11 +6,11 @@ import {
   FETCH_NOTICES_REQUEST,
   NOTICES_FETCHED
 } from 'app/actions';
-import { Notice } from 'app/lmem/notice';
+import { NoticeItem } from 'app/lmem/notice';
 
-export type NoticesCollectionState = CollectionState<Notice>;
+export type NoticesCollectionState = CollectionState<NoticeItem>;
 
-export default createCollectionReducer<Notice>(
+export default createCollectionReducer<NoticeItem>(
   FETCH_NOTICES_REQUEST,
   NOTICES_FETCHED,
   FETCH_NOTICES_FAILURE

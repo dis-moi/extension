@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { findItemById } from 'app/utils/findItemById';
 import { Contributor, StatefulContributor } from 'app/lmem/contributor';
-import { Notice } from 'app/lmem/notice';
+import { Notice, NoticeItem } from 'app/lmem/notice';
 import { ProfilesState } from 'app/profiles/store/reducers';
 import { makeGetRouteParam } from 'app/store/selectors';
 import { isCollectionLoading } from 'app/store/collection/selectors';
@@ -35,11 +35,24 @@ export const getNoticesCollection = (state: ProfilesState) => state.notices;
 
 export const areNoticesLoading = createSelector(
   [getNoticesCollection],
-  noticesCollection => isCollectionLoading<Notice>(noticesCollection)
+  noticesCollection => isCollectionLoading<NoticeItem>(noticesCollection)
 );
+
+export const enhanceNotice = (contributors: Contributor[]) => (
+  noticeItem: NoticeItem
+): Notice => ({
+  ...noticeItem,
+  // eslint-disable-next-line
+  // @ts-ignore
+  contributor: contributors.find(
+    contributor => noticeItem.contributorId === contributor.id
+  )
+});
+
 export const getNotices = createSelector(
-  [getNoticesCollection],
-  noticesCollection => noticesCollection.items
+  [getNoticesCollection, getContributors],
+  (noticesCollection, contributors) =>
+    noticesCollection.items.map(enhanceNotice(contributors))
 );
 
 export const getContributorNotices = createSelector(
@@ -52,7 +65,7 @@ export const getContributorById = (id: number) =>
   createSelector([getContributors], findItemById(id));
 
 export const getFeaturedNotice = createSelector(
-  [getFeaturedNoticeId, getNotices],
+  [getFeaturedNoticeId, getNotices, getContributors],
   (featuredNoticeId, notices) =>
     notices.find(({ id }) => id === featuredNoticeId)
 );

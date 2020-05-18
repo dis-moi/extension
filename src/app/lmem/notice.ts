@@ -1,17 +1,25 @@
 import { find } from 'ramda';
 import { Ratings } from './rating';
-import { Contributor, NewContributor } from './contributor';
+import { Contributor, ContributorId, NewContributor } from './contributor';
 import { captureMessage } from '../utils/sentry';
 
-export interface Notice {
+export interface BaseNotice {
   id: number;
   url: string;
   created: Date;
   modified: Date;
-  contributor: Contributor;
   message: string;
   ratings: Ratings;
   visibility: 'public' | 'private';
+  exampleUrl?: string;
+}
+
+export interface Notice extends BaseNotice {
+  contributor: Contributor;
+}
+
+export interface NoticeItem extends BaseNotice {
+  contributorId: ContributorId;
 }
 
 export interface Contribution {

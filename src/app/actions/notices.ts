@@ -11,13 +11,13 @@ import { createErrorAction } from './helpers';
 export const FETCH_NOTICES_REQUEST = 'NOTICES/FETCH_REQUEST';
 export interface FetchNoticesRequestAction extends BaseAction {
   type: typeof FETCH_NOTICES_REQUEST;
-  payload: string[];
+  payload: object;
 }
 export const fetchNoticesRequest = (
-  noticesUrls: string[]
+  data: object = {}
 ): FetchNoticesRequestAction => ({
   type: FETCH_NOTICES_REQUEST,
-  payload: noticesUrls
+  payload: data
 });
 
 export const NOTICES_FETCHED = 'NOTICES/FETCHED';

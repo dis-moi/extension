@@ -7,10 +7,10 @@ import {
 import { fetchNotices } from 'api/fetchNotice';
 
 export default function* fetchNoticesSaga({
-  payload: noticesUrls
+  payload
 }: FetchNoticesRequestAction) {
   try {
-    const notices = yield call(fetchNotices, noticesUrls);
+    const notices = yield call(fetchNotices, payload);
 
     yield put(noticesFetched(notices));
   } catch (e) {
