@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { LoadingRotator } from 'components/atoms';
 
-const LoadingWrapper = styled(LoadingRotator)`
+const LoaderWrapper = styled(LoadingRotator)`
   position: absolute;
   top: 0;
   right: 0;
@@ -12,4 +12,4 @@ const LoadingWrapper = styled(LoadingRotator)`
   width: 100%;
 `;
 
-export default LoadingWrapper;
+export default LoaderWrapper;

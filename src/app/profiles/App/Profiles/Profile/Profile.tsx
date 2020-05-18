@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
 import { Notice } from 'app/lmem/notice';
-import { trilean } from 'types';
 import Error from '../../Error';
 import {
   Box,
@@ -13,7 +12,7 @@ import {
   Title2,
   TwoColumns
 } from 'components/atoms';
-import { Download, LogoLetter } from 'components/atoms/icons';
+import { Download } from 'components/atoms/icons';
 import SimilarProfiles from './SimilarProfiles';
 import FeaturedNotice from './FeaturedNotice';
 import ProfileIntro from './ProfileIntro';
@@ -24,7 +23,6 @@ import SubscribePopin from '../SubscribePopin';
 import NotConnectedPopin, {
   NotConnectedPopinState
 } from '../NotConnectedPopin';
-import LoadingWrapper from '../LoadingWrapper';
 
 const MainCol = styled.div`
   ${CenterContainer} {
@@ -60,15 +58,15 @@ export const SidebarBox = styled(Box)`
 `;
 
 export interface ProfileProps {
-  loading: trilean;
+  loading?: boolean;
   contributor?: StatefulContributor;
-  noticesLoading: trilean;
+  noticesLoading?: boolean;
   notices: Notice[];
   featuredNotice?: Notice;
   subscribe: (contributorId: ContributorId) => void;
   unsubscribe: (contributorId: ContributorId) => void;
   contributors: StatefulContributor[];
-  contributorsLoading: trilean;
+  contributorsLoading?: boolean;
   connected?: boolean;
 }
 
@@ -97,31 +95,27 @@ export const Profile = ({
     return null;
   }
 
-  if (loading) {
-    return (
-      <LoadingWrapper>
-        <LogoLetter />
-      </LoadingWrapper>
-    );
-  }
-
-  if (!contributor) {
+  if (!loading && !contributor) {
     return <Error />;
   }
 
-  const handleSubscribe = (contributor: StatefulContributor) => () => {
-    if (connected) {
-      subscribe(contributor.id);
-    } else {
-      setNotConnectedPopinState({ opened: true, contributor });
+  const handleSubscribe = (contributor?: StatefulContributor) => () => {
+    if (contributor) {
+      if (connected) {
+        subscribe(contributor.id);
+      } else {
+        setNotConnectedPopinState({ opened: true, contributor });
+      }
     }
   };
 
-  const handleUnsubscribe = (contributor: StatefulContributor) => () => {
-    if (connected) {
-      unsubscribe(contributor.id);
-    } else {
-      setNotConnectedPopinState({ opened: true, contributor });
+  const handleUnsubscribe = (contributor?: StatefulContributor) => () => {
+    if (contributor) {
+      if (connected) {
+        unsubscribe(contributor.id);
+      } else {
+        setNotConnectedPopinState({ opened: true, contributor });
+      }
     }
   };
 
@@ -143,11 +137,14 @@ export const Profile = ({
     <TwoColumns>
       <MainCol>
         <ProfileIntro
+          loading={loading}
           contributor={contributor}
           subscribe={handleSubscribe(contributor)}
           unsubscribe={handleUnsubscribe(contributor)}
         />
-        <Title2>La contribution phare de {contributor.name}</Title2>
+        <Title2>
+          La contribution phare {contributor && `de ${contributor.name}`}
+        </Title2>
         <FeaturedNotice
           loading={noticesLoading}
           notice={featuredNotice}
@@ -212,12 +209,14 @@ export const Profile = ({
         setOpened={setBrowserNotSupportedPopinOpened}
       />
 
-      <SubscribePopin
-        contributor={contributor}
-        subscribe={subscribe}
-        opened={subscribePopinOpened}
-        setOpened={setSubscribePopinOpened}
-      />
+      {contributor && (
+        <SubscribePopin
+          contributor={contributor}
+          subscribe={subscribe}
+          opened={subscribePopinOpened}
+          setOpened={setSubscribePopinOpened}
+        />
+      )}
     </TwoColumns>
   );
 };

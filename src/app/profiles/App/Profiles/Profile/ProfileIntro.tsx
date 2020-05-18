@@ -68,15 +68,17 @@ const ProfileBanner = styled.div`
 `;
 
 export interface ProfileIntroProps {
-  contributor: StatefulContributor;
+  contributor?: StatefulContributor;
   subscribe: () => void;
   unsubscribe: () => void;
+  loading?: boolean;
 }
 
 export const ProfileIntro = ({
   contributor,
   subscribe,
-  unsubscribe
+  unsubscribe,
+  loading
 }: ProfileIntroProps) => {
   return (
     <>
@@ -86,10 +88,13 @@ export const ProfileIntro = ({
           contributor={contributor}
           onSubscribe={subscribe}
           onUnsubscribe={unsubscribe}
+          loading={loading}
         >
-          <ExternalLink href={contributor.contribution.example.matchingUrl}>
-            <LinkIcon /> My website
-          </ExternalLink>
+          {contributor && (
+            <ExternalLink href={contributor.contribution.example.matchingUrl}>
+              <LinkIcon /> My website
+            </ExternalLink>
+          )}
         </ContributorLarge>
       </ProfileIntroContent>
     </>

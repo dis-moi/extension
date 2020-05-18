@@ -4,7 +4,6 @@ import { format } from 'date-fns';
 import { BorderButton, Box, LoadingRotator, Paragraph } from 'components/atoms';
 import { Notice } from 'app/lmem/notice';
 import { LogoLetter } from 'components/atoms/icons';
-import { trilean } from 'types';
 
 const Loading = styled(LoadingRotator)`
   margin-bottom: 20px;
@@ -29,7 +28,7 @@ const NoticeBottomLine = styled.div`
 
 export interface ProfileNoticeListItemProps {
   notice?: Notice;
-  loading?: trilean;
+  loading?: boolean;
   seeInContext: () => void;
   className?: string;
 }

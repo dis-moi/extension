@@ -2,14 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { LogoLetter } from 'components/atoms/icons';
 import { Notice } from 'app/lmem/notice';
-import { trilean } from 'types';
 import ProfileNoticeListItem from './ProfileNoticeListItem';
 import { LoadingRotator } from 'components/atoms';
 
 const ProfileNoticeList = styled.section``;
 
 export interface ProfileNoticeListProps {
-  loading: trilean;
+  loading?: boolean;
   notices: Notice[];
   seeNoticeInContext: (notice: Notice) => () => void;
 }

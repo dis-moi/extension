@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
-import { trilean } from 'types';
 import { Button, CenterContainer, Title2 } from 'components/atoms';
-import { Arrow, LogoLetter } from 'components/atoms/icons';
+import { Arrow } from 'components/atoms/icons';
 import Link from 'components/atoms/Link/Link';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
 import ContributorsList from 'components/organisms/Contributor/ContributorsList';
@@ -12,7 +11,7 @@ import NotConnectedPopin, {
 } from '../NotConnectedPopin';
 import BrowserNotSupportedPopin from '../BrowserNotSupportedPopin';
 import StatsWrapper from 'components/atoms/Contributor/StatsWrapper';
-import LoadingWrapper from '../LoadingWrapper';
+import Loader from '../../../../../components/atoms/Loader';
 
 const Title = styled(Title2)`
   padding-top: 30px;
@@ -60,7 +59,7 @@ const Contributor = styled(ContributorLarge)`
 `;
 
 export interface ProfileListProps {
-  loading: trilean;
+  loading?: boolean;
   contributors: StatefulContributor[];
   subscribe: (contributorId: ContributorId) => void;
   unsubscribe: (contributorId: ContributorId) => void;
@@ -82,18 +81,6 @@ const ProfileList = ({
     setBrowserNotSupportedPopinOpened
   ] = useState(false);
 
-  if (typeof loading === 'undefined') {
-    return null;
-  }
-
-  if (loading) {
-    return (
-      <LoadingWrapper>
-        <LogoLetter />
-      </LoadingWrapper>
-    );
-  }
-
   const handleSubscribe = (contributor: StatefulContributor) => () => {
     if (connected) {
       subscribe(contributor.id);
@@ -113,26 +100,32 @@ const ProfileList = ({
   return (
     <>
       <Title>Les contributeurs</Title>
-      <List>
-        {contributors.map(contributor => (
-          <Contributor
-            key={contributor.id}
-            contributor={contributor}
-            onSubscribe={handleSubscribe(contributor)}
-            onUnsubscribe={handleUnsubscribe(contributor)}
-            to={`/les-contributeurs/${contributor.id}`}
-          >
-            <Link to={`/les-contributeurs/${contributor.id}`}>
-              Voir ses contributions
-              <Arrow />
-            </Link>
-          </Contributor>
-        ))}
-      </List>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <List>
+            {contributors.map(contributor => (
+              <Contributor
+                key={contributor.id}
+                contributor={contributor}
+                onSubscribe={handleSubscribe(contributor)}
+                onUnsubscribe={handleUnsubscribe(contributor)}
+                to={`/les-contributeurs/${contributor.id}`}
+              >
+                <Link to={`/les-contributeurs/${contributor.id}`}>
+                  Voir ses contributions
+                  <Arrow />
+                </Link>
+              </Contributor>
+            ))}
+          </List>
 
-      <CenterContainer>
-        <Button>Voir plus</Button>
-      </CenterContainer>
+          <CenterContainer>
+            <Button>Voir plus</Button>
+          </CenterContainer>
+        </>
+      )}
 
       <NotConnectedPopin
         {...notConnectedPopinState}

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { AvatarSize, Avatar as AvatarType } from 'app/lmem/contributor';
 import AvatarDefault from 'components/atoms/icons/AvatarDefault';
 import Link from 'components/atoms/Link';
+import Loader from '../../atoms/Loader';
 
 interface WrapperProps {
   size: AvatarSize;
@@ -32,7 +33,7 @@ const Wrapper = styled(Link)<WrapperProps>`
 `;
 
 interface AvatarProps<S = LocationState> {
-  contributor: {
+  contributor?: {
     name: string;
     avatar?: AvatarType;
   };
@@ -40,14 +41,28 @@ interface AvatarProps<S = LocationState> {
   className?: string;
   onClick?: () => void;
   to?: LocationDescriptor<S>;
+  loading?: boolean;
 }
 
-const Avatar = ({ contributor, size, className, onClick, to }: AvatarProps) => (
+const Avatar = ({
+  contributor,
+  size,
+  className,
+  onClick,
+  to,
+  loading
+}: AvatarProps) => (
   <Wrapper size={size} className={className} onClick={onClick} to={to}>
-    {contributor.avatar && contributor.avatar[size].url ? (
-      <img src={contributor.avatar.normal.url} alt={contributor.name} />
+    {loading ? (
+      <Loader />
     ) : (
-      <AvatarDefault />
+      <>
+        {contributor?.avatar && contributor.avatar[size].url ? (
+          <img src={contributor.avatar.normal.url} alt={contributor.name} />
+        ) : (
+          <AvatarDefault />
+        )}
+      </>
     )}
   </Wrapper>
 );

@@ -42,12 +42,13 @@ const ContributorIntro = styled.div.attrs<IntroProps>(
 `;
 
 interface ContributorLargeProps<S = LocationState> {
-  contributor: StatefulContributor;
+  contributor?: StatefulContributor;
   onSubscribe: () => void;
   onUnsubscribe: () => void;
   className?: string;
   children?: React.ReactElement;
   to?: LocationDescriptor<S>;
+  loading?: boolean;
 }
 
 const ContributorLarge = ({
@@ -56,36 +57,52 @@ const ContributorLarge = ({
   onUnsubscribe,
   children,
   className,
-  to
+  to,
+  loading
 }: ContributorLargeProps) => (
   <ContributorCard className={className}>
-    <ContributorWrapper>
-      <Avatar size="normal" contributor={contributor} to={to} />
-
-      <ContributorInfos>
-        <UserName>
-          <Link to={to}>{contributor.name}</Link>
-        </UserName>
-
-        <StatsWrapper>
-          <Stat>
-            <BubbleIcon /> {contributor.contributions}{' '}
-            <StatType>contributions</StatType>
-          </Stat>
-        </StatsWrapper>
-
-        <ContributorButton
-          subscribed={contributor.subscribed}
-          onSubscribe={onSubscribe}
-          onUnsubscribe={onUnsubscribe}
+    <>
+      <ContributorWrapper>
+        <Avatar
+          size="normal"
+          contributor={contributor}
+          to={to}
+          loading={loading}
         />
-      </ContributorInfos>
-    </ContributorWrapper>
 
-    <ContributorIntro
-      intro={contributor.intro || 'Description non renseignée'}
-    />
-    {children}
+        <ContributorInfos>
+          {!loading && contributor && (
+            <>
+              <UserName>
+                <Link to={to}>{contributor.name}</Link>
+              </UserName>
+
+              <StatsWrapper>
+                <Stat>
+                  <BubbleIcon /> {contributor.contributions}{' '}
+                  <StatType>contributions</StatType>
+                </Stat>
+              </StatsWrapper>
+
+              <ContributorButton
+                subscribed={contributor?.subscribed}
+                onSubscribe={onSubscribe}
+                onUnsubscribe={onUnsubscribe}
+              />
+            </>
+          )}
+        </ContributorInfos>
+      </ContributorWrapper>
+
+      {!loading && contributor && (
+        <>
+          <ContributorIntro
+            intro={contributor.intro || 'Description non renseignée'}
+          />
+          {children}
+        </>
+      )}
+    </>
   </ContributorCard>
 );
 
