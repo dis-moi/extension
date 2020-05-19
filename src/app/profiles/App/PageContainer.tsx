@@ -12,7 +12,7 @@ const PageContainer = styled.div`
   font-family: 'Lato', sans-serif;
 
   @media (max-width: ${props => props.theme.desktopWidth}) {
-    padding-bottom: 50px;
+    padding: 0 0 50px 0;
   }
 `;
 

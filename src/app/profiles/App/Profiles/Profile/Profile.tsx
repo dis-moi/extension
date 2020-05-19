@@ -57,6 +57,12 @@ export const SidebarBox = styled(Box)`
   }
 `;
 
+const SidebarBoxWithAction = styled(SidebarBox)`
+  @media (max-width: ${props => props.theme.desktopWidth}) {
+    display: none;
+  }
+`;
+
 export interface ProfileProps {
   loading?: boolean;
   contributor?: StatefulContributor;
@@ -163,7 +169,7 @@ export const Profile = ({
       </MainCol>
 
       <Aside>
-        <SidebarBox>
+        <SidebarBoxWithAction>
           <Paragraph>
             DisMoi permet aux internautes, médias et experts de vous informer
             directement sur les pages web que vous visitez.
@@ -172,7 +178,7 @@ export const Profile = ({
           <ButtonWithIcon>
             Ajouter à mon navigateur <Download />
           </ButtonWithIcon>
-        </SidebarBox>
+        </SidebarBoxWithAction>
 
         <SimilarProfiles
           contributors={contributors}

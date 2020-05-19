@@ -33,6 +33,17 @@ const NoticeBottomLine = styled.div`
   & > ${BorderButton} {
     margin-left: 20px;
   }
+
+  @media (max-width: ${props => props.theme.tabletWidth}) {
+    display: block;
+    font-size: ${props => props.theme.fontSizeDefault};
+
+    & > ${BorderButton} {
+      width: 100%;
+      margin-top: ${props => props.theme.marginS};
+      margin-left: 0;
+    }
+  }
 `;
 
 export interface ProfileNoticeListItemProps {

@@ -12,6 +12,7 @@ import ExternalLink from 'components/atoms/Link/ExternalLink';
 import UserName from 'components/atoms/UserName/UserName';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
+import { Anchor } from 'components/atoms';
 
 const ProfileIntroContent = styled.section`
   margin-bottom: 40px;
@@ -47,8 +48,13 @@ const ProfileIntroContent = styled.section`
 
       ${UserName} {
         display: inline;
-        font-size: 22px;
-        color: ${props => props.theme.titleColor};
+
+        ${Anchor} {
+          display: block;
+          font-size: 22px;
+          color: ${props => props.theme.titleColor};
+          white-space: normal;
+        }
       }
 
       ${StatsWrapper} {
@@ -56,6 +62,16 @@ const ProfileIntroContent = styled.section`
 
         & + div {
           margin-top: -5px;
+        }
+      }
+
+      @media (max-width: ${props => props.theme.tabletWidth}) {
+        display: block;
+
+        ${StatsWrapper} {
+          & + div {
+            margin-top: 15px;
+          }
         }
       }
     }
