@@ -7,13 +7,13 @@ import {
 
 export type ConnectionState = {
   connecting: number;
-  connected: boolean;
+  connected?: boolean;
   lastConnected: number | null;
 };
 
 export const initialState: ConnectionState = {
   connecting: 0,
-  connected: false,
+  connected: undefined,
   lastConnected: null
 };
 
