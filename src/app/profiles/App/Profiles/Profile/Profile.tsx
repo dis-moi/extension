@@ -169,17 +169,18 @@ export const Profile = ({
       </MainCol>
 
       <Aside>
-        <SidebarBoxWithAction>
-          <Paragraph>
-            DisMoi permet aux internautes, médias et experts de vous informer
-            directement sur les pages web que vous visitez.
-          </Paragraph>
+        {connected === false && (
+          <SidebarBoxWithAction>
+            <Paragraph>
+              DisMoi permet aux internautes, médias et experts de vous informer
+              directement sur les pages web que vous visitez.
+            </Paragraph>
 
-          <ButtonWithIcon>
-            Ajouter à mon navigateur <Download />
-          </ButtonWithIcon>
-        </SidebarBoxWithAction>
-
+            <ButtonWithIcon>
+              Ajouter à mon navigateur <Download />
+            </ButtonWithIcon>
+          </SidebarBoxWithAction>
+        )}
         <SimilarProfiles
           contributors={contributors}
           loading={contributorsLoading}
