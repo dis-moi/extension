@@ -15,6 +15,15 @@ const NoticeTopLine = styled.div`
 
 const NoticeHighlight = styled.strong``;
 
+const NoticeURL = styled.span`
+  display: inline-block;
+  max-width: 30%;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: bottom;
+  text-overflow: ellipsis;
+`;
+
 const NoticeBottomLine = styled.div`
   display: flex;
   align-items: center;
@@ -60,7 +69,7 @@ export const ProfileNoticeListItem = ({
       {notice.exampleUrl && (
         <NoticeTopLine>
           <NoticeHighlight>
-            Message épinglé sur {notice.exampleUrl}
+            Message épinglé sur <NoticeURL>{notice.exampleUrl}</NoticeURL>
           </NoticeHighlight>{' '}
           et d&apos;autres pages web
         </NoticeTopLine>
