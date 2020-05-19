@@ -1,3 +1,11 @@
+# [3.32.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.31.0...v3.32.0) (2020-05-19)
+
+
+### Features
+
+* **removeBulles:** changed Logo ([c74f685](https://github.com/insitu-project/recommendations-webextension/commit/c74f685717fc29bb8ea97ba6c978dbd951bdfb0d))
+* **removeBulles:** removed ServiceMessage ([2317de9](https://github.com/insitu-project/recommendations-webextension/commit/2317de978edea9039d17bbe6f43179ba8637a656))
+
 # [3.31.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.30.0...v3.31.0) (2020-05-19)
 
 
