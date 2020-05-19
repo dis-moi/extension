@@ -72,6 +72,8 @@ const SimilarProfiles = ({
 };
 
 export default styled(SimilarProfiles)`
+  border: 4px solid Goldenrod;
+
   ${ContributorCompact} {
     &:first-child {
       border-top: none;
