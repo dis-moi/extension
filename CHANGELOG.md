@@ -1,3 +1,10 @@
+# [3.31.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.30.0...v3.31.0) (2020-05-19)
+
+
+### Features
+
+* **onboarding:** Reactivate onboarding opening on install if required ([32faee2](https://github.com/insitu-project/recommendations-webextension/commit/32faee20d26862e543667c2cd6deb791932a62a6))
+
 # [3.30.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.29.0...v3.30.0) (2020-05-13)
 
 
