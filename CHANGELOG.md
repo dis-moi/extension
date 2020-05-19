@@ -1,3 +1,10 @@
+## [3.32.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.32.0...v3.32.1) (2020-05-19)
+
+
+### Bug Fixes
+
+* **AddNoticeButton:** changes value and cancel svg transform ([85053f5](https://github.com/insitu-project/recommendations-webextension/commit/85053f501d1f1c6099b05f10f164657f10af03d0))
+
 # [3.32.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.31.0...v3.32.0) (2020-05-19)
 
 
