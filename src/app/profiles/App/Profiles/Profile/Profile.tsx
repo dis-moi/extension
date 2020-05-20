@@ -64,28 +64,26 @@ const SidebarBoxWithAction = styled(SidebarBox)`
 `;
 
 export interface ProfileProps {
-  loading?: boolean;
   contributor?: StatefulContributor;
   noticesLoading?: boolean;
   notices: Notice[];
   featuredNotice?: Notice;
   subscribe: (contributorId: ContributorId) => void;
   unsubscribe: (contributorId: ContributorId) => void;
-  contributors: StatefulContributor[];
-  contributorsLoading?: boolean;
+  similarContributors: StatefulContributor[];
+  similarContributorsLoading?: boolean;
   connected?: boolean;
 }
 
 export const Profile = ({
-  loading,
   contributor,
   subscribe,
   unsubscribe,
   noticesLoading,
   featuredNotice,
   notices,
-  contributors,
-  contributorsLoading,
+  similarContributors,
+  similarContributorsLoading,
   connected
 }: ProfileProps) => {
   const [notConnectedPopinState, setNotConnectedPopinState] = useState<
@@ -97,11 +95,11 @@ export const Profile = ({
   ] = useState(false);
   const [subscribePopinOpened, setSubscribePopinOpened] = useState(false);
 
-  if (typeof loading === 'undefined') {
+  if (typeof contributor?.loading === 'undefined') {
     return null;
   }
 
-  if (!loading && !contributor) {
+  if (!contributor?.loading && !contributor) {
     return <Error />;
   }
 
@@ -143,7 +141,7 @@ export const Profile = ({
     <TwoColumns>
       <MainCol>
         <ProfileIntro
-          loading={loading}
+          loading={contributor?.loading}
           contributor={contributor}
           subscribe={handleSubscribe(contributor)}
           unsubscribe={handleUnsubscribe(contributor)}
@@ -182,8 +180,8 @@ export const Profile = ({
           </SidebarBoxWithAction>
         )}
         <SimilarProfiles
-          contributors={contributors}
-          loading={contributorsLoading}
+          contributors={similarContributors}
+          loading={similarContributorsLoading}
           subscribe={handleSubscribe}
           unsubscribe={handleUnsubscribe}
         />

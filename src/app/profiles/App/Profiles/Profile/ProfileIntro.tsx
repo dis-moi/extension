@@ -106,9 +106,9 @@ export const ProfileIntro = ({
           onUnsubscribe={unsubscribe}
           loading={loading}
         >
-          {contributor && (
-            <ExternalLink href={contributor.contribution.example.matchingUrl}>
-              <LinkIcon /> My website
+          {contributor && !!contributor.website && (
+            <ExternalLink href={contributor.website}>
+              <LinkIcon /> {contributor.website}
             </ExternalLink>
           )}
         </ContributorLarge>

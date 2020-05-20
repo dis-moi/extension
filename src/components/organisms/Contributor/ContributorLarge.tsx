@@ -46,7 +46,7 @@ interface ContributorLargeProps<S = LocationState> {
   onSubscribe: () => void;
   onUnsubscribe: () => void;
   className?: string;
-  children?: React.ReactElement;
+  children?: React.ReactNode;
   to?: LocationDescriptor<S>;
   loading?: boolean;
 }
@@ -85,6 +85,7 @@ const ContributorLarge = ({
               </StatsWrapper>
 
               <ContributorButton
+                loading={contributor?.subscribing === true}
                 subscribed={contributor?.subscribed}
                 onSubscribe={onSubscribe}
                 onUnsubscribe={onUnsubscribe}

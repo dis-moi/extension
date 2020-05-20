@@ -93,3 +93,11 @@ export const unsubscribedFailed = (
     severity: Level.ERROR
   }
 });
+
+export type SubscriptionAction =
+  | SubscribeAction
+  | SubscribedAction
+  | SubscribeFailedAction
+  | UnsubscribeAction
+  | UnsubscribedAction
+  | UnsubscribedFailedAction;
