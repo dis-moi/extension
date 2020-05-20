@@ -5,16 +5,15 @@ import ContributorCompact from 'components/organisms/Contributor/ContributorComp
 import { SidebarBox } from './Profile';
 import { LogoLetter } from 'components/atoms/icons';
 import {
-  Button,
   CenterContainer,
   Link,
   LoadingRotator,
   Title2
 } from 'components/atoms';
 import StatsWrapper from 'components/atoms/Contributor/StatsWrapper';
-import Avatar from '../../../../../components/molecules/Avatar/Avatar';
-import UserName from '../../../../../components/atoms/UserName/UserName';
-import Stat from '../../../../../components/atoms/Stat/Stat';
+import Avatar from 'components/molecules/Avatar/Avatar';
+import UserName from 'components/atoms/UserName/UserName';
+import Stat from 'components/atoms/Stat/Stat';
 
 interface SimilarProfilesProps {
   loading?: boolean;
@@ -70,7 +69,7 @@ const SimilarProfiles = ({
         ))}
       </SidebarBox>
       <CenterContainer>
-        <Button to="/les-contributeurs">Voir tout</Button>
+        <Link to="/les-contributeurs">Voir tout</Link>
       </CenterContainer>
     </>
   );
@@ -137,7 +136,7 @@ export default styled(SimilarProfiles)`
         font-size: 14px;
       }
 
-      ${Button} {
+      ${Link} {
         margin-top: 10px;
         font-size: 18px;
       }
