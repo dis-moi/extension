@@ -84,7 +84,9 @@ export const SubscriptionsScreen = ({
           onSubscribe={subscribe(contributor)}
           onUnsubscribe={unsubscribe(contributor)}
         >
-          <ContributorLink href={contributor.contribution.example.matchingUrl}>
+          <ContributorLink
+            href={contributor.contribution?.example?.matchingUrl}
+          >
             Voir un exemple de ses contributions
           </ContributorLink>
         </ContributorLarge>

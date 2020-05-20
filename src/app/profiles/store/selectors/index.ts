@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import * as R from 'ramda';
 import { findItemById } from 'app/utils/findItemById';
 import {
   Contributor,
@@ -34,9 +33,14 @@ export const getStatefulContributors = createSelector(
   enhanceContributors
 );
 
-export const getSimilarProfiles = createSelector(
-  [getStatefulContributors],
-  R.reject(contributorIsSubscribed)
+export const getSimilarContributors = createSelector(
+  [getStatefulContributors, makeGetRouteParam('id')],
+  (statefulContributors, id) =>
+    statefulContributors.filter(
+      statefulContributor =>
+        !contributorIsSubscribed(statefulContributor) &&
+        statefulContributor.id !== Number(id)
+    )
 );
 
 export const getSubscribedContributors = createSelector(

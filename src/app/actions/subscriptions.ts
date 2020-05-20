@@ -43,8 +43,3 @@ export const fetchSubscriptionsFailure = (
     severity: Level.ERROR
   }
 });
-
-export type SubscriptionsAction =
-  | FetchSubscriptionsAction
-  | FetchSubscriptionsSuccessAction
-  | FetchSubscriptionsFailureAction;

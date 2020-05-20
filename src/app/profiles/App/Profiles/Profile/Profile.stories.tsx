@@ -10,7 +10,6 @@ storiesOf('Profile/Profile', module)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
   .add('Normal', () => (
     <Profile
-      loading={false}
       featuredNotice={generateStatefulNotice()}
       notices={[
         generateStatefulNotice(),
@@ -22,17 +21,16 @@ storiesOf('Profile/Profile', module)
       subscribe={action('subscribe')}
       unsubscribe={action('unsubscribe')}
       contributor={generateStatefulContributor()}
-      contributors={[
+      similarContributors={[
         generateStatefulContributor(),
         generateStatefulContributor()
       ]}
-      contributorsLoading={false}
+      similarContributorsLoading={false}
       connected={false}
     />
   ))
   .add('loading', () => (
     <Profile
-      loading
       featuredNotice={generateStatefulNotice()}
       notices={[
         generateStatefulNotice(),
@@ -43,18 +41,17 @@ storiesOf('Profile/Profile', module)
       noticesLoading={false}
       subscribe={action('subscribe')}
       unsubscribe={action('unsubscribe')}
-      contributor={generateStatefulContributor()}
-      contributors={[
+      contributor={generateStatefulContributor({ loading: true })}
+      similarContributors={[
         generateStatefulContributor(),
         generateStatefulContributor()
       ]}
-      contributorsLoading={false}
+      similarContributorsLoading={false}
       connected={false}
     />
   ))
   .add('contributorsLoading', () => (
     <Profile
-      loading={false}
       featuredNotice={generateStatefulNotice()}
       notices={[
         generateStatefulNotice(),
@@ -66,17 +63,16 @@ storiesOf('Profile/Profile', module)
       subscribe={action('subscribe')}
       unsubscribe={action('unsubscribe')}
       contributor={generateStatefulContributor()}
-      contributors={[
+      similarContributors={[
         generateStatefulContributor(),
         generateStatefulContributor()
       ]}
-      contributorsLoading
+      similarContributorsLoading
       connected={false}
     />
   ))
   .add('noticesLoading', () => (
     <Profile
-      loading={false}
       featuredNotice={generateStatefulNotice()}
       notices={[
         generateStatefulNotice(),
@@ -88,11 +84,11 @@ storiesOf('Profile/Profile', module)
       subscribe={action('subscribe')}
       unsubscribe={action('unsubscribe')}
       contributor={generateStatefulContributor()}
-      contributors={[
+      similarContributors={[
         generateStatefulContributor(),
         generateStatefulContributor()
       ]}
-      contributorsLoading={false}
+      similarContributorsLoading={false}
       connected={false}
     />
   ));

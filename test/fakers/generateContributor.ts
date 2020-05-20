@@ -6,18 +6,21 @@ interface Options {
   name?: string;
   contributions?: number;
   noAvatar?: boolean;
+  website?: string | null;
 }
 
 interface StatefulOptions extends Options {
   subscribed?: boolean;
   subscribing?: boolean;
+  loading?: boolean;
 }
 
 export const generateContributor = ({
   id,
   name,
   contributions,
-  noAvatar
+  noAvatar,
+  website
 }: Options = {}): Contributor => ({
   id: id || Faker.random.number(),
   name: name || Faker.name.findName(),
@@ -36,15 +39,18 @@ export const generateContributor = ({
         normal: { url: Faker.image.avatar() },
         large: { url: Faker.image.avatar() }
       },
-  noticesUrls: ['http://backend.dismoi.io/notices/1']
+  noticesUrls: ['http://backend.dismoi.io/notices/1'],
+  website: website || Faker.internet.url()
 });
 
 export const generateStatefulContributor = ({
   subscribed,
   subscribing,
+  loading,
   ...rest
 }: StatefulOptions = {}) => ({
   ...generateContributor(rest),
   subscribed: subscribed === undefined ? false : subscribed,
-  subscribing: subscribing === undefined ? false : subscribing
+  subscribing: subscribing === undefined ? false : subscribing,
+  loading: loading === undefined ? false : loading
 });
