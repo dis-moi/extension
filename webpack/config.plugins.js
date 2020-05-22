@@ -67,11 +67,6 @@ module.exports = (env = {}, argv = {}, buildPath) => {
     }),
     new ModuleNotFoundPlugin(path.resolve(__dirname, '..')),
     new HtmlWebpackPlugin({
-      template: './views/background.pug',
-      filename: 'background.html',
-      inject: false
-    }),
-    new HtmlWebpackPlugin({
       template: './views/options.pug',
       filename: 'options.html',
       inject: false
