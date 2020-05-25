@@ -1,3 +1,4 @@
+import 'core-js/stable';
 import { configureSentryScope, initSentry, Scope } from '../utils/sentry';
 
 initSentry();
