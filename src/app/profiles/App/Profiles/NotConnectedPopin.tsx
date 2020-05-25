@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import Popin, {
   PopinProps,
   PopinState
@@ -13,7 +13,7 @@ export interface NotConnectedPopinState extends PopinState {
 
 interface NotConnectedPopinProps extends PopinProps {
   contributor?: StatefulContributor;
-  addToBrowser: () => void;
+  addToBrowser: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 const NotConnectedPopin = ({
@@ -29,7 +29,7 @@ const NotConnectedPopin = ({
         veuillez d’abord ajouter Dismoi à votre navigateur.
       </PopinParagraph>
 
-      <BackgroundButton onClick={addToBrowser}>
+      <BackgroundButton className="bulle-installer" onClick={addToBrowser}>
         Ajouter Dismoi à mon navigateur
       </BackgroundButton>
     </Popin>

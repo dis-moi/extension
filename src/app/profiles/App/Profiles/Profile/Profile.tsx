@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, MouseEvent } from 'react';
 import styled from 'styled-components';
 import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
 import { Notice } from 'app/lmem/notice';
@@ -18,7 +18,6 @@ import FeaturedNotice from './FeaturedNotice';
 import ProfileIntro from './ProfileIntro';
 import ProfileNoticeList from './ProfileNoticeList';
 import CenterContainer from 'components/atoms/CenterContainer';
-import BrowserNotSupportedPopin from '../BrowserNotSupportedPopin';
 import SubscribePopin from '../SubscribePopin';
 import NotConnectedPopin, {
   NotConnectedPopinState
@@ -74,6 +73,7 @@ export interface ProfileProps {
   contributors: StatefulContributor[];
   contributorsLoading?: boolean;
   connected?: boolean;
+  addToBrowser: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 export const Profile = ({
@@ -86,15 +86,12 @@ export const Profile = ({
   similarContributors,
   contributors,
   contributorsLoading,
-  connected
+  connected,
+  addToBrowser
 }: ProfileProps) => {
   const [notConnectedPopinState, setNotConnectedPopinState] = useState<
     NotConnectedPopinState
   >({ opened: false, contributor });
-  const [
-    browserNotSupportedPopinOpened,
-    setBrowserNotSupportedPopinOpened
-  ] = useState(false);
   const [subscribePopinOpened, setSubscribePopinOpened] = useState(false);
 
   if (typeof contributor?.loading === 'undefined') {
@@ -176,7 +173,7 @@ export const Profile = ({
               directement sur les pages web que vous visitez.
             </Paragraph>
 
-            <ButtonWithIcon>
+            <ButtonWithIcon className="bulle-installer">
               Ajouter à mon navigateur <Download />
             </ButtonWithIcon>
           </SidebarBoxWithAction>
@@ -198,18 +195,13 @@ export const Profile = ({
             opened
           })
         }
-        addToBrowser={() => {
+        addToBrowser={(e: MouseEvent<HTMLButtonElement>) => {
           setNotConnectedPopinState({
             ...notConnectedPopinState,
             opened: false
           });
-          setBrowserNotSupportedPopinOpened(true);
+          addToBrowser(e);
         }}
-      />
-
-      <BrowserNotSupportedPopin
-        opened={browserNotSupportedPopinOpened}
-        setOpened={setBrowserNotSupportedPopinOpened}
       />
 
       {contributor && (

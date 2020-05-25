@@ -12,7 +12,8 @@ import extensionId from 'app/profiles/extensionId';
 const mapStateToProps = (state: ProfilesState) => ({
   loading: areContributorsLoading(state),
   contributors: getStatefulContributors(state),
-  connected: isConnected(state)
+  connected: isConnected(state),
+  addToBrowser: clickInstallHandler
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => {

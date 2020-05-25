@@ -11,6 +11,19 @@ html
     meta(name='msapplication-TileColor' content='#ffffff')
     meta(name='theme-color' content='#ffffff')
     meta(name='viewport' content='width=device-width, initial-scale=1')
+    script(src='https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js')
+    script(src='https://cdn.jsdelivr.net/npm/bowser@2.4.0/bundled.js')
+    script(src='https://cdn.jsdelivr.net/npm/jspolyfill-array.prototype.find@0.1.3/find.min.js')
   body
     div(id='root')
+    script(type='text/javascript').
+      var bull_config = {
+        "bulle_non_supporte":"https:\/\/www.dismoi.io\/navigateur-non-supporte\/",
+        "bulle_deja_installe":"",
+        "bulle_lien_opera":"https:\/\/www.dismoi.io\/opera\/",
+        "bulle_lien_extension_chrome":"https:\/\/chrome.google.com\/webstore\/detail\/bulles\/fpjlnlnbacohacebkadbbjebbipcknbg",
+        "bulle_lien_extension_firefox":"https:\/\/addons.mozilla.org\/en-US\/firefox\/addon\/dismoi\/",
+        "bulle_extension_id_chrome":"fpjlnlnbacohacebkadbbjebbipcknbg"
+      };
+    script(src=webpackConfig.output.publicPath + '/test/integration/bulle-extension.js')
     script(src=webpackConfig.output.publicPath + '/js/profiles.bundle.js')

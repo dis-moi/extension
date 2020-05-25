@@ -17,7 +17,8 @@
   "globals": {
     "chrome": "readonly",
     "browser": "readonly",
-    "fetch": "readonly"
+    "fetch": "readonly",
+    "clickInstallHandler": "readonly"
   },
   "extends": [
     "plugin:@typescript-eslint/recommended",

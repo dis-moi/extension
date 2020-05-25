@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { MouseEvent, useState } from 'react';
 import styled from 'styled-components';
 import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
 import { Button, CenterContainer, Title2 } from 'components/atoms';
@@ -11,7 +11,7 @@ import NotConnectedPopin, {
 } from '../NotConnectedPopin';
 import BrowserNotSupportedPopin from '../BrowserNotSupportedPopin';
 import StatsWrapper from 'components/atoms/Contributor/StatsWrapper';
-import Loader from '../../../../../components/atoms/Loader';
+import Loader from 'components/atoms/Loader';
 
 const Title = styled(Title2)`
   padding-top: 30px;
@@ -64,6 +64,7 @@ export interface ProfileListProps {
   subscribe: (contributorId: ContributorId) => void;
   unsubscribe: (contributorId: ContributorId) => void;
   connected?: boolean;
+  addToBrowser: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 const ProfileList = ({
@@ -71,7 +72,8 @@ const ProfileList = ({
   contributors = [],
   subscribe,
   unsubscribe,
-  connected
+  connected,
+  addToBrowser
 }: ProfileListProps) => {
   const [notConnectedPopinState, setNotConnectedPopinState] = useState<
     NotConnectedPopinState
@@ -135,12 +137,12 @@ const ProfileList = ({
             opened
           })
         }
-        addToBrowser={() => {
+        addToBrowser={(e: MouseEvent<HTMLButtonElement>) => {
           setNotConnectedPopinState({
             ...notConnectedPopinState,
             opened: false
           });
-          setBrowserNotSupportedPopinOpened(true);
+          addToBrowser(e);
         }}
       />
 

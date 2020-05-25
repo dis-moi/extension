@@ -24,6 +24,7 @@ storiesOf('Profile/ProfileList', module)
       ]}
       loading={false}
       connected={false}
+      addToBrowser={action('addToBrowser')}
     />
   ))
   .add('loading', () => (
@@ -43,5 +44,6 @@ storiesOf('Profile/ProfileList', module)
       ]}
       loading
       connected={false}
+      addToBrowser={action('addToBrowser')}
     />
   ));

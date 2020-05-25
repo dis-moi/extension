@@ -33,7 +33,8 @@ const mapStateToProps = (
   featuredNotice: getFeaturedNotice(state, props),
   noticesLoading: areNoticesLoading(state),
   notices: getContributorNoticesButFeaturedOne(state, props),
-  connected: isConnected(state)
+  connected: isConnected(state),
+  addToBrowser: clickInstallHandler
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
