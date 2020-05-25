@@ -7,7 +7,8 @@ import {
   getContributorFromRouteParam,
   getFeaturedNotice,
   getContributorNoticesButFeaturedOne,
-  getSimilarContributors
+  getSimilarContributors,
+  getStatefulContributors
 } from 'app/profiles/store/selectors';
 import { areNoticesLoading } from 'app/profiles/store/selectors/notices';
 import { areContributorsLoading } from 'app/profiles/store/selectors/contributors';
@@ -27,6 +28,7 @@ const mapStateToProps = (
   loading: areContributorsLoading(state),
   contributor: getContributorFromRouteParam(state, props),
   similarContributors: getSimilarContributors(state, props).slice(0, 6),
+  contributors: getStatefulContributors(state),
   contributorsLoading: areContributorsLoading(state),
   featuredNotice: getFeaturedNotice(state, props),
   noticesLoading: areNoticesLoading(state),

@@ -17,6 +17,7 @@ import Stat from 'components/atoms/Stat/Stat';
 
 interface SimilarProfilesProps {
   loading?: boolean;
+  similarContributors: StatefulContributor[];
   contributors: StatefulContributor[];
   subscribe: (contributor: StatefulContributor) => () => void;
   unsubscribe: (contributor: StatefulContributor) => () => void;
@@ -30,16 +31,20 @@ const Loader = styled(CenterContainer)`
 
 const SimilarProfiles = ({
   loading = false,
+  similarContributors,
   contributors,
   subscribe,
   unsubscribe,
   className
 }: SimilarProfilesProps) => {
-  const [initialContributors, setInitialSuggestions] = useState(contributors);
+  const [initialSimilarContributors, setInitialSimilarContributors] = useState(
+    similarContributors
+  );
 
   useEffect(() => {
-    if (initialContributors.length === 0) setInitialSuggestions(contributors);
-  }, [contributors]);
+    if (initialSimilarContributors.length === 0)
+      setInitialSimilarContributors(similarContributors);
+  }, [similarContributors, contributors]);
 
   if (loading) {
     return (
@@ -51,7 +56,7 @@ const SimilarProfiles = ({
     );
   }
 
-  if (initialContributors.length === 0) {
+  if (initialSimilarContributors.length === 0) {
     return null;
   }
 
@@ -59,14 +64,21 @@ const SimilarProfiles = ({
     <>
       <Title2>Profils similaires</Title2>
       <SidebarBox className={className}>
-        {initialContributors.map(contributor => (
-          <ContributorCompact
-            key={contributor.id}
-            contributor={contributor}
-            onSubscribe={subscribe(contributor)}
-            onUnsubscribe={unsubscribe(contributor)}
-          />
-        ))}
+        {initialSimilarContributors
+          .map(initialSimilarContributor => ({
+            ...initialSimilarContributor,
+            ...contributors.find(
+              contributor => contributor.id === initialSimilarContributor.id
+            )
+          }))
+          .map(contributor => (
+            <ContributorCompact
+              key={contributor.id}
+              contributor={contributor}
+              onSubscribe={subscribe(contributor)}
+              onUnsubscribe={unsubscribe(contributor)}
+            />
+          ))}
       </SidebarBox>
       <CenterContainer>
         <Link to="/les-contributeurs">Voir tout</Link>

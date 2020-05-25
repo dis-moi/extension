@@ -25,7 +25,11 @@ storiesOf('Profile/Profile', module)
         generateStatefulContributor(),
         generateStatefulContributor()
       ]}
-      similarContributorsLoading={false}
+      contributors={[
+        generateStatefulContributor(),
+        generateStatefulContributor()
+      ]}
+      contributorsLoading={false}
       connected={false}
     />
   ))
@@ -46,7 +50,11 @@ storiesOf('Profile/Profile', module)
         generateStatefulContributor(),
         generateStatefulContributor()
       ]}
-      similarContributorsLoading={false}
+      contributors={[
+        generateStatefulContributor(),
+        generateStatefulContributor()
+      ]}
+      contributorsLoading={false}
       connected={false}
     />
   ))
@@ -67,7 +75,11 @@ storiesOf('Profile/Profile', module)
         generateStatefulContributor(),
         generateStatefulContributor()
       ]}
-      similarContributorsLoading
+      contributors={[
+        generateStatefulContributor(),
+        generateStatefulContributor()
+      ]}
+      contributorsLoading={true}
       connected={false}
     />
   ))
@@ -88,7 +100,11 @@ storiesOf('Profile/Profile', module)
         generateStatefulContributor(),
         generateStatefulContributor()
       ]}
-      similarContributorsLoading={false}
+      contributors={[
+        generateStatefulContributor(),
+        generateStatefulContributor()
+      ]}
+      contributorsLoading={false}
       connected={false}
     />
   ));

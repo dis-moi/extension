@@ -71,7 +71,8 @@ export interface ProfileProps {
   subscribe: (contributorId: ContributorId) => void;
   unsubscribe: (contributorId: ContributorId) => void;
   similarContributors: StatefulContributor[];
-  similarContributorsLoading?: boolean;
+  contributors: StatefulContributor[];
+  contributorsLoading?: boolean;
   connected?: boolean;
 }
 
@@ -83,7 +84,8 @@ export const Profile = ({
   featuredNotice,
   notices,
   similarContributors,
-  similarContributorsLoading,
+  contributors,
+  contributorsLoading,
   connected
 }: ProfileProps) => {
   const [notConnectedPopinState, setNotConnectedPopinState] = useState<
@@ -180,8 +182,9 @@ export const Profile = ({
           </SidebarBoxWithAction>
         )}
         <SimilarProfiles
-          contributors={similarContributors}
-          loading={similarContributorsLoading}
+          similarContributors={similarContributors}
+          contributors={contributors}
+          loading={contributorsLoading}
           subscribe={handleSubscribe}
           unsubscribe={handleUnsubscribe}
         />
@@ -213,6 +216,7 @@ export const Profile = ({
         <SubscribePopin
           contributor={contributor}
           subscribe={subscribe}
+          unsubscribe={unsubscribe}
           opened={subscribePopinOpened}
           setOpened={setSubscribePopinOpened}
         />
