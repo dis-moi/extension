@@ -49,13 +49,25 @@ export const items = (
       return state;
     }
 
-    case UNSUBSCRIBED:
+    case UNSUBSCRIBED: {
+      const index = state.findIndex(item => item.id === action.payload);
+      if (index) {
+        return [
+          ...state.slice(0, index),
+          { ...state[index], subscribed: false, subscribing: false },
+          ...state.slice(index + 1)
+        ];
+      }
+
+      return state;
+    }
+
     case SUBSCRIBED: {
       const index = state.findIndex(item => item.id === action.payload);
       if (index) {
         return [
           ...state.slice(0, index),
-          { ...state[index], subscribing: false },
+          { ...state[index], subscribed: true, subscribing: false },
           ...state.slice(index + 1)
         ];
       }
