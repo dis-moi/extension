@@ -107,28 +107,22 @@ const ProfileList = ({
       {loading ? (
         <Loader />
       ) : (
-        <>
-          <List>
-            {contributors.map(contributor => (
-              <Contributor
-                key={contributor.id}
-                contributor={contributor}
-                onSubscribe={handleSubscribe(contributor)}
-                onUnsubscribe={handleUnsubscribe(contributor)}
-                to={pathToContributor(contributor)}
-              >
-                <Link to={pathToContributor(contributor)}>
-                  Voir ses contributions
-                  <Arrow />
-                </Link>
-              </Contributor>
-            ))}
-          </List>
-
-          <CenterContainer>
-            <Button>Voir plus</Button>
-          </CenterContainer>
-        </>
+        <List>
+          {contributors.map(contributor => (
+            <Contributor
+              key={contributor.id}
+              contributor={contributor}
+              onSubscribe={handleSubscribe(contributor)}
+              onUnsubscribe={handleUnsubscribe(contributor)}
+              to={pathToContributor(contributor)}
+            >
+              <Link to={pathToContributor(contributor)}>
+                Voir ses contributions
+                <Arrow />
+              </Link>
+            </Contributor>
+          ))}
+        </List>
       )}
 
       <NotConnectedPopin

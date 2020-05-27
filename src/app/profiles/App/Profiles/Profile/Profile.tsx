@@ -160,9 +160,6 @@ export const Profile = ({
           notices={notices}
           seeNoticeInContext={handleSeeNoticeInContext}
         />
-        <CenterContainer>
-          <Button>Voir plus</Button>
-        </CenterContainer>
       </MainCol>
 
       <Aside>
