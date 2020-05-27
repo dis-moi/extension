@@ -56,7 +56,7 @@ module.exports = function webpack(env = {}, argv = {}) {
       filename: 'js/[name].bundle.js',
       chunkFilename: 'js/[id].chunk.js',
       path: buildPath,
-      publicPath: '.'
+      publicPath: ''
     },
     module: { rules: rules(env, argv) },
     plugins: plugins(env, argv, buildPath),

@@ -52,6 +52,12 @@ git clone git@github.com:dis-moi/extension.git dismoi-extension
 yarn
 ```
 
+> To start the `profiles` app in development run the following command
+>
+> ```
+> yarn start:profiles
+> ```
+
 4. Create a copy of `.env.development.example` to `.env.development` and adjust the values.
 
 > Read further on [environments](docs/CONTRIBUTING.md#Environments).
