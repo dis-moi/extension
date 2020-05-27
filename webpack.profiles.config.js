@@ -20,6 +20,12 @@ const formatEnvVar = value => `"${value}"`;
 loadEnv({ path: path.resolve(__dirname) });
 
 module.exports = function webpack(env = {}, argv = {}) {
+  env = {
+    PLATFORM: 'chromium',
+    ...process.env,
+    ...env
+  };
+
   const defaultWebpackConfig = defaultWebpack(env, argv);
 
   return {
@@ -29,6 +35,10 @@ module.exports = function webpack(env = {}, argv = {}) {
       historyApiFallback: true,
       stats: 'minimal',
       contentBase: defaultWebpackConfig.output.path
+    },
+    output: {
+      ...defaultWebpackConfig.output,
+      filename: 'js/profiles.bundle.js'
     },
     plugins: [
       ...basePlugins(env, argv),
