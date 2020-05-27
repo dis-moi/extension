@@ -41,11 +41,12 @@ const Contributor = styled(ContributorLarge)`
   }
 
   & > ${Link} {
-    display: flex;
+    display: inline-flex;
     align-items: center;
 
     svg {
       stroke: ${props => props.theme.Button.default};
+      margin-top: 3px;
       margin-left: 5px;
       transform: rotate(180deg);
     }
