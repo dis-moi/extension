@@ -17,7 +17,4 @@ export default function* rootSaga() {
     fork(connectionSaga),
     fork(subscriptionsSaga)
   ]);
-
-  // yield put(refreshMatchingContexts());
-  // yield put(refreshContributors());
 }

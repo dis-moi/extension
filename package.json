@@ -197,6 +197,7 @@
     "semver": "^6.3.0",
     "sinon": "^7.3.0",
     "sinon-chai": "^3.3.0",
+    "slugify": "^1.4.0",
     "style-loader": "^0.23.1",
     "styled-components": "5.1.0",
     "stylelint": "^10.0.1",

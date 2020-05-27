@@ -12,6 +12,7 @@ import NotConnectedPopin, {
 import BrowserNotSupportedPopin from '../BrowserNotSupportedPopin';
 import StatsWrapper from 'components/atoms/Contributor/StatsWrapper';
 import Loader from 'components/atoms/Loader';
+import pathToContributor from '../../pathToContributor';
 
 const Title = styled(Title2)`
   padding-top: 30px;
@@ -114,9 +115,9 @@ const ProfileList = ({
                 contributor={contributor}
                 onSubscribe={handleSubscribe(contributor)}
                 onUnsubscribe={handleUnsubscribe(contributor)}
-                to={`/les-contributeurs/${contributor.id}`}
+                to={pathToContributor(contributor)}
               >
-                <Link to={`/les-contributeurs/${contributor.id}`}>
+                <Link to={pathToContributor(contributor)}>
                   Voir ses contributions
                   <Arrow />
                 </Link>

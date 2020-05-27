@@ -21,7 +21,7 @@ export default function* locationChangeSaga() {
     contributorsLocationSaga
   );
   yield takeLatestLocationChange<{ id: string }>(
-    '/les-contributeurs/:id',
+    '/les-contributeurs/:id/:slug',
     contributorLocationSaga
   );
 }

@@ -8,6 +8,6 @@ export interface ProfilesRouterProps extends RouteComponentProps {}
 export default ({ match: { url }, location }: ProfilesRouterProps) => (
   <Switch location={location}>
     <Route path={url} exact component={ProfileList} />
-    <Route path={`${url}/:id`} component={Profile} />
+    <Route path={`${url}/:id/:slug?`} component={Profile} />
   </Switch>
 );
