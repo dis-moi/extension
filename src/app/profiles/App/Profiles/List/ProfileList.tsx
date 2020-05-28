@@ -35,6 +35,8 @@ const List = styled(ContributorsList)`
 `;
 
 const Contributor = styled(ContributorLarge)`
+  line-height: normal;
+
   ${StatsWrapper} {
     svg {
       display: none;

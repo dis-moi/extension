@@ -23,6 +23,10 @@ const ProfileIntroContent = styled.section`
       border: none;
       border-top-left-radius: 0;
       border-top-right-radius: 0;
+
+      & > :last-child {
+        margin-bottom: 0;
+      }
     }
 
     ${ContributorWrapper} {
@@ -44,7 +48,7 @@ const ProfileIntroContent = styled.section`
       display: grid;
       grid-template-columns: auto 1fr;
       grid-column-gap: 24px;
-      margin: 10px 0 0;
+      margin: 0;
 
       ${UserName} {
         display: inline;
