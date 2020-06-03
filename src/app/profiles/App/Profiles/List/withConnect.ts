@@ -6,8 +6,7 @@ import { getStatefulContributors } from 'app/profiles/store/selectors';
 import { areContributorsLoading } from 'app/profiles/store/selectors/contributors';
 import { isConnected } from 'app/profiles/store/selectors/connection';
 import { ProfilesState } from 'app/profiles/store/reducers';
-import createMessageSender from 'app/profiles/createMessageSender';
-import extensionId from 'app/profiles/extensionId';
+import { extensionMessageSender } from 'app/profiles/extensionId';
 
 const mapStateToProps = (state: ProfilesState) => ({
   loading: areContributorsLoading(state),
@@ -17,7 +16,7 @@ const mapStateToProps = (state: ProfilesState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
-  const receiver = createMessageSender({ id: extensionId });
+  const receiver = extensionMessageSender;
 
   return {
     subscribe: (contributorId: ContributorId) =>

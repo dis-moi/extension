@@ -1,4 +1,3 @@
-import * as R from 'ramda';
 import {
   put,
   call,
@@ -10,34 +9,41 @@ import {
 import createPortChannel from './createPortChannel';
 import { disconnected } from 'app/store/actions/connection';
 import { PortAction } from 'app/store/types';
+import stripReceiverMeta from '../stripReceiverMeta';
+import addSenderMeta from '../addSenderMeta';
 
 type MessageSender = browser.runtime.MessageSender;
 type Port = browser.runtime.Port;
 
-const stripReceiverMeta = R.dissocPath<PortAction>(['meta', 'receiver']);
-
-export const createActionForwarder = (port: Port) =>
-  function* forwardAppAction(action: PortAction) {
-    yield call([port, 'postMessage'], stripReceiverMeta(action));
-  };
-
-export const compareMessageSender = (
-  senderA?: MessageSender,
-  senderB?: MessageSender
-): boolean => {
-  return (
-    !!senderA &&
-    !!senderB &&
-    (R.eqBy(R.path(['tab', 'id']), senderA, senderB) ||
-      R.eqProps('id', senderA, senderB))
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+function* postPortActionSaga(
+  port: Port,
+  sender?: MessageSender,
+  action: PortAction
+) {
+  yield call(
+    [port, 'postMessage'],
+    addSenderMeta<PortAction>(stripReceiverMeta(action))(sender)
   );
-};
+}
 
-function* watchPortSaga(pattern: ActionPattern, port: Port) {
+/**
+ * @todo would love to see an implementation of this with `redux-saga` `stdChannel` or `multicastChannel`,
+ * but didn't manage to get it working. Documentation is scarce on these aspects...
+ * @see https://github.com/redux-saga/redux-saga/blob/master/docs/advanced/UsingRunSaga.md
+ */
+function* watchPortSaga(
+  pattern: ActionPattern,
+  port: Port,
+  sender?: MessageSender
+) {
   const portChannel = yield call(createPortChannel, port);
-  const forwardActionSaga = yield takeLatest(
+  const postPortActionSagaTaker = yield takeLatest(
     pattern,
-    createActionForwarder(port)
+    postPortActionSaga,
+    port,
+    sender
   );
 
   try {
@@ -50,7 +56,7 @@ function* watchPortSaga(pattern: ActionPattern, port: Port) {
     // The reason the channel closes is not very useful.
     // yield put(disconnected(e));
   } finally {
-    yield cancel(forwardActionSaga);
+    yield cancel(postPortActionSagaTaker);
     yield put(disconnected(new Error('Channel disconnected')));
   }
 }

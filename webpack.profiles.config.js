@@ -15,7 +15,8 @@ const requiredEnvVarNames = [
   'BACKEND_ORIGIN',
   'REFRESH_CONTRIBUTORS_INTERVAL',
   'CHROME_EXTENSION_ID',
-  'FIREFOX_EXTENSION_ID'
+  'FIREFOX_EXTENSION_ID',
+  'PROFILES_ORIGIN'
 ];
 const formatEnvVar = value => `"${value}"`;
 
@@ -53,7 +54,7 @@ module.exports = function webpack(env = {}, argv = {}) {
 
   return {
     ...defaultWebpackConfig,
-    entry: defaultWebpackConfig.entry.profiles,
+    entry: ['core-js/stable', 'regenerator-runtime/runtime', path.join(path.resolve(__dirname, 'src'), './app/profiles/')],
     devServer: {
       historyApiFallback: true,
       stats: 'minimal',

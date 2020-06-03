@@ -55,7 +55,4 @@ module.exports = Object.freeze({
   },
   permissions: ['activeTab', 'storage'],
   web_accessible_resources: ['img/*', 'fonts/*'],
-  externally_connectable: {
-    matches: ['https://*.dismoi.io/*']
-  }
 });

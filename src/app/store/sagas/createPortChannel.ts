@@ -1,21 +1,12 @@
 /* eslint-disable no-console */
 import { eventChannel, END } from 'redux-saga';
-import { StandardAction, Emit, PortAction } from 'app/store/types';
+import { Emit } from 'app/store/types';
 import { createErrorAction } from 'app/actions/helpers';
 import isAction from '../isAction';
+import addSenderMeta from '../addSenderMeta';
 
 type Port = browser.runtime.Port;
 type MessageSender = browser.runtime.MessageSender;
-
-const createActionEnhancer = (port: Port) => (
-  action: StandardAction
-): PortAction => ({
-  ...action,
-  meta: {
-    ...Object.assign({}, action.meta),
-    sender: port.sender
-  }
-});
 
 const buildFromText = (sender: MessageSender | undefined) => {
   if (sender?.tab) {
@@ -30,13 +21,15 @@ const buildFromText = (sender: MessageSender | undefined) => {
 export const createMessageHandler = (port: Port) => (emit: Emit) => (
   action: object
 ) => {
-  const fromText = buildFromText(port.sender);
-  console.log(`Received following message from ${fromText}:`);
-  console.log(action);
+  const sender = action?.meta?.sender || port.sender;
+  const fromText = buildFromText(sender);
+  if (process.env.NODE_ENV !== 'production') {
+    console.log(`Received following message from ${fromText}:`);
+    console.log(action);
+  }
 
   if (isAction(action)) {
-    const enhanceAction = createActionEnhancer(port);
-    const enhancedAction = enhanceAction(action);
+    const enhancedAction = addSenderMeta(action)(sender);
     emit(enhancedAction);
   } else {
     emit(

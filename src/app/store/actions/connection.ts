@@ -8,9 +8,10 @@ export interface ConnectAction extends StandardAction {
   type: typeof CONNECT;
   payload: Port | undefined;
 }
-export const connect = (port?: Port): ConnectAction => ({
+export const connect = (port?: Port, meta?: ActionMeta): ConnectAction => ({
   type: CONNECT,
-  payload: port
+  payload: port,
+  meta
 });
 export const CONNECTED = 'EXTENSION/PORT_CONNECTED';
 export interface ConnectedAction extends StandardAction {

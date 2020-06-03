@@ -1,22 +1,9 @@
-import {
-  call,
-  delay,
-  fork,
-  put,
-  take,
-  takeLatest,
-  select
-} from 'redux-saga/effects';
-import extensionId from 'app/profiles/extensionId';
-import {
-  connect,
-  CONNECT,
-  CONNECTED,
-  disconnected
-} from 'app/store/actions/connection';
+import { call, delay, fork, put, takeLatest, select } from 'redux-saga/effects';
+import { AppAction } from 'app/actions';
+import { connect, CONNECT, disconnected } from 'app/store/actions/connection';
 import watchPortSaga from 'app/store/sagas/watchPort.saga';
 import { isConnecting, isConnected } from '../selectors/connection';
-import { AppAction } from 'app/actions';
+import extensionId from 'app/profiles/extensionId';
 
 export function* connectSaga() {
   try {
@@ -48,11 +35,7 @@ function* attemptToConnectPeriodicallySaga() {
   }
 }
 
-export function* waitForConnectionSaga() {
-  yield take(CONNECTED);
-}
-
-export default function* connectionSaga() {
+export default function* portConnectionSaga() {
   yield takeLatest(CONNECT, connectSaga);
   yield fork(attemptToConnectPeriodicallySaga);
 }

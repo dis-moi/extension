@@ -31,7 +31,8 @@ const selectEnvVarsToInject = R.pick([
   'SENTRY_ENABLED',
   'PLATFORM',
   'CHROME_EXTENSION_ID',
-  'FIREFOX_EXTENSION_ID'
+  'FIREFOX_EXTENSION_ID',
+  'PROFILES_ORIGIN'
 ]);
 const formatEnvVars = R.map(value => `"${value}"`);
 

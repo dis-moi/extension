@@ -15,8 +15,7 @@ import { areContributorsLoading } from 'app/profiles/store/selectors/contributor
 import { isConnected } from 'app/profiles/store/selectors/connection';
 import { ProfilesState } from 'app/profiles/store/reducers';
 import { ProfileProps } from './Profile';
-import createMessageSender from 'app/profiles/createMessageSender';
-import extensionId from 'app/profiles/extensionId';
+import { extensionMessageSender } from 'app/profiles/extensionId';
 
 export type ConnectedProfileScreenProps = ProfileProps &
   RouteComponentProps<{ id: string }>;
@@ -38,7 +37,7 @@ const mapStateToProps = (
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
-  const receiver = createMessageSender({ id: extensionId });
+  const receiver = extensionMessageSender;
 
   return {
     subscribe: (contributorId: ContributorId) =>

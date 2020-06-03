@@ -31,6 +31,8 @@ onInstalled.then(installedDetails => {
 });
 
 onStartup.then(() => store.dispatch(startup()));
-browser.runtime.onConnectExternal.addListener((port: Port) =>
-  store.dispatch(connect(port))
-);
+
+const handleConnect = (port: Port) => store.dispatch(connect(port));
+
+browser.runtime.onConnectExternal.addListener(handleConnect);
+browser.runtime.onConnect.addListener(handleConnect);
