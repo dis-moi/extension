@@ -15,6 +15,7 @@ import ContributorLarge from 'components/organisms/Contributor/ContributorLarge'
 import { Anchor } from 'components/atoms';
 
 const ProfileIntroContent = styled.section`
+  position: relative;
   margin-bottom: 40px;
 
   ${ContributorLarge} {
@@ -86,7 +87,17 @@ const ProfileIntroContent = styled.section`
 
 const ProfileBanner = styled.div`
   min-height: 200px;
-  background-color: red;
+  background-color: ${props => props.theme.navInactive};
+
+  img {
+    display: block;
+  }
+`;
+
+const ProfileBannerDefault = styled.div`
+  img {
+    opacity: 0.5;
+  }
 `;
 
 export interface ProfileIntroProps {
@@ -104,7 +115,12 @@ export const ProfileIntro = ({
 }: ProfileIntroProps) => {
   return (
     <>
-      <ProfileBanner />
+      <ProfileBanner>
+        <ProfileBannerDefault>
+          <img src="/img/profile-banner.jpg" alt="" />
+        </ProfileBannerDefault>
+      </ProfileBanner>
+
       <ProfileIntroContent>
         <ContributorLarge
           contributor={contributor}
