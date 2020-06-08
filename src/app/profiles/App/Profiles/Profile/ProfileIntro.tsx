@@ -19,6 +19,8 @@ const ProfileIntroContent = styled.section`
 
   ${ContributorLarge} {
     &${ContributorCard} {
+      box-sizing: border-box;
+      min-height: 135px;
       padding: 20px;
       border: none;
       border-top-left-radius: 0;
