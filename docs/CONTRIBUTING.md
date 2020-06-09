@@ -195,13 +195,13 @@ Once built each package is released on [Github](https://github.com/insitu-projec
 
 > The publication on the Chrome store may take a while -- days -- to be validated.
 
-> See the detailed `staging` deploy steps `./release.config.staging.js` in project root directory.
+> See the detailed `staging` deploy steps `./release.config.js` in project root directory.
 
 ## Production
 
 The `production` deployment process is manual, and is triggered once the staging has been functionally validated.
 
-> See the detailed deploy steps `./release.config.staging.js` in project root directory.
+> See the detailed deploy steps `./release.config.js` in project root directory.
 
 Make you sure have access to semaphore and wait until the last master built is completed with success:
 https://semaphoreci.com/lmem/extension/branches/master
