@@ -22,14 +22,13 @@ const release = Object.freeze({
     {
       path: '@semantic-release/git',
       assets: ['package.json', 'yarn.lock', 'CHANGELOG.md'],
-      message:
-        'chore: release ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
+      message: 'chore: release ${nextRelease.version}\n\n${nextRelease.notes}'
     }
   ],
   publish: [
     {
       path: '@semantic-release/exec',
-      cmd: 'yarn run release'
+      cmd: 'yarn run buildVersion'
     },
     {
       path: '@semantic-release/exec',
