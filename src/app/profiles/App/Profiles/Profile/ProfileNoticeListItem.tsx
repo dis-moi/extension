@@ -89,7 +89,7 @@ export const ProfileNoticeListItem = ({
       <NoticeBottomLine>
         Visible depuis le {format(notice.created, 'DD/MM/YYYY')}
         <BorderButton onClick={seeInContext} disabled={!notice.exampleUrl}>
-          Voir en context
+          Voir en contexte
         </BorderButton>
       </NoticeBottomLine>
     </Box>
