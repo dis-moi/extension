@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { StatefulContributor } from 'app/lmem/contributor';
 import ContributorCompact from 'components/organisms/Contributor/ContributorCompact';
 import { SidebarBox } from './Profile';
-import { LogoLetter } from 'components/atoms/icons';
+import { LoadingBig } from 'components/atoms/icons';
 import {
   CenterContainer,
   Link,
@@ -51,7 +51,7 @@ const SimilarProfiles = ({
     return (
       <Loader>
         <LoadingRotator>
-          <LogoLetter />
+          <LoadingBig />
         </LoadingRotator>
       </Loader>
     );

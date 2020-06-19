@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { LogoLetter } from 'components/atoms/icons';
 import { Notice } from 'app/lmem/notice';
 import ProfileNoticeListItem from './ProfileNoticeListItem';
+import { LoadingBig } from 'components/atoms/icons';
 import { LoadingRotator } from 'components/atoms';
 
 const ProfileNoticeList = styled.section``;
@@ -25,7 +25,7 @@ export const ProfileNoticeListContent = ({
   if (loading) {
     return (
       <LoadingRotator>
-        <LogoLetter />
+        <LoadingBig />
       </LoadingRotator>
     );
   }

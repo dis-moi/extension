@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { format } from 'date-fns';
 import { BorderButton, Box, LoadingRotator, Paragraph } from 'components/atoms';
 import { Notice } from 'app/lmem/notice';
-import { LogoLetter } from 'components/atoms/icons';
+import { LoadingBig } from 'components/atoms/icons';
 
 const Loading = styled(LoadingRotator)`
   margin-bottom: 20px;
@@ -66,7 +66,7 @@ export const ProfileNoticeListItem = ({
   if (loading) {
     return (
       <Loading>
-        <LogoLetter />
+        <LoadingBig />
       </Loading>
     );
   }
