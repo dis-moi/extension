@@ -66,10 +66,6 @@ module.exports = function webpack(env = {}, argv = {}) {
           to: defaultWebpackConfig.output.path
         },
         {
-          from: 'node_modules/webextension-polyfill/dist/browser-polyfill.js',
-          to: path.join(defaultWebpackConfig.output.path, 'js')
-        },
-        {
           from: 'node_modules/typeface-lato/files/',
           to: path.join(defaultWebpackConfig.output.path, 'fonts/')
         },
