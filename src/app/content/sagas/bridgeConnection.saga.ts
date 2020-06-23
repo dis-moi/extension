@@ -1,5 +1,4 @@
-import { channel } from 'redux-saga';
-import { call, put, takeEvery, take } from 'redux-saga/effects';
+import { call, takeEvery, take } from 'redux-saga/effects';
 import Logger from 'app/utils/Logger';
 import { StandardAction } from 'app/store/types';
 import { disconnected } from 'app/store/actions/connection';
@@ -22,7 +21,6 @@ export default function* bridgeConnectionSaga(targetOrigin = '*') {
   );
   let connected = false;
   let port: Port;
-  const incomingChannel = yield call(channel);
   while (true) {
     const windowAction = yield take(windowMessageActionChannel);
     if (!connected) {
@@ -39,7 +37,6 @@ export default function* bridgeConnectionSaga(targetOrigin = '*') {
         );
         connected = true;
       } catch (e) {
-        yield put(incomingChannel, disconnected(e));
         connected = false;
       }
     }
@@ -49,8 +46,9 @@ export default function* bridgeConnectionSaga(targetOrigin = '*') {
 
       yield call([port, 'postMessage'], stripReceiverMeta(windowAction));
     } else {
-      yield put(
-        incomingChannel,
+      windowPostActionSaga(
+        window,
+        targetOrigin,
         disconnected(new Error('Something went wrong.'))
       );
     }
