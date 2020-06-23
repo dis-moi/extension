@@ -48,6 +48,10 @@ module.exports = (env = {}, argv = {}, buildPath) => {
       to: path.join(buildPath, 'fonts/')
     },
     {
+      from: 'src/assets/fonts/',
+      to: path.join(buildPath, 'fonts/')
+    },
+    {
       from: 'node_modules/typeface-sedgwick-ave/files/',
       to: path.join(buildPath, 'fonts/')
     }
