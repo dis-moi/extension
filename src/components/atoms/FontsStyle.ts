@@ -119,6 +119,44 @@ export default createGlobalStyle<FontsStyleProps>`
         )}') format('woff'); /* Modern Browsers */
   }
   
+  /* lato-500normal - latin */
+  @font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 500;
+    src:
+      local('Lato Medium '),
+      local('Lato-Medium'),
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/lato-latin-500.woff2'
+        )}') format('woff2'), /* Super Modern Browsers */
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/lato-latin-500.woff'
+        )}') format('woff'); /* Modern Browsers */
+  }
+  
+  /* lato-400italic - latin */
+  @font-face {
+    font-family: 'Lato';
+    font-style: italic;
+    font-display: swap;
+    font-weight: 500;
+    src:
+      local('Lato Medium italic'),
+      local('Lato-Mediumitalic'),
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/lato-latin-500italic.woff2'
+        )}') format('woff2'), /* Super Modern Browsers */
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/lato-latin-500italic.woff'
+        )}') format('woff'); /* Modern Browsers */
+  }
+  
   /* lato-700normal - latin */
   @font-face {
     font-family: 'Lato';
@@ -154,6 +192,44 @@ export default createGlobalStyle<FontsStyleProps>`
       url('${({ getURL }) =>
         getURL(
           '/fonts/lato-latin-700italic.woff'
+        )}') format('woff'); /* Modern Browsers */
+  }
+  
+  /* lato-800normal - latin */
+  @font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 800;
+    src:
+      local('Lato Heavy '),
+      local('Lato-Heavy'),
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/lato-latin-800.woff2'
+        )}') format('woff2'), /* Super Modern Browsers */
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/lato-latin-800.woff'
+        )}') format('woff'); /* Modern Browsers */
+  }
+  
+  /* lato-700italic - latin */
+  @font-face {
+    font-family: 'Lato';
+    font-style: italic;
+    font-display: swap;
+    font-weight: 800;
+    src:
+      local('Lato Heavy italic'),
+      local('Lato-Heavyitalic'),
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/lato-latin-800italic.woff2'
+        )}') format('woff2'), /* Super Modern Browsers */
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/lato-latin-800italic.woff'
         )}') format('woff'); /* Modern Browsers */
   }
   
