@@ -1,3 +1,10 @@
+# [3.33.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.32.1...v3.33.0) (2020-06-23)
+
+
+### Features
+
+* If the extension is (re)loaded and there are no subscriptions, subscribe to default contributors ([1c672e7](https://github.com/insitu-project/recommendations-webextension/commit/1c672e79b384ec9967944a2d008c0826c9c1dd2c))
+
 ## [3.32.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.32.0...v3.32.1) (2020-05-19)
 
 
