@@ -33,6 +33,7 @@ const ProfileBanner = ({ contributor }: ProfileBannerProps) => {
   return (
     <ProfileBannerContainer default={!hasBanner(contributor)}>
       <img
+        style={{ width: '100%' }}
         src={
           contributor && contributor.banner
             ? contributor.banner

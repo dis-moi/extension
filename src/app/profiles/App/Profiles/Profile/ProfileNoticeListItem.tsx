@@ -51,6 +51,7 @@ export interface ProfileNoticeListItemProps {
   loading?: boolean;
   seeInContext: () => void;
   className?: string;
+  featured?: boolean;
 }
 
 export const ProfileNoticeListItem = ({
@@ -84,6 +85,13 @@ export const ProfileNoticeListItem = ({
           </NoticeHighlight>{' '}
           et d&apos;autres pages web
         </NoticeTopLine>
+      )}
+      {notice.screenshot && (
+        <img
+          style={{ width: '100%' }}
+          src={notice.screenshot}
+          alt={`Rendu de la contribution sur ${notice.exampleUrl} avec l'extension installé.`}
+        />
       )}
       <Paragraph dangerouslySetInnerHTML={{ __html: notice.message }} />
       <NoticeBottomLine>

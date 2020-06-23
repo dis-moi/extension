@@ -12,6 +12,7 @@ export interface BaseNotice {
   ratings: Ratings;
   visibility: 'public' | 'private';
   exampleUrl?: string;
+  screenshot?: string;
 }
 
 export interface Notice extends BaseNotice {
