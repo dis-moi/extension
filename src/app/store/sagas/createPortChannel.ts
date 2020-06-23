@@ -1,9 +1,9 @@
-/* eslint-disable no-console */
 import { eventChannel, END } from 'redux-saga';
 import { Emit } from 'app/store/types';
 import { createErrorAction } from 'app/actions/helpers';
 import isAction from '../isAction';
 import addSenderMeta from '../addSenderMeta';
+import Logger from 'app/utils/Logger';
 
 type Port = browser.runtime.Port;
 type MessageSender = browser.runtime.MessageSender;
@@ -23,10 +23,9 @@ export const createMessageHandler = (port: Port) => (emit: Emit) => (
 ) => {
   const sender = action?.meta?.sender || port.sender;
   const fromText = buildFromText(sender);
-  if (process.env.NODE_ENV !== 'production') {
-    console.log(`Received following message from ${fromText}:`);
-    console.log(action);
-  }
+
+  Logger.debug(`Received following message from ${fromText}:`);
+  Logger.debug(action);
 
   if (isAction(action)) {
     const enhancedAction = addSenderMeta(action)(sender);
