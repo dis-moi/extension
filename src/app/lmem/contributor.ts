@@ -19,6 +19,7 @@ export interface BaseContributor {
   intro?: string;
   contributions: number;
   website: string | null;
+  banner?: string;
   contribution?: {
     example: {
       matchingUrl: string;

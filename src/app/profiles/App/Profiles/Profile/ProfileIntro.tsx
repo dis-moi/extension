@@ -13,6 +13,7 @@ import UserName from 'components/atoms/UserName/UserName';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
 import { Anchor } from 'components/atoms';
+import ProfileBanner from './ProfileBanner';
 
 const ProfileIntroContent = styled.section`
   position: relative;
@@ -85,21 +86,6 @@ const ProfileIntroContent = styled.section`
   }
 `;
 
-const ProfileBanner = styled.div`
-  min-height: 200px;
-  background-color: ${props => props.theme.navInactive};
-
-  img {
-    display: block;
-  }
-`;
-
-const ProfileBannerDefault = styled.div`
-  img {
-    opacity: 0.5;
-  }
-`;
-
 export interface ProfileIntroProps {
   contributor?: StatefulContributor;
   subscribe: () => void;
@@ -115,12 +101,7 @@ export const ProfileIntro = ({
 }: ProfileIntroProps) => {
   return (
     <>
-      <ProfileBanner>
-        <ProfileBannerDefault>
-          <img src="/img/profile-banner.jpg" alt="" />
-        </ProfileBannerDefault>
-      </ProfileBanner>
-
+      <ProfileBanner contributor={contributor} />
       <ProfileIntroContent>
         <ContributorLarge
           contributor={contributor}
