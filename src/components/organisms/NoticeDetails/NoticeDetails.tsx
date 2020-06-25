@@ -5,6 +5,7 @@ import ThumbUp from 'components/atoms/icons/ThumbUp';
 import ThumbDown from 'components/atoms/icons/ThumbDown';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import { Button, Contributor, Timer } from 'components/atoms';
+import { Retweet } from 'components/atoms/icons';
 import { StatefulNotice } from 'app/lmem/notice';
 import {
   CountDownState,
@@ -24,7 +25,7 @@ const DetailsMetaValue = styled.div`
 
 const DetailsScroll = styled.div`
   margin-top: 10px;
-  max-height: 225px;
+  max-height: 200px;
   overflow-y: auto;
 `;
 
@@ -55,6 +56,28 @@ const ContributorNotice = styled(Contributor)`
     text-decoration: underline;
     cursor: pointer;
   }
+`;
+
+const RetweetPart = styled.div`
+  display: flex;
+  flex: 1;
+  align-items: center;
+  margin-top: 2px;
+  font-size: 13px;
+
+  & > svg {
+    margin-right: 6px;
+  }
+`;
+
+const Retweeter = styled(ContributorNotice)`
+  max-width: 205px;
+  margin-left: 4px;
+  font-size: 13px;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export interface NoticeDetailsDataProps {
@@ -204,11 +227,20 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
               size="normal"
               onClick={this.handleContributorClicked}
             />
+
             <DetailsMetaValue>
               <Date>Le {format(modified, 'DD/MM/YYYY')}</Date>
               <ContributorNotice onClick={this.handleContributorClicked}>
-                {contributor.name} :
+                {contributor.name}
               </ContributorNotice>
+
+              <RetweetPart>
+                <Retweet />
+                post de
+                <Retweeter onClick={this.handleContributorClicked}>
+                  {contributor.name}
+                </Retweeter>
+              </RetweetPart>
             </DetailsMetaValue>
           </DetailsMeta>
 
