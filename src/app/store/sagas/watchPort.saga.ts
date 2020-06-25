@@ -20,6 +20,8 @@ type Port = browser.runtime.Port;
 function* postPortActionSaga(
   port: Port,
   sender?: MessageSender,
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
   action: PortAction
 ) {
   yield call(

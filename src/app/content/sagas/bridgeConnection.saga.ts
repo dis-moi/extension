@@ -1,7 +1,11 @@
 import { channel } from 'redux-saga';
 import { call, put, takeEvery, take } from 'redux-saga/effects';
 import Logger from 'app/utils/Logger';
-import { StandardAction } from 'app/store/types';
+import {
+  MetaWithReceiver,
+  MetaWithSender,
+  StandardAction
+} from 'app/store/types';
 import { disconnected } from 'app/store/actions/connection';
 import createWindowActionChannel from 'app/store/sagas/window/createActionChannel';
 import windowPostActionSaga from 'app/store/sagas/window/postAction.saga';
@@ -13,8 +17,8 @@ type Port = browser.runtime.Port;
 export default function* bridgeConnectionSaga(targetOrigin = '*') {
   const extensionId = browser.runtime.id;
   const profilesWindowActionMatcher = (action: StandardAction) =>
-    action?.meta?.receiver?.id === extensionId &&
-    action?.meta?.sender?.id !== extensionId;
+    (action?.meta as MetaWithReceiver)?.receiver?.id === extensionId &&
+    (action?.meta as MetaWithSender)?.sender?.id !== extensionId;
   const windowMessageActionChannel = createWindowActionChannel(
     window,
     targetOrigin,
@@ -44,6 +48,8 @@ export default function* bridgeConnectionSaga(targetOrigin = '*') {
       }
     }
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
     if (port !== undefined && connected) {
       Logger.debug('port.postMessage', stripReceiverMeta(windowAction));
 
