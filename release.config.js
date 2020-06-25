@@ -1,4 +1,4 @@
-const { getPackagePath, getBuildPath } = require('./webpack/packageNaming');
+const { getPackagePath } = require('./webpack/packageNaming');
 
 const release = Object.freeze({
   verifyConditions: [
@@ -65,14 +65,6 @@ const release = Object.freeze({
         {
           path: getPackagePath('*', 'chromium', 'production'),
           label: 'Chromium Package'
-        },
-        {
-          path: path.join(
-            getBuildPath('profiles', 'production'),
-            'js',
-            'profiles.bundle.js'
-          ),
-          label: 'Profiles App'
         }
       ]
     }
