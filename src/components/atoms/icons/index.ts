@@ -13,3 +13,4 @@ export { default as Question } from './Question';
 export { default as ThumbDown } from './ThumbDown';
 export { default as ThumbUp } from './ThumbUp';
 export { default as Write } from './Write';
+export { default as Plus } from './Plus';
