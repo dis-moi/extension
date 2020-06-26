@@ -9,6 +9,7 @@ export default styled(Button)<Props>`
   padding: 8px 16px 8px;
   font-size: 17px;
   line-height: 1.2;
+  font-family: 'Lato', sans-serif;
   font-weight: 500;
   text-transform: none;
   text-decoration: none;

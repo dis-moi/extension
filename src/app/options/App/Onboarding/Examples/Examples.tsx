@@ -10,6 +10,7 @@ import Header from '../../Header';
 
 const Title2 = styled(Title)`
   margin-top: 20px;
+  font-family: 'Lato', sans-serif;
   font-weight: 800;
   color: ${props => props.theme.activeColor};
 `;

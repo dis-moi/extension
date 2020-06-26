@@ -7,6 +7,7 @@ export default styled.ul`
   line-height: 1.45;
 
   a {
+    font-family: 'Lato', sans-serif;
     font-weight: 500;
     color: ${props => props.theme.activeColor};
   }
