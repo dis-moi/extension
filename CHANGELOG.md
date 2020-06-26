@@ -1,3 +1,13 @@
+## [3.33.2](https://github.com/insitu-project/recommendations-webextension/compare/v3.33.1...v3.33.2) (2020-06-26)
+
+
+### Bug Fixes
+
+* **fonts:** added missing fonts from google fonts ([8f78816](https://github.com/insitu-project/recommendations-webextension/commit/8f78816e8ee190d3c2cd0b46947b741944911942))
+* **fonts:** changes added fonts url ([8ba77be](https://github.com/insitu-project/recommendations-webextension/commit/8ba77beb47fe8acf69daa6f5893303824011b41b))
+* **fonts:** changes heavy url ([e3870f7](https://github.com/insitu-project/recommendations-webextension/commit/e3870f774ad626fe603c5d954cec11100a17e82a))
+* **fonts:** specifies font-family when weight is not a Lato Google fonts ([52a051a](https://github.com/insitu-project/recommendations-webextension/commit/52a051a11a2790edef0fafc79a5300496354206f))
+
 ## [3.33.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.33.0...v3.33.1) (2020-06-26)
 
 
