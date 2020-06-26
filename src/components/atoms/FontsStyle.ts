@@ -244,11 +244,11 @@ export default createGlobalStyle<FontsStyleProps>`
       local('Lato-Heavy'),
       url('${({ getURL }) =>
         getURL(
-          '/fonts/lato-latin-800.woff2'
+          '/fonts/LatoLatin-Heavy.woff2'
         )}') format('woff2'), /* Super Modern Browsers */
       url('${({ getURL }) =>
         getURL(
-          '/fonts/lato-latin-800.woff'
+          '/fonts/LatoLatin-Heavy.woff'
         )}') format('woff'); /* Modern Browsers */
   }
   
@@ -263,11 +263,11 @@ export default createGlobalStyle<FontsStyleProps>`
       local('Lato-Heavyitalic'),
       url('${({ getURL }) =>
         getURL(
-          '/fonts/lato-latin-800italic.woff2'
+          '/fonts/LatoLatin-HeavyItalic.woff2'
         )}') format('woff2'), /* Super Modern Browsers */
       url('${({ getURL }) =>
         getURL(
-          '/fonts/lato-latin-800italic.woff'
+          '/fonts/LatoLatin-HeavyItalic.woff'
         )}') format('woff'); /* Modern Browsers */
   }
   
