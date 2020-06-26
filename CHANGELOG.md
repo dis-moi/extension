@@ -1,3 +1,11 @@
+## [3.33.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.33.0...v3.33.1) (2020-06-26)
+
+
+### Bug Fixes
+
+* **noNoticeScreen:** changes AddNoticeButton icon ([6cbfc08](https://github.com/insitu-project/recommendations-webextension/commit/6cbfc08ba189a129a91a2beb5cf7cde5cc66e6c9))
+* **noNoticeScreen:** improves AddNoticeButton render ([600833b](https://github.com/insitu-project/recommendations-webextension/commit/600833bb7e0eebeb723cce54c3a191bf29dfdde7))
+
 # [3.33.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.32.1...v3.33.0) (2020-06-23)
 
 
