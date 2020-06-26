@@ -130,15 +130,15 @@ export default createGlobalStyle<FontsStyleProps>`
       local('Lato-Medium'),
       url('${({ getURL }) =>
         getURL(
-          '/fonts/lato-latin-500.woff2'
+          '/fonts/LatoLatin-Medium.woff2'
         )}') format('woff2'), /* Super Modern Browsers */
       url('${({ getURL }) =>
         getURL(
-          '/fonts/lato-latin-500.woff'
+          '/fonts/LatoLatin-Medium.woff'
         )}') format('woff'); /* Modern Browsers */
   }
   
-  /* lato-400italic - latin */
+  /* lato-500italic - latin */
   @font-face {
     font-family: 'Lato';
     font-style: italic;
@@ -149,11 +149,49 @@ export default createGlobalStyle<FontsStyleProps>`
       local('Lato-Mediumitalic'),
       url('${({ getURL }) =>
         getURL(
-          '/fonts/lato-latin-500italic.woff2'
+          '/fonts/LatoLatin-Mediumitalic.woff2'
         )}') format('woff2'), /* Super Modern Browsers */
       url('${({ getURL }) =>
         getURL(
-          '/fonts/lato-latin-500italic.woff'
+          '/fonts/LatoLatin-Mediumitalic.woff'
+        )}') format('woff'); /* Modern Browsers */
+  }
+  
+  /* lato-600normal - latin */
+  @font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 600;
+    src:
+      local('Lato Semi-bold '),
+      local('Lato-Semi-bold'),
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/LatoLatin-Semibold.woff2'
+        )}') format('woff2'), /* Super Modern Browsers */
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/LatoLatin-Semibold.woff'
+        )}') format('woff'); /* Modern Browsers */
+  }
+  
+  /* lato-600italic - latin */
+  @font-face {
+    font-family: 'Lato';
+    font-style: italic;
+    font-display: swap;
+    font-weight: 600;
+    src:
+      local('Lato Semi-bold italic'),
+      local('Lato-Semiboldtalic'),
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/LatoLatin-Semibolditalic.woff2'
+        )}') format('woff2'), /* Super Modern Browsers */
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/LatoLatin-Semibolditalic.woff'
         )}') format('woff'); /* Modern Browsers */
   }
   
