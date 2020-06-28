@@ -21,6 +21,8 @@ const buildFromText = (sender: MessageSender | undefined) => {
 export const createMessageHandler = (port: Port) => (emit: Emit) => (
   action: object
 ) => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
   const sender = action?.meta?.sender || port.sender;
   const fromText = buildFromText(sender);
 

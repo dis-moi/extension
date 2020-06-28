@@ -84,10 +84,18 @@ module.exports = (env = {}, argv = {}, buildPath) => {
       filename: 'profiles.html',
       inject: false
     }),
-    new AddAssetWebpackPlugin('manifest.json', getManifest(NODE_ENV, PLATFORM)),
     new CopyWebpackPlugin(copyConfig),
     new LodashModuleReplacementPlugin()
   ];
+
+  if (env.PLATFORM !== 'profiles') {
+    plugins.push(
+      new AddAssetWebpackPlugin(
+        'manifest.json',
+        getManifest(NODE_ENV, PLATFORM)
+      )
+    );
+  }
 
   if (SENTRY_ENABLED) {
     plugins.push(

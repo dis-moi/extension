@@ -21,6 +21,8 @@ function* watchSaga(
     window,
     targetOrigin,
     (action: StandardAction) =>
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
       !(typeof action.meta === 'object' && action.meta?.receiver?.id)
   );
   yield takeLatest(outgoingChannel, postActionSaga, window, targetOrigin);
