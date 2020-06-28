@@ -8,7 +8,7 @@ import isAction from 'app/store/isAction';
 import { createErrorAction } from 'app/actions/helpers';
 import { Level } from 'app/utils/Logger';
 
-type MessageSender = chrome.runtime.MessageSender;
+type MessageSender = browser.runtime.MessageSender;
 
 const isOptionsPage = (url: string): boolean => url.includes(getOptionsUrl());
 
@@ -22,7 +22,7 @@ type PossibleOriginInBackground = 'options' | 'content';
  */
 const getTabFrom = (
   action: Action,
-  tab?: chrome.tabs.Tab
+  tab?: browser.tabs.Tab
 ): PossibleOriginInBackground =>
   R.pipe<
     Action,
@@ -40,16 +40,16 @@ const getTabFrom = (
  * without the `tabs` permission, but still gives it in `sender.url` for some reason.
  * @param sender
  */
-const getTabFromSender = (sender: MessageSender): chrome.tabs.Tab => ({
-  ...(sender.tab as chrome.tabs.Tab),
+const getTabFromSender = (sender: MessageSender): browser.tabs.Tab => ({
+  ...(sender.tab as browser.tabs.Tab),
   url: sender.tab && sender.tab.url ? sender.tab.url : sender.url
 });
 
-type ActionWithTab = Action & { meta: { tab: chrome.tabs.Tab } };
+type ActionWithTab = Action & { meta: { tab: browser.tabs.Tab } };
 
 const addSenderToAction = <A extends BaseAction>(sender: MessageSender) =>
   R.pipe<A, ActionWithTab, ReceivedAction>(
-    assocMetaIfNotGiven<'tab', chrome.tabs.Tab>(
+    assocMetaIfNotGiven<'tab', browser.tabs.Tab>(
       'tab',
       getTabFromSender(sender)
     ),
@@ -67,7 +67,7 @@ const stripSendMeta = R.pipe<ReceivedAction, ReceivedAction, ReceivedAction>(
 
 export interface ReceivedAction extends Action {
   meta: {
-    tab: chrome.tabs.Tab;
+    tab: browser.tabs.Tab;
     from: PossibleOriginInBackground;
   };
 }

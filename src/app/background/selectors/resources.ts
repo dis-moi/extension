@@ -17,7 +17,7 @@ export const getRestrictedContextsPatterns = createSelector(
   restrictedContexts => toPatterns(restrictedContexts)
 );
 
-export const isTabAuthorized = (tab: Tab | chrome.tabs.Tab) =>
+export const isTabAuthorized = (tab: Tab | browser.tabs.Tab) =>
   createSelector([getRestrictedContextsPatterns], patterns =>
     isTabAuthorizedByPatterns(patterns)(tab)
   );

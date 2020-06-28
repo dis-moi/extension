@@ -1,14 +1,16 @@
+import { TabActiveInfo } from './types';
+
 type Emit = (tabId: number) => void;
 
 export default (emit: Emit) => {
-  const handleTabActivated = ({ tabId }: chrome.tabs.TabActiveInfo) => {
+  const handleTabActivated = ({ tabId }: TabActiveInfo) => {
     emit(tabId);
   };
 
-  chrome.tabs.onActivated.addListener(handleTabActivated);
+  browser.tabs.onActivated.addListener(handleTabActivated);
 
   // unsubscribe
   return () => {
-    chrome.tabs.onActivated.removeListener(handleTabActivated);
+    browser.tabs.onActivated.removeListener(handleTabActivated);
   };
 };

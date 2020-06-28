@@ -10,7 +10,6 @@ import NoticeItem, {
 import ListContainer from './ListContainer';
 import { StatefulNotice } from 'app/lmem/notice';
 import withConnect from './withConnect';
-import ServiceMessageLine from 'components/molecules/ServiceMessageLine/ServiceMessageLine';
 
 export interface Props {
   notices: StatefulNotice[];
@@ -55,7 +54,6 @@ export const ListScreen = ({
       <AddNoticeContainer>
         <AddNoticeButton />
       </AddNoticeContainer>
-      <ServiceMessageLine />
     </>
   );
 };

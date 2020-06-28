@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Logo from './LogoImg';
+import Logo from 'components/atoms/icons/LogoDismoi';
 
 export default styled.h1.attrs({ children: <Logo /> })`
   margin: 0 0 0 auto;

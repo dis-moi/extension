@@ -119,6 +119,82 @@ export default createGlobalStyle<FontsStyleProps>`
         )}') format('woff'); /* Modern Browsers */
   }
   
+  /* lato-500normal - latin */
+  @font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 500;
+    src:
+      local('Lato Medium '),
+      local('Lato-Medium'),
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/LatoLatin-Medium.woff2'
+        )}') format('woff2'), /* Super Modern Browsers */
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/LatoLatin-Medium.woff'
+        )}') format('woff'); /* Modern Browsers */
+  }
+  
+  /* lato-500italic - latin */
+  @font-face {
+    font-family: 'Lato';
+    font-style: italic;
+    font-display: swap;
+    font-weight: 500;
+    src:
+      local('Lato Medium italic'),
+      local('Lato-Mediumitalic'),
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/LatoLatin-Mediumitalic.woff2'
+        )}') format('woff2'), /* Super Modern Browsers */
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/LatoLatin-Mediumitalic.woff'
+        )}') format('woff'); /* Modern Browsers */
+  }
+  
+  /* lato-600normal - latin */
+  @font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 600;
+    src:
+      local('Lato Semi-bold '),
+      local('Lato-Semi-bold'),
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/LatoLatin-Semibold.woff2'
+        )}') format('woff2'), /* Super Modern Browsers */
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/LatoLatin-Semibold.woff'
+        )}') format('woff'); /* Modern Browsers */
+  }
+  
+  /* lato-600italic - latin */
+  @font-face {
+    font-family: 'Lato';
+    font-style: italic;
+    font-display: swap;
+    font-weight: 600;
+    src:
+      local('Lato Semi-bold italic'),
+      local('Lato-Semiboldtalic'),
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/LatoLatin-Semibolditalic.woff2'
+        )}') format('woff2'), /* Super Modern Browsers */
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/LatoLatin-Semibolditalic.woff'
+        )}') format('woff'); /* Modern Browsers */
+  }
+  
   /* lato-700normal - latin */
   @font-face {
     font-family: 'Lato';
@@ -154,6 +230,44 @@ export default createGlobalStyle<FontsStyleProps>`
       url('${({ getURL }) =>
         getURL(
           '/fonts/lato-latin-700italic.woff'
+        )}') format('woff'); /* Modern Browsers */
+  }
+  
+  /* lato-800normal - latin */
+  @font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 800;
+    src:
+      local('Lato Heavy '),
+      local('Lato-Heavy'),
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/LatoLatin-Heavy.woff2'
+        )}') format('woff2'), /* Super Modern Browsers */
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/LatoLatin-Heavy.woff'
+        )}') format('woff'); /* Modern Browsers */
+  }
+  
+  /* lato-700italic - latin */
+  @font-face {
+    font-family: 'Lato';
+    font-style: italic;
+    font-display: swap;
+    font-weight: 800;
+    src:
+      local('Lato Heavy italic'),
+      local('Lato-Heavyitalic'),
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/LatoLatin-HeavyItalic.woff2'
+        )}') format('woff2'), /* Super Modern Browsers */
+      url('${({ getURL }) =>
+        getURL(
+          '/fonts/LatoLatin-HeavyItalic.woff'
         )}') format('woff'); /* Modern Browsers */
   }
   

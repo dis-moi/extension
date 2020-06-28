@@ -11,7 +11,7 @@ const shouldBeSentToBackground = (action: AppAction): boolean =>
 
 function* sendMessageToBackgroundSaga(action: AppAction) {
   try {
-    sendMessageToBackground(action);
+    yield sendMessageToBackground(action);
   } catch (e) {
     yield put(createErrorAction()(e, { severity: Level.ERROR }));
   }

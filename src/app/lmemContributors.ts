@@ -22,5 +22,7 @@ export const preselectedContributorIds = [
   51,
   53,
   54,
-  55 // CaptainFact.io
+  55, // CaptainFact.io
+  59, // LeMonde avec Wirecutter
+  60 // Amazon antidote
 ];

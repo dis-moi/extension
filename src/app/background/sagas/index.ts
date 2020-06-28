@@ -15,12 +15,13 @@ import sendContributorsToOptions from './transmitContributors.saga';
 import setup from './setup.saga';
 import tos from './tos.saga';
 import awaitRehydrationSaga from './lib/awaitRehydration.saga';
-import subscriptionsSaga from './subscriptions';
+import subscriptionsSaga from './subscriptions.saga';
 import tracking from './tracking';
 import MatomoTracker from 'app/matomo';
 import { fetchRestrictedContextsSaga } from './fetchRestrictedContexts.saga';
 import connectSaga from './connect.saga';
 import installationDetailsSaga from './installationDetails.saga';
+import { loginSaga } from './user.saga';
 
 const tracker =
   process.env.TRACKING_SITE_ID && process.env.TRACKING_URL
@@ -28,9 +29,10 @@ const tracker =
     : undefined;
 
 export default function* rootSaga() {
-  yield fork(install);
   yield call(awaitRehydrationSaga);
   yield all([
+    fork(loginSaga),
+    fork(install),
     fork(fetchRestrictedContextsSaga),
     fork(refreshMatchingContexts),
     fork(refreshContributors),

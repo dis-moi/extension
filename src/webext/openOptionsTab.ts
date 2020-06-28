@@ -1,7 +1,7 @@
-type CreateProperties = chrome.tabs.CreateProperties;
+import { CreateProperties } from './types';
 
 export const getOptionsUrl = (pathname?: string) =>
-  chrome.extension.getURL(`options.html${pathname ? `#${pathname}` : ''}`);
+  browser.extension.getURL(`options.html${pathname ? `#${pathname}` : ''}`);
 
 const createOptionsTabsDescription = (pathname?: string): CreateProperties => ({
   url: getOptionsUrl(pathname),
@@ -9,13 +9,6 @@ const createOptionsTabsDescription = (pathname?: string): CreateProperties => ({
 });
 
 const openOptions = (pathname?: string) =>
-  new Promise(resolve => {
-    chrome.tabs.create(
-      createOptionsTabsDescription(pathname),
-      (tab: chrome.tabs.Tab) => {
-        resolve(tab);
-      }
-    );
-  });
+  browser.tabs.create(createOptionsTabsDescription(pathname));
 
 export default openOptions;

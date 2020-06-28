@@ -1,3 +1,57 @@
+## [3.33.2](https://github.com/insitu-project/recommendations-webextension/compare/v3.33.1...v3.33.2) (2020-06-26)
+
+
+### Bug Fixes
+
+* **fonts:** added missing fonts from google fonts ([8f78816](https://github.com/insitu-project/recommendations-webextension/commit/8f78816e8ee190d3c2cd0b46947b741944911942))
+* **fonts:** changes added fonts url ([8ba77be](https://github.com/insitu-project/recommendations-webextension/commit/8ba77beb47fe8acf69daa6f5893303824011b41b))
+* **fonts:** changes heavy url ([e3870f7](https://github.com/insitu-project/recommendations-webextension/commit/e3870f774ad626fe603c5d954cec11100a17e82a))
+* **fonts:** specifies font-family when weight is not a Lato Google fonts ([52a051a](https://github.com/insitu-project/recommendations-webextension/commit/52a051a11a2790edef0fafc79a5300496354206f))
+
+## [3.33.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.33.0...v3.33.1) (2020-06-26)
+
+
+### Bug Fixes
+
+* **noNoticeScreen:** changes AddNoticeButton icon ([6cbfc08](https://github.com/insitu-project/recommendations-webextension/commit/6cbfc08ba189a129a91a2beb5cf7cde5cc66e6c9))
+* **noNoticeScreen:** improves AddNoticeButton render ([600833b](https://github.com/insitu-project/recommendations-webextension/commit/600833bb7e0eebeb723cce54c3a191bf29dfdde7))
+
+# [3.33.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.32.1...v3.33.0) (2020-06-23)
+
+
+### Features
+
+* If the extension is (re)loaded and there are no subscriptions, subscribe to default contributors ([1c672e7](https://github.com/insitu-project/recommendations-webextension/commit/1c672e79b384ec9967944a2d008c0826c9c1dd2c))
+
+## [3.32.1](https://github.com/insitu-project/recommendations-webextension/compare/v3.32.0...v3.32.1) (2020-05-19)
+
+
+### Bug Fixes
+
+* **AddNoticeButton:** changes value and cancel svg transform ([85053f5](https://github.com/insitu-project/recommendations-webextension/commit/85053f501d1f1c6099b05f10f164657f10af03d0))
+
+# [3.32.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.31.0...v3.32.0) (2020-05-19)
+
+
+### Features
+
+* **removeBulles:** changed Logo ([c74f685](https://github.com/insitu-project/recommendations-webextension/commit/c74f685717fc29bb8ea97ba6c978dbd951bdfb0d))
+* **removeBulles:** removed ServiceMessage ([2317de9](https://github.com/insitu-project/recommendations-webextension/commit/2317de978edea9039d17bbe6f43179ba8637a656))
+
+# [3.31.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.30.0...v3.31.0) (2020-05-19)
+
+
+### Features
+
+* **onboarding:** Reactivate onboarding opening on install if required ([32faee2](https://github.com/insitu-project/recommendations-webextension/commit/32faee20d26862e543667c2cd6deb791932a62a6))
+
+# [3.30.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.29.0...v3.30.0) (2020-05-13)
+
+
+### Features
+
+* **subscriptions:** Set "LeMonde avec Wirecutter" and "Amazon antidote" as default subscriptions ([61b14ed](https://github.com/insitu-project/recommendations-webextension/commit/61b14ed53dd75d2d89b01ef60c23378ea4e7720f))
+
 # [3.29.0](https://github.com/insitu-project/recommendations-webextension/compare/v3.28.1...v3.29.0) (2020-04-29)
 
 

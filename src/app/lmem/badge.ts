@@ -9,8 +9,8 @@ export interface BadgeTheme {
 }
 
 export const resetBadge = (tabId?: number) => {
-  chrome.browserAction.setBadgeText({ text: '', tabId });
-  chrome.browserAction.setIcon({ path: greyIcons });
+  browser.browserAction.setBadgeText({ text: '', tabId });
+  browser.browserAction.setIcon({ path: greyIcons });
 };
 
 /**
@@ -29,15 +29,15 @@ export const updateBadge = (
   badgeTheme: BadgeTheme,
   tabId?: number
 ): void => {
-  chrome.browserAction.setIcon({ path: icons, tabId });
+  browser.browserAction.setIcon({ path: icons, tabId });
   if (noticesNumber > 0) {
     const { backgroundColor } = badgeTheme;
 
-    chrome.browserAction.setBadgeText({
+    browser.browserAction.setBadgeText({
       text: noticesNumber.toString(),
       tabId
     });
-    chrome.browserAction.setBadgeBackgroundColor({
+    browser.browserAction.setBadgeBackgroundColor({
       color:
         unreadNoticesNumber > 0
           ? backgroundColor.hasUnreadNotices

@@ -1,4 +1,4 @@
-import InstalledDetails = chrome.runtime.InstalledDetails;
+import { InstalledDetails } from 'webext/types';
 
 export interface InstallationDetails extends InstalledDetails {
   datetime?: Date;
