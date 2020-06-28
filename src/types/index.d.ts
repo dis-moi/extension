@@ -8,9 +8,13 @@ interface AppEnv extends NodeJS.ProcessEnv {
   SEND_IN_BLUE_TOKEN: string;
   SENTRY_DSN: string;
   PLATFORM: 'firefox' | 'chromium';
+  PROFILES_ORIGIN: string;
 }
 
 declare module '*.png' {
   const value: string;
   export = value;
 }
+
+// @see https://en.wikipedia.org/wiki/Three-valued_logic
+export type trilean = boolean | undefined;

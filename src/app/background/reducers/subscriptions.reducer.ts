@@ -3,21 +3,10 @@ import {
   SUBSCRIBE,
   UNSUBSCRIBE,
   AppAction,
-  ContributorAction,
   UPDATE_CONTRIBUTORS
 } from 'app/actions';
 
 export type SubscriptionsState = number[];
-
-export const getContributorId = ({
-  payload: { contributor }
-}: ContributorAction) =>
-  typeof contributor !== 'number' ? contributor.id : contributor;
-
-export const getContributorName = ({
-  payload: { contributor }
-}: ContributorAction) =>
-  typeof contributor !== 'number' ? contributor.name : '';
 
 export default function subscriptionsReducer(
   state: SubscriptionsState = [],
@@ -25,14 +14,14 @@ export default function subscriptionsReducer(
 ) {
   switch (action.type) {
     case SUBSCRIBE: {
-      return R.append(getContributorId(action), state);
+      return R.append(action.payload, state);
     }
     case UNSUBSCRIBE: {
-      return R.without([getContributorId(action)], state);
+      return R.without([action.payload], state);
     }
     case UPDATE_CONTRIBUTORS:
       return R.intersection(
-        R.map(contributor => contributor.id, action.payload.contributors),
+        R.map(contributor => contributor.id, action.payload),
         state
       );
     default:

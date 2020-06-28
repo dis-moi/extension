@@ -40,12 +40,14 @@ interface Props {
   subscribed?: boolean;
   onSubscribe: () => void;
   onUnsubscribe: () => void;
+  loading?: boolean;
 }
 
 const ContributorButton = ({
   subscribed,
   onSubscribe,
-  onUnsubscribe
+  onUnsubscribe,
+  loading
 }: Props) => {
   const [subscribedButtonHovered, setSubscribedButtonHovered] = useState(false);
 
@@ -53,6 +55,7 @@ const ContributorButton = ({
     <Container>
       {subscribed && (
         <ContributorBorderButton
+          loading={loading}
           onClick={onUnsubscribe}
           onPointerEnter={() => setSubscribedButtonHovered(true)}
           onPointerLeave={() => setSubscribedButtonHovered(false)}

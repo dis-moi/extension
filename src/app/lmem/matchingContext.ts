@@ -1,6 +1,7 @@
 import { captureException } from '../utils/sentry';
 
 export interface MatchingContext {
+  id: number;
   noticeId: number;
   noticeUrl: string;
   urlRegex: string;

@@ -1,8 +1,9 @@
-import { MatchingContext } from '../app/lmem/matchingContext';
+import { ContributorId } from 'app/lmem/contributor';
+import { MatchingContext } from 'app/lmem/matchingContext';
 import { get } from './call';
 
 const fetchMatchingContexts = (
-  subscriptions: number[]
+  subscriptions: ContributorId[]
 ): Promise<MatchingContext[]> =>
   get('matching-contexts', { contributors: subscriptions });
 

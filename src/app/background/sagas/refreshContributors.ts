@@ -1,28 +1,7 @@
 import { fork, delay, put, takeLatest } from 'redux-saga/effects';
-import {
-  receivedContributors,
-  REFRESH_CONTRIBUTORS,
-  refreshContributors,
-  refreshContributorsFailed
-} from 'app/actions';
-import fetchContributors from 'api/fetchContributors';
+import { REFRESH_CONTRIBUTORS, refreshContributors } from 'app/actions';
 import minutesToMilliseconds from 'app/utils/minutesToMilliseconds';
-import { createCallAndRetry } from '../../sagas/effects/callAndRetry';
-
-function* refreshContributorsSaga() {
-  const callAndRetry = createCallAndRetry({
-    maximumRetryDelayInMinutes: 120,
-    maximumAttempts: 6,
-    onError: function*(error: Error) {
-      yield put(refreshContributorsFailed(error));
-    }
-  });
-  const contributors = yield callAndRetry(fetchContributors);
-
-  if (contributors) {
-    yield put(receivedContributors(contributors));
-  }
-}
+import refreshContributorsSaga from 'app/store/sagas/refreshContributors.saga';
 
 export function* refreshContributorsPeriodicallySaga() {
   const refreshInterval = minutesToMilliseconds(

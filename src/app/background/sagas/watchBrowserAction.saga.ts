@@ -1,6 +1,6 @@
 import { call, put, take } from '@redux-saga/core/effects';
 import { eventChannel } from '@redux-saga/core';
-import { createErrorAction } from 'app/actions';
+import { createErrorAction } from 'app/actions/helpers';
 import createBrowserActionListener from 'webext/createBrowserActionListener';
 import { Level } from '../../utils/Logger';
 

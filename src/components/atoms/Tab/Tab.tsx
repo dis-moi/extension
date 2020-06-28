@@ -13,7 +13,7 @@ export default styled(Button)<Props>`
   font-weight: 500;
   text-transform: none;
   text-decoration: none;
-  color ${props => (props.active ? '#FFF' : props.theme.formBorder)};
+  color ${props => (props.active ? '#FFF' : props.theme.grey)};
   background-color ${props =>
     props.active ? props.theme.activeColor : props.theme.contributorGrey};
   border-radius: 8px 8px 0 0;

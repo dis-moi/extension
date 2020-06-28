@@ -186,28 +186,31 @@ Once the PR is merged into `master` a build is triggered on [SemaphoreCI](https:
 
 > see [build configuration](https://semaphoreci.com/lmem/extension/settings)
 
-## Staging
+## Version release
 
-Once the build passes, an automatic deploy to `staging` "server" is triggered.
+Once the build passes, an automatic `semantic-release` script is triggered.
 Roughly, this deploy process bumps the version number in `package.json` and build each packages for each **platform** and each **environment**:
 
-Once built each package is released on [Github](https://github.com/insitu-project/recommendations-webextension/releases) and on both stores as `unlisted` version.
+Once built each package is released on [Github](https://github.com/insitu-project/recommendations-webextension/releases) and on Firefox store as `unlisted` version (not Chrome because the publication on the Chrome store may take a while -- days -- to be validated).
 
-> The publication on the Chrome store may take a while -- days -- to be validated.
+> See the detailed deploy steps `./release.config.js` in project root directory.
 
-> See the detailed `staging` deploy steps `./release.config.staging.js` in project root directory.
+## Chrome store releases & Firefox Production
 
-## Production
+These deployments process are manual, and are triggered from `Semaphore` once the staging has been functionally validated.
 
-The `production` deployment process is manual, and is triggered once the staging has been functionally validated.
+Deploy scripts:
 
-> See the detailed deploy steps `./release.config.staging.js` in project root directory.
+- Firefox production: `yarn buildVersion:firefox:production && yarn upload:firefox:production`
+- Chromium staging: `yarn buildVersion:chromium:staging && yarn upload:chromium:staging`
+- Chromium proding: `yarn buildVersion:chromium:proding && yarn upload:chromium:proding`
+- Chromium production: `yarn buildVersion:chromium:production && yarn upload:chromium:production`
 
 Make you sure have access to semaphore and wait until the last master built is completed with success:
 https://semaphoreci.com/lmem/extension/branches/master
 
 - Then click on the last master build and click "Deploy manually".
-- Tick `production` checkbox
+- Tick one of the `Firefox: Production`, `Chromium: Staging & Proding`, `Chromium: Production`, checkboxes
 
 ### Chrome webstore
 

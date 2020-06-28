@@ -1,13 +1,15 @@
 import React from 'react';
+import { LocationDescriptor, LocationState } from 'history';
 import styled from 'styled-components';
 import { StatefulContributor } from 'app/lmem/contributor';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import UserName from 'components/atoms/UserName/UserName';
 import Stat from 'components/atoms/Stat/Stat';
 import ContributorButton from './ContributorButton';
+import Link from 'components/atoms/Link';
+import ContributorWrapper from 'components/atoms/Contributor/ContributorWrapper';
 
-const ContributorWrapper = styled.div`
-  display: flex;
+const Wrapper = styled(ContributorWrapper)`
   align-items: center;
   padding-top: 10px;
   padding-bottom: 14px;
@@ -42,22 +44,26 @@ const StatsWrapper = styled.div`
   }
 `;
 
-interface Props {
+interface Props<S = LocationState> {
   contributor: StatefulContributor;
   onSubscribe: () => void;
   onUnsubscribe: () => void;
+  to?: LocationDescriptor<S>;
+  className?: string;
 }
 export const ContributorCompact = ({
   contributor,
   onSubscribe,
-  onUnsubscribe
+  onUnsubscribe,
+  to,
+  className
 }: Props) => (
-  <ContributorWrapper>
-    <Avatar contributor={contributor} size="small" />
+  <Wrapper className={className}>
+    <Avatar contributor={contributor} size="small" to={to} />
 
     <ContributorInfos>
       <UserName>
-        <span>{contributor.name}</span>
+        <Link to={to}>{contributor.name}</Link>
       </UserName>
 
       <StatsWrapper>
@@ -70,7 +76,7 @@ export const ContributorCompact = ({
       onSubscribe={onSubscribe}
       onUnsubscribe={onUnsubscribe}
     />
-  </ContributorWrapper>
+  </Wrapper>
 );
 
-export default ContributorCompact;
+export default styled(ContributorCompact)``;

@@ -1,7 +1,8 @@
 import React from 'react';
 import { useTransition } from 'react-spring';
 
-import { AddNoticeContainer, AddNoticeButton } from 'components/atoms';
+import { AddNoticeContainer } from 'components/atoms';
+import AddNoticeButton from 'components/atoms/Button/AddNoticeButton';
 import NoticeItem, {
   NoticeTransitionProps,
   transitionKeys

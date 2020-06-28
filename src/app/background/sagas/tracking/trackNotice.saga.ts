@@ -4,7 +4,6 @@ import Tracker from 'types/Tracker';
 import truncate from 'app/utils/truncate';
 import { stripHtml } from 'app/utils/stripHtml';
 import {
-  createErrorAction,
   FeedbackOnNoticeAction,
   getURLFromActionMeta,
   NoticeDisplayedAction,
@@ -12,6 +11,7 @@ import {
   UnfoldNoticeAction,
   NoticeBadgedAction
 } from 'app/actions';
+import { createErrorAction } from 'app/actions/helpers';
 import {
   getNoticeById,
   getNumberOfUnreadNoticesOnTab

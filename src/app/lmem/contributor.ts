@@ -11,30 +11,65 @@ interface Picture {
 
 export type ContributorId = number;
 
-export interface Contributor {
+export interface BaseContributor {
   id: ContributorId;
   name: string;
   image?: string;
   avatar?: Avatar;
   intro?: string;
   contributions: number;
-  contribution: {
+  website: string | null;
+  banner?: string;
+  contribution?: {
     example: {
       matchingUrl: string;
       noticeId: number;
       noticeUrl: string;
     };
   };
+  noticesUrls: string[];
 }
-
 export interface NewContributor {
   name: string;
   email: string;
 }
 
-export interface StatefulContributor extends Contributor {
+export interface StatefulContributor extends BaseContributor {
   subscribed?: boolean;
+  subscribing?: boolean;
+  loading?: boolean;
 }
+
+export interface LoadableContributor extends BaseContributor {
+  id: ContributorId;
+  name: '';
+  contributions: 0;
+  website: null;
+  noticesUrls: [];
+  loading?: boolean;
+}
+
+interface LoadableContributorOptions {
+  id: ContributorId;
+  loading?: boolean;
+}
+
+export const createLoadableContributor = ({
+  id,
+  loading = true
+}: LoadableContributorOptions) => ({
+  id,
+  name: '',
+  contributions: 0,
+  website: null,
+  noticesUrls: [],
+  loading
+});
+
+export type Contributor =
+  | BaseContributor
+  | StatefulContributor
+  | LoadableContributor;
 
 export const contributorIsSubscribed = (
   contributor: StatefulContributor

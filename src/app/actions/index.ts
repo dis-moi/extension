@@ -1,5 +1,5 @@
-import { Action } from 'redux';
 import { LocationChangeAction } from 'connected-react-router';
+import { StandardAction } from 'app/store/types';
 import Tab from 'app/lmem/tab';
 import { BrowserActionClickedAction } from './browser';
 import { InstallationDetailsAction, InstalledAction } from './install';
@@ -86,12 +86,6 @@ export * from './subscription';
 export * from './webext';
 export * from './serviceMessage.actions';
 
-export interface StandardAction extends Action {
-  payload?: unknown;
-  meta?: unknown;
-  error?: true;
-}
-
 export interface BaseAction extends StandardAction {
   meta?: ActionMeta;
 }
@@ -107,19 +101,6 @@ export interface ErrorAction extends BaseAction {
     severity: Level;
   };
 }
-
-export const createErrorAction = (type: unknown = 'ERROR') => (
-  e: Error,
-  meta: ActionMeta | ActionMetaWithSeverity
-): ErrorAction => ({
-  type,
-  payload: e,
-  error: true,
-  meta: {
-    ...meta,
-    severity: 'severity' in meta ? meta.severity : Level.ERROR
-  }
-});
 
 export interface FormAction extends BaseAction {
   payload: {};
@@ -156,8 +137,10 @@ export interface ActionMeta {
   sendToTab?: boolean;
   action?: unknown;
   external?: boolean;
+  receiver?: MessageSender;
   sender?: MessageSender;
   from?: From;
+  fromText?: string;
   tab?: Tab;
 }
 

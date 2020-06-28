@@ -1,12 +1,8 @@
 import { SagaIterator } from '@redux-saga/types';
 import { call, put } from '@redux-saga/core/effects';
 import Tracker from 'types/Tracker';
-import {
-  ContributorAction,
-  createErrorAction,
-  getURLFromActionMeta
-} from 'app/actions';
-import { getContributorName } from 'app/background/reducers/subscriptions.reducer';
+import { ContributorAction, getURLFromActionMeta } from 'app/actions';
+import { createErrorAction } from 'app/actions/helpers';
 import { Level } from '../../../utils/Logger';
 
 export const trackContributorActionSaga = (tracker: Tracker) =>
@@ -15,7 +11,7 @@ export const trackContributorActionSaga = (tracker: Tracker) =>
       yield call(tracker.trackEvent, {
         category: 'Contributor',
         action: action.type.toLowerCase(),
-        name: getContributorName(action),
+        name: `${action.payload}`,
         value: 0,
         url: getURLFromActionMeta(action)
       });

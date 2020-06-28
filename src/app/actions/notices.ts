@@ -5,7 +5,20 @@ import {
   StatefulNotice
 } from 'app/lmem/notice';
 import Tab from 'app/lmem/tab';
-import { ActionMeta, BaseAction, TabAction } from '.';
+import { ActionMeta, BaseAction, ErrorAction, TabAction } from '.';
+import { createErrorAction } from './helpers';
+
+export const FETCH_NOTICES_REQUEST = 'NOTICES/FETCH_REQUEST';
+export interface FetchNoticesRequestAction extends BaseAction {
+  type: typeof FETCH_NOTICES_REQUEST;
+  payload: object;
+}
+export const fetchNoticesRequest = (
+  data: object = {}
+): FetchNoticesRequestAction => ({
+  type: FETCH_NOTICES_REQUEST,
+  payload: data
+});
 
 export const NOTICES_FETCHED = 'NOTICES/FETCHED';
 export interface NoticesFetchedAction extends BaseAction {
@@ -17,6 +30,12 @@ export const noticesFetched = (notices: Notice[]): NoticesFetchedAction => ({
   type: NOTICES_FETCHED,
   payload: notices
 });
+
+export const FETCH_NOTICES_FAILURE = 'NOTICES/FETCH_FAILURE';
+export interface FetchNoticeFailureAction extends ErrorAction {
+  type: typeof FETCH_NOTICES_FAILURE;
+}
+export const fetchNoticesFailure = createErrorAction(FETCH_NOTICES_FAILURE);
 
 export const NOTICE_DISPLAYED = 'NOTICE_DISPLAYED';
 export interface NoticeDisplayedAction extends BaseAction {

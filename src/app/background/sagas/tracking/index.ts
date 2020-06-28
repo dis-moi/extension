@@ -14,10 +14,10 @@ import {
   SUBSCRIBE,
   UNSUBSCRIBE,
   TOS_ACCEPTED,
-  createErrorAction,
   AppAction,
   TosAcceptedAction
 } from 'app/actions';
+import { createErrorAction } from 'app/actions/helpers';
 import { isFeedBackRatingAction } from 'app/background/sagas/ratings/notices.saga';
 import { loginSaga } from 'app/background/sagas/user.saga';
 import { trackContributorActionSaga } from './trackContributor.saga';

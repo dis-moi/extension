@@ -5,6 +5,7 @@ import {
 } from 'app/lmem/format/contribution';
 import { truncateWords } from '../../utils/truncate';
 import { TransactionEmail } from 'SendInBlue';
+import { AppEnv } from 'types';
 
 const { SEND_CONTRIBUTION_FROM, SEND_CONTRIBUTION_TO } = process.env as AppEnv;
 

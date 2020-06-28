@@ -1,40 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
+import { LocationDescriptor, LocationState } from 'history';
 import { StatefulContributor } from 'app/lmem/contributor';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import UserName from 'components/atoms/UserName/UserName';
 import Stat from 'components/atoms/Stat/Stat';
 import StatType from 'components/atoms/Stat/StatType';
 import BubbleIcon from 'components/atoms/icons/Bubble';
-import { ExternalLink } from 'components/atoms';
 import ContributorButton from './ContributorButton';
-
-const ContributorCard = styled.div`
-  padding: 12px 15px 20px;
-  background-color: #fff;
-  border: 1px solid #dedede;
-  border-radius: 8px;
-
-  ${UserName} {
-    margin-bottom: 5px;
-  }
-`;
-
-const ContributorWrapper = styled.div`
-  display: flex;
-`;
-
-const ContributorInfos = styled.div`
-  margin-left: 15px;
-`;
-
-const StatsWrapper = styled.div`
-  width: 100%;
-
-  ${BubbleIcon} {
-    margin-right: 6px;
-  }
-`;
+import {
+  ContributorCard,
+  ContributorWrapper,
+  ContributorInfos,
+  StatsWrapper
+} from 'components/atoms/Contributor/index';
+import Link from 'components/atoms/Link';
 
 interface IntroProps {
   intro: string;
@@ -44,9 +24,9 @@ const ContributorIntro = styled.div.attrs<IntroProps>(
     dangerouslySetInnerHTML: { __html: intro }
   })
 )<IntroProps>`
-  margin: 20px 0 0;
-  font-size: 15px;
-  color: ${props => props.theme.contributorIntro};
+  margin: 16px 0 10px 0;
+  font-size: ${props => props.theme.fontSizeDefault};
+  color: ${props => props.theme.textColor};
 
   & > p {
     margin: 0;
@@ -55,78 +35,76 @@ const ContributorIntro = styled.div.attrs<IntroProps>(
   a {
     color: ${props => props.theme.activeColor};
   }
+
+  @media (max-width: ${props => props.theme.tabletWidth}) {
+    font-size: 18px;
+  }
 `;
 
-interface ContributionExampleProps {
-  highlighted?: boolean;
-}
-
-const ContributionExample = styled(ExternalLink)<ContributionExampleProps>`
-  display: inline-block;
-  margin-top: 18px;
-  font-size: 12px;
-  color: ${props =>
-    props.highlighted ? props.theme.highlightedLink : props.theme.activeColor};
-  text-transform: uppercase;
-`;
-
-interface Props {
-  contributor: StatefulContributor;
+interface ContributorLargeProps<S = LocationState> {
+  contributor?: StatefulContributor;
   onSubscribe: () => void;
   onUnsubscribe: () => void;
-  showExampleLink?: boolean;
-  highlightExampleLink?: boolean;
+  className?: string;
+  children?: React.ReactNode;
+  to?: LocationDescriptor<S>;
+  loading?: boolean;
 }
 
 const ContributorLarge = ({
   contributor,
   onSubscribe,
   onUnsubscribe,
-  showExampleLink,
-  highlightExampleLink
-}: Props) => (
-  <ContributorCard>
-    <ContributorWrapper>
-      <Avatar size="normal" contributor={contributor} />
-
-      <ContributorInfos>
-        <UserName>
-          <span>{contributor.name}</span>
-        </UserName>
-
-        <StatsWrapper>
-          <Stat>
-            <BubbleIcon /> {contributor.contributions}{' '}
-            <StatType>contributions</StatType>
-          </Stat>
-        </StatsWrapper>
-
-        <ContributorButton
-          subscribed={contributor.subscribed}
-          onSubscribe={onSubscribe}
-          onUnsubscribe={onUnsubscribe}
+  children,
+  className,
+  to,
+  loading
+}: ContributorLargeProps) => (
+  <ContributorCard className={className}>
+    <>
+      <ContributorWrapper>
+        <Avatar
+          size="normal"
+          contributor={contributor}
+          to={to}
+          loading={loading}
         />
-      </ContributorInfos>
-    </ContributorWrapper>
 
-    <ContributorIntro
-      intro={contributor.intro || 'Description non renseignée'}
-    />
+        <ContributorInfos>
+          {!loading && contributor && (
+            <>
+              <UserName>
+                <Link to={to}>{contributor.name}</Link>
+              </UserName>
 
-    {showExampleLink && contributor.contribution.example.matchingUrl && (
-      <ContributionExample
-        href={contributor.contribution.example.matchingUrl}
-        highlighted={highlightExampleLink}
-      >
-        Voir un exemple de ses contributions
-      </ContributionExample>
-    )}
+              <StatsWrapper>
+                <Stat>
+                  <BubbleIcon /> {contributor.contributions}{' '}
+                  <StatType>contributions</StatType>
+                </Stat>
+              </StatsWrapper>
+
+              <ContributorButton
+                loading={contributor?.subscribing === true}
+                subscribed={contributor?.subscribed}
+                onSubscribe={onSubscribe}
+                onUnsubscribe={onUnsubscribe}
+              />
+            </>
+          )}
+        </ContributorInfos>
+      </ContributorWrapper>
+
+      {!loading && contributor && (
+        <>
+          <ContributorIntro
+            intro={contributor.intro || 'Description non renseignée'}
+          />
+          {children}
+        </>
+      )}
+    </>
   </ContributorCard>
 );
 
-ContributorLarge.defaultProps = {
-  showExampleLink: false,
-  highlightExampleLink: false
-};
-
-export default ContributorLarge;
+export default styled(ContributorLarge)``;

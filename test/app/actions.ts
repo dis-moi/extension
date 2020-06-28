@@ -6,44 +6,37 @@ import { noticeDisplayed, noticeIgnored } from 'app/actions/notices';
 import { MatchingContext } from '../../src/app/lmem/matchingContext';
 import { StatefulNotice } from '../../src/app/lmem/notice';
 import Tab from '../../src/app/lmem/tab';
-import { generateContributor } from '../fakers/generateContributor';
+import { generateStatefulNotice } from 'test/fakers/generateNotice';
 
 const expect = chai.expect;
 chai.use(sinonChai);
 
 const tab: Tab = { id: 1, url: 'http://tests.menant-benjamin.fr/' };
 
-const notice: StatefulNotice = {
-  id: 1,
-  message: 'This is a notice',
-  contributor: generateContributor(),
-  visibility: 'public',
-  ratings: {
-    dislikes: 0,
-    likes: 0
-  },
-  state: {
-    liked: false,
-    disliked: false,
-    dismissed: false,
-    read: false
-  },
-  created: new Date(),
-  modified: new Date()
-};
+const notice: StatefulNotice = generateStatefulNotice();
 
 describe('background actions', function() {
   it('receivedMatchingContexts', () => {
     const matchingContexts: MatchingContext[] = [
-      { noticeUrl: 'http://1', urlRegex: '/1/', noticeId: 42 },
-      { noticeUrl: 'http://2', urlRegex: '/2/', noticeId: 42 }
+      {
+        id: 1,
+        noticeUrl: 'http://1',
+        urlRegex: '/1/',
+        noticeId: 42
+      },
+      {
+        id: 2,
+        noticeUrl: 'http://2',
+        urlRegex: '/2/',
+        noticeId: 42
+      }
     ];
     const action = receivedMatchingContexts(matchingContexts);
 
     expect(action.type)
       .to.be.a('string')
       .of.length.above(5);
-    expect(action.payload.matchingContexts).to.equal(matchingContexts);
+    expect(action.payload).to.equal(matchingContexts);
   });
 
   it('contextTriggered', () => {

@@ -4,7 +4,7 @@ import prefs, { PrefsState } from './prefs.reducer';
 import installationDetails, {
   InstallationDetailsState
 } from './installationDetails';
-import resources, { ResourcesState } from './resources.reducer';
+import resources, { ResourcesState } from './resources';
 import tabs, { TabsState } from './tabs.reducer';
 import subscriptions, { SubscriptionsState } from './subscriptions.reducer';
 import user, { UserState } from './user';

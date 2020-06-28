@@ -1,7 +1,7 @@
 import { call, put, take } from '@redux-saga/core/effects';
 import { eventChannel } from '@redux-saga/core';
 import createUrlListener from 'webext/createUrlListener';
-import { createErrorAction } from 'app/actions';
+import { createErrorAction } from 'app/actions/helpers';
 import { Level } from '../../utils/Logger';
 
 function* watchUrlsSaga() {

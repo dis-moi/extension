@@ -3,12 +3,12 @@ import * as R from 'ramda';
 import { BaseAction } from 'app/actions';
 import assocMetaIfNotGiven from './assocMetaIfNotGiven';
 import { getOptionsUrl } from './openOptionsTab';
+import { Emit } from 'app/store/types';
+import isAction from 'app/store/isAction';
+import { createErrorAction } from 'app/actions/helpers';
+import { Level } from 'app/utils/Logger';
 
 type MessageSender = browser.runtime.MessageSender;
-type Emit = (action: Action) => void;
-
-const isAction = (x: unknown): x is Action =>
-  typeof x === 'object' && 'type' in (x as object);
 
 const isOptionsPage = (url: string): boolean => url.includes(getOptionsUrl());
 
@@ -89,12 +89,11 @@ const createMessageHandler = (emit: Emit) => (
     emit(actionWithSender);
   } else {
     const error = new Error(`Received invalid action from ${fromText}`);
-    const invalidAction = {
-      type: `INVALID_ACTION`,
-      payload: error,
-      error: true,
-      meta: { action, fromText }
-    };
+    const invalidAction = createErrorAction('INVALID_ACTION')(error, {
+      action,
+      fromText,
+      severity: Level.INFO
+    });
     emit(invalidAction);
   }
 };

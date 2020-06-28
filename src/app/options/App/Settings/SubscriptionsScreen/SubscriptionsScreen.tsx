@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { findContributorIn, StatefulContributor } from 'app/lmem/contributor';
+import { Sidebar, Title2, TwoColumns } from 'components/atoms';
+import Button from 'components/atoms/Button';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
+import ContributorLink from 'components/organisms/Contributor/ContributorLink';
 import ContributorsListEmpty from 'app/options/App/Settings/ContributorsListEmpty';
 import Empty from './Empty';
 import SuggestionsSidebar from './SuggestionsSidebar';
 
-const TwoColumns = styled.div`
-  display: grid;
-  grid-column-gap: 55px;
-  grid-template-columns: auto 290px;
-  align-items: flex-start;
+const SidebarWrapper = styled(Sidebar)`
+  ${Button} {
+    margin-top: 10px;
+  }
+`;
+
+const SidebarTitle = styled(Title2)`
+  color: ${props => props.theme.activeColor};
 `;
 
 const ContributorsList = styled.div`
@@ -39,7 +45,6 @@ export const SubscriptionsScreen = ({
   subscribe,
   unsubscribe,
   goToSuggestions,
-  highlightExampleLink,
   noSidebar,
   className
 }: Props) => {
@@ -78,9 +83,13 @@ export const SubscriptionsScreen = ({
           contributor={contributor}
           onSubscribe={subscribe(contributor)}
           onUnsubscribe={unsubscribe(contributor)}
-          showExampleLink
-          highlightExampleLink={highlightExampleLink}
-        />
+        >
+          <ContributorLink
+            href={contributor.contribution?.example?.matchingUrl}
+          >
+            Voir un exemple de ses contributions
+          </ContributorLink>
+        </ContributorLarge>
       ))}
     </ContributorsList>
   );
@@ -92,14 +101,17 @@ export const SubscriptionsScreen = ({
   return (
     <TwoColumns className={className}>
       {contributorsList}
-      <SuggestionsSidebar
-        subscriptions={subscriptions}
-        suggestions={suggestions}
-        allContributors={allContributors}
-        subscribe={subscribe}
-        unsubscribe={unsubscribe}
-        goToSuggestions={goToSuggestions}
-      />
+      <SidebarWrapper>
+        <SidebarTitle>Suggestions</SidebarTitle>
+        <SuggestionsSidebar
+          subscriptions={subscriptions}
+          suggestions={suggestions}
+          allContributors={allContributors}
+          subscribe={subscribe}
+          unsubscribe={unsubscribe}
+          seeMore={goToSuggestions}
+        />
+      </SidebarWrapper>
     </TwoColumns>
   );
 };

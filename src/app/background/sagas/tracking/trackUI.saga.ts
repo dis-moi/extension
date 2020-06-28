@@ -4,13 +4,13 @@ import { call, put } from '@redux-saga/core/effects';
 import {
   BrowserActionClickedAction,
   CloseAction,
-  createErrorAction,
   getURLFromActionMeta,
   InstallationDetailsAction,
   LocationChangedAction,
   NoticesFoundAction,
   TosAcceptedAction
 } from 'app/actions';
+import { createErrorAction } from 'app/actions/helpers';
 import { Level } from '../../../utils/Logger';
 
 export const startTrackingSaga = (tracker: Tracker) =>

@@ -56,6 +56,7 @@ const OnboardingButtonWrapper = styled.div`
 `;
 
 const Button = styled(OnboardingButton)`
+  display: block;
   text-transform: none;
   font-weight: normal;
   font-size: 20px;
@@ -67,8 +68,8 @@ const SecondaryButton = styled(Button)`
   border-color: ${props => props.theme.button};
 
   &:hover {
-    background-color: ${props => props.theme.backgroundButton.hover};
-    border-color: ${props => props.theme.backgroundButton.hover};
+    background-color: ${props => props.theme.Button.hover};
+    border-color: ${props => props.theme.Button.hover};
   }
 `;
 
@@ -90,7 +91,7 @@ export default ({ next }: ExamplesScreenProps) => (
     </Wrapper>
 
     <SuggestionsWrapper>
-      <SubscriptionsScreen noSidebar highlightExampleLink />
+      <SubscriptionsScreen noSidebar />
     </SuggestionsWrapper>
 
     <BottomLineBg>

@@ -1,22 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { findContributorIn, StatefulContributor } from 'app/lmem/contributor';
-import ContributorCompact from 'components/organisms/Contributor/ContributorCompact';
 import CenterContainer from 'components/atoms/CenterContainer';
 import Button from 'components/atoms/Button';
-
-const Sidebar = styled.aside`
-  ${Button} {
-    margin-top: 10px;
-  }
-`;
-
-const SidebarTitle = styled.h2`
-  margin: 0 0 5px;
-  font-size: 20px;
-  color: ${props => props.theme.activeColor};
-  font-weight: bold;
-`;
+import ContributorCompact from 'components/organisms/Contributor/ContributorCompact';
+import Loading from 'components/atoms/icons/Loading';
 
 const SidebarEmpty = styled.p`
   text-align: center;
@@ -25,20 +13,22 @@ const SidebarEmpty = styled.p`
 `;
 
 interface Props {
+  loading?: boolean;
   subscriptions: StatefulContributor[];
   suggestions: StatefulContributor[];
   allContributors: StatefulContributor[];
   subscribe: (contributor: StatefulContributor) => () => void;
   unsubscribe: (contributor: StatefulContributor) => () => void;
-  goToSuggestions: () => void;
+  seeMore: () => void;
 }
 
 const SuggestionsSidebar = ({
+  loading = false,
   suggestions,
   allContributors,
   subscribe,
   unsubscribe,
-  goToSuggestions
+  seeMore
 }: Props) => {
   const [initialSuggestions, setInitialSuggestions] = useState(suggestions);
 
@@ -50,27 +40,26 @@ const SuggestionsSidebar = ({
     findContributorIn(allContributors)
   );
 
-  return (
-    <Sidebar>
-      <SidebarTitle>Suggestions</SidebarTitle>
-      {suggestionsToRender.length > 0 ? (
-        <>
-          {suggestionsToRender.map(contributor => (
-            <ContributorCompact
-              key={contributor.id}
-              contributor={contributor}
-              onSubscribe={subscribe(contributor)}
-              onUnsubscribe={unsubscribe(contributor)}
-            />
-          ))}
-          <CenterContainer>
-            <Button onClick={goToSuggestions}>Voir plus</Button>
-          </CenterContainer>
-        </>
-      ) : (
-        <SidebarEmpty>Pas de suggestions pour le moment.</SidebarEmpty>
-      )}
-    </Sidebar>
+  if (loading) {
+    return <Loading />;
+  }
+
+  return suggestionsToRender.length > 0 ? (
+    <>
+      {suggestionsToRender.map(contributor => (
+        <ContributorCompact
+          key={contributor.id}
+          contributor={contributor}
+          onSubscribe={subscribe(contributor)}
+          onUnsubscribe={unsubscribe(contributor)}
+        />
+      ))}
+      <CenterContainer>
+        <Button onClick={seeMore}>Voir plus</Button>
+      </CenterContainer>
+    </>
+  ) : (
+    <SidebarEmpty>Pas de suggestions pour le moment.</SidebarEmpty>
   );
 };
 

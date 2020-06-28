@@ -1,8 +1,13 @@
 /* eslint-disable @typescript-eslint/no-var-requires, import/first */
 import Logger from 'app/utils/Logger';
 Logger.info('Content script injected...');
+window.postMessage(
+  'EXTENSION_INJECTED',
+  (process.env as AppEnv).PROFILES_ORIGIN
+);
 
 import { Scope } from '@sentry/browser';
+import { AppEnv, CustomWindow } from 'types';
 
 if (!(window as CustomWindow).__BULLES__CONTENT_SCRIPT_INJECTED__) {
   Logger.info('Running content script ...');
