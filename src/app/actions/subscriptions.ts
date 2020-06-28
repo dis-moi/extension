@@ -7,7 +7,7 @@ export interface FetchSubscriptionsAction extends BaseAction {
   type: typeof FETCH_SUBSCRIPTIONS;
 }
 export const fetchSubscriptions = (
-  meta: ActionMeta
+  meta?: ActionMeta
 ): FetchSubscriptionsAction => ({
   type: FETCH_SUBSCRIPTIONS,
   meta

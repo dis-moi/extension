@@ -18,5 +18,9 @@ module.exports = {
       'font-src': ["'self'", 'data:'],
       'style-src': ["'unsafe-inline'"]
     }
-  })
+  }),
+  externally_connectable: {
+    matches: ['https://*.dismoi.io/*'],
+    accepts_tls_channel_id: false
+  }
 };

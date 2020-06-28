@@ -15,7 +15,8 @@ const requiredEnvVarNames = [
   'BACKEND_ORIGIN',
   'REFRESH_CONTRIBUTORS_INTERVAL',
   'CHROME_EXTENSION_ID',
-  'FIREFOX_EXTENSION_ID'
+  'FIREFOX_EXTENSION_ID',
+  'PROFILES_ORIGIN'
 ];
 const formatEnvVar = value => `"${value}"`;
 
@@ -30,30 +31,13 @@ module.exports = function webpack(env = {}, argv = {}) {
 
   const defaultWebpackConfig = defaultWebpack(env, argv);
 
-  const copyConfig = [
-    { from: 'src/assets', to: defaultWebpackConfig.output.path },
-    {
-      from: 'node_modules/webextension-polyfill/dist/browser-polyfill.js',
-      to: path.join(defaultWebpackConfig.output.path, 'js')
-    },
-    {
-      from: 'node_modules/typeface-lato/files/',
-      to: path.join(defaultWebpackConfig.output.path, 'fonts/')
-    },
-    {
-      from: 'node_modules/typeface-sedgwick-ave/files/',
-      to: path.join(defaultWebpackConfig.output.path, 'fonts/')
-    }
-  ];
-
-  copyConfig.push({
-    from: 'test/integration',
-    to: path.join(defaultWebpackConfig.output.path, 'test', 'integration')
-  });
-
   return {
     ...defaultWebpackConfig,
-    entry: defaultWebpackConfig.entry.profiles,
+    entry: [
+      'core-js/stable',
+      'regenerator-runtime/runtime',
+      path.join(path.resolve(__dirname, 'src'), './app/profiles/')
+    ],
     devServer: {
       historyApiFallback: true,
       stats: 'minimal',
@@ -76,7 +60,24 @@ module.exports = function webpack(env = {}, argv = {}) {
           R.map(formatEnvVar)
         )(env)
       }),
-      new CopyWebpackPlugin(copyConfig),
+      new CopyWebpackPlugin([
+        {
+          from: 'src/assets',
+          to: defaultWebpackConfig.output.path
+        },
+        {
+          from: 'node_modules/typeface-lato/files/',
+          to: path.join(defaultWebpackConfig.output.path, 'fonts/')
+        },
+        {
+          from: 'node_modules/typeface-sedgwick-ave/files/',
+          to: path.join(defaultWebpackConfig.output.path, 'fonts/')
+        },
+        {
+          from: 'test/integration',
+          to: path.join(defaultWebpackConfig.output.path, 'test', 'integration')
+        }
+      ]),
       new LodashModuleReplacementPlugin()
     ]
   };

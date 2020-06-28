@@ -8,6 +8,7 @@ import notices from './notices';
 import ui from './ui';
 import watchUrlsSaga from './watchUrls.saga';
 import watchUnloadSaga from './watchUnload.saga';
+import bridgeConnectionSaga from './bridgeConnection.saga';
 import zombieTabSaga from './zombieTab.saga';
 
 export default function* rootSaga() {
@@ -23,4 +24,8 @@ export default function* rootSaga() {
     fork(watchUnloadSaga),
     fork(zombieTabSaga)
   ]);
+
+  if (window.origin === process.env.PROFILES_ORIGIN) {
+    yield fork(bridgeConnectionSaga.bind(null, process.env.PROFILES_ORIGIN));
+  }
 }

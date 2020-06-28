@@ -1,16 +1,74 @@
-const { DEPLOY } = process.env;
+const { getPackagePath } = require('./webpack/packageNaming');
 
-const getLogger = require('semantic-release/lib/get-logger');
+const release = Object.freeze({
+  verifyConditions: [
+    '@semantic-release/changelog',
+    '@semantic-release/git',
+    '@semantic-release/github'
+  ],
+  analyzeCommits: {
+    preset: 'angular',
+    parserOpts: {
+      noteKeywords: ['BREAKING CHANGE', 'BREAKING CHANGES', 'MAJOR RELEASE']
+    }
+  },
+  prepare: [
+    '@semantic-release/changelog',
+    {
+      path: '@semantic-release/exec',
+      cmd:
+        'sed -i -r \'s/"version":\\s*"[^"]+"/"version": "${nextRelease.version}"/\' package.json'
+    },
+    {
+      path: '@semantic-release/git',
+      assets: ['package.json', 'yarn.lock', 'CHANGELOG.md'],
+      message: 'chore: release ${nextRelease.version}\n\n${nextRelease.notes}'
+    }
+  ],
+  publish: [
+    {
+      path: '@semantic-release/exec',
+      cmd: 'yarn run buildVersion'
+    },
+    {
+      path: '@semantic-release/exec',
+      cmd: 'yarn run upload:firefox:staging'
+    },
+    {
+      path: '@semantic-release/exec',
+      cmd: 'yarn run upload:firefox:proding'
+    },
 
-const logger = getLogger({
-  cwd: process.cwd(),
-  env: process.env,
-  stdout: process.stdout,
-  stderr: process.stderr
+    {
+      path: '@semantic-release/github',
+      assets: [
+        {
+          path: getPackagePath('*', 'firefox', 'staging'),
+          label: 'Firefox Package - staging'
+        },
+        {
+          path: getPackagePath('*', 'firefox', 'proding'),
+          label: 'Firefox Package - proding'
+        },
+        {
+          path: getPackagePath('*', 'firefox', 'production'),
+          label: 'Firefox Package'
+        },
+        {
+          path: getPackagePath('*', 'chromium', 'staging'),
+          label: 'Chromium Package - staging'
+        },
+        {
+          path: getPackagePath('*', 'chromium', 'proding'),
+          label: 'Chromium Package - proding'
+        },
+        {
+          path: getPackagePath('*', 'chromium', 'production'),
+          label: 'Chromium Package'
+        }
+      ]
+    }
+  ]
 });
 
-const configFilePath = `./release.config.${DEPLOY}.js`;
-
-logger.log(`Loading config file ${configFilePath}`);
-
-module.exports = require(configFilePath);
+module.exports = release;

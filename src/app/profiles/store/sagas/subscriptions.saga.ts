@@ -3,16 +3,13 @@ import {
   fetchSubscriptions,
   fetchSubscriptionsFailure
 } from 'app/actions/subscriptions';
-import createMessageSender from 'app/profiles/createMessageSender';
-import extensionId from 'app/profiles/extensionId';
-import { waitForConnectionSaga } from './connection.saga';
+import { extensionMessageSender } from 'app/profiles/extensionId';
+import waitForConnectionSaga from './waitForConnection.saga';
 
 export default function* fetchSubscriptionsSaga() {
   try {
-    yield waitForConnectionSaga;
-    yield put(
-      fetchSubscriptions({ receiver: createMessageSender({ id: extensionId }) })
-    );
+    yield waitForConnectionSaga();
+    yield put(fetchSubscriptions({ receiver: extensionMessageSender }));
   } catch (error) {
     yield put(fetchSubscriptionsFailure(error));
   }

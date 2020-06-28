@@ -7,16 +7,20 @@ export interface StandardAction extends Action {
   error?: true;
 }
 
+export interface MetaWithReceiver {
+  receiver?: MessageSender;
+}
+
 export interface ReceiverAction extends StandardAction {
-  meta: {
-    receiver?: MessageSender;
-  };
+  meta: MetaWithReceiver;
+}
+
+export interface MetaWithSender {
+  sender?: MessageSender;
 }
 
 export interface SenderAction extends StandardAction {
-  meta: {
-    sender?: MessageSender;
-  };
+  meta: MetaWithSender;
 }
 
 export type PortAction = ReceiverAction | SenderAction;

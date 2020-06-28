@@ -31,7 +31,8 @@ const selectEnvVarsToInject = R.pick([
   'SENTRY_ENABLED',
   'PLATFORM',
   'CHROME_EXTENSION_ID',
-  'FIREFOX_EXTENSION_ID'
+  'FIREFOX_EXTENSION_ID',
+  'PROFILES_ORIGIN'
 ]);
 const formatEnvVars = R.map(value => `"${value}"`);
 
@@ -83,10 +84,18 @@ module.exports = (env = {}, argv = {}, buildPath) => {
       filename: 'profiles.html',
       inject: false
     }),
-    new AddAssetWebpackPlugin('manifest.json', getManifest(NODE_ENV, PLATFORM)),
     new CopyWebpackPlugin(copyConfig),
     new LodashModuleReplacementPlugin()
   ];
+
+  if (env.PLATFORM !== 'profiles') {
+    plugins.push(
+      new AddAssetWebpackPlugin(
+        'manifest.json',
+        getManifest(NODE_ENV, PLATFORM)
+      )
+    );
+  }
 
   if (SENTRY_ENABLED) {
     plugins.push(
