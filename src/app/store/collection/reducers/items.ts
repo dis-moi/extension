@@ -1,33 +1,26 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import * as R from 'ramda';
 
-export interface Item {}
+export type Item<Id extends string = 'id'> = Record<Id, unknown>;
 
-export interface ItemsAction<I extends Item> {
+export interface ItemsAction<I extends Item<Id>, Id extends string> {
   type: string;
   payload: I[];
 }
 
-export interface ItemAction<I extends Item> {
-  type: string;
-  payload: I;
-}
-
-export type ItemsState<I extends Item> = I[];
+export type ItemsState<I extends Item<Id>, Id extends string> = I[];
 
 export const initialState = [];
 
-export default <I extends Item>(SUCCESS: string, itemIdentifier: string) => (
-  state: ItemsState<I> = initialState,
-  action: ItemsAction<I>
-): ItemsState<I> => {
+export default <I extends Item<Id>, Id extends string>(
+  SUCCESS: string,
+  itemId: string
+) => (
+  state: ItemsState<I, Id> = initialState,
+  action: ItemsAction<I, Id>
+): ItemsState<I, Id> => {
   switch (action.type) {
     case SUCCESS: {
-      return R.uniqWith(
-        // @ts-ignore
-        R.eqProps(itemIdentifier),
-        R.concat(state, action.payload)
-      );
+      return R.uniqWith(R.eqProps(itemId), R.concat(state, action.payload));
     }
     default:
       return state;
