@@ -17,13 +17,6 @@ export interface ResourcesState extends StateWithContributors {
   notices: Notice[];
 }
 
-export const initialState: ResourcesState = {
-  matchingContexts: [],
-  restrictedContexts: [],
-  contributors: [],
-  notices: []
-};
-
 export default combineReducers({
   contributors,
   matchingContexts,
