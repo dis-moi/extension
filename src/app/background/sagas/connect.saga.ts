@@ -16,7 +16,7 @@ export default function* connectSaga() {
         yield fork(
           createWatchPortSaga,
           ({ meta }: AppAction) =>
-            compareMessageSender(meta?.receiver as MessageSender, sender),
+            compareMessageSender(meta?.receiver as MessageSender, port.sender),
           port,
           sender
         );
