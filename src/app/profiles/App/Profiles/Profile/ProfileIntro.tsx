@@ -38,13 +38,14 @@ const ProfileIntroContent = styled.section`
     }
 
     ${Avatar} {
+      width: 120px;
+      height: 120px;
       margin-top: -130px;
       border: 5px solid #fff;
 
-      &,
       & > img {
-        width: 120px;
-        height: 120px;
+        width: 110px;
+        height: 110px;
       }
     }
 
@@ -56,6 +57,7 @@ const ProfileIntroContent = styled.section`
 
       ${UserName} {
         display: inline;
+        height: 25px;
 
         ${Anchor} {
           display: block;

@@ -48,7 +48,11 @@ export const SidebarBox = styled(Box)`
   }
 
   ${Button} {
-    font-size: 13px;
+    min-width: 115px;
+    margin-top: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 15px;
   }
 
   ${ButtonWithIcon} {
