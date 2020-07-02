@@ -105,7 +105,7 @@ const ProfileList = ({
 
   return (
     <>
-      <Title>Vos informateurs</Title>
+      <Title>Les informateurs</Title>
       {loading ? (
         <Loader />
       ) : (
