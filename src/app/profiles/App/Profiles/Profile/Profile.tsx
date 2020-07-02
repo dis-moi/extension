@@ -34,6 +34,8 @@ const MainCol = styled.div`
 `;
 
 const Aside = styled(Sidebar)`
+    margin-top: ${props => props.theme.marginM};
+    
   ${SimilarProfiles} + ${CenterContainer} {
     margin-top: -30px;
   }
@@ -42,10 +44,6 @@ const Aside = styled(Sidebar)`
 export const SidebarBox = styled(Box)`
   margin-bottom: ${props => props.theme.marginL};
   padding: 10px;
-
-  &:first-of-type {
-    margin-top: ${props => props.theme.marginM};
-  }
 
   ${Button} {
     min-width: 115px;
