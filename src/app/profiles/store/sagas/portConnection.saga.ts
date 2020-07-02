@@ -22,16 +22,13 @@ export function* connectSaga() {
 
 function* attemptToConnectPeriodicallySaga() {
   const attemptInterval = 5000;
-
-  if (attemptInterval > 0) {
-    while (true) {
-      const connecting = yield select(isConnecting);
-      const connected = yield select(isConnected);
-      if (!connecting && !connected) {
-        yield put(connect());
-      }
-      yield delay(attemptInterval);
+  while (true) {
+    const connecting = yield select(isConnecting);
+    const connected = yield select(isConnected);
+    if (!connecting && !connected) {
+      yield put(connect());
     }
+    yield delay(attemptInterval);
   }
 }
 
