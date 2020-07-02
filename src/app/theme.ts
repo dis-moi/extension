@@ -24,6 +24,7 @@ export interface Theme {
   link: string;
   highlightedLink: string;
   accountListBg: string;
+  pagesBg: string;
 
   // color list:
   bottomBar: string;
@@ -87,6 +88,7 @@ export const theme: Theme = {
   link: '#1974C3',
   highlightedLink: '#F21360',
   accountListBg: '#fff',
+  pagesBg: '#E9EBEF',
 
   // color list:
   bottomBar: '#DDDDDD',
