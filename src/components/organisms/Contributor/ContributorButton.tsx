@@ -9,7 +9,6 @@ const Container = styled.div`
 
   & > * {
     max-width: 150px;
-    margin-top: 6px;
     text-transform: none;
   }
 `;
