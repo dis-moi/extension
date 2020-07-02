@@ -1,3 +1,11 @@
+## [3.34.1](https://github.com/dis-moi/extension/compare/v3.34.0...v3.34.1) (2020-07-02)
+
+
+### Bug Fixes
+
+* **background:** Subscriptions saga merge ([fdfd06b](https://github.com/dis-moi/extension/commit/fdfd06b78d4ddf806511bff83f367388ad805127))
+* **background:** Wrong sender passed to pattern checker ([783ddc7](https://github.com/dis-moi/extension/commit/783ddc78391e275da783adc8a72cb452b110f1d5))
+
 # [3.34.0](https://github.com/dis-moi/extension/compare/v3.33.2...v3.34.0) (2020-06-28)
 
 
