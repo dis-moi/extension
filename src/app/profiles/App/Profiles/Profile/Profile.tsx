@@ -46,7 +46,6 @@ export const SidebarBox = styled(Box)`
   padding: 10px;
 
   ${Button} {
-    min-width: 115px;
     margin-top: 0;
     padding-top: 5px;
     padding-bottom: 5px;

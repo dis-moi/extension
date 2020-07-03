@@ -103,6 +103,20 @@ export default styled(SimilarProfiles)`
     }
   }
 
+  & + ${CenterContainer} {
+    ${Link} {
+      font-weight: bold;
+      color: ${props => props.theme.secondaryColor};
+      text-transform: uppercase;
+      text-decoration: underline;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        color: ${props => props.theme.Button.hover};
+      }
+    }
+  }
+
   @media (max-width: ${props => props.theme.desktopWidth}) {
     display: flex;
     flex-wrap: nowrap;
