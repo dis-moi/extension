@@ -34,18 +34,21 @@ const ProfileIntroContent = styled.section`
     }
 
     ${ContributorWrapper} {
-      display: block;
+      display: flex;
+      flex-wrap: wrap;
     }
 
     ${Avatar} {
-      width: 120px;
-      height: 120px;
+      width: auto;
+      min-width: 120px;
+      height: auto;
+      min-height: 120px;
       margin-top: -130px;
       border: 5px solid #fff;
 
       & > img {
-        width: 110px;
-        height: 110px;
+        width: 120px;
+        height: 120px;
       }
     }
 
@@ -53,6 +56,7 @@ const ProfileIntroContent = styled.section`
       display: grid;
       grid-template-columns: auto 1fr;
       grid-column-gap: 24px;
+      flex-basis: 100%;
       margin: 0;
 
       ${UserName} {
