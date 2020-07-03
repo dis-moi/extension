@@ -1,3 +1,15 @@
+## [3.34.2](https://github.com/dis-moi/extension/compare/v3.34.1...v3.34.2) (2020-07-03)
+
+
+### Bug Fixes
+
+* **buttons:** changes buttons height for profiles ([33a0eca](https://github.com/dis-moi/extension/commit/33a0eca3f888c63aef7c691b6aca5fe68e5723dd))
+* **pages:** changes background color ([a3809d9](https://github.com/dis-moi/extension/commit/a3809d9fa14732c98bb8cf5dc9a0d51cf5e910d7))
+* **profile details:** tries to fix avatar resizing ([e7d0084](https://github.com/dis-moi/extension/commit/e7d00844f01b06a6599f32c09cec72456a412a31))
+* **profiles list:** changes title ([e01ccff](https://github.com/dis-moi/extension/commit/e01ccff3687059a7c8bbd6d4f4d4f930474266f1))
+* **profiles sidebar:** adds default margin top ([113a8de](https://github.com/dis-moi/extension/commit/113a8dee57708f687beb4d9049c37fd7a1b1f43b))
+* **profiles sidebar:** change voir tout link display ([2862817](https://github.com/dis-moi/extension/commit/28628172ac3b072a015f9836fb32ec191cb285a6))
+
 ## [3.34.1](https://github.com/dis-moi/extension/compare/v3.34.0...v3.34.1) (2020-07-02)
 
 
