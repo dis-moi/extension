@@ -1,3 +1,10 @@
+## [3.34.3](https://github.com/dis-moi/extension/compare/v3.34.2...v3.34.3) (2020-07-03)
+
+
+### Bug Fixes
+
+* **matching-contexts:** Fix a bug where matching contexts were empty ([ffe42f8](https://github.com/dis-moi/extension/commit/ffe42f8d242d08a310062ee89dd1852419bcebaf))
+
 ## [3.34.2](https://github.com/dis-moi/extension/compare/v3.34.1...v3.34.2) (2020-07-03)
 
 
