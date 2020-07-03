@@ -127,7 +127,7 @@ export const Profile = ({
     if (connected) {
       if (contributor?.subscribed) {
         if (notice && notice.exampleUrl) {
-          window.location.href = notice.exampleUrl;
+          window.open(notice.exampleUrl, '_blank');
         }
       } else {
         setSubscribePopinOpened(true);
