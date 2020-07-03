@@ -164,7 +164,7 @@ export const Profile = ({
       </MainCol>
 
       <Aside>
-        {connected === false && (
+        {!connected && (
           <SidebarBoxWithAction>
             <Paragraph>
               DisMoi permet aux internautes, médias et experts de vous informer
