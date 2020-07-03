@@ -1,6 +1,7 @@
 import React from 'react';
-import { StatefulContributor } from 'app/lmem/contributor';
 import styled from 'styled-components';
+import { StatefulContributor } from 'app/lmem/contributor';
+import defaultProfileBannerImage from 'assets/img/profile-banner.jpg';
 
 const ProfileBannerContainer = styled.div<{
   default: boolean;
@@ -37,7 +38,7 @@ const ProfileBanner = ({ contributor }: ProfileBannerProps) => {
         src={
           contributor && contributor.banner
             ? contributor.banner
-            : '/img/profile-banner.jpg'
+            : defaultProfileBannerImage
         }
         alt={getBannerAlt(contributor)}
       />

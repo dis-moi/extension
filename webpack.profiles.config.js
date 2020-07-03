@@ -33,6 +33,21 @@ module.exports = function webpack(env = {}, argv = {}) {
 
   return {
     ...defaultWebpackConfig,
+    module: {
+      rules: [
+        ...defaultWebpackConfig.module.rules,
+        {
+          test: /\.(png|jpe?g|gif)$/i,
+          loader: 'file-loader',
+          options: {
+            publicPath: process.env.PROFILES_ASSETS_PATH,
+            name: '[path][name].[ext]',
+            context: 'src/assets',
+          },
+        },
+      ]
+    },
+
     entry: [
       'core-js/stable',
       'regenerator-runtime/runtime',
