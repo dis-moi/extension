@@ -6,6 +6,10 @@ const Title2 = styled.h2`
   font-size: 19px;
   font-weight: 900;
   color: ${props => props.theme.titleColor};
+
+  @media (max-width: ${props => props.theme.tabletWidth}) {
+    margin-left: 20px;
+  }
 `;
 
 export default Title2;
