@@ -1,3 +1,10 @@
+## [3.34.4](https://github.com/dis-moi/extension/compare/v3.34.3...v3.34.4) (2020-07-07)
+
+
+### Bug Fixes
+
+* remove `profiles` app from extension package ([c27fa78](https://github.com/dis-moi/extension/commit/c27fa787c7707a05f34c8ff7eac220cbf64f187e))
+
 ## [3.34.3](https://github.com/dis-moi/extension/compare/v3.34.2...v3.34.3) (2020-07-03)
 
 
