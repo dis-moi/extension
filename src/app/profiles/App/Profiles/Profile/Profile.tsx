@@ -31,6 +31,64 @@ const MainCol = styled.div`
       font-size: 12px;
     }
   }
+
+  ${Paragraph} {
+    line-height: 1.2;
+    max-height: calc(3 * 1.2 * 1em); //exact number of lines
+    overflow: hidden;
+
+    p + p {
+      display: none;
+    }
+
+    p {
+      display: inline-block;
+      max-height: calc(3 * 1.2 * 1em); //one more line
+      position: relative;
+      margin: 0;
+
+      // webkit solution to multi-line text overflow
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+
+      &:before {
+        // for the ellipsis
+        background: #fff; // fallback for old IE
+        background: linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0),
+          rgba(255, 255, 255, 1) 50%
+        );
+        bottom: 1.2 * 1em;
+        content: '\\02026';
+        height: 1.2 * 1em;
+        position: absolute;
+        right: 0;
+        text-align: right;
+        width: 4em;
+      }
+
+      &:after {
+        // to cover all but the last line of text
+        background: #fff;
+        content: attr(data-text);
+        left: 0;
+        height: (2 - 1) * 1.2 * 1em;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+
+      @supports (-webkit-line-clamp: 2) {
+        &:before,
+        &:after {
+          content: none;
+        }
+      }
+    }
+  }
 `;
 
 const Aside = styled(Sidebar)`
@@ -50,6 +108,7 @@ export const SidebarBox = styled(Box)`
     padding-top: 5px;
     padding-bottom: 5px;
     font-size: 15px;
+    min-width: 131px;
   }
 
   ${ButtonWithIcon} {
