@@ -60,24 +60,32 @@ module.exports = function webpack(env = {}, argv = {}) {
           R.map(formatEnvVar)
         )(env)
       }),
-      new CopyWebpackPlugin([
-        {
-          from: 'src/assets',
-          to: defaultWebpackConfig.output.path
-        },
-        {
-          from: 'node_modules/typeface-lato/files/',
-          to: path.join(defaultWebpackConfig.output.path, 'fonts/')
-        },
-        {
-          from: 'node_modules/typeface-sedgwick-ave/files/',
-          to: path.join(defaultWebpackConfig.output.path, 'fonts/')
-        },
-        {
-          from: 'test/integration',
-          to: path.join(defaultWebpackConfig.output.path, 'test', 'integration')
-        }
-      ]),
+      new CopyWebpackPlugin(
+        [
+          {
+            from: 'src/assets',
+            to: defaultWebpackConfig.output.path
+          },
+          {
+            from: 'node_modules/typeface-lato/files/',
+            to: path.join(defaultWebpackConfig.output.path, 'fonts/')
+          },
+          {
+            from: 'node_modules/typeface-sedgwick-ave/files/',
+            to: path.join(defaultWebpackConfig.output.path, 'fonts/')
+          },
+          argv.mode === 'production'
+            ? null
+            : {
+                from: 'test/integration',
+                to: path.join(
+                  defaultWebpackConfig.output.path,
+                  'test',
+                  'integration'
+                )
+              }
+        ].filter(Boolean)
+      ),
       new LodashModuleReplacementPlugin()
     ]
   };

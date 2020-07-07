@@ -83,11 +83,6 @@ module.exports = (env = {}, argv = {}, buildPath) => {
       filename: 'options.html',
       inject: false
     }),
-    new HtmlWebpackPlugin({
-      template: './views/profiles.pug',
-      filename: 'profiles.html',
-      inject: false
-    }),
     new CopyWebpackPlugin(copyConfig),
     new LodashModuleReplacementPlugin()
   ];
