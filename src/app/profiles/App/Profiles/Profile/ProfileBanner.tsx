@@ -5,10 +5,16 @@ import styled from 'styled-components';
 const ProfileBannerContainer = styled.div<{
   default: boolean;
 }>`
-  min-height: 200px;
-  background-color: ${props => props.theme.navInactive};
+  position: relative;
+  min-height: 300px;
+  background-color: #fff;
+  overflow: hidden;
 
   img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
     display: block;
     opacity: ${props => (props.default ? '0.5' : '1')};
   }
