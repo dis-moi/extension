@@ -71,12 +71,16 @@ const PopinClose = styled.div`
   top: 12px;
   right: 12px;
   display: block;
-  width: 10px;
-  height: 10px;
+  width: 13px;
+  height: 13px;
 
   & > svg {
     width: 10px;
     height: 10px;
+  }
+
+  ${CloseButton} {
+    padding: 0;
   }
 `;
 
