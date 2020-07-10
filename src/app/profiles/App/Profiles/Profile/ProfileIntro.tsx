@@ -61,7 +61,6 @@ const ProfileIntroContent = styled.section`
 
       ${UserName} {
         display: inline;
-        height: 25px;
 
         ${Anchor} {
           display: block;

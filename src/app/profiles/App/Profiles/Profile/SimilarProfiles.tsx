@@ -10,10 +10,8 @@ import {
   LoadingRotator,
   Title2
 } from 'components/atoms';
-import StatsWrapper from 'components/atoms/Contributor/StatsWrapper';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import UserName from 'components/atoms/UserName/UserName';
-import Stat from 'components/atoms/Stat/Stat';
 import pathToContributor from '../../pathToContributor';
 
 interface SimilarProfilesProps {
@@ -97,10 +95,6 @@ export default styled(SimilarProfiles)`
     &:last-child {
       border-bottom: none;
     }
-
-    ${StatsWrapper} {
-      justify-content: center;
-    }
   }
 
   & + ${CenterContainer} {
@@ -156,12 +150,6 @@ export default styled(SimilarProfiles)`
           font-size: 16px;
           white-space: normal;
         }
-      }
-
-      ${Stat} {
-        justify-content: center;
-        width: 100%;
-        font-size: 14px;
       }
 
       ${Link} {

@@ -4,15 +4,11 @@ import { LocationDescriptor, LocationState } from 'history';
 import { StatefulContributor } from 'app/lmem/contributor';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import UserName from 'components/atoms/UserName/UserName';
-import Stat from 'components/atoms/Stat/Stat';
-import StatType from 'components/atoms/Stat/StatType';
-import BubbleIcon from 'components/atoms/icons/Bubble';
 import ContributorButton from './ContributorButton';
 import {
   ContributorCard,
   ContributorWrapper,
-  ContributorInfos,
-  StatsWrapper
+  ContributorInfos
 } from 'components/atoms/Contributor/index';
 import Link from 'components/atoms/Link';
 
@@ -76,13 +72,6 @@ const ContributorLarge = ({
               <UserName>
                 <Link to={to}>{contributor.name}</Link>
               </UserName>
-
-              <StatsWrapper>
-                <Stat>
-                  <BubbleIcon /> {contributor.contributions}{' '}
-                  <StatType>contributions</StatType>
-                </Stat>
-              </StatsWrapper>
 
               <ContributorButton
                 loading={contributor?.subscribing === true}

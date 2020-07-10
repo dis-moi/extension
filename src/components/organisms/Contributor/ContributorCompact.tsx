@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { StatefulContributor } from 'app/lmem/contributor';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import UserName from 'components/atoms/UserName/UserName';
-import Stat from 'components/atoms/Stat/Stat';
 import ContributorButton from './ContributorButton';
 import Link from 'components/atoms/Link';
 import ContributorWrapper from 'components/atoms/Contributor/ContributorWrapper';
@@ -28,20 +27,6 @@ const ContributorInfos = styled.div`
   flex-grow: 1;
   margin-right: 10px;
   margin-left: 10px;
-
-  ${UserName} {
-    margin-bottom: 5px;
-  }
-`;
-
-const StatsWrapper = styled.div`
-  display: flex;
-
-  ${Stat} {
-    flex-direction: row;
-    align-items: center;
-    font-size: 12px;
-  }
 `;
 
 interface Props<S = LocationState> {
@@ -65,10 +50,6 @@ export const ContributorCompact = ({
       <UserName>
         <Link to={to}>{contributor.name}</Link>
       </UserName>
-
-      <StatsWrapper>
-        <Stat>{contributor.contributions} contrib.</Stat>
-      </StatsWrapper>
     </ContributorInfos>
 
     <ContributorButton

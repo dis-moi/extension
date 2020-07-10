@@ -2,18 +2,11 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { findContributorIn, StatefulContributor } from 'app/lmem/contributor';
 import { Sidebar, Title2, TwoColumns } from 'components/atoms';
-import Button from 'components/atoms/Button';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
 import ContributorLink from 'components/organisms/Contributor/ContributorLink';
 import ContributorsListEmpty from 'app/options/App/Settings/ContributorsListEmpty';
 import Empty from './Empty';
 import SuggestionsSidebar from './SuggestionsSidebar';
-
-const SidebarWrapper = styled(Sidebar)`
-  ${Button} {
-    margin-top: 10px;
-  }
-`;
 
 const SidebarTitle = styled(Title2)`
   color: ${props => props.theme.activeColor};
@@ -101,7 +94,7 @@ export const SubscriptionsScreen = ({
   return (
     <TwoColumns className={className}>
       {contributorsList}
-      <SidebarWrapper>
+      <Sidebar>
         <SidebarTitle>Suggestions</SidebarTitle>
         <SuggestionsSidebar
           subscriptions={subscriptions}
@@ -111,7 +104,7 @@ export const SubscriptionsScreen = ({
           unsubscribe={unsubscribe}
           seeMore={goToSuggestions}
         />
-      </SidebarWrapper>
+      </Sidebar>
     </TwoColumns>
   );
 };
