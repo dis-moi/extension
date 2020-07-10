@@ -1,3 +1,21 @@
+# [3.35.0](https://github.com/dis-moi/extension/compare/v3.34.4...v3.35.0) (2020-07-10)
+
+
+### Bug Fixes
+
+* **Popin:** changes close button size ([f5df527](https://github.com/dis-moi/extension/commit/f5df527af1547626bdf838d788dc587b1627bfdb))
+* **Profile Banner:** fixes height ([1d8ccb9](https://github.com/dis-moi/extension/commit/1d8ccb972b4966cce1640240b7eab4d6c09441b8))
+* **profiles:** Fix "Add to browser" not displaying on Firefox while connecting ([6a913dd](https://github.com/dis-moi/extension/commit/6a913dd4240e280313501cf099dbef47b65ba5d4))
+* **profiles:** Serve static images from profiles page ([052eaed](https://github.com/dis-moi/extension/commit/052eaed428e9d03d59d0d083c7b83c4a4f94140b))
+* **Profiles:** adds margin for titles on mobiles ([5f4e72c](https://github.com/dis-moi/extension/commit/5f4e72c8ad94bd969e29842e4fa8553f25a6fad8))
+
+
+### Features
+
+* **Profile:** limits the height of contributions content ([0394fac](https://github.com/dis-moi/extension/commit/0394facfa41203791dda5a791b9abc2636cbaf45))
+* **profiles:** Open "See in context" URL in a new tab. ([e9921d6](https://github.com/dis-moi/extension/commit/e9921d625bb66ec4cff9e08066fd4362daadb1b2))
+* **Stats:** removes contributions number everywhere ([3ab6f43](https://github.com/dis-moi/extension/commit/3ab6f439bc204628b43a18711bf49a8792e90cb0))
+
 ## [3.34.4](https://github.com/dis-moi/extension/compare/v3.34.3...v3.34.4) (2020-07-07)
 
 
