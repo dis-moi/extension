@@ -4,7 +4,6 @@ import { Redirect, Route, Switch } from 'react-router';
 import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider } from 'styled-components';
 
-import FontsStyle from 'components/atoms/FontsStyle';
 import theme from 'app/theme';
 import store, { history } from '../store';
 import Background from './Background';
@@ -15,7 +14,6 @@ import Subscriptions from './Subscriptions';
 
 const App = () => (
   <Provider store={store}>
-    <FontsStyle getURL={(path: string) => `.${path}`} />
     <ThemeProvider theme={theme}>
       <ConnectedRouter history={history}>
         <Background>
