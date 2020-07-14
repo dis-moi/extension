@@ -1,3 +1,10 @@
+## [3.35.1](https://github.com/dis-moi/extension/compare/v3.35.0...v3.35.1) (2020-07-14)
+
+
+### Bug Fixes
+
+* **profiles:** Remove fonts style from the app and rely on google fonts ([1f2cf69](https://github.com/dis-moi/extension/commit/1f2cf698f46e3b7e520fdaa9e1289ad8b9528a73))
+
 # [3.35.0](https://github.com/dis-moi/extension/compare/v3.34.4...v3.35.0) (2020-07-10)
 
 
