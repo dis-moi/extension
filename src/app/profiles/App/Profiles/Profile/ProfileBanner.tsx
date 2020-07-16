@@ -7,7 +7,7 @@ const ProfileBannerContainer = styled.div<{
   default: boolean;
 }>`
   position: relative;
-  min-height: 300px;
+  min-height: 200px;
   background-color: #fff;
   overflow: hidden;
 
