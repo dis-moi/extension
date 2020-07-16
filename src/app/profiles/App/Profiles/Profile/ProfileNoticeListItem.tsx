@@ -93,7 +93,7 @@ export const ProfileNoticeListItem = ({
           alt={`Rendu de la contribution sur ${notice.exampleUrl} avec l'extension installé.`}
         />
       )}
-      <Paragraph dangerouslySetInnerHTML={{ __html: notice.message }} />
+      <Paragraph dangerouslySetInnerHTML={{ __html: notice.strippedMessage }} />
       <NoticeBottomLine>
         Visible depuis le {format(notice.created, 'DD/MM/YYYY')}
         <BorderButton onClick={seeInContext} disabled={!notice.exampleUrl}>

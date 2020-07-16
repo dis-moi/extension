@@ -6,6 +6,7 @@ import { generateContributor } from './generateContributor';
 
 interface Options {
   message?: string;
+  strippedMessage?: string;
   created?: Date;
   modified?: Date;
   likes?: number;
@@ -22,6 +23,7 @@ export const defaultMessage = `L’économie est (vraiment) un sport de combat :
 
 export const generateStatefulNotice = ({
   message,
+  strippedMessage,
   created,
   modified,
   contributor,
@@ -41,6 +43,7 @@ export const generateStatefulNotice = ({
     created: created || subMonths(new Date(), 1),
     modified: modified || subWeeks(new Date(), 1),
     message: message || defaultMessage,
+    strippedMessage: strippedMessage || message || defaultMessage,
     ratings: { likes: likes || 42, dislikes: dislikes || 2 },
     contributor: contributor || generateContributor(),
     visibility: 'public',
