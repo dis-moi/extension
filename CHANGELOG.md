@@ -1,3 +1,15 @@
+# [3.36.0](https://github.com/dis-moi/extension/compare/v3.35.1...v3.36.0) (2020-07-16)
+
+
+### Bug Fixes
+
+* remove unneeded `activeTab` permission ([1d09d1d](https://github.com/dis-moi/extension/commit/1d09d1df23fcce181fd243cd83d6a19d09d3d24e))
+
+
+### Features
+
+* **profiles:** Add scroll to top in profiles app ([f2ed4e5](https://github.com/dis-moi/extension/commit/f2ed4e5539103f3c3d63fa00fc804dac9cca4012))
+
 ## [3.35.1](https://github.com/dis-moi/extension/compare/v3.35.0...v3.35.1) (2020-07-14)
 
 
