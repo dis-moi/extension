@@ -1,3 +1,10 @@
+# [3.38.0](https://github.com/dis-moi/extension/compare/v3.37.0...v3.38.0) (2020-07-16)
+
+
+### Features
+
+* **onboarding:** remove contributor 51 from defaults ([5c88c4e](https://github.com/dis-moi/extension/commit/5c88c4e9bba4d22d426400a4de15ce180e908433))
+
 # [3.37.0](https://github.com/dis-moi/extension/compare/v3.36.0...v3.37.0) (2020-07-16)
 
 
