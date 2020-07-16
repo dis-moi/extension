@@ -1,3 +1,10 @@
+## [3.38.1](https://github.com/dis-moi/extension/compare/v3.38.0...v3.38.1) (2020-07-16)
+
+
+### Bug Fixes
+
+* Set banner min height to 200px ([679523b](https://github.com/dis-moi/extension/commit/679523b8079a971d7fc2442e5f640f88661e9e04))
+
 # [3.38.0](https://github.com/dis-moi/extension/compare/v3.37.0...v3.38.0) (2020-07-16)
 
 
