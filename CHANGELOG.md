@@ -1,3 +1,10 @@
+# [3.37.0](https://github.com/dis-moi/extension/compare/v3.36.0...v3.37.0) (2020-07-16)
+
+
+### Features
+
+* **profiles:** Use stripped version of the notice message ([28dcb3d](https://github.com/dis-moi/extension/commit/28dcb3dcf3fd1b2facefd3ea888db86539260808))
+
 # [3.36.0](https://github.com/dis-moi/extension/compare/v3.35.1...v3.36.0) (2020-07-16)
 
 
