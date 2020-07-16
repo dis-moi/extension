@@ -9,6 +9,7 @@ export interface BaseNotice {
   created: Date;
   modified: Date;
   message: string;
+  strippedMessage: string;
   ratings: Ratings;
   visibility: 'public' | 'private';
   exampleUrl?: string;
