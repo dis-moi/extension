@@ -90,7 +90,7 @@ export const ProfileNoticeListItem = ({
         <img
           style={{ width: '100%' }}
           src={notice.screenshot}
-          alt={`Rendu de la contribution sur ${notice.exampleUrl} avec l'extension installé.`}
+          alt={`Rendu de la contribution sur ${notice.exampleUrl} une fois l'extension installée.`}
         />
       )}
       <Paragraph dangerouslySetInnerHTML={{ __html: notice.strippedMessage }} />
