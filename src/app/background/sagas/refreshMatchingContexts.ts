@@ -20,9 +20,7 @@ export function* refreshMatchingContextsPeriodicallySaga() {
   if (refreshInterval > 0) {
     // eslint-disable-next-line no-console
     console.info(
-      `Matching contexts will be refreshed every ${refreshInterval /
-        1000 /
-        60} minutes.`
+      `Matching contexts will be refreshed every ${process.env.REFRESH_MC_INTERVAL} minutes.`
     );
 
     while (true) {
