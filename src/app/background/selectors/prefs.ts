@@ -9,10 +9,7 @@ import { BackgroundState } from '../reducers';
 
 export const getPrefs = (state: BackgroundState) => state.prefs;
 
-export const areTosAccepted = createSelector(
-  getPrefs,
-  prefs => prefs.tosAccepted
-);
+export const areTosAccepted = createSelector([], () => true);
 
 export const getDismissed = (state: BackgroundState) =>
   getPrefs(state).dismissedNotices;

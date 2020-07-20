@@ -7,10 +7,10 @@ import {
   updateInstallationDetails,
   InstalledAction
 } from 'app/actions/install';
-import { isOnboardingRequired } from 'app/background/selectors';
 import { getInstallationDate } from 'app/background/selectors/installationDetails';
 import { InstallationDetails } from 'app/lmem/installation';
 import { version } from '../../../../package.json';
+
 export function* installedSaga({
   payload: { installedDetails }
 }: InstalledAction): SagaIterator {
@@ -33,10 +33,7 @@ export function* installedSaga({
 
     const { reason } = installedDetails;
     if (reason === 'install') {
-      const onboardingRequired = yield select(isOnboardingRequired);
-      if (onboardingRequired) {
-        yield call(openOptions, '/onboarding');
-      }
+      yield call(openOptions, '/onboarding');
     }
   } catch (e) {
     captureException(e);
