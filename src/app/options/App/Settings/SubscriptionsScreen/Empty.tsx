@@ -37,12 +37,12 @@ const Empty = ({ goToSuggestions }: Props) => (
     <EmptyTitle>Aucun abonnement.</EmptyTitle>
 
     <EmptyText>
-      Veuillez suivre des contributeur(trice)s dans la
+      Veuillez suivre des informateur(trice)s dans la
       <br /> partie “Suggestions”
     </EmptyText>
 
     <EmptyButton onClick={goToSuggestions}>
-      Choisir mes contributeur(ice)s
+      Choisir mes informateur(ice)s
     </EmptyButton>
   </Wrapper>
 );

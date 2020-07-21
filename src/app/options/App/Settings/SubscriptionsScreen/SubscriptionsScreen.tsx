@@ -53,7 +53,7 @@ export const SubscriptionsScreen = ({
   if (allContributors.length === 0) {
     return (
       <ContributorsListEmpty>
-        L&apos;extension essaie de retrouver votre liste de contributeurs.
+        L&apos;extension essaie de retrouver votre liste d&apos;informateurs.
         <br /> Si le problème persiste, veuillez désactiver et réactiver votre
         extension, ou la désinstaller et la réinstaller.
       </ContributorsListEmpty>

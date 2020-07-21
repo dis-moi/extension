@@ -28,8 +28,8 @@ const Header = () => (
       <HeaderNavItem href={`https://${WEBSITE_DOMAIN}/aide/`}>
         Aide
       </HeaderNavItem>
-      <HeaderNavItem href={`https://${WEBSITE_DOMAIN}/devenir-contributeur/`}>
-        Devenir contributeur
+      <HeaderNavItem href={`https://${WEBSITE_DOMAIN}/devenir-informateur/`}>
+        Devenir informateur
       </HeaderNavItem>
     </HeaderNav>
   </LogoWrapper>

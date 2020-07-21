@@ -18,8 +18,8 @@ export default ({ goBack }: ContributionSubmittedScreenProps) => (
     <ContentWrapperBackground>
       <ContentTitle>Merci pour votre demande.</ContentTitle>
       <Content>
-        Elle sera très rapidement transmise au(x) contributeur(s) concerné(s).
-        Et vous serez prévenu de la réponse directement par mail.
+        Elle sera très rapidement transmise au(x) informateur(s) concerné(s). Et
+        vous serez prévenu de la réponse directement par mail.
       </Content>
 
       <CenterContainer>

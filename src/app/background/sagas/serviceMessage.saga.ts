@@ -45,7 +45,7 @@ export default function* serviceMessageSaga(tab: Tab, nbNotices = 0) {
           {
             messages: buildMessages([], nbNotices),
             action: {
-              label: 'Choisir mes contributeurs',
+              label: 'Choisir mes informateurs',
               url: '/settings/suggestions',
               type: LinkType.Options
             }

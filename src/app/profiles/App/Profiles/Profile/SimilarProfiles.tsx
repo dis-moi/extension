@@ -81,7 +81,7 @@ const SimilarProfiles = ({
           ))}
       </SidebarBox>
       <CenterContainer>
-        <Link to="/les-contributeurs">Voir tout</Link>
+        <Link to="/informateurs">Voir tout</Link>
       </CenterContainer>
     </>
   );
