@@ -1,3 +1,10 @@
+## [3.38.2](https://github.com/dis-moi/extension/compare/v3.38.1...v3.38.2) (2020-07-21)
+
+
+### Bug Fixes
+
+* Browser action click not toggling UI ([a60713d](https://github.com/dis-moi/extension/commit/a60713d73b930bfbb126044c2fbfc044812ae469))
+
 ## [3.38.1](https://github.com/dis-moi/extension/compare/v3.38.0...v3.38.1) (2020-07-16)
 
 
