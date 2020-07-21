@@ -43,11 +43,14 @@ import serviceMessageSaga from './serviceMessage.saga';
 import { getNbSubscriptions } from '../selectors/subscriptions.selectors';
 import { createCallAndRetry } from '../../sagas/effects/callAndRetry';
 import { Level } from '../../utils/Logger';
+import { TabWithURL } from 'app/lmem/tab';
+import { getTabById } from '../selectors/tabs';
 
 export function* tabSaga({ meta: { tab } }: TabAction) {
   const tabAuthorized = yield select(isTabAuthorized(tab));
   if (tabAuthorized) {
-    yield put(matchContext(tab));
+    // if the tab is authorized, it has an URL
+    yield put(matchContext(tab as TabWithURL));
   } else {
     yield call(disable, tab);
     yield call(resetBadge, tab.id);
@@ -148,7 +151,8 @@ export const contextNotTriggeredSaga = function*({
 const shouldActionBeSentToTab = (action: AppAction) =>
   Boolean(action.meta && action.meta.sendToTab);
 function* sendActionToTab(action: TabAction) {
-  yield sendToTabSaga(action.meta.tab, action);
+  const tab = yield select(getTabById(action.meta.tab.id));
+  yield sendToTabSaga(tab, action);
 }
 
 export default function* tabRootSaga() {
