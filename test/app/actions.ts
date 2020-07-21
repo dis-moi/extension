@@ -5,13 +5,13 @@ import { contextTriggered } from 'app/actions/tabs';
 import { noticeDisplayed, noticeIgnored } from 'app/actions/notices';
 import { MatchingContext } from '../../src/app/lmem/matchingContext';
 import { StatefulNotice } from '../../src/app/lmem/notice';
-import Tab from '../../src/app/lmem/tab';
+import { TabWithURL } from '../../src/app/lmem/tab';
 import { generateStatefulNotice } from 'test/fakers/generateNotice';
 
 const expect = chai.expect;
 chai.use(sinonChai);
 
-const tab: Tab = { id: 1, url: 'http://tests.menant-benjamin.fr/' };
+const tab: TabWithURL = { id: 1, url: 'http://tests.menant-benjamin.fr/' };
 
 const notice: StatefulNotice = generateStatefulNotice();
 

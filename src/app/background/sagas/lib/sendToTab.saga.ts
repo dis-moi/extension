@@ -32,7 +32,12 @@ function* trySendToTab(
 }
 
 function* sendToTabSaga(tab: Tab, action: AppAction) {
-  if (!isAuthorizedTab(tab)) return;
+  if (!isAuthorizedTab(tab)) {
+    Logger.debug(
+      `${action.type} wasn't sent to ${tab.id}(${tab.url}) because the tab is not authorized.`
+    );
+    return;
+  }
 
   yield trySendToTab(tab, action, MAX_RETRIES);
 }
