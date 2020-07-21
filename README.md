@@ -5,7 +5,7 @@
 > _Dis moi_ means _Tell me_ in :fr: French.
 
 **Dismoi** is a web extension that allows anyone to post information directly on any web page you browse.
-If you follow a contributor, his information messages are displayed at the time you visit the pages he has commented on.
+If you follow an informer, his messages are displayed at the time you visit the pages he has commented on.
 
 To lean more about the uses cases, visit the :fr: [**Dismoi** website](https://www.dismoi.io/).
 
@@ -26,7 +26,7 @@ The **Dismoi** extension requires the following permissions :
 
 - `storage` The extension use the [`sync` storage area](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/storage/sync) to store and sync across browser instance the following informations :
   - `prefs` The contributions you dismissed, disliked, liked, read. Also if you accepted the :fr: [Term of Service](https://www.dismoi.io/cgu/).
-  - `subscriptions` Which contributors you are following.
+  - `subscriptions` Which informers you are following.
   - `installationDetails` The extension version, date of installation, date of last update.
   - `user` A generated unique identifier.
   - `serviceMessage` The last time you saw the service message, to avoid showing it up again.

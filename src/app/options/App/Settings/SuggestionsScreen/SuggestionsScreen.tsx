@@ -45,7 +45,7 @@ const SuggestionsScreen = ({
   if (allContributors.length === 0) {
     return (
       <ContributorsListEmpty>
-        L&apos;extension essaie de retrouver la liste de contributeurs.
+        L&apos;extension essaie de retrouver la liste d&apos;informateurs.
         <br /> Si le problème persiste, veuillez désactiver et réactiver votre
         extension, ou la désinstaller et la réinstaller.
       </ContributorsListEmpty>

@@ -85,7 +85,7 @@ export default ({ next }: ExamplesScreenProps) => (
         <Title2>Votre réseau d’informateurs</Title2>
         <Subtitle>
           Pour simplifier votre choix, nous vous avons concocté une sélection de
-          contributeurs.
+          informateurs.
         </Subtitle>
       </Intro>
     </Wrapper>
@@ -102,7 +102,7 @@ export default ({ next }: ExamplesScreenProps) => (
 
       <OnboardingButtonWrapper>
         <SecondaryButton as={Link} to="/settings/subscriptions">
-          Voir tous les contributeurs
+          Voir tous les informateurs
         </SecondaryButton>
       </OnboardingButtonWrapper>
     </BottomLineBg>
