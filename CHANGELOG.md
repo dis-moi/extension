@@ -1,3 +1,10 @@
+## [3.38.3](https://github.com/dis-moi/extension/compare/v3.38.2...v3.38.3) (2020-07-22)
+
+
+### Bug Fixes
+
+* Typo on sample notice screenshot alternative text ([a17d934](https://github.com/dis-moi/extension/commit/a17d934e789da5f79138a083c34b42d904a8fdfd))
+
 ## [3.38.2](https://github.com/dis-moi/extension/compare/v3.38.1...v3.38.2) (2020-07-21)
 
 
