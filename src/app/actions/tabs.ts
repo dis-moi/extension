@@ -1,8 +1,8 @@
 import { InstallationDetails } from 'app/lmem/installation';
 import { MatchingContext } from 'app/lmem/matchingContext';
-import Tab, { TabWithURL } from 'app/lmem/tab';
+import Tab from 'app/lmem/tab';
 import { ReceivedAction } from 'webext/createMessageHandler';
-import { BaseAction, TabAction, TabErrorAction, TabMeta } from '.';
+import { BaseAction, TabAction, TabErrorAction } from '.';
 import { Level } from '../utils/Logger';
 
 export const INIT = 'INIT';
@@ -41,11 +41,8 @@ export const navigatedToUrl = (url: string): NavigatedToUrlAction => ({
 export const MATCH_CONTEXT = 'LMEM/MATCH_CONTEXT';
 export interface MatchContextAction extends TabAction {
   type: typeof MATCH_CONTEXT;
-  meta: TabMeta & {
-    tab: TabWithURL;
-  };
 }
-export const matchContext = (tab: TabWithURL): MatchContextAction => ({
+export const matchContext = (tab: Tab): MatchContextAction => ({
   type: MATCH_CONTEXT,
   meta: { tab }
 });
@@ -68,13 +65,10 @@ export const CONTEXT_TRIGGERED = 'LMEM/CONTEXT_TRIGGERED';
 export interface ContextTriggeredAction extends TabAction {
   type: typeof CONTEXT_TRIGGERED;
   payload: MatchingContext[];
-  meta: TabMeta & {
-    tab: TabWithURL;
-  };
 }
 export const contextTriggered = (
   triggeredContexts: MatchingContext[],
-  tab: TabWithURL
+  tab: Tab
 ): ContextTriggeredAction => ({
   type: CONTEXT_TRIGGERED,
   payload: triggeredContexts,
