@@ -1,18 +1,18 @@
 import * as R from 'ramda';
 import Tab from 'app/lmem/tab';
 import {
-  NAVIGATED_TO_URL,
-  TAB_REMOVED,
-  TAB_DIED,
-  LISTENING_ACTIONS_READY,
-  OPTIONS_TAB_OPENED,
-  NO_NOTICES_DISPLAYED,
-  CONTEXT_NOT_TRIGGERED,
-  NOTICES_FOUND,
   AppAction,
+  CONTEXT_NOT_TRIGGERED,
+  LISTENING_ACTIONS_READY,
+  NAVIGATED_TO_URL,
+  NO_NOTICES_DISPLAYED,
+  NOTICES_FOUND,
+  NoticesFoundAction,
+  OPTIONS_TAB_OPENED,
   ReceivedNavigatedToUrlAction,
   ReceivedTabRemovedAction,
-  NoticesFoundAction
+  TAB_DIED,
+  TAB_REMOVED
 } from 'app/actions';
 import { StatefulNotice } from 'app/lmem/notice';
 
@@ -50,12 +50,13 @@ export default function(state = initialState, action: AppAction) {
         state
       );
     case LISTENING_ACTIONS_READY:
-      return action.meta.tab
+      const tab = action.meta.tab as Tab;
+      return tab
         ? R.pipe(
-            addOrUpdateTab(action.meta.tab),
-            markTabReady(action.meta.tab),
-            action.meta.from === 'options' && action.meta.tab
-              ? markTabAsOptions(action.meta.tab)
+            addOrUpdateTab(tab),
+            markTabReady(tab),
+            action.meta.from === 'options' && tab
+              ? markTabAsOptions(tab)
               : R.identity
           )(state)
         : state;

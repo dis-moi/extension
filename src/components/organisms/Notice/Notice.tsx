@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import { stripHtml } from 'app/utils/stripHtml';
-import { Contributor, Button, Timer, CenterContainer } from 'components/atoms';
+import { Button, CenterContainer, Contributor, Timer } from 'components/atoms';
 import InteractiveAvatar from 'components/molecules/InteractiveAvatar';
 import Container, { height, marginBottom } from './Container';
 import Content from './Content';

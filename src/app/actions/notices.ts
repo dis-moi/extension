@@ -5,8 +5,15 @@ import {
   StatefulNotice
 } from 'app/lmem/notice';
 import Tab from 'app/lmem/tab';
-import { ActionMeta, BaseAction, ErrorAction, TabAction } from '.';
+import {
+  ActionMeta,
+  ActionMetaWithTab,
+  BaseAction,
+  ErrorAction,
+  TabAction
+} from '.';
 import { createErrorAction } from './helpers';
+import { ReceivedAction } from '../../webext/createMessageHandler';
 
 export const FETCH_NOTICES_REQUEST = 'NOTICES/FETCH_REQUEST';
 export interface FetchNoticesRequestAction extends BaseAction {
@@ -111,7 +118,10 @@ export const FEEDBACK_ON_NOTICE = 'FEEDBACK_ON_NOTICE';
 export interface FeedbackOnNoticeAction extends BaseAction {
   type: typeof FEEDBACK_ON_NOTICE;
   payload: { id: number; feedback: FeedbackType };
+  meta: ActionMeta;
 }
+export type ReceivedFeedbackOnNoticeAction = ReceivedAction &
+  FeedbackOnNoticeAction;
 
 export const createFeedbackOnNoticeAction = (
   id: number,
@@ -150,18 +160,22 @@ export const NOTICE_UNFOLDED = 'NOTICE/UNFOLDED';
 export interface UnfoldNoticeAction extends BaseAction {
   type: typeof NOTICE_UNFOLDED;
   payload: number;
+  meta: ActionMeta;
 }
 
 export const unfoldNotice = (id: number): UnfoldNoticeAction => ({
   type: NOTICE_UNFOLDED,
   payload: id,
-  meta: { sendToBackground: true }
+  meta: {
+    sendToBackground: true
+  }
 });
 
 export const MARK_NOTICE_READ = 'MARK_NOTICE_READ';
 export interface MarkNoticeReadAction extends BaseAction {
   type: typeof MARK_NOTICE_READ;
   payload: number;
+  meta?: ActionMeta;
 }
 
 export const markNoticeRead = (
@@ -177,10 +191,10 @@ export const NOTICE_BADGED = 'NOTICE/BADGED';
 export interface NoticeBadgedAction extends BaseAction {
   type: typeof NOTICE_BADGED;
   payload: number;
-  meta: { tab?: Tab };
+  meta: ActionMetaWithTab;
 }
 
-export const noticeBadged = (id: number, tab?: Tab): NoticeBadgedAction => ({
+export const noticeBadged = (id: number, tab: Tab): NoticeBadgedAction => ({
   type: NOTICE_BADGED,
   payload: id,
   meta: { tab }
@@ -189,15 +203,20 @@ export const noticeBadged = (id: number, tab?: Tab): NoticeBadgedAction => ({
 export const OUTBOUND_LINK_CLICKED = 'NOTICE/OUTBOUND_LINK_CLICKED';
 export interface OutboundLinkClickedAction extends BaseAction {
   type: typeof OUTBOUND_LINK_CLICKED;
-  payload: number;
-  meta: ActionMeta & { url?: string };
+  payload: { id: number; clickedUrl: string };
+  meta: ActionMeta;
 }
+export type ReceivedOutboundLinkClickedAction = ReceivedAction &
+  OutboundLinkClickedAction;
 
 export const outboundLinkClicked = (
   id: number,
-  url?: string
+  clickedUrl: string
 ): OutboundLinkClickedAction => ({
   type: OUTBOUND_LINK_CLICKED,
-  payload: id,
-  meta: { sendToBackground: true, url }
+  payload: {
+    id,
+    clickedUrl
+  },
+  meta: { sendToBackground: true }
 });

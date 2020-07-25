@@ -144,6 +144,10 @@ export interface ActionMeta {
   tab?: Tab;
 }
 
+export interface ActionMetaWithTab extends ActionMeta {
+  tab: Tab;
+}
+
 export interface ActionMetaWithSeverity extends ActionMeta {
   severity: Level;
 }

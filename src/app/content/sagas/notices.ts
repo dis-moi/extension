@@ -46,7 +46,9 @@ function* markNoticeReadSaga(unfoldNoticeAction: UnfoldNoticeAction) {
   );
   if (!unfoldedNotice.state.read) {
     yield put(
-      markNoticeRead(unfoldNoticeAction.payload, { sendToBackground: true })
+      markNoticeRead(unfoldNoticeAction.payload, {
+        sendToBackground: true
+      })
     );
   }
 }

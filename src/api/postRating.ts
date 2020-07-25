@@ -4,7 +4,7 @@ import { post } from './call';
 export interface Rating {
   noticeId: number;
   rating: RatingType;
-  url?: string;
+  url: string;
   geolocation?: string;
 }
 
