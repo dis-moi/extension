@@ -1,3 +1,10 @@
+## [3.38.4](https://github.com/dis-moi/extension/compare/v3.38.3...v3.38.4) (2020-07-26)
+
+
+### Bug Fixes
+
+* use meta URL in ratings actions instead of tabs.query ([61241a9](https://github.com/dis-moi/extension/commit/61241a9fdae6b8c54c9fb4b57e9b82c3fd23d904))
+
 ## [3.38.3](https://github.com/dis-moi/extension/compare/v3.38.2...v3.38.3) (2020-07-22)
 
 
