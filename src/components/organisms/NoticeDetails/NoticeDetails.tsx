@@ -1,4 +1,4 @@
-import React, { PureComponent, MouseEvent } from 'react';
+import React, { MouseEvent, PureComponent } from 'react';
 import styled from 'styled-components';
 import { format } from 'date-fns';
 import ThumbUp from 'components/atoms/icons/ThumbUp';
@@ -68,7 +68,7 @@ export interface NoticeDetailsMethodsProps {
   confirmDislike: (id: number) => void;
   undislike: (id: number) => void;
   view?: (id: number) => void;
-  outboundLinkClicked?: (id: number, url?: string) => void;
+  outboundLinkClicked?: (id: number, clickedUrl: string) => void;
   goBack: () => void;
   clickContributor: (id: number) => void;
 }
@@ -158,7 +158,7 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
       if ((e.target as HTMLElement).tagName.toLowerCase() === 'a') {
         outboundLinkClicked(
           id,
-          (e.target as HTMLElement).getAttribute('href') || undefined
+          (e.target as HTMLElement).getAttribute('href') as string
         );
       }
     }

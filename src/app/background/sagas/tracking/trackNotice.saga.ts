@@ -1,15 +1,15 @@
 import { SagaIterator } from '@redux-saga/types';
-import { call, select, put } from '@redux-saga/core/effects';
+import { call, put, select } from '@redux-saga/core/effects';
 import Tracker from 'types/Tracker';
 import truncate from 'app/utils/truncate';
 import { stripHtml } from 'app/utils/stripHtml';
 import {
   FeedbackOnNoticeAction,
   getURLFromActionMeta,
+  NoticeBadgedAction,
   NoticeDisplayedAction,
-  OutboundLinkClickedAction,
-  UnfoldNoticeAction,
-  NoticeBadgedAction
+  ReceivedOutboundLinkClickedAction,
+  UnfoldNoticeAction
 } from 'app/actions';
 import { createErrorAction } from 'app/actions/helpers';
 import {
@@ -94,11 +94,11 @@ export const trackNoticeFeedbackSaga = (tracker: Tracker) =>
   };
 
 export const trackNoticeOutboundClickSaga = (tracker: Tracker) =>
-  function*(action: OutboundLinkClickedAction): SagaIterator {
+  function*(action: ReceivedOutboundLinkClickedAction): SagaIterator {
     try {
-      if (action.meta.url) {
+      if (action.meta.tab.url) {
         yield call(tracker.trackOutboundLink, {
-          url: action.meta.url
+          url: action.meta.tab.url
         });
       }
     } catch (e) {

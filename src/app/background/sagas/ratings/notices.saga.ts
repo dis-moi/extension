@@ -1,16 +1,16 @@
 import { SagaIterator } from '@redux-saga/types';
-import { ActionPattern, takeEvery, all, call } from '@redux-saga/core/effects';
-import * as R from 'ramda';
-import getSelectedTab from 'webext/getSelectedTab';
+import { ActionPattern, all, call, takeEvery } from '@redux-saga/core/effects';
 import postRating, { Rating } from 'api/postRating';
 import {
+  ActionMetaWithTab,
+  AppAction,
+  FEEDBACK_ON_NOTICE,
   NOTICE_BADGED,
   NOTICE_DISPLAYED,
-  OUTBOUND_LINK_CLICKED,
   NOTICE_UNFOLDED,
-  FEEDBACK_ON_NOTICE,
-  AppAction,
-  FeedbackOnNoticeAction
+  OUTBOUND_LINK_CLICKED,
+  OutboundLinkClickedAction,
+  ReceivedFeedbackOnNoticeAction
 } from 'app/actions';
 import { RatingType } from 'app/lmem/rating';
 
@@ -18,13 +18,21 @@ export const isFeedBackRatingAction = (action: AppAction) =>
   action.type === FEEDBACK_ON_NOTICE &&
   (Object.values(RatingType) as string[]).includes(action.payload.feedback);
 
-type RatingActionTransformer = (action: AppAction) => Rating;
+type AppActionWithMetaUrl = AppAction & { meta: ActionMetaWithTab };
+
+type RatingActionTransformer = (action: AppActionWithMetaUrl) => Rating;
 
 const createDefaultTransformer = (
   ratingType: RatingType
-): RatingActionTransformer => ({ payload: id }: AppAction) => ({
+): RatingActionTransformer => ({
+  payload: id,
+  meta: {
+    tab: { url }
+  }
+}) => ({
   noticeId: id as number,
-  rating: ratingType
+  rating: ratingType,
+  url
 });
 
 export const transformers: {
@@ -33,12 +41,16 @@ export const transformers: {
 }[] = [
   {
     pattern: isFeedBackRatingAction,
-    // eslint-disable-next-line
-    // @ts-ignore
-    transformer: ({ payload: { id, feedback } }: FeedbackOnNoticeAction) => ({
+    transformer: (({
+      payload: { id, feedback },
+      meta: {
+        tab: { url }
+      }
+    }: ReceivedFeedbackOnNoticeAction) => ({
       noticeId: id,
-      rating: feedback
-    })
+      rating: feedback,
+      url
+    })) as RatingActionTransformer
   },
   {
     pattern: NOTICE_UNFOLDED,
@@ -50,7 +62,13 @@ export const transformers: {
   },
   {
     pattern: OUTBOUND_LINK_CLICKED,
-    transformer: createDefaultTransformer(RatingType.OUTBOUND_CLICK)
+    transformer: (({
+      payload: { id, clickedUrl }
+    }: OutboundLinkClickedAction) => ({
+      noticeId: id,
+      rating: RatingType.OUTBOUND_CLICK,
+      url: clickedUrl
+    })) as RatingActionTransformer
   },
   {
     pattern: NOTICE_DISPLAYED,
@@ -59,12 +77,8 @@ export const transformers: {
 ];
 
 export const createPostRatingSaga = (transformer: RatingActionTransformer) =>
-  function* postRatingSaga(action: AppAction): SagaIterator {
-    let rating = transformer(action);
-    if (!rating.url) {
-      const selectedTab = yield call(getSelectedTab);
-      rating = R.assoc('url', selectedTab.url, rating);
-    }
+  function* postRatingSaga(action: AppActionWithMetaUrl): SagaIterator {
+    const rating = transformer(action);
 
     try {
       yield call(postRating, rating);
