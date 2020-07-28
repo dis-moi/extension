@@ -1,3 +1,10 @@
+## [3.38.5](https://github.com/dis-moi/extension/compare/v3.38.4...v3.38.5) (2020-07-28)
+
+
+### Bug Fixes
+
+* **matching-contexts:** Fix all matching contexts being fetched after a subscribe/unsubscribe action. ([d8c7eda](https://github.com/dis-moi/extension/commit/d8c7edaba08f5c1d7676e0689566b1ff4b8d7152))
+
 ## [3.38.4](https://github.com/dis-moi/extension/compare/v3.38.3...v3.38.4) (2020-07-26)
 
 
