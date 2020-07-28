@@ -1,18 +1,38 @@
 import { delay, put, takeLatest, select, fork } from 'redux-saga/effects';
 import {
+  receivedMatchingContexts,
   REFRESH_MATCHING_CONTEXTS,
   refreshMatchingContexts,
+  refreshMatchingContextsFailed,
   SUBSCRIBE,
   UNSUBSCRIBE
 } from 'app/actions';
-import refreshMatchingContextsSaga from 'app/store/sagas/refreshMatchingContexts.saga';
-import { getSubscriptions } from '../selectors/subscriptions.selectors';
+import { createCallAndRetry } from 'app/sagas/effects/callAndRetry';
+import { getSubscriptions } from 'app/background/selectors/subscriptions.selectors';
+import fetchMatchingContexts from 'api/fetchMatchingContexts';
 import minutesToMilliseconds from 'app/utils/minutesToMilliseconds';
 
-export function* refreshMatchingContextsPeriodicallySaga() {
-  const subscriptions = yield select(getSubscriptions);
-  yield put(refreshMatchingContexts(subscriptions));
+export function* refreshMatchingContextsSaga() {
+  const callAndRetry = createCallAndRetry({
+    maximumRetryDelayInMinutes: 10,
+    maximumAttempts: 10,
+    onError: function*(error: Error) {
+      yield put(refreshMatchingContextsFailed(error));
+    }
+  });
 
+  const subscriptions = yield select(getSubscriptions);
+  const matchingContexts = yield callAndRetry(
+    fetchMatchingContexts,
+    subscriptions
+  );
+
+  if (matchingContexts) {
+    yield put(receivedMatchingContexts(matchingContexts));
+  }
+}
+
+export function* refreshMatchingContextsPeriodicallySaga() {
   const refreshInterval = minutesToMilliseconds(
     Number(process.env.REFRESH_MC_INTERVAL)
   );
@@ -25,7 +45,7 @@ export function* refreshMatchingContextsPeriodicallySaga() {
 
     while (true) {
       yield delay(refreshInterval);
-      yield put(refreshMatchingContexts(subscriptions));
+      yield put(refreshMatchingContexts());
     }
   } else {
     // eslint-disable-next-line no-console
