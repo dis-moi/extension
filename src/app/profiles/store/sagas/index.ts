@@ -2,7 +2,6 @@ import { fork, all } from 'redux-saga/effects';
 import contributorSaga from './contributor.saga';
 import contributorsSaga from 'app/profiles/store/sagas/contributors.saga';
 import locationChangeSaga from './locationChange.saga';
-import matchingContextsSaga from 'app/profiles/store/sagas/matchingContexts.saga';
 import noticesSaga from 'app/profiles/store/sagas/notices.saga';
 import portConnectionSaga from 'app/profiles/store/sagas/portConnection.saga';
 import windowConnectionSaga from 'app/profiles/store/sagas/windowConnection.saga';
@@ -18,7 +17,6 @@ export default function* rootSaga() {
     fork(contributorSaga),
     fork(contributorsSaga),
     fork(locationChangeSaga),
-    fork(matchingContextsSaga),
     fork(noticesSaga),
     fork(subscriptionsSaga)
   ]);

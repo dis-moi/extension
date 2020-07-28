@@ -5,10 +5,6 @@ import connection, { ConnectionState } from './connection.reducer';
 import contributors, {
   ContributorsCollectionState
 } from './contributors.reducer';
-import matchingContexts, {
-  MatchingContextsCollectionState
-} from './matchingContexts.reducer';
-
 import notices, { NoticesCollectionState } from './notices.reducer';
 import subscriptions, {
   SubscriptionsCollectionState
@@ -19,7 +15,6 @@ export default (history: History) =>
     router: connectRouter(history),
     connection,
     contributors,
-    matchingContexts,
     subscriptions,
     notices
   });
@@ -27,7 +22,6 @@ export default (history: History) =>
 export interface ProfilesState extends RouterRootState {
   connection: ConnectionState;
   contributors: ContributorsCollectionState;
-  matchingContexts: MatchingContextsCollectionState;
   subscriptions: SubscriptionsCollectionState;
   notices: NoticesCollectionState;
 }
