@@ -5,7 +5,7 @@ import BackgroundButton from 'components/atoms/Button/BackgroundButton/Backgroun
 import InteractiveAvatar from 'components/molecules/InteractiveAvatar';
 import Illustration from './Illustration';
 import Container from './Container';
-import { StatefulContributor } from 'app/lmem/contributor';
+import { Contributor, StatefulContributor } from 'app/lmem/contributor';
 
 const Subscription = styled.div`
   margin-bottom: 20px;
@@ -53,16 +53,16 @@ export interface SubscriptionsScreenProps {
   openSubscriptions: () => void;
   nbSubscribedContributors?: number;
   subscribedContributors: StatefulContributor[];
-  clickContributor: (id: number) => void;
+  onContributorClick: (contributor: Contributor) => void;
 }
 
 const Subscriptions = ({
   openSubscriptions,
   subscribedContributors,
-  clickContributor
+  onContributorClick
 }: SubscriptionsScreenProps) => {
-  const handleContributorClicked = (id: number) => () => {
-    clickContributor(id);
+  const handleContributorClicked = (contributor: Contributor) => () => {
+    onContributorClick(contributor);
   };
 
   return (
@@ -83,11 +83,12 @@ const Subscriptions = ({
         ).map((contributorsChunk, chunkIndex, slicedSubscribedContributors) => (
           <SubscriptionList key={`chunk${chunkIndex}`}>
             {contributorsChunk.map(contributor => (
-              <SubscriptionListItem
-                key={`contributor${contributor.id}`}
-                onClick={handleContributorClicked(contributor.id)}
-              >
-                <InteractiveAvatar contributor={contributor} size="small" />
+              <SubscriptionListItem key={`contributor${contributor.id}`}>
+                <InteractiveAvatar
+                  onClick={handleContributorClicked(contributor)}
+                  contributor={contributor}
+                  size="small"
+                />
               </SubscriptionListItem>
             ))}
             {chunkIndex === slicedSubscribedContributors.length - 1 && (

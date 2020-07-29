@@ -28,7 +28,7 @@ export const Details = ({
   view,
   outboundLinkClicked,
   goBack,
-  clickContributor
+  onContributorClick
 }: DetailsScreenProps) => {
   if (notice) {
     return (
@@ -43,7 +43,7 @@ export const Details = ({
         view={view}
         outboundLinkClicked={outboundLinkClicked}
         goBack={goBack}
-        clickContributor={clickContributor}
+        onContributorClick={onContributorClick}
       />
     );
   }

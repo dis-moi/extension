@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import { format } from 'date-fns';
-import { Contributor } from '../atoms';
+import { ContributorName } from '../atoms';
 import DetailsContainer from './NoticeDetails/DetailsContainer';
 import DetailsContent from './NoticeDetails/DetailsContent';
 import DetailsMeta from './NoticeDetails/DetailsMeta';
@@ -39,7 +39,7 @@ class NoticePreview extends PureComponent<NoticePreviewProps> {
             <Avatar contributor={contributor} size="small" />
             <DetailsMetaValue>
               <Date>Le {format(created, 'DD/MM/YYYY')}</Date>
-              <Contributor>{contributor.name} :</Contributor>
+              <ContributorName>{contributor.name} :</ContributorName>
             </DetailsMetaValue>
           </DetailsMeta>
 

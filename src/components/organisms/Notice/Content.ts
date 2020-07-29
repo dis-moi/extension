@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import styled from 'styled-components';
 import { LocationDescriptor } from 'history';
 import Avatar from 'components/molecules/Avatar/Avatar';
-import { Contributor, OpenButton } from 'components/atoms';
+import { ContributorName, OpenButton } from 'components/atoms';
 import Title from './Title';
 
 interface ContentProps {
@@ -60,7 +60,7 @@ export default styled.div<ContentProps>`
     font-weight: ${props => (props.isRead ? '500' : 'bold')};
   }
 
-  ${Contributor}, ${Title} {
+  ${ContributorName}, ${Title} {
     opacity: ${props => (props.isRead ? '.5' : '1')};
   }
 `;

@@ -25,7 +25,7 @@ const commonProps = {
   view: action('view'),
   outboundLinkClicked: action('outboundLinkClicked'),
   goBack: action('goBack'),
-  clickContributor: action('clickContributor')
+  onContributorClick: action('onContributorClick')
 };
 
 storiesOf('Extension/Notice/Details', module)

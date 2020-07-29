@@ -14,6 +14,10 @@ export const getOptionsTabs = createSelector(
   R.filter(isOptionsTab)
 );
 
+export const getOptionsTab = createSelector([getOptionsTabs], optionsTabs =>
+  optionsTabs.length > 0 ? optionsTabs[0] : null
+);
+
 export const getTabById = (tabId: number) =>
   createSelector([getTabs], tabs => tabs[tabId]);
 

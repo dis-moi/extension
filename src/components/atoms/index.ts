@@ -12,7 +12,7 @@ export { default as ButtonWithIcon } from './Button/ButtonWithIcon';
 export { default as ContentWrapper } from './ContentWrapper';
 export { default as ContentWrapperBackground } from './ContentWrapperBackground';
 export { default as CenterContainer } from './CenterContainer';
-export { default as Contributor } from './Contributor';
+export { default as ContributorName } from './ContributorName';
 export { default as Time } from './Time';
 export { default as Timer } from './Timer';
 export { default as List } from './List';

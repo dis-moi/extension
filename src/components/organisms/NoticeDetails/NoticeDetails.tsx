@@ -4,11 +4,7 @@ import { format } from 'date-fns';
 import ThumbUp from 'components/atoms/icons/ThumbUp';
 import ThumbDown from 'components/atoms/icons/ThumbDown';
 import Avatar from 'components/molecules/Avatar/Avatar';
-import {
-  Button,
-  Contributor as ContributorName,
-  Timer
-} from 'components/atoms';
+import { Button, ContributorName, Timer } from 'components/atoms';
 import { Relay } from 'components/atoms/icons';
 import { StatefulNoticeWithContributor } from 'app/lmem/notice';
 import {
@@ -99,7 +95,7 @@ export interface NoticeDetailsMethodsProps {
   view?: (id: number) => void;
   outboundLinkClicked?: (id: number, clickedUrl: string) => void;
   goBack: () => void;
-  clickContributor: (id: number) => void;
+  onContributorClick: (contributor: Contributor) => void;
 }
 
 export type NoticeDetailsProps = NoticeDetailsDataProps &
@@ -195,15 +191,15 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
 
   handleContributorClicked = () => {
     const {
-      clickContributor,
+      onContributorClick,
       notice: { contributor }
     } = this.props;
-    clickContributor(contributor.id);
+    onContributorClick(contributor);
   };
 
   handleRelayerClicked = () => {
-    const { clickContributor, relayer } = this.props;
-    if (relayer) clickContributor(relayer.id);
+    const { onContributorClick, relayer } = this.props;
+    if (relayer) onContributorClick(relayer);
   };
 
   componentDidMount(): void {

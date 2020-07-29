@@ -7,6 +7,7 @@ global.browser = { extension: { getURL: () => 'options.html' } };
 
 import { noticesFound } from 'app/actions/notices';
 import createMessageHandler from 'webext/createMessageHandler';
+import { getOptionsUrl } from 'webext/openOptionsTab';
 
 const expect = chai.expect;
 chai.use(sinonChai);
@@ -60,7 +61,7 @@ describe('createMessageHandler', () => {
     const sender = {
       id: 'extensionId',
       tab: {
-        url: 'options.html'
+        url: getOptionsUrl(),
       }
     };
 

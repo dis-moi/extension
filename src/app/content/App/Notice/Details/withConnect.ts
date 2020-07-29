@@ -10,7 +10,7 @@ import {
   unfoldNotice as view,
   unlikeNotice as unlike
 } from 'app/actions/notices';
-import clickContributor from 'app/content/actions/goToContributor';
+import onContributorClick from 'app/content/actions/goToContributor';
 import { ContentState } from 'app/content/store';
 import { getNoticeFromRoute, getNoticeRelayer } from 'app/content/selectors';
 import { DetailsScreenProps } from './';
@@ -32,7 +32,7 @@ const mapDispatchToProps = {
   view,
   outboundLinkClicked,
   goBack,
-  clickContributor
+  onContributorClick
 };
 
 export default connect(mapStateToProps, mapDispatchToProps);

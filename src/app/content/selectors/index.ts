@@ -21,7 +21,7 @@ import { getRegisteredFieldsPaths } from 'app/utils/form';
 import {
   getContributors,
   getSubscriptions
-} from 'app/options/store/selectors/contributors.selectors';
+} from 'app/store/selectors/contributors.selectors';
 import { findItemById } from 'app/utils/findItemById';
 import { StatefulContributor } from 'app/lmem/contributor';
 import { makeGetRouteParam } from 'app/store/selectors';

@@ -6,6 +6,8 @@ export default interface Tab {
   notices?: number[];
 }
 
+export const OPTIONS_MENU_ITEM_ID = 'options';
+
 export const isOptionsTab = (tab: Tab) => Boolean(tab && tab.options === true);
 
 export const isTabReady = (tab: Tab) => Boolean(tab && tab.ready === true);

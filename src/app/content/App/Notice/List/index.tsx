@@ -9,6 +9,7 @@ import NoticeItem, {
 } from 'components/organisms/Notice/Notice';
 import ListContainer from './ListContainer';
 import { StatefulNoticeWithContributor } from 'app/lmem/notice';
+import { Contributor } from 'app/lmem/contributor';
 import withConnect from './withConnect';
 
 export interface Props {
@@ -16,7 +17,7 @@ export interface Props {
   dismiss: (id: number) => void;
   confirmDismiss: (id: number) => void;
   undismiss: (id: number) => void;
-  clickContributor: (id: number) => void;
+  onContributorClick: (contributor: Contributor) => void;
 }
 
 export const ListScreen = ({
@@ -24,7 +25,7 @@ export const ListScreen = ({
   dismiss,
   confirmDismiss,
   undismiss,
-  clickContributor
+  onContributorClick
 }: Props) => {
   const transitions = useTransition(
     notices.slice(0, 2),
@@ -46,7 +47,7 @@ export const ListScreen = ({
               dismiss={dismiss}
               confirmDismiss={confirmDismiss}
               undismiss={undismiss}
-              clickContributor={clickContributor}
+              onContributorClick={onContributorClick}
             />
           )
         )}

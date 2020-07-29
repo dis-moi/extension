@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import Contributor from '../../atoms/Contributor';
+import ContributorName from 'components/atoms/ContributorName';
 
 export default styled.div`
   display: flex;
   align-items: center;
 
-  ${Contributor} {
+  ${ContributorName} {
     font-weight: bold;
     color: ${props => props.theme.primaryColor};
   }

@@ -1,7 +1,12 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import { stripHtml } from 'app/utils/stripHtml';
-import { Button, CenterContainer, Contributor, Timer } from 'components/atoms';
+import {
+  Button,
+  CenterContainer,
+  ContributorName,
+  Timer
+} from 'components/atoms';
 import InteractiveAvatar from 'components/molecules/InteractiveAvatar';
 import Container, { height, marginBottom } from './Container';
 import Content from './Content';
@@ -9,6 +14,7 @@ import Deleted from './Deleted';
 import DeleteButton from './DeleteButton';
 import Title from './Title';
 import { StatefulNoticeWithContributor } from 'app/lmem/notice';
+import { Contributor } from 'app/lmem/contributor';
 import {
   CountDownState,
   initialState as countdownInitialState
@@ -36,7 +42,7 @@ const Description = styled.div`
   width: 245px;
 `;
 
-const ContributorName = styled(Contributor)`
+const NoticeContributorName = styled(ContributorName)`
   display: inline-block;
   &:hover {
     text-decoration: underline;
@@ -55,7 +61,7 @@ interface Props {
   dismiss: (id: number) => void;
   confirmDismiss: (id: number) => void;
   undismiss: (id: number) => void;
-  clickContributor: (id: number) => void;
+  onContributorClick: (contributor: Contributor) => void;
   truncateTitleAt?: number;
   style?: object;
 }
@@ -121,9 +127,9 @@ export default class Notice extends PureComponent<Props, CountDownState> {
     if (this.isInteractive) {
       const {
         notice: { contributor },
-        clickContributor
+        onContributorClick
       } = this.props;
-      clickContributor(contributor.id);
+      onContributorClick(contributor);
     }
   };
 
@@ -164,9 +170,9 @@ export default class Notice extends PureComponent<Props, CountDownState> {
                 size="small"
               />
               <Description>
-                <ContributorName onClick={this.onContributorClicked}>
+                <NoticeContributorName onClick={this.onContributorClicked}>
                   {contributor.name}
-                </ContributorName>
+                </NoticeContributorName>
                 <Title
                   to={this.isInteractive ? `notices/details/${id}` : undefined}
                 >
