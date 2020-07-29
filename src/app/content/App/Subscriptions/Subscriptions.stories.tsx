@@ -8,7 +8,7 @@ import { generateContributor } from 'test/fakers/generateContributor';
 
 const commonProps = {
   openSubscriptions: action('openSubscriptions'),
-  clickContributor: action('clickContributor')
+  onContributorClick: action('onContributorClick')
 };
 
 storiesOf('Extension/Subscriptions', module)

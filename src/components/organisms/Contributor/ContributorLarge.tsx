@@ -10,7 +10,7 @@ import {
   ContributorWrapper,
   ContributorInfos
 } from 'components/atoms/Contributor/index';
-import Link from 'components/atoms/Link';
+import ContributorNameLink from './ContributorNameLink';
 
 interface IntroProps {
   intro: string;
@@ -44,6 +44,7 @@ interface ContributorLargeProps<S = LocationState> {
   onUnsubscribe: () => void;
   className?: string;
   children?: React.ReactNode;
+  onNameClick?: () => void;
   to?: LocationDescriptor<S>;
   loading?: boolean;
 }
@@ -55,6 +56,7 @@ const ContributorLarge = ({
   onUnsubscribe,
   children,
   className,
+  onNameClick,
   to,
   loading
 }: ContributorLargeProps) => (
@@ -65,6 +67,7 @@ const ContributorLarge = ({
           size={avatarSize || 'normal'}
           contributor={contributor}
           to={to}
+          onClick={onNameClick}
           loading={loading}
         />
 
@@ -72,7 +75,9 @@ const ContributorLarge = ({
           {!loading && contributor && (
             <>
               <UserName>
-                <Link to={to}>{contributor.name}</Link>
+                <ContributorNameLink onClick={onNameClick} to={to}>
+                  {contributor.name}
+                </ContributorNameLink>
               </UserName>
 
               <ContributorButton

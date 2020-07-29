@@ -14,8 +14,6 @@ import { ThumbUp, ThumbDown } from 'components/atoms/icons';
 import BackButton from 'components/organisms/Notification/NotificationHeader/BackButton';
 import CloseButton from 'components/organisms/Notification/NotificationHeader/CloseButton';
 import NavLink from 'components/organisms/Notification/NotificationFooter/NavLink';
-import Empty from 'app/options/App/Settings/SubscriptionsScreen/Empty';
-import OnboardinButton from 'app/options/App/Onboarding/atoms/OnboardingButton';
 import { MemoryRouter as Router } from 'react-router';
 import Download from '../icons/Download';
 
@@ -34,23 +32,6 @@ const ButtonsListWrapper = styled.div`
     justify-content: center;
     padding: 5px;
     border: 1px solid black;
-  }
-`;
-
-const OnboardingBottomLineButton = styled(OnboardinButton)`
-  text-transform: none;
-  font-weight: normal;
-  font-size: 20px;
-  margin: 0 auto;
-`;
-
-const OnboardingBottomLineSecondaryButton = styled(OnboardingBottomLineButton)`
-  background-color: ${props => props.theme.Button.default};
-  border-color: ${props => props.theme.Button.default};
-
-  &:hover {
-    background-color: ${props => props.theme.Button.hover};
-    border-color: ${props => props.theme.Button.hover};
   }
 `;
 
@@ -191,28 +172,6 @@ const ButtonsList = () => {
           <NavLink to={'/url'} className="active">
             Contributions
           </NavLink>
-        </div>
-      </ButtonsListWrapper>
-      <h2>Subscription screen empty</h2>
-      <Empty goToSuggestions={action('goToSuggestions')} />
-      <h2>Onboarding</h2>
-      <ButtonsListWrapper>
-        <div>
-          <OnboardinButton>Continuer</OnboardinButton>
-        </div>
-        <div>
-          <OnboardinButton disabled={true}>Continuer</OnboardinButton>
-        </div>
-      </ButtonsListWrapper>
-      <h2>Onboarding - bottom bar</h2>
-      <ButtonsListWrapper>
-        <div>
-          <OnboardingBottomLineButton>Continuer</OnboardingBottomLineButton>
-        </div>
-        <div>
-          <OnboardingBottomLineSecondaryButton>
-            Continuer
-          </OnboardingBottomLineSecondaryButton>
         </div>
       </ButtonsListWrapper>
     </ButtonsListBackground>

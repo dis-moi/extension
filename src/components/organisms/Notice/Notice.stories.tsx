@@ -19,7 +19,7 @@ const commonProps = {
   dismiss: action('dismiss'),
   confirmDismiss: action('confirmDismiss'),
   undismiss: action('undismiss'),
-  clickContributor: action('clickContributor')
+  onContributorClick: action('onContributorClick')
 };
 
 storiesOf('Components/Organisms/Notice', module)

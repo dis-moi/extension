@@ -28,7 +28,6 @@ import Error from './Error';
 import Contribute from './Contribute';
 import Question from './Question';
 import ServiceMessage from './ServiceMessage';
-import ContributeScreen from './Contributor';
 
 const mapStateToProps = (state: ContentState) => ({
   open: isOpen(state),
@@ -82,7 +81,6 @@ const UI = ({
                 <Route path="/account" component={Account} />
                 <Route path="/contribute" component={Contribute} />
                 <Route path="/question" component={Question} />
-                <Route path="/contributor/:id" component={ContributeScreen} />
                 <Route component={Error} />
               </Switch>
             )}

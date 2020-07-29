@@ -4,7 +4,6 @@ const base = require('../base');
 module.exports = {
   ...base,
   name: `${base.name} - development`,
-  options_page: 'options.html',
   content_security_policy: csp({
     directives: {
       'script-src': ["'self'", "'unsafe-eval'"],

@@ -20,7 +20,7 @@ const commonProps = {
   undislike: action('undislike'),
   view: action('view'),
   goBack: action('goBack'),
-  clickContributor: action('clickContributor')
+  onContributorClick: action('onContributorClick')
 };
 
 storiesOf('Components/Organisms/NoticeDetails', module)

@@ -78,11 +78,6 @@ module.exports = (env = {}, argv = {}, buildPath) => {
       filename: 'background.html',
       inject: false
     }),
-    new HtmlWebpackPlugin({
-      template: './views/options.pug',
-      filename: 'options.html',
-      inject: false
-    }),
     new CopyWebpackPlugin(copyConfig),
     new LodashModuleReplacementPlugin()
   ];

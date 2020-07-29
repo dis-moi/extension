@@ -15,6 +15,7 @@ import {
   TAB_REMOVED
 } from 'app/actions';
 import { StatefulNoticeWithContributor } from 'app/lmem/notice';
+import { isOptionsPage } from 'webext/createMessageHandler';
 
 export interface TabsState {
   [tabId: string]: Tab;
@@ -26,7 +27,15 @@ export const toNoticesIds = (notices: StatefulNoticeWithContributor[]) =>
 export const initialState: TabsState = {};
 
 const addOrUpdateTab = (tab: Tab) => (state: TabsState): TabsState =>
-  R.assoc(tab.id.toString(), R.merge(state[tab.id.toString()], tab), state);
+  R.assoc(
+    tab.id.toString(),
+    {
+      ...state[tab.id.toString()],
+      ...tab,
+      options: isOptionsPage(tab.url)
+    },
+    state
+  );
 const removeTabFromList = (tab: Tab) => (state: TabsState): TabsState =>
   R.dissoc(tab.id.toString(), state);
 
@@ -39,7 +48,7 @@ const markTabAsOptions = (tab: Tab) => (state: TabsState): TabsState =>
 export default function(state = initialState, action: AppAction) {
   switch (action.type) {
     case OPTIONS_TAB_OPENED:
-      return markTabAsOptions(action.payload)(state);
+      return addOrUpdateTab(action.payload)(state);
     case NAVIGATED_TO_URL:
       return addOrUpdateTab((action as ReceivedNavigatedToUrlAction).meta.tab)(
         state

@@ -7,6 +7,7 @@ import { getTabById } from '../selectors/tabs';
 import { disable } from 'webext/browserAction';
 import { resetBadge } from 'app/lmem/badge';
 import { Level } from '../../utils/Logger';
+import { isOptionsPage } from 'webext/createMessageHandler';
 
 export default function*() {
   const channel = yield call(() => eventChannel(createActivatedTabListener));
@@ -16,7 +17,12 @@ export default function*() {
       const tabId = yield take(channel);
       const tab = yield select(getTabById(tabId));
       if (tab && tab.url) {
-        yield put(tabActivated(tab));
+        yield put(
+          tabActivated({
+            ...tab,
+            options: isOptionsPage(tab.url)
+          })
+        );
       }
 
       if (!tab || !tab.url) {

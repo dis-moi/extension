@@ -10,8 +10,7 @@ describe('background > reducers > tabs', () => {
     state['42'] = {
       id: 42,
       url: 'someUrl',
-      ready: true,
-      options: true
+      ready: true
     };
 
     const tabUpdatedAction = {
@@ -43,10 +42,6 @@ describe('background > reducers > tabs', () => {
     it('keeps existing tab info when receiving NAVIGATED_TO_URL', () => {
       expect(tabsReducer(state, tabUpdatedAction)).to.have.nested.property(
         '42.ready',
-        true
-      );
-      expect(tabsReducer(state, tabUpdatedAction)).to.have.nested.property(
-        '42.options',
         true
       );
     });

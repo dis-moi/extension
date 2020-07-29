@@ -10,7 +10,8 @@ import { Level } from 'app/utils/Logger';
 
 type MessageSender = browser.runtime.MessageSender;
 
-const isOptionsPage = (url: string): boolean => url.includes(getOptionsUrl());
+export const isOptionsPage = (url: string): boolean =>
+  url.includes(getOptionsUrl());
 
 type PossibleOriginInBackground = 'options' | 'content';
 

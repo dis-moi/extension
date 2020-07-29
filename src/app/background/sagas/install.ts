@@ -1,7 +1,7 @@
 import { SagaIterator } from 'redux-saga';
-import { takeLatest, select, put, call } from 'redux-saga/effects';
+import { takeLatest, select, put } from 'redux-saga/effects';
 import { captureException } from 'app/utils/sentry';
-import openOptions from 'webext/openOptionsTab';
+import { optionsRequested } from 'app/actions';
 import {
   INSTALLED,
   updateInstallationDetails,
@@ -33,7 +33,7 @@ export function* installedSaga({
 
     const { reason } = installedDetails;
     if (reason === 'install') {
-      yield call(openOptions, '/onboarding');
+      yield put(optionsRequested());
     }
   } catch (e) {
     captureException(e);

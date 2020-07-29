@@ -18,6 +18,8 @@ const Wrapper = styled(Link)<WrapperProps>`
   height: ${props => (props.size === 'small' ? '40px' : '90px')};
   background-color: ${props => props.theme.contributorGrey};
   border-radius: 50%;
+  font-weight: normal;
+  text-decoration: none;
 
   & > img {
     width: ${props => (props.size === 'small' ? '40px' : '90px')};

@@ -1,7 +1,7 @@
 import { CreateProperties } from './types';
 
 export const getOptionsUrl = (pathname?: string) =>
-  browser.extension.getURL(`options.html${pathname ? `#${pathname}` : ''}`);
+  `${process.env.PROFILES_ORIGIN}${pathname || '/informateurs'}`;
 
 const createOptionsTabsDescription = (pathname?: string): CreateProperties => ({
   url: getOptionsUrl(pathname),
