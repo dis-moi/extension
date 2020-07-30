@@ -4,7 +4,11 @@ import { format } from 'date-fns';
 import ThumbUp from 'components/atoms/icons/ThumbUp';
 import ThumbDown from 'components/atoms/icons/ThumbDown';
 import Avatar from 'components/molecules/Avatar/Avatar';
-import { Button, Contributor, Timer } from 'components/atoms';
+import {
+  Button,
+  Contributor as ContributorName,
+  Timer
+} from 'components/atoms';
 import { Retweet } from 'components/atoms/icons';
 import { StatefulNotice } from 'app/lmem/notice';
 import {
@@ -18,6 +22,7 @@ import DetailsDislike from './DetailsDislike';
 import Message from './Message';
 import Feedbacks from './Feedbacks';
 import Date from './Date';
+import { Contributor } from 'app/lmem/contributor';
 
 const DetailsMetaValue = styled.div`
   margin-left: 10px;
@@ -51,7 +56,7 @@ const AvatarNotice = styled(Avatar)`
   }
 `;
 
-const ContributorNotice = styled(Contributor)`
+const ContributorNotice = styled(ContributorName)`
   &:hover {
     text-decoration: underline;
     cursor: pointer;
@@ -82,6 +87,8 @@ const Retweeter = styled(ContributorNotice)`
 
 export interface NoticeDetailsDataProps {
   notice: StatefulNotice;
+  relayed?: boolean;
+  relayer?: Contributor;
 }
 
 export interface NoticeDetailsMethodsProps {
@@ -187,6 +194,14 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
     }
   };
 
+  handleContributorOrRelayerClicked = () => {
+    const { clickContributor } = this.props;
+
+    if (this.contributorOrRelayer) {
+      clickContributor(this.contributorOrRelayer.id);
+    }
+  };
+
   handleContributorClicked = () => {
     const {
       clickContributor,
@@ -205,6 +220,16 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
     }
   }
 
+  get contributorOrRelayer() {
+    const {
+      notice: { contributor },
+      relayed,
+      relayer
+    } = this.props;
+
+    return relayed ? relayer : contributor;
+  }
+
   render() {
     const {
       notice: {
@@ -213,7 +238,8 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
         contributor,
         ratings: { likes, dislikes },
         state: { liked, disliked, dismissed }
-      }
+      },
+      relayed
     } = this.props;
 
     const { countdown, intervalID } = this.state;
@@ -230,17 +256,21 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
 
             <DetailsMetaValue>
               <Date>Le {format(modified, 'DD/MM/YYYY')}</Date>
-              <ContributorNotice onClick={this.handleContributorClicked}>
-                {contributor.name}
+              <ContributorNotice
+                onClick={this.handleContributorOrRelayerClicked}
+              >
+                {this.contributorOrRelayer?.name}
               </ContributorNotice>
 
-              <RetweetPart>
-                <Retweet />
-                post de
-                <Retweeter onClick={this.handleContributorClicked}>
-                  {contributor.name}
-                </Retweeter>
-              </RetweetPart>
+              {relayed && (
+                <RetweetPart>
+                  <Retweet />
+                  post de
+                  <Retweeter onClick={this.handleContributorClicked}>
+                    {contributor.name}
+                  </Retweeter>
+                </RetweetPart>
+              )}
             </DetailsMetaValue>
           </DetailsMeta>
 

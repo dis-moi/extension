@@ -18,7 +18,10 @@ import {
 import { InstallationDetails } from 'app/lmem/installation';
 import { ContentState } from '../store';
 import { getRegisteredFieldsPaths } from 'app/utils/form';
-import { getContributors } from 'app/options/store/selectors/contributors.selectors';
+import {
+  getContributors,
+  getSubscriptions
+} from 'app/options/store/selectors/contributors.selectors';
 import { findItemById } from 'app/utils/findItemById';
 import { StatefulContributor } from 'app/lmem/contributor';
 import { makeGetRouteParam } from 'app/store/selectors';
@@ -36,6 +39,12 @@ export const getUnreadNotices = (state: ContentState) =>
 
 export const hasUnreadNotices = (state: ContentState) =>
   getUnreadNotices(state).length > 0;
+
+export const getNoticeIdFromRouteParam = makeGetRouteParam('id');
+export const getNoticeFromRoute = createSelector(
+  [getNotices, getNoticeIdFromRouteParam],
+  (notices, noticeId) => getNotice(Number(noticeId), notices)
+);
 
 export const getNoticeById = (
   state: ContentState,
@@ -120,4 +129,23 @@ export const getCurrentContributor = createSelector(
   [getContributors, getContributorIdFromRouteParam],
   (contributors, contributorId) =>
     findItemById<StatefulContributor>(Number(contributorId))(contributors)
+);
+
+export const getSubscriptionsIds = createSelector(
+  [getSubscriptions],
+  subscriptions => subscriptions.map(subscription => subscription.id)
+);
+
+export const getNoticeRelayer = createSelector(
+  [getNoticeFromRoute, getSubscriptionsIds],
+  (notice, subscriptionsIds) =>
+    notice?.relayers
+      .filter(c => typeof c !== 'undefined')
+      .find(contributor => subscriptionsIds.includes(contributor!.id))
+);
+
+export const isNoticeRelayed = createSelector(
+  [getNoticeFromRoute, getSubscriptionsIds],
+  (notice, subscriptionsIds) =>
+    notice?.contributor && !subscriptionsIds.includes(notice?.contributor.id)
 );

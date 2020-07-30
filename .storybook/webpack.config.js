@@ -10,6 +10,18 @@ const argv = {
 
 module.exports = ({ config }) => {
   config.module.rules = rules(env, argv);
+  config.module.rules = [
+    ...config.module.rules,
+    {
+      test: /\.(png|jpe?g|gif)$/i,
+      loader: 'file-loader',
+      options: {
+        publicPath: process.env.PROFILES_ASSETS_PATH,
+        name: '[path][name].[ext]',
+        context: 'src/assets',
+      },
+    },
+  ];
   config.resolve.extensions.push('.ts', '.tsx');
   config.resolve.modules.push(path.resolve(__dirname, '..', 'src'));
   config.resolve.alias.test = path.resolve(__dirname, '..', 'test');

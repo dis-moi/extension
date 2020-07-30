@@ -7,6 +7,7 @@ import { subMonths } from 'date-fns';
 import Faker from 'faker';
 import { generateStatefulNotice } from 'test/fakers/generateNotice';
 import { boolean, date, number, text } from '@storybook/addon-knobs';
+import { generateContributor } from 'test/fakers/generateContributor';
 
 const defaultMessage = Faker.lorem.paragraph(3);
 const longMessage = Faker.lorem.paragraph(10);
@@ -64,5 +65,13 @@ storiesOf('Components/Organisms/NoticeDetails', module)
     <NoticeDetails
       {...commonProps}
       notice={generateStatefulNotice({ disliked: true })}
+    />
+  ))
+  .add('Relayed', () => (
+    <NoticeDetails
+      {...commonProps}
+      notice={generateStatefulNotice({ disliked: true })}
+      relayed={true}
+      relayer={generateContributor()}
     />
   ));

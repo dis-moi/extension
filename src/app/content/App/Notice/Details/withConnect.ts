@@ -12,14 +12,20 @@ import {
 } from 'app/actions/notices';
 import clickContributor from 'app/content/actions/goToContributor';
 import { ContentState } from 'app/content/store';
-import { getNoticeById } from 'app/content/selectors';
+import {
+  getNoticeFromRoute,
+  getNoticeRelayer,
+  isNoticeRelayed
+} from 'app/content/selectors';
 import { DetailsScreenProps } from './';
 
 const mapStateToProps = (
   state: ContentState,
   props: DetailsScreenProps & RouteComponentProps
 ) => ({
-  notice: getNoticeById(state, props)
+  notice: getNoticeFromRoute(state, props),
+  relayed: isNoticeRelayed(state, props),
+  relayer: getNoticeRelayer(state, props)
 });
 
 const mapDispatchToProps = {
