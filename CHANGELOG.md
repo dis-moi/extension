@@ -1,3 +1,10 @@
+## [3.38.6](https://github.com/dis-moi/extension/compare/v3.38.5...v3.38.6) (2020-08-04)
+
+
+### Bug Fixes
+
+* **detection:** matching contexts are not fetched at startup ([ae7925f](https://github.com/dis-moi/extension/commit/ae7925f8457ff044017ced8e9357f8cd2c875830))
+
 ## [3.38.5](https://github.com/dis-moi/extension/compare/v3.38.4...v3.38.5) (2020-07-28)
 
 
