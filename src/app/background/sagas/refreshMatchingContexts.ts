@@ -33,6 +33,8 @@ export function* refreshMatchingContextsSaga() {
 }
 
 export function* refreshMatchingContextsPeriodicallySaga() {
+  yield put(refreshMatchingContexts());
+
   const refreshInterval = minutesToMilliseconds(
     Number(process.env.REFRESH_MC_INTERVAL)
   );
