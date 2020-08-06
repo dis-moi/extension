@@ -28,7 +28,7 @@ const Header = () => (
       <HeaderNavItem href={`https://${WEBSITE_DOMAIN}/aide/`}>
         Aide
       </HeaderNavItem>
-      <HeaderNavItem href={`https://${WEBSITE_DOMAIN}/devenir-informateur/`}>
+      <HeaderNavItem href={`https://${WEBSITE_DOMAIN}/informer/`}>
         Devenir informateur
       </HeaderNavItem>
     </HeaderNav>
