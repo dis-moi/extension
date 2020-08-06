@@ -1,3 +1,10 @@
+# [3.39.0](https://github.com/dis-moi/extension/compare/v3.38.6...v3.39.0) (2020-08-06)
+
+
+### Features
+
+* update informer link ([c15094f](https://github.com/dis-moi/extension/commit/c15094f5337243e0756e1aad6ff7f6a6956c5811))
+
 ## [3.38.6](https://github.com/dis-moi/extension/compare/v3.38.5...v3.38.6) (2020-08-04)
 
 
