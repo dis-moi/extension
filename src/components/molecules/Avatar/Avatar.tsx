@@ -43,6 +43,17 @@ interface AvatarProps<S = LocationState> {
   loading?: boolean;
 }
 
+const getUrlForSize = (
+  contributor: {
+    avatar?: AvatarType;
+  },
+  size: AvatarSize
+): string | undefined => {
+  if (size === 'large') return contributor.avatar?.large.url;
+  if (size === 'normal') return contributor.avatar?.normal.url;
+  return contributor.avatar?.small.url;
+};
+
 const Avatar = ({
   contributor,
   size,
@@ -50,14 +61,17 @@ const Avatar = ({
   onClick,
   to,
   loading
-}: AvatarProps) => (
-  <Wrapper size={size} className={className} onClick={onClick} to={to}>
-    {!loading && contributor?.avatar && contributor.avatar[size].url ? (
-      <img src={contributor.avatar.normal.url} alt={contributor.name} />
-    ) : (
-      <AvatarDefault />
-    )}
-  </Wrapper>
-);
+}: AvatarProps) => {
+  const url = contributor ? getUrlForSize(contributor, size) : '';
+  return (
+    <Wrapper size={size} className={className} onClick={onClick} to={to}>
+      {!loading && url ? (
+        <img src={url} alt={contributor?.name} />
+      ) : (
+        <AvatarDefault />
+      )}
+    </Wrapper>
+  );
+};
 
 export default styled(Avatar)``;

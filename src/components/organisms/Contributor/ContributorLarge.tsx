@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { LocationDescriptor, LocationState } from 'history';
-import { StatefulContributor } from 'app/lmem/contributor';
+import { AvatarSize, StatefulContributor } from 'app/lmem/contributor';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import UserName from 'components/atoms/UserName/UserName';
 import ContributorButton from './ContributorButton';
@@ -39,6 +39,7 @@ const ContributorIntro = styled.div.attrs<IntroProps>(
 
 interface ContributorLargeProps<S = LocationState> {
   contributor?: StatefulContributor;
+  avatarSize?: AvatarSize;
   onSubscribe: () => void;
   onUnsubscribe: () => void;
   className?: string;
@@ -49,6 +50,7 @@ interface ContributorLargeProps<S = LocationState> {
 
 const ContributorLarge = ({
   contributor,
+  avatarSize,
   onSubscribe,
   onUnsubscribe,
   children,
@@ -60,7 +62,7 @@ const ContributorLarge = ({
     <>
       <ContributorWrapper>
         <Avatar
-          size="normal"
+          size={avatarSize || 'normal'}
           contributor={contributor}
           to={to}
           loading={loading}
