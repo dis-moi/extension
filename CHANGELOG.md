@@ -1,3 +1,10 @@
+# [3.40.0](https://github.com/dis-moi/extension/compare/v3.39.0...v3.40.0) (2020-08-14)
+
+
+### Features
+
+* **avatars:** use right avatar source ([61ab983](https://github.com/dis-moi/extension/commit/61ab9835dcf9bef33c785ff981e8cb462d7efccc))
+
 # [3.39.0](https://github.com/dis-moi/extension/compare/v3.38.6...v3.39.0) (2020-08-06)
 
 
