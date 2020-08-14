@@ -113,6 +113,7 @@ export const ProfileIntro = ({
           onSubscribe={subscribe}
           onUnsubscribe={unsubscribe}
           loading={loading}
+          avatarSize="large"
         >
           {contributor && !!contributor.website && (
             <ExternalLink href={contributor.website}>
