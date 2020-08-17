@@ -69,7 +69,7 @@ module.exports = (env, argv) => {
           loader: 'url-loader'
         },
         {
-          test: /\.png$/,
+          test: /\.(png|jpg)$/,
           loader: 'file-loader',
           options: {
             name: '[path][name].[ext]',
