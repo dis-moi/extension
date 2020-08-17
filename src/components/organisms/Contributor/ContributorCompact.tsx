@@ -44,7 +44,7 @@ export const ContributorCompact = ({
   className
 }: Props) => (
   <Wrapper className={className}>
-    <Avatar contributor={contributor} size="normal" to={to} />
+    <Avatar contributor={contributor} size="small" to={to} />
 
     <ContributorInfos>
       <UserName>
