@@ -1,3 +1,11 @@
+## [3.40.1](https://github.com/dis-moi/extension/compare/v3.40.0...v3.40.1) (2020-08-17)
+
+
+### Bug Fixes
+
+* **options:** avatars in sidebars are normal size (should be small) ([455db34](https://github.com/dis-moi/extension/commit/455db34dec47fe511f8a719fb004580677d27942))
+* **storybook:** storybook won’t build ([6ebbb5c](https://github.com/dis-moi/extension/commit/6ebbb5c385ac320246cc1dab857a2444dd9a0337))
+
 # [3.40.0](https://github.com/dis-moi/extension/compare/v3.39.0...v3.40.0) (2020-08-14)
 
 
