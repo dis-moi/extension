@@ -13,7 +13,7 @@ import BrowserNotSupportedPopin from '../BrowserNotSupportedPopin';
 import StatsWrapper from 'components/atoms/Contributor/StatsWrapper';
 import Loader from 'components/atoms/Loader';
 import pathToContributor from '../../pathToContributor';
-import Filters from 'components/molecules/Filters/Filters';
+import Filters from 'components/molecules/Filters/FiltersSelect';
 
 const Title = styled(Title2)`
   padding-top: 30px;
