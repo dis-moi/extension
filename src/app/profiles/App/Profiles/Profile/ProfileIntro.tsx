@@ -65,6 +65,7 @@ const ProfileIntroContent = styled.section`
         ${Anchor} {
           display: block;
           font-size: 22px;
+          line-height: 1.2;
           color: ${props => props.theme.titleColor};
           white-space: normal;
         }
