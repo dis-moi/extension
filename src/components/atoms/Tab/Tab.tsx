@@ -7,18 +7,20 @@ interface Props {
 
 export default styled(Button)<Props>`
   padding: 8px 16px 8px;
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.2;
   font-family: 'Lato', sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   text-transform: none;
   text-decoration: none;
-  color ${props => (props.active ? '#FFF' : props.theme.grey)};
-  background-color ${props =>
-    props.active ? props.theme.activeColor : props.theme.contributorGrey};
-  border-radius: 8px 8px 0 0;
+  color: ${props => (props.active ? '#000' : props.theme.textColor)};
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: ${props =>
+    props.active ? props.theme.textColor : 'transparent'};
+  border-radius: 0;
 
   &:hover {
-    color: ${props => (props.active ? '#FFF' : props.theme.activeColor)};
+    color: ${props => props.theme.textColor};
   }
 `;
