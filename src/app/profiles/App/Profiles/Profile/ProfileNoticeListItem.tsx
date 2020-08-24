@@ -10,6 +10,7 @@ const Loading = styled(LoadingRotator)`
 `;
 
 const NoticeTopLine = styled.div`
+  margin-top: ${props => props.theme.fontSizeDefault};
   margin-bottom: ${props => props.theme.fontSizeDefault};
 `;
 
@@ -78,14 +79,6 @@ export const ProfileNoticeListItem = ({
 
   return (
     <Box className={className}>
-      {notice.exampleUrl && (
-        <NoticeTopLine>
-          <NoticeHighlight>
-            Message épinglé sur <NoticeURL>{notice.exampleUrl}</NoticeURL>
-          </NoticeHighlight>{' '}
-          et d&apos;autres pages web
-        </NoticeTopLine>
-      )}
       {notice.screenshot && (
         <img
           style={{ width: '100%' }}
@@ -94,6 +87,14 @@ export const ProfileNoticeListItem = ({
         />
       )}
       <Paragraph dangerouslySetInnerHTML={{ __html: notice.strippedMessage }} />
+      {notice.exampleUrl && (
+        <NoticeTopLine>
+          <NoticeHighlight>
+            Message épinglé sur <NoticeURL>{notice.exampleUrl}</NoticeURL>
+          </NoticeHighlight>{' '}
+          et d&apos;autres pages web
+        </NoticeTopLine>
+      )}
       <NoticeBottomLine>
         Visible depuis le {format(notice.created, 'DD/MM/YYYY')}
         <BorderButton onClick={seeInContext} disabled={!notice.exampleUrl}>
