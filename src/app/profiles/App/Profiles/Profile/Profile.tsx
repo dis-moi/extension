@@ -97,6 +97,12 @@ const Aside = styled(Sidebar)`
   ${SimilarProfiles} + ${CenterContainer} {
     margin-top: -30px;
   }
+  
+  ${SimilarProfiles} ${Button} {
+    min-width: 110px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
 `;
 
 export const SidebarBox = styled(Box)`
