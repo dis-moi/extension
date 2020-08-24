@@ -6,6 +6,7 @@ const FeaturedNotice = styled(ProfileNoticeListItem).attrs({ featured: true })`
 
   img {
     margin-bottom: 10px;
+    box-shadow: 4px 4px 18px 0 rgba(0, 0, 0, 0.3);
   }
 
   @media (max-width: ${props => props.theme.tabletWidth}) {
