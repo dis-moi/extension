@@ -3,15 +3,20 @@ import styled from 'styled-components';
 import { format } from 'date-fns';
 import { BorderButton, Box, LoadingRotator, Paragraph } from 'components/atoms';
 import { Notice } from 'app/lmem/notice';
-import { LoadingBig } from 'components/atoms/icons';
+import { LoadingBig, Pin } from 'components/atoms/icons';
 
 const Loading = styled(LoadingRotator)`
   margin-bottom: 20px;
 `;
 
 const NoticeTopLine = styled.div`
-  margin-top: ${props => props.theme.fontSizeDefault};
-  margin-bottom: ${props => props.theme.fontSizeDefault};
+  margin-top: 20px;
+  margin-bottom: 26px;
+
+  & > svg {
+    margin-right: 5px;
+    vertical-align: bottom;
+  }
 `;
 
 const NoticeHighlight = styled.strong``;
@@ -89,6 +94,7 @@ export const ProfileNoticeListItem = ({
       <Paragraph dangerouslySetInnerHTML={{ __html: notice.strippedMessage }} />
       {notice.exampleUrl && (
         <NoticeTopLine>
+          <Pin />
           <NoticeHighlight>
             Message épinglé sur <NoticeURL>{notice.exampleUrl}</NoticeURL>
           </NoticeHighlight>{' '}

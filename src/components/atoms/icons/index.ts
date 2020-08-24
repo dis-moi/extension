@@ -16,3 +16,4 @@ export { default as Write } from './Write';
 export { default as Download } from './Download';
 export { default as LinkIcon } from './Link';
 export { default as Plus } from './Plus';
+export { default as Pin } from './Pin';
