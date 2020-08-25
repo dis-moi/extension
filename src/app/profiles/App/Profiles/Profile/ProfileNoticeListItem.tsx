@@ -23,7 +23,7 @@ const NoticeHighlight = styled.strong``;
 
 const NoticeURL = styled.span`
   display: inline-block;
-  max-width: 30%;
+  max-width: 38%;
   white-space: nowrap;
   overflow: hidden;
   vertical-align: bottom;
