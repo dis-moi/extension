@@ -4,6 +4,7 @@ import { format } from 'date-fns';
 import { BorderButton, Box, LoadingRotator, Paragraph } from 'components/atoms';
 import { Notice } from 'app/lmem/notice';
 import { LoadingBig, Pin } from 'components/atoms/icons';
+import { stripUrlProtocol } from 'app/utils/stripUrlProtocol';
 
 const Loading = styled(LoadingRotator)`
   margin-bottom: 20px;
@@ -96,7 +97,8 @@ export const ProfileNoticeListItem = ({
         <NoticeTopLine>
           <Pin />
           <NoticeHighlight>
-            Message épinglé sur <NoticeURL>{notice.exampleUrl}</NoticeURL>
+            Message épinglé sur{' '}
+            <NoticeURL>{stripUrlProtocol(notice.exampleUrl)}</NoticeURL>
           </NoticeHighlight>{' '}
           et d&apos;autres pages web
         </NoticeTopLine>
