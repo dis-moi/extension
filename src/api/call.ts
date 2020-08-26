@@ -26,7 +26,7 @@ const buildQueryString: BuildQueryString = R.pipe(
 export const get = (path: string, data: object = {}) => {
   const endpoint = path.startsWith('http') ? path : BACKEND_ORIGIN + path;
   const queryString = R.isEmpty(data) ? '' : buildQueryString(data);
-  return fetch(`${endpoint}${queryString}`).then(response => {
+  return fetch(`${endpoint}${queryString}`, { mode: 'cors' }).then(response => {
     if (response.status >= 400) {
       throw new APIStatusCodeError(response);
     }
@@ -37,6 +37,7 @@ export const get = (path: string, data: object = {}) => {
 export const post = (path: string, data: {} | []) =>
   fetch(path.startsWith('http') ? path : BACKEND_ORIGIN + path, {
     method: 'POST',
+    mode: 'cors',
     headers: {
       'Content-Type': 'application/json'
     },
