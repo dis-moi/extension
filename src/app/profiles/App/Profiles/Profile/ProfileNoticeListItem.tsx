@@ -3,21 +3,27 @@ import styled from 'styled-components';
 import { format } from 'date-fns';
 import { BorderButton, Box, LoadingRotator, Paragraph } from 'components/atoms';
 import { Notice } from 'app/lmem/notice';
-import { LoadingBig } from 'components/atoms/icons';
+import { LoadingBig, Pin } from 'components/atoms/icons';
 
 const Loading = styled(LoadingRotator)`
   margin-bottom: 20px;
 `;
 
 const NoticeTopLine = styled.div`
-  margin-bottom: ${props => props.theme.fontSizeDefault};
+  margin-top: 20px;
+  margin-bottom: 26px;
+
+  & > svg {
+    margin-right: 5px;
+    vertical-align: bottom;
+  }
 `;
 
 const NoticeHighlight = styled.strong``;
 
 const NoticeURL = styled.span`
   display: inline-block;
-  max-width: 30%;
+  max-width: 38%;
   white-space: nowrap;
   overflow: hidden;
   vertical-align: bottom;
@@ -78,14 +84,6 @@ export const ProfileNoticeListItem = ({
 
   return (
     <Box className={className}>
-      {notice.exampleUrl && (
-        <NoticeTopLine>
-          <NoticeHighlight>
-            Message épinglé sur <NoticeURL>{notice.exampleUrl}</NoticeURL>
-          </NoticeHighlight>{' '}
-          et d&apos;autres pages web
-        </NoticeTopLine>
-      )}
       {notice.screenshot && (
         <img
           style={{ width: '100%' }}
@@ -94,6 +92,15 @@ export const ProfileNoticeListItem = ({
         />
       )}
       <Paragraph dangerouslySetInnerHTML={{ __html: notice.strippedMessage }} />
+      {notice.exampleUrl && (
+        <NoticeTopLine>
+          <Pin />
+          <NoticeHighlight>
+            Message épinglé sur <NoticeURL>{notice.exampleUrl}</NoticeURL>
+          </NoticeHighlight>{' '}
+          et d&apos;autres pages web
+        </NoticeTopLine>
+      )}
       <NoticeBottomLine>
         Visible depuis le {format(notice.created, 'DD/MM/YYYY')}
         <BorderButton onClick={seeInContext} disabled={!notice.exampleUrl}>
