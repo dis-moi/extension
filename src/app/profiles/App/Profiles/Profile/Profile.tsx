@@ -46,6 +46,7 @@ const MainCol = styled.div`
       max-height: calc(3 * 1.2 * 1em); //one more line
       position: relative;
       margin: 0;
+      padding-bottom: 0;
 
       // webkit solution to multi-line text overflow
       display: -webkit-box;
