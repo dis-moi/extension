@@ -1,3 +1,10 @@
+## [3.42.1](https://github.com/dis-moi/extension/compare/v3.42.0...v3.42.1) (2020-08-26)
+
+
+### Bug Fixes
+
+* set fetch to use CORS mode ([c47083f](https://github.com/dis-moi/extension/commit/c47083f99b25057f9cc18695e8ffe38a989c4309))
+
 # [3.42.0](https://github.com/dis-moi/extension/compare/v3.41.0...v3.42.0) (2020-08-26)
 
 
