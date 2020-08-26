@@ -249,7 +249,7 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
               {relayer && (
                 <RelayPart>
                   <Relay />
-                  post relayé par
+                  relayé par
                   <Relayer onClick={this.handleRelayerClicked}>
                     {relayer.name}
                   </Relayer>
