@@ -19,7 +19,6 @@ export type DetailsScreenProps = DetailsScreenDataProps &
 
 export const Details = ({
   notice,
-  relayed,
   relayer,
   like,
   unlike,
@@ -35,7 +34,6 @@ export const Details = ({
     return (
       <NoticeDetails
         notice={notice}
-        relayed={relayed}
         relayer={relayer}
         like={like}
         unlike={unlike}

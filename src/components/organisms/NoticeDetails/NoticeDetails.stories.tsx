@@ -71,7 +71,6 @@ storiesOf('Components/Organisms/NoticeDetails', module)
     <NoticeDetails
       {...commonProps}
       notice={generateStatefulNotice({ disliked: true })}
-      relayed={true}
       relayer={generateContributor()}
     />
   ));

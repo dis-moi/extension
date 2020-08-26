@@ -136,16 +136,18 @@ export const getSubscriptionsIds = createSelector(
   subscriptions => subscriptions.map(subscription => subscription.id)
 );
 
-export const getNoticeRelayer = createSelector(
-  [getNoticeFromRoute, getSubscriptionsIds],
-  (notice, subscriptionsIds) =>
-    notice?.relayers
-      .filter(c => typeof c !== 'undefined')
-      .find(contributor => subscriptionsIds.includes(contributor!.id))
-);
-
 export const isNoticeRelayed = createSelector(
   [getNoticeFromRoute, getSubscriptionsIds],
   (notice, subscriptionsIds) =>
     notice?.contributor && !subscriptionsIds.includes(notice?.contributor.id)
+);
+
+export const getNoticeRelayer = createSelector(
+  [getNoticeFromRoute, getSubscriptionsIds, isNoticeRelayed],
+  (notice, subscriptionsIds, relayedNotice) =>
+    relayedNotice
+      ? notice?.relayers
+          .filter(c => typeof c !== 'undefined')
+          .find(relayer => subscriptionsIds.includes(relayer.id))
+      : undefined
 );

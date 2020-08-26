@@ -87,7 +87,6 @@ const Retweeter = styled(ContributorNotice)`
 
 export interface NoticeDetailsDataProps {
   notice: StatefulNotice;
-  relayed?: boolean;
   relayer?: Contributor;
 }
 
@@ -194,20 +193,17 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
     }
   };
 
-  handleContributorOrRelayerClicked = () => {
-    const { clickContributor } = this.props;
-
-    if (this.contributorOrRelayer) {
-      clickContributor(this.contributorOrRelayer.id);
-    }
-  };
-
   handleContributorClicked = () => {
     const {
       clickContributor,
       notice: { contributor }
     } = this.props;
     clickContributor(contributor.id);
+  };
+
+  handleRelayerClicked = () => {
+    const { clickContributor, relayer } = this.props;
+    if (relayer) clickContributor(relayer.id);
   };
 
   componentDidMount(): void {
@@ -220,16 +216,6 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
     }
   }
 
-  get contributorOrRelayer() {
-    const {
-      notice: { contributor },
-      relayed,
-      relayer
-    } = this.props;
-
-    return relayed ? relayer : contributor;
-  }
-
   render() {
     const {
       notice: {
@@ -239,7 +225,7 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
         ratings: { likes, dislikes },
         state: { liked, disliked, dismissed }
       },
-      relayed
+      relayer
     } = this.props;
 
     const { countdown, intervalID } = this.state;
@@ -256,18 +242,16 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
 
             <DetailsMetaValue>
               <Date>Le {format(modified, 'DD/MM/YYYY')}</Date>
-              <ContributorNotice
-                onClick={this.handleContributorOrRelayerClicked}
-              >
-                {this.contributorOrRelayer?.name}
+              <ContributorNotice onClick={this.handleContributorClicked}>
+                {contributor.name}
               </ContributorNotice>
 
-              {relayed && (
+              {relayer && (
                 <RetweetPart>
                   <Retweet />
-                  post de
-                  <Retweeter onClick={this.handleContributorClicked}>
-                    {contributor.name}
+                  post relayé par
+                  <Retweeter onClick={this.handleRelayerClicked}>
+                    {relayer.name}
                   </Retweeter>
                 </RetweetPart>
               )}
