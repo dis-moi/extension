@@ -9,7 +9,7 @@ import {
   Contributor as ContributorName,
   Timer
 } from 'components/atoms';
-import { Retweet } from 'components/atoms/icons';
+import { Relay } from 'components/atoms/icons';
 import { StatefulNotice } from 'app/lmem/notice';
 import {
   CountDownState,
@@ -63,7 +63,7 @@ const ContributorNotice = styled(ContributorName)`
   }
 `;
 
-const RetweetPart = styled.div`
+const RelayPart = styled.div`
   display: flex;
   flex: 1;
   align-items: center;
@@ -75,7 +75,7 @@ const RetweetPart = styled.div`
   }
 `;
 
-const Retweeter = styled(ContributorNotice)`
+const Relayer = styled(ContributorNotice)`
   max-width: 205px;
   margin-left: 4px;
   font-size: 13px;
@@ -247,13 +247,13 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
               </ContributorNotice>
 
               {relayer && (
-                <RetweetPart>
-                  <Retweet />
+                <RelayPart>
+                  <Relay />
                   post relayé par
-                  <Retweeter onClick={this.handleRelayerClicked}>
+                  <Relayer onClick={this.handleRelayerClicked}>
                     {relayer.name}
-                  </Retweeter>
-                </RetweetPart>
+                  </Relayer>
+                </RelayPart>
               )}
             </DetailsMetaValue>
           </DetailsMeta>
