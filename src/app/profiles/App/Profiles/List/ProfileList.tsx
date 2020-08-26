@@ -13,7 +13,7 @@ import BrowserNotSupportedPopin from '../BrowserNotSupportedPopin';
 import StatsWrapper from 'components/atoms/Contributor/StatsWrapper';
 import Loader from 'components/atoms/Loader';
 import pathToContributor from '../../pathToContributor';
-import Filters from 'components/molecules/Filters/FiltersSelect';
+// import Filters from 'components/molecules/Filters/FiltersCheckboxes';
 
 const Title = styled(Title2)`
   padding-top: 30px;
@@ -110,7 +110,8 @@ const ProfileList = ({
     <>
       <Title>Les informateurs</Title>
 
-      <Filters></Filters>
+      {/* <Filters /> */}
+
       {loading ? (
         <Loader />
       ) : (
