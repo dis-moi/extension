@@ -1,3 +1,13 @@
+# [3.42.0](https://github.com/dis-moi/extension/compare/v3.41.0...v3.42.0) (2020-08-26)
+
+
+### Features
+
+* **contributors filters:** styles the filters ([9c483c1](https://github.com/dis-moi/extension/commit/9c483c1bd0c51d636dc8ec5facc581c1b8b155d4))
+* **Filters:** removes buttons, adds select and checkboxes ([8969060](https://github.com/dis-moi/extension/commit/89690601bf760866fef4b3344c5f430f10cdc1f0))
+* **profiles:** disable filters until backend is ready ([3b9d17c](https://github.com/dis-moi/extension/commit/3b9d17c44cd4725aeda6f6344dc32c4368213b11))
+* **Tabs:** changes design ([c98e52f](https://github.com/dis-moi/extension/commit/c98e52f1a941785dc50031f651a6e534b028b98a))
+
 # [3.41.0](https://github.com/dis-moi/extension/compare/v3.40.1...v3.41.0) (2020-08-26)
 
 
