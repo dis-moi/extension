@@ -1,3 +1,21 @@
+# [3.41.0](https://github.com/dis-moi/extension/compare/v3.40.1...v3.41.0) (2020-08-26)
+
+
+### Bug Fixes
+
+* **FeaturedNotice:** aligns image on the left for mobiles ([fc2ac96](https://github.com/dis-moi/extension/commit/fc2ac965baecbabc6129f566caac678f93c1a504))
+* **pinned url:** increases its displayed width ([166bedf](https://github.com/dis-moi/extension/commit/166bedf51431777a013c3d68a67c1db68647f29a))
+* **Profile:** cuts notice content after 2 lines. ([16a1096](https://github.com/dis-moi/extension/commit/16a109666d9aaacc6f09930be46f957c85c4d323))
+* **profiles:** adds pin icon in front of pinned content ([716263c](https://github.com/dis-moi/extension/commit/716263c83ca76b05683c945fbb54e35afefe52f0))
+* **profiles:** changes sidebar button width ([b2e6b84](https://github.com/dis-moi/extension/commit/b2e6b8414fae7aa3e3ce46afca3d3d70a228c513))
+* **profiles:** moves pin info to the bottom ([3ae5411](https://github.com/dis-moi/extension/commit/3ae541167587d8e83413fcc70a29881e2ba186e6))
+* **ProfilIntro:** adds line-height to prevent profile name to be cut ([9dad04e](https://github.com/dis-moi/extension/commit/9dad04e75bb41f7dafa3d8a493003970e567ef6f))
+
+
+### Features
+
+* **FeaturedNotice:** adds box-shadow to image ([9c8eb2f](https://github.com/dis-moi/extension/commit/9c8eb2f8be08bdb0de3ac5dc141990c627769fcb))
+
 ## [3.40.1](https://github.com/dis-moi/extension/compare/v3.40.0...v3.40.1) (2020-08-17)
 
 
