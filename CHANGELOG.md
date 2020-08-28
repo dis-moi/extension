@@ -1,3 +1,18 @@
+# [3.43.0](https://github.com/dis-moi/extension/compare/v3.42.1...v3.43.0) (2020-08-28)
+
+
+### Bug Fixes
+
+* **notification:** avatar size in notice detail ([d3dc221](https://github.com/dis-moi/extension/commit/d3dc221c1588cc0514cf601d0ad6d6555ab7b083))
+
+
+### Features
+
+* Show relayer and original poster on a relayed notice. ([6b63e47](https://github.com/dis-moi/extension/commit/6b63e47f10692d24029ba87f7c9d2a315785112b))
+* **relay:** reword relayer mention ([9b1160b](https://github.com/dis-moi/extension/commit/9b1160b068c8b0618eda394c5f7566fa7eca278f))
+* **relay:** show relayer name below main contributor name and avatar ([35273da](https://github.com/dis-moi/extension/commit/35273dab45bb1be3fab4311e3a1e24999567d9fc))
+* **Retweet:** adds Retweet content ([9e00f76](https://github.com/dis-moi/extension/commit/9e00f768c390cd3e32b19749aca556d504c2461d))
+
 ## [3.42.1](https://github.com/dis-moi/extension/compare/v3.42.0...v3.42.1) (2020-08-26)
 
 
