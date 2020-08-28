@@ -19,6 +19,15 @@ const ProfileBannerContainer = styled.div<{
     display: block;
     opacity: ${props => (props.default ? '0.5' : '1')};
   }
+
+  @media (max-width: ${props => props.theme.tabletWidth}) {
+    min-height: 100px;
+    max-height: 200px;
+
+    img {
+      position: relative;
+    }
+  }
 `;
 
 const hasBanner = (contributor?: StatefulContributor): boolean =>
