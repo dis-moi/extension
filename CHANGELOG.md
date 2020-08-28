@@ -1,3 +1,10 @@
+## [3.43.1](https://github.com/dis-moi/extension/compare/v3.43.0...v3.43.1) (2020-08-28)
+
+
+### Bug Fixes
+
+* **profileBanner:** improves responsives display ([ca0733e](https://github.com/dis-moi/extension/commit/ca0733e099c418877e1d6b8db534858c8ba46d53))
+
 # [3.43.0](https://github.com/dis-moi/extension/compare/v3.42.1...v3.43.0) (2020-08-28)
 
 
