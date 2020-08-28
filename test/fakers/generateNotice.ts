@@ -52,6 +52,7 @@ export const generateStatefulNotice = ({
       dismissed: Boolean(dismissed),
       disliked: Boolean(disliked),
       read: Boolean(read)
-    }
+    },
+    relayers: [generateContributor()],
   };
 };

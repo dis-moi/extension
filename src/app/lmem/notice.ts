@@ -18,6 +18,7 @@ export interface BaseNotice {
 
 export interface Notice extends BaseNotice {
   contributor: Contributor;
+  relayers: Contributor[];
 }
 
 export interface NoticeItem extends BaseNotice {

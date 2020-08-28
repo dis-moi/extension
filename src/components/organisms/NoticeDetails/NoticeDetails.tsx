@@ -4,7 +4,12 @@ import { format } from 'date-fns';
 import ThumbUp from 'components/atoms/icons/ThumbUp';
 import ThumbDown from 'components/atoms/icons/ThumbDown';
 import Avatar from 'components/molecules/Avatar/Avatar';
-import { Button, Contributor, Timer } from 'components/atoms';
+import {
+  Button,
+  Contributor as ContributorName,
+  Timer
+} from 'components/atoms';
+import { Relay } from 'components/atoms/icons';
 import { StatefulNotice } from 'app/lmem/notice';
 import {
   CountDownState,
@@ -17,6 +22,7 @@ import DetailsDislike from './DetailsDislike';
 import Message from './Message';
 import Feedbacks from './Feedbacks';
 import Date from './Date';
+import { Contributor } from 'app/lmem/contributor';
 
 const DetailsMetaValue = styled.div`
   margin-left: 10px;
@@ -24,7 +30,7 @@ const DetailsMetaValue = styled.div`
 
 const DetailsScroll = styled.div`
   margin-top: 10px;
-  max-height: 225px;
+  max-height: 200px;
   overflow-y: auto;
 `;
 
@@ -50,15 +56,38 @@ const AvatarNotice = styled(Avatar)`
   }
 `;
 
-const ContributorNotice = styled(Contributor)`
+const ContributorNotice = styled(ContributorName)`
   &:hover {
     text-decoration: underline;
     cursor: pointer;
   }
 `;
 
+const RelayPart = styled.div`
+  display: flex;
+  flex: 1;
+  align-items: center;
+  margin-top: 2px;
+  font-size: 13px;
+
+  & > svg {
+    margin-right: 6px;
+  }
+`;
+
+const Relayer = styled(ContributorNotice)`
+  max-width: 205px;
+  margin-left: 4px;
+  font-size: 13px;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
 export interface NoticeDetailsDataProps {
   notice: StatefulNotice;
+  relayer?: Contributor;
 }
 
 export interface NoticeDetailsMethodsProps {
@@ -172,6 +201,11 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
     clickContributor(contributor.id);
   };
 
+  handleRelayerClicked = () => {
+    const { clickContributor, relayer } = this.props;
+    if (relayer) clickContributor(relayer.id);
+  };
+
   componentDidMount(): void {
     const {
       view,
@@ -190,7 +224,8 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
         contributor,
         ratings: { likes, dislikes },
         state: { liked, disliked, dismissed }
-      }
+      },
+      relayer
     } = this.props;
 
     const { countdown, intervalID } = this.state;
@@ -204,11 +239,22 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
               size="small"
               onClick={this.handleContributorClicked}
             />
+
             <DetailsMetaValue>
               <Date>Le {format(modified, 'DD/MM/YYYY')}</Date>
               <ContributorNotice onClick={this.handleContributorClicked}>
-                {contributor.name} :
+                {contributor.name}
               </ContributorNotice>
+
+              {relayer && (
+                <RelayPart>
+                  <Relay />
+                  relayé par
+                  <Relayer onClick={this.handleRelayerClicked}>
+                    {relayer.name}
+                  </Relayer>
+                </RelayPart>
+              )}
             </DetailsMetaValue>
           </DetailsMeta>
 

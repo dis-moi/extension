@@ -5,10 +5,13 @@ import NoticeDetails, {
   NoticeDetailsMethodsProps
 } from 'components/organisms/NoticeDetails/NoticeDetails';
 import { StatefulNotice } from 'app/lmem/notice';
+import { Contributor } from 'app/lmem/contributor';
 import withConnect from './withConnect';
 
 export interface DetailsScreenDataProps {
   notice?: StatefulNotice;
+  relayed?: boolean;
+  relayer?: Contributor;
 }
 
 export type DetailsScreenProps = DetailsScreenDataProps &
@@ -16,6 +19,7 @@ export type DetailsScreenProps = DetailsScreenDataProps &
 
 export const Details = ({
   notice,
+  relayer,
   like,
   unlike,
   dislike,
@@ -30,6 +34,7 @@ export const Details = ({
     return (
       <NoticeDetails
         notice={notice}
+        relayer={relayer}
         like={like}
         unlike={unlike}
         dislike={dislike}
