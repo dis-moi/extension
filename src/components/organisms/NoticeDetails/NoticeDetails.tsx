@@ -201,7 +201,7 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
           <DetailsMeta>
             <AvatarNotice
               contributor={contributor}
-              size="normal"
+              size="small"
               onClick={this.handleContributorClicked}
             />
             <DetailsMetaValue>
