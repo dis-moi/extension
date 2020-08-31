@@ -1,3 +1,10 @@
+# [3.44.0](https://github.com/dis-moi/extension/compare/v3.43.1...v3.44.0) (2020-08-31)
+
+
+### Features
+
+* **profile:** strip protocol from example URL ([830b90a](https://github.com/dis-moi/extension/commit/830b90ab64d3b04a413319ea8d903ce70ab21ec4))
+
 ## [3.43.1](https://github.com/dis-moi/extension/compare/v3.43.0...v3.43.1) (2020-08-28)
 
 
