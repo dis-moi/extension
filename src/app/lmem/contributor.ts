@@ -11,6 +11,14 @@ interface Picture {
 
 export type ContributorId = number;
 
+interface Contribution {
+  example: {
+    matchingUrl: string;
+    noticeId: number;
+    noticeUrl: string;
+  };
+}
+
 export interface BaseContributor {
   id: ContributorId;
   name: string;
@@ -20,15 +28,14 @@ export interface BaseContributor {
   contributions: number;
   website: string | null;
   banner?: string;
-  contribution?: {
-    example: {
-      matchingUrl: string;
-      noticeId: number;
-      noticeUrl: string;
-    };
-  };
+  contribution?: Contribution;
   noticesUrls: string[];
 }
+
+export interface FetchedContributor extends BaseContributor {
+  contribution: Contribution;
+}
+
 export interface NewContributor {
   name: string;
   email: string;

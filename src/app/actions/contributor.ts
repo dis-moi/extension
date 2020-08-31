@@ -1,5 +1,5 @@
 import { ActionMeta, BaseAction, ErrorAction } from 'app/actions';
-import { Contributor, ContributorId } from 'app/lmem/contributor';
+import { ContributorId, FetchedContributor } from 'app/lmem/contributor';
 import { Level } from 'app/utils/Logger';
 
 export const FETCH_CONTRIBUTOR_REQUEST = 'FETCH_CONTRIBUTOR_REQUEST';
@@ -19,10 +19,10 @@ export const fetchContributorRequest = (
 export const FETCH_CONTRIBUTOR_SUCCESS = 'FETCH_CONTRIBUTOR_SUCCESS';
 export interface FetchContributorSuccessAction extends BaseAction {
   type: typeof FETCH_CONTRIBUTOR_SUCCESS;
-  payload: Contributor;
+  payload: FetchedContributor;
 }
 export const fetchContributorSuccess = (
-  contributor: Contributor,
+  contributor: FetchedContributor,
   meta?: ActionMeta
 ): FetchContributorSuccessAction => ({
   type: FETCH_CONTRIBUTOR_SUCCESS,
