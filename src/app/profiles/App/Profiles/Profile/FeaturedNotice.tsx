@@ -17,6 +17,7 @@ const FeaturedNotice = styled(ProfileNoticeListItem).attrs({ featured: true })`
       align-self: flex-end;
       width: auto !important;
       max-height: 105vw;
+      max-width: initial;
     }
   }
 `;
