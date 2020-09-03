@@ -108,7 +108,7 @@ const ProfileList = ({
 
   return (
     <>
-      <Title>Les informateurs</Title>
+      <Title as="h1">Les informateurs</Title>
 
       {/* <Filters /> */}
 
