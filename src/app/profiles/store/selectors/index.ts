@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import * as RA from 'ramda-adjunct';
 import { findItemById } from 'app/utils/findItemById';
 import {
   Contributor,
@@ -66,6 +67,11 @@ export const enhanceNotice = (contributors: Contributor[]) => (
   noticeItem: NoticeItem
 ): Notice => ({
   ...noticeItem,
+  relayers: noticeItem.relayersIds
+    .map(relayerId =>
+      contributors.find(contributor => relayerId === contributor.id)
+    )
+    .filter(RA.isNotNil) as Contributor[],
   contributor: contributors.find(
     contributor => noticeItem.contributorId === contributor.id
   ) as Contributor
