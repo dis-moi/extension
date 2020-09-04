@@ -1,7 +1,6 @@
 import { match as Match, matchPath } from 'react-router';
-import { ForkEffect, cancel, fork, take } from 'redux-saga/effects';
-import { LOCATION_CHANGE } from 'connected-react-router';
-import { StandardAction } from 'app/store/types';
+import { cancel, fork, ForkEffect, take } from 'redux-saga/effects';
+import { LOCATION_CHANGE, LocationChangeAction } from 'connected-react-router';
 
 const takeLatestLocationChange = <
   Params extends { [K in keyof Params]?: string } = {}
@@ -12,15 +11,13 @@ const takeLatestLocationChange = <
   fork(function*() {
     let lastTask;
     while (true) {
-      const action = yield take(
-        (a: StandardAction) => a.type === LOCATION_CHANGE
-      );
+      const action: LocationChangeAction = yield take(LOCATION_CHANGE);
 
       if (lastTask) {
         yield cancel(lastTask);
       }
 
-      const match = matchPath<Params>(action?.payload?.location?.pathname, {
+      const match = matchPath<Params>(action.payload.location.pathname, {
         path,
         exact: true,
         strict: false

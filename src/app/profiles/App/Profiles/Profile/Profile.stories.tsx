@@ -20,6 +20,8 @@ storiesOf('Profile/Profile', module)
       noticesLoading={false}
       subscribe={action('subscribe')}
       unsubscribe={action('unsubscribe')}
+      fetchMoreNotices={action('fetchMoreNotices')}
+      fetchedAll={false}
       contributor={generateStatefulContributor()}
       similarContributors={[
         generateStatefulContributor(),
@@ -46,6 +48,8 @@ storiesOf('Profile/Profile', module)
       noticesLoading={false}
       subscribe={action('subscribe')}
       unsubscribe={action('unsubscribe')}
+      fetchMoreNotices={action('fetchMoreNotices')}
+      fetchedAll={false}
       contributor={generateStatefulContributor({ loading: true })}
       similarContributors={[
         generateStatefulContributor(),
@@ -72,6 +76,8 @@ storiesOf('Profile/Profile', module)
       noticesLoading={false}
       subscribe={action('subscribe')}
       unsubscribe={action('unsubscribe')}
+      fetchMoreNotices={action('fetchMoreNotices')}
+      fetchedAll={false}
       contributor={generateStatefulContributor()}
       similarContributors={[
         generateStatefulContributor(),
@@ -98,6 +104,8 @@ storiesOf('Profile/Profile', module)
       noticesLoading
       subscribe={action('subscribe')}
       unsubscribe={action('unsubscribe')}
+      fetchMoreNotices={action('fetchMoreNotices')}
+      fetchedAll={false}
       contributor={generateStatefulContributor()}
       similarContributors={[
         generateStatefulContributor(),

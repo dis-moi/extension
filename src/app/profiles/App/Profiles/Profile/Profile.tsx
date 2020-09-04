@@ -1,6 +1,6 @@
 import React, { useState, MouseEvent } from 'react';
 import styled from 'styled-components';
-import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
+import { StatefulContributor } from 'app/lmem/contributor';
 import { Notice } from 'app/lmem/notice';
 import Error from '../../Error';
 import {
@@ -134,8 +134,10 @@ export interface ProfileProps {
   noticesLoading?: boolean;
   notices: Notice[];
   featuredNotice?: Notice;
-  subscribe: (contributorId: ContributorId) => void;
-  unsubscribe: (contributorId: ContributorId) => void;
+  subscribe: () => void | undefined;
+  unsubscribe: () => void | undefined;
+  fetchMoreNotices: () => void | undefined;
+  fetchedAll: boolean;
   similarContributors: StatefulContributor[];
   contributors: StatefulContributor[];
   contributorsLoading?: boolean;
@@ -154,7 +156,9 @@ export const Profile = ({
   contributors,
   contributorsLoading,
   connected,
-  addToBrowser
+  addToBrowser,
+  fetchMoreNotices,
+  fetchedAll
 }: ProfileProps) => {
   const [notConnectedPopinState, setNotConnectedPopinState] = useState<
     NotConnectedPopinState
@@ -170,9 +174,9 @@ export const Profile = ({
   }
 
   const handleSubscribe = (contributor?: StatefulContributor) => () => {
-    if (contributor) {
+    if (subscribe) {
       if (connected) {
-        subscribe(contributor.id);
+        subscribe();
       } else {
         setNotConnectedPopinState({ opened: true, contributor });
       }
@@ -180,9 +184,9 @@ export const Profile = ({
   };
 
   const handleUnsubscribe = (contributor?: StatefulContributor) => () => {
-    if (contributor) {
+    if (unsubscribe) {
       if (connected) {
-        unsubscribe(contributor.id);
+        unsubscribe();
       } else {
         setNotConnectedPopinState({ opened: true, contributor });
       }
@@ -226,6 +230,8 @@ export const Profile = ({
           loading={noticesLoading}
           notices={notices}
           seeNoticeInContext={handleSeeNoticeInContext}
+          fetchMoreNotices={fetchMoreNotices}
+          fetchedAll={fetchedAll}
         />
       </MainCol>
 

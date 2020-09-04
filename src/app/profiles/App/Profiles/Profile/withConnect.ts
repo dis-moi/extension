@@ -1,12 +1,12 @@
-import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import { ContributorId } from 'app/lmem/contributor';
 import { subscribe, unsubscribe } from 'app/actions/subscription';
 import {
+  areContributorNoticesAllFetched,
   getContributorFromRouteParam,
-  getFeaturedNotice,
   getContributorNoticesButFeaturedOne,
+  getFeaturedNotice,
   getSimilarContributors,
   getStatefulContributors
 } from 'app/profiles/store/selectors';
@@ -16,6 +16,7 @@ import { isConnected } from 'app/profiles/store/selectors/connection';
 import { ProfilesState } from 'app/profiles/store/reducers';
 import { ProfileProps } from './Profile';
 import { extensionMessageSender } from 'app/profiles/extensionId';
+import { fetchMoreContributorNotices } from '../../../store/actions/notices';
 
 export type ConnectedProfileScreenProps = ProfileProps &
   RouteComponentProps<{ id: string }>;
@@ -32,19 +33,42 @@ const mapStateToProps = (
   featuredNotice: getFeaturedNotice(state, props),
   noticesLoading: areNoticesLoading(state),
   notices: getContributorNoticesButFeaturedOne(state, props),
+  fetchedAll: (contributorId: ContributorId) =>
+    areContributorNoticesAllFetched(state, contributorId),
   connected: isConnected(state),
   addToBrowser: clickInstallHandler
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
-  const receiver = extensionMessageSender;
-
-  return {
-    subscribe: (contributorId: ContributorId) =>
-      dispatch(subscribe(contributorId, { receiver })),
-    unsubscribe: (contributorId: ContributorId) =>
-      dispatch(unsubscribe(contributorId, { receiver }))
-  };
+const mapDispatchToProps = {
+  subscribe: (contributorId: ContributorId) =>
+    subscribe(contributorId, { receiver: extensionMessageSender }),
+  unsubscribe: (contributorId: ContributorId) =>
+    unsubscribe(contributorId, { receiver: extensionMessageSender }),
+  fetchMoreNotices: fetchMoreContributorNotices
 };
 
-export default connect(mapStateToProps, mapDispatchToProps);
+const mergeProps = (
+  stateProps: ReturnType<typeof mapStateToProps>,
+  dispatchProps: typeof mapDispatchToProps,
+  ownProps: object
+) => ({
+  ...ownProps,
+  ...stateProps,
+  fetchedAll: stateProps.contributor
+    ? stateProps.fetchedAll(stateProps.contributor?.id)
+    : false,
+  subscribe: () => {
+    if (stateProps.contributor)
+      dispatchProps.subscribe(stateProps.contributor.id);
+  },
+  unsubscribe: () => {
+    if (stateProps.contributor)
+      dispatchProps.unsubscribe(stateProps.contributor.id);
+  },
+  fetchMoreNotices: () => {
+    if (stateProps.contributor)
+      dispatchProps.fetchMoreNotices(stateProps.contributor.id);
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps);
