@@ -1,3 +1,15 @@
+# [3.45.0](https://github.com/dis-moi/extension/compare/v3.44.0...v3.45.0) (2020-09-04)
+
+
+### Bug Fixes
+
+* missing relayers in enhanced notice ([373700b](https://github.com/dis-moi/extension/commit/373700b9c762d666e6ca19e505ad37d9dc7f107c))
+
+
+### Features
+
+* **profiles:** add pagination to contributor’s notices list ([1267b19](https://github.com/dis-moi/extension/commit/1267b19668b6829546bab84b7ad6dee4493d5e8e))
+
 # [3.44.0](https://github.com/dis-moi/extension/compare/v3.43.1...v3.44.0) (2020-08-31)
 
 
