@@ -1,6 +1,6 @@
 import Faker from 'faker';
 import { subMonths, subWeeks } from 'date-fns';
-import { StatefulNotice } from 'app/lmem/notice';
+import { StatefulNoticeWithContributor } from 'app/lmem/notice';
 import { Contributor } from 'app/lmem/contributor';
 import { generateContributor } from './generateContributor';
 
@@ -34,7 +34,7 @@ export const generateStatefulNotice = ({
   dismissed,
   read,
   exampleUrl
-}: Options = {}): StatefulNotice => {
+}: Options = {}): StatefulNoticeWithContributor => {
   const id = Math.random() * 1000;
   return {
     id,
@@ -46,13 +46,13 @@ export const generateStatefulNotice = ({
     strippedMessage: strippedMessage || message || defaultMessage,
     ratings: { likes: likes || 42, dislikes: dislikes || 2 },
     contributor: contributor || generateContributor(),
+    relayers: [generateContributor()],
     visibility: 'public',
     state: {
       liked: Boolean(liked),
       dismissed: Boolean(dismissed),
       disliked: Boolean(disliked),
       read: Boolean(read)
-    },
-    relayers: [generateContributor()],
+    }
   };
 };

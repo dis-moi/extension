@@ -2,7 +2,8 @@ import {
   getIgnoringReason,
   IgnoringReason,
   Notice,
-  StatefulNotice
+  StatefulNotice,
+  StatefulNoticeWithContributor
 } from 'app/lmem/notice';
 import Tab from 'app/lmem/tab';
 import {
@@ -95,12 +96,12 @@ export const NOTICES_FOUND = 'NOTICES_FOUND';
 export interface NoticesFoundAction extends TabAction {
   type: typeof NOTICES_FOUND;
   payload: {
-    notices: StatefulNotice[];
+    notices: StatefulNoticeWithContributor[];
   };
 }
 
 export const noticesFound = (
-  notices: StatefulNotice[],
+  notices: StatefulNoticeWithContributor[],
   tab: Tab
 ): NoticesFoundAction => ({
   type: NOTICES_FOUND,

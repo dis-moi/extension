@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { format } from 'date-fns';
 import { BorderButton, Box, LoadingRotator, Paragraph } from 'components/atoms';
-import { Notice } from 'app/lmem/notice';
+import { NoticeWithContributor } from 'app/lmem/notice';
 import { LoadingBig, Pin } from 'components/atoms/icons';
 import { stripUrlProtocol } from 'app/utils/stripUrlProtocol';
 
@@ -54,7 +54,7 @@ const NoticeBottomLine = styled.div`
 `;
 
 export interface ProfileNoticeListItemProps {
-  notice?: Notice;
+  notice?: NoticeWithContributor;
   loading?: boolean;
   seeInContext: () => void;
   className?: string;

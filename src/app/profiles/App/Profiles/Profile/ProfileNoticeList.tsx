@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Notice } from 'app/lmem/notice';
+import { NoticeWithContributor } from 'app/lmem/notice';
 import ProfileNoticeListItem from './ProfileNoticeListItem';
 import { LoadingBig } from 'components/atoms/icons';
 import { CenterContainer, Link, LoadingRotator } from 'components/atoms';
@@ -9,8 +9,8 @@ const ProfileNoticeList = styled.section``;
 
 export interface ProfileNoticeListProps {
   loading?: boolean;
-  notices: Notice[];
-  seeNoticeInContext: (notice: Notice) => () => void;
+  notices: NoticeWithContributor[];
+  seeNoticeInContext: (notice: NoticeWithContributor) => () => void;
   fetchMoreNotices: () => void;
   fetchedAll: boolean;
 }

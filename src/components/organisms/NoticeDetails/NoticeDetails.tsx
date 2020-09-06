@@ -10,7 +10,7 @@ import {
   Timer
 } from 'components/atoms';
 import { Relay } from 'components/atoms/icons';
-import { StatefulNotice } from 'app/lmem/notice';
+import { StatefulNoticeWithContributor } from 'app/lmem/notice';
 import {
   CountDownState,
   initialState as countdownInitialState
@@ -86,7 +86,7 @@ const Relayer = styled(ContributorNotice)`
 `;
 
 export interface NoticeDetailsDataProps {
-  notice: StatefulNotice;
+  notice: StatefulNoticeWithContributor;
   relayer?: Contributor;
 }
 

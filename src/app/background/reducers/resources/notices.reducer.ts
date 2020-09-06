@@ -1,12 +1,15 @@
 import * as R from 'ramda';
 import { AppAction, NOTICES_FETCHED } from 'app/actions';
-import { Notice } from 'app/lmem/notice';
+import { NoticeWithContributor } from 'app/lmem/notice';
 
-export type Notices = Notice[];
+type NoticesWithContributor = NoticeWithContributor[];
 
-export const initialState: Notices = [];
+export const initialState: NoticesWithContributor = [];
 
-export default (state: Notices = initialState, action: AppAction) => {
+export default (
+  state: NoticesWithContributor = initialState,
+  action: AppAction
+) => {
   switch (action.type) {
     case NOTICES_FETCHED:
       return R.uniqWith(R.eqProps('id'), R.concat(state, action.payload));

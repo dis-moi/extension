@@ -16,15 +16,17 @@ export interface BaseNotice {
   screenshot?: string;
 }
 
-export interface Notice extends BaseNotice {
+export interface NoticeWithContributor extends BaseNotice {
   contributor: Contributor;
   relayers: Contributor[];
 }
 
-export interface NoticeItem extends BaseNotice {
+export interface NoticeWithContributorId extends BaseNotice {
   contributorId: ContributorId;
   relayersIds: ContributorId[];
 }
+
+export type Notice = NoticeWithContributorId | NoticeWithContributor;
 
 export interface Contribution {
   url: string;
@@ -43,9 +45,16 @@ export interface NoticeState {
   justDismissed?: boolean;
 }
 
-export interface StatefulNotice extends Notice {
+export type StatefulNoticeWithContributor = NoticeWithContributor & {
   state: NoticeState;
-}
+};
+export type StatefulNoticeWithContributorId = NoticeWithContributorId & {
+  state: NoticeState;
+};
+
+export type StatefulNotice =
+  | StatefulNoticeWithContributor
+  | StatefulNoticeWithContributorId;
 
 export enum NoticeFeedbackType {
   DISMISS = 'dismiss',
@@ -65,7 +74,7 @@ export const isIgnored = (notice: StatefulNotice): boolean =>
 export const getIgnoringReason = (notice: StatefulNotice): IgnoringReason =>
   notice.state.dismissed ? 'dismiss' : 'dislike';
 
-export const dismissNotice = (notice: StatefulNotice): StatefulNotice => ({
+export const dismissNotice = <N extends StatefulNotice>(notice: N): N => ({
   ...notice,
   state: {
     ...notice.state,
@@ -74,9 +83,9 @@ export const dismissNotice = (notice: StatefulNotice): StatefulNotice => ({
   }
 });
 
-export const confirmDismissNotice = (
-  notice: StatefulNotice
-): StatefulNotice => ({
+export const confirmDismissNotice = <N extends StatefulNotice>(
+  notice: N
+): N => ({
   ...notice,
   state: {
     ...notice.state,
@@ -84,7 +93,7 @@ export const confirmDismissNotice = (
   }
 });
 
-export const undismissNotice = (notice: StatefulNotice): StatefulNotice => ({
+export const undismissNotice = <N extends StatefulNotice>(notice: N): N => ({
   ...notice,
   state: {
     ...notice.state,
@@ -96,7 +105,7 @@ export const undismissNotice = (notice: StatefulNotice): StatefulNotice => ({
 export const incrementRating = (rating?: number) => (rating || 0) + 1;
 export const decrementRating = (rating?: number) => (!rating ? 0 : rating - 1);
 
-export const likeNotice = (notice: StatefulNotice): StatefulNotice => ({
+export const likeNotice = <N extends StatefulNotice>(notice: N): N => ({
   ...notice,
   ratings: {
     ...notice.ratings,
@@ -108,7 +117,7 @@ export const likeNotice = (notice: StatefulNotice): StatefulNotice => ({
     justLiked: true
   }
 });
-export const unlikeNotice = (notice: StatefulNotice): StatefulNotice => ({
+export const unlikeNotice = <N extends StatefulNotice>(notice: N): N => ({
   ...notice,
   ratings: {
     ...notice.ratings,
@@ -120,7 +129,7 @@ export const unlikeNotice = (notice: StatefulNotice): StatefulNotice => ({
     justLiked: false
   }
 });
-export const dislikeNotice = (notice: StatefulNotice): StatefulNotice => ({
+export const dislikeNotice = <N extends StatefulNotice>(notice: N): N => ({
   ...notice,
   ratings: {
     ...notice.ratings,
@@ -132,16 +141,16 @@ export const dislikeNotice = (notice: StatefulNotice): StatefulNotice => ({
     justDisliked: true
   }
 });
-export const confirmDislikeNotice = (
-  notice: StatefulNotice
-): StatefulNotice => ({
+export const confirmDislikeNotice = <N extends StatefulNotice>(
+  notice: N
+): N => ({
   ...notice,
   state: {
     ...notice.state,
     justDisliked: false
   }
 });
-export const undislikeNotice = (notice: StatefulNotice): StatefulNotice => ({
+export const undislikeNotice = <N extends StatefulNotice>(notice: N): N => ({
   ...notice,
   ratings: {
     ...notice.ratings,
@@ -153,7 +162,7 @@ export const undislikeNotice = (notice: StatefulNotice): StatefulNotice => ({
     justDisliked: false
   }
 });
-export const markNoticeRead = (notice: StatefulNotice): StatefulNotice => ({
+export const markNoticeRead = <N extends StatefulNotice>(notice: N): N => ({
   ...notice,
   state: {
     ...notice.state,
@@ -161,14 +170,14 @@ export const markNoticeRead = (notice: StatefulNotice): StatefulNotice => ({
   }
 });
 
-export const getNotice = <N extends Notice>(
+export const getNotice = <N extends NoticeWithContributor>(
   id: number,
   notices: N[]
 ): N | undefined => find((notice: N): boolean => notice.id === id, notices);
 
 export const isNoticeValid = (notice: {
   [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
-}): notice is Notice => {
+}): notice is NoticeWithContributor => {
   if (Object(notice) !== notice) return false;
 
   const { contributor, message } = notice;
@@ -180,7 +189,7 @@ export const isNoticeValid = (notice: {
   );
 };
 
-export const warnIfNoticeInvalid = (notice: Notice): boolean => {
+export const warnIfNoticeInvalid = (notice: NoticeWithContributor): boolean => {
   const valid = isNoticeValid(notice);
 
   if (!valid) {

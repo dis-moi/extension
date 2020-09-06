@@ -14,13 +14,13 @@ import {
   TAB_DIED,
   TAB_REMOVED
 } from 'app/actions';
-import { StatefulNotice } from 'app/lmem/notice';
+import { StatefulNoticeWithContributor } from 'app/lmem/notice';
 
 export interface TabsState {
   [tabId: string]: Tab;
 }
 
-export const toNoticesIds = (notices: StatefulNotice[]) =>
+export const toNoticesIds = (notices: StatefulNoticeWithContributor[]) =>
   notices.map(({ id }) => id);
 
 export const initialState: TabsState = {};

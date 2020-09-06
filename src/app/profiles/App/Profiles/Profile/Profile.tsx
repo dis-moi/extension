@@ -1,7 +1,7 @@
 import React, { useState, MouseEvent } from 'react';
 import styled from 'styled-components';
 import { StatefulContributor } from 'app/lmem/contributor';
-import { Notice } from 'app/lmem/notice';
+import { NoticeWithContributor } from 'app/lmem/notice';
 import Error from '../../Error';
 import {
   Box,
@@ -132,8 +132,8 @@ const SidebarBoxWithAction = styled(SidebarBox)`
 export interface ProfileProps {
   contributor?: StatefulContributor;
   noticesLoading?: boolean;
-  notices: Notice[];
-  featuredNotice?: Notice;
+  notices: NoticeWithContributor[];
+  featuredNotice?: NoticeWithContributor;
   subscribe: () => void | undefined;
   unsubscribe: () => void | undefined;
   fetchMoreNotices: () => void | undefined;
@@ -193,7 +193,7 @@ export const Profile = ({
     }
   };
 
-  const handleSeeNoticeInContext = (notice?: Notice) => () => {
+  const handleSeeNoticeInContext = (notice?: NoticeWithContributor) => () => {
     if (connected) {
       if (contributor?.subscribed) {
         if (notice && notice.exampleUrl) {

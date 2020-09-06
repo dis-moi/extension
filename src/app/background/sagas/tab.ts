@@ -26,7 +26,11 @@ import {
 } from 'app/actions';
 import { createErrorAction } from 'app/actions/helpers';
 import { MatchingContext } from 'app/lmem/matchingContext';
-import { Notice, StatefulNotice, warnIfNoticeInvalid } from 'app/lmem/notice';
+import {
+  NoticeWithContributor,
+  StatefulNoticeWithContributor,
+  warnIfNoticeInvalid
+} from 'app/lmem/notice';
 import { fetchNoticesByUrls } from 'api/fetchNotice';
 import {
   areTosAccepted,
@@ -88,15 +92,22 @@ export const contextTriggeredSaga = function*({
 
     const callAndRetry = createCallAndRetry({ maximumAttempts: 5 });
 
-    const notices = yield callAndRetry(fetchNoticesByUrls, toFetch);
+    const notices: NoticeWithContributor[] | undefined = yield callAndRetry(
+      fetchNoticesByUrls,
+      toFetch
+    );
 
-    if (!notices)
+    if (!notices) {
       yield put(
         contextTriggerFailure(new Error('Could not fetch notices'), tab)
       );
+      return;
+    }
 
     yield put(noticesFetched(notices));
-    const validNotices: Notice[] = notices.filter(warnIfNoticeInvalid);
+    const validNotices: NoticeWithContributor[] = notices.filter(
+      warnIfNoticeInvalid
+    );
 
     // Break saga execution if the "installation is not complete".
     if (!tosAccepted || nbSubscriptions === 0) {
@@ -107,7 +118,7 @@ export const contextTriggeredSaga = function*({
       yield put(clearServiceMessage(tab));
     }
 
-    const noticesToShow: StatefulNotice[] = yield select(
+    const noticesToShow: StatefulNoticeWithContributor[] = yield select(
       getNoticesToDisplay(validNotices)
     );
     if (noticesToShow.length > 0) {
@@ -117,7 +128,7 @@ export const contextTriggeredSaga = function*({
       yield put(noNoticesDisplayed(tab));
     }
 
-    const ignoredNotices: StatefulNotice[] = yield select(
+    const ignoredNotices: StatefulNoticeWithContributor[] = yield select(
       getIgnoredNotices(validNotices)
     );
     yield all(
