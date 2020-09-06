@@ -5,7 +5,7 @@ import notices from './notices.reducer';
 import restrictedContexts from './restrictedContexts.reducer';
 import { Contributor } from 'app/lmem/contributor';
 import { MatchingContext, RestrictedContext } from 'app/lmem/matchingContext';
-import { Notice } from 'app/lmem/notice';
+import { NoticeWithContributor } from 'app/lmem/notice';
 
 export interface StateWithContributors {
   contributors: Contributor[];
@@ -14,7 +14,7 @@ export interface StateWithContributors {
 export interface ResourcesState extends StateWithContributors {
   matchingContexts: MatchingContext[];
   restrictedContexts: RestrictedContext[];
-  notices: Notice[];
+  notices: NoticeWithContributor[];
 }
 
 export default combineReducers({

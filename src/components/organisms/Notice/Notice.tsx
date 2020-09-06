@@ -8,7 +8,7 @@ import Content from './Content';
 import Deleted from './Deleted';
 import DeleteButton from './DeleteButton';
 import Title from './Title';
-import { StatefulNotice } from 'app/lmem/notice';
+import { StatefulNoticeWithContributor } from 'app/lmem/notice';
 import {
   CountDownState,
   initialState as countdownInitialState
@@ -45,13 +45,13 @@ const ContributorName = styled(Contributor)`
 `;
 
 export interface NoticeTransitionProps {
-  item: StatefulNotice;
+  item: StatefulNoticeWithContributor;
   props: object;
   key: string;
 }
 
 interface Props {
-  notice: StatefulNotice;
+  notice: StatefulNoticeWithContributor;
   dismiss: (id: number) => void;
   confirmDismiss: (id: number) => void;
   undismiss: (id: number) => void;

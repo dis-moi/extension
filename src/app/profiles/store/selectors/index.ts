@@ -8,7 +8,7 @@ import {
   StatefulContributor
 } from 'app/lmem/contributor';
 import { Subscription, Subscriptions } from 'app/lmem/subscription';
-import { Notice, NoticeItem } from 'app/lmem/notice';
+import { Notice, NoticeWithContributor } from 'app/lmem/notice';
 import { makeGetRouteParam } from 'app/store/selectors';
 import { getContributors } from './contributors';
 import { getNotices as getNoticesItems, getNoticesCollection } from './notices';
@@ -64,17 +64,23 @@ export const getFeaturedNoticeId = createSelector(
 );
 
 export const enhanceNotice = (contributors: Contributor[]) => (
-  noticeItem: NoticeItem
-): Notice => ({
+  noticeItem: Notice
+): NoticeWithContributor => ({
   ...noticeItem,
-  relayers: noticeItem.relayersIds
-    .map(relayerId =>
-      contributors.find(contributor => relayerId === contributor.id)
-    )
-    .filter(RA.isNotNil) as Contributor[],
-  contributor: contributors.find(
-    contributor => noticeItem.contributorId === contributor.id
-  ) as Contributor
+  contributor:
+    'contributor' in noticeItem
+      ? noticeItem.contributor
+      : (contributors.find(
+          contributor => noticeItem.contributorId === contributor.id
+        ) as Contributor),
+  relayers:
+    'relayers' in noticeItem
+      ? noticeItem.relayers
+      : ((noticeItem.relayersIds || [])
+          .map((relayerId: ContributorId) =>
+            contributors.find(contributor => relayerId === contributor.id)
+          )
+          .filter(RA.isNotNil) as Contributor[])
 });
 
 export const getNotices = createSelector(

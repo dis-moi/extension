@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect';
 import {
-  Notice,
-  StatefulNotice,
+  NoticeWithContributor,
   isIgnored,
-  shouldNoticeBeShown
+  shouldNoticeBeShown,
+  StatefulNoticeWithContributor
 } from 'app/lmem/notice';
 import { BackgroundState } from '../reducers';
 
@@ -28,7 +28,7 @@ export const getAddStateToNotice = (state: BackgroundState) => {
   const disliked = getDisliked(state);
   const read = getRead(state);
 
-  return (notice: Notice): StatefulNotice => ({
+  return (notice: NoticeWithContributor): StatefulNoticeWithContributor => ({
     ...notice,
     state: {
       dismissed: dismissed.includes(notice.id),
@@ -39,19 +39,19 @@ export const getAddStateToNotice = (state: BackgroundState) => {
   });
 };
 
-export const getNoticesToDisplay = (notices: Notice[]) => (
+export const getNoticesToDisplay = (notices: NoticeWithContributor[]) => (
   state: BackgroundState
-): StatefulNotice[] =>
+): StatefulNoticeWithContributor[] =>
   notices.map(getAddStateToNotice(state)).filter(shouldNoticeBeShown);
 
-export const getDismissedNotices = (notices: Notice[]) => (
+export const getDismissedNotices = (notices: NoticeWithContributor[]) => (
   state: BackgroundState
-): StatefulNotice[] =>
+): StatefulNoticeWithContributor[] =>
   notices
     .map(getAddStateToNotice(state))
     .filter(notice => notice.state.dismissed);
 
-export const getIgnoredNotices = (notices: Notice[]) => (
+export const getIgnoredNotices = (notices: NoticeWithContributor[]) => (
   state: BackgroundState
-): StatefulNotice[] =>
+): StatefulNoticeWithContributor[] =>
   notices.map(getAddStateToNotice(state)).filter(isIgnored);

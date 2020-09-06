@@ -10,7 +10,7 @@ import {
   markNoticeRead,
   confirmDismissNotice,
   confirmDislikeNotice,
-  StatefulNotice
+  StatefulNoticeWithContributor
 } from 'app/lmem/notice';
 import {
   FEEDBACK_ON_NOTICE,
@@ -22,7 +22,7 @@ import {
   UNSUBSCRIBE
 } from 'app/actions';
 
-export type NoticesState = StatefulNotice[];
+export type NoticesState = StatefulNoticeWithContributor[];
 
 export default (state: NoticesState = [], action: AppAction): NoticesState => {
   switch (action.type) {

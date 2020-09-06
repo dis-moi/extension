@@ -8,11 +8,11 @@ import NoticeItem, {
   transitionKeys
 } from 'components/organisms/Notice/Notice';
 import ListContainer from './ListContainer';
-import { StatefulNotice } from 'app/lmem/notice';
+import { StatefulNoticeWithContributor } from 'app/lmem/notice';
 import withConnect from './withConnect';
 
 export interface Props {
-  notices: StatefulNotice[];
+  notices: StatefulNoticeWithContributor[];
   dismiss: (id: number) => void;
   confirmDismiss: (id: number) => void;
   undismiss: (id: number) => void;
