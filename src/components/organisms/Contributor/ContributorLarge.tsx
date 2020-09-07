@@ -88,9 +88,7 @@ const ContributorLarge = ({
 
       {!loading && contributor && (
         <>
-          <ContributorIntro
-            intro={contributor.intro || 'Description non renseignée'}
-          />
+          <ContributorIntro intro={contributor.intro || ''} />
           {children}
         </>
       )}
