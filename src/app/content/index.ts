@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires, import/first */
+import 'core-js/stable';
 import Logger from 'app/utils/Logger';
 Logger.info('Content script injected...');
 

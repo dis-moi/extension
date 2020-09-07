@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 // Early imports with high priority stuff involved, such as event listeners creation
+import 'core-js/stable';
 import { BACKEND_ORIGIN } from 'app/constants/origins';
 import onInstalled from 'webext/onInstalled';
 import onStartup from 'webext/onStartup';
