@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 import * as R from 'ramda';
-import { BaseAction } from 'app/actions';
+import { BaseAction, NAVIGATED_TO_URL } from 'app/actions';
 import assocMetaIfNotGiven from './assocMetaIfNotGiven';
 import { getOptionsUrl } from './openOptionsTab';
 import { Emit } from 'app/store/types';
@@ -38,21 +38,41 @@ const getTabFrom = (
 /**
  * Chrome keeps the `url` property in `sender.tab` but Firefox does not,
  * without the `tabs` permission, but still gives it in `sender.url` for some reason.
- * @param sender
+ * Edit 2020: Firefox doesn't always give the right `url`, however in one special scenario
+ * we can get the right URL from our action `payload`.
  */
-const getTabFromSender = (sender: MessageSender): browser.tabs.Tab => ({
-  ...(sender.tab as browser.tabs.Tab),
-  url: sender.tab && sender.tab.url ? sender.tab.url : sender.url
-});
+const getUrlFromActionOrSender = (
+  action: Action,
+  sender: MessageSender
+): string | undefined => {
+  if (action.type === NAVIGATED_TO_URL) {
+    return R.path(['payload', 'url'])(action) as string | undefined;
+  } else if (sender.tab && sender.tab.url) {
+    return sender.tab.url;
+  } else {
+    return sender.url;
+  }
+};
+
+const getTabFromSender = (
+  action: Action,
+  sender: MessageSender
+): browser.tabs.Tab => {
+  return {
+    ...(sender.tab as browser.tabs.Tab),
+    url: getUrlFromActionOrSender(action, sender)
+  };
+};
 
 type ActionWithTab = Action & { meta: { tab: browser.tabs.Tab } };
 
 const addSenderToAction = <A extends BaseAction>(sender: MessageSender) =>
   R.pipe<A, ActionWithTab, ReceivedAction>(
-    assocMetaIfNotGiven<'tab', browser.tabs.Tab>(
-      'tab',
-      getTabFromSender(sender)
-    ),
+    action =>
+      assocMetaIfNotGiven<'tab', browser.tabs.Tab>(
+        'tab',
+        getTabFromSender(action, sender)
+      )(action),
     action =>
       assocMetaIfNotGiven<'from', PossibleOriginInBackground>(
         'from',
