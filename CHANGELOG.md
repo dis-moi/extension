@@ -1,3 +1,10 @@
+## [3.45.1](https://github.com/dis-moi/extension/compare/v3.45.0...v3.45.1) (2020-09-07)
+
+
+### Bug Fixes
+
+* profiles crashes because featured notices does not have relayersIds ([876207d](https://github.com/dis-moi/extension/commit/876207d6c7583e86c3c7d7ce052cc770c745c902))
+
 # [3.45.0](https://github.com/dis-moi/extension/compare/v3.44.0...v3.45.0) (2020-09-04)
 
 
