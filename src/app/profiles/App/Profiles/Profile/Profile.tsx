@@ -1,6 +1,6 @@
 import React, { useState, MouseEvent } from 'react';
 import styled from 'styled-components';
-import { StatefulContributor } from 'app/lmem/contributor';
+import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
 import { NoticeWithContributor } from 'app/lmem/notice';
 import Error from '../../Error';
 import {
@@ -134,8 +134,8 @@ export interface ProfileProps {
   noticesLoading?: boolean;
   notices: NoticeWithContributor[];
   featuredNotice?: NoticeWithContributor;
-  subscribe: () => void | undefined;
-  unsubscribe: () => void | undefined;
+  subscribe: (contributorId: ContributorId) => void;
+  unsubscribe: (contributorId: ContributorId) => void;
   fetchMoreNotices: () => void | undefined;
   fetchedAll: boolean;
   similarContributors: StatefulContributor[];
@@ -174,9 +174,9 @@ export const Profile = ({
   }
 
   const handleSubscribe = (contributor?: StatefulContributor) => () => {
-    if (subscribe) {
+    if (contributor) {
       if (connected) {
-        subscribe();
+        subscribe(contributor.id);
       } else {
         setNotConnectedPopinState({ opened: true, contributor });
       }
@@ -184,9 +184,9 @@ export const Profile = ({
   };
 
   const handleUnsubscribe = (contributor?: StatefulContributor) => () => {
-    if (unsubscribe) {
+    if (contributor) {
       if (connected) {
-        unsubscribe();
+        unsubscribe(contributor.id);
       } else {
         setNotConnectedPopinState({ opened: true, contributor });
       }

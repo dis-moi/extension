@@ -54,17 +54,10 @@ const mergeProps = (
 ) => ({
   ...ownProps,
   ...stateProps,
+  ...dispatchProps,
   fetchedAll: stateProps.contributor
     ? stateProps.fetchedAll(stateProps.contributor?.id)
     : false,
-  subscribe: () => {
-    if (stateProps.contributor)
-      dispatchProps.subscribe(stateProps.contributor.id);
-  },
-  unsubscribe: () => {
-    if (stateProps.contributor)
-      dispatchProps.unsubscribe(stateProps.contributor.id);
-  },
   fetchMoreNotices: () => {
     if (stateProps.contributor)
       dispatchProps.fetchMoreNotices(stateProps.contributor.id);
