@@ -53,6 +53,7 @@ export const ContributorCompact = ({
     </ContributorInfos>
 
     <ContributorButton
+      loading={contributor.subscribing}
       subscribed={contributor.subscribed}
       onSubscribe={onSubscribe}
       onUnsubscribe={onUnsubscribe}

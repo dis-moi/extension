@@ -1,13 +1,13 @@
 import React from 'react';
 import Popin, { PopinProps } from 'components/molecules/Popin/Popin';
 import PopinParagraph from 'components/molecules/Popin/PopinParagraph';
-import { StatefulContributor } from 'app/lmem/contributor';
+import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
 import ContributorButton from 'components/organisms/Contributor/ContributorButton';
 
 interface SubscribePopinProps extends PopinProps {
   contributor: StatefulContributor;
-  subscribe: () => void | undefined;
-  unsubscribe: () => void | undefined;
+  subscribe: (contributorId: ContributorId) => void;
+  unsubscribe: (contributorId: ContributorId) => void;
 }
 
 const SubscribePopin = ({
@@ -26,10 +26,10 @@ const SubscribePopin = ({
         loading={contributor?.subscribing === true}
         subscribed={contributor?.subscribed}
         onSubscribe={() => {
-          subscribe && subscribe();
+          subscribe(contributor.id);
           setOpened(false);
         }}
-        onUnsubscribe={unsubscribe}
+        onUnsubscribe={() => unsubscribe(contributor.id)}
       />
     </Popin>
   );
