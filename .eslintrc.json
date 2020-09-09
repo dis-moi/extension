@@ -31,6 +31,8 @@
   "plugins": ["react"],
   "rules": {
     "no-console": "warn",
+    // Use either @typescript-eslint/no-unused-vars or this one but not both
+    "no-unused-vars": 0,
     // We don't actually set a display name for functional component
     "react/display-name": 0,
 
@@ -43,7 +45,7 @@
     // See SendInBlue types
     "@typescript-eslint/no-empty-interface": false,
     "@typescript-eslint/no-unused-vars": [
-      "error",
+      "warn",
       { "ignoreRestSiblings": true }
     ]
   }
