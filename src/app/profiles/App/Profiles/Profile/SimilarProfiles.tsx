@@ -12,7 +12,7 @@ import {
   Title2
 } from 'components/atoms';
 import Avatar from 'components/molecules/Avatar/Avatar';
-import UserName from 'components/atoms/UserName/UserName';
+import UserName from 'components/atoms/UserName/UserNameCompact';
 import pathToContributor from '../../pathToContributor';
 
 interface SimilarProfilesProps {
