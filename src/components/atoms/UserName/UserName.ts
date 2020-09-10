@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from '../Link';
 
-export default styled.h3`
+export default styled.h2`
   margin: 0;
   padding-bottom: 0;
   font-size: ${props => props.theme.fontSizeDefault};
