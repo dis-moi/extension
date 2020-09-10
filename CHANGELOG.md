@@ -1,3 +1,19 @@
+# [3.46.0](https://github.com/dis-moi/extension/compare/v3.45.1...v3.46.0) (2020-09-10)
+
+
+### Bug Fixes
+
+* **banner:** Fix default banner not showing up. ([c542725](https://github.com/dis-moi/extension/commit/c542725d2eda10e9f5375751f8fae9e718585fdd))
+* **FeaturedNotice:** resets max-width to improve display on mobile ([1e4c388](https://github.com/dis-moi/extension/commit/1e4c388fca766a0329ed711603f73e08eebc6756))
+* **firefox:** When navigating to another page wrong tab URl was transmited ([631d983](https://github.com/dis-moi/extension/commit/631d98377f2830f20b90644220f34d60e675e0c8))
+* **subscribe:** Fix subscription to a similar contributor. ([d48879b](https://github.com/dis-moi/extension/commit/d48879b51a67a7b10cfde8751e6f4dca574526a2))
+
+
+### Features
+
+* Consider ToS have been accepted when the extension is installed. ([571c406](https://github.com/dis-moi/extension/commit/571c4065a86bca3a7e7b68e10808946566ad160d))
+* **options:** Switch from options page to new profile external page. ([1915969](https://github.com/dis-moi/extension/commit/1915969414e6dd5d07a93d9b0ff3c7a14d11a282))
+
 ## [3.45.1](https://github.com/dis-moi/extension/compare/v3.45.0...v3.45.1) (2020-09-07)
 
 
