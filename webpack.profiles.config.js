@@ -43,9 +43,9 @@ module.exports = function webpack(env = {}, argv = {}) {
           options: {
             publicPath: process.env.PROFILES_ASSETS_PATH,
             name: '[path][name].[ext]',
-            context: 'src/assets',
+            context: 'src/assets'
           }
-        },
+        }
       ]
     },
     entry: [
@@ -89,16 +89,18 @@ module.exports = function webpack(env = {}, argv = {}) {
             from: 'node_modules/typeface-sedgwick-ave/files/',
             to: path.join(defaultWebpackConfig.output.path, 'fonts/')
           },
-          argv.mode === 'production'
-            ? null
-            : {
-                from: 'test/integration',
-                to: path.join(
-                  defaultWebpackConfig.output.path,
-                  'test',
-                  'integration'
-                )
-              }
+          {
+            from: 'test/integration',
+            to: path.join(
+              defaultWebpackConfig.output.path,
+              'test',
+              'integration'
+            )
+          },
+          {
+            from: 'etc/profiles/public',
+            to: defaultWebpackConfig.output.path
+          }
         ].filter(Boolean)
       ),
       new LodashModuleReplacementPlugin()
