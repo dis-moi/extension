@@ -1,3 +1,10 @@
+## [3.46.1](https://github.com/dis-moi/extension/compare/v3.46.0...v3.46.1) (2020-09-15)
+
+
+### Bug Fixes
+
+* Setup profiles app proding and staging envs ([e540a84](https://github.com/dis-moi/extension/commit/e540a84fc8db1b1f1f98320cb94ff731c5d011ae))
+
 # [3.46.0](https://github.com/dis-moi/extension/compare/v3.45.1...v3.46.0) (2020-09-10)
 
 
