@@ -1,3 +1,10 @@
+## [3.46.2](https://github.com/dis-moi/extension/compare/v3.46.1...v3.46.2) (2020-09-16)
+
+
+### Bug Fixes
+
+* Remove trailing slash on profiles origin ([6bf6c93](https://github.com/dis-moi/extension/commit/6bf6c93133562895fa22fb9ec48107946b82b433))
+
 ## [3.46.1](https://github.com/dis-moi/extension/compare/v3.46.0...v3.46.1) (2020-09-15)
 
 
