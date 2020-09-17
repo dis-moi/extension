@@ -1,12 +1,23 @@
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
 import * as R from 'ramda';
 import { AppAction } from '../../../actions';
+import { ItemIdentifierKey } from '../ItemIdentifier';
+import { FilterIdentifier } from '../FilterIdentifier';
 
 export interface Item {}
+
+export interface CollectionMeta {
+  fetchedCount?: number;
+  filter?: FilterIdentifier;
+  completed: boolean;
+}
 
 export interface ItemsAction<I extends Item> {
   type: string;
   payload: I[];
+  meta: {
+    collection: CollectionMeta;
+  };
 }
 
 export interface ItemAction<I extends Item> {
@@ -18,7 +29,10 @@ export type ItemsState<I extends Item> = I[];
 
 export const initialState = [];
 
-export default <I extends Item>(SUCCESS: string, itemIdentifier: string) => (
+export default <I extends Item>(
+  SUCCESS: string,
+  itemIdentifier: ItemIdentifierKey<I>
+) => (
   state: ItemsState<I> = initialState,
   action: AppAction
 ): ItemsState<I> => {

@@ -16,16 +16,20 @@ import {
 import { createErrorAction } from './helpers';
 import { ReceivedAction } from '../../webext/createMessageHandler';
 import { ContributorId } from '../lmem/contributor';
+import {
+  CollectionMeta,
+  ItemsAction
+} from '../store/collection/reducers/items';
 
 export interface NoticesByContributorParameters {
   contributor?: ContributorId;
   limit?: number;
-  offset: number;
+  offset?: number;
 }
 
 type FetchNoticesRequestParameters =
   | NoticesByContributorParameters
-  | { url: string };
+  | { url: string; contributor?: ContributorId; featured?: boolean };
 
 export const FETCH_NOTICES_REQUEST = 'NOTICES/FETCH_REQUEST';
 export interface FetchNoticesRequestAction extends BaseAction {
@@ -40,26 +44,32 @@ export const fetchNoticesRequest = (
 });
 
 export const NOTICES_FETCHED = 'NOTICES/FETCHED';
-export interface NoticesFetchedAction extends BaseAction {
+export interface NoticesFetchedAction extends BaseAction, ItemsAction<Notice> {
   type: typeof NOTICES_FETCHED;
   payload: Notice[];
   meta: ActionMeta & {
-    offset?: number;
-    offsetIndex?: ContributorId;
     contributorId?: ContributorId;
-    fetchedAll?: boolean;
+    collection: CollectionMeta;
   };
 }
 
 export const noticesFetched = (
   notices: Notice[],
-  offset?: number,
   contributorId?: ContributorId,
-  fetchedAll?: boolean
+  featured = false,
+  fetchedCount?: number,
+  completed = false
 ): NoticesFetchedAction => ({
   type: NOTICES_FETCHED,
   payload: notices,
-  meta: { offset, contributorId, offsetIndex: contributorId, fetchedAll }
+  meta: {
+    contributorId,
+    collection: {
+      completed,
+      fetchedCount,
+      filter: `${contributorId}${featured ? '*' : ''}`
+    }
+  }
 });
 
 export const FETCH_NOTICES_FAILURE = 'NOTICES/FETCH_FAILURE';

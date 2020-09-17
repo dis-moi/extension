@@ -14,7 +14,10 @@ import { getContributors } from './contributors';
 import { getNotices as getNoticesItems, getNoticesCollection } from './notices';
 import { getSubscriptions } from './subscriptions';
 import { ProfilesState } from '../reducers';
-import { getIndexedFetchedAll } from 'app/store/collection/selectors';
+import {
+  getFetchedAllForFilter,
+  getFetchedCountForFilter
+} from 'app/store/collection/selectors';
 
 export const createContributorEnhancer = (subscriptions: Subscriptions) => (
   contributor: Contributor
@@ -115,10 +118,18 @@ export const getContributorNoticesButFeaturedOne = createSelector(
     notices.filter(({ id }) => id !== featuredNoticeId)
 );
 
+export const getContributorNoticesFetchedCount = createSelector(
+  [
+    getNoticesCollection,
+    (state: ProfilesState, contributorId: ContributorId) => contributorId
+  ],
+  getFetchedCountForFilter
+);
+
 export const areContributorNoticesAllFetched = createSelector(
   [
     getNoticesCollection,
     (state: ProfilesState, contributorId: ContributorId) => contributorId
   ],
-  getIndexedFetchedAll
+  getFetchedAllForFilter
 );

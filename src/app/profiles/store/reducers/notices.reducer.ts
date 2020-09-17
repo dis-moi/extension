@@ -15,5 +15,5 @@ export default createCollectionReducer<Notice>(
   NOTICES_FETCHED,
   FETCH_NOTICES_FAILURE,
   'id',
-  { withOffset: true, indexedOffset: true }
+  { withPagination: true, withFilters: true }
 );

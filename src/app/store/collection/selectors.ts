@@ -17,16 +17,12 @@ export const isCollectionLoading = <I extends Item>({
   }
 };
 
-export const getIndexedOffset = <I extends Item>(
-  { offset }: CollectionState<I>,
-  index: string | number
-): number =>
-  offset && offset._indexed && offset[index] ? offset[index].current || 0 : 0;
+export const getFetchedCountForFilter = <I extends Item>(
+  { filters }: CollectionState<I>,
+  filterId: string | number
+): number => (filters ? filters[filterId]?.fetched || 0 : 0);
 
-export const getIndexedFetchedAll = <I extends Item>(
-  { offset }: CollectionState<I>,
-  index: string | number
-): boolean =>
-  offset && offset._indexed && offset[index]
-    ? offset[index].fetchedAll || false
-    : false;
+export const getFetchedAllForFilter = <I extends Item>(
+  { filters }: CollectionState<I>,
+  filterId: string | number
+): boolean => (filters ? filters[filterId]?.completed || false : false);

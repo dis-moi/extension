@@ -22,15 +22,34 @@ export default function* fetchNoticesSaga({
         yield call(fetchNotice, (payload as PayloadWithUrl).url)
       ];
 
-      yield put(noticesFetched(notices));
+      yield put(
+        noticesFetched(
+          notices,
+          payload.contributor,
+          payload.featured,
+          undefined,
+          true
+        )
+      );
     } else {
-      const { offset, contributor } = payload as NoticesByContributorParameters;
+      const {
+        offset = 0,
+        contributor
+      } = payload as NoticesByContributorParameters;
 
       const notices: Notice[] = yield call(fetchNotices, payload);
 
       const fetchedAll = notices.length < CONTRIBUTOR_NOTICES_BY_PAGE;
 
-      yield put(noticesFetched(notices, offset, contributor || 0, fetchedAll));
+      yield put(
+        noticesFetched(
+          notices,
+          contributor,
+          false,
+          offset + notices.length,
+          fetchedAll
+        )
+      );
     }
   } catch (e) {
     yield put(fetchNoticesFailure(e, {}));

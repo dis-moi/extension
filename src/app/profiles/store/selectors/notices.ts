@@ -1,7 +1,7 @@
 import { ProfilesState } from 'app/profiles/store/reducers';
 import { createSelector } from 'reselect';
 import {
-  getIndexedOffset,
+  getFetchedCountForFilter,
   isCollectionLoading
 } from 'app/store/collection/selectors';
 import { Notice } from 'app/lmem/notice';
@@ -18,10 +18,10 @@ export const getNotices = createSelector(
   noticesCollection => noticesCollection.items
 );
 
-export const getNoticesOffset = createSelector(
+export const getNoticesFetchedCountForContributorId = createSelector(
   [
     getNoticesCollection,
     (state: ProfilesState, contributorId: ContributorId) => contributorId
   ],
-  getIndexedOffset
+  getFetchedCountForFilter
 );

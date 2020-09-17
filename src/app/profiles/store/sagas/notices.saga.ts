@@ -7,7 +7,7 @@ import {
   FetchContributorNoticesAction,
   FetchMoreContributorNoticesAction
 } from '../actions/notices';
-import { getNoticesOffset } from '../selectors/notices';
+import { getNoticesFetchedCountForContributorId } from '../selectors/notices';
 
 export const CONTRIBUTOR_NOTICES_BY_PAGE = 10;
 
@@ -16,9 +16,7 @@ function* fetchContributorNoticesSaga({
 }: FetchContributorNoticesAction) {
   yield put(
     fetchNoticesRequest({
-      contributor: contributorId,
-      limit: CONTRIBUTOR_NOTICES_BY_PAGE,
-      offset: 0
+      contributor: contributorId
     })
   );
 }
@@ -26,13 +24,14 @@ function* fetchContributorNoticesSaga({
 function* fetchMoreContributorNoticesSaga({
   payload: contributorId
 }: FetchMoreContributorNoticesAction) {
-  const offset =
-    CONTRIBUTOR_NOTICES_BY_PAGE +
-    (yield select(getNoticesOffset, contributorId));
+  const fetchedCount = yield select(
+    getNoticesFetchedCountForContributorId,
+    contributorId
+  );
   yield put(
     fetchNoticesRequest({
       contributor: contributorId,
-      offset
+      offset: fetchedCount
     })
   );
 }
