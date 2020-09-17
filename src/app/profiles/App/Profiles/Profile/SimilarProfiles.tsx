@@ -13,6 +13,7 @@ import {
 } from 'components/atoms';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import UserName from 'components/atoms/UserName/UserName';
+import pathToContributor from '../../pathToContributor';
 
 interface SimilarProfilesProps {
   loading?: boolean;
@@ -76,6 +77,7 @@ const SimilarProfiles = ({
               contributor={contributor}
               onSubscribe={subscribe(contributor)}
               onUnsubscribe={unsubscribe(contributor)}
+              to={pathToContributor(contributor)}
             />
           ))}
       </SidebarBox>
