@@ -6,7 +6,6 @@ export default styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-right: 36px;
   margin-left: 15px;
 
   ${UserName} {
