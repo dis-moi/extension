@@ -36,19 +36,31 @@ const ProfileIntroContent = styled.section`
     ${ContributorWrapper} {
       display: flex;
       flex-wrap: wrap;
+
+      @media (max-width: ${props => props.theme.tabletWidth}) {
+        flex-wrap: nowrap;
+
+        ${Avatar} {
+          margin-top: 0;
+          width: 70px;
+          height: 70px;
+
+          & > img {
+            width: 70px;
+          }
+        }
+      }
     }
 
     ${Avatar} {
-      width: auto;
-      min-width: 120px;
-      height: auto;
-      min-height: 120px;
-      margin-top: -130px;
+      width: 90px;
+      height: 90px;
+      margin-top: -100px;
       border: 5px solid #fff;
 
       & > img {
-        width: 120px;
-        height: 120px;
+        width: 90px;
+        height: 90px;
       }
     }
 
@@ -80,7 +92,8 @@ const ProfileIntroContent = styled.section`
       }
 
       @media (max-width: ${props => props.theme.tabletWidth}) {
-        display: block;
+        display: flex;
+        margin-left: 16px;
 
         ${StatsWrapper} {
           & + div {
