@@ -14,15 +14,15 @@ const Wrapper = styled(Link)<WrapperProps>`
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  width: ${props => (props.size === 'small' ? '40px' : '90px')};
-  height: ${props => (props.size === 'small' ? '40px' : '90px')};
+  width: ${props => (props.size === 'small' ? '40px' : '70px')};
+  height: ${props => (props.size === 'small' ? '40px' : '70px')};
   background-color: ${props => props.theme.contributorGrey};
   border-radius: 50%;
   font-weight: normal;
   text-decoration: none;
 
   & > img {
-    width: ${props => (props.size === 'small' ? '40px' : '90px')};
+    width: ${props => (props.size === 'small' ? '40px' : '70px')};
     height: auto;
     border-radius: 50%;
   }
