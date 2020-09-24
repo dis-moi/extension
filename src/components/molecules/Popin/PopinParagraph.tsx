@@ -7,6 +7,8 @@ const PopinParagraph = styled(Paragraph)`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-end;
+  padding-right: 20px;
+  padding-left: 20px;
   text-align: left;
 
   &:not(:last-of-type) {

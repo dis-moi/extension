@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
-import { BackgroundButton, Box } from '../../atoms';
+import { BackgroundButton, Box, Link, Paragraph } from '../../atoms';
 import CloseButton from '../../organisms/Notification/NotificationHeader/CloseButton';
 
-export type PopinSize = 'small' | 'large';
+export type PopinSize = 'small' | 'large' | 'extralarge';
 
 export interface PopinState {
   opened: boolean;
@@ -32,24 +32,51 @@ const PopinWrapper = styled.div`
     padding-right: 15px;
     padding-left: 15px;
   }
+
+  ${Paragraph} {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  ${Link} {
+    color: ${props => props.theme.textColor};
+    text-decoration: underline;
+  }
+
+  ${BackgroundButton} {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
 `;
 
 interface PopinContentProps {
   size?: PopinSize;
 }
 
+const getMaxSize = props => {
+  if (props.size === 'large') {
+    return '550px';
+  } else if (props.size === 'extralarge') {
+    return '720px';
+  } else {
+    return '450px';
+  }
+};
+
 const PopinContent = styled(Box)<PopinContentProps>`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: ${props => (props.size === 'large' ? '550px' : ' 450px')};
+  max-width: ${getMaxSize};
   margin-right: auto;
   margin-left: auto;
   padding-top: 34px;
+  padding-right: 0;
+  padding-left: 0;
   font-size: ${props => props.theme.fontSizeDefault};
   text-align: center;
-  box-shadow: 0px 3px 6px #00000029;
+  box-shadow: 0 3px 6px #00000029;
 
   ${BackgroundButton} {
     margin-top: 20px;
