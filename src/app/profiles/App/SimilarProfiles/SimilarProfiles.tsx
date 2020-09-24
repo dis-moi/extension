@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { StatefulContributor } from 'app/lmem/contributor';
 import ContributorCompact from 'components/organisms/Contributor/ContributorCompact';
-import { SidebarBox } from '../Pages/Profiles/Profile/Profile';
+import ContributorNameLink from 'components/organisms/Contributor/ContributorNameLink';
 import { LoadingBig } from 'components/atoms/icons';
 import {
   CenterContainer,
@@ -12,6 +12,8 @@ import {
 } from 'components/atoms';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import pathToContributor from '../pathToContributor';
+import UserName from 'components/atoms/UserName/UserName';
+import SidebarBox from 'components/molecules/SidebarBox/SidebarBox';
 
 export interface SimilarProfilesProps {
   loading?: boolean;
@@ -110,6 +112,12 @@ export default styled(SimilarProfiles)`
     }
   }
 
+  ${Link} {
+    &::after {
+      content: none;
+    }
+  }
+
   @media (max-width: ${props => props.theme.desktopWidth}) {
     display: flex;
     flex-wrap: nowrap;
@@ -138,6 +146,16 @@ export default styled(SimilarProfiles)`
         img {
           width: 70px;
           height: 70px;
+        }
+      }
+
+      ${UserName} {
+        margin-bottom: 10px;
+
+        ${ContributorNameLink} {
+          display: block;
+          font-size: 16px;
+          white-space: normal;
         }
       }
 

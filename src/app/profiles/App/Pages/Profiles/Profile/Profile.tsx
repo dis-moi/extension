@@ -8,9 +8,9 @@ import {
 import { NoticeWithContributor } from 'app/lmem/notice';
 import Error from '../../Error';
 import {
-  Box,
   Button,
   ButtonWithIcon,
+  Link,
   Paragraph,
   Sidebar,
   Title2,
@@ -26,6 +26,7 @@ import SubscribePopin from '../SubscribePopin';
 import NotConnectedPopin, {
   NotConnectedPopinState
 } from '../NotConnectedPopin';
+import SidebarBox from 'components/molecules/SidebarBox/SidebarBox';
 
 export const MainCol = styled.div`
   ${CenterContainer} {
@@ -110,24 +111,7 @@ export const Aside = styled(Sidebar)`
   }
 `;
 
-export const SidebarBox = styled(Box)`
-  margin-bottom: ${props => props.theme.marginL};
-  padding: 10px;
-
-  ${Button} {
-    margin-top: 0;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-size: 15px;
-    min-width: 131px;
-  }
-
-  ${ButtonWithIcon} {
-    margin: 16px auto 0;
-  }
-`;
-
-export const SidebarBoxWithAction = styled(SidebarBox)`
+const SidebarBoxWithAction = styled(SidebarBox)`
   @media (max-width: ${props => props.theme.desktopWidth}) {
     display: none;
   }
@@ -164,7 +148,10 @@ export const Profile = ({
 }: ProfileProps) => {
   const [notConnectedPopinState, setNotConnectedPopinState] = useState<
     NotConnectedPopinState
-  >({ opened: false, contributor });
+  >({
+    opened: false,
+    contributor
+  });
   const [subscribePopinOpened, setSubscribePopinOpened] = useState(false);
 
   if (typeof contributor?.loading === 'undefined') {
@@ -251,6 +238,27 @@ export const Profile = ({
             </ButtonWithIcon>
           </SidebarBoxWithAction>
         )}
+
+        {connected && (
+          <SidebarBox>
+            <Title2 as="h3"> DisMoi respecte votre vie privée</Title2>
+            <Paragraph>
+              <ul>
+                <li>
+                  Nous ne collectons ni revendons
+                  <strong>aucune donnée personnelle</strong>
+                </li>
+                <li>
+                  Nous ne faisons
+                  <strong>aucun profilage</strong>
+                </li>
+              </ul>
+            </Paragraph>
+
+            <Link>En savoir plus</Link>
+          </SidebarBox>
+        )}
+
         <SimilarProfiles
           subscribe={handleSubscribe}
           unsubscribe={handleUnsubscribe}
