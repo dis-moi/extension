@@ -7,6 +7,7 @@ import {
   Box,
   Button,
   ButtonWithIcon,
+  Link,
   Paragraph,
   Sidebar,
   Title2,
@@ -121,6 +122,17 @@ export const SidebarBox = styled(Box)`
   ${ButtonWithIcon} {
     margin: 16px auto 0;
   }
+
+  ${Link} {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+
+    &::after {
+      content: ' >';
+      margin-left: 6px;
+    }
+  }
 `;
 
 const SidebarBoxWithAction = styled(SidebarBox)`
@@ -162,7 +174,10 @@ export const Profile = ({
 }: ProfileProps) => {
   const [notConnectedPopinState, setNotConnectedPopinState] = useState<
     NotConnectedPopinState
-  >({ opened: false, contributor });
+  >({
+    opened: false,
+    contributor
+  });
   const [subscribePopinOpened, setSubscribePopinOpened] = useState(false);
 
   if (typeof contributor?.loading === 'undefined') {
@@ -248,6 +263,35 @@ export const Profile = ({
             </ButtonWithIcon>
           </SidebarBoxWithAction>
         )}
+
+        <SidebarBoxWithAction>
+          <Title2 as="h3">DisMoi ne ralentit pas votre navigateur</Title2>
+          <Paragraph>
+            Contrairement à d’autres extensions, DisMoi ne ralentit pas votre
+            navigateur.
+          </Paragraph>
+
+          <Link>Plus de détails</Link>
+        </SidebarBoxWithAction>
+
+        <SidebarBoxWithAction>
+          <Title2 as="h3"> DisMoi respecte votre vie privée</Title2>
+          <Paragraph>
+            <ul>
+              <li>
+                Nous ne collectons ni revendons
+                <strong>aucune donnée personnelle</strong>
+              </li>
+              <li>
+                Nous ne faisons
+                <strong>aucun profilage</strong>
+              </li>
+            </ul>
+          </Paragraph>
+
+          <Link>En savoir plus</Link>
+        </SidebarBoxWithAction>
+
         <SimilarProfiles
           similarContributors={similarContributors}
           contributors={contributors}
