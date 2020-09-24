@@ -1,9 +1,11 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { BackgroundButton, Link, Paragraph } from '../../atoms';
 import Popin from './Popin';
 import PopinParagraph from './PopinParagraph';
-import { BackgroundButton } from '../../atoms';
+import PopinBottomBar from './PopinBottomBar';
+import PopinSmallText from './PopinSmallText';
 
 storiesOf('Components/Molecules/Popin', module)
   .add('default', () => (
@@ -13,8 +15,10 @@ storiesOf('Components/Molecules/Popin', module)
   ))
   .add('Add Dismoi', () => (
     <Popin opened={true} setOpened={action('setOpened')}>
-      Pour voir les contributions de Cécile Dupéré, veuillez d’abord ajouter
-      Dismoi à votre navigateur.
+      <Paragraph>
+        Pour voir les contributions de Cécile Dupéré, veuillez d’abord ajouter
+        Dismoi à votre navigateur.
+      </Paragraph>
       <BackgroundButton>Ajouter Dismoi à mon navigateur</BackgroundButton>
     </Popin>
   ))
@@ -50,5 +54,18 @@ storiesOf('Components/Molecules/Popin', module)
         https://www.dismoi.io/opera/
         <BackgroundButton>Copier</BackgroundButton>
       </PopinParagraph>
+    </Popin>
+  ))
+  .add('Install', () => (
+    <Popin size={'extralarge'} opened={true} setOpened={action('setOpened')}>
+      <Paragraph>
+        Pour recevoir les informations de <strong>Alertoo</strong>, <br />
+        veuillez d’abord ajouter DisMoi à votre navigateur
+      </Paragraph>
+      <BackgroundButton>Ajouter DisMoi et suivre Alertoo</BackgroundButton>
+      <PopinSmallText>
+        Gratuit, sans publicité, <Link>respecte votre vie privée</Link>
+      </PopinSmallText>
+      <PopinBottomBar></PopinBottomBar>
     </Popin>
   ));
