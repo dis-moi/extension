@@ -1,3 +1,10 @@
+## [3.46.3](https://github.com/dis-moi/extension/compare/v3.46.2...v3.46.3) (2020-09-25)
+
+
+### Bug Fixes
+
+* Similar profiles username/avatar is clickable again ([0cbcfca](https://github.com/dis-moi/extension/commit/0cbcfca60b770a88103c0485466b30d2ff20c0e8))
+
 ## [3.46.2](https://github.com/dis-moi/extension/compare/v3.46.1...v3.46.2) (2020-09-16)
 
 
