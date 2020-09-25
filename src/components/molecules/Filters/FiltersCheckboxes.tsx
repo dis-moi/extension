@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import styled from 'styled-components';
 
 const FiltersBar = styled.div`
@@ -24,6 +24,7 @@ const FiltersList = styled.div`
 `;
 
 const FiltersListItem = styled.label`
+  cursor: pointer;
   &:not(:first-child) {
     margin-left: 30px;
   }
@@ -33,34 +34,44 @@ const FiltersListItem = styled.label`
   }
 `;
 
-const FiltersCheckboxes = () => {
+const Checkbox = styled.input.attrs({ type: 'checkbox' })`
+  cursor: pointer;
+`;
+
+interface FiltersCheckboxesProps {
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  filters: Record<string, string>;
+  loading: boolean;
+}
+
+const FiltersCheckboxes = ({
+  onChange,
+  filters,
+  loading
+}: FiltersCheckboxesProps) => {
   return (
     <FiltersBar>
       <FiltersTitle>Filtrer par :</FiltersTitle>
       <FiltersList>
-        <FiltersListItem>
-          <input type="checkbox" name="filters" />
-          Conso
-        </FiltersListItem>
-        <FiltersListItem>
-          <input type="checkbox" name="filters" />
-          Info & média
-        </FiltersListItem>
-        <FiltersListItem>
-          <input type="checkbox" name="filters" />
-          Professionnel
-        </FiltersListItem>
-        <FiltersListItem>
-          <input type="checkbox" name="filters" />
-          Militant
-        </FiltersListItem>
-        <FiltersListItem>
-          <input type="checkbox" name="filters" />
-          Culture & loisir
-        </FiltersListItem>
+        {!loading &&
+          Object.keys(filters).map(filterId => (
+            <FiltersListItem key={filterId} htmlFor={filterId}>
+              <Checkbox
+                id={filterId}
+                name="filters"
+                value={filterId}
+                onChange={onChange}
+              />
+              {filters[filterId]}
+            </FiltersListItem>
+          ))}
       </FiltersList>
     </FiltersBar>
   );
+};
+
+FiltersCheckboxes.defaultProps = {
+  filters: []
 };
 
 export default FiltersCheckboxes;

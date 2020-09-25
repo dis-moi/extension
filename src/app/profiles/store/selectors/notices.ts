@@ -4,14 +4,13 @@ import {
   getIndexedOffset,
   isCollectionLoading
 } from 'app/store/collection/selectors';
-import { Notice } from 'app/lmem/notice';
 import { ContributorId } from 'app/lmem/contributor';
 
 export const getNoticesCollection = (state: ProfilesState) => state.notices;
 
 export const areNoticesLoading = createSelector(
   [getNoticesCollection],
-  noticesCollection => isCollectionLoading<Notice>(noticesCollection)
+  noticesCollection => isCollectionLoading(noticesCollection)
 );
 export const getNotices = createSelector(
   [getNoticesCollection],

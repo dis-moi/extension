@@ -1,10 +1,12 @@
-import React, { MouseEvent, useState } from 'react';
+import React, { ChangeEvent, MouseEvent, useState } from 'react';
 import styled from 'styled-components';
+import { trilean } from 'types';
 import {
   Contributor,
   ContributorId,
   StatefulContributor
 } from 'app/lmem/contributor';
+import { Categories } from 'app/lmem/category';
 import { Button, CenterContainer, Title2 } from 'components/atoms';
 import { Arrow } from 'components/atoms/icons';
 import Link from 'components/atoms/Link/Link';
@@ -17,7 +19,8 @@ import BrowserNotSupportedPopin from '../BrowserNotSupportedPopin';
 import StatsWrapper from 'components/atoms/Contributor/StatsWrapper';
 import Loader from 'components/atoms/Loader';
 import pathToContributor from '../../pathToContributor';
-// import Filters from 'components/molecules/Filters/FiltersCheckboxes';
+import Filters from 'components/molecules/Filters/FiltersCheckboxes';
+import useContributorsFilters from '../../useContributorsFilters';
 
 const Title = styled(Title2)`
   padding-top: 30px;
@@ -77,6 +80,8 @@ export interface ProfileListProps {
   connected?: boolean;
   addToBrowser: (e: MouseEvent<HTMLButtonElement>) => void;
   goToContributor: (contributor: Contributor) => void;
+  categoriesLoading: trilean;
+  categories: Categories;
 }
 
 const ProfileList = ({
@@ -86,7 +91,9 @@ const ProfileList = ({
   unsubscribe,
   connected,
   addToBrowser,
-  goToContributor
+  goToContributor,
+  categoriesLoading,
+  categories
 }: ProfileListProps) => {
   const [notConnectedPopinState, setNotConnectedPopinState] = useState<
     NotConnectedPopinState
@@ -112,17 +119,33 @@ const ProfileList = ({
     }
   };
 
+  const [
+    filteredContributors,
+    addFilter,
+    removeFilter
+  ] = useContributorsFilters(contributors, categories);
+
+  const handleFiltersChange = ({
+    target: { checked, value }
+  }: ChangeEvent<HTMLInputElement>) => {
+    checked ? addFilter(value) : removeFilter(value);
+  };
+
   return (
     <>
       <Title as="h1">Les informateurs</Title>
 
-      {/* <Filters /> */}
+      <Filters
+        onChange={handleFiltersChange}
+        loading={!!categoriesLoading}
+        filters={categories}
+      />
 
       {loading ? (
         <Loader />
       ) : (
         <List>
-          {contributors.map(contributor => (
+          {filteredContributors.map(contributor => (
             <ContributorListItem
               key={contributor.id}
               contributor={contributor}

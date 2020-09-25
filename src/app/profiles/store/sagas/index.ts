@@ -6,6 +6,7 @@ import noticesSaga from 'app/profiles/store/sagas/notices.saga';
 import portConnectionSaga from 'app/profiles/store/sagas/portConnection.saga';
 import windowConnectionSaga from 'app/profiles/store/sagas/windowConnection.saga';
 import subscriptionsSaga from 'app/profiles/store/sagas/subscriptions.saga';
+import categoriesSaga from 'app/profiles/store/sagas/categories.saga';
 
 const connectionSaga = browser?.runtime?.connect
   ? portConnectionSaga
@@ -18,6 +19,7 @@ export default function* rootSaga() {
     fork(contributorsSaga),
     fork(locationChangeSaga),
     fork(noticesSaga),
-    fork(subscriptionsSaga)
+    fork(subscriptionsSaga),
+    fork(categoriesSaga)
   ]);
 }

@@ -38,3 +38,16 @@ export default <I extends Item>(
 
   return combineReducers(reducers);
 };
+
+export {
+  fetched,
+  FetchedState,
+  fetching,
+  FetchingState,
+  items,
+  ItemsState,
+  lastFetched,
+  LastFetchedState,
+  offset,
+  OffsetState
+};

@@ -1,6 +1,7 @@
 import { connectRouter, RouterRootState } from 'connected-react-router';
 import { combineReducers } from 'redux';
 import { History } from 'history';
+import categories, { CategoriesCollection } from './categories.reducer';
 import connection, { ConnectionState } from './connection.reducer';
 import contributors, {
   ContributorsCollectionState
@@ -13,6 +14,7 @@ import subscriptions, {
 export default (history: History) =>
   combineReducers({
     router: connectRouter(history),
+    categories,
     connection,
     contributors,
     subscriptions,
@@ -24,4 +26,5 @@ export interface ProfilesState extends RouterRootState {
   contributors: ContributorsCollectionState;
   subscriptions: SubscriptionsCollectionState;
   notices: NoticesCollectionState;
+  categories: CategoriesCollection;
 }

@@ -1,11 +1,14 @@
 import { Item } from './reducers/items';
-import { CollectionState } from './reducers';
+import { CollectionState, FetchedState, FetchingState } from './reducers';
 import { trilean } from 'types';
 
-export const isCollectionLoading = <I extends Item>({
+export const isCollectionLoading = ({
   fetched,
   fetching
-}: CollectionState<I>): trilean => {
+}: {
+  fetched: FetchedState;
+  fetching: FetchingState;
+}): trilean => {
   if (fetched) {
     return false;
   } else {

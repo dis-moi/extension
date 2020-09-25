@@ -30,6 +30,7 @@ export interface BaseContributor {
   banner?: string;
   contribution?: Contribution;
   noticesUrls: string[];
+  categories: string[];
 }
 
 export interface FetchedContributor extends BaseContributor {
@@ -70,7 +71,8 @@ export const createLoadableContributor = ({
   contributions: 0,
   website: null,
   noticesUrls: [],
-  loading
+  loading,
+  categories: []
 });
 
 export type Contributor =
