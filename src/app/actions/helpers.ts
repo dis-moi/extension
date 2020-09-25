@@ -3,7 +3,7 @@ import { ActionMeta, ActionMetaWithSeverity, ErrorAction } from './index';
 
 export const createErrorAction = (type: unknown = 'ERROR') => (
   e: Error,
-  meta: ActionMeta | ActionMetaWithSeverity
+  meta: ActionMeta | ActionMetaWithSeverity = { severity: Level.ERROR }
 ): ErrorAction => ({
   type,
   payload: e,

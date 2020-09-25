@@ -5,6 +5,14 @@ import ProfileList from './ProfileList';
 import { generateStatefulContributor } from 'test/fakers/generateContributor';
 import { MemoryRouter as Router } from 'react-router-dom';
 
+const CATEGORIES = {
+  CONSO: 'Conso',
+  INFOS: 'Infos & média',
+  PRO: 'Professionnel',
+  MILITANT: 'Militant',
+  CULTURE: 'Culture & Loisir'
+};
+
 storiesOf('Profile/ProfileList', module)
   .addDecorator(getStory => <Router>{getStory()}</Router>)
   .add('normal', () => (
@@ -25,6 +33,8 @@ storiesOf('Profile/ProfileList', module)
       loading={false}
       connected={false}
       addToBrowser={action('addToBrowser')}
+      categories={CATEGORIES}
+      categoriesLoading={false}
       goToContributor={action('goToContributor')}
     />
   ))
@@ -46,6 +56,8 @@ storiesOf('Profile/ProfileList', module)
       loading
       connected={false}
       addToBrowser={action('addToBrowser')}
+      categories={CATEGORIES}
+      categoriesLoading={false}
       goToContributor={action('goToContributor')}
     />
   ));

@@ -1,10 +1,7 @@
 import { createSelector } from 'reselect';
 import { ProfilesState } from '../reducers';
 import { isCollectionLoading } from 'app/store/collection/selectors';
-import {
-  Contributor,
-  sortContributorsByContributions
-} from 'app/lmem/contributor';
+import { sortContributorsByContributions } from 'app/lmem/contributor';
 import { findItemById } from 'app/utils/findItemById';
 
 export const getContributorsCollection = (state: ProfilesState) =>
@@ -18,8 +15,7 @@ export const getContributors = createSelector(
 
 export const areContributorsLoading = createSelector(
   [getContributorsCollection],
-  contributorsCollection =>
-    isCollectionLoading<Contributor>(contributorsCollection)
+  contributorsCollection => isCollectionLoading(contributorsCollection)
 );
 
 export const getContributorById = (id: number) =>

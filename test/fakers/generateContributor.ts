@@ -40,7 +40,8 @@ export const generateContributor = ({
         large: { url: Faker.image.avatar() }
       },
   noticesUrls: ['http://backend.dismoi.io/notices/1'],
-  website: website || Faker.internet.url()
+  website: website || Faker.internet.url(),
+  categories: [Faker.random.word()]
 });
 
 export const generateStatefulContributor = ({
