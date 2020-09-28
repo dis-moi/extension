@@ -1,3 +1,12 @@
+## [3.46.4](https://github.com/dis-moi/extension/compare/v3.46.3...v3.46.4) (2020-09-28)
+
+
+### Bug Fixes
+
+* **Avatar:** reduces default size ([dae9430](https://github.com/dis-moi/extension/commit/dae9430e9e9bb98959e79d4cf75df9f43d4913a5))
+* **ContributorInfos:** removes right margin ([6e1c39d](https://github.com/dis-moi/extension/commit/6e1c39db801c3b95acccc75a430c5e1486c5a4fe))
+* **ProfileIntro:** fixes display for desktop and mobile ([bf19b92](https://github.com/dis-moi/extension/commit/bf19b92baf9490e151c4cfb0f6cd31ea41972a1a))
+
 ## [3.46.3](https://github.com/dis-moi/extension/compare/v3.46.2...v3.46.3) (2020-09-25)
 
 
