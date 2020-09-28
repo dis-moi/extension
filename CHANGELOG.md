@@ -1,3 +1,16 @@
+# [3.47.0](https://github.com/dis-moi/extension/compare/v3.46.4...v3.47.0) (2020-09-28)
+
+
+### Bug Fixes
+
+* **ProfilesList:** page title is now a h1 ([08e8a7a](https://github.com/dis-moi/extension/commit/08e8a7a3b934653acecc8d928e1fc71a76b843db))
+
+
+### Features
+
+* **SEO:** changes UserName to h2 ([263e73a](https://github.com/dis-moi/extension/commit/263e73a1634037f4c4dc133dc2cdbf6d1914f605))
+* **SEO:** duplicates UserName code for contributor compact ([8b91d65](https://github.com/dis-moi/extension/commit/8b91d6505d0590e9781ce0ef631306e1a971b6da))
+
 ## [3.46.4](https://github.com/dis-moi/extension/compare/v3.46.3...v3.46.4) (2020-09-28)
 
 
