@@ -1,6 +1,10 @@
 import React, { useState, MouseEvent } from 'react';
 import styled from 'styled-components';
-import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
+import {
+  Contributor,
+  ContributorId,
+  StatefulContributor
+} from 'app/lmem/contributor';
 import { NoticeWithContributor } from 'app/lmem/notice';
 import Error from '../../Error';
 import {
@@ -143,6 +147,7 @@ export interface ProfileProps {
   contributorsLoading?: boolean;
   connected?: boolean;
   addToBrowser: (e: MouseEvent<HTMLButtonElement>) => void;
+  goToContributor: (contributor: Contributor) => void;
 }
 
 export const Profile = ({
@@ -157,6 +162,7 @@ export const Profile = ({
   contributorsLoading,
   connected,
   addToBrowser,
+  goToContributor,
   fetchMoreNotices,
   fetchedAll
 }: ProfileProps) => {
@@ -272,6 +278,8 @@ export const Profile = ({
           });
           addToBrowser(e);
         }}
+        contributors={contributors}
+        onContributorClick={goToContributor}
       />
 
       {contributor && (

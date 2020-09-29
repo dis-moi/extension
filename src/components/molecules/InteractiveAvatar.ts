@@ -16,7 +16,7 @@ export default styled(Avatar)`
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: #000000;
+      background-color: ${props => props.theme.badge};
       border-radius: 50%;
       opacity: 0.29;
     }

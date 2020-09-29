@@ -53,7 +53,7 @@ interface PopinContentProps {
   size?: PopinSize;
 }
 
-const getMaxSize = props => {
+const getMaxSize = (props: PopinContentProps) => {
   if (props.size === 'large') {
     return '550px';
   } else if (props.size === 'extralarge') {

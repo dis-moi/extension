@@ -5,7 +5,8 @@ import Popin, {
 } from 'components/molecules/Popin/Popin';
 import PopinParagraph from 'components/molecules/Popin/PopinParagraph';
 import { BackgroundButton } from 'components/atoms';
-import { StatefulContributor } from 'app/lmem/contributor';
+import { Contributor, StatefulContributor } from 'app/lmem/contributor';
+import PopinBottomBar from 'components/molecules/Popin/PopinBottomBar';
 
 export interface NotConnectedPopinState extends PopinState {
   contributor?: StatefulContributor;
@@ -14,13 +15,17 @@ export interface NotConnectedPopinState extends PopinState {
 interface NotConnectedPopinProps extends PopinProps {
   contributor?: StatefulContributor;
   addToBrowser: (e: MouseEvent<HTMLButtonElement>) => void;
+  contributors: StatefulContributor[];
+  onContributorClick: (contributor: Contributor) => void;
 }
 
 const NotConnectedPopin = ({
   opened,
   setOpened,
   contributor,
-  addToBrowser
+  addToBrowser,
+  contributors,
+  onContributorClick
 }: NotConnectedPopinProps) => {
   return (
     <Popin opened={opened} setOpened={setOpened}>
@@ -32,6 +37,10 @@ const NotConnectedPopin = ({
       <BackgroundButton className="bulle-installer" onClick={addToBrowser}>
         Ajouter Dismoi à mon navigateur
       </BackgroundButton>
+      <PopinBottomBar
+        contributors={contributors}
+        onContributorClick={onContributorClick}
+      />
     </Popin>
   );
 };
