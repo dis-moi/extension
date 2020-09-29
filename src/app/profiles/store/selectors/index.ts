@@ -43,6 +43,7 @@ export const getSimilarContributors = createSelector(
     statefulContributors.filter(
       statefulContributor =>
         !contributorIsSubscribed(statefulContributor) &&
+        statefulContributor.id &&
         statefulContributor.id !== Number(id)
     )
 );

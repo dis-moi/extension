@@ -1,6 +1,5 @@
 import React, { ChangeEvent, MouseEvent, useState } from 'react';
 import styled from 'styled-components';
-import { trilean } from 'types';
 import {
   Contributor,
   ContributorId,
@@ -18,9 +17,9 @@ import NotConnectedPopin, {
 import BrowserNotSupportedPopin from '../BrowserNotSupportedPopin';
 import StatsWrapper from 'components/atoms/Contributor/StatsWrapper';
 import Loader from 'components/atoms/Loader';
-import pathToContributor from '../../pathToContributor';
+import pathToContributor from 'app/profiles/App/pathToContributor';
 import Filters from 'components/molecules/Filters/FiltersCheckboxes';
-import useContributorsFilters from '../../useContributorsFilters';
+import useContributorsFilters from 'app/profiles/App/useContributorsFilters';
 
 const Title = styled(Title2)`
   padding-top: 30px;
@@ -44,7 +43,7 @@ const List = styled(ContributorsList)`
   }
 `;
 
-const ContributorListItem = styled(ContributorLarge)`
+export const ContributorProfileListItem = styled(ContributorLarge)`
   line-height: normal;
 
   ${StatsWrapper} {
@@ -80,7 +79,7 @@ export interface ProfileListProps {
   connected?: boolean;
   addToBrowser: (e: MouseEvent<HTMLButtonElement>) => void;
   goToContributor: (contributor: Contributor) => void;
-  categoriesLoading: trilean;
+  categoriesLoading?: boolean;
   categories: Categories;
 }
 
@@ -146,7 +145,7 @@ const ProfileList = ({
       ) : (
         <List>
           {filteredContributors.map(contributor => (
-            <ContributorListItem
+            <ContributorProfileListItem
               key={contributor.id}
               contributor={contributor}
               onSubscribe={handleSubscribe(contributor)}
@@ -157,7 +156,7 @@ const ProfileList = ({
                 Voir ses contributions
                 <Arrow />
               </Link>
-            </ContributorListItem>
+            </ContributorProfileListItem>
           ))}
         </List>
       )}

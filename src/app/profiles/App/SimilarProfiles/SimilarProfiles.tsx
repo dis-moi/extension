@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { StatefulContributor } from 'app/lmem/contributor';
 import ContributorCompact from 'components/organisms/Contributor/ContributorCompact';
-import { SidebarBox } from './Profile';
+import { SidebarBox } from '../Pages/Profiles/Profile/Profile';
 import { LoadingBig } from 'components/atoms/icons';
 import {
   CenterContainer,
@@ -11,9 +11,9 @@ import {
   Title2
 } from 'components/atoms';
 import Avatar from 'components/molecules/Avatar/Avatar';
-import pathToContributor from '../../pathToContributor';
+import pathToContributor from '../pathToContributor';
 
-interface SimilarProfilesProps {
+export interface SimilarProfilesProps {
   loading?: boolean;
   similarContributors: StatefulContributor[];
   contributors: StatefulContributor[];
@@ -54,7 +54,7 @@ const SimilarProfiles = ({
     );
   }
 
-  if (initialSimilarContributors.length === 0) {
+  if (!initialSimilarContributors || initialSimilarContributors.length === 0) {
     return null;
   }
 
@@ -73,8 +73,8 @@ const SimilarProfiles = ({
             <ContributorCompact
               key={contributor.id}
               contributor={contributor}
-              onSubscribe={subscribe(contributor)}
-              onUnsubscribe={unsubscribe(contributor)}
+              onSubscribe={() => subscribe(contributor)}
+              onUnsubscribe={() => unsubscribe(contributor)}
               to={pathToContributor(contributor)}
             />
           ))}

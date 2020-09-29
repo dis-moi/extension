@@ -35,4 +35,5 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
       push(pathToContributor(contributor))
   };
 };
+
 export default connect(mapStateToProps, mapDispatchToProps);

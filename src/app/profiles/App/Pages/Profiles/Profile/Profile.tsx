@@ -17,7 +17,7 @@ import {
   TwoColumns
 } from 'components/atoms';
 import { Download } from 'components/atoms/icons';
-import SimilarProfiles from './SimilarProfiles';
+import SimilarProfiles from '../../../SimilarProfiles';
 import FeaturedNotice from './FeaturedNotice';
 import ProfileIntro from './ProfileIntro';
 import ProfileNoticeList from './ProfileNoticeList';
@@ -27,7 +27,7 @@ import NotConnectedPopin, {
   NotConnectedPopinState
 } from '../NotConnectedPopin';
 
-const MainCol = styled.div`
+export const MainCol = styled.div`
   ${CenterContainer} {
     margin-top: 20px;
 
@@ -96,7 +96,7 @@ const MainCol = styled.div`
   }
 `;
 
-const Aside = styled(Sidebar)`
+export const Aside = styled(Sidebar)`
     margin-top: ${props => props.theme.marginM};
     
   ${SimilarProfiles} + ${CenterContainer} {
@@ -127,7 +127,7 @@ export const SidebarBox = styled(Box)`
   }
 `;
 
-const SidebarBoxWithAction = styled(SidebarBox)`
+export const SidebarBoxWithAction = styled(SidebarBox)`
   @media (max-width: ${props => props.theme.desktopWidth}) {
     display: none;
   }
@@ -142,9 +142,7 @@ export interface ProfileProps {
   unsubscribe: (contributorId: ContributorId) => void;
   fetchMoreNotices: () => void | undefined;
   fetchedAll: boolean;
-  similarContributors: StatefulContributor[];
   contributors: StatefulContributor[];
-  contributorsLoading?: boolean;
   connected?: boolean;
   addToBrowser: (e: MouseEvent<HTMLButtonElement>) => void;
   goToContributor: (contributor: Contributor) => void;
@@ -157,14 +155,12 @@ export const Profile = ({
   noticesLoading,
   featuredNotice,
   notices,
-  similarContributors,
-  contributors,
-  contributorsLoading,
   connected,
   addToBrowser,
   goToContributor,
   fetchMoreNotices,
-  fetchedAll
+  fetchedAll,
+  contributors
 }: ProfileProps) => {
   const [notConnectedPopinState, setNotConnectedPopinState] = useState<
     NotConnectedPopinState
@@ -256,9 +252,6 @@ export const Profile = ({
           </SidebarBoxWithAction>
         )}
         <SimilarProfiles
-          similarContributors={similarContributors}
-          contributors={contributors}
-          loading={contributorsLoading}
           subscribe={handleSubscribe}
           unsubscribe={handleUnsubscribe}
         />

@@ -99,11 +99,13 @@ const ButtonsList = () => {
 
       <ButtonsListWrapper>
         <div>
-          <Tab>Mes abonnements</Tab>
+          <Tab to={'/mes-abonnements'}>Mes abonnements</Tab>
         </div>
 
         <div>
-          <Tab active>Mes abonnements</Tab>
+          <Tab to={'/mes-abonnements'} isActive={() => true}>
+            Mes abonnements
+          </Tab>
         </div>
       </ButtonsListWrapper>
 
