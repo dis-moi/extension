@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { StatefulContributor } from 'app/lmem/contributor';
 import ContributorCompact from 'components/organisms/Contributor/ContributorCompact';
 import ContributorNameLink from 'components/organisms/Contributor/ContributorNameLink';
-import { SidebarBox } from './Profile';
+
 import { LoadingBig } from 'components/atoms/icons';
 import {
   CenterContainer,
@@ -13,6 +13,7 @@ import {
 } from 'components/atoms';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import UserName from 'components/atoms/UserName/UserName';
+import SidebarBox from 'components/molecules/SidebarBox/SidebarBox';
 
 interface SimilarProfilesProps {
   loading?: boolean;
@@ -107,6 +108,12 @@ export default styled(SimilarProfiles)`
       &:hover {
         color: ${props => props.theme.Button.hover};
       }
+    }
+  }
+
+  ${Link} {
+    &::after {
+      content: none;
     }
   }
 

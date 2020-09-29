@@ -4,7 +4,6 @@ import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
 import { NoticeWithContributor } from 'app/lmem/notice';
 import Error from '../../Error';
 import {
-  Box,
   Button,
   ButtonWithIcon,
   Link,
@@ -23,6 +22,7 @@ import SubscribePopin from '../SubscribePopin';
 import NotConnectedPopin, {
   NotConnectedPopinState
 } from '../NotConnectedPopin';
+import SidebarBox from 'components/molecules/SidebarBox/SidebarBox';
 
 const MainCol = styled.div`
   ${CenterContainer} {
@@ -104,34 +104,6 @@ const Aside = styled(Sidebar)`
     min-width: 110px;
     padding-left: 5px;
     padding-right: 5px;
-  }
-`;
-
-export const SidebarBox = styled(Box)`
-  margin-bottom: ${props => props.theme.marginL};
-  padding: 10px;
-
-  ${Button} {
-    margin-top: 0;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-size: 15px;
-    min-width: 131px;
-  }
-
-  ${ButtonWithIcon} {
-    margin: 16px auto 0;
-  }
-
-  ${Link} {
-    margin-top: 10px;
-    font-size: 16px;
-    font-weight: bold;
-
-    &::after {
-      content: ' >';
-      margin-left: 6px;
-    }
   }
 `;
 
@@ -264,33 +236,25 @@ export const Profile = ({
           </SidebarBoxWithAction>
         )}
 
-        <SidebarBoxWithAction>
-          <Title2 as="h3">DisMoi ne ralentit pas votre navigateur</Title2>
-          <Paragraph>
-            Contrairement à d’autres extensions, DisMoi ne ralentit pas votre
-            navigateur.
-          </Paragraph>
+        {connected && (
+          <SidebarBox>
+            <Title2 as="h3"> DisMoi respecte votre vie privée</Title2>
+            <Paragraph>
+              <ul>
+                <li>
+                  Nous ne collectons ni revendons
+                  <strong>aucune donnée personnelle</strong>
+                </li>
+                <li>
+                  Nous ne faisons
+                  <strong>aucun profilage</strong>
+                </li>
+              </ul>
+            </Paragraph>
 
-          <Link>Plus de détails</Link>
-        </SidebarBoxWithAction>
-
-        <SidebarBoxWithAction>
-          <Title2 as="h3"> DisMoi respecte votre vie privée</Title2>
-          <Paragraph>
-            <ul>
-              <li>
-                Nous ne collectons ni revendons
-                <strong>aucune donnée personnelle</strong>
-              </li>
-              <li>
-                Nous ne faisons
-                <strong>aucun profilage</strong>
-              </li>
-            </ul>
-          </Paragraph>
-
-          <Link>En savoir plus</Link>
-        </SidebarBoxWithAction>
+            <Link>En savoir plus</Link>
+          </SidebarBox>
+        )}
 
         <SimilarProfiles
           similarContributors={similarContributors}
