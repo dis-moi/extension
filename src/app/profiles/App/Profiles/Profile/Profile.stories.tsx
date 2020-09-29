@@ -34,6 +34,7 @@ storiesOf('Profile/Profile', module)
       contributorsLoading={false}
       connected={false}
       addToBrowser={action('addToBrowser')}
+      goToContributor={action('goToContributor')}
     />
   ))
   .add('loading', () => (
@@ -62,6 +63,7 @@ storiesOf('Profile/Profile', module)
       contributorsLoading={false}
       connected={false}
       addToBrowser={action('addToBrowser')}
+      goToContributor={action('goToContributor')}
     />
   ))
   .add('contributorsLoading', () => (
@@ -90,6 +92,7 @@ storiesOf('Profile/Profile', module)
       contributorsLoading={true}
       connected={false}
       addToBrowser={action('addToBrowser')}
+      goToContributor={action('goToContributor')}
     />
   ))
   .add('noticesLoading', () => (
@@ -118,5 +121,6 @@ storiesOf('Profile/Profile', module)
       contributorsLoading={false}
       connected={false}
       addToBrowser={action('addToBrowser')}
+      goToContributor={action('goToContributor')}
     />
   ));

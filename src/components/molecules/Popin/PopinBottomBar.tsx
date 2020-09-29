@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from '../../atoms';
+import { Link } from 'components/atoms';
+import { Contributor, StatefulContributor } from 'app/lmem/contributor';
+import ContributorListItem from 'components/atoms/ContributorListItem';
+import InteractiveAvatar from '../InteractiveAvatar';
 
 const PopinBottomBarContainer = styled.div`
   width: 100%;
@@ -22,47 +25,32 @@ const ContributorList = styled.ul`
   list-style-type: none;
 `;
 
-const ContributorListItem = styled.li`
-  cursor: hand;
+interface PopinBottomBarProps {
+  contributors: StatefulContributor[];
+  onContributorClick: (contributor: Contributor) => void;
+}
 
-  &:not(:first-of-type) {
-    margin-left: 16px;
+const PopinBottomBar = ({
+  contributors,
+  onContributorClick
+}: PopinBottomBarProps) => {
+  if (!contributors) {
+    return null;
   }
-`;
 
-const SeeContributor = styled.button`
-  display: block;
-  width: 62px;
-  height: 62px;
-  background-color: ${props => props.theme.badge};
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-`;
-
-const PopinBottomBar = () => {
   return (
     <PopinBottomBarContainer>
       <Link>En savoir plus</Link> sur DisMoi et ses informateurs
       <ContributorList>
-        <ContributorListItem>
-          <SeeContributor>jean mi</SeeContributor>
-        </ContributorListItem>
-        <ContributorListItem>
-          <SeeContributor>jean mi</SeeContributor>
-        </ContributorListItem>
-        <ContributorListItem>
-          <SeeContributor>jean mi</SeeContributor>
-        </ContributorListItem>
-        <ContributorListItem>
-          <SeeContributor>jean mi</SeeContributor>
-        </ContributorListItem>
-        <ContributorListItem>
-          <SeeContributor>jean mi</SeeContributor>
-        </ContributorListItem>
-        <ContributorListItem>
-          <SeeContributor>jean mi</SeeContributor>
-        </ContributorListItem>
+        {contributors.map(contributor => (
+          <ContributorListItem key={`contributorListItem[${contributor.id}]`}>
+            <InteractiveAvatar
+              onClick={() => onContributorClick(contributor)}
+              contributor={contributor}
+              size="small"
+            />
+          </ContributorListItem>
+        ))}
       </ContributorList>
     </PopinBottomBarContainer>
   );

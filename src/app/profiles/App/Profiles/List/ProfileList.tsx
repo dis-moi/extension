@@ -1,6 +1,10 @@
 import React, { MouseEvent, useState } from 'react';
 import styled from 'styled-components';
-import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
+import {
+  Contributor,
+  ContributorId,
+  StatefulContributor
+} from 'app/lmem/contributor';
 import { Button, CenterContainer, Title2 } from 'components/atoms';
 import { Arrow } from 'components/atoms/icons';
 import Link from 'components/atoms/Link/Link';
@@ -37,7 +41,7 @@ const List = styled(ContributorsList)`
   }
 `;
 
-const Contributor = styled(ContributorLarge)`
+const ContributorListItem = styled(ContributorLarge)`
   line-height: normal;
 
   ${StatsWrapper} {
@@ -72,6 +76,7 @@ export interface ProfileListProps {
   unsubscribe: (contributorId: ContributorId) => void;
   connected?: boolean;
   addToBrowser: (e: MouseEvent<HTMLButtonElement>) => void;
+  goToContributor: (contributor: Contributor) => void;
 }
 
 const ProfileList = ({
@@ -80,7 +85,8 @@ const ProfileList = ({
   subscribe,
   unsubscribe,
   connected,
-  addToBrowser
+  addToBrowser,
+  goToContributor
 }: ProfileListProps) => {
   const [notConnectedPopinState, setNotConnectedPopinState] = useState<
     NotConnectedPopinState
@@ -117,7 +123,7 @@ const ProfileList = ({
       ) : (
         <List>
           {contributors.map(contributor => (
-            <Contributor
+            <ContributorListItem
               key={contributor.id}
               contributor={contributor}
               onSubscribe={handleSubscribe(contributor)}
@@ -128,7 +134,7 @@ const ProfileList = ({
                 Voir ses contributions
                 <Arrow />
               </Link>
-            </Contributor>
+            </ContributorListItem>
           ))}
         </List>
       )}
@@ -148,6 +154,8 @@ const ProfileList = ({
           });
           addToBrowser(e);
         }}
+        contributors={contributors}
+        onContributorClick={goToContributor}
       />
 
       <BrowserNotSupportedPopin

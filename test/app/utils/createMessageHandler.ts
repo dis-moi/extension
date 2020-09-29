@@ -61,7 +61,7 @@ describe('createMessageHandler', () => {
     const sender = {
       id: 'extensionId',
       tab: {
-        url: getOptionsUrl(),
+        url: getOptionsUrl()
       }
     };
 

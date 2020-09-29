@@ -25,6 +25,7 @@ storiesOf('Profile/ProfileList', module)
       loading={false}
       connected={false}
       addToBrowser={action('addToBrowser')}
+      goToContributor={action('goToContributor')}
     />
   ))
   .add('loading', () => (
@@ -45,5 +46,6 @@ storiesOf('Profile/ProfileList', module)
       loading
       connected={false}
       addToBrowser={action('addToBrowser')}
+      goToContributor={action('goToContributor')}
     />
   ));

@@ -3,6 +3,7 @@ import * as R from 'ramda';
 import styled from 'styled-components';
 import BackgroundButton from 'components/atoms/Button/BackgroundButton/BackgroundButton';
 import InteractiveAvatar from 'components/molecules/InteractiveAvatar';
+import ContributorListItem from 'components/atoms/ContributorListItem';
 import Illustration from './Illustration';
 import Container from './Container';
 import { Contributor, StatefulContributor } from 'app/lmem/contributor';
@@ -15,14 +16,6 @@ const SubscriptionList = styled.ul`
   display: flex;
   padding-left: 0;
   list-style-type: none;
-`;
-
-const SubscriptionListItem = styled.li`
-  cursor: hand;
-
-  &:not(:first-of-type) {
-    margin-left: 10px;
-  }
 `;
 
 const SeeSubscriptions = styled.button`
@@ -83,20 +76,20 @@ const Subscriptions = ({
         ).map((contributorsChunk, chunkIndex, slicedSubscribedContributors) => (
           <SubscriptionList key={`chunk${chunkIndex}`}>
             {contributorsChunk.map(contributor => (
-              <SubscriptionListItem key={`contributor${contributor.id}`}>
+              <ContributorListItem key={`contributor${contributor.id}`}>
                 <InteractiveAvatar
                   onClick={handleContributorClicked(contributor)}
                   contributor={contributor}
                   size="small"
                 />
-              </SubscriptionListItem>
+              </ContributorListItem>
             ))}
             {chunkIndex === slicedSubscribedContributors.length - 1 && (
-              <SubscriptionListItem>
+              <ContributorListItem>
                 <SeeSubscriptions onClick={openSubscriptions} title="Voir tout">
                   ...
                 </SeeSubscriptions>
-              </SubscriptionListItem>
+              </ContributorListItem>
             )}
           </SubscriptionList>
         ))}
