@@ -6,7 +6,7 @@ import {
   ContributorInfos,
   ContributorWrapper,
   StatsWrapper
-} from 'components/atoms/Contributor/index';
+} from 'components/atoms/Contributor';
 import { LinkIcon } from 'components/atoms/icons';
 import ExternalLink from 'components/atoms/Link/ExternalLink';
 import UserName from 'components/atoms/UserName/UserName';

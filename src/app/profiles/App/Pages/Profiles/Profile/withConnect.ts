@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
+import { push } from 'connected-react-router';
 import { Contributor, ContributorId } from 'app/lmem/contributor';
 import { subscribe, unsubscribe } from 'app/actions/subscription';
 import {
@@ -7,7 +8,6 @@ import {
   getContributorFromRouteParam,
   getContributorNoticesButFeaturedOne,
   getFeaturedNotice,
-  getSimilarContributors,
   getStatefulContributors
 } from 'app/profiles/store/selectors';
 import { areNoticesLoading } from 'app/profiles/store/selectors/notices';
@@ -16,9 +16,8 @@ import { isConnected } from 'app/profiles/store/selectors/connection';
 import { ProfilesState } from 'app/profiles/store/reducers';
 import { ProfileProps } from './Profile';
 import { extensionMessageSender } from 'app/profiles/extensionId';
-import { fetchMoreContributorNotices } from '../../../store/actions/notices';
-import { push } from 'connected-react-router';
-import pathToContributor from '../../pathToContributor';
+import { fetchMoreContributorNotices } from 'app/profiles/store/actions/notices';
+import pathToContributor from '../../../pathToContributor';
 
 export type ConnectedProfileScreenProps = ProfileProps &
   RouteComponentProps<{ id: string }>;
@@ -29,9 +28,7 @@ const mapStateToProps = (
 ) => ({
   loading: areContributorsLoading(state),
   contributor: getContributorFromRouteParam(state, props),
-  similarContributors: getSimilarContributors(state, props).slice(0, 6),
   contributors: getStatefulContributors(state),
-  contributorsLoading: areContributorsLoading(state),
   featuredNotice: getFeaturedNotice(state, props),
   noticesLoading: areNoticesLoading(state),
   notices: getContributorNoticesButFeaturedOne(state, props),
@@ -68,4 +65,8 @@ const mergeProps = (
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps);
+export default connect<
+  ProfilesState,
+  typeof mapDispatchToProps,
+  ConnectedProfileScreenProps
+>(mapStateToProps, mapDispatchToProps, mergeProps);

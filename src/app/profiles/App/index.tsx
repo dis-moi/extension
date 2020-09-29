@@ -1,6 +1,5 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Redirect, Route, Switch } from 'react-router';
 import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider } from 'styled-components';
 
@@ -8,9 +7,7 @@ import theme from 'app/theme';
 import store, { history } from '../store';
 import Background from './Background';
 import PageContainer from './PageContainer';
-import Profiles from './Profiles';
-import Error from './Error';
-import Subscriptions from './Subscriptions';
+import Pages from './Pages';
 
 const App = () => (
   <Provider store={store}>
@@ -18,12 +15,7 @@ const App = () => (
       <ConnectedRouter history={history}>
         <Background>
           <PageContainer>
-            <Switch>
-              <Redirect exact path="/" to="/sources" />
-              <Route path="/sources" component={Profiles} />
-              <Route path="/mes-abonnements" component={Subscriptions} />
-              <Route component={Error} />
-            </Switch>
+            <Pages />
           </PageContainer>
         </Background>
       </ConnectedRouter>
