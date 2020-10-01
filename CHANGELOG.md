@@ -1,3 +1,11 @@
+# [3.48.0](https://github.com/dis-moi/extension/compare/v3.47.0...v3.48.0) (2020-10-01)
+
+
+### Features
+
+* **Profiles/Popin:** adds install content ([89e37a8](https://github.com/dis-moi/extension/commit/89e37a87ee239bcc29d22dc91ec864215a8c3bce))
+* Connect Popin bottom bar component ([e83e19c](https://github.com/dis-moi/extension/commit/e83e19c6da4d9fa2be8e2cdb337f03ed64da64c5))
+
 # [3.47.0](https://github.com/dis-moi/extension/compare/v3.46.4...v3.47.0) (2020-09-28)
 
 
