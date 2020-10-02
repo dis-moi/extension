@@ -1,5 +1,12 @@
 import styled from 'styled-components';
-import { Box, Button, ButtonWithIcon, Link, List } from '../../atoms';
+import {
+  Box,
+  Button,
+  ButtonWithIcon,
+  ExternalLink,
+  Link,
+  List
+} from 'components/atoms';
 
 const SidebarBox = styled(Box)`
   margin-bottom: ${props => props.theme.marginL};
@@ -17,7 +24,7 @@ const SidebarBox = styled(Box)`
     margin: 16px auto 0;
   }
 
-  ${Link} {
+  ${Link}, ${ExternalLink} {
     margin-top: 10px;
     font-size: 16px;
     font-weight: bold;
