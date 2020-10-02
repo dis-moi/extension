@@ -11,6 +11,7 @@ import {
   ContributorInfos
 } from 'components/atoms/Contributor/index';
 import ContributorNameLink from './ContributorNameLink';
+import { As } from 'types';
 
 interface IntroProps {
   intro: string;
@@ -47,6 +48,7 @@ interface ContributorLargeProps<S = LocationState> {
   onNameClick?: () => void;
   to?: LocationDescriptor<S>;
   loading?: boolean;
+  usernameAs?: As;
 }
 
 const ContributorLarge = ({
@@ -58,7 +60,8 @@ const ContributorLarge = ({
   className,
   onNameClick,
   to,
-  loading
+  loading,
+  usernameAs
 }: ContributorLargeProps) => (
   <ContributorCard className={className}>
     <>
@@ -74,7 +77,7 @@ const ContributorLarge = ({
         <ContributorInfos>
           {!loading && contributor && (
             <>
-              <UserName>
+              <UserName as={usernameAs}>
                 <ContributorNameLink onClick={onNameClick} to={to}>
                   {contributor.name}
                 </ContributorNameLink>

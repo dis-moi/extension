@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface CustomWindow extends Window {
   __BULLES__CONTENT_SCRIPT_INJECTED__?: boolean;
 }
@@ -18,3 +20,5 @@ declare module '*.png' {
 
 // @see https://en.wikipedia.org/wiki/Three-valued_logic
 export type trilean = boolean | undefined;
+
+export type As = keyof JSX.IntrinsicElements | React.ComponentType<any>; // eslint-disable-line @typescript-eslint/no-explicit-any

@@ -221,6 +221,7 @@ export const Profile = ({
           contributor={contributor}
           subscribe={handleSubscribe(contributor)}
           unsubscribe={handleUnsubscribe(contributor)}
+          usernameAs={'h1'}
         />
         <Title2>
           La contribution phare {contributor && `de ${contributor.name}`}
