@@ -1,3 +1,10 @@
+# [3.49.0](https://github.com/dis-moi/extension/compare/v3.48.0...v3.49.0) (2020-10-02)
+
+
+### Features
+
+* **Profile:** Allow profile username tag name configuration ([1c54b7e](https://github.com/dis-moi/extension/commit/1c54b7eb7e2bb7427f7904603b6c25595be7aecf))
+
 # [3.48.0](https://github.com/dis-moi/extension/compare/v3.47.0...v3.48.0) (2020-10-01)
 
 
