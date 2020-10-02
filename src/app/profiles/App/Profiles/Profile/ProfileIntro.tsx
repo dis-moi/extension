@@ -14,6 +14,7 @@ import Avatar from 'components/molecules/Avatar/Avatar';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
 import { Anchor } from 'components/atoms';
 import ProfileBanner from './ProfileBanner';
+import { As } from 'types';
 
 const ProfileIntroContent = styled.section`
   position: relative;
@@ -110,13 +111,15 @@ export interface ProfileIntroProps {
   subscribe: () => void;
   unsubscribe: () => void;
   loading?: boolean;
+  usernameAs?: As;
 }
 
 export const ProfileIntro = ({
   contributor,
   subscribe,
   unsubscribe,
-  loading
+  loading,
+  usernameAs
 }: ProfileIntroProps) => {
   return (
     <>
@@ -128,6 +131,7 @@ export const ProfileIntro = ({
           onUnsubscribe={unsubscribe}
           loading={loading}
           avatarSize="large"
+          usernameAs={usernameAs}
         >
           {contributor && !!contributor.website && (
             <ExternalLink href={contributor.website}>
