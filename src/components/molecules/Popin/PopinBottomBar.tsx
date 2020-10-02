@@ -4,6 +4,11 @@ import { Link } from 'components/atoms';
 import { Contributor, StatefulContributor } from 'app/lmem/contributor';
 import ContributorListItem from 'components/atoms/ContributorListItem';
 import InteractiveAvatar from '../InteractiveAvatar';
+import { asArray } from 'app/utils/env';
+
+const POPULAR_CONTRIBUTORS_IDS = asArray<number>(
+  process.env.POPULAR_CONTRIBUTORS_IDS
+);
 
 const PopinBottomBarContainer = styled.div`
   width: 100%;
@@ -40,17 +45,20 @@ const PopinBottomBar = ({
 
   return (
     <PopinBottomBarContainer>
-      <Link>En savoir plus</Link> sur DisMoi et ses informateurs
+      <Link to="/informateurs">En savoir plus</Link> sur DisMoi et ses
+      informateurs
       <ContributorList>
-        {contributors.map(contributor => (
-          <ContributorListItem key={`contributorListItem[${contributor.id}]`}>
-            <InteractiveAvatar
-              onClick={() => onContributorClick(contributor)}
-              contributor={contributor}
-              size="small"
-            />
-          </ContributorListItem>
-        ))}
+        {contributors
+          .filter(c => POPULAR_CONTRIBUTORS_IDS.includes(c.id))
+          .map(contributor => (
+            <ContributorListItem key={`contributorListItem[${contributor.id}]`}>
+              <InteractiveAvatar
+                onClick={() => onContributorClick(contributor)}
+                contributor={contributor}
+                size="small"
+              />
+            </ContributorListItem>
+          ))}
       </ContributorList>
     </PopinBottomBarContainer>
   );

@@ -16,7 +16,8 @@ const requiredEnvVarNames = [
   'REFRESH_CONTRIBUTORS_INTERVAL',
   'CHROME_EXTENSION_ID',
   'FIREFOX_EXTENSION_ID',
-  'PROFILES_ORIGIN'
+  'PROFILES_ORIGIN',
+  'POPULAR_CONTRIBUTORS_IDS'
 ];
 const formatEnvVar = value => `"${value}"`;
 

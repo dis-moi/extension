@@ -11,6 +11,7 @@ interface AppEnv extends NodeJS.ProcessEnv {
   SENTRY_DSN: string;
   PLATFORM: 'firefox' | 'chromium';
   PROFILES_ORIGIN: string;
+  POPULAR_CONTRIBUTORS_IDS: string;
 }
 
 declare module '*.png' {
