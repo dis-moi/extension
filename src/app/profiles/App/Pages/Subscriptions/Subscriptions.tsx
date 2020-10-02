@@ -6,18 +6,14 @@ import {
   StatefulContributor
 } from 'app/lmem/contributor';
 import { Categories } from 'app/lmem/category';
-import { ButtonWithIcon, Paragraph, TwoColumns } from 'components/atoms';
-import {
-  Aside,
-  MainCol,
-  SidebarBoxWithAction
-} from '../Profiles/Profile/Profile';
+import { TwoColumns } from 'components/atoms';
+import { SlowerMessageBox } from 'components/molecules/SidebarBox';
+import { Aside, MainCol } from '../Profiles/Profile/Profile';
 import pathToContributor from 'app/profiles/App/pathToContributor';
-import { Download } from 'components/atoms/icons';
-import useContributorsFilters from 'app/profiles/App/useContributorsFilters';
-import SimilarProfiles from 'app/profiles/App/SimilarProfiles';
 import { ContributorProfileListItem } from '../Profiles/List/ProfileList';
+import SimilarProfiles from 'app/profiles/App/SimilarProfiles';
 import Filters from 'components/molecules/Filters/FiltersCheckboxes';
+import useContributorsFilters from 'app/profiles/App/useContributorsFilters';
 
 const ContributorsList = styled.div`
   display: grid;
@@ -106,18 +102,7 @@ export const Subscriptions = ({
           </ContributorsList>
         </MainCol>
         <Aside>
-          {connected === false && (
-            <SidebarBoxWithAction>
-              <Paragraph>
-                DisMoi permet aux internautes, médias et experts de vous
-                informer directement sur les pages web que vous visitez.
-              </Paragraph>
-
-              <ButtonWithIcon className="bulle-installer">
-                Ajouter à mon navigateur <Download />
-              </ButtonWithIcon>
-            </SidebarBoxWithAction>
-          )}
+          <SlowerMessageBox />
           <SimilarProfiles />
         </Aside>
       </TwoColumns>

@@ -9,14 +9,11 @@ import { NoticeWithContributor } from 'app/lmem/notice';
 import Error from '../../Error';
 import {
   Button,
-  ButtonWithIcon,
-  Link,
   Paragraph,
   Sidebar,
   Title2,
   TwoColumns
 } from 'components/atoms';
-import { Download } from 'components/atoms/icons';
 import SimilarProfiles from '../../../SimilarProfiles';
 import FeaturedNotice from './FeaturedNotice';
 import ProfileIntro from './ProfileIntro';
@@ -26,7 +23,10 @@ import SubscribePopin from '../SubscribePopin';
 import NotConnectedPopin, {
   NotConnectedPopinState
 } from '../NotConnectedPopin';
-import SidebarBox from 'components/molecules/SidebarBox/SidebarBox';
+import {
+  AddToBrowserMessageBox,
+  PrivacyMessageBox
+} from 'components/molecules/SidebarBox';
 
 export const MainCol = styled.div`
   ${CenterContainer} {
@@ -98,7 +98,7 @@ export const MainCol = styled.div`
 `;
 
 export const Aside = styled(Sidebar)`
-    margin-top: ${props => props.theme.marginM};
+  margin-top: ${props => props.theme.marginM};
     
   ${SimilarProfiles} + ${CenterContainer} {
     margin-top: -30px;
@@ -108,12 +108,6 @@ export const Aside = styled(Sidebar)`
     min-width: 110px;
     padding-left: 5px;
     padding-right: 5px;
-  }
-`;
-
-const SidebarBoxWithAction = styled(SidebarBox)`
-  @media (max-width: ${props => props.theme.desktopWidth}) {
-    display: none;
   }
 `;
 
@@ -226,38 +220,8 @@ export const Profile = ({
       </MainCol>
 
       <Aside>
-        {!connected && (
-          <SidebarBoxWithAction>
-            <Paragraph>
-              DisMoi permet aux internautes, médias et experts de vous informer
-              directement sur les pages web que vous visitez.
-            </Paragraph>
-
-            <ButtonWithIcon className="bulle-installer">
-              Ajouter à mon navigateur <Download />
-            </ButtonWithIcon>
-          </SidebarBoxWithAction>
-        )}
-
-        {connected && (
-          <SidebarBox>
-            <Title2 as="h3"> DisMoi respecte votre vie privée</Title2>
-            <Paragraph>
-              <ul>
-                <li>
-                  Nous ne collectons ni revendons
-                  <strong>aucune donnée personnelle</strong>
-                </li>
-                <li>
-                  Nous ne faisons
-                  <strong>aucun profilage</strong>
-                </li>
-              </ul>
-            </Paragraph>
-
-            <Link>En savoir plus</Link>
-          </SidebarBox>
-        )}
+        {connected === false && <AddToBrowserMessageBox />}
+        {connected && <PrivacyMessageBox />}
 
         <SimilarProfiles
           subscribe={handleSubscribe}

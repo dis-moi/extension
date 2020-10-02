@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { StatefulContributor } from 'app/lmem/contributor';
-import ContributorCompact from 'components/organisms/Contributor/ContributorCompact';
-import ContributorNameLink from 'components/organisms/Contributor/ContributorNameLink';
-import { LoadingBig } from 'components/atoms/icons';
 import {
   CenterContainer,
   Link,
   LoadingRotator,
   Title2
 } from 'components/atoms';
-import Avatar from 'components/molecules/Avatar/Avatar';
-import pathToContributor from '../pathToContributor';
+import { LoadingBig } from 'components/atoms/icons';
 import UserName from 'components/atoms/UserName/UserName';
+import Avatar from 'components/molecules/Avatar/Avatar';
 import SidebarBox from 'components/molecules/SidebarBox/SidebarBox';
+import ContributorCompact from 'components/organisms/Contributor/ContributorCompact';
+import ContributorNameLink from 'components/organisms/Contributor/ContributorNameLink';
+import pathToContributor from '../pathToContributor';
 
 export interface SimilarProfilesProps {
   loading?: boolean;
