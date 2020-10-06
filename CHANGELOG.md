@@ -1,3 +1,10 @@
+## [3.49.1](https://github.com/dis-moi/extension/compare/v3.49.0...v3.49.1) (2020-10-06)
+
+
+### Bug Fixes
+
+* **emails:** Use [@dismoi](https://github.com/dismoi).io addresses in envs ([f638795](https://github.com/dis-moi/extension/commit/f638795e652d7776117d6236ad7a00055a7767cf))
+
 # [3.49.0](https://github.com/dis-moi/extension/compare/v3.48.0...v3.49.0) (2020-10-02)
 
 
