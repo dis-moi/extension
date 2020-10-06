@@ -10,14 +10,11 @@ import {
 import { areContributorsLoading } from 'app/profiles/store/selectors/contributors';
 import { ProfilesState } from 'app/profiles/store/reducers';
 import { extensionMessageSender } from 'app/profiles/extensionId';
-import { SimilarProfilesProps } from './SimilarProfiles';
 
-export type ConnectedSimilarProfileProps = SimilarProfilesProps &
-  RouteComponentProps<{ id: string }>;
-
-interface DispatchProps {
-  subscribe: (contributor: Contributor) => void;
-  unsubscribe: (contributor: Contributor) => void;
+export interface ConnectedSimilarProfileProps
+  extends RouteComponentProps<{ id: string }> {
+  subscribe?: (contributor: Contributor) => void;
+  unsubscribe?: (contributor: Contributor) => void;
 }
 
 const mapStateToProps = (
@@ -36,8 +33,16 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(unsubscribe(contributor.id, { receiver: extensionMessageSender }))
 });
 
-export default connect<
-  ProfilesState,
-  DispatchProps,
-  ConnectedSimilarProfileProps
->(mapStateToProps, mapDispatchToProps);
+const mergeProps = (
+  stateProps: ReturnType<typeof mapStateToProps>,
+  dispatchProps: ReturnType<typeof mapDispatchToProps>,
+  ownProps: ConnectedSimilarProfileProps
+) => ({
+  ...ownProps,
+  ...stateProps,
+  // subscribe/unsubscribe may be supplied from parent : priority over selector
+  subscribe: ownProps.subscribe || dispatchProps.subscribe,
+  unsubscribe: ownProps.unsubscribe || dispatchProps.unsubscribe
+});
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps);

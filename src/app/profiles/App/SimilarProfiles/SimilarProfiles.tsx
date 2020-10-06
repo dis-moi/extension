@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { withRouter } from 'react-router';
 import styled from 'styled-components';
 import { StatefulContributor } from 'app/lmem/contributor';
 import {
@@ -14,13 +15,14 @@ import SidebarBox from 'components/molecules/SidebarBox/SidebarBox';
 import ContributorCompact from 'components/organisms/Contributor/ContributorCompact';
 import ContributorNameLink from 'components/organisms/Contributor/ContributorNameLink';
 import pathToContributor from '../pathToContributor';
+import withConnect from './withConnect';
 
-export interface SimilarProfilesProps {
+interface SimilarProfilesProps {
   loading?: boolean;
   similarContributors: StatefulContributor[];
   contributors: StatefulContributor[];
-  subscribe: (contributor: StatefulContributor) => () => void;
-  unsubscribe: (contributor: StatefulContributor) => () => void;
+  subscribe: (contributor: StatefulContributor) => void;
+  unsubscribe: (contributor: StatefulContributor) => void;
   className?: string;
 }
 
@@ -88,7 +90,7 @@ const SimilarProfiles = ({
   );
 };
 
-export default styled(SimilarProfiles)`
+export default styled(withRouter(withConnect(SimilarProfiles)))`
   ${ContributorCompact} {
     &:first-child {
       border-top: none;

@@ -65,8 +65,4 @@ const mergeProps = (
   }
 });
 
-export default connect<
-  ProfilesState,
-  typeof mapDispatchToProps,
-  ConnectedProfileScreenProps
->(mapStateToProps, mapDispatchToProps, mergeProps);
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps);
