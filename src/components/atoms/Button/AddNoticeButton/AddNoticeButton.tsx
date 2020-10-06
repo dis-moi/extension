@@ -1,31 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'components/atoms';
-import { Plus } from '../../icons';
 
 const LinkNoNotice = styled(Link)`
-  display: flex;
-  align-items: center;
-  height: 28px;
-  padding: 0 12px;
-  font-size: 13px;
-  color: ${props => props.theme.activeColor};
-  border-radius: 7px;
-  border: 2px solid ${props => props.theme.button};
+  display: inline-block;
+  padding: 3px 12px;
+  color: ${props => props.theme.Button.default};
+  font-weight: 900;
+  line-height: 1;
   text-decoration: none;
+  text-transform: none;
+  background-color: #fff;
+  border-radius: ${props => props.theme.radius};
+  border: 2px solid ${props => props.theme.Button.default};
 
   &:hover {
-    color: ${props => props.theme.primaryColor};
-  }
-
-  & > svg {
-    margin-right: 10px;
+    color: #fff;
+    background-color: ${props => props.theme.Button.hover};
+    border-color: ${props => props.theme.Button.hover};
   }
 `;
 
-export default () => (
-  <LinkNoNotice to="/contribute">
-    <Plus />
-    Poster une info, un conseil
-  </LinkNoNotice>
-);
+export default () => <LinkNoNotice to="/contribute">Poster</LinkNoNotice>;

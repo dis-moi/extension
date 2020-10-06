@@ -3,5 +3,5 @@ import { Title } from 'components/atoms';
 
 export default styled(Title)`
   margin: 22px 33px 0;
-  font-size: 16px;
+  font-size: 19px;
 `;
