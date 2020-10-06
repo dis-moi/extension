@@ -23,15 +23,10 @@ storiesOf('Profile/Profile', module)
       fetchMoreNotices={action('fetchMoreNotices')}
       fetchedAll={false}
       contributor={generateStatefulContributor()}
-      similarContributors={[
-        generateStatefulContributor(),
-        generateStatefulContributor()
-      ]}
       contributors={[
         generateStatefulContributor(),
         generateStatefulContributor()
       ]}
-      contributorsLoading={false}
       connected={false}
       addToBrowser={action('addToBrowser')}
       goToContributor={action('goToContributor')}
@@ -52,15 +47,10 @@ storiesOf('Profile/Profile', module)
       fetchMoreNotices={action('fetchMoreNotices')}
       fetchedAll={false}
       contributor={generateStatefulContributor({ loading: true })}
-      similarContributors={[
-        generateStatefulContributor(),
-        generateStatefulContributor()
-      ]}
       contributors={[
         generateStatefulContributor(),
         generateStatefulContributor()
       ]}
-      contributorsLoading={false}
       connected={false}
       addToBrowser={action('addToBrowser')}
       goToContributor={action('goToContributor')}
@@ -81,15 +71,10 @@ storiesOf('Profile/Profile', module)
       fetchMoreNotices={action('fetchMoreNotices')}
       fetchedAll={false}
       contributor={generateStatefulContributor()}
-      similarContributors={[
-        generateStatefulContributor(),
-        generateStatefulContributor()
-      ]}
       contributors={[
         generateStatefulContributor(),
         generateStatefulContributor()
       ]}
-      contributorsLoading={true}
       connected={false}
       addToBrowser={action('addToBrowser')}
       goToContributor={action('goToContributor')}
@@ -110,15 +95,10 @@ storiesOf('Profile/Profile', module)
       fetchMoreNotices={action('fetchMoreNotices')}
       fetchedAll={false}
       contributor={generateStatefulContributor()}
-      similarContributors={[
-        generateStatefulContributor(),
-        generateStatefulContributor()
-      ]}
       contributors={[
         generateStatefulContributor(),
         generateStatefulContributor()
       ]}
-      contributorsLoading={false}
       connected={false}
       addToBrowser={action('addToBrowser')}
       goToContributor={action('goToContributor')}

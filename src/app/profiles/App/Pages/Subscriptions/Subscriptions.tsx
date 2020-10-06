@@ -25,8 +25,8 @@ const ContributorsList = styled.div`
 export interface SubscriptionsProps {
   subscriptions: StatefulContributor[];
   contributors: StatefulContributor[];
-  subscribe: (id: ContributorId) => () => void;
-  unsubscribe: (id: ContributorId) => () => void;
+  subscribe: (id: ContributorId) => void;
+  unsubscribe: (id: ContributorId) => void;
   className?: string;
   connected?: boolean;
   categoriesLoading?: boolean;
