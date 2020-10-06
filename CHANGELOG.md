@@ -1,3 +1,10 @@
+# [3.50.0](https://github.com/dis-moi/extension/compare/v3.49.1...v3.50.0) (2020-10-06)
+
+
+### Features
+
+* **NotConnected:** Show only popular contributors on popin and add missing links. ([7e14bc0](https://github.com/dis-moi/extension/commit/7e14bc0e80f4aab9cbee817b12cfbb70577c45eb))
+
 ## [3.49.1](https://github.com/dis-moi/extension/compare/v3.49.0...v3.49.1) (2020-10-06)
 
 
