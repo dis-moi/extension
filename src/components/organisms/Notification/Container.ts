@@ -18,10 +18,6 @@ export const Section = styled.section<Props>`
   border-radius: 7px;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.58);
   overflow: hidden;
-
-  ${BackgroundButton} {
-    text-transform: uppercase;
-  }
 `;
 
 export default Section;

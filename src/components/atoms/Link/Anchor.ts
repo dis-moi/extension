@@ -11,10 +11,6 @@ export const style = ({ theme }: { theme: Theme }) => `
   
   &[href] {
     cursor: pointer;
-    
-    &:hover {
-      color: ${theme.Button.hover};
-    }
   }
 `;
 

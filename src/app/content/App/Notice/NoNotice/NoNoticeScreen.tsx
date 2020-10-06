@@ -7,27 +7,53 @@ import { BackgroundButton } from 'components/atoms';
 import AddNoticeButton from 'components/atoms/Button/AddNoticeButton/AddNoticeButton';
 
 const Container = styled(ButtonContainer)`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
   font-size: 16px;
+  padding-right: 40px;
+  padding-left: 40px;
 `;
 
-const Button = styled(BackgroundButton)`
-  height: auto;
-  padding: 10px 16px;
-  margin-bottom: 16px;
+const Content = styled.div`
+  text-align: center;
+
+  & > a {
+    box-sizing: border-box;
+    width: 118px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+`;
+
+const Separator = styled.div`
+  padding-top: 6px;
+  line-height: 1;
+`;
+
+const Paragraph = styled.p`
+  margin: 8px 0 0;
+  font-size: 15px;
+  font-weight: 500;
 `;
 
 export default () => (
   <>
     <Title>
-      Pour l&apos;instant, aucune de vos sources n&apos;a posté
-      d&apos;information sur cette page.
+      Pas encore de post sur <br /> cette page web
     </Title>
     <Container>
-      <Button as={ReactRouterDomLink} to="/question">
-        Demander une info, un conseil
-      </Button>
-      <>ou</>
-      <AddNoticeButton />
+      <Content>
+        <AddNoticeButton />
+        <Paragraph>une info, un conseil</Paragraph>
+      </Content>
+      <Separator>ou</Separator>
+      <Content>
+        <BackgroundButton as={ReactRouterDomLink} to="/question">
+          Demander
+        </BackgroundButton>
+        <Paragraph>une info, un conseil</Paragraph>
+      </Content>
     </Container>
   </>
 );
