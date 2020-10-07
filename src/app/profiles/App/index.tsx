@@ -19,8 +19,8 @@ const App = () => (
         <Background>
           <PageContainer>
             <Switch>
-              <Redirect exact path="/" to="/informateurs" />
-              <Route path="/informateurs" component={Profiles} />
+              <Redirect exact path="/" to="/sources" />
+              <Route path="/sources" component={Profiles} />
               <Route path="/mes-abonnements" component={Subscriptions} />
               <Route component={Error} />
             </Switch>

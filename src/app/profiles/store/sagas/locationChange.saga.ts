@@ -16,9 +16,9 @@ function* contributorLocationSaga(match: Match<{ id: string }>) {
 }
 
 export default function* locationChangeSaga() {
-  yield takeLatestLocationChange('/informateurs', contributorsLocationSaga);
+  yield takeLatestLocationChange('/sources', contributorsLocationSaga);
   yield takeLatestLocationChange<{ id: string }>(
-    '/informateurs/:id/:slug',
+    '/sources/:id/:slug',
     contributorLocationSaga
   );
 }

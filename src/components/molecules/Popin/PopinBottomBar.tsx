@@ -45,8 +45,7 @@ const PopinBottomBar = ({
 
   return (
     <PopinBottomBarContainer>
-      <Link to="/informateurs">En savoir plus</Link> sur DisMoi et ses
-      informateurs
+      <Link to="/sources">En savoir plus</Link> sur DisMoi et ses sources
       <ContributorList>
         {contributors
           .filter(c => POPULAR_CONTRIBUTORS_IDS.includes(c.id))

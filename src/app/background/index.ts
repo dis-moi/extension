@@ -47,7 +47,7 @@ browser.contextMenus
   .finally(() => {
     browser.contextMenus.create({
       id: OPTIONS_MENU_ITEM_ID,
-      title: 'Informateurs et abonnements',
+      title: "Sources d'informations",
       contexts: ['browser_action']
     });
   });

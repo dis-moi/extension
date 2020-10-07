@@ -19,7 +19,7 @@ const Button = styled(BackgroundButton)`
 export default () => (
   <>
     <Title>
-      Pour l&apos;instant, aucun de vos informateurs n&apos;a posté
+      Pour l&apos;instant, aucune de vos sources n&apos;a posté
       d&apos;information sur cette page.
     </Title>
     <Container>
