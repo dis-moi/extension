@@ -133,7 +133,7 @@ const ProfileList = ({
 
   return (
     <>
-      <Title as="h1">Les informateurs</Title>
+      <Title as="h1">Les sources</Title>
 
       <Filters
         onChange={handleFiltersChange}

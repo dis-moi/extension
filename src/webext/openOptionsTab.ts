@@ -1,7 +1,7 @@
 import { CreateProperties } from './types';
 
 export const getOptionsUrl = (pathname?: string) =>
-  `${process.env.PROFILES_ORIGIN}${pathname || '/informateurs'}`;
+  `${process.env.PROFILES_ORIGIN}${pathname || '/sources'}`;
 
 const createOptionsTabsDescription = (pathname?: string): CreateProperties => ({
   url: getOptionsUrl(pathname),

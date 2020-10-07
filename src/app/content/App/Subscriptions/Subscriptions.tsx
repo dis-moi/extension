@@ -98,14 +98,14 @@ const Subscriptions = ({
       <SubscriptionInfo>
         {subscribedContributors.length === 0 && (
           <>
-            Vous ne suivez actuellement aucun(e) informateur(trice). <br />
+            Vous ne suivez actuellement aucune source. <br />
             Pour le bon fonctionnement de l&apos;extension, abonnez-vous !
           </>
         )}
         {subscribedContributors.length > 0 && (
           <>
             Vous suivez <br />
-            <strong>{subscribedContributors.length}</strong> informateur(trice)
+            <strong>{subscribedContributors.length}</strong> source
             {pluralize(subscribedContributors.length)}.
           </>
         )}

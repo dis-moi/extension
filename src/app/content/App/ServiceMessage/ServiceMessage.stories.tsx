@@ -17,7 +17,7 @@ storiesOf('Extension/ServiceMessage', module)
       messages={["I'm a service message!"]}
       action={{
         label: "I'm an action",
-        url: '/informateurs',
+        url: '/sources',
         type: LinkType.Options
       }}
       openOnboarding={() => action('openOnboarding')}

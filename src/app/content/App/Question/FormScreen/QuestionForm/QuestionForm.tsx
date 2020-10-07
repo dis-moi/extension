@@ -56,7 +56,7 @@ const QuestionForm = ({
       <Field
         name="message"
         placeholder={`Indiquez votre question.
-Précisez éventuellement le nom du média, de l'expert ou de l'informateur que vous souhaitez solliciter.
+Précisez éventuellement le nom du média, de l'expert ou de la source que vous souhaitez solliciter.
 `}
         rows={5}
         component={Textarea}
