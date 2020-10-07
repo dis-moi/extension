@@ -1,3 +1,10 @@
+# [3.51.0](https://github.com/dis-moi/extension/compare/v3.50.0...v3.51.0) (2020-10-07)
+
+
+### Features
+
+* **contributor:** Allow contributors to be filtered by categories ([3a81683](https://github.com/dis-moi/extension/commit/3a816830580fd537809a1242f280235ee1469484))
+
 # [3.50.0](https://github.com/dis-moi/extension/compare/v3.49.1...v3.50.0) (2020-10-06)
 
 
