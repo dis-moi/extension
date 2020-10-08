@@ -5,6 +5,13 @@ import Title from './Title';
 import ButtonContainer from './ButtonContainer';
 import { BackgroundButton } from 'components/atoms';
 import AddNoticeButton from 'components/atoms/Button/AddNoticeButton/AddNoticeButton';
+import { NoNotice } from '../../../../../components/atoms/icons';
+
+const Image = styled.div`
+  width: 52px;
+  height: auto;
+  margin: 30px auto 12px;
+`;
 
 const Container = styled(ButtonContainer)`
   flex-direction: row;
@@ -39,6 +46,9 @@ const Paragraph = styled.p`
 
 export default () => (
   <>
+    <Image>
+      <NoNotice />
+    </Image>
     <Title>
       Pas encore de post sur <br /> cette page web
     </Title>
