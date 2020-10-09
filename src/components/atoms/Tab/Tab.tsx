@@ -10,6 +10,7 @@ export default styled(NavLink).attrs({
   line-height: 1.2;
   font-family: 'Lato', sans-serif;
   font-weight: 700;
+  text-align: center;
   text-transform: none;
   text-decoration: none;
   color: ${props => props.theme.textColor};
@@ -23,7 +24,7 @@ export default styled(NavLink).attrs({
   }
 
   &.${props => props.activeClassName} {
-    color: '#000';
+    color: #000;
     border-bottom-color: ${props => props.theme.textColor};
   }
 `;

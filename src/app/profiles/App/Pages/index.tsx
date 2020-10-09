@@ -1,7 +1,7 @@
 import { Redirect, Route, Switch } from 'react-router';
 import React from 'react';
-import Tabs from '../../../../components/molecules/Tabs';
-import Tab from '../../../../components/atoms/Tab/Tab';
+import Tabs from 'components/molecules/Tabs/Tabs';
+import Tab from 'components/atoms/Tab/Tab';
 import Profiles from './Profiles';
 import Error from './Error';
 import Subscriptions from './Subscriptions';
