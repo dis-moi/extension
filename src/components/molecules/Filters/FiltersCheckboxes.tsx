@@ -5,6 +5,7 @@ const FiltersBar = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
   padding: 14px 20px;
   background-color: #fff;
   border-radius: 5px;
