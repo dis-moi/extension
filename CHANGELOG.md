@@ -1,3 +1,10 @@
+## [3.51.1](https://github.com/dis-moi/extension/compare/v3.51.0...v3.51.1) (2020-10-09)
+
+
+### Bug Fixes
+
+* **preview:** Respect line breaks in the question/notice preview. ([db9f085](https://github.com/dis-moi/extension/commit/db9f0856c6e58fe403fd822405d59a741fad901b))
+
 # [3.51.0](https://github.com/dis-moi/extension/compare/v3.50.0...v3.51.0) (2020-10-07)
 
 
