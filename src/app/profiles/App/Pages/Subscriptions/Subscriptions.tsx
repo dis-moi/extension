@@ -14,6 +14,7 @@ import { ContributorProfileListItem } from '../Profiles/List/ProfileList';
 import SimilarProfiles from 'app/profiles/App/SimilarProfiles';
 import Filters from 'components/molecules/Filters/FiltersCheckboxes';
 import useContributorsFilters from 'app/profiles/App/useContributorsFilters';
+import ProfileTabs from '../../ProfileTabs';
 
 const ContributorsList = styled.div`
   display: grid;
@@ -81,6 +82,7 @@ export const Subscriptions = ({
 
   return (
     <>
+      <ProfileTabs connected={connected} />
       <Filters
         onChange={handleFiltersChange}
         loading={!!categoriesLoading}
