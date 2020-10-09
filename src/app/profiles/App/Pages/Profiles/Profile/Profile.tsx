@@ -101,7 +101,7 @@ export const Aside = styled(Sidebar)`
   margin-top: ${props => props.theme.marginM};
     
   ${SimilarProfiles} + ${CenterContainer} {
-    margin-top: -30px;
+    margin-top: -${props => props.theme.marginM};
   }
   
   ${SimilarProfiles} ${Button} {

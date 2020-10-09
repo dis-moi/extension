@@ -18,8 +18,7 @@ import useContributorsFilters from 'app/profiles/App/useContributorsFilters';
 const ContributorsList = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-column-gap: 30px;
-  grid-row-gap: 30px;
+  grid-gap: 24px;
 `;
 
 export interface SubscriptionsProps {
