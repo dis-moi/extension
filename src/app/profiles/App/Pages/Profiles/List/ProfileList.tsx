@@ -132,8 +132,7 @@ const ProfileList = ({
 
   return (
     <>
-      <Title as="h1">Les sources</Title>
-
+      {connected === false && <Title as="h1">Les sources</Title>}
       <Filters
         onChange={handleFiltersChange}
         loading={!!categoriesLoading}
