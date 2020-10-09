@@ -10,6 +10,7 @@ import Date from './NoticeDetails/Date';
 import { Contribution } from 'app/lmem/notice';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import linkify from 'app/utils/linkify';
+import lineBreaksToBr from 'app/utils/lineBreaksToBr';
 
 const DetailsMetaValue = styled.div`
   margin-left: 10px;
@@ -43,7 +44,7 @@ class NoticePreview extends PureComponent<NoticePreviewProps> {
             </DetailsMetaValue>
           </DetailsMeta>
 
-          <Message>{linkify(message)}</Message>
+          <Message>{lineBreaksToBr(linkify(message))}</Message>
         </DetailsContent>
         {children}
       </Container>
