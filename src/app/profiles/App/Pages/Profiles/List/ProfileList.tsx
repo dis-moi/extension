@@ -20,6 +20,7 @@ import Loader from 'components/atoms/Loader';
 import pathToContributor from 'app/profiles/App/pathToContributor';
 import Filters from 'components/molecules/Filters/FiltersCheckboxes';
 import useContributorsFilters from 'app/profiles/App/useContributorsFilters';
+import ProfileTabs from '../../../ProfileTabs';
 
 const Title = styled(Title2)`
   padding-top: 30px;
@@ -133,6 +134,9 @@ const ProfileList = ({
   return (
     <>
       {connected === false && <Title as="h1">Les sources</Title>}
+
+      <ProfileTabs connected={connected} />
+
       <Filters
         onChange={handleFiltersChange}
         loading={!!categoriesLoading}
