@@ -2,7 +2,9 @@ import React, { MouseEventHandler } from 'react';
 import styled from 'styled-components';
 
 const MessageBlock = styled.div`
-  padding-top: 6px;
+  max-height: 200px;
+  padding-top: 12px;
+  overflow: auto;
 
   p {
     margin: 0;
