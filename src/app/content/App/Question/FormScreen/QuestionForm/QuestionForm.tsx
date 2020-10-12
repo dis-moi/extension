@@ -2,8 +2,12 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Field, InjectedFormProps } from 'redux-form';
 import { Form } from 'components/atoms/Forms';
-import { CenterContainer, BackgroundButton } from 'components/atoms';
-import { InputField, TextareaField } from 'components/organisms/Fields';
+import { CenterContainer, BackgroundButton, Button } from 'components/atoms';
+import {
+  InputField,
+  TextareaField,
+  SelectField
+} from 'components/organisms/Fields';
 import FormErrors from 'components/molecules/FormErrors';
 import { Contribution } from 'app/lmem/notice';
 import withReduxForm from './withReduxForm';
@@ -16,7 +20,7 @@ export interface QuestionFormOwnProps {
 }
 
 const Textarea = styled(TextareaField)`
-  height: 160px;
+  height: 140px;
 `;
 
 export type QuestionFormProps = InjectedFormProps<
@@ -40,7 +44,17 @@ const QuestionForm = ({
   return (
     <Form onSubmit={handleSubmit}>
       <Field name="url" type="hidden" component={InputField} />
-
+      <Field type="select" component={SelectField}>
+        <option value="">Plop</option>
+      </Field>
+      <Field
+        name="message"
+        placeholder={`Indiquez votre question.
+Précisez éventuellement le nom du média, de l'expert ou de l'informateur que vous souhaitez solliciter.
+`}
+        rows={4}
+        component={Textarea}
+      />
       <Field
         name="contributor.name"
         type="text"
@@ -53,22 +67,15 @@ const QuestionForm = ({
         placeholder="Votre@email.fr"
         component={InputField}
       />
-      <Field
-        name="message"
-        placeholder={`Indiquez votre question.
-Précisez éventuellement le nom du média, de l'expert ou de la source que vous souhaitez solliciter.
-`}
-        rows={5}
-        component={Textarea}
-      />
       <FormErrors errors={errors} globalError={error} />
       <CenterContainer>
+        <Button>Annuler</Button>
         <BackgroundButton
           type="submit"
           disabled={!valid || submitting}
           loading={submitting}
         >
-          prévisualiser
+          Envoyer
         </BackgroundButton>
       </CenterContainer>
     </Form>
