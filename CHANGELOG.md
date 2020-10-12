@@ -1,3 +1,10 @@
+## [3.51.2](https://github.com/dis-moi/extension/compare/v3.51.1...v3.51.2) (2020-10-12)
+
+
+### Bug Fixes
+
+* **ContributionForm:** adds scroll bar on preview when there's a long message ([7b1d8f1](https://github.com/dis-moi/extension/commit/7b1d8f109feef8e680265e27f97b98ffe80deb96))
+
 ## [3.51.1](https://github.com/dis-moi/extension/compare/v3.51.0...v3.51.1) (2020-10-09)
 
 
