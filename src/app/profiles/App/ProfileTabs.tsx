@@ -16,7 +16,7 @@ const ProfileTabs = ({ connected }: ProfileTabsProps) => {
   if (connected) {
     return (
       <ProfileTabsContainer>
-        <Tab to={'/informateurs'}>Informateurs</Tab>
+        <Tab to={'/sources'}>Sources</Tab>
         <Tab to={'/mes-abonnements'}>Abonnements</Tab>
       </ProfileTabsContainer>
     );
