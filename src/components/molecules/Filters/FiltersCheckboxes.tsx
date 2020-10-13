@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import styled from 'styled-components';
 
-const FiltersBar = styled.div`
+export const FiltersBar = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,7 +15,7 @@ const FiltersTitle = styled.span`
   font-size: 16px;
 `;
 
-const FiltersList = styled.div`
+export const FiltersList = styled.div`
   display: flex;
   margin-left: 18px;
   padding-left: 10px;
@@ -24,13 +24,13 @@ const FiltersList = styled.div`
   border-radius: ${props => props.theme.Button.radius};
 `;
 
-const FiltersListItem = styled.label`
+export const FiltersListItem = styled.label`
   cursor: pointer;
   &:not(:first-child) {
     margin-left: 30px;
   }
 
-  [type='checkbox'] {
+  input {
     margin-right: 10px;
   }
 `;

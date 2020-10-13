@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { StatefulContributor } from 'app/lmem/contributor';
 import { Categories } from 'app/lmem/category';
 
-const distinct = (value: string, index: number, array: string[]) =>
+export const distinct = (value: string, index: number, array: string[]) =>
   array.indexOf(value) === index;
 
 function useContributorsFilters(

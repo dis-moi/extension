@@ -19,7 +19,7 @@ import StatsWrapper from 'components/atoms/Contributor/StatsWrapper';
 import Loader from 'components/atoms/Loader';
 import pathToContributor from 'app/profiles/App/pathToContributor';
 import Filters from 'components/molecules/Filters/FiltersCheckboxes';
-import useContributorsFilters from 'app/profiles/App/useContributorsFilters';
+import useContributorsFilters from 'app/profiles/App/useContributorsRadiosFilters';
 import ProfileTabs from '../../../ProfileTabs';
 
 const Title = styled(Title2)`
@@ -119,16 +119,14 @@ const ProfileList = ({
     }
   };
 
-  const [
-    filteredContributors,
-    addFilter,
-    removeFilter
-  ] = useContributorsFilters(contributors, categories);
+  const [filteredContributors, setFilter] = useContributorsFilters(
+    contributors
+  );
 
   const handleFiltersChange = ({
-    target: { checked, value }
+    target: { value }
   }: ChangeEvent<HTMLInputElement>) => {
-    checked ? addFilter(value) : removeFilter(value);
+    setFilter(value);
   };
 
   return (
