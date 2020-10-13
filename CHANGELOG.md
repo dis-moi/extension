@@ -1,3 +1,10 @@
+## [3.52.1](https://github.com/dis-moi/extension/compare/v3.52.0...v3.52.1) (2020-10-13)
+
+
+### Bug Fixes
+
+* **tabs:** Fix wrong URL on tab ([1e64474](https://github.com/dis-moi/extension/commit/1e644740e6093ab3ee605bde3a743b6653dced2b))
+
 # [3.52.0](https://github.com/dis-moi/extension/compare/v3.51.2...v3.52.0) (2020-10-13)
 
 
