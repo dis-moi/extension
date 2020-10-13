@@ -1,18 +1,18 @@
-import { Contribution } from 'app/lmem/notice';
+import { Contribution, Question } from 'app/lmem/notice';
 import { BaseAction, FormAction, FormMeta, ErrorAction } from '.';
 import { Level } from '../utils/Logger';
 
 export const SUBMIT_QUESTION = 'QUESTION/SUBMIT';
 export interface SubmitQuestionAction extends FormAction {
   type: typeof SUBMIT_QUESTION;
-  payload: Contribution;
+  payload: Question;
 }
 export const submitQuestion = (
-  notice: Contribution,
+  question: Question,
   meta: FormMeta
 ): SubmitQuestionAction => ({
   type: SUBMIT_QUESTION,
-  payload: notice,
+  payload: question,
   meta
 });
 

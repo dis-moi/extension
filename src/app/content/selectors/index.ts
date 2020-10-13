@@ -13,7 +13,8 @@ import {
   isUnread,
   shouldNoticeBeShown,
   Contribution,
-  compareUnread
+  compareUnread,
+  Question
 } from 'app/lmem/notice';
 import { InstallationDetails } from 'app/lmem/installation';
 import { ContentState } from '../store';
@@ -84,8 +85,8 @@ export const isNoticeContext = (state: ContentState) => {
 export const getContribution = (state: ContentState): Contribution =>
   getFormValues('contribution')(state) as Contribution;
 
-export const getQuestion = (state: ContentState): Contribution =>
-  getFormValues('question')(state) as Contribution;
+export const getQuestion = (state: ContentState): Question =>
+  getFormValues('question')(state) as Question;
 
 export const getFormState = (formName: string) => (state: ContentState) =>
   state.form[formName];

@@ -11,12 +11,14 @@ import {
 import FormErrors from 'components/molecules/FormErrors';
 import { Contribution } from 'app/lmem/notice';
 import withReduxForm from './withReduxForm';
+import { StatefulContributor } from 'app/lmem/contributor';
 
 export interface QuestionFormOwnProps {
   onUrlChange: (url: string) => void;
   onSubmit: (...args: any[]) => void;
   errors: string[];
   error?: string;
+  contributors: StatefulContributor[];
 }
 
 const Textarea = styled(TextareaField)`
@@ -35,7 +37,8 @@ const QuestionForm = ({
   submitting,
   error,
   errors,
-  onUrlChange
+  onUrlChange,
+  contributors
 }: QuestionFormProps) => {
   useEffect(() => {
     onUrlChange(window.location.href);
@@ -44,8 +47,13 @@ const QuestionForm = ({
   return (
     <Form onSubmit={handleSubmit}>
       <Field name="url" type="hidden" component={InputField} />
-      <Field type="select" component={SelectField}>
-        <option value="">Plop</option>
+      <Field name="toContributorId" type="select" component={SelectField}>
+        <option />
+        {contributors.map(contributor => (
+          <option key={contributor.id} value={contributor.id}>
+            {contributor.name}
+          </option>
+        ))}
       </Field>
       <Field
         name="message"

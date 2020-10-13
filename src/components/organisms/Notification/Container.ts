@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { BackgroundButton } from '../../atoms';
 
 interface Props {
   hasNotices?: boolean;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { InjectedFormProps } from 'redux-form';
 import styled from 'styled-components';
 
-import { Contribution } from 'app/lmem/notice';
+import { Question } from 'app/lmem/notice';
 import { FormMeta } from 'app/actions';
 import NoticePreview from 'components/organisms/NoticePreview';
 import { BackgroundButton, Button } from 'components/atoms';
@@ -23,14 +23,14 @@ const CancelButton = styled(Button)`
 `;
 
 export interface PreviewScreenOwnProps {
-  contribution: Contribution;
+  question: Question;
   modify: () => void;
-  publish: (contribution: Contribution, meta: FormMeta) => void;
+  publish: (question: Question, meta: FormMeta) => void;
   errors: string[];
 }
 
 export type PreviewScreenProps = InjectedFormProps<
-  Contribution,
+  Question,
   PreviewScreenOwnProps
 > &
   PreviewScreenOwnProps;
@@ -43,7 +43,7 @@ class PreviewScreen extends Component<PreviewScreenProps> {
 
   render() {
     const {
-      contribution,
+      question,
       handleSubmit,
       form,
       submitting,
@@ -54,7 +54,7 @@ class PreviewScreen extends Component<PreviewScreenProps> {
     } = this.props;
 
     return (
-      <NoticePreview contribution={contribution}>
+      <NoticePreview contribution={question}>
         <PreviewForm
           onSubmit={handleFormSubmit({ handleSubmit, form })(publish)}
         >

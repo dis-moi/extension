@@ -13,7 +13,7 @@ const mapDispatchToProps = {
 
 export default connect(
   (state: ContentState) => ({
-    contribution: getQuestion(state)
+    question: getQuestion(state)
   }),
   mapDispatchToProps
 );

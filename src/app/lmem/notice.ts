@@ -35,6 +35,10 @@ export interface Contribution {
   message: string;
 }
 
+export interface Question extends Contribution {
+  toContributorId?: ContributorId;
+}
+
 export interface NoticeState {
   read: boolean;
   liked: boolean;
