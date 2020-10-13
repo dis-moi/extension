@@ -1,3 +1,22 @@
+# [3.52.0](https://github.com/dis-moi/extension/compare/v3.51.2...v3.52.0) (2020-10-13)
+
+
+### Bug Fixes
+
+* **FiltersCheckboxes:** adds default margin ([3048b26](https://github.com/dis-moi/extension/commit/3048b26a309232aa368827768a0894386966a16e))
+* **PrivacyMessageBox:** removes useless <p> ([0b70249](https://github.com/dis-moi/extension/commit/0b70249aa7deb8951e4188349632473bb25119da))
+* **profiles:** fix typings and inconsistencies ([632932f](https://github.com/dis-moi/extension/commit/632932f40c20daecb88c8668a0ab3e272b310411))
+* **profiles-list:** Don't show tabs on profile details. ([58c020d](https://github.com/dis-moi/extension/commit/58c020d9cc4afb5b1a19fbc58c8a5155e8bae6e3))
+* **profiles-list:** Hide title when connected ([a31a2ab](https://github.com/dis-moi/extension/commit/a31a2ab8ceee980c29b9c89acd6054d11389b397))
+* **ProfilesList:** fixes Tabs display ([7d9b4fe](https://github.com/dis-moi/extension/commit/7d9b4fe7e92717b8e41a5070b0cf0a561e3ec1f3))
+* **tab-navigation:** improves columns display ([eb937d2](https://github.com/dis-moi/extension/commit/eb937d28eccd198967f5de6f2c277125593dd4bf))
+
+
+### Features
+
+* **SidebarBoxes:** adds new boxes ([90cbaa3](https://github.com/dis-moi/extension/commit/90cbaa3cd10b616da767b2e036301c5ed53a3340))
+* **subscriptions:** Introduce tab navigation and Subscriptions screen ([92f0f6c](https://github.com/dis-moi/extension/commit/92f0f6cb18b4cb6c62dc9eb7c688765e0dc7f342))
+
 ## [3.51.2](https://github.com/dis-moi/extension/compare/v3.51.1...v3.51.2) (2020-10-12)
 
 
