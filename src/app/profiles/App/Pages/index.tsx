@@ -9,7 +9,7 @@ const Pages = () => (
     <Switch>
       <Redirect exact path="/" to="/sources" />
       <Route path="/sources" component={Profiles} />
-      <Route path="/mes-abonnements" component={Subscriptions} />
+      <Route path="/abonnements" component={Subscriptions} />
       <Route component={Error} />
     </Switch>
   </>
