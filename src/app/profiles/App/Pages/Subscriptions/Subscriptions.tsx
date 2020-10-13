@@ -12,8 +12,8 @@ import { Aside, MainCol } from '../Profiles/Profile/Profile';
 import pathToContributor from 'app/profiles/App/pathToContributor';
 import { ContributorProfileListItem } from '../Profiles/List/ProfileList';
 import SimilarProfiles from 'app/profiles/App/SimilarProfiles';
-import Filters from 'components/molecules/Filters/FiltersCheckboxes';
-import useContributorsFilters from 'app/profiles/App/useContributorsFilters';
+import Filters from 'components/molecules/Filters/RadiosFilters';
+import useContributorsFilters from 'app/profiles/App/useContributorsRadiosFilters';
 import ProfileTabs from '../../ProfileTabs';
 
 const ContributorsList = styled.div`
@@ -33,7 +33,7 @@ export interface SubscriptionsProps {
   categories: Categories;
 }
 
-export const Subscriptions = ({
+const Subscriptions = ({
   subscriptions,
   contributors,
   subscribe,
@@ -68,16 +68,14 @@ export const Subscriptions = ({
     );
   }
 
-  const [
-    filteredSubscriptions,
-    addFilter,
-    removeFilter
-  ] = useContributorsFilters(subscriptionsToRender, categories);
+  const [filteredSubscriptions, setFilter] = useContributorsFilters(
+    subscriptionsToRender
+  );
 
   const handleFiltersChange = ({
-    target: { checked, value }
+    target: { value }
   }: ChangeEvent<HTMLInputElement>) => {
-    checked ? addFilter(value) : removeFilter(value);
+    setFilter(value);
   };
 
   return (
