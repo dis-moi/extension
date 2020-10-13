@@ -14,6 +14,7 @@ storiesOf('Components/Molecules/QuestionForm', module)
       onSubmit={action('onSubmit')}
       errors={[]}
       error={''}
+      contributors={[]}
     />
   ))
   .add('multiple errors', () => (
@@ -22,6 +23,7 @@ storiesOf('Components/Molecules/QuestionForm', module)
       onSubmit={action('onSubmit')}
       errors={['Votre email est invalide', 'Le nom est requis.']}
       error={''}
+      contributors={[]}
     />
   ))
   .add('global errors', () => (
@@ -30,5 +32,6 @@ storiesOf('Components/Molecules/QuestionForm', module)
       onSubmit={action('onSubmit')}
       errors={[]}
       error={'Attention! Tous les champs sont obligatoires.'}
+      contributors={[]}
     />
   ));

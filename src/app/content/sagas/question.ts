@@ -9,17 +9,17 @@ import {
 } from '../../actions/question';
 import { createSubmissionError } from 'app/utils/form';
 import sendEmail from 'api/sendInBlue/sendEmail';
-import createContributionEmail from 'app/background/services/createContributionEmail';
+import createQuestionEmail from 'app/background/services/createQuestionEmail';
 import { history } from '../store';
 
 export function* submitQuestionSaga({
-  payload: contribution,
+  payload: question,
   meta: { form, resolve, reject }
 }: SubmitQuestionAction) {
   try {
-    yield call(sendEmail, createContributionEmail(contribution));
+    yield call(sendEmail, createQuestionEmail(question));
 
-    yield put(questionSubmitted(contribution));
+    yield put(questionSubmitted(question));
 
     if (form) {
       // reset history, form and redirect to success page
