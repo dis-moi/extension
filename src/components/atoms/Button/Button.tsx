@@ -59,7 +59,6 @@ export default styled(Button)`
   font-size: ${props => props.theme.fontSizeDefault};
   line-height: 1;
   color: ${props => props.theme.secondaryColor};
-  text-transform: uppercase;
   text-decoration: underline;
   background: none;
   border: none;
@@ -100,9 +99,5 @@ export default styled(Button)`
   ${LoadingRotator} svg {
     width: 18px;
     height: 18px;
-  }
-
-  @media (max-width: ${props => props.theme.tabletWidth}) {
-    font-size: 18px;
   }
 `;
