@@ -18,7 +18,7 @@ import BrowserNotSupportedPopin from '../BrowserNotSupportedPopin';
 import StatsWrapper from 'components/atoms/Contributor/StatsWrapper';
 import Loader from 'components/atoms/Loader';
 import pathToContributor from 'app/profiles/App/pathToContributor';
-import Filters from 'components/molecules/Filters/FiltersCheckboxes';
+import Filters from 'components/molecules/Filters/RadiosFilters';
 import useContributorsFilters from 'app/profiles/App/useContributorsRadiosFilters';
 import ProfileTabs from '../../../ProfileTabs';
 
