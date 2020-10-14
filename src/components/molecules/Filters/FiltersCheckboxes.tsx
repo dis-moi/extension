@@ -28,7 +28,7 @@ export const FiltersListItem = styled.label`
     margin-left: 30px;
   }
 
-  input {
+  svg {
     margin-right: 10px;
   }
 `;
