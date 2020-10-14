@@ -19,3 +19,4 @@ export { default as Plus } from './Plus';
 export { default as Pin } from './Pin';
 export { default as Relay } from './Relay';
 export { default as NoNotice } from './NoNotice';
+export { default as Radio } from './Radio';
