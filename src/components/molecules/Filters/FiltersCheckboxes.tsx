@@ -17,8 +17,6 @@ const FiltersTitle = styled.span`
 
 export const FiltersList = styled.div`
   display: flex;
-  margin-left: 18px;
-  padding-left: 10px;
   font-size: 16px;
   color: ${props => props.theme.textColor};
   border-radius: ${props => props.theme.Button.radius};
