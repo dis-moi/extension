@@ -25,6 +25,11 @@ const Textarea = styled(TextareaField)`
   height: 140px;
 `;
 
+const BackButton = styled(Button)`
+  text-transform: none;
+  font-size: 16px;
+`;
+
 export type QuestionFormProps = InjectedFormProps<
   Contribution,
   QuestionFormOwnProps
@@ -77,7 +82,7 @@ Précisez éventuellement le nom du média, de l'expert ou de l'informateur que 
       />
       <FormErrors errors={errors} globalError={error} />
       <CenterContainer>
-        <Button>Annuler</Button>
+        <BackButton>Annuler</BackButton>
         <BackgroundButton
           type="submit"
           disabled={!valid || submitting}
