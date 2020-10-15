@@ -1,13 +1,23 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 import { storiesOf } from '@storybook/react';
+import { MemoryRouter as Router } from 'react-router-dom';
 import { action } from '@storybook/addon-actions';
+import { createBrowserHistory } from 'history';
 import Profile from './Profile';
 import { generateStatefulNotice } from 'test/fakers/generateNotice';
 import { generateStatefulContributor } from 'test/fakers/generateContributor';
-import { MemoryRouter as Router } from 'react-router-dom';
+import rootReducer from '../../../../store/reducers';
+
+const store = createStore(rootReducer(createBrowserHistory()));
 
 storiesOf('Profile/Profile', module)
-  .addDecorator(getStory => <Router>{getStory()}</Router>)
+  .addDecorator(getStory => (
+    <Router>
+      <Provider store={store}>{getStory()}</Provider>
+    </Router>
+  ))
   .add('Normal', () => (
     <Profile
       featuredNotice={generateStatefulNotice()}
