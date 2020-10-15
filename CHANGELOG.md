@@ -1,3 +1,21 @@
+# [3.53.0](https://github.com/dis-moi/extension/compare/v3.52.1...v3.53.0) (2020-10-15)
+
+
+### Bug Fixes
+
+* **Aside:** removes margin top ([9191cff](https://github.com/dis-moi/extension/commit/9191cff51902a5566067c951b7e81004ea9c936b))
+* **PrivacyMessageBox:** decreases list impact ([157dbd7](https://github.com/dis-moi/extension/commit/157dbd77d15c1c14c5f5a2f5e6a7ce0b0e94a788))
+* **SlowerMessageBox:** decreases title impact ([86ac5f9](https://github.com/dis-moi/extension/commit/86ac5f99ba849a837ec2f6ae78f8acacdbb52a4c))
+
+
+### Features
+
+* **NoNoticeScreen:** adds content for first empty option ([088b6ff](https://github.com/dis-moi/extension/commit/088b6ff6d7b2bf62e54ef795043c144ba5f6e126))
+* **NoNoticeScreen:** adds image ([25a6925](https://github.com/dis-moi/extension/commit/25a692572b81df6b4dc570bfb779dc4c967434a0))
+* **NoNoticeScreen:** adds new elements ([a43df1b](https://github.com/dis-moi/extension/commit/a43df1be25d3075745b18073dd416afd70cd240a))
+* **question:** Add choice of the contributor to ask the question to ([a4f6672](https://github.com/dis-moi/extension/commit/a4f6672def9b033f979219ccf801cb4772f990bf))
+* **Question:** updates design ([d533309](https://github.com/dis-moi/extension/commit/d533309862ca73ca92bb7cd05c5635be4a6ca0c8))
+
 ## [3.52.1](https://github.com/dis-moi/extension/compare/v3.52.0...v3.52.1) (2020-10-13)
 
 
