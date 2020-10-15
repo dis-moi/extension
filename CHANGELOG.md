@@ -1,3 +1,18 @@
+# [3.54.0](https://github.com/dis-moi/extension/compare/v3.53.0...v3.54.0) (2020-10-15)
+
+
+### Bug Fixes
+
+* **filters:** Also use radio filters on profile list ([66bb4e5](https://github.com/dis-moi/extension/commit/66bb4e561db56726335f4159835e20ba6ecc6886))
+* **FiltersList:** removes left margins ([78aa799](https://github.com/dis-moi/extension/commit/78aa799e418415c9d723e076e02af669347a6ac8))
+* **storybook:** Quickfix profile story ([1e3e816](https://github.com/dis-moi/extension/commit/1e3e81651e55a12839e0fdc621df8c1c47562ec0))
+
+
+### Features
+
+* **filters:** Use radio buttons instead of checkbox ([ebba5c6](https://github.com/dis-moi/extension/commit/ebba5c6e32fc445da553679659b56a950aed7069))
+* **RadioButton:** styles them ([5c8664d](https://github.com/dis-moi/extension/commit/5c8664d81ecf9d6f2180efc09ac50ce15db14224))
+
 # [3.53.0](https://github.com/dis-moi/extension/compare/v3.52.1...v3.53.0) (2020-10-15)
 
 
