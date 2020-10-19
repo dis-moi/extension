@@ -7,10 +7,9 @@ import RadiosFilters from './RadiosFilters';
 
 const FILTERS = {
   CONSO: 'Conso',
-  INFOS: 'Infos & média',
-  PRO: 'Professionnel',
   MILITANT: 'Militant',
-  CULTURE: 'Culture & Loisir'
+  CULTURE: 'Culture & Société',
+  DIVERS: 'Divers'
 };
 
 const RADIO_FILTERS = {
