@@ -6,11 +6,11 @@ import { action } from '@storybook/addon-actions';
 import RadiosFilters from './RadiosFilters';
 
 const FILTERS = {
+  INFOS: 'Tous',
   CONSO: 'Conso',
-  INFOS: 'Infos & média',
-  PRO: 'Professionnel',
   MILITANT: 'Militant',
-  CULTURE: 'Culture & Loisir'
+  CULTURE: 'Culture & Société'
+  PRO: 'Divers',
 };
 
 const RADIO_FILTERS = {
