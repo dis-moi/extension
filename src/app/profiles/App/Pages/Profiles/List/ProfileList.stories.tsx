@@ -7,10 +7,9 @@ import { MemoryRouter as Router } from 'react-router-dom';
 
 const CATEGORIES = {
   CONSO: 'Conso',
-  INFOS: 'Infos & média',
-  PRO: 'Professionnel',
+  CULTURE: 'Culture & Société',
   MILITANT: 'Militant',
-  CULTURE: 'Culture & Loisir'
+  DIVERS: 'Divers'
 };
 
 storiesOf('Profile/ProfileList', module)

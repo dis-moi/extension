@@ -41,10 +41,9 @@ const FiltersSelect = () => {
       <FiltersList>
         <FiltersListItem>Tous</FiltersListItem>
         <FiltersListItem>Conso</FiltersListItem>
-        <FiltersListItem>Info & média</FiltersListItem>
-        <FiltersListItem>Professionnel</FiltersListItem>
-        <FiltersListItem>Militant</FiltersListItem>
-        <FiltersListItem>Culture & loisir</FiltersListItem>
+        <FiltersListItem>Culture & Société</FiltersListItem>
+        <FiltersListItem>Miltant</FiltersListItem>
+        <FiltersListItem>Divers</FiltersListItem>
       </FiltersList>
     </FiltersBar>
   );
