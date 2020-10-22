@@ -4,7 +4,7 @@ import { generateContributor } from 'test/fakers/generateContributor';
 import {
   getContributorsSuggestions,
   getNbTotalContributors,
-  getSortedContributors,
+  getContributorsSortedByContributions,
   getSubscriptions,
   makeGetNContributorsSuggestions
 } from './contributors.selectors';
@@ -28,9 +28,9 @@ describe('options > selectors > contributors', () => {
     });
   });
 
-  describe('getSortedContributors', () => {
+  describe('getContributorsSortedByContributions', () => {
     it('returns contributors state, sorted by nb of contributors', () => {
-      expect(getSortedContributors(state)).to.eql([
+      expect(getContributorsSortedByContributions(state)).to.eql([
         contributorOne,
         contributorThree,
         contributorTwo

@@ -90,6 +90,10 @@ export const sortContributorsByContributions: SortSuggestedContributors = R.sort
   [R.descend(R.prop('contributions'))]
 );
 
+export const sortContributorsAlphabetically: SortSuggestedContributors = R.sortWith(
+  [R.ascend(R.prop('name'))]
+);
+
 export const createFindContributorById = (contributors: Contributor[]) => (
   id: number
 ) => R.find(R.propEq('id', id), contributors) as Contributor;
