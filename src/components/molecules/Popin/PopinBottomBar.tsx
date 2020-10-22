@@ -1,14 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'components/atoms';
-import { Contributor, StatefulContributor } from 'app/lmem/contributor';
-import ContributorListItem from 'components/atoms/ContributorListItem';
-import InteractiveAvatar from '../InteractiveAvatar';
-import { asArray } from 'app/utils/env';
+import { ExternalLink } from 'components/atoms';
+import { WEBSITE_DOMAIN } from '../../../app/lmem';
+// eslint-disable-next-line
+// @ts-ignore
+import LogoBordeaux from 'assets/img/contributors/logo-bordeaux.png';
+// eslint-disable-next-line
+// @ts-ignore
+import LogoColibri from 'assets/img/contributors/logo-colibri-ecolo.png';
+// eslint-disable-next-line
+// @ts-ignore
+import LogoLeMonde from 'assets/img/contributors/logo-le-monde.png';
+// eslint-disable-next-line
+// @ts-ignore
+import LogoLesInrocks from 'assets/img/contributors/logo-les-inrocks.png';
+// eslint-disable-next-line
+// @ts-ignore
+import LogoMicode from 'assets/img/contributors/logo-micode.png';
+// eslint-disable-next-line
+// @ts-ignore
+import LogoQueChoisir from 'assets/img/contributors/logo-que-choisir.png';
 
-const POPULAR_CONTRIBUTORS_IDS = asArray<number>(
-  process.env.POPULAR_CONTRIBUTORS_IDS
-);
+const Link = styled(ExternalLink)`
+  color: ${props => props.theme.text};
+  font-weight: normal;
+  text-decoration: underline;
+`;
 
 const PopinBottomBarContainer = styled.div`
   width: 100%;
@@ -30,37 +47,40 @@ const ContributorList = styled.ul`
   list-style-type: none;
 `;
 
-interface PopinBottomBarProps {
-  contributors: StatefulContributor[];
-  onContributorClick: (contributor: Contributor) => void;
-}
+const ContributorItem = styled.li`
+  width: 60px;
+  height: 60px;
 
-const PopinBottomBar = ({
-  contributors,
-  onContributorClick
-}: PopinBottomBarProps) => {
-  if (!contributors) {
-    return null;
+  &:not(:first-child) {
+    margin-left: 16px;
   }
+`;
 
-  return (
-    <PopinBottomBarContainer>
-      <Link to="/sources">En savoir plus</Link> sur DisMoi et ses sources
-      <ContributorList>
-        {contributors
-          .filter(c => POPULAR_CONTRIBUTORS_IDS.includes(c.id))
-          .map(contributor => (
-            <ContributorListItem key={`contributorListItem[${contributor.id}]`}>
-              <InteractiveAvatar
-                onClick={() => onContributorClick(contributor)}
-                contributor={contributor}
-                size="small"
-              />
-            </ContributorListItem>
-          ))}
-      </ContributorList>
-    </PopinBottomBarContainer>
-  );
-};
+const PopinBottomBar = () => (
+  <PopinBottomBarContainer>
+    En savoir plus sur <Link href={`https://${WEBSITE_DOMAIN}/`}>DisMoi</Link>{' '}
+    et ses sources
+    <ContributorList>
+      <ContributorItem>
+        <img src={LogoQueChoisir} alt="" />
+      </ContributorItem>
+      <ContributorItem>
+        <img src={LogoColibri} alt="" />
+      </ContributorItem>
+      <ContributorItem>
+        <img src={LogoLeMonde} alt="" />
+      </ContributorItem>
+      <ContributorItem>
+        <img src={LogoBordeaux} alt="" />
+      </ContributorItem>
+      <ContributorItem>
+        <img src={LogoLesInrocks} alt="" />
+      </ContributorItem>
+      <ContributorItem>
+        <img src={LogoMicode} alt="" />
+      </ContributorItem>
+    </ContributorList>
+  </PopinBottomBarContainer>
+);
 
 export default PopinBottomBar;
