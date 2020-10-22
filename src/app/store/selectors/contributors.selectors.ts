@@ -4,7 +4,8 @@ import {
   contributorIsSubscribed,
   sortContributorsByContributions,
   Contributor,
-  StatefulContributor
+  StatefulContributor,
+  sortContributorsAlphabetically
 } from 'app/lmem/contributor';
 import { ContributorsState } from '../reducers/contributors.reducer';
 import { findItemById } from 'app/utils/findItemById';
@@ -23,13 +24,18 @@ export const getNbTotalContributors = createSelector<
   number | undefined
 >([getContributors], contributors => contributors.length);
 
-export const getSortedContributors = createSelector(
+export const getContributorsSortedByContributions = createSelector(
   [getContributors],
   sortContributorsByContributions
 );
 
+export const getContributorsSortedAlphabetically = createSelector(
+  [getContributors],
+  sortContributorsAlphabetically
+);
+
 export const getSubscriptions = createSelector(
-  [getSortedContributors],
+  [getContributorsSortedByContributions],
   R.filter(contributorIsSubscribed)
 );
 
@@ -39,7 +45,7 @@ export const getNbSusbcriptions = createSelector(
 );
 
 export const getContributorsSuggestions = createSelector(
-  [getSortedContributors],
+  [getContributorsSortedByContributions],
   R.reject(contributorIsSubscribed)
 );
 
