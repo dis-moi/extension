@@ -5,11 +5,17 @@ import Popin, {
   PopinState
 } from 'components/molecules/Popin/Popin';
 import PopinParagraph from 'components/molecules/Popin/PopinParagraph';
-import { BackgroundButton, ExternalLink } from 'components/atoms';
+import { BackgroundButton, Box, ExternalLink } from 'components/atoms';
 import { Contributor, StatefulContributor } from 'app/lmem/contributor';
 import PopinBottomBar from 'components/molecules/Popin/PopinBottomBar';
 import PopinSmallText from 'components/molecules/Popin/PopinSmallText';
 import { WEBSITE_DOMAIN } from 'app/lmem';
+
+const PopinLarge = styled(Popin)`
+  ${Box} {
+    max-width: 720px;
+  }
+`;
 
 const Text = styled(PopinParagraph)`
   text-align: center;
@@ -37,7 +43,6 @@ const NotConnectedPopin = ({
   setOpened,
   contributor,
   addToBrowser,
-  contributors,
   onContributorClick
 }: NotConnectedPopinProps) => {
   const handleContributorClicked = (contributor: Contributor) => {
@@ -46,7 +51,7 @@ const NotConnectedPopin = ({
   };
 
   return (
-    <Popin opened={opened} setOpened={setOpened}>
+    <PopinLarge opened={opened} setOpened={setOpened}>
       <Text>
         Pour voir les contributions {contributor && `de ${contributor.name}`},
         veuillez d’abord ajouter Dismoi à votre navigateur.
@@ -61,11 +66,8 @@ const NotConnectedPopin = ({
           respecte votre vie privée
         </Link>
       </PopinSmallText>
-      <PopinBottomBar
-        contributors={contributors}
-        onContributorClick={handleContributorClicked}
-      />
-    </Popin>
+      <PopinBottomBar />
+    </PopinLarge>
   );
 };
 
