@@ -1,4 +1,5 @@
 import React, { MouseEvent } from 'react';
+import styled from 'styled-components';
 import Popin, {
   PopinProps,
   PopinState
@@ -9,6 +10,12 @@ import { Contributor, StatefulContributor } from 'app/lmem/contributor';
 import PopinBottomBar from 'components/molecules/Popin/PopinBottomBar';
 import PopinSmallText from 'components/molecules/Popin/PopinSmallText';
 import { WEBSITE_DOMAIN } from 'app/lmem';
+
+const Text = styled(PopinParagraph)`
+  text-align: center;
+`;
+
+const Link = styled(ExternalLink)``;
 
 export interface NotConnectedPopinState extends PopinState {
   contributor?: StatefulContributor;
@@ -36,10 +43,10 @@ const NotConnectedPopin = ({
 
   return (
     <Popin opened={opened} setOpened={setOpened}>
-      <PopinParagraph>
+      <Text>
         Pour voir les contributions {contributor && `de ${contributor.name}`},
         veuillez d’abord ajouter Dismoi à votre navigateur.
-      </PopinParagraph>
+      </Text>
 
       <BackgroundButton className="bulle-installer" onClick={addToBrowser}>
         Ajouter Dismoi à mon navigateur
