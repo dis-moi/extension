@@ -15,7 +15,11 @@ const Text = styled(PopinParagraph)`
   text-align: center;
 `;
 
-const Link = styled(ExternalLink)``;
+const Link = styled(ExternalLink)`
+  color: ${props => props.theme.text};
+  font-weight: normal;
+  text-decoration: underline;
+`;
 
 export interface NotConnectedPopinState extends PopinState {
   contributor?: StatefulContributor;
@@ -53,9 +57,9 @@ const NotConnectedPopin = ({
       </BackgroundButton>
       <PopinSmallText>
         Gratuit, sans publicité,{' '}
-        <ExternalLink href={`https://${WEBSITE_DOMAIN}/vie-privee`}>
+        <Link href={`https://${WEBSITE_DOMAIN}/vie-privee`}>
           respecte votre vie privée
-        </ExternalLink>
+        </Link>
       </PopinSmallText>
       <PopinBottomBar
         contributors={contributors}
