@@ -1,3 +1,18 @@
+# [3.55.0](https://github.com/dis-moi/extension/compare/v3.54.0...v3.55.0) (2020-10-26)
+
+
+### Bug Fixes
+
+* **NotConnectedPopin:** adds images for selected contributors ([758e1ef](https://github.com/dis-moi/extension/commit/758e1ef18193788a8686784e67a6c75e87ef9915))
+* **NotConnectedPopin:** centers text ([bca1376](https://github.com/dis-moi/extension/commit/bca1376a5b92ab70436eb3479edffc0aac74c763))
+* **NotConnectedPopin:** changes link display ([a41b021](https://github.com/dis-moi/extension/commit/a41b0211a8095f9d96c86c4f489e11518df78908))
+* **popin:** Fix typings and cs issues ([f836b90](https://github.com/dis-moi/extension/commit/f836b90e8518632db6f7bcfdc4847fb73ce9260e))
+
+
+### Features
+
+* **question:** sort suggested contributors alphabetically ([aa7bb5f](https://github.com/dis-moi/extension/commit/aa7bb5f6f01034a4c55fe8232296464d7012b912))
+
 # [3.54.0](https://github.com/dis-moi/extension/compare/v3.53.0...v3.54.0) (2020-10-15)
 
 
