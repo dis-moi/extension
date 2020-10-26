@@ -21,8 +21,8 @@ interface SimilarProfilesProps {
   loading?: boolean;
   similarContributors: StatefulContributor[];
   contributors: StatefulContributor[];
-  subscribe: (contributor: StatefulContributor) => void;
-  unsubscribe: (contributor: StatefulContributor) => void;
+  subscribe: (contributor: StatefulContributor) => () => void;
+  unsubscribe: (contributor: StatefulContributor) => () => void;
   className?: string;
 }
 
@@ -77,8 +77,8 @@ const SimilarProfiles = ({
             <ContributorCompact
               key={contributor.id}
               contributor={contributor}
-              onSubscribe={() => subscribe(contributor)}
-              onUnsubscribe={() => unsubscribe(contributor)}
+              onSubscribe={subscribe(contributor)}
+              onUnsubscribe={unsubscribe(contributor)}
               to={pathToContributor(contributor)}
             />
           ))}

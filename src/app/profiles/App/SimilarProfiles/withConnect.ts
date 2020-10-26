@@ -13,8 +13,8 @@ import { extensionMessageSender } from 'app/profiles/extensionId';
 
 export interface ConnectedSimilarProfileProps
   extends RouteComponentProps<{ id: string }> {
-  subscribe?: (contributor: Contributor) => void;
-  unsubscribe?: (contributor: Contributor) => void;
+  subscribe?: (contributor: Contributor) => () => void;
+  unsubscribe?: (contributor: Contributor) => () => void;
 }
 
 const mapStateToProps = (
@@ -27,9 +27,9 @@ const mapStateToProps = (
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  subscribe: (contributor: Contributor) =>
+  subscribe: (contributor: Contributor) => () =>
     dispatch(subscribe(contributor.id, { receiver: extensionMessageSender })),
-  unsubscribe: (contributor: Contributor) =>
+  unsubscribe: (contributor: Contributor) => () =>
     dispatch(unsubscribe(contributor.id, { receiver: extensionMessageSender }))
 });
 
