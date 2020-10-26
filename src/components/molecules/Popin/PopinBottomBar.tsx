@@ -2,23 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { ExternalLink } from 'components/atoms';
 import { WEBSITE_DOMAIN } from '../../../app/lmem';
-// eslint-disable-next-line
-// @ts-ignore
 import LogoBordeaux from 'assets/img/contributors/logo-bordeaux.png';
-// eslint-disable-next-line
-// @ts-ignore
 import LogoColibri from 'assets/img/contributors/logo-colibri-ecolo.png';
-// eslint-disable-next-line
-// @ts-ignore
 import LogoLeMonde from 'assets/img/contributors/logo-le-monde.png';
-// eslint-disable-next-line
-// @ts-ignore
 import LogoLesInrocks from 'assets/img/contributors/logo-les-inrocks.png';
-// eslint-disable-next-line
-// @ts-ignore
 import LogoMicode from 'assets/img/contributors/logo-micode.png';
-// eslint-disable-next-line
-// @ts-ignore
 import LogoQueChoisir from 'assets/img/contributors/logo-que-choisir.png';
 
 const Link = styled(ExternalLink)`

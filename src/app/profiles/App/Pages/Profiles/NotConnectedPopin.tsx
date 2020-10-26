@@ -6,7 +6,7 @@ import Popin, {
 } from 'components/molecules/Popin/Popin';
 import PopinParagraph from 'components/molecules/Popin/PopinParagraph';
 import { BackgroundButton, Box, ExternalLink } from 'components/atoms';
-import { Contributor, StatefulContributor } from 'app/lmem/contributor';
+import { StatefulContributor } from 'app/lmem/contributor';
 import PopinBottomBar from 'components/molecules/Popin/PopinBottomBar';
 import PopinSmallText from 'components/molecules/Popin/PopinSmallText';
 import { WEBSITE_DOMAIN } from 'app/lmem';
@@ -35,21 +35,14 @@ interface NotConnectedPopinProps extends PopinProps {
   contributor?: StatefulContributor;
   addToBrowser: (e: MouseEvent<HTMLButtonElement>) => void;
   contributors: StatefulContributor[];
-  onContributorClick: (contributor: Contributor) => void;
 }
 
 const NotConnectedPopin = ({
   opened,
   setOpened,
   contributor,
-  addToBrowser,
-  onContributorClick
+  addToBrowser
 }: NotConnectedPopinProps) => {
-  const handleContributorClicked = (contributor: Contributor) => {
-    onContributorClick(contributor);
-    setOpened(false);
-  };
-
   return (
     <PopinLarge opened={opened} setOpened={setOpened}>
       <Text>

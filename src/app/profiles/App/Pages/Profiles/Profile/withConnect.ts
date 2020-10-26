@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
-import { push } from 'connected-react-router';
-import { Contributor, ContributorId } from 'app/lmem/contributor';
+import { ContributorId } from 'app/lmem/contributor';
 import { subscribe, unsubscribe } from 'app/actions/subscription';
 import {
   areContributorNoticesAllFetched,
@@ -17,7 +16,6 @@ import { ProfilesState } from 'app/profiles/store/reducers';
 import { ProfileProps } from './Profile';
 import { extensionMessageSender } from 'app/profiles/extensionId';
 import { fetchMoreContributorNotices } from 'app/profiles/store/actions/notices';
-import pathToContributor from '../../../pathToContributor';
 
 export type ConnectedProfileScreenProps = ProfileProps &
   RouteComponentProps<{ id: string }>;
@@ -43,8 +41,6 @@ const mapDispatchToProps = {
     subscribe(contributorId, { receiver: extensionMessageSender }),
   unsubscribe: (contributorId: ContributorId) =>
     unsubscribe(contributorId, { receiver: extensionMessageSender }),
-  goToContributor: (contributor: Contributor) =>
-    push(pathToContributor(contributor)),
   fetchMoreNotices: fetchMoreContributorNotices
 };
 

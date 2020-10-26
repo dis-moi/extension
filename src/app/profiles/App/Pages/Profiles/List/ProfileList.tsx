@@ -1,10 +1,6 @@
 import React, { ChangeEvent, MouseEvent, useState } from 'react';
 import styled from 'styled-components';
-import {
-  Contributor,
-  ContributorId,
-  StatefulContributor
-} from 'app/lmem/contributor';
+import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
 import { Categories } from 'app/lmem/category';
 import { Button, CenterContainer, Title2 } from 'components/atoms';
 import { Arrow } from 'components/atoms/icons';
@@ -79,7 +75,6 @@ export interface ProfileListProps {
   unsubscribe: (contributorId: ContributorId) => void;
   connected?: boolean;
   addToBrowser: (e: MouseEvent<HTMLButtonElement>) => void;
-  goToContributor: (contributor: Contributor) => void;
   categoriesLoading?: boolean;
   categories: Categories;
 }
@@ -91,7 +86,6 @@ const ProfileList = ({
   unsubscribe,
   connected,
   addToBrowser,
-  goToContributor,
   categoriesLoading,
   categories
 }: ProfileListProps) => {
@@ -178,7 +172,6 @@ const ProfileList = ({
           addToBrowser(e);
         }}
         contributors={contributors}
-        onContributorClick={goToContributor}
       />
 
       <BrowserNotSupportedPopin
