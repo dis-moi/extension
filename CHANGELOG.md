@@ -1,3 +1,10 @@
+## [3.55.1](https://github.com/dis-moi/extension/compare/v3.55.0...v3.55.1) (2020-10-26)
+
+
+### Bug Fixes
+
+* **similar-profiles:** Fix "Suivre" not triggering anything ([d8d7942](https://github.com/dis-moi/extension/commit/d8d7942048521fc49b64470d8d21c3df7e36cb58))
+
 # [3.55.0](https://github.com/dis-moi/extension/compare/v3.54.0...v3.55.0) (2020-10-26)
 
 
