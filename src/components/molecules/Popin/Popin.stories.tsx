@@ -6,7 +6,6 @@ import Popin from './Popin';
 import PopinParagraph from './PopinParagraph';
 import PopinBottomBar from './PopinBottomBar';
 import PopinSmallText from './PopinSmallText';
-import { generateContributor } from 'test/fakers/generateContributor';
 
 storiesOf('Components/Molecules/Popin', module)
   .add('default', () => (
@@ -67,20 +66,6 @@ storiesOf('Components/Molecules/Popin', module)
       <PopinSmallText>
         Gratuit, sans publicité, <Link>respecte votre vie privée</Link>
       </PopinSmallText>
-      <PopinBottomBar
-        contributors={[
-          generateContributor(),
-          generateContributor(),
-          generateContributor(),
-          generateContributor(),
-          generateContributor(),
-          generateContributor(),
-          generateContributor(),
-          generateContributor(),
-          generateContributor(),
-          generateContributor()
-        ]}
-        onContributorClick={action('contributorClicked')}
-      />
+      <PopinBottomBar />
     </Popin>
   ));

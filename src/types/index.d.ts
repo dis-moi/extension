@@ -14,11 +14,6 @@ interface AppEnv extends NodeJS.ProcessEnv {
   POPULAR_CONTRIBUTORS_IDS: string;
 }
 
-declare module '*.png' {
-  const value: string;
-  export = value;
-}
-
 // @see https://en.wikipedia.org/wiki/Three-valued_logic
 export type trilean = boolean | undefined;
 

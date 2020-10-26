@@ -34,7 +34,6 @@ storiesOf('Profile/ProfileList', module)
       addToBrowser={action('addToBrowser')}
       categories={CATEGORIES}
       categoriesLoading={false}
-      goToContributor={action('goToContributor')}
     />
   ))
   .add('loading', () => (
@@ -57,6 +56,5 @@ storiesOf('Profile/ProfileList', module)
       addToBrowser={action('addToBrowser')}
       categories={CATEGORIES}
       categoriesLoading={false}
-      goToContributor={action('goToContributor')}
     />
   ));
