@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const MessageBlock = styled.div`
   max-height: 200px;
   padding-top: 12px;
-  overflow: auto;
+  overflow-y: auto;
 
   p {
     margin: 0;
