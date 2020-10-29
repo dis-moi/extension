@@ -36,17 +36,17 @@ module.exports = function webpack(env = {}, argv = {}) {
     ...defaultWebpackConfig,
     module: {
       rules: [
-        ...defaultWebpackConfig.module.rules,
         {
           test: /\.(png|jpe?g|gif)$/i,
-          include: path.resolve(__dirname, '..', 'src/app/profiles'),
+          include: path.resolve(__dirname, 'src/'),
           loader: 'file-loader',
           options: {
-            publicPath: process.env.PROFILES_ASSETS_PATH,
+            publicPath: env.PROFILES_ASSETS_PATH,
             name: '[path][name].[ext]',
             context: 'src/assets'
           }
-        }
+        },
+        ...defaultWebpackConfig.module.rules,
       ]
     },
     entry: [
