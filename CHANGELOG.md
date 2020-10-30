@@ -1,3 +1,10 @@
+## [3.55.3](https://github.com/dis-moi/extension/compare/v3.55.2...v3.55.3) (2020-10-30)
+
+
+### Bug Fixes
+
+* **profiles:** Load static images from profiles domain ([dddd6e6](https://github.com/dis-moi/extension/commit/dddd6e6490fbbcdd259d2dce0fdecefaab44c767))
+
 ## [3.55.2](https://github.com/dis-moi/extension/compare/v3.55.1...v3.55.2) (2020-10-30)
 
 
