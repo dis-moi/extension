@@ -24,12 +24,6 @@ const DetailsMetaValue = styled.div`
   margin-left: 10px;
 `;
 
-const DetailsScroll = styled.div`
-  margin-top: 10px;
-  max-height: 200px;
-  overflow-y: auto;
-`;
-
 const AvatarNotice = styled(Avatar)`
   position: relative;
 
@@ -254,9 +248,7 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
             </DetailsMetaValue>
           </DetailsMeta>
 
-          <DetailsScroll>
-            <Message onClick={this.handleMessageClick}>{message}</Message>
-          </DetailsScroll>
+          <Message onClick={this.handleMessageClick}>{message}</Message>
 
           <Feedbacks>
             <Button onClick={this.handleLikeClick}>
