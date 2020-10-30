@@ -1,3 +1,10 @@
+## [3.55.2](https://github.com/dis-moi/extension/compare/v3.55.1...v3.55.2) (2020-10-30)
+
+
+### Bug Fixes
+
+* Fix two scrollbars appearing on notice details since preview scrollbar fix ([2441d6c](https://github.com/dis-moi/extension/commit/2441d6c97cf4d82c85b7d274f2030e36866ac02d))
+
 ## [3.55.1](https://github.com/dis-moi/extension/compare/v3.55.0...v3.55.1) (2020-10-26)
 
 
