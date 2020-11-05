@@ -1,3 +1,10 @@
+## [3.55.4](https://github.com/dis-moi/extension/compare/v3.55.3...v3.55.4) (2020-11-05)
+
+
+### Bug Fixes
+
+* Change question button label back to "preview" ([2eb180c](https://github.com/dis-moi/extension/commit/2eb180c038b077e0181b41a2f34b58c574f2383e))
+
 ## [3.55.3](https://github.com/dis-moi/extension/compare/v3.55.2...v3.55.3) (2020-10-30)
 
 
