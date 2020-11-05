@@ -43,28 +43,28 @@
     "release": "yarn semantic-release",
     "build": "yarn build:staging && yarn build:production && yarn build:proding",
     "clean": "rm -rf build",
-    "test": "BACKEND_ORIGIN='' mocha -r ts-node/register -r tsconfig-paths/register -r jsdom-global/register 'src/**/*.spec.ts' 'test/app/*.ts' 'test/app/**/*.ts'",
+    "test": "mocha -r ts-node/register -r tsconfig-paths/register -r jsdom-global/register 'src/**/*.spec.ts' 'test/app/*.ts' 'test/app/**/*.ts'",
     "typecheck": "tsc --noEmit",
     "lint": "yarn lint:ts",
     "lint-fixme-stylelint-has-to-be-fixed": "yarn lint:ts && yarn lint:css",
-    "lint:ts": "eslint 'src/**/*.{ts,tsx}'",
+    "lint:ts": "eslint \"./src/**/*.{js,ts}\"",
     "lint:css": "stylelint './src/**/*.{ts,tsx}'",
     "prettier": "prettier --write src/**/*.{ts,tsx} test/**/*.{ts,tsx,js} manifest/**/*.js webpack/*.js release.*.js",
-    "verify": "yarn test && yarn typecheck && yarn lint && yarn build:production && yarn build-storybook",
+    "verify": "yarn test && yarn typecheck && yarn lint && yarn build:chromium:production && yarn build-storybook",
     "analyze": "NODE_ENV=production webpack --mode=production --env.PLATFORM=chromium --env.ANALYZE",
     "storybook": "start-storybook -s ./src/assets --ci -p 6007 -c .storybook",
     "build-storybook": "build-storybook"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "yarn test"
+      "pre-commit": "lint-staged ",
+      "pre-push": "yarn verify"
     }
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,js,jsx}": [
       "prettier --write",
-      "eslint ",
+      "yarn lint ",
       "git add"
     ]
   },
