@@ -88,7 +88,7 @@ Précisez éventuellement le nom du média, de l'expert ou de l'informateur que 
           disabled={!valid || submitting}
           loading={submitting}
         >
-          Envoyer
+          Prévisualiser
         </BackgroundButton>
       </CenterContainer>
     </Form>
