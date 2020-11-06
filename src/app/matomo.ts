@@ -1,5 +1,4 @@
 /* eslint-disable camelcase, @typescript-eslint/camelcase */
-import queryString from 'query-string';
 import Tracker, {
   ContentImpression,
   ContentInteraction,
@@ -8,6 +7,7 @@ import Tracker, {
   TrackingEvent
 } from 'types/Tracker';
 import uniqId from './utils/uniqId';
+import { buildQueryString } from '../api/call';
 
 export interface RequiredTrackingParameters {
   idsite: number; // The ID of the website we're tracking a visit/action for.
@@ -143,7 +143,7 @@ export default class MatomoTracker implements Tracker {
 
   track = (parameters: OptionalTrackingParameters) => {
     return fetch(
-      `${this.trackerUrl}?${queryString.stringify({
+      `${this.trackerUrl}${buildQueryString({
         idsite: this.siteId,
         pv_id: this.pageViewId,
         apiv: 1,

@@ -1,18 +1,25 @@
 import Tab from 'app/lmem/tab';
 import { BaseAction, ErrorAction } from './';
 import { Level } from '../utils/Logger';
+import { GetParams } from '../../api/call';
 
 export const OPTIONS_REQUESTED = 'OPTIONS_REQUESTED';
 export interface OptionsRequestedAction extends BaseAction {
   type: typeof OPTIONS_REQUESTED;
-  payload?: string;
+  payload: {
+    pathname?: string;
+    params?: GetParams;
+  };
 }
 
 export const optionsRequested = (
-  pathname?: string
+  payload: {
+    pathname?: string;
+    params?: GetParams;
+  } = {}
 ): OptionsRequestedAction => ({
   type: OPTIONS_REQUESTED,
-  payload: pathname,
+  payload,
   meta: {
     sendToBackground: true
   }

@@ -33,7 +33,8 @@ export function* installedSaga({
 
     const { reason } = installedDetails;
     if (reason === 'install') {
-      yield put(optionsRequested());
+      // eslint-disable-next-line @typescript-eslint/camelcase
+      yield put(optionsRequested({ params: { pk_campaign: 'installed' } }));
     }
   } catch (e) {
     captureException(e);
