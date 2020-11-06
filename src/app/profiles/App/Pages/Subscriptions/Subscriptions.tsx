@@ -69,11 +69,13 @@ const Subscriptions = ({
   return (
     <>
       <ProfileTabs connected={connected} />
-      <Filters
-        onChange={handleFiltersChange}
-        loading={!!categoriesLoading}
-        filters={categories}
-      />
+      {connected === true && (
+        <Filters
+          onChange={handleFiltersChange}
+          loading={!!categoriesLoading}
+          filters={categories}
+        />
+      )}
       <TwoColumns>
         <MainCol>
           {connected === false ? (
