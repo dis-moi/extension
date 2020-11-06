@@ -1,3 +1,15 @@
+# [3.56.0](https://github.com/dis-moi/extension/compare/v3.55.4...v3.56.0) (2020-11-06)
+
+
+### Bug Fixes
+
+* Fix crash when trying to access "my subscriptions" page while not connected ([95354b7](https://github.com/dis-moi/extension/commit/95354b7cc834e4234b88e608520b54443122075f))
+
+
+### Features
+
+* Add campaign param when redirecting to profiles for the first time ([9a18ff9](https://github.com/dis-moi/extension/commit/9a18ff9b89dd4bd3745ef7cdca89d23bedf284d9))
+
 ## [3.55.4](https://github.com/dis-moi/extension/compare/v3.55.3...v3.55.4) (2020-11-05)
 
 
