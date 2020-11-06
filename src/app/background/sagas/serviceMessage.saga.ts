@@ -25,28 +25,14 @@ export default function* serviceMessageSaga(tab: Tab, nbNotices = 0) {
     const nbSubscriptions = yield select(getNbSubscriptions);
     const lastShownDate = yield select(getServiceMessageLastShowDate);
 
-    if (!tosAccepted) {
-      yield put(
-        showServiceMessage(
-          {
-            messages: buildMessages([], nbNotices),
-            action: {
-              label: 'Lire et accepter les CGU',
-              url: '/onboarding',
-              type: LinkType.Options
-            }
-          },
-          tab
-        )
-      );
-    } else if (tosAccepted && nbSubscriptions === 0) {
+    if (tosAccepted && nbSubscriptions === 0) {
       yield put(
         showServiceMessage(
           {
             messages: buildMessages([], nbNotices),
             action: {
               label: 'Choisir mes sources',
-              url: '/settings/suggestions',
+              url: '/sources',
               type: LinkType.Options
             }
           },

@@ -14,7 +14,7 @@ const mapStateToProps = (state: ContentState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   openOnboarding: (pathname: string) => () =>
-    dispatch(optionsRequested(pathname))
+    dispatch(optionsRequested({ pathname }))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps);

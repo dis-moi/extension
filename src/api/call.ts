@@ -4,34 +4,39 @@ import * as R from 'ramda';
 import { APIStatusCodeError } from './APIStatusCodeError';
 
 type GetParamValue = string | string[];
-type GetParams = {} | { [key: string]: GetParamValue };
+export type GetParams = {} | { [key: string]: GetParamValue };
 
 type BuildQueryString = (params: GetParams) => string;
-const buildQueryString: BuildQueryString = R.pipe(
-  R.toPairs,
-  R.map(([key, value]: R.KeyValuePair<string, GetParamValue>) =>
-    Array.isArray(value)
-      ? value
-          .map(
-            (valueItem: string) =>
-              `${encodeURIComponent(key)}[]=${encodeURIComponent(valueItem)}`
-          )
-          .join('&')
-      : `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
-  ),
-  R.join('&'),
-  R.concat('?')
+export const buildQueryString: BuildQueryString = R.ifElse(
+  R.isEmpty,
+  R.always(''),
+  R.pipe(
+    R.toPairs,
+    R.map(([key, value]: R.KeyValuePair<string, GetParamValue>) =>
+      Array.isArray(value)
+        ? value
+            .map(
+              (valueItem: string) =>
+                `${encodeURIComponent(key)}[]=${encodeURIComponent(valueItem)}`
+            )
+            .join('&')
+        : `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
+    ),
+    R.join('&'),
+    R.concat('?')
+  )
 );
 
 export const get = (path: string, data: object = {}) => {
   const endpoint = path.startsWith('http') ? path : BACKEND_ORIGIN + path;
-  const queryString = R.isEmpty(data) ? '' : buildQueryString(data);
-  return fetch(`${endpoint}${queryString}`, { mode: 'cors' }).then(response => {
-    if (response.status >= 400) {
-      throw new APIStatusCodeError(response);
+  return fetch(`${endpoint}${buildQueryString(data)}`, { mode: 'cors' }).then(
+    response => {
+      if (response.status >= 400) {
+        throw new APIStatusCodeError(response);
+      }
+      return response.json();
     }
-    return response.json();
-  });
+  );
 };
 
 export const post = (path: string, data: {} | []) =>

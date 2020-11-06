@@ -9,10 +9,12 @@ import {
 } from 'app/actions';
 import { getOptionsTab } from '../selectors/tabs';
 
-function* openOptionsSaga({ payload: pathname }: OptionsRequestedAction) {
+function* openOptionsSaga({
+  payload: { pathname, params }
+}: OptionsRequestedAction) {
   try {
     let tab = yield select(getOptionsTab);
-    const url = getOptionsUrl(pathname);
+    const url = getOptionsUrl(pathname, params);
     if (tab) {
       const { index } = yield call(browser.tabs.get, tab.id);
       yield call(browser.tabs.highlight, {
@@ -25,7 +27,7 @@ function* openOptionsSaga({ payload: pathname }: OptionsRequestedAction) {
         });
       }
     } else {
-      tab = yield call(openOptions, pathname);
+      tab = yield call(openOptions, pathname, params);
     }
 
     if (tab && tab.id) {
