@@ -56,18 +56,6 @@ const Subscriptions = ({
     findContributorIn(contributors)
   );
 
-  if (connected === false) {
-    return (
-      <>
-        <p>
-          Vous devez avoir l&apos;extension Dismoi installée et activée pour
-          voir cette partie.
-        </p>
-        <p>En cas de problème, merci de nous laisser un message.</p>
-      </>
-    );
-  }
-
   const [filteredSubscriptions, setFilter] = useContributorsFilters(
     subscriptionsToRender
   );
@@ -88,17 +76,27 @@ const Subscriptions = ({
       />
       <TwoColumns>
         <MainCol>
-          <ContributorsList className={className}>
-            {filteredSubscriptions.map(contributor => (
-              <ContributorProfileListItem
-                key={contributor.id}
-                contributor={contributor}
-                onSubscribe={() => subscribe(contributor.id)}
-                onUnsubscribe={() => unsubscribe(contributor.id)}
-                to={pathToContributor(contributor)}
-              />
-            ))}
-          </ContributorsList>
+          {connected === false ? (
+            <>
+              <p>
+                Vous devez avoir l&apos;extension Dismoi installée et activée
+                pour voir cette partie.
+              </p>
+              <p>En cas de problème, merci de nous laisser un message.</p>
+            </>
+          ) : (
+            <ContributorsList className={className}>
+              {filteredSubscriptions.map(contributor => (
+                <ContributorProfileListItem
+                  key={contributor.id}
+                  contributor={contributor}
+                  onSubscribe={() => subscribe(contributor.id)}
+                  onUnsubscribe={() => unsubscribe(contributor.id)}
+                  to={pathToContributor(contributor)}
+                />
+              ))}
+            </ContributorsList>
+          )}
         </MainCol>
         <Aside>
           <SlowerMessageBox />
