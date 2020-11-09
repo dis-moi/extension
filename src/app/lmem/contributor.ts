@@ -11,12 +11,17 @@ interface Picture {
 
 export type ContributorId = number;
 
+export interface PinnedNotice {
+  sort?: number;
+  matchingUrl: string;
+  noticeId: number;
+  noticeUrl: string;
+}
+
 interface Contribution {
-  example: {
-    matchingUrl: string;
-    noticeId: number;
-    noticeUrl: string;
-  };
+  example: PinnedNotice; // @deprecated use `pinnedNotices` instead
+  starred: PinnedNotice; // @deprecated use `pinnedNotices` instead
+  pinnedNotices: PinnedNotice[];
 }
 
 export interface BaseContributor {
