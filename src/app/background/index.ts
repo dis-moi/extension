@@ -16,21 +16,16 @@ configureSentryScope(scope => {
   scope.setTag('context', 'background');
 });
 
-const { NODE_ENV, UNINSTALL_ORIGIN } = process.env;
+const { NODE_ENV } = process.env;
 
 if (NODE_ENV !== 'production') {
   console.info('NODE_ENV', NODE_ENV);
 }
 console.info(`BACKEND_ORIGIN "${BACKEND_ORIGIN}"`);
 
-onInstalled.then(installedDetails => {
-  if (typeof UNINSTALL_ORIGIN === 'string') {
-    browser.runtime.setUninstallURL(UNINSTALL_ORIGIN);
-  }
-
-  store.dispatch(installed(installedDetails));
-});
-
+onInstalled.then(installedDetails =>
+  store.dispatch(installed(installedDetails))
+);
 onStartup.then(() => store.dispatch(startup()));
 
 const handleConnect = (port: Port) => store.dispatch(connect(port));
