@@ -32,16 +32,15 @@ export const ProfileNoticeListContent = ({
       {((notices.length === 0 && !loading) || fetchedAll) && (
         <div>Pas d&apos;autres contributions</div>
       )}
-      {notices &&
-        notices.map(notice => (
-          <ProfileNoticeListItem
-            loading={false}
-            notice={notice}
-            seeInContext={seeNoticeInContext(notice)}
-            key={notice.id}
-          />
-        ))}
-      {notices && notices.length && !loading && !fetchedAll && (
+      {notices.map(notice => (
+        <ProfileNoticeListItem
+          loading={false}
+          notice={notice}
+          seeInContext={seeNoticeInContext(notice)}
+          key={notice.id}
+        />
+      ))}
+      {notices.length > 0 && !loading && !fetchedAll && (
         <CenterContainer>
           <Link onClick={fetchMoreNotices}>Voir plus</Link>
         </CenterContainer>

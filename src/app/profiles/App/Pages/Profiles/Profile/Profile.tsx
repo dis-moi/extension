@@ -11,7 +11,6 @@ import {
   TwoColumns
 } from 'components/atoms';
 import SimilarProfiles from '../../../SimilarProfiles';
-import FeaturedNotice from './FeaturedNotice';
 import ProfileIntro from './ProfileIntro';
 import ProfileNoticeList from './ProfileNoticeList';
 import CenterContainer from 'components/atoms/CenterContainer';
@@ -23,6 +22,8 @@ import {
   AddToBrowserMessageBox,
   PrivacyMessageBox
 } from 'components/molecules/SidebarBox';
+import FeaturedNotices from './FeaturedNotices';
+import FeaturedNoticesTitle from './FeaturedNoticesTitle';
 
 export const MainCol = styled.div`
   ${CenterContainer} {
@@ -111,7 +112,7 @@ export interface ProfileProps {
   contributor?: StatefulContributor;
   noticesLoading?: boolean;
   notices: NoticeWithContributor[];
-  featuredNotice?: NoticeWithContributor;
+  featuredNotices: NoticeWithContributor[];
   subscribe: (contributorId: ContributorId) => void;
   unsubscribe: (contributorId: ContributorId) => void;
   fetchMoreNotices: () => void | undefined;
@@ -126,7 +127,7 @@ export const Profile = ({
   subscribe,
   unsubscribe,
   noticesLoading,
-  featuredNotice,
+  featuredNotices,
   notices,
   connected,
   addToBrowser,
@@ -194,15 +195,18 @@ export const Profile = ({
           unsubscribe={handleUnsubscribe(contributor)}
           usernameAs={'h1'}
         />
-        <Title2>
-          La contribution phare {contributor && `de ${contributor.name}`}
-        </Title2>
-        <FeaturedNotice
-          loading={noticesLoading}
-          notice={featuredNotice}
-          seeInContext={handleSeeNoticeInContext(featuredNotice)}
-        />
 
+        {featuredNotices.length > 0 && (
+          <FeaturedNoticesTitle
+            contributor={contributor}
+            plural={featuredNotices.length > 1}
+          />
+        )}
+        <FeaturedNotices
+          loading={noticesLoading}
+          notices={featuredNotices}
+          seeNoticeInContext={handleSeeNoticeInContext}
+        />
         <Title2>Ses dernières contributions</Title2>
         <ProfileNoticeList
           loading={noticesLoading}

@@ -20,7 +20,7 @@ storiesOf('Profile/Profile', module)
   ))
   .add('Normal', () => (
     <Profile
-      featuredNotice={generateStatefulNotice()}
+      featuredNotices={[generateStatefulNotice(), generateStatefulNotice()]}
       notices={[
         generateStatefulNotice(),
         generateStatefulNotice(),
@@ -43,7 +43,11 @@ storiesOf('Profile/Profile', module)
   ))
   .add('loading', () => (
     <Profile
-      featuredNotice={generateStatefulNotice()}
+      featuredNotices={[
+        generateStatefulNotice(),
+        generateStatefulNotice(),
+        generateStatefulNotice()
+      ]}
       notices={[
         generateStatefulNotice(),
         generateStatefulNotice(),
@@ -66,7 +70,11 @@ storiesOf('Profile/Profile', module)
   ))
   .add('contributorsLoading', () => (
     <Profile
-      featuredNotice={generateStatefulNotice()}
+      featuredNotices={[
+        generateStatefulNotice(),
+        generateStatefulNotice(),
+        generateStatefulNotice()
+      ]}
       notices={[
         generateStatefulNotice(),
         generateStatefulNotice(),
@@ -89,7 +97,11 @@ storiesOf('Profile/Profile', module)
   ))
   .add('noticesLoading', () => (
     <Profile
-      featuredNotice={generateStatefulNotice()}
+      featuredNotices={[
+        generateStatefulNotice(),
+        generateStatefulNotice(),
+        generateStatefulNotice()
+      ]}
       notices={[
         generateStatefulNotice(),
         generateStatefulNotice(),
@@ -97,6 +109,52 @@ storiesOf('Profile/Profile', module)
         generateStatefulNotice()
       ]}
       noticesLoading
+      subscribe={action('subscribe')}
+      unsubscribe={action('unsubscribe')}
+      fetchMoreNotices={action('fetchMoreNotices')}
+      fetchedAll={false}
+      contributor={generateStatefulContributor()}
+      contributors={[
+        generateStatefulContributor(),
+        generateStatefulContributor()
+      ]}
+      connected={false}
+      addToBrowser={action('addToBrowser')}
+    />
+  ))
+  .add('no featured notices', () => (
+    <Profile
+      featuredNotices={[]}
+      notices={[
+        generateStatefulNotice(),
+        generateStatefulNotice(),
+        generateStatefulNotice(),
+        generateStatefulNotice()
+      ]}
+      noticesLoading={false}
+      subscribe={action('subscribe')}
+      unsubscribe={action('unsubscribe')}
+      fetchMoreNotices={action('fetchMoreNotices')}
+      fetchedAll={false}
+      contributor={generateStatefulContributor()}
+      contributors={[
+        generateStatefulContributor(),
+        generateStatefulContributor()
+      ]}
+      connected={false}
+      addToBrowser={action('addToBrowser')}
+    />
+  ))
+  .add('1 featured notices', () => (
+    <Profile
+      featuredNotices={[generateStatefulNotice()]}
+      notices={[
+        generateStatefulNotice(),
+        generateStatefulNotice(),
+        generateStatefulNotice(),
+        generateStatefulNotice()
+      ]}
+      noticesLoading={false}
       subscribe={action('subscribe')}
       unsubscribe={action('unsubscribe')}
       fetchMoreNotices={action('fetchMoreNotices')}
