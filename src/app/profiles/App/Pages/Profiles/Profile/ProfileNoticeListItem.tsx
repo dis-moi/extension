@@ -89,23 +89,26 @@ export const ProfileNoticeListItem = ({
         <img
           style={{ width: '100%' }}
           src={notice.screenshot}
-          alt={`Rendu de la contribution sur ${notice.exampleUrl} une fois l'extension installée.`}
+          alt={`Rendu de la contribution sur ${notice.exampleMatchingUrl} une fois l'extension installée.`}
         />
       )}
       <Paragraph dangerouslySetInnerHTML={{ __html: notice.strippedMessage }} />
-      {notice.exampleUrl && (
+      {notice.exampleMatchingUrl && (
         <NoticeTopLine>
           <Pin />
           <NoticeHighlight>
             Message épinglé sur{' '}
-            <NoticeURL>{stripUrlProtocol(notice.exampleUrl)}</NoticeURL>
+            <NoticeURL>{stripUrlProtocol(notice.exampleMatchingUrl)}</NoticeURL>
           </NoticeHighlight>{' '}
           et d&apos;autres pages web
         </NoticeTopLine>
       )}
       <NoticeBottomLine>
         Visible depuis le {format(notice.created, 'DD/MM/YYYY')}
-        <BorderButton onClick={seeInContext} disabled={!notice.exampleUrl}>
+        <BorderButton
+          onClick={seeInContext}
+          disabled={!notice.exampleMatchingUrl}
+        >
           Voir en contexte
         </BorderButton>
       </NoticeBottomLine>

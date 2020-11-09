@@ -16,7 +16,7 @@ interface Options {
   disliked?: boolean;
   dismissed?: boolean;
   read?: boolean;
-  exampleUrl?: string;
+  exampleMatchingUrl?: string;
 }
 
 export const defaultMessage = `L’économie est (vraiment) un sport de combat : “La boule puante de MM. Cahuc et Zylberberg contre le “négationnisme” des économistes critiques le confirme : le combat idéologique tombe parfois dans le caniveau. Depuis vingt ans pourtant, s’est construit en France une contre-expertise économique crédible qui veut fournir aux dominés des outils pour penser (et résister à) la pseudo” construit en France une contre-expertise`;
@@ -33,13 +33,13 @@ export const generateStatefulNotice = ({
   disliked,
   dismissed,
   read,
-  exampleUrl
+  exampleMatchingUrl
 }: Options = {}): StatefulNoticeWithContributor => {
   const id = Math.random() * 1000;
   return {
     id,
     url: `http://backend.dismoi.io/notices/${id}`,
-    exampleUrl: exampleUrl || Faker.internet.url(),
+    exampleMatchingUrl: exampleMatchingUrl || Faker.internet.url(),
     created: created || subMonths(new Date(), 1),
     modified: modified || subWeeks(new Date(), 1),
     message: message || defaultMessage,

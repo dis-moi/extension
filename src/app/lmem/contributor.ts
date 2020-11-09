@@ -13,7 +13,7 @@ export type ContributorId = number;
 
 export interface PinnedNotice {
   sort?: number;
-  matchingUrl: string;
+  exampleMatchingUrl: string;
   noticeId: number;
   noticeUrl: string;
 }
