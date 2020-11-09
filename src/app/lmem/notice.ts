@@ -12,7 +12,7 @@ export interface BaseNotice {
   strippedMessage: string;
   ratings: Ratings;
   visibility: 'public' | 'private';
-  exampleUrl?: string;
+  exampleMatchingUrl?: string;
   screenshot?: string;
 }
 

@@ -27,10 +27,23 @@ export const generateContributor = ({
   contributions: contributions || Faker.random.number(),
   contribution: {
     example: {
-      matchingUrl: 'http://www.bulles.fr',
+      exampleMatchingUrl: 'http://www.bulles.fr',
       noticeId: 1,
       noticeUrl: 'http://'
-    }
+    },
+    starred: {
+      exampleMatchingUrl: 'http://www.bulles.fr',
+      noticeId: 1,
+      noticeUrl: 'http://'
+    },
+    pinnedNotices: [
+      {
+        sort: 0,
+        exampleMatchingUrl: 'http://www.bulles.fr',
+        noticeId: 1,
+        noticeUrl: 'http://'
+      }
+    ]
   },
   avatar: noAvatar
     ? undefined

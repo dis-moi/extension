@@ -174,8 +174,8 @@ export const Profile = ({
   const handleSeeNoticeInContext = (notice?: NoticeWithContributor) => () => {
     if (connected) {
       if (contributor?.subscribed) {
-        if (notice && notice.exampleUrl) {
-          window.open(notice.exampleUrl, '_blank');
+        if (notice && notice.exampleMatchingUrl) {
+          window.open(notice.exampleMatchingUrl, '_blank');
         }
       } else {
         setSubscribePopinOpened(true);
