@@ -1,3 +1,10 @@
+# [3.57.0](https://github.com/dis-moi/extension/compare/v3.56.0...v3.57.0) (2020-11-10)
+
+
+### Features
+
+* **profile:** Show one, all, or none featured notices on contributor profile ([73aceae](https://github.com/dis-moi/extension/commit/73aceae6a0ae861d2ef1e76eeb0d67531c9a532d))
+
 # [3.56.0](https://github.com/dis-moi/extension/compare/v3.55.4...v3.56.0) (2020-11-06)
 
 
