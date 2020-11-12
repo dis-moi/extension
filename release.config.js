@@ -38,7 +38,6 @@ const release = Object.freeze({
       path: '@semantic-release/exec',
       cmd: 'yarn run upload:firefox:proding'
     },
-
     {
       path: '@semantic-release/github',
       assets: [
