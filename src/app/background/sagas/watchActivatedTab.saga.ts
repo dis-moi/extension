@@ -27,7 +27,7 @@ export default function*() {
 
       if (!tab || !tab.url) {
         yield call(resetBadge, tabId);
-        yield call(disable, tabId);
+        yield call(disable, tab);
       }
     } catch (e) {
       yield put(createErrorAction()(e, { severity: Level.ERROR }));
