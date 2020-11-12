@@ -1,3 +1,10 @@
+## [3.57.1](https://github.com/dis-moi/extension/compare/v3.57.0...v3.57.1) (2020-11-12)
+
+
+### Bug Fixes
+
+* **doc:** CONTRIBUTING.md update ([9a4ce09](https://github.com/dis-moi/extension/commit/9a4ce09e2efa2d9ed236b6b252266a8e3c223578))
+
 # [3.57.0](https://github.com/dis-moi/extension/compare/v3.56.0...v3.57.0) (2020-11-10)
 
 
