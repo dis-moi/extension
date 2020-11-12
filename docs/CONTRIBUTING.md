@@ -119,20 +119,18 @@ we use [Semantic Release](https://github.com/semantic-release/semantic-release) 
 
 ## Sentry
 
-To configure Sentry error reporting, you should create a `.sentryclirc` file at the root of the project directory:
+`SENTRY_ORG`, `SENTRY_PROJECT`, `SENTRY_DSN` and `SENTRY_ENABLED` are committed in staging and production .env file because they are no secret, and we know the values we want to use depending on the environment.
+
+Env var `SENTRY_SEND_VERSION` is not defined in any .env file but forced by npm script when using `buildVersion` instead of `build` script, thus triggering the upload of the built version to Sentry service.
+
+Such operation (that you should not have to run on your machine) does need a .sentryclirc file with the user `token` to complete:
 
 ```
-[defaults]
-project=web-extension
-org=lmem
-
 [auth]
 token=4d786d88c7d9436282c35b4eb82ae2dfeaff5ee296e3404ba3654ab62c151b73
 ```
 
-> **Note 1:** You'll find your token here https://sentry.io/settings/account/api/auth-tokens/
-
-> **Note 2:** You can change the `SENTRY_DSN` from environment files.
+> **Note:** You'll find your token here https://sentry.io/settings/account/api/auth-tokens/
 
 ### Redux DevTools
 
