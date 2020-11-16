@@ -1,3 +1,10 @@
+# [3.58.0](https://github.com/dis-moi/extension/compare/v3.57.1...v3.58.0) (2020-11-16)
+
+
+### Features
+
+* **uninstall:** Add `extensionId` parameter to uninstall URL ([623d512](https://github.com/dis-moi/extension/commit/623d512a4834ce8d9fbfd056424ba0fd83d75df5))
+
 ## [3.57.1](https://github.com/dis-moi/extension/compare/v3.57.0...v3.57.1) (2020-11-12)
 
 
