@@ -47,14 +47,28 @@ import serviceMessageSaga from './serviceMessage.saga';
 import { getNbSubscriptions } from '../selectors/subscriptions.selectors';
 import { createCallAndRetry } from '../../sagas/effects/callAndRetry';
 import { Level } from '../../utils/Logger';
+import Tab from 'app/lmem/tab';
+
+export const getExtensionTitle = () =>
+  `Dismoi ${
+    process.env.NODE_ENV !== 'production' ? `- ${process.env.NODE_ENV}` : ''
+  }`;
+
+export function* restrictTabSaga(tab: Tab) {
+  yield call(disable, tab);
+  yield call(browser.browserAction.setTitle, {
+    tabId: tab.id,
+    title: `${getExtensionTitle()} - restreint`
+  });
+  yield call(resetBadge, tab.id);
+}
 
 export function* tabSaga({ meta: { tab } }: TabAction) {
   const tabAuthorized = yield select(isTabAuthorized(tab));
   if (tabAuthorized) {
     yield put(matchContext(tab));
   } else {
-    yield call(disable, tab);
-    yield call(resetBadge, tab.id);
+    yield call(restrictTabSaga, tab);
   }
 }
 
