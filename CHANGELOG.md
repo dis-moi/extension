@@ -1,3 +1,15 @@
+# [3.59.0](https://github.com/dis-moi/extension/compare/v3.58.1...v3.59.0) (2020-11-17)
+
+
+### Bug Fixes
+
+* **badge:** Fix a case where browser extension wasn't disabled ([b9c5a27](https://github.com/dis-moi/extension/commit/b9c5a2724a3095d553ad9f74ea1a69a51bdea315))
+
+
+### Features
+
+* **browser-action:** Add restricted mention on the browser action title when relevant ([655750e](https://github.com/dis-moi/extension/commit/655750ea85aa8232ebd4daa2eb26eaec8d645590))
+
 ## [3.58.1](https://github.com/dis-moi/extension/compare/v3.58.0...v3.58.1) (2020-11-17)
 
 
