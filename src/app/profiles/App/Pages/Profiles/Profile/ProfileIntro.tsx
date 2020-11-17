@@ -47,6 +47,7 @@ const ProfileIntroContent = styled.section`
           height: 70px;
 
           & > img {
+            max-width: initial;
             width: 70px;
           }
         }
@@ -60,6 +61,7 @@ const ProfileIntroContent = styled.section`
       border: 5px solid #fff;
 
       & > img {
+        max-width: initial;
         width: 90px;
         height: 90px;
       }
