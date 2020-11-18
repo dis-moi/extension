@@ -7,6 +7,7 @@ import { Emit } from 'app/store/types';
 import isAction from 'app/store/isAction';
 import { createErrorAction } from 'app/actions/helpers';
 import { Level } from 'app/utils/Logger';
+import { isRequest, handleRequest } from 'app/content/api';
 
 type MessageSender = browser.runtime.MessageSender;
 
@@ -94,24 +95,26 @@ export interface ReceivedAction extends Action {
 }
 
 const createMessageHandler = (emit: Emit) => (
-  action: unknown,
+  message: unknown,
   sender: MessageSender
-) => {
+): void | Promise<unknown> => {
   const fromText = sender.tab
     ? `tab "${sender.tab.id}": ${sender.tab.url}`
     : 'background';
 
-  if (isAction(action)) {
+  if (isRequest(message)) {
+    return handleRequest(message);
+  } else if (isAction(message)) {
     const actionWithSender: ReceivedAction = R.pipe(
       addSenderToAction(sender),
       stripSendMeta
-    )(action);
+    )(message);
 
     emit(actionWithSender);
   } else {
     const error = new Error(`Received invalid action from ${fromText}`);
     const invalidAction = createErrorAction('INVALID_ACTION')(error, {
-      action,
+      action: message,
       fromText,
       severity: Level.INFO
     });

@@ -25,7 +25,10 @@ import {
   clearServiceMessage
 } from 'app/actions';
 import { createErrorAction } from 'app/actions/helpers';
-import { MatchingContext } from 'app/lmem/matchingContext';
+import {
+  filterContextsMatchingTabContent,
+  MatchingContext
+} from 'app/lmem/matchingContext';
 import {
   NoticeWithContributor,
   StatefulNoticeWithContributor,
@@ -37,7 +40,7 @@ import {
   getIgnoredNotices,
   getNoticesToDisplay
 } from '../selectors/prefs';
-import { findTriggeredContexts } from '../selectors';
+import { getContextsMatchingUrl } from '../selectors';
 import { getInstallationDetails } from '../selectors/installationDetails';
 import sendToTabSaga from './lib/sendToTab.saga';
 import { isTabAuthorized } from '../selectors/resources';
@@ -64,25 +67,35 @@ export function* restrictTabSaga(tab: Tab) {
 }
 
 export function* tabSaga({ meta: { tab } }: TabAction) {
-  const tabAuthorized = yield select(isTabAuthorized(tab));
-  if (tabAuthorized) {
-    yield put(matchContext(tab));
-  } else {
-    yield call(restrictTabSaga, tab);
+  try {
+    const tabAuthorized = yield select(isTabAuthorized(tab));
+    if (tabAuthorized) {
+      yield put(matchContext(tab));
+    } else {
+      yield call(restrictTabSaga, tab);
+    }
+  } catch (e) {
+    yield put(createErrorAction()(e));
   }
 }
 
 export function* matchContextSaga({ meta: { tab } }: MatchContextAction) {
   try {
     yield put(clearServiceMessage(tab));
-    const triggeredContexts = yield select(state =>
-      findTriggeredContexts(state)(tab.url)
+    const contextsMatchingUrl = yield select(state =>
+      getContextsMatchingUrl(state)(tab.url)
     );
 
-    if (triggeredContexts.length >= 1) {
-      yield put(contextTriggered(triggeredContexts, tab));
+    if (contextsMatchingUrl.length >= 1) {
+      const contextsMatchingContent = yield call(
+        filterContextsMatchingTabContent,
+        tab,
+        contextsMatchingUrl
+      );
+
+      yield put(contextTriggered(contextsMatchingContent, tab));
     } else {
-      yield put(contextNotTriggered(triggeredContexts, tab));
+      yield put(contextNotTriggered(contextsMatchingUrl, tab));
     }
   } catch (e) {
     yield put(matchContextFailure(e, tab));
