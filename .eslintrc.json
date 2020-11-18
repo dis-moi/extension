@@ -18,6 +18,7 @@
     "chrome": "readonly",
     "browser": "readonly",
     "fetch": "readonly",
+    "XPathResult": "readonly",
     "clickInstallHandler": "readonly"
   },
   "extends": [

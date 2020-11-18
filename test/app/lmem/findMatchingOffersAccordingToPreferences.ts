@@ -1,6 +1,6 @@
 import chai from 'chai';
 import {
-  findMatchingOffersAccordingToPreferences,
+  filterContextsMatchingUrl,
   MatchingContext
 } from 'app/lmem/matchingContext';
 import generateMatchingContext from 'test/fakers/generateMatchingContext';
@@ -15,7 +15,7 @@ const offers: MatchingContext[] = [
 const matchingURL = 'https://www.samsung.com/blabla';
 const nonMatchingURL = 'https://soundcloud.com/capt-lovelace/meteo-marine';
 
-describe('findMatchingOffersAccordingToPreferences', function() {
+describe('filterContextsMatchingUrl', function() {
   it('should be case insensitive', () => {
     const offersWithWeirdCase: MatchingContext[] = [
       generateMatchingContext({ urlRegex: 's.*' }),
@@ -23,7 +23,7 @@ describe('findMatchingOffersAccordingToPreferences', function() {
       generateMatchingContext({ urlRegex: 'doesNotMatch' })
     ];
 
-    const matches = findMatchingOffersAccordingToPreferences(
+    const matches = filterContextsMatchingUrl(
       matchingURL,
       offersWithWeirdCase
     );
@@ -43,7 +43,7 @@ describe('findMatchingOffersAccordingToPreferences', function() {
         })
       ];
 
-      const matches = findMatchingOffersAccordingToPreferences(
+      const matches = filterContextsMatchingUrl(
         matchingURL,
         offersWithExclusion
       );
@@ -60,7 +60,7 @@ describe('findMatchingOffersAccordingToPreferences', function() {
         })
       ];
 
-      const matches = findMatchingOffersAccordingToPreferences(
+      const matches = filterContextsMatchingUrl(
         matchingURL,
         offersWithExclusion
       );
@@ -79,7 +79,7 @@ describe('findMatchingOffersAccordingToPreferences', function() {
         ...offers
       ];
 
-      const matches = findMatchingOffersAccordingToPreferences(
+      const matches = filterContextsMatchingUrl(
         matchingURL,
         offersWithExclusion
       );
@@ -98,12 +98,12 @@ describe('findMatchingOffersAccordingToPreferences', function() {
     ].concat(offers); // SyntaxError: Invalid RegExp: Unmatched ')'
 
     it('should not screw up the matching engine', () => {
-      const matches = findMatchingOffersAccordingToPreferences(
+      const matches = filterContextsMatchingUrl(
         matchingURL,
         nastyOffers
       );
 
-      expect(findMatchingOffersAccordingToPreferences).to.not.throw(
+      expect(filterContextsMatchingUrl).to.not.throw(
         SyntaxError
       );
 
@@ -115,7 +115,7 @@ describe('findMatchingOffersAccordingToPreferences', function() {
 
   describe('empty prefs', () => {
     it('should match when the url matches an offer', () => {
-      const matching = findMatchingOffersAccordingToPreferences(
+      const matching = filterContextsMatchingUrl(
         matchingURL,
         offers
       );
@@ -126,7 +126,7 @@ describe('findMatchingOffersAccordingToPreferences', function() {
     });
 
     it('should not match when the url does not match any offer', () => {
-      const matching = findMatchingOffersAccordingToPreferences(
+      const matching = filterContextsMatchingUrl(
         nonMatchingURL,
         offers
       );
