@@ -11,6 +11,7 @@ type Options = {
   maximumAttempts: number;
   maximumRetryDelayInMinutes: number;
   onError?: OnErrorCallback;
+  onFinalError?: OnErrorCallback;
 };
 
 const defaultOptions: Options = {
@@ -49,6 +50,11 @@ export const createCallAndRetry = (options: Partial<Options>) =>
             attemptNumber + 1,
             ...args
           );
+        } else {
+          if ('onFinalError' in o && o.onFinalError) {
+            yield call(o.onFinalError, e, attemptNumber);
+          }
+          throw e;
         }
       }
     }

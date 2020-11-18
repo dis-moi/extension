@@ -11,13 +11,22 @@ import { createSubmissionError } from 'app/utils/form';
 import sendEmail from 'api/sendInBlue/sendEmail';
 import createContributionEmail from 'app/background/services/createContributionEmail';
 import { history } from '../store';
+import { captureException } from '../../utils/sentry';
+import { createCallAndRetry } from '../../sagas/effects/callAndRetry';
+
+const sendEmailAndRetry = createCallAndRetry({
+  maximumAttempts: 15, // ~ 1 min 45s
+  onFinalError: () => {
+    captureException(new Error('Could not send contribution email'));
+  }
+});
 
 export function* submitContributionSaga({
   payload: contribution,
   meta: { form, resolve, reject }
 }: SubmitContributionAction) {
   try {
-    yield call(sendEmail, createContributionEmail(contribution));
+    yield sendEmailAndRetry(sendEmail, createContributionEmail(contribution));
 
     yield put(contributionSubmitted(contribution));
 
