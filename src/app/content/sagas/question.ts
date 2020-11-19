@@ -11,13 +11,22 @@ import { createSubmissionError } from 'app/utils/form';
 import sendEmail from 'api/sendInBlue/sendEmail';
 import createQuestionEmail from 'app/background/services/createQuestionEmail';
 import { history } from '../store';
+import { createCallAndRetry } from '../../sagas/effects/callAndRetry';
+import { captureException } from '../../utils/sentry';
+
+const sendEmailAndRetry = createCallAndRetry({
+  maximumAttempts: 15, // ~ 1 min 45s
+  onFinalError: () => {
+    captureException(new Error('Could not send question email'));
+  }
+});
 
 export function* submitQuestionSaga({
   payload: question,
   meta: { form, resolve, reject }
 }: SubmitQuestionAction) {
   try {
-    yield call(sendEmail, createQuestionEmail(question));
+    yield sendEmailAndRetry(sendEmail, createQuestionEmail(question));
 
     yield put(questionSubmitted(question));
 

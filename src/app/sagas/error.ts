@@ -9,13 +9,14 @@ import { BaseAction, ErrorAction } from '../actions';
 import { Level } from '../utils/Logger';
 
 export function* handleErrorSaga({
+  type,
   payload: error,
   meta: { severity }
 }: ErrorAction): SagaIterator {
   if (severity >= Level.ERROR) {
     captureException(error);
   } else {
-    captureMessage(error.message, severityToSentry[severity]);
+    captureMessage(error?.message || type, severityToSentry[severity]);
   }
 }
 
