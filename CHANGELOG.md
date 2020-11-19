@@ -1,3 +1,10 @@
+## [3.59.1](https://github.com/dis-moi/extension/compare/v3.59.0...v3.59.1) (2020-11-19)
+
+
+### Bug Fixes
+
+* **contribution:** track sendInBlue errors in Sentry ([de7d774](https://github.com/dis-moi/extension/commit/de7d774fda2b8153bcd3bc51459465ada2fde6fc))
+
 # [3.59.0](https://github.com/dis-moi/extension/compare/v3.58.1...v3.59.0) (2020-11-17)
 
 
