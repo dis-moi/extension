@@ -1,7 +1,7 @@
 import React, { useState, MouseEvent } from 'react';
 import styled from 'styled-components';
 import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
-import { NoticeWithContributor } from 'app/lmem/notice';
+import { NoticeItem, NoticeWithContributor } from 'app/lmem/notice';
 import Error from '../../Error';
 import {
   Button,
@@ -112,7 +112,7 @@ export interface ProfileProps {
   contributor?: StatefulContributor;
   noticesLoading?: boolean;
   notices: NoticeWithContributor[];
-  featuredNotices: NoticeWithContributor[];
+  featuredNotices: NoticeItem[];
   subscribe: (contributorId: ContributorId) => void;
   unsubscribe: (contributorId: ContributorId) => void;
   fetchMoreNotices: () => void | undefined;
@@ -171,7 +171,7 @@ export const Profile = ({
     }
   };
 
-  const handleSeeNoticeInContext = (notice?: NoticeWithContributor) => () => {
+  const handleSeeNoticeInContext = (notice?: NoticeItem) => () => {
     if (connected) {
       if (contributor?.subscribed) {
         if (notice && notice.exampleMatchingUrl) {

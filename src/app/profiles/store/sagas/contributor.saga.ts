@@ -24,11 +24,11 @@ function* fetchContributorSaga({
 function* fetchContributorFeaturedNoticeSaga({
   payload: {
     contribution: {
-      example: { noticeUrl }
+      example: { url }
     }
   }
 }: FetchContributorSuccessAction) {
-  yield put(fetchNoticesRequest({ url: noticeUrl }));
+  yield put(fetchNoticesRequest({ url }));
 }
 
 export default function* contributorSaga() {
