@@ -3,6 +3,16 @@ import { Ratings } from './rating';
 import { Contributor, ContributorId, NewContributor } from './contributor';
 import { captureMessage } from '../utils/sentry';
 
+export interface NoticeItem {
+  id: number;
+  url: string;
+  strippedMessage: string;
+  exampleMatchingUrl?: string;
+  screenshot?: string;
+  created: Date;
+  modified: Date;
+}
+
 export interface BaseNotice {
   id: number;
   url: string;

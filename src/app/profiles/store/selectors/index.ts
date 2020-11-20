@@ -59,12 +59,9 @@ export const getContributorFromRouteParam = createSelector(
   (contributors, id) => findItemById<Contributor>(Number(id))(contributors)
 );
 
-export const getFeaturedNoticesIds = createSelector(
+export const getFeaturedNotices = createSelector(
   [getContributorFromRouteParam],
-  contributor =>
-    (contributor?.contribution?.pinnedNotices || []).map(
-      ({ noticeId }) => noticeId
-    )
+  contributor => contributor?.contribution?.pinnedNotices || []
 );
 
 export const enhanceNotice = (contributors: Contributor[]) => (
@@ -107,10 +104,9 @@ export const getNoticesForContributorId = createSelector(
 export const getContributorById = (id: number) =>
   createSelector([getContributors], findItemById(id));
 
-export const getFeaturedNotices = createSelector(
-  [getFeaturedNoticesIds, getNotices],
-  (featuredNoticesIds, notices) =>
-    notices.filter(({ id }) => featuredNoticesIds.includes(id))
+export const getFeaturedNoticesIds = createSelector(
+  [getFeaturedNotices],
+  featuredNotices => featuredNotices.map(({ id }) => id)
 );
 
 export const getContributorNoticesButFeaturedOnes = createSelector(
