@@ -6,12 +6,9 @@ export const preselectedContributorIds = [
   27, // Info ou Intox ?
   29, // Equipe Dismoi
   31, // Alternatives gratuites
-  32, // Colibri Ecolo
   42, // On en parle
   43, // D'occasion ?
   44, // Droit de réponse
-  46, // Selon Les Inroks
-  50, // Des casseroles
   53, // Selon Que Choisir
   54, // 60 Millions de Consommateurs
   55, // CaptainFact.io
