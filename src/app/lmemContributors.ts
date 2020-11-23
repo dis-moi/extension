@@ -16,5 +16,6 @@ export const preselectedContributorIds = [
   60, // Amazon antidote
   65, // Selon Micode
   66, // Le Même en Open Source
-  67 // Le Même en  Moins Cher
+  67, // Le Même en  Moins Cher
+  74 // L'expert LeBonCoin
 ];
