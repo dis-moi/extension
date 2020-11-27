@@ -1,3 +1,10 @@
+## [3.59.3](https://github.com/dis-moi/extension/compare/v3.59.2...v3.59.3) (2020-11-27)
+
+
+### Bug Fixes
+
+* **NotConnectedPopin:** sets width. fix [#748](https://github.com/dis-moi/extension/issues/748) ([01b88fa](https://github.com/dis-moi/extension/commit/01b88fa4aea4360f00c7fa4a6e1cfb758b4e76dc))
+
 ## [3.59.2](https://github.com/dis-moi/extension/compare/v3.59.1...v3.59.2) (2020-11-27)
 
 
