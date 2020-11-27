@@ -1,6 +1,9 @@
 import Faker from 'faker';
-import { Contributor, PinnedNotice } from 'app/lmem/contributor';
-import { subMonths, subWeeks } from 'date-fns';
+import { Contributor } from 'app/lmem/contributor';
+import {
+  generateNoticeItem,
+  generatePinnedNotice
+} from 'test/fakers/generateNotice';
 
 interface Options {
   id?: number;
@@ -16,17 +19,6 @@ interface StatefulOptions extends Options {
   loading?: boolean;
 }
 
-export const generatePinnedNotice = (): PinnedNotice => ({
-  sort: 0,
-  exampleMatchingUrl: Faker.internet.url(),
-  id: 1,
-  url: 'http://backend.dismoi.io/notices/1',
-  strippedMessage: 'stripped message',
-  created: subMonths(new Date(), 1),
-  modified: subWeeks(new Date(), 1),
-  screenshot: Faker.image.imageUrl()
-});
-
 export const generateContributor = ({
   id,
   name,
@@ -38,17 +30,7 @@ export const generateContributor = ({
   name: name || Faker.name.findName(),
   contributions: contributions || Faker.random.number(),
   contribution: {
-    example: {
-      sort: 0,
-      exampleMatchingUrl: Faker.internet.url(),
-      id: 1,
-      url: 'http://backend.dismoi.io/notices/1',
-      strippedMessage: 'stripped message',
-      created: subMonths(new Date(), 1),
-      modified: subWeeks(new Date(), 1),
-      screenshot: Faker.image.imageUrl()
-    },
-    starred: generatePinnedNotice(),
+    example: generateNoticeItem(),
     pinnedNotices: [generatePinnedNotice()]
   },
   avatar: noAvatar

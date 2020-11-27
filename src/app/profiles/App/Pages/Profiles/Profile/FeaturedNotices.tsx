@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import FeaturedNotice from './FeaturedNotice';
 import { LoadingRotator } from 'components/atoms';
 import { LoadingBig } from 'components/atoms/icons';
-import { NoticeItem } from 'app/lmem/notice';
+import { Notice } from 'app/lmem/notice';
 import { StatefulContributor } from 'app/lmem/contributor';
 
 export interface FeaturedNoticesProps {
   loading?: boolean;
-  notices: NoticeItem[];
-  seeNoticeInContext: (notice: NoticeItem) => () => void;
+  notices: Notice[];
+  seeNoticeInContext: (notice: Notice) => () => void;
   contributor?: StatefulContributor;
   className?: string;
 }

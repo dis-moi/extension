@@ -3,27 +3,22 @@ import { Ratings } from './rating';
 import { Contributor, ContributorId, NewContributor } from './contributor';
 import { captureMessage } from '../utils/sentry';
 
-export interface NoticeItem {
-  id: number;
-  url: string;
-  strippedMessage: string;
-  exampleMatchingUrl?: string;
-  screenshot?: string;
-  created: Date;
-  modified: Date;
-}
-
 export interface BaseNotice {
   id: number;
   url: string;
-  created: Date;
-  modified: Date;
   message: string;
   strippedMessage: string;
-  ratings: Ratings;
-  visibility: 'public' | 'private';
   exampleMatchingUrl?: string;
   screenshot?: string;
+  created: Date;
+  modified: Date;
+  ratings: Ratings;
+  visibility: 'public' | 'private';
+}
+
+export interface NoticeItem extends BaseNotice {
+  contributorId: ContributorId;
+  relayersIds: ContributorId[];
 }
 
 export interface NoticeWithContributor extends BaseNotice {
@@ -31,12 +26,7 @@ export interface NoticeWithContributor extends BaseNotice {
   relayers: Contributor[];
 }
 
-export interface NoticeWithContributorId extends BaseNotice {
-  contributorId: ContributorId;
-  relayersIds: ContributorId[];
-}
-
-export type Notice = NoticeWithContributorId | NoticeWithContributor;
+export type Notice = NoticeItem | NoticeWithContributor;
 
 export interface Contribution {
   url: string;
@@ -62,13 +52,11 @@ export interface NoticeState {
 export type StatefulNoticeWithContributor = NoticeWithContributor & {
   state: NoticeState;
 };
-export type StatefulNoticeWithContributorId = NoticeWithContributorId & {
+export type StatefulNoticeItem = NoticeItem & {
   state: NoticeState;
 };
 
-export type StatefulNotice =
-  | StatefulNoticeWithContributor
-  | StatefulNoticeWithContributorId;
+export type StatefulNotice = StatefulNoticeWithContributor | StatefulNoticeItem;
 
 export enum NoticeFeedbackType {
   DISMISS = 'dismiss',
