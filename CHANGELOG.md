@@ -1,3 +1,10 @@
+## [3.59.2](https://github.com/dis-moi/extension/compare/v3.59.1...v3.59.2) (2020-11-27)
+
+
+### Bug Fixes
+
+* **DetailsContent:** changes margins to improve readibility ([f4b8d64](https://github.com/dis-moi/extension/commit/f4b8d64de8c4ff5c0d3cbd72d260f2ef45afcbfc))
+
 ## [3.59.1](https://github.com/dis-moi/extension/compare/v3.59.0...v3.59.1) (2020-11-19)
 
 
