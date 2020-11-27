@@ -1,7 +1,7 @@
 import Faker from 'faker';
 import { subMonths, subWeeks } from 'date-fns';
-import { StatefulNoticeWithContributor } from 'app/lmem/notice';
-import { Contributor } from 'app/lmem/contributor';
+import { NoticeItem, StatefulNoticeWithContributor } from 'app/lmem/notice';
+import { Contributor, PinnedNotice } from 'app/lmem/contributor';
 import { generateContributor } from './generateContributor';
 
 interface Options {
@@ -56,3 +56,27 @@ export const generateStatefulNotice = ({
     }
   };
 };
+
+export const generateNoticeItem = ({
+  exampleMatchingUrl
+}: {
+  exampleMatchingUrl?: string;
+} = {}): NoticeItem => ({
+  exampleMatchingUrl: exampleMatchingUrl || Faker.internet.url(),
+  id: 1,
+  url: 'http://backend.dismoi.io/notices/1',
+  message: defaultMessage,
+  strippedMessage: defaultMessage,
+  ratings: { likes: 2, dislikes: 2 },
+  created: subMonths(new Date(), 1),
+  modified: subWeeks(new Date(), 1),
+  screenshot: Faker.image.imageUrl(),
+  contributorId: 1,
+  relayersIds: [],
+  visibility: 'public'
+});
+
+export const generatePinnedNotice = (): PinnedNotice => ({
+  sort: 0,
+  ...generateNoticeItem()
+});

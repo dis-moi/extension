@@ -6,7 +6,10 @@ import { MemoryRouter as Router } from 'react-router-dom';
 import { action } from '@storybook/addon-actions';
 import { createBrowserHistory } from 'history';
 import Profile from './Profile';
-import { generateStatefulNotice } from 'test/fakers/generateNotice';
+import {
+  generatePinnedNotice,
+  generateStatefulNotice
+} from 'test/fakers/generateNotice';
 import { generateStatefulContributor } from 'test/fakers/generateContributor';
 import rootReducer from '../../../../store/reducers';
 
@@ -20,7 +23,7 @@ storiesOf('Profile/Profile', module)
   ))
   .add('Normal', () => (
     <Profile
-      featuredNotices={[generateStatefulNotice(), generateStatefulNotice()]}
+      featuredNotices={[generatePinnedNotice(), generatePinnedNotice()]}
       notices={[
         generateStatefulNotice(),
         generateStatefulNotice(),
@@ -44,9 +47,9 @@ storiesOf('Profile/Profile', module)
   .add('loading', () => (
     <Profile
       featuredNotices={[
-        generateStatefulNotice(),
-        generateStatefulNotice(),
-        generateStatefulNotice()
+        generatePinnedNotice(),
+        generatePinnedNotice(),
+        generatePinnedNotice()
       ]}
       notices={[
         generateStatefulNotice(),
@@ -71,9 +74,9 @@ storiesOf('Profile/Profile', module)
   .add('contributorsLoading', () => (
     <Profile
       featuredNotices={[
-        generateStatefulNotice(),
-        generateStatefulNotice(),
-        generateStatefulNotice()
+        generatePinnedNotice(),
+        generatePinnedNotice(),
+        generatePinnedNotice()
       ]}
       notices={[
         generateStatefulNotice(),
@@ -98,9 +101,9 @@ storiesOf('Profile/Profile', module)
   .add('noticesLoading', () => (
     <Profile
       featuredNotices={[
-        generateStatefulNotice(),
-        generateStatefulNotice(),
-        generateStatefulNotice()
+        generatePinnedNotice(),
+        generatePinnedNotice(),
+        generatePinnedNotice()
       ]}
       notices={[
         generateStatefulNotice(),
@@ -147,7 +150,7 @@ storiesOf('Profile/Profile', module)
   ))
   .add('1 featured notices', () => (
     <Profile
-      featuredNotices={[generateStatefulNotice()]}
+      featuredNotices={[generatePinnedNotice()]}
       notices={[
         generateStatefulNotice(),
         generateStatefulNotice(),

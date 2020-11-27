@@ -17,8 +17,7 @@ export interface PinnedNotice extends NoticeItem {
 }
 
 interface Contribution {
-  example: PinnedNotice; // @deprecated use `pinnedNotices` instead
-  starred: PinnedNotice; // @deprecated use `pinnedNotices` instead
+  example: NoticeItem;
   pinnedNotices: PinnedNotice[];
 }
 
