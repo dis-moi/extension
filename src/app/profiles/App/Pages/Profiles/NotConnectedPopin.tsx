@@ -18,6 +18,7 @@ const PopinLarge = styled(Popin)`
 `;
 
 const Text = styled(PopinParagraph)`
+  display: block;
   text-align: center;
 `;
 
@@ -44,7 +45,7 @@ const NotConnectedPopin = ({
   addToBrowser
 }: NotConnectedPopinProps) => {
   return (
-    <PopinLarge opened={opened} setOpened={setOpened}>
+    <PopinLarge size={'extralarge'} opened={opened} setOpened={setOpened}>
       <Text>
         Pour voir les contributions {contributor && `de ${contributor.name}`},
         veuillez d’abord ajouter Dismoi à votre navigateur.
