@@ -1,3 +1,10 @@
+# [3.60.0](https://github.com/dis-moi/extension/compare/v3.59.3...v3.60.0) (2020-11-30)
+
+
+### Features
+
+* **matcher:** Allow to match a page based on its content ([af86d34](https://github.com/dis-moi/extension/commit/af86d3407b056855a82923742d31c694c3e24af6))
+
 ## [3.59.3](https://github.com/dis-moi/extension/compare/v3.59.2...v3.59.3) (2020-11-27)
 
 
