@@ -61,7 +61,7 @@ export function* restrictTabSaga(tab: Tab) {
   yield call(disable, tab);
   yield call(browser.browserAction.setTitle, {
     tabId: tab.id,
-    title: `${getExtensionTitle()} - restreint`
+    title: `${getExtensionTitle()} - Désactivé sur cette page`
   });
   yield call(resetBadge, tab.id);
 }
