@@ -222,3 +222,39 @@ extensions.lmem@gmail.com
 
 To generate your own tokens and deploy from your local environment :
 https://github.com/DrewML/chrome-webstore-upload/blob/master/How%20to%20generate%20Google%20API%20keys.md
+
+### Firefox Addons
+
+[Developer Hub](https://addons.mozilla.org/en-US/developers/addons)
+| account: infrastructure@lmem.net
+
+In order for the Mozilla review to complete successfully, please the following steps :
+
+- Use [SemaphoreCI](https://semaphoreci.com/lmem/extension/) to deploy to `Firefox production`
+- [Download](https://github.com/dis-moi/extension/releases) the source code archive of the version you want to deploy to production extension (`Source code (tar.gz)`)
+- Create a `buildDisMoi.sh` file on your machine with the following content :
+
+```shell script
+#!/usr/bin/env bash
+echo "SEND_IN_BLUE_TOKEN=SIB_TOKEN" > .env
+docker run -v `pwd`:/app -w /app node:10.15.0 yarn install && yarn build:firefox:production
+```
+
+where `SIB_TOKEN` is the SendInBlue token
+
+- Add the `buildDisMoi.sh` to the downloaded archive
+- Once version is available in [Developer Hub](https://addons.mozilla.org/en-US/developers/addon/dismoi/versions), enter the version form and complete :
+  - In `Source code`, upload the modified tar.gz archive
+  - In `Notes for reviewers`, paste :
+
+```
+Requirement: Docker
+
+Instructions:
+ - Extract archive
+ - Run ./buildDisMoi.sh
+```
+
+- Save changes
+
+Note: We plan to remove any SendInBlue direct call from extension soon.
