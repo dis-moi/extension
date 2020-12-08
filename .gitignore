@@ -17,3 +17,4 @@ storybook-static/*
 .env.development
 *.local
 yarn-error.log
+/.wakatime-project
