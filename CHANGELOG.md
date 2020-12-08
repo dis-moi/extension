@@ -1,3 +1,10 @@
+## [3.60.1](https://github.com/dis-moi/extension/compare/v3.60.0...v3.60.1) (2020-12-08)
+
+
+### Bug Fixes
+
+* **featured:** Introduce partial notice data model ([a346c21](https://github.com/dis-moi/extension/commit/a346c212f594981c5bc25de742666de6b6b4ca44))
+
 # [3.60.0](https://github.com/dis-moi/extension/compare/v3.59.3...v3.60.0) (2020-11-30)
 
 
