@@ -22,9 +22,12 @@ import { fetchRestrictedContextsSaga } from './fetchRestrictedContexts.saga';
 import connectSaga from './connect.saga';
 import installationDetailsSaga from './installationDetails.saga';
 import { loginSaga } from './user.saga';
+import { doNotTrackSettingFromNavigatorIsActivated } from '../../../webext/checkDoNotTrack';
 
 const tracker =
-  process.env.TRACKING_SITE_ID && process.env.TRACKING_URL
+  process.env.TRACKING_SITE_ID &&
+  process.env.TRACKING_URL &&
+  doNotTrackSettingFromNavigatorIsActivated() === false
     ? new MatomoTracker(process.env.TRACKING_SITE_ID, process.env.TRACKING_URL)
     : undefined;
 
