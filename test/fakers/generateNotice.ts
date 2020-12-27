@@ -20,6 +20,7 @@ interface Options {
 }
 
 export const defaultMessage = `L’économie est (vraiment) un sport de combat : “La boule puante de MM. Cahuc et Zylberberg contre le “négationnisme” des économistes critiques le confirme : le combat idéologique tombe parfois dans le caniveau. Depuis vingt ans pourtant, s’est construit en France une contre-expertise économique crédible qui veut fournir aux dominés des outils pour penser (et résister à) la pseudo” construit en France une contre-expertise`;
+export const messageWithYoutubeVideo = `Saviez-vous que Dark Vador n'a pas dit, "Luke, je suis ton père", mais "Non... Je suis ton père" ? La preuve en vidéo : https://www.youtube.com/watch?v=5OQiE9Nj3ko.`;
 
 export const generateStatefulNotice = ({
   message,
