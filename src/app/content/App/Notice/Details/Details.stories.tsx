@@ -6,7 +6,8 @@ import { withKnobs, text, date, number, boolean } from '@storybook/addon-knobs';
 import Faker from 'faker';
 import {
   defaultMessage,
-  generateStatefulNotice
+  generateStatefulNotice,
+  messageWithYoutubeVideo
 } from 'test/fakers/generateNotice';
 import { Details } from '.';
 import { subMonths } from 'date-fns';
@@ -61,6 +62,22 @@ storiesOf('Extension/Notice/Details', module)
           name: text('contributor', defaultContributorName)
         }),
         message: `<p>${text('message', longMessage)}</p>`,
+        created: new Date(date('created', defaultDate)),
+        likes: number('likes', 42),
+        dislikes: number('dislikes', 2),
+        liked: boolean('liked', false),
+        disliked: boolean('disliked', false)
+      })}
+    />
+  ))
+  .add('with youtube video', () => (
+    <Details
+      {...commonProps}
+      notice={generateStatefulNotice({
+        contributor: generateContributor({
+          name: text('contributor', defaultContributorName)
+        }),
+        message: `<p>${text('message', messageWithYoutubeVideo)}</p>`,
         created: new Date(date('created', defaultDate)),
         likes: number('likes', 42),
         dislikes: number('dislikes', 2),
