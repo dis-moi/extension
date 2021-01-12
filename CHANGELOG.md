@@ -1,3 +1,10 @@
+# [3.61.0](https://github.com/dis-moi/extension/compare/v3.60.1...v3.61.0) (2021-01-12)
+
+
+### Features
+
+* respect do not track preference ([64e1d51](https://github.com/dis-moi/extension/commit/64e1d510dc3cd5fad5a69a2b703abdf3cdc76b74))
+
 ## [3.60.1](https://github.com/dis-moi/extension/compare/v3.60.0...v3.60.1) (2020-12-08)
 
 
