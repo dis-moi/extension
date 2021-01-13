@@ -27,16 +27,20 @@ export const buildQueryString: BuildQueryString = R.ifElse(
   )
 );
 
+export const checkStatus = (response: Response) => {
+  const { status } = response;
+  if (status >= 400) {
+    throw new APIStatusCodeError(response);
+  }
+
+  return response;
+};
+
 export const get = (path: string, data: object = {}) => {
   const endpoint = path.startsWith('http') ? path : BACKEND_ORIGIN + path;
-  return fetch(`${endpoint}${buildQueryString(data)}`, { mode: 'cors' }).then(
-    response => {
-      if (response.status >= 400) {
-        throw new APIStatusCodeError(response);
-      }
-      return response.json();
-    }
-  );
+  return fetch(`${endpoint}${buildQueryString(data)}`, { mode: 'cors' })
+    .then(checkStatus)
+    .then(response => response.json());
 };
 
 export const post = (path: string, data: {} | []) =>
@@ -47,12 +51,11 @@ export const post = (path: string, data: {} | []) =>
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(data)
-  }).then(response => {
-    if (response.status >= 400) {
-      throw new Error('Bad response from server');
-    }
-    if (response.status === 204) {
-      return true;
-    }
-    return response.json();
-  });
+  })
+    .then(checkStatus)
+    .then(response => {
+      if (response.status === 204) {
+        return true;
+      }
+      return response.json();
+    });
