@@ -63,7 +63,7 @@ You should respect the following **directory structure**:
 
 - `src/`
   - `api/` APIs related code ([Dismoi backend](https://github.com/dis-moi/backend), [sendinblue](https://fr.sendinblue.com/), ...)
-    - `app/` apps and commons
+  - `app/` apps and commons
       - `background/` an app maintaining the long-term state (see [background script](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/background) on the mdn)
       - `profiles/` a `react` app managing subscriptions
       - `content/` a `react` app injected in the web pages
