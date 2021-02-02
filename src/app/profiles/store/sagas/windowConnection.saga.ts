@@ -24,13 +24,15 @@ export default function* windowConnectionSaga(targetOrigin = '*') {
   const outgoingChannel = yield actionChannel(
     ({ meta }: AppAction) => meta?.receiver?.id === extensionId
   );
-  yield fork(
-    watchWindow,
-    window,
-    targetOrigin,
-    incomingChannel,
-    outgoingChannel
-  );
+  if (typeof window !== 'undefined') {
+    yield fork(
+      watchWindow,
+      window,
+      targetOrigin,
+      incomingChannel,
+      outgoingChannel
+    );
+  }
   yield takeEvery(incomingChannel, dispatchReceivedActionSaga);
 
   const attemptInterval = 5000;

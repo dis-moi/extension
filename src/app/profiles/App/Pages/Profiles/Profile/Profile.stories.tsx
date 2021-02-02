@@ -4,7 +4,6 @@ import { createStore } from 'redux';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { action } from '@storybook/addon-actions';
-import { createBrowserHistory } from 'history';
 import Profile from './Profile';
 import {
   generatePinnedNotice,
@@ -13,7 +12,7 @@ import {
 import { generateStatefulContributor } from 'test/fakers/generateContributor';
 import rootReducer from '../../../../store/reducers';
 
-const store = createStore(rootReducer(createBrowserHistory()));
+const store = createStore(rootReducer());
 
 storiesOf('Profile/Profile', module)
   .addDecorator(getStory => (

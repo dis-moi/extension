@@ -6,12 +6,13 @@ import Subscriptions from './Subscriptions';
 
 const Pages = () => (
   <>
-    <Switch>
+    <p>Hello pages index</p>
+    {/*    <Switch>
       <Redirect exact path="/" to="/sources" />
       <Route path="/sources" component={Profiles} />
       <Route path="/mes-abonnements" component={Subscriptions} />
       <Route component={Error} />
-    </Switch>
+    </Switch>*/}
   </>
 );
 
