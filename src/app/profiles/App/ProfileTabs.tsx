@@ -5,7 +5,7 @@ import Tab from 'components/atoms/Tab/Tab';
 import { Sidebar, TwoColumns } from 'components/atoms';
 
 interface ProfileTabsProps {
-  connected?: boolean;
+  connected: boolean | null;
 }
 
 const ProfileTabsContainer = styled(Tabs)`

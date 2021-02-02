@@ -118,7 +118,7 @@ export interface ProfileProps {
   fetchMoreNotices: () => void | undefined;
   fetchedAll: boolean;
   contributors: StatefulContributor[];
-  connected?: boolean;
+  connected: boolean | null;
   addToBrowser: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 

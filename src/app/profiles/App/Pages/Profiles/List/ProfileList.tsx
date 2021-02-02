@@ -71,7 +71,7 @@ export interface ProfileListProps {
   contributors: StatefulContributor[];
   subscribe: (contributorId: ContributorId) => void;
   unsubscribe: (contributorId: ContributorId) => void;
-  connected?: boolean;
+  connected: boolean | null;
   addToBrowser: (e: MouseEvent<HTMLButtonElement>) => void;
   categoriesLoading?: boolean;
   categories: Categories;

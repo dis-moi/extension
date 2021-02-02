@@ -28,7 +28,7 @@ export interface SubscriptionsProps {
   subscribe: (id: ContributorId) => void;
   unsubscribe: (id: ContributorId) => void;
   className?: string;
-  connected?: boolean;
+  connected: boolean | null;
   categoriesLoading?: boolean;
   categories: Categories;
 }
