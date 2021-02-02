@@ -24,8 +24,6 @@ const FiltersList = styled.select`
   font-size: 16px;
   font-weight: bold;
   color: #fff;
-  background-color: ${props => props.theme.Button.default};
-  border-radius: ${props => props.theme.Button.radius};
 `;
 
 const FiltersListItem = styled.option`

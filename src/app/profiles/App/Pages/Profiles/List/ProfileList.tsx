@@ -54,7 +54,6 @@ export const ContributorProfileListItem = styled(ContributorLarge)`
     align-items: center;
 
     svg {
-      stroke: ${props => props.theme.Button.default};
       margin-top: 3px;
       margin-left: 5px;
       transform: rotate(180deg);
@@ -62,7 +61,6 @@ export const ContributorProfileListItem = styled(ContributorLarge)`
 
     &:hover {
       svg {
-        stroke: ${props => props.theme.Button.hover};
       }
     }
   }

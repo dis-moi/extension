@@ -19,7 +19,6 @@ export const FiltersList = styled.div`
   display: flex;
   font-size: 16px;
   color: ${props => props.theme.textColor};
-  border-radius: ${props => props.theme.Button.radius};
 `;
 
 export const FiltersListItem = styled.label`

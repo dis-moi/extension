@@ -109,7 +109,6 @@ export default styled(withRouter(withConnect(SimilarProfiles)))`
       transition: all 0.2s ease-in-out;
 
       &:hover {
-        color: ${props => props.theme.Button.hover};
       }
     }
   }

@@ -62,20 +62,16 @@ export default styled(Button)`
   text-decoration: underline;
   background: none;
   border: none;
-  border-radius: ${props => props.theme.Button.radius};
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    color: ${props => props.theme.Button.hover};
   }
 
   &:focus {
-    outline: 1px dotted ${props => props.theme.Button.hover};
   }
 
   &:active {
-    outline: 1px dotted ${props => props.theme.Button.hover};
   }
 
   &:disabled {
@@ -92,8 +88,6 @@ export default styled(Button)`
   &:disabled:hover,
   &:disabled:active,
   &:disabled:visited {
-    background-color: ${props => props.theme.Button.disabled};
-    border-color: ${props => props.theme.Button.disabled};
   }
 
   ${LoadingRotator} svg {
