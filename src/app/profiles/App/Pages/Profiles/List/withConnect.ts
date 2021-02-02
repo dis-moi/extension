@@ -16,7 +16,10 @@ const mapStateToProps = (state: ProfilesState) => ({
   loading: areContributorsLoading(state),
   contributors: getStatefulContributors(state),
   connected: isConnected(state),
-  addToBrowser: clickInstallHandler,
+  addToBrowser:
+    typeof clickInstallHandler !== 'undefined'
+      ? clickInstallHandler
+      : () => null,
   categories: getCategories(state),
   categoriesLoading: areCategoriesLoading(state)
 });

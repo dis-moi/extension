@@ -8,6 +8,7 @@ export function* refreshContributorsPeriodicallySaga() {
     Number(process.env.REFRESH_CONTRIBUTORS_INTERVAL)
   );
 
+  // warning SSR: refresh LOOP
   if (refreshInterval > 0) {
     // eslint-disable-next-line no-console
     console.info(

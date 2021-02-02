@@ -39,6 +39,7 @@ export function* refreshMatchingContextsPeriodicallySaga() {
     Number(process.env.REFRESH_MC_INTERVAL)
   );
 
+  // warning SSR: refresh LOOP
   if (refreshInterval > 0) {
     // eslint-disable-next-line no-console
     console.info(

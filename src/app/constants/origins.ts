@@ -6,4 +6,5 @@ function originFromEnv(key: string) {
   return origin;
 }
 
-export const BACKEND_ORIGIN = originFromEnv('BACKEND_ORIGIN');
+export const BACKEND_ORIGIN = process.env.NEXT_PUBLIC_BACKEND_ORIGIN;
+console.log('==> BACKEND_ORIGIN:', BACKEND_ORIGIN);

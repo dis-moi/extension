@@ -1,7 +1,8 @@
 import React, { AnchorHTMLAttributes, Ref } from 'react';
 import styled from 'styled-components';
 import { LocationState, LocationDescriptor } from 'history';
-import { Link as ReactRouterDomLink } from 'react-router-dom';
+// import { Link as ReactRouterDomLink } from 'react-router-dom';
+import NextLink from 'next/link';
 import Anchor, { style } from './Anchor';
 
 interface LinkProps<S = LocationState>
@@ -13,7 +14,7 @@ interface LinkProps<S = LocationState>
 }
 
 const Link = ({ to, ...props }: LinkProps) =>
-  to ? <ReactRouterDomLink to={to} {...props} /> : <Anchor {...props} />;
+  to ? <NextLink href={to} {...props} /> : <Anchor {...props} />;
 
 export default styled(Link)`
   ${style}

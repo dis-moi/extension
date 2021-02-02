@@ -36,7 +36,7 @@ export default function* windowConnectionSaga(targetOrigin = '*') {
   yield takeEvery(incomingChannel, dispatchReceivedActionSaga);
 
   const attemptInterval = 5000;
-  while (true) {
+  while (false && true) {
     const connected = yield select(isConnected);
     if (!connected) {
       yield put(

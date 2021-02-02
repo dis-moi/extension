@@ -34,5 +34,5 @@ function* attemptToConnectPeriodicallySaga() {
 
 export default function* portConnectionSaga() {
   yield takeLatest(CONNECT, connectSaga);
-  yield fork(attemptToConnectPeriodicallySaga);
+  // yield fork(attemptToConnectPeriodicallySaga);
 }
