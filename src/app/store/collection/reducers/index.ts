@@ -41,13 +41,16 @@ export default <I extends Item>(
 
 export {
   fetched,
-  FetchedState,
   fetching,
-  FetchingState,
   items,
-  ItemsState,
   lastFetched,
-  LastFetchedState,
   offset,
+};
+
+export type {
+  FetchedState,
+  FetchingState,
+  ItemsState,
+  LastFetchedState,
   OffsetState
 };

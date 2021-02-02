@@ -148,8 +148,10 @@ const ProfileList = ({
               to={pathToContributor(contributor)}
             >
               <Link to={pathToContributor(contributor)}>
-                Voir ses contributions
-                <Arrow />
+                <>
+                  Voir ses contributions
+                  <Arrow />
+                </>
               </Link>
             </ContributorProfileListItem>
           ))}

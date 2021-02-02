@@ -4,7 +4,7 @@ import ScrollToTop from 'components/ScrollToTop';
 import Subscriptions from './Subscriptions';
 import withConnect from './withConnect';
 
-const ConnectedSubscriptions = withConnect(Subscriptions);
+export const ConnectedSubscriptions = withConnect(Subscriptions);
 
 export interface RoutedConnectedSubscriptionsProps
   extends RouteComponentProps {}

@@ -10,7 +10,9 @@ storiesOf('Components/Atoms/Links', module)
   .add('Link', () => <Link to="/">Link</Link>)
   .add('Link with icon', () => (
     <Link to="/">
-      Link <Arrow />
+      <>
+        Link <Arrow />
+      </>
     </Link>
   ))
   .add('External Link', () => <ExternalLink>Link</ExternalLink>)

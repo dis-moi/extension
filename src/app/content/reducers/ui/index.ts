@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import notification, { NotificationState } from './notification.reducer';
 import title, { TitleState } from './title';
 
-export { NotificationState, TitleState };
+export type { NotificationState, TitleState };
 
 export interface UIState {
   notification: NotificationState;

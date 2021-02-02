@@ -44,7 +44,7 @@ export const initSentry = () => {
   }
 };
 
-export { Scope };
+export type { Scope };
 type ScopeCallback = (scope: Scope) => void;
 export const configureSentryScope = (scopeCallback: ScopeCallback) => {
   if (process.env.SENTRY_ENABLED && sentryInitialized) {

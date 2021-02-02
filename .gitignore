@@ -18,3 +18,4 @@ storybook-static/*
 *.local
 yarn-error.log
 /.wakatime-project
+.next

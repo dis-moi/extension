@@ -70,7 +70,9 @@ const Avatar = ({
       {!loading && url ? (
         <img src={url} alt={contributor?.name} />
       ) : (
-        <AvatarDefault />
+        <>
+          <AvatarDefault />
+        </>
       )}
     </Wrapper>
   );

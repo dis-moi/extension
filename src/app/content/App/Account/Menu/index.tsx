@@ -14,8 +14,10 @@ export const Menu = ({ match }: MenuProps) => (
       <OpenButton />
     </ExternalLink>
     <Link to={`${match.url}/about`}>
-      À propos
-      <OpenButton />
+      <>
+        À propos
+        <OpenButton />
+      </>
     </Link>
   </Account>
 );

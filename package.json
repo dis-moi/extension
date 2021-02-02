@@ -8,6 +8,9 @@
   "scripts": {
     "start": "webpack --watch --progress --mode=development",
     "start:profiles": "webpack-dev-server --progress --mode=development --config webpack.profiles.config.js --inline",
+    "start:site": "next dev",
+    "build:site": "next build",
+    "start:site:prod": "next start",
     "start:firefox": "webpack --watch --progress --mode=development --env.PLATFORM=firefox",
     "build:chromium": "webpack --mode=production --env.PLATFORM=chromium",
     "build:firefox": "webpack --mode=production --env.PLATFORM=firefox",
@@ -87,8 +90,8 @@
   ],
   "license": "GPL-3.0",
   "dependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/runtime": "^7.5.5",
+    "@babel/core": "^7.11.0",
+    "@babel/runtime": "^7.11.0",
     "@semantic-release/changelog": "^3.0.0",
     "@semantic-release/exec": "^2.3.0",
     "@semantic-release/git": "^7.0.1",
@@ -143,6 +146,7 @@
     "chromedriver": "^2.21.2",
     "classnames": "^2.2.5",
     "clean-webpack-plugin": "^2.0.1",
+    "connected-next-router": "^4.0.1",
     "connected-react-router": "^6.3.1",
     "content-security-policy-builder": "^1.1.0",
     "copy-webpack-plugin": "^5.0.0",
@@ -179,6 +183,9 @@
     "lint-staged": "^8.1.5",
     "lodash-webpack-plugin": "^0.11.5",
     "mocha": "^6.0.2",
+    "next": "^10.0.5",
+    "next-images": "^1.7.0",
+    "next-redux-wrapper": "^6.0.2",
     "null-loader": "^0.1.1",
     "prettier": "^1.18.2",
     "prettier-config-standard": "^1.0.1",
@@ -189,7 +196,8 @@
     "react": "16.8.0",
     "react-dev-utils": "^9.0.3",
     "react-dom": "16.8.0",
-    "react-redux": "^6.0.1",
+    "react-markdown": "^5.0.3",
+    "react-redux": "^7.1.1",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-spring": "^8.0.20",
@@ -232,6 +240,7 @@
     "zip-webpack-plugin": "^3.0.0"
   },
   "devDependencies": {
+    "babel-plugin-styled-components": "^1.12.0",
     "chrome-webstore-upload": "^0.2.2",
     "sign-addon": "^2.0.4",
     "webpack-dev-server": "^3.11.0"
