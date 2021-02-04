@@ -5,7 +5,10 @@ import { action } from '@storybook/addon-actions';
 import NoticeDetails from './NoticeDetails';
 import { subMonths } from 'date-fns';
 import Faker from 'faker';
-import { generateStatefulNotice } from 'test/fakers/generateNotice';
+import {
+  generateStatefulNotice,
+  messageWithYoutubeVideo
+} from 'test/fakers/generateNotice';
 import { boolean, date, number, text } from '@storybook/addon-knobs';
 import { generateContributor } from 'test/fakers/generateContributor';
 
@@ -72,5 +75,13 @@ storiesOf('Components/Organisms/NoticeDetails', module)
       {...commonProps}
       notice={generateStatefulNotice({ disliked: true })}
       relayer={generateContributor()}
+    />
+  ))
+  .add('Youtube video', () => (
+    <NoticeDetails
+      {...commonProps}
+      notice={generateStatefulNotice({
+        message: messageWithYoutubeVideo
+      })}
     />
   ));

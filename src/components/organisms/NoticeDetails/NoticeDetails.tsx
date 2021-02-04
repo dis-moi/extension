@@ -19,6 +19,7 @@ import Message from './Message';
 import Feedbacks from './Feedbacks';
 import Date from './Date';
 import { Contributor } from 'app/lmem/contributor';
+import { formatMessage } from 'app/lmem/format/message';
 
 const DetailsMetaValue = styled.div`
   margin-left: 10px;
@@ -248,7 +249,9 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
             </DetailsMetaValue>
           </DetailsMeta>
 
-          <Message onClick={this.handleMessageClick}>{message}</Message>
+          <Message onClick={this.handleMessageClick}>
+            {formatMessage(message)}
+          </Message>
 
           <Feedbacks>
             <Button onClick={this.handleLikeClick}>
