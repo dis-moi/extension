@@ -1,6 +1,5 @@
 import React, { MouseEventHandler } from 'react';
 import styled from 'styled-components';
-import getMessageWithMediaPlayer from '../../../app/utils/getMessageWithMediaPlayer';
 
 const MessageBlock = styled.div`
   max-height: 216px;
@@ -19,15 +18,11 @@ interface Props {
   children: string;
   onClick?: MouseEventHandler;
 }
-const Message = ({ children, onClick }: Props) => {
-  const childrenWithMedia = getMessageWithMediaPlayer(children);
-
-  return (
-    <MessageBlock
-      onClick={onClick}
-      dangerouslySetInnerHTML={{ __html: childrenWithMedia || children }}
-    />
-  );
-};
+const Message = ({ children, onClick }: Props) => (
+  <MessageBlock
+    onClick={onClick}
+    dangerouslySetInnerHTML={{ __html: children }}
+  />
+);
 
 export default Message;

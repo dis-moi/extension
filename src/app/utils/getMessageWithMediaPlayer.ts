@@ -1,4 +1,4 @@
-const youtubeRegex = /(https?:\/\/)?(www\.)?(youtube\.com)(\/)(watch\?v=|embed\/)([a-zA-Z0-9_?=/-]+)/g;
+export const youtubeRegex = /(https?:\/\/)?(www\.)?(youtube\.com)(\/)(watch\?v=|embed\/)([a-zA-Z0-9_?=/-]+)/g;
 
 const getMessageWithMediaPlayer = (message: string): string | null => {
   const youtubeLink = youtubeRegex.exec(message);
