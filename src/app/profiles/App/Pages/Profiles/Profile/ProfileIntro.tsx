@@ -61,7 +61,7 @@ const ProfileIntroContent = styled.section`
       border: 5px solid #fff;
 
       & > img {
-        max-width: initial;
+        max-width: inherit;
         width: 90px;
         height: 90px;
       }
