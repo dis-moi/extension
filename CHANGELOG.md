@@ -1,3 +1,10 @@
+## [3.61.1](https://github.com/dis-moi/extension/compare/v3.61.0...v3.61.1) (2021-02-04)
+
+
+### Bug Fixes
+
+* **Avatar:** forces to reset WP max-width [#766](https://github.com/dis-moi/extension/issues/766) ([0108534](https://github.com/dis-moi/extension/commit/0108534221e615bc349e093f84c557b265f09c47))
+
 # [3.61.0](https://github.com/dis-moi/extension/compare/v3.60.1...v3.61.0) (2021-01-12)
 
 
