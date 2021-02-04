@@ -10,6 +10,7 @@ export default styled.div<FeedbacksProps>`
   display: flex;
   justify-content: flex-end;
   margin-top: auto;
+  margin-right: 30px;
   font-size: 14px;
 
   & ${Button} {
