@@ -83,14 +83,14 @@ You should respect the following **directory structure**:
 You can lint both TypeScript and CSS by running:
 
 ```bash
-yan lint
+yarn lint
 ```
 
 #### Typescript
 
 Code style rules are available in [`.eslintrc.json`](.eslintrc.json).
 
-You can manually lint `*.ts` files running the following command:
+You can manually lint `*.ts` files by running the following command:
 
 ```bash
 yarn lint:ts
@@ -102,7 +102,7 @@ Component are written with [`styled-components`](https://styled-components.com/)
 
 > Styling rules are available in `.stylelintrc`.
 
-You can manually lin the styled components running the following command:
+You can manually lint the styled components by running the following command:
 
 ```bash
 yarn lint:css
@@ -218,7 +218,7 @@ https://semaphoreci.com/lmem/extension/branches/master
 extensions.lmem@gmail.com
 ```
 
-> Ask for the password to a super user! _OR_ A super user may add your own google account to the developer group.
+> Ask for the password from a super user! _OR_ A super user may add your own google account to the developer group.
 
 To generate your own tokens and deploy from your local environment :
 https://github.com/DrewML/chrome-webstore-upload/blob/master/How%20to%20generate%20Google%20API%20keys.md
