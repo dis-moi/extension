@@ -23,6 +23,7 @@ import connectSaga from './connect.saga';
 import installationDetailsSaga from './installationDetails.saga';
 import { loginSaga } from './user.saga';
 import { doNotTrackSettingFromNavigatorIsActivated } from '../../../webext/checkDoNotTrack';
+import contributionSaga from './contribution';
 
 const tracker =
   process.env.TRACKING_SITE_ID &&
@@ -53,6 +54,7 @@ export default function* rootSaga() {
     fork(tracking(tracker)),
     fork(subscriptionsSaga),
     fork(installationDetailsSaga),
-    fork(connectSaga)
+    fork(connectSaga),
+    fork(contributionSaga)
   ]);
 }

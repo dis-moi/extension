@@ -1,47 +1,44 @@
-import { put, takeLatest, call } from 'redux-saga/effects';
+import { put, race, take, takeLatest, call } from 'redux-saga/effects';
 import { go, replace } from 'connected-react-router';
 import { reset } from 'redux-form';
 import {
-  contributionSubmissionFailed,
-  contributionSubmitted,
+  CONTRIBUTION_SUBMISSION_FAILED,
+  CONTRIBUTION_SUBMITTED,
   SUBMIT_CONTRIBUTION,
   SubmitContributionAction
 } from 'app/actions/contribution';
 import { createSubmissionError } from 'app/utils/form';
-import sendEmail from 'api/sendInBlue/sendEmail';
-import createContributionEmail from 'app/background/services/createContributionEmail';
 import { history } from '../store';
-import { captureException } from '../../utils/sentry';
-import { createCallAndRetry } from '../../sagas/effects/callAndRetry';
-
-const sendEmailAndRetry = createCallAndRetry({
-  maximumAttempts: 15, // ~ 1 min 45s
-  onFinalError: () => {
-    captureException(new Error('Could not send contribution email'));
-  }
-});
 
 export function* submitContributionSaga({
-  payload: contribution,
   meta: { form, resolve, reject }
 }: SubmitContributionAction) {
   try {
-    yield sendEmailAndRetry(sendEmail, createContributionEmail(contribution));
-
-    yield put(contributionSubmitted(contribution));
+    const { contributionSubmittedAction } = yield race({
+      contributionSubmittedAction: take(CONTRIBUTION_SUBMITTED),
+      contributionSubmissionFailedAction: take(CONTRIBUTION_SUBMISSION_FAILED)
+    });
 
     if (form) {
-      // reset history, form and redirect to success page
-      yield put(go(-history.entries.length));
-      yield put(replace('/contribute/submitted'));
+      if (contributionSubmittedAction) {
+        // reset history, form and redirect to success page
+        yield put(go(-history.entries.length));
+        yield put(replace('/contribute/submitted'));
 
-      yield put(reset(form));
+        yield put(reset(form));
 
-      yield call(resolve);
+        yield call(resolve);
+      } else {
+        // @todo we should be able to extract the error from `contributionSubmissionFailedAction`
+        // but the error is lost somewhere along the way,
+        // when reaching the content script it's just an empty object :(
+        yield call(
+          reject,
+          createSubmissionError(new Error("Quelque chose s'est mal passé :("))
+        );
+      }
     }
   } catch (e) {
-    yield put(contributionSubmissionFailed(e));
-
     if (form) {
       yield call(reject, createSubmissionError(e));
     }
