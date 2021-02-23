@@ -8,26 +8,7 @@ const { getBuildPath } = require('./webpack/packageNaming');
 
 // const {} = packageNaming;
 
-const isEmail = value =>
-  /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value);
-
 loadEnv({ path: path.resolve(__dirname) });
-
-const {
-  SEND_CONTRIBUTION_TO,
-  SEND_CONTRIBUTION_FROM,
-  SEND_IN_BLUE_TOKEN
-} = process.env;
-
-if (!SEND_IN_BLUE_TOKEN || typeof SEND_IN_BLUE_TOKEN !== 'string') {
-  throw new Error('Please provide SEND_IN_BLUE_TOKEN env variable');
-}
-if (!isEmail(SEND_CONTRIBUTION_FROM)) {
-  throw new Error('Please provide SEND_CONTRIBUTION_FROM env variable');
-}
-if (!isEmail(SEND_CONTRIBUTION_TO)) {
-  throw new Error('Please provide SEND_CONTRIBUTION_TO env variable');
-}
 
 module.exports = function webpack(env = {}, argv = {}) {
   env = {
