@@ -1,5 +1,5 @@
 import { Contribution } from 'app/lmem/notice';
-import { BaseAction, FormAction, FormMeta, ErrorAction } from '.';
+import { BaseAction, FormAction, FormMeta, ActionMeta, ErrorAction } from '.';
 import { Level } from '../utils/Logger';
 
 export const SUBMIT_CONTRIBUTION = 'CONTRIBUTION/SUBMIT';
@@ -8,12 +8,12 @@ export interface SubmitContributionAction extends FormAction {
   payload: Contribution;
 }
 export const submitContribution = (
-  notice: Contribution,
+  contribution: Contribution,
   meta: FormMeta
 ): SubmitContributionAction => ({
   type: SUBMIT_CONTRIBUTION,
-  payload: notice,
-  meta
+  payload: contribution,
+  meta: { ...meta, sendToBackground: true }
 });
 
 export const CONTRIBUTION_SUBMITTED = 'CONTRIBUTION/SUBMITTED';
@@ -22,21 +22,24 @@ export interface ContributionSubmittedAction extends BaseAction {
   payload: Contribution;
 }
 export const contributionSubmitted = (
-  contribution: Contribution
+  contribution: Contribution,
+  meta: ActionMeta = {}
 ): ContributionSubmittedAction => ({
   type: CONTRIBUTION_SUBMITTED,
-  payload: contribution
+  payload: contribution,
+  meta: { ...meta, sendToTab: true }
 });
 
 export const CONTRIBUTION_SUBMISSION_FAILED = 'CONTRIBUTION/SUBMISSION_FAILED';
-export interface ContributionSubmissionFailed extends ErrorAction {
+export interface ContributionSubmissionFailedAction extends ErrorAction {
   type: typeof CONTRIBUTION_SUBMISSION_FAILED;
 }
 export const contributionSubmissionFailed = (
-  e: Error
-): ContributionSubmissionFailed => ({
+  e: Error,
+  meta: ActionMeta = {}
+): ContributionSubmissionFailedAction => ({
   type: CONTRIBUTION_SUBMISSION_FAILED,
   payload: e,
   error: true,
-  meta: { severity: Level.ERROR }
+  meta: { severity: Level.ERROR, ...meta, sendToTab: true }
 });

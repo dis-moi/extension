@@ -40,7 +40,7 @@ import {
   TransmitTOSStatusAction
 } from './tos';
 import {
-  ContributionSubmissionFailed,
+  ContributionSubmissionFailedAction,
   ContributionSubmittedAction,
   SubmitContributionAction
 } from './contribution';
@@ -94,12 +94,12 @@ export interface TimestampedAction extends BaseAction {
   meta: { at: Date } & ActionMeta;
 }
 
+export type ErrorMeta = ActionMetaWithSeverity;
+
 export interface ErrorAction extends BaseAction {
   payload: Error;
   error: true;
-  meta: ActionMeta & {
-    severity: Level;
-  };
+  meta: ErrorMeta;
 }
 
 export interface FormAction extends BaseAction {
@@ -189,7 +189,7 @@ export type AppAction =
   | RemoveUITitleAction
   | SubmitContributionAction
   | ContributionSubmittedAction
-  | ContributionSubmissionFailed
+  | ContributionSubmissionFailedAction
   | OptionsRequestedAction
   | OptionsTabOpened
   | ListeningActionsReadyAction
