@@ -5,9 +5,6 @@ interface CustomWindow extends Window {
 }
 
 interface AppEnv extends NodeJS.ProcessEnv {
-  SEND_CONTRIBUTION_FROM: string;
-  SEND_CONTRIBUTION_TO: string;
-  SEND_IN_BLUE_TOKEN: string;
   SENTRY_DSN: string;
   PLATFORM: 'firefox' | 'chromium';
   PROFILES_ORIGIN: string;

@@ -17,9 +17,6 @@ const { getRelease } = require('../sentry');
 const { getPackageName, getPackageExtension } = require('./packageNaming');
 
 const selectEnvVarsToInject = R.pick([
-  'SEND_CONTRIBUTION_FROM',
-  'SEND_CONTRIBUTION_TO',
-  'SEND_IN_BLUE_TOKEN',
   'SENTRY_DSN',
   'NODE_ENV',
   'BACKEND_ORIGIN',
