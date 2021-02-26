@@ -1,3 +1,10 @@
+# [3.62.0](https://github.com/dis-moi/extension/compare/v3.61.1...v3.62.0) (2021-02-26)
+
+
+### Features
+
+* **i18n:** add i18next ([7ae2bf5](https://github.com/dis-moi/extension/commit/7ae2bf568a217c9ef0ac9d1d3336186200c7efa0))
+
 ## [3.61.1](https://github.com/dis-moi/extension/compare/v3.61.0...v3.61.1) (2021-02-04)
 
 
