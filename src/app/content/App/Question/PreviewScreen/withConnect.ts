@@ -3,12 +3,12 @@ import { goBack } from 'connected-react-router';
 import { ContentState } from 'app/content/store';
 import { getQuestion } from 'app/content/selectors';
 import { close } from 'app/actions/ui';
-import { submitQuestion } from 'app/actions/question';
+import { submitContribution } from 'app/actions/contribution';
 
 const mapDispatchToProps = {
   close,
   modify: goBack,
-  publish: submitQuestion
+  publish: submitContribution
 };
 
 export default connect(
