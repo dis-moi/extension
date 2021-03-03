@@ -56,7 +56,7 @@ const QuestionForm = ({
     <Form onSubmit={handleSubmit}>
       <Field name="url" type="hidden" component={InputField} />
       <Field name="toContributorId" type="select" component={SelectField}>
-        <option>{t('form.field_contributor_source.label')}</option>
+        <option value={''}>{t('form.field_contributor_source.label')}</option>
         {contributors.map(contributor => (
           <option key={contributor.id} value={contributor.id}>
             {contributor.name}
