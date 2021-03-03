@@ -23,10 +23,7 @@ describe('filterContextsMatchingUrl', function() {
       generateMatchingContext({ urlRegex: 'doesNotMatch' })
     ];
 
-    const matches = filterContextsMatchingUrl(
-      matchingURL,
-      offersWithWeirdCase
-    );
+    const matches = filterContextsMatchingUrl(matchingURL, offersWithWeirdCase);
 
     expect(matches).to.be.an('array');
     expect(matches).to.be.of.length(2);
@@ -98,14 +95,9 @@ describe('filterContextsMatchingUrl', function() {
     ].concat(offers); // SyntaxError: Invalid RegExp: Unmatched ')'
 
     it('should not screw up the matching engine', () => {
-      const matches = filterContextsMatchingUrl(
-        matchingURL,
-        nastyOffers
-      );
+      const matches = filterContextsMatchingUrl(matchingURL, nastyOffers);
 
-      expect(filterContextsMatchingUrl).to.not.throw(
-        SyntaxError
-      );
+      expect(filterContextsMatchingUrl).to.not.throw(SyntaxError);
 
       expect(matches).to.be.an('array');
       expect(matches).to.be.of.length(1);
@@ -115,10 +107,7 @@ describe('filterContextsMatchingUrl', function() {
 
   describe('empty prefs', () => {
     it('should match when the url matches an offer', () => {
-      const matching = filterContextsMatchingUrl(
-        matchingURL,
-        offers
-      );
+      const matching = filterContextsMatchingUrl(matchingURL, offers);
 
       expect(matching).to.be.an('array');
       expect(matching).to.be.of.length(1);
@@ -126,10 +115,7 @@ describe('filterContextsMatchingUrl', function() {
     });
 
     it('should not match when the url does not match any offer', () => {
-      const matching = filterContextsMatchingUrl(
-        nonMatchingURL,
-        offers
-      );
+      const matching = filterContextsMatchingUrl(nonMatchingURL, offers);
 
       expect(matching).to.be.an('array');
       expect(matching).to.be.of.length(0);

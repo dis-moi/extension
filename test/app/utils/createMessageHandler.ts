@@ -1,13 +1,12 @@
 import chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
-
-// @ts-ignore
-global.browser = { extension: { getURL: () => 'options.html' } };
-
 import { noticesFound } from 'app/actions/notices';
 import createMessageHandler from 'webext/createMessageHandler';
 import { getOptionsUrl } from 'webext/openOptionsTab';
+
+// @ts-ignore
+global.browser = { extension: { getURL: () => 'options.html' } };
 
 const expect = chai.expect;
 chai.use(sinonChai);
