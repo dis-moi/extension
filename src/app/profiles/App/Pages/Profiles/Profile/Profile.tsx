@@ -1,7 +1,7 @@
 import React, { useState, MouseEvent } from 'react';
 import styled from 'styled-components';
 import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
-import { Notice, NoticeItem, NoticeWithContributor } from 'app/lmem/notice';
+import { Notice, NoticeWithContributor } from 'app/lmem/notice';
 import Error from '../../Error';
 import {
   Button,

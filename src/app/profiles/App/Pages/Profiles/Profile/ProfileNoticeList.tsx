@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Notice, NoticeItem } from 'app/lmem/notice';
+import { Notice } from 'app/lmem/notice';
 import ProfileNoticeListItem from './ProfileNoticeListItem';
 import { LoadingBig } from 'components/atoms/icons';
 import { CenterContainer, Link, LoadingRotator } from 'components/atoms';
