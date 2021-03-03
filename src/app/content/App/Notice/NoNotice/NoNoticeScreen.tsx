@@ -6,6 +6,7 @@ import ButtonContainer from './ButtonContainer';
 import { BackgroundButton } from 'components/atoms';
 import AddNoticeButton from 'components/atoms/Button/AddNoticeButton/AddNoticeButton';
 import { NoNotice } from '../../../../../components/atoms/icons';
+import { Trans } from 'react-i18next';
 
 const Image = styled.div`
   width: 52px;
@@ -50,19 +51,25 @@ export default () => (
       <NoNotice />
     </Image>
     <Title>
-      Pas encore de post sur <br /> cette page web
+      <Trans i18nKey={'contributions.disclaimer_no_post'} />
     </Title>
     <Container>
       <Content>
         <AddNoticeButton />
-        <Paragraph>une info, un conseil</Paragraph>
+        <Paragraph>
+          <Trans i18nKey={'contributions.button_subtext'} />
+        </Paragraph>
       </Content>
-      <Separator>ou</Separator>
+      <Separator>
+        <Trans i18nKey={'noun.or'} />
+      </Separator>
       <Content>
         <BackgroundButton as={ReactRouterDomLink} to="/question">
-          Demander
+          <Trans i18nKey={'action.ask'} />
         </BackgroundButton>
-        <Paragraph>une info, un conseil</Paragraph>
+        <Paragraph>
+          <Trans i18nKey={'contributions.button_subtext'} />
+        </Paragraph>
       </Content>
     </Container>
   </>

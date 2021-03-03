@@ -5,7 +5,10 @@ import resources from '../locales/resources';
 
 const options = {
   resources,
-  fallbackLng: 'fr_FR',
+  detection: {
+    caches: []
+  },
+  fallbackLng: 'en',
   ns: ['extension'],
   defaultNS: 'extension',
   debug: true,
@@ -18,6 +21,8 @@ const options = {
 i18n
   .use(initReactI18next)
   .use(LanguageDetector)
-  .init(options);
+  .init(options)
+  .then(() => null)
+  .catch(() => null);
 
 export default i18n;

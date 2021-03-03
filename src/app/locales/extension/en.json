@@ -1,0 +1,47 @@
+{
+  "noun":{
+    "or": "ou",
+    "post": "article",
+    "my_data": "Mes données"
+  },
+  "action": {
+    "post": "Poster",
+    "ask": "Demander"
+  },
+  "date": {
+    "short": "{{date, DD/MM/YYYY}}",
+    "medium": "Le {{date, DD/MM/YYYY}}"
+  },
+  "menu": {
+    "my_account": "Mon compte",
+    "help": "Aide"
+  },
+  "form": {
+    "field_name": {
+      "label": "Votre nom",
+      "placeholder": "Votre nom"
+    },
+    "button_preview_send": "Prévisualiser et publier"
+  },
+  "error": {
+    "form": {
+      "require_field": "Ce champs est obligatoire"
+    }
+  },
+  "my_account": {
+    "title": ""
+  },
+  "help": {
+    "title": ""
+  },
+  "contributions": {
+    "disclaimer_no_post": "Pas encore de post sur <1/> cette page web",
+    "button_subtext": "une info, un conseil"
+  },
+  "subscriptions": {
+    "title": "Abonnements",
+    "followed_sources": "Vous suivez <1/><2>{{count}}</2> source",
+    "followed_sources_plural": "You follow <1/><2>{{count}}</2> sources"
+  }
+}
+

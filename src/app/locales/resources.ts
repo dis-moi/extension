@@ -1,13 +1,13 @@
-import extensionFR from './extension/fr_FR.json';
-import extensionEN from './extension/en_GB.json';
+import extensionFR from './extension/fr-FR.json';
+import extensionEN from './extension/en.json';
 
 const resources = {
   // eslint-disable-next-line @typescript-eslint/camelcase
-  fr_FR: {
+  'fr-FR': {
     extension: extensionFR
   },
   // eslint-disable-next-line @typescript-eslint/camelcase
-  en_GB: {
+  en: {
     extension: extensionEN
   }
 };

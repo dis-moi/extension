@@ -1,0 +1,50 @@
+{
+  "noun":{
+    "or": "ou",
+    "post": "article",
+    "my_data": "Mes données"
+  },
+  "action": {
+    "post": "Poster",
+    "ask": "Demander",
+    "see_more": "Voir tout"
+  },
+  "date": {
+    "short": "{{date, DD/MM/YYYY}}",
+    "medium": "Le {{date, DD/MM/YYYY}}"
+  },
+  "menu": {
+    "my_account": "Mon compte",
+    "help": "Aide"
+  },
+  "form": {
+    "field_name": {
+      "label": "Votre nom",
+      "placeholder": "Votre nom"
+    },
+    "button_preview_send": "Prévisualiser et publier"
+  },
+  "error": {
+    "form": {
+      "require_field": "Ce champs est obligatoire"
+    }
+  },
+  "my_account": {
+    "title": ""
+  },
+  "help": {
+    "title": ""
+  },
+  "contributions": {
+    "disclaimer_no_post": "Pas encore de post sur <br/> cette page web",
+    "button_subtext": "une info, un conseil"
+  },
+  "subscriptions": {
+    "title": "Abonnements",
+    "followed_sources": "Vous suivez <br/><strong>{{count}}</strong> source",
+    "followed_sources_plural": "Vous suivez <br/><strong>{{count}}</strong> sources",
+    "no_followed_sources": "Vous ne suivez actuellement aucune source.<br />Pour le bon fonctionnement de l&apos;extension, abonnez-vous !",
+    "manage_subscription": "Gérer mes abonnements"
+  }
+}
+
