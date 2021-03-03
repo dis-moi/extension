@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { format } from 'date-fns';
 import { BorderButton, Box, LoadingRotator, Paragraph } from 'components/atoms';
-import { Notice, NoticeItem } from 'app/lmem/notice';
+import { Notice } from 'app/lmem/notice';
 import { LoadingBig, Pin } from 'components/atoms/icons';
 import { stripUrlProtocol } from 'app/utils/stripUrlProtocol';
 

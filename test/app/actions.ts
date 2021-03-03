@@ -51,7 +51,6 @@ describe('background actions', function() {
   });
 
   it('noticeDisplayed', () => {
-    const trigger = 'http://trigger';
     const action = noticeDisplayed(notice.id);
 
     expect(action.type)

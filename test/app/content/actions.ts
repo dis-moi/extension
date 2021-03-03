@@ -3,7 +3,6 @@ import { noticesFound, dismissNotice, likeNotice } from 'app/actions/notices';
 import { init } from 'app/actions/tabs';
 import { StatefulNotice } from 'app/lmem/notice';
 import Tab from 'app/lmem/tab';
-import { generateContributor } from 'test/fakers/generateContributor';
 import { generateStatefulNotice } from 'test/fakers/generateNotice';
 
 const expect = chai.expect;
