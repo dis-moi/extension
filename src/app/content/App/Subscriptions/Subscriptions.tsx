@@ -7,6 +7,7 @@ import ContributorListItem from 'components/atoms/ContributorListItem';
 import Illustration from './Illustration';
 import Container from './Container';
 import { Contributor, StatefulContributor } from 'app/lmem/contributor';
+import { Trans, useTranslation } from 'react-i18next';
 
 const Subscription = styled.div`
   margin-bottom: 20px;
@@ -37,8 +38,6 @@ const SubscriptionInfo = styled.div`
   font-size: 18px;
 `;
 
-const pluralize = (nb: number | undefined) => (nb && nb > 1 ? '(s)' : '');
-
 const nbContributorsPerRow = 6;
 const maxNbRows = 3;
 
@@ -57,6 +56,8 @@ const Subscriptions = ({
   const handleContributorClicked = (contributor: Contributor) => () => {
     onContributorClick(contributor);
   };
+
+  const { t } = useTranslation();
 
   return (
     <Container>
@@ -86,7 +87,10 @@ const Subscriptions = ({
             ))}
             {chunkIndex === slicedSubscribedContributors.length - 1 && (
               <ContributorListItem>
-                <SeeSubscriptions onClick={openSubscriptions} title="Voir tout">
+                <SeeSubscriptions
+                  onClick={openSubscriptions}
+                  title={t('action.see_more')}
+                >
                   ...
                 </SeeSubscriptions>
               </ContributorListItem>
@@ -97,22 +101,17 @@ const Subscriptions = ({
 
       <SubscriptionInfo>
         {subscribedContributors.length === 0 && (
-          <>
-            Vous ne suivez actuellement aucune source. <br />
-            Pour le bon fonctionnement de l&apos;extension, abonnez-vous !
-          </>
+          <Trans i18nKey={'subscriptions.no_followed_sources'} />
         )}
         {subscribedContributors.length > 0 && (
-          <>
-            Vous suivez <br />
-            <strong>{subscribedContributors.length}</strong> source
-            {pluralize(subscribedContributors.length)}.
-          </>
+          <Trans
+            i18nKey={'subscriptions.followed_sources'}
+            count={subscribedContributors.length}
+          />
         )}
       </SubscriptionInfo>
-
       <BackgroundButton onClick={openSubscriptions}>
-        Gérer mes abonnements
+        <Trans i18nKey={'subscriptions.manage_subscription'} />
       </BackgroundButton>
     </Container>
   );
