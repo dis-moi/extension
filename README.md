@@ -20,6 +20,21 @@ For the latest production version of **Dismoi** extension visit the official add
 - [**Dismoi** Firefox](https://addons.mozilla.org/fr/firefox/addon/dismoi/)
 - [**Dismoi** Chrom\*](https://chrome.google.com/webstore/detail/bulles/fpjlnlnbacohacebkadbbjebbipcknbg)
 
+## Build instructions
+
+### Firefox
+> *To the attention of the __Mozilla__ addon reviewer.*
+> 
+> To reach *zero diff* with the submitted addon, the addon must be build with __node version `10.15.0`__.
+> ``` 
+> yarn install && yarn build:firefox:production
+> ```
+> Or just run the build process with `Docker`:
+> ```
+> yarn build:firefox:production:docker
+> ```
+> https://extensionworkshop.com/documentation/publish/source-code-submission/
+
 ## Permissions
 
 The **Dismoi** extension requires the following permissions :

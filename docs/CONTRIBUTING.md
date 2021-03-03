@@ -225,36 +225,16 @@ https://github.com/DrewML/chrome-webstore-upload/blob/master/How%20to%20generate
 
 ### Firefox Addons
 
-[Developer Hub](https://addons.mozilla.org/en-US/developers/addons)
-| account: infrastructure@lmem.net
+> [Developer Hub](https://addons.mozilla.org/en-US/developers/addons) 
+>
+> infrastructure@dismoi.io
 
 In order for the Mozilla review to complete successfully, please the following steps :
 
-- Use [SemaphoreCI](https://semaphoreci.com/lmem/extension/) to deploy to `Firefox production`
-- [Download](https://github.com/dis-moi/extension/releases) the source code archive of the version you want to deploy to production extension (`Source code (tar.gz)`)
-- Create a `buildDisMoi.sh` file on your machine with the following content :
+1. Use [SemaphoreCI](https://semaphoreci.com/lmem/extension/) to deploy to `Firefox production`
+2. [Download](https://github.com/dis-moi/extension/releases) the source code archive of the version you want to deploy to production extension (`Source code (tar.gz)`)
+3. *Once version is available* in [Developer Hub](https://addons.mozilla.org/en-US/developers/addon/dismoi/versions), click on the version number, and upload the `tar.gz` in `Source code` field.
 
-```shell script
-#!/usr/bin/env bash
-echo "SEND_IN_BLUE_TOKEN=SIB_TOKEN" > .env
-docker run -v `pwd`:/app -w /app node:10.15.0 yarn install && yarn build:firefox:production
-```
-
-where `SIB_TOKEN` is the SendInBlue token
-
-- Add the `buildDisMoi.sh` to the downloaded archive
-- Once version is available in [Developer Hub](https://addons.mozilla.org/en-US/developers/addon/dismoi/versions), enter the version form and complete :
-  - In `Source code`, upload the modified tar.gz archive
-  - In `Notes for reviewers`, paste :
-
-```
-Requirement: Docker
-
-Instructions:
- - Extract archive
- - Run ./buildDisMoi.sh
-```
-
-- Save changes
-
-Note: We plan to remove any SendInBlue direct call from extension soon.
+> There are still issues at **Mozilla**  preventing us to upload the source code automatically.
+> - https://github.com/mozilla/addons-server/issues/9913 
+> - https://github.com/mozilla/sign-addon/issues/409
