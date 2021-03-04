@@ -85,7 +85,7 @@
     "Johan Dufour <johan.dufour@gmail.com> (https://github.com/lutangar)",
     "Jalil Arfaoui<jalil@arfaoui.net> (https://github.com/jalilarfaoui)"
   ],
-  "license": "GPL-3.0",
+  "license": "AGPL-3.0-or-later",
   "dependencies": {
     "@babel/core": "^7.5.5",
     "@babel/runtime": "^7.5.5",
