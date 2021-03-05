@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { Field, InjectedFormProps } from 'redux-form';
 import { Form } from 'components/atoms/Forms';
@@ -49,11 +50,13 @@ const QuestionForm = ({
     onUrlChange(window.location.href);
   }, [window.location.href]);
 
+  const { t } = useTranslation();
+
   return (
     <Form onSubmit={handleSubmit}>
       <Field name="url" type="hidden" component={InputField} />
       <Field name="toContributorId" type="select" component={SelectField}>
-        <option>Choix de la source</option>
+        <option>{t('form.field_contributor_source.label')}</option>
         {contributors.map(contributor => (
           <option key={contributor.id} value={contributor.id}>
             {contributor.name}
@@ -62,33 +65,31 @@ const QuestionForm = ({
       </Field>
       <Field
         name="message"
-        placeholder={`Indiquez votre question.
-Précisez éventuellement le nom du média, de l'expert ou de l'informateur que vous souhaitez solliciter.
-`}
+        placeholder={t('form.field_message_question.placeholder')}
         rows={4}
         component={Textarea}
       />
       <Field
         name="contributor.name"
         type="text"
-        placeholder="Votre nom"
+        placeholder={t('form.field_name.placeholder')}
         component={InputField}
       />
       <Field
         name="contributor.email"
         type="email"
-        placeholder="Votre@email.fr"
+        placeholder={t('form.field_email.placeholder')}
         component={InputField}
       />
       <FormErrors errors={errors} globalError={error} />
       <CenterContainer>
-        <BackButton>Annuler</BackButton>
+        <BackButton>{t('action.cancel')}</BackButton>
         <BackgroundButton
           type="submit"
           disabled={!valid || submitting}
           loading={submitting}
         >
-          Prévisualiser
+          {t('action.preview')}
         </BackgroundButton>
       </CenterContainer>
     </Form>

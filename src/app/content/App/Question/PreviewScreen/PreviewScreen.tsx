@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { InjectedFormProps } from 'redux-form';
+import { withTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import styled from 'styled-components';
 
 import { Question } from 'app/lmem/notice';
@@ -33,7 +35,7 @@ export type PreviewScreenProps = InjectedFormProps<
   Question,
   PreviewScreenOwnProps
 > &
-  PreviewScreenOwnProps;
+  PreviewScreenOwnProps & { t: TFunction };
 
 class PreviewScreen extends Component<PreviewScreenProps> {
   get isButtonDisabled() {
@@ -50,7 +52,8 @@ class PreviewScreen extends Component<PreviewScreenProps> {
       modify,
       publish,
       dirty,
-      error
+      error,
+      t
     } = this.props;
 
     return (
@@ -58,13 +61,13 @@ class PreviewScreen extends Component<PreviewScreenProps> {
         <PreviewForm
           onSubmit={handleFormSubmit({ handleSubmit, form })(publish)}
         >
-          <CancelButton onClick={modify}>Modifier</CancelButton>
+          <CancelButton onClick={modify}>{t('action.edit')}</CancelButton>
           <BackgroundButton
             type="submit"
             disabled={this.isButtonDisabled}
             loading={submitting}
           >
-            Envoyer
+            {t('action.submit')}
           </BackgroundButton>
         </PreviewForm>
         {dirty && error && <Error>{error}</Error>}
@@ -73,4 +76,4 @@ class PreviewScreen extends Component<PreviewScreenProps> {
   }
 }
 
-export default withReduxForm(PreviewScreen);
+export default withReduxForm(withTranslation()(PreviewScreen));

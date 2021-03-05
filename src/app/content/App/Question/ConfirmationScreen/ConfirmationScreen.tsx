@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   BackgroundButton,
@@ -13,20 +14,20 @@ export interface ContributionSubmittedScreenProps {
   goBack: () => void;
 }
 
-export default ({ goBack }: ContributionSubmittedScreenProps) => (
-  <Container>
-    <ContentWrapperBackground>
-      <Title>Merci pour votre demande.</Title>
-      <Content>
-        Elle sera très rapidement transmise au(x) source(s) concernée(s). Et
-        vous serez prévenu de la réponse directement par mail.
-      </Content>
+export default ({ goBack }: ContributionSubmittedScreenProps) => {
+  const { t } = useTranslation();
+  return (
+    <Container>
+      <ContentWrapperBackground>
+        <Title>{t('view.confirmation.thanks')}</Title>
+        <Content>{t('view.confirmation.message')}</Content>
 
-      <CenterContainer>
-        <BackgroundButton onClick={goBack}>
-          Retour aux messages
-        </BackgroundButton>
-      </CenterContainer>
-    </ContentWrapperBackground>
-  </Container>
-);
+        <CenterContainer>
+          <BackgroundButton onClick={goBack}>
+            {t('action.go_back.messages')}
+          </BackgroundButton>
+        </CenterContainer>
+      </ContentWrapperBackground>
+    </Container>
+  );
+};

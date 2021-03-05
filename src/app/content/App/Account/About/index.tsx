@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { compose } from 'redux';
 import { ExternalLink, Time } from 'components/atoms';
 import withTitle from 'app/hocs/withTitle';
@@ -13,41 +14,44 @@ export interface AboutProps {
   extensionVersion: string;
 }
 
-export const About = ({ installationDate, extensionVersion }: AboutProps) => (
-  <Container>
-    <Title>Dismoi V{extensionVersion}</Title>
-    <Content>
-      Lorsque vous visitez une page du web, Dismoi vous permet de lire les
-      messages de vos relations et en poster à votre tour.
-    </Content>
+export const About = ({ installationDate, extensionVersion }: AboutProps) => {
+  const { t } = useTranslation();
+  return (
+    <Container>
+      <Title>Dismoi V{extensionVersion}</Title>
+      <Content>{t('view.about.description')}</Content>
 
-    {installationDate && (
-      <Content>
-        Vous l’avez installé le <Time>{installationDate}</Time>.
-      </Content>
-    )}
+      {installationDate && (
+        <Content>
+          {t('view.about.install_date')} <Time>{installationDate}</Time>.
+        </Content>
+      )}
 
-    <nav>
-      <ExternalLink href={`https://${WEBSITE_DOMAIN}/aide`}>Aide</ExternalLink>{' '}
-      -{' '}
-      <ExternalLink href={`https://${WEBSITE_DOMAIN}/a-propos`}>
-        À propos
-      </ExternalLink>{' '}
-      -{' '}
-      <ExternalLink href={`https://${WEBSITE_DOMAIN}/contact`}>
-        Contact
-      </ExternalLink>{' '}
-      -{' '}
-      <ExternalLink href={`https://${WEBSITE_DOMAIN}/vie-privee`}>
-        Vie privée
-      </ExternalLink>{' '}
-      - <ExternalLink href={`https://${WEBSITE_DOMAIN}/cgu`}>CGU</ExternalLink>{' '}
-      -{' '}
-      <ExternalLink href={`https://${WEBSITE_DOMAIN}/desinstaller`}>
-        Désinstaller
-      </ExternalLink>
-    </nav>
-  </Container>
-);
+      <nav>
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}/aide`}>
+          {t('menu.help')}
+        </ExternalLink>{' '}
+        -{' '}
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}/a-propos`}>
+          {t('menu.about')}
+        </ExternalLink>{' '}
+        -{' '}
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}/contact`}>
+          {t('menu.contact')}
+        </ExternalLink>{' '}
+        -{' '}
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}/vie-privee`}>
+          {t('menu.privacy')}
+        </ExternalLink>{' '}
+        -{' '}
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}/cgu`}>CGU</ExternalLink>{' '}
+        -{' '}
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}/desinstaller`}>
+          {t('menu.uninstall')}
+        </ExternalLink>
+      </nav>
+    </Container>
+  );
+};
 
 export default compose(withConnect, withTitle<AboutProps>('À propos'))(About);

@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
+import { withTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import { stripHtml } from 'app/utils/stripHtml';
 import {
   Button,
@@ -64,9 +66,10 @@ interface Props {
   onContributorClick: (contributor: Contributor) => void;
   truncateTitleAt?: number;
   style?: object;
+  t: TFunction;
 }
 
-export default class Notice extends PureComponent<Props, CountDownState> {
+class Notice extends PureComponent<Props, CountDownState> {
   constructor(props: Props) {
     super(props);
     this.state = countdownInitialState;
@@ -145,7 +148,8 @@ export default class Notice extends PureComponent<Props, CountDownState> {
         contributor,
         state: { dismissed, disliked, read }
       },
-      style
+      style,
+      t
     } = this.props;
 
     const { countdown, intervalID } = this.state;
@@ -156,9 +160,9 @@ export default class Notice extends PureComponent<Props, CountDownState> {
         <Content isRead={read}>
           {(dismissed || disliked) && intervalID ? (
             <>
-              <Deleted>Cette contribution ne s’affichera plus !</Deleted>
+              <Deleted>{t('notice.feedback_deleted')}</Deleted>
               <CenterContainer>
-                <Button onClick={this.onUndismiss}>Annuler</Button>
+                <Button onClick={this.onUndismiss}>{t('action.cancel')}</Button>
                 <Timer>({countdown}s)</Timer>
               </CenterContainer>
             </>
@@ -186,3 +190,4 @@ export default class Notice extends PureComponent<Props, CountDownState> {
     );
   }
 }
+export default withTranslation()(Notice);

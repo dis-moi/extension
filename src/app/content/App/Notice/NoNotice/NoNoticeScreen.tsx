@@ -53,19 +53,19 @@ export default () => {
         <NoNotice />
       </Image>
       <Title>
-        <Trans i18nKey={'contributions.disclaimer_no_post'} />
+        <Trans i18nKey={'view.contributions.disclaimer_no_post'} />
       </Title>
       <Container>
         <Content>
           <AddNoticeButton />
-          <Paragraph>{t('contributions.button_subtext')}</Paragraph>
+          <Paragraph>{t('view.contributions.button_subtext')}</Paragraph>
         </Content>
-        <Separator>{t('noun.or')}</Separator>
+        <Separator>{t('common.or')}</Separator>
         <Content>
           <BackgroundButton as={ReactRouterDomLink} to="/question">
             {t('action.ask')}
           </BackgroundButton>
-          <Paragraph>{t('contributions.button_subtext')}</Paragraph>
+          <Paragraph>{t('view.contributions.button_subtext')}</Paragraph>
         </Content>
       </Container>
     </>

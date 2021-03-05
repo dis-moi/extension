@@ -1,13 +1,26 @@
 {
-  "noun":{
+  "common": {
     "or": "ou",
-    "post": "article",
-    "my_data": "Mes données"
+    "congratulations": "Félicitations !",
+    "loading": "Chargement...",
+    "relayed_by": "relayé par",
+    "filters": "Mes filtres"
   },
   "action": {
     "post": "Poster",
     "ask": "Demander",
-    "see_more": "Voir tout"
+    "see_more": "Voir tout",
+    "preview": "Prévisualiser",
+    "publish": "Publier",
+    "edit": "Modifier",
+    "cancel": "Annuler",
+    "submit": "Envoyer",
+    "go_back": {
+      "back": "retour",
+      "messages": "Retour aux messages",
+      "submissions": "Retour aux contributions"
+    },
+    "manage_subscription": "Gérer mes abonnements"
   },
   "date": {
     "short": "{{date, DD/MM/YYYY}}",
@@ -15,36 +28,82 @@
   },
   "menu": {
     "my_account": "Mon compte",
-    "help": "Aide"
+    "my_data": "Mes données",
+    "help": "Aide",
+    "about": "À propos",
+    "contact": "Contact",
+    "privacy": "Vie privée",
+    "uninstall": "Désinstaller",
+    "subscriptions": "Abonnements"
   },
   "form": {
     "field_name": {
-      "label": "Votre nom",
       "placeholder": "Votre nom"
     },
-    "button_preview_send": "Prévisualiser et publier"
+    "field_message": {
+      "placeholder": "Ecrire le message que vous souhaitez publier"
+    },
+    "field_email": {
+      "placeholder": "Votre@email.fr"
+    },
+    "field_contributor_source": {
+      "label": "Choix de la source"
+    },
+    "field_message_question": {
+      "placeholder": "Indiquez votre question. Précisez éventuellement le nom du média, de l'expert ou de l'informateur que vous souhaitez solliciter."
+    },
+    "preview_send": "$t(action.preview) et $t(action.publish)"
   },
   "error": {
     "form": {
       "require_field": "Ce champs est obligatoire"
+    },
+    "common": {
+      "title": "Oops !",
+      "message": "Quelque chose s’est mal passé. Veuillez réessayer plus tard."
     }
   },
-  "my_account": {
-    "title": ""
+  "faq": {
+    "title": "Questions fréquentes",
+    "notices": {
+      "where_appear": "Sur quelles pages apparaissent les notices ?",
+      "dont_appear": "J’ai beau testé, les notices n’apparaissent pas"
+    },
+    "privacy": {
+      "used_data": "Quelles sont les données utilisées ?"
+    },
+    "other_questions": {
+      "title": "Autres questions fréquentes"
+    }
   },
-  "help": {
-    "title": ""
+  "notice": {
+    "feedback_dislike": "Merci pour votre retour, cette contribution ne s’affichera plus",
+    "feedback_deleted": "Cette contribution ne s’affichera plus !"
   },
-  "contributions": {
-    "disclaimer_no_post": "Pas encore de post sur <br/> cette page web",
-    "button_subtext": "une info, un conseil"
-  },
-  "subscriptions": {
-    "title": "Abonnements",
-    "followed_sources": "Vous suivez <br/><strong>{{count}}</strong> source",
-    "followed_sources_plural": "Vous suivez <br/><strong>{{count}}</strong> sources",
-    "no_followed_sources": "Vous ne suivez actuellement aucune source.<br />Pour le bon fonctionnement de l&apos;extension, abonnez-vous !",
-    "manage_subscription": "Gérer mes abonnements"
-  }
-}
-
+  "view": {
+    "contributions": {
+      "disclaimer_no_post": "Pas encore de post sur <br/> cette page web",
+      "button_subtext": "une info, un conseil"
+    },
+    "subscriptions": {
+      "title": "$t(menu.subscriptions)",
+      "followed_sources": "Vous suivez <br/><strong>{{count}}</strong> source",
+      "followed_sources_plural": "Vous suivez <br/><strong>{{count}}</strong> sources",
+      "no_followed_sources": "Vous ne suivez actuellement aucune source.<br />Pour le bon fonctionnement de l&apos;extension, abonnez-vous !"
+    },
+    "about": {
+      "description": "Lorsque vous visitez une page du web, Dismoi vous permet de lire les messages de vos relations et en poster à votre tour.",
+      "install_date": "Vous l’avez installé le"
+    },
+    "help": {
+      "contact_support": "Contacter le support de Dismoi",
+      "write_to": "Merci de nous écrire à"
+    },
+    "submitted": {
+      "confirm": "Votre contribution sera publiée d’ici 24h, une confirmation vous sera envoyée par email."
+    },
+    "confirmation": {
+      "thanks": "Merci pour votre demande.",
+      "message": "Elle sera très rapidement transmise au(x) source(s) concernée(s). Et vous serez prévenu de la réponse directement par mail."
+    }
+  }}
