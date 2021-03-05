@@ -1,6 +1,7 @@
 import React, { MouseEvent, PureComponent } from 'react';
+import { withTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import styled from 'styled-components';
-import { format } from 'date-fns';
 import ThumbUp from 'components/atoms/icons/ThumbUp';
 import ThumbDown from 'components/atoms/icons/ThumbDown';
 import Avatar from 'components/molecules/Avatar/Avatar';
@@ -93,7 +94,7 @@ export interface NoticeDetailsMethodsProps {
 }
 
 export type NoticeDetailsProps = NoticeDetailsDataProps &
-  NoticeDetailsMethodsProps;
+  NoticeDetailsMethodsProps & { t: TFunction };
 
 class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
   constructor(props: NoticeDetailsProps) {
@@ -215,7 +216,8 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
         ratings: { likes, dislikes },
         state: { liked, disliked, dismissed }
       },
-      relayer
+      relayer,
+      t
     } = this.props;
 
     const { countdown, intervalID } = this.state;
@@ -231,7 +233,7 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
             />
 
             <DetailsMetaValue>
-              <Date>Le {format(modified, 'DD/MM/YYYY')}</Date>
+              <Date>{t('date.medium', { date: modified })}</Date>
               <ContributorNotice onClick={this.handleContributorClicked}>
                 {contributor.name}
               </ContributorNotice>
@@ -239,7 +241,7 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
               {relayer && (
                 <RelayPart>
                   <Relay />
-                  relayé par
+                  {t('common.relayed_by')}
                   <Relayer onClick={this.handleRelayerClicked}>
                     {relayer.name}
                   </Relayer>
@@ -263,9 +265,11 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
 
           {(disliked || dismissed) && intervalID && (
             <DetailsDislike>
-              Merci pour votre retour, cette contribution ne s’affichera plus
+              {t('notice.feedback_dislike')}
               <div>
-                <Button onClick={this.handleCancelDislike}>Annuler</Button>
+                <Button onClick={this.handleCancelDislike}>
+                  {t('common.cancel')}
+                </Button>
                 <Timer>({countdown}s)</Timer>
               </div>
             </DetailsDislike>
@@ -276,4 +280,4 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
   }
 }
 
-export default NoticeDetails;
+export default withTranslation()(NoticeDetails);

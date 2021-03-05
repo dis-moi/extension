@@ -101,17 +101,17 @@ const Subscriptions = ({
 
       <SubscriptionInfo>
         {subscribedContributors.length === 0 && (
-          <Trans i18nKey={'subscriptions.no_followed_sources'} />
+          <Trans i18nKey={'view.subscriptions.no_followed_sources'} />
         )}
         {subscribedContributors.length > 0 && (
           <Trans
-            i18nKey={'subscriptions.followed_sources'}
+            i18nKey={'view.subscriptions.followed_sources'}
             count={subscribedContributors.length}
           />
         )}
       </SubscriptionInfo>
       <BackgroundButton onClick={openSubscriptions}>
-        {t('subscriptions.manage_subscription')}
+        {t('action.manage_subscription')}
       </BackgroundButton>
     </Container>
   );

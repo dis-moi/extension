@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
+import { TFunction } from 'i18next';
+import { withTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import { format } from 'date-fns';
 import { ContributorName } from '../atoms';
 import DetailsContainer from './NoticeDetails/DetailsContainer';
 import DetailsContent from './NoticeDetails/DetailsContent';
@@ -25,12 +26,14 @@ const Container = styled(DetailsContainer)`
 
 interface NoticePreviewProps {
   contribution: Contribution;
+  t: TFunction;
 }
 class NoticePreview extends PureComponent<NoticePreviewProps> {
   render() {
     const {
       contribution: { message, created, contributor },
-      children
+      children,
+      t
     } = this.props;
 
     return (
@@ -39,7 +42,7 @@ class NoticePreview extends PureComponent<NoticePreviewProps> {
           <DetailsMeta>
             <Avatar contributor={contributor} size="small" />
             <DetailsMetaValue>
-              <Date>Le {format(created, 'DD/MM/YYYY')}</Date>
+              <Date>{t('date.medium', { date: created })}</Date>
               <ContributorName>{contributor.name} :</ContributorName>
             </DetailsMetaValue>
           </DetailsMeta>
@@ -52,4 +55,4 @@ class NoticePreview extends PureComponent<NoticePreviewProps> {
   }
 }
 
-export default NoticePreview;
+export default withTranslation()(NoticePreview);

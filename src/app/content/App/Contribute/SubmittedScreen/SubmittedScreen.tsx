@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { useTranslation } from 'react-i18next';
 import {
   Button,
   CenterContainer,
@@ -14,19 +15,18 @@ export interface ContributionSubmittedScreenProps {
   goBack: () => void;
 }
 
-export default ({ goBack }: ContributionSubmittedScreenProps) => (
-  <Container>
-    <ContentWrapperBackground>
-      <Illustration />
-      <ContentTitle>Félicitations !</ContentTitle>
-      <Content>
-        Votre contribution sera publiée d’ici 24h, une confirmation vous sera
-        envoyée par email.
-      </Content>
-
-      <CenterContainer>
-        <Button onClick={goBack}>Retour aux contributions</Button>
-      </CenterContainer>
-    </ContentWrapperBackground>
-  </Container>
-);
+export default ({ goBack }: ContributionSubmittedScreenProps) => {
+  const { t } = useTranslation();
+  return (
+    <Container>
+      <ContentWrapperBackground>
+        <Illustration />
+        <ContentTitle>{t('common.congratulations')}</ContentTitle>
+        <Content>{t('view.submitted.confirm')}</Content>
+        <CenterContainer>
+          <Button onClick={goBack}>{t('action.go_back.submissions')}</Button>
+        </CenterContainer>
+      </ContentWrapperBackground>
+    </Container>
+  );
+};
