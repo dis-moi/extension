@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link as ReactRouterDomLink } from 'react-router-dom';
+import { Trans, useTranslation } from 'react-i18next';
 import Title from './Title';
 import ButtonContainer from './ButtonContainer';
 import { BackgroundButton } from 'components/atoms';
 import AddNoticeButton from 'components/atoms/Button/AddNoticeButton/AddNoticeButton';
 import { NoNotice } from '../../../../../components/atoms/icons';
-import { Trans } from 'react-i18next';
 
 const Image = styled.div`
   width: 52px;
@@ -45,32 +45,29 @@ const Paragraph = styled.p`
   font-weight: 500;
 `;
 
-export default () => (
-  <>
-    <Image>
-      <NoNotice />
-    </Image>
-    <Title>
-      <Trans i18nKey={'contributions.disclaimer_no_post'} />
-    </Title>
-    <Container>
-      <Content>
-        <AddNoticeButton />
-        <Paragraph>
-          <Trans i18nKey={'contributions.button_subtext'} />
-        </Paragraph>
-      </Content>
-      <Separator>
-        <Trans i18nKey={'noun.or'} />
-      </Separator>
-      <Content>
-        <BackgroundButton as={ReactRouterDomLink} to="/question">
-          <Trans i18nKey={'action.ask'} />
-        </BackgroundButton>
-        <Paragraph>
-          <Trans i18nKey={'contributions.button_subtext'} />
-        </Paragraph>
-      </Content>
-    </Container>
-  </>
-);
+export default () => {
+  const { t } = useTranslation();
+  return (
+    <>
+      <Image>
+        <NoNotice />
+      </Image>
+      <Title>
+        <Trans i18nKey={'contributions.disclaimer_no_post'} />
+      </Title>
+      <Container>
+        <Content>
+          <AddNoticeButton />
+          <Paragraph>{t('contributions.button_subtext')}</Paragraph>
+        </Content>
+        <Separator>{t('noun.or')}</Separator>
+        <Content>
+          <BackgroundButton as={ReactRouterDomLink} to="/question">
+            {t('action.ask')}
+          </BackgroundButton>
+          <Paragraph>{t('contributions.button_subtext')}</Paragraph>
+        </Content>
+      </Container>
+    </>
+  );
+};
