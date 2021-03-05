@@ -1,9 +1,10 @@
 import { addDecorator } from '@storybook/react';
 import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import theme from '../src/app/theme';
 import 'typeface-lato';
 import 'typeface-sedgwick-ave';
+import theme from 'app/theme';
+import 'app/content/i18n';
 
 const Global = createGlobalStyle`
   body {
