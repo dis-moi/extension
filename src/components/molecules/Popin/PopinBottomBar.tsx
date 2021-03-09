@@ -1,4 +1,5 @@
 import React from 'react';
+import { Trans } from 'react-i18next';
 import styled from 'styled-components';
 import { ExternalLink } from 'components/atoms';
 import { WEBSITE_DOMAIN } from '../../../app/lmem';
@@ -46,8 +47,10 @@ const ContributorItem = styled.li`
 
 const PopinBottomBar = () => (
   <PopinBottomBarContainer>
-    En savoir plus sur <Link href={`https://${WEBSITE_DOMAIN}/`}>DisMoi</Link>{' '}
-    et ses sources
+    <Trans i18nKey={'action.know_more_dismoi'}>
+      En savoir plus sur <Link href={`https://${WEBSITE_DOMAIN}/`}>DisMoi</Link>{' '}
+      et ses sources
+    </Trans>
     <ContributorList>
       <ContributorItem>
         <img src={LogoQueChoisir} alt="" />

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { withRouter } from 'react-router';
 import styled from 'styled-components';
 import { StatefulContributor } from 'app/lmem/contributor';
@@ -48,6 +49,8 @@ const SimilarProfiles = ({
       setInitialSimilarContributors(similarContributors);
   }, [similarContributors, contributors]);
 
+  const { t } = useTranslation();
+
   if (loading) {
     return (
       <Loader>
@@ -64,7 +67,7 @@ const SimilarProfiles = ({
 
   return (
     <>
-      <Title2>Profils similaires</Title2>
+      <Title2>{t('common.similar_profiles')}</Title2>
       <SidebarBox className={className}>
         {initialSimilarContributors
           .map(initialSimilarContributor => ({
@@ -84,7 +87,7 @@ const SimilarProfiles = ({
           ))}
       </SidebarBox>
       <CenterContainer>
-        <Link to="/sources">Voir tout</Link>
+        <Link to="/sources">{t('action.see_all')}</Link>
       </CenterContainer>
     </>
   );

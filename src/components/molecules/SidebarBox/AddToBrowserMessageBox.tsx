@@ -1,17 +1,18 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ButtonWithIcon, Paragraph } from 'components/atoms';
 import { Download } from 'components/atoms/icons';
 import SidebarBox from './SidebarBox';
 
-export default () => (
-  <SidebarBox>
-    <Paragraph>
-      DisMoi permet aux internautes, médias et experts de vous informer
-      directement sur les pages web que vous visitez.
-    </Paragraph>
+export default () => {
+  const { t } = useTranslation();
+  return (
+    <SidebarBox>
+      <Paragraph>{t('view.add_browser_box.description_dismoi')}</Paragraph>
 
-    <ButtonWithIcon className="bulle-installer">
-      Ajouter à mon navigateur <Download />
-    </ButtonWithIcon>
-  </SidebarBox>
-);
+      <ButtonWithIcon className="bulle-installer">
+        {t('action.add_to_my_browser')} <Download />
+      </ButtonWithIcon>
+    </SidebarBox>
+  );
+};

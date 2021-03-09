@@ -1,5 +1,6 @@
 import React, { ChangeEvent } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 export const FiltersBar = styled.div`
   display: flex;
@@ -48,9 +49,10 @@ const FiltersCheckboxes = ({
   filters,
   loading
 }: FiltersCheckboxesProps) => {
+  const { t } = useTranslation();
   return (
     <FiltersBar>
-      <FiltersTitle>Filtrer par :</FiltersTitle>
+      <FiltersTitle>{t('action.filter_by')}</FiltersTitle>
       <FiltersList>
         {!loading &&
           Object.keys(filters).map(filterId => (

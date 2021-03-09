@@ -1,4 +1,5 @@
 import React, { MouseEvent } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import Popin, {
   PopinProps,
@@ -44,21 +45,25 @@ const NotConnectedPopin = ({
   contributor,
   addToBrowser
 }: NotConnectedPopinProps) => {
+  const { t } = useTranslation();
   return (
     <PopinLarge size={'extralarge'} opened={opened} setOpened={setOpened}>
       <Text>
-        Pour voir les contributions {contributor && `de ${contributor.name}`},
-        veuillez d’abord ajouter Dismoi à votre navigateur.
+        {t('popin.not_connected.intro', {
+          contributorName: contributor && ' de ' + contributor.name
+        })}
       </Text>
 
       <BackgroundButton className="bulle-installer" onClick={addToBrowser}>
-        Ajouter Dismoi à mon navigateur
+        {t('action.add_dismoi_to_browser')}
       </BackgroundButton>
       <PopinSmallText>
-        Gratuit, sans publicité,{' '}
-        <Link href={`https://${WEBSITE_DOMAIN}/vie-privee`}>
-          respecte votre vie privée
-        </Link>
+        <Trans i18nKey={'popin.not_connected.disclaimer_privacy'}>
+          Gratuit, sans publicité,{' '}
+          <Link href={`https://${WEBSITE_DOMAIN}/vie-privee`}>
+            respecte votre vie privée
+          </Link>
+        </Trans>
       </PopinSmallText>
       <PopinBottomBar />
     </PopinLarge>
