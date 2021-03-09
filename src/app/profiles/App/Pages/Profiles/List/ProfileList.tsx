@@ -17,6 +17,7 @@ import pathToContributor from 'app/profiles/App/pathToContributor';
 import Filters from 'components/molecules/Filters/RadiosFilters';
 import useContributorsFilters from 'app/profiles/App/useContributorsRadiosFilters';
 import ProfileTabs from '../../../ProfileTabs';
+import { useTranslation } from 'react-i18next';
 
 const Title = styled(Title2)`
   padding-top: 30px;
@@ -96,6 +97,7 @@ const ProfileList = ({
     browserNotSupportedPopinOpened,
     setBrowserNotSupportedPopinOpened
   ] = useState(false);
+  const { t } = useTranslation();
 
   const handleSubscribe = (contributor: StatefulContributor) => () => {
     if (connected) {
@@ -148,7 +150,7 @@ const ProfileList = ({
               to={pathToContributor(contributor)}
             >
               <Link to={pathToContributor(contributor)}>
-                Voir ses contributions
+                {t('action.see_contributions')}
                 <Arrow />
               </Link>
             </ContributorProfileListItem>
