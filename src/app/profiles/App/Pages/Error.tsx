@@ -1,11 +1,12 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
-export default () => (
-  <div>
-    <h1>Oops !</h1>
-    <p>
-      Quelque chose s’est mal passé. Veuillez actualiser le plugin ou réessayer
-      plus tard.
-    </p>
-  </div>
-);
+export default () => {
+  const { t } = useTranslation();
+  return (
+    <div>
+      <h1>{t('error.common.title')}</h1>
+      <p>{t('error.common.message')}</p>
+    </div>
+  );
+};

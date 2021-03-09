@@ -1,4 +1,5 @@
 import React from 'react';
+import { Trans, useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { ExternalLink, List, Title2 } from 'components/atoms';
 import SidebarBox from './SidebarBox';
@@ -17,21 +18,28 @@ const ListItem = styled.li`
   }
 `;
 
-export default () => (
-  <SidebarBox>
-    <Title2 as="h3">DisMoi respecte votre vie privée</Title2>
-    <Ul>
-      <ListItem>
-        Nous ne collectons ni revendons{' '}
-        <strong>aucune donnée personnelle</strong>
-      </ListItem>
-      <ListItem>
-        Nous ne faisons <strong>aucun profilage</strong>
-      </ListItem>
-    </Ul>
+export default () => {
+  const { t } = useTranslation();
+  return (
+    <SidebarBox>
+      <Title2 as="h3">{t('view.privacy_box.title')}</Title2>
+      <Ul>
+        <ListItem>
+          <Trans i18nKey={'view.privacy_box.no_collect'}>
+            Nous ne collectons ni revendons
+            <strong>aucune donnée personnelle</strong>
+          </Trans>
+        </ListItem>
+        <ListItem>
+          <Trans i18nKey={'view.privacy_box.no_profiling'}>
+            Nous ne faisons <strong>aucun profilage</strong>
+          </Trans>
+        </ListItem>
+      </Ul>
 
-    <ExternalLink href={`https://${WEBSITE_DOMAIN}/vie-privee/`}>
-      En savoir plus
-    </ExternalLink>
-  </SidebarBox>
-);
+      <ExternalLink href={`https://${WEBSITE_DOMAIN}/vie-privee/`}>
+        {t('action.know_more')}
+      </ExternalLink>
+    </SidebarBox>
+  );
+};

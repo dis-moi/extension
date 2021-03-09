@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import BackgroundButton from 'components/atoms/Button/BackgroundButton/BackgroundButton';
 import BorderButton from 'components/atoms/Button/BorderButton/BorderButton';
@@ -49,7 +50,7 @@ const ContributorButton = ({
   loading
 }: Props) => {
   const [subscribedButtonHovered, setSubscribedButtonHovered] = useState(false);
-
+  const { t } = useTranslation();
   return (
     <Container>
       {subscribed && (
@@ -60,18 +61,18 @@ const ContributorButton = ({
           onPointerLeave={() => setSubscribedButtonHovered(false)}
         >
           {subscribedButtonHovered ? (
-            'Ne plus suivre'
+            t('action.stop_following')
           ) : (
             <>
               <Check />
-              &nbsp;Abonné(e)
+              &nbsp;{t('common.subscriber')}
             </>
           )}
         </ContributorBorderButton>
       )}
       {!subscribed && (
         <ContributorBackgroundButton onClick={onSubscribe}>
-          Suivre
+          {t('action.follow')}
         </ContributorBackgroundButton>
       )}
     </Container>

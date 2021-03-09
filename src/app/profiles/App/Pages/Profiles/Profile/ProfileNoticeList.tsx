@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { Notice } from 'app/lmem/notice';
 import ProfileNoticeListItem from './ProfileNoticeListItem';
@@ -21,8 +22,10 @@ export const ProfileNoticeListContent = ({
   seeNoticeInContext,
   fetchMoreNotices,
   fetchedAll
-}: ProfileNoticeListProps) =>
-  typeof loading === 'undefined' ? null : (
+}: ProfileNoticeListProps) => {
+  const { t } = useTranslation();
+
+  return typeof loading === 'undefined' ? null : (
     <ProfileNoticeList>
       {loading && (
         <LoadingRotator>
@@ -30,7 +33,7 @@ export const ProfileNoticeListContent = ({
         </LoadingRotator>
       )}
       {((notices.length === 0 && !loading) || fetchedAll) && (
-        <div>Pas d&apos;autres contributions</div>
+        <div> {t('common.no_more_contribution')}</div>
       )}
       {notices.map(notice => (
         <ProfileNoticeListItem
@@ -42,10 +45,11 @@ export const ProfileNoticeListContent = ({
       ))}
       {notices.length > 0 && !loading && !fetchedAll && (
         <CenterContainer>
-          <Link onClick={fetchMoreNotices}>Voir plus</Link>
+          <Link onClick={fetchMoreNotices}>{t('action.see_more')}</Link>
         </CenterContainer>
       )}
     </ProfileNoticeList>
   );
+};
 
 export default ProfileNoticeListContent;

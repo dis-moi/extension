@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { ExternalLink, Paragraph, Title2 } from 'components/atoms';
 import SidebarBox from './SidebarBox';
@@ -10,15 +11,15 @@ const Title = styled(Title2)`
   color: ${props => props.theme.textColor};
 `;
 
-export default () => (
-  <SidebarBox>
-    <Title as="h3">DisMoi ne ralentit pas votre navigateur</Title>
-    <Paragraph>
-      Contrairement à d’autres extensions, DisMoi ne ralentit pas votre
-      navigateur.
-    </Paragraph>
-    <ExternalLink href={`https://${WEBSITE_DOMAIN}/vitesse-navigation/`}>
-      Plus de détails
-    </ExternalLink>
-  </SidebarBox>
-);
+export default () => {
+  const { t } = useTranslation();
+  return (
+    <SidebarBox>
+      <Title as="h3">{t('view.slower_message_box.title')}</Title>
+      <Paragraph>{t('view.slower_message_box.text')}</Paragraph>
+      <ExternalLink href={`https://${WEBSITE_DOMAIN}/vitesse-navigation/`}>
+        {t('action.see_more_details')}
+      </ExternalLink>
+    </SidebarBox>
+  );
+};
