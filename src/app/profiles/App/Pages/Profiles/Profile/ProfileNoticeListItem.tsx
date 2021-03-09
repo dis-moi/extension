@@ -1,8 +1,8 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import { format } from 'date-fns';
 import { BorderButton, Box, LoadingRotator, Paragraph } from 'components/atoms';
-import { Notice, NoticeItem } from 'app/lmem/notice';
+import { Notice } from 'app/lmem/notice';
 import { LoadingBig, Pin } from 'components/atoms/icons';
 import { stripUrlProtocol } from 'app/utils/stripUrlProtocol';
 
@@ -67,6 +67,8 @@ export const ProfileNoticeListItem = ({
   seeInContext,
   className
 }: ProfileNoticeListItemProps) => {
+  const { t } = useTranslation();
+
   if (typeof loading === 'undefined') {
     return null;
   }
@@ -89,7 +91,9 @@ export const ProfileNoticeListItem = ({
         <img
           style={{ width: '100%' }}
           src={notice.screenshot}
-          alt={`Rendu de la contribution sur ${notice.exampleMatchingUrl} une fois l'extension installée.`}
+          alt={t('notice.screenshot_alt', {
+            exampleMatchingUrl: notice.exampleMatchingUrl
+          })}
         />
       )}
       <Paragraph dangerouslySetInnerHTML={{ __html: notice.strippedMessage }} />
@@ -97,19 +101,19 @@ export const ProfileNoticeListItem = ({
         <NoticeTopLine>
           <Pin />
           <NoticeHighlight>
-            Message épinglé sur{' '}
+            {t('notice.pined_on')}{' '}
             <NoticeURL>{stripUrlProtocol(notice.exampleMatchingUrl)}</NoticeURL>
           </NoticeHighlight>{' '}
-          et d&apos;autres pages web
+          {t('notice.and_others_pages')}
         </NoticeTopLine>
       )}
       <NoticeBottomLine>
-        Visible depuis le {format(notice.created, 'DD/MM/YYYY')}
+        {t('notice.since', { date: new Date(notice.created) })}
         <BorderButton
           onClick={seeInContext}
           disabled={!notice.exampleMatchingUrl}
         >
-          Voir en contexte
+          {t('action.see_context')}
         </BorderButton>
       </NoticeBottomLine>
     </Box>

@@ -1,4 +1,6 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import styled from 'styled-components';
 import { StatefulContributor } from 'app/lmem/contributor';
 import defaultProfileBannerImage from 'assets/img/profile-banner.jpg';
@@ -33,12 +35,14 @@ const ProfileBannerContainer = styled.div<{
 const hasBanner = (contributor?: StatefulContributor): boolean =>
   !!contributor && !!contributor.banner;
 
-const getBannerAlt = (contributor?: StatefulContributor) => {
+const getBannerAlt = (t: TFunction, contributor?: StatefulContributor) => {
   if (contributor && contributor.banner) {
-    return `Bannière de ${contributor.name}`;
+    return t('view.profile.banner.with_contributor', {
+      contributorName: contributor.name
+    });
   }
 
-  return `Bannière par default`;
+  return t('view.profile.banner.default');
 };
 
 interface ProfileBannerProps {
@@ -46,6 +50,7 @@ interface ProfileBannerProps {
 }
 
 const ProfileBanner = ({ contributor }: ProfileBannerProps) => {
+  const { t } = useTranslation();
   return (
     <ProfileBannerContainer default={!hasBanner(contributor)}>
       <img
@@ -55,7 +60,7 @@ const ProfileBanner = ({ contributor }: ProfileBannerProps) => {
             ? contributor.banner
             : defaultProfileBannerImage
         }
-        alt={getBannerAlt(contributor)}
+        alt={getBannerAlt(t, contributor)}
       />
     </ProfileBannerContainer>
   );

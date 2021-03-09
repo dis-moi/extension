@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
+import { Trans } from 'react-i18next';
 import styled from 'styled-components';
 import {
   ContributorId,
@@ -65,7 +66,6 @@ const Subscriptions = ({
   }: ChangeEvent<HTMLInputElement>) => {
     setFilter(value);
   };
-
   return (
     <>
       <ProfileTabs connected={connected} />
@@ -79,13 +79,13 @@ const Subscriptions = ({
       <TwoColumns>
         <MainCol>
           {connected === false ? (
-            <>
+            <Trans i18nKey={'view.my_subscriptions.disclaimer'}>
               <p>
                 Vous devez avoir l&apos;extension Dismoi installée et activée
                 pour voir cette partie.
               </p>
               <p>En cas de problème, merci de nous laisser un message.</p>
-            </>
+            </Trans>
           ) : (
             <ContributorsList className={className}>
               {filteredSubscriptions.map(contributor => (

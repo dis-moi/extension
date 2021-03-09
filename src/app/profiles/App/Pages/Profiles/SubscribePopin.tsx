@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import Popin, { PopinProps } from 'components/molecules/Popin/Popin';
 import PopinParagraph from 'components/molecules/Popin/PopinParagraph';
 import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
@@ -17,10 +18,11 @@ const SubscribePopin = ({
   subscribe,
   unsubscribe
 }: SubscribePopinProps) => {
+  const { t } = useTranslation();
   return (
     <Popin opened={opened} setOpened={setOpened}>
       <PopinParagraph>
-        Veuillez suivre {contributor.name} pour voir ses contributions.
+        {t('popin.subscribe.message', { contributorName: contributor.name })}
       </PopinParagraph>
       <ContributorButton
         loading={contributor?.subscribing === true}

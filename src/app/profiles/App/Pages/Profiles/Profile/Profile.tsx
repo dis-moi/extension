@@ -1,7 +1,8 @@
 import React, { useState, MouseEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
-import { Notice, NoticeItem, NoticeWithContributor } from 'app/lmem/notice';
+import { Notice, NoticeWithContributor } from 'app/lmem/notice';
 import Error from '../../Error';
 import {
   Button,
@@ -96,11 +97,11 @@ export const MainCol = styled.div`
 
 export const Aside = styled(Sidebar)`
   margin-top: ${props => props.theme.marginM};
-    
+
   ${SimilarProfiles} + ${CenterContainer} {
     margin-top: -${props => props.theme.marginM};
   }
-  
+
   ${SimilarProfiles} ${Button} {
     min-width: 110px;
     padding-left: 5px;
@@ -143,6 +144,8 @@ export const Profile = ({
   });
   const [subscribePopinOpened, setSubscribePopinOpened] = useState(false);
 
+  const { t } = useTranslation();
+
   if (typeof contributor?.loading === 'undefined') {
     return null;
   }
@@ -184,7 +187,6 @@ export const Profile = ({
       setNotConnectedPopinState({ opened: true, contributor });
     }
   };
-
   return (
     <TwoColumns>
       <MainCol>
@@ -199,7 +201,7 @@ export const Profile = ({
         {featuredNotices.length > 0 && (
           <FeaturedNoticesTitle
             contributor={contributor}
-            plural={featuredNotices.length > 1}
+            featuredNoticesCount={featuredNotices.length}
           />
         )}
         <FeaturedNotices
@@ -207,7 +209,7 @@ export const Profile = ({
           notices={featuredNotices}
           seeNoticeInContext={handleSeeNoticeInContext}
         />
-        <Title2>Ses dernières contributions</Title2>
+        <Title2>{t('view.profile.title')}</Title2>
         <ProfileNoticeList
           loading={noticesLoading}
           notices={notices}
