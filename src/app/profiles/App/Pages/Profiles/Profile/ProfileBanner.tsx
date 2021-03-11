@@ -35,16 +35,6 @@ const ProfileBannerContainer = styled.div<{
 const hasBanner = (contributor?: StatefulContributor): boolean =>
   !!contributor && !!contributor.banner;
 
-const getBannerAlt = (t: TFunction, contributor?: StatefulContributor) => {
-  if (contributor && contributor.banner) {
-    return t('view.profile.banner.with_contributor', {
-      contributorName: contributor.name
-    });
-  }
-
-  return t('view.profile.banner.default');
-};
-
 interface ProfileBannerProps {
   contributor?: StatefulContributor;
 }
@@ -60,7 +50,10 @@ const ProfileBanner = ({ contributor }: ProfileBannerProps) => {
             ? contributor.banner
             : defaultProfileBannerImage
         }
-        alt={getBannerAlt(t, contributor)}
+        alt={t('view.profile.banner', {
+          contributorName: contributor?.name,
+          context: contributor?.name && 'contributor'
+        })}
       />
     </ProfileBannerContainer>
   );

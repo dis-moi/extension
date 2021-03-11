@@ -49,16 +49,16 @@ const NotConnectedPopin = ({
   return (
     <PopinLarge size={'extralarge'} opened={opened} setOpened={setOpened}>
       <Text>
-        {t('popin.not_connected.intro', {
-          contributorName: contributor && ' de ' + contributor.name
+        {t('popin.not_connected.title', {
+          contributorName: contributor?.name,
+          context: contributor?.name && 'name'
         })}
       </Text>
-
       <BackgroundButton className="bulle-installer" onClick={addToBrowser}>
         {t('action.add_dismoi_to_browser')}
       </BackgroundButton>
       <PopinSmallText>
-        <Trans i18nKey={'popin.not_connected.disclaimer_privacy'}>
+        <Trans i18nKey={'popin.not_connected.message'}>
           Gratuit, sans publicité,{' '}
           <Link href={`https://${WEBSITE_DOMAIN}/vie-privee`}>
             respecte votre vie privée
