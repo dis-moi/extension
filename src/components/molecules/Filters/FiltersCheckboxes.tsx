@@ -52,7 +52,7 @@ const FiltersCheckboxes = ({
   const { t } = useTranslation();
   return (
     <FiltersBar>
-      <FiltersTitle>{t('action.filter_by')}</FiltersTitle>
+      <FiltersTitle>{t('profiles:action.filter_by')}</FiltersTitle>
       <FiltersList>
         {!loading &&
           Object.keys(filters).map(filterId => (

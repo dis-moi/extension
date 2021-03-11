@@ -92,7 +92,7 @@ export const ProfileNoticeListItem = ({
         <img
           style={{ width: '100%' }}
           src={notice.screenshot}
-          alt={t('notice.screenshot_alt', {
+          alt={t('profiles:notice.screenshot_alt', {
             exampleMatchingUrl: exampleMatchingUrl
           })}
         />
@@ -101,7 +101,7 @@ export const ProfileNoticeListItem = ({
       {exampleMatchingUrl && (
         <NoticeTopLine>
           <Pin />
-          <Trans i18nKey={'notice.pined_on'}>
+          <Trans i18nKey={'profiles:notice.pined_on'}>
             <NoticeHighlight>
               Message épinglé sur
               <NoticeURL>{{ exampleMatchingUrl }}</NoticeURL>
@@ -111,12 +111,12 @@ export const ProfileNoticeListItem = ({
         </NoticeTopLine>
       )}
       <NoticeBottomLine>
-        {t('notice.since', { date: new Date(notice.created) })}
+        {t('profiles:notice.since', { date: new Date(notice.created) })}
         <BorderButton
           onClick={seeInContext}
           disabled={!notice.exampleMatchingUrl}
         >
-          {t('action.see_context')}
+          {t('profiles:action.see_context')}
         </BorderButton>
       </NoticeBottomLine>
     </Box>

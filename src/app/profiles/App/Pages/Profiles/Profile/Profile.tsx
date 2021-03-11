@@ -209,7 +209,7 @@ export const Profile = ({
           notices={featuredNotices}
           seeNoticeInContext={handleSeeNoticeInContext}
         />
-        <Title2>{t('view.profile.title')}</Title2>
+        <Title2>{t('profiles:view.profile.title')}</Title2>
         <ProfileNoticeList
           loading={noticesLoading}
           notices={notices}
