@@ -1,3 +1,16 @@
+# [3.63.0](https://github.com/dis-moi/extension/compare/v3.62.0...v3.63.0) (2021-03-11)
+
+
+### Bug Fixes
+
+* **Feedbacks:** moves feedbacks component to the left, issue [#760](https://github.com/dis-moi/extension/issues/760) ([c11f7f5](https://github.com/dis-moi/extension/commit/c11f7f55a7f3e021fbf0e3b8a9a72e53251d2622))
+* Make preview work with a youtube video ([979c343](https://github.com/dis-moi/extension/commit/979c34397b7c062d2261ef5b63eda78d8e3285a1))
+
+
+### Features
+
+* display Youtube player in notice when youtube link found ([2b6bd31](https://github.com/dis-moi/extension/commit/2b6bd31af4efeb216675a192b239448e7970a7e7))
+
 # [3.62.0](https://github.com/dis-moi/extension/compare/v3.61.1...v3.62.0) (2021-02-26)
 
 
