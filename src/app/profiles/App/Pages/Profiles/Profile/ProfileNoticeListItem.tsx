@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { BorderButton, Box, LoadingRotator, Paragraph } from 'components/atoms';
 import { Notice } from 'app/lmem/notice';
@@ -84,7 +84,8 @@ export const ProfileNoticeListItem = ({
   if (!notice) {
     return null;
   }
-
+  const exampleMatchingUrl =
+    notice.exampleMatchingUrl && stripUrlProtocol(notice.exampleMatchingUrl);
   return (
     <Box className={className}>
       {notice.screenshot && (
@@ -92,19 +93,21 @@ export const ProfileNoticeListItem = ({
           style={{ width: '100%' }}
           src={notice.screenshot}
           alt={t('notice.screenshot_alt', {
-            exampleMatchingUrl: notice.exampleMatchingUrl
+            exampleMatchingUrl: exampleMatchingUrl
           })}
         />
       )}
       <Paragraph dangerouslySetInnerHTML={{ __html: notice.strippedMessage }} />
-      {notice.exampleMatchingUrl && (
+      {exampleMatchingUrl && (
         <NoticeTopLine>
           <Pin />
-          <NoticeHighlight>
-            {t('notice.pined_on')}{' '}
-            <NoticeURL>{stripUrlProtocol(notice.exampleMatchingUrl)}</NoticeURL>
-          </NoticeHighlight>{' '}
-          {t('notice.and_others_pages')}
+          <Trans i18nKey={'notice.pined_on'}>
+            <NoticeHighlight>
+              Message épinglé sur
+              <NoticeURL>{{ exampleMatchingUrl }}</NoticeURL>
+            </NoticeHighlight>{' '}
+            et d&apos;autres pages web
+          </Trans>
         </NoticeTopLine>
       )}
       <NoticeBottomLine>

@@ -34,8 +34,9 @@
       "disclaimer": "Dismoi est actuellement disponible sur les navigateurs Chrome, Firefox et Opéra"
     },
     "not_connected": {
-      "intro": "Pour voir les contributions{{contributorName}}, veuillez d’abord ajouter Dismoi à votre navigateur.",
-      "disclaimer_privacy": "Gratuit, sans publicité, <2>respecte votre vie privée</2>"
+      "title": "Pour voir les contributions, veuillez d’abord ajouter Dismoi à votre navigateur.",
+      "title_name": "Pour voir les contributions de {{contributorName}}, veuillez d’abord ajouter Dismoi à votre navigateur.",
+      "message": "Gratuit, sans publicité, <2>respecte votre vie privée</2>"
     },
     "subscribe": {
       "message": "Veuillez suivre {{contributorName}} pour voir ses contributions."
@@ -44,12 +45,12 @@
   "view": {
     "profile": {
       "title": "Ses dernières contributions",
-      "featured_title": "La contribution phare de {{contributorName}}",
-      "featured_title_plural": "Les contributions phares de {{contributorName}}",
-      "banner": {
-        "default": "Bannière par default",
-        "with_contributor": "Bannière de {{contributorName}}"
-      }
+      "featured_notices": {
+        "title": "La contribution phare de {{contributorName}}",
+        "title_plural": "Les contributions phares de {{contributorName}}"
+      },
+      "banner": "Bannière par default",
+      "banner_contributor": "Bannière de {{contributorName}}"
     },
     "slower_message_box": {
       "title": "DisMoi ne ralentit pas votre navigateur",
@@ -69,8 +70,7 @@
   },
   "notice": {
     "screenshot_alt": "Rendu de la contribution sur {{exampleMatchingUrl}} une fois l'extension installée.",
-    "pined_on": "Message épinglé sur",
-    "and_others_pages": "et d'autres pages web",
+    "pined_on": "<0>Message épinglé sur <1>{{exampleMatchingUrl}}</1></0> et d'autres pages web",
     "since": "Visible depuis le {{date, DD/MM/YYYY}}"
   }
 }
