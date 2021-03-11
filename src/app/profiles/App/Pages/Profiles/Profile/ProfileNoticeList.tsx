@@ -33,7 +33,7 @@ export const ProfileNoticeListContent = ({
         </LoadingRotator>
       )}
       {((notices.length === 0 && !loading) || fetchedAll) && (
-        <div> {t('common.no_more_contribution')}</div>
+        <div> {t('profiles:common.no_more_contribution')}</div>
       )}
       {notices.map(notice => (
         <ProfileNoticeListItem
@@ -45,7 +45,9 @@ export const ProfileNoticeListContent = ({
       ))}
       {notices.length > 0 && !loading && !fetchedAll && (
         <CenterContainer>
-          <Link onClick={fetchMoreNotices}>{t('action.see_more')}</Link>
+          <Link onClick={fetchMoreNotices}>
+            {t('profiles:action.see_more')}
+          </Link>
         </CenterContainer>
       )}
     </ProfileNoticeList>

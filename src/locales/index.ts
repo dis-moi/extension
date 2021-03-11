@@ -1,7 +1,7 @@
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
-import resources from 'locales/resources';
+import resources from './resources';
 import format from './format';
 
 const options = {
@@ -10,11 +10,11 @@ const options = {
     caches: []
   },
   fallbackLng: 'en',
-  ns: ['profiles'],
-  defaultNS: 'profiles',
+  ns: ['extension', 'profiles'],
+  defaultNS: 'extension',
   debug: true,
   interpolation: {
-    escapeValue: false,
+    escapeValue: false, // react already safes from xss
     format
   },
   keySeparator: '.'

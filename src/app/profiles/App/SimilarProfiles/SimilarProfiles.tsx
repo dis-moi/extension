@@ -67,7 +67,7 @@ const SimilarProfiles = ({
 
   return (
     <>
-      <Title2>{t('common.similar_profiles')}</Title2>
+      <Title2>{t('profiles:common.similar_profiles')}</Title2>
       <SidebarBox className={className}>
         {initialSimilarContributors
           .map(initialSimilarContributor => ({
@@ -87,7 +87,7 @@ const SimilarProfiles = ({
           ))}
       </SidebarBox>
       <CenterContainer>
-        <Link to="/sources">{t('action.see_all')}</Link>
+        <Link to="/sources">{t('profiles:action.see_all')}</Link>
       </CenterContainer>
     </>
   );

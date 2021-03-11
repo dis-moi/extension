@@ -4,7 +4,7 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import 'typeface-lato';
 import 'typeface-sedgwick-ave';
 import theme from 'app/theme';
-import 'app/content/i18n';
+import 'locales';
 
 const Global = createGlobalStyle`
   body {

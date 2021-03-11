@@ -17,7 +17,7 @@ const FeaturedNoticesTitle = ({
   const { t } = useTranslation();
   return (
     <Title2 className={className}>
-      {t('view.profile.featured_notices.title', {
+      {t('profiles:view.profile.featured_notices.title', {
         contributorName: contributor?.name,
         count: featuredNoticesCount
       })}

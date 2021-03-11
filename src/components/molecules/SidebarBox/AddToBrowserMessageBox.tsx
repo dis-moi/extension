@@ -8,10 +8,12 @@ export default () => {
   const { t } = useTranslation();
   return (
     <SidebarBox>
-      <Paragraph>{t('view.add_browser_box.description_dismoi')}</Paragraph>
+      <Paragraph>
+        {t('profiles:view.add_browser_box.description_dismoi')}
+      </Paragraph>
 
       <ButtonWithIcon className="bulle-installer">
-        {t('action.add_to_my_browser')} <Download />
+        {t('profiles:action.add_to_my_browser')} <Download />
       </ButtonWithIcon>
     </SidebarBox>
   );

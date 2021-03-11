@@ -22,7 +22,9 @@ const SubscribePopin = ({
   return (
     <Popin opened={opened} setOpened={setOpened}>
       <PopinParagraph>
-        {t('popin.subscribe.message', { contributorName: contributor.name })}
+        {t('profiles:popin.subscribe.message', {
+          contributorName: contributor.name
+        })}
       </PopinParagraph>
       <ContributorButton
         loading={contributor?.subscribing === true}

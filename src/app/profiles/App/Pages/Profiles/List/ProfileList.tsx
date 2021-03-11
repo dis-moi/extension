@@ -127,7 +127,9 @@ const ProfileList = ({
 
   return (
     <>
-      {connected === false && <Title as="h1">{t('common.sources')}</Title>}
+      {connected === false && (
+        <Title as="h1">{t('profiles:common.sources')}</Title>
+      )}
 
       <ProfileTabs connected={connected} />
 
@@ -150,7 +152,7 @@ const ProfileList = ({
               to={pathToContributor(contributor)}
             >
               <Link to={pathToContributor(contributor)}>
-                {t('action.see_contributions')}
+                {t('profiles:action.see_contributions')}
                 <Arrow />
               </Link>
             </ContributorProfileListItem>

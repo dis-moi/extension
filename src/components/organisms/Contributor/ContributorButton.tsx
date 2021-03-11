@@ -61,18 +61,18 @@ const ContributorButton = ({
           onPointerLeave={() => setSubscribedButtonHovered(false)}
         >
           {subscribedButtonHovered ? (
-            t('action.stop_following')
+            t('profiles:action.stop_following')
           ) : (
             <>
               <Check />
-              &nbsp;{t('common.subscriber')}
+              &nbsp;{t('profiles:common.subscriber')}
             </>
           )}
         </ContributorBorderButton>
       )}
       {!subscribed && (
         <ContributorBackgroundButton onClick={onSubscribe}>
-          {t('action.follow')}
+          {t('profiles:action.follow')}
         </ContributorBackgroundButton>
       )}
     </Container>

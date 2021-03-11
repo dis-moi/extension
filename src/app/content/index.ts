@@ -11,7 +11,7 @@ if (window.location.href.match((process.env as AppEnv).PROFILES_ORIGIN)) {
 
 import { Scope } from '@sentry/browser';
 import { AppEnv, CustomWindow } from 'types';
-import './i18n';
+import 'locales';
 
 if (!(window as CustomWindow).__BULLES__CONTENT_SCRIPT_INJECTED__) {
   Logger.info('Running content script ...');

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { TFunction } from 'i18next';
 import styled from 'styled-components';
 import { StatefulContributor } from 'app/lmem/contributor';
 import defaultProfileBannerImage from 'assets/img/profile-banner.jpg';
@@ -50,7 +49,7 @@ const ProfileBanner = ({ contributor }: ProfileBannerProps) => {
             ? contributor.banner
             : defaultProfileBannerImage
         }
-        alt={t('view.profile.banner', {
+        alt={t('profiles:view.profile.banner', {
           contributorName: contributor?.name,
           context: contributor?.name && 'contributor'
         })}
