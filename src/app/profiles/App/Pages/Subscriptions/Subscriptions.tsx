@@ -79,7 +79,7 @@ const Subscriptions = ({
       <TwoColumns>
         <MainCol>
           {connected === false ? (
-            <Trans i18nKey={'view.my_subscriptions.disclaimer'}>
+            <Trans i18nKey={'profiles:view.my_subscriptions.disclaimer'}>
               <p>
                 Vous devez avoir l&apos;extension Dismoi installée et activée
                 pour voir cette partie.

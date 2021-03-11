@@ -8,7 +8,7 @@ const BrowserNotSupportedPopin = ({ opened, setOpened }: PopinProps) => {
   return (
     <Popin size={'large'} opened={opened} setOpened={setOpened}>
       <PopinParagraph>
-        {t('popin.browser_not_support.disclaimer')}
+        {t('profiles:popin.browser_not_support.disclaimer')}
       </PopinParagraph>
       <PopinParagraph>
         <strong>Chrome&nbsp;:&nbsp;</strong>

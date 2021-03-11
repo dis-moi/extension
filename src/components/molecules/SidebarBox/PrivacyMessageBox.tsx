@@ -22,23 +22,23 @@ export default () => {
   const { t } = useTranslation();
   return (
     <SidebarBox>
-      <Title2 as="h3">{t('view.privacy_box.title')}</Title2>
+      <Title2 as="h3">{t('profiles:view.privacy_box.title')}</Title2>
       <Ul>
         <ListItem>
-          <Trans i18nKey={'view.privacy_box.no_collect'}>
+          <Trans i18nKey={'profiles:view.privacy_box.no_collect'}>
             Nous ne collectons ni revendons
             <strong>aucune donnée personnelle</strong>
           </Trans>
         </ListItem>
         <ListItem>
-          <Trans i18nKey={'view.privacy_box.no_profiling'}>
+          <Trans i18nKey={'profiles:view.privacy_box.no_profiling'}>
             Nous ne faisons <strong>aucun profilage</strong>
           </Trans>
         </ListItem>
       </Ul>
 
       <ExternalLink href={`https://${WEBSITE_DOMAIN}/vie-privee/`}>
-        {t('action.know_more')}
+        {t('profiles:action.know_more')}
       </ExternalLink>
     </SidebarBox>
   );
