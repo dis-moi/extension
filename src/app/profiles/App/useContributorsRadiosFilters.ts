@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { StatefulContributor } from 'app/lmem/contributor';
-import { TOUS } from 'components/molecules/Filters/RadiosFilters';
+import { ALL } from 'components/molecules/Filters/RadiosFilters';
 
 function useContributorsRadiosFilters(
   contributors: StatefulContributor[]
@@ -10,7 +10,7 @@ function useContributorsRadiosFilters(
   >(contributors);
   const [selectedCategory, setSelectedCategory] = useState<string>();
   useEffect(() => {
-    if (selectedCategory && selectedCategory !== TOUS) {
+    if (selectedCategory && selectedCategory !== ALL) {
       setFilteredContributors(
         contributors.filter(({ categories: contributorCategories }) =>
           contributorCategories.some(cc => selectedCategory === cc)
