@@ -1,3 +1,22 @@
+# [3.64.0](https://github.com/dis-moi/extension/compare/v3.63.0...v3.64.0) (2021-03-12)
+
+
+### Bug Fixes
+
+* **i18n:** prepare translation on profiles app ([1165fdf](https://github.com/dis-moi/extension/commit/1165fdf7a10ae2df4eedea5088f30a000a3e3dda))
+
+
+### Features
+
+* **i18n:** add custom date format on i18next ([b41124e](https://github.com/dis-moi/extension/commit/b41124e40190722e828c5ef907e8f9f0e6a511f8))
+* **i18n:** prepare french i18n file [#811](https://github.com/dis-moi/extension/issues/811) and add language detection [#793](https://github.com/dis-moi/extension/issues/793) ([5e027e9](https://github.com/dis-moi/extension/commit/5e027e9e48dc685c2dd330c71b16e78318cbdac3))
+* **i18n:** prepare translate files en/fr and components to be translate ([775504b](https://github.com/dis-moi/extension/commit/775504becc56b5b4a2eef3c9b8f024e9784eccb2))
+* **i18n:** profiles, prepare translate files en/fr and components to be translate ([da02314](https://github.com/dis-moi/extension/commit/da023144473e59589e7e0fab5604b3b0957d10f3))
+* **i18n:** setup i18next extension ([f2e3ebb](https://github.com/dis-moi/extension/commit/f2e3ebbabe4d092ef162d02ccc84dea1c6ab2928))
+* **i18n:** setup i18next profiles ([044ceb1](https://github.com/dis-moi/extension/commit/044ceb1ce1f0b274c4920352b4268d57ea2aef59))
+* **i18n:** translate filter Tous ([d3a5e5e](https://github.com/dis-moi/extension/commit/d3a5e5e0afdfc9935159e5ae4dd88aeb49c92c11))
+* **i18n:** translate NotificationFooter ([4b28e3f](https://github.com/dis-moi/extension/commit/4b28e3f1bca56f3fea141f393ff7f7c2f441d6fc))
+
 # [3.63.0](https://github.com/dis-moi/extension/compare/v3.62.0...v3.63.0) (2021-03-11)
 
 
