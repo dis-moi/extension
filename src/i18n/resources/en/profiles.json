@@ -27,8 +27,8 @@
     }
   },
   "menu": {
-    "sources": "Sources",
-    "subscriptions": "Abonnements"
+    "all": "$t(common.all)",
+    "following": "Suivis"
   },
   "popin": {
     "browser_not_support": {
