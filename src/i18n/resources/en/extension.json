@@ -34,7 +34,8 @@
     "contact": "Contact",
     "privacy": "Vie privée",
     "uninstall": "Désinstaller",
-    "subscriptions": "Abonnements"
+    "subscriptions": "Abonnements",
+    "contributions": "Contributions"
   },
   "form": {
     "field_name": {

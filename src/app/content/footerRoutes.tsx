@@ -2,24 +2,24 @@ import { LocationDescriptor } from 'history';
 
 export interface FooterRoute {
   location: LocationDescriptor;
-  element: string;
+  i18nKey: string;
 }
 
 export const footerRoutes: FooterRoute[] = [
   {
     location: '/notices',
-    element: 'Contributions'
+    i18nKey: 'menu.contributions'
   },
   {
     location: '/subscriptions',
-    element: 'Abonnements'
+    i18nKey: 'menu.subscriptions'
   },
   {
     location: '/help',
-    element: 'Aide'
+    i18nKey: 'menu.help'
   },
   {
     location: '/account',
-    element: 'Mon compte'
+    i18nKey: 'menu.my_account'
   }
 ];
