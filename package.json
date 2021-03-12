@@ -189,7 +189,7 @@
     "ramda": "^0.26.1",
     "ramda-adjunct": "^2.19.0",
     "react": "16.8.0",
-    "react-dev-utils": "^9.0.3",
+    "react-dev-utils": "^11.0.4",
     "react-dom": "16.8.0",
     "react-i18next": "^11.8.8",
     "react-redux": "^6.0.1",
