@@ -20,7 +20,7 @@
       "messages": "Retour aux messages",
       "submissions": "Retour aux contributions"
     },
-    "manage_subscription": "Gérer mes abonnements"
+    "manage_subscription": "Gérer mes éclaireurs"
   },
   "date": {
     "short": "{{date, DD/MM/YYYY}}",
@@ -34,7 +34,7 @@
     "contact": "Contact",
     "privacy": "Vie privée",
     "uninstall": "Désinstaller",
-    "subscriptions": "Abonnements",
+    "subscriptions": "Éclaireurs",
     "contributions": "Contributions"
   },
   "form": {
