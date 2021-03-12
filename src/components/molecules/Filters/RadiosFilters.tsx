@@ -1,9 +1,10 @@
 import React, { ChangeEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { FiltersBar, FiltersList, FiltersListItem } from './FiltersCheckboxes';
 import { Radio } from '../../atoms/icons';
 
-export const TOUS = 'Tous';
+export const ALL = 'all';
 
 const RadioButton = styled.input.attrs({ type: 'radio' })`
   cursor: pointer;
@@ -11,7 +12,7 @@ const RadioButton = styled.input.attrs({ type: 'radio' })`
   width: 14px;
   height: 14px;
   opacity: 0;
-  
+
  &:checked + svg {
   .radio-checked {
     fill: ${props => props.theme.activeColor};
@@ -29,19 +30,20 @@ const RadiosFilters = ({
   filters,
   loading
 }: RadiosCheckboxesProps) => {
+  const { t } = useTranslation('profiles');
   return (
     <FiltersBar>
       <FiltersList>
-        <FiltersListItem key={TOUS} htmlFor={TOUS}>
+        <FiltersListItem key={ALL} htmlFor={ALL}>
           <RadioButton
-            id={TOUS}
+            id={ALL}
             name="filters"
-            value={TOUS}
+            value={ALL}
             onChange={onChange}
             defaultChecked
           />
           <Radio />
-          {TOUS}
+          {t('common.' + ALL)}
         </FiltersListItem>
         {!loading &&
           Object.keys(filters).map(filterId => (

@@ -3,7 +3,8 @@
     "sources": "Les sources",
     "subscriber": "Abonné(e)",
     "similar_profiles": "Profils similaires",
-    "no_more_contribution": "Pas d'autres contributions"
+    "no_more_contribution": "Pas d'autres contributions",
+    "all": "Tous"
   },
   "action": {
     "see_contributions": "Voir ses contributions",
