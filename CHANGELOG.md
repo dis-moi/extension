@@ -1,3 +1,10 @@
+# [3.65.0](https://github.com/dis-moi/extension/compare/v3.64.1...v3.65.0) (2021-03-15)
+
+
+### Features
+
+* **profiles:** change link: sources to eclaireurs ([#834](https://github.com/dis-moi/extension/issues/834)) ([0f4f85f](https://github.com/dis-moi/extension/commit/0f4f85f87779299e6df3f0308e74be9ba0a33c58))
+
 ## [3.64.1](https://github.com/dis-moi/extension/compare/v3.64.0...v3.64.1) (2021-03-15)
 
 
