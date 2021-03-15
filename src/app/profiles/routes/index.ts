@@ -1,3 +1,3 @@
 type ProfilePath = '/eclaireurs' | '/mes-abonnements';
 
-export const SOURCES: ProfilePath = '/eclaireurs';
+export const CONTRIBUTORS_PATH: ProfilePath = '/eclaireurs';

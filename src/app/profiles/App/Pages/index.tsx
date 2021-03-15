@@ -3,13 +3,13 @@ import React from 'react';
 import Profiles from './Profiles';
 import Error from './Error';
 import Subscriptions from './Subscriptions';
-import { SOURCES } from '../../routes';
+import { CONTRIBUTORS_PATH } from '../../routes';
 
 const Pages = () => (
   <>
     <Switch>
-      <Redirect exact path="/" to={SOURCES} />
-      <Route path={SOURCES} component={Profiles} />
+      <Redirect exact path="/" to={CONTRIBUTORS_PATH} />
+      <Route path={CONTRIBUTORS_PATH} component={Profiles} />
       <Route path="/mes-abonnements" component={Subscriptions} />
       <Route component={Error} />
     </Switch>
