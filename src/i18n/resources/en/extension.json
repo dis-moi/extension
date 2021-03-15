@@ -90,7 +90,7 @@
       "title": "$t(menu.subscriptions)",
       "followed_sources": "Vous suivez <br/><strong>{{count}}</strong> source",
       "followed_sources_plural": "Vous suivez <br/><strong>{{count}}</strong> sources",
-      "no_followed_sources": "Vous ne suivez actuellement aucune source.<br />Pour le bon fonctionnement de l&apos;extension, abonnez-vous !"
+      "no_followed_sources": "Vous ne suivez actuellement aucune source.<br />Pour le bon fonctionnement de l'extension, abonnez-vous !"
     },
     "about": {
       "description": "Lorsque vous visitez une page du web, Dismoi vous permet de lire les messages de vos relations et en poster à votre tour.",
