@@ -47,7 +47,7 @@ const ContributorItem = styled.li`
 
 const PopinBottomBar = () => (
   <PopinBottomBarContainer>
-    <Trans i18nKey={'action.know_more_dismoi'}>
+    <Trans i18nKey={'profiles:action.know_more_dismoi'}>
       En savoir plus sur <Link href={`https://${WEBSITE_DOMAIN}/`}>DisMoi</Link>{' '}
       et ses sources
     </Trans>
