@@ -1,3 +1,10 @@
+## [3.64.1](https://github.com/dis-moi/extension/compare/v3.64.0...v3.64.1) (2021-03-15)
+
+
+### Bug Fixes
+
+* **i18n:** translator: missingKey fr-FR [#833](https://github.com/dis-moi/extension/issues/833) ([c73f65c](https://github.com/dis-moi/extension/commit/c73f65cce5d536ef8ab3ab5aedf3daff40f390cd))
+
 # [3.64.0](https://github.com/dis-moi/extension/compare/v3.63.0...v3.64.0) (2021-03-12)
 
 
