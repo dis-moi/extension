@@ -9,6 +9,7 @@ import { getServiceMessageLastShowDate } from '../selectors/serviceMessage.selec
 import { LinkType } from 'app/lmem/ServiceMessage';
 import { isWithinLastHours } from 'app/utils/areWithinHours';
 import { Level } from '../../utils/Logger';
+import { SOURCES } from '../../profiles/routes';
 
 export const buildMessages = (messages: string[], nbNotices = 0): string[] => {
   const firstMessage =
@@ -32,7 +33,7 @@ export default function* serviceMessageSaga(tab: Tab, nbNotices = 0) {
             messages: buildMessages([], nbNotices),
             action: {
               label: 'Choisir mes sources',
-              url: '/sources',
+              url: SOURCES,
               type: LinkType.Options
             }
           },
