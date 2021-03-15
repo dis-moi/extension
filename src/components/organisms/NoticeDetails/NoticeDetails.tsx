@@ -271,7 +271,7 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
               {t('notice.feedback_dislike')}
               <div>
                 <Button onClick={this.handleCancelDislike}>
-                  {t('common.cancel')}
+                  {t('action.cancel')}
                 </Button>
                 <Timer>({countdown}s)</Timer>
               </div>
