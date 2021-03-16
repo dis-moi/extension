@@ -9,7 +9,6 @@
     "start": "webpack --watch --progress --mode=development",
     "start:profiles": "webpack-dev-server --progress --mode=development --config webpack.profiles.config.js --inline",
     "start:firefox": "webpack --watch --progress --mode=development --env.PLATFORM=firefox",
-    "run:firefox": "cd build/development/firefox && web-ext run",
     "build:chromium": "webpack --mode=production --env.PLATFORM=chromium",
     "build:firefox": "webpack --mode=production --env.PLATFORM=firefox",
     "build:profiles": "webpack --config webpack.profiles.config.js --mode=production --env.PLATFORM=profiles",
