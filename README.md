@@ -64,6 +64,8 @@ yarn
 
 5. Start the extension
 
+### For chrome development extension
+
 ```bash
 yarn start
 ```
@@ -77,6 +79,15 @@ yarn start
 
 > Chrom(e|ium) browser is recommend for development.
 > see https://developer.chrome.com/extensions/getstarted#manifest
+
+### For firefox development extension
+
+```bash
+npm install --global web-ext
+yarn start:firefox
+yarn run:firefox
+```
+> see https://developer.mozilla.org/fr/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension#installation
 
 ## Contributing
 
