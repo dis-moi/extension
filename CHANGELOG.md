@@ -1,3 +1,10 @@
+## [3.65.1](https://github.com/dis-moi/extension/compare/v3.65.0...v3.65.1) (2021-03-16)
+
+
+### Bug Fixes
+
+* **i18n:** button cancel and apos [#840](https://github.com/dis-moi/extension/issues/840) ([d6bf7bf](https://github.com/dis-moi/extension/commit/d6bf7bfb6b701f08f9ba9c5c5979961f6adb3feb))
+
 # [3.65.0](https://github.com/dis-moi/extension/compare/v3.64.1...v3.65.0) (2021-03-15)
 
 
