@@ -37,6 +37,7 @@ export interface Contribution {
 
 export interface Question extends Contribution {
   toContributorId?: ContributorId;
+  question: true;
 }
 
 export interface NoticeState {
