@@ -1,3 +1,17 @@
+# [3.66.0](https://github.com/dis-moi/extension/compare/v3.65.1...v3.66.0) (2021-03-17)
+
+
+### Bug Fixes
+
+* Question form default value ([610c071](https://github.com/dis-moi/extension/commit/610c07105a1849b1078744d8e4dbe0346f98e382))
+
+
+### Features
+
+* Post contribution and question directly to the backend ([ebd7090](https://github.com/dis-moi/extension/commit/ebd709067d4e2c537e42215b69551b57f2e9bae1))
+* Simplify Firefox addon deploy process ([b292ae7](https://github.com/dis-moi/extension/commit/b292ae712a44393fa2b28937dccb62da83611b85))
+* **Question:** Add a discriminant to the question model. ([f8636b3](https://github.com/dis-moi/extension/commit/f8636b3e4b4dcecc5ec88d4732031013efe04422))
+
 ## [3.65.1](https://github.com/dis-moi/extension/compare/v3.65.0...v3.65.1) (2021-03-16)
 
 
