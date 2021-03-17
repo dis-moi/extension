@@ -22,12 +22,12 @@ const ProfileTabsContainer = styled(Tabs)`
 `;
 
 const ProfileTabs = ({ connected }: ProfileTabsProps) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('profiles');
   if (connected) {
     return (
       <ProfileTabsContainer>
-        <Tab to={CONTRIBUTORS_PATH}>{t('profiles:menu.sources')}</Tab>
-        <Tab to={'/mes-abonnements'}>{t('profiles:menu.subscriptions')}</Tab>
+        <Tab to={CONTRIBUTORS_PATH}>{t('menu.sources')}</Tab>
+        <Tab to={'/mes-abonnements'}>{t('menu.subscriptions')}</Tab>
       </ProfileTabsContainer>
     );
   }
