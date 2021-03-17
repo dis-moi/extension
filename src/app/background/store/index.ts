@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, Action } from 'redux';
+import { createStore, applyMiddleware, Action, Store } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import createBrowserStorage from 'webext/createBrowserStorage';
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
@@ -49,7 +49,12 @@ const enhancer =
       )
     : applyMiddleware(...middlewares);
 
-export const store = createStore<BackgroundState, AppAction, null, null>(
+export const store: Store<BackgroundState, AppAction> = createStore<
+  BackgroundState,
+  AppAction,
+  null,
+  null
+>(
   // eslint-disable-next-line
   // @ts-ignore
   persistedReducers,
