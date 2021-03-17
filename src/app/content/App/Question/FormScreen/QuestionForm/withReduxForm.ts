@@ -11,6 +11,7 @@ export default reduxForm<Question, QuestionFormOwnProps>({
   forceUnregisterOnUnmount: true,
   validate,
   initialValues: {
-    created: new Date()
+    created: new Date(),
+    question: true
   }
 });

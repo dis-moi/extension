@@ -26,7 +26,8 @@ storiesOf('Extension/Question/Preview', module)
           email: 'johan.dufour@gmail.com',
           name: 'Johan Dufour'
         },
-        created: new Date()
+        created: new Date(),
+        question: true
       }}
       errors={[]}
       modify={action('modify')}
@@ -43,7 +44,8 @@ storiesOf('Extension/Question/Preview', module)
           email: 'johan.dufour@gmail.com',
           name: 'Johan Dufour'
         },
-        created: new Date()
+        created: new Date(),
+        question: true
       }}
       errors={[]}
       modify={action('modify')}
@@ -60,7 +62,8 @@ storiesOf('Extension/Question/Preview', module)
           email: 'johan.dufour@gmail.com',
           name: 'Johan Dufour'
         },
-        created: new Date()
+        created: new Date(),
+        question: true
       }}
       errors={[]}
       modify={action('modify')}

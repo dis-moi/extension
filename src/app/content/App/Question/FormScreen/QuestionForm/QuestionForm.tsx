@@ -10,7 +10,7 @@ import {
   SelectField
 } from 'components/organisms/Fields';
 import FormErrors from 'components/molecules/FormErrors';
-import { Contribution } from 'app/lmem/notice';
+import { Question } from 'app/lmem/notice';
 import withReduxForm from './withReduxForm';
 import { StatefulContributor } from 'app/lmem/contributor';
 
@@ -32,7 +32,7 @@ const BackButton = styled(Button)`
 `;
 
 export type QuestionFormProps = InjectedFormProps<
-  Contribution,
+  Question,
   QuestionFormOwnProps
 > &
   QuestionFormOwnProps;
@@ -54,6 +54,7 @@ const QuestionForm = ({
 
   return (
     <Form onSubmit={handleSubmit}>
+      <Field name="question" type="hidden" component={InputField} />
       <Field name="url" type="hidden" component={InputField} />
       <Field name="toContributorId" type="select" component={SelectField}>
         <option value={''}>{t('form.field_contributor_source.label')}</option>
