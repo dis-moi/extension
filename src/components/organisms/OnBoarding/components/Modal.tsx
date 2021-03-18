@@ -15,9 +15,14 @@ interface ModalProps extends ContainerProps {
 }
 
 const Container = styled.div<ContainerProps>`
-  background: rgba(255, 255, 255, 0.9);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  height: 100vh;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
   display: ${props => (props.open ? 'block' : 'none')};
-  padding: 1em;
 `;
 
 export default ({ children, open, close }: ModalProps) => {
