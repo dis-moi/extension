@@ -1,77 +1,77 @@
 {
   "common": {
-    "sources": "Les sources",
-    "subscriber": "Abonné(e)",
-    "similar_profiles": "Profils similaires",
-    "no_more_contribution": "Pas d'autres contributions",
-    "all": "Tous"
+    "sources": "Guides",
+    "subscriber": "Subscribers",
+    "similar_profiles": "Similar profiles",
+    "no_more_contribution": "No more contributions",
+    "all": "All"
   },
   "action": {
-    "see_contributions": "Voir ses contributions",
-    "add_dismoi_to_browser": "Ajouter Dismoi à mon navigateur",
-    "add_to_my_browser": "Ajouter à mon navigateur ",
-    "follow": "Suivre",
-    "know_more_dismoi": "En savoir plus sur <1>DisMoi</1> et ses sources",
-    "know_more": "En savoir plus",
-    "stop_following": "Ne plus suivre",
-    "see_more": "Voir plus",
-    "see_all": "Voir tout",
-    "see_more_details": "Plus de détails",
-    "see_context": "Voir en contexte",
-    "filter_by": "Filtrer par :"
+    "see_contributions": "See contributions",
+    "add_dismoi_to_browser": "Add DisMoi to my browser",
+    "add_to_my_browser": "Add to my browser ",
+    "follow": "Follow",
+    "know_more_dismoi": "Learn more about <1>DisMoi</1> and our guides",
+    "know_more": "Learn more",
+    "stop_following": "Stop following",
+    "see_more": "See more",
+    "see_all": "See all",
+    "see_more_details": "See more details",
+    "see_context": "See in context",
+    "filter_by": "Filter by:"
   },
   "error": {
     "common": {
-      "title": "Oops !",
-      "message": "Quelque chose s’est mal passé. Veuillez actualiser le plugin ou réessayer plus tard."
+      "title": "Oops!",
+      "message": "Something went wrong. Please restart the extension or try again later."
     }
   },
   "menu": {
     "all": "$t(common.all)",
-    "following": "Suivis"
+    "following": "Following"
   },
   "popin": {
     "browser_not_support": {
-      "disclaimer": "Dismoi est actuellement disponible sur les navigateurs Chrome, Firefox et Opéra"
+      "disclaimer": "DisMoi is currently available on Chrome, Firefox, and Opera web browsers"
     },
     "not_connected": {
-      "title": "Pour voir les contributions, veuillez d’abord ajouter Dismoi à votre navigateur.",
-      "title_name": "Pour voir les contributions de {{contributorName}}, veuillez d’abord ajouter Dismoi à votre navigateur.",
-      "message": "Gratuit, sans publicité, <2>respecte votre vie privée</2>"
+      "title": "To see more posts, please add DisMoi to your browser.",
+      "title_name": "To view posts from {{contributorName}}, please add DisMoi to your browser.",
+      "message": "Free, ad-free, <2>respects your privacy</2>"
     },
     "subscribe": {
-      "message": "Veuillez suivre {{contributorName}} pour voir ses contributions."
+      "message": "Please follow {{contributorName}} to see their posts."
     }
   },
   "view": {
     "profile": {
-      "title": "Ses dernières contributions",
+      "title": "Latest posts",
       "featured_notices": {
-        "title": "La contribution phare de {{contributorName}}",
-        "title_plural": "Les contributions phares de {{contributorName}}"
+        "title": "Featured post from {{contributorName}}",
+        "title_plural": "Featured posts from {{contributorName}}"
       },
-      "banner": "Bannière par default",
-      "banner_contributor": "Bannière de {{contributorName}}"
+      "banner": "Default banner",
+      "banner_contributor": "{{contributorName}}'s banner"
     },
     "slower_message_box": {
-      "title": "DisMoi ne ralentit pas votre navigateur",
-      "text": "Contrairement à d’autres extensions, DisMoi ne ralentit pas votre navigateur."
+      "title": "DisMoi does not slow down your browser",
+      "text": "Unlike other extensions, DisMoi does not slow down your browser."
     },
     "my_subscriptions": {
-      "disclaimer": "<0>Vous devez avoir l'extension Dismoi installée et activée pour voir cette partie.</0><1>En cas de problème, merci de nous laisser un message.</1>"
+      "disclaimer": "<0>You must have DisMoi installed and activated to view this part.</0><1>Experiencing a problem? Send us a message.</1>"
     },
     "privacy_box": {
-      "title": "DisMoi respecte votre vie privée",
-      "no_collect": "Nous ne collectons ni revendons <strong>aucune donnée personnelle</strong>",
-      "no_profiling": "Nous ne faisons <strong>aucun profilage</strong>"
+      "title": "DisMoi respects your privacy",
+      "no_collect": "<strong>We never collect or sell</strong> your personal data",
+      "no_profiling": "We do <strong>zero profiling or targeting</strong>"
     },
     "add_browser_box": {
-      "description_dismoi":"DisMoi permet aux internautes, médias et experts de vous informer directement sur les pages web que vous visitez."
+      "description_dismoi":"DisMoi lets internet users, media and experts share helpful information directly on the webpages you visit."
     }
   },
   "notice": {
-    "screenshot_alt": "Rendu de la contribution sur {{exampleMatchingUrl}} une fois l'extension installée.",
-    "pined_on": "<0>Message épinglé sur <1>{{exampleMatchingUrl}}</1></0> et d'autres pages web",
-    "since": "Visible depuis le {{date, DD/MM/YYYY}}"
+    "screenshot_alt": "Shows the contribution on {{exampleMatchingUrl}} once the extension is installed.",
+    "pined_on": "<0>Message pinned on <1>{{exampleMatchingUrl}}</1></0> and other webpages",
+    "since": "Since {{date, MM/DD/YYYY}}"
   }
 }
