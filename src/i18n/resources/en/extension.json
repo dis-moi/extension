@@ -1,110 +1,110 @@
 {
   "common": {
-    "or": "ou",
-    "congratulations": "Félicitations !",
-    "loading": "Chargement...",
-    "relayed_by": "relayé par",
-    "filters": "Mes filtres"
+    "or": "or",
+    "congratulations": "Congratulations!",
+    "loading": "Loading...",
+    "relayed_by": "Reposted by",
+    "filters": "My filters"
   },
   "action": {
-    "post": "Poster",
-    "ask": "Demander",
-    "see_more": "Voir tout",
-    "preview": "Prévisualiser",
-    "publish": "Publier",
-    "edit": "Modifier",
-    "cancel": "Annuler",
-    "submit": "Envoyer",
+    "post": "Post",
+    "ask": "Ask",
+    "see_more": "See more",
+    "preview": "Preview",
+    "publish": "Publish",
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "submit": "Submit",
     "go_back": {
-      "back": "retour",
-      "messages": "Retour aux messages",
-      "submissions": "Retour aux contributions"
+      "back": "back",
+      "messages": "Back to messages",
+      "submissions": "Back to contributions"
     },
-    "manage_subscription": "Gérer mes éclaireurs"
+    "manage_subscription": "Manage my guides"
   },
   "date": {
-    "short": "{{date, DD/MM/YYYY}}",
-    "medium": "Le {{date, DD/MM/YYYY}}"
+    "short": "{{date, MM/DD/YYYY}}",
+    "medium": "{{date, MM/DD/YYYY}}"
   },
   "menu": {
-    "my_account": "Mon compte",
-    "my_data": "Mes données",
-    "help": "Aide",
-    "about": "À propos",
+    "my_account": "My account",
+    "my_data": "My data",
+    "help": "Help",
+    "about": "About",
     "contact": "Contact",
-    "privacy": "Vie privée",
-    "uninstall": "Désinstaller",
-    "subscriptions": "Éclaireurs",
+    "privacy": "Privacy",
+    "uninstall": "Uninstall",
+    "subscriptions": "Guides",
     "contributions": "Contributions"
   },
   "form": {
     "field_name": {
-      "placeholder": "Votre nom"
+      "placeholder": "Your name"
     },
     "field_message": {
-      "placeholder": "Ecrire le message que vous souhaitez publier"
+      "placeholder": "Write the message you want to publish"
     },
     "field_email": {
-      "placeholder": "Votre@email.fr"
+      "placeholder": "Your@email.com"
     },
     "field_contributor_source": {
-      "label": "Choix de la source"
+      "label": "Choose the guide you want to ask"
     },
     "field_message_question": {
-      "placeholder": "Indiquez votre question. Précisez éventuellement le nom du média, de l'expert ou de l'informateur que vous souhaitez solliciter."
+      "placeholder": "Indicate your question. You can even specify the name of the media source, the expert or the individual you want to ask."
     },
-    "preview_send": "$t(action.preview) et $t(action.publish)"
+    "preview_send": "$t(action.preview) and $t(action.publish)"
   },
   "error": {
     "form": {
-      "require_field": "Ce champs est obligatoire"
+      "require_field": "This field is required"
     },
     "common": {
-      "title": "Oops !",
-      "message": "Quelque chose s’est mal passé. Veuillez réessayer plus tard."
+      "title": "Oops!",
+      "message": "Something went wrong. Please try again later."
     }
   },
   "faq": {
-    "title": "Questions fréquentes",
+    "title": "Frequently asked questions",
     "notices": {
-      "where_appear": "Sur quelles pages apparaissent les notices ?",
-      "dont_appear": "J’ai beau testé, les notices n’apparaissent pas"
+      "where_appear": "Where do posts appear?",
+      "dont_appear": "I've tested a bunch, and I don't see any posts"
     },
     "privacy": {
-      "used_data": "Quelles sont les données utilisées ?"
+      "used_data": "What data do you use?"
     },
     "other_questions": {
-      "title": "Autres questions fréquentes"
+      "title": "Other frequently asked questions"
     }
   },
   "notice": {
-    "feedback_dislike": "Merci pour votre retour, cette contribution ne s’affichera plus",
-    "feedback_deleted": "Cette contribution ne s’affichera plus !"
+    "feedback_dislike": "Thanks for the feedback, this post won't show anymore",
+    "feedback_deleted": "This post won't show anymore!"
   },
   "view": {
     "contributions": {
-      "disclaimer_no_post": "Pas encore de post sur <br/> cette page web",
-      "button_subtext": "une info, un conseil"
+      "disclaimer_no_post": "There are no posts on <br/> this webpage",
+      "button_subtext": "Some info, a bit of advice"
     },
     "subscriptions": {
       "title": "$t(menu.subscriptions)",
-      "followed_sources": "Vous suivez <br/><strong>{{count}}</strong> source",
-      "followed_sources_plural": "Vous suivez <br/><strong>{{count}}</strong> sources",
-      "no_followed_sources": "Vous ne suivez actuellement aucune source.<br />Pour le bon fonctionnement de l'extension, abonnez-vous !"
+      "followed_sources": "You're following <br/><strong>{{count}}</strong> guide",
+      "followed_sources_plural": "You're following <br/><strong>{{count}}</strong> guides",
+      "no_followed_sources": "You're not following any guides right now.<br />To get the most out of DisMoi, subscribe to some guides!"
     },
     "about": {
-      "description": "Lorsque vous visitez une page du web, Dismoi vous permet de lire les messages de vos relations et en poster à votre tour.",
-      "install_date": "Vous l’avez installé le"
+      "description": "When you visit a webpage, DisMoi lets you read messages from people you know and post messages yourself.",
+      "install_date": "You installed the extension on"
     },
     "help": {
-      "contact_support": "Contacter le support de Dismoi",
-      "write_to": "Merci de nous écrire à"
+      "contact_support": "Contact DisMoi support",
+      "write_to": "Thank you for writing to"
     },
     "submitted": {
-      "confirm": "Votre contribution sera publiée d’ici 24h, une confirmation vous sera envoyée par email."
+      "confirm": "Your contribution will be posted within 24h, a confirmation will be sent to you via email."
     },
     "confirmation": {
-      "thanks": "Merci pour votre demande.",
-      "message": "Elle sera très rapidement transmise au(x) source(s) concernée(s). Et vous serez prévenu de la réponse directement par mail."
+      "thanks": "Thanks for your request.",
+      "message": "It will be transmitted right away to the relevant guide(s). You'll receive their response via email."
     }
   }}
