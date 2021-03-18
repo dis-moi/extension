@@ -1,6 +1,9 @@
+import { CloseFunction } from '../../index';
+
 export interface StepTypes {
   next?: () => void;
-  prev: () => void;
+  prev?: () => void;
+  close?: CloseFunction;
 }
 
 export { default as Step1 } from './Step1';

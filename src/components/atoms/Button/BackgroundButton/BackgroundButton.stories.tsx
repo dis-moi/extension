@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { withKnobs, text, select } from '@storybook/addon-knobs';
 import BackgroundButton from './BackgroundButton';
 
 storiesOf('Components/Atoms/Buttons/BackgroundButton', module)
@@ -8,6 +8,7 @@ storiesOf('Components/Atoms/Buttons/BackgroundButton', module)
   .add('normal', () => (
     <BackgroundButton
       dangerouslySetInnerHTML={{ __html: text('content', 'Ajouter') }}
+      size={select('Size ?', { normal: 'normal', big: 'big' }, 'normal')}
     />
   ))
   .add('disabled', () => (
