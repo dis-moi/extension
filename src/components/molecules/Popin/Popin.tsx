@@ -93,7 +93,7 @@ const PopinContent = styled(Box)<PopinContentProps>`
   }
 `;
 
-const PopinClose = styled.div`
+export const PopinClose = styled.div`
   position: absolute;
   top: 12px;
   right: 12px;
