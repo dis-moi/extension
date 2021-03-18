@@ -17,7 +17,8 @@ export default styled('div')`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  transform: translateY(-50%);
+  width: 100%;
   margin: auto;
-  animation: ${evolutionAnim} 500ms linear forwards 2.5s;
+  transform: translateY(-50%);
+  animation: ${evolutionAnim} 500ms linear forwards 3s;
 `;

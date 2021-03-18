@@ -31,10 +31,12 @@ const titleLastAnim = keyframes`
 export default styled('section')`
   height: 100vh;
   text-align: center;
+  font-family: 'Lato', sans-serif;
+
   span {
     display: block;
-    animation: ${titleAnim} 1s linear forwards,
-      ${titleLeftAnim} 250ms linear forwards 1.1s,
-      ${titleLastAnim} 500ms linear forwards 2s;
+    animation: ${titleAnim} 1.5s linear forwards,
+      ${titleLeftAnim} 500ms linear forwards 1.5s,
+      ${titleLastAnim} 500ms linear forwards 2.5s;
   }
 `;
