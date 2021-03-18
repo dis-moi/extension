@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Title from './Title1';
 import { text, withKnobs } from '@storybook/addon-knobs';
+import { Title1 } from './index';
 
-storiesOf('Components/Atoms/Title', module)
+storiesOf('Components/Atoms/Title1', module)
   .addDecorator(withKnobs)
-  .add('normal', () => <Title>{text('title', 'Some Title')}</Title>);
+  .add('normal', () => <Title1>{text('title', 'Some Title')}</Title1>);

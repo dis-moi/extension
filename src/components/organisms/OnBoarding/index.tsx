@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BulleDisMoi from './components/BulleDisMoi';
 import Landing from './components/Landing';
-import Video from './components/Video';
 import Top from './components/Top';
 import Loader, { ProgressBar } from './components/Loader';
 import Evolution from './components/Evolution';
-import { Title1 } from '../../atoms/Title1';
 import LogoDisMoiWithD from '../../atoms/icons/LogoDisMoiWithD';
+import { Step1, Step2 } from './components/Steps';
 
 const OnBoarding = () => {
+  const [currentStep, setStep] = useState(0);
+  const next = () => setStep(currentStep + 1);
+  const prev = () => setStep(currentStep - 1);
+  const steps = [
+    <Step1 key={0} prev={prev} next={next} />,
+    <Step2 key={1} prev={prev} next={next} />
+  ];
+
   return (
     <Landing>
       <Evolution>
@@ -23,19 +30,7 @@ const OnBoarding = () => {
             </Loader>
           </div>
         </Top>
-
-        <Title1>
-          <span>
-            L&apos;installation a réussi !
-            <br />
-            Chargement de votre expérience…
-            <br />
-            Éplinglez DisMoi
-          </span>
-        </Title1>
-        <Video src="http://v2v.cc/~j/theora_testsuite/320x240.ogg" controls>
-          Votre navigateur ne gère pas l&apos;élément <code>video</code>.
-        </Video>
+        {steps.map((step, i) => i === currentStep && step)}
       </Evolution>
     </Landing>
   );
