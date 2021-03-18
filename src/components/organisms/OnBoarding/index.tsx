@@ -22,7 +22,7 @@ const OnBoarding = () => {
   const steps = [
     <Step1 key={0} prev={prev} next={next} />,
     <Step2 key={1} prev={prev} next={next} />,
-    <Step3 key={1} prev={prev} close={close} />
+    <Step3 key={2} prev={prev} close={close} />
   ];
 
   return (
@@ -34,9 +34,13 @@ const OnBoarding = () => {
             <div>
               <BulleDisMoi />
               <Loader>
-                <ProgressBar />
-                <ProgressBar />
-                <ProgressBar />
+                {steps.map((step, i) => (
+                  <ProgressBar
+                    key={i}
+                    startAnim={currentStep >= i}
+                    firstScreen={currentStep === 0}
+                  />
+                ))}
               </Loader>
             </div>
           </Top>

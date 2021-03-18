@@ -17,7 +17,8 @@ export default styled('div')`
   justify-content: center;
   width: 100%;
   opacity: 0;
-  animation: ${loaderPostionAnim} 500ms linear forwards 1.25s;
+  animation: ${loaderPostionAnim} 500ms linear forwards 1.5s;
+
   > div {
     position: relative;
     display: flex;
@@ -25,7 +26,8 @@ export default styled('div')`
     width: 610px;
     margin-left: 64px;
   }
-  > img {
+
+  > svg {
     margin-top: 80px;
   }
 `;
