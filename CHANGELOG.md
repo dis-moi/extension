@@ -1,3 +1,10 @@
+# [3.67.0](https://github.com/dis-moi/extension/compare/v3.66.0...v3.67.0) (2021-03-19)
+
+
+### Features
+
+* redirect path from /en/* to /eclaireurs  [#852](https://github.com/dis-moi/extension/issues/852) ([25789e4](https://github.com/dis-moi/extension/commit/25789e427fd0258671c71afc9e2cdb1c1077be32))
+
 # [3.66.0](https://github.com/dis-moi/extension/compare/v3.65.1...v3.66.0) (2021-03-17)
 
 
