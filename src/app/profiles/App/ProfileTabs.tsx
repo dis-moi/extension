@@ -26,8 +26,8 @@ const ProfileTabs = ({ connected }: ProfileTabsProps) => {
   if (connected) {
     return (
       <ProfileTabsContainer>
-        <Tab to={CONTRIBUTORS_PATH}>{t('menu.sources')}</Tab>
-        <Tab to={'/mes-abonnements'}>{t('menu.subscriptions')}</Tab>
+        <Tab to={CONTRIBUTORS_PATH}>{t('menu.all')}</Tab>
+        <Tab to={'/mes-abonnements'}>{t('menu.following')}</Tab>
       </ProfileTabsContainer>
     );
   }
