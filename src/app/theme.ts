@@ -4,6 +4,7 @@ export interface ButtonTheme {
   default: string;
   hover: string;
   disabled: string;
+  action: string;
   radius: string;
 }
 
@@ -125,6 +126,7 @@ export const theme: Theme = {
     default: '#0C52B4',
     hover: '#05224B',
     disabled: '#BAB8B8',
+    action: '#0CB46D',
     radius: '5px'
   },
 

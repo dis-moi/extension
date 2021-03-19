@@ -22,3 +22,4 @@ export { default as NoNotice } from './NoNotice';
 export { default as Radio } from './Radio';
 export { default as LogoDisMoiWithD } from './LogoDisMoiWithD';
 export { default as Bulleito } from './Bulleito';
+export { default as Reload } from './Reload';

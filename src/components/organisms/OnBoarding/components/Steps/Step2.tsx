@@ -1,30 +1,104 @@
-import { Bulleito } from '../../../../atoms/icons';
-import { BackgroundButton, Paragraph, Title } from '../../../../atoms';
+import styled from 'styled-components';
+import { Bulleito, Reload } from 'components/atoms/icons';
+import { BackgroundButton, Paragraph, Title } from 'components/atoms';
 import React from 'react';
 import { StepTypes } from './index';
-import { GridContainer, GridItem } from '../../../../atoms/Grid';
+import { GridContainer, GridItem } from 'components/atoms/Grid';
+
+const Content = styled.div`
+  width: 100%;
+  max-width: 768px;
+  margin: 130px auto 0;
+`;
+
+const Line = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:first-child {
+    svg {
+      width: 205px;
+      height: auto;
+    }
+  }
+
+  &:last-child {
+    margin-top: 60px;
+
+    & > div {
+      &:last-child {
+        margin-left: 100px;
+      }
+    }
+  }
+`;
+
+const OnboardingTitle = styled(Title)`
+  max-width: 330px;
+  margin-left: 62px;
+  font-size: 28px;
+  color: ${props => props.theme.primaryColor};
+`;
+
+const Text = styled(Paragraph)`
+  margin-bottom: 16px;
+  font-size: 21px;
+  font-weight: 600;
+  color: ${props => props.theme.activeColor};
+`;
+
+const BackgroundColor = color => {
+  switch (color) {
+    case 'inactive':
+      return '#8A8B8E';
+    default:
+      return '#0CB46D';
+  }
+};
+
+const OnboardingButton = styled(BackgroundButton)`
+  display: flex;
+  align-items: center;
+  padding: 15px 34px;
+  font-size: 28px;
+  line-height: 1.2;
+  font-weight: 600;
+  border-radius: 33px;
+  background-color: ${({ color }) => BackgroundColor(color)};
+  border: ${({ color }) => BackgroundColor(color)};
+
+  &:hover {
+    background-color: ${({ color }) => BackgroundColor(color)};
+    border: ${({ color }) => BackgroundColor(color)};
+  }
+
+  svg {
+    margin-right: 16px;
+    width: 32px;
+    height: auto;
+  }
+`;
 
 export default ({ prev, next }: StepTypes) => (
-  <GridContainer direction={'column'} gap={2}>
-    <GridContainer gap={2}>
+  <Content>
+    <Line>
       <Bulleito />
-      <Title align={'left'}>
+      <OnboardingTitle align={'left'}>
         Tu es arrivé à épingler l&apos;extension DisMoi ?
-      </Title>
-    </GridContainer>
-    <GridContainer>
-      <GridItem>
-        <Paragraph>Non, je n&apos;ai pas compris</Paragraph>
-        <BackgroundButton size={'big'} onClick={prev}>
-          Revoir le tuto
-        </BackgroundButton>
-      </GridItem>
-      <GridItem>
-        <Paragraph>Oui, j&apos; épinglé DisMoi</Paragraph>
-        <BackgroundButton size={'big'} onClick={next}>
-          Dernière étape
-        </BackgroundButton>
-      </GridItem>
-    </GridContainer>
-  </GridContainer>
+      </OnboardingTitle>
+    </Line>
+    <Line>
+      <div>
+        <Text>Non, je n&apos;ai pas compris</Text>
+        <OnboardingButton color="inactive" onClick={prev}>
+          <Reload /> Revoir le tuto
+        </OnboardingButton>
+      </div>
+      <div>
+        <Text>Oui, j&apos; épinglé DisMoi</Text>
+        <OnboardingButton onClick={next}>Dernière étape</OnboardingButton>
+      </div>
+    </Line>
+  </Content>
 );
