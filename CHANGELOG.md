@@ -1,3 +1,10 @@
+## [3.67.1](https://github.com/dis-moi/extension/compare/v3.67.0...v3.67.1) (2021-03-19)
+
+
+### Bug Fixes
+
+* **profiles:** fiter link all ([72d7a34](https://github.com/dis-moi/extension/commit/72d7a34e0e473199b5e99bccae2013e3a67d7be4))
+
 # [3.67.0](https://github.com/dis-moi/extension/compare/v3.66.0...v3.67.0) (2021-03-19)
 
 
