@@ -9,6 +9,7 @@ const Pages = () => (
   <>
     <Switch>
       <Redirect exact path="/" to={CONTRIBUTORS_PATH} />
+      <Redirect from={'/en/*'} to={CONTRIBUTORS_PATH} />
       <Route path={CONTRIBUTORS_PATH} component={Profiles} />
       <Route path="/mes-abonnements" component={Subscriptions} />
       <Route component={Error} />
