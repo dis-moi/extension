@@ -19,7 +19,12 @@ export default ({ next }: StepTypes) => (
         Épinglez DisMoi
       </span>
     </Step1Title>
-    <Video src="http://v2v.cc/~j/theora_testsuite/320x240.ogg" muted autoPlay>
+    <Video
+      src="http://v2v.cc/~j/theora_testsuite/320x240.ogg"
+      muted
+      autoPlay
+      onEnded={next}
+    >
       Votre navigateur ne gère pas l&apos;élément <code>video</code>.
     </Video>
   </>
