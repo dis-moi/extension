@@ -5,7 +5,9 @@ import Logger from '../../../utils/Logger';
 
 function* awaitRehydrationSaga() {
   Logger.debug('Checking store rehydratation ...');
-  const rehydrated = yield select(isRehydrated);
+  const rehydrated: ReturnType<typeof isRehydrated> = yield select(
+    isRehydrated
+  );
   Logger.debug(`Store is ${rehydrated ? '' : 'not '}rehydrated!`);
   if (!rehydrated) {
     Logger.debug('Waiting for store rehydratation ...');

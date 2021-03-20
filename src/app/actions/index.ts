@@ -56,7 +56,8 @@ import {
 } from './refreshContributors';
 import {
   ListenActionFailedAction,
-  ListeningActionsReadyAction
+  ListeningActionsReadyAction,
+  StartupAction
 } from './webext';
 import { From } from '../../webext/From';
 import { SubscribeAction, UnsubscribeAction } from './subscription';
@@ -162,6 +163,7 @@ export type AppAction =
   | InstalledAction
   | TabRemovedAction
   | TabDiedAction
+  | StartupAction
   | ContextNotTriggeredAction
   | NoNoticesDisplayedAction
   | RefreshMatchingContextsFailedAction
