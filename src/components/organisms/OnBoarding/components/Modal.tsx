@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import CloseButton from '../../Notification/NotificationHeader/CloseButton';
 import { PopinClose } from '../../../molecules/Popin/Popin';
-import { BackgroundButton } from '../../../atoms';
 import { CloseFunction } from '../index';
 
 interface ContainerProps {
@@ -32,9 +31,6 @@ export default ({ children, open, close }: ModalProps) => {
         <CloseButton onClick={close} />
       </PopinClose>
       {children}
-      <BackgroundButton onClick={close}>
-        Fermer la démonstration
-      </BackgroundButton>
     </Container>
   );
 };

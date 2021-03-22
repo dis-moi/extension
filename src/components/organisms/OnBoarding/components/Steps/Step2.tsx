@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { Bulleito, Reload } from 'components/atoms/icons';
-import { BackgroundButton, Paragraph, Title } from 'components/atoms';
+import { BackgroundButton, Title } from 'components/atoms';
 import React from 'react';
 import { StepTypes } from './index';
-import { GridContainer, GridItem } from 'components/atoms/Grid';
+import Text from '../Text';
 
 const Content = styled.div`
   width: 100%;
@@ -39,13 +39,6 @@ const OnboardingTitle = styled(Title)`
   margin-left: 62px;
   font-size: 28px;
   color: ${props => props.theme.primaryColor};
-`;
-
-const Text = styled(Paragraph)`
-  margin-bottom: 16px;
-  font-size: 21px;
-  font-weight: 600;
-  color: ${props => props.theme.activeColor};
 `;
 
 const BackgroundColor = color => {
