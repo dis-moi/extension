@@ -1,24 +1,24 @@
-import { Bulleito } from '../../../../atoms/icons';
-import { BackgroundButton, Paragraph, Title } from '../../../../atoms';
+import { Bulleito } from 'components/atoms/icons';
+import { BackgroundButton, Title } from 'components/atoms';
 import React from 'react';
 import { StepTypes } from './index';
-import { GridContainer, GridItem } from '../../../../atoms/Grid';
+import { GridContainer, GridItem } from 'components/atoms/Grid';
+import Text from '../Text';
 
 export default ({ prev, close }: StepTypes) => (
   <GridContainer direction={'column'}>
     <GridContainer gap={2}>
       <Bulleito />
-      <Title align={'left'}>Dernière étape</Title>
+      <Title align={'left'}>Bienvenue !</Title>
     </GridContainer>
-    <Paragraph>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit mi
-      ut tincidunt rhoncus. Suspendisse iaculis placerat consectetur. Ut mattis
-      turpis sed lorem facilisis hendrerit. Nam in leo vestibulum, sodales leo
-      a, ultrices diam. Sed volutpat pellentesque libero, vitae euismod nibh
-      consectetur congue. Phasellus sit amet tempus tortor. Maecenas faucibus
-      arcu nibh, vitae imperdiet sem sollicitudin a. Suspendisse eleifend
-      elementum tellus vitae tempus.
-    </Paragraph>
+    <Text align={'left'}>
+      Lors de l&apos;installation, nous vous avons présélectionné plusieurs
+      éclaireurs, plutôt consensuels. A vous de compléter et faire les choix
+      définitifs !<br />
+      Une fois que vous avez terminé, vous pouvez revenir à votre navigation
+      normale sur le web. Les conseils et infos de vos éclaireurs apparaitront
+      directement sur les pages web que vous visitez.
+    </Text>
     <GridContainer justifyContent={'space-around'}>
       <GridItem>
         <BackgroundButton size={'big'} onClick={prev}>
