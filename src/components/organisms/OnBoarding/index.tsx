@@ -5,9 +5,8 @@ import Top from './components/Top';
 import Loader, { ProgressBar } from './components/Loader';
 import Evolution from './components/Evolution';
 import LogoDisMoiWithD from '../../atoms/icons/LogoDisMoiWithD';
-import { Step1, Step2 } from './components/Steps';
+import { Step1, Step2, Step3 } from './Steps';
 import Modal from './components/Modal';
-import Step3 from './components/Steps/Step3';
 
 export type CloseFunction = () => void;
 
@@ -20,7 +19,7 @@ const OnBoarding = () => {
   const prev = () => setStep(currentStep - 1);
 
   const steps = [
-    <Step1 key={0} prev={prev} next={next} />,
+    <Step1 key={0} next={next} />,
     <Step2 key={1} prev={prev} next={next} />,
     <Step3 key={2} prev={prev} close={close} />
   ];
@@ -32,14 +31,10 @@ const OnBoarding = () => {
           <Top>
             <LogoDisMoiWithD />
             <div>
-              <BulleDisMoi />
+              <BulleDisMoi step={currentStep} />
               <Loader>
                 {steps.map((step, i) => (
-                  <ProgressBar
-                    key={i}
-                    startAnim={currentStep >= i}
-                    firstScreen={currentStep === 0}
-                  />
+                  <ProgressBar key={i} step={currentStep} bar={i} />
                 ))}
               </Loader>
             </div>

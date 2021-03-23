@@ -1,8 +1,9 @@
 import styled, { keyframes } from 'styled-components';
+import { videoDuration } from './Video';
 
 interface ProgessBarProps {
-  startAnim?: boolean;
-  firstScreen?: boolean;
+  step: number;
+  bar: number;
 }
 
 const loaderExperienceAnim = keyframes`
@@ -35,8 +36,18 @@ export const ProgressBar = styled('div')<ProgessBarProps>`
     background-color: ${props => props.theme.activeColor};
     border-radius: 6px;
     width: 0;
-    animation: ${props => props.startAnim && loaderExperienceAnim} 750ms linear
-      forwards ${props => (props.firstScreen ? '2s' : '0s')};
+  }
+  &:nth-child(1):after {
+    animation: ${props => props.step >= 0 && loaderExperienceAnim} 750ms linear
+      forwards 2s;
+  }
+  &:nth-child(2):after {
+    animation: ${props => props.step >= 1 && loaderExperienceAnim}
+      ${videoDuration} linear forwards;
+  }
+  &:nth-child(3):after {
+    animation: ${props => props.step >= 2 && loaderExperienceAnim} 750ms linear
+      forwards;
   }
 
   &:not(:first-child) {

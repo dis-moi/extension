@@ -18,7 +18,7 @@ import pathToContributor from 'app/profiles/App/pathToContributor';
 import Filters from 'components/molecules/Filters/RadiosFilters';
 import useContributorsFilters from 'app/profiles/App/useContributorsRadiosFilters';
 import ProfileTabs from '../../../ProfileTabs';
-import OnBoarding from '../../../../../../components/organisms/OnBoarding';
+import OnBoarding from 'components/organisms/OnBoarding';
 import isRedirectedFromExtensionInstall from '../../../../../utils/isRedirectedFromExtensionInstall';
 
 const Title = styled(Title2)`
