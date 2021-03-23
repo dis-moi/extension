@@ -49,6 +49,7 @@ const ProfileIntroContent = styled.section`
           & > img {
             max-width: initial;
             width: 70px;
+            height: auto;
           }
         }
       }
