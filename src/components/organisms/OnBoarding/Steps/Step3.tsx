@@ -3,7 +3,7 @@ import { BackgroundButton, Title } from 'components/atoms';
 import React from 'react';
 import { StepTypes } from './index';
 import { GridContainer, GridItem } from 'components/atoms/Grid';
-import Text from '../Text';
+import Text from '../components/Text';
 
 export default ({ prev, close }: StepTypes) => (
   <GridContainer direction={'column'}>

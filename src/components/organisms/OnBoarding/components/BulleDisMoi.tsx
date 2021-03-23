@@ -1,20 +1,43 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Bulleito } from '../../../atoms/icons';
+import { videoDuration } from './Video';
 
-const bullitoPositionAnim = keyframes`
+interface BulleDisMoiProps {
+  step: number;
+}
+
+const firstStep = keyframes`
   from {
-    margin-left: 8%;
+    margin-left: 0;
   }
   to {
-    margin-left: 41%;
+    margin-left: 22%;
+  }
+`;
+const secondStep = keyframes`
+  from {
+    margin-left: 22%;
+  }
+  to {
+    margin-left: 54%;
+  }
+`;
+const thirdStep = keyframes`
+  from {
+    margin-left: 54%;
+  }
+  to {
+    margin-left: 89%;
   }
 `;
 
-export default styled.div.attrs({ children: <Bulleito /> })`
+export default styled.div.attrs({ children: <Bulleito /> })<BulleDisMoiProps>`
   width: 80px;
   height: auto;
   margin-bottom: 20px;
   margin-left: 0;
-  animation: ${bullitoPositionAnim} 500ms linear forwards 1s;
+  animation: ${firstStep} 500ms linear forwards 2.5s,
+    ${secondStep} ${videoDuration} linear forwards 4.3s,
+    ${props => props.step === 2 && thirdStep} 750ms linear forwards 0s;
 `;

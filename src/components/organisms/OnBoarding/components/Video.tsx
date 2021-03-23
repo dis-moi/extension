@@ -1,5 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
+export const videoDuration = '10s';
+
 const videoAnim = keyframes`
   from {
     height: 0;
@@ -12,5 +14,5 @@ const videoAnim = keyframes`
 export default styled('video')`
   width: 100%;
   height: 0;
-  animation: ${videoAnim} 500ms linear forwards 3s;
+  animation: ${videoAnim} 500ms linear forwards 0.1s;
 `;
