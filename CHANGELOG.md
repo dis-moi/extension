@@ -1,3 +1,10 @@
+## [3.67.2](https://github.com/dis-moi/extension/compare/v3.67.1...v3.67.2) (2021-03-24)
+
+
+### Bug Fixes
+
+* **Avatar:** adds height value, thank you Chrome ([d27ea98](https://github.com/dis-moi/extension/commit/d27ea98a681f89fce915ef74b11da239a2278f8b))
+
 ## [3.67.1](https://github.com/dis-moi/extension/compare/v3.67.0...v3.67.1) (2021-03-19)
 
 
