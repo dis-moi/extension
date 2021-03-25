@@ -53,6 +53,7 @@ export const ListScreen = ({
           )
         )}
       </ListContainer>
+
       <AddNoticeContainer>
         <AddNoticeButton />
       </AddNoticeContainer>
