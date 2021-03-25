@@ -2,7 +2,6 @@ import styled, { keyframes } from 'styled-components';
 
 interface ProgessBarProps {
   step: number;
-  bar: number;
 }
 
 const loaderExperienceAnim = keyframes`

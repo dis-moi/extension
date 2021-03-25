@@ -37,6 +37,6 @@ export default styled.div.attrs({ children: <Bullito /> })<BulleDisMoiProps>`
   margin-bottom: 20px;
   margin-left: 0;
   animation: ${firstStep} 750ms linear forwards 2.5s,
-    ${secondStep} 750ms linear forwards 5s,
+    ${secondStep} 750ms linear forwards 5.5s,
     ${props => props.step === 2 && thirdStep} 750ms linear forwards 0s;
 `;

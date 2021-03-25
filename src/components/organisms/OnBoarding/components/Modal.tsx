@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import CloseButton from '../../Notification/NotificationHeader/CloseButton';
 import { PopinClose } from 'components/molecules/Popin/Popin';
 import { CloseFunction } from '../index';
+import useNoScrollBody from '../../../../app/utils/useNoScrollBody';
 
 interface ContainerProps {
   open: boolean;
@@ -25,6 +26,8 @@ const Container = styled.div<ContainerProps>`
 `;
 
 export default ({ children, open, close }: ModalProps) => {
+  useNoScrollBody();
+
   return (
     <Container open={open}>
       <PopinClose>
