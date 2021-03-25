@@ -14,7 +14,6 @@ interface ContentProps {
 export default styled.div<ContentProps>`
   box-sizing: border-box;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   width: 338px;
   min-height: 85px;

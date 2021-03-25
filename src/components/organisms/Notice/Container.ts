@@ -18,6 +18,9 @@ export default styled(animated.article)<Props>`
   align-items: center;
   justify-content: flex-end;
   font-size: ${props => (props.details ? '15px' : '16px')};
-  margin-bottom: 18px;
   backface-visibility: hidden;
+
+  &:not(:last-of-type) {
+    margin-bottom: 18px;
+  }
 `;

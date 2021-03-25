@@ -8,6 +8,7 @@ const LinkNoNotice = styled(Link)`
   padding: 3px 12px;
   color: ${props => props.theme.Button.default};
   font-weight: 900;
+  font-size: 16px;
   line-height: 1;
   text-decoration: none;
   text-transform: none;

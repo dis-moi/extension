@@ -5,5 +5,5 @@ export default styled(CenterContainer)`
   width: 100%;
   position: absolute;
   // bottom: 60px; // In case of ServiceMessageLine
-  bottom: 25px;
+  bottom: 16px;
 `;
