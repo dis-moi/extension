@@ -45,7 +45,7 @@ export default ({ next }: StepTypes) => {
   const [animStep, setStep] = useState(1);
   const onAnimationEnd = () => {
     setStep(animStep + 1);
-    animStep === 3 && next && setTimeout(next, 1500);
+    return animStep === 3 && next && next();
   };
   return (
     <>

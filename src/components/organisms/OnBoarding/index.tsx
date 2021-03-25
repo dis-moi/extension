@@ -17,6 +17,7 @@ const OnBoarding = () => {
   const close = () => setOpen(false);
   const next = () => setStep(currentStep + 1);
   const prev = () => setStep(currentStep - 1);
+  if (!open) return null;
 
   const steps = [
     <Step1 key={0} next={next} />,
@@ -34,7 +35,7 @@ const OnBoarding = () => {
               <BulleDisMoi step={currentStep} />
               <Loader>
                 {steps.map((step, i) => (
-                  <ProgressBar key={i} step={currentStep} bar={i} />
+                  <ProgressBar key={i} step={currentStep} />
                 ))}
               </Loader>
             </div>

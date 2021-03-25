@@ -49,7 +49,7 @@ export default ({ next }: StepTypes) => {
                 </OnboardingButton>
               </div>
               <div>
-                <Text>Oui, j&apos; épinglé DisMoi</Text>
+                <Text>Oui, j&apos;ai épinglé DisMoi</Text>
                 <OnboardingButton onClick={next}>
                   Dernière étape
                 </OnboardingButton>
