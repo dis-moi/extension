@@ -1,3 +1,10 @@
+## [3.67.3](https://github.com/dis-moi/extension/compare/v3.67.2...v3.67.3) (2021-03-25)
+
+
+### Bug Fixes
+
+* **i18n:** t function on withTitle hoc [#871](https://github.com/dis-moi/extension/issues/871) ([9e53824](https://github.com/dis-moi/extension/commit/9e5382465a5fbd07f4b5ed5c9e9f4c0478ccb11f))
+
 ## [3.67.2](https://github.com/dis-moi/extension/compare/v3.67.1...v3.67.2) (2021-03-24)
 
 
