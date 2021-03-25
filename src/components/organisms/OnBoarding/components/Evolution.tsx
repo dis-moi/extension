@@ -11,7 +11,7 @@ const evolutionAnim = keyframes`
   }
 `;
 
-export default styled('div')`
+export default styled.div`
   position: absolute;
   top: 50%;
   display: flex;

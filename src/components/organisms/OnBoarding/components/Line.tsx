@@ -24,6 +24,7 @@ const Line = styled.div`
 
   p {
     font-size: 28px;
+    text-align: center;
   }
 
   button {

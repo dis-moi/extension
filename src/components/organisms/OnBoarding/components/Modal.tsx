@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import CloseButton from '../../Notification/NotificationHeader/CloseButton';
-import { PopinClose } from '../../../molecules/Popin/Popin';
+import { PopinClose } from 'components/molecules/Popin/Popin';
 import { CloseFunction } from '../index';
 
 interface ContainerProps {

@@ -1,14 +1,11 @@
 import styled from 'styled-components';
-import { BackgroundButton } from '../../../atoms';
+import { BackgroundButton } from 'components/atoms';
 
-type Color = string | undefined;
-const BackgroundColor = (color: Color) => {
-  switch (color) {
-    case 'inactive':
-      return '#8A8B8E';
-    default:
-      return '#0CB46D';
-  }
+type ButtonState = 'inactive' | undefined;
+type Color = string | ButtonState;
+const getBackgroundColor = (color: Color) => {
+  if (color === 'inactive') return '#8A8B8E';
+  return '#0CB46D';
 };
 
 const OnboardingButton = styled(BackgroundButton)`
@@ -18,19 +15,19 @@ const OnboardingButton = styled(BackgroundButton)`
   font-size: 30px;
   line-height: 1.2;
   font-weight: 600;
+  background-color: ${({ color }) => getBackgroundColor(color)};
+  border: ${({ color }) => getBackgroundColor(color)};
   border-radius: 33px;
-  background-color: ${({ color }) => BackgroundColor(color)};
-  border: ${({ color }) => BackgroundColor(color)};
 
   &:hover {
-    background-color: ${({ color }) => BackgroundColor(color)};
-    border: ${({ color }) => BackgroundColor(color)};
+    background-color: ${({ color }) => getBackgroundColor(color)};
+    border: ${({ color }) => getBackgroundColor(color)};
   }
 
   svg {
-    margin-right: 16px;
     width: 32px;
     height: auto;
+    margin-right: 16px;
   }
 `;
 

@@ -1,14 +1,14 @@
 import styled from 'styled-components';
-import { Bulleito, Reload } from 'components/atoms/icons';
 import React, { useState } from 'react';
-import { StepTypes } from './index';
+import { Bullito, Reload } from 'components/atoms/icons';
+import { Title1 } from 'components/atoms/Title1';
 import Text from '../components/Text';
 import Video from '../components/Video';
 import Line from '../components/Line';
 import OnboardingButton from '../components/Buttons';
 import OnboardingTitle from '../components/Title';
 import Content from '../components/Content';
-import { Title1 } from 'components/atoms/Title1';
+import { StepTypes } from './index';
 
 const MarginTitle = styled(Title1)`
   margin-left: 200px;
@@ -33,7 +33,7 @@ export default ({ next }: StepTypes) => {
         {!displayVid && (
           <>
             <Line>
-              <Bulleito />
+              <Bullito />
               <OnboardingTitle align={'left'}>
                 Tu es arrivé à épingler l&apos;extension DisMoi ?
               </OnboardingTitle>
