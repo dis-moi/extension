@@ -1,4 +1,5 @@
 import React, { ComponentType, useLayoutEffect } from 'react';
+import i18next from 'i18next';
 import { connect } from 'react-redux';
 import { removeUITitle, setUITitle } from '../content/actions/ui/title';
 
@@ -19,6 +20,7 @@ const mapDispatchToProps: TitleProps = {
 const withTitle = <TComponentProps extends {}>(title: string | undefined) => (
   Component: ComponentType<TComponentProps & TitleManipulationProps>
 ) => {
+  if (title) title = i18next.t(title);
   const ComponentWithTitleEffect = ({
     setUITitle,
     removeUITitle,

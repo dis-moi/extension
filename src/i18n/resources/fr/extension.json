@@ -107,4 +107,16 @@
       "thanks": "Merci pour votre demande.",
       "message": "Elle sera très rapidement transmise au(x) source(s) concernée(s). Et vous serez prévenu de la réponse directement par mail."
     }
-  }}
+  },
+  "title": {
+    "subscriptions": "$t(menu.subscriptions)",
+    "help": "$t(menu.help)",
+    "filters": "$t(common.filters)",
+    "options": "Options",
+    "about": "$t(menu.about)",
+    "post_form": "Poster une information ici",
+    "preview": "Prévisualisation",
+    "ask_info_form": "Demander une information ici",
+    "contribution_details": "Détail de la contribution"
+  }
+}

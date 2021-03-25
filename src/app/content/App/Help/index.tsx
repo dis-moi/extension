@@ -46,4 +46,4 @@ export const Help = () => {
   );
 };
 
-export default withTitle<{}>('Aide')(Help);
+export default withTitle<{}>('title.help')(Help);

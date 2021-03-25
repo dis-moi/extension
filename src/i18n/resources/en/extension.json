@@ -107,4 +107,16 @@
       "thanks": "Thanks for your request.",
       "message": "It will be transmitted right away to the relevant guide(s). You'll receive their response via email."
     }
-  }}
+  },
+  "title": {
+    "subscriptions": "$t(menu.subscriptions)",
+    "help": "$t(menu.help)",
+    "filters": "$t(common.filters)",
+    "options": "Options",
+    "about": "$t(menu.about)",
+    "post_form": "Post a message here",
+    "preview": "Preview",
+    "ask_info_form": "Ask for information here",
+    "contribution_details": "Message details"
+  }
+}

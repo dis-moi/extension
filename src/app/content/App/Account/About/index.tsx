@@ -54,4 +54,7 @@ export const About = ({ installationDate, extensionVersion }: AboutProps) => {
   );
 };
 
-export default compose(withConnect, withTitle<AboutProps>('À propos'))(About);
+export default compose(
+  withConnect,
+  withTitle<AboutProps>('title.about')
+)(About);

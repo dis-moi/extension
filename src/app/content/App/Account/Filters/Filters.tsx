@@ -8,4 +8,4 @@ export const Filters = () => {
   return <ContentTitleTop>{t('common.filters')}</ContentTitleTop>;
 };
 
-export default withTitle<{}>('Mes Filtres')(Filters);
+export default withTitle<{}>('title.filters')(Filters);
