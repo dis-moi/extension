@@ -7,10 +7,13 @@ import Loader, { ProgressBar } from './components/Loader';
 import Evolution from './components/Evolution';
 import Modal from './components/Modal';
 import { Step1, Step2, Step3 } from './Steps';
+import isRedirectedFromExtensionInstall from 'app/utils/isRedirectedFromExtensionInstall';
 
 export type CloseFunction = () => void;
 
 const OnBoarding = () => {
+  if (!isRedirectedFromExtensionInstall) return null;
+
   const [currentStep, setStep] = useState(0);
   const [open, setOpen] = useState(true);
 

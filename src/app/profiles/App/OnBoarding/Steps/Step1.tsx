@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useTranslation, Trans } from 'react-i18next';
 import styled, { keyframes } from 'styled-components';
 import { Title1 } from 'components/atoms/Title1';
-import { StepTypes } from './index';
+import { StepProps } from './index';
 
 const titleAnim = keyframes`
   from {
@@ -41,8 +42,9 @@ const Step1Title = styled(Title1)`
   overflow: hidden;
 `;
 
-export default ({ next }: StepTypes) => {
+export default ({ next }: StepProps) => {
   const [animStep, setStep] = useState(1);
+  const { t } = useTranslation('profiles');
   const onAnimationEnd = () => {
     setStep(animStep + 1);
     return animStep === 3 && next && next();
@@ -51,11 +53,11 @@ export default ({ next }: StepTypes) => {
     <>
       <Step1Title>
         <AnimatedText onAnimationEnd={onAnimationEnd}>
-          L&apos;installation a réussi !
-          <br />
-          Chargement de votre expérience…
-          <br />
-          Épinglez DisMoi
+          <Trans t={t} i18nKey="view.onBoarding.step1">
+            L&apos;installation a réussi !<br /> Chargement de votre
+            expérience...
+            <br /> Épinglez DisMoi
+          </Trans>
         </AnimatedText>
       </Step1Title>
     </>

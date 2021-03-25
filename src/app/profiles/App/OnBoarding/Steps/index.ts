@@ -1,6 +1,6 @@
 import { CloseFunction } from '../index';
 
-export interface StepTypes {
+export interface StepProps {
   next?: () => void;
   prev?: () => void;
   close?: CloseFunction;

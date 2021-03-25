@@ -18,12 +18,14 @@
     "see_all": "Voir tout",
     "see_more_details": "Plus de détails",
     "see_context": "Voir en contexte",
-    "filter_by": "Filtrer par : "
+    "filter_by": "Filtrer par : ",
+    "finish": "Terminer"
   },
   "error": {
     "common": {
       "title": "Oops !",
-      "message": "Quelque chose s’est mal passé. Veuillez actualiser le plugin ou réessayer plus tard."
+      "message": "Quelque chose s’est mal passé. Veuillez actualiser le plugin ou réessayer plus tard.",
+      "browser_old": "Votre navigateur ne gère pas l'élément"
     }
   },
   "menu": {
@@ -67,6 +69,23 @@
     },
     "add_browser_box": {
       "description_dismoi":"DisMoi permet aux internautes, médias et experts de vous informer directement sur les pages web que vous visitez."
+    },
+    "onBoarding": {
+      "step1": "L'installation a réussi !<br/>  Chargement de votre expérience...<br/>  Épinglez DisMoi",
+      "step2": {
+        "title": "Épinglez DisMoi",
+        "question": "Tu es arrivé à épingler l'extension DisMoi ?",
+        "answer1": "Non, je n'ai pas compris",
+        "button1": "Revoir le tuto",
+        "answer2": "Oui, j'ai épinglé DisMoi",
+        "button2": "Dernière étape"
+      },
+      "step3": {
+        "title": "Bienvenue chez DisMoi",
+        "sub_title":"Un dernier mot !",
+        "paragraph": "<0>- Lors de l'installation, nous vous avons présélectionné plusieurs éclaireurs, plutôt consensuels. À vous de compléter et faire les choix définitifs !</0><1>- Une fois que vous avez terminé, vous pouvez revenir à votre navigation normale sur le web. Les conseils et infos de vos éclaireurs apparaitront directement sur les pages web que vous visitez.</1>",
+        "back_button": "Revoir le tuto"
+      }
     }
   },
   "notice": {
