@@ -53,5 +53,5 @@ export const Details = ({
 
 export default compose(
   withConnect,
-  withTitle<DetailsScreenProps>('Détail de la contribution')
+  withTitle<DetailsScreenProps>('title.contribution_details')
 )(Details);

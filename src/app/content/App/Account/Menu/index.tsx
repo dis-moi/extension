@@ -24,4 +24,4 @@ export const Menu = ({ match }: MenuProps) => {
   );
 };
 
-export default withTitle<MenuProps>('Options')(Menu);
+export default withTitle<MenuProps>('title.options')(Menu);

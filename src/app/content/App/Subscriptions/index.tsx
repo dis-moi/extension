@@ -5,5 +5,5 @@ import Subscriptions, { SubscriptionsScreenProps } from './Subscriptions';
 
 export default compose(
   withConnect,
-  withTitle<SubscriptionsScreenProps>('Abonnements')
+  withTitle<SubscriptionsScreenProps>('title.subscriptions')
 )(Subscriptions);
