@@ -18,12 +18,14 @@
     "see_all": "See all",
     "see_more_details": "See more details",
     "see_context": "See in context",
-    "filter_by": "Filter by:"
+    "filter_by": "Filter by:",
+    "finish": "End"
   },
   "error": {
     "common": {
       "title": "Oops!",
-      "message": "Something went wrong. Please restart the extension or try again later."
+      "message": "Something went wrong. Please restart the extension or try again later.",
+      "browser_old": "Votre navigateur ne gère pas l'élément"
     }
   },
   "menu": {
@@ -67,6 +69,23 @@
     },
     "add_browser_box": {
       "description_dismoi":"DisMoi lets internet users, media and experts share helpful information directly on the webpages you visit."
+    },
+    "onBoarding": {
+      "step1": "L'installation a réussi !<br/>  Chargement de votre expérience...<br/>  Épinglez DisMoi",
+      "step2": {
+        "title": "Pin DisMoi",
+        "question": "Tu es arrivé à épingler l'extension DisMoi ?",
+        "answer1": "Understood",
+        "button1": "Revoir le tuto",
+        "answer2": "Oui, j'ai épinglé DisMoi",
+        "button2": "Dernière étape"
+      },
+      "step3": {
+        "title": "Bienvenue chez DisMoi",
+        "sub_title":"Un dernier mot !",
+        "paragraph": "<0>- Lors de l'installation, nous vous avons présélectionné plusieurs éclaireurs, plutôt consensuels. À vous de compléter et faire les choix définitifs !</0><1>- Une fois que vous avez terminé, vous pouvez revenir à votre navigation normale sur le web. Les conseils et infos de vos éclaireurs apparaitront directement sur les pages web que vous visitez.</1>",
+        "back_button": "Revoir le tuto"
+      }
     }
   },
   "notice": {

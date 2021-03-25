@@ -8,7 +8,7 @@ const Paragraph = styled.p<ParagraphProps>`
   margin: 0;
   font-size: ${props => props.theme.fontSizeDefault};
   color: ${props => props.theme.textColor};
-  text-align: ${props => props.align || 'center'};
+  text-align: ${props => props.align || 'left'};
 
   @media (max-width: ${props => props.theme.tabletWidth}) {
     font-size: 18px;
