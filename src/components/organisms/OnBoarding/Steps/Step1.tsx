@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Title1 } from '../../../atoms/Title1';
+import { Title1 } from 'components/atoms/Title1';
 import { StepTypes } from './index';
 
 const titleAnim = keyframes`

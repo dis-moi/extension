@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Title } from '../../../atoms';
+import { Title } from 'components/atoms';
 
 const OnboardingTitle = styled(Title)`
   max-width: 330px;

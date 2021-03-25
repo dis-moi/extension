@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components';
-import { videoDuration } from './Video';
 
 interface ProgessBarProps {
   step: number;
@@ -15,11 +14,11 @@ const loaderExperienceAnim = keyframes`
   }
 `;
 
-export default styled('div')`
+export default styled.div`
   display: flex;
 `;
 
-export const ProgressBar = styled('div')<ProgessBarProps>`
+export const ProgressBar = styled.div<ProgessBarProps>`
   position: relative;
   width: 30%;
   height: 12px;

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Bulleito } from '../../../atoms/icons';
-import { videoDuration } from './Video';
+import { Bullito } from 'components/atoms/icons';
 
 interface BulleDisMoiProps {
   step: number;
@@ -32,7 +31,7 @@ const thirdStep = keyframes`
   }
 `;
 
-export default styled.div.attrs({ children: <Bulleito /> })<BulleDisMoiProps>`
+export default styled.div.attrs({ children: <Bullito /> })<BulleDisMoiProps>`
   width: 80px;
   height: auto;
   margin-bottom: 20px;

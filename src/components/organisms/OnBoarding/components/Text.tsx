@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Paragraph } from '../../../atoms';
+import { Paragraph } from 'components/atoms';
 
 const Text = styled(Paragraph)`
   margin-bottom: 16px;
