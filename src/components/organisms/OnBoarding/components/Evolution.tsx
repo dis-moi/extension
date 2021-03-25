@@ -20,5 +20,5 @@ export default styled('div')`
   width: 100%;
   margin: auto;
   transform: translateY(-50%);
-  animation: ${evolutionAnim} 500ms linear forwards 3s;
+  animation: ${evolutionAnim} 500ms linear forwards 4s;
 `;

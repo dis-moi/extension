@@ -37,14 +37,17 @@ export const ProgressBar = styled('div')<ProgessBarProps>`
     border-radius: 6px;
     width: 0;
   }
+
   &:nth-child(1):after {
     animation: ${props => props.step >= 0 && loaderExperienceAnim} 750ms linear
-      forwards 2s;
+      forwards 2.5s;
   }
+
   &:nth-child(2):after {
-    animation: ${props => props.step >= 1 && loaderExperienceAnim}
-      ${videoDuration} linear forwards;
+    animation: ${props => props.step >= 1 && loaderExperienceAnim} 750ms linear
+      forwards;
   }
+
   &:nth-child(3):after {
     animation: ${props => props.step >= 2 && loaderExperienceAnim} 750ms linear
       forwards;
