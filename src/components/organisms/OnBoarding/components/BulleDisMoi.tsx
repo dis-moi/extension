@@ -37,7 +37,7 @@ export default styled.div.attrs({ children: <Bulleito /> })<BulleDisMoiProps>`
   height: auto;
   margin-bottom: 20px;
   margin-left: 0;
-  animation: ${firstStep} 500ms linear forwards 2.5s,
-    ${secondStep} ${videoDuration} linear forwards 4.3s,
+  animation: ${firstStep} 750ms linear forwards 2.5s,
+    ${secondStep} 750ms linear forwards 5s,
     ${props => props.step === 2 && thirdStep} 750ms linear forwards 0s;
 `;

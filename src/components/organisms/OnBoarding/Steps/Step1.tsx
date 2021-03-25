@@ -34,8 +34,8 @@ const titleLastAnim = keyframes`
 const AnimatedText = styled('span')`
   display: block;
   animation: ${titleAnim} 1.5s linear forwards,
-    ${titleLeftAnim} 500ms linear forwards 1.5s,
-    ${titleLastAnim} 500ms linear forwards 2.5s;
+    ${titleLeftAnim} 500ms linear forwards 2.5s,
+    ${titleLastAnim} 500ms linear forwards 5s;
 `;
 const Step1Title = styled(Title1)`
   overflow: hidden;
