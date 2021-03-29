@@ -1,7 +1,7 @@
 {
   "common": {
     "sources": "Guides",
-    "subscriber": "Subscribers",
+    "subscriber": "Subscribed",
     "similar_profiles": "Similar profiles",
     "no_more_contribution": "No more contributions",
     "all": "All"
@@ -25,7 +25,7 @@
     "common": {
       "title": "Oops!",
       "message": "Something went wrong. Please restart the extension or try again later.",
-      "browser_old": "Votre navigateur ne gère pas l'élément"
+      "browser_old": "Your browser can't handle this element. Please update your browser to the latest version."
     }
   },
   "menu": {
@@ -71,20 +71,20 @@
       "description_dismoi":"DisMoi lets internet users, media and experts share helpful information directly on the webpages you visit."
     },
     "onBoarding": {
-      "step1": "L'installation a réussi !<br/>  Chargement de votre expérience...<br/>  Épinglez DisMoi",
+      "step1": "DisMoi is installed!<br/>  Your experience is loading...<br/>  Pin DisMoi in your Browser",
       "step2": {
         "title": "Pin DisMoi",
-        "question": "Tu es arrivé à épingler l'extension DisMoi ?",
+        "question": "Did you pin the DisMoi extension in your browser?",
         "answer1": "Understood",
-        "button1": "Revoir le tuto",
-        "answer2": "Oui, j'ai épinglé DisMoi",
-        "button2": "Dernière étape"
+        "button1": "View the tutorial again",
+        "answer2": "Yes, I pinned DisMoi",
+        "button2": "Final step"
       },
       "step3": {
-        "title": "Bienvenue chez DisMoi",
-        "sub_title":"Un dernier mot !",
-        "paragraph": "<0>- Lors de l'installation, nous vous avons présélectionné plusieurs éclaireurs, plutôt consensuels. À vous de compléter et faire les choix définitifs !</0><1>- Une fois que vous avez terminé, vous pouvez revenir à votre navigation normale sur le web. Les conseils et infos de vos éclaireurs apparaitront directement sur les pages web que vous visitez.</1>",
-        "back_button": "Revoir le tuto"
+        "title": "Welcome to DisMoi",
+        "sub_title":"One final word!",
+        "paragraph": "<0>- We have preselected several Guides for you to follow. Now you can decide who to follow!</0><1>- Once you're done, you can go back to browsing the web normally. Posts from Guides you follow will appear directly on the web pages you visit.</1>",
+        "back_button": "View the tutorial again"
       }
     }
   },
