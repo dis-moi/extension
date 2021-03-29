@@ -74,7 +74,7 @@
       "step1": "L'installation a réussi !<br/>  Chargement de votre expérience...<br/>  Épinglez DisMoi",
       "step2": {
         "title": "Épinglez DisMoi",
-        "question": "Tu es arrivé à épingler l'extension DisMoi ?",
+        "question": "Êtes-vous arrivé à épingler l'extension DisMoi ?",
         "answer1": "Non, je n'ai pas compris",
         "button1": "Revoir le tuto",
         "answer2": "Oui, j'ai épinglé DisMoi",
