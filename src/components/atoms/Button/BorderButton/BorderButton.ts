@@ -4,7 +4,7 @@ import Button, { ButtonProps } from 'components/atoms/Button/Button';
 export default styled(Button)<ButtonProps>`
   display: inline-block;
   min-width: 130px;
-  padding: 3px 12px;
+  padding: ${props => (props.size === 'big' ? '8px 19px' : ' 3px 12px')};
   color: ${props => props.theme.Button.default};
   text-decoration: none;
   text-transform: none;

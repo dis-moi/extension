@@ -18,6 +18,7 @@ import pathToContributor from 'app/profiles/App/pathToContributor';
 import Filters from 'components/molecules/Filters/RadiosFilters';
 import useContributorsFilters from 'app/profiles/App/useContributorsRadiosFilters';
 import ProfileTabs from '../../../ProfileTabs';
+import OnBoarding from 'app/profiles/App/OnBoarding';
 
 const Title = styled(Title2)`
   padding-top: 30px;
@@ -127,6 +128,7 @@ const ProfileList = ({
 
   return (
     <>
+      <OnBoarding />
       {connected === false && (
         <Title as="h1">{t('profiles:common.sources')}</Title>
       )}
