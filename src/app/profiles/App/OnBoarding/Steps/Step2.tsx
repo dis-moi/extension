@@ -27,6 +27,7 @@ export default ({ next }: StepProps) => {
           <Video
             src={'/video/dismoi-onboarding.mp4'}
             autoPlay
+            muted
             onEnded={onEnded}
           >
             {t('error.common.browser_old')} <code>video</code>.
