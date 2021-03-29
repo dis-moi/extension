@@ -1,3 +1,24 @@
+# [3.68.0](https://github.com/dis-moi/extension/compare/v3.67.3...v3.68.0) (2021-03-29)
+
+
+### Features
+
+* **newOnboarding:** add modal ([8028697](https://github.com/dis-moi/extension/commit/8028697c4e1850da4ee58a4dfb349571e2bac74f))
+* **newOnboarding:** add step system and step 2 to onboarding ([28d5bdb](https://github.com/dis-moi/extension/commit/28d5bdb551ddfb3e4c65940c003defcd08b5ff36))
+* **newOnboarding:** add translation ([f141aac](https://github.com/dis-moi/extension/commit/f141aac69339c971b1ee17053e01b427c6713c31))
+* **newOnboarding:** add video file ([8ab35ad](https://github.com/dis-moi/extension/commit/8ab35addeac4cdb27ce21685a1a7d6b438de792c))
+* **newOnboarding:** adds autoPlay and muted to the video ([b53ed52](https://github.com/dis-moi/extension/commit/b53ed525e6bcf84601a3cd2e493a9cf0e72fcc70))
+* **newOnboarding:** adds content on step3 ([cd7ed10](https://github.com/dis-moi/extension/commit/cd7ed1002978e9b562dac939e4fe48672dcb1f40))
+* **newOnboarding:** changes Title style ([992e966](https://github.com/dis-moi/extension/commit/992e966fa248a668cf0b5c09fcd4e38c584cc3df))
+* **newOnboarding:** cleans and reorders code ([7ebdec3](https://github.com/dis-moi/extension/commit/7ebdec3a2434816ddf9381b0d00c7c632af654d6))
+* **newOnboarding:** display onboarding on eclaireurs page ([7b1259a](https://github.com/dis-moi/extension/commit/7b1259a2700b72425c9464c28c8432d1abb787a6))
+* **newOnboarding:** improve animation ([9827f75](https://github.com/dis-moi/extension/commit/9827f7582f5293ca60f1adebcca316560ad0e880))
+* **newOnboarding:** improves animation adds autoPlay and muted to the video ([08b9f31](https://github.com/dis-moi/extension/commit/08b9f311e4e71bb75ef82ba0d2b9127b7bf803d0))
+* **newOnboarding:** styles Step2 ([058b5d2](https://github.com/dis-moi/extension/commit/058b5d2fcb9451476e37ce7bc019fa902c330d40))
+* **newOnBoarding:** last feedbacks and translation ([f7b698c](https://github.com/dis-moi/extension/commit/f7b698c7d600310d2d2dc54f50b73e2e0ca1e62a))
+* **newOnBoarding:** Prepare components ([f73c83b](https://github.com/dis-moi/extension/commit/f73c83b8c1f1af2947f6862a34d1e349ab055363))
+* **newOnBoarding:** timing video && useNoScrollBody hook ([483d581](https://github.com/dis-moi/extension/commit/483d581890683794beccd716bdb7e7a123745464))
+
 ## [3.67.3](https://github.com/dis-moi/extension/compare/v3.67.2...v3.67.3) (2021-03-25)
 
 
