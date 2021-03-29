@@ -1,3 +1,10 @@
+## [3.68.1](https://github.com/dis-moi/extension/compare/v3.68.0...v3.68.1) (2021-03-29)
+
+
+### Bug Fixes
+
+* **newOnboarding:** video link && wording ([5a050b5](https://github.com/dis-moi/extension/commit/5a050b5be7265de4581fec0a6c44c0952d6e32f4))
+
 # [3.68.0](https://github.com/dis-moi/extension/compare/v3.67.3...v3.68.0) (2021-03-29)
 
 
