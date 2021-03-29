@@ -1,3 +1,10 @@
+## [3.68.2](https://github.com/dis-moi/extension/compare/v3.68.1...v3.68.2) (2021-03-29)
+
+
+### Bug Fixes
+
+* **newOnboarding:** video muted ([c605271](https://github.com/dis-moi/extension/commit/c605271a81423b659bf21a099a475b278165261c))
+
 ## [3.68.1](https://github.com/dis-moi/extension/compare/v3.68.0...v3.68.1) (2021-03-29)
 
 
