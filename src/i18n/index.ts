@@ -4,6 +4,8 @@ import { initReactI18next } from 'react-i18next';
 import resources from './resources';
 import format from './format';
 
+export type SupportedLanguage = 'en' | 'fr';
+
 const options = {
   resources,
   detection: {
