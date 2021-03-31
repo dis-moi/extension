@@ -1,8 +1,8 @@
 import slugify from 'slugify';
 import { Contributor } from 'app/lmem/contributor';
-import { CONTRIBUTORS_PATH } from '../routes';
+import { path } from '../../routes';
 
 const pathToContributor = (contributor: Contributor) =>
-  `${CONTRIBUTORS_PATH}/${contributor.id}/${slugify(contributor.name)}`;
+  `${path.fr.CONTRIBUTORS}/${contributor.id}/${slugify(contributor.name)}`;
 
 export default pathToContributor;
