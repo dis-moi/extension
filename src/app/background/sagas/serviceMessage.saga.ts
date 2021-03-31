@@ -9,7 +9,8 @@ import { getServiceMessageLastShowDate } from '../selectors/serviceMessage.selec
 import { LinkType } from 'app/lmem/ServiceMessage';
 import { isWithinLastHours } from 'app/utils/areWithinHours';
 import { Level } from '../../utils/Logger';
-import { path } from '../../routes';
+import { path } from '../../../routes';
+import useChangeLanguage from '../../hooks/useChangeLanguage';
 
 export const buildMessages = (messages: string[], nbNotices = 0): string[] => {
   const firstMessage =
@@ -21,6 +22,7 @@ export const buildMessages = (messages: string[], nbNotices = 0): string[] => {
 };
 
 export default function* serviceMessageSaga(tab: Tab, nbNotices = 0) {
+  const lang = useChangeLanguage();
   try {
     const tosAccepted = yield select(areTosAccepted);
     const nbSubscriptions = yield select(getNbSubscriptions);
@@ -33,7 +35,7 @@ export default function* serviceMessageSaga(tab: Tab, nbNotices = 0) {
             messages: buildMessages([], nbNotices),
             action: {
               label: 'Choisir mes sources',
-              url: path.fr.CONTRIBUTORS,
+              url: path[lang].CONTRIBUTORS,
               type: LinkType.Options
             }
           },

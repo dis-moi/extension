@@ -8,6 +8,8 @@ import Content from './Content';
 import Container from './Container';
 import withConnect from './withConnect';
 import { WEBSITE_DOMAIN } from 'app/lmem';
+import useChangeLanguage from '../../../../hooks/useChangeLanguage';
+import { path } from '../../../../../routes';
 
 export interface AboutProps {
   installationDate?: Date;
@@ -16,6 +18,7 @@ export interface AboutProps {
 
 export const About = ({ installationDate, extensionVersion }: AboutProps) => {
   const { t } = useTranslation();
+  const lang = useChangeLanguage();
   return (
     <Container>
       <Title>Dismoi V{extensionVersion}</Title>
@@ -28,25 +31,27 @@ export const About = ({ installationDate, extensionVersion }: AboutProps) => {
       )}
 
       <nav>
-        <ExternalLink href={`https://${WEBSITE_DOMAIN}/aide`}>
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}${path[lang].HELP}`}>
           {t('menu.help')}
         </ExternalLink>{' '}
         -{' '}
-        <ExternalLink href={`https://${WEBSITE_DOMAIN}/a-propos`}>
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}${path[lang].ABOUT}`}>
           {t('menu.about')}
         </ExternalLink>{' '}
         -{' '}
-        <ExternalLink href={`https://${WEBSITE_DOMAIN}/contact`}>
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}${path[lang].CONTACT}`}>
           {t('menu.contact')}
         </ExternalLink>{' '}
         -{' '}
-        <ExternalLink href={`https://${WEBSITE_DOMAIN}/vie-privee`}>
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}${path[lang].PRIVACY}`}>
           {t('menu.privacy')}
         </ExternalLink>{' '}
         -{' '}
-        <ExternalLink href={`https://${WEBSITE_DOMAIN}/cgu`}>CGU</ExternalLink>{' '}
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}${path[lang].TOS}`}>
+          {t('menu.tos')}
+        </ExternalLink>{' '}
         -{' '}
-        <ExternalLink href={`https://${WEBSITE_DOMAIN}/desinstaller`}>
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}${path[lang].UNINSTALL}`}>
           {t('menu.uninstall')}
         </ExternalLink>
       </nav>

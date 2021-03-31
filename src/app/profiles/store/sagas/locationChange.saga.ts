@@ -4,7 +4,7 @@ import { refreshContributors } from 'app/actions';
 import { fetchContributorNotices } from '../actions/notices';
 import { fetchContributorRequest } from 'app/actions/contributor';
 import takeLatestLocationChange from 'app/store/sagas/effects/takeLatestLocationChange';
-import { path } from '../../../routes';
+import { path } from '../../../../routes';
 
 function* contributorsLocationSaga() {
   yield put(refreshContributors());

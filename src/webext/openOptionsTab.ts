@@ -1,10 +1,13 @@
 import { CreateProperties } from './types';
 import { buildQueryString, GetParams } from '../api/call';
-import { path } from '../app/routes';
+import { path } from '../routes';
+import useChangeLanguage from '../app/hooks/useChangeLanguage';
 
-export const getOptionsUrl = (pathname?: string, params: GetParams = {}) =>
-  `${process.env.PROFILES_ORIGIN || ''}${pathname ||
-    path.fr.CONTRIBUTORS}${buildQueryString(params)}`;
+export const getOptionsUrl = (pathname?: string, params: GetParams = {}) => {
+  const lang = useChangeLanguage();
+  return `${process.env.PROFILES_ORIGIN || ''}${pathname ||
+    path[lang].CONTRIBUTORS}${buildQueryString(params)}`;
+};
 
 const createOptionsTabsDescription = (
   pathname?: string,
