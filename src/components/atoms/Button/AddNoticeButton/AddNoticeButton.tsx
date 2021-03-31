@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { Link } from 'components/atoms';
 
@@ -22,4 +23,7 @@ const LinkNoNotice = styled(Link)`
   }
 `;
 
-export default () => <LinkNoNotice to="/contribute">Poster</LinkNoNotice>;
+export default () => {
+  const { t } = useTranslation();
+  return <LinkNoNotice to="/contribute">{t('action.post')}</LinkNoNotice>;
+};
