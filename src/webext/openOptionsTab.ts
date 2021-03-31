@@ -1,10 +1,10 @@
 import { CreateProperties } from './types';
 import { buildQueryString, GetParams } from '../api/call';
-import { CONTRIBUTORS_PATH } from '../app/profiles/routes';
+import { path } from '../app/routes';
 
 export const getOptionsUrl = (pathname?: string, params: GetParams = {}) =>
   `${process.env.PROFILES_ORIGIN || ''}${pathname ||
-    CONTRIBUTORS_PATH}${buildQueryString(params)}`;
+    path.fr.CONTRIBUTORS}${buildQueryString(params)}`;
 
 const createOptionsTabsDescription = (
   pathname?: string,

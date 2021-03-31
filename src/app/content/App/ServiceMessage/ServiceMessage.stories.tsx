@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import Notification from 'components/organisms/Notification';
 import ServiceMessage from './ServiceMessage';
 import { LinkType } from 'app/lmem/ServiceMessage';
-import { CONTRIBUTORS_PATH } from '../../../profiles/routes';
+import { path } from '../../../routes';
 
 storiesOf('Extension/ServiceMessage', module)
   .addDecorator(getStory => (
@@ -18,7 +18,7 @@ storiesOf('Extension/ServiceMessage', module)
       messages={["I'm a service message!"]}
       action={{
         label: "I'm an action",
-        url: CONTRIBUTORS_PATH,
+        url: path.fr.CONTRIBUTORS,
         type: LinkType.Options
       }}
       openOnboarding={() => action('openOnboarding')}
