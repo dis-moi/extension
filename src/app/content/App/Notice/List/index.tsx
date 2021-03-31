@@ -1,11 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useTransition } from 'react-spring';
-
 import { StatefulNoticeWithContributor } from 'app/lmem/notice';
 import { Contributor } from 'app/lmem/contributor';
-
-import { AddNoticeContainer, Paragraph } from 'components/atoms';
+import { AddNoticeContainer } from 'components/atoms';
 import AddNoticeButton from 'components/atoms/Button/AddNoticeButton';
 import NoticeItem, {
   NoticeTransitionProps,
@@ -13,11 +10,6 @@ import NoticeItem, {
 } from 'components/organisms/Notice/Notice';
 import ListContainer from './ListContainer';
 import withConnect from './withConnect';
-
-const BullesNumber = styled(Paragraph)`
-  margin-top: 10px;
-  text-align: center;
-`;
 
 export interface Props {
   notices: StatefulNoticeWithContributor[];
@@ -34,8 +26,10 @@ export const ListScreen = ({
   undismiss,
   onContributorClick
 }: Props) => {
+  const countNotices = (notices && notices.length) || 0;
+
   const transitions = useTransition(
-    notices.slice(0, 3),
+    notices.slice(0, countNotices),
     notice => notice.id,
     // eslint-disable-next-line
     // @ts-ignore
@@ -59,9 +53,6 @@ export const ListScreen = ({
           )
         )}
       </ListContainer>
-      <BullesNumber>
-        Il y a <strong>3</strong> Bulles pour cette page
-      </BullesNumber>
       <AddNoticeContainer>
         <AddNoticeButton />
       </AddNoticeContainer>
