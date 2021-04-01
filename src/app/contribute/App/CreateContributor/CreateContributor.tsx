@@ -9,12 +9,8 @@ import {
   CheckboxLine,
   Error
 } from 'components/atoms/Forms';
-import { BackgroundButton } from '../../../../components/atoms';
-
-const Wrapper = styled.section`
-  max-width: 768px;
-  width: 100%;
-`;
+import { BackgroundButton } from 'components/atoms';
+import { Wrapper } from '../components';
 
 const Banner = styled.div``;
 
