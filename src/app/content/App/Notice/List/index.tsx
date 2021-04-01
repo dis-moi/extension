@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTransition } from 'react-spring';
-
+import { StatefulNoticeWithContributor } from 'app/lmem/notice';
+import { Contributor } from 'app/lmem/contributor';
 import { AddNoticeContainer } from 'components/atoms';
 import AddNoticeButton from 'components/atoms/Button/AddNoticeButton';
 import NoticeItem, {
@@ -8,8 +9,6 @@ import NoticeItem, {
   transitionKeys
 } from 'components/organisms/Notice/Notice';
 import ListContainer from './ListContainer';
-import { StatefulNoticeWithContributor } from 'app/lmem/notice';
-import { Contributor } from 'app/lmem/contributor';
 import withConnect from './withConnect';
 
 export interface Props {
@@ -27,8 +26,10 @@ export const ListScreen = ({
   undismiss,
   onContributorClick
 }: Props) => {
+  const countNotices = (notices && notices.length) || 0;
+
   const transitions = useTransition(
-    notices.slice(0, 2),
+    notices.slice(0, countNotices),
     notice => notice.id,
     // eslint-disable-next-line
     // @ts-ignore
@@ -52,7 +53,8 @@ export const ListScreen = ({
           )
         )}
       </ListContainer>
-      <AddNoticeContainer>
+
+      <AddNoticeContainer shadow={countNotices > 2}>
         <AddNoticeButton />
       </AddNoticeContainer>
     </>

@@ -12,6 +12,7 @@ import { ListScreen } from '.';
 
 const firstMessage = defaultMessage;
 const secondMessage = `De nombreux clients mécontents de Pixmania et ses vendeurs s'expriment sur les réseaux sociaux depuis 2016. Les plaintes continuent en 2017, 2018 et encore en 2019 si l'on se réfère au forum Que Choisir.`;
+const thirdMessage = 'yolo';
 const commonProps = {
   close: action('close'),
   dismiss: action('dismiss'),
@@ -51,6 +52,25 @@ storiesOf('Extension/Notice/List', module)
         generateStatefulNotice({
           dismissed: boolean('dismissed(2)', false, 'second'),
           message: `<p>${text('message(2)', secondMessage, 'second')}</p>`
+        })
+      ]}
+    />
+  ))
+  .add('3 notices', () => (
+    <ListScreen
+      {...commonProps}
+      notices={[
+        generateStatefulNotice({
+          dismissed: boolean('dismissed(1)', false, 'first'),
+          message: `<p>${text('message(1)', firstMessage, 'first')}</p>`
+        }),
+        generateStatefulNotice({
+          dismissed: boolean('dismissed(2)', false, 'second'),
+          message: `<p>${text('message(2)', secondMessage, 'second')}</p>`
+        }),
+        generateStatefulNotice({
+          dismissed: boolean('dismissed(3)', false, 'third'),
+          message: `<p>${text('message(3)', thirdMessage, 'third')}</p>`
         })
       ]}
     />
