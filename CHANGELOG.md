@@ -1,3 +1,18 @@
+# [3.69.0](https://github.com/dis-moi/extension/compare/v3.68.2...v3.69.0) (2021-04-01)
+
+
+### Bug Fixes
+
+* **NoticesList:** adds some box-shadow ([124dcc6](https://github.com/dis-moi/extension/commit/124dcc6f53e573d2b4d1e18911a22beb5cc1b61a))
+* **NoticesList:** idea to display more than 2 notices ([ccccd45](https://github.com/dis-moi/extension/commit/ccccd455d4013110bd0400e9b5ddd7cd6b713f9f))
+* **NoticesList:** removes info line increases max-height of NoticesList container ([965523b](https://github.com/dis-moi/extension/commit/965523b5127e777220a6aed2625c7a1ea7d86d5a))
+
+
+### Features
+
+* **NoticesList:** add shadow for more than 2 contributions ([39f2de4](https://github.com/dis-moi/extension/commit/39f2de400486ed95d1ac7984a6efd6592deaebc8))
+* **NoticesList:** translation && display count transition ([7eba44a](https://github.com/dis-moi/extension/commit/7eba44aeda6051b3d8257ffdf6790969601c6130))
+
 ## [3.68.2](https://github.com/dis-moi/extension/compare/v3.68.1...v3.68.2) (2021-03-29)
 
 
