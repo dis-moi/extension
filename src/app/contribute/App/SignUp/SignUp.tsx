@@ -1,23 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Input, Label } from 'components/atoms/Forms';
+import { CheckboxLine, FormGroup, Input, Label } from 'components/atoms/Forms';
 import { BackgroundButton, Link, Title } from 'components/atoms';
 
 const Wrapper = styled.section`
   max-width: 768px;
   width: 100%;
-`;
-
-const FormGroup = styled.div`
-  &:not(:last-child) {
-    margin-bottom: 20px;
-  }
-`;
-
-const CheckboxLine = styled.div`
-  &:not(:last-of-type) {
-    margin-bottom: 8px;
-  }
 `;
 
 const BottomBar = styled.div`
@@ -31,7 +19,7 @@ const SignUp = () => {
       <form>
         <FormGroup>
           <Label htmlFor="email">Votre adresse email *</Label>
-          <Input type="text" id="email" />
+          <Input type="email" id="email" />
         </FormGroup>
 
         <FormGroup>

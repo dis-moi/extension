@@ -25,7 +25,7 @@ const SignUp = () => {
       <form>
         <FormGroup>
           <Label htmlFor="email">Votre adresse email *</Label>
-          <Input type="text" id="email" />
+          <Input type="email" id="email" />
         </FormGroup>
 
         <FormGroup>
