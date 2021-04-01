@@ -1,18 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Error, Input, Label } from 'components/atoms/Forms';
+import { Error, FormGroup, Input, Label } from 'components/atoms/Forms';
 import { BackgroundButton, Link, Title } from 'components/atoms';
-
-const Wrapper = styled.section`
-  max-width: 768px;
-  width: 100%;
-`;
-
-const FormGroup = styled.div`
-  &:not(:last-child) {
-    margin-bottom: 20px;
-  }
-`;
+import { Wrapper } from '../components';
 
 const BottomBar = styled.div`
   margin-top: 100px;
