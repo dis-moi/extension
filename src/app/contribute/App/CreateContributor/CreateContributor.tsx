@@ -21,7 +21,7 @@ const Banner = styled.div``;
 const CreateContributor = () => {
   return (
     <Wrapper>
-      <Banner>img</Banner>
+      <Banner>Banner</Banner>
 
       <Avatar />
 
