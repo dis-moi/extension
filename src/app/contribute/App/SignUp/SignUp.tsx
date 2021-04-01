@@ -2,11 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { CheckboxLine, FormGroup, Input, Label } from 'components/atoms/Forms';
 import { BackgroundButton, Link, Title } from 'components/atoms';
-import { Wrapper } from '../components';
-
-const BottomBar = styled.div`
-  margin-top: 100px;
-`;
+import { BottomBar, Wrapper } from '../components';
 
 const SignUp = () => {
   return (
