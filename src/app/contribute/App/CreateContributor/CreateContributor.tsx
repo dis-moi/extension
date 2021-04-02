@@ -19,7 +19,7 @@ const CreateContributor = () => {
     <Wrapper>
       <Banner>Banner</Banner>
 
-      <Avatar />
+      <Avatar size="large" />
 
       <FormGroup>
         <Label htmlFor="contributorName">Nom du compte contributeur *</Label>
