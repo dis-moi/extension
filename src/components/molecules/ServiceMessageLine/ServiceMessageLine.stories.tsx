@@ -1,8 +1,12 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import ServiceMessageLine from './ServiceMessageLine';
 
-storiesOf('Components/Molecules/ServiceMessageLine', module).add(
-  'normal',
-  () => <ServiceMessageLine />
-);
+export default {
+  title: 'Components/Molecules/ServiceMessageLine'
+};
+
+export const Normal = () => <ServiceMessageLine />;
+
+Normal.story = {
+  name: 'normal'
+};

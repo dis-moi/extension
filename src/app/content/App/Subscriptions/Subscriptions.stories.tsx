@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { StoryFn } from '@storybook/addons';
 import Notification from 'components/organisms/Notification';
 import Subscriptions from './Subscriptions';
 import { generateContributor } from 'test/fakers/generateContributor';
@@ -11,34 +11,55 @@ const commonProps = {
   onContributorClick: action('onContributorClick')
 };
 
-storiesOf('Extension/Subscriptions', module)
-  .addDecorator(getStory => (
-    <Router>
-      <Notification close={action('close')}>{getStory()}</Notification>
-    </Router>
-  ))
-  .add('no subscriptions', () => (
-    <Subscriptions {...commonProps} subscribedContributors={[]} />
-  ))
-  .add('few subscriptions', () => (
-    <Subscriptions
-      {...commonProps}
-      subscribedContributors={Array.from(Array(3), () => generateContributor())}
-    />
-  ))
-  .add('some subscriptions', () => (
-    <Subscriptions
-      {...commonProps}
-      subscribedContributors={Array.from(Array(13), () =>
-        generateContributor()
-      )}
-    />
-  ))
-  .add('a lot of subscriptions', () => (
-    <Subscriptions
-      {...commonProps}
-      subscribedContributors={Array.from(Array(50), () =>
-        generateContributor()
-      )}
-    />
-  ));
+export default {
+  title: 'Extension/Subscriptions',
+
+  decorators: [
+    (getStory: StoryFn<ReactElement>) => (
+      <Router>
+        <Notification close={action('close')}>{getStory()}</Notification>
+      </Router>
+    )
+  ]
+};
+
+export const NoSubscriptions = () => (
+  <Subscriptions {...commonProps} subscribedContributors={[]} />
+);
+
+NoSubscriptions.story = {
+  name: 'no subscriptions'
+};
+
+export const FewSubscriptions = () => (
+  <Subscriptions
+    {...commonProps}
+    subscribedContributors={Array.from(Array(3), () => generateContributor())}
+  />
+);
+
+FewSubscriptions.story = {
+  name: 'few subscriptions'
+};
+
+export const SomeSubscriptions = () => (
+  <Subscriptions
+    {...commonProps}
+    subscribedContributors={Array.from(Array(13), () => generateContributor())}
+  />
+);
+
+SomeSubscriptions.story = {
+  name: 'some subscriptions'
+};
+
+export const ALotOfSubscriptions = () => (
+  <Subscriptions
+    {...commonProps}
+    subscribedContributors={Array.from(Array(50), () => generateContributor())}
+  />
+);
+
+ALotOfSubscriptions.story = {
+  name: 'a lot of subscriptions'
+};

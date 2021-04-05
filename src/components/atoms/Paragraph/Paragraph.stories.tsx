@@ -1,8 +1,11 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import Paragraph from './Paragraph';
 
-storiesOf('Components/Atoms', module).add('Paragraph', () => (
+export default {
+  title: 'Components/Atoms'
+};
+
+export const _Paragraph = () => (
   <Paragraph>
     I love cheese, especially cottage cheese ricotta. Goat cheesecake everyone
     loves cheddar airedale st. agur blue cheese feta croque monsieur. Port-salut
@@ -10,4 +13,4 @@ storiesOf('Components/Atoms', module).add('Paragraph', () => (
     rubber cheese. Edam who moved my cheese cut the cheese cheesecake stinking
     bishop cheeseburger.
   </Paragraph>
-));
+);
