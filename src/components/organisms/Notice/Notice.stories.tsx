@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import Notice from './Notice';
@@ -10,6 +9,7 @@ import {
 } from 'test/fakers/generateNotice';
 import Faker from 'faker';
 import { generateContributor } from 'test/fakers/generateContributor';
+import { StoryFn } from '@storybook/addons';
 
 const defaultContributorName = Faker.name.findName();
 const longMessage =
@@ -22,53 +22,65 @@ const commonProps = {
   onContributorClick: action('onContributorClick')
 };
 
-storiesOf('Components/Organisms/Notice', module)
-  .addDecorator(withKnobs)
-  .addDecorator(getStory => <Router>{getStory()}</Router>)
-  .add('Default', () => (
-    <Notice
-      {...commonProps}
-      notice={generateStatefulNotice({
-        dismissed: boolean('dismissed', false),
-        contributor: generateContributor({
-          name: text('contributor', defaultContributorName)
-        }),
-        message: `<p>${text('message', defaultMessage)}</p>`
-      })}
-    />
-  ))
-  .add('Dismissed', () => (
-    <Notice
-      {...commonProps}
-      notice={generateStatefulNotice({
-        dismissed: true,
-        contributor: generateContributor({
-          name: text('contributor', defaultContributorName)
-        }),
-        message: `<p>${text('message', defaultMessage)}</p>`
-      })}
-    />
-  ))
-  .add('Read', () => (
-    <Notice
-      {...commonProps}
-      notice={generateStatefulNotice({
-        read: true,
-        contributor: generateContributor({
-          name: text('contributor', defaultContributorName)
-        }),
-        message: `<p>${text('message', defaultMessage)}</p>`
-      })}
-    />
-  ))
-  .add('Long title', () => (
-    <Notice
-      {...commonProps}
-      notice={generateStatefulNotice({
-        contributor: generateContributor({
-          name: text('contributor', defaultContributorName)
-        }),
-        message: `<p>${text('message', longMessage)}</p>`
-      })}
-    />
-  ));
+export default {
+  title: 'Components/Organisms/Notice',
+  decorators: [
+    withKnobs,
+    (getStory: StoryFn<ReactElement>) => <Router>{getStory()}</Router>
+  ]
+};
+
+export const Default = () => (
+  <Notice
+    {...commonProps}
+    notice={generateStatefulNotice({
+      dismissed: boolean('dismissed', false),
+      contributor: generateContributor({
+        name: text('contributor', defaultContributorName)
+      }),
+      message: `<p>${text('message', defaultMessage)}</p>`
+    })}
+  />
+);
+
+export const Dismissed = () => (
+  <Notice
+    {...commonProps}
+    notice={generateStatefulNotice({
+      dismissed: true,
+      contributor: generateContributor({
+        name: text('contributor', defaultContributorName)
+      }),
+      message: `<p>${text('message', defaultMessage)}</p>`
+    })}
+  />
+);
+
+export const Read = () => (
+  <Notice
+    {...commonProps}
+    notice={generateStatefulNotice({
+      read: true,
+      contributor: generateContributor({
+        name: text('contributor', defaultContributorName)
+      }),
+      message: `<p>${text('message', defaultMessage)}</p>`
+    })}
+  />
+);
+
+export const LongTitle = () => (
+  <Notice
+    {...commonProps}
+    notice={generateStatefulNotice({
+      contributor: generateContributor({
+        name: text('contributor', defaultContributorName)
+      }),
+      message: `<p>${text('message', longMessage)}</p>`
+    })}
+  />
+);
+
+LongTitle.story = {
+  name: 'Long title'
+};

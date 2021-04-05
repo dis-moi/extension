@@ -1,16 +1,37 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import Input from './Input';
 import { WEBSITE_DOMAIN } from 'app/lmem';
 
-storiesOf('Components/Atoms/Forms/Input', module)
-  .add('text', () => <Input placeholder="placeholder" type="text" />)
-  .add('text with error', () => (
-    <Input placeholder="placeholder" type="text" error />
-  ))
-  .add('email', () => (
-    <Input placeholder={`coucou@${WEBSITE_DOMAIN}`} type="email" />
-  ))
-  .add('email with error', () => (
-    <Input placeholder={`coucou@${WEBSITE_DOMAIN}`} type="email" error />
-  ));
+export default {
+  title: 'Components/Atoms/Forms/Input'
+};
+
+export const Text = () => <Input placeholder="placeholder" type="text" />;
+
+Text.story = {
+  name: 'text'
+};
+
+export const TextWithError = () => (
+  <Input placeholder="placeholder" type="text" error />
+);
+
+TextWithError.story = {
+  name: 'text with error'
+};
+
+export const Email = () => (
+  <Input placeholder={`coucou@${WEBSITE_DOMAIN}`} type="email" />
+);
+
+Email.story = {
+  name: 'email'
+};
+
+export const EmailWithError = () => (
+  <Input placeholder={`coucou@${WEBSITE_DOMAIN}`} type="email" error />
+);
+
+EmailWithError.story = {
+  name: 'email with error'
+};

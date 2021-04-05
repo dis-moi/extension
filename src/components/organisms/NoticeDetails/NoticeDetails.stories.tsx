@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { StoryFn } from '@storybook/addons';
 import NoticeDetails from './NoticeDetails';
 import { subMonths } from 'date-fns';
 import Faker from 'faker';
@@ -26,62 +26,81 @@ const commonProps = {
   onContributorClick: action('onContributorClick')
 };
 
-storiesOf('Components/Organisms/NoticeDetails', module)
-  .addDecorator(getStory => <Router>{getStory()}</Router>)
-  .add('Default', () => (
-    <NoticeDetails
-      {...commonProps}
-      notice={generateStatefulNotice({
-        message: `<p>${text('message', defaultMessage)}</p>`,
-        created: new Date(date('created', defaultDate)),
-        likes: number('likes', 42),
-        dislikes: number('dislikes', 2),
-        liked: boolean('liked', false),
-        disliked: boolean('disliked', false)
-      })}
-    />
-  ))
-  .add('Long message', () => (
-    <NoticeDetails
-      {...commonProps}
-      notice={generateStatefulNotice({
-        message: `<p>${text('message', longMessage)}</p>`
-      })}
-    />
-  ))
-  .add('Dismissed', () => (
-    <NoticeDetails
-      {...commonProps}
-      notice={generateStatefulNotice({ dismissed: true })}
-    />
-  ))
-  .add('Liked', () => (
-    <NoticeDetails
-      {...commonProps}
-      notice={generateStatefulNotice({
-        liked: true,
-        likes: number('likes', 1)
-      })}
-    />
-  ))
-  .add('Disliked', () => (
-    <NoticeDetails
-      {...commonProps}
-      notice={generateStatefulNotice({ disliked: true })}
-    />
-  ))
-  .add('Relayed', () => (
-    <NoticeDetails
-      {...commonProps}
-      notice={generateStatefulNotice({ disliked: true })}
-      relayer={generateContributor()}
-    />
-  ))
-  .add('Youtube video', () => (
-    <NoticeDetails
-      {...commonProps}
-      notice={generateStatefulNotice({
-        message: messageWithYoutubeVideo
-      })}
-    />
-  ));
+export default {
+  title: 'Components/Organisms/NoticeDetails',
+  decorators: [
+    (getStory: StoryFn<ReactElement>) => <Router>{getStory()}</Router>
+  ]
+};
+
+export const Default = () => (
+  <NoticeDetails
+    {...commonProps}
+    notice={generateStatefulNotice({
+      message: `<p>${text('message', defaultMessage)}</p>`,
+      created: new Date(date('created', defaultDate)),
+      likes: number('likes', 42),
+      dislikes: number('dislikes', 2),
+      liked: boolean('liked', false),
+      disliked: boolean('disliked', false)
+    })}
+  />
+);
+
+export const LongMessage = () => (
+  <NoticeDetails
+    {...commonProps}
+    notice={generateStatefulNotice({
+      message: `<p>${text('message', longMessage)}</p>`
+    })}
+  />
+);
+
+LongMessage.story = {
+  name: 'Long message'
+};
+
+export const Dismissed = () => (
+  <NoticeDetails
+    {...commonProps}
+    notice={generateStatefulNotice({ dismissed: true })}
+  />
+);
+
+export const Liked = () => (
+  <NoticeDetails
+    {...commonProps}
+    notice={generateStatefulNotice({
+      liked: true,
+      likes: number('likes', 1)
+    })}
+  />
+);
+
+export const Disliked = () => (
+  <NoticeDetails
+    {...commonProps}
+    notice={generateStatefulNotice({ disliked: true })}
+  />
+);
+
+export const Relayed = () => (
+  <NoticeDetails
+    {...commonProps}
+    notice={generateStatefulNotice({ disliked: true })}
+    relayer={generateContributor()}
+  />
+);
+
+export const YoutubeVideo = () => (
+  <NoticeDetails
+    {...commonProps}
+    notice={generateStatefulNotice({
+      message: messageWithYoutubeVideo
+    })}
+  />
+);
+
+YoutubeVideo.story = {
+  name: 'Youtube video'
+};

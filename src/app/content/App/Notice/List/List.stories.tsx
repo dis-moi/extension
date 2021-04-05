@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
-import { storiesOf } from '@storybook/react';
+import { StoryFn } from '@storybook/addons';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, boolean, text } from '@storybook/addon-knobs';
 import {
@@ -21,84 +21,107 @@ const commonProps = {
   onContributorClick: action('onContributorClick')
 };
 
-storiesOf('Extension/Notice/List', module)
-  .addDecorator(withKnobs)
-  .addDecorator(getStory => (
-    <Router>
-      <Notification close={action('close')} hasNotices>
-        {getStory()}
-      </Notification>
-    </Router>
-  ))
-  .add('1 notice', () => (
-    <ListScreen
-      {...commonProps}
-      notices={[
-        generateStatefulNotice({
-          dismissed: boolean('dismissed', false),
-          message: `<p>${text('message', firstMessage)}</p>`
-        })
-      ]}
-    />
-  ))
-  .add('2 notices', () => (
-    <ListScreen
-      {...commonProps}
-      notices={[
-        generateStatefulNotice({
-          dismissed: boolean('dismissed(1)', false, 'first'),
-          message: `<p>${text('message(1)', firstMessage, 'first')}</p>`
-        }),
-        generateStatefulNotice({
-          dismissed: boolean('dismissed(2)', false, 'second'),
-          message: `<p>${text('message(2)', secondMessage, 'second')}</p>`
-        })
-      ]}
-    />
-  ))
-  .add('3 notices', () => (
-    <ListScreen
-      {...commonProps}
-      notices={[
-        generateStatefulNotice({
-          dismissed: boolean('dismissed(1)', false, 'first'),
-          message: `<p>${text('message(1)', firstMessage, 'first')}</p>`
-        }),
-        generateStatefulNotice({
-          dismissed: boolean('dismissed(2)', false, 'second'),
-          message: `<p>${text('message(2)', secondMessage, 'second')}</p>`
-        }),
-        generateStatefulNotice({
-          dismissed: boolean('dismissed(3)', false, 'third'),
-          message: `<p>${text('message(3)', thirdMessage, 'third')}</p>`
-        })
-      ]}
-    />
-  ))
-  .add('1 read', () => (
-    <ListScreen
-      {...commonProps}
-      notices={[
-        generateStatefulNotice({
-          dismissed: boolean('dismissed(1)', false, 'first'),
-          message: `<p>${text('message(1)', firstMessage, 'first')}</p>`
-        }),
-        generateStatefulNotice({
-          read: true,
-          dismissed: boolean('dismissed(2)', false, 'second'),
-          message: `<p>${text('message(2)', secondMessage, 'second')}</p>`
-        })
-      ]}
-    />
-  ))
-  .add('Deleted', () => (
-    <ListScreen
-      {...commonProps}
-      notices={[
-        generateStatefulNotice({
-          dismissed: boolean('dismissed(1)', true, 'first'),
-          message: `<p>${text('message(1)', firstMessage, 'first')}</p>`
-        })
-      ]}
-    />
-  ));
+export default {
+  title: 'Extension/Notice/List',
+
+  decorators: [
+    withKnobs,
+    (getStory: StoryFn<ReactElement>) => (
+      <Router>
+        <Notification close={action('close')} hasNotices>
+          {getStory()}
+        </Notification>
+      </Router>
+    )
+  ]
+};
+
+export const _1Notice = () => (
+  <ListScreen
+    {...commonProps}
+    notices={[
+      generateStatefulNotice({
+        dismissed: boolean('dismissed', false),
+        message: `<p>${text('message', firstMessage)}</p>`
+      })
+    ]}
+  />
+);
+
+_1Notice.story = {
+  name: '1 notice'
+};
+
+export const _2Notices = () => (
+  <ListScreen
+    {...commonProps}
+    notices={[
+      generateStatefulNotice({
+        dismissed: boolean('dismissed(1)', false, 'first'),
+        message: `<p>${text('message(1)', firstMessage, 'first')}</p>`
+      }),
+      generateStatefulNotice({
+        dismissed: boolean('dismissed(2)', false, 'second'),
+        message: `<p>${text('message(2)', secondMessage, 'second')}</p>`
+      })
+    ]}
+  />
+);
+
+export const _3Notices = () => (
+  <ListScreen
+    {...commonProps}
+    notices={[
+      generateStatefulNotice({
+        dismissed: boolean('dismissed(1)', false, 'first'),
+        message: `<p>${text('message(1)', firstMessage, 'first')}</p>`
+      }),
+      generateStatefulNotice({
+        dismissed: boolean('dismissed(2)', false, 'second'),
+        message: `<p>${text('message(2)', secondMessage, 'second')}</p>`
+      }),
+      generateStatefulNotice({
+        dismissed: boolean('dismissed(3)', false, 'third'),
+        message: `<p>${text('message(3)', thirdMessage, 'third')}</p>`
+      })
+    ]}
+  />
+);
+
+
+_2Notices.story = {
+  name: '2 notices'
+};
+
+export const _1Read = () => (
+  <ListScreen
+    {...commonProps}
+    notices={[
+      generateStatefulNotice({
+        dismissed: boolean('dismissed(1)', false, 'first'),
+        message: `<p>${text('message(1)', firstMessage, 'first')}</p>`
+      }),
+      generateStatefulNotice({
+        read: true,
+        dismissed: boolean('dismissed(2)', false, 'second'),
+        message: `<p>${text('message(2)', secondMessage, 'second')}</p>`
+      })
+    ]}
+  />
+);
+
+_1Read.story = {
+  name: '1 read'
+};
+
+export const Deleted = () => (
+  <ListScreen
+    {...commonProps}
+    notices={[
+      generateStatefulNotice({
+        dismissed: boolean('dismissed(1)', true, 'first'),
+        message: `<p>${text('message(1)', firstMessage, 'first')}</p>`
+      })
+    ]}
+  />
+);

@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
-import { storiesOf } from '@storybook/react';
+import { StoryFn } from '@storybook/addons';
 import Notification from 'components/organisms/Notification';
 import NoNoticeScreen from './NoNoticeScreen';
 
-storiesOf('Extension/Notice', module)
-  .addDecorator(getStory => (
-    <Router>
-      <Notification>{getStory()}</Notification>
-    </Router>
-  ))
-  .add('NoNotice', () => <NoNoticeScreen />);
+export default {
+  title: 'Extension/Notice',
+
+  decorators: [
+    (getStory: StoryFn<ReactElement>) => (
+      <Router>
+        <Notification>{getStory()}</Notification>
+      </Router>
+    )
+  ]
+};
+
+export const NoNotice = () => <NoNoticeScreen />;
+
+NoNotice.story = {
+  name: 'NoNotice'
+};

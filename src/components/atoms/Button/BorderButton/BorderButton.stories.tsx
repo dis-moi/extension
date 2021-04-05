@@ -1,24 +1,45 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import BorderButton from './BorderButton';
 
-storiesOf('Components/Atoms/Buttons/BorderButton', module)
-  .addDecorator(withKnobs)
-  .add('normal', () => (
-    <BorderButton
-      dangerouslySetInnerHTML={{ __html: text('content', 'Ajouter') }}
-    />
-  ))
-  .add('disabled', () => (
-    <BorderButton
-      dangerouslySetInnerHTML={{ __html: text('content', 'Ajouter') }}
-      disabled
-    />
-  ))
-  .add('loading', () => <BorderButton loading>Ajouter</BorderButton>)
-  .add('disabled and loading', () => (
-    <BorderButton loading disabled>
-      Ajouter
-    </BorderButton>
-  ));
+export default {
+  title: 'Components/Atoms/Buttons/BorderButton',
+  decorators: [withKnobs]
+};
+
+export const Normal = () => (
+  <BorderButton
+    dangerouslySetInnerHTML={{ __html: text('content', 'Ajouter') }}
+  />
+);
+
+Normal.story = {
+  name: 'normal'
+};
+
+export const Disabled = () => (
+  <BorderButton
+    dangerouslySetInnerHTML={{ __html: text('content', 'Ajouter') }}
+    disabled
+  />
+);
+
+Disabled.story = {
+  name: 'disabled'
+};
+
+export const Loading = () => <BorderButton loading>Ajouter</BorderButton>;
+
+Loading.story = {
+  name: 'loading'
+};
+
+export const DisabledAndLoading = () => (
+  <BorderButton loading disabled>
+    Ajouter
+  </BorderButton>
+);
+
+DisabledAndLoading.story = {
+  name: 'disabled and loading'
+};
