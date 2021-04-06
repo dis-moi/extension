@@ -53,4 +53,19 @@ storiesOf('Components/Organisms/NoticePreview', module)
         }}
       />
     </Router>
+  ))
+  .add('with youtube video', () => (
+    <Router>
+      <NoticePreview
+        contribution={{
+          url: Faker.internet.url(),
+          created: new Date(),
+          contributor: {
+            name: Faker.name.findName(),
+            email: Faker.internet.email()
+          },
+          message: messageWithYoutubeVideo
+        }}
+      />
+    </Router>
   ));
