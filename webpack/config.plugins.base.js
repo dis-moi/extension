@@ -1,5 +1,5 @@
 const path = require('path');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
@@ -12,12 +12,15 @@ module.exports = (env = {}, argv = {}) => {
       checkSyntacticErrors: true,
       eslint: true, // undefined in CRA
       formatter: argv.mode === 'production' ? typescriptFormatter : undefined,
-      reportFiles: ['**', '!**/test/**', '!**/?(*.)(spec|test).*'],
+      reportFiles: [
+        'src/**/*.{ts,tsx}',
+        '!**/test/**',
+        '!**/?(*.)(spec|test).*',
+        '!src/assets/**',
+        '!**/node_modules/**',
+      ],
       silent: false, // true in CRA
-      tsconfig: path.resolve(__dirname, '..', 'tsconfig.json'),
-      // Incremental compilation in incompatible with workers
-      useTypescriptIncrementalApi: true
-      // workers: ForkTsCheckerWebpackPlugin.TWO_CPUS_FREE // undefined in CRA
+      tsconfig: path.resolve(__dirname, '..', 'tsconfig.json')
     }),
     new FilterWarningsPlugin({
       exclude: /export .* was not found in/
