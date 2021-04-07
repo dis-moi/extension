@@ -17,7 +17,6 @@ import ContributorCompact from 'components/organisms/Contributor/ContributorComp
 import ContributorNameLink from 'components/organisms/Contributor/ContributorNameLink';
 import pathToContributor from '../pathToContributor';
 import withConnect from './withConnect';
-import { CONTRIBUTORS_PATH } from '../../routes';
 
 interface SimilarProfilesProps {
   loading?: boolean;
@@ -88,7 +87,9 @@ const SimilarProfiles = ({
           ))}
       </SidebarBox>
       <CenterContainer>
-        <Link to={CONTRIBUTORS_PATH}>{t('profiles:action.see_all')}</Link>
+        <Link to={t('path.profiles.contributors')}>
+          {t('profiles:action.see_all')}
+        </Link>
       </CenterContainer>
     </>
   );

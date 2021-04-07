@@ -28,25 +28,27 @@ export const About = ({ installationDate, extensionVersion }: AboutProps) => {
       )}
 
       <nav>
-        <ExternalLink href={`https://${WEBSITE_DOMAIN}/aide`}>
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}${t('path.help')}`}>
           {t('menu.help')}
         </ExternalLink>{' '}
         -{' '}
-        <ExternalLink href={`https://${WEBSITE_DOMAIN}/a-propos`}>
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}${t('path.about')}`}>
           {t('menu.about')}
         </ExternalLink>{' '}
         -{' '}
-        <ExternalLink href={`https://${WEBSITE_DOMAIN}/contact`}>
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}${t('path.contact')}`}>
           {t('menu.contact')}
         </ExternalLink>{' '}
         -{' '}
-        <ExternalLink href={`https://${WEBSITE_DOMAIN}/vie-privee`}>
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}${t('path.privacy')}`}>
           {t('menu.privacy')}
         </ExternalLink>{' '}
         -{' '}
-        <ExternalLink href={`https://${WEBSITE_DOMAIN}/cgu`}>CGU</ExternalLink>{' '}
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}${t('path.tos')}`}>
+          {t('menu.tos')}
+        </ExternalLink>{' '}
         -{' '}
-        <ExternalLink href={`https://${WEBSITE_DOMAIN}/desinstaller`}>
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}${t('path.uninstall')}`}>
           {t('menu.uninstall')}
         </ExternalLink>
       </nav>

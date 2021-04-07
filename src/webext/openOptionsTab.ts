@@ -1,10 +1,11 @@
 import { CreateProperties } from './types';
 import { buildQueryString, GetParams } from '../api/call';
-import { CONTRIBUTORS_PATH } from '../app/profiles/routes';
+import i18n from 'i18next';
 
-export const getOptionsUrl = (pathname?: string, params: GetParams = {}) =>
-  `${process.env.PROFILES_ORIGIN || ''}${pathname ||
-    CONTRIBUTORS_PATH}${buildQueryString(params)}`;
+export const getOptionsUrl = (pathname?: string, params: GetParams = {}) => {
+  return `${process.env.PROFILES_ORIGIN || ''}${pathname ||
+    i18n.t('path.profiles.contributors')}${buildQueryString(params)}`;
+};
 
 const createOptionsTabsDescription = (
   pathname?: string,

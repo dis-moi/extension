@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Tabs from 'components/molecules/Tabs';
 import Tab from 'components/atoms/Tab/Tab';
 import { Sidebar, TwoColumns } from 'components/atoms';
-import { CONTRIBUTORS_PATH } from '../routes';
 
 interface ProfileTabsProps {
   connected?: boolean;
@@ -26,8 +25,8 @@ const ProfileTabs = ({ connected }: ProfileTabsProps) => {
   if (connected) {
     return (
       <ProfileTabsContainer>
-        <Tab to={CONTRIBUTORS_PATH}>{t('menu.all')}</Tab>
-        <Tab to={'/mes-abonnements'}>{t('menu.following')}</Tab>
+        <Tab to={t('path.profiles.contributors')}>{t('menu.all')}</Tab>
+        <Tab to={t('path.profiles.subscriptions')}>{t('menu.following')}</Tab>
       </ProfileTabsContainer>
     );
   }

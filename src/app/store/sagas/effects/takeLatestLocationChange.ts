@@ -5,7 +5,7 @@ import { LOCATION_CHANGE, LocationChangeAction } from 'connected-react-router';
 const takeLatestLocationChange = <
   Params extends { [K in keyof Params]?: string } = {}
 >(
-  path: string,
+  paths: string[],
   worker: (match: Match<Params>) => void
 ): ForkEffect =>
   fork(function*() {
@@ -16,11 +16,14 @@ const takeLatestLocationChange = <
       if (lastTask) {
         yield cancel(lastTask);
       }
-
-      const match = matchPath<Params>(action.payload.location.pathname, {
-        path,
-        exact: true,
-        strict: false
+      let match;
+      paths.forEach((path: string) => {
+        const res = matchPath<Params>(action.payload.location.pathname, {
+          path,
+          exact: true,
+          strict: false
+        });
+        if (res) match = res;
       });
 
       if (match) {

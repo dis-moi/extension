@@ -14,24 +14,26 @@ export const Help = () => {
       <ContentTitle>{t('faq.title')}</ContentTitle>
       <List>
         <li>
-          <ExternalLink href={`https://${WEBSITE_DOMAIN}/apparition/`}>
+          <ExternalLink href={`https://${WEBSITE_DOMAIN}${t('path.appear')}/`}>
             {t('faq.notices.where_appear')}
           </ExternalLink>
         </li>
         <li>
           <ExternalLink
-            href={`https://${WEBSITE_DOMAIN}/probleme-apparition-bulles/`}
+            href={`https://${WEBSITE_DOMAIN}${t(
+              'path.problem_post_appearing'
+            )}/`}
           >
             {t('faq.notices.dont_appear')}
           </ExternalLink>
         </li>
         <li>
-          <ExternalLink href={`https://${WEBSITE_DOMAIN}/vie-privee/`}>
+          <ExternalLink href={`https://${WEBSITE_DOMAIN}${t('path.privacy')}/`}>
             {t('faq.privacy.used_data')}
           </ExternalLink>
         </li>
         <li>
-          <ExternalLink href={`https://${WEBSITE_DOMAIN}/aide/`}>
+          <ExternalLink href={`https://${WEBSITE_DOMAIN}${t('path.help')}/`}>
             {t('faq.other_questions.title')}
           </ExternalLink>
         </li>

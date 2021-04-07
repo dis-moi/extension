@@ -35,7 +35,8 @@
     "privacy": "Privacy",
     "uninstall": "Uninstall",
     "subscriptions": "Guides",
-    "contributions": "Contributions"
+    "contributions": "Contributions",
+    "tos": "TOS"
   },
   "form": {
     "field_name": {
@@ -118,5 +119,19 @@
     "preview": "Preview",
     "ask_info_form": "Ask for information here",
     "contribution_details": "Message details"
+  },
+  "path": {
+    "profiles": {
+      "contributors": "/en/guides",
+      "subscriptions": "/en/my-subscription"
+    },
+    "appear": "/apparition",
+    "problem_post_appearing": "/probleme-apparition-bulles",
+    "privacy": "/vie-privee",
+    "help": "/aide",
+    "contact": "/contact",
+    "tos": "/cgu",
+    "about": "/a-propos",
+    "uninstall": "/desinstaller"
   }
 }
