@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import Tabs from 'components/molecules/Tabs';
 import Tab from 'components/atoms/Tab/Tab';
 import { Sidebar, TwoColumns } from 'components/atoms';
-import { path } from '../../../routes';
-import useChangeLanguage from '../../hooks/useChangeLanguage';
 
 interface ProfileTabsProps {
   connected?: boolean;
@@ -24,12 +22,11 @@ const ProfileTabsContainer = styled(Tabs)`
 
 const ProfileTabs = ({ connected }: ProfileTabsProps) => {
   const { t } = useTranslation('profiles');
-  const lang = useChangeLanguage();
   if (connected) {
     return (
       <ProfileTabsContainer>
-        <Tab to={path[lang].CONTRIBUTORS}>{t('menu.all')}</Tab>
-        <Tab to={path[lang].SUBSCRIPTIONS}>{t('menu.following')}</Tab>
+        <Tab to={t('path.profiles.contributors')}>{t('menu.all')}</Tab>
+        <Tab to={t('path.profiles.subscriptions')}>{t('menu.following')}</Tab>
       </ProfileTabsContainer>
     );
   }

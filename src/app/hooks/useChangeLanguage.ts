@@ -5,9 +5,6 @@ const en = 'en';
 
 export default (): SupportedLanguage => {
   const browserLanguage = i18n.language;
-  const isProfiles = window.location.href.search('dismoi|localhost') >= 0;
-
-  if (!isProfiles) return browserLanguage === fr ? fr : en;
 
   const pathLanguage = window.location.pathname.search(en) === 1 ? en : fr;
 

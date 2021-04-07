@@ -1,12 +1,10 @@
 import { CreateProperties } from './types';
 import { buildQueryString, GetParams } from '../api/call';
-import { path } from '../routes';
-import useChangeLanguage from '../app/hooks/useChangeLanguage';
+import i18n from 'i18next';
 
 export const getOptionsUrl = (pathname?: string, params: GetParams = {}) => {
-  const lang = useChangeLanguage();
   return `${process.env.PROFILES_ORIGIN || ''}${pathname ||
-    path[lang].CONTRIBUTORS}${buildQueryString(params)}`;
+    i18n.t('path.profiles.contributors')}${buildQueryString(params)}`;
 };
 
 const createOptionsTabsDescription = (

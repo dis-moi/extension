@@ -3,18 +3,22 @@ import React from 'react';
 import Profiles from './Profiles';
 import Error from './Error';
 import Subscriptions from './Subscriptions';
-import { path } from '../../../../routes';
 import useChangeLanguage from '../../../hooks/useChangeLanguage';
+import { useTranslation } from 'react-i18next';
 
 const Pages = () => {
-  const lang = useChangeLanguage();
+  useChangeLanguage();
+  const { t } = useTranslation();
   return (
     <>
       <Switch>
-        <Redirect exact path="/" to={path.fr.CONTRIBUTORS} />
-        <Redirect exact path="/en" to={path.en.CONTRIBUTORS} />
-        <Route path={path[lang].CONTRIBUTORS} component={Profiles} />
-        <Route path={path[lang].SUBSCRIPTIONS} component={Subscriptions} />
+        <Redirect exact path="/" to={t('path.profiles.contributors')} />
+        <Redirect exact path="/en" to={t('path.profiles.contributors')} />
+        <Route path={t('path.profiles.contributors')} component={Profiles} />
+        <Route
+          path={t('path.profiles.subscriptions')}
+          component={Subscriptions}
+        />
         <Route component={Error} />
       </Switch>
     </>

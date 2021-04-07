@@ -6,37 +6,34 @@ import Container from './Container';
 import ContentTitle from './ContentTitle';
 import Content from '../Account/About/Content';
 import { WEBSITE_DOMAIN } from 'app/lmem';
-import useChangeLanguage from '../../../hooks/useChangeLanguage';
-import { path } from '../../../../routes';
 
 export const Help = () => {
   const { t } = useTranslation();
-  const lang = useChangeLanguage();
   return (
     <Container>
       <ContentTitle>{t('faq.title')}</ContentTitle>
       <List>
         <li>
-          <ExternalLink href={`https://${WEBSITE_DOMAIN}${path[lang].APPEAR}/`}>
+          <ExternalLink href={`https://${WEBSITE_DOMAIN}${t('path.appear')}/`}>
             {t('faq.notices.where_appear')}
           </ExternalLink>
         </li>
         <li>
           <ExternalLink
-            href={`https://${WEBSITE_DOMAIN}${path[lang].PROBLEM_POST_APPEARING}/`}
+            href={`https://${WEBSITE_DOMAIN}${t(
+              'path.problem_post_appearing'
+            )}/`}
           >
             {t('faq.notices.dont_appear')}
           </ExternalLink>
         </li>
         <li>
-          <ExternalLink
-            href={`https://${WEBSITE_DOMAIN}${path[lang].PRIVACY}/`}
-          >
+          <ExternalLink href={`https://${WEBSITE_DOMAIN}${t('path.privacy')}/`}>
             {t('faq.privacy.used_data')}
           </ExternalLink>
         </li>
         <li>
-          <ExternalLink href={`https://${WEBSITE_DOMAIN}${path[lang].HELP}/`}>
+          <ExternalLink href={`https://${WEBSITE_DOMAIN}${t('path.help')}/`}>
             {t('faq.other_questions.title')}
           </ExternalLink>
         </li>
