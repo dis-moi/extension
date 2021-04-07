@@ -7,7 +7,7 @@ import { formStoreDecorator } from '../../../../../../.storybook/decorators';
 import { StoryFn } from '@storybook/addons';
 
 export default {
-  title: 'Extension/Contribute',
+  title: 'Extension/Contribute/Submitted',
   component: SubmittedScreen
 };
 

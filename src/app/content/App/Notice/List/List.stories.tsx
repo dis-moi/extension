@@ -88,7 +88,6 @@ export const _3Notices = () => (
   />
 );
 
-
 _2Notices.story = {
   name: '2 notices'
 };
