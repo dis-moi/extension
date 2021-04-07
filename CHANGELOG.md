@@ -1,3 +1,10 @@
+## [3.69.1](https://github.com/dis-moi/extension/compare/v3.69.0...v3.69.1) (2021-04-07)
+
+
+### Bug Fixes
+
+* **Notices:** youtube regex with link ([7753cdb](https://github.com/dis-moi/extension/commit/7753cdbb1fb7335aa3e77f21671e3b4350fb4990))
+
 # [3.69.0](https://github.com/dis-moi/extension/compare/v3.68.2...v3.69.0) (2021-04-01)
 
 
