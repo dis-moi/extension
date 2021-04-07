@@ -6,8 +6,10 @@ import {
   getNbTotalContributors,
   getSubscriptions
 } from 'app/store/selectors/contributors.selectors';
+import i18n from 'i18next';
 
-const openSubscriptions = () => optionsRequested();
+const openSubscriptions = () =>
+  optionsRequested({ pathname: i18n.t('path.profiles.contributors') });
 
 const mapStateToProps = (state: ContentState) => ({
   nbTotalContributors: getNbTotalContributors(state),

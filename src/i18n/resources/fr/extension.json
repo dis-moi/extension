@@ -119,5 +119,19 @@
     "preview": "Prévisualisation",
     "ask_info_form": "Demander une information ici",
     "contribution_details": "Détail de la contribution"
+  },
+  "path": {
+    "profiles": {
+      "contributors": "/eclaireurs",
+      "subscriptions": "/mes-abonnements"
+    },
+    "appear": "/apparition",
+    "problem_post_appearing": "/probleme-apparition-bulles",
+    "privacy": "/vie-privee",
+    "help": "/aide",
+    "contact": "/contact",
+    "tos": "/cgu",
+    "about": "/a-propos",
+    "uninstall": "/desinstaller"
   }
 }

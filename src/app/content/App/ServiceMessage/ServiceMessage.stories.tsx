@@ -5,10 +5,7 @@ import { action } from '@storybook/addon-actions';
 import Notification from 'components/organisms/Notification';
 import ServiceMessage from './ServiceMessage';
 import { LinkType } from 'app/lmem/ServiceMessage';
-import { path } from '../../../../routes';
-import useChangeLanguage from '../../../hooks/useChangeLanguage';
-
-const lang = useChangeLanguage();
+import i18n from 'i18next';
 
 storiesOf('Extension/ServiceMessage', module)
   .addDecorator(getStory => (
@@ -21,7 +18,7 @@ storiesOf('Extension/ServiceMessage', module)
       messages={["I'm a service message!"]}
       action={{
         label: "I'm an action",
-        url: path[lang].CONTRIBUTORS,
+        url: i18n.t('path.profiles.contributors'),
         type: LinkType.Options
       }}
       openOnboarding={() => action('openOnboarding')}

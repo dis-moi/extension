@@ -68,7 +68,7 @@
       "no_profiling": "Nous ne faisons <strong>aucun profilage</strong>"
     },
     "add_browser_box": {
-      "description_dismoi":"DisMoi permet aux internautes, médias et experts de vous informer directement sur les pages web que vous visitez."
+      "description_dismoi": "DisMoi permet aux internautes, médias et experts de vous informer directement sur les pages web que vous visitez."
     },
     "onBoarding": {
       "step1": "L'installation a réussi !<br/>  Chargement de votre expérience...<br/>  Épinglez DisMoi",
@@ -82,7 +82,7 @@
       },
       "step3": {
         "title": "Bienvenue chez DisMoi",
-        "sub_title":"Un dernier mot !",
+        "sub_title": "Un dernier mot !",
         "paragraph": "<0>- Lors de l'installation, nous vous avons présélectionné plusieurs éclaireurs, plutôt consensuels. À vous de compléter et faire les choix définitifs !</0><1>- Une fois que vous avez terminé, vous pouvez revenir à votre navigation normale sur le web. Les conseils et infos de vos éclaireurs apparaitront directement sur les pages web que vous visitez.</1>",
         "back_button": "Revoir le tuto"
       }

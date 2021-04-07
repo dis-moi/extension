@@ -8,8 +8,6 @@ import Content from './Content';
 import Container from './Container';
 import withConnect from './withConnect';
 import { WEBSITE_DOMAIN } from 'app/lmem';
-import useChangeLanguage from '../../../../hooks/useChangeLanguage';
-import { path } from '../../../../../routes';
 
 export interface AboutProps {
   installationDate?: Date;
@@ -18,7 +16,6 @@ export interface AboutProps {
 
 export const About = ({ installationDate, extensionVersion }: AboutProps) => {
   const { t } = useTranslation();
-  const lang = useChangeLanguage();
   return (
     <Container>
       <Title>Dismoi V{extensionVersion}</Title>
@@ -31,27 +28,27 @@ export const About = ({ installationDate, extensionVersion }: AboutProps) => {
       )}
 
       <nav>
-        <ExternalLink href={`https://${WEBSITE_DOMAIN}${path[lang].HELP}`}>
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}${t('path.help')}`}>
           {t('menu.help')}
         </ExternalLink>{' '}
         -{' '}
-        <ExternalLink href={`https://${WEBSITE_DOMAIN}${path[lang].ABOUT}`}>
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}${t('path.about')}`}>
           {t('menu.about')}
         </ExternalLink>{' '}
         -{' '}
-        <ExternalLink href={`https://${WEBSITE_DOMAIN}${path[lang].CONTACT}`}>
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}${t('path.contact')}`}>
           {t('menu.contact')}
         </ExternalLink>{' '}
         -{' '}
-        <ExternalLink href={`https://${WEBSITE_DOMAIN}${path[lang].PRIVACY}`}>
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}${t('path.privacy')}`}>
           {t('menu.privacy')}
         </ExternalLink>{' '}
         -{' '}
-        <ExternalLink href={`https://${WEBSITE_DOMAIN}${path[lang].TOS}`}>
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}${t('path.tos')}`}>
           {t('menu.tos')}
         </ExternalLink>{' '}
         -{' '}
-        <ExternalLink href={`https://${WEBSITE_DOMAIN}${path[lang].UNINSTALL}`}>
+        <ExternalLink href={`https://${WEBSITE_DOMAIN}${t('path.uninstall')}`}>
           {t('menu.uninstall')}
         </ExternalLink>
       </nav>
