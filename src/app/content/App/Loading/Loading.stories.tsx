@@ -6,7 +6,7 @@ import Notification from 'components/organisms/Notification';
 import { Loading } from '.';
 
 export default {
-  title: 'Extension'
+  title: 'Extension/Loading'
 };
 
 export const _Loading = () => <Loading />;

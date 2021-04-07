@@ -2,7 +2,7 @@ import React from 'react';
 import Paragraph from './Paragraph';
 
 export default {
-  title: 'Components/Atoms'
+  title: 'Components/Atoms/Paragraph'
 };
 
 export const _Paragraph = () => (

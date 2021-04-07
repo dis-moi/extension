@@ -6,7 +6,7 @@ import { MemoryRouter as Router } from 'react-router';
 import { StoryFn } from '@storybook/addons';
 
 export default {
-  title: 'Extension'
+  title: 'Extension/Error'
 };
 
 export const _Error = () => <Error />;

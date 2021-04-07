@@ -2,7 +2,7 @@ import React from 'react';
 import * as icons from './';
 
 export default {
-  title: 'Components/Atoms'
+  title: 'Components/Atoms/Icons'
 };
 
 export const Icons = () => (

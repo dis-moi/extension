@@ -4,7 +4,7 @@ import { StoryFn } from '@storybook/addons';
 import AddNoticeButton from './AddNoticeButton';
 
 export default {
-  title: 'Components/Atoms/Buttons',
+  title: 'Components/Atoms/Buttons/AddNotice',
   decorators: [
     (getStory: StoryFn<ReactElement>) => <Router>{getStory()}</Router>
   ]

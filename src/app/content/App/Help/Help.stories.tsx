@@ -7,7 +7,7 @@ import Notification from 'components/organisms/Notification';
 import { Help } from '.';
 
 export default {
-  title: 'Extension'
+  title: 'Extension/Help'
 };
 
 export const _Help = () => <Help />;
