@@ -1,3 +1,14 @@
+# [3.70.0](https://github.com/dis-moi/extension/compare/v3.69.1...v3.70.0) (2021-04-07)
+
+
+### Features
+
+* **routerEn:** update react-router 5.2 ([7d6755b](https://github.com/dis-moi/extension/commit/7d6755be3a3876b18de46fa7f9214d1f4df17a47))
+* **routerEn:** use translation function fix openSubscriptions ([16ceea5](https://github.com/dis-moi/extension/commit/16ceea53b62aeffb922d4b937e439990975cb22b))
+* **routerEn:** useChangeLanguage Hook ([644dda1](https://github.com/dis-moi/extension/commit/644dda12b74c84d0ff6304a66bdf7fdb54276220))
+* **routerEn:** useChangeLanguage with React Router ([9b4a302](https://github.com/dis-moi/extension/commit/9b4a302a0afdbced20f4a633db7dbcc4d50ffe4b))
+* **routesEn:** define routes EN/FR ([651ddbb](https://github.com/dis-moi/extension/commit/651ddbb495fe7e317af2d5ffa93af63d66b5f63e))
+
 ## [3.69.1](https://github.com/dis-moi/extension/compare/v3.69.0...v3.69.1) (2021-04-07)
 
 
