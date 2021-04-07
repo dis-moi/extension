@@ -26,7 +26,6 @@ module.exports = ({ config }) => {
   config.resolve.alias.test = path.resolve(__dirname, '..', 'test');
   //migrate v5->6: Zero config typescript https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#zero-config-typescript
   const basePluginsArray = basePlugins(env, 'development');
-  basePluginsArray.splice(0, 1);
   config.plugins.push(...basePluginsArray);
   config.stats = require('../webpack/config.stats');
   return config;
