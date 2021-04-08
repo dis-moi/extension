@@ -11,6 +11,8 @@ import { ThumbUp, ThumbDown } from 'components/atoms/icons';
 import BackButton from 'components/organisms/Notification/NotificationHeader/BackButton';
 import CloseButton from 'components/organisms/Notification/NotificationHeader/CloseButton';
 import NavLink from 'components/organisms/Notification/NotificationFooter/NavLink';
+import { MemoryRouter as Router } from 'react-router';
+import { StoryFn } from '@storybook/addons';
 import Download from '../icons/Download';
 import Tab from '../Tab/Tab';
 import { Button, BorderButton, ButtonWithIcon } from '../';
@@ -87,9 +89,7 @@ const ButtonsList = () => {
           <OpenButton />
         </div>
         <div>
-          <ButtonWithIcon>
-            Ajouter à mon navigateur <Download />
-          </ButtonWithIcon>
+          <ButtonWithIcon>Ajouter à mon navigateur</ButtonWithIcon>
         </div>
 
         <div>

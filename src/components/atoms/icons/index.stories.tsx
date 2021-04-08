@@ -9,7 +9,8 @@ export const Icons = () => (
   <main
     style={{
       display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))'
+      gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+      background: '#BAB8B8'
     }}
   >
     {Object.keys(icons).map(key => {
