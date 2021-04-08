@@ -9,8 +9,27 @@ export interface ButtonTheme {
 }
 
 export interface Theme {
-  main: string;
+  // Clean start
 
+  // radius
+  radiusS: string;
+  radiusM: string;
+  radiusL: string;
+
+  // colors
+  colorPrimary: string;
+  colorText: string;
+  colorAlert: string;
+  colorGrey1: string;
+
+  // font sizes
+  fontSizeXS: string;
+  fontSizeS: string;
+  fontSizeM: string;
+  fontSizeL: string;
+  fontSizeXL: string;
+
+  /// ///// OLD /////
   // colors
   primaryColor: string;
   activeColor: string;
@@ -74,7 +93,27 @@ export interface Theme {
 }
 
 export const theme: Theme = {
-  main: 'purple',
+  // Clean start
+
+  // radius
+  radiusS: '5px',
+  radiusM: '8px',
+  radiusL: '20px',
+
+  // colors
+  colorPrimary: '#0C52B4',
+  colorText: '#22252B',
+  colorAlert: '#DB0D0D',
+  colorGrey1: '#CACCD0',
+
+  // font sizes
+  fontSizeXS: '13px',
+  fontSizeS: '13px',
+  fontSizeM: '13px',
+  fontSizeL: '13px',
+  fontSizeXL: '13px',
+
+  /// ///// OLD /////
   // colors
   primaryColor: '#404348',
   activeColor: '#0C52B4',

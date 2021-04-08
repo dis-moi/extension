@@ -8,17 +8,12 @@ export default styled.textarea<Props>`
   box-sizing: border-box;
   width: 100%;
   margin-bottom: 10px;
-  padding: 8px 10px 10px 14px;
-  font-size: 13px;
-  border-radius: 6px;
+  padding: 7px 12px 7px 12px;
+  font-size: ${props => props.theme.fontSizeM};
+  border-radius: ${props => props.theme.radiusM};
   border: 1px solid
-    ${props =>
-      props.error ? props.theme.formError : props.theme.secondaryColor};
-  box-shadow: inset 0px 0px 0px 2px
+    ${props => (props.error ? props.theme.formError : props.theme.colorGrey1)};
+  box-shadow: inset 0 0 0 1px
     ${props => (props.error ? props.theme.formError : '#fff')};
   resize: none;
-
-  ::placeholder {
-    font-style: italic;
-  }
 `;
