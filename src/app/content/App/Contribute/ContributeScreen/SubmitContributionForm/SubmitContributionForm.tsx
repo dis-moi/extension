@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Field, InjectedFormProps } from 'redux-form';
-import { Form } from 'components/atoms/Forms';
+import { Form, FormGroup } from 'components/atoms/Forms';
 import { CenterContainer, BackgroundButton } from 'components/atoms';
 import { InputField, TextareaField } from 'components/organisms/Fields';
 import FormErrors from 'components/molecules/FormErrors';
@@ -37,24 +37,34 @@ const SubmitContributionForm = ({
   return (
     <Form onSubmit={handleSubmit}>
       <Field name="url" type="hidden" component={InputField} />
-      <Field
-        name="contributor.name"
-        type="text"
-        placeholder={t('form.field_name.placeholder')}
-        component={InputField}
-      />
-      <Field
-        name="contributor.email"
-        type="email"
-        placeholder={t('form.field_email.placeholder')}
-        component={InputField}
-      />
-      <Field
-        name="message"
-        placeholder={t('form.field_message.placeholder')}
-        rows={5}
-        component={TextareaField}
-      />
+
+      <FormGroup>
+        <Field
+          name="contributor.name"
+          type="text"
+          placeholder={t('form.field_name.placeholder')}
+          component={InputField}
+        />
+      </FormGroup>
+
+      <FormGroup>
+        <Field
+          name="contributor.email"
+          type="email"
+          placeholder={t('form.field_email.placeholder')}
+          component={InputField}
+        />
+      </FormGroup>
+
+      <FormGroup>
+        <Field
+          name="message"
+          placeholder={t('form.field_message.placeholder')}
+          rows={5}
+          component={TextareaField}
+        />
+      </FormGroup>
+
       <CenterContainer>
         <BackgroundButton
           type="submit"
@@ -64,6 +74,7 @@ const SubmitContributionForm = ({
           {t('form.preview_send')}
         </BackgroundButton>
       </CenterContainer>
+
       <FormErrors errors={errors} globalError={error} />
     </Form>
   );

@@ -7,7 +7,6 @@ interface Props {
 export default styled.input<Props>`
   box-sizing: border-box;
   width: 100%;
-  margin-bottom: 16px;
   padding: 7px 12px 7px 12px;
   font-size: ${props => props.theme.fontSizeM};
   line-height: 1;
