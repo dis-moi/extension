@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import LogoDismoi from './icons/LogoDismoi';
+import LogoDisMoi from './icons/LogoDisMoi';
 
 const LogoWrapper = styled.div`
   height: 42px;
@@ -14,7 +14,7 @@ const LogoWrapper = styled.div`
 const Logo = () => {
   return (
     <LogoWrapper>
-      <LogoDismoi />
+      <LogoDisMoi />
     </LogoWrapper>
   );
 };
