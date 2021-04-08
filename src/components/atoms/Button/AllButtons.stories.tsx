@@ -15,9 +15,6 @@ import { ThumbUp, ThumbDown } from 'components/atoms/icons';
 import BackButton from 'components/organisms/Notification/NotificationHeader/BackButton';
 import CloseButton from 'components/organisms/Notification/NotificationHeader/CloseButton';
 import NavLink from 'components/organisms/Notification/NotificationFooter/NavLink';
-import { MemoryRouter as Router } from 'react-router';
-import { StoryFn } from '@storybook/addons';
-import Download from '../icons/Download';
 
 const ButtonsListBackground = styled.div`
   padding: 20px;
