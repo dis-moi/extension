@@ -183,7 +183,7 @@
     "null-loader": "^0.1.1",
     "prettier": "^1.18.2",
     "prettier-config-standard": "^1.0.1",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "pug-loader": "^2.4.0",
     "ramda": "^0.26.1",
     "ramda-adjunct": "^2.19.0",
