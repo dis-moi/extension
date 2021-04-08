@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-const BottomBar = styled.div`
-  margin-top: 100px;
-`;
+const BottomBar = styled.div``;
 
 export default BottomBar;
