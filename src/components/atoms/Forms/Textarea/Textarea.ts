@@ -7,7 +7,6 @@ interface Props {
 export default styled.textarea<Props>`
   box-sizing: border-box;
   width: 100%;
-  margin-bottom: 10px;
   padding: 7px 12px 7px 12px;
   font-size: ${props => props.theme.fontSizeM};
   border-radius: ${props => props.theme.radiusM};
