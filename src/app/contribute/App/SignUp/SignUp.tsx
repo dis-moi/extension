@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { CheckboxLine, FormGroup, Input, Label } from 'components/atoms/Forms';
 import { BackgroundButton, Link, Title } from 'components/atoms';
 import { BottomBar, Wrapper } from '../components';

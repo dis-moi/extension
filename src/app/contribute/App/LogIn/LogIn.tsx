@@ -1,35 +1,51 @@
 import React from 'react';
 import { Error, FormGroup, Input, Label } from 'components/atoms/Forms';
-import { BackgroundButton, Link, Title } from 'components/atoms';
-import { BottomBar, Wrapper } from '../components';
+import { Title2 } from 'components/atoms/Titles';
+import { BackgroundButton, Link } from 'components/atoms';
+import {
+  BottomBar,
+  ContentWrapper,
+  ImageWrapper,
+  Wrapper
+} from '../components';
+import { Logo } from '../../../../components/atoms/icons';
+import LogoDismoi from '../../../../components/atoms/LogoDismoi';
 
-const SignUp = () => {
+const LogIn = () => {
   return (
     <Wrapper>
-      <Title>Se connecter sur DisMoi</Title>
-      <form>
-        <FormGroup>
-          <Label htmlFor="email">Votre adresse email *</Label>
-          <Input type="email" id="email" />
-        </FormGroup>
+      <ImageWrapper>
+        <img src="" alt="img" />
+      </ImageWrapper>
 
-        <FormGroup>
-          <Label htmlFor="password">Choisissez un mot de passe *</Label>
-          <Input type="password" id="password" />
-          <p>
-            Mot de passe oublié ? Le <Link to="">remettre à zéro</Link>
-          </p>
-        </FormGroup>
+      <ContentWrapper>
+        <LogoDismoi></LogoDismoi>
+        <Title2>Se connecter sur DisMoi</Title2>
 
-        <Error>Message d&apos;erreur</Error>
+        <form>
+          <FormGroup>
+            <Label htmlFor="email">Votre adresse email *</Label>
+            <Input type="email" id="email" />
+          </FormGroup>
 
-        <BackgroundButton>Envoyer</BackgroundButton>
-      </form>
-      <BottomBar>
-        Vous n&apos;avez pas de compte ? <Link to="">S&apos;inscrire</Link>
-      </BottomBar>
+          <FormGroup>
+            <Label htmlFor="password">Choisissez un mot de passe *</Label>
+            <Input type="password" id="password" />
+            <p>
+              <Link to="">Mot de passe oublié ?</Link>
+            </p>
+          </FormGroup>
+
+          <Error>Message d&apos;erreur</Error>
+
+          <BackgroundButton>Envoyer</BackgroundButton>
+        </form>
+        <BottomBar>
+          Pas encore inscrit ? <Link to="">Créer un compte</Link>
+        </BottomBar>
+      </ContentWrapper>
     </Wrapper>
   );
 };
 
-export default SignUp;
+export default LogIn;
