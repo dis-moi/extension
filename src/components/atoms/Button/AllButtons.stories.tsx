@@ -14,7 +14,6 @@ import BackButton from 'components/organisms/Notification/NotificationHeader/Bac
 import CloseButton from 'components/organisms/Notification/NotificationHeader/CloseButton';
 import NavLink from 'components/organisms/Notification/NotificationFooter/NavLink';
 import { MemoryRouter as Router } from 'react-router';
-import Download from '../icons/Download';
 import { StoryFn } from '@storybook/addons';
 
 const ButtonsListBackground = styled.div`
@@ -87,9 +86,7 @@ const ButtonsList = () => {
           <OpenButton />
         </div>
         <div>
-          <ButtonWithIcon>
-            Ajouter à mon navigateur <Download />
-          </ButtonWithIcon>
+          <ButtonWithIcon>Ajouter à mon navigateur</ButtonWithIcon>
         </div>
 
         <div>
