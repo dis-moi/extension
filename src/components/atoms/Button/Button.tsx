@@ -2,9 +2,6 @@ import React, { HTMLAttributes, ReactNode } from 'react';
 import styled from 'styled-components';
 import { Theme } from 'app/theme';
 
-import LoadingRotator from 'components/atoms/LoadingRotator/LoadingRotator';
-import Loading from 'components/atoms/icons/Loading';
-
 export interface ButtonContainerProps
   extends HTMLAttributes<HTMLButtonElement> {
   theme?: Theme;
@@ -18,7 +15,6 @@ export interface ButtonContainerProps
 }
 
 export interface ButtonProps extends ButtonContainerProps {
-  loading?: boolean;
   children?: ReactNode | string;
   disabled?: boolean;
   dangerouslySetInnerHTML?: { __html: string };
@@ -28,7 +24,6 @@ export interface ButtonProps extends ButtonContainerProps {
 export const ButtonContainer = styled.button<ButtonContainerProps>``;
 
 const Button = ({
-  loading,
   children,
   target,
   rel,
@@ -43,13 +38,7 @@ const Button = ({
     rel={rel}
     {...props}
   >
-    {loading ? (
-      <LoadingRotator>
-        <Loading />
-      </LoadingRotator>
-    ) : (
-      children
-    )}
+    {children}
   </ButtonContainer>
 );
 
@@ -95,10 +84,5 @@ export default styled(Button)`
   &:disabled:visited {
     background-color: ${props => props.theme.Button.disabled};
     border-color: ${props => props.theme.Button.disabled};
-  }
-
-  ${LoadingRotator} svg {
-    width: 18px;
-    height: 18px;
   }
 `;
