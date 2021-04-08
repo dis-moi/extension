@@ -1,8 +1,16 @@
-import { storiesOf } from '@storybook/react';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import React from 'react';
 import ContentTitle from '.';
 
-storiesOf('Components/Atoms/ContentTitle', module)
-  .addDecorator(withKnobs)
-  .add('normal', () => <ContentTitle>{text('title', 'Title')}</ContentTitle>);
+export default {
+  title: 'Components/Atoms/ContentTitle',
+  decorators: [withKnobs]
+};
+
+export const Normal = () => (
+  <ContentTitle>{text('title', 'Title')}</ContentTitle>
+);
+
+Normal.story = {
+  name: 'normal'
+};

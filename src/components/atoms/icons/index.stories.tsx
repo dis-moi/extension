@@ -1,8 +1,11 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import * as icons from './';
 
-storiesOf('Components/Atoms', module).add('Icons', () => (
+export default {
+  title: 'Components/Atoms/Icons'
+};
+
+export const Icons = () => (
   <main
     style={{
       display: 'grid',
@@ -16,4 +19,4 @@ storiesOf('Components/Atoms', module).add('Icons', () => (
       return <Icon key={key} />;
     })}
   </main>
-));
+);

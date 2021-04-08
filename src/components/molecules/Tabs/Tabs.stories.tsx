@@ -1,5 +1,12 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import Tabs from './Tabs';
 
-storiesOf('Components/Molecules/Tabs', module).add('normal', () => <Tabs />);
+export default {
+  title: 'Components/Molecules/Tabs'
+};
+
+export const Normal = () => <Tabs />;
+
+Normal.story = {
+  name: 'normal'
+};

@@ -1,11 +1,22 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import Tab from './Tab';
 
-storiesOf('Components/Atoms/Tab', module)
-  .add('normal', () => <Tab to={'/mes-abonnements'}>Mes abonnements</Tab>)
-  .add('active', () => (
-    <Tab to={'/mes-abonnements'} isActive={() => true}>
-      Mes abonnements
-    </Tab>
-  ));
+export default {
+  title: 'Components/Atoms/Tab'
+};
+
+export const Normal = () => <Tab to={'/mes-abonnements'}>Mes abonnements</Tab>;
+
+Normal.story = {
+  name: 'normal'
+};
+
+export const Active = () => (
+  <Tab to={'/mes-abonnements'} isActive={() => true}>
+    Mes abonnements
+  </Tab>
+);
+
+Active.story = {
+  name: 'active'
+};

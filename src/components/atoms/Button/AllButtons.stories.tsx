@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { Button, BorderButton, ButtonWithIcon } from '../';
@@ -16,6 +15,7 @@ import CloseButton from 'components/organisms/Notification/NotificationHeader/Cl
 import NavLink from 'components/organisms/Notification/NotificationFooter/NavLink';
 import { MemoryRouter as Router } from 'react-router';
 import Download from '../icons/Download';
+import { StoryFn } from '@storybook/addons';
 
 const ButtonsListBackground = styled.div`
   padding: 20px;
@@ -180,6 +180,11 @@ const ButtonsList = () => {
   );
 };
 
-storiesOf('Theme', module)
-  .addDecorator(getStory => <Router>{getStory()}</Router>)
-  .add('Buttons', () => <ButtonsList />);
+export default {
+  title: 'Theme',
+  decorators: [
+    (getStory: StoryFn<ReactElement>) => <Router>{getStory()}</Router>
+  ]
+};
+
+export const Buttons = () => <ButtonsList />;

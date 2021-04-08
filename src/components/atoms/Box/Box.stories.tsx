@@ -1,5 +1,8 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import Box from './Box';
 
-storiesOf('Components/Atoms', module).add('Box', () => <Box>Random text</Box>);
+export default {
+  title: 'Components/Atoms/Box'
+};
+
+export const _Box = () => <Box>Random text</Box>;

@@ -18,14 +18,15 @@ module.exports = ({ config }) => {
       options: {
         publicPath: process.env.PROFILES_ASSETS_PATH,
         name: '[path][name].[ext]',
-        context: 'src/assets',
-      },
-    },
+        context: 'src/assets'
+      }
+    }
   ];
-  config.resolve.extensions.push('.ts', '.tsx');
   config.resolve.modules.push(path.resolve(__dirname, '..', 'src'));
   config.resolve.alias.test = path.resolve(__dirname, '..', 'test');
-  config.plugins.push(...basePlugins(env, 'development'));
+  //migrate v5->6: Zero config typescript https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#zero-config-typescript
+  const basePluginsArray = basePlugins(env, 'development');
+  config.plugins.push(...basePluginsArray);
   config.stats = require('../webpack/config.stats');
   return config;
 };

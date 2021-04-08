@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
-import { storiesOf } from '@storybook/react';
 
+import { StoryFn } from '@storybook/addons';
 import { action } from '@storybook/addon-actions';
 import Notification from 'components/organisms/Notification';
 import { Help } from '.';
 
-storiesOf('Extension', module)
-  .addDecorator(getStory => (
+export default {
+  title: 'Extension/Help'
+};
+
+export const _Help = () => <Help />;
+_Help.decorators = [
+  (getStory: StoryFn<ReactElement>) => (
     <Router>
       <Notification close={action('close')}>{getStory()}</Notification>
     </Router>
-  ))
-  .add('Help', () => <Help />);
+  )
+];

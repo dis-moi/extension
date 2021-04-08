@@ -1,12 +1,28 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import {
   AddToBrowserMessageBox,
   SlowerMessageBox,
   PrivacyMessageBox
 } from './';
 
-storiesOf('Components/Molecules/SidebarBox', module)
-  .add('normal', () => <SlowerMessageBox />)
-  .add('with list', () => <PrivacyMessageBox />)
-  .add('with action', () => <AddToBrowserMessageBox />);
+export default {
+  title: 'Components/Molecules/SidebarBox'
+};
+
+export const Normal = () => <SlowerMessageBox />;
+
+Normal.story = {
+  name: 'normal'
+};
+
+export const WithList = () => <PrivacyMessageBox />;
+
+WithList.story = {
+  name: 'with list'
+};
+
+export const WithAction = () => <AddToBrowserMessageBox />;
+
+WithAction.story = {
+  name: 'with action'
+};
