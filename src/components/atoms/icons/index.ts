@@ -8,6 +8,7 @@ export { default as Bubble } from './Bubble'; /* à vérifier */
 export { default as Bullito } from './Bullito';
 export { default as CheckSmall } from './CheckSmall';
 export { default as Close } from './Close';
+export { default as Download } from './Download';
 export { default as Loading } from './Loading';
 export { default as LoadingBig } from './LoadingBig';
 export { default as LinkIcon } from './Link';
