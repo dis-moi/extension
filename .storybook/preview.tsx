@@ -8,6 +8,7 @@ import { StoryFn } from '@storybook/addons';
 
 const Global = createGlobalStyle`
   body {
+    font-family: "Lato", Arial, sans-serif;
     background-color: grey;
   }
 `;
