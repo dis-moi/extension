@@ -7,7 +7,7 @@
     "all": "All"
   },
   "action": {
-    "see_contributions": "See contributions",
+    "real_example": "See a real example",
     "add_dismoi_to_browser": "Add DisMoi to my browser",
     "add_to_my_browser": "Add to my browser ",
     "follow": "Follow",
@@ -43,6 +43,17 @@
     },
     "subscribe": {
       "message": "Please follow {{contributorName}} to see their posts."
+    },
+    "is_not_subscriber": {
+      "message": "Please follow {{contributorName}} to see this example",
+      "btn_text": "Follow and see a real example"
+    },
+    "is_not_connected": {
+      "message": "To view posts from {{contributorName}}, please add DisMoi to your browser.",
+      "btn_text": "Add DisMoi to my browser"
+    },
+    "just_subscribed": {
+      "message": "You just subscribed to {{contributorName}}"
     }
   },
   "view": {

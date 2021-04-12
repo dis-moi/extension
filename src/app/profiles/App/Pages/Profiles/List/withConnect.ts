@@ -11,6 +11,7 @@ import {
 } from 'app/profiles/store/selectors/categories';
 import { ProfilesState } from 'app/profiles/store/reducers';
 import { extensionMessageSender } from 'app/profiles/extensionId';
+import { getSubscriptions } from 'app/profiles/store/selectors/subscriptions';
 
 const mapStateToProps = (state: ProfilesState) => ({
   loading: areContributorsLoading(state),
@@ -18,7 +19,8 @@ const mapStateToProps = (state: ProfilesState) => ({
   connected: isConnected(state),
   addToBrowser: clickInstallHandler,
   categories: getCategories(state),
-  categoriesLoading: areCategoriesLoading(state)
+  categoriesLoading: areCategoriesLoading(state),
+  subscriptions: getSubscriptions(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
