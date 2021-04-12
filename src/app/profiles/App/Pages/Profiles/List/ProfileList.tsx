@@ -19,6 +19,12 @@ import Filters from 'components/molecules/Filters/RadiosFilters';
 import useContributorsFilters from 'app/profiles/App/useContributorsRadiosFilters';
 import ProfileTabs from '../../../ProfileTabs';
 import OnBoarding from 'app/profiles/App/OnBoarding';
+import onContributorExampleClick from '../../../../../utils/onContributorExampleClick';
+import { Subscriptions } from '../../../../../lmem/subscription';
+import ContextPopin, {
+  contextPopinInitState,
+  PopinDisplayState
+} from '../ContextPopin';
 
 const Title = styled(Title2)`
   padding-top: 30px;
@@ -70,6 +76,10 @@ export const ContributorProfileListItem = styled(ContributorLarge)`
   }
 `;
 
+const ContributorExampleLink = styled(Link)`
+  cursor: pointer;
+`;
+
 export interface ProfileListProps {
   loading?: boolean;
   contributors: StatefulContributor[];
@@ -79,6 +89,7 @@ export interface ProfileListProps {
   addToBrowser: (e: MouseEvent<HTMLButtonElement>) => void;
   categoriesLoading?: boolean;
   categories: Categories;
+  subscriptions?: Subscriptions;
 }
 
 const ProfileList = ({
@@ -89,8 +100,11 @@ const ProfileList = ({
   connected,
   addToBrowser,
   categoriesLoading,
-  categories
+  categories,
+  subscriptions
 }: ProfileListProps) => {
+  const { t } = useTranslation();
+
   const [notConnectedPopinState, setNotConnectedPopinState] = useState<
     NotConnectedPopinState
   >({ opened: false });
@@ -98,7 +112,8 @@ const ProfileList = ({
     browserNotSupportedPopinOpened,
     setBrowserNotSupportedPopinOpened
   ] = useState(false);
-  const { t } = useTranslation();
+
+  const [popin, setPopin] = useState<PopinDisplayState>(contextPopinInitState);
 
   const handleSubscribe = (contributor: StatefulContributor) => () => {
     if (connected) {
@@ -153,10 +168,23 @@ const ProfileList = ({
               onUnsubscribe={handleUnsubscribe(contributor)}
               to={pathToContributor(contributor)}
             >
-              <Link to={pathToContributor(contributor)}>
-                {t('profiles:action.see_contributions')}
-                <Arrow />
-              </Link>
+              {contributor.contribution?.example.exampleMatchingUrl && (
+                <ContributorExampleLink
+                  onClick={() =>
+                    onContributorExampleClick(
+                      contributor,
+                      connected,
+                      subscriptions,
+                      setPopin,
+                      handleSubscribe,
+                      addToBrowser
+                    )
+                  }
+                >
+                  {t('profiles:action.real_example')}
+                  <Arrow />
+                </ContributorExampleLink>
+              )}
             </ContributorProfileListItem>
           ))}
         </List>
@@ -184,6 +212,7 @@ const ProfileList = ({
         opened={browserNotSupportedPopinOpened}
         setOpened={setBrowserNotSupportedPopinOpened}
       />
+      <ContextPopin setPopin={setPopin} popin={popin} />
     </>
   );
 };
