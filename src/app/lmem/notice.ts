@@ -1,7 +1,7 @@
 import { find } from 'ramda';
+import { captureMessage } from '../utils/sentry';
 import { Ratings } from './rating';
 import { Contributor, ContributorId, NewContributor } from './contributor';
-import { captureMessage } from '../utils/sentry';
 
 export interface BaseNotice {
   id: number;

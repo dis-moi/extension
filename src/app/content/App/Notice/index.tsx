@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, RouteComponentProps, Switch } from 'react-router-dom';
-import { ContentState } from 'app/content/store';
-import { getNoticesToDisplay } from 'app/content/selectors';
-import { StatefulNotice } from 'app/lmem/notice';
+import { connect } from 'react-redux';
 import ListScreen from './List';
 import DetailsScreen from './Details';
 import NoNoticeScreen from './NoNotice';
-import { connect } from 'react-redux';
+import { ContentState } from 'app/content/store';
+import { getNoticesToDisplay } from 'app/content/selectors';
+import { StatefulNotice } from 'app/lmem/notice';
 
 const mapStateToProps = (state: ContentState) => ({
   notices: getNoticesToDisplay(state)

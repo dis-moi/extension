@@ -1,8 +1,9 @@
 import { all, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 import * as R from 'ramda';
+import { getNotices, hasNoticesToDisplay, isOpen } from '../selectors';
+import { Level } from '../../utils/Logger';
 import { StatefulNotice } from 'app/lmem/notice';
 import { CloseCause } from 'app/lmem/ui';
-import { getNotices, hasNoticesToDisplay, isOpen } from '../selectors';
 import {
   AppAction,
   close,

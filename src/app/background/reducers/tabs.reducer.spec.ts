@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
 import { expect } from 'chai';
-import tabsReducer from './tabs.reducer';
 import { navigatedToUrl } from '../../actions';
+import tabsReducer from './tabs.reducer';
 
 describe('background > reducers > tabs', () => {
   describe('when receiving NAVIGATED_TO_URL', () => {

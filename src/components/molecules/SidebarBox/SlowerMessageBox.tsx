@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import { ExternalLink, Paragraph, Title2 } from 'components/atoms';
 import SidebarBox from './SidebarBox';
+import { ExternalLink, Paragraph, Title2 } from 'components/atoms';
 import { WEBSITE_DOMAIN } from 'app/lmem';
 
 const Title = styled(Title2)`

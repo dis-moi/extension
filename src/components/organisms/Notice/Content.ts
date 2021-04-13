@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 import { LocationDescriptor } from 'history';
+import Title from './Title';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import { ContributorName, OpenButton } from 'components/atoms';
-import Title from './Title';
 
 interface ContentProps {
   to?: LocationDescriptor;

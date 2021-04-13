@@ -2,9 +2,9 @@ import React, { ReactElement } from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { StoryFn } from '@storybook/addons';
 import { action } from '@storybook/addon-actions';
-import Notification from 'components/organisms/Notification';
-import ConfirmationScreen from './ConfirmationScreen';
 import { formStoreDecorator } from '../../../../../../.storybook/decorators';
+import ConfirmationScreen from './ConfirmationScreen';
+import Notification from 'components/organisms/Notification';
 
 export default {
   title: 'Extension/Question',

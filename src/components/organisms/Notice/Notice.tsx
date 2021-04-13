@@ -2,19 +2,19 @@ import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import { withTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
-import { stripHtml } from 'app/utils/stripHtml';
+import Container, { height, marginBottom } from './Container';
+import Content from './Content';
+import Deleted from './Deleted';
+import DeleteButton from './DeleteButton';
+import Title from './Title';
+import InteractiveAvatar from 'components/molecules/InteractiveAvatar';
 import {
   Button,
   CenterContainer,
   ContributorName,
   Timer
 } from 'components/atoms';
-import InteractiveAvatar from 'components/molecules/InteractiveAvatar';
-import Container, { height, marginBottom } from './Container';
-import Content from './Content';
-import Deleted from './Deleted';
-import DeleteButton from './DeleteButton';
-import Title from './Title';
+import { stripHtml } from 'app/utils/stripHtml';
 import { StatefulNoticeWithContributor } from 'app/lmem/notice';
 import { Contributor } from 'app/lmem/contributor';
 import {

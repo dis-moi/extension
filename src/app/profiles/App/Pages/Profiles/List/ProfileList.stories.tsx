@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
 import { action } from '@storybook/addon-actions';
-import ProfileList from './ProfileList';
-import { generateStatefulContributor } from 'test/fakers/generateContributor';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { StoryFn } from '@storybook/addons';
+import ProfileList from './ProfileList';
+import { generateStatefulContributor } from 'test/fakers/generateContributor';
 
 const CATEGORIES = {
   CONSO: 'Conso',

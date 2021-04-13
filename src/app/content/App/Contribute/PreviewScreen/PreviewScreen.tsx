@@ -4,13 +4,13 @@ import { withTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import styled from 'styled-components';
 
+import withReduxForm from './withReduxForm';
 import { Contribution } from 'app/lmem/notice';
 import { FormMeta } from 'app/actions';
 import NoticePreview from 'components/organisms/NoticePreview';
 import { BackgroundButton, Button } from 'components/atoms';
 import { Error, Form } from 'components/atoms/Forms';
 import { handleFormSubmit } from 'app/utils/form';
-import withReduxForm from './withReduxForm';
 
 const PreviewForm = styled(Form)`
   padding: 12px 16px 12px 16px;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
-import { Anchor, ExternalLink, Link } from './index';
 import { Arrow, LinkIcon } from '../icons';
+import { Anchor, ExternalLink, Link } from './index';
 
 export default {
   title: 'Components/Atoms/Links',

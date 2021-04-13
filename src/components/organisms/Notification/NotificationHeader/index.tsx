@@ -3,10 +3,10 @@ import { MemoryHistory } from 'history';
 import { RouteComponentProps, withRouter } from 'react-router';
 import Container from './Container';
 import LogoContainer from './LogoContainer';
-import LogoImg from 'components/atoms/icons/LogoDismoi';
 import BackButton from './BackButton';
 import CloseButton from './CloseButton';
 import Title from './Title';
+import LogoImg from 'components/atoms/icons/LogoDismoi';
 
 interface OwnProps {
   title?: string;

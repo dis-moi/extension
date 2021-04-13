@@ -1,4 +1,4 @@
-import { SagaIterator } from '@redux-saga/types';
+import { SagaIterator } from 'redux-saga';
 import { put, select } from '@redux-saga/core/effects';
 import { getUserId } from '../selectors/user';
 import { login } from '../../actions/user';

@@ -1,11 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import FooterContainer from './FooterContainer';
-import NavLink from './NavLink';
 import {
   FooterRoute,
   footerRoutes
 } from '../../../../app/content/footerRoutes';
+import FooterContainer from './FooterContainer';
+import NavLink from './NavLink';
 
 interface NotificationFooterProps {
   children?: FooterRoute[];

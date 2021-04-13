@@ -1,6 +1,6 @@
 import React from 'react';
-import { ContentWrapperBackground } from 'components/atoms';
 import QuestionForm from './QuestionForm';
+import { ContentWrapperBackground } from 'components/atoms';
 
 export const FormScreen = () => (
   <ContentWrapperBackground>

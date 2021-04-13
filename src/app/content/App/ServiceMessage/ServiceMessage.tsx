@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ServiceMessageAction } from 'app/lmem/ServiceMessage';
 import ServiceMessageActionButton from './ServiceMessageActionButton';
+import { ServiceMessageAction } from 'app/lmem/ServiceMessage';
 
 const Content = styled.section`
   margin-top: 50px;

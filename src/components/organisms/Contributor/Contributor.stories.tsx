@@ -1,8 +1,8 @@
 import React from 'react';
+import { action } from '@storybook/addon-actions';
 import ContributorLarge from './ContributorLarge';
 import ContributorCompact from './ContributorCompact';
 import { generateStatefulContributor } from 'test/fakers/generateContributor';
-import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Components/Organisms/Contributor'

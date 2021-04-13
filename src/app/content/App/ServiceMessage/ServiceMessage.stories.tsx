@@ -3,8 +3,8 @@ import i18n from 'i18next';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { action } from '@storybook/addon-actions';
 import { StoryFn } from '@storybook/addons';
-import Notification from 'components/organisms/Notification';
 import ServiceMessage from './ServiceMessage';
+import Notification from 'components/organisms/Notification';
 import { LinkType } from 'app/lmem/ServiceMessage';
 
 export default {

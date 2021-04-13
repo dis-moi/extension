@@ -1,5 +1,5 @@
-import { AppAction } from 'app/actions';
 import { REMOVE_TITLE, SET_TITLE } from '../../actions/ui/title';
+import { AppAction } from 'app/actions';
 
 const initialState = null;
 

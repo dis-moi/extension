@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
-import Notification from 'components/organisms/Notification';
-import ContributeScreen from './ContributeScreen';
-import { formStoreDecorator } from '../../../../../../.storybook/decorators';
 import { StoryFn } from '@storybook/addons';
+import { formStoreDecorator } from '../../../../../../.storybook/decorators';
+import ContributeScreen from './ContributeScreen';
+import Notification from 'components/organisms/Notification';
 
 export default {
   title: 'Extension/Contribute'

@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
 import { action } from '@storybook/addon-actions';
-import Notification from 'components/organisms/Notification';
-import Error from '.';
 import { MemoryRouter as Router } from 'react-router';
 import { StoryFn } from '@storybook/addons';
+import Error from '.';
+import Notification from 'components/organisms/Notification';
 
 export default {
   title: 'Extension/Error'

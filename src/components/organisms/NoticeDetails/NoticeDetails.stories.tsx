@@ -2,14 +2,14 @@ import React, { ReactElement } from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { action } from '@storybook/addon-actions';
 import { StoryFn } from '@storybook/addons';
-import NoticeDetails from './NoticeDetails';
 import { subMonths } from 'date-fns';
 import Faker from 'faker';
+import { boolean, date, number, text } from '@storybook/addon-knobs';
+import NoticeDetails from './NoticeDetails';
 import {
   generateStatefulNotice,
   messageWithYoutubeVideo
 } from 'test/fakers/generateNotice';
-import { boolean, date, number, text } from '@storybook/addon-knobs';
 import { generateContributor } from 'test/fakers/generateContributor';
 
 const defaultMessage = Faker.lorem.paragraph(3);

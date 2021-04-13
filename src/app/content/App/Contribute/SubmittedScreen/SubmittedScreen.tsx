@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useTranslation } from 'react-i18next';
+import Illustration from './Illustration';
 import {
   Button,
   CenterContainer,
@@ -9,7 +10,6 @@ import {
 import Container from 'components/organisms/Contribute/Container';
 import Content from 'components/organisms/Contribute/Content';
 import ContentTitle from 'components/organisms/Contribute/ContentTitle';
-import Illustration from './Illustration';
 
 export interface ContributionSubmittedScreenProps {
   goBack: () => void;

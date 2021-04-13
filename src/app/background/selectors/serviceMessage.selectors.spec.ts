@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { getServiceMessageLastShowDate } from './serviceMessage.selectors';
 import { ServiceMessageStateSlice } from '../reducers/serviceMessage.reducer';
+import { getServiceMessageLastShowDate } from './serviceMessage.selectors';
 
 describe('background > selectors > serviceMessage', () => {
   describe('getServiceMessageLastShowDate', () => {

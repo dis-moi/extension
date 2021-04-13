@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
+import { CONTRIBUTORS_PATH } from '../routes';
 import Tabs from 'components/molecules/Tabs';
 import Tab from 'components/atoms/Tab/Tab';
 import { Sidebar, TwoColumns } from 'components/atoms';

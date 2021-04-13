@@ -1,5 +1,5 @@
-import { ErrorAction } from '.';
 import { Level } from '../utils/Logger';
+import { ErrorAction } from '.';
 
 export const BADGE_UPDATE_FAILED = 'BADGE_UPDATE_FAILED';
 export interface BadgeUpdateFailedAction extends ErrorAction {

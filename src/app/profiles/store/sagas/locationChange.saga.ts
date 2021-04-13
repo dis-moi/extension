@@ -1,7 +1,7 @@
 import { put } from 'redux-saga/effects';
 import { match as Match } from 'react-router';
-import { refreshContributors } from 'app/actions';
 import { fetchContributorNotices } from '../actions/notices';
+import { refreshContributors } from 'app/actions';
 import { fetchContributorRequest } from 'app/actions/contributor';
 import takeLatestLocationChange from 'app/store/sagas/effects/takeLatestLocationChange';
 import en from 'i18n/resources/en/extension.json';

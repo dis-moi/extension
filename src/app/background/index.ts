@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
 // Early imports with high priority stuff involved, such as event listeners creation
+import { store } from './store';
 import { BACKEND_ORIGIN } from 'app/constants/origins';
 import onInstalled from 'webext/onInstalled';
 import onStartup from 'webext/onStartup';
 import { installed, optionsRequested, startup, i18nReady } from 'app/actions';
 import { configureSentryScope, initSentry } from 'app/utils/sentry';
-import { store } from './store';
 import { connect } from 'app/store/actions/connection';
 import { OPTIONS_MENU_ITEM_ID } from 'app/lmem/tab';
 import i18n, { options } from 'i18n';

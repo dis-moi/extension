@@ -1,5 +1,5 @@
-import { SagaIterator } from '@redux-saga/types';
-import { ActionPattern, all, call, takeEvery } from '@redux-saga/core/effects';
+import { SagaIterator } from 'redux-saga';
+import { ActionPattern, all, call, takeEvery } from 'redux-saga/effects';
 import postRating, { Rating } from 'api/postRating';
 import {
   ActionMetaWithTab,

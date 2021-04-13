@@ -3,8 +3,8 @@ import { MemoryRouter as Router } from 'react-router-dom';
 
 import { StoryFn } from '@storybook/addons';
 import { action } from '@storybook/addon-actions';
-import Notification from 'components/organisms/Notification';
 import { Help } from '.';
+import Notification from 'components/organisms/Notification';
 
 export default {
   title: 'Extension/Help'

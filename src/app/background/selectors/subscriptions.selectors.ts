@@ -1,7 +1,7 @@
-import { getContributors } from './resources';
 import { createSelector } from 'reselect';
-import { Contributor, StatefulContributor } from 'app/lmem/contributor';
 import * as R from 'ramda';
+import { getContributors } from './resources';
+import { Contributor, StatefulContributor } from 'app/lmem/contributor';
 import { StateWithSubscriptions } from 'app/background/reducers';
 
 export const getSubscriptions = (state: StateWithSubscriptions) =>

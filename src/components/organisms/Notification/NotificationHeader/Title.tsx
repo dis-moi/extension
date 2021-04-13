@@ -1,7 +1,7 @@
 import React from 'react';
-import TitleContainer from './TitleContainer';
 import { truncateButPreserveWords } from '../../../../app/utils/truncate';
 import { stripHtml } from '../../../../app/utils/stripHtml';
+import TitleContainer from './TitleContainer';
 
 interface TitleInterface {
   children: string;

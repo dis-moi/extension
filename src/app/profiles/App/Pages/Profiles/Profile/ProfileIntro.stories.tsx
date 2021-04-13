@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
 import { action } from '@storybook/addon-actions';
 import { StoryFn } from '@storybook/addons';
+import { MemoryRouter as Router } from 'react-router-dom';
 import ProfileIntro from './ProfileIntro';
 import { generateStatefulContributor } from 'test/fakers/generateContributor';
-import { MemoryRouter as Router } from 'react-router-dom';
 
 export default {
   title: 'Profile',

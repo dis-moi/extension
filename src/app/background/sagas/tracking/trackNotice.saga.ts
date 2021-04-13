@@ -1,5 +1,6 @@
-import { SagaIterator } from '@redux-saga/types';
-import { call, put, select } from '@redux-saga/core/effects';
+import { SagaIterator } from 'redux-saga';
+import { call, put, select } from 'redux-saga/effects';
+import { Level } from '../../../utils/Logger';
 import Tracker from 'types/Tracker';
 import truncate from 'app/utils/truncate';
 import { stripHtml } from 'app/utils/stripHtml';
@@ -17,7 +18,6 @@ import {
   getNumberOfUnreadNoticesOnTab
 } from 'app/background/selectors';
 import { getNumberOfNoticesOnTab } from 'app/background/selectors/tabs';
-import { Level } from '../../../utils/Logger';
 
 export const trackNoticeBadgedSaga = (tracker: Tracker) =>
   function*(action: NoticeBadgedAction): SagaIterator {

@@ -1,5 +1,5 @@
-import { SagaIterator } from '@redux-saga/types';
-import { put, takeEvery } from '@redux-saga/core/effects';
+import { SagaIterator } from 'redux-saga';
+import { put, takeEvery } from 'redux-saga/effects';
 import { LOCATION_CHANGE, LocationChangeAction } from 'connected-react-router';
 import { locationChanged } from '../actions';
 

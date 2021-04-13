@@ -3,11 +3,11 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider, StyleSheetManager } from 'styled-components';
 import theme from '../../theme';
-import UI from './UI';
 import store, { history } from '../store';
 import { configureSentryScope } from '../../utils/sentry';
-import FontsStyle from 'components/atoms/FontsStyle';
+import UI from './UI';
 import GlobalStyle from './GlobalStyle';
+import FontsStyle from 'components/atoms/FontsStyle';
 
 interface AppProps {
   contentDocument: Document;

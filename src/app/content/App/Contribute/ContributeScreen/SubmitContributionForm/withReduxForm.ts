@@ -1,7 +1,7 @@
 import { reduxForm } from 'redux-form';
+import { SubmitContributionFormOwnProps } from './SubmitContributionForm';
 import validate from 'app/lmem/contribution/validateForm';
 import { Contribution } from 'app/lmem/notice';
-import { SubmitContributionFormOwnProps } from './SubmitContributionForm';
 
 export const form = 'contribution';
 

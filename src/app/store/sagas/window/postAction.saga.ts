@@ -1,5 +1,5 @@
-import Logger from 'app/utils/Logger';
 import { apply } from 'redux-saga/effects';
+import Logger from 'app/utils/Logger';
 import { StandardAction } from 'app/store/types';
 
 export default function* postActionSaga(

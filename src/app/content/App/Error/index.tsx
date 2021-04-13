@@ -4,8 +4,8 @@ import { history } from '../../store';
 import Container from './Container';
 import ContentTitle from './ContentTitle';
 import Content from './Content';
-import BackgroundButton from 'components/atoms/Button/BackgroundButton';
 import Illustration from './Illustration';
+import BackgroundButton from 'components/atoms/Button/BackgroundButton';
 
 export default () => {
   const { t } = useTranslation();

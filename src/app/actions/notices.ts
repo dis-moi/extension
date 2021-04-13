@@ -1,3 +1,13 @@
+import { ReceivedAction } from '../../webext/createMessageHandler';
+import { ContributorId } from '../lmem/contributor';
+import { createErrorAction } from './helpers';
+import {
+  ActionMeta,
+  ActionMetaWithTab,
+  BaseAction,
+  ErrorAction,
+  TabAction
+} from '.';
 import {
   getIgnoringReason,
   IgnoringReason,
@@ -6,16 +16,6 @@ import {
   StatefulNoticeWithContributor
 } from 'app/lmem/notice';
 import Tab from 'app/lmem/tab';
-import {
-  ActionMeta,
-  ActionMetaWithTab,
-  BaseAction,
-  ErrorAction,
-  TabAction
-} from '.';
-import { createErrorAction } from './helpers';
-import { ReceivedAction } from '../../webext/createMessageHandler';
-import { ContributorId } from '../lmem/contributor';
 
 export interface NoticesByContributorParameters {
   contributor?: ContributorId;

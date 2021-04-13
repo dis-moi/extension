@@ -2,8 +2,8 @@ import React, { ReactElement } from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { action } from '@storybook/addon-actions';
 import { StoryFn } from '@storybook/addons';
-import Notification from 'components/organisms/Notification';
 import Subscriptions from './Subscriptions';
+import Notification from 'components/organisms/Notification';
 import { generateContributor } from 'test/fakers/generateContributor';
 
 const commonProps = {

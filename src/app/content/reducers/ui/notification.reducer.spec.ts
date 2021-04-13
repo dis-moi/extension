@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
 import { expect } from 'chai';
-import openReducer from './notification.reducer';
-import { closed, opened } from '../../../actions';
 import * as R from 'ramda';
+import { closed, opened } from '../../../actions';
 import { CloseCause } from '../../../lmem/ui';
 import { loaded } from '../../actions/ui/open.actions';
+import openReducer from './notification.reducer';
 
 interface StateOptions {
   mounted?: boolean;

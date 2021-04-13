@@ -1,5 +1,5 @@
-import { AppAction } from 'app/actions';
 import { LOGIN } from '../../actions/user';
+import { AppAction } from 'app/actions';
 
 export type UserState = string | null;
 

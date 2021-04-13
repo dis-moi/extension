@@ -1,7 +1,7 @@
-import Tab from 'app/lmem/tab';
-import { BaseAction, ErrorAction } from './';
 import { Level } from '../utils/Logger';
 import { GetParams } from '../../api/call';
+import { BaseAction, ErrorAction } from './';
+import Tab from 'app/lmem/tab';
 
 export const OPTIONS_REQUESTED = 'OPTIONS_REQUESTED';
 export interface OptionsRequestedAction extends BaseAction {

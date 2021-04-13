@@ -1,6 +1,6 @@
 import slugify from 'slugify';
-import { Contributor } from 'app/lmem/contributor';
 import i18n from 'i18next';
+import { Contributor } from 'app/lmem/contributor';
 
 const pathToContributor = (contributor: Contributor) => {
   return `${i18n.t('path.profiles.contributors')}/${contributor.id}/${slugify(

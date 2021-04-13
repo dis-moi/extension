@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-expressions */
 import { expect } from 'chai';
+import contributorsReducer from './contributors.reducer';
 import { CloseCause } from 'app/lmem/ui';
 import {
   closed,
   contributorsTransmitted,
   ContributorsTransmittedAction
 } from 'app/actions';
-import contributorsReducer from './contributors.reducer';
 import { generateContributor } from 'test/fakers/generateContributor';
 
 describe('options > reducers > contributors', function() {

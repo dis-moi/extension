@@ -1,6 +1,12 @@
 import { LocationChangeAction } from 'connected-react-router';
-import { StandardAction } from 'app/store/types';
-import Tab from 'app/lmem/tab';
+import * as R from 'ramda';
+import {
+  RemoveUITitleAction,
+  SetUITitleAction
+} from '../content/actions/ui/title';
+import { From } from '../../webext/From';
+import { LoadedAction } from '../content/actions/ui/open.actions';
+import { Level } from '../utils/Logger';
 import { BrowserActionClickedAction } from './browser';
 import { InstallationDetailsAction, InstalledAction } from './install';
 import {
@@ -44,10 +50,6 @@ import {
   ContributionSubmittedAction,
   SubmitContributionAction
 } from './contribution';
-import {
-  RemoveUITitleAction,
-  SetUITitleAction
-} from '../content/actions/ui/title';
 import { OptionsRequestedAction, OptionsTabOpened } from './options';
 import {
   ContributorsTransmittedAction,
@@ -58,15 +60,13 @@ import {
   ListenActionFailedAction,
   ListeningActionsReadyAction
 } from './webext';
-import { From } from '../../webext/From';
 import { SubscribeAction, UnsubscribeAction } from './subscription';
 import { ShowServiceMessageAction } from './serviceMessage.actions';
-import { LoadedAction } from '../content/actions/ui/open.actions';
 import { TabDiedAction, TabRemovedAction } from './tabsLifecycle';
 import { UpdateRestrictedContextsAction } from './restrictedContexts';
 import { LoginAction } from './user';
-import * as R from 'ramda';
-import { Level } from '../utils/Logger';
+import Tab from 'app/lmem/tab';
+import { StandardAction } from 'app/store/types';
 
 type MessageSender = browser.runtime.MessageSender;
 

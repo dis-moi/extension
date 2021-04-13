@@ -1,7 +1,7 @@
 import { fork, all } from 'redux-saga/effects';
 import contributorSaga from './contributor.saga';
-import contributorsSaga from 'app/profiles/store/sagas/contributors.saga';
 import locationChangeSaga from './locationChange.saga';
+import contributorsSaga from 'app/profiles/store/sagas/contributors.saga';
 import noticesSaga from 'app/profiles/store/sagas/notices.saga';
 import portConnectionSaga from 'app/profiles/store/sagas/portConnection.saga';
 import windowConnectionSaga from 'app/profiles/store/sagas/windowConnection.saga';

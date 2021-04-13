@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, RouteComponentProps, Switch } from 'react-router-dom';
-import ScrollToTop from 'components/ScrollToTop';
 import ProfileList from './List';
 import Profile from './Profile';
+import ScrollToTop from 'components/ScrollToTop';
 
 export interface ProfilesRouterProps extends RouteComponentProps {}
 

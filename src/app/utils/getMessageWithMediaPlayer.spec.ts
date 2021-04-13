@@ -1,5 +1,5 @@
-import getMessageWithMediaPlayer from './getMessageWithMediaPlayer';
 import { expect } from 'chai';
+import getMessageWithMediaPlayer from './getMessageWithMediaPlayer';
 
 const player = `<div style='margin:16px 16px 0 0'><iframe width='100%' height='auto' src=https://www.youtube.com/embed/5OQiE9Nj3ko allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen/></div>`;
 

@@ -1,6 +1,6 @@
 import * as R from 'ramda';
-import { CLOSED, OPENED, AppAction } from 'app/actions';
 import { LOADED } from '../../actions/ui/open.actions';
+import { CLOSED, OPENED, AppAction } from 'app/actions';
 
 export interface NotificationState {
   mounted: boolean;
