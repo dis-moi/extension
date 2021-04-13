@@ -1,15 +1,15 @@
 import { expect } from 'chai';
 import * as R from 'ramda';
 import { generateContributor } from 'test/fakers/generateContributor';
-import {
-  getContributorsWithSubscriptionState,
-  getNbSubscriptions
-} from './subscriptions.selectors';
 import { Contributor, ContributorId } from 'app/lmem/contributor';
 import {
   StateWithResources,
   StateWithSubscriptions
 } from 'app/background/reducers';
+import {
+  getContributorsWithSubscriptionState,
+  getNbSubscriptions
+} from './subscriptions.selectors';
 
 describe('background > selectors > subscriptions ', () => {
   const contributor1 = generateContributor({ id: 1 });

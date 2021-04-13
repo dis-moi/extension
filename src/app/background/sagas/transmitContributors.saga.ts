@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { takeEvery, select, fork } from 'redux-saga/effects';
-import { getContributorsWithSubscriptionState } from '../selectors/subscriptions.selectors';
-import { getTabsList } from '../selectors/tabs';
-import sendToTabSaga from './lib/sendToTab.saga';
 import Tab from 'app/lmem/tab';
 import {
   contributorsTransmitted,
@@ -13,6 +10,9 @@ import {
   ListeningActionsReadyAction
 } from 'app/actions';
 import assocMetaIfNotGiven from 'webext/assocMetaIfNotGiven';
+import { getContributorsWithSubscriptionState } from '../selectors/subscriptions.selectors';
+import { getTabsList } from '../selectors/tabs';
+import sendToTabSaga from './lib/sendToTab.saga';
 
 function* sendContributorsToTab(tab: browser.tabs.Tab & Tab) {
   const contributors = yield select(getContributorsWithSubscriptionState);

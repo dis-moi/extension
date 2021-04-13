@@ -2,12 +2,12 @@ import React from 'react';
 import * as R from 'ramda';
 import styled from 'styled-components';
 import { Trans, useTranslation } from 'react-i18next';
-import Illustration from './Illustration';
-import Container from './Container';
 import BackgroundButton from 'components/atoms/Button/BackgroundButton/BackgroundButton';
 import InteractiveAvatar from 'components/molecules/InteractiveAvatar';
 import ContributorListItem from 'components/atoms/ContributorListItem';
 import { Contributor, StatefulContributor } from 'app/lmem/contributor';
+import Container from './Container';
+import Illustration from './Illustration';
 
 const Subscription = styled.div`
   margin-bottom: 20px;

@@ -2,17 +2,17 @@ import React, { PureComponent } from 'react';
 import { TFunction } from 'i18next';
 import { withTranslation } from 'react-i18next';
 import styled from 'styled-components';
+import { Contribution } from 'app/lmem/notice';
+import Avatar from 'components/molecules/Avatar/Avatar';
+import linkify from 'app/utils/linkify';
+import lineBreaksToBr from 'app/utils/lineBreaksToBr';
+import { formatMessage } from 'app/lmem/format/message';
 import { ContributorName } from '../atoms';
 import DetailsContainer from './NoticeDetails/DetailsContainer';
 import DetailsContent from './NoticeDetails/DetailsContent';
 import DetailsMeta from './NoticeDetails/DetailsMeta';
 import Message from './NoticeDetails/Message';
 import Date from './NoticeDetails/Date';
-import { Contribution } from 'app/lmem/notice';
-import Avatar from 'components/molecules/Avatar/Avatar';
-import linkify from 'app/utils/linkify';
-import lineBreaksToBr from 'app/utils/lineBreaksToBr';
-import { formatMessage } from 'app/lmem/format/message';
 
 const DetailsMetaValue = styled.div`
   margin-left: 10px;

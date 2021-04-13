@@ -1,7 +1,7 @@
 import React from 'react';
 
-import SubmitContributionForm from './SubmitContributionForm';
 import { ContentWrapperBackground } from 'components/atoms';
+import SubmitContributionForm from './SubmitContributionForm';
 
 export const ContributeScreen = () => (
   <ContentWrapperBackground>

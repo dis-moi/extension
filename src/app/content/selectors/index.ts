@@ -8,7 +8,6 @@ import {
   RegisteredFieldState
 } from 'redux-form';
 import * as R from 'ramda';
-import { ContentState } from '../store';
 import {
   getNotice,
   isUnread,
@@ -26,6 +25,7 @@ import {
 import { findItemById } from 'app/utils/findItemById';
 import { StatefulContributor } from 'app/lmem/contributor';
 import { makeGetRouteParam } from 'app/store/selectors';
+import { ContentState } from '../store';
 export * from './serviceMessage.selectors';
 export * from './ui.selectors';
 

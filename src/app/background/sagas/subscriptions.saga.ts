@@ -1,6 +1,5 @@
 import { all, fork, call, put, select, takeLatest } from 'redux-saga/effects';
 import { SagaIterator } from 'redux-saga';
-import { loginSaga } from './user.saga';
 import {
   ContributorAction,
   STARTUP,
@@ -26,6 +25,7 @@ import {
 } from 'app/actions/subscriptions';
 import { asArray } from 'app/utils/env';
 import { ContributorId } from '../../lmem/contributor';
+import { loginSaga } from './user.saga';
 
 const PRESELECTED_CONTRIBUTORS_IDS = asArray<ContributorId>(
   process.env.PRESELECTED_CONTRIBUTORS_IDS

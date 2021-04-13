@@ -1,11 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import Content from '../Account/About/Content';
-import Container from './Container';
-import ContentTitle from './ContentTitle';
 import { List, ExternalLink, Anchor } from 'components/atoms';
 import withTitle from 'app/hocs/withTitle';
 import { WEBSITE_DOMAIN } from 'app/lmem';
+import Content from '../Account/About/Content';
+import Container from './Container';
+import ContentTitle from './ContentTitle';
 
 export const Help = () => {
   const { t } = useTranslation();

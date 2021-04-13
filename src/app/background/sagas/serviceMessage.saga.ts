@@ -1,15 +1,15 @@
 import { put, select } from 'redux-saga/effects';
 import * as R from 'ramda';
 import i18n from 'i18next';
-import { areTosAccepted } from '../selectors/prefs';
-import { getNbSubscriptions } from '../selectors/subscriptions.selectors';
-import { getServiceMessageLastShowDate } from '../selectors/serviceMessage.selectors';
-import { Level } from '../../utils/Logger';
 import { open, OpenFrom, showServiceMessage } from 'app/actions';
 import { createErrorAction } from 'app/actions/helpers';
 import Tab from 'app/lmem/tab';
 import { LinkType } from 'app/lmem/ServiceMessage';
 import { isWithinLastHours } from 'app/utils/areWithinHours';
+import { Level } from '../../utils/Logger';
+import { getServiceMessageLastShowDate } from '../selectors/serviceMessage.selectors';
+import { getNbSubscriptions } from '../selectors/subscriptions.selectors';
+import { areTosAccepted } from '../selectors/prefs';
 
 export const buildMessages = (messages: string[], nbNotices = 0): string[] => {
   const firstMessage =

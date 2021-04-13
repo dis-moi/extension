@@ -1,5 +1,7 @@
 import { LocationChangeAction } from 'connected-react-router';
 import * as R from 'ramda';
+import Tab from 'app/lmem/tab';
+import { StandardAction } from 'app/store/types';
 import {
   RemoveUITitleAction,
   SetUITitleAction
@@ -65,8 +67,6 @@ import { ShowServiceMessageAction } from './serviceMessage.actions';
 import { TabDiedAction, TabRemovedAction } from './tabsLifecycle';
 import { UpdateRestrictedContextsAction } from './restrictedContexts';
 import { LoginAction } from './user';
-import Tab from 'app/lmem/tab';
-import { StandardAction } from 'app/store/types';
 
 type MessageSender = browser.runtime.MessageSender;
 

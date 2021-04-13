@@ -1,5 +1,5 @@
-import { BaseAction } from '.';
 import { RestrictedContext } from 'app/lmem/matchingContext';
+import { BaseAction } from '.';
 
 export const UPDATE_RESTRICTED_CONTEXTS = 'api/UPDATE_RESTRICTED_CONTEXTS';
 export interface UpdateRestrictedContextsAction extends BaseAction {

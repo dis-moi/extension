@@ -1,7 +1,5 @@
 import { SagaIterator } from 'redux-saga';
 import { takeLatest, call, select } from 'redux-saga/effects';
-import { getNumberOfNoticesOnTab } from '../selectors/tabs';
-import { getNumberOfUnreadNoticesOnTab } from '../selectors';
 import { BadgeTheme, updateBadge } from 'app/lmem/badge';
 import { ReceivedAction } from 'webext/createMessageHandler';
 import {
@@ -17,6 +15,8 @@ import {
   NoticesFoundAction,
   FeedbackOnNoticeAction
 } from 'app/actions';
+import { getNumberOfUnreadNoticesOnTab } from '../selectors';
+import { getNumberOfNoticesOnTab } from '../selectors/tabs';
 
 type BadgeImpactingAction = (
   | MarkNoticeReadAction

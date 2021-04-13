@@ -1,6 +1,6 @@
+import { trilean } from 'types';
 import { Item } from './reducers/items';
 import { CollectionState, FetchedState, FetchingState } from './reducers';
-import { trilean } from 'types';
 
 export const isCollectionLoading = ({
   fetched,

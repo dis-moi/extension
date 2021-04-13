@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Title1 } from 'components/atoms/Title1';
+import { Bullito, Reload } from 'components/atoms/icons';
 import Text from '../components/Text';
 import Video from '../components/Video';
 import Line from '../components/Line';
@@ -8,8 +10,6 @@ import OnboardingButton from '../components/Buttons';
 import OnboardingTitle from '../components/Title';
 import Content from '../components/Content';
 import { StepProps } from './index';
-import { Title1 } from 'components/atoms/Title1';
-import { Bullito, Reload } from 'components/atoms/icons';
 
 const MarginTitle = styled(Title1)`
   margin-top: 0;

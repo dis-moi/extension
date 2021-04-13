@@ -1,6 +1,6 @@
-import { TabAction } from './';
 import Tab from 'app/lmem/tab';
 import ServiceMessage from 'app/lmem/ServiceMessage';
+import { TabAction } from './';
 
 export const SERVICE_MESSAGE = 'SERVICE_MESSAGE';
 export interface ShowServiceMessageAction extends TabAction {

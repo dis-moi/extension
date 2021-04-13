@@ -10,20 +10,6 @@ import {
 } from 'redux-saga/effects';
 import { render } from 'react-dom';
 import { go, replace } from 'connected-react-router';
-import {
-  getNoticesToDisplay,
-  getPathname,
-  hasUnreadNotices,
-  isMounted as isNotificationMounted,
-  isOpen as isNotificationOpen
-} from '../../selectors';
-import { append, create, hide, show } from '../../extensionIframe';
-import theme from '../../../theme';
-import App from '../../App';
-import { history } from '../../store';
-import { LOADED } from '../../actions/ui/open.actions';
-import { CloseCause } from '../../../lmem/ui';
-import { fakeLoadingSaga } from './fakeLoading.saga';
 import { StatefulNotice } from 'app/lmem/notice';
 import Logger from 'app/utils/Logger';
 import {
@@ -44,6 +30,20 @@ import {
   ToggleUIAction,
   CloseAction
 } from 'app/actions';
+import {
+  getNoticesToDisplay,
+  getPathname,
+  hasUnreadNotices,
+  isMounted as isNotificationMounted,
+  isOpen as isNotificationOpen
+} from '../../selectors';
+import { append, create, hide, show } from '../../extensionIframe';
+import theme from '../../../theme';
+import App from '../../App';
+import { history } from '../../store';
+import { LOADED } from '../../actions/ui/open.actions';
+import { CloseCause } from '../../../lmem/ui';
+import { fakeLoadingSaga } from './fakeLoading.saga';
 
 const iframe = create(theme.iframe.style);
 let contentDocument: Document;

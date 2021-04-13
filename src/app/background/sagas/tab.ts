@@ -36,6 +36,9 @@ import {
   warnIfNoticeInvalid
 } from 'app/lmem/notice';
 import { fetchNoticesByUrls } from 'api/fetchNotice';
+import { disable } from 'webext/browserAction';
+import { resetBadge } from 'app/lmem/badge';
+import Tab from 'app/lmem/tab';
 import {
   areTosAccepted,
   getIgnoredNotices,
@@ -43,15 +46,12 @@ import {
 } from '../selectors/prefs';
 import { getContextsMatchingUrl } from '../selectors';
 import { getInstallationDetails } from '../selectors/installationDetails';
-import sendToTabSaga from './lib/sendToTab.saga';
 import { isTabAuthorized } from '../selectors/resources';
-import { disable } from 'webext/browserAction';
-import { resetBadge } from 'app/lmem/badge';
-import serviceMessageSaga from './serviceMessage.saga';
 import { getNbSubscriptions } from '../selectors/subscriptions.selectors';
 import { createCallAndRetry } from '../../sagas/effects/callAndRetry';
 import { Level } from '../../utils/Logger';
-import Tab from 'app/lmem/tab';
+import serviceMessageSaga from './serviceMessage.saga';
+import sendToTabSaga from './lib/sendToTab.saga';
 
 export const getExtensionTitle = () =>
   `Dismoi ${

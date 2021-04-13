@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import Container from './Container';
 import LoadingBig from 'components/atoms/icons/LoadingBig';
+import Container from './Container';
 
 export const Loading = () => {
   const { t } = useTranslation();

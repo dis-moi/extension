@@ -1,13 +1,13 @@
 import { call, put, take, select } from '@redux-saga/core/effects';
 import { eventChannel } from '@redux-saga/core';
-import { getTabById } from '../selectors/tabs';
-import { Level } from '../../utils/Logger';
 import createActivatedTabListener from 'webext/createActivatedTabListener';
 import { tabActivated } from 'app/actions';
 import { createErrorAction } from 'app/actions/helpers';
 import { disable } from 'webext/browserAction';
 import { resetBadge } from 'app/lmem/badge';
 import { isOptionsPage } from 'webext/createMessageHandler';
+import { Level } from '../../utils/Logger';
+import { getTabById } from '../selectors/tabs';
 
 export default function*() {
   const channel = yield call(() => eventChannel(createActivatedTabListener));

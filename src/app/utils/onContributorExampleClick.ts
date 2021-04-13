@@ -1,8 +1,8 @@
+import { MouseEvent } from 'react';
+import i18n from 'i18next';
 import { Subscriptions } from '../lmem/subscription';
 
 import { StatefulContributor } from '../lmem/contributor';
-import { MouseEvent } from 'react';
-import i18n from 'i18next';
 import {
   ContextPopinState,
   initialState as popinInitialState

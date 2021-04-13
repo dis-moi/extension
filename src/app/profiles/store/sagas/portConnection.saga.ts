@@ -2,8 +2,8 @@ import { call, delay, fork, put, select, takeLatest } from 'redux-saga/effects';
 import { AppActionWithMeta } from 'app/actions';
 import { connect, CONNECT, disconnected } from 'app/store/actions/connection';
 import watchPortSaga from 'app/store/sagas/watchPort.saga';
-import { isConnected, isConnecting } from '../selectors/connection';
 import extensionId from 'app/profiles/extensionId';
+import { isConnected, isConnecting } from '../selectors/connection';
 
 export function* connectSaga() {
   try {

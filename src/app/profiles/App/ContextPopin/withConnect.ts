@@ -1,9 +1,9 @@
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
 import { ProfilesState } from '../../store/reducers';
 import { getContextPopinContent } from '../../store/selectors/contextPopin';
 import { setContextPopin } from '../../store/actions/contextPopin';
 import { ContextPopinState } from '../../store/reducers/contextPopin.reducer';
-import { Dispatch } from 'redux';
-import { connect } from 'react-redux';
 
 const mapStateToProps = (state: ProfilesState) => ({
   contextPopin: getContextPopinContent(state)

@@ -1,10 +1,12 @@
 import { fork, all, call } from 'redux-saga/effects';
 import { asBoolean } from 'app/utils/env';
+import MatomoTracker from 'app/matomo';
+import theme from '../../theme';
+import listenActionsFromMessages from '../../sagas/listenActionsFromMessages';
+import { doNotTrackSettingFromNavigatorIsActivated } from '../../../webext/checkDoNotTrack';
 import install from './install';
 import tab from './tab';
 import badge from './badge';
-import theme from '../../theme';
-import listenActionsFromMessages from '../../sagas/listenActionsFromMessages';
 import refreshMatchingContexts from './refreshMatchingContexts';
 import refreshContributors from './refreshContributors';
 import watchActivatedTab from './watchActivatedTab.saga';
@@ -18,12 +20,10 @@ import tos from './tos.saga';
 import awaitRehydrationSaga from './lib/awaitRehydration.saga';
 import subscriptionsSaga from './subscriptions.saga';
 import tracking from './tracking';
-import MatomoTracker from 'app/matomo';
 import { fetchRestrictedContextsSaga } from './fetchRestrictedContexts.saga';
 import connectSaga from './connect.saga';
 import installationDetailsSaga from './installationDetails.saga';
 import { loginSaga } from './user.saga';
-import { doNotTrackSettingFromNavigatorIsActivated } from '../../../webext/checkDoNotTrack';
 import contributionSaga from './contribution';
 
 const tracker =

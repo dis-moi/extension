@@ -1,7 +1,5 @@
 import { all, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 import * as R from 'ramda';
-import { getNotices, hasNoticesToDisplay, isOpen } from '../selectors';
-import { Level } from '../../utils/Logger';
 import { StatefulNotice } from 'app/lmem/notice';
 import { CloseCause } from 'app/lmem/ui';
 import {
@@ -18,6 +16,7 @@ import {
   UnfoldNoticeAction
 } from 'app/actions';
 import { createErrorAction } from 'app/actions/helpers';
+import { getNotices, hasNoticesToDisplay, isOpen } from '../selectors';
 
 export function* closeIfNoMoreNoticeToDisplaySaga() {
   try {

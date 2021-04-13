@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
-import { ProfileProps } from './Profile';
 import { ContributorId } from 'app/lmem/contributor';
 import { subscribe, unsubscribe } from 'app/actions/subscription';
 import {
@@ -16,6 +15,7 @@ import { isConnected } from 'app/profiles/store/selectors/connection';
 import { ProfilesState } from 'app/profiles/store/reducers';
 import { extensionMessageSender } from 'app/profiles/extensionId';
 import { fetchMoreContributorNotices } from 'app/profiles/store/actions/notices';
+import { ProfileProps } from './Profile';
 
 export type ConnectedProfileScreenProps = ProfileProps &
   RouteComponentProps<{ id: string }>;

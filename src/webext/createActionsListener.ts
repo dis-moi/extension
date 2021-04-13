@@ -1,6 +1,6 @@
+import { Emit } from 'app/store/types';
 import Logger from '../app/utils/Logger';
 import createMessageHandler from './createMessageHandler';
-import { Emit } from 'app/store/types';
 
 const createActionsListener = (emit: Emit) => {
   const messageHandler = createMessageHandler(emit);

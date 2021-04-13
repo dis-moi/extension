@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import LogoDisMoiWithD from 'components/atoms/icons/LogoDisMoiWithD';
+import isChrome from 'app/utils/isChrome';
 import BulleDisMoi from './components/BulleDisMoi';
 import Landing from './components/Landing';
 import Top from './components/Top';
@@ -7,7 +8,6 @@ import Loader, { ProgressBar } from './components/Loader';
 import Evolution from './components/Evolution';
 import Modal from './components/Modal';
 import { Step1, Step2, Step3 } from './Steps';
-import isChrome from 'app/utils/isChrome';
 
 export type CloseFunction = () => void;
 

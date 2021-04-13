@@ -9,15 +9,15 @@ import {
 import { Categories } from 'app/lmem/category';
 import { TwoColumns } from 'components/atoms';
 import { SlowerMessageBox } from 'components/molecules/SidebarBox';
-import { Aside, MainCol } from '../Profiles/Profile/Profile';
 import pathToContributor from 'app/profiles/App/pathToContributor';
+import SimilarProfiles from 'app/profiles/App/SimilarProfiles';
+import Filters from 'components/molecules/Filters/RadiosFilters';
+import useContributorsFilters from 'app/profiles/App/useContributorsRadiosFilters';
 import {
   ContributorExampleLink,
   ContributorProfileListItem
 } from '../Profiles/List/ProfileList';
-import SimilarProfiles from 'app/profiles/App/SimilarProfiles';
-import Filters from 'components/molecules/Filters/RadiosFilters';
-import useContributorsFilters from 'app/profiles/App/useContributorsRadiosFilters';
+import { Aside, MainCol } from '../Profiles/Profile/Profile';
 import ProfileTabs from '../../ProfileTabs';
 import { Arrow } from '../../../../../components/atoms/icons';
 

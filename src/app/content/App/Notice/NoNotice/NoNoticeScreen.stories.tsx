@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { StoryFn } from '@storybook/addons';
-import NoNoticeScreen from './NoNoticeScreen';
 import Notification from 'components/organisms/Notification';
+import NoNoticeScreen from './NoNoticeScreen';
 
 export default {
   title: 'Extension/Notice',

@@ -3,12 +3,12 @@ import styled, { keyframes } from 'styled-components';
 import { useTranslation, Trans } from 'react-i18next';
 import { Reload } from 'components/atoms/icons';
 import { Title1 } from 'components/atoms/Title1';
+import isChrome from 'app/utils/isChrome';
 import Content from '../components/Content';
 import Text from '../components/Text';
 import Line from '../components/Line';
 import OnboardingButton from '../components/Buttons';
 import { StepProps } from './index';
-import isChrome from 'app/utils/isChrome';
 
 const MarginTitle = styled(Title1)`
   margin-top: 0;

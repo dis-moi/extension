@@ -1,6 +1,6 @@
-import { get } from './call';
 import { NoticeWithContributor, NoticeItem } from 'app/lmem/notice';
 import { CONTRIBUTOR_NOTICES_BY_PAGE } from 'app/profiles/store/sagas/notices.saga';
+import { get } from './call';
 
 export const fetchNotice = (
   noticeUrl: string

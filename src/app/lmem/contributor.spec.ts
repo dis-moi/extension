@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-expressions */
 import { expect } from 'chai';
+import { generateContributor } from 'test/fakers/generateContributor';
 import {
   contributorIsSubscribed,
   findContributorIn,
   StatefulContributor
 } from './contributor';
-import { generateContributor } from 'test/fakers/generateContributor';
 
 describe('lmem > contributor', () => {
   describe(' contributorIsSubscribed', () => {

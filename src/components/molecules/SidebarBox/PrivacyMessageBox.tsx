@@ -1,9 +1,9 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import SidebarBox from './SidebarBox';
 import { ExternalLink, List, Title2 } from 'components/atoms';
 import { WEBSITE_DOMAIN } from 'app/lmem';
+import SidebarBox from './SidebarBox';
 
 const Ul = styled(List)`
   padding-left: 0;

@@ -1,9 +1,9 @@
-import { Level } from '../utils/Logger';
-import { BaseAction, TabAction, TabErrorAction } from '.';
 import { InstallationDetails } from 'app/lmem/installation';
 import { MatchingContext } from 'app/lmem/matchingContext';
 import Tab from 'app/lmem/tab';
 import { ReceivedAction } from 'webext/createMessageHandler';
+import { Level } from '../utils/Logger';
+import { BaseAction, TabAction, TabErrorAction } from '.';
 
 export const INIT = 'INIT';
 export interface InitAction extends TabAction {

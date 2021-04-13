@@ -1,13 +1,13 @@
 import { Action } from 'redux';
 import * as R from 'ramda';
-import assocMetaIfNotGiven from './assocMetaIfNotGiven';
-import { getOptionsUrl } from './openOptionsTab';
 import { BaseAction, NAVIGATED_TO_URL } from 'app/actions';
 import { Emit } from 'app/store/types';
 import isAction from 'app/store/isAction';
 import { createErrorAction } from 'app/actions/helpers';
 import { Level } from 'app/utils/Logger';
 import { isRequest, handleRequest } from 'app/content/api';
+import { getOptionsUrl } from './openOptionsTab';
+import assocMetaIfNotGiven from './assocMetaIfNotGiven';
 import { deserialize } from './serializer';
 
 type MessageSender = browser.runtime.MessageSender;

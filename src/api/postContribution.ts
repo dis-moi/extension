@@ -1,5 +1,5 @@
-import { post } from './call';
 import { Contribution, NoticeWithContributor } from 'app/lmem/notice';
+import { post } from './call';
 
 const postContribution = (
   contribution: Contribution

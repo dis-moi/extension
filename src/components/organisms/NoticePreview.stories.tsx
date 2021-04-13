@@ -1,11 +1,11 @@
 import React from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import Faker from 'faker';
-import NoticePreview from './NoticePreview';
 import {
   defaultMessage,
   messageWithYoutubeVideo
 } from 'test/fakers/generateNotice';
+import NoticePreview from './NoticePreview';
 
 export default {
   title: 'Components/Organisms/NoticePreview'

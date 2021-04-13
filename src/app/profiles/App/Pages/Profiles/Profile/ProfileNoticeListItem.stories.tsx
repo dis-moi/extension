@@ -1,7 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import ProfileNoticeListItem from './ProfileNoticeListItem';
 import { generateNoticeItem } from 'test/fakers/generateNotice';
+import ProfileNoticeListItem from './ProfileNoticeListItem';
 
 export default {
   title: 'Profile/ProfileNoticeListItem'

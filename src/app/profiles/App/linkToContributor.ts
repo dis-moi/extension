@@ -1,5 +1,5 @@
-import pathToContributor from './pathToContributor';
 import { Contributor } from 'app/lmem/contributor';
+import pathToContributor from './pathToContributor';
 
 const linkToContributor = (contributor?: Contributor) =>
   contributor

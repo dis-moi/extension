@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider, StyleSheetManager } from 'styled-components';
+import FontsStyle from 'components/atoms/FontsStyle';
 import theme from '../../theme';
 import store, { history } from '../store';
 import { configureSentryScope } from '../../utils/sentry';
 import UI from './UI';
 import GlobalStyle from './GlobalStyle';
-import FontsStyle from 'components/atoms/FontsStyle';
 
 interface AppProps {
   contentDocument: Document;

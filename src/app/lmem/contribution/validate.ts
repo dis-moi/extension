@@ -1,7 +1,7 @@
 import * as R from 'ramda';
+import { Contribution } from 'app/lmem/notice';
 import isEmail from '../../utils/isEmail';
 import ValidationErrors from '../ValidationErrors';
-import { Contribution } from 'app/lmem/notice';
 
 export interface ContributionValidationErrors extends ValidationErrors {
   message?: string;

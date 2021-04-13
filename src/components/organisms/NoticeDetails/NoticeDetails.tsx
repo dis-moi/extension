@@ -2,13 +2,6 @@ import React, { MouseEvent, PureComponent } from 'react';
 import { withTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import styled from 'styled-components';
-import DetailsContainer from './DetailsContainer';
-import DetailsContent from './DetailsContent';
-import DetailsMeta from './DetailsMeta';
-import DetailsDislike from './DetailsDislike';
-import Message from './Message';
-import Feedbacks from './Feedbacks';
-import Date from './Date';
 import ThumbUp from 'components/atoms/icons/ThumbUp';
 import ThumbDown from 'components/atoms/icons/ThumbDown';
 import Avatar from 'components/molecules/Avatar/Avatar';
@@ -21,6 +14,13 @@ import {
 } from 'app/lmem/countdown';
 import { Contributor } from 'app/lmem/contributor';
 import { formatMessage } from 'app/lmem/format/message';
+import Date from './Date';
+import Feedbacks from './Feedbacks';
+import Message from './Message';
+import DetailsDislike from './DetailsDislike';
+import DetailsMeta from './DetailsMeta';
+import DetailsContent from './DetailsContent';
+import DetailsContainer from './DetailsContainer';
 
 const DetailsMetaValue = styled.div`
   margin-left: 10px;
