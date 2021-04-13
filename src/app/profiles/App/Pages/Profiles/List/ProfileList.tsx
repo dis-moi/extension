@@ -8,17 +8,17 @@ import { Arrow } from 'components/atoms/icons';
 import Link from 'components/atoms/Link/Link';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
 import ContributorsList from 'components/organisms/Contributor/ContributorsList';
-import NotConnectedPopin, {
-  NotConnectedPopinState
-} from '../NotConnectedPopin';
-import BrowserNotSupportedPopin from '../BrowserNotSupportedPopin';
 import StatsWrapper from 'components/atoms/Contributor/StatsWrapper';
 import Loader from 'components/atoms/Loader';
 import pathToContributor from 'app/profiles/App/pathToContributor';
 import Filters from 'components/molecules/Filters/RadiosFilters';
 import useContributorsFilters from 'app/profiles/App/useContributorsRadiosFilters';
-import ProfileTabs from '../../../ProfileTabs';
 import OnBoarding from 'app/profiles/App/OnBoarding';
+import ProfileTabs from '../../../ProfileTabs';
+import BrowserNotSupportedPopin from '../BrowserNotSupportedPopin';
+import NotConnectedPopin, {
+  NotConnectedPopinState
+} from '../NotConnectedPopin';
 import onContributorExampleClick from '../../../../../utils/onContributorExampleClick';
 import { Subscriptions } from '../../../../../lmem/subscription';
 import { ContextPopinState } from '../../../../store/reducers/contextPopin.reducer';

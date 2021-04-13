@@ -3,12 +3,12 @@ import { MemoryRouter as Router } from 'react-router-dom';
 import { StoryFn } from '@storybook/addons';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, boolean, text } from '@storybook/addon-knobs';
-import { ListScreen } from '.';
 import {
   defaultMessage,
   generateStatefulNotice
 } from 'test/fakers/generateNotice';
 import Notification from 'components/organisms/Notification';
+import { ListScreen } from '.';
 
 const firstMessage = defaultMessage;
 const secondMessage = `De nombreux clients mécontents de Pixmania et ses vendeurs s'expriment sur les réseaux sociaux depuis 2016. Les plaintes continuent en 2017, 2018 et encore en 2019 si l'on se réfère au forum Que Choisir.`;

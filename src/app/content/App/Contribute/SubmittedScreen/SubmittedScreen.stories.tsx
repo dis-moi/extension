@@ -2,9 +2,9 @@ import React, { ReactElement } from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { action } from '@storybook/addon-actions';
 import { StoryFn } from '@storybook/addons';
+import Notification from 'components/organisms/Notification';
 import { formStoreDecorator } from '../../../../../../.storybook/decorators';
 import SubmittedScreen from './SubmittedScreen';
-import Notification from 'components/organisms/Notification';
 
 export default {
   title: 'Extension/Contribute/Submitted',

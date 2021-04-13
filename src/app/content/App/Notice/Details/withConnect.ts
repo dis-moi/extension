@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import { goBack } from 'connected-react-router';
-import { DetailsScreenProps } from './';
 import {
   confirmDislikeNotice as confirmDislike,
   dislikeNotice as dislike,
@@ -14,6 +13,7 @@ import {
 import onContributorClick from 'app/content/actions/goToContributor';
 import { ContentState } from 'app/content/store';
 import { getNoticeFromRoute, getNoticeRelayer } from 'app/content/selectors';
+import { DetailsScreenProps } from './';
 
 const mapStateToProps = (
   state: ContentState,

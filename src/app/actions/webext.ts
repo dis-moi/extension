@@ -1,7 +1,7 @@
-import { Level } from '../utils/Logger';
-import { ActionMeta, AppAction, BaseAction, ErrorAction } from './index';
 import { StandardAction } from 'app/store/types';
 import { From } from 'webext/From';
+import { Level } from '../utils/Logger';
+import { ActionMeta, AppAction, BaseAction, ErrorAction } from './index';
 
 export const LISTENING_ACTIONS_READY = 'LISTENING_ACTIONS_READY';
 export interface ListeningActionsReadyAction extends BaseAction {

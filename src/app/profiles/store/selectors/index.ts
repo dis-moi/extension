@@ -1,9 +1,5 @@
 import { createSelector } from 'reselect';
 import * as RA from 'ramda-adjunct';
-import { ProfilesState } from '../reducers';
-import { getContributors } from './contributors';
-import { getNotices as getNoticesItems, getNoticesCollection } from './notices';
-import { getSubscriptions } from './subscriptions';
 import { findItemById } from 'app/utils/findItemById';
 import {
   Contributor,
@@ -15,6 +11,10 @@ import { Subscription, Subscriptions } from 'app/lmem/subscription';
 import { Notice, NoticeWithContributor } from 'app/lmem/notice';
 import { makeGetRouteParam } from 'app/store/selectors';
 import { getIndexedFetchedAll } from 'app/store/collection/selectors';
+import { ProfilesState } from '../reducers';
+import { getSubscriptions } from './subscriptions';
+import { getNotices as getNoticesItems, getNoticesCollection } from './notices';
+import { getContributors } from './contributors';
 
 export const createContributorEnhancer = (subscriptions: Subscriptions) => (
   contributor: Contributor

@@ -1,11 +1,11 @@
 import { createSelector } from 'reselect';
-import { BackgroundState } from '../reducers';
 import {
   NoticeWithContributor,
   isIgnored,
   shouldNoticeBeShown,
   StatefulNoticeWithContributor
 } from 'app/lmem/notice';
+import { BackgroundState } from '../reducers';
 
 export const getPrefs = (state: BackgroundState) => state.prefs;
 

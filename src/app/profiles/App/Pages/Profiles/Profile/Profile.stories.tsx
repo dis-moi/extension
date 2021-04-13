@@ -5,13 +5,13 @@ import { MemoryRouter as Router } from 'react-router-dom';
 import { action } from '@storybook/addon-actions';
 import { StoryFn } from '@storybook/addons';
 import { createBrowserHistory } from 'history';
-import rootReducer from '../../../../store/reducers';
-import Profile from './Profile';
 import {
   generatePinnedNotice,
   generateStatefulNotice
 } from 'test/fakers/generateNotice';
 import { generateStatefulContributor } from 'test/fakers/generateContributor';
+import rootReducer from '../../../../store/reducers';
+import Profile from './Profile';
 
 const store = createStore(rootReducer(createBrowserHistory()));
 

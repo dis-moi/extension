@@ -1,16 +1,6 @@
 import React, { useState, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import Error from '../../Error';
-import SimilarProfiles from '../../../SimilarProfiles';
-import SubscribePopin from '../SubscribePopin';
-import NotConnectedPopin, {
-  NotConnectedPopinState
-} from '../NotConnectedPopin';
-import ProfileIntro from './ProfileIntro';
-import ProfileNoticeList from './ProfileNoticeList';
-import FeaturedNotices from './FeaturedNotices';
-import FeaturedNoticesTitle from './FeaturedNoticesTitle';
 import CenterContainer from 'components/atoms/CenterContainer';
 import {
   AddToBrowserMessageBox,
@@ -25,6 +15,16 @@ import {
 } from 'components/atoms';
 import { Notice, NoticeWithContributor } from 'app/lmem/notice';
 import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
+import Error from '../../Error';
+import SimilarProfiles from '../../../SimilarProfiles';
+import SubscribePopin from '../SubscribePopin';
+import NotConnectedPopin, {
+  NotConnectedPopinState
+} from '../NotConnectedPopin';
+import ProfileIntro from './ProfileIntro';
+import ProfileNoticeList from './ProfileNoticeList';
+import FeaturedNotices from './FeaturedNotices';
+import FeaturedNoticesTitle from './FeaturedNoticesTitle';
 
 export const MainCol = styled.div`
   ${CenterContainer} {

@@ -1,6 +1,6 @@
+import { Contributor, StatefulContributor } from 'app/lmem/contributor';
 import { Level } from '../utils/Logger';
 import { ActionMeta, BaseAction, ErrorAction } from '.';
-import { Contributor, StatefulContributor } from 'app/lmem/contributor';
 
 export const UPDATE_CONTRIBUTORS = 'api/UPDATE_CONTRIBUTORS';
 export interface ReceivedContributorsAction extends BaseAction {

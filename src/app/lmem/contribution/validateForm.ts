@@ -1,6 +1,6 @@
 import { FormErrors } from 'redux-form';
-import validate from './validate';
 import { Contribution } from 'app/lmem/notice';
+import validate from './validate';
 
 export default (contribution: Contribution): FormErrors<Contribution> => {
   const errors = validate(contribution) as FormErrors<Contribution>;

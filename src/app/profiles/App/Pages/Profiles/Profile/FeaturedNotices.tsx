@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import FeaturedNotice from './FeaturedNotice';
 import { LoadingRotator } from 'components/atoms';
 import { LoadingBig } from 'components/atoms/icons';
 import { Notice } from 'app/lmem/notice';
 import { StatefulContributor } from 'app/lmem/contributor';
+import FeaturedNotice from './FeaturedNotice';
 
 export interface FeaturedNoticesProps {
   loading?: boolean;

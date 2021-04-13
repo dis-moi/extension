@@ -1,12 +1,12 @@
 import { takeLatest } from 'redux-saga/effects';
 import { SagaIterator } from 'redux-saga';
-import { BaseAction, ErrorAction } from '../actions';
-import { Level } from '../utils/Logger';
 import {
   captureException,
   captureMessage,
   severityToSentry
 } from 'app/utils/sentry';
+import { BaseAction, ErrorAction } from '../actions';
+import { Level } from '../utils/Logger';
 
 export function* handleErrorSaga({
   type,

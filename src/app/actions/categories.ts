@@ -1,5 +1,5 @@
-import { createErrorAction } from './helpers';
 import { Categories } from 'app/lmem/category';
+import { createErrorAction } from './helpers';
 
 export const FETCH_CATEGORIES_REQUEST = 'CATEGORIES/FETCH_REQUEST';
 export const fetchCategoriesRequest = () => ({

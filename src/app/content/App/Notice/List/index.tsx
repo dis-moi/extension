@@ -1,7 +1,5 @@
 import React from 'react';
 import { useTransition } from 'react-spring';
-import ListContainer from './ListContainer';
-import withConnect from './withConnect';
 import { StatefulNoticeWithContributor } from 'app/lmem/notice';
 import { Contributor } from 'app/lmem/contributor';
 import { AddNoticeContainer } from 'components/atoms';
@@ -10,6 +8,8 @@ import NoticeItem, {
   NoticeTransitionProps,
   transitionKeys
 } from 'components/organisms/Notice/Notice';
+import withConnect from './withConnect';
+import ListContainer from './ListContainer';
 
 export interface Props {
   notices: StatefulNoticeWithContributor[];

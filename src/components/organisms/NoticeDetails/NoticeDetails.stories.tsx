@@ -5,12 +5,12 @@ import { StoryFn } from '@storybook/addons';
 import { subMonths } from 'date-fns';
 import Faker from 'faker';
 import { boolean, date, number, text } from '@storybook/addon-knobs';
-import NoticeDetails from './NoticeDetails';
 import {
   generateStatefulNotice,
   messageWithYoutubeVideo
 } from 'test/fakers/generateNotice';
 import { generateContributor } from 'test/fakers/generateContributor';
+import NoticeDetails from './NoticeDetails';
 
 const defaultMessage = Faker.lorem.paragraph(3);
 const longMessage = Faker.lorem.paragraph(10);

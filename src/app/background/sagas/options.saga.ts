@@ -1,5 +1,4 @@
 import { takeLatest, call, put, select } from 'redux-saga/effects';
-import { getOptionsTab } from '../selectors/tabs';
 import Tab from 'app/lmem/tab';
 import openOptions, { getOptionsUrl } from 'webext/openOptionsTab';
 import {
@@ -8,6 +7,7 @@ import {
   optionsTabOpenFailed,
   OptionsRequestedAction
 } from 'app/actions';
+import { getOptionsTab } from '../selectors/tabs';
 
 function* openOptionsSaga({
   payload: { pathname, params }

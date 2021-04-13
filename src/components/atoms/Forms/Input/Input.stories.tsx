@@ -1,6 +1,6 @@
 import React from 'react';
-import Input from './Input';
 import { WEBSITE_DOMAIN } from 'app/lmem';
+import Input from './Input';
 
 export default {
   title: 'Components/Atoms/Forms/Input'

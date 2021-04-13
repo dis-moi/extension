@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { Field, InjectedFormProps } from 'redux-form';
-import withReduxForm from './withReduxForm';
 import { Form } from 'components/atoms/Forms';
 import { CenterContainer, BackgroundButton, Button } from 'components/atoms';
 import {
@@ -13,6 +12,7 @@ import {
 import FormErrors from 'components/molecules/FormErrors';
 import { Question } from 'app/lmem/notice';
 import { StatefulContributor } from 'app/lmem/contributor';
+import withReduxForm from './withReduxForm';
 
 export interface QuestionFormOwnProps {
   onUrlChange: (url: string) => void;

@@ -4,8 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { withKnobs, text, date, number, boolean } from '@storybook/addon-knobs';
 import Faker from 'faker';
 import { subMonths } from 'date-fns';
-import { StoryFn, StoryFn } from '@storybook/addons';
-import { Details } from '.';
+import { StoryFn } from '@storybook/addons';
 import {
   defaultMessage,
   generateStatefulNotice,
@@ -13,6 +12,7 @@ import {
 } from 'test/fakers/generateNotice';
 import Notification from 'components/organisms/Notification';
 import { generateContributor } from 'test/fakers/generateContributor';
+import { Details } from '.';
 
 const defaultContributorName = Faker.name.findName();
 const defaultDate = subMonths(new Date(), 1);

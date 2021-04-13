@@ -1,9 +1,9 @@
 import { TakeableChannel, PuttableChannel } from 'redux-saga';
 import { put, call, take, takeLatest } from 'redux-saga/effects';
-import createActionChannel from './createActionChannel';
-import postActionSaga from './postAction.saga';
 import { disconnected } from 'app/store/actions/connection';
 import { StandardAction } from 'app/store/types';
+import createActionChannel from './createActionChannel';
+import postActionSaga from './postAction.saga';
 
 /**
  * @todo would love to see an implementation of this with `redux-saga` `stdChannel` or `multicastChannel`,

@@ -2,9 +2,9 @@ import React, { ReactElement } from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { action } from '@storybook/addon-actions';
 import { StoryFn } from '@storybook/addons';
-import Subscriptions from './Subscriptions';
 import Notification from 'components/organisms/Notification';
 import { generateContributor } from 'test/fakers/generateContributor';
+import Subscriptions from './Subscriptions';
 
 const commonProps = {
   openSubscriptions: action('openSubscriptions'),

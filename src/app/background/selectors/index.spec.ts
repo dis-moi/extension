@@ -2,9 +2,12 @@ import chai from 'chai';
 import { Action } from 'redux';
 import reducer, { BackgroundState } from 'app/background/reducers';
 import prefsReducer from 'app/background/reducers/prefs.reducer';
-import { isOnboardingRequired } from 'app/background/selectors';
+import {
+  isOnboardingRequired,
+  isInstallationComplete
+} from 'app/background/selectors';
 import { tosAccepted } from '../../actions';
-import { isInstallationComplete } from './';
+
 import { ContributorId } from '../../lmem/contributor';
 
 const expect = chai.expect;

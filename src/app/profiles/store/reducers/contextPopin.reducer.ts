@@ -1,5 +1,5 @@
-import { SET_POPIN, PopinActionReturn } from '../actions/contextPopin';
 import { MouseEvent } from 'react';
+import { SET_POPIN, PopinActionReturn } from '../actions/contextPopin';
 
 interface ButtonDescriptor {
   label?: string;

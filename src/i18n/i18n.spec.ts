@@ -1,6 +1,5 @@
 import { expect } from 'chai';
-import { options } from './index';
-import i18n from './';
+import i18n, { options } from './index';
 
 describe('i18n translation', () => {
   beforeEach(() => {

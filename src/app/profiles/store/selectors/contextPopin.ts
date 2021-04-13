@@ -1,5 +1,5 @@
-import { ProfilesState } from '../reducers';
 import { createSelector } from 'reselect';
+import { ProfilesState } from '../reducers';
 import { ContextPopinState } from '../reducers/contextPopin.reducer';
 
 export const getContextPopinState = (state: ProfilesState) =>

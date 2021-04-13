@@ -1,7 +1,6 @@
 import React from 'react';
 import { Trans } from 'react-i18next';
 import styled from 'styled-components';
-import { WEBSITE_DOMAIN } from '../../../app/lmem';
 import { ExternalLink } from 'components/atoms';
 import LogoBordeaux from 'assets/img/contributors/logo-bordeaux.png';
 import LogoColibri from 'assets/img/contributors/logo-colibri-ecolo.png';
@@ -9,6 +8,7 @@ import LogoLeMonde from 'assets/img/contributors/logo-le-monde.png';
 import LogoLesInrocks from 'assets/img/contributors/logo-les-inrocks.png';
 import LogoMicode from 'assets/img/contributors/logo-micode.png';
 import LogoQueChoisir from 'assets/img/contributors/logo-que-choisir.png';
+import { WEBSITE_DOMAIN } from '../../../app/lmem';
 
 const Link = styled(ExternalLink)`
   color: ${props => props.theme.text};

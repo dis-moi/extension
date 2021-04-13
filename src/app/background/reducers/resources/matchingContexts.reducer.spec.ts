@@ -1,10 +1,10 @@
 import { expect } from 'chai';
+import { MatchingContext } from 'app/lmem/matchingContext';
+import { receivedMatchingContexts, unsubscribe } from '../../../actions';
+import { ContributorId } from '../../../lmem/contributor';
 import matchingContextsReducer, {
   MatchingContextsState
 } from './matchingContexts.reducer';
-import { receivedMatchingContexts, unsubscribe } from '../../../actions';
-import { ContributorId } from '../../../lmem/contributor';
-import { MatchingContext } from 'app/lmem/matchingContext';
 
 const matchingContext1 = {
   id: 1,

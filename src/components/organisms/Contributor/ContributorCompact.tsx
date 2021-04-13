@@ -1,12 +1,12 @@
 import React from 'react';
 import { LocationDescriptor, LocationState } from 'history';
 import styled from 'styled-components';
-import ContributorButton from './ContributorButton';
-import ContributorNameLink from './ContributorNameLink';
 import { StatefulContributor } from 'app/lmem/contributor';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import UserNameCompact from 'components/atoms/UserName/UserNameCompact';
 import ContributorWrapper from 'components/atoms/Contributor/ContributorWrapper';
+import ContributorNameLink from './ContributorNameLink';
+import ContributorButton from './ContributorButton';
 
 const Wrapper = styled(ContributorWrapper)`
   align-items: center;

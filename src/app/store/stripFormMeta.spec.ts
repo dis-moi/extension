@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-import stripFormMeta from './stripFormMeta';
-import { submitContribution } from '../actions/contribution';
 import generateContribution from 'test/fakers/generateContribution';
+import { submitContribution } from '../actions/contribution';
+import stripFormMeta from './stripFormMeta';
 
 describe('stripFormMeta', () => {
   it('remove resolve and reject meta', () => {

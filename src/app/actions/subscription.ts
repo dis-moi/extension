@@ -1,6 +1,6 @@
-import { ActionMeta, BaseAction, ErrorAction } from '.';
 import { ContributorId } from 'app/lmem/contributor';
 import { Level } from 'app/utils/Logger';
+import { ActionMeta, BaseAction, ErrorAction } from '.';
 
 export interface ContributorAction extends BaseAction {
   payload: ContributorId;

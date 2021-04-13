@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import CloseButton from '../../../../../components/organisms/Notification/NotificationHeader/CloseButton';
-import { CloseFunction } from '../index';
 import { PopinClose } from 'components/molecules/Popin/Popin';
 import useNoScrollBody from 'app/utils/useNoScrollBody';
+import CloseButton from '../../../../../components/organisms/Notification/NotificationHeader/CloseButton';
+import { CloseFunction } from '../index';
 
 interface ContainerProps {
   open: boolean;

@@ -1,11 +1,11 @@
 import { Redirect, Route, Switch } from 'react-router';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import useChangeLanguage from '../../../hooks/useChangeLanguage';
+import ConnectedContextPopin from '../ContextPopin/';
 import Profiles from './Profiles';
 import Error from './Error';
 import Subscriptions from './Subscriptions';
-import useChangeLanguage from '../../../hooks/useChangeLanguage';
-import { useTranslation } from 'react-i18next';
-import ConnectedContextPopin from '../ContextPopin/';
 
 const Pages = () => {
   useChangeLanguage();

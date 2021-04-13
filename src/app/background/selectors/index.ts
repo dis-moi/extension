@@ -1,5 +1,6 @@
 import { PersistedState } from 'redux-persist';
 import { createSelector } from 'reselect';
+import { InstallationDetails } from 'app/lmem/installation';
 import { filterContextsMatchingUrl } from '../../lmem/matchingContext';
 import { BackgroundState } from '../reducers';
 import { getNotice } from '../../lmem/notice';
@@ -7,7 +8,6 @@ import { getMatchingContexts } from './resources';
 import { getInstallationDetails } from './installationDetails';
 import { areTosAccepted, getRead } from './prefs';
 import { getNoticesIdsOnTab } from './tabs';
-import { InstallationDetails } from 'app/lmem/installation';
 
 export const getContextsMatchingUrl = (state: BackgroundState) => (
   url: string

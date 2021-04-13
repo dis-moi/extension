@@ -1,9 +1,9 @@
 import { SagaIterator } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
-import { Level } from '../../../utils/Logger';
 import Tracker from 'types/Tracker';
 import { ContributorAction, getURLFromActionMeta } from 'app/actions';
 import { createErrorAction } from 'app/actions/helpers';
+import { Level } from '../../../utils/Logger';
 
 export const trackContributorActionSaga = (tracker: Tracker) =>
   function*(action: ContributorAction): SagaIterator {

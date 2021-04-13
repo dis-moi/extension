@@ -1,8 +1,8 @@
 import { call, put, take } from '@redux-saga/core/effects';
 import { eventChannel } from 'redux-saga';
-import { listenActionFailed, listeningActionsReady } from '../actions';
 import createActionsListener from 'webext/createActionsListener';
 import { From } from 'webext/From';
+import { listenActionFailed, listeningActionsReady } from '../actions';
 
 const createActionsListenerChannel = () => eventChannel(createActionsListener);
 

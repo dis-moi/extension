@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-expressions */
 import { expect } from 'chai';
-import contributorsReducer from './contributors.reducer';
 import { CloseCause } from 'app/lmem/ui';
 import {
   closed,
@@ -8,6 +7,7 @@ import {
   ContributorsTransmittedAction
 } from 'app/actions';
 import { generateContributor } from 'test/fakers/generateContributor';
+import contributorsReducer from './contributors.reducer';
 
 describe('options > reducers > contributors', function() {
   it('is empty initially', () => {

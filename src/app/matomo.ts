@@ -1,6 +1,4 @@
 /* eslint-disable camelcase, @typescript-eslint/camelcase */
-import { buildQueryString } from '../api/call';
-import uniqId from './utils/uniqId';
 import Tracker, {
   ContentImpression,
   ContentInteraction,
@@ -8,6 +6,8 @@ import Tracker, {
   PageView,
   TrackingEvent
 } from 'types/Tracker';
+import { buildQueryString } from '../api/call';
+import uniqId from './utils/uniqId';
 
 export interface RequiredTrackingParameters {
   idsite: number; // The ID of the website we're tracking a visit/action for.

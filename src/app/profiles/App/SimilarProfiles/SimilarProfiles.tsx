@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { withRouter } from 'react-router';
 import styled from 'styled-components';
-import pathToContributor from '../pathToContributor';
-import withConnect from './withConnect';
 import { StatefulContributor } from 'app/lmem/contributor';
 import {
   CenterContainer,
@@ -17,6 +15,8 @@ import Avatar from 'components/molecules/Avatar/Avatar';
 import SidebarBox from 'components/molecules/SidebarBox/SidebarBox';
 import ContributorCompact from 'components/organisms/Contributor/ContributorCompact';
 import ContributorNameLink from 'components/organisms/Contributor/ContributorNameLink';
+import pathToContributor from '../pathToContributor';
+import withConnect from './withConnect';
 
 interface SimilarProfilesProps {
   loading?: boolean;

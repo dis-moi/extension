@@ -1,8 +1,8 @@
-import { ActionMeta, BaseAction, ErrorAction } from '.';
 import { InstallationDetails } from 'app/lmem/installation';
 import { ContributorId } from 'app/lmem/contributor';
 import { Level } from 'app/utils/Logger';
 import { InstalledDetails } from 'webext/types';
+import { ActionMeta, BaseAction, ErrorAction } from '.';
 
 export const INSTALLED = 'EXTENSION/INSTALLED';
 export interface InstalledAction extends BaseAction {

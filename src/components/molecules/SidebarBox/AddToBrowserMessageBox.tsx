@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import SidebarBox from './SidebarBox';
 import { ButtonWithIcon, Paragraph } from 'components/atoms';
 import { Download } from 'components/atoms/icons';
+import SidebarBox from './SidebarBox';
 
 export default () => {
   const { t } = useTranslation();

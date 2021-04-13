@@ -1,23 +1,5 @@
 import { SagaIterator } from 'redux-saga';
 import { call, select, takeEvery, takeLatest } from 'redux-saga/effects';
-import { areTosAccepted } from '../../selectors/prefs';
-import { Level } from '../../../utils/Logger';
-import { trackContributorActionSaga } from './trackContributor.saga';
-import {
-  startTrackingSaga,
-  trackBrowserActionClickedSaga,
-  trackCloseSaga,
-  trackInstallSaga,
-  trackLocationChangeSaga,
-  trackTosAcceptedSaga
-} from './trackUI.saga';
-import {
-  trackNoticeBadgedSaga,
-  trackNoticeDisplayedSaga,
-  trackNoticeFeedbackSaga,
-  trackNoticeOutboundClickSaga,
-  trackNoticeUnfoldedSaga
-} from './trackNotice.saga';
 import Tracker from 'types/Tracker';
 import {
   BROWSER_ACTION_CLICKED,
@@ -38,6 +20,24 @@ import {
 import { createErrorAction } from 'app/actions/helpers';
 import { isFeedBackRatingAction } from 'app/background/sagas/ratings/notices.saga';
 import { loginSaga } from 'app/background/sagas/user.saga';
+import { areTosAccepted } from '../../selectors/prefs';
+import { Level } from '../../../utils/Logger';
+import { trackContributorActionSaga } from './trackContributor.saga';
+import {
+  startTrackingSaga,
+  trackBrowserActionClickedSaga,
+  trackCloseSaga,
+  trackInstallSaga,
+  trackLocationChangeSaga,
+  trackTosAcceptedSaga
+} from './trackUI.saga';
+import {
+  trackNoticeBadgedSaga,
+  trackNoticeDisplayedSaga,
+  trackNoticeFeedbackSaga,
+  trackNoticeOutboundClickSaga,
+  trackNoticeUnfoldedSaga
+} from './trackNotice.saga';
 
 export default (tracker?: Tracker) =>
   function*(): SagaIterator {

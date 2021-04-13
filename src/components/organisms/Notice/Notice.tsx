@@ -2,11 +2,6 @@ import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import { withTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
-import Container, { height, marginBottom } from './Container';
-import Content from './Content';
-import Deleted from './Deleted';
-import DeleteButton from './DeleteButton';
-import Title from './Title';
 import InteractiveAvatar from 'components/molecules/InteractiveAvatar';
 import {
   Button,
@@ -21,6 +16,11 @@ import {
   CountDownState,
   initialState as countdownInitialState
 } from 'app/lmem/countdown';
+import Title from './Title';
+import DeleteButton from './DeleteButton';
+import Deleted from './Deleted';
+import Content from './Content';
+import Container, { height, marginBottom } from './Container';
 
 export const transitionKeys = {
   from: {

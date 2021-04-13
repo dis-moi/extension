@@ -2,10 +2,10 @@ import React, { ReactElement } from 'react';
 import { MemoryRouter as Router, Route } from 'react-router-dom';
 import { action } from '@storybook/addon-actions';
 import { StoryFn } from '@storybook/addons';
+import Notification from 'components/organisms/Notification';
 import { About } from './About';
 import { Menu } from './Menu';
 import { Filters } from './Filters/Filters';
-import Notification from 'components/organisms/Notification';
 
 export default {
   title: 'Extension/Account',

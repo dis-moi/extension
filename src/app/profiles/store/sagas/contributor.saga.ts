@@ -1,5 +1,4 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { fetchNoticesRequest } from '../../../actions';
 import {
   fetchContributorFailure,
   fetchContributorSuccess,
@@ -9,6 +8,7 @@ import {
   FetchContributorSuccessAction
 } from 'app/actions/contributor';
 import fetchContributor from 'api/fetchContributor';
+import { fetchNoticesRequest } from '../../../actions';
 
 function* fetchContributorSaga({
   payload: contributorId

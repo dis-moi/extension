@@ -1,6 +1,5 @@
 import { SagaIterator } from 'redux-saga';
 import { call, put } from '@redux-saga/core/effects';
-import { Level } from '../../../utils/Logger';
 import Tracker from 'types/Tracker';
 import {
   BrowserActionClickedAction,
@@ -12,6 +11,7 @@ import {
   TosAcceptedAction
 } from 'app/actions';
 import { createErrorAction } from 'app/actions/helpers';
+import { Level } from '../../../utils/Logger';
 
 export const startTrackingSaga = (tracker: Tracker) =>
   function*(action: NoticesFoundAction): SagaIterator {

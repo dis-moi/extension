@@ -1,7 +1,7 @@
 import React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
-import Avatar from './Avatar';
 import { generateContributor } from 'test/fakers/generateContributor';
+import Avatar from './Avatar';
 
 export default {
   title: 'Components/Molecules/Avatar',

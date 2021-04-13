@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link as ReactRouterDomLink } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
+import { BackgroundButton } from 'components/atoms';
+import AddNoticeButton from 'components/atoms/Button/AddNoticeButton/AddNoticeButton';
 import { NoNotice } from '../../../../../components/atoms/icons';
 import Title from './Title';
 import ButtonContainer from './ButtonContainer';
-import { BackgroundButton } from 'components/atoms';
-import AddNoticeButton from 'components/atoms/Button/AddNoticeButton/AddNoticeButton';
 
 const Image = styled.div`
   width: 52px;
