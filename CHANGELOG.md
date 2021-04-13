@@ -1,3 +1,10 @@
+# [3.71.0](https://github.com/dis-moi/extension/compare/v3.70.1...v3.71.0) (2021-04-13)
+
+
+### Features
+
+* **linkContributor:** Change of link on contributor boxes [#890](https://github.com/dis-moi/extension/issues/890) ([d44c68b](https://github.com/dis-moi/extension/commit/d44c68b4d2077f279f62ebef45c79dcb6dfb23b5))
+
 ## [3.70.1](https://github.com/dis-moi/extension/compare/v3.70.0...v3.70.1) (2021-04-13)
 
 
