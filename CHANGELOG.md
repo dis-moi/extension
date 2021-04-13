@@ -1,3 +1,10 @@
+## [3.70.1](https://github.com/dis-moi/extension/compare/v3.70.0...v3.70.1) (2021-04-13)
+
+
+### Bug Fixes
+
+* **routerEn:** ProfileTabs links ([e0ddbdb](https://github.com/dis-moi/extension/commit/e0ddbdb14b045891a22c6a0d95e416774e8e9269))
+
 # [3.70.0](https://github.com/dis-moi/extension/compare/v3.69.1...v3.70.0) (2021-04-07)
 
 
