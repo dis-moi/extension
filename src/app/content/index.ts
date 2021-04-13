@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-var-requires, import/first */
+/* eslint-disable @typescript-eslint/no-var-requires, import/first, import/order */
 import Logger from 'app/utils/Logger';
 Logger.trace('Content script injected...');
 

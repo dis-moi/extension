@@ -3,16 +3,16 @@ import { MemoryRouter as Router } from 'react-router-dom';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, text, date, number, boolean } from '@storybook/addon-knobs';
 import Faker from 'faker';
+import { subMonths } from 'date-fns';
+import { StoryFn, StoryFn } from '@storybook/addons';
+import { Details } from '.';
 import {
   defaultMessage,
   generateStatefulNotice,
   messageWithYoutubeVideo
 } from 'test/fakers/generateNotice';
-import { Details } from '.';
-import { subMonths } from 'date-fns';
 import Notification from 'components/organisms/Notification';
 import { generateContributor } from 'test/fakers/generateContributor';
-import { StoryFn } from '@storybook/addons';
 
 const defaultContributorName = Faker.name.findName();
 const defaultDate = subMonths(new Date(), 1);

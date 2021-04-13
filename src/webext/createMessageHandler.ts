@@ -1,8 +1,8 @@
 import { Action } from 'redux';
 import * as R from 'ramda';
-import { BaseAction, NAVIGATED_TO_URL } from 'app/actions';
 import assocMetaIfNotGiven from './assocMetaIfNotGiven';
 import { getOptionsUrl } from './openOptionsTab';
+import { BaseAction, NAVIGATED_TO_URL } from 'app/actions';
 import { Emit } from 'app/store/types';
 import isAction from 'app/store/isAction';
 import { createErrorAction } from 'app/actions/helpers';

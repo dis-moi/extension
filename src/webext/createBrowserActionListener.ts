@@ -1,7 +1,7 @@
 import { Action } from 'redux';
+import { Severity } from '@sentry/types';
 import { browserActionClicked } from 'app/actions/browser';
 import { captureMessage } from 'app/utils/sentry';
-import { Severity } from '@sentry/types';
 
 type Emit = (action: Action) => void;
 

@@ -1,5 +1,5 @@
-import { ContributorId } from 'app/lmem/contributor';
 import { ActionMeta, BaseAction, ErrorAction } from '.';
+import { ContributorId } from 'app/lmem/contributor';
 import { Level } from 'app/utils/Logger';
 
 export interface ContributorAction extends BaseAction {

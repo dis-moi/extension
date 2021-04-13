@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import * as R from 'ramda';
+import { ContributorsState } from '../reducers/contributors.reducer';
 import {
   contributorIsSubscribed,
   sortContributorsByContributions,
@@ -7,7 +8,6 @@ import {
   StatefulContributor,
   sortContributorsAlphabetically
 } from 'app/lmem/contributor';
-import { ContributorsState } from '../reducers/contributors.reducer';
 import { findItemById } from 'app/utils/findItemById';
 
 export interface StateWithContributors {

@@ -1,6 +1,7 @@
 import { put, race, take, takeLatest, call } from 'redux-saga/effects';
 import { go, replace } from 'connected-react-router';
 import { reset } from 'redux-form';
+import { history } from '../store';
 import {
   CONTRIBUTION_SUBMISSION_FAILED,
   CONTRIBUTION_SUBMITTED,
@@ -8,7 +9,6 @@ import {
   SubmitContributionAction
 } from 'app/actions/contribution';
 import { createSubmissionError } from 'app/utils/form';
-import { history } from '../store';
 
 export function* submitContributionSaga({
   meta: { form, resolve, reject }

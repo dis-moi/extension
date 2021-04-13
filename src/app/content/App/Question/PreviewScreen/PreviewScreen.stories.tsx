@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
-import Notification from 'components/organisms/Notification';
-import PreviewScreen from './PreviewScreen';
 import { action } from '@storybook/addon-actions';
-import { formStoreDecorator } from '../../../../../../.storybook/decorators';
-import { WEBSITE_DOMAIN } from 'app/lmem';
 import { StoryFn } from '@storybook/addons';
+import { formStoreDecorator } from '../../../../../../.storybook/decorators';
+import PreviewScreen from './PreviewScreen';
+import Notification from 'components/organisms/Notification';
+import { WEBSITE_DOMAIN } from 'app/lmem';
 
 export default {
   title: 'Extension/Question/Preview',

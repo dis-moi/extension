@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 import { change } from 'redux-form';
+import { form } from './withReduxForm';
 import { ContentState } from 'app/content/store';
 import { getFlatFormErrors } from 'app/content/selectors';
-import { form } from './withReduxForm';
 import { getContributorsSortedAlphabetically } from 'app/store/selectors/contributors.selectors';
 
 export default connect(

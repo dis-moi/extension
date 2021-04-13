@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { getOptionsTabs, getReadyTabs, getTabsList } from './tabs';
 import { TabsState } from '../reducers/tabs.reducer';
+import { getOptionsTabs, getReadyTabs, getTabsList } from './tabs';
 
 interface StateWithTabs {
   tabs: TabsState;

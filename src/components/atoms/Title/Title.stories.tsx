@@ -1,6 +1,6 @@
 import React from 'react';
-import Title from './Title';
 import { text, withKnobs } from '@storybook/addon-knobs';
+import Title from './Title';
 
 export default {
   title: 'Components/Atoms/Title',

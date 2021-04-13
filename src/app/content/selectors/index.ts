@@ -8,6 +8,7 @@ import {
   RegisteredFieldState
 } from 'redux-form';
 import * as R from 'ramda';
+import { ContentState } from '../store';
 import {
   getNotice,
   isUnread,
@@ -17,7 +18,6 @@ import {
   Question
 } from 'app/lmem/notice';
 import { InstallationDetails } from 'app/lmem/installation';
-import { ContentState } from '../store';
 import { getRegisteredFieldsPaths } from 'app/utils/form';
 import {
   getContributors,

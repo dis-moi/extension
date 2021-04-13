@@ -1,6 +1,6 @@
 import React from 'react';
-import LoadingRotator from './LoadingRotator';
 import Loading from '../icons/Loading';
+import LoadingRotator from './LoadingRotator';
 
 export default {
   title: 'Components/Atoms/LoadingRotator'

@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import { expect } from 'chai';
-import { generateContributor } from 'test/fakers/generateContributor';
+import { ContributorsState } from '../reducers/contributors.reducer';
 import {
   getContributorsSuggestions,
   getNbTotalContributors,
@@ -8,7 +8,7 @@ import {
   getSubscriptions,
   makeGetNContributorsSuggestions
 } from './contributors.selectors';
-import { ContributorsState } from '../reducers/contributors.reducer';
+import { generateContributor } from 'test/fakers/generateContributor';
 
 describe('options > selectors > contributors', () => {
   const contributorOne = generateContributor({ contributions: 100 });

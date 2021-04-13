@@ -1,4 +1,6 @@
 import { all, fork, call, put, select, takeLatest } from 'redux-saga/effects';
+import { SagaIterator } from 'redux-saga';
+import { loginSaga } from './user.saga';
 import {
   ContributorAction,
   STARTUP,
@@ -15,9 +17,7 @@ import {
   getSubscriptions
 } from 'app/background/selectors/subscriptions.selectors';
 import postSubscriptions from 'api/postSubscriptions';
-import { loginSaga } from './user.saga';
 import { createCallAndRetry } from 'app/sagas/effects/callAndRetry';
-import { SagaIterator } from 'redux-saga';
 import {
   FETCH_SUBSCRIPTIONS,
   FetchSubscriptionsAction,

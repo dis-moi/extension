@@ -1,7 +1,7 @@
 import { fork } from 'redux-saga/effects';
-import { From } from 'webext/From';
 import listenActionsFromMessagesSaga from './listenActionsFromMessages';
 import sendActionsToBackgroundSaga from './sendActionsToBackground';
+import { From } from 'webext/From';
 
 /**
  * This is usefull for content script and options to have an all-in-one saga

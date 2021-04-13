@@ -2,14 +2,14 @@ import React, { ReactElement } from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import Faker from 'faker';
+import { StoryFn, StoryFn } from '@storybook/addons';
 import Notice from './Notice';
 import {
   defaultMessage,
   generateStatefulNotice
 } from 'test/fakers/generateNotice';
-import Faker from 'faker';
 import { generateContributor } from 'test/fakers/generateContributor';
-import { StoryFn } from '@storybook/addons';
 
 const defaultContributorName = Faker.name.findName();
 const longMessage =

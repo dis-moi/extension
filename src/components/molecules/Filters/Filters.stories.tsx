@@ -1,7 +1,7 @@
 import React from 'react';
+import { action } from '@storybook/addon-actions';
 import FiltersSelect from '../Filters/FiltersSelect';
 import FiltersCheckboxes from '../Filters/FiltersCheckboxes';
-import { action } from '@storybook/addon-actions';
 import RadiosFilters from './RadiosFilters';
 
 const FILTERS = {

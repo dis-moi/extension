@@ -1,12 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { compose } from 'redux';
-import { ExternalLink, Time } from 'components/atoms';
-import withTitle from 'app/hocs/withTitle';
 import Title from './Title';
 import Content from './Content';
 import Container from './Container';
 import withConnect from './withConnect';
+import withTitle from 'app/hocs/withTitle';
+import { ExternalLink, Time } from 'components/atoms';
 import { WEBSITE_DOMAIN } from 'app/lmem';
 
 export interface AboutProps {

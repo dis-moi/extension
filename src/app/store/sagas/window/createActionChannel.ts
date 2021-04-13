@@ -1,5 +1,5 @@
-import Logger from 'app/utils/Logger';
 import { eventChannel } from 'redux-saga';
+import Logger from 'app/utils/Logger';
 import { StandardAction } from 'app/store/types';
 import isStandardAction from 'app/store/isStandardAction';
 

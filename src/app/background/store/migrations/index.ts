@@ -7,12 +7,12 @@ import {
   purgeStoredState
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage
+import { persistConfig } from '../';
 import { migration1 } from './1.2017-01-26';
 import { migration2 } from './2.2019-02-11';
 import { migration3 } from './3.2019-03';
 import { migration4 } from './4.2019-08-28';
 import { migration5 } from './5.2019-09-12';
-import { persistConfig } from '../';
 
 const migrations: MigrationManifest = {
   1: migration1, // 26-01-2017

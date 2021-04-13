@@ -1,8 +1,8 @@
 import React from 'react';
 import { withKnobs, text } from '@storybook/addon-knobs';
+import Faker from 'faker';
 import UserName from './UserName';
 import UserNameCompact from './UserNameCompact';
-import Faker from 'faker';
 
 const defaultUserName = Faker.name.findName();
 

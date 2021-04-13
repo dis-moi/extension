@@ -47,9 +47,9 @@
     "typecheck": "tsc --noEmit",
     "lint": "yarn lint:ts",
     "lint-fixme-stylelint-has-to-be-fixed": "yarn lint:ts && yarn lint:css",
-    "lint:ts": "eslint \"./src/**/*.{js,ts}\"",
+    "lint:ts": "eslint './src/**/*.{js,ts,tsx}'",
     "lint:css": "stylelint './src/**/*.{ts,tsx}'",
-    "prettier": "prettier --write src/**/*.{ts,tsx} test/**/*.{ts,tsx,js} manifest/**/*.js webpack/*.js release.*.js",
+    "prettier": "prettier-eslint --write src/**/*.{ts,tsx} test/**/*.{ts,tsx,js} manifest/**/*.js webpack/*.js release.*.js",
     "verify": "yarn test && yarn typecheck && yarn lint && yarn build:chromium:production && yarn build-storybook",
     "analyze": "NODE_ENV=production webpack --mode=production --env.PLATFORM=chromium --env.ANALYZE",
     "storybook": "start-storybook -s ./src/assets --ci -p 6007 -c .storybook",
@@ -234,6 +234,8 @@
   "devDependencies": {
     "@storybook/cli": "^6.2.2",
     "chrome-webstore-upload": "^0.2.2",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "prettier-eslint-cli": "^5.0.1",
     "sign-addon": "^2.0.4",
     "webpack-dev-server": "^3.11.0"
   }

@@ -1,6 +1,6 @@
-import { CreateProperties } from './types';
-import { buildQueryString, GetParams } from '../api/call';
 import i18n from 'i18next';
+import { buildQueryString, GetParams } from '../api/call';
+import { CreateProperties } from './types';
 
 export const getOptionsUrl = (pathname?: string, params: GetParams = {}) => {
   return `${process.env.PROFILES_ORIGIN || ''}${pathname ||

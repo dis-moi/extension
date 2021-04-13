@@ -2,10 +2,13 @@ import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import { action } from '@storybook/addon-actions';
 
+import { MemoryRouter as Router } from 'react-router';
+import { StoryFn } from '@storybook/addons';
 import { Button, BorderButton, ButtonWithIcon } from '../';
+import Tab from '../Tab/Tab';
+import Download from '../icons/Download';
 import AddNoticeButton from './AddNoticeButton';
 import { BackgroundButton, OpenButton } from './index';
-import Tab from '../Tab/Tab';
 import ContributorButton from 'components/organisms/Contributor/ContributorButton';
 import DeleteButton from 'components/organisms/Notice/DeleteButton';
 import Feedbacks from 'components/organisms/NoticeDetails/Feedbacks';
@@ -13,9 +16,6 @@ import { ThumbUp, ThumbDown } from 'components/atoms/icons';
 import BackButton from 'components/organisms/Notification/NotificationHeader/BackButton';
 import CloseButton from 'components/organisms/Notification/NotificationHeader/CloseButton';
 import NavLink from 'components/organisms/Notification/NotificationFooter/NavLink';
-import { MemoryRouter as Router } from 'react-router';
-import Download from '../icons/Download';
-import { StoryFn } from '@storybook/addons';
 
 const ButtonsListBackground = styled.div`
   padding: 20px;

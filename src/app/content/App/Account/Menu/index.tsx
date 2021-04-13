@@ -1,9 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, RouteComponentProps } from 'react-router-dom';
+import Account from './Account';
 import { ExternalLink, OpenButton } from 'components/atoms';
 import withTitle from 'app/hocs/withTitle';
-import Account from './Account';
 import { WEBSITE_DOMAIN } from 'app/lmem';
 
 type MenuProps = RouteComponentProps;

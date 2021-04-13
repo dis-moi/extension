@@ -1,12 +1,12 @@
 import React from 'react';
 import { compose } from 'redux';
+import withConnect from './withConnect';
 import withTitle from 'app/hocs/withTitle';
 import NoticeDetails, {
   NoticeDetailsMethodsProps
 } from 'components/organisms/NoticeDetails/NoticeDetails';
 import { StatefulNoticeWithContributor } from 'app/lmem/notice';
 import { Contributor } from 'app/lmem/contributor';
-import withConnect from './withConnect';
 
 export interface DetailsScreenDataProps {
   notice?: StatefulNoticeWithContributor;

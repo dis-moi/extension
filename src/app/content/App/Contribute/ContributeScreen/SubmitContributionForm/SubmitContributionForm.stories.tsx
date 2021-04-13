@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { action } from '@storybook/addon-actions';
-import SubmitContribution from './SubmitContributionForm';
-import { formStoreDecorator } from '../../../../../../../.storybook/decorators';
 import { StoryFn } from '@storybook/addons';
+import { formStoreDecorator } from '../../../../../../../.storybook/decorators';
+import SubmitContribution from './SubmitContributionForm';
 
 export default {
   title: 'Components/Molecules',

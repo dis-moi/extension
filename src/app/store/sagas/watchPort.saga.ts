@@ -6,11 +6,11 @@ import {
   ActionPattern,
   cancel
 } from 'redux-saga/effects';
+import stripReceiverMeta from '../stripReceiverMeta';
+import addSenderMeta from '../addSenderMeta';
 import createPortChannel from './createPortChannel';
 import { disconnected } from 'app/store/actions/connection';
 import { PortAction } from 'app/store/types';
-import stripReceiverMeta from '../stripReceiverMeta';
-import addSenderMeta from '../addSenderMeta';
 
 type MessageSender = browser.runtime.MessageSender;
 type Port = browser.runtime.Port;

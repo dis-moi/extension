@@ -12,6 +12,12 @@
   "settings": {
     "react": {
       "version": "detect" // React version. "detect" automatically picks the version you have installed.
+    },
+    "import/resolver": {
+      "typescript": {} // this loads <rootdir>/tsconfig.json to eslint
+//      "typescript": {
+//        "project": "."
+//      }
     }
   },
   "globals": {
@@ -24,6 +30,7 @@
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
+    "plugin:import/typescript",
     "plugin:prettier/recommended",
     "prettier-standard/prettier-file",
     "plugin:react/recommended",
@@ -34,6 +41,20 @@
     "no-console": "warn",
     // Use either @typescript-eslint/no-unused-vars or this one but not both
     "no-unused-vars": 0,
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "unknown"
+        ]
+      }
+    ],
     // We don't actually set a display name for functional component
     "react/display-name": 0,
 

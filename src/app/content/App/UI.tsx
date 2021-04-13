@@ -8,9 +8,6 @@ import {
   Switch,
   withRouter
 } from 'react-router';
-import Notification from 'components/organisms/Notification';
-import { CloseCause } from 'app/lmem/ui';
-import { close } from 'app/actions';
 import { ContentState } from '../store';
 import {
   getTitle,
@@ -28,6 +25,9 @@ import Error from './Error';
 import Contribute from './Contribute';
 import Question from './Question';
 import ServiceMessage from './ServiceMessage';
+import { close } from 'app/actions';
+import { CloseCause } from 'app/lmem/ui';
+import Notification from 'components/organisms/Notification';
 
 const mapStateToProps = (state: ContentState) => ({
   open: isOpen(state),

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import { Notice } from 'app/lmem/notice';
 import ProfileNoticeListItem from './ProfileNoticeListItem';
+import { Notice } from 'app/lmem/notice';
 import { LoadingBig } from 'components/atoms/icons';
 import { CenterContainer, Link, LoadingRotator } from 'components/atoms';
 

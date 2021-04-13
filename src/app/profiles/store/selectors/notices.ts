@@ -1,5 +1,5 @@
-import { ProfilesState } from 'app/profiles/store/reducers';
 import { createSelector } from 'reselect';
+import { ProfilesState } from 'app/profiles/store/reducers';
 import {
   getIndexedOffset,
   isCollectionLoading

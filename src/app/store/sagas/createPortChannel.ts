@@ -1,8 +1,8 @@
 import { eventChannel, END } from 'redux-saga';
-import { Emit } from 'app/store/types';
-import { createErrorAction } from 'app/actions/helpers';
 import isAction from '../isAction';
 import addSenderMeta from '../addSenderMeta';
+import { Emit } from 'app/store/types';
+import { createErrorAction } from 'app/actions/helpers';
 import Logger from 'app/utils/Logger';
 
 type Port = browser.runtime.Port;

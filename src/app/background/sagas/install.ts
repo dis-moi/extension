@@ -1,5 +1,7 @@
 import { SagaIterator } from 'redux-saga';
 import { takeLatest, select, put, call } from 'redux-saga/effects';
+import { version } from '../../../../package.json';
+import { loginSaga } from './user.saga';
 import { captureException } from 'app/utils/sentry';
 import { optionsRequested } from 'app/actions';
 import {
@@ -9,8 +11,6 @@ import {
 } from 'app/actions/install';
 import { getInstallationDate } from 'app/background/selectors/installationDetails';
 import { InstallationDetails } from 'app/lmem/installation';
-import { version } from '../../../../package.json';
-import { loginSaga } from './user.saga';
 import { buildQueryString } from 'api/call';
 
 const { UNINSTALL_ORIGIN } = process.env;

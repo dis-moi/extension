@@ -1,6 +1,6 @@
-import { Contribution } from 'app/lmem/notice';
-import { BaseAction, FormAction, FormMeta, ActionMeta, ErrorAction } from '.';
 import { Level } from '../utils/Logger';
+import { BaseAction, FormAction, FormMeta, ActionMeta, ErrorAction } from '.';
+import { Contribution } from 'app/lmem/notice';
 
 export const SUBMIT_CONTRIBUTION = 'CONTRIBUTION/SUBMIT';
 export interface SubmitContributionAction extends FormAction {

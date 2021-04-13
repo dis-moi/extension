@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import ProfileBanner from './ProfileBanner';
 import { StatefulContributor } from 'app/lmem/contributor';
 import {
   ContributorCard,
@@ -13,7 +14,6 @@ import UserName from 'components/atoms/UserName/UserName';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
 import { Anchor } from 'components/atoms';
-import ProfileBanner from './ProfileBanner';
 import { As } from 'types';
 
 const ProfileIntroContent = styled.section`

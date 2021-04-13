@@ -1,13 +1,13 @@
 import { PersistedState } from 'redux-persist';
-import { filterContextsMatchingUrl } from '../../lmem/matchingContext';
-import { getMatchingContexts } from './resources';
-import { BackgroundState } from '../reducers';
 import { createSelector } from 'reselect';
-import { InstallationDetails } from 'app/lmem/installation';
+import { filterContextsMatchingUrl } from '../../lmem/matchingContext';
+import { BackgroundState } from '../reducers';
+import { getNotice } from '../../lmem/notice';
+import { getMatchingContexts } from './resources';
 import { getInstallationDetails } from './installationDetails';
 import { areTosAccepted, getRead } from './prefs';
 import { getNoticesIdsOnTab } from './tabs';
-import { getNotice } from '../../lmem/notice';
+import { InstallationDetails } from 'app/lmem/installation';
 
 export const getContextsMatchingUrl = (state: BackgroundState) => (
   url: string

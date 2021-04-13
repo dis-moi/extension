@@ -1,8 +1,8 @@
 import React from 'react';
 import { Trans } from 'react-i18next';
 import styled from 'styled-components';
-import { ExternalLink } from 'components/atoms';
 import { WEBSITE_DOMAIN } from '../../../app/lmem';
+import { ExternalLink } from 'components/atoms';
 import LogoBordeaux from 'assets/img/contributors/logo-bordeaux.png';
 import LogoColibri from 'assets/img/contributors/logo-colibri-ecolo.png';
 import LogoLeMonde from 'assets/img/contributors/logo-le-monde.png';

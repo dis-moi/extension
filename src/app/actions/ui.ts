@@ -2,10 +2,10 @@ import {
   LocationChangeAction,
   LocationChangePayload
 } from 'connected-react-router';
+import { Level } from '../utils/Logger';
+import { BaseAction, ErrorAction, TabAction, TimestampedAction } from '.';
 import { CloseCause } from 'app/lmem/ui';
 import Tab from 'app/lmem/tab';
-import { BaseAction, ErrorAction, TabAction, TimestampedAction } from '.';
-import { Level } from '../utils/Logger';
 
 export enum OpenFrom {
   BrowserAction,

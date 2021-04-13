@@ -1,8 +1,8 @@
 import React, { ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import { FiltersBar, FiltersList, FiltersListItem } from './FiltersCheckboxes';
 import { Radio } from '../../atoms/icons';
+import { FiltersBar, FiltersList, FiltersListItem } from './FiltersCheckboxes';
 
 export const ALL = 'all';
 
