@@ -1,15 +1,16 @@
 import React from 'react';
 import { Error, FormGroup, Input, Label } from 'components/atoms/Forms';
 import { Title2 } from 'components/atoms/Titles';
-import { BackgroundButton, Link } from 'components/atoms';
+import { Button, Link } from 'components/atoms';
+import LogoDismoi from 'components/atoms/LogoDismoi';
 import {
   BottomBar,
   ContentWrapper,
   ImageWrapper,
-  Wrapper
+  Wrapper,
+  LogoWrapper,
+  Form
 } from '../components';
-import { Logo } from '../../../../components/atoms/icons';
-import LogoDismoi from '../../../../components/atoms/LogoDismoi';
 
 const LogIn = () => {
   return (
@@ -19,10 +20,12 @@ const LogIn = () => {
       </ImageWrapper>
 
       <ContentWrapper>
-        <LogoDismoi></LogoDismoi>
+        <LogoWrapper>
+          <LogoDismoi />
+        </LogoWrapper>
         <Title2>Se connecter sur DisMoi</Title2>
 
-        <form>
+        <Form>
           <FormGroup>
             <Label htmlFor="email">Votre adresse email *</Label>
             <Input type="email" id="email" />
@@ -36,10 +39,14 @@ const LogIn = () => {
             </p>
           </FormGroup>
 
-          <Error>Message d&apos;erreur</Error>
+          <Error align="center">
+            Aucun compte trouvé. <br />
+            Veuillez vérifier votre email.
+          </Error>
 
-          <BackgroundButton>Envoyer</BackgroundButton>
-        </form>
+          <Button>Envoyer</Button>
+        </Form>
+
         <BottomBar>
           Pas encore inscrit ? <Link to="">Créer un compte</Link>
         </BottomBar>

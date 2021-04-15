@@ -9,7 +9,7 @@ import {
   CheckboxLine,
   Error
 } from 'components/atoms/Forms';
-import { BackgroundButton } from 'components/atoms';
+import { Button } from 'components/atoms';
 import { Wrapper } from '../components';
 
 const Banner = styled.div``;
@@ -58,7 +58,7 @@ const CreateContributor = () => {
 
       <Error>Message d&apos;erreur</Error>
 
-      <BackgroundButton>Envoyer</BackgroundButton>
+      <Button>Envoyer</Button>
     </Wrapper>
   );
 };
