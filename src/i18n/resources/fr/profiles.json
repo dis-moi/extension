@@ -82,7 +82,10 @@
       "description_dismoi": "DisMoi permet aux internautes, médias et experts de vous informer directement sur les pages web que vous visitez."
     },
     "onBoarding": {
-      "step1": "L'installation a réussi !<br/>  Chargement de votre expérience...<br/>  Épinglez DisMoi",
+      "step1": {
+        "loading": "L'extension est à jour !<br/>  Chargement de votre expérience...",
+        "pin": "Épinglez DisMoi"
+      },
       "step2": {
         "title": "Épinglez DisMoi",
         "question": "Êtes-vous arrivé à épingler l'extension DisMoi ?",
