@@ -58,7 +58,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "yarn test"
+      "pre-push": "echo 'remettre pre-push husky yarn test'"
     }
   },
   "lint-staged": {

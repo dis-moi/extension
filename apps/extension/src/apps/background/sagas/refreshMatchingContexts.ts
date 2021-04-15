@@ -6,7 +6,7 @@ import {
   refreshMatchingContextsFailed,
   SUBSCRIBE,
   UNSUBSCRIBE
-} from 'src/app/actions';
+} from 'libs/store/actions';
 import { createCallAndRetry } from 'libs/store/sagas/effects/callAndRetry';
 import { getSubscriptions } from 'apps/extension/src/apps/background/selectors/subscriptions.selectors';
 import fetchMatchingContexts from 'apps/extension/src/apps/background/api/fetchMatchingContexts';

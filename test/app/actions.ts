@@ -1,14 +1,11 @@
 import chai from 'chai';
 import sinonChai from 'sinon-chai';
-import { receivedMatchingContexts } from '../../libs/store/actions/refreshMatchingContexts';
-import { contextTriggered } from '../../libs/store/actions/tabs';
-import {
-  noticeDisplayed,
-  noticeIgnored
-} from '../../libs/store/actions/notices';
-import { MatchingContext } from '../../libs/lmem/matchingContext';
-import { StatefulNotice } from '../../libs/lmem/notice';
-import Tab from '../../libs/lmem/tab';
+import { receivedMatchingContexts } from 'libs/store/actions/refreshMatchingContexts';
+import { contextTriggered } from 'libs/store/actions/tabs';
+import { noticeDisplayed, noticeIgnored } from 'libs/store/actions/notices';
+import { MatchingContext } from 'libs/lmem/matchingContext';
+import { StatefulNotice } from 'libs/lmem/notice';
+import Tab from 'libs/lmem/tab';
 import { generateStatefulNotice } from 'test/fakers/generateNotice';
 
 const expect = chai.expect;
