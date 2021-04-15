@@ -1,5 +1,5 @@
 import React from 'react';
-import { BackgroundButton, Paragraph } from 'components/atoms';
+import { Button, Paragraph } from 'components/atoms';
 import { Error, FormGroup, Input, Label } from 'components/atoms/Forms';
 import { Wrapper } from '../components';
 
@@ -20,7 +20,7 @@ const ResetPassword = () => {
 
         <Error>Message d&apos;erreur</Error>
 
-        <BackgroundButton>Envoyer</BackgroundButton>
+        <Button>Envoyer</Button>
       </form>
     </Wrapper>
   );

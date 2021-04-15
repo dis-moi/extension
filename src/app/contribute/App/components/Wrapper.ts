@@ -7,6 +7,10 @@ const Wrapper = styled.section`
   width: 100%;
   background-color: #ffffff;
   border-radius: ${props => props.theme.radiusL};
+
+  @media (max-width: 768px) {
+    display: block;
+  }
 `;
 
 export default Wrapper;

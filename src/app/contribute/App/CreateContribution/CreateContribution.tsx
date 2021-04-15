@@ -6,7 +6,7 @@ import {
   Textarea,
   Error
 } from 'components/atoms/Forms';
-import { BackgroundButton } from 'components/atoms';
+import { Button } from 'components/atoms';
 import { Wrapper } from '../components';
 
 const CreateContributor = () => {
@@ -47,14 +47,14 @@ const CreateContributor = () => {
         </article>
 
         <article>
-          <BackgroundButton>Ajouter une autre page</BackgroundButton>
+          <Button>Ajouter une autre page</Button>
         </article>
       </section>
 
       <Error>Message d&apos;erreur</Error>
 
-      <BackgroundButton>Enregistré en brouillon</BackgroundButton>
-      <BackgroundButton>Enregistré et publier</BackgroundButton>
+      <Button>Enregistré en brouillon</Button>
+      <Button>Enregistré et publier</Button>
     </Wrapper>
   );
 };
