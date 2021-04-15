@@ -1,0 +1,220 @@
+import React, { ChangeEvent, MouseEvent, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
+import { ContributorId, StatefulContributor } from 'libs/lmem/contributor';
+import { Categories } from 'libs/lmem/category';
+import { Button, CenterContainer, Title2 } from 'src/components/atoms';
+import { Arrow } from 'src/components/atoms/icons';
+import Link from 'libs/components/atoms/Link/Link';
+import ContributorLarge from 'libs/components/organisms/Contributor/ContributorLarge';
+import ContributorsList from 'libs/components/organisms/Contributor/ContributorsList';
+import NotConnectedPopin, {
+  NotConnectedPopinState
+} from '../NotConnectedPopin';
+import BrowserNotSupportedPopin from '../BrowserNotSupportedPopin';
+import StatsWrapper from 'libs/components/atoms/Contributor/StatsWrapper';
+import Loader from 'src/components/atoms/Loader';
+import pathToContributor from 'apps/profiles/src/App/pathToContributor';
+import Filters from 'libs/components/molecules/Filters/RadiosFilters';
+import useContributorsFilters from 'apps/profiles/src/App/useContributorsRadiosFilters';
+import ProfileTabs from '../../../ProfileTabs';
+import OnBoarding from 'apps/profiles/App/OnBoarding';
+import onContributorExampleClick from '../../../../../../../libs/utils/onContributorExampleClick';
+import { Subscriptions } from '../../../../../../../libs/lmem/subscription';
+import ContextPopin, {
+  contextPopinInitState,
+  PopinDisplayState
+} from '../ContextPopin';
+
+const Title = styled(Title2)`
+  padding-top: 30px;
+  margin-bottom: 20px;
+  font-size: 26px;
+
+  @media (max-width: ${props => props.theme.tabletWidth}) {
+    padding-top: 15px;
+  }
+`;
+
+const List = styled(ContributorsList)`
+  margin-top: 20px;
+
+  & + ${CenterContainer} {
+    margin-top: 20px;
+
+    ${Button} {
+      font-size: 12px;
+    }
+  }
+`;
+
+export const ContributorProfileListItem = styled(ContributorLarge)`
+  line-height: normal;
+
+  ${StatsWrapper} {
+    svg {
+      display: none;
+    }
+  }
+
+  & > ${Link} {
+    display: inline-flex;
+    align-items: center;
+
+    svg {
+      stroke: ${props => props.theme.Button.default};
+      margin-top: 3px;
+      margin-left: 5px;
+      transform: rotate(180deg);
+    }
+
+    &:hover {
+      svg {
+        stroke: ${props => props.theme.Button.hover};
+      }
+    }
+  }
+`;
+
+const ContributorExampleLink = styled(Link)`
+  cursor: pointer;
+`;
+
+export interface ProfileListProps {
+  loading?: boolean;
+  contributors: StatefulContributor[];
+  subscribe: (contributorId: ContributorId) => void;
+  unsubscribe: (contributorId: ContributorId) => void;
+  connected?: boolean;
+  addToBrowser: (e: MouseEvent<HTMLButtonElement>) => void;
+  categoriesLoading?: boolean;
+  categories: Categories;
+  subscriptions?: Subscriptions;
+}
+
+const ProfileList = ({
+  loading,
+  contributors = [],
+  subscribe,
+  unsubscribe,
+  connected,
+  addToBrowser,
+  categoriesLoading,
+  categories,
+  subscriptions
+}: ProfileListProps) => {
+  const { t } = useTranslation();
+
+  const [notConnectedPopinState, setNotConnectedPopinState] = useState<
+    NotConnectedPopinState
+  >({ opened: false });
+  const [
+    browserNotSupportedPopinOpened,
+    setBrowserNotSupportedPopinOpened
+  ] = useState(false);
+
+  const [popin, setPopin] = useState<PopinDisplayState>(contextPopinInitState);
+
+  const handleSubscribe = (contributor: StatefulContributor) => () => {
+    if (connected) {
+      subscribe(contributor.id);
+    } else {
+      setNotConnectedPopinState({ opened: true, contributor });
+    }
+  };
+
+  const handleUnsubscribe = (contributor: StatefulContributor) => () => {
+    if (connected) {
+      unsubscribe(contributor.id);
+    } else {
+      setNotConnectedPopinState({ opened: true, contributor });
+    }
+  };
+
+  const [filteredContributors, setFilter] = useContributorsFilters(
+    contributors
+  );
+
+  const handleFiltersChange = ({
+    target: { value }
+  }: ChangeEvent<HTMLInputElement>) => {
+    setFilter(value);
+  };
+
+  return (
+    <>
+      <OnBoarding />
+      {connected === false && (
+        <Title as="h1">{t('profiles:common.sources')}</Title>
+      )}
+
+      <ProfileTabs connected={connected} />
+
+      <Filters
+        onChange={handleFiltersChange}
+        loading={!!categoriesLoading}
+        filters={categories}
+      />
+
+      {loading ? (
+        <Loader />
+      ) : (
+        <List>
+          {filteredContributors.map(contributor => (
+            <ContributorProfileListItem
+              key={contributor.id}
+              contributor={contributor}
+              onSubscribe={handleSubscribe(contributor)}
+              onUnsubscribe={handleUnsubscribe(contributor)}
+              to={pathToContributor(contributor)}
+            >
+              {contributor.contribution?.example.exampleMatchingUrl && (
+                <ContributorExampleLink
+                  onClick={() =>
+                    onContributorExampleClick(
+                      contributor,
+                      connected,
+                      subscriptions,
+                      setPopin,
+                      handleSubscribe,
+                      addToBrowser
+                    )
+                  }
+                >
+                  {t('profiles:action.real_example')}
+                  <Arrow />
+                </ContributorExampleLink>
+              )}
+            </ContributorProfileListItem>
+          ))}
+        </List>
+      )}
+
+      <NotConnectedPopin
+        {...notConnectedPopinState}
+        setOpened={(opened: boolean) =>
+          setNotConnectedPopinState({
+            ...notConnectedPopinState,
+            opened
+          })
+        }
+        addToBrowser={(e: MouseEvent<HTMLButtonElement>) => {
+          setNotConnectedPopinState({
+            ...notConnectedPopinState,
+            opened: false
+          });
+          addToBrowser(e);
+        }}
+        contributors={contributors}
+      />
+
+      <BrowserNotSupportedPopin
+        opened={browserNotSupportedPopinOpened}
+        setOpened={setBrowserNotSupportedPopinOpened}
+      />
+      <ContextPopin setPopin={setPopin} popin={popin} />
+    </>
+  );
+};
+
+export default ProfileList;

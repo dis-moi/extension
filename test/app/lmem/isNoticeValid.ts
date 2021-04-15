@@ -1,5 +1,5 @@
 import chai from 'chai';
-import { isNoticeValid } from '../../../src/app/lmem/notice';
+import { isNoticeValid } from '../../../libs/lmem/notice';
 
 const expect = chai.expect;
 

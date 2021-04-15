@@ -2,7 +2,7 @@ import chai from 'chai';
 import {
   filterContextsMatchingUrl,
   MatchingContext
-} from 'app/lmem/matchingContext';
+} from '../../../libs/lmem/matchingContext';
 import generateMatchingContext from 'test/fakers/generateMatchingContext';
 
 const expect = chai.expect;

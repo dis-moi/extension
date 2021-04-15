@@ -1,6 +1,6 @@
 # Matchers
 
-We use elements of our [matchingContext](../src/app/lmem/matchingContext.ts) model to match elements of a tab :
+We use elements of our [matchingContext](../libs/lmem/matchingContext.ts) model to match elements of a tab :
 - URL
 - Content
 

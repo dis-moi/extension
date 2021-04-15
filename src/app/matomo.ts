@@ -5,9 +5,9 @@ import Tracker, {
   OutboundLink,
   PageView,
   TrackingEvent
-} from 'types/Tracker';
-import uniqId from './utils/uniqId';
-import { buildQueryString } from '../api/call';
+} from '../../libs/types/Tracker';
+import uniqId from '../../libs/utils/uniqId';
+import { buildQueryString } from '../../apps/extension/src/apps/background/api/call';
 
 export interface RequiredTrackingParameters {
   idsite: number; // The ID of the website we're tracking a visit/action for.

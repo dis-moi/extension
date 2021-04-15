@@ -1,7 +1,10 @@
 import Faker from 'faker';
 import { subMonths, subWeeks } from 'date-fns';
-import { NoticeItem, StatefulNoticeWithContributor } from 'app/lmem/notice';
-import { Contributor, PinnedNotice } from 'app/lmem/contributor';
+import {
+  NoticeItem,
+  StatefulNoticeWithContributor
+} from '../../libs/lmem/notice';
+import { Contributor, PinnedNotice } from '../../libs/lmem/contributor';
 import { generateContributor } from './generateContributor';
 
 interface Options {

@@ -1,5 +1,5 @@
 import Faker from 'faker';
-import { Contributor } from 'app/lmem/contributor';
+import { Contributor } from '../../libs/lmem/contributor';
 import {
   generateNoticeItem,
   generatePinnedNotice

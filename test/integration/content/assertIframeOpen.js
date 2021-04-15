@@ -2,7 +2,7 @@
 'use strict';
 /* eslint-enable */
 
-import { iFrameId } from '../../../src/app/constants/iframe';
+import { iFrameId } from '../../../apps/extension/src/constants/iframe';
 
 const interval = setInterval(() => {
   if (document.querySelector(`iframe#${iFrameId}`)) {

@@ -1,9 +1,9 @@
 import chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
-import { noticesFound } from 'app/actions/notices';
-import createMessageHandler from 'webext/createMessageHandler';
-import { getOptionsUrl } from 'webext/openOptionsTab';
+import { noticesFound } from '../../../libs/store/actions/notices';
+import createMessageHandler from '../../../libs/webext/createMessageHandler';
+import { getOptionsUrl } from '../../../libs/webext/openOptionsTab';
 
 // @ts-ignore
 global.browser = { extension: { getURL: () => 'options.html' } };

@@ -1,0 +1,16 @@
+import { createSelector } from 'reselect';
+import { ProfilesState } from 'apps/profiles/store/reducers';
+import { isCollectionLoading } from 'libs/store/collection/selectors';
+
+export const getSubscriptionsCollection = (state: ProfilesState) =>
+  state.subscriptions;
+
+export const areSubscriptionsLoading = createSelector(
+  [getSubscriptionsCollection],
+  subscriptionsCollection => isCollectionLoading(subscriptionsCollection)
+);
+
+export const getSubscriptions = createSelector(
+  [getSubscriptionsCollection],
+  subscriptionsCollection => subscriptionsCollection.items
+);

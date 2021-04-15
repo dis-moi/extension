@@ -43,7 +43,7 @@
 
     /* Module Resolution Options */
     "moduleResolution": "node" /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */,
-    "baseUrl": "./src" /* Base directory to resolve non-absolute module names. */,
+    "baseUrl": "./" /* Base directory to resolve non-absolute module names. */,
     "paths": {
       "test/*": ["../test/*"]
     },
@@ -60,7 +60,7 @@
     // "preserveSymlinks": true,              /* Do not resolve the real path of symlinks. */
 
     /* Source Map Options */
-    "sourceRoot": "./src" /* Specify the location where debugger should locate TypeScript files instead of source locations. */
+    "sourceRoot": "./" /* Specify the location where debugger should locate TypeScript files instead of source locations. */
     // "mapRoot": "",                         /* Specify the location where debugger should locate map files instead of generated locations. */
     // "inlineSourceMap": true,               /* Emit a single file with source maps instead of having a separate file. */
     // "inlineSources": true,                 /* Emit the source alongside the sourcemaps within a single file; requires '--inlineSourceMap' or '--sourceMap' to be set. */
@@ -69,7 +69,7 @@
     // "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
   },
-  "include": ["./src/**/*", "./test/app/**/*"],
+  "include": ["./libs/**/*", "./apps/**/*", "./src/**/*", "./test/app/**/*"],
   "exclude": [
     "node_modules"
   ]
