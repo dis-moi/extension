@@ -6,6 +6,8 @@ const ImageWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 200px;
+  border-radius: ${props => props.theme.radiusL} 0 0
+    ${props => props.theme.radiusL};
   overflow: hidden;
 
   img {
@@ -24,9 +26,20 @@ const ImageWrapper = styled.div`
     bottom: 0;
     margin: auto;
     background-color: red;
-    border-radius: ${props => props.theme.radiusL} 50% 50%
-      ${props => props.theme.radiusL};
+    border-radius: 50%;
     z-index: 0;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 300px;
+    border-radius: ${props => props.theme.radiusL}
+      ${props => props.theme.radiusL} 0 0;
+
+    &::before {
+      top: initial;
+      right: initial;
+    }
   }
 `;
 

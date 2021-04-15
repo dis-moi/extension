@@ -1,27 +1,47 @@
 import React from 'react';
-import { BackgroundButton, Link, Paragraph } from 'components/atoms';
+import { Button, Link, Title2 } from 'components/atoms';
 import { Error, FormGroup, Input, Label } from 'components/atoms/Forms';
-import { BottomBar, Wrapper } from '../components';
+import LogoDismoi from 'components/atoms/LogoDismoi';
+import {
+  BottomBar,
+  ContentWrapper,
+  ImageWrapper,
+  LogoWrapper,
+  Wrapper
+} from '../components';
 
 const ForgotPassword = () => {
   return (
     <Wrapper>
-      <Paragraph>Lost your password? Enter your email address below</Paragraph>
+      <ImageWrapper>
+        <img src="" alt="img" />
+      </ImageWrapper>
 
-      <form>
-        <FormGroup>
-          <Label htmlFor="email">Votre adresse email *</Label>
-          <Input type="email" id="email" />
-        </FormGroup>
+      <ContentWrapper>
+        <LogoWrapper>
+          <LogoDismoi />
+        </LogoWrapper>
 
-        <Error>Message d&apos;erreur</Error>
+        <Title2>
+          Lost your password? <br />
+          Enter your email address below
+        </Title2>
 
-        <BackgroundButton>Envoyer</BackgroundButton>
-      </form>
+        <form>
+          <FormGroup>
+            <Label htmlFor="email">Votre adresse email *</Label>
+            <Input type="email" id="email" />
+          </FormGroup>
 
-      <BottomBar>
-        Vous n&apos;avez pas de compte ? <Link to="">S&apos;inscrire</Link>
-      </BottomBar>
+          <Error align="center">Message d&apos;erreur</Error>
+
+          <Button>Envoyer</Button>
+        </form>
+
+        <BottomBar>
+          Vous n&apos;avez pas de compte ? <Link to="">S&apos;inscrire</Link>
+        </BottomBar>
+      </ContentWrapper>
     </Wrapper>
   );
 };
