@@ -82,7 +82,10 @@
       "description_dismoi": "DisMoi lets internet users, media and experts share helpful information directly on the webpages you visit."
     },
     "onBoarding": {
-      "step1": "DisMoi is installed!<br/>  Your experience is loading...<br/>  Pin DisMoi in your Browser",
+      "step1": {
+        "loading": "DisMoi is up to date!<br/>  Your experience is loading...",
+        "pin": "Pin DisMoi in your Browser"
+      },
       "step2": {
         "title": "Pin DisMoi",
         "question": "Did you pin the DisMoi extension in your browser?",
