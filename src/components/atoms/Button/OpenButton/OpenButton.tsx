@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import OpenIcon from '../../icons/Arrow';
-import Button from '../Button';
+import TransparentButton from '../TransparentButton';
 
-export default styled(Button).attrs({ children: <OpenIcon /> })`
+export default styled(TransparentButton).attrs({ children: <OpenIcon /> })`
   padding: 0;
   margin-left: auto;
   border: none;

@@ -2,6 +2,9 @@ import React, { HTMLAttributes, ReactNode } from 'react';
 import styled from 'styled-components';
 import { Theme } from 'app/theme';
 
+import LoadingRotator from 'components/atoms/LoadingRotator/LoadingRotator';
+import Loading from 'components/atoms/icons/Loading';
+
 export interface ButtonContainerProps
   extends HTMLAttributes<HTMLButtonElement> {
   theme?: Theme;
@@ -15,15 +18,18 @@ export interface ButtonContainerProps
 }
 
 export interface ButtonProps extends ButtonContainerProps {
+  loading?: boolean;
   children?: ReactNode | string;
   disabled?: boolean;
   dangerouslySetInnerHTML?: { __html: string };
   size?: 'big' | 'normal';
+  transparent?: boolean;
 }
 
 export const ButtonContainer = styled.button<ButtonContainerProps>``;
 
 const Button = ({
+  loading,
   children,
   target,
   rel,
@@ -38,26 +44,53 @@ const Button = ({
     rel={rel}
     {...props}
   >
-    {children}
+    {loading ? (
+      <LoadingRotator>
+        <Loading />
+      </LoadingRotator>
+    ) : (
+      children
+    )}
   </ButtonContainer>
 );
 
 export default styled(Button)`
   box-sizing: border-box;
-  padding: 0;
+  display: inline-block;
+  min-width: 130px;
+  padding: ${props => (props.size === 'big' ? '8px 19px' : '6px 12px')};
   font-weight: bold;
   font-size: ${props => props.theme.fontSizeDefault};
+  color: #fff;
   line-height: 1;
-  color: ${props => props.theme.secondaryColor};
-  text-decoration: underline;
-  background: none;
-  border: none;
-  border-radius: ${props => props.theme.Button.radius};
+  background-color: ${props =>
+    props.transparent === true ? 'transparent' : props.theme.Button.default};
+  border: 2px solid ${props => props.theme.Button.default};
+  border-radius: ${props => props.theme.radiusS};
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
+  &:hover,
+  &:focus,
+  &:active {
+    color: #fff;
+  }
+
   &:hover {
-    color: ${props => props.theme.Button.hover};
+    background-color: ${props => props.theme.Button.hover};
+    border-color: ${props => props.theme.Button.hover};
+
+    svg {
+      fill: #fff;
+    }
+  }
+
+  :disabled:hover {
+    color: #fff;
+  }
+
+  svg {
+    fill: #fff;
   }
 
   &:focus {
