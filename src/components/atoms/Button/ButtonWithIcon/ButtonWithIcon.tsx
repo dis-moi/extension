@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import Button from '../Button';
+import TransparentButton from '../TransparentButton';
 
-const ButtonWithIcon = styled(Button)`
+const ButtonWithIcon = styled(TransparentButton)`
   display: flex;
   align-items: center;
   font-size: 13px;

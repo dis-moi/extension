@@ -25,15 +25,3 @@ export const Disabled = () => (
 Disabled.story = {
   name: 'disabled'
 };
-
-export const Loading = () => <Button loading />;
-
-Loading.story = {
-  name: 'loading'
-};
-
-export const DisabledAndLoading = () => <Button loading />;
-
-DisabledAndLoading.story = {
-  name: 'disabled and loading'
-};

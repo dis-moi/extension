@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 import { Button, BorderButton, ButtonWithIcon } from '../';
 import AddNoticeButton from './AddNoticeButton';
-import { BackgroundButton, OpenButton } from './index';
+import { BackgroundButton, OpenButton, TransparentButton } from './index';
 import Tab from '../Tab/Tab';
 import ContributorButton from 'components/organisms/Contributor/ContributorButton';
 import DeleteButton from 'components/organisms/Notice/DeleteButton';
@@ -52,14 +52,6 @@ const ButtonsList = () => {
         <div>
           <BorderButton disabled={true}>Border Button</BorderButton>
         </div>
-        <div>
-          <BorderButton loading>Border Button</BorderButton>
-        </div>
-        <div>
-          <BorderButton disabled={true} loading>
-            Border Button
-          </BorderButton>
-        </div>
       </ButtonsListWrapper>
 
       <ButtonsListWrapper>
@@ -69,14 +61,6 @@ const ButtonsList = () => {
         <div>
           <BackgroundButton disabled={true}>
             Background disabled Button
-          </BackgroundButton>
-        </div>
-        <div>
-          <BackgroundButton loading>Background Button</BackgroundButton>
-        </div>
-        <div>
-          <BackgroundButton loading disabled={true}>
-            Background Button
           </BackgroundButton>
         </div>
       </ButtonsListWrapper>
@@ -131,23 +115,23 @@ const ButtonsList = () => {
 
         <div>
           <Feedbacks>
-            <Button>
+            <TransparentButton transparent>
               <ThumbUp />
-            </Button>
-            <Button>
+            </TransparentButton>
+            <TransparentButton>
               <ThumbDown />
-            </Button>
+            </TransparentButton>
           </Feedbacks>
         </div>
 
         <div>
           <Feedbacks>
-            <Button>
+            <TransparentButton>
               <ThumbUp filled={true} />
-            </Button>
-            <Button>
+            </TransparentButton>
+            <TransparentButton>
               <ThumbDown filled={true} />
-            </Button>
+            </TransparentButton>
           </Feedbacks>
         </div>
       </ButtonsListWrapper>
