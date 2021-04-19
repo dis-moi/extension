@@ -8,6 +8,7 @@ import isAction from 'app/store/isAction';
 import { createErrorAction } from 'app/actions/helpers';
 import { Level } from 'app/utils/Logger';
 import { isRequest, handleRequest } from 'app/content/api';
+import { deserialize } from './serializer';
 
 type MessageSender = browser.runtime.MessageSender;
 
@@ -94,6 +95,28 @@ export interface ReceivedAction extends Action {
   };
 }
 
+const handleAction = (emit: Emit) => (
+  action: Action,
+  sender: MessageSender
+) => {
+  const actionWithSender: ReceivedAction = R.pipe(
+    addSenderToAction(sender),
+    stripSendMeta
+  )(action);
+
+  emit(actionWithSender);
+};
+
+const handleError = (emit: Emit) => (message: unknown, fromText: string) => {
+  const error = new Error(`Received invalid action from ${fromText}`);
+  const invalidAction = createErrorAction('INVALID_ACTION')(error, {
+    action: message,
+    fromText,
+    severity: Level.INFO
+  });
+  emit(invalidAction);
+};
+
 const createMessageHandler = (emit: Emit) => (
   message: unknown,
   sender: MessageSender
@@ -105,20 +128,15 @@ const createMessageHandler = (emit: Emit) => (
   if (isRequest(message)) {
     return handleRequest(message);
   } else if (isAction(message)) {
-    const actionWithSender: ReceivedAction = R.pipe(
-      addSenderToAction(sender),
-      stripSendMeta
-    )(message);
-
-    emit(actionWithSender);
+    handleAction(emit)(message, sender);
+  } else if (typeof message === 'string') {
+    try {
+      handleAction(emit)(deserialize(message), sender);
+    } catch {
+      handleError(emit)(message, fromText);
+    }
   } else {
-    const error = new Error(`Received invalid action from ${fromText}`);
-    const invalidAction = createErrorAction('INVALID_ACTION')(error, {
-      action: message,
-      fromText,
-      severity: Level.INFO
-    });
-    emit(invalidAction);
+    handleError(emit)(message, fromText);
   }
 };
 
