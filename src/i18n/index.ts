@@ -6,7 +6,7 @@ import format from './format';
 
 export type SupportedLanguage = 'en' | 'fr';
 
-const options = {
+export const options = {
   resources,
   detection: {
     caches: []
@@ -22,11 +22,6 @@ const options = {
   keySeparator: '.'
 };
 
-i18n
-  .use(initReactI18next)
-  .use(LanguageDetector)
-  .init(options)
-  .then(() => null)
-  .catch(() => null);
+i18n.use(initReactI18next).use(LanguageDetector);
 
 export default i18n;

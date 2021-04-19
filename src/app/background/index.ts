@@ -3,11 +3,12 @@
 import { BACKEND_ORIGIN } from 'app/constants/origins';
 import onInstalled from 'webext/onInstalled';
 import onStartup from 'webext/onStartup';
-import { installed, optionsRequested, startup } from 'app/actions';
+import { installed, optionsRequested, startup, i18nReady } from 'app/actions';
 import { configureSentryScope, initSentry } from 'app/utils/sentry';
 import { store } from './store';
 import { connect } from 'app/store/actions/connection';
 import { OPTIONS_MENU_ITEM_ID } from 'app/lmem/tab';
+import i18n, { options } from 'i18n';
 
 type Port = browser.runtime.Port;
 
@@ -27,6 +28,8 @@ onInstalled.then(installedDetails =>
   store.dispatch(installed(installedDetails))
 );
 onStartup.then(() => store.dispatch(startup()));
+
+i18n.init(options).then(() => store.dispatch(i18nReady()));
 
 const handleConnect = (port: Port) => store.dispatch(connect(port));
 
