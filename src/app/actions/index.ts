@@ -73,6 +73,7 @@ type MessageSender = browser.runtime.MessageSender;
 export * from './badge';
 export * from './tabsLifecycle';
 export * from './browser';
+export * from './i18n';
 export * from './install';
 export * from './notices';
 export * from './refreshMatchingContexts';
