@@ -6,7 +6,7 @@ Nous utilisons pour cela une librairie permettant de traduire nos textes dans de
 
 ### Language
 A l'heure actuelle deux languages sont prise en charge : Français, Anglais.
-L'application est prévue pour supporter autant de language que nécessaire.
+L'application est prévue pour supporter autant de langues que nécessaire.
 
 ## Librairie
 Pour traduire nous utilisons la librairie [i18next](https://www.i18next.com/)
