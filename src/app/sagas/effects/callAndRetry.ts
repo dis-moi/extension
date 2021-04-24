@@ -8,14 +8,13 @@ import minutesToMilliseconds from 'app/utils/minutesToMilliseconds';
 type AnyFunction = (...args: any[]) => any;
 type OnErrorCallback = (error: Error, failures: number) => void;
 type Options = {
-  maximumAttempts: number;
+  maximumAttempts?: number;
   maximumRetryDelayInMinutes: number;
   onError?: OnErrorCallback;
   onFinalError?: OnErrorCallback;
 };
 
 const defaultOptions: Options = {
-  maximumAttempts: 10000,
   maximumRetryDelayInMinutes: 60 * 24
 };
 
@@ -36,7 +35,7 @@ export const createCallAndRetry = (options: Partial<Options>) =>
         if ('onError' in o && o.onError) {
           yield call(o.onError, e, attemptNumber);
         }
-        if (attemptNumber < o.maximumAttempts) {
+        if (!o.maximumAttempts || attemptNumber < o.maximumAttempts) {
           yield delay(
             Math.min(
               secondsToMilliseconds(2 ^ attemptNumber),
