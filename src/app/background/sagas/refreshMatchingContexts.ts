@@ -15,7 +15,6 @@ import minutesToMilliseconds from 'app/utils/minutesToMilliseconds';
 export function* refreshMatchingContextsSaga() {
   const callAndRetry = createCallAndRetry({
     maximumRetryDelayInMinutes: 10,
-    maximumAttempts: 10,
     onError: function*(error: Error) {
       yield put(refreshMatchingContextsFailed(error));
     }
