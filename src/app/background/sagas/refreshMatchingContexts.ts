@@ -1,4 +1,4 @@
-import { delay, put, takeLatest, select, fork } from 'redux-saga/effects';
+import { debounce, delay, fork, put, select } from 'redux-saga/effects';
 import {
   receivedMatchingContexts,
   REFRESH_MATCHING_CONTEXTS,
@@ -59,7 +59,9 @@ export function* refreshMatchingContextsPeriodicallySaga() {
 }
 
 export default function* refreshMatchingContextsRootSaga() {
-  yield takeLatest(
+  yield refreshMatchingContextsSaga();
+  yield debounce(
+    30_000,
     [SUBSCRIBE, UNSUBSCRIBE, REFRESH_MATCHING_CONTEXTS],
     refreshMatchingContextsSaga
   );
