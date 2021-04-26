@@ -9,6 +9,7 @@ import tabs, { TabsState } from './tabs.reducer';
 import subscriptions, { SubscriptionsState } from './subscriptions.reducer';
 import user, { UserState } from './user';
 import serviceMessage, { ServiceMessageState } from './serviceMessage.reducer';
+import status, { StatusState } from './status';
 
 export interface StateWithSubscriptions {
   subscriptions: SubscriptionsState;
@@ -21,6 +22,7 @@ export interface PersistedBackgroundState
   installationDetails: InstallationDetailsState;
   serviceMessage: ServiceMessageState;
   user: UserState;
+  status: StatusState;
 }
 
 export interface StateWithResources {
@@ -43,5 +45,6 @@ export default combineReducers({
   tabs,
   subscriptions,
   user,
-  serviceMessage
+  serviceMessage,
+  status
 });

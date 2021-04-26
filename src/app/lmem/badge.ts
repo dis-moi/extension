@@ -5,12 +5,24 @@ export interface BadgeTheme {
   backgroundColor: {
     hasAllNoticesRead: string;
     hasUnreadNotices: string;
+    hasFailed: string;
   };
 }
 
 export const resetBadge = (tabId?: number) => {
   browser.browserAction.setBadgeText({ text: '', tabId });
-  browser.browserAction.setIcon({ path: greyIcons });
+  browser.browserAction.setIcon({ path: greyIcons, tabId });
+};
+
+export const failBadge = (badgeTheme: BadgeTheme, tabId?: number) => {
+  browser.browserAction.setBadgeText({ text: '🔴️', tabId });
+  browser.browserAction.setBadgeBackgroundColor({
+    color: badgeTheme.backgroundColor.hasFailed
+  });
+  browser.browserAction.setIcon({ path: greyIcons, tabId });
+  browser.browserAction.setTitle({
+    title: 'Problème de communication avec le backend'
+  });
 };
 
 /**
