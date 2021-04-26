@@ -204,7 +204,7 @@
     "remote-redux-devtools": "^0.5.13",
     "reselect": "^4.0.0",
     "selenium-webdriver": "^2.52.0",
-    "semantic-release": "^15.8.1",
+    "semantic-release": "^17.2.3",
     "semantic-release-chrome": "^1.1.0",
     "semver": "^6.3.0",
     "sinon": "^7.3.0",
