@@ -43,7 +43,7 @@
     "release": "yarn semantic-release",
     "build": "yarn build:staging && yarn build:production && yarn build:proding",
     "clean": "rm -rf build",
-    "test": "mocha -r ts-node/register -r tsconfig-paths/register -r jsdom-global/register 'src/**/*.spec.ts' 'test/app/*.ts' 'test/app/**/*.ts'",
+    "test": "BACKEND_ORIGIN='' mocha -r ts-node/register -r tsconfig-paths/register -r jsdom-global/register 'src/**/*.spec.ts' 'test/app/*.ts' 'test/app/**/*.ts'",
     "typecheck": "tsc --noEmit",
     "lint": "yarn lint:ts",
     "lint-fixme-stylelint-has-to-be-fixed": "yarn lint:ts && yarn lint:css",
