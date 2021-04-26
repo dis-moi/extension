@@ -5,8 +5,7 @@ import fetchContributors from 'api/fetchContributors';
 
 export default function* refreshContributorsSaga() {
   const callAndRetry = createCallAndRetry({
-    maximumRetryDelayInMinutes: 120,
-    maximumAttempts: 6,
+    maximumRetryDelayInMinutes: 10,
     onError: function*(error: Error) {
       yield put(refreshContributorsFailed(error));
     }

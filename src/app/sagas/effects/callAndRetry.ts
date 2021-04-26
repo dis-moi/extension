@@ -8,23 +8,25 @@ import minutesToMilliseconds from 'app/utils/minutesToMilliseconds';
 type AnyFunction = (...args: any[]) => any;
 type OnErrorCallback = (error: Error, failures: number) => void;
 type Options = {
-  maximumAttempts: number;
+  maximumAttempts?: number;
   maximumRetryDelayInMinutes: number;
   onError?: OnErrorCallback;
   onFinalError?: OnErrorCallback;
 };
 
 const defaultOptions: Options = {
-  maximumAttempts: 10000,
   maximumRetryDelayInMinutes: 60 * 24
 };
 
-export const createCallAndRetry = (options: Partial<Options>) =>
+export const createCallAndRetry = (givenOptions: Partial<Options>) =>
   function* callAndRetry<Fn extends AnyFunction>(
     fn: Fn,
     ...args: Parameters<Fn>
   ): SagaIterator {
-    const o: Options = R.mergeRight(defaultOptions, options) as Options;
+    const options: Options = R.mergeRight(
+      defaultOptions,
+      givenOptions
+    ) as Options;
 
     function* attempt(
       attemptNumber: number,
@@ -33,14 +35,17 @@ export const createCallAndRetry = (options: Partial<Options>) =>
       try {
         return yield call(fn, ...args);
       } catch (e) {
-        if ('onError' in o && o.onError) {
-          yield call(o.onError, e, attemptNumber);
+        if ('onError' in options && options.onError) {
+          yield call(options.onError, e, attemptNumber);
         }
-        if (attemptNumber < o.maximumAttempts) {
+        if (
+          !options.maximumAttempts ||
+          attemptNumber < options.maximumAttempts
+        ) {
           yield delay(
             Math.min(
               secondsToMilliseconds(2 ^ attemptNumber),
-              minutesToMilliseconds(o.maximumRetryDelayInMinutes)
+              minutesToMilliseconds(options.maximumRetryDelayInMinutes)
             )
           );
           return yield call<typeof attempt>(
@@ -51,8 +56,8 @@ export const createCallAndRetry = (options: Partial<Options>) =>
             ...args
           );
         } else {
-          if ('onFinalError' in o && o.onFinalError) {
-            yield call(o.onFinalError, e, attemptNumber);
+          if ('onFinalError' in options && options.onFinalError) {
+            yield call(options.onFinalError, e, attemptNumber);
           }
           throw e;
         }
