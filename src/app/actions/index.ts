@@ -25,6 +25,7 @@ import {
 } from './ui';
 import {
   FeedbackOnNoticeAction,
+  FetchNoticeFailureAction,
   MarkNoticeReadAction,
   NoNoticesDisplayedAction,
   NoticeDisplayedAction,
@@ -205,4 +206,5 @@ export type AppAction =
   | LocationChangedAction
   | OutboundLinkClickedAction
   | LoginAction
+  | FetchNoticeFailureAction
   | (LocationChangeAction & { meta?: ActionMeta });
