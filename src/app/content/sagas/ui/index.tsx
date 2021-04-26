@@ -66,10 +66,10 @@ export function* openSaga({ payload: openedFrom }: OpenAction) {
         contentDocument &&
         contentDocument.visibilityState === 'visible'
       ) {
-        Logger.info('UI already mounted, showing it !');
+        Logger.trace('UI already mounted, showing it !');
         show();
       } else {
-        Logger.info('Mounting UI !');
+        Logger.trace('Mounting UI !');
         contentDocument = yield call(append, iframe);
         const root = contentDocument.createElement('div');
         contentDocument.body.appendChild(root);
