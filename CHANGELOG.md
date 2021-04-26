@@ -1,3 +1,12 @@
+## [3.71.2](https://github.com/dis-moi/extension/compare/v3.71.1...v3.71.2) (2021-04-26)
+
+
+### Performance Improvements
+
+* change contributors periodical refresh logic ([768c6da](https://github.com/dis-moi/extension/commit/768c6da8bbc62a89e43c9069e50b86dfd1e49666))
+* change matching contexts periodical refresh logic ([3f32c5f](https://github.com/dis-moi/extension/commit/3f32c5fb2305b870a38c97ff745a6e8c89e7eb29))
+* debounce matching-contexts refresh triggers ([178b4ab](https://github.com/dis-moi/extension/commit/178b4ab95e51428885815e974f23dbaa73abf552))
+
 ## [3.71.1](https://github.com/dis-moi/extension/compare/v3.71.0...v3.71.1) (2021-04-26)
 
 
