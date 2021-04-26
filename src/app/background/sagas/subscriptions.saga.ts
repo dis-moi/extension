@@ -24,7 +24,11 @@ import {
   fetchSubscriptionsFailure,
   fetchSubscriptionsSuccess
 } from 'app/actions/subscriptions';
-import { preselectedContributorIds } from 'app/lmemContributors';
+import { asArray } from 'app/utils/env';
+
+const PRESELECTED_CONTRIBUTORS_IDS = asArray<number>(
+  process.env.PRESELECTED_CONTRIBUTORS_IDS
+);
 
 function* postSubscriptionsSaga() {
   const extensionId = yield call(loginSaga);
@@ -73,7 +77,7 @@ export function* autoSubscribeSaga() {
   const nbSubscriptions = yield select(getNbSubscriptions);
   if (nbSubscriptions === 0) {
     yield all(
-      preselectedContributorIds.map(contributorId =>
+      PRESELECTED_CONTRIBUTORS_IDS.map(contributorId =>
         put(subscribe(contributorId))
       )
     );
