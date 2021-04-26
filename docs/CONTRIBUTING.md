@@ -11,6 +11,8 @@ Take note of the [code of conduct](CODE_OF_CONDUCT.md).
 Most members of the team do speak :fr: **French** but not all as their mother tongue.
 Since the team is international, we use :gb: **English** as the default lang in code, docs, issues, etc.
 
+> For extension __i18n__ strategy see [I18N.md](I18N.md) :fr:
+
 ## How Can I Contribute?
 
 ### Reporting Bugs
