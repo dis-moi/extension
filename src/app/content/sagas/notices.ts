@@ -17,7 +17,6 @@ import {
   UnfoldNoticeAction
 } from 'app/actions';
 import { createErrorAction } from 'app/actions/helpers';
-import { Level } from '../../utils/Logger';
 
 export function* closeIfNoMoreNoticeToDisplaySaga() {
   try {
@@ -26,7 +25,7 @@ export function* closeIfNoMoreNoticeToDisplaySaga() {
       yield put(close(CloseCause.NoMoreNotice));
     }
   } catch (e) {
-    yield put(createErrorAction()(e, { severity: Level.ERROR }));
+    yield put(createErrorAction()(e));
   }
 }
 

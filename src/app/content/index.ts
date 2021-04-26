@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires, import/first */
 import Logger from 'app/utils/Logger';
-Logger.info('Content script injected...');
+Logger.trace('Content script injected...');
 
 if (window.location.href.match((process.env as AppEnv).PROFILES_ORIGIN)) {
   window.postMessage(
@@ -14,7 +14,7 @@ import { AppEnv, CustomWindow } from 'types';
 import 'i18n';
 
 if (!(window as CustomWindow).__BULLES__CONTENT_SCRIPT_INJECTED__) {
-  Logger.info('Running content script ...');
+  Logger.trace('Running content script ...');
   const {
     captureException,
     configureSentryScope,
