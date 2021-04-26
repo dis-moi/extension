@@ -1,3 +1,10 @@
+## [3.71.1](https://github.com/dis-moi/extension/compare/v3.71.0...v3.71.1) (2021-04-26)
+
+
+### Bug Fixes
+
+* extension completely hangs after 6|10 retries of fetching contributors|matching-contexts ([89aa197](https://github.com/dis-moi/extension/commit/89aa19773c0a1d40699a5a3f9039df734005c5eb)), closes [#861](https://github.com/dis-moi/extension/issues/861)
+
 # [3.71.0](https://github.com/dis-moi/extension/compare/v3.70.1...v3.71.0) (2021-04-13)
 
 
