@@ -1,4 +1,4 @@
-import { debounce, delay, fork, put, select } from 'redux-saga/effects';
+import { debounce, delay, put, select } from 'redux-saga/effects';
 import {
   receivedMatchingContexts,
   REFRESH_MATCHING_CONTEXTS,
