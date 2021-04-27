@@ -1,9 +1,9 @@
-# Matching exclusions
+# Excluded matchings
 
 There are different level of pages/contents excluded from the matching engine.
 
-> Most of these mechanisms use a *blacklist* for the time being. 
-> If possible we'd love to put in place a *whitelist* system (see [#275](https://github.com/dis-moi/extension/issues/275))
+> Most of these mechanisms use an *exclude list* for the time being. 
+> If possible we'd love to put in place an *allow list* system (see [#275](https://github.com/dis-moi/extension/issues/275))
 
 ## Browser
 For example, `chrom*` browsers already forbid all content scripting on the following pages:
@@ -12,7 +12,7 @@ For example, `chrom*` browsers already forbid all content scripting on the follo
 - chrome web-store URLS
 
 ## Manifest file
-There is a list of pattern exclusion in the extension of the manifest: 
+There is a list of excluded pattern in the extension of the manifest: 
 It doesn't inject the content script in pages matching those URLs patterns.
 Thus, it doesn't run the matching engine against these URLs.
 
@@ -39,20 +39,17 @@ exclude_matches: [
   '*://*.testpilot.firefox.com/*'
 ],
 ```
-> You can find an up to date list in the  [`manifest/base.js`](../src/webext/forbiddenTabs.ts) file.
+> You can find an up to date list in the  [`manifest/base.js`](../manifest/base.js) file.
 
 Some of these rules cames from the [list provided by Firefox](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts) 
 and were also added to the `chrom*` version of the extension.
 Thus, URLs excluded from Firefox are also excluded from `chrom*` to provide a consistent user experience across browsers.
 
-## Coded exclusion list
-Here the extension injects the content script in the page __but__ it doesn't run the matching engine.
-Thus, we don't collect any data on these URLs.
-
-### Hard coded exclusion list
+### Hard coded exclude list
 We maintain a list of excluded patterns in the code.
 It is maintained irregularly and, some of these patterns might end up in the manifest file.
-> We might as well remove this list in the future as most of these patterns can already be blocked in the manifest.
+> We might as well remove this list in the future as most of these patterns can already be blocked in the manifest. 
+> This might be legacy and related to PDFs related issues we had in the past.
 ```
 const forbiddenTabs: RegExp[] = [
   /^about:.*/,
@@ -79,7 +76,7 @@ const forbiddenTabs: RegExp[] = [
   /.*testpilot\.firefox\.com.*/
 ];
 ```
-> You can find an up to date list in the [`src/webext/forbiddenTabs.ts`](../manifest/base.js) file.
+> You can find an up to date list in the [`src/webext/forbiddenTabs.ts`](../src/webext/forbiddenTabs.ts) file.
 
 ### Restricted contexts
 We also maintain a dynamic list of *restricted contexts*, this list is __actively__ maintained.
@@ -90,4 +87,3 @@ http://notices.bulles.fr/api/v3/restricted-contexts
 
 ## User excluded context
 User can completely disable an extension in private navigation.
-
