@@ -30,19 +30,18 @@ export const updateBadge = (
   tabId?: number
 ): void => {
   browser.browserAction.setIcon({ path: icons, tabId });
-  if (noticesNumber > 0) {
-    const { backgroundColor } = badgeTheme;
 
-    browser.browserAction.setBadgeText({
-      text: noticesNumber.toString(),
-      tabId
-    });
-    browser.browserAction.setBadgeBackgroundColor({
-      color:
-        unreadNoticesNumber > 0
-          ? backgroundColor.hasUnreadNotices
-          : backgroundColor.hasAllNoticesRead,
-      tabId
-    });
-  }
+  const { backgroundColor } = badgeTheme;
+
+  browser.browserAction.setBadgeText({
+    text: noticesNumber > 0 ? noticesNumber.toString() : '',
+    tabId
+  });
+  browser.browserAction.setBadgeBackgroundColor({
+    color:
+      unreadNoticesNumber > 0
+        ? backgroundColor.hasUnreadNotices
+        : backgroundColor.hasAllNoticesRead,
+    tabId
+  });
 };
