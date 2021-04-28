@@ -9,9 +9,9 @@ const getMessageWithMediaPlayer = (message: string): string | null => {
     .replace(youtubeLink[8], '')
     .replace(youtubeLink[6], 'embed/');
 
-  const replaceValue = `<iframe width='100%' height='auto' src=${mediaLink} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen/>`;
+  const replaceValue = `<div style='margin:16px 16px 0 0'><iframe width='100%' height='auto' src=${mediaLink} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen/></div>`;
 
-  return message.replace(youtubeRegex, replaceValue);
+  return message + replaceValue;
 };
 
 export default getMessageWithMediaPlayer;
