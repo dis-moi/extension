@@ -44,16 +44,17 @@
     "subscribe": {
       "message": "Veuillez suivre {{contributorName}} pour voir ses contributions."
     },
-    "is_not_subscriber": {
-      "message": "Veuillez suivre {{contributorName}} pour voir cet exemple",
-      "btn_text": "Ajouter Dismoi à mon navigateur"
-    },
     "is_not_connected": {
       "message": "Pour voir les contributions de {{contributorName}} veuillez d'abord ajouter Dismoi à votre navigateur",
-      "btn_text": "Suivre et voir l'exemple"
+      "btn_text": "Ajouter Dismoi à mon navigateur"
+    },
+    "is_not_subscriber": {
+      "message": "Veuillez suivre {{contributorName}} pour voir ses contributions.",
+      "btn_text": "Suivre"
     },
     "just_subscribed": {
-      "message": "Vous venez de vous abonner à {{contributorName}}"
+      "message": "Vous êtes bien abonné(e) à {{contributorName}}",
+      "btn_text": "Voir l'exemple"
     }
   },
   "view": {

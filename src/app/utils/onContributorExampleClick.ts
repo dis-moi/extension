@@ -22,8 +22,8 @@ const onContributorExampleClick = (
         text: i18n.t('profiles:popin.is_not_connected.message', {
           contributorName: contributor.name
         }),
-        onClick: e => {
-          addToBrowser(e);
+        onClick: (e?: MouseEvent<HTMLButtonElement>) => {
+          addToBrowser(e as MouseEvent<HTMLButtonElement>);
           setPopin(contextPopinInitState);
         },
         btnLabel: i18n.t('profiles:popin.is_not_connected.btn_text')
@@ -35,7 +35,20 @@ const onContributorExampleClick = (
   const path = contributor.contribution?.example.exampleMatchingUrl;
   if (!path) return null;
 
-  if (connected && !isSubscriber)
+  const afterSubscribePopin = {
+    opened: true,
+    content: {
+      text: i18n.t('profiles:popin.just_subscribed.message', {
+        contributorName: contributor.name
+      }),
+      btnLabel: i18n.t('profiles:popin.just_subscribed.btn_text'),
+      onClick: () => {
+        window.open(path, '_blank');
+      }
+    }
+  };
+
+  if (connected && !isSubscriber) {
     return setPopin({
       opened: true,
       content: {
@@ -43,20 +56,13 @@ const onContributorExampleClick = (
           contributorName: contributor.name
         }),
         btnLabel: i18n.t('profiles:popin.is_not_subscriber.btn_text'),
-        onClick: async () => {
-          handleSubscribe(contributor);
-          setPopin({
-            opened: true,
-            content: {
-              text: i18n.t('profiles:popin.just_subscribed.message', {
-                contributorName: contributor.name
-              })
-            }
-          });
-          window.open(path, '_blank');
+        onClick: () => {
+          handleSubscribe(contributor)();
+          setPopin(afterSubscribePopin);
         }
       }
     });
+  }
   if (connected && isSubscriber) return window.open(path, '_blank');
 };
 export default onContributorExampleClick;

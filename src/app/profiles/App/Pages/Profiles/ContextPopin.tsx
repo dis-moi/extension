@@ -1,14 +1,13 @@
-import Popin from '../../../../../components/molecules/Popin/Popin';
-import React from 'react';
-import PopinParagraph from '../../../../../components/molecules/Popin/PopinParagraph';
-import { BackgroundButton } from '../../../../../components/atoms';
+import React, { MouseEvent } from 'react';
+import Popin from 'components/molecules/Popin/Popin';
+import PopinParagraph from 'components/molecules/Popin/PopinParagraph';
+import { BackgroundButton } from 'components/atoms';
 
 export interface PopinDisplayState {
-  content?: {
-    text?: string;
+  content: {
+    text: string;
     btnLabel?: string;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    onClick?: (params: any) => void;
+    onClick?: (params?: MouseEvent<HTMLButtonElement>) => void;
   };
   opened: boolean;
 }
@@ -18,7 +17,7 @@ interface ContextPopinProps {
 }
 
 export const contextPopinInitState = {
-  content: undefined,
+  content: { text: '' },
   opened: false
 };
 
