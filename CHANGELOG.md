@@ -1,3 +1,10 @@
+## [3.71.4](https://github.com/dis-moi/extension/compare/v3.71.3...v3.71.4) (2021-04-28)
+
+
+### Bug Fixes
+
+* **contribution:** Fix posting a contribution on Firefox ([b6fa7ad](https://github.com/dis-moi/extension/commit/b6fa7add6a644e8b3a2ef1cd991b9af1de47fa3b))
+
 ## [3.71.3](https://github.com/dis-moi/extension/compare/v3.71.2...v3.71.3) (2021-04-28)
 
 
