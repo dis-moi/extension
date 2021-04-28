@@ -1,3 +1,10 @@
+## [3.71.3](https://github.com/dis-moi/extension/compare/v3.71.2...v3.71.3) (2021-04-28)
+
+
+### Bug Fixes
+
+* **badge:** Badge reset on context not triggered ([eebf40a](https://github.com/dis-moi/extension/commit/eebf40aed8b669fe657007583c56142050cbaf23)), closes [#916](https://github.com/dis-moi/extension/issues/916)
+
 ## [3.71.2](https://github.com/dis-moi/extension/compare/v3.71.1...v3.71.2) (2021-04-26)
 
 
