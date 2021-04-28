@@ -11,7 +11,7 @@ if (window.location.href.match((process.env as AppEnv).PROFILES_ORIGIN)) {
 
 import { Scope } from '@sentry/browser';
 import { AppEnv, CustomWindow } from 'types';
-import 'i18n';
+import i18n, { options } from 'i18n';
 
 if (!(window as CustomWindow).__BULLES__CONTENT_SCRIPT_INJECTED__) {
   Logger.trace('Running content script ...');
@@ -43,6 +43,8 @@ if (!(window as CustomWindow).__BULLES__CONTENT_SCRIPT_INJECTED__) {
         document.removeEventListener('click', handleExternalClick);
       });
     });
+
+    i18n.init(options).then(() => {});
   } catch (error) {
     captureException(error);
   }

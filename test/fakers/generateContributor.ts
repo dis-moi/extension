@@ -1,5 +1,5 @@
 import Faker from 'faker';
-import { Contributor } from 'app/lmem/contributor';
+import { Contributor, NewContributor } from 'app/lmem/contributor';
 import {
   generateNoticeItem,
   generatePinnedNotice
@@ -55,4 +55,12 @@ export const generateStatefulContributor = ({
   subscribed: subscribed === undefined ? false : subscribed,
   subscribing: subscribing === undefined ? false : subscribing,
   loading: loading === undefined ? false : loading
+});
+
+export const generateNewContributor = ({
+  name,
+  email
+}: Partial<NewContributor> = {}): NewContributor => ({
+  name: name || Faker.name.findName(),
+  email: email || Faker.internet.email()
 });

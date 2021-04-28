@@ -17,7 +17,7 @@ module.exports = (env = {}, argv = {}) => {
         '!**/test/**',
         '!**/?(*.)(spec|test).*',
         '!src/assets/**',
-        '!**/node_modules/**',
+        '!**/node_modules/**'
       ],
       silent: false, // true in CRA
       tsconfig: path.resolve(__dirname, '..', 'tsconfig.json')
