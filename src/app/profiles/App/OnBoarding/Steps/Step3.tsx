@@ -12,6 +12,8 @@ import { StepProps } from './index';
 import isChrome from 'app/utils/isChrome';
 
 const MarginTitle = styled(Title1)`
+  margin-top: 0;
+  margin-bottom: 60px;
   margin-left: 130px;
 `;
 
