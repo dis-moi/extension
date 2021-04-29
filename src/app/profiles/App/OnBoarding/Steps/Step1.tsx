@@ -3,6 +3,7 @@ import { useTranslation, Trans } from 'react-i18next';
 import styled, { keyframes } from 'styled-components';
 import { Title1 } from 'components/atoms/Title1';
 import { StepProps } from './index';
+import isChrome from '../../../../utils/isChrome';
 
 const titleAnim = keyframes`
   from {
@@ -53,11 +54,12 @@ export default ({ next }: StepProps) => {
     <>
       <Step1Title>
         <AnimatedText onAnimationEnd={onAnimationEnd}>
-          <Trans t={t} i18nKey="view.onBoarding.step1">
+          <Trans t={t} i18nKey="view.onBoarding.step1.loading">
             L&apos;installation a réussi !<br /> Chargement de votre
             expérience...
-            <br /> Épinglez DisMoi
           </Trans>
+          <br />
+          {isChrome && t('view.onBoarding.step1.pin')}
         </AnimatedText>
       </Step1Title>
     </>

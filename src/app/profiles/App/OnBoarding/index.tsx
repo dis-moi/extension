@@ -8,6 +8,7 @@ import Evolution from './components/Evolution';
 import Modal from './components/Modal';
 import { Step1, Step2, Step3 } from './Steps';
 import isRedirectedFromExtensionInstall from 'app/utils/isRedirectedFromExtensionInstall';
+import isChrome from 'app/utils/isChrome';
 
 export type CloseFunction = () => void;
 
@@ -27,6 +28,7 @@ const OnBoarding = () => {
     <Step2 key={1} prev={prev} next={next} />,
     <Step3 key={2} prev={prev} close={close} />
   ];
+  if (!isChrome) steps.splice(1, 1);
 
   return (
     <Modal open={open} close={close}>

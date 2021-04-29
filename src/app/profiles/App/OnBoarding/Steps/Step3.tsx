@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { useTranslation, Trans } from 'react-i18next';
 import { Bullito, Reload } from 'components/atoms/icons';
 import { Title1 } from 'components/atoms/Title1';
@@ -9,8 +9,11 @@ import Line from '../components/Line';
 import OnboardingButton from '../components/Buttons';
 import OnboardingTitle from '../components/Title';
 import { StepProps } from './index';
+import isChrome from 'app/utils/isChrome';
 
 const MarginTitle = styled(Title1)`
+  margin-top: 0;
+  margin-bottom: 60px;
   margin-left: 130px;
 `;
 
@@ -21,11 +24,22 @@ const OnboardingText = styled(Text)`
     margin-top: 60px;
   }
 `;
+const contentAnim = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+const ContentWithEffect = styled(Content)`
+  animation: ${contentAnim} 500ms linear forwards;
+`;
 
 export default ({ prev, close }: StepProps) => {
   const { t } = useTranslation('profiles');
   return (
-    <Content>
+    <ContentWithEffect>
       <MarginTitle>{t('view.onBoarding.step3.title')}</MarginTitle>
 
       <Line>
@@ -47,18 +61,20 @@ export default ({ prev, close }: StepProps) => {
         </OnboardingText>
       </Trans>
       <Line>
-        <div>
-          <OnboardingButton color="inactive" onClick={prev}>
-            <Reload />
-            {t('view.onBoarding.step3.back_button')}
-          </OnboardingButton>
-        </div>
+        {isChrome && (
+          <div>
+            <OnboardingButton color="inactive" onClick={prev}>
+              <Reload />
+              {t('view.onBoarding.step3.back_button')}
+            </OnboardingButton>
+          </div>
+        )}
         <div>
           <OnboardingButton onClick={close}>
             {t('action.finish')}
           </OnboardingButton>
         </div>
       </Line>
-    </Content>
+    </ContentWithEffect>
   );
 };
