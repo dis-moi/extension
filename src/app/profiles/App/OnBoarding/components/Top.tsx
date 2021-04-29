@@ -24,10 +24,11 @@ export default styled.div`
     display: flex;
     flex-direction: column;
     width: 610px;
-    margin-left: 64px;
+    margin-left: 80px;
   }
 
   > svg {
+    width: 200px;
     margin-top: 80px;
   }
 `;

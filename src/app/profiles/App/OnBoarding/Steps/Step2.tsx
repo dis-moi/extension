@@ -12,6 +12,8 @@ import Content from '../components/Content';
 import { StepProps } from './index';
 
 const MarginTitle = styled(Title1)`
+  margin-top: 0;
+  margin-bottom: 60px;
   margin-left: 200px;
 `;
 

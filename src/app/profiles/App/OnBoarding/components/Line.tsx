@@ -23,13 +23,13 @@ const Line = styled.div`
   }
 
   p {
-    font-size: 28px;
+    font-size: 22px;
     text-align: center;
   }
 
   button {
     justify-content: center;
-    min-width: 360px;
+    min-width: 216px;
   }
 `;
 

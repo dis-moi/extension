@@ -11,8 +11,8 @@ const getBackgroundColor = (color: Color) => {
 const OnboardingButton = styled(BackgroundButton)`
   display: flex;
   align-items: center;
-  padding: 15px 34px;
-  font-size: 30px;
+  padding: 10px 20px;
+  font-size: 22px;
   line-height: 1.2;
   font-weight: 600;
   background-color: ${({ color }) => getBackgroundColor(color)};
@@ -25,9 +25,9 @@ const OnboardingButton = styled(BackgroundButton)`
   }
 
   svg {
-    width: 32px;
+    width: 20px;
     height: auto;
-    margin-right: 16px;
+    margin-right: 8px;
   }
 `;
 
