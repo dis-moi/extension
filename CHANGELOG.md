@@ -1,3 +1,15 @@
+# [3.72.0](https://github.com/dis-moi/extension/compare/v3.71.5...v3.72.0) (2021-04-29)
+
+
+### Bug Fixes
+
+* **OnBoarding:** fixes some design ([afaa6d0](https://github.com/dis-moi/extension/commit/afaa6d099350944c8942f94875a0fd49dde6a302))
+
+
+### Features
+
+* **onBoardingEvolution:** detect isChrome for step2, change wording ([a381d5a](https://github.com/dis-moi/extension/commit/a381d5a072ef518168748cf56da09a6a472c98b9))
+
 ## [3.71.5](https://github.com/dis-moi/extension/compare/v3.71.4...v3.71.5) (2021-04-29)
 
 
