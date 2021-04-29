@@ -1,3 +1,10 @@
+## [3.71.5](https://github.com/dis-moi/extension/compare/v3.71.4...v3.71.5) (2021-04-29)
+
+
+### Bug Fixes
+
+* **messageWithYoutubePlayer:** display video after text ([64f1446](https://github.com/dis-moi/extension/commit/64f1446d8e90d4cd13cd59c0f6559e659d287b9f))
+
 ## [3.71.4](https://github.com/dis-moi/extension/compare/v3.71.3...v3.71.4) (2021-04-28)
 
 
