@@ -37,6 +37,7 @@ const ButtonsListWrapper = styled.div`
 const ButtonsList = () => {
   return (
     <ButtonsListBackground>
+      <h2>à avoir</h2>
       <h1>Liste de tous les boutons</h1>
       <h2>Dans les atoms</h2>
       <ButtonsListWrapper>
