@@ -13,7 +13,7 @@ const LinkNoNotice = styled(Link)`
   text-decoration: none;
   text-transform: none;
   background-color: #fff;
-  border-radius: ${props => props.theme.radius};
+  border-radius: ${props => props.theme.radiusS};
   border: 2px solid ${props => props.theme.Button.default};
 
   &:hover {
