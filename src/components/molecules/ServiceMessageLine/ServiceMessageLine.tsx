@@ -10,7 +10,7 @@ const ServiceMessageLineMessage = styled.div`
   font-size: 12px;
   font-weight: bold;
   text-align: center;
-  border-top: 1px solid ${props => props.theme.navInactive};
+  border-top: 1px solid ${props => props.theme.colorGrey400};
 `;
 
 const ServiceMessageLine = () => {

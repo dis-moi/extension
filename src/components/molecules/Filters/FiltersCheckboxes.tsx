@@ -19,7 +19,7 @@ const FiltersTitle = styled.span`
 export const FiltersList = styled.div`
   display: flex;
   font-size: 16px;
-  color: ${props => props.theme.textColor};
+  color: ${props => props.theme.colorText};
   border-radius: ${props => props.theme.Button.radius};
 `;
 

@@ -14,7 +14,7 @@ export default styled.div<FeedbacksProps>`
   font-size: 14px;
 
   & ${Button} {
-    color: ${props => props.theme.navInactive};
+    color: ${props => props.theme.colorGrey400};
     text-decoration: none;
 
     svg {

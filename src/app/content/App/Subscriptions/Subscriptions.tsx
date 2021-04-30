@@ -27,7 +27,7 @@ const SeeSubscriptions = styled.button`
   height: 40px;
   line-height: 1;
   font-weight: bold;
-  background-color: ${props => props.theme.contributorGrey};
+  background-color: ${props => props.theme.colorGrey100};
   border: none;
   border-radius: 50%;
   cursor: pointer;

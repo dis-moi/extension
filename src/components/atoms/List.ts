@@ -9,6 +9,6 @@ export default styled.ul`
   a {
     font-family: 'Lato', sans-serif;
     font-weight: 500;
-    color: ${props => props.theme.activeColor};
+    color: ${props => props.theme.colorPrimary};
   }
 `;

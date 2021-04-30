@@ -17,10 +17,20 @@ export interface Theme {
   radiusL: string;
 
   // colors
+  colorWhite: string;
+  colorBlack: string;
   colorPrimary: string;
   colorText: string;
   colorAlert: string;
-  colorGrey1: string;
+  colorGrey100: string;
+  colorGrey200: string;
+  colorGrey300: string;
+  colorGrey400: string;
+  colorGrey500: string;
+  colorGreen100: string;
+  colorGreen200: string;
+  colorGreen300: string;
+  colorOrange100: string;
 
   // font sizes
   fontSizeXS: string;
@@ -32,32 +42,10 @@ export interface Theme {
   /// ///// OLD /////
   // colors
   primaryColor: string;
-  activeColor: string;
-  grey: string;
 
-  otherText: string;
   secondaryColor: string;
-  deletedText: string;
-  noticeBg: string;
-  navInactive: string;
-  navActive: string;
-  link: string;
-  highlightedLink: string;
-  accountListBg: string;
-  pagesBg: string;
 
   // color list:
-  bottomBar: string;
-  topBarNavInactiveDeleteBg: string;
-  text: string;
-  error: string;
-  formError: string;
-  button: string;
-  contributorGrey: string;
-  contributorIntro: string;
-
-  titleColor: string;
-  textColor: string;
 
   badge: BadgeTheme;
   Button: ButtonTheme;
@@ -101,10 +89,20 @@ export const theme: Theme = {
   radiusL: '20px',
 
   // colors
+  colorWhite: '#fff',
+  colorBlack: '#000',
   colorPrimary: '#0C52B4',
   colorText: '#22252B',
   colorAlert: '#DB0D0D',
-  colorGrey1: '#CACCD0',
+  colorGrey100: '#F5F5F5',
+  colorGrey200: '#E9EBEF',
+  colorGrey300: '#CACCD0',
+  colorGrey400: '#a6b1c0',
+  colorGrey500: '#808080',
+  colorGreen100: '#2db4ab',
+  colorGreen200: '#349d27',
+  colorGreen300: '#117104',
+  colorOrange100: '#ff981d',
 
   // font sizes
   fontSizeXS: '13px',
@@ -116,37 +114,15 @@ export const theme: Theme = {
   /// ///// OLD /////
   // colors
   primaryColor: '#404348',
-  activeColor: '#0C52B4',
-  grey: '#808080',
 
-  otherText: '#787993',
   secondaryColor: '#5F656C',
-  deletedText: '#484046',
-  noticeBg: '#EFEDED',
-  navInactive: '#a6b1c0',
-  navActive: '#4378A5',
-  link: '#1974C3',
-  highlightedLink: '#F21360',
-  accountListBg: '#fff',
-  pagesBg: '#E9EBEF',
 
   // color list:
-  bottomBar: '#DDDDDD',
-  topBarNavInactiveDeleteBg: '#A6B1C0',
-  text: '#404348',
-  error: '#F01953',
-  formError: '#DB0D0D',
-  button: '#0C52B4',
-  contributorGrey: '#F5F5F5',
-  contributorIntro: '#100E0E',
-
-  titleColor: '#000',
-  textColor: '#22252B',
 
   // badge background colors
   badge: {
     backgroundColor: {
-      hasAllNoticesRead: '#9DA1A7',
+      hasAllNoticesRead: '#a6b1c0',
       hasUnreadNotices: '#DB0D0D'
     }
   },

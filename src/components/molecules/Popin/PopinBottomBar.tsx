@@ -11,7 +11,7 @@ import LogoMicode from 'assets/img/contributors/logo-micode.png';
 import LogoQueChoisir from 'assets/img/contributors/logo-que-choisir.png';
 
 const Link = styled(ExternalLink)`
-  color: ${props => props.theme.text};
+  color: ${props => props.theme.colorText};
   font-weight: normal;
   text-decoration: underline;
 `;
@@ -23,7 +23,7 @@ const PopinBottomBarContainer = styled.div`
   font-size: 16px;
   font-style: italic;
   text-align: center;
-  background-color: ${props => props.theme.contributorGrey};
+  background-color: ${props => props.theme.colorGrey100};
   border-radius: 0 0 ${props => props.theme.radius}
     ${props => props.theme.radius};
 `;

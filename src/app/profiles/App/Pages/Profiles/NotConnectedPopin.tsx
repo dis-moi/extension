@@ -24,7 +24,7 @@ const Text = styled(PopinParagraph)`
 `;
 
 const Link = styled(ExternalLink)`
-  color: ${props => props.theme.text};
+  color: ${props => props.theme.colorText};
   font-weight: normal;
   text-decoration: underline;
 `;

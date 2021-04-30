@@ -12,10 +12,10 @@ const Wrapper = styled(ContributorWrapper)`
   align-items: center;
   padding-top: 10px;
   padding-bottom: 14px;
-  border-bottom: 1px solid ${props => props.theme.bottomBar};
+  border-bottom: 1px solid ${props => props.theme.colorGrey300};
 
   &:first-of-type {
-    border-top: 1px solid ${props => props.theme.bottomBar};
+    border-top: 1px solid ${props => props.theme.colorGrey300};
   }
 `;
 

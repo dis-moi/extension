@@ -14,8 +14,8 @@ export default styled.nav`
     transition: all 0.2s ease-in-out;
 
     &:hover {
-      color: ${props => props.theme.activeColor};
-      border-color: ${props => props.theme.activeColor};
+      color: ${props => props.theme.colorPrimary};
+      border-color: ${props => props.theme.colorPrimary};
     }
 
     &:nth-child(odd) {
@@ -26,7 +26,7 @@ export default styled.nav`
       border-bottom: 2px solid #fafafa;
 
       &:hover {
-        border-color: ${props => props.theme.activeColor};
+        border-color: ${props => props.theme.colorPrimary};
       }
     }
 

@@ -82,7 +82,7 @@ const ProfileIntroContent = styled.section`
           display: block;
           font-size: 22px;
           line-height: 1.2;
-          color: ${props => props.theme.titleColor};
+          color: ${props => props.theme.colorBlack};
           white-space: normal;
         }
       }

@@ -13,18 +13,18 @@ export default styled(NavLink).attrs({
   text-align: center;
   text-transform: none;
   text-decoration: none;
-  color: ${props => props.theme.textColor};
+  color: ${props => props.theme.colorText};
   border-bottom-width: 2px;
   border-bottom-style: solid;
   border-bottom-color: transparent;
   border-radius: 0;
 
   &:hover {
-    color: ${props => props.theme.textColor};
+    color: ${props => props.theme.colorText};
   }
 
   &.${props => props.activeClassName} {
     color: #000;
-    border-bottom-color: ${props => props.theme.textColor};
+    border-bottom-color: ${props => props.theme.colorText};
   }
 `;

@@ -16,7 +16,7 @@ const Wrapper = styled(Link)<WrapperProps>`
   flex-shrink: 0;
   width: ${props => (props.size === 'small' ? '40px' : '70px')};
   height: ${props => (props.size === 'small' ? '40px' : '70px')};
-  background-color: ${props => props.theme.contributorGrey};
+  background-color: ${props => props.theme.colorGrey100};
   border-radius: 50%;
   font-weight: normal;
   text-decoration: none;

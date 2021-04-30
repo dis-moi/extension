@@ -22,7 +22,7 @@ export const ProgressBar = styled.div<ProgessBarProps>`
   width: 30%;
   height: 12px;
   border-radius: 6px;
-  background-color: ${props => props.theme.navInactive};
+  background-color: ${props => props.theme.colorGrey400};
 
   &:after {
     content: '';
@@ -31,7 +31,7 @@ export const ProgressBar = styled.div<ProgessBarProps>`
     left: 0;
     height: 12px;
     z-index: 9999;
-    background-color: ${props => props.theme.activeColor};
+    background-color: ${props => props.theme.colorPrimary};
     border-radius: 6px;
     width: 0;
   }
