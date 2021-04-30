@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import ThumbUp from 'components/atoms/icons/ThumbUp';
 import ThumbDown from 'components/atoms/icons/ThumbDown';
 import Avatar from 'components/molecules/Avatar/Avatar';
+import { TransparentButton } from 'components/atoms/Button';
+
 import { Button, ContributorName, Timer } from 'components/atoms';
 import { Relay } from 'components/atoms/icons';
 import { StatefulNoticeWithContributor } from 'libs/domain/notice';
@@ -268,14 +270,14 @@ class NoticeDetails extends PureComponent<
           </Message>
 
           <Feedbacks>
-            <Button onClick={this.handleLikeClick}>
+            <TransparentButton onClick={this.handleLikeClick}>
               <ThumbUp filled={liked} />
               {likes}
-            </Button>
-            <Button onClick={this.handleDislikeClick}>
+            </TransparentButton>
+            <TransparentButton onClick={this.handleDislikeClick}>
               <ThumbDown filled={disliked} />
               {dislikes}
-            </Button>
+            </TransparentButton>
           </Feedbacks>
 
           {(disliked || dismissed) && intervalID && (

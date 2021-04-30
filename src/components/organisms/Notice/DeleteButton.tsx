@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '../../atoms/Button/Button';
 import DeleteIcon from './DeleteIcon';
+import { TransparentButton } from 'components/atoms/Button';
 
-export default styled(Button).attrs({ children: <DeleteIcon /> })`
+export default styled(TransparentButton).attrs({
+  children: <DeleteIcon />
+})`
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -11,8 +13,13 @@ export default styled(Button).attrs({ children: <DeleteIcon /> })`
   height: 23px;
   margin-left: 16px;
 
-  &:hover svg path,
-  &:hover svg rect {
-    fill: ${props => props.theme.colorError};
+  svg {
+    fill: ${props => props.theme.secondaryColor};
+  }
+
+  &:hover {
+    svg {
+      fill: ${props => props.theme.colorAlert};
+    }
   }
 `;
