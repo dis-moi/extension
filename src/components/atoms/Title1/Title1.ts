@@ -6,6 +6,6 @@ export default styled.h1`
   font-size: 34px;
   line-height: 1.236;
   font-weight: bold;
-  color: ${props => props.theme.activeColor};
+  color: ${props => props.theme.colorPrimary};
   text-align: center;
 `;

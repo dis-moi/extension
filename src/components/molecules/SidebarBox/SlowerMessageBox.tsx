@@ -8,7 +8,7 @@ import SidebarBox from './SidebarBox';
 const Title = styled(Title2)`
   font-weight: 700;
   font-size: 18px;
-  color: ${props => props.theme.textColor};
+  color: ${props => props.theme.colorText};
 `;
 
 export default () => {

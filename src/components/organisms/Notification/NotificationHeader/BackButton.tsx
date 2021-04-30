@@ -6,5 +6,5 @@ import ArrowIcon from 'components/atoms/icons/Arrow';
 export default styled(Button).attrs({ children: <ArrowIcon /> })`
   height: 30px;
   padding-right: 10px;
-  stroke: ${props => props.theme.activeColor};
+  stroke: ${props => props.theme.colorPrimary};
 `;

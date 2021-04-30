@@ -39,7 +39,7 @@ const PopinWrapper = styled.div`
   }
 
   ${Link} {
-    color: ${props => props.theme.textColor};
+    color: ${props => props.theme.colorText};
     text-decoration: underline;
   }
 

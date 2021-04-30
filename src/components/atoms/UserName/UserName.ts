@@ -5,7 +5,7 @@ export default styled.h2`
   margin: 0;
   padding-bottom: 0;
   font-size: ${props => props.theme.fontSizeDefault};
-  color: ${props => props.theme.activeColor};
+  color: ${props => props.theme.colorPrimary};
 
   display: table;
   table-layout: fixed;

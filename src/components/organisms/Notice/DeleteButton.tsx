@@ -13,6 +13,6 @@ export default styled(Button).attrs({ children: <DeleteIcon /> })`
 
   &:hover svg path,
   &:hover svg rect {
-    fill: ${props => props.theme.formError};
+    fill: ${props => props.theme.colorError};
   }
 `;

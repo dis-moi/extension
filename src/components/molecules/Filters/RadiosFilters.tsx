@@ -15,7 +15,7 @@ const RadioButton = styled.input.attrs({ type: 'radio' })`
 
  &:checked + svg {
   .radio-checked {
-    fill: ${props => props.theme.activeColor};
+    fill: ${props => props.theme.colorPrimary};
   }
 `;
 
