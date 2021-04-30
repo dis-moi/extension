@@ -97,6 +97,7 @@
     "@sentry/browser": "^5.1.1",
     "@sentry/webpack-plugin": "^1.6.2",
     "@storybook/addon-actions": "^6.2.2",
+    "@storybook/addon-docs": "^6.2.9",
     "@storybook/addon-essentials": "^6.2.7",
     "@storybook/addon-knobs": "^6.2.2",
     "@storybook/addons": "^6.2.2",
