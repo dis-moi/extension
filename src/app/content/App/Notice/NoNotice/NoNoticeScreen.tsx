@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { Link as ReactRouterDomLink } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import Title from './Title';
-import ButtonContainer from './ButtonContainer';
-import { BackgroundButton } from 'components/atoms';
+import { Button } from 'components/atoms';
 import AddNoticeButton from 'components/atoms/Button/AddNoticeButton/AddNoticeButton';
-import { NoNotice } from '../../../../../components/atoms/icons';
+import { NoNotice } from 'components/atoms/icons';
+import ButtonContainer from './ButtonContainer';
 
 const Image = styled.div`
   width: 52px;
@@ -27,10 +27,10 @@ const Content = styled.div`
   text-align: center;
 
   & > a {
-    box-sizing: border-box;
     width: 118px;
     padding-top: 6px;
     padding-bottom: 6px;
+    text-decoration: none;
   }
 `;
 
@@ -62,9 +62,9 @@ export default () => {
         </Content>
         <Separator>{t('common.or')}</Separator>
         <Content>
-          <BackgroundButton as={ReactRouterDomLink} to="/question">
+          <Button as={ReactRouterDomLink} to="/question">
             {t('action.ask')}
-          </BackgroundButton>
+          </Button>
           <Paragraph>{t('view.contributions.button_subtext')}</Paragraph>
         </Content>
       </Container>
