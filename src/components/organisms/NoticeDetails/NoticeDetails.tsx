@@ -21,6 +21,7 @@ import Feedbacks from './Feedbacks';
 import Date from './Date';
 import { Contributor } from 'app/lmem/contributor';
 import { formatMessage } from 'app/lmem/format/message';
+import { TransparentButton } from '../../atoms/Button';
 
 const DetailsMetaValue = styled.div`
   margin-left: 10px;
@@ -256,14 +257,14 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
           </Message>
 
           <Feedbacks>
-            <Button onClick={this.handleLikeClick}>
+            <TransparentButton onClick={this.handleLikeClick}>
               <ThumbUp filled={liked} />
               {likes}
-            </Button>
-            <Button onClick={this.handleDislikeClick}>
+            </TransparentButton>
+            <TransparentButton onClick={this.handleDislikeClick}>
               <ThumbDown filled={disliked} />
               {dislikes}
-            </Button>
+            </TransparentButton>
           </Feedbacks>
 
           {(disliked || dismissed) && intervalID && (
