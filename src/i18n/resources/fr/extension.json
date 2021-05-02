@@ -34,7 +34,7 @@
     "contact": "Contact",
     "privacy": "Vie privée",
     "uninstall": "Désinstaller",
-    "subscriptions": "Éclaireurs",
+    "subscriptions": "Comptes suivis",
     "contributions": "Contributions",
     "tos": "CGU"
   },
@@ -43,7 +43,7 @@
       "placeholder": "Votre nom"
     },
     "field_message": {
-      "placeholder": "Ecrire le message que vous souhaitez publier"
+      "placeholder": "Ecrire le message que vous souhaitez publier sur cette page"
     },
     "field_email": {
       "placeholder": "Votre@email.fr"
@@ -52,13 +52,13 @@
       "label": "Choix de la source"
     },
     "field_message_question": {
-      "placeholder": "Indiquez votre question. Précisez éventuellement le nom du média, de l'expert ou de l'informateur que vous souhaitez solliciter."
+      "placeholder": "Indiquez votre question à propos de la cette page"
     },
     "preview_send": "$t(action.preview) et $t(action.publish)"
   },
   "error": {
     "form": {
-      "require_field": "Ce champs est obligatoire"
+      "require_field": "Ce champ est obligatoire"
     },
     "common": {
       "title": "Oops !",
@@ -89,12 +89,12 @@
     },
     "subscriptions": {
       "title": "$t(menu.subscriptions)",
-      "followed_sources": "Vous suivez <br/><strong>{{count}}</strong> source",
-      "followed_sources_plural": "Vous suivez <br/><strong>{{count}}</strong> sources",
-      "no_followed_sources": "Vous ne suivez actuellement aucune source.<br />Pour le bon fonctionnement de l'extension, abonnez-vous !"
+      "followed_sources": "Vous suivez <br/><strong>{{count}}</strong> contributeur",
+      "followed_sources_plural": "Vous suivez <br/><strong>{{count}}</strong> contributeurs",
+      "no_followed_sources": "Vous ne suivez actuellement aucun contributeur.<br />Pour recevoir des conseils et infos, abonnez-vous !"
     },
     "about": {
-      "description": "Lorsque vous visitez une page du web, Dismoi vous permet de lire les messages de vos relations et en poster à votre tour.",
+      "description": "Lorsque vous visitez une page du web, Dismoi vous permet de lire les messages de vos contributeurs et en poster à votre tour.",
       "install_date": "Vous l’avez installé le"
     },
     "help": {
@@ -115,9 +115,9 @@
     "filters": "$t(common.filters)",
     "options": "Options",
     "about": "$t(menu.about)",
-    "post_form": "Poster une information ici",
+    "post_form": "Poster une contribution sur la page web",
     "preview": "Prévisualisation",
-    "ask_info_form": "Demander une information ici",
+    "ask_info_form": "Demander une contribution ici",
     "contribution_details": "Détail de la contribution"
   },
   "path": {
