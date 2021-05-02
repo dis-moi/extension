@@ -44,16 +44,17 @@
     "subscribe": {
       "message": "Please follow {{contributorName}} to see their posts."
     },
-    "is_not_subscriber": {
-      "message": "Please follow {{contributorName}} to see this example",
-      "btn_text": "Follow and see a real example"
-    },
     "is_not_connected": {
       "message": "To view posts from {{contributorName}}, please add DisMoi to your browser.",
       "btn_text": "Add DisMoi to my browser"
     },
+    "is_not_subscriber": {
+      "message": "Please follow {{contributorName}} to see his contributions",
+      "btn_text": "Follow"
+    },
     "just_subscribed": {
-      "message": "You just subscribed to {{contributorName}}"
+      "message": "You just subscribed to {{contributorName}}",
+      "btn_text": "See example"
     }
   },
   "view": {
