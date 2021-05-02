@@ -20,7 +20,7 @@
       "messages": "Back to messages",
       "submissions": "Back to contributions"
     },
-    "manage_subscription": "Manage my guides"
+    "manage_subscription": "Manage my contributors"
   },
   "date": {
     "short": "{{date, MM/DD/YYYY}}",
@@ -34,7 +34,7 @@
     "contact": "Contact",
     "privacy": "Privacy",
     "uninstall": "Uninstall",
-    "subscriptions": "Guides",
+    "subscriptions": "Following",
     "contributions": "Contributions",
     "tos": "TOS"
   },
@@ -43,7 +43,7 @@
       "placeholder": "Your name"
     },
     "field_message": {
-      "placeholder": "Write the message you want to publish"
+      "placeholder": "Write the message you want to post on this page"
     },
     "field_email": {
       "placeholder": "Your@email.com"
@@ -52,7 +52,7 @@
       "label": "Choose the guide you want to ask"
     },
     "field_message_question": {
-      "placeholder": "Indicate your question. You can even specify the name of the media source, the expert or the individual you want to ask."
+      "placeholder": "Indicate your question in relation with the webpage you are now visiting."
     },
     "preview_send": "$t(action.preview) and $t(action.publish)"
   },
@@ -89,12 +89,12 @@
     },
     "subscriptions": {
       "title": "$t(menu.subscriptions)",
-      "followed_sources": "You're following <br/><strong>{{count}}</strong> guide",
-      "followed_sources_plural": "You're following <br/><strong>{{count}}</strong> guides",
-      "no_followed_sources": "You're not following any guides right now.<br />To get the most out of DisMoi, subscribe to some guides!"
+      "followed_sources": "You're following <br/><strong>{{count}}</strong> contributor",
+      "followed_sources_plural": "You're following <br/><strong>{{count}}</strong> contributors",
+      "no_followed_sources": "You're not following any guides right now.<br />To get the most out of DisMoi, subscribe to some contributors!"
     },
     "about": {
-      "description": "When you visit a webpage, DisMoi lets you read messages from people you know and post messages yourself.",
+      "description": "When you visit a webpage, DisMoi lets you read messages from your contributors and post messages yourself.",
       "install_date": "You installed the extension on"
     },
     "help": {
@@ -106,7 +106,7 @@
     },
     "confirmation": {
       "thanks": "Thanks for your request.",
-      "message": "It will be transmitted right away to the relevant guide(s). You'll receive their response via email."
+      "message": "It will be transmitted right away to the relevant contributor(s). You'll receive their response via email."
     }
   },
   "title": {
