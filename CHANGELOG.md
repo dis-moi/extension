@@ -1,3 +1,10 @@
+## [3.73.2](https://github.com/dis-moi/extension/compare/v3.73.1...v3.73.2) (2021-05-04)
+
+
+### Bug Fixes
+
+* **contextPopin:** close after click ([ea92942](https://github.com/dis-moi/extension/commit/ea9294218237eda65a682bae253617f331ea83b5))
+
 ## [3.73.1](https://github.com/dis-moi/extension/compare/v3.73.0...v3.73.1) (2021-05-04)
 
 
