@@ -1,3 +1,10 @@
+## [3.73.1](https://github.com/dis-moi/extension/compare/v3.73.0...v3.73.1) (2021-05-04)
+
+
+### Bug Fixes
+
+* **i18n:** wording popin suscribe ([87916aa](https://github.com/dis-moi/extension/commit/87916aa5c03617a902637d8aa4b768964551e946))
+
 # [3.73.0](https://github.com/dis-moi/extension/compare/v3.72.0...v3.73.0) (2021-05-02)
 
 
