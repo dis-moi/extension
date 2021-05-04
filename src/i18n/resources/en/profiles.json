@@ -49,7 +49,7 @@
       "btn_text": "Add DisMoi to my browser"
     },
     "is_not_subscriber": {
-      "message": "Please follow {{contributorName}} to see his contributions",
+      "message": "Please follow {{contributorName}} to see their contributions",
       "btn_text": "Follow"
     },
     "just_subscribed": {
@@ -98,7 +98,7 @@
       "step3": {
         "title": "Welcome to DisMoi",
         "sub_title": "One final word!",
-        "paragraph": "<0>- We have preselected several Guides for you to follow. Now you can decide who to follow!</0><1>- Once you're done, you can go back to browsing the web normally. Posts from Guides you follow will appear directly on the web pages you visit.</1>",
+        "paragraph": "<0>- We have preselected several Contributors for you to follow. Now you can decide who to follow!</0><1>- Once you're done, you can go back to browsing the web normally. Posts from Guides you follow will appear directly on the web pages you visit.</1>",
         "back_button": "View the tutorial again"
       }
     }
