@@ -34,7 +34,7 @@
   },
   "popin": {
     "browser_not_support": {
-      "disclaimer": "Dismoi est actuellement disponible sur les navigateurs Chrome, Firefox et Opéra"
+      "disclaimer": "Dismoi est actuellement disponible sur les navigateurs Chrome, Firefox, Edge et Opéra"
     },
     "not_connected": {
       "title": "Pour voir les contributions, veuillez d’abord ajouter Dismoi à votre navigateur.",
@@ -80,7 +80,7 @@
       "no_profiling": "Nous ne faisons <strong>aucun profilage</strong>"
     },
     "add_browser_box": {
-      "description_dismoi": "DisMoi permet aux internautes, médias et experts de vous informer directement sur les pages web que vous visitez."
+      "description_dismoi": "DisMoi vous permet de poster et recevoir des informations directement sur les pages web que vous visitez."
     },
     "onBoarding": {
       "step1": {
