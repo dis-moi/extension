@@ -15,8 +15,8 @@ const onContributorExampleClick = (
   handleSubscribe: (contributor: StatefulContributor) => () => void,
   addToBrowser: (e: MouseEvent<HTMLButtonElement>) => void
 ) => {
-  if (!connected)
-    return setPopin({
+  if (!connected) {
+    const isNotConnectedPopin = {
       opened: true,
       content: {
         text: i18n.t('profiles:popin.is_not_connected.message', {
@@ -28,28 +28,30 @@ const onContributorExampleClick = (
         },
         btnLabel: i18n.t('profiles:popin.is_not_connected.btn_text')
       }
-    });
+    };
+    return setPopin(isNotConnectedPopin);
+  }
 
   const isSubscriber =
     subscriptions && subscriptions.find((id: number) => id === contributor.id);
   const path = contributor.contribution?.example.exampleMatchingUrl;
   if (!path) return null;
 
-  const afterSubscribePopin = {
-    opened: true,
-    content: {
-      text: i18n.t('profiles:popin.just_subscribed.message', {
-        contributorName: contributor.name
-      }),
-      btnLabel: i18n.t('profiles:popin.just_subscribed.btn_text'),
-      onClick: () => {
-        window.open(path, '_blank');
-      }
-    }
-  };
-
   if (connected && !isSubscriber) {
-    return setPopin({
+    const afterSubscribePopin = {
+      opened: true,
+      content: {
+        text: i18n.t('profiles:popin.just_subscribed.message', {
+          contributorName: contributor.name
+        }),
+        btnLabel: i18n.t('profiles:popin.just_subscribed.btn_text'),
+        onClick: () => {
+          window.open(path, '_blank');
+          setPopin(contextPopinInitState);
+        }
+      }
+    };
+    const isNotSubcriberPopin = {
       opened: true,
       content: {
         text: i18n.t('profiles:popin.is_not_subscriber.message', {
@@ -61,7 +63,8 @@ const onContributorExampleClick = (
           setPopin(afterSubscribePopin);
         }
       }
-    });
+    };
+    return setPopin(isNotSubcriberPopin);
   }
   if (connected && isSubscriber) return window.open(path, '_blank');
 };
