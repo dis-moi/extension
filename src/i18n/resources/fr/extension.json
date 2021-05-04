@@ -20,7 +20,7 @@
       "messages": "Retour aux messages",
       "submissions": "Retour aux contributions"
     },
-    "manage_subscription": "Gérer mes éclaireurs"
+    "manage_subscription": "Gérer mes contributeurs"
   },
   "date": {
     "short": "{{date, DD/MM/YYYY}}",
@@ -49,7 +49,7 @@
       "placeholder": "Votre@email.fr"
     },
     "field_contributor_source": {
-      "label": "Choix de la source"
+      "label": "Choix du contributeur"
     },
     "field_message_question": {
       "placeholder": "Indiquez votre question à propos de la cette page"
