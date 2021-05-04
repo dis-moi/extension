@@ -14,8 +14,8 @@ import i18n from 'i18next';
 export const buildMessages = (messages: string[], nbNotices = 0): string[] => {
   const firstMessage =
     nbNotices > 0
-      ? 'Il existe une contribution sur cette page. Pour la visualiser, veuillez finaliser votre configuration.'
-      : 'Pour poster et recevoir des messages, veuillez finaliser votre configuration.';
+      ? i18n.t('services.first_message_exist')
+      : i18n.t('services.first_message_none');
 
   return R.prepend(firstMessage, messages);
 };
@@ -32,7 +32,7 @@ export default function* serviceMessageSaga(tab: Tab, nbNotices = 0) {
           {
             messages: buildMessages([], nbNotices),
             action: {
-              label: 'Choisir mes sources',
+              label: i18n.t('services.label'),
               url: i18n.t('path.profiles.contributors'),
               type: LinkType.Options
             }
