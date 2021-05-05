@@ -1,14 +1,14 @@
 import { SagaIterator } from 'redux-saga';
 import { takeLatest, select, put, call } from 'redux-saga/effects';
 import { captureException } from 'libs/utils/sentry';
-import { optionsRequested } from 'src/app/actions';
+import { optionsRequested } from 'libs/store/actions';
 import {
   INSTALLED,
   updateInstallationDetails,
   InstalledAction
 } from 'libs/store/actions/install';
 import { getInstallationDate } from 'apps/background/src/selectors/installationDetails';
-import { InstallationDetails } from 'libs/lmem/installation';
+import { InstallationDetails } from 'libs/domain/installation';
 import { version } from '../../../../package.json';
 import { loginSaga } from './user.saga';
 import { buildQueryString } from 'apps/background/src/api/call';

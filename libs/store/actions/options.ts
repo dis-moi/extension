@@ -1,4 +1,4 @@
-import Tab from '../../lmem/tab';
+import Tab from '../../domain/tab';
 import { BaseAction, ErrorAction } from './index';
 import { Level } from '../../utils/Logger';
 import { GetParams } from '../../../apps/background/src/api/call';
