@@ -189,11 +189,11 @@ Once the PR is merged into `master` a build is triggered on [SemaphoreCI](https:
 Once the build passes, an automatic `semantic-release` script is triggered.
 Roughly, this deploy process bumps the version number in `package.json` and build each packages for each **platform** and each **environment**:
 
-Once built each package is released on [Github](https://github.com/insitu-project/recommendations-webextension/releases) and on Firefox store as `unlisted` version (not Chrome because the publication on the Chrome store may take a while -- days -- to be validated).
+Once built each package is released on [Github](https://github.com/insitu-project/recommendations-webextension/releases) and on Firefox index as `unlisted` version (not Chrome because the publication on the Chrome index may take a while -- days -- to be validated).
 
 > See the detailed deploy steps `./release.config.js` in project root directory.
 
-## Chrome store releases & Firefox Production
+## Chrome index releases & Firefox Production
 
 These deployments process are manual, and are triggered from `Semaphore` once the staging has been functionally validated.
 

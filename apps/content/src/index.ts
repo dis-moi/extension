@@ -10,7 +10,7 @@ if (window.location.href.match((process.env as AppEnv).PROFILES_ORIGIN)) {
 }
 
 import { Scope } from '@sentry/browser';
-import { AppEnv, CustomWindow } from 'src/types';
+import { AppEnv, CustomWindow } from 'libs/types';
 import 'src/i18n';
 
 if (!(window as CustomWindow).__BULLES__CONTENT_SCRIPT_INJECTED__) {

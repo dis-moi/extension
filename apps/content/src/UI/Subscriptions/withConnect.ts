@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { optionsRequested } from '../../../../../libs/store/actions/options';
-import onContributorClick from '../../actions/goToContributor';
+import onContributorClick from '../../store/actions/goToContributor';
 import { ContentState } from '../../store';
 import {
   getNbTotalContributors,

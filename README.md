@@ -40,7 +40,7 @@ For the latest production version of **Dismoi** extension visit the official add
 The **Dismoi** extension requires the following permissions :
 
 - `activeTab` The extension is able to follow your navigation on the active tab, when you browse to a new `URL` you may receive a new information.
-- `storage` The extension use the [`sync` storage area](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/storage/sync) to store and sync across browser instance the following informations :
+- `storage` The extension use the [`sync` storage area](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/storage/sync) to index and sync across browser instance the following informations :
   - `prefs` The contributions you dismissed, disliked, liked, read. Also if you accepted the :fr: [Term of Service](https://www.dismoi.io/cgu/).
   - `subscriptions` Which informers you are following.
   - `installationDetails` The extension version, date of installation, date of last update.

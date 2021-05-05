@@ -1334,7 +1334,7 @@
 ### Bug Fixes
 
 * add Phoenix saga ([2b4948b](https://github.com/insitu-project/recommendations-webextension/commit/2b4948b))
-* Sagas don't wait for store to be rehydrated ([4551673](https://github.com/insitu-project/recommendations-webextension/commit/4551673))
+* Sagas don't wait for index to be rehydrated ([4551673](https://github.com/insitu-project/recommendations-webextension/commit/4551673))
 * tab communication issue breaks subscription UX ([a8e518e](https://github.com/insitu-project/recommendations-webextension/commit/a8e518e))
 
 
@@ -1555,7 +1555,7 @@
 * **help:** remove contact form and add missing links ([ae94aee](https://github.com/insitu-project/recommendations-webextension/commit/ae94aee))
 * **help:** update support address ([0f23b1e](https://github.com/insitu-project/recommendations-webextension/commit/0f23b1e))
 * **iframe:** hide iframe when content closed ([d4102cc](https://github.com/insitu-project/recommendations-webextension/commit/d4102cc))
-* **installation-details:** wait for store rehydration before dispatching installation details ([d47e690](https://github.com/insitu-project/recommendations-webextension/commit/d47e690))
+* **installation-details:** wait for index rehydration before dispatching installation details ([d47e690](https://github.com/insitu-project/recommendations-webextension/commit/d47e690))
 * **ListContainer:** create container specifically for the list ([ef62c41](https://github.com/insitu-project/recommendations-webextension/commit/ef62c41))
 * **loading:** show loading IN the Notification UI ([7e81db1](https://github.com/insitu-project/recommendations-webextension/commit/7e81db1))
 * **Loading states in Buttons:** renamed files, changed svg fill ([67d6635](https://github.com/insitu-project/recommendations-webextension/commit/67d6635))
@@ -1607,7 +1607,7 @@
 * **sendinblue:** handle all 2xx codes ([74b8237](https://github.com/insitu-project/recommendations-webextension/commit/74b8237))
 * **sentry:** Wrong project DSN ([39151df](https://github.com/insitu-project/recommendations-webextension/commit/39151df))
 * **stories:** fix AddNoticeLink story ([73cf5b6](https://github.com/insitu-project/recommendations-webextension/commit/73cf5b6))
-* **storybook:** form store missing ([#451](https://github.com/insitu-project/recommendations-webextension/issues/451)) ([69fd20e](https://github.com/insitu-project/recommendations-webextension/commit/69fd20e))
+* **storybook:** form index missing ([#451](https://github.com/insitu-project/recommendations-webextension/issues/451)) ([69fd20e](https://github.com/insitu-project/recommendations-webextension/commit/69fd20e))
 * **subscribe:** suggestions shows already subscribed contributors ([5da194d](https://github.com/insitu-project/recommendations-webextension/commit/5da194d))
 * **subscribe bottom bar:** added opacity ([#432](https://github.com/insitu-project/recommendations-webextension/issues/432)) ([089e390](https://github.com/insitu-project/recommendations-webextension/commit/089e390))
 * **subscriptions:** add go to suggestion on "See more" button ([2544960](https://github.com/insitu-project/recommendations-webextension/commit/2544960))
@@ -1745,7 +1745,7 @@
 - **read:** Handle read status visually on a `Notice` ([3e8df34](https://github.com/insitu-project/recommendations-webextension/commit/3e8df34))
 - added new button story ([c86fed3](https://github.com/insitu-project/recommendations-webextension/commit/c86fed3))
 - **badge:** add badge on browser action button ([10b0d64](https://github.com/insitu-project/recommendations-webextension/commit/10b0d64))
-- **badge:** store read notice in user `prefs` state slice ([55818ac](https://github.com/insitu-project/recommendations-webextension/commit/55818ac))
+- **badge:** index read notice in user `prefs` state slice ([55818ac](https://github.com/insitu-project/recommendations-webextension/commit/55818ac))
 - **details:** change title to 'Détail de la bulle' ([6b2894e](https://github.com/insitu-project/recommendations-webextension/commit/6b2894e))
 - **error-reporting:** add Sentry integration ([132fa77](https://github.com/insitu-project/recommendations-webextension/commit/132fa77))
 - **list:** remove 'Add a recommendation' button when empty list ([e709fe0](https://github.com/insitu-project/recommendations-webextension/commit/e709fe0))

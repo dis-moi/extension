@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, RouteComponentProps, Switch } from 'react-router-dom';
 import { ContentState } from 'apps/content/src/store';
-import { getNoticesToDisplay } from 'apps/content/src/selectors';
+import { getNoticesToDisplay } from 'apps/content/src/store/selectors';
 import { StatefulNotice } from 'libs/lmem/notice';
 import ListScreen from './List';
 import DetailsScreen from './Details';

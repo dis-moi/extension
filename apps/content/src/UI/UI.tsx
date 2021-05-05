@@ -18,7 +18,7 @@ import {
   isLoaded,
   isNoticeContext,
   isOpen
-} from '../selectors';
+} from '../store/selectors';
 import Notice from './Notice';
 import Subscriptions from './Subscriptions';
 import Help from './Help';

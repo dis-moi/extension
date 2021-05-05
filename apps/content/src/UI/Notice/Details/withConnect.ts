@@ -10,12 +10,12 @@ import {
   unfoldNotice as view,
   unlikeNotice as unlike
 } from '../../../../../../libs/store/actions/notices';
-import onContributorClick from 'apps/content/src/actions/goToContributor';
+import onContributorClick from 'apps/content/src/store/actions/goToContributor';
 import { ContentState } from 'apps/content/src/store';
 import {
   getNoticeFromRoute,
   getNoticeRelayer
-} from 'apps/content/src/selectors';
+} from 'apps/content/src/store/selectors';
 import { DetailsScreenProps } from './index';
 
 const mapStateToProps = (

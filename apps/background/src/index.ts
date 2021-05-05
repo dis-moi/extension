@@ -3,11 +3,11 @@
 import { BACKEND_ORIGIN } from 'libs/domain/constants/origins';
 import onInstalled from 'libs/webext/onInstalled';
 import onStartup from 'libs/webext/onStartup';
-import { installed, optionsRequested, startup } from 'src/app/actions';
+import { installed, optionsRequested, startup } from 'libs/store/actions';
 import { configureSentryScope, initSentry } from 'libs/utils/sentry';
 import { store } from './store';
 import { connect } from 'libs/store/actions/connection';
-import { OPTIONS_MENU_ITEM_ID } from 'libs/lmem/tab';
+import { OPTIONS_MENU_ITEM_ID } from 'libs/domain/tab';
 
 type Port = browser.runtime.Port;
 

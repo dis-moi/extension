@@ -1,5 +1,5 @@
 import { PersistedState } from 'redux-persist';
-import { PersistedBackgroundState } from '../../reducers';
+import { PersistedBackgroundState } from '../reducers';
 import * as RA from 'ramda-adjunct';
 import { StateV3 } from './StateV3';
 import { overPrefs } from './helpers';

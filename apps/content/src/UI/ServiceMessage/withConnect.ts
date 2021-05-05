@@ -4,7 +4,7 @@ import { optionsRequested } from 'src/app/actions';
 import {
   getServiceMessages,
   getServiceMessageAction
-} from 'apps/content/src/selectors';
+} from 'apps/content/src/store/selectors';
 import { ContentState } from '../../store';
 
 const mapStateToProps = (state: ContentState) => ({

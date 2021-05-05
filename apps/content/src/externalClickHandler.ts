@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react';
 import { Store } from 'redux';
 import { close } from '../../../libs/store/actions/ui';
-import { isOpen } from './selectors';
+import { isOpen } from './store/selectors';
 import { CloseCause } from '../../../../../libs/lmem/ui';
 
 export const interactiveElementsSelectors: string[] = [

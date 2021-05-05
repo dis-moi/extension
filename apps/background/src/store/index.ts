@@ -2,9 +2,9 @@ import { createStore, applyMiddleware, Action } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import createBrowserStorage from 'libs/webext/createBrowserStorage';
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
-import rootReducer, { BackgroundState } from '../reducers';
-import middlewares, { sagaMiddleware } from '../middlewares';
-import rootSaga from '../sagas';
+import rootReducer, { BackgroundState } from './reducers';
+import middlewares, { sagaMiddleware } from './middlewares';
+import rootSaga from './sagas';
 import migrate from './migrations';
 import { AppAction } from 'src/app/actions';
 

@@ -4,8 +4,8 @@ import {
   undismissNotice as undismiss,
   confirmDismissNotice as confirmDismiss
 } from '../../../../../../libs/store/actions/notices';
-import onContributorClick from 'apps/content/src/actions/goToContributor';
-import { getNoticesToDisplay } from 'apps/content/src/selectors';
+import onContributorClick from 'apps/content/src/store/actions/goToContributor';
+import { getNoticesToDisplay } from 'apps/content/src/store/selectors';
 import { ContentState } from 'apps/content/src/store';
 
 const mapStateToProps = (state: ContentState) => ({
