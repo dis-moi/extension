@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider } from 'styled-components';
 
-import theme from 'src/app/theme';
+import theme from 'libs/theme';
 import store, { history } from '../store';
 import Background from './Background';
 import PageContainer from './PageContainer';

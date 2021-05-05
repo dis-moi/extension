@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { Theme } from 'src/app/theme';
+import { Index } from 'libs/theme';
 import { Button } from 'libs/components/atoms';
 
 interface FeedbacksProps {
-  theme?: Theme;
+  theme?: Index;
 }
 
 export default styled.div<FeedbacksProps>`

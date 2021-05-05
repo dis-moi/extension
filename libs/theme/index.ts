@@ -1,4 +1,4 @@
-import { BadgeTheme } from '../../libs/lmem/badge';
+import { BadgeTheme } from 'libs/domain/badge';
 
 export interface ButtonTheme {
   default: string;
@@ -8,7 +8,7 @@ export interface ButtonTheme {
   radius: string;
 }
 
-export interface Theme {
+export interface Index {
   main: string;
 
   // colors
@@ -73,7 +73,7 @@ export interface Theme {
   };
 }
 
-export const theme: Theme = {
+export const theme: Index = {
   main: 'purple',
   // colors
   primaryColor: '#404348',

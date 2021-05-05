@@ -1,10 +1,10 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
-import { Theme } from 'src/app/theme';
+import { Index } from 'libs/theme';
 
 interface Props {
   filled?: boolean;
-  theme: Theme;
+  theme: Index;
 }
 
 const Information = ({ filled, theme }: Props) => {

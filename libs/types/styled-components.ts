@@ -1,6 +1,6 @@
 import * as styledComponents from 'styled-components';
 
-import { Theme } from '../../src/app/theme';
+import { Index } from '../theme';
 
 const {
   default: styled,
@@ -8,7 +8,7 @@ const {
   createGlobalStyle,
   keyframes,
   ThemeProvider
-} = styledComponents as styledComponents.ThemedStyledComponentsModule<Theme>;
+} = styledComponents as styledComponents.ThemedStyledComponentsModule<Index>;
 
 export { css, createGlobalStyle, keyframes, ThemeProvider };
 export default styled;

@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { Theme } from '../../../../src/app/theme';
+import { Index } from '../../../theme';
 
 interface H2Props {
   align?: 'right' | 'left' | 'center';
-  theme: Theme;
+  theme: Index;
 }
 
 export default styled.h2<H2Props>`

@@ -1,6 +1,6 @@
 import React from 'react';
 import { compose } from 'redux';
-import withTitle from 'src/app/hocs/withTitle';
+import withTitle from 'libs/hocs/withTitle';
 import NoticeDetails, {
   NoticeDetailsMethodsProps
 } from 'libs/components/organisms/NoticeDetails/NoticeDetails';

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Theme } from 'src/app/theme';
+import { Index } from 'libs/theme';
 
-export const style = ({ theme }: { theme: Theme }) => `
+export const style = ({ theme }: { theme: Index }) => `
   display: inline-flex;
   align-items: baseline;
   color: ${theme.Button.default};

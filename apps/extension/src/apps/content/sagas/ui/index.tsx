@@ -37,7 +37,7 @@ import {
 } from '../../selectors';
 import Logger from 'libs/utils/Logger';
 import { append, create, hide, show } from '../../extensionIframe';
-import theme from '../../../../../../../src/app/theme';
+import theme from '../../../../../../../libs/theme';
 import App from '../../App';
 import { history } from '../../store';
 import { fakeLoadingSaga } from './fakeLoading.saga';

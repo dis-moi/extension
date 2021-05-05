@@ -1,6 +1,6 @@
 import { compose } from 'redux';
 import withConnect from './withConnect';
-import withTitle from '../../../../../../../src/app/hocs/withTitle';
+import withTitle from '../../../../../../../libs/hocs/withTitle';
 import Subscriptions, { SubscriptionsScreenProps } from './Subscriptions';
 
 export default compose(

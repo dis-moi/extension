@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
-import theme from './theme';
+import theme from './index';
 
 const isHexColor = (color: ObjectWithColors | string): boolean =>
   typeof color === 'string' && /^#(?:[0-9a-f]{3}){1,2}$/i.test(color);

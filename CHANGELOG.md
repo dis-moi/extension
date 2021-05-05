@@ -880,7 +880,7 @@
 * **intentions:** remove intentions components ([bea3041](https://github.com/insitu-project/recommendations-webextension/commit/bea3041b444cd9c31dd9ca944d23d76433cdfe6b))
 * **storybook:** moves last components ([7cdf350](https://github.com/insitu-project/recommendations-webextension/commit/7cdf3504eabc41161891db4af6f3262139193091))
 * **storybook:** removes useless colors ([bfde73b](https://github.com/insitu-project/recommendations-webextension/commit/bfde73bf0ba04e323c3aea4e3341038ad679db7a))
-* **storybook:** renamed Theme content ([9621314](https://github.com/insitu-project/recommendations-webextension/commit/96213141f74ec6ac80c1a268ce1ad04b40a87959))
+* **storybook:** renamed Index content ([9621314](https://github.com/insitu-project/recommendations-webextension/commit/96213141f74ec6ac80c1a268ce1ad04b40a87959))
 * **storybook:** reorders atoms, molecules, organisms and screens ([fe9a64e](https://github.com/insitu-project/recommendations-webextension/commit/fe9a64eb49b2a7fe90b54134555099ec26735e05))
 * **storybook:** reorders filters screen ([da15bcd](https://github.com/insitu-project/recommendations-webextension/commit/da15bcd42a501da9b1615441d717163803939869))
 

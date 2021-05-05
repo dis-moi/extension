@@ -3,11 +3,11 @@ import {
   noticesFound,
   dismissNotice,
   likeNotice
-} from '../../../libs/store/actions/notices';
-import { init } from '../../../libs/store/actions/tabs';
-import { StatefulNotice } from '../../../libs/lmem/notice';
-import Tab from '../../../libs/lmem/tab';
-import { generateStatefulNotice } from 'test/fakers/generateNotice';
+} from 'libs/store/actions/notices';
+import { init } from 'libs/store/actions/tabs';
+import { StatefulNotice } from 'libs/domain/notice';
+import Tab from 'libs/domain/tab';
+import { generateStatefulNotice } from '../../fakers/generateNotice';
 
 const expect = chai.expect;
 

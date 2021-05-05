@@ -1,11 +1,11 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
-import { Theme } from 'src/app/theme';
+import { Index } from 'libs/theme';
 
 interface Props {
   stroked?: boolean;
   filled?: boolean;
-  theme: Theme;
+  theme: Index;
 }
 const ThumbUp = ({ filled, stroked, theme }: Props) => {
   const stroke = stroked ? theme.secondaryColor : undefined;

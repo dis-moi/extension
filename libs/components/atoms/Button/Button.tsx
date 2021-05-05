@@ -1,13 +1,13 @@
 import React, { HTMLAttributes, ReactNode } from 'react';
 import styled from 'styled-components';
-import { Theme } from 'src/app/theme';
+import { Index } from 'libs/theme';
 
 import LoadingRotator from 'libs/components/atoms/LoadingRotator/LoadingRotator';
 import Loading from 'libs/components/atoms/icons/Loading';
 
 export interface ButtonContainerProps
   extends HTMLAttributes<HTMLButtonElement> {
-  theme?: Theme;
+  theme?: Index;
   href?: string;
   to?: string;
   target?: '_blank';

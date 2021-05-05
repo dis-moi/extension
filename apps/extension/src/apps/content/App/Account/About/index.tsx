@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { compose } from 'redux';
 import { ExternalLink, Time } from 'src/components/atoms';
-import withTitle from 'src/app/hocs/withTitle';
+import withTitle from 'libs/hocs/withTitle';
 import Title from './Title';
 import Content from './Content';
 import Container from './Container';

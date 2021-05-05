@@ -3,7 +3,7 @@ import React from 'react';
 import Profiles from './Profiles';
 import Error from './Error';
 import Subscriptions from './Subscriptions';
-import useChangeLanguage from '../../../../../src/app/hooks/useChangeLanguage';
+import useChangeLanguage from '../../../../../libs/hooks/useChangeLanguage';
 import { useTranslation } from 'react-i18next';
 
 const Pages = () => {

@@ -5,8 +5,8 @@ import Tracker, {
   OutboundLink,
   PageView,
   TrackingEvent
-} from '../../libs/types/Tracker';
-import uniqId from '../../libs/utils/uniqId';
+} from '../types/Tracker';
+import uniqId from '../utils/uniqId';
 import { buildQueryString } from '../../apps/extension/src/apps/background/api/call';
 
 export interface RequiredTrackingParameters {

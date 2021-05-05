@@ -24,7 +24,7 @@ import {
   fetchSubscriptionsFailure,
   fetchSubscriptionsSuccess
 } from 'libs/store/actions/subscriptions';
-import { preselectedContributorIds } from 'src/app/lmemContributors';
+import { preselectedContributorIds } from 'libs/lmem/lmemContributors';
 
 function* postSubscriptionsSaga() {
   const extensionId = yield call(loginSaga);

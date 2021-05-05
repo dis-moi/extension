@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider, StyleSheetManager } from 'styled-components';
-import theme from '../../../../../../src/app/theme';
+import theme from '../../../../../../libs/theme';
 import UI from './UI';
 import store, { history } from '../store';
 import { configureSentryScope } from '../../../../../../libs/utils/sentry';
