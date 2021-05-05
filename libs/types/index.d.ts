@@ -15,3 +15,5 @@ interface AppEnv extends NodeJS.ProcessEnv {
 export type trilean = boolean | undefined;
 
 export type As = keyof JSX.IntrinsicElements | React.ComponentType<any>; // eslint-disable-line @typescript-eslint/no-explicit-any
+declare module '*.jpg';
+declare module '*.png';
