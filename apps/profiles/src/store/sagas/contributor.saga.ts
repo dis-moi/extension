@@ -7,7 +7,7 @@ import {
   FETCH_CONTRIBUTOR_SUCCESS,
   FetchContributorSuccessAction
 } from 'libs/store/actions/contributor';
-import fetchContributor from 'apps/extension/src/apps/background/api/fetchContributor';
+import fetchContributor from 'apps/background/src/api/fetchContributor';
 import { fetchNoticesRequest } from '../../../../../libs/store/actions';
 
 function* fetchContributorSaga({

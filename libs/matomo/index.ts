@@ -7,7 +7,7 @@ import Tracker, {
   TrackingEvent
 } from '../types/Tracker';
 import uniqId from '../utils/uniqId';
-import { buildQueryString } from '../../apps/extension/src/apps/background/api/call';
+import { buildQueryString } from '../../apps/background/src/api/call';
 
 export interface RequiredTrackingParameters {
   idsite: number; // The ID of the website we're tracking a visit/action for.

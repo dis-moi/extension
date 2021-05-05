@@ -8,7 +8,7 @@ import {
 import {
   fetchNotice,
   fetchNotices
-} from '../../../apps/extension/src/apps/background/api/fetchNotice';
+} from '../../../apps/background/src/api/fetchNotice';
 import { Notice } from '../../lmem/notice';
 import { CONTRIBUTOR_NOTICES_BY_PAGE } from '../../../apps/profiles/src/store/sagas/notices.saga';
 

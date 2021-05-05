@@ -1,7 +1,7 @@
 import Tab from '../../lmem/tab';
 import { BaseAction, ErrorAction } from './index';
 import { Level } from '../../utils/Logger';
-import { GetParams } from '../../../apps/extension/src/apps/background/api/call';
+import { GetParams } from '../../../apps/background/src/api/call';
 
 export const OPTIONS_REQUESTED = 'OPTIONS_REQUESTED';
 export interface OptionsRequestedAction extends BaseAction {

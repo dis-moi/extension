@@ -47,7 +47,7 @@ import {
 import {
   RemoveUITitleAction,
   SetUITitleAction
-} from '../../../apps/extension/src/apps/content/actions/ui/title';
+} from '../../../apps/content/src/actions/ui/title';
 import { OptionsRequestedAction, OptionsTabOpened } from './options';
 import {
   ContributorsTransmittedAction,
@@ -61,7 +61,7 @@ import {
 import { From } from '../../webext/From';
 import { SubscribeAction, UnsubscribeAction } from './subscription';
 import { ShowServiceMessageAction } from './serviceMessage.actions';
-import { LoadedAction } from '../../../apps/extension/src/apps/content/actions/ui/open.actions';
+import { LoadedAction } from '../../../apps/content/src/actions/ui/open.actions';
 import { TabDiedAction, TabRemovedAction } from './tabsLifecycle';
 import { UpdateRestrictedContextsAction } from './restrictedContexts';
 import { LoginAction } from './user';

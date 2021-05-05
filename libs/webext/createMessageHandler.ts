@@ -7,10 +7,7 @@ import { Emit } from 'libs/store/types';
 import isAction from 'libs/store/isAction';
 import { createErrorAction } from 'libs/store/actions/helpers';
 import { Level } from '../utils/Logger';
-import {
-  isRequest,
-  handleRequest
-} from '../../apps/extension/src/apps/content/api';
+import { isRequest, handleRequest } from '../../apps/content/src/api';
 
 type MessageSender = browser.runtime.MessageSender;
 

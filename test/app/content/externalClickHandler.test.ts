@@ -1,6 +1,6 @@
 import chai from 'chai';
 import { JSDOM } from 'jsdom';
-import { isHtmlElementInteractive } from '../../../apps/extension/src/apps/content/externalClickHandler';
+import { isHtmlElementInteractive } from '../../../apps/content/src/externalClickHandler';
 
 const expect = chai.expect;
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {
   removeUITitle,
   setUITitle
-} from '../../apps/extension/src/apps/content/actions/ui/title';
+} from '../../apps/content/src/actions/ui/title';
 
 interface TitleProps {
   setUITitle: (title: string) => void;

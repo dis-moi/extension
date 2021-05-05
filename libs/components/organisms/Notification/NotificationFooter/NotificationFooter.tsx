@@ -5,7 +5,7 @@ import NavLink from './NavLink';
 import {
   FooterRoute,
   footerRoutes
-} from '../../../../../apps/extension/src/apps/content/footerRoutes';
+} from '../../../../../apps/content/src/footerRoutes';
 
 interface NotificationFooterProps {
   children?: FooterRoute[];

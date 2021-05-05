@@ -2,7 +2,7 @@ import { CreateProperties } from './types';
 import {
   buildQueryString,
   GetParams
-} from '../../apps/extension/src/apps/background/api/call';
+} from '../../apps/background/src/api/call';
 import i18n from 'i18next';
 
 export const getOptionsUrl = (pathname?: string, params: GetParams = {}) => {

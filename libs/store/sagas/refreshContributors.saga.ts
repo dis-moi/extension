@@ -4,7 +4,7 @@ import {
   receivedContributors,
   refreshContributorsFailed
 } from 'libs/store/actions';
-import fetchContributors from '../../../apps/extension/src/apps/background/api/fetchContributors';
+import fetchContributors from '../../../apps/background/src/api/fetchContributors';
 
 export default function* refreshContributorsSaga() {
   const callAndRetry = createCallAndRetry({

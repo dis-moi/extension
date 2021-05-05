@@ -5,7 +5,7 @@ import {
   fetchCategoriesRequest,
   fetchCategoriesSuccess
 } from 'libs/store/actions/categories';
-import fetchCategories from 'apps/extension/src/apps/background/api/fetchCategories';
+import fetchCategories from 'apps/background/src/api/fetchCategories';
 
 function* fetchCategoriesSaga() {
   try {
