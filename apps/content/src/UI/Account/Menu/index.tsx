@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { ExternalLink, OpenButton } from 'src/components/atoms';
-import withTitle from 'libs/hocs/withTitle';
+import withTitle from 'apps/profiles/utils/hocs/withTitle';
 import Account from './Account';
 import { WEBSITE_DOMAIN } from 'src/app/lmem';
 

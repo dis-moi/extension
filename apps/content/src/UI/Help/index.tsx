@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { List, ExternalLink, Anchor } from 'src/components/atoms';
-import withTitle from 'libs/hocs/withTitle';
+import withTitle from 'apps/profiles/utils/hocs/withTitle';
 import Container from './Container';
 import ContentTitle from './ContentTitle';
 import Content from '../Account/About/Content';
