@@ -16,7 +16,7 @@ const Line = styled.div`
     margin-top: 60px;
 
     & > div {
-      &:last-child {
+      &:not(:only-child):last-child {
         margin-left: 100px;
       }
     }

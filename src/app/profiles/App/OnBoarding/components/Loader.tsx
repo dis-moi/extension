@@ -19,7 +19,7 @@ export default styled.div`
 
 export const ProgressBar = styled.div<ProgessBarProps>`
   position: relative;
-  width: 30%;
+  width: 184px;
   height: 12px;
   border-radius: 6px;
   background-color: ${props => props.theme.navInactive};

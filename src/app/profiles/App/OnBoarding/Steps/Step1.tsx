@@ -54,10 +54,7 @@ export default ({ next }: StepProps) => {
     <>
       <Step1Title>
         <AnimatedText onAnimationEnd={onAnimationEnd}>
-          <Trans t={t} i18nKey="view.onBoarding.step1.loading">
-            L&apos;installation a réussi !<br /> Chargement de votre
-            expérience...
-          </Trans>
+          <Trans t={t} i18nKey="view.onBoarding.step1.loading" />
           <br />
           {isChrome && t('view.onBoarding.step1.pin')}
         </AnimatedText>
