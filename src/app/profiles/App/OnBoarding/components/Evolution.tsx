@@ -14,11 +14,14 @@ const evolutionAnim = keyframes`
 export default styled.div`
   position: absolute;
   top: 50%;
+  left: 50%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 100%;
+  width: 90%;
   margin: auto;
-  transform: translateY(-50%);
-  animation: ${evolutionAnim} 500ms linear forwards 4s;
+  padding: 60px 0;
+  background-color: #fff;
+  transform: translateY(-50%) translateX(-50%);
+  //animation: ${evolutionAnim} 500ms linear forwards 4s;
 `;
