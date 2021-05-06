@@ -20,7 +20,7 @@
       "messages": "Retour aux messages",
       "submissions": "Retour aux contributions"
     },
-    "manage_subscription": "Gérer mes éclaireurs"
+    "manage_subscription": "Gérer mes contributeurs"
   },
   "date": {
     "short": "{{date, DD/MM/YYYY}}",
