@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useTranslation, Trans } from 'react-i18next';
-import { Bullito, Reload } from 'components/atoms/icons';
+import { Reload } from 'components/atoms/icons';
 import { Title1 } from 'components/atoms/Title1';
 import Content from '../components/Content';
 import Text from '../components/Text';
