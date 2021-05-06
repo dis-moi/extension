@@ -96,10 +96,10 @@
         "button2": "Dernière étape"
       },
       "step3": {
-        "title": "Bienvenue",
-        "paragraph": "<0>Nous vous avons présélectionné plusieurs contributeurs. <br/>À vous de compléter et faire les choix définitifs !</0>",
+        "title": "Personnaliser",
+        "paragraph": "<0>Si vous êtes nouveau, plusieurs contributeurs ont été présélectionnés.</0>",
         "back_button": "Revoir le tuto",
-        "end_button": "Choisir mes contributeurs"
+        "end_button": "Découvrir et choisir mes contributeurs"
       }
     }
   },
