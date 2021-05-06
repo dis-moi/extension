@@ -227,6 +227,8 @@ https://github.com/DrewML/chrome-webstore-upload/blob/master/How%20to%20generate
 
 ### Firefox Addons
 
+#### Submit Addon to Firefox Production
+
 > [Developer Hub](https://addons.mozilla.org/en-US/developers/addons) 
 >
 > infrastructure@dismoi.io
