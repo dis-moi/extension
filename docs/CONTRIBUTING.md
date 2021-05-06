@@ -225,19 +225,6 @@ https://github.com/DrewML/chrome-webstore-upload/blob/master/How%20to%20generate
 
 ### Firefox Addons
 
-#### Test the Firefox Addon in Staging and Proding
-
-When you merge a commit with the main branch, it is automatically pushed to Firefox Staging and Proding. Here's how to test how your feature or bug fix is doing in those environments.
-
-1. [Download](https://github.com/dis-moi/extension/releases) the source code archive version of the version you want to test (Staging or Proding).
-2. Open Firefox and make sure there's no other active DisMoi addon installed in your browser.
-3. Drag the file (in .xpi format) into your Firefox window. Wait for it to load, then accept the terms and conditions popups that appear. Voila, you're testing the Firefox addon!
-4. You may want to access the staging back-office to test interactions between the extension and back-office. Ask a super user for login instructions.
-
-> **What's the difference between Staging and Proding?**
-> - Staging shows the staging code and presents data from the staging database.
-> - Proding is where the staging code and presents data the production (live) database. Changing data inside Proding will alter real data in the production database.
-
 #### Submit Addon to Firefox Production
 
 > [Developer Hub](https://addons.mozilla.org/en-US/developers/addons) 
