@@ -1,0 +1,53 @@
+import { Meta, ColorPalette, ColorItem, Typeset } from '@storybook/addon-docs/blocks';
+import theme from '../app/theme'; import { Button } from './atoms';
+
+<Meta title='Basics elements'/>
+
+# Colors
+
+<ColorPalette>
+  <ColorItem title="theme.colorWhite" subtitle="White" colors={[theme.colorWhite]}/>
+  <ColorItem title="theme.colorGrey100" subtitle="White" colors={[theme.colorGrey100]}/>
+  <ColorItem title="theme.colorGrey200" subtitle="White" colors={[theme.colorGrey200]}/>
+  <ColorItem title="theme.colorGrey300" subtitle="White" colors={[theme.colorGrey300]}/>
+  <ColorItem title="theme.colorGrey400" subtitle="White" colors={[theme.colorGrey400]}/>
+  <ColorItem title="theme.colorGrey500" subtitle="White" colors={[theme.colorGrey500]}/>
+  <ColorItem title="theme.colorText" subtitle="Text" colors={[theme.colorText]}/>
+  <ColorItem title="theme.colorBlack" subtitle="Black" colors={[theme.colorBlack]}/>
+  <ColorItem title="theme.colorPrimary" subtitle="Blue DisMoi" colors={[theme.colorPrimary]}/>
+  <ColorItem title="theme.colorAlert" subtitle="Red" colors={[theme.colorAlert]}/>
+  <ColorItem title="theme.colorOrange100" subtitle="Orange" colors={[theme.colorOrange100]}/>
+  <ColorItem title="theme.colorGreen100" subtitle="Green" colors={[theme.colorGreen100]}/>
+  <ColorItem title="theme.colorGreen200" subtitle="Green" colors={[theme.colorGreen200]}/>
+  <ColorItem title="theme.colorGreen300" subtitle="Green" colors={[theme.colorGreen300]}/>
+</ColorPalette>
+
+# Typography
+
+## Fonts:
+- [Lato 2.0](https://www.latofonts.com/)
+- [Sedgwick Ave](https://fonts.google.com/specimen/Sedgwick+Ave)
+
+## Weights:
+- normal(400) `theme.fontWeightNormal`
+- bold(700) `theme.fontWeightBold`
+
+## Sizes
+<Typeset
+  fontSizes={[
+    theme.fontSizeXS1,
+    theme.fontSizeXS2,
+    theme.fontSizeS1,
+    theme.fontSizeS2,
+    theme.fontSizeM1,
+    theme.fontSizeM2,
+    theme.fontSizeL1,
+    theme.fontSizeL2,
+    theme.fontSizeXL]}
+  sampleText={["Ne passez plus à côté d’un bon conseil"]}
+/>
+
+# Border radius
+- 5px `theme.radiusS`
+- 8px `theme.radiusM`
+- 20px `theme.radiusL`

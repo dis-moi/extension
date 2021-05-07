@@ -9,7 +9,7 @@ import {
 } from 'components/atoms';
 
 const SidebarBox = styled(Box)`
-  margin-bottom: ${props => props.theme.marginL};
+  margin-bottom: 40px;
   padding: 10px;
 
   ${Button} {

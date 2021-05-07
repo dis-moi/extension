@@ -34,7 +34,7 @@ const NoticeURL = styled.span`
 const NoticeBottomLine = styled.div`
   display: flex;
   align-items: center;
-  margin-top: ${props => props.theme.fontSizeDefault};
+  margin-top: 16px;
   font-size: 14px;
 
   & > ${BorderButton} {
@@ -43,11 +43,11 @@ const NoticeBottomLine = styled.div`
 
   @media (max-width: ${props => props.theme.tabletWidth}) {
     display: block;
-    font-size: ${props => props.theme.fontSizeDefault};
+    font-size: ${props => props.theme.fontSizeM1};
 
     & > ${BorderButton} {
       width: 100%;
-      margin-top: ${props => props.theme.marginS};
+      margin-top: 20px;
       margin-left: 0;
     }
   }

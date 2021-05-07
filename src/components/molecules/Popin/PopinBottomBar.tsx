@@ -24,8 +24,8 @@ const PopinBottomBarContainer = styled.div`
   font-style: italic;
   text-align: center;
   background-color: ${props => props.theme.colorGrey100};
-  border-radius: 0 0 ${props => props.theme.radius}
-    ${props => props.theme.radius};
+  border-radius: 0 0 ${props => props.theme.radiusM}
+    ${props => props.theme.radiusM};
 `;
 
 const ContributorList = styled.ul`

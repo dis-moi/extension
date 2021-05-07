@@ -5,7 +5,7 @@ const Box = styled.div`
   width: 100%;
   padding: 20px;
   background-color: white;
-  border-radius: ${props => props.theme.radius};
+  border-radius: ${props => props.theme.radiusM};
 
   & + & {
     margin-top: 20px;
