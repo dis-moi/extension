@@ -97,7 +97,7 @@
       },
       "step3": {
         "title": "Personnaliser",
-        "paragraph": "<0>Si vous êtes nouveau, plusieurs contributeurs ont été présélectionnés.</0>",
+        "paragraph": "<0>Si vous êtes nouveau,</0><1>plusieurs contributeurs ont été présélectionnés.</1>",
         "back_button": "Revoir le tuto",
         "end_button": "Découvrir et choisir mes contributeurs"
       }
