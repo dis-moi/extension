@@ -17,10 +17,17 @@ const MarginTitle = styled(Title1)`
 `;
 
 const OnboardingText = styled(Text)`
+  display: inline;
   color: ${props => props.theme.primaryColor};
+  font-weight: normal;
 
   &:first-of-type {
     margin-top: 60px;
+  }
+
+  &:last-of-type {
+    margin-left: 8px;
+    font-weight: bold;
   }
 `;
 const contentAnim = keyframes`
@@ -43,8 +50,10 @@ export default ({ prev, close }: StepProps) => {
 
       <Trans t={t} i18nKey={'view.onBoarding.step3.paragraph'}>
         <OnboardingText align={'center'}>
-          Nous vous avons présélectionné plusieurs contributeurs. <br />À vous
-          de compléter et faire les choix définitifs !
+          Nous vous avons présélectionné plusieurs contributeurs.
+        </OnboardingText>
+        <OnboardingText align={'center'}>
+          À vous de compléter et faire les choix définitifs !
         </OnboardingText>
       </Trans>
       <Line>
