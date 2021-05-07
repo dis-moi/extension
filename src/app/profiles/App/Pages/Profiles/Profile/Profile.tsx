@@ -96,10 +96,10 @@ export const MainCol = styled.div`
 `;
 
 export const Aside = styled(Sidebar)`
-  margin-top: ${props => props.theme.marginM};
+  margin-top: 30px;
 
   ${SimilarProfiles} + ${CenterContainer} {
-    margin-top: -${props => props.theme.marginM};
+    margin-top: -30px;
   }
 
   ${SimilarProfiles} ${Button} {

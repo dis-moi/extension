@@ -140,10 +140,10 @@ export default styled(withRouter(withConnect(SimilarProfiles)))`
       text-align: center;
       background-color: white;
       border: none !important;
-      border-radius: ${props => props.theme.radius};
+      border-radius: ${props => props.theme.radiusM};
 
       & + ${ContributorCompact} {
-        margin-left: ${props => props.theme.marginS};
+        margin-left: 20px;
       }
 
       ${Avatar} {

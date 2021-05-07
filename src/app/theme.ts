@@ -9,8 +9,6 @@ export interface ButtonTheme {
 }
 
 export interface Theme {
-  // Clean start
-
   // radius
   radiusS: string;
   radiusM: string;
@@ -33,29 +31,30 @@ export interface Theme {
   colorOrange100: string;
 
   // font sizes
-  fontSizeXS: string;
-  fontSizeS: string;
-  fontSizeM: string;
-  fontSizeL: string;
+  fontSizeXS1: string;
+  fontSizeXS2: string;
+  fontSizeS1: string;
+  fontSizeS2: string;
+  fontSizeM1: string;
+  fontSizeM2: string;
+  fontSizeL1: string;
+  fontSizeL2: string;
   fontSizeXL: string;
+
+  // font weights
+  fontWeightNormal: string;
+  fontWeightBold: string;
 
   /// ///// OLD /////
   // colors
   primaryColor: string;
-
   secondaryColor: string;
 
   // color list:
-
   badge: BadgeTheme;
   Button: ButtonTheme;
 
-  // sizes:
-  radius: string;
-  fontSizeDefault: string;
-  marginS: string;
-  marginM: string;
-  marginL: string;
+  // screen sizes:
   tabletWidth: string;
   desktopWidth: string;
 
@@ -81,8 +80,6 @@ export interface Theme {
 }
 
 export const theme: Theme = {
-  // Clean start
-
   // radius
   radiusS: '5px',
   radiusM: '8px',
@@ -91,12 +88,12 @@ export const theme: Theme = {
   // colors
   colorWhite: '#fff',
   colorBlack: '#000',
-  colorPrimary: '#0C52B4',
-  colorText: '#22252B',
-  colorAlert: '#DB0D0D',
-  colorGrey100: '#F5F5F5',
-  colorGrey200: '#E9EBEF',
-  colorGrey300: '#CACCD0',
+  colorPrimary: '#0c52b4',
+  colorText: '#22252b',
+  colorAlert: '#db0d0d',
+  colorGrey100: '#f5f5f5',
+  colorGrey200: '#e9ebef',
+  colorGrey300: '#caccd0',
   colorGrey400: '#a6b1c0',
   colorGrey500: '#808080',
   colorGreen100: '#2db4ab',
@@ -105,20 +102,26 @@ export const theme: Theme = {
   colorOrange100: '#ff981d',
 
   // font sizes
-  fontSizeXS: '13px',
-  fontSizeS: '13px',
-  fontSizeM: '13px',
-  fontSizeL: '13px',
-  fontSizeXL: '13px',
+  fontSizeXS1: '12px',
+  fontSizeXS2: '13px',
+  fontSizeS1: '14px',
+  fontSizeS2: '15px',
+  fontSizeM1: '16px',
+  fontSizeM2: '18px',
+  fontSizeL1: '22px',
+  fontSizeL2: '26px',
+  fontSizeXL: '34px',
+
+  // font weights
+  fontWeightNormal: '400',
+  fontWeightBold: '700',
 
   /// ///// OLD /////
   // colors
   primaryColor: '#404348',
-
   secondaryColor: '#5F656C',
 
   // color list:
-
   // badge background colors
   badge: {
     backgroundColor: {
@@ -127,12 +130,7 @@ export const theme: Theme = {
     }
   },
 
-  // sizes:
-  radius: '8px',
-  fontSizeDefault: '16px',
-  marginS: '20px',
-  marginM: '30px',
-  marginL: '40px',
+  // scren sizes:
   tabletWidth: '768px',
   desktopWidth: '992px',
 
