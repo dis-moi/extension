@@ -1,6 +1,6 @@
 {
   "common": {
-    "sources": "Les sources",
+    "sources": "Les contributeurs",
     "subscriber": "Abonné(e)",
     "similar_profiles": "Profils similaires",
     "no_more_contribution": "Pas d'autres contributions",
@@ -11,7 +11,7 @@
     "add_dismoi_to_browser": "Ajouter Dismoi à mon navigateur",
     "add_to_my_browser": "Ajouter à mon navigateur ",
     "follow": "Suivre",
-    "know_more_dismoi": "En savoir plus sur <1>DisMoi</1> et ses sources",
+    "know_more_dismoi": "En savoir plus sur <1>DisMoi</1> et ses contributeurs",
     "know_more": "En savoir plus",
     "stop_following": "Ne plus suivre",
     "see_more": "Voir plus",
@@ -80,7 +80,7 @@
       "no_profiling": "Nous ne faisons <strong>aucun profilage</strong>"
     },
     "add_browser_box": {
-      "description_dismoi": "DisMoi permet aux internautes, médias et experts de vous informer directement sur les pages web que vous visitez."
+      "description_dismoi": "Ne passez plus à côté d’un bon conseil : Alerte contre une arnaque, intox, meilleure alternative..."
     },
     "onBoarding": {
       "step1": {
