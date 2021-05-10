@@ -9,6 +9,7 @@ interface AppEnv extends NodeJS.ProcessEnv {
   PLATFORM: 'firefox' | 'chromium';
   PROFILES_ORIGIN: string;
   POPULAR_CONTRIBUTORS_IDS: string;
+  TRACKING_BACKEND?: string;
 }
 
 // @see https://en.wikipedia.org/wiki/Three-valued_logic

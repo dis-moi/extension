@@ -1,4 +1,5 @@
 import { fork, all, call } from 'redux-saga/effects';
+import { asBoolean } from 'app/utils/env';
 import install from './install';
 import tab from './tab';
 import badge from './badge';
@@ -47,7 +48,6 @@ export default function* rootSaga() {
     fork(watchActivatedTab),
     fork(handleBrowserAction),
     fork(options),
-    fork(ratings),
     fork(sendContributorsToOptions),
     fork(setup),
     fork(tos),
@@ -57,4 +57,8 @@ export default function* rootSaga() {
     fork(connectSaga),
     fork(contributionSaga)
   ]);
+
+  if (asBoolean(process.env.TRACKING_BACKEND)) {
+    yield fork(ratings);
+  }
 }

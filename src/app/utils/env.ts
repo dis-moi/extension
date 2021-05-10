@@ -10,3 +10,6 @@ export const asArray = <Type>(
 
   return [];
 };
+
+export const asBoolean = (environmentVariableValue?: string): boolean =>
+  environmentVariableValue === 'true';
