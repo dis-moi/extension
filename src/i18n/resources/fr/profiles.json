@@ -34,7 +34,7 @@
   },
   "popin": {
     "browser_not_support": {
-      "disclaimer": "Dismoi est actuellement disponible sur les navigateurs Chrome, Firefox et Opéra"
+      "disclaimer": "Dismoi est actuellement disponible sur les navigateurs Chrome, Firefox, Edge et Opéra"
     },
     "not_connected": {
       "title": "Pour voir les contributions, veuillez d’abord ajouter Dismoi à votre navigateur.",
