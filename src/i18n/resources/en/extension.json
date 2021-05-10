@@ -23,8 +23,8 @@
     "manage_subscription": "Manage my contributors"
   },
   "date": {
-    "short": "{{date, MM/DD/YYYY}}",
-    "medium": "{{date, MM/DD/YYYY}}"
+    "short": "{{date, LL/dd/yyyy}}",
+    "medium": "{{date, eeee dd MMMM yyyy}}"
   },
   "menu": {
     "my_account": "My account",

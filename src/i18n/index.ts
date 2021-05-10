@@ -5,13 +5,14 @@ import resources from './resources';
 import format from './format';
 
 export type SupportedLanguage = 'en' | 'fr';
+export const fallbackLng = 'en';
 
 export const options = {
   resources,
   detection: {
     caches: []
   },
-  fallbackLng: 'en',
+  fallbackLng,
   ns: ['extension', 'profiles'],
   defaultNS: 'extension',
   debug: true,
