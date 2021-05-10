@@ -16,6 +16,8 @@ const { version } = require('../package.json');
 const { getRelease } = require('../sentry');
 const { getPackageName, getPackageExtension } = require('./packageNaming');
 
+// @todo do we still need to maintain this list?
+// I would gladly get rid of it...
 const selectEnvVarsToInject = R.pick([
   'SENTRY_DSN',
   'NODE_ENV',
@@ -25,6 +27,7 @@ const selectEnvVarsToInject = R.pick([
   'REFRESH_CONTRIBUTORS_INTERVAL',
   'TRACKING_URL',
   'TRACKING_SITE_ID',
+  'TRACKING_BACKEND',
   'SENTRY_ENABLED',
   'PLATFORM',
   'CHROME_EXTENSION_ID',
