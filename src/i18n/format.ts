@@ -1,8 +1,14 @@
-import { format as dateFormat } from 'date-fns';
+import { format as dateFormat, parseISO, isDate } from 'date-fns';
+import { getLocale as getDateLocale, DEFAULT_FORMAT } from './date';
 
-type FormatValue = string | Date;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function(value: any, format?: string, lng?: string) {
+  const isoDate = typeof value === 'string' ? parseISO(value) : value;
+  if (isDate(isoDate)) {
+    return dateFormat(isoDate as Date, format || DEFAULT_FORMAT, {
+      locale: getDateLocale(lng)
+    });
+  }
 
-export default function(value: FormatValue, format?: string) {
-  if (value instanceof Date) return dateFormat(value, format);
   return value;
 }
