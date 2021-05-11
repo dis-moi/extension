@@ -5,7 +5,7 @@ import {
   getContributorsWithSubscriptionState,
   getNbSubscriptions
 } from './subscriptions.selectors';
-import { Contributor } from 'app/lmem/contributor';
+import { Contributor, ContributorId } from 'app/lmem/contributor';
 import {
   StateWithResources,
   StateWithSubscriptions
@@ -37,7 +37,7 @@ describe('background > selectors > subscriptions ', () => {
           ],
           notices: []
         },
-        subscriptions: [1, 42, 1024]
+        subscriptions: [1, 42, 1024] as ContributorId[]
       };
 
       const result: Contributor[] = getContributorsWithSubscriptionState(state);
@@ -63,7 +63,7 @@ describe('background > selectors > subscriptions ', () => {
   describe('getNbSubscriptions', () => {
     it('returns the number of subscriptions', () => {
       const state: StateWithResources & StateWithSubscriptions = {
-        subscriptions: [1, 42, 1024],
+        subscriptions: [1, 42, 1024] as ContributorId[],
         resources: {
           matchingContexts: [],
           restrictedContexts: [],
