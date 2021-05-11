@@ -1,3 +1,10 @@
+# [3.74.0](https://github.com/dis-moi/extension/compare/v3.73.2...v3.74.0) (2021-05-11)
+
+
+### Features
+
+* **backgroundTranslation:** serviceMessage and tab ([2f1883b](https://github.com/dis-moi/extension/commit/2f1883b721a35a1423b4240aa57e620e8a2f1ebc))
+
 ## [3.73.2](https://github.com/dis-moi/extension/compare/v3.73.1...v3.73.2) (2021-05-04)
 
 
