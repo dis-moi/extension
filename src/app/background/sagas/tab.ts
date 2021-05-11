@@ -1,5 +1,6 @@
 import { all, call, put, select, takeEvery } from 'redux-saga/effects';
 import * as R from 'ramda';
+import i18n from 'i18next';
 import {
   CONTEXT_TRIGGERED,
   MATCH_CONTEXT,
@@ -61,7 +62,7 @@ export function* restrictTabSaga(tab: Tab) {
   yield call(disable, tab);
   yield call(browser.browserAction.setTitle, {
     tabId: tab.id,
-    title: `${getExtensionTitle()} - Désactivé sur cette page`
+    title: `${getExtensionTitle()} - ` + i18n.t('tab.disabled')
   });
   yield call(resetBadge, tab.id);
 }

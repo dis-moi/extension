@@ -133,5 +133,14 @@
     "tos": "/cgu",
     "about": "/a-propos",
     "uninstall": "/desinstaller"
+  },
+  "services": {
+    "label": "Choisir mes contributeurs",
+    "first_message": "Pour poster et recevoir des messages, veuillez finaliser votre configuration.",
+    "first_message_plural": "Il existe une contribution sur cette page. Pour la visualiser, veuillez finaliser votre configuration."
+  },
+  "tab": {
+    "disabled": "Désactivé sur cette page",
+    "sources_link": "Sources d'informations"
   }
 }
