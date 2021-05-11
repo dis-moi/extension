@@ -7,11 +7,12 @@ import { MatchingContext } from '../../src/app/lmem/matchingContext';
 import { StatefulNotice } from '../../src/app/lmem/notice';
 import Tab from '../../src/app/lmem/tab';
 import { generateStatefulNotice } from 'test/fakers/generateNotice';
+import { ContributorId } from '../../src/app/lmem/contributor';
 
 const expect = chai.expect;
 chai.use(sinonChai);
 
-const tab: Tab = { id: 1, url: 'http://tests.menant-benjamin.fr/' };
+const tab: Tab = { id: 1, url: 'https://tests.menant-benjamin.fr/' };
 
 const notice: StatefulNotice = generateStatefulNotice();
 
@@ -20,23 +21,29 @@ describe('background actions', function() {
     const matchingContexts: MatchingContext[] = [
       {
         id: 1,
-        noticeUrl: 'http://1',
+        noticeUrl: 'https://1',
         urlRegex: '/1/',
         noticeId: 42
-      },
+      } as MatchingContext,
       {
         id: 2,
-        noticeUrl: 'http://2',
+        noticeUrl: 'https://2',
         urlRegex: '/2/',
         noticeId: 42
-      }
+      } as MatchingContext
     ];
-    const action = receivedMatchingContexts(matchingContexts);
+    const action = receivedMatchingContexts(
+      100 as ContributorId,
+      matchingContexts
+    );
 
     expect(action.type)
       .to.be.a('string')
       .of.length.above(5);
-    expect(action.payload).to.equal(matchingContexts);
+    expect(action.payload).to.deep.equal({
+      contributorId: 100,
+      matchingContexts
+    });
   });
 
   it('contextTriggered', () => {
@@ -60,7 +67,7 @@ describe('background actions', function() {
   });
 
   it('noticeIgnored when notice dismissed', () => {
-    const trigger = 'http://trigger';
+    const trigger = 'https://trigger';
     const dismissedNotice: StatefulNotice = {
       ...notice,
       state: {
@@ -79,7 +86,7 @@ describe('background actions', function() {
   });
 
   it('noticeIgnored when notice disliked', () => {
-    const trigger = 'http://trigger';
+    const trigger = 'https://trigger';
     const dislikedNotice: StatefulNotice = {
       ...notice,
       state: {

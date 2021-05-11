@@ -1,7 +1,7 @@
 import Faker from 'faker';
 import { subMonths, subWeeks } from 'date-fns';
 import { NoticeItem, StatefulNoticeWithContributor } from 'app/lmem/notice';
-import { Contributor, PinnedNotice } from 'app/lmem/contributor';
+import { Contributor, PinnedNotice, ContributorId } from 'app/lmem/contributor';
 import { generateContributor } from './generateContributor';
 
 interface Options {
@@ -72,7 +72,7 @@ export const generateNoticeItem = ({
   created: subMonths(new Date(), 1),
   modified: subWeeks(new Date(), 1),
   screenshot: Faker.image.imageUrl(),
-  contributorId: 1,
+  contributorId: 1 as ContributorId,
   relayersIds: [],
   visibility: 'public'
 });

@@ -1,9 +1,10 @@
+import { Brand } from 'types';
+import { sendContentScriptRequest } from 'webext/contentScript';
 import { captureException } from '../utils/sentry';
 import Tab from './tab';
-import { sendContentScriptRequest } from 'webext/contentScript';
 
 export interface MatchingContext {
-  id: number;
+  id: Brand<number, 'MatchingContextId'>;
   noticeId: number;
   noticeUrl: string;
   urlRegex: string;

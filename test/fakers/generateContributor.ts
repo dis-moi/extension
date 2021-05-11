@@ -1,5 +1,9 @@
 import Faker from 'faker';
-import { Contributor, NewContributor } from 'app/lmem/contributor';
+import {
+  Contributor,
+  ContributorId,
+  NewContributor
+} from 'app/lmem/contributor';
 import {
   generateNoticeItem,
   generatePinnedNotice
@@ -26,7 +30,7 @@ export const generateContributor = ({
   noAvatar,
   website
 }: Options = {}): Contributor => ({
-  id: id || Faker.random.number(),
+  id: (id || Faker.random.number()) as ContributorId,
   name: name || Faker.name.findName(),
   contributions: contributions || Faker.random.number(),
   contribution: {
