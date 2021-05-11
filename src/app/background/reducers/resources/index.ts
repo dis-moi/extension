@@ -1,18 +1,20 @@
 import { combineReducers } from 'redux';
+import { Contributor } from 'app/lmem/contributor';
+import { RestrictedContext } from 'app/lmem/matchingContext';
+import { NoticeWithContributor } from 'app/lmem/notice';
 import contributors from './contributors.reducer';
-import matchingContexts from './matchingContexts.reducer';
+import matchingContexts, {
+  MatchingContextsState
+} from './matchingContexts.reducer';
 import notices from './notices.reducer';
 import restrictedContexts from './restrictedContexts.reducer';
-import { Contributor } from 'app/lmem/contributor';
-import { MatchingContext, RestrictedContext } from 'app/lmem/matchingContext';
-import { NoticeWithContributor } from 'app/lmem/notice';
 
 export interface StateWithContributors {
   contributors: Contributor[];
 }
 
 export interface ResourcesState extends StateWithContributors {
-  matchingContexts: MatchingContext[];
+  matchingContexts: MatchingContextsState;
   restrictedContexts: RestrictedContext[];
   notices: NoticeWithContributor[];
 }

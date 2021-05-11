@@ -1,16 +1,15 @@
-import { debounce, delay, put, select } from 'redux-saga/effects';
+import { delay, put, select, takeEvery, fork } from 'redux-saga/effects';
 import {
   receivedMatchingContexts,
-  REFRESH_MATCHING_CONTEXTS,
-  refreshMatchingContexts,
   refreshMatchingContextsFailed,
   SUBSCRIBE,
-  UNSUBSCRIBE
+  SubscribeAction
 } from 'app/actions';
 import { createCallAndRetry } from 'app/sagas/effects/callAndRetry';
 import { getSubscriptions } from 'app/background/selectors/subscriptions.selectors';
-import fetchMatchingContexts from 'api/fetchMatchingContexts';
 import minutesToMilliseconds from 'app/utils/minutesToMilliseconds';
+import { ContributorId } from 'app/lmem/contributor';
+import fetchMatchingContexts from 'api/fetchMatchingContexts';
 
 const refreshInterval = minutesToMilliseconds(
   Number(process.env.REFRESH_MC_INTERVAL)
@@ -36,29 +35,42 @@ const callAndRetry = createCallAndRetry({
   }
 });
 
-export function* refreshMatchingContextsSaga() {
-  const subscriptions = yield select(getSubscriptions);
-
+export function* fetchMatchingContextsForContributor(
+  contributorId: ContributorId
+) {
   const matchingContexts = yield callAndRetry(
     fetchMatchingContexts,
-    subscriptions
+    contributorId
+  );
+  if (matchingContexts) {
+    yield put(receivedMatchingContexts(contributorId, matchingContexts));
+  }
+}
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore To be typed properly
+export function* refreshMatchingContextsPeriodically() {
+  const subscriptions: ReturnType<typeof getSubscriptions> = yield select(
+    getSubscriptions
   );
 
-  if (matchingContexts) {
-    yield put(receivedMatchingContexts(matchingContexts));
+  for (const subscription of subscriptions) {
+    yield fetchMatchingContextsForContributor(subscription);
   }
 
   if (refreshInterval > 0) {
     yield delay(refreshInterval);
-    yield put(refreshMatchingContexts());
+    yield refreshMatchingContextsPeriodically();
   }
 }
 
+function* fetchNewlySubscribedMatchingContexts(
+  subscribeAction: SubscribeAction
+) {
+  yield fetchMatchingContextsForContributor(subscribeAction.payload);
+}
+
 export default function* refreshMatchingContextsRootSaga() {
-  yield refreshMatchingContextsSaga();
-  yield debounce(
-    30_000,
-    [SUBSCRIBE, UNSUBSCRIBE, REFRESH_MATCHING_CONTEXTS],
-    refreshMatchingContextsSaga
-  );
+  yield fork(refreshMatchingContextsPeriodically);
+  yield takeEvery(SUBSCRIBE, fetchNewlySubscribedMatchingContexts);
 }
