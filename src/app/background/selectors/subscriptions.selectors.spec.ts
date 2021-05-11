@@ -24,7 +24,7 @@ describe('background > selectors > subscriptions ', () => {
     it('returns contributors list with subscription status', () => {
       const state: StateWithResources & StateWithSubscriptions = {
         resources: {
-          matchingContexts: [],
+          matchingContexts: {},
           restrictedContexts: [],
           contributors: [
             contributor1,
@@ -65,7 +65,7 @@ describe('background > selectors > subscriptions ', () => {
       const state: StateWithResources & StateWithSubscriptions = {
         subscriptions: [1, 42, 1024] as ContributorId[],
         resources: {
-          matchingContexts: [],
+          matchingContexts: {},
           restrictedContexts: [],
           contributors: [
             contributor1,

@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { isTabAuthorizedByPatterns } from 'webext/isAuthorizedTab';
-import { toPatterns } from '../../lmem/matchingContext';
+import { MatchingContext, toPatterns } from '../../lmem/matchingContext';
 import Tab from '../../lmem/tab';
 import { findItemById } from 'app/utils/findItemById';
 import { StateWithResources } from '../reducers';
@@ -24,7 +24,7 @@ export const isTabAuthorized = (tab: Tab | browser.tabs.Tab) =>
 
 export const getMatchingContexts = createSelector(
   [getResources],
-  resources => resources.matchingContexts
+  resources => Object.values(resources.matchingContexts) as MatchingContext[]
 );
 
 export const getContributors = createSelector(

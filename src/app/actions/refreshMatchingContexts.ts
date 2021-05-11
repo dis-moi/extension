@@ -1,21 +1,14 @@
 import { MatchingContext } from 'app/lmem/matchingContext';
 import { Level } from '../utils/Logger';
-
-export const REFRESH_MATCHING_CONTEXTS = 'REFRESH_MATCHING_CONTEXTS';
-export const refreshMatchingContexts = () => ({
-  type: REFRESH_MATCHING_CONTEXTS as typeof REFRESH_MATCHING_CONTEXTS
-});
-export type RefreshMatchingContextsAction = ReturnType<
-  typeof refreshMatchingContexts
->;
+import { ContributorId } from '../lmem/contributor';
 
 export const UPDATE_MATCHING_CONTEXTS = 'api/UPDATE_MATCHING_CONTEXTS';
-
 export const receivedMatchingContexts = (
+  contributorId: ContributorId,
   matchingContexts: MatchingContext[]
 ) => ({
   type: UPDATE_MATCHING_CONTEXTS as typeof UPDATE_MATCHING_CONTEXTS,
-  payload: matchingContexts
+  payload: { contributorId, matchingContexts }
 });
 export type ReceivedMatchingContextsAction = ReturnType<
   typeof receivedMatchingContexts
