@@ -1,14 +1,14 @@
 import { channel } from 'redux-saga';
 import {
-  put,
+  actionChannel,
   call,
   delay,
   fork,
-  takeEvery,
+  put,
   select,
-  actionChannel
+  takeEvery
 } from 'redux-saga/effects';
-import { AppAction } from 'app/actions';
+import { AppAction, AppActionWithMeta } from 'app/actions';
 import { connect } from 'app/store/actions/connection';
 import stripReceiverMeta from 'app/store/stripReceiverMeta';
 import watchWindow from 'app/store/sagas/window/watch.saga';
@@ -22,7 +22,7 @@ function* dispatchReceivedActionSaga(action: AppAction) {
 export default function* windowConnectionSaga(targetOrigin = '*') {
   const incomingChannel = yield call(channel);
   const outgoingChannel = yield actionChannel(
-    ({ meta }: AppAction) => meta?.receiver?.id === extensionId
+    ({ meta }: AppActionWithMeta) => meta?.receiver?.id === extensionId
   );
   yield fork(
     watchWindow,

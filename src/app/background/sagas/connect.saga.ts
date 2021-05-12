@@ -1,7 +1,7 @@
-import { take, fork, put } from 'redux-saga/effects';
+import { fork, put, take } from 'redux-saga/effects';
 import { CONNECT, connected, disconnected } from 'app/store/actions/connection';
 import createWatchPortSaga from 'app/store/sagas/watchPort.saga';
-import { AppAction } from 'app/actions';
+import { AppActionWithMeta } from 'app/actions';
 import compareMessageSender from 'webext/compareMessageSender';
 import createMessageSender from 'webext/createMessageSender';
 
@@ -15,7 +15,7 @@ export default function* connectSaga() {
         const sender = createMessageSender({ id: browser.runtime.id });
         yield fork(
           createWatchPortSaga,
-          ({ meta }: AppAction) =>
+          ({ meta }: AppActionWithMeta) =>
             compareMessageSender(meta?.receiver as MessageSender, port.sender),
           port,
           sender

@@ -1,8 +1,8 @@
-import { call, delay, fork, put, takeLatest, select } from 'redux-saga/effects';
-import { AppAction } from 'app/actions';
+import { call, delay, fork, put, select, takeLatest } from 'redux-saga/effects';
+import { AppActionWithMeta } from 'app/actions';
 import { connect, CONNECT, disconnected } from 'app/store/actions/connection';
 import watchPortSaga from 'app/store/sagas/watchPort.saga';
-import { isConnecting, isConnected } from '../selectors/connection';
+import { isConnected, isConnecting } from '../selectors/connection';
 import extensionId from 'app/profiles/extensionId';
 
 export function* connectSaga() {
@@ -12,7 +12,7 @@ export function* connectSaga() {
     });
     yield fork(
       watchPortSaga,
-      ({ meta }: AppAction) => meta?.receiver?.id === extensionId,
+      ({ meta }: AppActionWithMeta) => meta?.receiver?.id === extensionId,
       port
     );
   } catch (e) {

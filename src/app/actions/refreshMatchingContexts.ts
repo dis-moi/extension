@@ -31,5 +31,5 @@ export const refreshMatchingContextsFailed = (e: Error) => ({
   meta: { severity: Level.WARN }
 });
 export type RefreshMatchingContextsFailedAction = ReturnType<
-  typeof refreshMatchingContexts
+  typeof refreshMatchingContextsFailed
 >;
