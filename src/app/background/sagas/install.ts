@@ -30,9 +30,6 @@ export function* installedSaga({
 
     const datetime = yield select(getInstallationDate);
 
-    // @todo why not use this function to get the current version ?
-    // const version = chrome.runtime.getManifest().version;
-
     const installationDetails: InstallationDetails = {
       ...installedDetails,
       version,

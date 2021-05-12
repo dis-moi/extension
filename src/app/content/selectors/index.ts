@@ -9,14 +9,13 @@ import {
 } from 'redux-form';
 import * as R from 'ramda';
 import {
+  compareUnread,
+  Contribution,
   getNotice,
   isUnread,
-  shouldNoticeBeShown,
-  Contribution,
-  compareUnread,
-  Question
+  Question,
+  shouldNoticeBeShown
 } from 'app/lmem/notice';
-import { InstallationDetails } from 'app/lmem/installation';
 import { ContentState } from '../store';
 import { getRegisteredFieldsPaths } from 'app/utils/form';
 import {
@@ -26,6 +25,7 @@ import {
 import { findItemById } from 'app/utils/findItemById';
 import { StatefulContributor } from 'app/lmem/contributor';
 import { makeGetRouteParam } from 'app/store/selectors';
+
 export * from './serviceMessage.selectors';
 export * from './ui.selectors';
 
@@ -61,14 +61,12 @@ export const hasNoticesToDisplay = createSelector(
   noticesToDisplay => noticesToDisplay.length > 0
 );
 
-export const getOnInstalledDetails = (
-  state: ContentState
-): InstallationDetails => state.installationDetails;
+export const getOnInstalledDetails = (state: ContentState) =>
+  state.installationDetails;
 
 export const getExtensionInstallationDate = createSelector(
-  getOnInstalledDetails,
-  (details: InstallationDetails) =>
-    details.datetime ? new Date(details.datetime) : undefined
+  [getOnInstalledDetails],
+  details => (details.datetime ? new Date(details.datetime) : undefined)
 );
 
 export const getPathname = (state: ContentState) => getLocation(state).pathname;

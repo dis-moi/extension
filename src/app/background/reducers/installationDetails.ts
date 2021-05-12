@@ -1,12 +1,15 @@
 import { AppAction, INSTALLATION_DETAILS } from 'app/actions';
-import { InstallationDetails } from 'app/lmem/installation';
 import { version } from '../../../../package.json';
 
-export type InstallationDetailsState = InstallationDetails;
+export type InstallationDetailsState = {
+  version: string;
+  datetime?: Date;
+  updatedAt?: Date;
+  reason?: string;
+};
 
 const initialState: InstallationDetailsState = {
-  version,
-  reason: 'install'
+  version
 };
 
 export default (
