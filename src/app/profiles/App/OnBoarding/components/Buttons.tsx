@@ -24,10 +24,12 @@ const OnboardingButton = styled(BackgroundButton)`
     border: ${({ color }) => getBackgroundColor(color)};
   }
 
-  svg {
-    width: 20px;
-    height: auto;
-    margin-right: 8px;
+  &:first-of-type {
+    svg {
+      width: 20px;
+      height: auto;
+      margin-right: 8px;
+    }
   }
 `;
 

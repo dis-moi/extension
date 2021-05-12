@@ -84,22 +84,22 @@
     },
     "onBoarding": {
       "step1": {
-        "loading": "L'extension est à jour !<br/>  Chargement de votre expérience...",
-        "pin": "Épinglez DisMoi"
+        "loading": "Recherche des mises à jour<br/>  L'extension est à jour",
+        "pin": "Épingler DisMoi"
       },
       "step2": {
-        "title": "Épinglez DisMoi",
-        "question": "Êtes-vous arrivé à épingler l'extension DisMoi ?",
+        "title": "Épingler DisMoi",
+        "question": "Êtes-vous arrivés à épingler l'extension DisMoi ?",
         "answer1": "Non, je n'ai pas compris",
         "button1": "Revoir le tuto",
         "answer2": "Oui, j'ai épinglé DisMoi",
         "button2": "Dernière étape"
       },
       "step3": {
-        "title": "Bienvenue chez DisMoi",
-        "sub_title": "Un dernier mot !",
-        "paragraph": "<0>- Lors de l'installation, nous vous avons présélectionné plusieurs éclaireurs, plutôt consensuels. À vous de compléter et faire les choix définitifs !</0><1>- Une fois que vous avez terminé, vous pouvez revenir à votre navigation normale sur le web. Les conseils et infos de vos éclaireurs apparaitront directement sur les pages web que vous visitez.</1>",
-        "back_button": "Revoir le tuto"
+        "title": "Personnaliser",
+        "paragraph": "<0>Si vous êtes nouveau,</0><1>plusieurs contributeurs ont été présélectionnés.</1>",
+        "back_button": "Revoir le tuto",
+        "end_button": "Découvrir et choisir mes contributeurs"
       }
     }
   },

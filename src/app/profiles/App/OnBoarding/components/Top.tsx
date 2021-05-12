@@ -23,7 +23,6 @@ export default styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 610px;
     margin-left: 80px;
   }
 

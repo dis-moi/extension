@@ -1,27 +1,33 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useTranslation, Trans } from 'react-i18next';
-import { Bullito, Reload } from 'components/atoms/icons';
+import { Reload } from 'components/atoms/icons';
 import { Title1 } from 'components/atoms/Title1';
 import Content from '../components/Content';
 import Text from '../components/Text';
 import Line from '../components/Line';
 import OnboardingButton from '../components/Buttons';
-import OnboardingTitle from '../components/Title';
 import { StepProps } from './index';
 import isChrome from 'app/utils/isChrome';
 
 const MarginTitle = styled(Title1)`
   margin-top: 0;
   margin-bottom: 60px;
-  margin-left: 130px;
+  margin-left: 140px;
 `;
 
 const OnboardingText = styled(Text)`
+  display: inline;
   color: ${props => props.theme.primaryColor};
+  font-weight: normal;
 
   &:first-of-type {
     margin-top: 60px;
+  }
+
+  &:last-of-type {
+    margin-left: 8px;
+    font-weight: bold;
   }
 `;
 const contentAnim = keyframes`
@@ -42,22 +48,12 @@ export default ({ prev, close }: StepProps) => {
     <ContentWithEffect>
       <MarginTitle>{t('view.onBoarding.step3.title')}</MarginTitle>
 
-      <Line>
-        <Bullito />
-        <OnboardingTitle align={'left'}>
-          {t('view.onBoarding.step3.sub_title')}
-        </OnboardingTitle>
-      </Line>
       <Trans t={t} i18nKey={'view.onBoarding.step3.paragraph'}>
-        <OnboardingText align={'left'}>
-          - Lors de l&apos;installation, nous vous avons présélectionné
-          plusieurs éclaireurs, plutôt consensuels. À vous de compléter et faire
-          les choix définitifs !
+        <OnboardingText align={'center'}>
+          Nous vous avons présélectionné plusieurs contributeurs.
         </OnboardingText>
-        <OnboardingText align={'left'}>
-          - Une fois que vous avez terminé, vous pouvez revenir à votre
-          navigation normale sur le web. Les conseils et infos de vos éclaireurs
-          apparaitront directement sur les pages web que vous visitez.
+        <OnboardingText align={'center'}>
+          À vous de compléter et faire les choix définitifs !
         </OnboardingText>
       </Trans>
       <Line>
@@ -71,7 +67,7 @@ export default ({ prev, close }: StepProps) => {
         )}
         <div>
           <OnboardingButton onClick={close}>
-            {t('action.finish')}
+            {t('view.onBoarding.step3.end_button')}
           </OnboardingButton>
         </div>
       </Line>

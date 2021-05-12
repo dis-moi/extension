@@ -84,7 +84,7 @@
     },
     "onBoarding": {
       "step1": {
-        "loading": "DisMoi is up to date!<br/>  Your experience is loading...",
+        "loading": "Searching for updates<br/>  Everything is up to date",
         "pin": "Pin DisMoi in your Browser"
       },
       "step2": {
@@ -97,9 +97,9 @@
       },
       "step3": {
         "title": "Welcome to DisMoi",
-        "sub_title": "One final word!",
-        "paragraph": "<0>- We have preselected several Contributors for you to follow. Now you can decide who to follow!</0><1>- Once you're done, you can go back to browsing the web normally. Posts from Guides you follow will appear directly on the web pages you visit.</1>",
-        "back_button": "View the tutorial again"
+        "paragraph": "<0>If you are new,</0><1>we pre-selected some sources.</1>",
+        "back_button": "View the tutorial again",
+        "end_button": "Discover and choose my sources"
       }
     }
   },
