@@ -1,10 +1,10 @@
 import { put, takeEvery } from 'redux-saga/effects';
-import { AppAction } from 'app/actions';
+import { AppAction, AppActionWithMeta } from 'app/actions';
 import { createErrorAction } from 'app/actions/helpers';
 import sendMessageToBackground from 'webext/sendMessageToBackground';
 import { Level } from '../utils/Logger';
 
-const shouldBeSentToBackground = (action: AppAction): boolean =>
+const shouldBeSentToBackground = (action: AppActionWithMeta): boolean =>
   action.meta && action.meta.sendToBackground
     ? action.meta.sendToBackground
     : false;

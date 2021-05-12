@@ -4,6 +4,7 @@ import postRating, { Rating } from 'api/postRating';
 import {
   ActionMetaWithTab,
   AppAction,
+  AppActionWithMeta,
   FEEDBACK_ON_NOTICE,
   NOTICE_BADGED,
   NOTICE_DISPLAYED,
@@ -18,7 +19,7 @@ export const isFeedBackRatingAction = (action: AppAction) =>
   action.type === FEEDBACK_ON_NOTICE &&
   (Object.values(RatingType) as string[]).includes(action.payload.feedback);
 
-type AppActionWithMetaUrl = AppAction & { meta: ActionMetaWithTab };
+type AppActionWithMetaUrl = AppActionWithMeta & { meta: ActionMetaWithTab };
 
 type RatingActionTransformer = (action: AppActionWithMetaUrl) => Rating;
 

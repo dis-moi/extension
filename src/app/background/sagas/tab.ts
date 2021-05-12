@@ -2,28 +2,28 @@ import { all, call, put, select, takeEvery } from 'redux-saga/effects';
 import * as R from 'ramda';
 import i18n from 'i18next';
 import {
+  AppActionWithMeta,
+  clearServiceMessage,
+  CONTEXT_NOT_TRIGGERED,
   CONTEXT_TRIGGERED,
-  MATCH_CONTEXT,
-  NAVIGATED_TO_URL,
-  init,
   contextNotTriggered,
+  ContextNotTriggeredAction,
   contextTriggered,
+  ContextTriggeredAction,
   contextTriggerFailure,
+  init,
+  MATCH_CONTEXT,
   matchContext,
+  MatchContextAction,
   matchContextFailure,
+  NAVIGATED_TO_URL,
   noNoticesDisplayed,
   noticeBadged,
   noticeIgnored,
-  noticesFound,
   noticesFetched,
-  AppAction,
-  ContextTriggeredAction,
-  ContextNotTriggeredAction,
-  MatchContextAction,
-  TabAction,
-  CONTEXT_NOT_TRIGGERED,
+  noticesFound,
   TAB_ACTIVATED,
-  clearServiceMessage
+  TabAction
 } from 'app/actions';
 import { createErrorAction } from 'app/actions/helpers';
 import {
@@ -184,7 +184,7 @@ export const contextNotTriggeredSaga = function*({
   }
 };
 
-const shouldActionBeSentToTab = (action: AppAction) =>
+const shouldActionBeSentToTab = (action: AppActionWithMeta) =>
   Boolean(action.meta && action.meta.sendToTab);
 function* sendActionToTab(action: TabAction) {
   yield sendToTabSaga(action.meta.tab, action);
