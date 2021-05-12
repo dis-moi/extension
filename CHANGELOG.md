@@ -1,3 +1,16 @@
+## [3.74.1](https://github.com/dis-moi/extension/compare/v3.74.0...v3.74.1) (2021-05-12)
+
+
+### Bug Fixes
+
+* **onboarding:** adds en translations ([15a3c2c](https://github.com/dis-moi/extension/commit/15a3c2c4939e52292493273501a5c8dbb8494092))
+* **onboarding:** adds some style to the modal ([a81be62](https://github.com/dis-moi/extension/commit/a81be6264ef78a7696460d36d5082560eafd6920))
+* **onboarding:** changes last screen font weight ([ca8788d](https://github.com/dis-moi/extension/commit/ca8788d2997a18e0f324f04733c3d2e981d93591))
+* **onboarding:** new video and wording ([7b223eb](https://github.com/dis-moi/extension/commit/7b223eb0e82db58595fafc53ab66aa22a8ba1364))
+* **onboarding:** removes useless import ([1a7b8b6](https://github.com/dis-moi/extension/commit/1a7b8b68d1cfee83cd1d8469f356b53b0ff9cd4b))
+* **onboarding:** tries a modal view ([36f76ab](https://github.com/dis-moi/extension/commit/36f76abd0b91549d4031546b3011b355e4a9029e))
+* **onboarding:** works on some feedbacks ([b8c9b5e](https://github.com/dis-moi/extension/commit/b8c9b5e1f44561092b79c3641f109fe4ba915f5a))
+
 # [3.74.0](https://github.com/dis-moi/extension/compare/v3.73.2...v3.74.0) (2021-05-11)
 
 
