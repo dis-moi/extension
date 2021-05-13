@@ -38,8 +38,8 @@ const ContributorBorderButton = styled(BorderButton)`
 
 interface Props {
   subscribed?: boolean;
-  onSubscribe: () => void;
-  onUnsubscribe: () => void;
+  onSubscribe?: () => void;
+  onUnsubscribe?: () => void;
   loading?: boolean;
 }
 
