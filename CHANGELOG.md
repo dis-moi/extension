@@ -1,3 +1,10 @@
+## [3.74.4](https://github.com/dis-moi/extension/compare/v3.74.3...v3.74.4) (2021-05-13)
+
+
+### Bug Fixes
+
+* **i18n:** Circular reference on fallbck lng ([2d610b3](https://github.com/dis-moi/extension/commit/2d610b3035aed76ec9de4f694a9eaa86a903871b))
+
 ## [3.74.3](https://github.com/dis-moi/extension/compare/v3.74.2...v3.74.3) (2021-05-13)
 
 
