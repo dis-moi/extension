@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import { Trans } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import {
   ContributorId,
@@ -11,11 +11,15 @@ import { TwoColumns } from 'components/atoms';
 import { SlowerMessageBox } from 'components/molecules/SidebarBox';
 import { Aside, MainCol } from '../Profiles/Profile/Profile';
 import pathToContributor from 'app/profiles/App/pathToContributor';
-import { ContributorProfileListItem } from '../Profiles/List/ProfileList';
+import {
+  ContributorExampleLink,
+  ContributorProfileListItem
+} from '../Profiles/List/ProfileList';
 import SimilarProfiles from 'app/profiles/App/SimilarProfiles';
 import Filters from 'components/molecules/Filters/RadiosFilters';
 import useContributorsFilters from 'app/profiles/App/useContributorsRadiosFilters';
 import ProfileTabs from '../../ProfileTabs';
+import { Arrow } from '../../../../../components/atoms/icons';
 
 const ContributorsList = styled.div`
   display: grid;
@@ -52,7 +56,7 @@ const Subscriptions = ({
     if (initialSubscriptions.length === 0)
       setInitialSubscriptions(subscriptions);
   }, [subscriptions]);
-
+  const { t } = useTranslation();
   const subscriptionsToRender = initialSubscriptions.map(
     findContributorIn(contributors)
   );
@@ -95,7 +99,21 @@ const Subscriptions = ({
                   onSubscribe={() => subscribe(contributor.id)}
                   onUnsubscribe={() => unsubscribe(contributor.id)}
                   to={pathToContributor(contributor)}
-                />
+                >
+                  {contributor.contribution?.example.exampleMatchingUrl && (
+                    <ContributorExampleLink
+                      onClick={() =>
+                        window.open(
+                          contributor.contribution?.example.exampleMatchingUrl,
+                          '_blank'
+                        )
+                      }
+                    >
+                      {t('profiles:action.real_example')}
+                      <Arrow />
+                    </ContributorExampleLink>
+                  )}
+                </ContributorProfileListItem>
               ))}
             </ContributorsList>
           )}
