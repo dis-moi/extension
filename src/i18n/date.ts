@@ -1,14 +1,13 @@
 import { fr, enUS } from 'date-fns/locale';
-import { fallbackLng } from '.';
 
 export const DEFAULT_FORMAT = 'dd/LL/yyyy';
 
 const availableLocales: Record<string, Locale> = {
-  fr: fr,
-  [fallbackLng]: enUS
+  fr,
+  en: enUS
 };
 
-export const getLocale = (locale?: string) => {
+export const getLocale = (locale?: string): Locale | undefined => {
   if (locale) {
     const lng = Object.keys(availableLocales).find(
       key => key === locale.substring(0, 2)
@@ -17,6 +16,4 @@ export const getLocale = (locale?: string) => {
       return availableLocales[lng];
     }
   }
-
-  return availableLocales[fallbackLng];
 };
