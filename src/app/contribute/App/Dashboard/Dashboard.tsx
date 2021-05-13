@@ -33,7 +33,10 @@ const LogoutLink = styled.a`
 `;
 
 const Content = styled.main`
-  margin: 0 24px;
+  margin: 0 24px 30px;
+  padding: 26px 36px 30px 22px;
+  background-color: #fff;
+  border-radius: 8px;
 `;
 
 const MetricsWrapper = styled.section`
@@ -83,6 +86,7 @@ const StatsWrapper = styled(Box)`
   border-radius: 8px;
   box-shadow: 0px 0px 6px #00000026;
 `;
+
 
 const Stats = styled.table`
   width: 100%;
