@@ -1,3 +1,10 @@
+## [3.74.2](https://github.com/dis-moi/extension/compare/v3.74.1...v3.74.2) (2021-05-13)
+
+
+### Bug Fixes
+
+* **profiles:** changes default DisMoi logo in the banner ([5b98d77](https://github.com/dis-moi/extension/commit/5b98d77471de5ab702385823ca7a8f1b603b3392))
+
 ## [3.74.1](https://github.com/dis-moi/extension/compare/v3.74.0...v3.74.1) (2021-05-12)
 
 
