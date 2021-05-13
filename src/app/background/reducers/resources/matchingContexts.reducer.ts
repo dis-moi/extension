@@ -1,17 +1,17 @@
 import * as R from 'ramda';
-import { AppAction, UPDATE_MATCHING_CONTEXTS } from 'app/actions';
+import { AppAction, UNSUBSCRIBE, UPDATE_MATCHING_CONTEXTS } from 'app/actions';
 import { MatchingContext } from 'app/lmem/matchingContext';
 import { ContributorId } from 'app/lmem/contributor';
 import { Brand } from '../../../../types';
 
-type MatchingContextStringId = Brand<string, 'MatchingContextStringId'>;
+export type MatchingContextStringId = Brand<string, 'MatchingContextStringId'>;
 
 type MatchingContextWithAssociatedContributors = MatchingContext & {
   associatedContributors: ContributorId[];
 };
 
 export type MatchingContextsState = Record<
-  MatchingContextStringId,
+  string,
   MatchingContextWithAssociatedContributors
 >;
 
@@ -34,6 +34,9 @@ const mergeAssociatedMatchingContexts = (
   ])
 });
 
+const overAssociatedContributors = (fn: R.Arity1Fn) =>
+  R.over(R.lensProp('associatedContributors'), fn);
+
 export default (
   state: MatchingContextsState = initialState,
   action: AppAction
@@ -48,7 +51,7 @@ export default (
         MatchingContextsState
       >(
         R.map(R.assoc('associatedContributors', [contributorId])),
-        R.indexBy(getIdAsString)
+        R.indexBy<MatchingContextWithAssociatedContributors>(getIdAsString)
       )(matchingContexts);
 
       return R.mergeWith(
@@ -56,6 +59,21 @@ export default (
         matchingContextsWithAssociated,
         state
       );
+
+    case UNSUBSCRIBE:
+      const unsubscribedContributorId = action.payload;
+      return R.pipe<
+        MatchingContextsState,
+        MatchingContextsState,
+        MatchingContextsState
+      >(
+        R.mapObjIndexed(
+          overAssociatedContributors(
+            R.reject(R.equals(unsubscribedContributorId))
+          )
+        ),
+        R.pickBy(R.compose(R.not, R.isEmpty, R.prop('associatedContributors')))
+      )(state);
 
     default:
       return state;
