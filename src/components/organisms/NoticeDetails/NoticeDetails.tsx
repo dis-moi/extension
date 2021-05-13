@@ -97,15 +97,23 @@ export interface NoticeDetailsMethodsProps {
 export type NoticeDetailsProps = NoticeDetailsDataProps &
   NoticeDetailsMethodsProps & { t: TFunction };
 
-class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
+interface NoticeDetailsState extends CountDownState {
+  message: string;
+}
+const noticeDetailsInitState = { ...countdownInitialState, message: '' };
+
+class NoticeDetails extends PureComponent<
+  NoticeDetailsProps,
+  NoticeDetailsState
+> {
   constructor(props: NoticeDetailsProps) {
     super(props);
-    this.state = countdownInitialState;
+    this.state = noticeDetailsInitState;
   }
 
   startCountdown = () => {
     const intervalID = window.setInterval(this.updateCountdown, 1000);
-    this.setState({ ...countdownInitialState, intervalID });
+    this.setState({ ...noticeDetailsInitState, intervalID });
   };
 
   updateCountdown = () => {
@@ -199,6 +207,11 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
   };
 
   componentDidMount(): void {
+    this.setState({
+      ...noticeDetailsInitState,
+      message: formatMessage(this.props.notice.message)
+    });
+
     const {
       view,
       notice: { id }
@@ -211,7 +224,6 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
   render() {
     const {
       notice: {
-        message,
         modified,
         contributor,
         ratings: { likes, dislikes },
@@ -252,7 +264,7 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
           </DetailsMeta>
 
           <Message onClick={this.handleMessageClick}>
-            {formatMessage(message)}
+            {this.state.message}
           </Message>
 
           <Feedbacks>
