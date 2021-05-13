@@ -1,0 +1,42 @@
+import {  Meta, Preview, Story } from "@storybook/addon-docs/blocks";
+import Button from "./Button";
+import { BorderButton } from "../index";
+import ContributorButton from "components/organisms/Contributor/ContributorButton";
+
+<Meta title='Buttons'/>
+
+# Buttons
+
+## Default button
+
+<Preview>
+  <Story name="Default buttons">
+    <Button>Sample button</Button>
+    <Button>Sample button</Button>
+    <Button disabled>Sample button disabled</Button>
+  </Story>
+</Preview>
+
+## Border button
+<Preview>
+  <Story name="Border buttons">
+    <BorderButton>Sample button</BorderButton>
+    <BorderButton disabled>Sample button disabled</BorderButton>
+  </Story>
+</Preview>
+
+## Contributor button
+<Preview>
+  <Story name="Contributor buttons">
+    <ContributorButton
+      subscribed={true}
+      onSubscribe={action('subscribe')}
+      onUnsubscribe={action('unsubscribe')}
+    />
+    <ContributorButton
+      subscribed={false}
+      onSubscribe={action('subscribe')}
+      onUnsubscribe={action('unsubscribe')}
+    />
+  </Story>
+</Preview>
