@@ -1,3 +1,10 @@
+## [3.74.3](https://github.com/dis-moi/extension/compare/v3.74.2...v3.74.3) (2021-05-13)
+
+
+### Bug Fixes
+
+* **i18n:** Fix i18n date formatting ([1f2be30](https://github.com/dis-moi/extension/commit/1f2be30ce86cb2b2cc6f129057708ded2285a4fb)), closes [#927](https://github.com/dis-moi/extension/issues/927)
+
 ## [3.74.2](https://github.com/dis-moi/extension/compare/v3.74.1...v3.74.2) (2021-05-13)
 
 
