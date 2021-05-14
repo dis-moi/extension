@@ -16,21 +16,20 @@ const mapDispatchToProps: TitleProps = {
   setUITitle,
   removeUITitle
 };
-
 const withTitle = <TComponentProps extends {}>(title: string | undefined) => (
   Component: ComponentType<TComponentProps & TitleManipulationProps>
 ) => {
-  if (title) title = i18next.t(title);
   const ComponentWithTitleEffect = ({
     setUITitle,
     removeUITitle,
     ...props
   }: TitleProps & TComponentProps) => {
     useLayoutEffect(() => {
+      if (title) title = i18next.t(title);
+
       setUITitle(title || '');
       return removeUITitle;
     }, []);
-
     // eslint-disable-next-line
     // @ts-ignore -> We need a way to tell TypeScript that TComponentProps should not contain setUITitle, nor removeUITitle keys
     return <Component {...props} changeUITitle={setUITitle} />;
