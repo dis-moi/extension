@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import LogoDisMoiWithD from 'components/atoms/icons/LogoDisMoiWithD';
 import BulleDisMoi from './components/BulleDisMoi';
 import Landing from './components/Landing';
@@ -7,13 +7,18 @@ import Loader, { ProgressBar } from './components/Loader';
 import Evolution from './components/Evolution';
 import Modal from './components/Modal';
 import { Step1, Step2, Step3 } from './Steps';
-import isRedirectedFromExtensionInstall from 'app/utils/isRedirectedFromExtensionInstall';
 import isChrome from 'app/utils/isChrome';
 
 export type CloseFunction = () => void;
 
+const REDIRECTED_PATH = 'pk_campaign=installed';
+
 const OnBoarding = () => {
-  if (!isRedirectedFromExtensionInstall) return null;
+  const isRedirect = useCallback(
+    () => window.location.search.includes(REDIRECTED_PATH),
+    [window.location.search]
+  );
+  if (!isRedirect()) return null;
 
   const [currentStep, setStep] = useState(0);
   const [open, setOpen] = useState(true);
@@ -52,4 +57,4 @@ const OnBoarding = () => {
   );
 };
 
-export default OnBoarding;
+export default React.memo(OnBoarding);
