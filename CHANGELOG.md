@@ -1,3 +1,11 @@
+# [3.75.0](https://github.com/dis-moi/extension/compare/v3.74.4...v3.75.0) (2021-05-14)
+
+
+### Features
+
+* fetch and store matching contexts by contributor ([91ee590](https://github.com/dis-moi/extension/commit/91ee590f13c9735d899a7a7e448b0656c2dc8c6b)), closes [#953](https://github.com/dis-moi/extension/issues/953)
+* **matching-contexts:** clean matching-contexts on unsubscription ([6ccd887](https://github.com/dis-moi/extension/commit/6ccd887a70c122aabd534060cc493f6a61b1f25d)), closes [#953](https://github.com/dis-moi/extension/issues/953)
+
 ## [3.74.4](https://github.com/dis-moi/extension/compare/v3.74.3...v3.74.4) (2021-05-13)
 
 
