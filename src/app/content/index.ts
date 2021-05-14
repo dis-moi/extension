@@ -29,28 +29,22 @@ if (!(window as CustomWindow).__BULLES__CONTENT_SCRIPT_INJECTED__) {
       });
     }
 
-    const initApp = () => {
-      const store = require('./store').default;
-      const documentReady = require('../utils/documentReady').default;
-      const externalClickHandler = require('./externalClickHandler').default;
-      const handleExternalClick = externalClickHandler(store);
+    const store = require('./store').default;
+    const documentReady = require('../utils/documentReady').default;
+    const externalClickHandler = require('./externalClickHandler').default;
+    const handleExternalClick = externalClickHandler(store);
 
-      (window as CustomWindow).__BULLES__CONTENT_SCRIPT_INJECTED__ = true;
+    (window as CustomWindow).__BULLES__CONTENT_SCRIPT_INJECTED__ = true;
 
-      return documentReady.then(() => {
-        document.addEventListener('click', handleExternalClick);
+    documentReady.then(() => {
+      document.addEventListener('click', handleExternalClick);
 
-        window.addEventListener('unload', () => {
-          document.removeEventListener('click', handleExternalClick);
-        });
+      window.addEventListener('unload', () => {
+        document.removeEventListener('click', handleExternalClick);
       });
-    };
+    });
 
-    i18n
-      .init(options)
-      .then()
-      .catch(e => captureException(e))
-      .finally(() => initApp()); // i18n have to be initialized before store to get the titles
+    i18n.init(options).then(() => {});
   } catch (error) {
     captureException(error);
   }
