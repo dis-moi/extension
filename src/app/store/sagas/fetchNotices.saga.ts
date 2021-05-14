@@ -6,7 +6,8 @@ import {
   noticesFetched
 } from 'app/actions';
 import { fetchNotice, fetchNotices } from 'api/fetchNotice';
-import { Notice } from '../../lmem/notice';
+import { Notice } from 'app/lmem/notice';
+import { ContributorId } from 'app/lmem/contributor';
 import { CONTRIBUTOR_NOTICES_BY_PAGE } from '../../profiles/store/sagas/notices.saga';
 
 interface PayloadWithUrl {
@@ -30,7 +31,14 @@ export default function* fetchNoticesSaga({
 
       const fetchedAll = notices.length < CONTRIBUTOR_NOTICES_BY_PAGE;
 
-      yield put(noticesFetched(notices, offset, contributor || 0, fetchedAll));
+      yield put(
+        noticesFetched(
+          notices,
+          offset,
+          contributor || (0 as ContributorId),
+          fetchedAll
+        )
+      );
     }
   } catch (e) {
     yield put(fetchNoticesFailure(e, {}));

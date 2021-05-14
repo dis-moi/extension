@@ -5,6 +5,7 @@ import prefsReducer from 'app/background/reducers/prefs.reducer';
 import { isOnboardingRequired } from 'app/background/selectors';
 import { tosAccepted } from '../../actions';
 import { isInstallationComplete } from './';
+import { ContributorId } from '../../lmem/contributor';
 
 const expect = chai.expect;
 
@@ -12,7 +13,7 @@ describe('background selectors', function() {
   describe('onboarding selectors', function() {
     const state: BackgroundState = {
       ...reducer(undefined, { type: 'anyAction' } as Action),
-      subscriptions: [1, 42, 1024],
+      subscriptions: [1, 42, 1024] as ContributorId[],
       prefs: prefsReducer(undefined, tosAccepted({}))
     };
 

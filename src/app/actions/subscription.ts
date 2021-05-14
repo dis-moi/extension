@@ -7,17 +7,12 @@ export interface ContributorAction extends BaseAction {
 }
 
 export const SUBSCRIBE = 'SUBSCRIBE';
-export interface SubscribeAction extends ContributorAction {
-  type: typeof SUBSCRIBE;
-}
-export const subscribe = (
-  contributorId: ContributorId,
-  meta?: ActionMeta
-): SubscribeAction => ({
-  type: SUBSCRIBE,
+export const subscribe = (contributorId: ContributorId, meta?: ActionMeta) => ({
+  type: SUBSCRIBE as typeof SUBSCRIBE,
   payload: contributorId,
   meta
 });
+export type SubscribeAction = ReturnType<typeof subscribe>;
 
 export const SUBSCRIBED = 'SUBSCRIBED';
 export interface SubscribedAction extends ContributorAction {

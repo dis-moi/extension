@@ -1,4 +1,5 @@
 import * as R from 'ramda';
+import { Brand } from 'types';
 import { NoticeItem } from './notice';
 
 export type AvatarSize = 'small' | 'normal' | 'large';
@@ -10,7 +11,7 @@ interface Picture {
   url: string;
 }
 
-export type ContributorId = number;
+export type ContributorId = Brand<number, 'ContributorId'>;
 
 export interface PinnedNotice extends NoticeItem {
   sort?: number;

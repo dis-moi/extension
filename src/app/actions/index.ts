@@ -207,3 +207,5 @@ export type AppAction =
   | OutboundLinkClickedAction
   | LoginAction
   | (LocationChangeAction & { meta?: ActionMeta });
+
+export type AppActionWithMeta = AppAction & BaseAction;

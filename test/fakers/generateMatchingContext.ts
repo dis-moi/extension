@@ -18,7 +18,7 @@ const generateMatchingContext = ({
     excludeUrlRegex,
     noticeUrl: `https://backend.dismoi.io/notices/${noticeId}`,
     noticeId
-  };
+  } as MatchingContext;
 };
 
 export default generateMatchingContext;

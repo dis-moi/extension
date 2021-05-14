@@ -1,4 +1,5 @@
 import * as R from 'ramda';
+import { Contributor } from 'app/lmem/contributor';
 import {
   SUBSCRIBE,
   UNSUBSCRIBE,
@@ -6,7 +7,7 @@ import {
   UPDATE_CONTRIBUTORS
 } from 'app/actions';
 
-export type SubscriptionsState = number[];
+export type SubscriptionsState = Contributor['id'][];
 
 export default function subscriptionsReducer(
   state: SubscriptionsState = [],
