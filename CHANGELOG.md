@@ -1,3 +1,10 @@
+## [3.75.1](https://github.com/dis-moi/extension/compare/v3.75.0...v3.75.1) (2021-05-17)
+
+
+### Bug Fixes
+
+* **onBoardingRestart:** memoize onboarding ([e25e3ed](https://github.com/dis-moi/extension/commit/e25e3ed35c36529030f8fee68b9df99b4a47e82e))
+
 # [3.75.0](https://github.com/dis-moi/extension/compare/v3.74.4...v3.75.0) (2021-05-14)
 
 
