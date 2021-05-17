@@ -21,10 +21,7 @@ import ProfileTabs from '../../../ProfileTabs';
 import OnBoarding from 'app/profiles/App/OnBoarding';
 import onContributorExampleClick from '../../../../../utils/onContributorExampleClick';
 import { Subscriptions } from '../../../../../lmem/subscription';
-import ContextPopin, {
-  contextPopinInitState,
-  PopinDisplayState
-} from '../ContextPopin';
+import { ContextPopinState } from '../../../../store/reducers/contextPopin.reducer';
 
 const Title = styled(Title2)`
   padding-top: 30px;
@@ -76,7 +73,7 @@ export const ContributorProfileListItem = styled(ContributorLarge)`
   }
 `;
 
-const ContributorExampleLink = styled(Link)`
+export const ContributorExampleLink = styled(Link)`
   cursor: pointer;
 `;
 
@@ -90,6 +87,7 @@ export interface ProfileListProps {
   categoriesLoading?: boolean;
   categories: Categories;
   subscriptions?: Subscriptions;
+  setContextPopin: (payload: ContextPopinState) => void;
 }
 
 const ProfileList = ({
@@ -101,7 +99,8 @@ const ProfileList = ({
   addToBrowser,
   categoriesLoading,
   categories,
-  subscriptions
+  subscriptions,
+  setContextPopin
 }: ProfileListProps) => {
   const { t } = useTranslation();
 
@@ -112,8 +111,6 @@ const ProfileList = ({
     browserNotSupportedPopinOpened,
     setBrowserNotSupportedPopinOpened
   ] = useState(false);
-
-  const [popin, setPopin] = useState<PopinDisplayState>(contextPopinInitState);
 
   const handleSubscribe = (contributor: StatefulContributor) => () => {
     if (connected) {
@@ -175,9 +172,9 @@ const ProfileList = ({
                       contributor,
                       connected,
                       subscriptions,
-                      setPopin,
                       handleSubscribe,
-                      addToBrowser
+                      addToBrowser,
+                      setContextPopin
                     )
                   }
                 >
@@ -212,7 +209,6 @@ const ProfileList = ({
         opened={browserNotSupportedPopinOpened}
         setOpened={setBrowserNotSupportedPopinOpened}
       />
-      <ContextPopin setPopin={setPopin} popin={popin} />
     </>
   );
 };

@@ -39,6 +39,7 @@ export const Normal = () => (
     addToBrowser={action('addToBrowser')}
     categories={CATEGORIES}
     categoriesLoading={false}
+    setContextPopin={() => null}
   />
 );
 
@@ -66,6 +67,7 @@ export const Loading = () => (
     addToBrowser={action('addToBrowser')}
     categories={CATEGORIES}
     categoriesLoading={false}
+    setContextPopin={() => null}
   />
 );
 
