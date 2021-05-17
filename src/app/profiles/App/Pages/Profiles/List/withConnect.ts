@@ -12,6 +12,8 @@ import {
 import { ProfilesState } from 'app/profiles/store/reducers';
 import { extensionMessageSender } from 'app/profiles/extensionId';
 import { getSubscriptions } from 'app/profiles/store/selectors/subscriptions';
+import { ContextPopinState } from '../../../../store/reducers/contextPopin.reducer';
+import { setContextPopin } from '../../../../store/actions/contextPopin';
 
 const mapStateToProps = (state: ProfilesState) => ({
   loading: areContributorsLoading(state),
@@ -30,7 +32,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     subscribe: (contributorId: ContributorId) =>
       dispatch(subscribe(contributorId, { receiver })),
     unsubscribe: (contributorId: ContributorId) =>
-      dispatch(unsubscribe(contributorId, { receiver }))
+      dispatch(unsubscribe(contributorId, { receiver })),
+    setContextPopin: (payload: ContextPopinState) =>
+      dispatch(setContextPopin(payload))
   };
 };
 
