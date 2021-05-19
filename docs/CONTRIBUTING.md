@@ -11,7 +11,7 @@ Take note of the [code of conduct](CODE_OF_CONDUCT.md).
 Most members of the team do speak :fr: **French** but not all as their mother tongue.
 Since the team is international, we use :gb: **English** as the default lang in code, docs, issues, etc.
 
-> For extension __i18n__ strategy see [I18N.md](I18N.md) :fr:
+> For extension **i18n** strategy see [I18N.md](I18N.md) :fr:
 
 ## How Can I Contribute?
 
@@ -64,12 +64,12 @@ This code base consists in a set of 3 apps, written in `typescript`, forming tog
 You should respect the following **directory structure**:
 
 - `src/`
-  - `api/` APIs related code ([Dismoi backend](https://github.com/dis-moi/backend), [sendinblue](https://fr.sendinblue.com/), ...)
+  - `api/` APIs related code ([Dismoi backend](https://github.com/dis-moi/backend))
   - `app/` apps and commons
-      - `background/` an app maintaining the long-term state (see [background script](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/background) on the mdn)
-      - `profiles/` a `react` app managing subscriptions
-      - `content/` a `react` app injected in the web pages
-      - `lmem/` all _domain_ related code
+    - `background/` an app maintaining the long-term state (see [background script](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/background) on the mdn)
+    - `profiles/` a `react` app managing subscriptions
+    - `content/` a `react` app injected in the web pages
+    - `lmem/` all _domain_ related code
   - `assets/` fonts, images, etc.
   - `components/` components library, organised with the [atomic design methodology](https://atomicdesign.bradfrost.com/)
   - `webext/` all **web extension** related code
@@ -229,7 +229,7 @@ https://github.com/DrewML/chrome-webstore-upload/blob/master/How%20to%20generate
 
 #### Submit Addon to Firefox Production
 
-> [Developer Hub](https://addons.mozilla.org/en-US/developers/addons) 
+> [Developer Hub](https://addons.mozilla.org/en-US/developers/addons)
 >
 > infrastructure@dismoi.io
 
@@ -237,8 +237,9 @@ In order for the Mozilla review to complete successfully, please the following s
 
 1. Use [SemaphoreCI](https://semaphoreci.com/lmem/extension/) to deploy to `Firefox production`
 2. [Download](https://github.com/dis-moi/extension/releases) the source code archive of the version you want to deploy to production extension (`Source code (tar.gz)`)
-3. *Once version is available* in [Developer Hub](https://addons.mozilla.org/en-US/developers/addon/dismoi/versions), click on the version number, and upload the `tar.gz` in `Source code` field.
+3. _Once version is available_ in [Developer Hub](https://addons.mozilla.org/en-US/developers/addon/dismoi/versions), click on the version number, and upload the `tar.gz` in `Source code` field.
 
-> There are still issues at **Mozilla**  preventing us to upload the source code automatically.
-> - https://github.com/mozilla/addons-server/issues/9913 
+> There are still issues at **Mozilla** preventing us to upload the source code automatically.
+>
+> - https://github.com/mozilla/addons-server/issues/9913
 > - https://github.com/mozilla/sign-addon/issues/409
