@@ -16,4 +16,5 @@ export const getLocale = (locale?: string): Locale | undefined => {
       return availableLocales[lng];
     }
   }
+  return enUS;
 };
