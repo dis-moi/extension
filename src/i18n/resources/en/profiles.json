@@ -106,6 +106,6 @@
   "notice": {
     "screenshot_alt": "Shows the contribution on {{exampleMatchingUrl}} once the extension is installed.",
     "pined_on": "<0>Message pinned on <1>{{exampleMatchingUrl}}</1></0> and other webpages",
-    "since": "Since {{date, MM/DD/YYYY}}"
+    "since": "Since {{date, LL/dd/yyyy}}"
   }
 }
