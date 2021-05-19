@@ -5,9 +5,20 @@ import { getLocale as getDateLocale, DEFAULT_FORMAT } from './date';
 export default function(value: any, format?: string, lng?: string) {
   const isoDate = typeof value === 'string' ? parseISO(value) : value;
   if (isDate(isoDate)) {
-    return dateFormat(isoDate as Date, format || DEFAULT_FORMAT, {
-      locale: getDateLocale(lng)
-    });
+    try {
+      return dateFormat(isoDate as Date, format || DEFAULT_FORMAT, {
+        locale: getDateLocale(lng)
+      });
+    } catch (e) {
+      if (e instanceof RangeError) {
+        // given date format was invalid, format with the default one
+        return dateFormat(isoDate as Date, DEFAULT_FORMAT, {
+          locale: getDateLocale(lng)
+        });
+      } else {
+        throw e;
+      }
+    }
   }
 
   return value;
