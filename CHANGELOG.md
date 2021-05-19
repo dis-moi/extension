@@ -1,3 +1,11 @@
+## [3.75.2](https://github.com/dis-moi/extension/compare/v3.75.1...v3.75.2) (2021-05-19)
+
+
+### Bug Fixes
+
+* **extension:** initialize i18next before store to translate titles in first ([c8c8b8d](https://github.com/dis-moi/extension/commit/c8c8b8d998d86cd792a254692f87bc430c857fde))
+* **extensionTitle:** move t function in withtitle component useLayoutEffect ([61ff05b](https://github.com/dis-moi/extension/commit/61ff05b297443ebb415471a59bb16aa3d2717c55))
+
 ## [3.75.1](https://github.com/dis-moi/extension/compare/v3.75.0...v3.75.1) (2021-05-17)
 
 
