@@ -115,7 +115,7 @@
     "filters": "$t(common.filters)",
     "options": "Options",
     "about": "$t(menu.about)",
-    "post_form": "Poster une contribution sur la page web",
+    "post_form": "Poster sur cette page web",
     "preview": "Prévisualisation",
     "ask_info_form": "Demander une contribution ici",
     "contribution_details": "Détail de la contribution"
