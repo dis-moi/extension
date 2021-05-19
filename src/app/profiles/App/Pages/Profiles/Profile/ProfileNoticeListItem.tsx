@@ -87,20 +87,12 @@ export const ProfileNoticeListItem = ({
   const exampleMatchingUrl =
     notice.exampleMatchingUrl && stripUrlProtocol(notice.exampleMatchingUrl);
   return (
-    <Box className={className}>
-      {notice.screenshot && (
-        <img
-          style={{ width: '100%' }}
-          src={notice.screenshot}
-          alt={t('profiles:notice.screenshot_alt', {
-            exampleMatchingUrl: exampleMatchingUrl
-          })}
-        />
-      )}
-      <Paragraph dangerouslySetInnerHTML={{ __html: notice.strippedMessage }} />
+    <Box as="article" className={className}>
+      {/* If featured */}
       {exampleMatchingUrl && (
         <NoticeTopLine>
           <Pin />
+
           <Trans i18nKey={'profiles:notice.pined_on'}>
             <NoticeHighlight>
               Message épinglé sur
@@ -110,6 +102,36 @@ export const ProfileNoticeListItem = ({
           </Trans>
         </NoticeTopLine>
       )}
+      {/* Endif featured */}
+
+      {notice.screenshot && (
+        <img
+          style={{ width: '100%' }}
+          src={notice.screenshot}
+          alt={t('profiles:notice.screenshot_alt', {
+            exampleMatchingUrl: exampleMatchingUrl
+          })}
+        />
+      )}
+
+      <Paragraph dangerouslySetInnerHTML={{ __html: notice.strippedMessage }} />
+
+      {/* If !featured */}
+      {exampleMatchingUrl && (
+        <NoticeTopLine>
+          <Pin />
+
+          <Trans i18nKey={'profiles:notice.pined_on'}>
+            <NoticeHighlight>
+              Message épinglé sur
+              <NoticeURL>{{ exampleMatchingUrl }}</NoticeURL>
+            </NoticeHighlight>{' '}
+            et d&apos;autres pages web
+          </Trans>
+        </NoticeTopLine>
+      )}
+      {/* Endif !featured */}
+
       <NoticeBottomLine>
         {t('profiles:notice.since', { date: new Date(notice.created) })}
         <BorderButton
