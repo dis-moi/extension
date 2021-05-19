@@ -1,3 +1,10 @@
+## [3.75.3](https://github.com/dis-moi/extension/compare/v3.75.2...v3.75.3) (2021-05-19)
+
+
+### Bug Fixes
+
+* **i18n:** date format on translate file ([14c1e14](https://github.com/dis-moi/extension/commit/14c1e1407c1ac57ee6f67671aaf0ba162b5e39ac))
+
 ## [3.75.2](https://github.com/dis-moi/extension/compare/v3.75.1...v3.75.2) (2021-05-19)
 
 
