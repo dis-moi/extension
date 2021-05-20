@@ -2,7 +2,8 @@ import React from 'react';
 import {
   AddToBrowserMessageBox,
   SlowerMessageBox,
-  PrivacyMessageBox
+  PrivacyMessageBox,
+  ExplainingVideoMessageBox
 } from './';
 
 export default {
@@ -25,4 +26,10 @@ export const WithAction = () => <AddToBrowserMessageBox />;
 
 WithAction.story = {
   name: 'with action'
+};
+
+export const WithVideo = () => <ExplainingVideoMessageBox />;
+
+WithVideo.story = {
+  name: 'with video'
 };

@@ -5,6 +5,7 @@ import Popin from './Popin';
 import PopinParagraph from './PopinParagraph';
 import PopinBottomBar from './PopinBottomBar';
 import PopinSmallText from './PopinSmallText';
+import VideoWrapper from './PopinVideo';
 
 export default {
   title: 'Components/Molecules/Popin'
@@ -81,5 +82,20 @@ export const Install = () => (
       Gratuit, sans publicité, <Link>respecte votre vie privée</Link>
     </PopinSmallText>
     <PopinBottomBar />
+  </Popin>
+);
+
+export const Video = () => (
+  <Popin size={'extralarge'} opened={true} setOpened={action('setOpened')}>
+    <VideoWrapper>
+      <iframe
+        title="DisMoi - Comment ça marche ? www.dismoi.io"
+        src="https://www.youtube.com/embed/y5_qCUhID4Y?feature=oembed"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen=""
+        id="fitvid0"
+      ></iframe>
+    </VideoWrapper>
   </Popin>
 );
