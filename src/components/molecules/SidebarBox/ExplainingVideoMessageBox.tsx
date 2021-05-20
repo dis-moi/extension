@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { Button, Paragraph, Title2 } from 'components/atoms';
 import { Play } from 'components/atoms/icons';
 import SidebarBox from './SidebarBox';
 import ContributionExample from 'assets/img/contributors/contribution-example.jpg';
+import Popin from '../Popin/Popin';
+import VideoWrapper from '../Popin/PopinVideo';
 
 const VideoLink = styled(Button)`
   position: relative;
@@ -58,26 +60,40 @@ const VideoIcon = styled.div`
 
 export default () => {
   const { t } = useTranslation();
+  const [open, setOpen] = useState(false);
   return (
-    <SidebarBox>
-      <Title2 as="h3">C’est quoi DisMoi ?</Title2>
+    <>
+      <SidebarBox>
+        <Title2 as="h3">C’est quoi DisMoi ?</Title2>
 
-      <Paragraph>
-        DisMoi est le 1er réseau social qui vous accompagne sur le web : les
-        contributeurs de DisMoi postent des conseils et éclairages directement
-        sur les pages web que vous visitez.
-      </Paragraph>
+        <Paragraph>
+          DisMoi est le 1er réseau social qui vous accompagne sur le web : les
+          contributeurs de DisMoi postent des conseils et éclairages directement
+          sur les pages web que vous visitez.
+        </Paragraph>
 
-      <VideoLink>
-        <img src={ContributionExample} alt="" />
+        <VideoLink onClick={() => setOpen(true)}>
+          <img src={ContributionExample} alt="" />
 
-        <div>
-          Découvrir comment DisMoi fonctionne en vidéo
-          <VideoIcon>
-            <Play />
-          </VideoIcon>
-        </div>
-      </VideoLink>
-    </SidebarBox>
+          <div>
+            Découvrir comment DisMoi fonctionne en vidéo
+            <VideoIcon>
+              <Play />
+            </VideoIcon>
+          </div>
+        </VideoLink>
+      </SidebarBox>
+      <Popin setOpened={setOpen} opened={open} size={'extralarge'}>
+        <VideoWrapper>
+          <iframe
+            title="DisMoi - Comment ça marche ? www.dismoi.io"
+            src="https://www.youtube.com/embed/y5_qCUhID4Y?feature=oembed"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            id="fitvid0"
+          ></iframe>
+        </VideoWrapper>
+      </Popin>
+    </>
   );
 };
