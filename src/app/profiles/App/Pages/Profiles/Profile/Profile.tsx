@@ -224,7 +224,7 @@ export const Profile = ({
         {connected === false && <AddToBrowserMessageBox />}
         {connected && <PrivacyMessageBox />}
 
-        <ExplainingVideoMessageBox />
+        <ExplainingVideoMessageBox contributor={contributor} />
 
         <SimilarProfiles
           subscribe={handleSubscribe}

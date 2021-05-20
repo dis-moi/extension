@@ -1,88 +1,87 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { Button, Paragraph, Title2 } from 'components/atoms';
+import { BackgroundButton, Button, Paragraph, Title2 } from 'components/atoms';
 import { Play } from 'components/atoms/icons';
 import SidebarBox from './SidebarBox';
-import ContributionExample from 'assets/img/contributors/contribution-example.jpg';
 import Popin from '../Popin/Popin';
 import VideoWrapper from '../Popin/PopinVideo';
+import { StatefulContributor } from 'app/lmem/contributor';
+
+export interface ExplainingVideoMessageBoxProps {
+  contributor: StatefulContributor;
+}
 
 const VideoLink = styled(Button)`
-  position: relative;
+  display: flex;
+  align-items: center;
   margin-top: 16px !important;
+  padding: 0;
   font-weight: normal;
-  text-align: center;
-
-  &,
-  &:hover {
-    color: #fff;
-  }
-
-  & > div {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 32px 16px;
-    font-size: 16px;
-    background-color: rgba(12, 82, 180, 0.95);
-    border-radius: 5px;
-    overflow: hidden;
-  }
-
-  img {
-    max-width: 100%;
-  }
+  text-align: left;
+  text-decoration: none;
+  color: ${props => props.theme.activeColor};
 `;
 
 const VideoIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  margin-top: 16px;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
   background-color: #fff;
   border-radius: 50%;
+  border: 1px solid ${props => props.theme.activeColor};
 
   & > svg {
-    width: 16px;
+    width: 12px;
     height: auto;
     fill: ${props => props.theme.activeColor};
   }
 `;
 
-export default () => {
+const AddButton = styled(BackgroundButton)`
+  margin-top: 16px !important;
+  width: 100%;
+`;
+
+const ExplainingVideoMessageBox = ({
+  contributor
+}: ExplainingVideoMessageBoxProps) => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   return (
     <>
-      <SidebarBox>
-        <Title2 as="h3">C’est quoi DisMoi ?</Title2>
+      <Title2 as="h3">Ajouter DisMoi et suivre {contributor.name}</Title2>
 
+      <SidebarBox>
         <Paragraph>
-          DisMoi est le 1er réseau social qui vous accompagne sur le web : les
+          Recevoir les alertes et conseils de {contributor.name} directement sur
+          les pages web que je visite.
+        </Paragraph>
+
+        <AddButton>Ajouter DisMoi à mon navigateur</AddButton>
+      </SidebarBox>
+
+      <Title2 as="h3">C&apos;est quoi DisMoi ?</Title2>
+
+      <SidebarBox>
+        <Paragraph>
+          DisMoi est le 1er réseau social qui vous accompagne sur le web : Les
           contributeurs de DisMoi postent des conseils et éclairages directement
           sur les pages web que vous visitez.
         </Paragraph>
 
         <VideoLink onClick={() => setOpen(true)}>
-          <img src={ContributionExample} alt="" />
-
-          <div>
-            Découvrir comment DisMoi fonctionne en vidéo
-            <VideoIcon>
-              <Play />
-            </VideoIcon>
-          </div>
+          <VideoIcon>
+            <Play />
+          </VideoIcon>
+          Découvrir comment DisMoi fonctionne en vidéo
         </VideoLink>
       </SidebarBox>
+
       <Popin setOpened={setOpen} opened={open} size={'extralarge'}>
         <VideoWrapper>
           <iframe
@@ -97,3 +96,5 @@ export default () => {
     </>
   );
 };
+
+export default ExplainingVideoMessageBox;

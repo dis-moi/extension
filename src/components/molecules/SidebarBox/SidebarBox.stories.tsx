@@ -5,6 +5,7 @@ import {
   PrivacyMessageBox,
   ExplainingVideoMessageBox
 } from './';
+import { generateStatefulContributor } from 'test/fakers/generateContributor';
 
 export default {
   title: 'Components/Molecules/SidebarBox'
@@ -28,7 +29,9 @@ WithAction.story = {
   name: 'with action'
 };
 
-export const WithVideo = () => <ExplainingVideoMessageBox />;
+export const WithVideo = () => (
+  <ExplainingVideoMessageBox contributor={generateStatefulContributor()} />
+);
 
 WithVideo.story = {
   name: 'with video'
