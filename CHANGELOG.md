@@ -1,3 +1,10 @@
+# [3.76.0](https://github.com/dis-moi/extension/compare/v3.75.3...v3.76.0) (2021-05-20)
+
+
+### Features
+
+* **seeExampleButton:** add link on Subscriptions view ([2c612ff](https://github.com/dis-moi/extension/commit/2c612ff052a939f3ae118b5e5865a31007924e80))
+
 ## [3.75.3](https://github.com/dis-moi/extension/compare/v3.75.2...v3.75.3) (2021-05-19)
 
 
