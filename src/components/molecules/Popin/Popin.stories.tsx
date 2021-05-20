@@ -93,7 +93,6 @@ export const Video = () => (
         src="https://www.youtube.com/embed/y5_qCUhID4Y?feature=oembed"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen=""
         id="fitvid0"
       ></iframe>
     </VideoWrapper>
