@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import { History } from 'history';
 import categories, { CategoriesCollection } from './categories.reducer';
 import connection, { ConnectionState } from './connection.reducer';
+import contextPopin, { ContextPopinState } from './contextPopin.reducer';
 import contributors, {
   ContributorsCollectionState
 } from './contributors.reducer';
@@ -18,7 +19,8 @@ export default (history: History) =>
     connection,
     contributors,
     subscriptions,
-    notices
+    notices,
+    contextPopin
   });
 
 export interface ProfilesState extends RouterRootState {
@@ -27,4 +29,5 @@ export interface ProfilesState extends RouterRootState {
   subscriptions: SubscriptionsCollectionState;
   notices: NoticesCollectionState;
   categories: CategoriesCollection;
+  contextPopin: ContextPopinState;
 }

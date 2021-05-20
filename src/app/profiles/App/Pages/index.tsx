@@ -5,6 +5,7 @@ import Error from './Error';
 import Subscriptions from './Subscriptions';
 import useChangeLanguage from '../../../hooks/useChangeLanguage';
 import { useTranslation } from 'react-i18next';
+import ConnectedContextPopin from '../ContextPopin/';
 
 const Pages = () => {
   useChangeLanguage();
@@ -21,6 +22,7 @@ const Pages = () => {
         />
         <Route component={Error} />
       </Switch>
+      <ConnectedContextPopin />
     </>
   );
 };
