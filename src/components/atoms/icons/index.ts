@@ -19,4 +19,6 @@ export { default as Radio } from './Radio';
 export { default as Reload } from './Reload';
 export { default as ThumbDown } from './ThumbDown';
 export { default as ThumbUp } from './ThumbUp';
+export { default as Follower } from './Follower';
+export { default as Message } from './Message';
 export { default as Play } from './Play';
