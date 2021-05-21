@@ -4,11 +4,8 @@ import { StatefulContributor } from 'libs/domain/contributor';
 import {
   ContributorCard,
   ContributorInfos,
-  ContributorWrapper,
-  StatsWrapper
+  ContributorWrapper
 } from 'components/atoms/Contributor';
-import { LinkIcon } from 'components/atoms/icons';
-import ExternalLink from 'components/atoms/Link/ExternalLink';
 import UserName from 'components/atoms/UserName/UserName';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
@@ -73,10 +70,12 @@ const ProfileIntroContent = styled.section`
       grid-template-columns: auto 1fr;
       grid-column-gap: 24px;
       flex-basis: 100%;
+      align-items: center;
       margin: 0;
 
       ${UserName} {
         display: inline;
+        margin-bottom: 0;
 
         ${Anchor} {
           display: block;
@@ -87,23 +86,14 @@ const ProfileIntroContent = styled.section`
         }
       }
 
-      ${StatsWrapper} {
-        grid-row: 2 /3;
-
-        & + div {
-          margin-top: -5px;
-        }
+      button {
+        padding-top: 6px;
+        padding-bottom: 6px;
       }
 
       @media (max-width: ${props => props.theme.tabletWidth}) {
         display: flex;
         margin-left: 16px;
-
-        ${StatsWrapper} {
-          & + div {
-            margin-top: 15px;
-          }
-        }
       }
     }
   }
