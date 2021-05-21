@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Follower, Message } from 'components/atoms/icons';
 import LogoDismoi from 'components/atoms/LogoDismoi';
 import Avatar from 'components/molecules/Avatar/Avatar';
 
@@ -8,6 +9,17 @@ const Container = styled.div`
   max-width: 1260px;
   margin: 0 auto;
   background-color: #f0f9fd;
+
+  &,
+  & * {
+    box-sizing: border-box;
+  }
+`;
+
+const Box = styled.div`
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 6px #00000026;
 `;
 
 const Header = styled.header`
@@ -21,13 +33,56 @@ const LogoutLink = styled.a`
 `;
 
 const Content = styled.main`
-  margin: 0 24px 30px;
-  padding: 26px 36px 30px 22px;
-  background-color: #fff;
-  border-radius: 8px;
+  margin: 0 24px;
 `;
 
-const Metrics = styled.div``;
+const MetricsWrapper = styled.section`
+  display: flex;
+  align-items: center;
+`;
+
+const Metrics = styled(Box)`
+  display: flex;
+  align-items: center;
+  padding: 12px 18px;
+  min-width: 180px;
+  margin-left: 40px;
+
+  h2 {
+    margin: 0;
+    font-size: 22px;
+  }
+
+  span {
+    display: block;
+    font-size: 16px;
+    font-weight: normal;
+  }
+
+  svg {
+    width: auto;
+    height: 36px;
+    margin-right: 12px;
+    fill: ${props => props.theme.activeColor};
+  }
+`;
+
+const Contributor = styled.h1`
+  display: flex;
+  align-items: center;
+
+  ${Avatar} {
+    margin-right: 16px;
+  }
+`;
+
+const StatsWrapper = styled(Box)`
+  margin-bottom: 30px;
+  padding: 12px 30px 30px 22px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 6px #00000026;
+`;
 
 const Stats = styled.table`
   width: 100%;
@@ -67,28 +122,28 @@ const Dashboard = () => {
       </Header>
 
       <Content>
-        <section>
-          <h1>
+        <MetricsWrapper>
+          <Contributor>
             <Avatar size="normal" />
             60 Millions de Consommateurs
-          </h1>
+          </Contributor>
 
           <Metrics>
-            <img src="" alt="" />
+            <Message />
             <h2>
               1250 <span>Contributions</span>
             </h2>
           </Metrics>
 
           <Metrics>
-            <img src="" alt="" />
+            <Follower />
             <h2>
               18.7 <span>Abonnés</span>
             </h2>
           </Metrics>
-        </section>
+        </MetricsWrapper>
 
-        <section>
+        <StatsWrapper as="section">
           <h3>Dans les 90 derniers jours</h3>
           <Stats>
             <thead>
@@ -143,7 +198,7 @@ const Dashboard = () => {
               <a href="#_">Last</a>
             </Pagination>
           </StatsNav>
-        </section>
+        </StatsWrapper>
       </Content>
     </Container>
   );
