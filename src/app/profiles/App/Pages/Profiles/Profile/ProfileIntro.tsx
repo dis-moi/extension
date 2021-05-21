@@ -135,13 +135,7 @@ export const ProfileIntro = ({
           loading={loading}
           avatarSize="large"
           usernameAs={usernameAs}
-        >
-          {contributor && !!contributor.website && (
-            <ExternalLink href={contributor.website}>
-              <LinkIcon /> {contributor.website}
-            </ExternalLink>
-          )}
-        </ContributorLarge>
+        ></ContributorLarge>
       </ProfileIntroContent>
     </>
   );
