@@ -29,7 +29,7 @@
   "menu": {
     "my_account": "My account",
     "my_data": "My data",
-    "help": "Help",
+    "help": "FAQ",
     "about": "About",
     "contact": "Contact",
     "privacy": "Privacy",
@@ -49,7 +49,7 @@
       "placeholder": "Your@email.com"
     },
     "field_contributor_source": {
-      "label": "Choose the guide you want to ask"
+      "label": "Choose the contributor you want to ask"
     },
     "field_message_question": {
       "placeholder": "Indicate your question in relation with the webpage you are now visiting."
@@ -85,13 +85,13 @@
   "view": {
     "contributions": {
       "disclaimer_no_post": "There are no posts on <br/> this webpage",
-      "button_subtext": "Some info, a bit of advice"
+      "button_subtext": "some info or tip"
     },
     "subscriptions": {
       "title": "$t(menu.subscriptions)",
       "followed_sources": "You're following <br/><strong>{{count}}</strong> contributor",
       "followed_sources_plural": "You're following <br/><strong>{{count}}</strong> contributors",
-      "no_followed_sources": "You're not following any guides right now.<br />To get the most out of DisMoi, subscribe to some contributors!"
+      "no_followed_sources": "You're not following any contributor right now.<br />To get the most out of DisMoi, subscribe to some contributors!"
     },
     "about": {
       "description": "When you visit a webpage, DisMoi lets you read messages from your contributors and post messages yourself.",
@@ -113,7 +113,7 @@
     "subscriptions": "$t(menu.subscriptions)",
     "help": "$t(menu.help)",
     "filters": "$t(common.filters)",
-    "options": "Options",
+    "options": "FAQ and support",
     "about": "$t(menu.about)",
     "post_form": "Post a message here",
     "preview": "Preview",
