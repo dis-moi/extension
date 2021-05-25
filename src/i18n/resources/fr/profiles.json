@@ -69,7 +69,7 @@
     },
     "slower_message_box": {
       "title": "DisMoi ne ralentit pas votre navigateur",
-      "text": "Contrairement à d’autres extensions, DisMoi ne ralentit pas votre navigateur."
+      "text": "Contrairement à d’autres extensions, Dismoi ne ralentit pas le chargement des pages."
     },
     "my_subscriptions": {
       "disclaimer": "<0>Vous devez avoir l'extension Dismoi installée et activée pour voir cette partie.</0> <1>En cas de problème, merci de nous laisser un message.</1>"
