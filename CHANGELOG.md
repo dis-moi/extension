@@ -1,3 +1,10 @@
+## [3.76.1](https://github.com/dis-moi/extension/compare/v3.76.0...v3.76.1) (2021-05-26)
+
+
+### Bug Fixes
+
+* **profileNoticeListItem:** fix storybook issue closes [#988](https://github.com/dis-moi/extension/issues/988) ([ee62d9f](https://github.com/dis-moi/extension/commit/ee62d9fc0d20f9d47ffdf403499575606bf3e18b))
+
 # [3.76.0](https://github.com/dis-moi/extension/compare/v3.75.3...v3.76.0) (2021-05-20)
 
 
