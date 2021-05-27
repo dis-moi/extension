@@ -53,7 +53,8 @@ export const ListScreen = ({
           )
         )}
       </ListContainer>
-      <AddNoticeContainer>
+
+      <AddNoticeContainer shadow={countNotices > 2}>
         <AddNoticeButton />
       </AddNoticeContainer>
     </>
