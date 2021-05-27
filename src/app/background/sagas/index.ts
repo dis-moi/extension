@@ -1,9 +1,11 @@
 import { fork, all, call } from 'redux-saga/effects';
+import PostHog from 'posthog-node';
+import Logger from 'app/utils/Logger';
 import { asBoolean } from 'app/utils/env';
 import MatomoTracker from 'app/matomo';
+import doNotTrack from 'webext/doNotTrack';
 import theme from '../../theme';
 import listenActionsFromMessages from '../../sagas/listenActionsFromMessages';
-import doNotTrack from 'webext/doNotTrack';
 import install from './install';
 import tab from './tab';
 import badge from './badge';
@@ -20,6 +22,7 @@ import tos from './tos.saga';
 import awaitRehydrationSaga from './lib/awaitRehydration.saga';
 import subscriptionsSaga from './subscriptions.saga';
 import tracking from './tracking';
+import posthog from './tracking/posthog';
 import { fetchRestrictedContextsSaga } from './fetchRestrictedContexts.saga';
 import connectSaga from './connect.saga';
 import installationDetailsSaga from './installationDetails.saga';
@@ -58,5 +61,17 @@ export default function* rootSaga() {
 
   if (asBoolean(process.env.TRACKING_BACKEND)) {
     yield fork(ratings);
+  }
+
+  if (process.env.TRACKING_POSTHOG_API_KEY) {
+    const client = new PostHog(process.env.TRACKING_POSTHOG_API_KEY as string, {
+      flushInterval: 0,
+      flushAt: 0
+    });
+    yield fork(posthog(client));
+  } else {
+    Logger.info(
+      `PostHog tracking is deactivated configure a TRACKING_POSTHOG_API_KEY env variable.`
+    );
   }
 }
