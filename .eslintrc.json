@@ -69,6 +69,7 @@
       "warn",
       { "ignoreRestSiblings": true }
     ],
-    "@typescript-eslint/no-empty-function": false
+    "@typescript-eslint/no-empty-function": false,
+    "@typescript-eslint/camelcase": "off"
   }
 }
