@@ -3,7 +3,7 @@ import { asBoolean } from 'app/utils/env';
 import MatomoTracker from 'app/matomo';
 import theme from '../../theme';
 import listenActionsFromMessages from '../../sagas/listenActionsFromMessages';
-import { doNotTrackSettingFromNavigatorIsActivated } from '../../../webext/checkDoNotTrack';
+import doNotTrack from 'webext/doNotTrack';
 import install from './install';
 import tab from './tab';
 import badge from './badge';
@@ -27,9 +27,7 @@ import { loginSaga } from './user.saga';
 import contributionSaga from './contribution';
 
 const tracker =
-  process.env.TRACKING_SITE_ID &&
-  process.env.TRACKING_URL &&
-  doNotTrackSettingFromNavigatorIsActivated() === false
+  process.env.TRACKING_SITE_ID && process.env.TRACKING_URL && !doNotTrack()
     ? new MatomoTracker(process.env.TRACKING_SITE_ID, process.env.TRACKING_URL)
     : undefined;
 
