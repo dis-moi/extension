@@ -78,7 +78,7 @@ const ExplainingVideoMessageBox = ({
           <VideoIcon>
             <Play />
           </VideoIcon>
-          Découvrir comment DisMoi fonctionne en vidéo
+          Comment ça marche ?
         </VideoLink>
       </SidebarBox>
 
