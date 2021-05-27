@@ -39,7 +39,7 @@ module.exports = function webpack(env = {}, argv = {}) {
         {
           oneOf: [
             {
-              test: /\.(png|jpe?g|gif)$/i,
+              test: /\.(png|jpe?g|gif|mp4)$/i,
               include: path.resolve(__dirname, 'src/'),
               loader: 'file-loader',
               options: {
