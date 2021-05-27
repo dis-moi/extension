@@ -54,31 +54,31 @@ const ExplainingVideoMessageBox = ({
   const [open, setOpen] = useState(false);
   return (
     <>
-      <Title2 as="h3">Ajouter DisMoi et suivre {contributor.name}</Title2>
+      <Title2 as="h3">
+        {t('profiles:view.add_follow_box.title')} {contributor.name}
+      </Title2>
 
       <SidebarBox>
         <Paragraph>
-          Recevoir les alertes et conseils de {contributor.name} directement sur
-          les pages web que je visite.
+          {t('profiles:view.add_follow_box.message', {
+            contributorName: contributor?.name,
+            context: contributor?.name && 'contributor'
+          })}
         </Paragraph>
 
-        <AddButton>Ajouter DisMoi à mon navigateur</AddButton>
+        <AddButton>{t('profiles:view.add_follow_box.btn_text')}</AddButton>
       </SidebarBox>
 
-      <Title2 as="h3">C&apos;est quoi DisMoi ?</Title2>
+      <Title2 as="h3">{t('profiles:view.video_box.title')}</Title2>
 
       <SidebarBox>
-        <Paragraph>
-          DisMoi est le 1er réseau social qui vous accompagne sur le web : Les
-          contributeurs de DisMoi postent des conseils et éclairages directement
-          sur les pages web que vous visitez.
-        </Paragraph>
+        <Paragraph>{t('profiles:view.video_box.message')}</Paragraph>
 
         <VideoLink onClick={() => setOpen(true)}>
           <VideoIcon>
             <Play />
           </VideoIcon>
-          Comment ça marche ?
+          {t('profiles:view.video_box.btn_text')}
         </VideoLink>
       </SidebarBox>
 

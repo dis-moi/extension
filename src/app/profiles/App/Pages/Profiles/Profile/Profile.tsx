@@ -222,9 +222,10 @@ export const Profile = ({
 
       <Aside>
         {connected === false && <AddToBrowserMessageBox />}
+        {connected === false && (
+          <ExplainingVideoMessageBox contributor={contributor} />
+        )}
         {connected && <PrivacyMessageBox />}
-
-        <ExplainingVideoMessageBox contributor={contributor} />
 
         <SimilarProfiles
           subscribe={handleSubscribe}
