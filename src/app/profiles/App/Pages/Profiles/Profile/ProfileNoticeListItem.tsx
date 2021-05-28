@@ -41,7 +41,7 @@ const NoticeBottomLine = styled.div`
   font-size: 14px;
 
   & > ${BorderButton} {
-    margin-left: 20px;
+    margin-right: 20px;
   }
 
   @media (max-width: ${props => props.theme.tabletWidth}) {
@@ -133,13 +133,15 @@ export const ProfileNoticeListItem = ({
       )}
 
       <NoticeBottomLine>
-        {t('profiles:notice.since', { date: new Date(notice.created) })}
         <BorderButton
           onClick={seeInContext}
           disabled={!notice.exampleMatchingUrl}
         >
           {t('profiles:action.see_context')}
         </BorderButton>
+        {!featured &&  (
+          {t('profiles:notice.since', { date: new Date(notice.created) })}
+          )}
       </NoticeBottomLine>
     </Box>
   );
