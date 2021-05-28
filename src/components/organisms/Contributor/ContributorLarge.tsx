@@ -39,7 +39,7 @@ const ContributorIntro = styled.div.attrs<IntroProps>(
 `;
 
 interface ContributorLargeProps<S = LocationState> {
-  contributor?: StatefulContributor;
+  contributor: StatefulContributor;
   avatarSize?: AvatarSize;
   onSubscribe: () => void;
   onUnsubscribe: () => void;
@@ -63,7 +63,7 @@ const ContributorLarge = ({
   loading,
   usernameAs
 }: ContributorLargeProps) => (
-  <ContributorCard className={className}>
+  <ContributorCard contributor={contributor} className={className}>
     <>
       <ContributorWrapper>
         <Avatar
