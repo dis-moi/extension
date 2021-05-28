@@ -65,7 +65,8 @@ export const ProfileNoticeListItem = ({
   loading,
   notice,
   seeInContext,
-  className
+  className,
+  featured
 }: ProfileNoticeListItemProps) => {
   const { t } = useTranslation();
 
@@ -88,8 +89,7 @@ export const ProfileNoticeListItem = ({
     notice.exampleMatchingUrl && stripUrlProtocol(notice.exampleMatchingUrl);
   return (
     <Box as="article" className={className}>
-      {/* If featured */}
-      {exampleMatchingUrl && (
+      {featured && exampleMatchingUrl && (
         <NoticeTopLine>
           <Pin />
 
@@ -102,7 +102,6 @@ export const ProfileNoticeListItem = ({
           </Trans>
         </NoticeTopLine>
       )}
-      {/* Endif featured */}
 
       {notice.screenshot && (
         <img
@@ -116,8 +115,7 @@ export const ProfileNoticeListItem = ({
 
       <Paragraph dangerouslySetInnerHTML={{ __html: notice.strippedMessage }} />
 
-      {/* If !featured */}
-      {exampleMatchingUrl && (
+      {!featured && exampleMatchingUrl && (
         <NoticeTopLine>
           <Pin />
 
@@ -130,7 +128,6 @@ export const ProfileNoticeListItem = ({
           </Trans>
         </NoticeTopLine>
       )}
-      {/* Endif !featured */}
 
       <NoticeBottomLine>
         {t('profiles:notice.since', { date: new Date(notice.created) })}
