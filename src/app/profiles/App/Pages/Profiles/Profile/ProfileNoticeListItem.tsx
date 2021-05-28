@@ -11,8 +11,11 @@ const Loading = styled(LoadingRotator)`
 `;
 
 const NoticeTopLine = styled.div`
-  margin-top: 20px;
   margin-bottom: 26px;
+
+  &:not(:first-child) {
+    margin-top: 20px;
+  }
 
   & > svg {
     margin-right: 5px;
