@@ -51,6 +51,7 @@
     "lint:css": "stylelint './src/**/*.{ts,tsx}'",
     "prettier": "prettier-eslint --write src/**/*.{ts,tsx} test/**/*.{ts,tsx,js} manifest/**/*.js webpack/*.js release.*.js",
     "verify": "yarn test && yarn typecheck && yarn lint && yarn build:chromium:production && yarn build-storybook",
+    "verify:quick": "yarn test && yarn typecheck && yarn lint",
     "analyze": "NODE_ENV=production webpack --mode=production --env.PLATFORM=chromium --env.ANALYZE",
     "storybook": "start-storybook -s ./src/assets --ci -p 6007 -c .storybook",
     "build-storybook": "build-storybook"
@@ -58,7 +59,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged ",
-      "pre-push": "yarn verify"
+      "pre-push": "yarn verify:quick"
     }
   },
   "lint-staged": {
