@@ -72,6 +72,7 @@ module.exports = function webpack(env = {}, argv = {}) {
     devServer: {
       historyApiFallback: true,
       stats: 'minimal',
+      noInfo: true,
       contentBase: defaultWebpackConfig.output.path
     },
     output: {

@@ -14,7 +14,9 @@ const Container = styled.div`
   }
 `;
 
-const ContributorBackgroundButton = styled(BackgroundButton)`
+const ContributorBackgroundButton = styled(BackgroundButton).attrs({
+  'data-test-type': 'contributor-button'
+})`
   min-width: 150px;
   text-transform: none;
 
@@ -25,7 +27,9 @@ const ContributorBackgroundButton = styled(BackgroundButton)`
   }
 `;
 
-const ContributorBorderButton = styled(BorderButton)`
+const ContributorBorderButton = styled(BorderButton).attrs({
+  'data-test-type': 'contributor-button'
+})`
   &,
   &:hover {
     color: ${props => props.theme.primaryColor};

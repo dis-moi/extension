@@ -4,7 +4,9 @@ interface Props {
   hasNotices?: boolean;
 }
 
-export const Section = styled.section<Props>`
+export const Section = styled.section.attrs({
+  'data-test-id': 'notification-container'
+})<Props>`
   display: flex;
   flex-direction: column;
   max-width: 384px;
