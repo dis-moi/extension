@@ -104,7 +104,7 @@ export const ProfileNoticeListItem = ({
           <Trans i18nKey={'profiles:notice.pined_on'}>
             <NoticeHighlight>
               Message épinglé sur
-              <NoticeURL>{exampleMatchingUrl}</NoticeURL>
+              <NoticeURL>{{ exampleMatchingUrl }}</NoticeURL>
             </NoticeHighlight>{' '}
             et d&apos;autres pages web
           </Trans>
