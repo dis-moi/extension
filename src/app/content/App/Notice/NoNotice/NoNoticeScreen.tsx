@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link as ReactRouterDomLink } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
-import Title from './Title';
-import { Button, BackgroundButton } from 'components/atoms';
+import { Button } from 'components/atoms';
 import AddNoticeButton from 'components/atoms/Button/AddNoticeButton/AddNoticeButton';
 import { NoNotice } from 'components/atoms/icons';
+import Title from './Title';
 import ButtonContainer from './ButtonContainer';
 
 const Image = styled.div`

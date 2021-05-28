@@ -1,11 +1,6 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import { action } from '@storybook/addon-actions';
-
-import { Button, BorderButton, ButtonWithIcon } from '../';
-import AddNoticeButton from './AddNoticeButton';
-import { BackgroundButton, OpenButton, TransparentButton } from './index';
-import Tab from '../Tab/Tab';
 import { MemoryRouter as Router } from 'react-router';
 import { StoryFn } from '@storybook/addons';
 import ContributorButton from 'components/organisms/Contributor/ContributorButton';
@@ -15,6 +10,10 @@ import { ThumbUp, ThumbDown } from 'components/atoms/icons';
 import BackButton from 'components/organisms/Notification/NotificationHeader/BackButton';
 import CloseButton from 'components/organisms/Notification/NotificationHeader/CloseButton';
 import NavLink from 'components/organisms/Notification/NotificationFooter/NavLink';
+import { Button, BorderButton, ButtonWithIcon } from '../';
+import Tab from '../Tab/Tab';
+import AddNoticeButton from './AddNoticeButton';
+import { BackgroundButton, OpenButton, TransparentButton } from './index';
 
 const ButtonsListBackground = styled.div`
   padding: 20px;

@@ -87,7 +87,6 @@ const StatsWrapper = styled(Box)`
   box-shadow: 0px 0px 6px #00000026;
 `;
 
-
 const Stats = styled.table`
   width: 100%;
   border: 2px solid #e0efff;

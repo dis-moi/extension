@@ -1,9 +1,9 @@
 import React from 'react';
 import { MemoryHistory } from 'history';
 import { RouteComponentProps, withRouter } from 'react-router';
+import LogoImg from 'components/atoms/icons/LogoDisMoi';
 import Container from './Container';
 import LogoContainer from './LogoContainer';
-import LogoImg from 'components/atoms/icons/LogoDisMoi';
 import BackButton from './BackButton';
 import CloseButton from './CloseButton';
 import Title from './Title';

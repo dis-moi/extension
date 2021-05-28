@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import DeleteIcon from './DeleteIcon';
 import { TransparentButton } from 'components/atoms/Button';
+import DeleteIcon from './DeleteIcon';
 
 export default styled(TransparentButton).attrs({
   children: <DeleteIcon />
