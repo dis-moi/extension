@@ -60,7 +60,7 @@ export default styled(Button)`
   min-width: 130px;
   padding: ${props => (props.size === 'big' ? '8px 19px' : '6px 12px')};
   font-weight: bold;
-  font-size: ${props => props.theme.fontSizeDefault};
+  font-size: ${props => props.theme.fontSizeM1};
   color: #fff;
   line-height: 1;
   background-color: ${props =>
