@@ -108,7 +108,7 @@ export const trackNoticeOutboundClickSaga = (client: PostHog) =>
           event: getEventNameFromAction(action),
           properties: {
             noticeId: action.payload.id,
-            $current_url: action.meta.tab.url
+            $current_url: action.payload.clickedUrl
           }
         });
       }
