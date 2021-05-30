@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { optionsRequested } from 'app/actions';
+import { optionsRequested } from 'libs/store/actions';
 import {
   getServiceMessages,
   getServiceMessageAction

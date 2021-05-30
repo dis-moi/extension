@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { BorderButton, Box, LoadingRotator, Paragraph } from 'components/atoms';
 import { Notice } from 'app/lmem/notice';
 import { LoadingBig, Pin } from 'components/atoms/icons';
-import { stripUrlProtocol } from 'app/utils/stripUrlProtocol';
+import { stripUrlProtocol } from 'libs/utils/stripUrlProtocol';
 
 const Loading = styled(LoadingRotator)`
   margin-bottom: 20px;

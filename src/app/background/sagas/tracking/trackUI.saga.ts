@@ -9,9 +9,9 @@ import {
   LocationChangedAction,
   NoticesFoundAction,
   TosAcceptedAction
-} from 'app/actions';
-import { createErrorAction } from 'app/actions/helpers';
-import { Level } from '../../../utils/Logger';
+} from 'libs/store/actions';
+import { createErrorAction } from 'libs/store/actions/helpers';
+import { Level } from 'libs/utils/Logger';
 
 export const startTrackingSaga = (tracker: Tracker) =>
   function*(action: NoticesFoundAction): SagaIterator {

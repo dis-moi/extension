@@ -6,9 +6,9 @@ import {
   isOnboardingRequired,
   isInstallationComplete
 } from 'app/background/selectors';
-import { tosAccepted } from '../../actions';
+import { tosAccepted } from 'libs/store/actions';
 
-import { ContributorId } from '../../lmem/contributor';
+import { ContributorId } from 'app/lmem/contributor';
 
 const expect = chai.expect;
 

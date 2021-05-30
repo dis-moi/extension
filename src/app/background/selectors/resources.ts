@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
-import { isTabAuthorizedByPatterns } from 'webext/isAuthorizedTab';
-import { findItemById } from 'app/utils/findItemById';
+import { isTabAuthorizedByPatterns } from 'libs/webext/isAuthorizedTab';
+import { findItemById } from 'libs/utils/findItemById';
 import { MatchingContext, toPatterns } from '../../lmem/matchingContext';
 import Tab from '../../lmem/tab';
 import { StateWithResources } from '../reducers';

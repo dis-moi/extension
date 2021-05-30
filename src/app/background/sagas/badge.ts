@@ -1,7 +1,7 @@
 import { SagaIterator } from 'redux-saga';
 import { takeLatest, call, select } from 'redux-saga/effects';
 import { BadgeTheme, updateBadge } from 'app/lmem/badge';
-import { ReceivedAction } from 'webext/createMessageHandler';
+import { ReceivedAction } from 'libs/webext/createMessageHandler';
 import {
   badgeUpdateFailed,
   FEEDBACK_ON_NOTICE,
@@ -14,7 +14,7 @@ import {
   MarkNoticeReadAction,
   NoticesFoundAction,
   FeedbackOnNoticeAction
-} from 'app/actions';
+} from 'libs/store/actions';
 import { getNumberOfUnreadNoticesOnTab } from '../selectors';
 import { getNumberOfNoticesOnTab } from '../selectors/tabs';
 

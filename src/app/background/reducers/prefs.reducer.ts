@@ -4,7 +4,7 @@ import {
   MARK_NOTICE_READ,
   TOS_ACCEPTED,
   AppAction
-} from 'app/actions';
+} from 'libs/store/actions';
 
 export interface PrefsState {
   dismissedNotices: number[];

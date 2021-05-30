@@ -4,7 +4,7 @@ import { createMemoryHistory } from 'history';
 import { FormStateMap } from 'redux-form';
 import createSagaMiddleware from '@redux-saga/core';
 import { InstallationDetailsState } from 'app/background/reducers/installationDetails';
-import { ContributorsState } from 'app/store/reducers/contributors.reducer';
+import { ContributorsState } from 'libs/store/reducers/contributors.reducer';
 import rootReducer from './reducers';
 import { UIState } from './reducers/ui';
 import { NoticesState } from './reducers/notices';

@@ -1,6 +1,6 @@
 import { SagaIterator } from 'redux-saga';
 import { takeLatest, select, put } from 'redux-saga/effects';
-import { ACCEPT_TOS, tosAccepted } from '../../actions';
+import { ACCEPT_TOS, tosAccepted } from 'libs/store/actions';
 import { getOptionsTabs } from '../selectors/tabs';
 
 export function* acceptTosSaga(): SagaIterator {

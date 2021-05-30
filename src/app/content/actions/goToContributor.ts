@@ -1,4 +1,4 @@
-import { optionsRequested } from 'app/actions';
+import { optionsRequested } from 'libs/store/actions';
 import pathToContributor from 'app/profiles/App/pathToContributor';
 import { Contributor } from 'app/lmem/contributor';
 

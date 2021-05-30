@@ -1,11 +1,11 @@
 import createCollectionReducer, {
   CollectionState
-} from 'app/store/collection/reducers';
+} from 'libs/store/collection/reducers';
 import {
   REFRESH_CONTRIBUTORS,
   REFRESH_CONTRIBUTORS_FAILED,
   UPDATE_CONTRIBUTORS
-} from 'app/actions';
+} from 'libs/store/actions';
 import { StatefulContributor } from 'app/lmem/contributor';
 
 export type ContributorsCollectionState = CollectionState<StatefulContributor>;

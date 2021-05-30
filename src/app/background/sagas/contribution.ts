@@ -4,8 +4,8 @@ import {
   contributionSubmitted,
   SUBMIT_CONTRIBUTION,
   SubmitContributionAction
-} from 'app/actions/contribution';
-import postContribution from 'api/postContribution';
+} from 'libs/store/actions/contribution';
+import postContribution from 'libs/api/postContribution';
 
 export function* submitContributionSaga({
   payload: contribution,

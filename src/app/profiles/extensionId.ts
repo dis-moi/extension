@@ -1,4 +1,4 @@
-import createMessageSender from '../../webext/createMessageSender';
+import createMessageSender from 'libs/webext/createMessageSender';
 
 const extensionId =
   typeof chrome === 'undefined'

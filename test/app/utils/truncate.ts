@@ -1,6 +1,6 @@
 import chai from 'chai';
 import * as R from 'ramda';
-import { truncateWords } from 'app/utils/truncate';
+import { truncateWords } from 'libs/utils/truncate';
 
 const expect = chai.expect;
 

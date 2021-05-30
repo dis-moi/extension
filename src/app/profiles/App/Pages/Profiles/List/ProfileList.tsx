@@ -19,7 +19,7 @@ import BrowserNotSupportedPopin from '../BrowserNotSupportedPopin';
 import NotConnectedPopin, {
   NotConnectedPopinState
 } from '../NotConnectedPopin';
-import onContributorExampleClick from '../../../../../utils/onContributorExampleClick';
+import onContributorExampleClick from '../../../onContributorExampleClick';
 import { Subscriptions } from '../../../../../lmem/subscription';
 import { ContextPopinState } from '../../../../store/reducers/contextPopin.reducer';
 

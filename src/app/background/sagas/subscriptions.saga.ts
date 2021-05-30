@@ -10,20 +10,20 @@ import {
   UNSUBSCRIBE,
   unsubscribed,
   unsubscribedFailed
-} from 'app/actions';
+} from 'libs/store/actions';
 import {
   getNbSubscriptions,
   getSubscriptions
 } from 'app/background/selectors/subscriptions.selectors';
-import postSubscriptions from 'api/postSubscriptions';
-import { createCallAndRetry } from 'app/sagas/effects/callAndRetry';
+import postSubscriptions from 'libs/api/postSubscriptions';
+import { createCallAndRetry } from 'libs/store/sagas/effects/callAndRetry';
 import {
   FETCH_SUBSCRIPTIONS,
   FetchSubscriptionsAction,
   fetchSubscriptionsFailure,
   fetchSubscriptionsSuccess
-} from 'app/actions/subscriptions';
-import { asArray } from 'app/utils/env';
+} from 'libs/store/actions/subscriptions';
+import { asArray } from 'libs/utils/env';
 import { ContributorId } from '../../lmem/contributor';
 import { loginSaga } from './user.saga';
 

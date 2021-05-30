@@ -20,7 +20,7 @@ import {
   CONTEXT_NOT_TRIGGERED,
   AppAction,
   UNSUBSCRIBE
-} from 'app/actions';
+} from 'libs/store/actions';
 
 export type NoticesState = StatefulNoticeWithContributor[];
 

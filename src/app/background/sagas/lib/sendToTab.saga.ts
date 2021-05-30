@@ -1,10 +1,10 @@
 import { SagaIterator } from 'redux-saga';
 import { delay, call, put } from 'redux-saga/effects';
-import { AppAction, tabDied } from 'app/actions';
+import { AppAction, tabDied } from 'libs/store/actions';
 import Tab from 'app/lmem/tab';
-import Logger from 'app/utils/Logger';
-import sendToTab from 'webext/sendActionToTab';
-import isAuthorizedTab from 'webext/isAuthorizedTab';
+import Logger from 'libs/utils/Logger';
+import sendToTab from 'libs/webext/sendActionToTab';
+import isAuthorizedTab from 'libs/webext/isAuthorizedTab';
 
 const MAX_RETRIES = 5;
 

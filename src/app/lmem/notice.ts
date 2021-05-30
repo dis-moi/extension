@@ -1,5 +1,5 @@
 import { find } from 'ramda';
-import { captureMessage } from '../utils/sentry';
+import { captureMessage } from 'libs/utils/sentry';
 import { Ratings } from './rating';
 import { Contributor, ContributorId, NewContributor } from './contributor';
 

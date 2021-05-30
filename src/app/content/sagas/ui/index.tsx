@@ -11,7 +11,7 @@ import {
 import { render } from 'react-dom';
 import { go, replace } from 'connected-react-router';
 import { StatefulNotice } from 'app/lmem/notice';
-import Logger from 'app/utils/Logger';
+import Logger from 'libs/utils/Logger';
 import {
   close,
   closed,
@@ -29,7 +29,7 @@ import {
   NOTICES_FOUND,
   ToggleUIAction,
   CloseAction
-} from 'app/actions';
+} from 'libs/store/actions';
 import {
   getNoticesToDisplay,
   getPathname,

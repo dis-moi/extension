@@ -4,7 +4,7 @@ import {
   BROWSER_ACTION_CLICKED,
   toggleUI,
   BrowserActionClickedAction
-} from 'app/actions';
+} from 'libs/store/actions';
 
 export function* browserActionClickedSaga({
   meta: { tab }

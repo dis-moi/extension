@@ -1,9 +1,9 @@
 import { fork, all, call } from 'redux-saga/effects';
-import { asBoolean } from 'app/utils/env';
+import { asBoolean } from 'libs/utils/env';
 import MatomoTracker from 'app/matomo';
+import listenActionsFromMessages from 'libs/store/sagas/listenActionsFromMessages';
+import { doNotTrackSettingFromNavigatorIsActivated } from 'libs/webext/checkDoNotTrack';
 import theme from '../../theme';
-import listenActionsFromMessages from '../../sagas/listenActionsFromMessages';
-import { doNotTrackSettingFromNavigatorIsActivated } from '../../../webext/checkDoNotTrack';
 import install from './install';
 import tab from './tab';
 import badge from './badge';

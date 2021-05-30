@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
 import { expect } from 'chai';
-import { clearServiceMessage, showServiceMessage } from 'app/actions';
+import { clearServiceMessage, showServiceMessage } from 'libs/store/actions';
 import serviceMessage, { ServiceMessageState } from './serviceMessage.reducer';
 
 describe('content > reducers > serviceMessage', () => {
