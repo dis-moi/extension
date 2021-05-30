@@ -6,8 +6,8 @@ import {
   CONTRIBUTION_SUBMITTED,
   SUBMIT_CONTRIBUTION,
   SubmitContributionAction
-} from 'app/actions/contribution';
-import { createSubmissionError } from 'app/utils/form';
+} from 'libs/store/actions/contribution';
+import { createSubmissionError } from 'libs/utils/form';
 import { history } from '../store';
 
 export function* submitContributionSaga({

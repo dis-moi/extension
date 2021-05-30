@@ -5,7 +5,7 @@ import {
   UNSUBSCRIBE,
   AppAction,
   UPDATE_CONTRIBUTORS
-} from 'app/actions';
+} from 'libs/store/actions';
 
 export type SubscriptionsState = Contributor['id'][];
 

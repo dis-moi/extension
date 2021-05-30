@@ -1,6 +1,6 @@
 import { Brand } from 'types';
-import { sendContentScriptRequest } from 'webext/contentScript';
-import { captureException } from '../utils/sentry';
+import { sendContentScriptRequest } from 'libs/webext/contentScript';
+import { captureException } from 'libs/utils/sentry';
 import Tab from './tab';
 
 export interface MatchingContext {

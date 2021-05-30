@@ -1,6 +1,6 @@
 import { MouseEvent } from 'react';
 import { Store } from 'redux';
-import { close } from 'app/actions/ui';
+import { close } from 'libs/store/actions/ui';
 import { CloseCause } from '../lmem/ui';
 import { isOpen } from './selectors';
 

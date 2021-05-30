@@ -1,12 +1,12 @@
 import { call, put, take, select } from '@redux-saga/core/effects';
 import { eventChannel } from '@redux-saga/core';
-import createActivatedTabListener from 'webext/createActivatedTabListener';
-import { tabActivated } from 'app/actions';
-import { createErrorAction } from 'app/actions/helpers';
-import { disable } from 'webext/browserAction';
+import createActivatedTabListener from 'libs/webext/createActivatedTabListener';
+import { tabActivated } from 'libs/store/actions';
+import { createErrorAction } from 'libs/store/actions/helpers';
+import { disable } from 'libs/webext/browserAction';
 import { resetBadge } from 'app/lmem/badge';
-import { isOptionsPage } from 'webext/createMessageHandler';
-import { Level } from '../../utils/Logger';
+import { isOptionsPage } from 'libs/webext/createMessageHandler';
+import { Level } from 'libs/utils/Logger';
 import { getTabById } from '../selectors/tabs';
 
 export default function*() {

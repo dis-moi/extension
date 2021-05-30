@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { MatchingContext } from 'app/lmem/matchingContext';
-import { receivedMatchingContexts, unsubscribe } from '../../../actions';
-import { ContributorId } from '../../../lmem/contributor';
+import { receivedMatchingContexts, unsubscribe } from 'libs/store/actions';
+import { ContributorId } from 'app/lmem/contributor';
 import matchingContextsReducer, {
   MatchingContextsState
 } from './matchingContexts.reducer';

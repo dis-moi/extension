@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import { useTranslation, Trans } from 'react-i18next';
 import { Reload } from 'components/atoms/icons';
 import { Title1 } from 'components/atoms/Title1';
-import isChrome from 'app/utils/isChrome';
+import isChrome from 'libs/utils/isChrome';
 import Content from '../components/Content';
 import Text from '../components/Text';
 import Line from '../components/Line';

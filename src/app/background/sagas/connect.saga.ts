@@ -1,9 +1,13 @@
 import { fork, put, take } from 'redux-saga/effects';
-import { CONNECT, connected, disconnected } from 'app/store/actions/connection';
-import createWatchPortSaga from 'app/store/sagas/watchPort.saga';
-import { AppActionWithMeta } from 'app/actions';
-import compareMessageSender from 'webext/compareMessageSender';
-import createMessageSender from 'webext/createMessageSender';
+import {
+  CONNECT,
+  connected,
+  disconnected
+} from 'libs/store/actions/connection';
+import createWatchPortSaga from 'libs/store/sagas/watchPort.saga';
+import { AppActionWithMeta } from 'libs/store/actions';
+import compareMessageSender from 'libs/webext/compareMessageSender';
+import createMessageSender from 'libs/webext/createMessageSender';
 
 type MessageSender = browser.runtime.MessageSender;
 

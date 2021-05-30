@@ -1,6 +1,6 @@
 import { fork, all } from 'redux-saga/effects';
-import locationChange from 'app/sagas/locationChange.saga';
-import backgroundChannel from 'app/sagas/backgroundChannel';
+import locationChange from 'libs/store/sagas/locationChange.saga';
+import backgroundChannel from 'libs/store/sagas/backgroundChannel';
 import init from './init';
 import contribution from './contribution';
 import notices from './notices';

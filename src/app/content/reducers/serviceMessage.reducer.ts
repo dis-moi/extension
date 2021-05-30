@@ -1,4 +1,4 @@
-import { SERVICE_MESSAGE, AppAction } from 'app/actions';
+import { SERVICE_MESSAGE, AppAction } from 'libs/store/actions';
 import ServiceMessage from 'app/lmem/ServiceMessage';
 
 export type ServiceMessageState = ServiceMessage;

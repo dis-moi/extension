@@ -1,4 +1,4 @@
-import { AppAction, OPENED, OpenFrom } from 'app/actions';
+import { AppAction, OPENED, OpenFrom } from 'libs/store/actions';
 
 export interface ServiceMessageState {
   lastShownDate: null | Date;

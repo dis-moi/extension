@@ -1,4 +1,4 @@
-import { UPDATE_CONTRIBUTORS, AppAction } from 'app/actions';
+import { UPDATE_CONTRIBUTORS, AppAction } from 'libs/store/actions';
 import { Contributor } from 'app/lmem/contributor';
 
 export type Contributors = Contributor[];

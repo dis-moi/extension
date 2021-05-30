@@ -1,6 +1,10 @@
 import chai from 'chai';
-import { noticesFound, dismissNotice, likeNotice } from 'app/actions/notices';
-import { init } from 'app/actions/tabs';
+import {
+  noticesFound,
+  dismissNotice,
+  likeNotice
+} from 'libs/store/actions/notices';
+import { init } from 'libs/store/actions/tabs';
 import { StatefulNotice } from 'app/lmem/notice';
 import Tab from 'app/lmem/tab';
 import { generateStatefulNotice } from 'test/fakers/generateNotice';

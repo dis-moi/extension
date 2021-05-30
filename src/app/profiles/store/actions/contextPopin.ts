@@ -1,5 +1,5 @@
+import { StandardAction } from 'libs/store/types';
 import { ContextPopinState } from '../reducers/contextPopin.reducer';
-import { StandardAction } from '../../../store/types';
 
 export const SET_POPIN = 'SET_POPIN';
 

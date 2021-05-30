@@ -9,7 +9,7 @@ import {
   ContributorName,
   Timer
 } from 'components/atoms';
-import { stripHtml } from 'app/utils/stripHtml';
+import { stripHtml } from 'libs/utils/stripHtml';
 import { StatefulNoticeWithContributor } from 'app/lmem/notice';
 import { Contributor } from 'app/lmem/contributor';
 import {

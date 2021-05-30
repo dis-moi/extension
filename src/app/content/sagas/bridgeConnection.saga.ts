@@ -1,15 +1,15 @@
 import { call, takeEvery, take } from 'redux-saga/effects';
-import Logger from 'app/utils/Logger';
+import Logger from 'libs/utils/Logger';
 import {
   MetaWithReceiver,
   MetaWithSender,
   StandardAction
-} from 'app/store/types';
-import { disconnected } from 'app/store/actions/connection';
-import createWindowActionChannel from 'app/store/sagas/window/createActionChannel';
-import windowPostActionSaga from 'app/store/sagas/window/postAction.saga';
-import createPortChannel from 'app/store/sagas/createPortChannel';
-import stripReceiverMeta from 'app/store/stripReceiverMeta';
+} from 'libs/store/types';
+import { disconnected } from 'libs/store/actions/connection';
+import createWindowActionChannel from 'libs/store/sagas/window/createActionChannel';
+import windowPostActionSaga from 'libs/store/sagas/window/postAction.saga';
+import createPortChannel from 'libs/store/sagas/createPortChannel';
+import stripReceiverMeta from 'libs/store/stripReceiverMeta';
 
 type Port = browser.runtime.Port;
 

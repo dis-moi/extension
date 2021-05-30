@@ -8,7 +8,7 @@ import {
   undislikeNotice,
   undismissNotice,
   markNoticeRead
-} from 'app/actions/notices';
+} from 'libs/store/actions/notices';
 
 describe('prefsReducer reducer', function() {
   it('dismiss notice', () => {

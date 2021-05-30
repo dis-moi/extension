@@ -1,5 +1,9 @@
 import * as R from 'ramda';
-import { AppAction, UNSUBSCRIBE, UPDATE_MATCHING_CONTEXTS } from 'app/actions';
+import {
+  AppAction,
+  UNSUBSCRIBE,
+  UPDATE_MATCHING_CONTEXTS
+} from 'libs/store/actions';
 import { MatchingContext } from 'app/lmem/matchingContext';
 import { ContributorId } from 'app/lmem/contributor';
 import { Brand } from '../../../../types';

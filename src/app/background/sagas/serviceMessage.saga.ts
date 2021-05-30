@@ -1,12 +1,12 @@
 import { put, select } from 'redux-saga/effects';
 import * as R from 'ramda';
 import i18n from 'i18next';
-import { open, OpenFrom, showServiceMessage } from 'app/actions';
-import { createErrorAction } from 'app/actions/helpers';
+import { open, OpenFrom, showServiceMessage } from 'libs/store/actions';
+import { createErrorAction } from 'libs/store/actions/helpers';
 import Tab from 'app/lmem/tab';
 import { LinkType } from 'app/lmem/ServiceMessage';
-import { isWithinLastHours } from 'app/utils/areWithinHours';
-import { Level } from '../../utils/Logger';
+import { isWithinLastHours } from 'libs/utils/areWithinHours';
+import { Level } from 'libs/utils/Logger';
 import { getServiceMessageLastShowDate } from '../selectors/serviceMessage.selectors';
 import { getNbSubscriptions } from '../selectors/subscriptions.selectors';
 import { areTosAccepted } from '../selectors/prefs';

@@ -4,8 +4,8 @@ import {
   fetchCategoriesFailure,
   fetchCategoriesRequest,
   fetchCategoriesSuccess
-} from 'app/actions/categories';
-import fetchCategories from 'api/fetchCategories';
+} from 'libs/store/actions/categories';
+import fetchCategories from 'libs/api/fetchCategories';
 
 function* fetchCategoriesSaga() {
   try {

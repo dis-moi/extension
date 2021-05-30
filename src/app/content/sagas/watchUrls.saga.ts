@@ -1,7 +1,7 @@
 import { call, put, take } from '@redux-saga/core/effects';
 import { eventChannel } from '@redux-saga/core';
-import createUrlListener from 'webext/createUrlListener';
-import { createErrorAction } from 'app/actions/helpers';
+import createUrlListener from 'libs/webext/createUrlListener';
+import { createErrorAction } from 'libs/store/actions/helpers';
 
 function* watchUrlsSaga() {
   const channel = yield call(() => eventChannel(createUrlListener));

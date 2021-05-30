@@ -9,7 +9,7 @@ import {
   undislikeNotice as undislike,
   unfoldNotice as view,
   unlikeNotice as unlike
-} from 'app/actions/notices';
+} from 'libs/store/actions/notices';
 import onContributorClick from 'app/content/actions/goToContributor';
 import { ContentState } from 'app/content/store';
 import { getNoticeFromRoute, getNoticeRelayer } from 'app/content/selectors';

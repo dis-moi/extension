@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import truncate from '../../app/utils/truncate';
+import truncate from 'libs/utils/truncate';
 
 interface Props {
   children: string;

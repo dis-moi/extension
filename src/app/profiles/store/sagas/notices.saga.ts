@@ -1,6 +1,6 @@
 import { put, select, takeEvery, takeLatest } from 'redux-saga/effects';
-import { FETCH_NOTICES_REQUEST, fetchNoticesRequest } from 'app/actions';
-import fetchNoticesSaga from 'app/store/sagas/fetchNotices.saga';
+import { FETCH_NOTICES_REQUEST, fetchNoticesRequest } from 'libs/store/actions';
+import fetchNoticesSaga from 'app/profiles/store/sagas/fetchNotices.saga';
 import {
   FETCH_CONTRIBUTOR_NOTICES,
   FETCH_MORE_CONTRIBUTOR_NOTICES,

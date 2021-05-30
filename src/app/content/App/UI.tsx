@@ -8,7 +8,7 @@ import {
   Switch,
   withRouter
 } from 'react-router';
-import { close } from 'app/actions';
+import { close } from 'libs/store/actions';
 import { CloseCause } from 'app/lmem/ui';
 import Notification from 'components/organisms/Notification';
 import { ContentState } from '../store';

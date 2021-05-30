@@ -1,4 +1,4 @@
-import { BaseAction } from '../../../actions';
+import { BaseAction } from 'libs/store/actions';
 
 export const SET_TITLE = 'UI/SET_TITLE';
 

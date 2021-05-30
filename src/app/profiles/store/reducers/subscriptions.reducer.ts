@@ -6,18 +6,18 @@ import {
   SubscribedAction,
   UNSUBSCRIBED,
   UnsubscribedAction
-} from 'app/actions';
+} from 'libs/store/actions';
 import {
   FETCH_SUBSCRIPTIONS,
   FETCH_SUBSCRIPTIONS_FAILURE,
   FETCH_SUBSCRIPTIONS_SUCCESS,
   FetchSubscriptionsSuccessAction
-} from 'app/actions/subscriptions';
-import { initialState, ItemsState } from 'app/store/collection/reducers/items';
-import { CollectionState } from 'app/store/collection/reducers';
-import fetched from 'app/store/collection/reducers/fetched';
-import fetching from 'app/store/collection/reducers/fetching';
-import lastFetched from 'app/store/collection/reducers/lastFetched';
+} from 'libs/store/actions/subscriptions';
+import { initialState, ItemsState } from 'libs/store/collection/reducers/items';
+import { CollectionState } from 'libs/store/collection/reducers';
+import fetched from 'libs/store/collection/reducers/fetched';
+import fetching from 'libs/store/collection/reducers/fetching';
+import lastFetched from 'libs/store/collection/reducers/lastFetched';
 
 export type SubscriptionsCollectionState = CollectionState<Subscription>;
 

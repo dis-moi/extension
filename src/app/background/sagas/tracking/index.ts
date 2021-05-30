@@ -16,12 +16,12 @@ import {
   TOS_ACCEPTED,
   AppAction,
   TosAcceptedAction
-} from 'app/actions';
-import { createErrorAction } from 'app/actions/helpers';
+} from 'libs/store/actions';
+import { createErrorAction } from 'libs/store/actions/helpers';
 import { isFeedBackRatingAction } from 'app/background/sagas/ratings/notices.saga';
 import { loginSaga } from 'app/background/sagas/user.saga';
+import { Level } from 'libs/utils/Logger';
 import { areTosAccepted } from '../../selectors/prefs';
-import { Level } from '../../../utils/Logger';
 import { trackContributorActionSaga } from './trackContributor.saga';
 import {
   startTrackingSaga,

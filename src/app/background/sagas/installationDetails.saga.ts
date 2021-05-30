@@ -5,7 +5,7 @@ import {
   FetchInstallationDetailsAction,
   fetchInstallationDetailsFailure,
   updateInstallationDetails
-} from 'app/actions/install';
+} from 'libs/store/actions/install';
 import { getInstallationDetails } from 'app/background/selectors/installationDetails';
 
 export function* fetchInstallationDetailsSaga({

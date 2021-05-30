@@ -4,12 +4,12 @@ import {
   refreshMatchingContextsFailed,
   SUBSCRIBE,
   SubscribeAction
-} from 'app/actions';
-import { createCallAndRetry } from 'app/sagas/effects/callAndRetry';
+} from 'libs/store/actions';
+import { createCallAndRetry } from 'libs/store/sagas/effects/callAndRetry';
 import { getSubscriptions } from 'app/background/selectors/subscriptions.selectors';
-import minutesToMilliseconds from 'app/utils/minutesToMilliseconds';
+import minutesToMilliseconds from 'libs/utils/minutesToMilliseconds';
 import { ContributorId } from 'app/lmem/contributor';
-import fetchMatchingContexts from 'api/fetchMatchingContexts';
+import fetchMatchingContexts from 'libs/api/fetchMatchingContexts';
 
 const refreshInterval = minutesToMilliseconds(
   Number(process.env.REFRESH_MC_INTERVAL)

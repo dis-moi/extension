@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
 import { expect } from 'chai';
 import * as R from 'ramda';
-import { closed, opened } from '../../../actions';
+import { closed, opened } from 'libs/store/actions';
 import { CloseCause } from '../../../lmem/ui';
 import { loaded } from '../../actions/ui/open.actions';
 import openReducer from './notification.reducer';

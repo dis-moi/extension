@@ -3,7 +3,7 @@ import { ProfilesState } from 'app/profiles/store/reducers';
 import {
   getIndexedOffset,
   isCollectionLoading
-} from 'app/store/collection/selectors';
+} from 'libs/store/collection/selectors';
 import { ContributorId } from 'app/lmem/contributor';
 
 export const getNoticesCollection = (state: ProfilesState) => state.notices;
