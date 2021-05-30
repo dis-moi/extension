@@ -1,6 +1,6 @@
 import { SagaIterator } from 'redux-saga';
 import { ActionPattern, all, call, takeEvery } from 'redux-saga/effects';
-import postRating, { Rating } from 'api/postRating';
+import postRating, { Rating } from 'libs/api/postRating';
 import {
   ActionMetaWithTab,
   AppAction,
@@ -12,7 +12,7 @@ import {
   OUTBOUND_LINK_CLICKED,
   OutboundLinkClickedAction,
   ReceivedFeedbackOnNoticeAction
-} from 'app/actions';
+} from 'libs/store/actions';
 import { RatingType } from 'app/lmem/rating';
 
 export const isFeedBackRatingAction = (action: AppAction) =>

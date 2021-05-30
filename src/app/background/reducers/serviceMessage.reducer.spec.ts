@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
 import { expect } from 'chai';
 import { useFakeTimers } from 'sinon';
-import { opened, OpenFrom } from 'app/actions';
+import { opened, OpenFrom } from 'libs/store/actions';
 import serviceMessage from './serviceMessage.reducer';
 
 describe('background > reducers > serviceMessage', () => {

@@ -1,4 +1,4 @@
-import { BaseAction } from '../../actions';
+import { BaseAction } from 'libs/store/actions';
 
 export const MESSAGE_EVENT_TRIGGERED = 'MESSAGE_EVENT_TRIGGERED';
 

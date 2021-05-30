@@ -1,4 +1,4 @@
-import { InstalledDetails } from 'webext/types';
+import { InstalledDetails } from 'libs/webext/types';
 
 export interface InstallationDetails extends InstalledDetails {
   datetime?: Date;

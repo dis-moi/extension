@@ -9,21 +9,21 @@ import {
   UNSUBSCRIBE,
   UNSUBSCRIBED,
   UPDATE_CONTRIBUTORS
-} from 'app/actions';
+} from 'libs/store/actions';
 import {
   createLoadableContributor,
   StatefulContributor
 } from 'app/lmem/contributor';
-import { initialState, ItemsState } from 'app/store/collection/reducers/items';
-import { CollectionState } from 'app/store/collection/reducers';
-import fetched from 'app/store/collection/reducers/fetched';
-import fetching from 'app/store/collection/reducers/fetching';
-import lastFetched from 'app/store/collection/reducers/lastFetched';
+import { initialState, ItemsState } from 'libs/store/collection/reducers/items';
+import { CollectionState } from 'libs/store/collection/reducers';
+import fetched from 'libs/store/collection/reducers/fetched';
+import fetching from 'libs/store/collection/reducers/fetching';
+import lastFetched from 'libs/store/collection/reducers/lastFetched';
 import {
   FETCH_CONTRIBUTOR_REQUEST,
   FETCH_CONTRIBUTOR_SUCCESS,
   FetchContributorAction
-} from 'app/actions/contributor';
+} from 'libs/store/actions/contributor';
 
 export type ContributorsCollectionState = CollectionState<StatefulContributor>;
 

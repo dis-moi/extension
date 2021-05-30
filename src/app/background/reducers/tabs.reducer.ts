@@ -13,9 +13,9 @@ import {
   ReceivedTabRemovedAction,
   TAB_DIED,
   TAB_REMOVED
-} from 'app/actions';
+} from 'libs/store/actions';
 import { StatefulNoticeWithContributor } from 'app/lmem/notice';
-import { isOptionsPage } from 'webext/createMessageHandler';
+import { isOptionsPage } from 'libs/webext/createMessageHandler';
 
 export interface TabsState {
   [tabId: string]: Tab;

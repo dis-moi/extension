@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import isChrome from 'libs/utils/isChrome';
 import LogoDisMoiWithD from 'components/atoms/icons/LogoDisMoiWithD';
-import isChrome from 'app/utils/isChrome';
 import BulleDisMoi from './components/BulleDisMoi';
 import Landing from './components/Landing';
 import Top from './components/Top';

@@ -1,8 +1,8 @@
 import { SagaIterator } from 'redux-saga';
 import { put, select } from '@redux-saga/core/effects';
+import { login } from 'libs/store/actions/user';
+import uniqId from 'libs/utils/uniqId';
 import { getUserId } from '../selectors/user';
-import { login } from '../../actions/user';
-import uniqId from '../../utils/uniqId';
 
 export function* loginSaga(): SagaIterator {
   let userId = yield select(getUserId);

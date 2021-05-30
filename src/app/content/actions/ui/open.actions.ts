@@ -1,4 +1,4 @@
-import { BaseAction } from 'app/actions';
+import { BaseAction } from 'libs/store/actions';
 
 export const LOADED = 'LOADED';
 

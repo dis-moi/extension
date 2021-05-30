@@ -3,7 +3,7 @@ import { push } from 'connected-react-router';
 import { change } from 'redux-form';
 import { ContentState } from 'app/content/store';
 import { getFlatFormErrors } from 'app/content/selectors';
-import { getContributorsSortedAlphabetically } from 'app/store/selectors/contributors.selectors';
+import { getContributorsSortedAlphabetically } from 'libs/store/selectors/contributors.selectors';
 import { form } from './withReduxForm';
 
 export default connect(

@@ -8,8 +8,8 @@ import {
   UNSUBSCRIBE,
   UPDATE_CONTRIBUTORS,
   ListeningActionsReadyAction
-} from 'app/actions';
-import assocMetaIfNotGiven from 'webext/assocMetaIfNotGiven';
+} from 'libs/store/actions';
+import assocMetaIfNotGiven from 'libs/webext/assocMetaIfNotGiven';
 import { getContributorsWithSubscriptionState } from '../selectors/subscriptions.selectors';
 import { getTabsList } from '../selectors/tabs';
 import sendToTabSaga from './lib/sendToTab.saga';

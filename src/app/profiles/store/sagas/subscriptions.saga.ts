@@ -2,7 +2,7 @@ import { put } from 'redux-saga/effects';
 import {
   fetchSubscriptions,
   fetchSubscriptionsFailure
-} from 'app/actions/subscriptions';
+} from 'libs/store/actions/subscriptions';
 import { extensionMessageSender } from 'app/profiles/extensionId';
 import waitForConnectionSaga from './waitForConnection.saga';
 

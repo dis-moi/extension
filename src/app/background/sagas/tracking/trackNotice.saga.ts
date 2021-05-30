@@ -1,8 +1,8 @@
 import { SagaIterator } from 'redux-saga';
 import { call, put, select } from 'redux-saga/effects';
 import Tracker from 'types/Tracker';
-import truncate from 'app/utils/truncate';
-import { stripHtml } from 'app/utils/stripHtml';
+import truncate from 'libs/utils/truncate';
+import { stripHtml } from 'libs/utils/stripHtml';
 import {
   FeedbackOnNoticeAction,
   getURLFromActionMeta,
@@ -10,14 +10,14 @@ import {
   NoticeDisplayedAction,
   ReceivedOutboundLinkClickedAction,
   UnfoldNoticeAction
-} from 'app/actions';
-import { createErrorAction } from 'app/actions/helpers';
+} from 'libs/store/actions';
+import { createErrorAction } from 'libs/store/actions/helpers';
 import {
   getNoticeById,
   getNumberOfUnreadNoticesOnTab
 } from 'app/background/selectors';
 import { getNumberOfNoticesOnTab } from 'app/background/selectors/tabs';
-import { Level } from '../../../utils/Logger';
+import { Level } from 'libs/utils/Logger';
 
 export const trackNoticeBadgedSaga = (tracker: Tracker) =>
   function*(action: NoticeBadgedAction): SagaIterator {

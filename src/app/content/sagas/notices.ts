@@ -14,8 +14,8 @@ import {
   NO_NOTICES_DISPLAYED,
   NOTICE_UNFOLDED,
   UnfoldNoticeAction
-} from 'app/actions';
-import { createErrorAction } from 'app/actions/helpers';
+} from 'libs/store/actions';
+import { createErrorAction } from 'libs/store/actions/helpers';
 import { getNotices, hasNoticesToDisplay, isOpen } from '../selectors';
 
 export function* closeIfNoMoreNoticeToDisplaySaga() {

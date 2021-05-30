@@ -3,7 +3,7 @@ import {
   dismissNotice as dismiss,
   undismissNotice as undismiss,
   confirmDismissNotice as confirmDismiss
-} from 'app/actions/notices';
+} from 'libs/store/actions/notices';
 import onContributorClick from 'app/content/actions/goToContributor';
 import { getNoticesToDisplay } from 'app/content/selectors';
 import { ContentState } from 'app/content/store';

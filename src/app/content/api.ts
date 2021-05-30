@@ -1,5 +1,5 @@
-import { ContentScriptRequest, isRequest } from 'webext/contentScript';
-import doesDocumentMatchExpression from '../utils/doesDocumentMatchExpression';
+import { ContentScriptRequest, isRequest } from 'libs/webext/contentScript';
+import doesDocumentMatchExpression from 'libs/utils/doesDocumentMatchExpression';
 
 export const availableMethods: Record<string, (...args: any[]) => unknown> = {
   doesDocumentMatchExpression

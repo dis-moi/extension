@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import styled, { keyframes } from 'styled-components';
 import { Title1 } from 'components/atoms/Title1';
-import isChrome from '../../../../utils/isChrome';
+import isChrome from 'libs/utils/isChrome';
 import { StepProps } from './index';
 
 const titleAnim = keyframes`

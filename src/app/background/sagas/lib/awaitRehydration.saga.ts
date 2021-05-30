@@ -1,7 +1,7 @@
 import { select, take } from '@redux-saga/core/effects';
 import { REHYDRATE } from 'redux-persist/es/constants';
+import Logger from 'libs/utils/Logger';
 import { isRehydrated } from '../../selectors';
-import Logger from '../../../utils/Logger';
 
 function* awaitRehydrationSaga() {
   Logger.debug('Checking store rehydratation ...');

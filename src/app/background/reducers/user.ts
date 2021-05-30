@@ -1,5 +1,5 @@
-import { AppAction } from 'app/actions';
-import { LOGIN } from '../../actions/user';
+import { AppAction } from 'libs/store/actions';
+import { LOGIN } from 'libs/store/actions/user';
 
 export type UserState = string | null;
 

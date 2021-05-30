@@ -1,4 +1,4 @@
-import { AppAction, INSTALLATION_DETAILS } from 'app/actions';
+import { AppAction, INSTALLATION_DETAILS } from 'libs/store/actions';
 import { InstallationDetails } from 'app/lmem/installation';
 import { version } from '../../../../package.json';
 

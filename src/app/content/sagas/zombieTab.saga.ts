@@ -7,7 +7,7 @@ import {
   TAB_REMOVED,
   TOGGLE_UI,
   listeningActionsReady
-} from 'app/actions';
+} from 'libs/store/actions';
 
 function* sendListeningBackToBackgroundSaga() {
   yield put(listeningActionsReady('content', { sendToBackground: true }));
