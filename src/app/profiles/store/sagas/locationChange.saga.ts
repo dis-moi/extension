@@ -3,8 +3,8 @@ import { match as Match } from 'react-router';
 import { refreshContributors } from 'libs/store/actions';
 import { fetchContributorRequest } from 'libs/store/actions/contributor';
 import takeLatestLocationChange from 'libs/store/sagas/effects/takeLatestLocationChange';
-import en from 'i18n/resources/en/extension.json';
-import fr from 'i18n/resources/fr/extension.json';
+import en from 'libs/i18n/resources/en/extension.json';
+import fr from 'libs/i18n/resources/fr/extension.json';
 import { fetchContributorNotices } from '../actions/notices';
 import { ContributorId } from '../../../lmem/contributor';
 
