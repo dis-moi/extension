@@ -1,6 +1,6 @@
-import { InstallationDetails } from 'app/lmem/installation';
-import { MatchingContext } from 'app/lmem/matchingContext';
-import Tab from 'app/lmem/tab';
+import { InstallationDetails } from 'libs/lmem/installation';
+import { MatchingContext } from 'libs/lmem/matchingContext';
+import Tab from 'libs/lmem/tab';
 import { ReceivedAction } from 'libs/webext/createMessageHandler';
 import { Level } from 'libs/utils/Logger';
 import { BaseAction, TabAction, TabErrorAction } from '.';

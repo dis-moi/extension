@@ -1,5 +1,5 @@
 import { AppAction, NOTICES_FOUND } from 'libs/store/actions';
-import Tab from 'app/lmem/tab';
+import Tab from 'libs/lmem/tab';
 
 export const initialState = null;
 

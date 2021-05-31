@@ -4,8 +4,8 @@ import {
   UNSUBSCRIBE,
   UPDATE_MATCHING_CONTEXTS
 } from 'libs/store/actions';
-import { MatchingContext } from 'app/lmem/matchingContext';
-import { ContributorId } from 'app/lmem/contributor';
+import { MatchingContext } from 'libs/lmem/matchingContext';
+import { ContributorId } from 'libs/lmem/contributor';
 import { Brand } from '../../../../types';
 
 export type MatchingContextStringId = Brand<string, 'MatchingContextStringId'>;

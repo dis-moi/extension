@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import Popin, { PopinProps } from 'components/molecules/Popin/Popin';
 import PopinParagraph from 'components/molecules/Popin/PopinParagraph';
-import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
+import { ContributorId, StatefulContributor } from 'libs/lmem/contributor';
 import ContributorButton from 'components/organisms/Contributor/ContributorButton';
 
 interface SubscribePopinProps extends PopinProps {

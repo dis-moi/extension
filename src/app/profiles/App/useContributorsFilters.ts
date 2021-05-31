@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { StatefulContributor } from 'app/lmem/contributor';
-import { Categories } from 'app/lmem/category';
+import { StatefulContributor } from 'libs/lmem/contributor';
+import { Categories } from 'libs/lmem/category';
 
 export const distinct = (value: string, index: number, array: string[]) =>
   array.indexOf(value) === index;

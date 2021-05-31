@@ -2,8 +2,8 @@ import {
   LocationChangeAction,
   LocationChangePayload
 } from 'connected-react-router';
-import { CloseCause } from 'app/lmem/ui';
-import Tab from 'app/lmem/tab';
+import { CloseCause } from 'libs/lmem/ui';
+import Tab from 'libs/lmem/tab';
 import { Level } from 'libs/utils/Logger';
 import { BaseAction, ErrorAction, TabAction, TimestampedAction } from '.';
 

@@ -7,13 +7,13 @@ import ThumbDown from 'components/atoms/icons/ThumbDown';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import { Button, ContributorName, Timer } from 'components/atoms';
 import { Relay } from 'components/atoms/icons';
-import { StatefulNoticeWithContributor } from 'app/lmem/notice';
+import { StatefulNoticeWithContributor } from 'libs/lmem/notice';
 import {
   CountDownState,
   initialState as countdownInitialState
-} from 'app/lmem/countdown';
-import { Contributor } from 'app/lmem/contributor';
-import { formatMessage } from 'app/lmem/format/message';
+} from 'libs/lmem/countdown';
+import { Contributor } from 'libs/lmem/contributor';
+import { formatMessage } from 'libs/lmem/format/message';
 import Date from './Date';
 import Feedbacks from './Feedbacks';
 import Message from './Message';

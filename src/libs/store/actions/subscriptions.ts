@@ -1,5 +1,5 @@
 import { ActionMeta, BaseAction, ErrorAction } from 'libs/store/actions';
-import { Subscriptions } from 'app/lmem/subscription';
+import { Subscriptions } from 'libs/lmem/subscription';
 import { Level } from 'libs/utils/Logger';
 
 export const FETCH_SUBSCRIPTIONS = 'FETCH_SUBSCRIPTIONS';

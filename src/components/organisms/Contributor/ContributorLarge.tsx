@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { LocationDescriptor, LocationState } from 'history';
-import { AvatarSize, StatefulContributor } from 'app/lmem/contributor';
+import { AvatarSize, StatefulContributor } from 'libs/lmem/contributor';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import UserName from 'components/atoms/UserName/UserName';
 import {

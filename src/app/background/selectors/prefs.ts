@@ -4,7 +4,7 @@ import {
   isIgnored,
   shouldNoticeBeShown,
   StatefulNoticeWithContributor
-} from 'app/lmem/notice';
+} from 'libs/lmem/notice';
 import { BackgroundState } from '../reducers';
 
 export const getPrefs = (state: BackgroundState) => state.prefs;

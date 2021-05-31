@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { ExternalLink, OpenButton } from 'components/atoms';
 import withTitle from 'app/content/hocs/withTitle';
-import { WEBSITE_DOMAIN } from 'app/lmem';
+import { WEBSITE_DOMAIN } from 'libs/lmem';
 import Account from './Account';
 
 type MenuProps = RouteComponentProps;

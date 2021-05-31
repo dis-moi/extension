@@ -1,5 +1,5 @@
 import { BaseAction } from 'libs/store/actions';
-import { ContributorId } from 'app/lmem/contributor';
+import { ContributorId } from 'libs/lmem/contributor';
 
 export const FETCH_CONTRIBUTOR_NOTICES = 'FETCH_CONTRIBUTOR_NOTICES';
 export interface FetchContributorNoticesAction extends BaseAction {

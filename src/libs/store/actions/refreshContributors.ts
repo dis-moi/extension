@@ -1,4 +1,4 @@
-import { Contributor, StatefulContributor } from 'app/lmem/contributor';
+import { Contributor, StatefulContributor } from 'libs/lmem/contributor';
 import { Level } from 'libs/utils/Logger';
 import { ActionMeta, BaseAction, ErrorAction } from '.';
 

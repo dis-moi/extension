@@ -1,4 +1,4 @@
-import Tab from 'app/lmem/tab';
+import Tab from 'libs/lmem/tab';
 import forbiddenTabs from './forbiddenTabs';
 
 export const isTabAuthorizedByPatterns = (patterns: RegExp[]) => (

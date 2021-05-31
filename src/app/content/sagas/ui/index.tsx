@@ -10,7 +10,7 @@ import {
 } from 'redux-saga/effects';
 import { render } from 'react-dom';
 import { go, replace } from 'connected-react-router';
-import { StatefulNotice } from 'app/lmem/notice';
+import { StatefulNotice } from 'libs/lmem/notice';
 import Logger from 'libs/utils/Logger';
 import {
   close,
@@ -30,6 +30,7 @@ import {
   ToggleUIAction,
   CloseAction
 } from 'libs/store/actions';
+import { CloseCause } from 'libs/lmem/ui';
 import {
   getNoticesToDisplay,
   getPathname,
@@ -42,7 +43,6 @@ import theme from '../../../theme';
 import App from '../../App';
 import { history } from '../../store';
 import { LOADED } from '../../actions/ui/open.actions';
-import { CloseCause } from '../../../lmem/ui';
 import { fakeLoadingSaga } from './fakeLoading.saga';
 
 const iframe = create(theme.iframe.style);

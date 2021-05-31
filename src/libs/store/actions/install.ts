@@ -1,5 +1,5 @@
-import { InstallationDetails } from 'app/lmem/installation';
-import { ContributorId } from 'app/lmem/contributor';
+import { InstallationDetails } from 'libs/lmem/installation';
+import { ContributorId } from 'libs/lmem/contributor';
 import { Level } from 'libs/utils/Logger';
 import { InstalledDetails } from 'libs/webext/types';
 import { ActionMeta, BaseAction, ErrorAction } from '.';

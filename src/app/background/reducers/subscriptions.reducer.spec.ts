@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions, @typescript-eslint/ban-ts-ignore */
 import { expect } from 'chai';
 import { subscribe, SubscribeAction } from 'libs/store/actions';
-import { ContributorId } from 'app/lmem/contributor';
+import { ContributorId } from 'libs/lmem/contributor';
 import subscriptionsReducer, {
   SubscriptionsState
 } from './subscriptions.reducer';

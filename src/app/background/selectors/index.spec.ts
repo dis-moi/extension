@@ -8,7 +8,7 @@ import {
 } from 'app/background/selectors';
 import { tosAccepted } from 'libs/store/actions';
 
-import { ContributorId } from 'app/lmem/contributor';
+import { ContributorId } from 'libs/lmem/contributor';
 
 const expect = chai.expect;
 
