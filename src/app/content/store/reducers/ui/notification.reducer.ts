@@ -1,7 +1,7 @@
 import * as R from 'ramda';
 import { CLOSED, OPENED } from 'libs/store/actions';
-import { LOADED } from 'app/content/actions/ui/open.actions';
-import { ContentAction } from 'app/content/actions';
+import { LOADED } from 'app/content/store/actions/ui/open.actions';
+import { ContentAction } from 'app/content/store/actions';
 
 export interface NotificationState {
   mounted: boolean;

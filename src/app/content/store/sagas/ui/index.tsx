@@ -31,6 +31,10 @@ import {
   CloseAction
 } from 'libs/store/actions';
 import { CloseCause } from 'libs/lmem/ui';
+import { append, create, hide, show } from 'app/content/extensionIframe';
+import theme from 'app/theme';
+import App from 'app/content/App';
+import { history } from 'app/content/store';
 import {
   getNoticesToDisplay,
   getPathname,
@@ -38,10 +42,6 @@ import {
   isMounted as isNotificationMounted,
   isOpen as isNotificationOpen
 } from '../../selectors';
-import { append, create, hide, show } from '../../extensionIframe';
-import theme from '../../../theme';
-import App from '../../App';
-import { history } from '../../store';
 import { LOADED } from '../../actions/ui/open.actions';
 import { fakeLoadingSaga } from './fakeLoading.saga';
 

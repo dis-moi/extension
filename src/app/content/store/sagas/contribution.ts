@@ -8,7 +8,7 @@ import {
   SubmitContributionAction
 } from 'libs/store/actions/contribution';
 import { createSubmissionError } from 'libs/utils/form';
-import { history } from '../store';
+import { history } from '../';
 
 export function* submitContributionSaga({
   meta: { form, resolve, reject }

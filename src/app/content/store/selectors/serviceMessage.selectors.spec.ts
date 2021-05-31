@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import { expect } from 'chai';
-import { StateWithServiceMessage } from '../store';
+import { StateWithServiceMessage } from '../reducers';
 import { hasServiceMessage } from './serviceMessage.selectors';
 
 describe('content > selectors > serviceMessage', () => {
