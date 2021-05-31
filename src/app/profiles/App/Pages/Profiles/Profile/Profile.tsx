@@ -221,7 +221,6 @@ export const Profile = ({
       </MainCol>
 
       <Aside>
-        {connected === false && <AddToBrowserMessageBox />}
         {connected === false && (
           <ExplainingVideoMessageBox contributor={contributor} />
         )}
