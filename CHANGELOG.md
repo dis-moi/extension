@@ -1,3 +1,10 @@
+## [3.76.4](https://github.com/dis-moi/extension/compare/v3.76.3...v3.76.4) (2021-05-31)
+
+
+### Bug Fixes
+
+* **youtubeVideoMessage:** use notice state to memoize formated message ([1147c62](https://github.com/dis-moi/extension/commit/1147c629be1e1e1a83519e3ff33d39f54c92e5b4))
+
 ## [3.76.3](https://github.com/dis-moi/extension/compare/v3.76.2...v3.76.3) (2021-05-31)
 
 
