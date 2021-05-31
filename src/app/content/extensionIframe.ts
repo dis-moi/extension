@@ -1,5 +1,5 @@
 import { Promise } from 'es6-promise';
-import { iFrameId } from 'app/constants/iframe';
+import { iFrameId } from 'app/content/constants/iframe';
 
 export const create = (style: {
   [key: string]: string | number;
