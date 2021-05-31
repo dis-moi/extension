@@ -39,13 +39,24 @@ module.exports = function webpack(env = {}, argv = {}) {
         {
           oneOf: [
             {
-              test: /\.(png|jpe?g|gif|mp4)$/i,
+              test: /\.(png|jpe?g|gif)$/i,
               include: path.resolve(__dirname, 'src/'),
               loader: 'file-loader',
               options: {
                 publicPath: env.PROFILES_ASSETS_PATH,
                 name: '[path][name].[ext]',
                 context: 'src/assets'
+              }
+            },
+            {
+              test: /\.(mp4)$/i,
+              include: path.resolve(__dirname, 'src/'),
+              loader: 'file-loader',
+              options: {
+                outputPath: 'video',
+                publicPath: 'https://profiles.dismoi.io/video/',
+                name: '[path][name].[ext]',
+                context: 'src/assets/video'
               }
             },
             ...defaultWebpackConfig.module.rules[0].oneOf
