@@ -13,7 +13,7 @@ module.exports = ({ config }) => {
   config.module.rules = [
     ...config.module.rules,
     {
-      test: /\.(png|jpe?g|gif)$/i,
+      test: /\.(png|jpe?g|gif|mp4)$/i,
       loader: 'file-loader',
       options: {
         publicPath: process.env.PROFILES_ASSETS_PATH,

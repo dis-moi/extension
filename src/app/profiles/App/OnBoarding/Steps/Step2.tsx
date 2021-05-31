@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Title1 } from 'components/atoms/Title1';
 import { Bullito, Reload } from 'components/atoms/icons';
+import film from 'assets/video/dismoi-onboarding.mp4';
 import Text from '../components/Text';
 import Video from '../components/Video';
 import Line from '../components/Line';
@@ -26,12 +27,7 @@ export default ({ next }: StepProps) => {
       <MarginTitle>{t('view.onBoarding.step2.title')}</MarginTitle>
       <Content>
         {displayVid && (
-          <Video
-            src={'/video/dismoi-onboarding.mp4'}
-            autoPlay
-            muted
-            onEnded={onEnded}
-          >
+          <Video src={film} autoPlay muted onEnded={onEnded}>
             {t('error.common.browser_old')} <code>video</code>.
           </Video>
         )}
