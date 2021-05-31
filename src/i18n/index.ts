@@ -3,16 +3,14 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 import resources from './resources';
 import format from './format';
-
-export type SupportedLanguage = 'en' | 'fr';
-export const fallbackLng = 'en';
+import { DEFAULT_LANGUAGE } from './config';
 
 export const options = {
   resources,
   detection: {
     caches: []
   },
-  fallbackLng,
+  fallbackLng: DEFAULT_LANGUAGE,
   ns: ['extension', 'profiles'],
   defaultNS: 'extension',
   debug: true,

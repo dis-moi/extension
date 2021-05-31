@@ -1,4 +1,5 @@
-import i18n, { SupportedLanguage } from '../../i18n';
+import i18n from '../../i18n';
+import { SupportedLanguage } from 'i18n/config';
 import { useLocation } from 'react-router';
 
 const fr = 'fr';
