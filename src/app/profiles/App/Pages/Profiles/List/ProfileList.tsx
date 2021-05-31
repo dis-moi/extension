@@ -22,7 +22,6 @@ import NotConnectedPopin, {
 } from '../NotConnectedPopin';
 import onContributorExampleClick from '../../../onContributorExampleClick';
 import { ContextPopinState } from '../../../../store/reducers/contextPopin.reducer';
-import LazyOnBoarding from '../../../OnBoarding';
 
 const Title = styled(Title2)`
   padding-top: 30px;

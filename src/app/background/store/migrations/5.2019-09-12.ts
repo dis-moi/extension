@@ -1,6 +1,6 @@
 import { PersistedState } from 'redux-persist/es/types';
 import * as RA from 'ramda-adjunct';
-import { PersistedBackgroundState } from '../../reducers';
+import { PersistedBackgroundState } from '../reducers';
 import { StateV4 } from './StateV4';
 import { overPrefs } from './helpers';
 
