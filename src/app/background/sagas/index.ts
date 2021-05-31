@@ -2,7 +2,7 @@ import { fork, all, call } from 'redux-saga/effects';
 import PostHog from 'posthog-node';
 import Logger from 'libs/utils/Logger';
 import { asBoolean } from 'libs/utils/env';
-import MatomoTracker from 'app/matomo';
+import MatomoTracker from 'app/background/matomo';
 import doNotTrack from 'libs/webext/doNotTrack';
 import listenActionsFromMessages from 'libs/store/sagas/listenActionsFromMessages';
 import theme from '../../theme';
