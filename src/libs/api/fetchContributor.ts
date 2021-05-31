@@ -1,4 +1,4 @@
-import { Contributor, ContributorId } from 'app/lmem/contributor';
+import { Contributor, ContributorId } from 'libs/lmem/contributor';
 import { get } from './call';
 
 const fetchContributor = (contributorId: ContributorId): Promise<Contributor> =>

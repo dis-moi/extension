@@ -4,8 +4,8 @@ import withTitle from 'app/content/hocs/withTitle';
 import NoticeDetails, {
   NoticeDetailsMethodsProps
 } from 'components/organisms/NoticeDetails/NoticeDetails';
-import { StatefulNoticeWithContributor } from 'app/lmem/notice';
-import { Contributor } from 'app/lmem/contributor';
+import { StatefulNoticeWithContributor } from 'libs/lmem/notice';
+import { Contributor } from 'libs/lmem/contributor';
 import withConnect from './withConnect';
 
 export interface DetailsScreenDataProps {

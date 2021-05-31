@@ -10,8 +10,8 @@ import {
   SelectField
 } from 'components/organisms/Fields';
 import FormErrors from 'components/molecules/FormErrors';
-import { Question } from 'app/lmem/notice';
-import { StatefulContributor } from 'app/lmem/contributor';
+import { Question } from 'libs/lmem/notice';
+import { StatefulContributor } from 'libs/lmem/contributor';
 import withReduxForm from './withReduxForm';
 
 export interface QuestionFormOwnProps {

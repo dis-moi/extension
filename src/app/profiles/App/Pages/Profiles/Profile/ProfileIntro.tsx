@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StatefulContributor } from 'app/lmem/contributor';
+import { StatefulContributor } from 'libs/lmem/contributor';
 import {
   ContributorCard,
   ContributorInfos,

@@ -1,5 +1,5 @@
 import { ActionMeta, BaseAction, ErrorAction } from 'libs/store/actions';
-import { ContributorId, FetchedContributor } from 'app/lmem/contributor';
+import { ContributorId, FetchedContributor } from 'libs/lmem/contributor';
 import { Level } from 'libs/utils/Logger';
 
 export const FETCH_CONTRIBUTOR_REQUEST = 'FETCH_CONTRIBUTOR_REQUEST';

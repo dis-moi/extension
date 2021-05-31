@@ -1,5 +1,5 @@
 import { ReceivedAction } from 'libs/webext/createMessageHandler';
-import Tab from 'app/lmem/tab';
+import Tab from 'libs/lmem/tab';
 import { StandardAction } from 'libs/store/types';
 import { BaseAction, TabAction } from '.';
 

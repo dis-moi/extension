@@ -5,7 +5,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import BackgroundButton from 'components/atoms/Button/BackgroundButton/BackgroundButton';
 import InteractiveAvatar from 'components/molecules/InteractiveAvatar';
 import ContributorListItem from 'components/atoms/ContributorListItem';
-import { Contributor, StatefulContributor } from 'app/lmem/contributor';
+import { Contributor, StatefulContributor } from 'libs/lmem/contributor';
 import Container from './Container';
 import Illustration from './Illustration';
 

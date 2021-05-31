@@ -1,6 +1,6 @@
 import { reduxForm } from 'redux-form';
-import { Contribution } from 'app/lmem/notice';
-import validate from 'app/lmem/contribution/validateForm';
+import { Contribution } from 'libs/lmem/notice';
+import validate from 'libs/lmem/contribution/validateForm';
 import { form } from '../ContributeScreen/SubmitContributionForm/withReduxForm';
 import { PreviewScreenOwnProps } from './PreviewScreen';
 

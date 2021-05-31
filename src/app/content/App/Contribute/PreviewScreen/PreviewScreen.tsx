@@ -4,7 +4,7 @@ import { withTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import styled from 'styled-components';
 
-import { Contribution } from 'app/lmem/notice';
+import { Contribution } from 'libs/lmem/notice';
 import { FormMeta } from 'libs/store/actions';
 import NoticePreview from 'components/organisms/NoticePreview';
 import { BackgroundButton, Button } from 'components/atoms';

@@ -11,7 +11,7 @@ import {
   confirmDismissNotice,
   confirmDislikeNotice,
   StatefulNoticeWithContributor
-} from 'app/lmem/notice';
+} from 'libs/lmem/notice';
 import {
   FEEDBACK_ON_NOTICE,
   MARK_NOTICE_READ,

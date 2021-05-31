@@ -1,6 +1,6 @@
 import { PersistedState } from 'redux-persist/es/types';
-import { Criteria } from '../../../lmem/criterion';
-import { InstallationDetails } from '../../../lmem/installation';
+import { Criteria } from 'libs/lmem/criterion';
+import { InstallationDetails } from 'libs/lmem/installation';
 
 interface StateV1Prefs {
   websites: unknown;

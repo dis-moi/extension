@@ -1,4 +1,4 @@
-import { Categories } from 'app/lmem/category';
+import { Categories } from 'libs/lmem/category';
 import { createErrorAction } from './helpers';
 
 export const FETCH_CATEGORIES_REQUEST = 'CATEGORIES/FETCH_REQUEST';

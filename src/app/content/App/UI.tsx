@@ -9,7 +9,7 @@ import {
   withRouter
 } from 'react-router';
 import { close } from 'libs/store/actions';
-import { CloseCause } from 'app/lmem/ui';
+import { CloseCause } from 'libs/lmem/ui';
 import Notification from 'components/organisms/Notification';
 import { ContentState } from '../store';
 import {

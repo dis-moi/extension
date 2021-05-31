@@ -24,7 +24,7 @@ import {
   fetchSubscriptionsSuccess
 } from 'libs/store/actions/subscriptions';
 import { asArray } from 'libs/utils/env';
-import { ContributorId } from '../../lmem/contributor';
+import { ContributorId } from 'libs/lmem/contributor';
 import { loginSaga } from './user.saga';
 
 const PRESELECTED_CONTRIBUTORS_IDS = asArray<ContributorId>(

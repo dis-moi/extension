@@ -5,8 +5,8 @@ import {
   likeNotice
 } from 'libs/store/actions/notices';
 import { init } from 'libs/store/actions/tabs';
-import { StatefulNotice } from 'app/lmem/notice';
-import Tab from 'app/lmem/tab';
+import { StatefulNotice } from 'libs/lmem/notice';
+import Tab from 'libs/lmem/tab';
 import { generateStatefulNotice } from 'test/fakers/generateNotice';
 
 const expect = chai.expect;

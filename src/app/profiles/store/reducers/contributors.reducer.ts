@@ -13,7 +13,7 @@ import {
 import {
   createLoadableContributor,
   StatefulContributor
-} from 'app/lmem/contributor';
+} from 'libs/lmem/contributor';
 import { initialState, ItemsState } from 'libs/store/collection/reducers/items';
 import { CollectionState } from 'libs/store/collection/reducers';
 import fetched from 'libs/store/collection/reducers/fetched';

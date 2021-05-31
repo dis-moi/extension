@@ -6,7 +6,7 @@ import {
   Contributor,
   StatefulContributor,
   sortContributorsAlphabetically
-} from 'app/lmem/contributor';
+} from 'libs/lmem/contributor';
 import { findItemById } from 'libs/utils/findItemById';
 import { ContributorsState } from '../reducers/contributors.reducer';
 

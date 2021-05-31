@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { List, ExternalLink, Anchor } from 'components/atoms';
 import withTitle from 'app/content/hocs/withTitle';
-import { WEBSITE_DOMAIN } from 'app/lmem';
+import { WEBSITE_DOMAIN } from 'libs/lmem';
 import Content from '../Account/About/Content';
 import Container from './Container';
 import ContentTitle from './ContentTitle';

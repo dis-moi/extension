@@ -11,7 +11,7 @@ import {
 } from 'libs/store/actions';
 import { configureSentryScope, initSentry } from 'libs/utils/sentry';
 import { connect } from 'libs/store/actions/connection';
-import { OPTIONS_MENU_ITEM_ID } from 'app/lmem/tab';
+import { OPTIONS_MENU_ITEM_ID } from 'libs/lmem/tab';
 import i18n, { options } from 'libs/i18n';
 import { store } from './store';
 

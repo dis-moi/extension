@@ -6,7 +6,7 @@ import {
   REFRESH_CONTRIBUTORS_FAILED,
   UPDATE_CONTRIBUTORS
 } from 'libs/store/actions';
-import { StatefulContributor } from 'app/lmem/contributor';
+import { StatefulContributor } from 'libs/lmem/contributor';
 
 export type ContributorsCollectionState = CollectionState<StatefulContributor>;
 

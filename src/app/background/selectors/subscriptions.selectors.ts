@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import * as R from 'ramda';
-import { Contributor, StatefulContributor } from 'app/lmem/contributor';
+import { Contributor, StatefulContributor } from 'libs/lmem/contributor';
 import { StateWithSubscriptions } from 'app/background/reducers';
 import { getContributors } from './resources';
 

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import * as R from 'ramda';
-import { Subscription } from 'app/lmem/subscription';
+import { Subscription } from 'libs/lmem/subscription';
 import {
   SUBSCRIBED,
   SubscribedAction,

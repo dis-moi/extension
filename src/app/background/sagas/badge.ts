@@ -1,6 +1,6 @@
 import { SagaIterator } from 'redux-saga';
 import { takeLatest, call, select } from 'redux-saga/effects';
-import { BadgeTheme, updateBadge } from 'app/lmem/badge';
+import { BadgeTheme, updateBadge } from 'libs/lmem/badge';
 import { ReceivedAction } from 'libs/webext/createMessageHandler';
 import {
   badgeUpdateFailed,
