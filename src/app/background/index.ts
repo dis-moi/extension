@@ -12,7 +12,7 @@ import {
 import { configureSentryScope, initSentry } from 'libs/utils/sentry';
 import { connect } from 'libs/store/actions/connection';
 import { OPTIONS_MENU_ITEM_ID } from 'app/lmem/tab';
-import i18n, { options } from 'i18n';
+import i18n, { options } from 'libs/i18n';
 import { store } from './store';
 
 type Port = browser.runtime.Port;
