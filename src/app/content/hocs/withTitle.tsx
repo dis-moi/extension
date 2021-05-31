@@ -1,7 +1,7 @@
 import React, { ComponentType, useLayoutEffect } from 'react';
 import i18next from 'i18next';
 import { connect } from 'react-redux';
-import { removeUITitle, setUITitle } from 'app/content/actions/ui/title';
+import { removeUITitle, setUITitle } from 'app/content/store/actions/ui/title';
 
 interface TitleProps {
   setUITitle: (title: string) => void;

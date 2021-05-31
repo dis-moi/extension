@@ -1,4 +1,4 @@
-import { ContentAction } from 'app/content/actions';
+import { ContentAction } from 'app/content/store/actions';
 import { REMOVE_TITLE, SET_TITLE } from '../../actions/ui/title';
 
 const initialState = null;
