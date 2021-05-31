@@ -66,7 +66,9 @@ const ExplainingVideoMessageBox = ({
           })}
         </Paragraph>
 
-        <AddButton>{t('profiles:view.add_follow_box.btn_text')}</AddButton>
+        <AddButton className="bulle-installer">
+          {t('profiles:view.add_follow_box.btn_text')}
+        </AddButton>
       </SidebarBox>
 
       <Title2 as="h3">{t('profiles:view.video_box.title')}</Title2>
