@@ -1,5 +1,5 @@
-import Tab from 'app/lmem/tab';
-import ServiceMessage from 'app/lmem/ServiceMessage';
+import Tab from 'libs/lmem/tab';
+import ServiceMessage from 'libs/lmem/ServiceMessage';
 import { TabAction } from './';
 
 export const SERVICE_MESSAGE = 'SERVICE_MESSAGE';

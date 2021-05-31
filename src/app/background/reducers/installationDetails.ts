@@ -1,5 +1,5 @@
 import { AppAction, INSTALLATION_DETAILS } from 'libs/store/actions';
-import { InstallationDetails } from 'app/lmem/installation';
+import { InstallationDetails } from 'libs/lmem/installation';
 import { version } from '../../../../package.json';
 
 export type InstallationDetailsState = InstallationDetails;

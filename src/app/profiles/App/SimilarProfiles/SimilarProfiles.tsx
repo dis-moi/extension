@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { withRouter } from 'react-router';
 import styled from 'styled-components';
-import { StatefulContributor } from 'app/lmem/contributor';
+import { StatefulContributor } from 'libs/lmem/contributor';
 import {
   CenterContainer,
   Link,

@@ -1,4 +1,4 @@
-import Tab from 'app/lmem/tab';
+import Tab from 'libs/lmem/tab';
 
 export const disable = (tab: Tab) => {
   if (tab.id) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ServiceMessageAction } from 'app/lmem/ServiceMessage';
+import { ServiceMessageAction } from 'libs/lmem/ServiceMessage';
 import ServiceMessageActionButton from './ServiceMessageActionButton';
 
 const Content = styled.section`

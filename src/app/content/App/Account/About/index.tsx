@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { compose } from 'redux';
 import withTitle from 'app/content/hocs/withTitle';
 import { ExternalLink, Time } from 'components/atoms';
-import { WEBSITE_DOMAIN } from 'app/lmem';
+import { WEBSITE_DOMAIN } from 'libs/lmem';
 import Title from './Title';
 import Content from './Content';
 import Container from './Container';

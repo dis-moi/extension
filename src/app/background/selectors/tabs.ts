@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import * as R from 'ramda';
-import { isOptionsTab, isTabReady } from 'app/lmem/tab';
+import { isOptionsTab, isTabReady } from 'libs/lmem/tab';
 import { TabsState } from '../reducers/tabs.reducer';
 
 export const getTabs = (state: { tabs: TabsState }): TabsState => state.tabs;

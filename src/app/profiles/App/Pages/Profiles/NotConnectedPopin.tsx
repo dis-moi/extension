@@ -7,10 +7,10 @@ import Popin, {
 } from 'components/molecules/Popin/Popin';
 import PopinParagraph from 'components/molecules/Popin/PopinParagraph';
 import { BackgroundButton, Box, ExternalLink } from 'components/atoms';
-import { StatefulContributor } from 'app/lmem/contributor';
+import { StatefulContributor } from 'libs/lmem/contributor';
 import PopinBottomBar from 'components/molecules/Popin/PopinBottomBar';
 import PopinSmallText from 'components/molecules/Popin/PopinSmallText';
-import { WEBSITE_DOMAIN } from 'app/lmem';
+import { WEBSITE_DOMAIN } from 'libs/lmem';
 
 const PopinLarge = styled(Popin)`
   ${Box} {

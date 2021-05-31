@@ -5,8 +5,8 @@ import {
   ContributorId,
   findContributorIn,
   StatefulContributor
-} from 'app/lmem/contributor';
-import { Categories } from 'app/lmem/category';
+} from 'libs/lmem/contributor';
+import { Categories } from 'libs/lmem/category';
 import { TwoColumns } from 'components/atoms';
 import { SlowerMessageBox } from 'components/molecules/SidebarBox';
 import pathToContributor from 'app/profiles/App/pathToContributor';

@@ -1,4 +1,4 @@
-import { RestrictedContext } from 'app/lmem/matchingContext';
+import { RestrictedContext } from 'libs/lmem/matchingContext';
 import { get } from './call';
 
 const fetchRestrictedContexts = (): Promise<RestrictedContext[]> =>

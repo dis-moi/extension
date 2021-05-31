@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { StatefulContributor } from 'app/lmem/contributor';
+import { StatefulContributor } from 'libs/lmem/contributor';
 import { ALL } from 'components/molecules/Filters/RadiosFilters';
 
 function useContributorsRadiosFilters(

@@ -1,4 +1,4 @@
-import { Contribution, NoticeWithContributor } from 'app/lmem/notice';
+import { Contribution, NoticeWithContributor } from 'libs/lmem/notice';
 import { post } from './call';
 
 const postContribution = (

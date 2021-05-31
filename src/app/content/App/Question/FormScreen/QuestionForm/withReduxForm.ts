@@ -1,6 +1,6 @@
 import { reduxForm } from 'redux-form';
-import validate from 'app/lmem/contribution/validateForm';
-import { Question } from 'app/lmem/notice';
+import validate from 'libs/lmem/contribution/validateForm';
+import { Question } from 'libs/lmem/notice';
 import { QuestionFormOwnProps } from './QuestionForm';
 
 export const form = 'question';

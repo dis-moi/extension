@@ -1,8 +1,8 @@
 import React, { ChangeEvent, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
-import { Categories } from 'app/lmem/category';
+import { ContributorId, StatefulContributor } from 'libs/lmem/contributor';
+import { Categories } from 'libs/lmem/category';
 import { Button, CenterContainer, Title2 } from 'components/atoms';
 import { Arrow } from 'components/atoms/icons';
 import Link from 'components/atoms/Link/Link';
@@ -14,13 +14,13 @@ import pathToContributor from 'app/profiles/App/pathToContributor';
 import Filters from 'components/molecules/Filters/RadiosFilters';
 import useContributorsFilters from 'app/profiles/App/useContributorsRadiosFilters';
 import OnBoarding from 'app/profiles/App/OnBoarding';
+import { Subscriptions } from 'libs/lmem/subscription';
 import ProfileTabs from '../../../ProfileTabs';
 import BrowserNotSupportedPopin from '../BrowserNotSupportedPopin';
 import NotConnectedPopin, {
   NotConnectedPopinState
 } from '../NotConnectedPopin';
 import onContributorExampleClick from '../../../onContributorExampleClick';
-import { Subscriptions } from '../../../../../lmem/subscription';
 import { ContextPopinState } from '../../../../store/reducers/contextPopin.reducer';
 
 const Title = styled(Title2)`

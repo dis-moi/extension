@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { isCollectionLoading } from 'libs/store/collection/selectors';
-import { sortContributorsByContributions } from 'app/lmem/contributor';
+import { sortContributorsByContributions } from 'libs/lmem/contributor';
 import { findItemById } from 'libs/utils/findItemById';
 import { ProfilesState } from '../reducers';
 
