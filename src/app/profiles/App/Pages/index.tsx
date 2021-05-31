@@ -1,7 +1,7 @@
 import { Redirect, Route, Switch } from 'react-router';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import useChangeLanguage from '../../../hooks/useChangeLanguage';
+import useChangeLanguage from 'app/profiles/hooks/useChangeLanguage';
 import ConnectedContextPopin from '../ContextPopin/';
 import Profiles from './Profiles';
 import Error from './Error';
