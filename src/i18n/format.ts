@@ -1,4 +1,4 @@
-import { format as dateFormat, parseISO, isDate } from 'date-fns';
+import { format as dateFormat, parseISO, isDate, isMatch } from 'date-fns';
 import { getLocale as getDateLocale, DEFAULT_FORMAT } from './date';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -10,9 +10,16 @@ export default function(value: any, format?: string, lng?: string) {
         locale: getDateLocale(lng)
       });
     } catch (e) {
-      return dateFormat(isoDate as Date, DEFAULT_FORMAT, {
-        locale: getDateLocale(lng)
-      });
+      if (e instanceof RangeError) {
+        // eslint-disable-next-line no-console
+        console.error(e.message);
+        // given date format was invalid, format with the default one
+        return dateFormat(isoDate as Date, DEFAULT_FORMAT, {
+          locale: getDateLocale(lng)
+        });
+      } else {
+        throw e;
+      }
     }
   }
 
