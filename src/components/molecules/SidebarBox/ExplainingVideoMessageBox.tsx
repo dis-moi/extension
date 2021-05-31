@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { BackgroundButton, Button, Paragraph, Title2 } from 'components/atoms';
 import { Play } from 'components/atoms/icons';
-import SidebarBox from './SidebarBox';
+import { StatefulContributor } from 'app/lmem/contributor';
 import Popin from '../Popin/Popin';
 import VideoWrapper from '../Popin/PopinVideo';
-import { StatefulContributor } from 'app/lmem/contributor';
+import SidebarBox from './SidebarBox';
 
 export interface ExplainingVideoMessageBoxProps {
   contributor: StatefulContributor;

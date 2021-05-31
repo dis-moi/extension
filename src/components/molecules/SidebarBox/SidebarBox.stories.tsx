@@ -1,11 +1,11 @@
 import React from 'react';
+import { generateStatefulContributor } from 'test/fakers/generateContributor';
 import {
   AddToBrowserMessageBox,
   SlowerMessageBox,
   PrivacyMessageBox,
   ExplainingVideoMessageBox
 } from './';
-import { generateStatefulContributor } from 'test/fakers/generateContributor';
 
 export default {
   title: 'Components/Molecules/SidebarBox'
