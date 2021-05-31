@@ -1,3 +1,10 @@
+## [3.76.3](https://github.com/dis-moi/extension/compare/v3.76.2...v3.76.3) (2021-05-31)
+
+
+### Bug Fixes
+
+* **profile:** display link ([3a6c6d3](https://github.com/dis-moi/extension/commit/3a6c6d37199001dffe68228cd2d843f2bee239ca))
+
 ## [3.76.2](https://github.com/dis-moi/extension/compare/v3.76.1...v3.76.2) (2021-05-31)
 
 
