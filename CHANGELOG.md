@@ -1,3 +1,10 @@
+# [3.77.0](https://github.com/dis-moi/extension/compare/v3.76.5...v3.77.0) (2021-05-31)
+
+
+### Features
+
+* **profiles:** Remove old install block when not connected ([99f992b](https://github.com/dis-moi/extension/commit/99f992b5fc7e52b813028f4a82e3a61f21a9b540))
+
 ## [3.76.5](https://github.com/dis-moi/extension/compare/v3.76.4...v3.76.5) (2021-05-31)
 
 
