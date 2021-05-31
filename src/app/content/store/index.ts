@@ -1,29 +1,11 @@
 import { Action, applyMiddleware, createStore } from 'redux';
-import { routerMiddleware, RouterState } from 'connected-react-router';
+import { routerMiddleware } from 'connected-react-router';
 import { createMemoryHistory } from 'history';
-import { FormStateMap } from 'redux-form';
 import createSagaMiddleware from '@redux-saga/core';
-import { InstallationDetailsState } from 'app/background/reducers/installationDetails';
-import { ContributorsState } from 'libs/store/reducers/contributors.reducer';
 import rootReducer from './reducers';
-import { UIState } from './reducers/ui';
-import { NoticesState } from './reducers/notices';
-import { ServiceMessageState } from './reducers/serviceMessage.reducer';
 import rootSaga from './sagas';
 
 export const history = createMemoryHistory();
-
-export interface StateWithServiceMessage {
-  serviceMessage: ServiceMessageState;
-}
-export type ContentState = StateWithServiceMessage & {
-  installationDetails: InstallationDetailsState;
-  ui: UIState;
-  notices: NoticesState;
-  router: RouterState;
-  form: FormStateMap;
-  contributors: ContributorsState;
-};
 
 const sagaMiddleware = createSagaMiddleware();
 

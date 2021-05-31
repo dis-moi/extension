@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import * as R from 'ramda';
-import { StateWithServiceMessage } from '../store';
 import { ServiceMessageState } from '../reducers/serviceMessage.reducer';
+import { StateWithServiceMessage } from '../reducers';
 
 export const getServiceMessageState = (
   state: StateWithServiceMessage

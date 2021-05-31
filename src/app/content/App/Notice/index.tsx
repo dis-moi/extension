@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, RouteComponentProps, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { ContentState } from 'app/content/store';
-import { getNoticesToDisplay } from 'app/content/selectors';
+import { getNoticesToDisplay } from 'app/content/store/selectors';
+import { ContentState } from 'app/content/store/reducers';
 import { StatefulNotice } from 'libs/lmem/notice';
 import ListScreen from './List';
 import DetailsScreen from './Details';

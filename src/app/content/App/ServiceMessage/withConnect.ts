@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { optionsRequested } from 'libs/store/actions';
 import {
   getServiceMessages,
   getServiceMessageAction
-} from 'app/content/selectors';
-import { ContentState } from '../../store';
+} from 'app/content/store/selectors';
+import { optionsRequested } from 'libs/store/actions';
+import { ContentState } from '../../store/reducers';
 
 const mapStateToProps = (state: ContentState) => ({
   messages: getServiceMessages(state),

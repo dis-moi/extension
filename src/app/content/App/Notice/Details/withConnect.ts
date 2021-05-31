@@ -2,6 +2,10 @@ import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import { goBack } from 'connected-react-router';
 import {
+  getNoticeFromRoute,
+  getNoticeRelayer
+} from 'app/content/store/selectors';
+import {
   confirmDislikeNotice as confirmDislike,
   dislikeNotice as dislike,
   likeNotice as like,
@@ -10,9 +14,8 @@ import {
   unfoldNotice as view,
   unlikeNotice as unlike
 } from 'libs/store/actions/notices';
-import onContributorClick from 'app/content/actions/goToContributor';
-import { ContentState } from 'app/content/store';
-import { getNoticeFromRoute, getNoticeRelayer } from 'app/content/selectors';
+import onContributorClick from 'app/content/store/actions/goToContributor';
+import { ContentState } from 'app/content/store/reducers';
 import { DetailsScreenProps } from './';
 
 const mapStateToProps = (

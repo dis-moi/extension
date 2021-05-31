@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import { PersistedState } from 'redux-persist';
-import prefs, { PrefsState } from './prefs.reducer';
 import installationDetails, {
   InstallationDetailsState
-} from './installationDetails';
+} from 'libs/store/reducers/installationDetails';
+import prefs, { PrefsState } from './prefs.reducer';
 import resources, { ResourcesState } from './resources';
 import tabs, { TabsState } from './tabs.reducer';
 import subscriptions, { SubscriptionsState } from './subscriptions.reducer';

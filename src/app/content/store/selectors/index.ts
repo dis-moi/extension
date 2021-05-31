@@ -25,7 +25,7 @@ import {
 import { findItemById } from 'libs/utils/findItemById';
 import { StatefulContributor } from 'libs/lmem/contributor';
 import { makeGetRouteParam } from 'libs/store/selectors';
-import { ContentState } from '../store';
+import { ContentState } from 'app/content/store/reducers';
 export * from './serviceMessage.selectors';
 export * from './ui.selectors';
 

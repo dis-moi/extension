@@ -5,8 +5,8 @@ import {
   getNbTotalContributors,
   getSubscriptions
 } from 'libs/store/selectors/contributors.selectors';
-import onContributorClick from '../../actions/goToContributor';
-import { ContentState } from '../../store';
+import { ContentState } from 'app/content/store/reducers';
+import onContributorClick from '../../store/actions/goToContributor';
 
 const openSubscriptions = () =>
   optionsRequested({ pathname: i18n.t('path.profiles.contributors') });
