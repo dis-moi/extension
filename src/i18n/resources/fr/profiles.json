@@ -82,6 +82,16 @@
     "add_browser_box": {
       "description_dismoi": "Ne passez plus à côté d’un bon conseil : Alerte contre une arnaque, intox, meilleure alternative..."
     },
+    "add_follow_box": {
+      "title": "Ajouter DisMoi et suivre",
+      "message": "Recevoir les alertes et conseils de {{contributorName}} directement sur les pages web que je visite.",
+      "btn_text": "Ajouter DisMoi à mon navigateur"
+    },
+    "video_box": {
+      "title": "C'est quoi DisMoi ?",
+      "message": "DisMoi est le 1er réseau social qui vous accompagne sur le web : recevez les conseils et éclairages de vos contributeurs de confiance directement sur les pages web que vous visitez.",
+      "btn_text": "Comment ça marche ?"
+    },
     "onBoarding": {
       "step1": {
         "loading": "Recherche des mises à jour<br/>  L'extension est à jour",

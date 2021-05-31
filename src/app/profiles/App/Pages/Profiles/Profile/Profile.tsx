@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import CenterContainer from 'components/atoms/CenterContainer';
 import {
   AddToBrowserMessageBox,
+  ExplainingVideoMessageBox,
   PrivacyMessageBox
 } from 'components/molecules/SidebarBox';
 import {
@@ -221,6 +222,9 @@ export const Profile = ({
 
       <Aside>
         {connected === false && <AddToBrowserMessageBox />}
+        {connected === false && (
+          <ExplainingVideoMessageBox contributor={contributor} />
+        )}
         {connected && <PrivacyMessageBox />}
 
         <SimilarProfiles

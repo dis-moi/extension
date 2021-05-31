@@ -82,6 +82,16 @@
     "add_browser_box": {
       "description_dismoi": "DisMoi lets people share helpful information directly on the webpages they visit."
     },
+    "add_follow_box": {
+      "title": "Install DisMoi and follow",
+      "message": "Get alerts and advices from {{contributorName}} directly on the webpages you visit.",
+      "btn_text": "Install DisMoi on my browser"
+    },
+    "video_box": {
+      "title": "What is DisMoi ?",
+      "message": "DisMoi est le 1er réseau social qui vous accompagne sur le web : Les contributeurs de DisMoi postent des conseils et éclairages directement sur les pages web que vous visitez.",
+      "btn_text": "How does it work?"
+    },
     "onBoarding": {
       "step1": {
         "loading": "Searching for updates<br/>  Everything is up to date",
