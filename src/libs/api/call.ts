@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import * as R from 'ramda';
-import { BACKEND_ORIGIN } from 'app/constants/origins';
+import { BACKEND_ORIGIN } from './constants/origins';
 import { APIStatusCodeError } from './APIStatusCodeError';
 
 type GetParamValue = string | string[];
