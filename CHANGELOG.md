@@ -1,3 +1,10 @@
+## [3.76.5](https://github.com/dis-moi/extension/compare/v3.76.4...v3.76.5) (2021-05-31)
+
+
+### Bug Fixes
+
+* **subscriptions:** Fix auto subscriptions ([eb3148b](https://github.com/dis-moi/extension/commit/eb3148b2da53647e9752e30bf9776a7d93c8d4dc))
+
 ## [3.76.4](https://github.com/dis-moi/extension/compare/v3.76.3...v3.76.4) (2021-05-31)
 
 
