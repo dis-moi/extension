@@ -1,3 +1,10 @@
+## [3.76.2](https://github.com/dis-moi/extension/compare/v3.76.1...v3.76.2) (2021-05-31)
+
+
+### Bug Fixes
+
+* **storybook:** Allow loading of mp4 as static asset file ([ae4bd5d](https://github.com/dis-moi/extension/commit/ae4bd5d23fc940a0803c2f21cd09c6f18b852a28))
+
 ## [3.76.1](https://github.com/dis-moi/extension/compare/v3.76.0...v3.76.1) (2021-05-26)
 
 
