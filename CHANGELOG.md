@@ -1,3 +1,10 @@
+## [3.77.1](https://github.com/dis-moi/extension/compare/v3.77.0...v3.77.1) (2021-06-01)
+
+
+### Bug Fixes
+
+* **profiles:** Fix add to browser install trigger ([6c5f9af](https://github.com/dis-moi/extension/commit/6c5f9af0cda69952aea25f837c72fd3dea35270f))
+
 # [3.77.0](https://github.com/dis-moi/extension/compare/v3.76.5...v3.77.0) (2021-05-31)
 
 
