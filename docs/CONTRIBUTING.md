@@ -186,6 +186,36 @@ Once the PR is merged into `master` a build is triggered on [SemaphoreCI](https:
 
 > see [build configuration](https://semaphoreci.com/lmem/extension/settings)
 
+### Profiles
+
+#### Staging & proding
+
+`staging`and `proding` environment are automatically deployed on __Clever Cloud__ on a new push on the `master` branch:
+
+- https://staging-profiles.dismoi.io/
+- https://proding-profiles.dismoi.io/
+
+#### Production
+
+DisMoi `production` profiles app is available at https://www.dismoi.io/eclaireurs/.
+
+> This is a __Wordpress__ page and the Js bundles are actually hosted at https://profiles.dismoi.io/ and imported in  https://www.dismoi.io/eclaireurs/ :
+> ````
+> https://profiles.dismoi.io/js/profiles.bundle.js?ver=3.77.1
+> https://profiles.dismoi.io/js/1.chunk.js?ver=3.77.1
+> ```
+
+1. Deployment on __Clever Cloud__ is done via git :
+```
+git remote add production-profiles git+ssh://git@push-n2-par-clevercloud-customers.services.clever-cloud.com/app_b47e0ed5-d153-4cc4-a306-28fe156c5cee.git
+git checkout master
+git push production-profiles HEAD
+```
+
+2. You may then update the Js bundle version in the Divi theme options, to force cache refresh:
+    - https://www.dismoi.io/wp-admin/customize.php?et_customizer_option_set=theme
+    - __VERSION JS BUNDLE POUR LA PAGE "LES CONTRIBUTEURS"__
+
 ## Version release
 
 Once the build passes, an automatic `semantic-release` script is triggered.
