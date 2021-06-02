@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import CenterContainer from 'components/atoms/CenterContainer';
 import {
-  AddToBrowserMessageBox,
   ExplainingVideoMessageBox,
   PrivacyMessageBox
 } from 'components/molecules/SidebarBox';
@@ -221,9 +220,7 @@ export const Profile = ({
       </MainCol>
 
       <Aside>
-        {connected === false && (
-          <ExplainingVideoMessageBox contributor={contributor} />
-        )}
+        {!connected && <ExplainingVideoMessageBox contributor={contributor} />}
         {connected && <PrivacyMessageBox />}
 
         <SimilarProfiles
