@@ -1,3 +1,10 @@
+## [3.77.2](https://github.com/dis-moi/extension/compare/v3.77.1...v3.77.2) (2021-06-02)
+
+
+### Bug Fixes
+
+* **newBlocksFirefox:** change test connected in Profile ([a2b5867](https://github.com/dis-moi/extension/commit/a2b58670072902f23db54f5b12a9ef3a113acab1))
+
 ## [3.77.1](https://github.com/dis-moi/extension/compare/v3.77.0...v3.77.1) (2021-06-01)
 
 
