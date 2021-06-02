@@ -111,9 +111,9 @@
   },
   "title": {
     "subscriptions": "$t(menu.subscriptions)",
-    "help": "$t(menu.help)",
+    "help": "FAQ and support",
     "filters": "$t(common.filters)",
-    "options": "FAQ and support",
+    "options": "Options",
     "about": "$t(menu.about)",
     "post_form": "Post a message here",
     "preview": "Preview",
