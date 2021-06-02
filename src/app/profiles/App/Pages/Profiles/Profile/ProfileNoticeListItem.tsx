@@ -139,9 +139,9 @@ export const ProfileNoticeListItem = ({
         >
           {t('profiles:action.see_context')}
         </BorderButton>
-        {!featured &&  (
-          {t('profiles:notice.since', { date: new Date(notice.created) })}
-          )}
+        {!featured && (
+          <>{t('profiles:notice.since', { date: new Date(notice.created) })}</>
+        )}
       </NoticeBottomLine>
     </Box>
   );
