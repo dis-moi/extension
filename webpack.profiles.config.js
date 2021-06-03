@@ -76,7 +76,8 @@ module.exports = function webpack(env = {}, argv = {}) {
     },
     output: {
       ...defaultWebpackConfig.output,
-      filename: 'js/profiles.bundle.js'
+      filename: 'js/profiles.bundle.js',
+      chunkFilename: 'js/[name].chunk.js'
     },
     plugins: [
       ...basePlugins(env, argv),
