@@ -1,3 +1,15 @@
+# [3.78.0](https://github.com/dis-moi/extension/compare/v3.77.2...v3.78.0) (2021-06-03)
+
+
+### Bug Fixes
+
+* **tracking:** Use outbound link instead of current link ([695db1b](https://github.com/dis-moi/extension/commit/695db1b6f31e32a990f69030db419ce461105a03))
+
+
+### Features
+
+* **tracking:** Setup PostHog tracking ([e66ef35](https://github.com/dis-moi/extension/commit/e66ef35edf032f9ebd829119f528e7583a4cc6d2))
+
 ## [3.77.2](https://github.com/dis-moi/extension/compare/v3.77.1...v3.77.2) (2021-06-02)
 
 
