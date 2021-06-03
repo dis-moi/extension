@@ -125,7 +125,7 @@ export const ProfileIntro = ({
           loading={loading}
           avatarSize="large"
           usernameAs={usernameAs}
-        ></ContributorLarge>
+        />
       </ProfileIntroContent>
     </>
   );
