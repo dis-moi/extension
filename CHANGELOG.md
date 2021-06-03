@@ -1,3 +1,10 @@
+## [3.78.1](https://github.com/dis-moi/extension/compare/v3.78.0...v3.78.1) (2021-06-03)
+
+
+### Bug Fixes
+
+* **chunk:** onboarding chunk path ([c843bfc](https://github.com/dis-moi/extension/commit/c843bfce87d27b17e5eb0109abb320c7ec05d020))
+
 # [3.78.0](https://github.com/dis-moi/extension/compare/v3.77.2...v3.78.0) (2021-06-03)
 
 
