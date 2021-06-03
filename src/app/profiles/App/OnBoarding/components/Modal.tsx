@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { PopinClose } from 'components/molecules/Popin/Popin';
 import useNoScrollBody from 'app/utils/useNoScrollBody';
 import CloseButton from '../../../../../components/organisms/Notification/NotificationHeader/CloseButton';
-import { CloseFunction } from '../index';
+import { CloseFunction } from '../OnBoarding';
 
 interface ContainerProps {
   open: boolean;

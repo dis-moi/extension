@@ -1,4 +1,4 @@
-import React, { Suspense, ChangeEvent, MouseEvent, useState } from 'react';
+import React, { ChangeEvent, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
@@ -21,10 +21,7 @@ import NotConnectedPopin, {
 import onContributorExampleClick from '../../../../../utils/onContributorExampleClick';
 import { Subscriptions } from '../../../../../lmem/subscription';
 import { ContextPopinState } from '../../../../store/reducers/contextPopin.reducer';
-
-export const OnBoarding = React.lazy(() =>
-  import('app/profiles/App/OnBoarding')
-);
+import LazyOnBoarding from '../../../OnBoarding';
 
 const Title = styled(Title2)`
   padding-top: 30px;
@@ -140,12 +137,9 @@ const ProfileList = ({
   }: ChangeEvent<HTMLInputElement>) => {
     setFilter(value);
   };
-
   return (
     <>
-      <Suspense fallback={<>Chargement...</>}>
-        <OnBoarding />
-      </Suspense>
+      <LazyOnBoarding />
       {connected === false && (
         <Title as="h1">{t('profiles:common.sources')}</Title>
       )}
