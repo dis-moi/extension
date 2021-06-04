@@ -1,6 +1,6 @@
 import { LocationChangeAction } from 'connected-react-router';
 import * as R from 'ramda';
-import Tab from 'libs/lmem/tab';
+import Tab from 'libs/domain/tab';
 import { StandardAction } from 'libs/store/types';
 
 import { From } from 'libs/webext/From';

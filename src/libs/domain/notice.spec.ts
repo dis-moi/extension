@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { decrementRating, incrementRating } from './notice';
 
-describe('lmem > notice', () => {
+describe('domain > notice', () => {
   describe('incrementRating', () => {
     it('return the rating plus one', () => {
       expect(incrementRating(5)).to.equals(6);

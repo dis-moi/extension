@@ -1,5 +1,5 @@
 import { put, takeLatest } from 'redux-saga/effects';
-import { CloseCause } from 'libs/lmem/ui';
+import { CloseCause } from 'libs/domain/ui';
 import {
   BROWSER_ACTION_CLICKED,
   toggleUI,

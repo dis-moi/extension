@@ -1,4 +1,4 @@
-import { ContributorId } from 'libs/lmem/contributor';
+import { ContributorId } from 'libs/domain/contributor';
 import { Level } from 'libs/utils/Logger';
 import { ActionMeta, BaseAction, ErrorAction } from '.';
 

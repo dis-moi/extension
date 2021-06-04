@@ -1,6 +1,6 @@
-import { InstallationDetails } from 'libs/lmem/installation';
-import { MatchingContext } from 'libs/lmem/matchingContext';
-import Tab from 'libs/lmem/tab';
+import { InstallationDetails } from 'libs/domain/installation';
+import { MatchingContext } from 'libs/domain/matchingContext';
+import Tab from 'libs/domain/tab';
 import { ReceivedAction } from 'libs/webext/createMessageHandler';
 import { Level } from 'libs/utils/Logger';
 import { BaseAction, TabAction, TabErrorAction } from '.';
@@ -38,7 +38,7 @@ export const navigatedToUrl = (url: string): NavigatedToUrlAction => ({
   }
 });
 
-export const MATCH_CONTEXT = 'LMEM/MATCH_CONTEXT';
+export const MATCH_CONTEXT = 'domain/MATCH_CONTEXT';
 export interface MatchContextAction extends TabAction {
   type: typeof MATCH_CONTEXT;
 }
@@ -47,7 +47,7 @@ export const matchContext = (tab: Tab): MatchContextAction => ({
   meta: { tab }
 });
 
-export const MATCH_CONTEXT_FAILURE = 'LMEM/MATCH_CONTEXT_FAILURE';
+export const MATCH_CONTEXT_FAILURE = 'domain/MATCH_CONTEXT_FAILURE';
 export interface MatchContextFailureAction extends TabErrorAction {
   type: typeof MATCH_CONTEXT_FAILURE;
 }
@@ -61,7 +61,7 @@ export const matchContextFailure = (
   error: true
 });
 
-export const CONTEXT_TRIGGERED = 'LMEM/CONTEXT_TRIGGERED';
+export const CONTEXT_TRIGGERED = 'domain/CONTEXT_TRIGGERED';
 export interface ContextTriggeredAction extends TabAction {
   type: typeof CONTEXT_TRIGGERED;
   payload: MatchingContext[];
@@ -75,7 +75,7 @@ export const contextTriggered = (
   meta: { tab }
 });
 
-export const CONTEXT_NOT_TRIGGERED = 'LMEM/CONTEXT_NOT_TRIGGERED';
+export const CONTEXT_NOT_TRIGGERED = 'domain/CONTEXT_NOT_TRIGGERED';
 export interface ContextNotTriggeredAction extends TabAction {
   type: typeof CONTEXT_NOT_TRIGGERED;
   payload: MatchingContext[];
@@ -89,7 +89,7 @@ export const contextNotTriggered = (
   meta: { tab, sendToTab: true }
 });
 
-export const CONTEXT_TRIGGER_FAILURE = 'LMEM/CONTEXT_TRIGGER_FAILURE';
+export const CONTEXT_TRIGGER_FAILURE = 'domain/CONTEXT_TRIGGER_FAILURE';
 export interface ContextTriggerFailureAction extends TabErrorAction {
   type: typeof CONTEXT_TRIGGER_FAILURE;
 }

@@ -10,12 +10,12 @@ import {
   Timer
 } from 'components/atoms';
 import { stripHtml } from 'libs/utils/stripHtml';
-import { StatefulNoticeWithContributor } from 'libs/lmem/notice';
-import { Contributor } from 'libs/lmem/contributor';
+import { StatefulNoticeWithContributor } from 'libs/domain/notice';
+import { Contributor } from 'libs/domain/contributor';
 import {
   CountDownState,
   initialState as countdownInitialState
-} from 'libs/lmem/countdown';
+} from 'libs/domain/countdown';
 import Title from './Title';
 import DeleteButton from './DeleteButton';
 import Deleted from './Deleted';

@@ -1,4 +1,4 @@
-import Tab from 'libs/lmem/tab';
+import Tab from 'libs/domain/tab';
 import { Level } from 'libs/utils/Logger';
 import { GetParams } from 'libs/api/call';
 import { BaseAction, ErrorAction } from './';

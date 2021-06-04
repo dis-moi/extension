@@ -1,5 +1,5 @@
 import { UPDATE_CONTRIBUTORS, AppAction } from 'libs/store/actions';
-import { Contributor } from 'libs/lmem/contributor';
+import { Contributor } from 'libs/domain/contributor';
 
 export type Contributors = Contributor[];
 

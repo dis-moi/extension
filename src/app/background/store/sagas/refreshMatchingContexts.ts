@@ -8,7 +8,7 @@ import {
 import { createCallAndRetry } from 'libs/store/sagas/effects/callAndRetry';
 import { getSubscriptions } from 'app/background/store/selectors/subscriptions.selectors';
 import minutesToMilliseconds from 'libs/utils/minutesToMilliseconds';
-import { ContributorId } from 'libs/lmem/contributor';
+import { ContributorId } from 'libs/domain/contributor';
 import fetchMatchingContexts from 'libs/api/fetchMatchingContexts';
 
 const refreshInterval = minutesToMilliseconds(

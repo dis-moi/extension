@@ -1,6 +1,6 @@
 import * as R from 'ramda';
 import { AppAction, NOTICES_FETCHED } from 'libs/store/actions';
-import { NoticeWithContributor } from 'libs/lmem/notice';
+import { NoticeWithContributor } from 'libs/domain/notice';
 
 type NoticesWithContributor = NoticeWithContributor[];
 

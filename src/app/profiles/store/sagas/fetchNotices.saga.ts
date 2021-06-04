@@ -6,8 +6,8 @@ import {
   noticesFetched
 } from 'libs/store/actions';
 import { fetchNotice, fetchNotices } from 'libs/api/fetchNotice';
-import { Notice } from 'libs/lmem/notice';
-import { ContributorId } from 'libs/lmem/contributor';
+import { Notice } from 'libs/domain/notice';
+import { ContributorId } from 'libs/domain/contributor';
 import { CONTRIBUTOR_NOTICES_BY_PAGE } from 'app/profiles/store/sagas/notices.saga';
 
 interface PayloadWithUrl {

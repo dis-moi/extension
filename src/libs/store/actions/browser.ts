@@ -1,4 +1,4 @@
-import Tab from 'libs/lmem/tab';
+import Tab from 'libs/domain/tab';
 import { TabAction } from '.';
 
 export const BROWSER_ACTION_CLICKED = 'BROWSER/BROWSER_ACTION_CLICKED';

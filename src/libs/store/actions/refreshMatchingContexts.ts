@@ -1,6 +1,6 @@
-import { MatchingContext } from 'libs/lmem/matchingContext';
+import { MatchingContext } from 'libs/domain/matchingContext';
 import { Level } from 'libs/utils/Logger';
-import { ContributorId } from 'libs/lmem/contributor';
+import { ContributorId } from 'libs/domain/contributor';
 
 export const UPDATE_MATCHING_CONTEXTS = 'libs/api/UPDATE_MATCHING_CONTEXTS';
 export const receivedMatchingContexts = (

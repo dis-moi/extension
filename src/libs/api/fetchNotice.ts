@@ -1,4 +1,4 @@
-import { NoticeWithContributor, NoticeItem } from 'libs/lmem/notice';
+import { NoticeWithContributor, NoticeItem } from 'libs/domain/notice';
 import { CONTRIBUTOR_NOTICES_BY_PAGE } from 'app/profiles/store/sagas/notices.saga';
 import { get } from './call';
 

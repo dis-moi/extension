@@ -1,4 +1,4 @@
-import { Contribution } from 'libs/lmem/notice';
+import { Contribution } from 'libs/domain/notice';
 import validate from './validate';
 
 export default (contribution: Contribution): boolean =>

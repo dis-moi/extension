@@ -8,7 +8,7 @@ import {
   InstalledAction
 } from 'libs/store/actions/install';
 import { getInstallationDate } from 'app/background/store/selectors/installationDetails';
-import { InstallationDetails } from 'libs/lmem/installation';
+import { InstallationDetails } from 'libs/domain/installation';
 import { buildQueryString } from 'libs/api/call';
 import { version } from '../../../../../package.json';
 import { loginSaga } from './user.saga';

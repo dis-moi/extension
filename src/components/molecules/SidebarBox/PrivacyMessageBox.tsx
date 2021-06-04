@@ -1,8 +1,8 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import styled from 'styled-components';
+import { WEBSITE_DOMAIN } from 'libs/domain';
 import { ExternalLink, List, Title2 } from 'components/atoms';
-import { WEBSITE_DOMAIN } from 'libs/lmem';
 import SidebarBox from './SidebarBox';
 
 const Ul = styled(List)`

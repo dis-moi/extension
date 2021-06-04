@@ -10,7 +10,7 @@ import {
 } from 'redux-saga/effects';
 import { render } from 'react-dom';
 import { go, replace } from 'connected-react-router';
-import { StatefulNotice } from 'libs/lmem/notice';
+import { StatefulNotice } from 'libs/domain/notice';
 import Logger from 'libs/utils/Logger';
 import {
   close,
@@ -30,7 +30,7 @@ import {
   ToggleUIAction,
   CloseAction
 } from 'libs/store/actions';
-import { CloseCause } from 'libs/lmem/ui';
+import { CloseCause } from 'libs/domain/ui';
 import { append, create, hide, show } from 'app/content/extensionIframe';
 import theme from 'app/theme';
 import App from 'app/content/App';
