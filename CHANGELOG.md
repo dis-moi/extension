@@ -1,3 +1,11 @@
+# [3.79.0](https://github.com/dis-moi/extension/compare/v3.78.1...v3.79.0) (2021-06-04)
+
+
+### Features
+
+* **tracking:** Activate posthog on production env ([ec1049e](https://github.com/dis-moi/extension/commit/ec1049eeb2e6e0c7bebfa54c00a64360d833ce1a))
+* **tracking:** Activate posthog tracking on proding ([0f58e0c](https://github.com/dis-moi/extension/commit/0f58e0c034087032c7bb0732bb7a308e5c2dda4a))
+
 ## [3.78.1](https://github.com/dis-moi/extension/compare/v3.78.0...v3.78.1) (2021-06-03)
 
 
