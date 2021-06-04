@@ -7,7 +7,7 @@ import {
   StatefulContributor
 } from './contributor';
 
-describe('lmem > contributor', () => {
+describe('domain > contributor', () => {
   describe(' contributorIsSubscribed', () => {
     it("returns true if we're subscribed to it", () => {
       const contributor: StatefulContributor = {

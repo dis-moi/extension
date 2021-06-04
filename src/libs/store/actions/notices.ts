@@ -4,10 +4,10 @@ import {
   Notice,
   StatefulNotice,
   StatefulNoticeWithContributor
-} from 'libs/lmem/notice';
-import Tab from 'libs/lmem/tab';
+} from 'libs/domain/notice';
+import Tab from 'libs/domain/tab';
 import { ReceivedAction } from 'libs/webext/createMessageHandler';
-import { ContributorId } from 'libs/lmem/contributor';
+import { ContributorId } from 'libs/domain/contributor';
 import { createErrorAction } from './helpers';
 import {
   ActionMeta,

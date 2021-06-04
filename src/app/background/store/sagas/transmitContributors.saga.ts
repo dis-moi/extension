@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { takeEvery, select, fork } from 'redux-saga/effects';
-import Tab from 'libs/lmem/tab';
+import Tab from 'libs/domain/tab';
 import {
   contributorsTransmitted,
   isTabReadyAction,

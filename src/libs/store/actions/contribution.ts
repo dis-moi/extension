@@ -1,4 +1,4 @@
-import { Contribution } from 'libs/lmem/notice';
+import { Contribution } from 'libs/domain/notice';
 import { Level } from 'libs/utils/Logger';
 import { BaseAction, FormAction, FormMeta, ActionMeta, ErrorAction } from '.';
 

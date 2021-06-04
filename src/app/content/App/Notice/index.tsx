@@ -3,7 +3,7 @@ import { Route, RouteComponentProps, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getNoticesToDisplay } from 'app/content/store/selectors';
 import { ContentState } from 'app/content/store/reducers';
-import { StatefulNotice } from 'libs/lmem/notice';
+import { StatefulNotice } from 'libs/domain/notice';
 import ListScreen from './List';
 import DetailsScreen from './Details';
 import NoNoticeScreen from './NoNotice';

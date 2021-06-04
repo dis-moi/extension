@@ -3,7 +3,7 @@ import { MemoryRouter as Router } from 'react-router-dom';
 import { action } from '@storybook/addon-actions';
 import { StoryFn } from '@storybook/addons';
 import Notification from 'components/organisms/Notification';
-import { WEBSITE_DOMAIN } from 'libs/lmem';
+import { WEBSITE_DOMAIN } from 'libs/domain';
 import { formStoreDecorator } from '../../../../../../.storybook/decorators';
 import PreviewScreen from './PreviewScreen';
 

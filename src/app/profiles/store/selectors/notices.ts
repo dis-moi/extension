@@ -4,7 +4,7 @@ import {
   getIndexedOffset,
   isCollectionLoading
 } from 'libs/store/collection/selectors';
-import { ContributorId } from 'libs/lmem/contributor';
+import { ContributorId } from 'libs/domain/contributor';
 
 export const getNoticesCollection = (state: ProfilesState) => state.notices;
 

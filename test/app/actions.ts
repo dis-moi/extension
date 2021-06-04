@@ -4,10 +4,10 @@ import { receivedMatchingContexts } from 'libs/store/actions/refreshMatchingCont
 import { contextTriggered } from 'libs/store/actions/tabs';
 import { noticeDisplayed, noticeIgnored } from 'libs/store/actions/notices';
 import { generateStatefulNotice } from 'test/fakers/generateNotice';
-import Tab from 'libs/lmem/tab';
-import { StatefulNotice } from 'libs/lmem/notice';
-import { MatchingContext } from 'libs/lmem/matchingContext';
-import { ContributorId } from 'libs/lmem/contributor';
+import Tab from 'libs/domain/tab';
+import { StatefulNotice } from 'libs/domain/notice';
+import { MatchingContext } from 'libs/domain/matchingContext';
+import { ContributorId } from 'libs/domain/contributor';
 
 const expect = chai.expect;
 chai.use(sinonChai);

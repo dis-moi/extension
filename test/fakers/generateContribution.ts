@@ -1,6 +1,6 @@
 import Faker from 'faker';
 import { defaultMessage } from 'test/fakers/generateNotice';
-import { Contribution } from 'libs/lmem/notice';
+import { Contribution } from 'libs/domain/notice';
 import { generateNewContributor } from './generateContributor';
 
 export const generateContribution = ({

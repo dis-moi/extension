@@ -1,8 +1,8 @@
 import { PersistedState } from 'redux-persist';
 import { createSelector } from 'reselect';
-import { InstallationDetails } from 'libs/lmem/installation';
-import { filterContextsMatchingUrl } from 'libs/lmem/matchingContext';
-import { getNotice } from 'libs/lmem/notice';
+import { InstallationDetails } from 'libs/domain/installation';
+import { filterContextsMatchingUrl } from 'libs/domain/matchingContext';
+import { getNotice } from 'libs/domain/notice';
 import { BackgroundState } from 'app/background/store/reducers';
 import { getMatchingContexts } from './resources';
 import { getInstallationDetails } from './installationDetails';

@@ -1,6 +1,6 @@
 import { AppAction, UPDATE_RESTRICTED_CONTEXTS } from 'libs/store/actions';
 import forbiddenTabs from 'libs/webext/forbiddenTabs';
-import { RestrictedContext } from 'libs/lmem/matchingContext';
+import { RestrictedContext } from 'libs/domain/matchingContext';
 
 export type RestrictedContexts = RestrictedContext[];
 

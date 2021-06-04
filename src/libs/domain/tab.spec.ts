@@ -2,7 +2,7 @@
 import { expect } from 'chai';
 import { isOptionsTab } from './tab';
 
-describe('lmem > tab', () => {
+describe('domain > tab', () => {
   describe('isOptionsTab', () => {
     it('returns true if given tab is an options tab', () => {
       expect(isOptionsTab({ id: 42, url: 'options', options: true })).to.be

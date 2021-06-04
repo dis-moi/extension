@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import Tab from 'libs/lmem/tab';
+import Tab from 'libs/domain/tab';
 import {
   AppAction,
   CONTEXT_NOT_TRIGGERED,
@@ -14,7 +14,7 @@ import {
   TAB_DIED,
   TAB_REMOVED
 } from 'libs/store/actions';
-import { StatefulNoticeWithContributor } from 'libs/lmem/notice';
+import { StatefulNoticeWithContributor } from 'libs/domain/notice';
 import { isOptionsPage } from 'libs/webext/createMessageHandler';
 
 export interface TabsState {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTransition } from 'react-spring';
-import { StatefulNoticeWithContributor } from 'libs/lmem/notice';
-import { Contributor } from 'libs/lmem/contributor';
+import { StatefulNoticeWithContributor } from 'libs/domain/notice';
+import { Contributor } from 'libs/domain/contributor';
 import { AddNoticeContainer } from 'components/atoms';
 import AddNoticeButton from 'components/atoms/Button/AddNoticeButton';
 import NoticeItem, {

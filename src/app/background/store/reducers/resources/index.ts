@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import { Contributor } from 'libs/lmem/contributor';
-import { RestrictedContext } from 'libs/lmem/matchingContext';
-import { NoticeWithContributor } from 'libs/lmem/notice';
+import { Contributor } from 'libs/domain/contributor';
+import { RestrictedContext } from 'libs/domain/matchingContext';
+import { NoticeWithContributor } from 'libs/domain/notice';
 import contributors from './contributors.reducer';
 import matchingContexts, {
   MatchingContextsState

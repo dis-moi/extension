@@ -3,7 +3,7 @@ import {
   Contributor,
   ContributorId,
   NewContributor
-} from 'libs/lmem/contributor';
+} from 'libs/domain/contributor';
 import {
   generateNoticeItem,
   generatePinnedNotice

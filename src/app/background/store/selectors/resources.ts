@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
 import { isTabAuthorizedByPatterns } from 'libs/webext/isAuthorizedTab';
 import { findItemById } from 'libs/utils/findItemById';
-import { MatchingContext, toPatterns } from 'libs/lmem/matchingContext';
-import Tab from 'libs/lmem/tab';
+import { MatchingContext, toPatterns } from 'libs/domain/matchingContext';
+import Tab from 'libs/domain/tab';
 import { StateWithResources } from 'app/background/store/reducers';
 
 export const getResources = (state: StateWithResources) => state.resources;

@@ -1,4 +1,4 @@
-import { StatefulContributor } from 'libs/lmem/contributor';
+import { StatefulContributor } from 'libs/domain/contributor';
 import { AppAction, CONTRIBUTORS_TRANSMITTED } from 'libs/store/actions';
 
 export type ContributorsState = StatefulContributor[];

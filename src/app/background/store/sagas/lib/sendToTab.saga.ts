@@ -1,7 +1,7 @@
 import { SagaIterator } from 'redux-saga';
 import { delay, call, put } from 'redux-saga/effects';
 import { AppAction, tabDied } from 'libs/store/actions';
-import Tab from 'libs/lmem/tab';
+import Tab from 'libs/domain/tab';
 import Logger from 'libs/utils/Logger';
 import sendToTab from 'libs/webext/sendActionToTab';
 import isAuthorizedTab from 'libs/webext/isAuthorizedTab';

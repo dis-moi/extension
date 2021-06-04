@@ -6,9 +6,9 @@ import {
   ContributorId,
   contributorIsSubscribed,
   StatefulContributor
-} from 'libs/lmem/contributor';
-import { Subscription, Subscriptions } from 'libs/lmem/subscription';
-import { Notice, NoticeWithContributor } from 'libs/lmem/notice';
+} from 'libs/domain/contributor';
+import { Subscription, Subscriptions } from 'libs/domain/subscription';
+import { Notice, NoticeWithContributor } from 'libs/domain/notice';
 import { makeGetRouteParam } from 'libs/store/selectors';
 import { getIndexedFetchedAll } from 'libs/store/collection/selectors';
 import { ProfilesState } from '../reducers';

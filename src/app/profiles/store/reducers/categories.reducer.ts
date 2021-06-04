@@ -7,7 +7,7 @@ import {
   lastFetched,
   LastFetchedState
 } from 'libs/store/collection/reducers';
-import { Categories } from 'libs/lmem/category';
+import { Categories } from 'libs/domain/category';
 import actionTypes, {
   FETCH_CATEGORIES_SUCCESS,
   FetchCategoriesSuccessAction

@@ -1,5 +1,5 @@
-import { ContributorId } from 'libs/lmem/contributor';
-import { MatchingContext } from 'libs/lmem/matchingContext';
+import { ContributorId } from 'libs/domain/contributor';
+import { MatchingContext } from 'libs/domain/matchingContext';
 import { get } from './call';
 
 const fetchMatchingContexts = (

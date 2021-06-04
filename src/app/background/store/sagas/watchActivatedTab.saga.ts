@@ -4,7 +4,7 @@ import createActivatedTabListener from 'libs/webext/createActivatedTabListener';
 import { tabActivated } from 'libs/store/actions';
 import { createErrorAction } from 'libs/store/actions/helpers';
 import { disable } from 'libs/webext/browserAction';
-import { resetBadge } from 'libs/lmem/badge';
+import { resetBadge } from 'libs/domain/badge';
 import { isOptionsPage } from 'libs/webext/createMessageHandler';
 import { Level } from 'libs/utils/Logger';
 import { getTabById } from 'app/background/store/selectors/tabs';
