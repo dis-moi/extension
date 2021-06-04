@@ -15,15 +15,15 @@ import {
   Contribution,
   compareUnread,
   Question
-} from 'libs/lmem/notice';
-import { InstallationDetails } from 'libs/lmem/installation';
+} from 'libs/domain/notice';
+import { InstallationDetails } from 'libs/domain/installation';
 import { getRegisteredFieldsPaths } from 'libs/utils/form';
 import {
   getContributors,
   getSubscriptions
 } from 'libs/store/selectors/contributors.selectors';
 import { findItemById } from 'libs/utils/findItemById';
-import { StatefulContributor } from 'libs/lmem/contributor';
+import { StatefulContributor } from 'libs/domain/contributor';
 import { makeGetRouteParam } from 'libs/store/selectors';
 import { ContentState } from 'app/content/store/reducers';
 export * from './serviceMessage.selectors';

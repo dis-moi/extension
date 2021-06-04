@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
-import { ContributorId } from 'libs/lmem/contributor';
+import { ContributorId } from 'libs/domain/contributor';
 import { subscribe, unsubscribe } from 'libs/store/actions/subscription';
 import {
   areContributorNoticesAllFetched,

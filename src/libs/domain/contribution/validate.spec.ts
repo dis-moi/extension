@@ -2,7 +2,7 @@
 import { expect } from 'chai';
 import validateContribution from './validate';
 
-describe('lmem/contribution/validate', () => {
+describe('domain/contribution/validate', () => {
   it('rejects undefined contribution', () => {
     // @ts-ignore
     expect(validateContribution()).to.not.be.empty;

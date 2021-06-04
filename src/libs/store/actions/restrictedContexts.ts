@@ -1,4 +1,4 @@
-import { RestrictedContext } from 'libs/lmem/matchingContext';
+import { RestrictedContext } from 'libs/domain/matchingContext';
 import { BaseAction } from '.';
 
 export const UPDATE_RESTRICTED_CONTEXTS = 'libs/api/UPDATE_RESTRICTED_CONTEXTS';

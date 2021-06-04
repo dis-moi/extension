@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { RouteComponentProps } from 'react-router';
-import { Contributor } from 'libs/lmem/contributor';
+import { Contributor } from 'libs/domain/contributor';
 import { subscribe, unsubscribe } from 'libs/store/actions/subscription';
 import {
   getSimilarContributors,

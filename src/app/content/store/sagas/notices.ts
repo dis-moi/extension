@@ -1,7 +1,7 @@
 import { all, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 import * as R from 'ramda';
-import { StatefulNotice } from 'libs/lmem/notice';
-import { CloseCause } from 'libs/lmem/ui';
+import { StatefulNotice } from 'libs/domain/notice';
+import { CloseCause } from 'libs/domain/ui';
 import {
   AppAction,
   close,

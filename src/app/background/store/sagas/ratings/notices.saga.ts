@@ -13,7 +13,7 @@ import {
   OutboundLinkClickedAction,
   ReceivedFeedbackOnNoticeAction
 } from 'libs/store/actions';
-import { RatingType } from 'libs/lmem/rating';
+import { RatingType } from 'libs/domain/rating';
 
 export const isFeedBackRatingAction = (action: AppAction) =>
   action.type === FEEDBACK_ON_NOTICE &&

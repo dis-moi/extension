@@ -1,8 +1,8 @@
 import React, { ChangeEvent, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import { ContributorId, StatefulContributor } from 'libs/lmem/contributor';
-import { Categories } from 'libs/lmem/category';
+import { ContributorId, StatefulContributor } from 'libs/domain/contributor';
+import { Categories } from 'libs/domain/category';
 import { Button, CenterContainer, Title2 } from 'components/atoms';
 import { Arrow } from 'components/atoms/icons';
 import Link from 'components/atoms/Link/Link';
@@ -14,7 +14,7 @@ import pathToContributor from 'app/profiles/App/pathToContributor';
 import Filters from 'components/molecules/Filters/RadiosFilters';
 import useContributorsFilters from 'app/profiles/App/useContributorsRadiosFilters';
 import OnBoarding from 'app/profiles/App/OnBoarding';
-import { Subscriptions } from 'libs/lmem/subscription';
+import { Subscriptions } from 'libs/domain/subscription';
 import ProfileTabs from '../../../ProfileTabs';
 import BrowserNotSupportedPopin from '../BrowserNotSupportedPopin';
 import NotConnectedPopin, {

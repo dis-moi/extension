@@ -6,7 +6,7 @@ import {
   FETCH_NOTICES_REQUEST,
   NOTICES_FETCHED
 } from 'libs/store/actions';
-import { Notice } from 'libs/lmem/notice';
+import { Notice } from 'libs/domain/notice';
 
 export type NoticesCollectionState = CollectionState<Notice>;
 

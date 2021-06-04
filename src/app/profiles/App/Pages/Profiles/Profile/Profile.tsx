@@ -13,8 +13,8 @@ import {
   Title2,
   TwoColumns
 } from 'components/atoms';
-import { Notice, NoticeWithContributor } from 'libs/lmem/notice';
-import { ContributorId, StatefulContributor } from 'libs/lmem/contributor';
+import { Notice, NoticeWithContributor } from 'libs/domain/notice';
+import { ContributorId, StatefulContributor } from 'libs/domain/contributor';
 import Error from '../../Error';
 import SimilarProfiles from '../../../SimilarProfiles';
 import SubscribePopin from '../SubscribePopin';

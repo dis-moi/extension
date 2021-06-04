@@ -29,16 +29,16 @@ import { createErrorAction } from 'libs/store/actions/helpers';
 import {
   filterContextsMatchingTabContent,
   MatchingContext
-} from 'libs/lmem/matchingContext';
+} from 'libs/domain/matchingContext';
 import {
   NoticeWithContributor,
   StatefulNoticeWithContributor,
   warnIfNoticeInvalid
-} from 'libs/lmem/notice';
+} from 'libs/domain/notice';
 import { fetchNoticesByUrls } from 'libs/api/fetchNotice';
 import { disable } from 'libs/webext/browserAction';
-import { resetBadge } from 'libs/lmem/badge';
-import Tab from 'libs/lmem/tab';
+import { resetBadge } from 'libs/domain/badge';
+import Tab from 'libs/domain/tab';
 import { createCallAndRetry } from 'libs/store/sagas/effects/callAndRetry';
 import { Level } from 'libs/utils/Logger';
 import {

@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import { expect } from 'chai';
-import { CloseCause } from 'libs/lmem/ui';
+import { CloseCause } from 'libs/domain/ui';
 import {
   closed,
   contributorsTransmitted,

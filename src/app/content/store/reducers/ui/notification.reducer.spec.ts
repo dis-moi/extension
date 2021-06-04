@@ -2,7 +2,7 @@
 import { expect } from 'chai';
 import * as R from 'ramda';
 import { closed, opened } from 'libs/store/actions';
-import { CloseCause } from 'libs/lmem/ui';
+import { CloseCause } from 'libs/domain/ui';
 import { loaded } from '../../actions/ui/open.actions';
 import openReducer from './notification.reducer';
 

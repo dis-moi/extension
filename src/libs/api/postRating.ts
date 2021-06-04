@@ -1,4 +1,4 @@
-import { RatingType } from 'libs/lmem/rating';
+import { RatingType } from 'libs/domain/rating';
 import { post } from './call';
 
 export interface Rating {

@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import { Contribution } from 'libs/lmem/notice';
+import { Contribution } from 'libs/domain/notice';
 import isEmail from 'libs/utils/isEmail';
 import ValidationErrors from '../ValidationErrors';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { BorderButton, Box, LoadingRotator, Paragraph } from 'components/atoms';
-import { Notice } from 'libs/lmem/notice';
+import { Notice } from 'libs/domain/notice';
 import { LoadingBig, Pin } from 'components/atoms/icons';
 import { stripUrlProtocol } from 'libs/utils/stripUrlProtocol';
 

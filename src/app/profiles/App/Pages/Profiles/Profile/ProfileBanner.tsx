@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import { StatefulContributor } from 'libs/lmem/contributor';
+import { StatefulContributor } from 'libs/domain/contributor';
 import defaultProfileBannerImage from 'assets/img/profile-banner.jpg';
 
 const ProfileBannerContainer = styled.div<{

@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import * as R from 'ramda';
 import { generateContributor } from 'test/fakers/generateContributor';
-import { Contributor, ContributorId } from 'libs/lmem/contributor';
+import { Contributor, ContributorId } from 'libs/domain/contributor';
 import {
   StateWithResources,
   StateWithSubscriptions

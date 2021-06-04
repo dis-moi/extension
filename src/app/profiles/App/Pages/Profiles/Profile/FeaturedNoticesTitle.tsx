@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Title2 } from 'components/atoms';
-import { StatefulContributor } from 'libs/lmem/contributor';
+import { StatefulContributor } from 'libs/domain/contributor';
 
 export interface FeaturedNoticesTitleProps {
   featuredNoticesCount: number;

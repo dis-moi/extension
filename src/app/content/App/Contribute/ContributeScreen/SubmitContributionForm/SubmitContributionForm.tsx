@@ -5,7 +5,7 @@ import { Form } from 'components/atoms/Forms';
 import { CenterContainer, BackgroundButton } from 'components/atoms';
 import { InputField, TextareaField } from 'components/organisms/Fields';
 import FormErrors from 'components/molecules/FormErrors';
-import { Contribution } from 'libs/lmem/notice';
+import { Contribution } from 'libs/domain/notice';
 import withReduxForm from './withReduxForm';
 
 export interface SubmitContributionFormOwnProps {
