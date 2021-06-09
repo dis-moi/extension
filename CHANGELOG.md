@@ -1,3 +1,10 @@
+## [3.79.1](https://github.com/dis-moi/extension/compare/v3.79.0...v3.79.1) (2021-06-09)
+
+
+### Bug Fixes
+
+* **popin:** del className bulle-installer ([6796e7c](https://github.com/dis-moi/extension/commit/6796e7c5aafd8899ffaf2f2ada41e1768657191e))
+
 # [3.79.0](https://github.com/dis-moi/extension/compare/v3.78.1...v3.79.0) (2021-06-04)
 
 
