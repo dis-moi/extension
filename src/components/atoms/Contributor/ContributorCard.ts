@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Contributor } from 'app/lmem/contributor';
+import { Contributor } from 'libs/domain/contributor';
 
 interface ContributorCardProps {
   contributor: Contributor;

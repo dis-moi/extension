@@ -6,7 +6,7 @@ Given(/^I am following "(.+)"$/, async function(
   this: InitializedDisMoiWorld,
   contributorName: string
 ) {
-  this.page = await Profiles.getContributorsList(this.browser);
+  this.page = await Profiles.getContributorsList(this);
   await Profiles.clickContributorButton(this.page, contributorName);
-  await this.page.waitForTimeout(1000);
+  await Profiles.expectContributorIsFollowed(this.page, contributorName);
 });

@@ -10,5 +10,7 @@ export default {
     await background.goto(getBackgroundUrl(extensionID), {
       waitUntil: 'networkidle0'
     });
+
+    return background;
   }
 };

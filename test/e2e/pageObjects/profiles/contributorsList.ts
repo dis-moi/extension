@@ -1,4 +1,5 @@
-import { Browser, Page } from 'puppeteer';
+import { ConsoleMessage, Page } from 'puppeteer';
+import { InitializedDisMoiWorld } from 'test/e2e/support/setup';
 
 const profilesHost = 'http://localhost:8080';
 const profilesUrl = `${profilesHost}/eclaireurs`;
@@ -11,19 +12,30 @@ const contributorCardTitleLink = (contributorName?: string) =>
   `${contributorCard(
     contributorName
   )} [data-test-type="contributor-name-link"]`;
+const contributorButton = (contributorName?: string) =>
+  `${contributorCard(contributorName)} [data-test-type="contributor-button"]`;
 
-const getProfilesPage = async (browser: Browser) => {
-  const pages = await browser.pages();
+const getProfilesPage = async (world: InitializedDisMoiWorld) => {
+  const pages = await world.browser.pages();
   const existing = pages.find(page => page.url().includes(profilesHost));
-  if (existing) return existing;
-  const page = await browser.newPage();
+  if (existing) {
+    existing.on('console', (consoleMessage: ConsoleMessage) => {
+      world.consoleMessages.push(['profiles', consoleMessage.text()]);
+    });
+
+    return existing;
+  }
+  const page = await world.browser.newPage();
   await page.goto(profilesUrl);
+  page.on('console', (consoleMessage: ConsoleMessage) => {
+    console.warn('profiles', consoleMessage.text());
+  });
   return page;
 };
 
 export default {
-  async getContributorsList(browser: Browser) {
-    const page = await getProfilesPage(browser);
+  async getContributorsList(world: InitializedDisMoiWorld) {
+    const page = await getProfilesPage(world);
     await page.goto(profilesUrl);
     await page.waitForSelector(contributorCard());
     return page;
@@ -34,10 +46,13 @@ export default {
     );
   },
   async clickContributorButton(page: Page, contributorName: string) {
-    await page.click(
-      `${contributorCard(
+    await page.click(contributorButton(contributorName));
+  },
+  async expectContributorIsFollowed(page: Page, contributorName: string) {
+    await page.waitForFunction(
+      `document.querySelector('${contributorButton(
         contributorName
-      )} [data-test-type="contributor-button"]`
+      )}').innerText !== 'Suivre'`
     );
   }
 };

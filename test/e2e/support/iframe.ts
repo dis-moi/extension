@@ -1,5 +1,5 @@
 import { Page } from 'puppeteer';
-import { iFrameId } from 'app/constants/iframe';
+import { iFrameId } from 'app/content/constants/iframe';
 
 export const findIframe = (page: Page) =>
   page
