@@ -82,6 +82,21 @@ export interface Theme {
     xl: string;
     xxl: string;
   };
+
+  website: {
+    radius: string;
+    radiusSmall: string;
+    primaryColor: string;
+    primaryColorDarker: string;
+    secondaryColor: string;
+    secondaryColorDarker: string;
+    activeColor: string;
+    textSizeMobile: string;
+    textSizeTablet: string;
+    textSizeDesktop: string;
+    animationSlowDuration: string;
+    animationFastDuration: string;
+  };
 }
 
 export const dismoiTheme: Theme = {
@@ -169,6 +184,21 @@ export const dismoiTheme: Theme = {
     lg: '992px',
     xl: '1200px',
     xxl: '1400px'
+  },
+
+  website: {
+    radius: '10px',
+    radiusSmall: '6px',
+    primaryColor: '#2855a2',
+    primaryColorDarker: '#1b386c',
+    secondaryColor: '#17BAAE',
+    secondaryColorDarker: '#148D84',
+    activeColor: '#ff981d',
+    textSizeMobile: '16px',
+    textSizeTablet: '17px',
+    textSizeDesktop: '18px',
+    animationSlowDuration: '0.5s',
+    animationFastDuration: '0.1s'
   }
 };
 
