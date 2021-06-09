@@ -31,7 +31,7 @@ export default {
 export const ButtonDefault = (args: ButtonProps) => <Button {...args} />;
 ButtonDefault.args = {
   text: 'Default button'
-};
+} as ButtonProps;
 
 export const ButtonSolidBlue = (args: ButtonProps) => <Button {...args} />;
 ButtonSolidBlue.args = {
@@ -40,7 +40,7 @@ ButtonSolidBlue.args = {
   icon: 'download',
   text: 'Solid blue button',
   details: 'with detail'
-};
+} as ButtonProps;
 
 export const ButtonSolidGreen = (args: ButtonProps) => <Button {...args} />;
 ButtonSolidGreen.args = {
@@ -49,7 +49,7 @@ ButtonSolidGreen.args = {
   icon: 'checklist',
   text: 'Solid green button',
   details: 'with detail'
-};
+} as ButtonProps;
 
 export const ButtonSolidOrange = (args: ButtonProps) => <Button {...args} />;
 ButtonSolidOrange.args = {
@@ -58,7 +58,7 @@ ButtonSolidOrange.args = {
   icon: 'coins',
   text: 'Solid orange button',
   details: 'with detail'
-};
+} as ButtonProps;
 
 export const ButtonOutlineBlue = (args: ButtonProps) => <Button {...args} />;
 ButtonOutlineBlue.args = {
@@ -67,7 +67,7 @@ ButtonOutlineBlue.args = {
   icon: 'download',
   text: 'Outline blue button',
   details: 'with detail'
-};
+} as ButtonProps;
 
 export const ButtonOutlineGreen = (args: ButtonProps) => <Button {...args} />;
 ButtonOutlineGreen.args = {
@@ -76,7 +76,7 @@ ButtonOutlineGreen.args = {
   icon: 'checklist',
   text: 'Outline green button',
   details: 'with detail'
-};
+} as ButtonProps;
 
 export const ButtonOutlineOrange = (args: ButtonProps) => <Button {...args} />;
 ButtonOutlineOrange.args = {
@@ -85,7 +85,7 @@ ButtonOutlineOrange.args = {
   icon: 'coins',
   text: 'Outline orange button',
   details: 'with detail'
-};
+} as ButtonProps;
 
 export const AllButtons = () => (
   <div style={{ display: 'flex', flexWrap: 'wrap' }}>
