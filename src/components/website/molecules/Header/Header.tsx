@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import NavDesktop from '../../atoms/NavDesktop/NavDesktop';
 import NavDesktopItem from '../../atoms/NavDesktopItem/NavDesktopItem';
@@ -11,24 +11,38 @@ export interface HeaderProps {
 }
 
 const Header = styled(({ className, scrolled }: HeaderProps) => {
+  const [offset, setOffset] = useState(0);
+
+  useEffect(() => {
+    window.onscroll = () => {
+      setOffset(window.pageYOffset);
+    };
+  }, []);
+
+  const isScrolled = scrolled || offset > 100;
+
   return (
-    <header className={className + (scrolled ? ' scrolled' : '')}>
+    <header className={className + (isScrolled ? ' scrolled' : '')}>
       <a className="homeLink" href={'/'}>
         <LogoDisMoi />
       </a>
       <NavDesktop>
-        <NavDesktopItem href={'#'}>Tous les contributeurs</NavDesktopItem>
-        <NavDesktopItem href={'#'}>Poster une info</NavDesktopItem>
-        {scrolled && (
+        <NavDesktopItem href={'#'}>Tous les profils</NavDesktopItem>
+        <NavDesktopItem href={'#'}>Contribuer</NavDesktopItem>
+        {isScrolled && (
           <Button
             text={'Ajouter DisMoi'}
             details={'Gratuit'}
             icon={'download'}
             color={'green'}
+            handleClick={() =>
+              // eslint-disable-next-line no-console
+              console.log('%cGO TO APP STORE!', 'font-weight:bold;color:blue;')
+            }
           />
         )}
         <NavDesktopItem href={'#'}>Aide</NavDesktopItem>
-        <NavDesktopItem href={'#'}>fr/en</NavDesktopItem>
+        <NavDesktopItem href={'#'}>fr | en</NavDesktopItem>
       </NavDesktop>
     </header>
   );
@@ -68,6 +82,11 @@ const Header = styled(({ className, scrolled }: HeaderProps) => {
   nav {
     transform-origin: right center;
     transition: transform ${props => props.theme.website.animationFastDuration};
+
+    a:last-of-type {
+      transform-origin: center;
+      transform: scale(0.8);
+    }
   }
   &:not(.scrolled) {
     a.homeLink {
@@ -75,18 +94,10 @@ const Header = styled(({ className, scrolled }: HeaderProps) => {
         fill: white;
       }
       &:hover svg path {
-        fill: ${props => props.theme.website.primaryColor};
+        fill: ${props => props.theme.website.secondaryColor};
       }
       &:active svg path {
         fill: ${props => props.theme.website.activeColor};
-      }
-    }
-    a {
-      &:hover {
-        color: ${props => props.theme.website.primaryColor};
-      }
-      &:active {
-        color: ${props => props.theme.website.activeColor};
       }
     }
   }
@@ -95,11 +106,18 @@ const Header = styled(({ className, scrolled }: HeaderProps) => {
     color: ${props => props.theme.website.primaryColor};
     padding-top: 6px;
     padding-bottom: 6px;
+    box-shadow: ${props => props.theme.website.boxShadow};
     a.homeLink {
+      transform-origin: left center;
       transform: scale(0.85);
     }
     nav {
+      transform-origin: right center;
       transform: scale(0.85);
+
+      a:last-of-type {
+        color: ${props => props.theme.website.greyColorDarker};
+      }
     }
   }
 `;

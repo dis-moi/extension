@@ -2,29 +2,29 @@ import styled from 'styled-components';
 
 const PrimaryHeadline = styled.h1`
   line-height: 1.1;
-  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: ${props => props.theme.website.fontFamily};
   font-weight: bold;
   color: white;
-  font-size: 40px;
+  font-size: 36px;
   margin-top: 0;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   @media (min-width: ${props => props.theme.tabletWidth}) {
-    font-size: 42px;
-    margin-bottom: 18px;
+    font-size: 38px;
+    margin-bottom: 12px;
   }
   @media (min-width: ${props => props.theme.desktopWidth}) {
-    font-size: 44px;
-    margin-bottom: 21px;
+    font-size: 40px;
+    margin-bottom: 14px;
   }
   @media (min-width: ${props =>
       parseInt(props.theme.desktopWidth) + 100 + 'px'}) {
-    font-size: 46px;
-    margin-bottom: 24px;
+    font-size: 42px;
+    margin-bottom: 16px;
   }
   @media (min-width: ${props =>
       parseInt(props.theme.desktopWidth) + 200 + 'px'}) {
-    font-size: 48px;
-    margin-bottom: 27px;
+    font-size: 44px;
+    margin-bottom: 18px;
   }
 `;
 

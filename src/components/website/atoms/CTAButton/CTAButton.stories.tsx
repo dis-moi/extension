@@ -1,16 +1,18 @@
 import React from 'react';
-import CATButton, { CATButtonProps } from './CATButton';
+import { browserList } from '../../../../utils/website/getBrowser';
+import { platformList } from '../../../../utils/website/getPlatform';
+import CTAButton, { CATButtonProps } from './CTAButton';
 
 export default {
   title: 'Website/Atoms/CATButton',
   argTypes: {
     platform: {
-      options: ['macos', 'ios', 'windows', 'android', 'linux'],
+      options: platformList,
       control: { type: 'select' },
       default: null
     },
     browser: {
-      options: ['firefox', 'chrome', 'safari', 'edge', 'brave'],
+      options: browserList,
       control: { type: 'select' },
       default: null
     },
@@ -23,32 +25,39 @@ export default {
   }
 };
 
-export const CATButtonDefault = (args: CATButtonProps) => (
-  <CATButton {...args} />
+export const CATButtonAutoDetect = (args: CATButtonProps) => (
+  <CTAButton {...args} />
 );
 
 export const CATButtonFirefox = (args: CATButtonProps) => (
-  <CATButton {...args} />
+  <CTAButton {...args} />
 );
 CATButtonFirefox.args = {
   browser: 'firefox'
 };
 
 export const CATButtonChrome = (args: CATButtonProps) => (
-  <CATButton {...args} />
+  <CTAButton {...args} />
 );
 CATButtonChrome.args = {
   browser: 'chrome'
 };
 
 export const CATButtonAndroid = (args: CATButtonProps) => (
-  <CATButton {...args} />
+  <CTAButton {...args} />
 );
 CATButtonAndroid.args = {
   platform: 'android'
 };
 
-export const CATButtonIos = (args: CATButtonProps) => <CATButton {...args} />;
+export const CATButtonIos = (args: CATButtonProps) => <CTAButton {...args} />;
 CATButtonIos.args = {
   platform: 'ios'
+};
+
+export const CATButtonNotSupported = (args: CATButtonProps) => (
+  <CTAButton {...args} />
+);
+CATButtonNotSupported.args = {
+  browser: 'brave'
 };

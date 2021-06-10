@@ -91,11 +91,17 @@ export interface Theme {
     secondaryColor: string;
     secondaryColorDarker: string;
     activeColor: string;
+    activeColorDarker: string;
+    greyColor: string;
+    greyColorLighter: string;
+    greyColorDarker: string;
+    fontFamily: string;
     textSizeMobile: string;
     textSizeTablet: string;
     textSizeDesktop: string;
     animationSlowDuration: string;
     animationFastDuration: string;
+    boxShadow: string;
   };
 }
 
@@ -189,16 +195,22 @@ export const dismoiTheme: Theme = {
   website: {
     radius: '10px',
     radiusSmall: '6px',
-    primaryColor: '#2855a2',
+    primaryColor: '#0C52B4',
     primaryColorDarker: '#1b386c',
-    secondaryColor: '#17BAAE',
+    secondaryColor: '#17baae',
     secondaryColorDarker: '#148D84',
     activeColor: '#ff981d',
+    activeColorDarker: '#ce740f',
+    greyColor: '#DDDDDD',
+    greyColorLighter: '#F5F5F5',
+    greyColorDarker: '#6D747E',
+    fontFamily: "'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif",
     textSizeMobile: '16px',
     textSizeTablet: '17px',
     textSizeDesktop: '18px',
     animationSlowDuration: '0.5s',
-    animationFastDuration: '0.1s'
+    animationFastDuration: '0.1s',
+    boxShadow: 'rgba(0, 0, 0, 0.1) 0 0 10px;'
   }
 };
 

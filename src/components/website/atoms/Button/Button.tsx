@@ -9,8 +9,10 @@ import IconStats from './icons/IconStats';
 const StyledButton = styled.button`
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  white-space: nowrap;
   border: none;
   border-radius: ${props => props.theme.website.radiusSmall};
   transition: color 0.1s, background-color 0.1s;
@@ -57,16 +59,34 @@ const StyledButton = styled.button`
     svg path {
       fill: ${props => props.theme.website.primaryColor};
     }
+    &.blue {
+      color: ${props => props.theme.website.primaryColor};
+      border-color: ${props => props.theme.website.primaryColor};
+      svg path {
+        fill: ${props => props.theme.website.primaryColor};
+      }
+      &:hover {
+        background-color: ${props => props.theme.website.primaryColor};
+      }
+    }
     &.green {
       color: ${props => props.theme.website.secondaryColor};
+      border-color: ${props => props.theme.website.secondaryColor};
       svg path {
         fill: ${props => props.theme.website.secondaryColor};
+      }
+      &:hover {
+        background-color: ${props => props.theme.website.secondaryColor};
       }
     }
     &.orange {
       color: ${props => props.theme.website.activeColor};
+      border-color: ${props => props.theme.website.activeColor};
       svg path {
         fill: ${props => props.theme.website.activeColor};
+      }
+      &:hover {
+        background-color: ${props => props.theme.website.activeColor};
       }
     }
     &:hover {
@@ -110,17 +130,14 @@ const Detail = styled.span`
   }
 `;
 
-type ButtonIcon = 'download' | 'checklist' | 'coins' | 'stats' | 'github';
-type ButtonAppearance = 'solid' | 'outline';
-type ButtonColor = 'blue' | 'green' | 'orange';
-
-export interface ButtonProps {
-  icon?: ButtonIcon;
-  appearance?: ButtonAppearance;
-  color?: ButtonColor;
-  text: string;
-  details?: string;
-}
+export type ButtonIcon =
+  | 'download'
+  | 'checklist'
+  | 'coins'
+  | 'stats'
+  | 'github';
+export type ButtonAppearance = 'solid' | 'outline';
+export type ButtonColor = 'blue' | 'green' | 'orange';
 
 const IconSvg = (icon: ButtonIcon) => {
   if (icon === 'checklist') return <IconCheckList />;
@@ -130,13 +147,33 @@ const IconSvg = (icon: ButtonIcon) => {
   if (icon === 'stats') return <IconStats />;
 };
 
-const Button = ({ icon, appearance, color, text, details }: ButtonProps) => {
+export interface ButtonProps {
+  icon?: ButtonIcon;
+  appearance?: ButtonAppearance;
+  color?: ButtonColor;
+  text: string;
+  details?: string;
+  additionalClassName?: string;
+  handleClick: () => void;
+}
+
+const Button = ({
+  icon,
+  appearance,
+  color,
+  text,
+  details,
+  additionalClassName,
+  handleClick
+}: ButtonProps) => {
   return (
     <StyledButton
       className={
         (appearance === 'outline' ? 'outline' : '') +
-        (color !== undefined ? ' ' + color : '')
+        (color !== undefined ? ' ' + color : '') +
+        (additionalClassName !== undefined ? ' ' + additionalClassName : '')
       }
+      onClick={() => handleClick()}
     >
       {icon && <Icon>{IconSvg(icon)}</Icon>}
       <Text>
