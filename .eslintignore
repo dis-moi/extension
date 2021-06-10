@@ -1,1 +1,3 @@
 webpack
+src/components/website/atoms/BrowserAnimation/createjs.min.js
+src/components/website/atoms/BrowserAnimation/animation.js

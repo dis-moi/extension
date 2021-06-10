@@ -19,6 +19,7 @@ const StyledGridRow = styled(props => <GridRow {...props} />)`
   display: flex;
   flex-direction: column-reverse;
   justify-content: flex-end;
+  align-items: center;
   @media (min-width: ${props => props.theme.tabletWidth}) {
     padding-top: 52px;
     padding-bottom: 0;
@@ -37,28 +38,24 @@ const StyledGridCol1 = styled(props => <GridCol {...props} />)`
   @media (min-width: ${props => props.theme.tabletWidth}) {
     padding-top: 0;
   }
-  svg {
-    width: 100%;
-    max-width: 275px;
-    @media (min-width: ${props => props.theme.tabletWidth}) {
-      width: 275px;
-      max-width: initial;
-      padding-right: 20px;
-    }
-    @media (min-width: ${props => props.theme.desktopWidth}) {
-      width: 300px;
-      padding-right: 25px;
-    }
-    @media (min-width: ${props =>
-        parseInt(props.theme.desktopWidth) + 100 + 'px'}) {
-      width: 325px;
-      padding-right: 30px;
-    }
-    @media (min-width: ${props =>
-        parseInt(props.theme.desktopWidth) + 200 + 'px'}) {
-      width: 350px;
-      padding-right: 35px;
-    }
+  width: 100%;
+  max-width: 400px;
+  @media (min-width: ${props => props.theme.tabletWidth}) {
+    max-width: 50%;
+    padding-right: 25px;
+  }
+  @media (min-width: ${props => props.theme.desktopWidth}) {
+    max-width: 45%;
+    padding-right: 25px;
+  }
+  @media (min-width: ${props =>
+      parseInt(props.theme.desktopWidth) + 100 + 'px'}) {
+    max-width: 40%;
+    padding-right: 30px;
+  }
+  @media (min-width: ${props =>
+      parseInt(props.theme.desktopWidth) + 200 + 'px'}) {
+    padding-right: 35px;
   }
 `;
 

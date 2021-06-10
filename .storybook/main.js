@@ -1,3 +1,6 @@
+const path = require('path');
+const MergeIntoSingleFilePlugin = require('webpack-merge-and-include-globally');
+
 module.exports = {
   stories: ['../src/**/*.stories.tsx'],
   addons: [
@@ -5,5 +8,30 @@ module.exports = {
     '@storybook/addon-knobs/register',
     '@storybook/addon-essentials',
     '@storybook/preset-typescript'
-  ]
+  ],
+  webpackFinal: async (config, { configType }) => {
+    // `configType` has a value of 'DEVELOPMENT' or 'PRODUCTION'
+    // You can change the configuration based on that.
+    // 'PRODUCTION' is used when building the static version of storybook.
+
+    config.plugins.push(
+      new MergeIntoSingleFilePlugin({
+        files: {
+          'animation.js': [
+            path.resolve(
+              __dirname,
+              '../src/components/website/atoms/BrowserAnimation/createjs.min.js'
+            ),
+            path.resolve(
+              __dirname,
+              '../src/components/website/atoms/BrowserAnimation/animation.js'
+            )
+          ]
+        }
+      })
+    );
+
+    // Return the altered config
+    return config;
+  }
 };
