@@ -147,7 +147,7 @@
     "content-security-policy-builder": "^1.1.0",
     "copy-webpack-plugin": "^5.0.0",
     "core-js": "^3.2.1",
-    "createjs": "^1.0.1",
+    "createjs-module": "^0.8.3",
     "css-loader": "^2.0.1",
     "date-fns": "^2.21.3",
     "dotenv": "^8.0.0",
