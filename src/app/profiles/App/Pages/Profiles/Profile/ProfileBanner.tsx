@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { StatefulContributor } from 'libs/domain/contributor';
-import defaultProfileBannerImage from 'assets/img/profile-banner.jpg';
+import defaultProfileBannerImage from 'assets/img/profile-banner.png';
 
 const ProfileBannerContainer = styled.div<{
   default: boolean;
