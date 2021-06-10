@@ -148,6 +148,7 @@
     "content-security-policy-builder": "^1.1.0",
     "copy-webpack-plugin": "^5.0.0",
     "core-js": "^3.2.1",
+    "createjs": "^1.0.1",
     "css-loader": "^2.0.1",
     "date-fns": "^2.21.3",
     "dotenv": "^8.0.0",
@@ -190,6 +191,7 @@
     "ramda": "^0.26.1",
     "ramda-adjunct": "^2.19.0",
     "react": "16.8.0",
+    "react-adobe-animate": "^2.5.0",
     "react-dev-utils": "^11.0.4",
     "react-dom": "16.8.0",
     "react-i18next": "^11.8.8",
@@ -233,6 +235,7 @@
     "webpack-bundle-analyzer": "^3.4.1",
     "webpack-cli": "^3.1.2",
     "webpack-filter-warnings-plugin": "^1.2.1",
+    "webpack-merge-and-include-globally": "^2.3.4",
     "zip-webpack-plugin": "^3.0.0"
   },
   "devDependencies": {
