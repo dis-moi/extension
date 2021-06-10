@@ -77,14 +77,6 @@ const StoreRating = styled(
       </div>
     );
   }
-)`
-  transform-origin: center;
-  transform: scale(0.9);
-  padding-top: 5px;
-  @media (min-width: ${props => props.theme.tabletWidth}) {
-    transform: none;
-    padding-top: 0;
-  }
-`;
+)``;
 
 export default StoreRating;
