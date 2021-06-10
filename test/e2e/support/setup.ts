@@ -59,8 +59,7 @@ const startChromium = async () => {
       ignoreDefaultArgs: ['--disable-extensions']
     });
   } catch (e) {
-    console.error('Could not start Chromium');
-    return null;
+    console.error('Could not start Chromium', e, e.stack);
   }
 };
 
@@ -130,12 +129,19 @@ After(async function(this: DisMoiWorld, scenario) {
   if (
     scenario.result &&
     scenario.pickle.name &&
-    scenario.result.status === Status.FAILED &&
-    this.page
+    scenario.result.status === Status.FAILED
   ) {
-    const screenShotName = scenario.pickle.name.replace(/[\W_]+/g, '-');
-    await this.page.screenshot({
-      path: `${config.screenshotPath}/${screenShotName}.png`
-    });
+    if (this.consoleMessages) {
+      this.consoleMessages.forEach(([type, message]) => {
+        console.log(type, message);
+      });
+    }
+
+    if (this.page) {
+      const screenShotName = scenario.pickle.name.replace(/[\W_]+/g, '-');
+      await this.page.screenshot({
+        path: `${config.screenshotPath}/${screenShotName}.png`
+      });
+    }
   }
 });
