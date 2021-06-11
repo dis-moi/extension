@@ -18,7 +18,6 @@ const ProfileBannerContainer = styled.div<{
     bottom: 0;
     margin: auto;
     display: block;
-    opacity: ${props => (props.default ? '0.5' : '1')};
   }
 
   @media (max-width: ${props => props.theme.tabletWidth}) {
