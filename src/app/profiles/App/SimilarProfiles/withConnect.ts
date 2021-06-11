@@ -4,12 +4,14 @@ import { RouteComponentProps } from 'react-router';
 import { Contributor } from 'libs/domain/contributor';
 import { subscribe, unsubscribe } from 'libs/store/actions/subscription';
 import {
+  getFamousContributors,
   getSimilarContributors,
   getStatefulContributors
 } from 'app/profiles/store/selectors';
 import { areContributorsLoading } from 'app/profiles/store/selectors/contributors';
 import { ProfilesState } from 'app/profiles/store/reducers';
 import { extensionMessageSender } from 'app/profiles/extensionId';
+import { isConnected } from '../../store/selectors/connection';
 
 export interface ConnectedSimilarProfileProps
   extends RouteComponentProps<{ id: string }> {
@@ -23,7 +25,9 @@ const mapStateToProps = (
 ) => ({
   loading: areContributorsLoading(state),
   similarContributors: getSimilarContributors(state, props).slice(0, 6),
-  contributors: getStatefulContributors(state)
+  contributors: getStatefulContributors(state),
+  famousContributors: getFamousContributors(state),
+  connected: isConnected(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

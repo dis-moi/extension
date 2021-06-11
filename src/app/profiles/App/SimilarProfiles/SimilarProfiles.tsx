@@ -22,9 +22,11 @@ interface SimilarProfilesProps {
   loading?: boolean;
   similarContributors: StatefulContributor[];
   contributors: StatefulContributor[];
+  famousContributors: StatefulContributor[];
   subscribe: (contributor: StatefulContributor) => () => void;
   unsubscribe: (contributor: StatefulContributor) => () => void;
   className?: string;
+  connected?: boolean;
 }
 
 const Loader = styled(CenterContainer)`
@@ -38,16 +40,18 @@ const SimilarProfiles = ({
   contributors,
   subscribe,
   unsubscribe,
-  className
+  className,
+  famousContributors,
+  connected
 }: SimilarProfilesProps) => {
-  const [initialSimilarContributors, setInitialSimilarContributors] = useState(
-    similarContributors
+  const [initialListContributors, setInitialListContributors] = useState(
+    famousContributors
   );
-
   useEffect(() => {
-    if (initialSimilarContributors.length === 0)
-      setInitialSimilarContributors(similarContributors);
-  }, [similarContributors, contributors]);
+    if (connected || famousContributors.length === 0)
+      return setInitialListContributors(similarContributors);
+    if (!connected) return setInitialListContributors(famousContributors);
+  }, [similarContributors, contributors, connected]);
 
   const { t } = useTranslation();
 
@@ -61,15 +65,19 @@ const SimilarProfiles = ({
     );
   }
 
-  if (!initialSimilarContributors || initialSimilarContributors.length === 0) {
+  if (!initialListContributors || initialListContributors.length === 0) {
     return null;
   }
 
   return (
     <>
-      <Title2>{t('profiles:common.similar_profiles')}</Title2>
+      <Title2>
+        {connected
+          ? t('profiles:common.similar_profiles')
+          : t('profiles:common.famous_profiles')}
+      </Title2>
       <SidebarBox className={className}>
-        {initialSimilarContributors
+        {initialListContributors
           .map(initialSimilarContributor => ({
             ...initialSimilarContributor,
             ...contributors.find(
