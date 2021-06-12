@@ -46,7 +46,7 @@
     "build": "yarn build:staging && yarn build:production && yarn build:proding",
     "clean": "rm -rf build",
     "test:unit": "BACKEND_ORIGIN='' mocha -r ts-node/register -r tsconfig-paths/register -r jsdom-global/register 'src/**/*.spec.ts' 'test/app/*.ts' 'test/app/**/*.ts'",
-    "test:e2e:ci": "yarn build:dev && docker build -t dismoi-extension-e2e . && docker run -it --rm -v $(pwd):/app dismoi-extension-e2e",
+    "test:e2e:ci": "yarn build:dev && docker build -t dismoi-extension-e2e . && docker run -it --rm -v $(pwd):/app -e NODE_ENV=development dismoi-extension-e2e",
     "test:e2e": "yarn cucumber-js",
     "test:e2e:extensive": "yarn concurrently -r --kill-others -n extension,profiles,cucumber 'yarn start' 'yarn start:profiles:no-progress' 'yarn wait-on ./build/development/chromium/ && yarn wait-on http://localhost:8080 && yarn test:e2e:run' ",
     "test": "yarn test:unit",

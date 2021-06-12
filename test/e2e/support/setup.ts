@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import {
   After,
   Before,
@@ -8,7 +9,6 @@ import {
 import puppeteer, { Browser, ConsoleMessage, Page } from 'puppeteer';
 import path from 'path';
 import expect from 'expect';
-import * as fs from 'fs';
 
 setDefaultTimeout(60 * 1000);
 
@@ -46,7 +46,13 @@ export interface InitializedDisMoiWorld extends DisMoiWorld {
 
 const startChromium = async () => {
   try {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
+    const browserFetcher = puppeteer.createBrowserFetcher();
+    const revisionInfo = await browserFetcher.download('869685');
+
     return await puppeteer.launch({
+      executablePath: revisionInfo.executablePath,
       headless: false,
       args: [
         '--no-sandbox',
