@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import CoverSection from '../../organisms/CoverSection/CoverSection';
-import ExemplesSection from '../../organisms/ExemplesSection/ExemplesSection';
+import ExamplesSection from '../../organisms/ExamplesSection/ExamplesSection';
 
 export interface HomePageProps {
   className?: string;
@@ -10,7 +10,7 @@ export interface HomePageProps {
 const HomePage = styled(({ className }: HomePageProps) => (
   <article className={className}>
     <CoverSection />
-    <ExemplesSection />
+    <ExamplesSection />
   </article>
 ))``;
 

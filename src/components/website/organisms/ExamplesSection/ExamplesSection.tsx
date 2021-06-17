@@ -6,13 +6,14 @@ import GridRow from '../../atoms/Grid/GridRow';
 import GridCol from '../../atoms/Grid/GridCol';
 import ExamplesSlider, {
   examples
-} from '../../molecules/ExamplesSlider/ExamplesSlider';
+} from '../../molecules/Slider/ExamplesSlider';
 
 const StyledGridRow = styled(props => <GridRow {...props} />)`
   justify-content: center;
 `;
 
 const StyledGridCol = styled(props => <GridCol {...props} />)`
+  text-align: center;
   width: 100%;
 `;
 
