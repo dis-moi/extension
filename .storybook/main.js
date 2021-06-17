@@ -31,11 +31,6 @@ module.exports = {
       })
     );
 
-    config.module.rules.push({
-      test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
-      loader: 'url-loader?limit=30000&name=[name]-[hash].[ext]'
-    });
-
     // Return the altered config
     return config;
   }
