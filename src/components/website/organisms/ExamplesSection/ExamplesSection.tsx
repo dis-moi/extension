@@ -4,7 +4,9 @@ import Section from '../../atoms/Section/Section';
 import GridContainer from '../../atoms/Grid/GridContainer';
 import GridRow from '../../atoms/Grid/GridRow';
 import GridCol from '../../atoms/Grid/GridCol';
-import SectionTitle from '../../atoms/Titles/SectionTitle';
+import ExamplesSlider, {
+  examples
+} from '../../molecules/Slider/ExamplesSlider';
 
 const StyledGridRow = styled(props => <GridRow {...props} />)`
   justify-content: center;
@@ -12,24 +14,23 @@ const StyledGridRow = styled(props => <GridRow {...props} />)`
 
 const StyledGridCol = styled(props => <GridCol {...props} />)`
   text-align: center;
-
-  @media (min-width: ${props => props.theme.tabletWidth}) {
-  }
+  width: 100%;
 `;
 
-export interface ExemplesSectionProps {
+const StyledExamplesSlider = styled(props => <ExamplesSlider {...props} />)``;
+
+export interface ExamplesSectionProps {
   className?: string;
 }
 
-const ExemplesSection = styled((props: ExemplesSectionProps) => {
+const ExamplesSection = styled((props: ExamplesSectionProps) => {
   return (
     <Section {...props}>
       <GridContainer>
-        <SectionTitle>
-          Par exemple, un guide spécialisé vous suggère une alternative locale
-        </SectionTitle>
         <StyledGridRow>
-          <StyledGridCol>CAROUSSEL</StyledGridCol>
+          <StyledGridCol>
+            <StyledExamplesSlider examples={examples} />
+          </StyledGridCol>
         </StyledGridRow>
       </GridContainer>
     </Section>
@@ -38,4 +39,4 @@ const ExemplesSection = styled((props: ExemplesSectionProps) => {
   background: #f5f5f5;
 `;
 
-export default ExemplesSection;
+export default ExamplesSection;
