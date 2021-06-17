@@ -9,7 +9,7 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/preset-typescript'
   ],
-  webpackFinal: async (config, { configType }) => {
+  webpackFinal: async (config /*, { configType }*/) => {
     // `configType` has a value of 'DEVELOPMENT' or 'PRODUCTION'
     // You can change the configuration based on that.
     // 'PRODUCTION' is used when building the static version of storybook.
@@ -30,6 +30,11 @@ module.exports = {
         }
       })
     );
+
+    config.module.rules.push({
+      test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
+      loader: 'url-loader?limit=30000&name=[name]-[hash].[ext]'
+    });
 
     // Return the altered config
     return config;

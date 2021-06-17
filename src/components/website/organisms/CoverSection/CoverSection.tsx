@@ -16,13 +16,14 @@ import PatternBackground from './backgrounds/PatternBackground';
 
 const StyledGridRow = styled(props => <GridRow {...props} />)`
   position: relative;
-  min-height: 70vh;
   padding-top: 50px;
   display: flex;
   flex-direction: column-reverse;
   justify-content: flex-end;
   align-items: center;
   @media (min-width: ${props => props.theme.tabletWidth}) {
+    height: 60vh;
+    min-height: 500px;
     padding-top: 52px;
     padding-bottom: 0;
     flex-direction: row;
@@ -30,6 +31,7 @@ const StyledGridRow = styled(props => <GridRow {...props} />)`
   }
   @media (min-width: ${props => props.theme.desktopWidth}) {
     padding-top: 54px;
+    min-height: 600px;
   }
 `;
 
@@ -37,7 +39,9 @@ const StyledGridCol1 = styled(props => <GridCol {...props} />)`
   display: flex;
   justify-content: center;
   padding-top: 30px;
+  margin-bottom: -100px;
   @media (min-width: ${props => props.theme.tabletWidth}) {
+    margin-bottom: 0;
     padding-top: 0;
   }
   width: 100%;
