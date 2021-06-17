@@ -80,6 +80,7 @@ export interface Theme {
     secondaryColor: string;
     secondaryColorDarker: string;
     activeColor: string;
+    fontFamily: string;
     textSizeMobile: string;
     textSizeTablet: string;
     textSizeDesktop: string;
@@ -173,6 +174,7 @@ export const theme: Theme = {
     secondaryColor: '#17BAAE',
     secondaryColorDarker: '#148D84',
     activeColor: '#ff981d',
+    fontFamily: "'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif",
     textSizeMobile: '16px',
     textSizeTablet: '17px',
     textSizeDesktop: '18px',

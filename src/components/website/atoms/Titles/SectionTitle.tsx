@@ -1,31 +1,32 @@
 import styled from 'styled-components';
 
-const PrimaryHeadline = styled.h1`
-  line-height: 1.1;
+const SectionTitle = styled.h2`
+  line-height: 1.3;
   font-family: ${props => props.theme.website.fontFamily};
-  font-weight: bold;
-  color: white;
-  font-size: 40px;
+  font-weight: normal;
+  color: ${props => props.theme.website.secondaryColor};
+  font-size: 30px;
+  text-align: center;
   margin-top: 0;
   margin-bottom: 15px;
   @media (min-width: ${props => props.theme.tabletWidth}) {
-    font-size: 42px;
+    font-size: 32px;
     margin-bottom: 18px;
   }
   @media (min-width: ${props => props.theme.desktopWidth}) {
-    font-size: 44px;
+    font-size: 34px;
     margin-bottom: 20px;
   }
   @media (min-width: ${props =>
       parseInt(props.theme.desktopWidth) + 100 + 'px'}) {
-    font-size: 46px;
+    font-size: 36px;
     margin-bottom: 22px;
   }
   @media (min-width: ${props =>
       parseInt(props.theme.desktopWidth) + 200 + 'px'}) {
-    font-size: 48px;
+    font-size: 38px;
     margin-bottom: 24px;
   }
 `;
 
-export default PrimaryHeadline;
+export default SectionTitle;

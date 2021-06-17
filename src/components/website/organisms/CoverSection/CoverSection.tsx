@@ -7,6 +7,8 @@ import GridCol from '../../atoms/Grid/GridCol';
 import PrimaryHeadline from '../../atoms/Titles/PrimaryHeadline';
 import SecondaryHeadline from '../../atoms/Titles/SecondaryHeadline';
 import BrowserAnimation from '../../atoms/BrowserAnimation/BrowserAnimation';
+import CTAButton from '../../atoms/CTAButton/CTAButton';
+import StoreRating from '../../atoms/StoreRating/StoreRating';
 import DarkLayoutBackground from './backgrounds/DarkLayoutBackground';
 import GradientBackground from './backgrounds/GradientBackground';
 import GeometricShapeBackground from './backgrounds/GeometricShapeBackground';
@@ -66,6 +68,34 @@ const StyledGridCol2 = styled(props => <GridCol {...props} />)`
   }
 `;
 
+const CTAAndRatingWrapper = styled.div`
+  display: block;
+  @media (min-width: ${props => props.theme.desktopWidth}) {
+    display: flex;
+    align-items: center;
+  }
+`;
+
+const StyledCTAButton = styled(props => <CTAButton {...props} />)`
+  margin-left: auto;
+  margin-right: auto;
+  @media (min-width: ${props => props.theme.tabletWidth}) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+`;
+
+const StyledStoreRating = styled(props => <StoreRating {...props} />)`
+  margin-top: 10px;
+  @media (min-width: ${props => props.theme.tabletWidth}) {
+    margin-top: 15px;
+  }
+  @media (min-width: ${props => props.theme.desktopWidth}) {
+    margin-top: 0;
+    margin-left: 20px;
+  }
+`;
+
 export interface CoverSectionProps {
   className?: string;
 }
@@ -92,6 +122,10 @@ const CoverSection = styled((props: CoverSectionProps) => {
               Les experts de votre choix vous alertent directement sur les pages
               web que vous visitez.
             </SecondaryHeadline>
+            <CTAAndRatingWrapper>
+              <StyledCTAButton />
+              <StyledStoreRating />
+            </CTAAndRatingWrapper>
           </StyledGridCol2>
         </StyledGridRow>
       </GridContainer>
