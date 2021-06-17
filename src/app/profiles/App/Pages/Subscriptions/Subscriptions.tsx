@@ -12,7 +12,7 @@ import { SlowerMessageBox } from 'components/molecules/SidebarBox';
 import pathToContributor from 'app/profiles/App/pathToContributor';
 import SimilarProfiles from 'app/profiles/App/SimilarProfiles';
 import Filters from 'components/molecules/Filters/RadiosFilters';
-import useContributorsFilters from 'app/profiles/App/useContributorsRadiosFilters';
+import useContributorsFilters from 'app/profiles/App/useContributorsFilters';
 import {
   ContributorExampleLink,
   ContributorProfileListItem

@@ -12,7 +12,7 @@ import StatsWrapper from 'components/atoms/Contributor/StatsWrapper';
 import Loader from 'components/atoms/Loader';
 import pathToContributor from 'app/profiles/App/pathToContributor';
 import Filters from 'components/molecules/Filters/RadiosFilters';
-import useContributorsFilters from 'app/profiles/App/useContributorsRadiosFilters';
+import useContributorsFilters from 'app/profiles/App/useContributorsFilters';
 import LazyOnBoarding from 'app/profiles/App/OnBoarding';
 import { Subscriptions } from 'libs/domain/subscription';
 import ProfileTabs from '../../../ProfileTabs';
@@ -128,9 +128,11 @@ const ProfileList = ({
     }
   };
 
-  const [filteredContributors, setFilter] = useContributorsFilters(
-    contributors
-  );
+  const [
+    filteredContributors,
+    setFilter,
+    handleChangeSearchContributors
+  ] = useContributorsFilters(contributors);
 
   const handleFiltersChange = ({
     target: { value }
@@ -151,6 +153,7 @@ const ProfileList = ({
         loading={!!categoriesLoading}
         filters={categories}
       />
+      <input type="text" onChange={handleChangeSearchContributors} />
 
       {loading ? (
         <Loader />
