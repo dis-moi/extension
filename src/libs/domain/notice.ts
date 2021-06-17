@@ -2,7 +2,12 @@ import { find } from 'ramda';
 import { captureMessage } from 'libs/utils/sentry';
 import { SupportedLanguage } from '../i18n';
 import { Ratings } from './rating';
-import { Contributor, ContributorId, NewContributor } from './contributor';
+import {
+  Contributor,
+  ContributorId,
+  getContributorFieldsToTrack,
+  NewContributor
+} from './contributor';
 
 export interface BaseNotice {
   id: number;
@@ -216,3 +221,40 @@ export const isUnread = (notice: StatefulNotice) => !isRead(notice);
 
 export const compareUnread = (a: StatefulNotice, b: StatefulNotice) =>
   +!isUnread(a) - +!isUnread(b);
+
+export const isRelayed = (
+  subscriptionsIds: ContributorId[],
+  notice?: StatefulNoticeWithContributor
+) => notice?.contributor && !subscriptionsIds.includes(notice?.contributor.id);
+
+export const getRelayer = (
+  subscriptionsIds: Contributor['id'][],
+  notice?: StatefulNoticeWithContributor
+) =>
+  isRelayed(subscriptionsIds, notice)
+    ? notice?.relayers
+        .filter(c => typeof c !== 'undefined')
+        .find(relayer => subscriptionsIds.includes(relayer.id))
+    : undefined;
+
+export const getNoticeFieldsToTrack = ({
+  id,
+  url,
+  strippedMessage,
+  visibility,
+  exampleMatchingUrl,
+  ratings,
+  created,
+  modified,
+  contributor
+}: NoticeWithContributor) => ({
+  id,
+  url,
+  strippedMessage,
+  visibility,
+  exampleMatchingUrl,
+  ratings,
+  created,
+  modified,
+  contributor: getContributorFieldsToTrack(contributor)
+});

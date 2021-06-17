@@ -111,3 +111,12 @@ export const findContributorIn = (contributors: Contributor[]) => (
 export const createContributorExists = (contributors: Contributor[]) => (
   id: number
 ): boolean => !!createFindContributorById(contributors)(id);
+
+export const getContributorFieldsToTrack = (contributor?: BaseContributor) => {
+  if (contributor) {
+    return {
+      id: contributor.id,
+      name: contributor.name
+    };
+  }
+};
