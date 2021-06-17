@@ -14,7 +14,9 @@ import {
   shouldNoticeBeShown,
   Contribution,
   compareUnread,
-  Question
+  Question,
+  isRelayed,
+  getRelayer
 } from 'libs/domain/notice';
 import { InstallationDetails } from 'libs/domain/installation';
 import { getRegisteredFieldsPaths } from 'libs/utils/form';
@@ -143,17 +145,11 @@ export const getSubscriptionsIds = createSelector(
 );
 
 export const isNoticeRelayed = createSelector(
-  [getNoticeFromRoute, getSubscriptionsIds],
-  (notice, subscriptionsIds) =>
-    notice?.contributor && !subscriptionsIds.includes(notice?.contributor.id)
+  [getSubscriptionsIds, getNoticeFromRoute],
+  isRelayed
 );
 
 export const getNoticeRelayer = createSelector(
-  [getNoticeFromRoute, getSubscriptionsIds, isNoticeRelayed],
-  (notice, subscriptionsIds, relayedNotice) =>
-    relayedNotice
-      ? notice?.relayers
-          .filter(c => typeof c !== 'undefined')
-          .find(relayer => subscriptionsIds.includes(relayer.id))
-      : undefined
+  [getSubscriptionsIds, getNoticeFromRoute],
+  getRelayer
 );

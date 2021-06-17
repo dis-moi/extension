@@ -7,6 +7,8 @@ import { getContributors } from './resources';
 export const getSubscriptions = (state: StateWithSubscriptions) =>
   state.subscriptions;
 
+export const getSubscriptionsIds = getSubscriptions;
+
 const addSubscriptionState = (subscriptions: number[]) => (
   contributor: Contributor
 ): StatefulContributor =>
