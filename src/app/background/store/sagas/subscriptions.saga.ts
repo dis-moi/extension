@@ -79,7 +79,7 @@ export function* autoSubscribeSaga() {
   if (nbSubscriptions === 0) {
     yield all(
       PRESELECTED_CONTRIBUTORS_IDS.map(contributorId =>
-        put(subscribe(contributorId))
+        put(subscribe(contributorId, { manual: false }))
       )
     );
   }
