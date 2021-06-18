@@ -20,6 +20,7 @@ export const trackContributorActionSaga = (client: PostHog) =>
         event: getEventNameFromAction(action),
         properties: {
           contributorId: action.payload,
+          manual: action.meta.manual,
           $current_url: getURLFromActionMeta(action),
           $set: { subscriptions }
         }
