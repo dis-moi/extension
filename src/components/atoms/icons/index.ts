@@ -24,3 +24,4 @@ export { default as LogoDisMoiWithD } from './LogoDisMoiWithD';
 export { default as Bullito } from './Bullito';
 export { default as Reload } from './Reload';
 export { default as Play } from './Play';
+export { default as Search } from './Search';

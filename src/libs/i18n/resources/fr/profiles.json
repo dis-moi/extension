@@ -115,6 +115,11 @@
       }
     }
   },
+  "form": {
+    "placeholder": {
+      "search": "Entrez votre recherche"
+    }
+  },
   "notice": {
     "screenshot_alt": "Rendu de la contribution sur {{exampleMatchingUrl}} une fois l'extension installée.",
     "pined_on": "<0>Message épinglé sur <1>{{exampleMatchingUrl}}</1></0> et d'autres pages web",
