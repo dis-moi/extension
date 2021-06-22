@@ -5,7 +5,7 @@ import ExamplesSlider, {
 } from './ExamplesSlider';
 
 export default {
-  title: 'Website/Molecules/Slider',
+  title: 'Website/Molecules',
   argTypes: {
     examples: {
       control: { type: 'object' }
