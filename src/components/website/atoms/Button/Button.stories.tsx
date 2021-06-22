@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
+import { StoryFn } from '@storybook/addons';
 import Button, { ButtonProps } from './Button';
 
 export default {
@@ -25,7 +26,21 @@ export default {
     details: {
       control: { type: 'text' }
     }
-  }
+  },
+  decorators: [
+    (getStory: StoryFn<ReactElement>) => (
+      <div
+        style={{
+          margin: '-1rem',
+          padding: '1rem',
+          background: 'white',
+          height: 'calc(100vh - 2rem)'
+        }}
+      >
+        <>{getStory()}</>
+      </div>
+    )
+  ]
 };
 
 export const ButtonDefault = (args: ButtonProps) => <Button {...args} />;

@@ -60,7 +60,7 @@ const HowItWorksSection = styled((props: HowItWorksSectionProps) => {
       </Section>
       <VideoModal
         src="https://www.youtube.com/embed/y5_qCUhID4Y"
-        title="Comment fonctionne l’extension DisMoi ?"
+        title="Découvrir comment fonctionne DisMoi en 1 minute"
         open={modalOpen}
         setOpen={setModalOpen}
       />

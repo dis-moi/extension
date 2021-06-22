@@ -1,20 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Modal from '../../atoms/Modal/Modal';
-import SectionTitle from '../../atoms/Titles/SectionTitle';
-import SmallTitle from '../../atoms/Titles/SmallTitle';
-
-const StyledSectionTitle = styled(props => <SectionTitle {...props} />)`
-  color: white;
-  padding: 0 15px;
-  margin-bottom: 5px;
-`;
-
-const StyledSmallTitle = styled(props => <SmallTitle {...props} />)`
-  color: white;
-  padding: 0 15px;
-  margin-bottom: 30px;
-`;
 
 const Wrapper = styled.div`
   position: relative;
@@ -51,8 +37,6 @@ const VideoModal = styled(
   ({ className, src, title, open, setOpen }: VideoModalProps) => {
     return (
       <Modal className={className} open={open} setOpen={setOpen}>
-        <StyledSectionTitle>{title}</StyledSectionTitle>
-        <StyledSmallTitle>Explications en video</StyledSmallTitle>
         <Wrapper>
           <Iframe
             src={src}

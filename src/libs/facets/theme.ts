@@ -201,6 +201,7 @@ export const dismoiTheme: Theme = {
     secondaryColor: '#17baae',
     secondaryColorDarker: '#148D84',
     activeColor: '#ff981d',
+    activeColorDarker: '#ce740f',
     greyColor: '#DDDDDD',
     greyColorLighter: '#F5F5F5',
     greyColorDarker: '#6D747E',
@@ -213,11 +214,9 @@ export const dismoiTheme: Theme = {
     textSizeTablet: '17px',
     textSizeDesktop: '18px',
     animationSlowDuration: '0.5s',
-    animationMediumDuration: '0.25s',
     animationFastDuration: '0.1s',
     boxShadow: 'rgba(0, 0, 0, 0.1) 0 0 10px;'
-  },
-
+  }
 };
 
 export const lmelTheme = R.mergeDeepRight(dismoiTheme, {
