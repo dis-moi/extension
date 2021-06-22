@@ -1,5 +1,4 @@
-const path = require('path');
-const MergeIntoSingleFilePlugin = require('webpack-merge-and-include-globally');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   stories: ['../src/**/*.stories.tsx'],
@@ -15,20 +14,16 @@ module.exports = {
     // 'PRODUCTION' is used when building the static version of storybook.
 
     config.plugins.push(
-      new MergeIntoSingleFilePlugin({
-        files: {
-          'animation.js': [
-            path.resolve(
-              __dirname,
-              '../src/components/website/atoms/BrowserAnimation/createjs.min.js'
-            ),
-            path.resolve(
-              __dirname,
-              '../src/components/website/atoms/BrowserAnimation/animation.js'
-            )
-          ]
+      new CopyWebpackPlugin([
+        {
+          from: 'src/components/website/atoms/BrowserAnimation/animation.js',
+          to: config.output.path
+        },
+        {
+          from: 'src/components/website/assets',
+          to: config.output.path
         }
-      })
+      ])
     );
 
     // Return the altered config
