@@ -15,6 +15,11 @@ const StyledSmallTitle = styled(props => <SmallTitle {...props} />)`
   color: ${props => props.theme.website.secondaryColor};
 `;
 
+const StyledSectionTitle = styled(props => <SectionTitle {...props} />)`
+  color: ${props => props.theme.website.secondaryColor};
+  font-weight: normal;
+`;
+
 const StyledTabButton = styled(props => <TabButton {...props} />)`
   margin: 35px auto 0 auto;
 `;
@@ -138,12 +143,12 @@ const ExamplesSlider = styled(
     return (
       <div className={className}>
         <StyledSmallTitle>Par exemple</StyledSmallTitle>
-        <SectionTitle
+        <StyledSectionTitle
           ref={sectionTitleRef}
           className={titleVisible ? 'fadeIn' : 'fadeOut'}
         >
           {title}
-        </SectionTitle>
+        </StyledSectionTitle>
         <SliderWrapper>
           <Slider ref={slider => (sliderRef = slider)} {...settings}>
             {examples &&
