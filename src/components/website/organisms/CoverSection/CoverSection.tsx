@@ -8,6 +8,7 @@ import PrimaryHeadline from '../../atoms/Titles/PrimaryHeadline';
 import SecondaryHeadline from '../../atoms/Titles/SecondaryHeadline';
 import BrowserAnimation from '../../atoms/BrowserAnimation/BrowserAnimation';
 import CTAButton from '../../atoms/CTAButton/CTAButton';
+import SectionArrow from '../../atoms/SectionArrow/SectionArrow';
 import StoreRating from '../../atoms/StoreRating/StoreRating';
 import DarkLayoutBackground from './backgrounds/DarkLayoutBackground';
 import GradientBackground from './backgrounds/GradientBackground';
@@ -45,7 +46,7 @@ const StyledGridCol1 = styled(props => <GridCol {...props} />)`
     padding-top: 0;
   }
   width: 100%;
-  max-width: 400px;
+  max-width: 380px;
   @media (min-width: ${props => props.theme.tabletWidth}) {
     max-width: 50%;
     padding-right: 25px;
@@ -100,6 +101,33 @@ const StyledStoreRating = styled(props => <StoreRating {...props} />)`
   }
 `;
 
+const StyledSectionArrow = styled(props => (
+  <SectionArrow
+    handleClick={() => {
+      const firstSection = document.querySelector('section:first-child');
+      const header = document.querySelector('header');
+      if (firstSection && header) {
+        window.scrollTo({
+          top:
+            firstSection.getBoundingClientRect().height -
+            header.getBoundingClientRect().height +
+            2,
+          behavior: 'smooth'
+        });
+      }
+    }}
+    {...props}
+  />
+))`
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  path {
+    fill: white;
+  }
+`;
+
 export interface CoverSectionProps {
   className?: string;
 }
@@ -132,6 +160,7 @@ const CoverSection = styled((props: CoverSectionProps) => {
             </CTAAndRatingWrapper>
           </StyledGridCol2>
         </StyledGridRow>
+        <StyledSectionArrow />
       </GridContainer>
     </Section>
   );

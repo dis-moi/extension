@@ -57,14 +57,6 @@ const Detail = styled.span`
   font-weight: normal;
 `;
 
-export interface CATButtonProps {
-  platform?: Platform;
-  browser?: Browser;
-  text?: string;
-  details?: string | React.ReactElement;
-  className?: string;
-}
-
 const logoSvg = (logo: Platform | Browser) => {
   if (logo === 'android') return <LogoAndroid />;
   if (logo === 'ios') return <LogoIOs />;
@@ -72,6 +64,14 @@ const logoSvg = (logo: Platform | Browser) => {
   if (logo === 'chrome') return <LogoChrome />;
   return null;
 };
+
+export interface CATButtonProps {
+  platform?: Platform;
+  browser?: Browser;
+  text?: string;
+  details?: string | React.ReactElement;
+  className?: string;
+}
 
 const CTAButton = ({
   platform,
@@ -112,7 +112,13 @@ const CTAButton = ({
   }
 
   return (
-    <Button className={(className || '') + (isMobile ? ' forMobile' : '')}>
+    <Button
+      className={(className || '') + (isMobile ? ' forMobile' : '')}
+      onClick={() =>
+        // eslint-disable-next-line no-console
+        console.log('%cGO TO APP STORE!', 'font-weight:bold;color:blue;')
+      }
+    >
       {logo && <Logo>{logoSvg(logo)}</Logo>}
       <Text>
         {text}

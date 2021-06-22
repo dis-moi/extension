@@ -35,6 +35,10 @@ const Header = styled(({ className, scrolled }: HeaderProps) => {
             details={'Gratuit'}
             icon={'download'}
             color={'green'}
+            handleClick={() =>
+              // eslint-disable-next-line no-console
+              console.log('%cGO TO APP STORE!', 'font-weight:bold;color:blue;')
+            }
           />
         )}
         <NavDesktopItem href={'#'}>Aide</NavDesktopItem>
