@@ -70,6 +70,7 @@ const ExamplesSlider = styled(
         }, 500);
       }
     };
+
     return (
       <div className={className}>
         <SectionTitle className={titleVisible ? 'fadeIn' : 'fadeOut'}>
@@ -79,7 +80,7 @@ const ExamplesSlider = styled(
           {examples &&
             examples.map<React.ReactNode>((exemple, index) => (
               <div key={index}>
-                <img src={exemple.src} alt={exemple.alt} />
+                <img src={exemple.src.substr(1)} alt={exemple.alt} />
               </div>
             ))}
         </Slider>

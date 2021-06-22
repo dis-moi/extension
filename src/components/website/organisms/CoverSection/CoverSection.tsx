@@ -22,8 +22,8 @@ const StyledGridRow = styled(props => <GridRow {...props} />)`
   justify-content: flex-end;
   align-items: center;
   @media (min-width: ${props => props.theme.tabletWidth}) {
-    height: 60vh;
-    min-height: 500px;
+    height: 55vh;
+    min-height: 350px;
     padding-top: 52px;
     padding-bottom: 0;
     flex-direction: row;
@@ -31,7 +31,7 @@ const StyledGridRow = styled(props => <GridRow {...props} />)`
   }
   @media (min-width: ${props => props.theme.desktopWidth}) {
     padding-top: 54px;
-    min-height: 600px;
+    min-height: 450px;
   }
 `;
 

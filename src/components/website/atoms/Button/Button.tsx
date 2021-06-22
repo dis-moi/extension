@@ -11,6 +11,7 @@ const StyledButton = styled.button`
   flex-direction: row;
   align-items: center;
   box-sizing: border-box;
+  white-space: nowrap;
   border: none;
   border-radius: ${props => props.theme.website.radiusSmall};
   transition: color 0.1s, background-color 0.1s;
@@ -110,17 +111,14 @@ const Detail = styled.span`
   }
 `;
 
-type ButtonIcon = 'download' | 'checklist' | 'coins' | 'stats' | 'github';
-type ButtonAppearance = 'solid' | 'outline';
-type ButtonColor = 'blue' | 'green' | 'orange';
-
-export interface ButtonProps {
-  icon?: ButtonIcon;
-  appearance?: ButtonAppearance;
-  color?: ButtonColor;
-  text: string;
-  details?: string;
-}
+export type ButtonIcon =
+  | 'download'
+  | 'checklist'
+  | 'coins'
+  | 'stats'
+  | 'github';
+export type ButtonAppearance = 'solid' | 'outline';
+export type ButtonColor = 'blue' | 'green' | 'orange';
 
 const IconSvg = (icon: ButtonIcon) => {
   if (icon === 'checklist') return <IconCheckList />;
@@ -129,6 +127,14 @@ const IconSvg = (icon: ButtonIcon) => {
   if (icon === 'github') return <IconGitHub />;
   if (icon === 'stats') return <IconStats />;
 };
+
+export interface ButtonProps {
+  icon?: ButtonIcon;
+  appearance?: ButtonAppearance;
+  color?: ButtonColor;
+  text: string;
+  details?: string;
+}
 
 const Button = ({ icon, appearance, color, text, details }: ButtonProps) => {
   return (
