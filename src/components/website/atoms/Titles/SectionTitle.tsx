@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 const SectionTitle = styled.h2`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   line-height: 1.2;
   font-family: ${props => props.theme.website.fontFamily};
   font-weight: normal;

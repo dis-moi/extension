@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
@@ -58,15 +58,13 @@ export const examples: Example[] = [
   {
     src: Screenshot1,
     alt: 'Exemple – Le Même en Local',
-    title:
-      'Un guide spécialisé vous suggère une alternative locale ici du texte',
+    title: 'Un guide spécialisé vous suggère une alternative locale',
     buttonText: 'Alternatives conso'
   },
   {
     src: Screenshot2,
     alt: 'Exemple – Selon Que Choisir',
-    title:
-      'Une association de consommateurs vous signale une arnaque ici du texte',
+    title: 'Une association de consommateurs vous signale une arnaque',
     buttonText: 'Alertes Arnaques'
   },
   {
@@ -110,16 +108,44 @@ const ExamplesSlider = styled(
       }
     });
 
-    let sliderInstance: Slider | null;
+    // Title height sizing effect :
+    const sectionTitleRef = useRef<HTMLHeadingElement | null>(null);
+    const largerTitle = examples.reduce(function(a, b) {
+      return a.title.length > b.title.length ? a : b;
+    }).title;
+    const getSectionTitleMinHeight = () => {
+      if (sectionTitleRef && sectionTitleRef.current) {
+        sectionTitleRef.current.innerHTML = largerTitle;
+        sectionTitleRef.current.setAttribute('style', '');
+        sectionTitleRef.current.setAttribute(
+          'style',
+          'min-height:' +
+            sectionTitleRef.current.getBoundingClientRect().height +
+            'px'
+        );
+        sectionTitleRef.current.innerHTML = title;
+      }
+    };
+    useEffect(() => {
+      getSectionTitleMinHeight();
+      window.addEventListener('resize', getSectionTitleMinHeight);
+      return () =>
+        window.removeEventListener('resize', getSectionTitleMinHeight);
+    }, []);
+
+    let sliderRef: Slider | null;
 
     return (
       <div className={className}>
         <StyledSmallTitle>Par exemple</StyledSmallTitle>
-        <SectionTitle className={titleVisible ? 'fadeIn' : 'fadeOut'}>
+        <SectionTitle
+          ref={sectionTitleRef}
+          className={titleVisible ? 'fadeIn' : 'fadeOut'}
+        >
           {title}
         </SectionTitle>
         <SliderWrapper>
-          <Slider ref={slider => (sliderInstance = slider)} {...settings}>
+          <Slider ref={slider => (sliderRef = slider)} {...settings}>
             {examples &&
               examples.map<React.ReactNode>((exemple, index) => (
                 <div key={index}>
@@ -130,13 +156,13 @@ const ExamplesSlider = styled(
           <ArrowPrev
             handleClick={() => {
               setSettings({ ...settings, autoplay: false });
-              sliderInstance && sliderInstance.slickPrev();
+              sliderRef && sliderRef.slickPrev();
             }}
           />
           <ArrowNext
             handleClick={() => {
               setSettings({ ...settings, autoplay: false });
-              sliderInstance && sliderInstance.slickNext();
+              sliderRef && sliderRef.slickNext();
             }}
           />
         </SliderWrapper>
@@ -148,7 +174,7 @@ const ExamplesSlider = styled(
                 text: example.buttonText,
                 handleClick: () => {
                   setSettings({ ...settings, autoplay: false });
-                  sliderInstance && sliderInstance.slickGoTo(index);
+                  sliderRef && sliderRef.slickGoTo(index);
                 }
               }
             ],
@@ -192,66 +218,6 @@ const ExamplesSlider = styled(
   .fadeIn {
     opacity: 1;
     transition: opacity 0.5s;
-  }
-
-  /* --- Slick Theme --- */
-  /* Arrows */
-  .slick-prev,
-  .slick-next {
-    font-size: 0;
-    line-height: 0;
-    position: absolute;
-    top: 50%;
-    display: block;
-    width: 20px;
-    height: 20px;
-    padding: 0;
-    transform: translate(0, -50%);
-    cursor: pointer;
-    color: transparent;
-    border: none;
-    outline: none;
-    background: transparent;
-  }
-  .slick-prev:hover,
-  .slick-prev:focus,
-  .slick-next:hover,
-  .slick-next:focus {
-    color: transparent;
-    outline: none;
-    background: transparent;
-  }
-  .slick-prev:hover:before,
-  .slick-prev:focus:before,
-  .slick-next:hover:before,
-  .slick-next:focus:before {
-    opacity: 1;
-  }
-  .slick-prev.slick-disabled:before,
-  .slick-next.slick-disabled:before {
-    opacity: 0.25;
-  }
-
-  .slick-prev:before,
-  .slick-next:before {
-    font-size: 20px;
-    line-height: 1;
-    opacity: 0.75;
-    color: black;
-  }
-
-  .slick-prev {
-    left: -25px;
-  }
-  .slick-prev:before {
-    content: '←';
-  }
-
-  .slick-next {
-    right: -25px;
-  }
-  .slick-next:before {
-    content: '→';
   }
 `;
 

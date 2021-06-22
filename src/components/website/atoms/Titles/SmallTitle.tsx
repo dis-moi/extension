@@ -25,7 +25,7 @@ const SmallTitle = styled.h3`
   @media (min-width: ${props =>
       parseInt(props.theme.desktopWidth) + 200 + 'px'}) {
     font-size: 28px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 `;
 
