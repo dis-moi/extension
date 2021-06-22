@@ -14,13 +14,14 @@ const Index = styled.div`
   margin-right: 10px;
 `;
 
-const Title = styled(props => <SmallTitle {...props} />)`
-  text-align: left;
-  margin-bottom: 0;
+const Title = styled.div`
+  padding-top: 5px;
+  font-size: 22px;
+  font-weight: bold;
 `;
 
-const Detail = styled.div`
-  font-size: 18px;
+const Detail = styled.span`
+  font-weight: normal;
 `;
 
 const Step = styled(({ className, index, title, detail }: StepProps) => {
@@ -30,8 +31,9 @@ const Step = styled(({ className, index, title, detail }: StepProps) => {
         <Index>{index}</Index>
       </div>
       <div>
-        <Title>{title}</Title>
-        <Detail>{detail}</Detail>
+        <Title>
+          {title} <Detail>{detail}</Detail>
+        </Title>
       </div>
     </div>
   );
