@@ -80,6 +80,7 @@ export interface Theme {
     secondaryColor: string;
     secondaryColorDarker: string;
     activeColor: string;
+    activeColorDarker: string;
     greyColor: string;
     greyColorLighter: string;
     greyColorDarker: string;
@@ -174,9 +175,10 @@ export const theme: Theme = {
     radiusSmall: '6px',
     primaryColor: '#2855a2',
     primaryColorDarker: '#1b386c',
-    secondaryColor: '#17BAAE',
+    secondaryColor: 'rgb(23,186,174)',
     secondaryColorDarker: '#148D84',
     activeColor: '#ff981d',
+    activeColorDarker: '#ce740f',
     greyColor: '#DDDDDD',
     greyColorLighter: '#F5F5F5',
     greyColorDarker: '#6D747E',
