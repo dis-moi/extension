@@ -3,7 +3,7 @@ import { StoryFn } from '@storybook/addons';
 import CoverSection, { CoverSectionProps } from './CoverSection';
 
 export default {
-  title: 'Website/Organisms',
+  title: 'Website/Organisms/CoverSection',
   decorators: [
     (getStory: StoryFn<ReactElement>) => (
       <div style={{ margin: '-1rem' }}>

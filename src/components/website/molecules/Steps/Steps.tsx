@@ -42,6 +42,16 @@ const Steps = styled(({ className, steps }: StepsProps) => {
   );
 })`
   display: flex;
+  flex-direction: column;
+  ${Step} {
+    padding-bottom: 8px;
+  }
+  @media (min-width: ${props => props.theme.tabletWidth}) {
+    flex-direction: row;
+    ${Step} {
+      flex-basis: ${props => 100 / props.steps.length}%;
+    }
+  }
 `;
 
 export default Steps;

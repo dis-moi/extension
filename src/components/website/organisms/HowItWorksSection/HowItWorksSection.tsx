@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import Section from '../../atoms/Section/Section';
+import Screenshot from 'assets/img/website/screenshots/dismoi-screenshot-amazon-antidote-mounted-website-desktop.jpg';
 import GridContainer from '../../atoms/Grid/GridContainer';
 import GridRow from '../../atoms/Grid/GridRow';
 import GridCol from '../../atoms/Grid/GridCol';
+import Section from '../../atoms/Section/Section';
 import SectionTitle from '../../atoms/Titles/SectionTitle';
 import Steps, { steps } from '../../molecules/Steps/Steps';
+import VideoImage from '../../atoms/VideoImage/VideoImage';
 
 const StyledGridRow = styled(props => <GridRow {...props} />)`
   justify-content: center;
@@ -13,6 +15,21 @@ const StyledGridRow = styled(props => <GridRow {...props} />)`
 
 const StyledGridCol = styled(props => <GridCol {...props} />)`
   width: 100%;
+`;
+
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+  @media (min-width: ${props => props.theme.tabletWidth}) {
+    flex-direction: column;
+  }
+`;
+
+const StyledVideoImage = styled(props => <VideoImage {...props} />)`
+  margin: 10px auto 30px auto;
+  @media (min-width: ${props => props.theme.tabletWidth}) {
+    margin: 30px auto 0 auto;
+  }
 `;
 
 export interface HowItWorksSectionProps {
@@ -26,7 +43,13 @@ const HowItWorksSection = styled((props: HowItWorksSectionProps) => {
         <StyledGridRow>
           <StyledGridCol>
             <SectionTitle>Comment ça marche ?</SectionTitle>
-            <Steps steps={steps} />
+            <ContentWrapper>
+              <Steps steps={steps} />
+              <StyledVideoImage
+                image={Screenshot}
+                text="Découvrir comment fonctionne DisMoi en 1 minute"
+              />
+            </ContentWrapper>
           </StyledGridCol>
         </StyledGridRow>
       </GridContainer>

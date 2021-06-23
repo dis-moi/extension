@@ -4,7 +4,7 @@ import Header from '../../molecules/Header/Header';
 import HomePage, { HomePageProps } from './HomePage';
 
 export default {
-  title: 'Website/Pages',
+  title: 'Website/Pages/HomePage',
   decorators: [
     (getStory: StoryFn<ReactElement>) => (
       <div style={{ margin: '-1rem' }}>
