@@ -106,7 +106,7 @@ const Header = styled(({ className, scrolled }: HeaderProps) => {
     color: ${props => props.theme.website.primaryColor};
     padding-top: 6px;
     padding-bottom: 6px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0 0 10px;
+    box-shadow: ${props => props.theme.website.boxShadow};
     a.homeLink {
       transform-origin: left center;
       transform: scale(0.85);

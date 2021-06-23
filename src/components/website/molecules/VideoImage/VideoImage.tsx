@@ -60,22 +60,7 @@ const Text = styled.div`
   }
 `;
 
-export interface VideoImageProps {
-  className?: string;
-  text: string;
-  image: string;
-}
-
-const VideoImage = styled(({ className, text, image }: VideoImageProps) => {
-  return (
-    <div className={className}>
-      <ImageBackground image={image} />
-      <ColorBackground />
-      <StyledPlay />
-      <Text>{text}</Text>
-    </div>
-  );
-})`
+const Wrapper = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
@@ -86,6 +71,7 @@ const VideoImage = styled(({ className, text, image }: VideoImageProps) => {
   padding: 0;
   overflow: hidden;
   border-radius: ${props => props.theme.website.radius};
+  box-shadow: ${props => props.theme.website.boxShadow};
   &::before {
     display: block;
     content: '';
@@ -105,5 +91,28 @@ const VideoImage = styled(({ className, text, image }: VideoImageProps) => {
     }
   }
 `;
+
+export interface VideoImageProps {
+  className?: string;
+  text: string;
+  image: string;
+  handleClick?: () => void;
+}
+
+const VideoImage = ({
+  className,
+  text,
+  image,
+  handleClick
+}: VideoImageProps) => {
+  return (
+    <Wrapper className={className} onClick={() => handleClick && handleClick()}>
+      <ImageBackground image={image} />
+      <ColorBackground />
+      <StyledPlay />
+      <Text>{text}</Text>
+    </Wrapper>
+  );
+};
 
 export default VideoImage;

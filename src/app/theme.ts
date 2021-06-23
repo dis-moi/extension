@@ -90,6 +90,7 @@ export interface Theme {
     textSizeDesktop: string;
     animationSlowDuration: string;
     animationFastDuration: string;
+    boxShadow: string;
   };
 }
 
@@ -187,7 +188,8 @@ export const theme: Theme = {
     textSizeTablet: '17px',
     textSizeDesktop: '18px',
     animationSlowDuration: '0.5s',
-    animationFastDuration: '0.1s'
+    animationFastDuration: '0.1s',
+    boxShadow: 'rgba(0, 0, 0, 0.1) 0 0 10px;'
   }
 };
 
