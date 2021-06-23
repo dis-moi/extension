@@ -7,7 +7,8 @@ import GridCol from '../../atoms/Grid/GridCol';
 import Section from '../../atoms/Section/Section';
 import SectionTitle from '../../atoms/Titles/SectionTitle';
 import Steps, { steps } from '../../molecules/Steps/Steps';
-import VideoImage from '../../atoms/VideoImage/VideoImage';
+import VideoImage from '../../molecules/VideoImage/VideoImage';
+import VideoModal from '../../molecules/VideoModal/VideoModal';
 
 const StyledGridRow = styled(props => <GridRow {...props} />)`
   justify-content: center;
@@ -37,23 +38,33 @@ export interface HowItWorksSectionProps {
 }
 
 const HowItWorksSection = styled((props: HowItWorksSectionProps) => {
+  const [modalOpen, setModalOpen] = React.useState<boolean>(false);
   return (
-    <Section {...props}>
-      <GridContainer>
-        <StyledGridRow>
-          <StyledGridCol>
-            <SectionTitle>Comment ça marche ?</SectionTitle>
-            <ContentWrapper>
-              <Steps steps={steps} />
-              <StyledVideoImage
-                image={Screenshot}
-                text="Découvrir comment fonctionne DisMoi en 1 minute"
-              />
-            </ContentWrapper>
-          </StyledGridCol>
-        </StyledGridRow>
-      </GridContainer>
-    </Section>
+    <>
+      <Section {...props}>
+        <GridContainer>
+          <StyledGridRow>
+            <StyledGridCol>
+              <SectionTitle>Comment ça marche ?</SectionTitle>
+              <ContentWrapper>
+                <Steps steps={steps} />
+                <StyledVideoImage
+                  image={Screenshot}
+                  text="Découvrir comment fonctionne DisMoi en 1 minute"
+                  handleClick={() => setModalOpen(true)}
+                />
+              </ContentWrapper>
+            </StyledGridCol>
+          </StyledGridRow>
+        </GridContainer>
+      </Section>
+      <VideoModal
+        src="https://www.youtube.com/embed/y5_qCUhID4Y"
+        title="Découvrir comment fonctionne DisMoi en 1 minute"
+        open={modalOpen}
+        setOpen={setModalOpen}
+      />
+    </>
   );
 })`
   background: white;

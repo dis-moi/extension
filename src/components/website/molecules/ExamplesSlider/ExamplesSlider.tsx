@@ -15,11 +15,6 @@ const StyledSmallTitle = styled(props => <SmallTitle {...props} />)`
   color: ${props => props.theme.website.secondaryColor};
 `;
 
-const StyledSectionTitle = styled(props => <SectionTitle {...props} />)`
-  color: ${props => props.theme.website.secondaryColor};
-  font-weight: normal;
-`;
-
 const StyledTabButton = styled(props => <TabButton {...props} />)`
   margin: 35px auto 0 auto;
 `;
@@ -143,12 +138,12 @@ const ExamplesSlider = styled(
     return (
       <div className={className}>
         <StyledSmallTitle>Par exemple</StyledSmallTitle>
-        <StyledSectionTitle
+        <SectionTitle
           ref={sectionTitleRef}
           className={titleVisible ? 'fadeIn' : 'fadeOut'}
         >
           {title}
-        </StyledSectionTitle>
+        </SectionTitle>
         <SliderWrapper>
           <Slider ref={slider => (sliderRef = slider)} {...settings}>
             {examples &&
@@ -202,7 +197,7 @@ const ExamplesSlider = styled(
     img {
       margin-top: 10px;
       border: 1px solid ${props => props.theme.website.greyColorDarker};
-      box-shadow: rgba(0, 0, 0, 0.1) 0 0 10px;
+      box-shadow: ${props => props.theme.website.boxShadow};
       display: initial;
       width: calc(100vw - 100px);
       @media (min-width: ${props => props.theme.tabletWidth}) {
@@ -223,6 +218,10 @@ const ExamplesSlider = styled(
   .fadeIn {
     opacity: 1;
     transition: opacity 0.5s;
+  }
+  ${SectionTitle} {
+    color: ${props => props.theme.website.secondaryColor};
+    font-weight: normal;
   }
 `;
 
