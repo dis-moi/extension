@@ -3,7 +3,7 @@ import { StoryFn } from '@storybook/addons';
 import HowItWorksSection, { HowItWorksSectionProps } from './HowItWorksSection';
 
 export default {
-  title: 'Website/Organisms',
+  title: 'Website/Organisms/HowItWorksSection',
   decorators: [
     (getStory: StoryFn<ReactElement>) => (
       <div style={{ margin: '-1rem' }}>

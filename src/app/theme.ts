@@ -173,9 +173,9 @@ export const theme: Theme = {
   website: {
     radius: '10px',
     radiusSmall: '6px',
-    primaryColor: '#2855a2',
+    primaryColor: '#0C52B4',
     primaryColorDarker: '#1b386c',
-    secondaryColor: 'rgb(23,186,174)',
+    secondaryColor: '#17baae',
     secondaryColorDarker: '#148D84',
     activeColor: '#ff981d',
     activeColorDarker: '#ce740f',

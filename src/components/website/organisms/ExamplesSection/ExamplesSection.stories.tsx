@@ -3,7 +3,7 @@ import { StoryFn } from '@storybook/addons';
 import ExamplesSection, { ExamplesSectionProps } from './ExamplesSection';
 
 export default {
-  title: 'Website/Organisms',
+  title: 'Website/Organisms/ExamplesSection',
   decorators: [
     (getStory: StoryFn<ReactElement>) => (
       <div style={{ margin: '-1rem' }}>

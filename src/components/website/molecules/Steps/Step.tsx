@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
-import SmallTitle from '../../atoms/Titles/SmallTitle';
 import { StepItem } from './Steps';
 
 export interface StepProps extends StepItem {
@@ -9,15 +8,21 @@ export interface StepProps extends StepItem {
 }
 
 const Index = styled.div`
-  font-size: 30px;
   font-weight: bold;
-  margin-right: 10px;
+  margin-right: 12px;
+  font-size: 26px;
+  @media (min-width: ${props => props.theme.tabletWidth}) {
+    font-size: 30px;
+  }
 `;
 
 const Title = styled.div`
-  padding-top: 5px;
-  font-size: 22px;
+  padding-top: 2px;
   font-weight: bold;
+  font-size: 18px;
+  @media (min-width: ${props => props.theme.tabletWidth}) {
+    font-size: 22px;
+  }
 `;
 
 const Detail = styled.span`
