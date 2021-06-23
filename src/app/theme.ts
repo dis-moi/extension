@@ -89,6 +89,7 @@ export interface Theme {
     textSizeTablet: string;
     textSizeDesktop: string;
     animationSlowDuration: string;
+    animationMediumDuration: string;
     animationFastDuration: string;
     boxShadow: string;
   };
@@ -188,6 +189,7 @@ export const theme: Theme = {
     textSizeTablet: '17px',
     textSizeDesktop: '18px',
     animationSlowDuration: '0.5s',
+    animationMediumDuration: '0.25s',
     animationFastDuration: '0.1s',
     boxShadow: 'rgba(0, 0, 0, 0.1) 0 0 10px;'
   }

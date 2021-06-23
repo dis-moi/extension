@@ -20,5 +20,5 @@ _VideoModal.args = {
     return true;
   },
   src: 'https://www.youtube.com/embed/y5_qCUhID4Y',
-  title: 'Découvrir comment fonctionne DisMoi en 1 minute'
+  title: 'Comment fonctionne l’extension DisMoi ?'
 };

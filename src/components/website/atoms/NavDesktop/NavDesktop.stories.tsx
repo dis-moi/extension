@@ -5,4 +5,4 @@ export default {
   title: 'Website/Atoms/NavItem'
 };
 
-export const NavItemDefault = () => <NavDesktop>This is a nav item</NavDesktop>;
+export const _NavDesktop = () => <NavDesktop>This is a nav item</NavDesktop>;
