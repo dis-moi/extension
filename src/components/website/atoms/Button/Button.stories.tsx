@@ -6,7 +6,7 @@ export default {
   title: 'Website/Atoms/Button',
   argTypes: {
     icon: {
-      options: ['download', 'cheklist', 'coins', 'stats', 'github'],
+      options: ['download', 'cheklist', 'coins', 'stats', 'list', 'github'],
       control: { type: 'select' },
       default: null
     },
@@ -16,7 +16,7 @@ export default {
       default: null
     },
     color: {
-      options: ['blue', 'green', 'orange'],
+      options: ['blue', 'green', 'greenDarker', 'orange'],
       control: { type: 'select' },
       default: null
     },
@@ -61,7 +61,18 @@ export const ButtonSolidGreen = (args: ButtonProps) => <Button {...args} />;
 ButtonSolidGreen.args = {
   appearance: 'solid',
   color: 'green',
-  icon: 'checklist',
+  icon: 'list',
+  text: 'Solid green button',
+  details: 'with detail'
+} as ButtonProps;
+
+export const ButtonSolidGreenDarker = (args: ButtonProps) => (
+  <Button {...args} />
+);
+ButtonSolidGreenDarker.args = {
+  appearance: 'solid',
+  color: 'greenDarker',
+  icon: 'list',
   text: 'Solid green button',
   details: 'with detail'
 } as ButtonProps;
@@ -93,6 +104,17 @@ ButtonOutlineGreen.args = {
   details: 'with detail'
 } as ButtonProps;
 
+export const ButtonOutlineGreenDarker = (args: ButtonProps) => (
+  <Button {...args} />
+);
+ButtonOutlineGreenDarker.args = {
+  appearance: 'outline',
+  color: 'greenDarker',
+  icon: 'checklist',
+  text: 'Outline green button',
+  details: 'with detail'
+} as ButtonProps;
+
 export const ButtonOutlineOrange = (args: ButtonProps) => <Button {...args} />;
 ButtonOutlineOrange.args = {
   appearance: 'outline',
@@ -107,9 +129,11 @@ export const AllButtons = () => (
     <ButtonDefault {...ButtonDefault.args} />
     <ButtonSolidBlue {...ButtonSolidBlue.args} />
     <ButtonSolidGreen {...ButtonSolidGreen.args} />
+    <ButtonSolidGreenDarker {...ButtonSolidGreenDarker.args} />
     <ButtonSolidOrange {...ButtonSolidOrange.args} />
     <ButtonOutlineBlue {...ButtonOutlineBlue.args} />
     <ButtonOutlineGreen {...ButtonOutlineGreen.args} />
+    <ButtonOutlineGreenDarker {...ButtonOutlineGreenDarker.args} />
     <ButtonOutlineOrange {...ButtonOutlineOrange.args} />
   </div>
 );

@@ -2,7 +2,7 @@ import * as R from 'ramda';
 import { Brand } from 'types';
 import { NoticeItem } from './notice';
 
-export type AvatarSize = 'small' | 'normal' | 'large';
+export type AvatarSize = 'small' | 'normal' | 'large' | 'extra_large';
 export type Avatar = {
   [size in AvatarSize]: Picture;
 };
