@@ -4,6 +4,7 @@ import IconCheckList from './icons/IconChecklist';
 import IconCoins from './icons/IconCoins';
 import IconDownload from './icons/IconDownload';
 import IconGitHub from './icons/IconGitHub';
+import IconList from './icons/IconList';
 import IconStats from './icons/IconStats';
 
 const StyledButton = styled.button`
@@ -46,6 +47,15 @@ const StyledButton = styled.button`
       background-color: ${props => props.theme.website.activeColor};
     }
   }
+  &.greenDarker {
+    background-color: ${props => props.theme.website.secondaryColorDarker};
+    &:hover {
+      background-color: ${props => props.theme.website.primaryColor};
+    }
+    &:active {
+      background-color: ${props => props.theme.website.activeColor};
+    }
+  }
   &.orange {
     background-color: ${props => props.theme.website.activeColor};
   }
@@ -77,6 +87,16 @@ const StyledButton = styled.button`
       }
       &:hover {
         background-color: ${props => props.theme.website.secondaryColor};
+      }
+    }
+    &.greenDarker {
+      color: ${props => props.theme.website.secondaryColorDarker};
+      border-color: ${props => props.theme.website.secondaryColorDarker};
+      svg path {
+        fill: ${props => props.theme.website.secondaryColorDarker};
+      }
+      &:hover {
+        background-color: ${props => props.theme.website.secondaryColorDarker};
       }
     }
     &.orange {
@@ -135,15 +155,17 @@ export type ButtonIcon =
   | 'checklist'
   | 'coins'
   | 'stats'
+  | 'list'
   | 'github';
 export type ButtonAppearance = 'solid' | 'outline';
-export type ButtonColor = 'blue' | 'green' | 'orange';
+export type ButtonColor = 'blue' | 'green' | 'greenDarker' | 'orange';
 
 const IconSvg = (icon: ButtonIcon) => {
   if (icon === 'checklist') return <IconCheckList />;
   if (icon === 'coins') return <IconCoins />;
   if (icon === 'download') return <IconDownload />;
   if (icon === 'github') return <IconGitHub />;
+  if (icon === 'list') return <IconList />;
   if (icon === 'stats') return <IconStats />;
 };
 

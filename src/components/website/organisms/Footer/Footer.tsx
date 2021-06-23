@@ -7,6 +7,11 @@ const FooterWrapper = styled.footer`
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: ${props => props.theme.website.textSizeDesktop};
   background-color: #1d1d1d;
+  padding: 20px 15px 20px 15px;
+  @media (min-width: ${props => props.theme.tabletWidth}) {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
 
   &,
   a {
