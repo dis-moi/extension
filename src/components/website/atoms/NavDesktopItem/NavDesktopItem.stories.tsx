@@ -5,6 +5,6 @@ export default {
   title: 'Website/Atoms/NavDesktopItem'
 };
 
-export const NavDesktopItemDefault = () => (
+export const _NavDesktopItem = () => (
   <NavDesktopItem>This is a nav item</NavDesktopItem>
 );
