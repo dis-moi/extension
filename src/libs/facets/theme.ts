@@ -213,7 +213,8 @@ export const dismoiTheme: Theme = {
     animationMediumDuration: '0.25s',
     animationFastDuration: '0.1s',
     boxShadow: 'rgba(0, 0, 0, 0.1) 0 0 10px;'
-  }
+  },
+
 };
 
 export const lmelTheme = R.mergeDeepRight(dismoiTheme, {

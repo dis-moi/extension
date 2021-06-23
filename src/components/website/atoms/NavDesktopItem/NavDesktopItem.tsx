@@ -4,7 +4,6 @@ const NavDesktopItem = styled.a`
   color: inherit;
   transition: color ${props => props.theme.website.animationFastDuration};
   text-decoration: none;
-  white-space: nowrap;
   cursor: pointer;
   line-height: 1;
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -16,10 +15,10 @@ const NavDesktopItem = styled.a`
     font-size: ${props => props.theme.website.textSizeDesktop};
   }
   &:hover {
-    color: ${props => props.theme.website.secondaryColor} !important;
+    color: ${props => props.theme.website.secondaryColor};
   }
   &:active {
-    color: ${props => props.theme.website.activeColor} !important;
+    color: ${props => props.theme.website.activeColor};
   }
 `;
 

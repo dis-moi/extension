@@ -1,55 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import NavDesktop from '../../atoms/NavDesktop/NavDesktop';
 import NavDesktopItem from '../../atoms/NavDesktopItem/NavDesktopItem';
 import Button from '../../atoms/Button/Button';
 import LogoDisMoi from '../../atoms/LogoDisMoi/LogoDisMoi';
-import ToggleMenu from '../../atoms/NavMobileButton/ToggleMenu';
-import Modal from '../../atoms/Modal/Modal';
-import NavMobile from '../../atoms/NavMobile/NavMobile';
-import NavMobileItem from '../../atoms/NavMobileItem/NavMobileItem';
-
-const MobileButtonsWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  button {
-    margin-right: 15px;
-    span:nth-child(1) {
-      padding-right: 0;
-      @media (min-width: 350px) {
-        padding-right: 8px;
-      }
-    }
-    span:nth-child(2) {
-      display: none;
-      @media (min-width: 350px) {
-        display: block;
-      }
-      span {
-        display: none;
-        @media (min-width: 450px) {
-          display: inline-block;
-        }
-      }
-    }
-  }
-  @media (min-width: ${props => props.theme.tabletWidth}) {
-    display: none;
-  }
-`;
-
-const HeaderCTAButton = () => (
-  <Button
-    text={'Ajouter DisMoi'}
-    details={'Gratuit'}
-    icon={'download'}
-    color={'green'}
-    handleClick={() =>
-      // eslint-disable-next-line no-console
-      console.log('%cGO TO APP STORE!', 'font-weight:bold;color:blue;')
-    }
-  />
-);
 
 export interface HeaderProps {
   className?: string;
@@ -57,45 +11,26 @@ export interface HeaderProps {
 }
 
 const Header = styled(({ className, scrolled }: HeaderProps) => {
-  const [offset, setOffset] = useState(0);
-  const [modalOpen, setModalOpen] = React.useState<boolean>(false);
-
-  useEffect(() => {
-    window.onscroll = () => {
-      setOffset(window.pageYOffset);
-    };
-  }, []);
-
-  const isScrolled = scrolled || offset > 100;
-
   return (
-    <>
-      <header className={className + (isScrolled ? ' scrolled' : '')}>
-        <a className="homeLink" href={'/'}>
-          <LogoDisMoi />
-        </a>
-        <NavDesktop>
-          <NavDesktopItem href={'#'}>Tous les profils</NavDesktopItem>
-          <NavDesktopItem href={'#'}>Contribuer</NavDesktopItem>
-          {isScrolled && <HeaderCTAButton />}
-          <NavDesktopItem href={'#'}>Aide</NavDesktopItem>
-          <NavDesktopItem href={'#'}>fr | en</NavDesktopItem>
-        </NavDesktop>
-        <MobileButtonsWrapper>
-          {isScrolled && <HeaderCTAButton />}
-          <ToggleMenu handleClick={() => setModalOpen(true)} />
-        </MobileButtonsWrapper>
-      </header>
-      <Modal open={modalOpen} setOpen={setModalOpen}>
-        <NavMobile>
-          <NavMobileItem href={'#'}>Tous les profils</NavMobileItem>
-          <NavMobileItem href={'#'}>Contribuer</NavMobileItem>
-          <NavMobileItem href={'#'}>Aide</NavMobileItem>
-          <HeaderCTAButton />
-          <NavMobileItem href={'#'}>fr | en</NavMobileItem>
-        </NavMobile>
-      </Modal>
-    </>
+    <header className={className + (scrolled ? ' scrolled' : '')}>
+      <a className="homeLink" href={'/'}>
+        <LogoDisMoi />
+      </a>
+      <NavDesktop>
+        <NavDesktopItem href={'#'}>Tous les contributeurs</NavDesktopItem>
+        <NavDesktopItem href={'#'}>Poster une info</NavDesktopItem>
+        {scrolled && (
+          <Button
+            text={'Ajouter DisMoi'}
+            details={'Gratuit'}
+            icon={'download'}
+            color={'green'}
+          />
+        )}
+        <NavDesktopItem href={'#'}>Aide</NavDesktopItem>
+        <NavDesktopItem href={'#'}>fr/en</NavDesktopItem>
+      </NavDesktop>
+    </header>
   );
 })`
   position: fixed;
@@ -105,7 +40,6 @@ const Header = styled(({ className, scrolled }: HeaderProps) => {
   z-index: 999;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   border-bottom: 1px solid white;
   padding: 10px 15px 10px 15px;
   @media (min-width: ${props => props.theme.tabletWidth}) {
@@ -131,13 +65,9 @@ const Header = styled(({ className, scrolled }: HeaderProps) => {
       }
     }
   }
-  ${NavDesktop} {
+  nav {
     transform-origin: right center;
     transition: transform ${props => props.theme.website.animationFastDuration};
-    a:last-of-type {
-      transform-origin: center;
-      transform: scale(0.8);
-    }
   }
   &:not(.scrolled) {
     a.homeLink {
@@ -145,10 +75,18 @@ const Header = styled(({ className, scrolled }: HeaderProps) => {
         fill: white;
       }
       &:hover svg path {
-        fill: ${props => props.theme.website.secondaryColor};
+        fill: ${props => props.theme.website.primaryColor};
       }
       &:active svg path {
         fill: ${props => props.theme.website.activeColor};
+      }
+    }
+    a {
+      &:hover {
+        color: ${props => props.theme.website.primaryColor};
+      }
+      &:active {
+        color: ${props => props.theme.website.activeColor};
       }
     }
   }
@@ -157,29 +95,11 @@ const Header = styled(({ className, scrolled }: HeaderProps) => {
     color: ${props => props.theme.website.primaryColor};
     padding-top: 6px;
     padding-bottom: 6px;
-    box-shadow: ${props => props.theme.website.boxShadow};
     a.homeLink {
-      transform-origin: left center;
       transform: scale(0.85);
     }
     nav {
-      transform-origin: right center;
       transform: scale(0.85);
-
-      a:last-of-type {
-        color: ${props => props.theme.website.greyColorDarker};
-      }
-    }
-    ${ToggleMenu} {
-      path {
-        fill ${props => props.theme.website.secondaryColor};
-        &:hover {
-          fill ${props => props.theme.website.primaryColor};
-        }
-        &:active {
-          fill ${props => props.theme.website.activeColor};
-        }
-      }
     }
   }
 `;
