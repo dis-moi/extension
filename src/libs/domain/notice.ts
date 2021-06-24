@@ -1,5 +1,6 @@
 import { find } from 'ramda';
 import { captureMessage } from 'libs/utils/sentry';
+import { SupportedLanguage } from '../i18n';
 import { Ratings } from './rating';
 import { Contributor, ContributorId, NewContributor } from './contributor';
 
@@ -14,6 +15,7 @@ export interface BaseNotice {
   modified: Date;
   ratings: Ratings;
   visibility: 'public' | 'private';
+  locale: SupportedLanguage;
 }
 
 export interface NoticeItem extends BaseNotice {

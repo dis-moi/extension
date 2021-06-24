@@ -4,8 +4,10 @@ import { initReactI18next } from 'react-i18next';
 import resources from './resources';
 import format from './format';
 
-export type SupportedLanguage = 'en' | 'fr';
-export const fallbackLng = 'en';
+export type SupportedLanguage = 'fr' | 'en' | 'br';
+export const fallbackLng = 'en' as SupportedLanguage;
+export const defaultLng = 'fr' as SupportedLanguage;
+export const getCurrentLng = () => i18n.language as SupportedLanguage;
 
 export const options = {
   resources,

@@ -8,6 +8,7 @@ import {
   generateNoticeItem,
   generatePinnedNotice
 } from 'test/fakers/generateNotice';
+import { defaultLng } from 'libs/i18n';
 
 interface Options {
   id?: number;
@@ -46,7 +47,8 @@ export const generateContributor = ({
       },
   noticesUrls: ['http://backend.dismoi.io/notices/1'],
   website: website || Faker.internet.url(),
-  categories: [Faker.random.word()]
+  categories: [Faker.random.word()],
+  locale: defaultLng
 });
 
 export const generateStatefulContributor = ({

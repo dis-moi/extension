@@ -1,6 +1,7 @@
 import Faker from 'faker';
 import { subMonths, subWeeks } from 'date-fns';
 import { NoticeItem, StatefulNoticeWithContributor } from 'libs/domain/notice';
+import { defaultLng } from 'libs/i18n';
 import {
   Contributor,
   PinnedNotice,
@@ -58,7 +59,8 @@ export const generateStatefulNotice = ({
       dismissed: Boolean(dismissed),
       disliked: Boolean(disliked),
       read: Boolean(read)
-    }
+    },
+    locale: defaultLng
   };
 };
 
@@ -78,7 +80,8 @@ export const generateNoticeItem = ({
   screenshot: Faker.image.imageUrl(),
   contributorId: 1 as ContributorId,
   relayersIds: [],
-  visibility: 'public'
+  visibility: 'public',
+  locale: defaultLng
 });
 
 export const generatePinnedNotice = (): PinnedNotice => ({
