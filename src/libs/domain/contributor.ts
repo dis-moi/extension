@@ -1,5 +1,6 @@
 import * as R from 'ramda';
 import { Brand } from 'types';
+import { defaultLng, SupportedLanguage } from '../i18n';
 import { NoticeItem } from './notice';
 
 export type AvatarSize = 'small' | 'normal' | 'large';
@@ -34,6 +35,7 @@ export interface BaseContributor {
   contribution?: Contribution;
   noticesUrls: string[];
   categories: string[];
+  locale: SupportedLanguage;
 }
 
 export interface FetchedContributor extends BaseContributor {
@@ -75,7 +77,8 @@ export const createLoadableContributor = ({
   website: null,
   noticesUrls: [],
   loading,
-  categories: []
+  categories: [],
+  locale: defaultLng
 });
 
 export type Contributor =

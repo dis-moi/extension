@@ -2,6 +2,8 @@ import { createSelector } from 'reselect';
 import { isCollectionLoading } from 'libs/store/collection/selectors';
 import { sortContributorsByContributions } from 'libs/domain/contributor';
 import { findItemById } from 'libs/utils/findItemById';
+import { getCurrentLng } from 'libs/i18n';
+import sortByLocale from 'libs/utils/sortByLocale';
 import { ProfilesState } from '../reducers';
 
 export const getContributorsCollection = (state: ProfilesState) =>
@@ -10,7 +12,10 @@ export const getContributorsCollection = (state: ProfilesState) =>
 export const getContributors = createSelector(
   [getContributorsCollection],
   contributorsCollection =>
-    sortContributorsByContributions(contributorsCollection.items)
+    sortByLocale(
+      sortContributorsByContributions(contributorsCollection.items),
+      getCurrentLng()
+    )
 );
 
 export const areContributorsLoading = createSelector(

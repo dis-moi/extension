@@ -25,6 +25,8 @@ import {
 import { findItemById } from 'libs/utils/findItemById';
 import { StatefulContributor } from 'libs/domain/contributor';
 import { makeGetRouteParam } from 'libs/store/selectors';
+import { getCurrentLng } from 'libs/i18n';
+import sortByLocale from 'libs/utils/sortByLocale';
 import { ContentState } from 'app/content/store/reducers';
 export * from './serviceMessage.selectors';
 export * from './ui.selectors';
@@ -32,7 +34,10 @@ export * from './ui.selectors';
 export const getNotices = (state: ContentState) => state.notices;
 
 export const getNoticesToDisplay = createSelector(getNotices, notices =>
-  notices.filter(shouldNoticeBeShown).sort(compareUnread)
+  sortByLocale(
+    notices.filter(shouldNoticeBeShown).sort(compareUnread),
+    getCurrentLng()
+  )
 );
 
 export const getUnreadNotices = (state: ContentState) =>
