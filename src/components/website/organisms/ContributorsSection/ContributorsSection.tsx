@@ -47,7 +47,7 @@ const ContributorAvatars = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 30px -50px 0 -50px;
+  margin: 5px -50px 30px -50px;
   @media (min-width: ${props => props.theme.tabletWidth}) {
     margin: 0;
     position: absolute;
@@ -294,6 +294,11 @@ const ContributorsSection = styled(
 
     return (
       <Section className={className}>
+        <StyledSectionTitle>+2000 contributions...</StyledSectionTitle>
+        <SubTitle>
+          qui rendent le web plus sûr, plus transparent et plus ouvert aux
+          alternatives
+        </SubTitle>
         <ContributorAvatars>
           {contributors.map<React.ReactNode>((contributor, index) => {
             // eslint-disable-next-line camelcase
@@ -311,11 +316,6 @@ const ContributorsSection = styled(
             );
           })}
         </ContributorAvatars>
-        <StyledSectionTitle>+2000 contributions...</StyledSectionTitle>
-        <SubTitle>
-          qui rendent le web plus sûr, plus transparent et plus ouvert aux
-          alternatives
-        </SubTitle>
         <Button
           color="greenDarker"
           text="Voir tous les contributeurs"
