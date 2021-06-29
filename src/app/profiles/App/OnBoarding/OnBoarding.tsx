@@ -8,14 +8,22 @@ import Loader, { ProgressBar } from './components/Loader';
 import Evolution from './components/Evolution';
 import Modal from './components/Modal';
 import { Step1, Step2, Step3 } from './Steps';
+import { TriggerWelcomeBulle } from './withConnect';
 
 export type CloseFunction = () => void;
 
-const OnBoarding = () => {
+interface OnBoarding {
+  triggerWelcomeBulle: TriggerWelcomeBulle;
+}
+
+const OnBoarding = ({ triggerWelcomeBulle }: OnBoarding) => {
   const [currentStep, setStep] = useState(0);
   const [open, setOpen] = useState(true);
 
-  const close = () => setOpen(false);
+  const close = () => {
+    setOpen(false);
+    triggerWelcomeBulle();
+  };
   const next = () => setStep(currentStep + 1);
   const prev = () => setStep(currentStep - 1);
   if (!open) return null;
