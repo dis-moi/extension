@@ -23,6 +23,8 @@ import { StandardAction } from 'libs/store/types';
 import { isFeedBackRatingAction } from 'app/background/store/sagas/ratings/notices.saga';
 import { loginSaga } from 'app/background/store/sagas/user.saga';
 import { areTosAccepted } from 'app/background/store/selectors/prefs';
+import { LOGIN } from 'libs/store/actions/user';
+import { getProperties } from 'libs/tracking/posthog';
 import { trackContributorActionSaga } from './trackContributor.saga';
 
 import {
@@ -40,6 +42,7 @@ import {
   trackNoticeOutboundClickSaga,
   trackNoticeUnfoldedSaga
 } from './trackNotice.saga';
+import { trackLoginSaga } from './trackUser.saga';
 
 export const getEventNameFromAction = (action: StandardAction) =>
   action.type
@@ -53,11 +56,17 @@ export default (client?: PostHog) =>
       if (client) {
         const distinctId = yield call(loginSaga);
         const tosAccepted = yield select(areTosAccepted);
+        const properties = yield call(getProperties);
         yield call(client.identify.bind(client), {
           distinctId,
-          properties: { tosAccepted, name: distinctId }
+          properties: {
+            tosAccepted,
+            name: distinctId,
+            ...properties
+          }
         });
 
+        yield takeLatest(LOGIN, trackLoginSaga(client));
         yield takeLatest(TOS_ACCEPTED, function*(action: TosAcceptedAction) {
           const tosAccepted = yield select(areTosAccepted);
           // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
