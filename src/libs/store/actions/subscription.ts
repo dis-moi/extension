@@ -20,6 +20,11 @@ export const subscribe = (
 });
 export type SubscribeAction = ReturnType<typeof subscribe>;
 
+export const autoSubscribe = (
+  contributorId: Contributor['id'],
+  meta?: ContributorActionMeta
+) => subscribe(contributorId, { ...meta, manual: false });
+
 export const SUBSCRIBED = 'SUBSCRIBED';
 export interface SubscribedAction extends ContributorAction {
   type: typeof SUBSCRIBED;
