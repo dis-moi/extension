@@ -38,10 +38,15 @@ export const items = (
     case UNSUBSCRIBE:
     case SUBSCRIBE: {
       const index = state.findIndex(item => item.id === action.payload);
+      const count = action.type === UNSUBSCRIBE ? -1 : 1;
       if (index) {
         return [
           ...state.slice(0, index),
-          { ...state[index], subscribing: true },
+          {
+            ...state[index],
+            subscribing: true,
+            ratings: { subscribes: state[index].ratings.subscribes + count }
+          },
           ...state.slice(index + 1)
         ];
       }

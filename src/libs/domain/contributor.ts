@@ -36,6 +36,9 @@ export interface BaseContributor {
   noticesUrls: string[];
   categories: string[];
   locale: SupportedLanguage;
+  ratings: {
+    subscribes: number;
+  };
 }
 
 export interface FetchedContributor extends BaseContributor {
@@ -70,7 +73,7 @@ interface LoadableContributorOptions {
 export const createLoadableContributor = ({
   id,
   loading = true
-}: LoadableContributorOptions) => ({
+}: LoadableContributorOptions): LoadableContributor => ({
   id,
   name: '',
   contributions: 0,
@@ -78,7 +81,8 @@ export const createLoadableContributor = ({
   noticesUrls: [],
   loading,
   categories: [],
-  locale: defaultLng
+  locale: defaultLng,
+  ratings: { subscribes: 0 }
 });
 
 export type Contributor =

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { LocationDescriptor, LocationState } from 'history';
+import { useTranslation } from 'react-i18next';
 import { AvatarSize, StatefulContributor } from 'libs/domain/contributor';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import UserName from 'components/atoms/UserName/UserName';
@@ -10,6 +11,7 @@ import {
   ContributorInfos
 } from 'components/atoms/Contributor/index';
 import { As } from 'types';
+import { Paragraph } from '../../atoms';
 import ContributorNameLink from './ContributorNameLink';
 import ContributorButton from './ContributorButton';
 
@@ -38,6 +40,11 @@ const ContributorIntro = styled.div.attrs<IntroProps>(
   }
 `;
 
+const SubscribersCount = styled(Paragraph)`
+  margin-bottom: 10px;
+  color: dimgrey;
+`;
+
 interface ContributorLargeProps<S = LocationState> {
   contributor?: StatefulContributor;
   avatarSize?: AvatarSize;
@@ -62,46 +69,55 @@ const ContributorLarge = ({
   to,
   loading,
   usernameAs
-}: ContributorLargeProps) => (
-  <ContributorCard className={className}>
-    <>
-      <ContributorWrapper>
-        <Avatar
-          size={avatarSize || 'normal'}
-          contributor={contributor}
-          to={to}
-          onClick={onNameClick}
-          loading={loading}
-        />
+}: ContributorLargeProps) => {
+  const { t } = useTranslation('profiles');
 
-        <ContributorInfos>
-          {!loading && contributor && (
-            <>
-              <UserName as={usernameAs}>
-                <ContributorNameLink onClick={onNameClick} to={to}>
-                  {contributor.name}
-                </ContributorNameLink>
-              </UserName>
+  return (
+    <ContributorCard className={className}>
+      <>
+        <ContributorWrapper>
+          <Avatar
+            size={avatarSize || 'normal'}
+            contributor={contributor}
+            to={to}
+            onClick={onNameClick}
+            loading={loading}
+          />
 
-              <ContributorButton
-                loading={contributor?.subscribing === true}
-                subscribed={contributor?.subscribed}
-                onSubscribe={onSubscribe}
-                onUnsubscribe={onUnsubscribe}
-              />
-            </>
-          )}
-        </ContributorInfos>
-      </ContributorWrapper>
+          <ContributorInfos>
+            {!loading && contributor && (
+              <>
+                <UserName as={usernameAs}>
+                  <ContributorNameLink onClick={onNameClick} to={to}>
+                    {contributor.name}
+                  </ContributorNameLink>
+                </UserName>
+                <SubscribersCount>
+                  {t('common.follower', {
+                    count: contributor.ratings?.subscribes
+                  })}
+                </SubscribersCount>
 
-      {!loading && contributor && (
-        <>
-          <ContributorIntro intro={contributor.intro || ''} />
-          {children}
-        </>
-      )}
-    </>
-  </ContributorCard>
-);
+                <ContributorButton
+                  loading={contributor?.subscribing === true}
+                  subscribed={contributor?.subscribed}
+                  onSubscribe={onSubscribe}
+                  onUnsubscribe={onUnsubscribe}
+                />
+              </>
+            )}
+          </ContributorInfos>
+        </ContributorWrapper>
+
+        {!loading && contributor && (
+          <>
+            <ContributorIntro intro={contributor.intro || ''} />
+            {children}
+          </>
+        )}
+      </>
+    </ContributorCard>
+  );
+};
 
 export default styled(ContributorLarge)``;
