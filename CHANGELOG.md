@@ -1,3 +1,10 @@
+# [3.81.0](https://github.com/dis-moi/extension/compare/v3.80.0...v3.81.0) (2021-07-01)
+
+
+### Features
+
+* **tracking:** Add notice and contributor fields to tracked properties ([cf0141e](https://github.com/dis-moi/extension/commit/cf0141e13aa052fdccd5dc4ec33ff4cb66481ff1)), closes [#1056](https://github.com/dis-moi/extension/issues/1056)
+
 # [3.80.0](https://github.com/dis-moi/extension/compare/v3.79.1...v3.80.0) (2021-07-01)
 
 
