@@ -13,28 +13,7 @@ module.exports = (env, argv) => {
             path.resolve(__dirname, '..', '.storybook'),
             path.resolve(__dirname, '..', 'test')
           ],
-          loader: require.resolve('babel-loader'),
-          options: {
-            presets: [
-              [
-                'react-app',
-                {
-                  flow: false,
-                  typescript: true
-                }
-              ]
-            ],
-            customize: require.resolve(
-              'babel-preset-react-app/webpack-overrides'
-            ),
-            plugins: [
-              //              require.resolve('babel-plugin-named-asset-import'),
-              'babel-plugin-styled-components'
-            ],
-            cacheDirectory: Boolean(argv.watch),
-            cacheCompression: false,
-            compact: false
-          }
+          loader: require.resolve('babel-loader')
         },
         // Process any JS outside of the app with Babel.
         // Unlike the application JS, we only compile the standard ES features.

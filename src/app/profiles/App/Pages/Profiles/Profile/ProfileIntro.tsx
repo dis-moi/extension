@@ -110,7 +110,7 @@ const ProfileIntroContent = styled.section`
 `;
 
 export interface ProfileIntroProps {
-  contributor?: StatefulContributor;
+  contributor: StatefulContributor;
   subscribe: () => void;
   unsubscribe: () => void;
   loading?: boolean;

@@ -6,6 +6,7 @@ export const create = (style: {
 }): HTMLIFrameElement => {
   const iframe = document.createElement('iframe');
   iframe.id = iFrameId;
+  iframe.name = iFrameId;
   iframe.width = '390px';
   iframe.height = '423px';
   iframe.srcdoc =

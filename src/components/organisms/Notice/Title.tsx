@@ -18,7 +18,9 @@ const Title = ({ to, ...props }: TitleProps) => {
   return <p {...props} />;
 };
 
-export default styled(Title)<TitleProps>`
+export default styled(Title).attrs({ 'data-test-type': 'noticeTitle' })<
+  TitleProps
+>`
   text-decoration: none;
   position: relative;
   display: block;
