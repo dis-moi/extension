@@ -1,0 +1,24 @@
+
+# NODE_ENV=production PLATFORM=chromium SENTRY_SEND_VERSION=true yarn build
+# NODE_ENV=production NODE_ENV=chromium yarn upload
+-
+#- https://addons.mozilla.org/fr/firefox/addon/dismoi/
+
+# er NewVersion + Firefox Staging & Proding
+
+yarn install
+ci/semaphore.sh
+
+
+- https://github.com/dis-moi/extension/releases
+
+
+# storybook
+
+yarn
+yarn build-storybook -c .storybook -o .out
+cd .out
+lftp -c "open -u $SFTP_USER,nopassword sftp://$SFTP_HOSTNAME; set ssl:verify-certificate no; mirror -R ./ /vhosts/storybook.lmem.net/htdocs/"
+
+
+https://storybook.lmem.net/

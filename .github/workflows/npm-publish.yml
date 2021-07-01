@@ -1,0 +1,75 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
+
+name: Node.js Package
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - run: npm ci
+      - run: npm test
+
+# yarn
+  # yarn typecheck
+
+# yarn lint
+  # yarn test
+  # yarn build:produciton
+  # yarn test:e2e:ci
+
+  publish-npm:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          registry-url: https://registry.npmjs.org/
+      - run: npm ci
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+
+# PROFILES_ASSETS_PATH : /
+# PROFILES_ORIGIN : http://localhost:8080
+# CHROME_EXTENSION_ID : fpjlnlnbacohacebkadbbjebbipcknbg
+# BACKEND_ORIGIN : https://notices.bulles.fr/api/v3/
+# NODE_ENV : development
+# CHROME_REFRESH_TOKEN : encrypted, MD5: 70aeb1833cb13b2ae9a195b15308974a
+# CHROME_CLIENT_SECRET : encrypted, MD5: adf7f0bdb622eb02bb205af4a452b5e5
+# CHROME_CLIENT_ID : encrypted, MD5: 2cf1d4d67054de814c87dff13c851057
+# BABEL_ENV : production
+# FIREFOX_API_SECRET : encrypted, MD5: a6f56c684a48f7e6d3506a9f52a02073
+# FIREFOX_API_KEY : encrypted, MD5: 8c1878551b3cde9b9442f75ca4757212
+# SENTRY_DSN : https://a22936b545a54f37b153b3f9e2c98790@sentry.io/1404847
+# SEND_CONTRIBUTION_FROM : contribution@dismoi.io
+# SEND_CONTRIBUTION_TO : contribution@dismoi.io
+# SENTRY_AUTH_TOKEN : encrypted, MD5: 20076815f8d81339d12074f1353a0045
+# SEND_IN_BLUE_TOKEN : encrypted, MD5: da5a5a6c22b29867a98b9ff9aefb51e2
+# HUSKY_DEBUG : 1
+# SENTRY_ORG : lmem
+# SENTRY_PROJECT : web-extension
+# GOOGLE_CLIENT_SECRET : encrypted, MD5: 5b89e97e1caddd8b3913521c8f4b039d
+# GOOGLE_REFRESH_TOKEN : encrypted, MD5: e535d2ec5260a8a43cc63ec13c9754c4
+# GOOGLE_CLIENT_ID : encrypted, MD5: e8970e52c0cd5c34461a30109ad5d18e
+# GITHUB_TOKEN : encrypted, MD5: 0c9a0931ac6db1c6034f5875ec343b38
+# GPG_PASSPHRASE : encrypted, MD5: 2be53ca6dbfe068e5314e7957df169c1
+# GPG_KEY_ID : encrypted, MD5: 0fcff1a532d64fd1fc3dc89ae950e6ec
+# GIT_AUTHOR_NAME : Benjamin Menant
+# GIT_AUTHOR_EMAIL : bmenant@lmem.net
+# GIT_COMMITTER_NAME : Benjamin Menant
+# GIT_COMMITTER_EMAIL : bmenant@lmem.net
+# GIT_EMAIL : bmenant@lmem.net
+# GIT_USERNAME : bmenant
+# SFTP_USER : encrypted, MD5: 974e2945a18e0bfb8e3aa8becac3e65c
+# SFTP_HOSTNAME : sftp.sd6.gpaas.net
