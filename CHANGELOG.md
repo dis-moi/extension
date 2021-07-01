@@ -1,3 +1,17 @@
+# [3.80.0](https://github.com/dis-moi/extension/compare/v3.79.1...v3.80.0) (2021-07-01)
+
+
+### Bug Fixes
+
+* **storybook:** import ([4870e02](https://github.com/dis-moi/extension/commit/4870e02bd9a5c83524022bb08e666de0195bad82))
+
+
+### Features
+
+* **i18n:** sort by language contributors and notices ([af36260](https://github.com/dis-moi/extension/commit/af362603be224e3213cb971b83f0542e49cba14a))
+* **tracking:** Add a flag to identify an automatic subscription ([9e93ae2](https://github.com/dis-moi/extension/commit/9e93ae251585027dcc9f98ac2d5283b644ef0d4f))
+* **tracking:** Add list of subscriptions as tracked property ([6c7e50b](https://github.com/dis-moi/extension/commit/6c7e50b3e2126551c0c44d1254f871bb5ff51a5b))
+
 ## [3.79.1](https://github.com/dis-moi/extension/compare/v3.79.0...v3.79.1) (2021-06-09)
 
 
