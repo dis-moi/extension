@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { isCollectionLoading } from 'libs/store/collection/selectors';
-import { sortContributorsByContributions } from 'libs/domain/contributor';
+import { sortContributorsBySubscribers } from 'libs/domain/contributor';
 import { findItemById } from 'libs/utils/findItemById';
 import { getCurrentLng } from 'libs/i18n';
 import sortByLocale from 'libs/utils/sortByLocale';
@@ -13,7 +13,7 @@ export const getContributors = createSelector(
   [getContributorsCollection],
   contributorsCollection =>
     sortByLocale(
-      sortContributorsByContributions(contributorsCollection.items),
+      sortContributorsBySubscribers(contributorsCollection.items),
       getCurrentLng()
     )
 );
