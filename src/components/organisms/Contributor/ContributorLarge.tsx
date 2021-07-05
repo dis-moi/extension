@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { LocationDescriptor, LocationState } from 'history';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { AvatarSize, StatefulContributor } from 'libs/domain/contributor';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import UserName from 'components/atoms/UserName/UserName';
@@ -93,9 +93,11 @@ const ContributorLarge = ({
                   </ContributorNameLink>
                 </UserName>
                 <SubscribersCount>
-                  {t('common.follower', {
-                    count: contributor.ratings?.subscribes
-                  })}
+                  <Trans
+                    t={t}
+                    i18nKey={'common.follower'}
+                    count={contributor.ratings?.subscribes}
+                  />
                 </SubscribersCount>
 
                 <ContributorButton
