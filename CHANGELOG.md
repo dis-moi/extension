@@ -1,3 +1,11 @@
+# [3.83.0](https://github.com/dis-moi/extension/compare/v3.82.0...v3.83.0) (2021-07-06)
+
+
+### Features
+
+* **search:** search without UI ([343a334](https://github.com/dis-moi/extension/commit/343a334f4317d5caf793a9cf8250f4ffc8f1a5c7))
+* **search:** UI ([377f1da](https://github.com/dis-moi/extension/commit/377f1da656c00e87945c9172769416b89a8e502b))
+
 # [3.82.0](https://github.com/dis-moi/extension/compare/v3.81.0...v3.82.0) (2021-07-06)
 
 
