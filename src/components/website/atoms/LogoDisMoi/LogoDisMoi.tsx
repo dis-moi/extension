@@ -1,7 +1,11 @@
 import React from 'react';
 
 export default () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 244.4">
+  <svg
+    className="logoDisMoi"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1000 244.4"
+  >
     <path
       fill="#29B3A9"
       d="M747.9,52.1c-13.7,0-26,7.1-32.6,17.6c-8.2-10.9-19.7-17.6-34.4-17.6c-34.2,0-50.4,20.6-50.4,51.5v74
