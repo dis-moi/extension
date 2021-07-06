@@ -69,9 +69,6 @@ const ProfileIntroContent = styled.section`
     }
 
     ${ContributorInfos} {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      grid-column-gap: 24px;
       flex-basis: 100%;
       margin: 0;
 

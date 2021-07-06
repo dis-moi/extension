@@ -18,6 +18,7 @@ import ContributorButton from './ContributorButton';
 interface IntroProps {
   intro: string;
 }
+
 const ContributorIntro = styled.div.attrs<IntroProps>(
   ({ intro }: IntroProps) => ({
     dangerouslySetInnerHTML: { __html: intro }
@@ -41,8 +42,10 @@ const ContributorIntro = styled.div.attrs<IntroProps>(
 `;
 
 const SubscribersCount = styled(Paragraph)`
-  margin-bottom: 10px;
-  color: dimgrey;
+  margin-top: -10px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #808080;
 `;
 
 interface ContributorLargeProps<S = LocationState> {
@@ -92,6 +95,7 @@ const ContributorLarge = ({
                     {contributor.name}
                   </ContributorNameLink>
                 </UserName>
+
                 <SubscribersCount>
                   <Trans
                     t={t}
