@@ -7,19 +7,13 @@ interface Props {
 export default styled.input<Props>`
   box-sizing: border-box;
   width: 100%;
-  margin-bottom: 10px;
-  padding: 4px 10px 4px 14px;
-  font-size: 12px;
+  padding: 7px 12px 7px 12px;
+  font-size: ${props => props.theme.fontSizeM};
   line-height: 1;
-  border-radius: 6px;
+  border-radius: ${props => props.theme.radiusM};
   border: 1px solid
     ${props =>
-      props.error ? props.theme.formError : props.theme.secondaryColor};
-  box-shadow: 0 0 0 2px
-    ${props => (props.error ? props.theme.formError : '#fff')};
-  resize: none;
-
-  ::placeholder {
-    font-style: italic;
-  }
+      props.error ? props.theme.colorError : props.theme.colorGrey300};
+  box-shadow: inset 0 0 0 1px
+    ${props => (props.error ? props.theme.colorError : '#fff')};
 `;

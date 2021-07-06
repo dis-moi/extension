@@ -31,7 +31,7 @@ export default styled(Title)<TitleProps>`
   overflow: hidden;
 
   &:hover {
-    color: ${props => props.theme.activeColor};
+    color: ${props => props.theme.colorPrimary};
     cursor: pointer;
   }
 

@@ -5,5 +5,5 @@ export default styled.h2`
   font-size: 38px;
   font-family: 'Sedgwick Ave', cursive;
   font-weight: normal;
-  color: ${props => props.theme.error};
+  color: ${props => props.theme.colorAlert};
 `;

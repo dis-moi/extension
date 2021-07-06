@@ -36,10 +36,10 @@ export default styled.div<ContentProps>`
   }
 
   &[href]:hover {
-    border-color: ${props => props.theme.activeColor};
+    border-color: ${props => props.theme.colorPrimary};
 
     p {
-      color: ${props => props.theme.activeColor};
+      color: ${props => props.theme.colorPrimary};
     }
   }
 
@@ -52,7 +52,7 @@ export default styled.div<ContentProps>`
   }
 
   &:hover > div:nth-child(3) {
-    stroke: ${props => props.theme.activeColor};
+    stroke: ${props => props.theme.colorPrimary};
   }
 
   ${Title} {

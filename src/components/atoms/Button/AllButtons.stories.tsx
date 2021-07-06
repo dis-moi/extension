@@ -1,7 +1,6 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import { action } from '@storybook/addon-actions';
-
 import { MemoryRouter as Router } from 'react-router';
 import { StoryFn } from '@storybook/addons';
 import ContributorButton from 'components/organisms/Contributor/ContributorButton';
@@ -11,11 +10,10 @@ import { ThumbUp, ThumbDown } from 'components/atoms/icons';
 import BackButton from 'components/organisms/Notification/NotificationHeader/BackButton';
 import CloseButton from 'components/organisms/Notification/NotificationHeader/CloseButton';
 import NavLink from 'components/organisms/Notification/NotificationFooter/NavLink';
-import Download from '../icons/Download';
-import Tab from '../Tab/Tab';
 import { Button, BorderButton, ButtonWithIcon } from '../';
+import Tab from '../Tab/Tab';
 import AddNoticeButton from './AddNoticeButton';
-import { BackgroundButton, OpenButton } from './index';
+import { BackgroundButton, OpenButton, TransparentButton } from './index';
 
 const ButtonsListBackground = styled.div`
   padding: 20px;
@@ -38,6 +36,7 @@ const ButtonsListWrapper = styled.div`
 const ButtonsList = () => {
   return (
     <ButtonsListBackground>
+      <h2>à avoir</h2>
       <h1>Liste de tous les boutons</h1>
       <h2>Dans les atoms</h2>
       <ButtonsListWrapper>
@@ -53,14 +52,6 @@ const ButtonsList = () => {
         <div>
           <BorderButton disabled={true}>Border Button</BorderButton>
         </div>
-        <div>
-          <BorderButton loading>Border Button</BorderButton>
-        </div>
-        <div>
-          <BorderButton disabled={true} loading>
-            Border Button
-          </BorderButton>
-        </div>
       </ButtonsListWrapper>
 
       <ButtonsListWrapper>
@@ -72,14 +63,6 @@ const ButtonsList = () => {
             Background disabled Button
           </BackgroundButton>
         </div>
-        <div>
-          <BackgroundButton loading>Background Button</BackgroundButton>
-        </div>
-        <div>
-          <BackgroundButton loading disabled={true}>
-            Background Button
-          </BackgroundButton>
-        </div>
       </ButtonsListWrapper>
 
       <ButtonsListWrapper>
@@ -87,9 +70,7 @@ const ButtonsList = () => {
           <OpenButton />
         </div>
         <div>
-          <ButtonWithIcon>
-            Ajouter à mon navigateur <Download />
-          </ButtonWithIcon>
+          <ButtonWithIcon>Ajouter à mon navigateur</ButtonWithIcon>
         </div>
 
         <div>
@@ -134,23 +115,23 @@ const ButtonsList = () => {
 
         <div>
           <Feedbacks>
-            <Button>
+            <TransparentButton transparent>
               <ThumbUp />
-            </Button>
-            <Button>
+            </TransparentButton>
+            <TransparentButton>
               <ThumbDown />
-            </Button>
+            </TransparentButton>
           </Feedbacks>
         </div>
 
         <div>
           <Feedbacks>
-            <Button>
+            <TransparentButton>
               <ThumbUp filled={true} />
-            </Button>
-            <Button>
+            </TransparentButton>
+            <TransparentButton>
               <ThumbDown filled={true} />
-            </Button>
+            </TransparentButton>
           </Feedbacks>
         </div>
       </ButtonsListWrapper>

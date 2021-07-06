@@ -1,10 +1,8 @@
 import styled from 'styled-components';
+import { Paragraph } from 'components/atoms/index';
 
-export default styled.p`
-  margin-top: 0;
+export default styled(Paragraph)`
   font-size: 13px;
-  line-height: 1;
-  color: ${props => props.theme.formError};
+  color: ${props => props.theme.colorError};
   font-weight: bold;
-  text-align: center;
 `;

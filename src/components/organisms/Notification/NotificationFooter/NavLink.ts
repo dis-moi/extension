@@ -22,7 +22,7 @@ export default styled(ReactRouterNavLink).attrs({
   transition: all 0.2s ease-in-out;
 
   &.${props => props.activeClassName}, &:hover {
-    border-top: 2px solid ${props => props.theme.navActive};
-    color: ${props => props.theme.activeColor};
+    border-top: 2px solid ${props => props.theme.colorPrimary};
+    color: ${props => props.theme.colorPrimary};
   }
 `;

@@ -9,46 +9,52 @@ export interface ButtonTheme {
 }
 
 export interface Theme {
-  main: string;
+  // radius
+  radiusS: string;
+  radiusM: string;
+  radiusL: string;
 
   // colors
-  primaryColor: string;
-  activeColor: string;
-  grey: string;
+  colorWhite: string;
+  colorBlack: string;
+  colorPrimary: string;
+  colorText: string;
+  colorAlert: string;
+  colorGrey100: string;
+  colorGrey200: string;
+  colorGrey300: string;
+  colorGrey400: string;
+  colorGrey500: string;
+  colorGreen100: string;
+  colorGreen200: string;
+  colorGreen300: string;
+  colorOrange100: string;
 
-  otherText: string;
+  // font sizes
+  fontSizeXS1: string;
+  fontSizeXS2: string;
+  fontSizeS1: string;
+  fontSizeS2: string;
+  fontSizeM1: string;
+  fontSizeM2: string;
+  fontSizeL1: string;
+  fontSizeL2: string;
+  fontSizeXL: string;
+
+  // font weights
+  fontWeightNormal: string;
+  fontWeightBold: string;
+
+  /// ///// OLD /////
+  // colors
+  primaryColor: string;
   secondaryColor: string;
-  deletedText: string;
-  noticeBg: string;
-  navInactive: string;
-  navActive: string;
-  link: string;
-  highlightedLink: string;
-  accountListBg: string;
-  pagesBg: string;
 
   // color list:
-  bottomBar: string;
-  topBarNavInactiveDeleteBg: string;
-  text: string;
-  error: string;
-  formError: string;
-  button: string;
-  contributorGrey: string;
-  contributorIntro: string;
-
-  titleColor: string;
-  textColor: string;
-
   badge: BadgeTheme;
   Button: ButtonTheme;
 
-  // sizes:
-  radius: string;
-  fontSizeDefault: string;
-  marginS: string;
-  marginM: string;
-  marginL: string;
+  // screen sizes:
   tabletWidth: string;
   desktopWidth: string;
 
@@ -74,50 +80,57 @@ export interface Theme {
 }
 
 export const theme: Theme = {
-  main: 'purple',
+  // radius
+  radiusS: '5px',
+  radiusM: '8px',
+  radiusL: '20px',
+
+  // colors
+  colorWhite: '#fff',
+  colorBlack: '#000',
+  colorPrimary: '#0c52b4',
+  colorText: '#22252b',
+  colorAlert: '#db0d0d',
+  colorGrey100: '#f5f5f5',
+  colorGrey200: '#e9ebef',
+  colorGrey300: '#caccd0',
+  colorGrey400: '#a6b1c0',
+  colorGrey500: '#808080',
+  colorGreen100: '#2db4ab',
+  colorGreen200: '#349d27',
+  colorGreen300: '#117104',
+  colorOrange100: '#ff981d',
+
+  // font sizes
+  fontSizeXS1: '12px',
+  fontSizeXS2: '13px',
+  fontSizeS1: '14px',
+  fontSizeS2: '15px',
+  fontSizeM1: '16px',
+  fontSizeM2: '18px',
+  fontSizeL1: '22px',
+  fontSizeL2: '26px',
+  fontSizeXL: '34px',
+
+  // font weights
+  fontWeightNormal: '400',
+  fontWeightBold: '700',
+
+  /// ///// OLD /////
   // colors
   primaryColor: '#404348',
-  activeColor: '#0C52B4',
-  grey: '#808080',
-
-  otherText: '#787993',
   secondaryColor: '#5F656C',
-  deletedText: '#484046',
-  noticeBg: '#EFEDED',
-  navInactive: '#a6b1c0',
-  navActive: '#4378A5',
-  link: '#1974C3',
-  highlightedLink: '#F21360',
-  accountListBg: '#fff',
-  pagesBg: '#E9EBEF',
 
   // color list:
-  bottomBar: '#DDDDDD',
-  topBarNavInactiveDeleteBg: '#A6B1C0',
-  text: '#404348',
-  error: '#F01953',
-  formError: '#DB0D0D',
-  button: '#0C52B4',
-  contributorGrey: '#F5F5F5',
-  contributorIntro: '#100E0E',
-
-  titleColor: '#000',
-  textColor: '#22252B',
-
   // badge background colors
   badge: {
     backgroundColor: {
-      hasAllNoticesRead: '#9DA1A7',
+      hasAllNoticesRead: '#a6b1c0',
       hasUnreadNotices: '#DB0D0D'
     }
   },
 
-  // sizes:
-  radius: '8px',
-  fontSizeDefault: '16px',
-  marginS: '20px',
-  marginM: '30px',
-  marginL: '40px',
+  // scren sizes:
   tabletWidth: '768px',
   desktopWidth: '992px',
 

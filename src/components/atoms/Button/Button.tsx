@@ -23,6 +23,7 @@ export interface ButtonProps extends ButtonContainerProps {
   disabled?: boolean;
   dangerouslySetInnerHTML?: { __html: string };
   size?: 'big' | 'normal';
+  transparent?: boolean;
 }
 
 export const ButtonContainer = styled.button<ButtonContainerProps>``;
@@ -55,20 +56,41 @@ const Button = ({
 
 export default styled(Button)`
   box-sizing: border-box;
-  padding: 0;
+  display: inline-block;
+  min-width: 130px;
+  padding: ${props => (props.size === 'big' ? '8px 19px' : '6px 12px')};
   font-weight: bold;
-  font-size: ${props => props.theme.fontSizeDefault};
+  font-size: ${props => props.theme.fontSizeM1};
+  color: #fff;
   line-height: 1;
-  color: ${props => props.theme.secondaryColor};
-  text-decoration: underline;
-  background: none;
-  border: none;
-  border-radius: ${props => props.theme.Button.radius};
+  background-color: ${props =>
+    props.transparent === true ? 'transparent' : props.theme.Button.default};
+  border: 2px solid ${props => props.theme.Button.default};
+  border-radius: ${props => props.theme.radiusS};
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
+  &:hover,
+  &:focus,
+  &:active {
+    color: #fff;
+  }
+
   &:hover {
-    color: ${props => props.theme.Button.hover};
+    background-color: ${props => props.theme.Button.hover};
+    border-color: ${props => props.theme.Button.hover};
+
+    svg {
+      fill: #fff;
+    }
+  }
+
+  :disabled:hover {
+    color: #fff;
+  }
+
+  svg {
+    fill: #fff;
   }
 
   &:focus {
@@ -95,10 +117,5 @@ export default styled(Button)`
   &:disabled:visited {
     background-color: ${props => props.theme.Button.disabled};
     border-color: ${props => props.theme.Button.disabled};
-  }
-
-  ${LoadingRotator} svg {
-    width: 18px;
-    height: 18px;
   }
 `;

@@ -1,0 +1,40 @@
+:root {
+    /* Raw colors */
+    --white: #fff;
+    --black: #000;
+
+    --grey-100: #f5f5F5;
+    --grey-200: #e9ebef;
+    --grey-300: #caccd0;
+    --grey-400: #a6b1c0;
+    --grey-500: #808080;
+    --grey-600: #22252B;
+
+    --blue-100: #0c52b4;
+    --blue-200: #05224b;
+
+    --green-100: #349d27;
+    --green-200: #117104;
+
+    --red-100: #ed0c2f;
+
+    /* Colors used in vars */
+    --primaryColor: var(--blue-100);
+    --alertColor: var(--red-100);
+    --successColor: var(--green-100);
+    --textColor: var(--grey-600);
+
+    /* Radius */
+    --borderRadiusS: 5px;
+    --borderRadiusM: 8px;
+
+    /* Text sizes */
+    --textSizeS: 12px;
+    --textSizeM: 16px;
+    --textSizeL: 24px;
+    --textSizeXL: 28px;
+
+    /* Font weight */
+    --fontWeightNormal: 400;
+    --fontWeightBold: 700;
+}

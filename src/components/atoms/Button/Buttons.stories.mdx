@@ -1,0 +1,89 @@
+import { Meta, Preview, Story } from "@storybook/addon-docs/blocks";
+import Button from "./Button";
+import { BorderButton } from "../index";
+import ContributorButton from "components/organisms/Contributor/ContributorButton";
+import Feedbacks from 'components/organisms/NoticeDetails/Feedbacks';
+import TransparentButton from "./TransparentButton/TransparentButton";
+import { ThumbDown, ThumbUp } from "../icons";
+import CloseButton from "../../organisms/Notification/NotificationHeader/CloseButton";
+import BackButton from "../../organisms/Notification/NotificationHeader/BackButton";
+import DeleteButton from "../../organisms/Notice/DeleteButton"; import { OpenButton } from "./index";
+
+<Meta title='Buttons' />
+
+# Buttons
+
+## Default buttons
+
+- [ ] Need to add props
+- [ ] Need to add button with icon
+
+<Preview>
+  <Story name="Default buttons">
+    <Button>Sample button</Button>
+    <Button disabled>Sample button disabled</Button>
+  </Story>
+</Preview>
+
+## Border buttons
+<Preview>
+  <Story name="Border buttons">
+    <BorderButton>Sample button</BorderButton>
+    <BorderButton disabled>Sample button disabled</BorderButton>
+  </Story>
+</Preview>
+
+## Other buttons
+
+### Extension navigation
+
+#### Footer
+- [Item]()
+- [Item active]()
+
+### Notice navigation
+- [DeleteNotice]()
+
+<Preview>
+  <Story name="Notice navigation">
+    <h4>Header</h4>
+    <BackButton />
+    <CloseButton />
+    <h4>Notice navigation</h4>
+    <p>Delete a notice</p>
+    <DeleteButton />
+    <p>Read a notice</p>
+    <OpenButton />
+    <p>`Feedbacks` Unclicked</p>
+    <Feedbacks>
+      <TransparentButton transparent>
+        <ThumbUp />
+      </TransparentButton>
+      <TransparentButton>
+        <ThumbDown />
+      </TransparentButton>
+    </Feedbacks>
+    <p>`Feedbacks` Clicked</p>
+    <Feedbacks>
+      <TransparentButton>
+        <ThumbUp filled={true} />
+      </TransparentButton>
+      <TransparentButton>
+        <ThumbDown filled={true} />
+      </TransparentButton>
+    </Feedbacks>
+  </Story>
+</Preview>
+
+### Profile navigation
+<Preview>
+  <Story name="Contributor buttons">
+    <ContributorButton
+      subscribed={false}
+    />
+    <ContributorButton
+      subscribed={true}
+    />
+  </Story>
+</Preview>
+

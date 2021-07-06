@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Theme } from 'app/theme';
-import { Button } from 'components/atoms';
+import { TransparentButton } from 'components/atoms/Button';
 
 interface FeedbacksProps {
   theme?: Theme;
@@ -13,9 +13,8 @@ export default styled.div<FeedbacksProps>`
   margin-right: 30px;
   font-size: 14px;
 
-  & ${Button} {
-    color: ${props => props.theme.navInactive};
-    text-decoration: none;
+  & ${TransparentButton} {
+    color: ${props => props.theme.colorGrey400};
 
     svg {
       transition: all 0.2s ease-in-out;
@@ -26,7 +25,7 @@ export default styled.div<FeedbacksProps>`
       transform: scale(-1, 1);
     }
 
-    & + ${Button} {
+    & + ${TransparentButton} {
       margin-left: 20px;
     }
 

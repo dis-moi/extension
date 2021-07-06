@@ -26,14 +26,14 @@ const ContributorIntro = styled.div.attrs<IntroProps>(
 )<IntroProps>`
   margin: 16px 0 10px 0;
   font-size: ${props => props.theme.fontSizeDefault};
-  color: ${props => props.theme.textColor};
+  color: ${props => props.theme.colorText};
 
   & > p {
     margin: 0;
   }
 
   a {
-    color: ${props => props.theme.activeColor};
+    color: ${props => props.theme.colorPrimary};
   }
 
   @media (max-width: ${props => props.theme.tabletWidth}) {

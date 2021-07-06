@@ -31,3 +31,4 @@ export { default as Sidebar } from './Layout/Sidebar';
 // Text elements
 export { default as Title2 } from './Titles/Title2';
 export { default as Paragraph } from './Paragraph/Paragraph';
+export { default as Error } from './Forms/Error/Error';

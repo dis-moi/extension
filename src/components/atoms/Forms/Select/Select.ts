@@ -10,12 +10,13 @@ export default styled.select<Props>`
   margin-bottom: 10px;
   padding: 4px 12px 4px 8px;
   font-size: 12px;
-  color: ${props => props.theme.activeColor};
+  color: ${props => props.theme.colorPrimary};
   font-weight: bold;
   border-radius: 6px;
   border: 1px solid
-    ${props => (props.error ? props.theme.formError : props.theme.activeColor)};
+    ${props =>
+      props.error ? props.theme.colorError : props.theme.colorPrimary};
   box-shadow: 0 0 0 2px
-    ${props => (props.error ? props.theme.formError : '#fff')};
+    ${props => (props.error ? props.theme.colorError : '#fff')};
   resize: none;
 `;
