@@ -5,6 +5,7 @@ import SectionTitle from '../../atoms/Titles/SectionTitle';
 import Button from '../../atoms/Button/Button';
 import ContributorAvatar from '../../atoms/ContributorAvatar/ContributorAvatar';
 import { BaseContributor } from '../../../../app/lmem/contributor';
+import ContributorModal from '../../molecules/ContributorModal/ContributorModal';
 
 const StyledSectionTitle = styled(props => <SectionTitle {...props} />)`
   color: ${props => props.theme.website.secondaryColorDarker};
@@ -291,39 +292,58 @@ const ContributorsSection = styled(
         )
       );
     });
+    const [modalOpen, setModalOpen] = React.useState<boolean>(false);
+    const [
+      openedContributor,
+      setOpenedContributor
+    ] = React.useState<BaseContributor | null>(null);
 
     return (
-      <Section className={className}>
-        <StyledSectionTitle>+2000 contributions...</StyledSectionTitle>
-        <SubTitle>
-          qui rendent le web plus sûr, plus transparent et plus ouvert aux
-          alternatives
-        </SubTitle>
-        <ContributorAvatars>
-          {contributors.map<React.ReactNode>((contributor, index) => {
-            // eslint-disable-next-line camelcase
-            const imageUrl = contributor.avatar?.extra_large?.url
-              ? contributor.avatar.extra_large.url
-              : contributor.avatar?.large?.url
-              ? contributor.avatar.large.url
-              : 'DEFAULT';
-            return (
-              <ContributorAvatar
-                key={index}
-                imageUrl={imageUrl}
-                name={contributor.name}
-              />
-            );
-          })}
-        </ContributorAvatars>
-        <Button
-          color="greenDarker"
-          text="Voir tous les contributeurs"
-          icon="list"
-          appearance="outline"
-          handleClick={() => false}
-        />
-      </Section>
+      <>
+        <Section className={className}>
+          <StyledSectionTitle>+2000 contributions...</StyledSectionTitle>
+          <SubTitle>
+            qui rendent le web plus sûr, plus transparent et plus ouvert aux
+            alternatives
+          </SubTitle>
+          <ContributorAvatars>
+            {contributors.map<React.ReactNode>((contributor, index) => {
+              // eslint-disable-next-line camelcase
+              const imageUrl = contributor.avatar?.extra_large?.url
+                ? contributor.avatar.extra_large.url
+                : contributor.avatar?.large?.url
+                ? contributor.avatar.large.url
+                : 'DEFAULT';
+              return (
+                <ContributorAvatar
+                  key={index}
+                  imageUrl={imageUrl}
+                  name={contributor.name}
+                  handleClick={(e: React.MouseEvent<HTMLElement>) => {
+                    setOpenedContributor(contributor);
+                    setModalOpen(true);
+                    e.preventDefault();
+                  }}
+                />
+              );
+            })}
+          </ContributorAvatars>
+          <Button
+            color="greenDarker"
+            text="Voir tous les contributeurs"
+            icon="list"
+            appearance="outline"
+            handleClick={() => false}
+          />
+        </Section>
+        {openedContributor && (
+          <ContributorModal
+            contributor={openedContributor}
+            open={modalOpen}
+            setOpen={setModalOpen}
+          />
+        )}
+      </>
     );
   }
 )`
