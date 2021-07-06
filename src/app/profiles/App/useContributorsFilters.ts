@@ -1,43 +1,55 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StatefulContributor } from 'libs/domain/contributor';
-import { Categories } from 'libs/domain/category';
-
-export const distinct = (value: string, index: number, array: string[]) =>
-  array.indexOf(value) === index;
+import { ALL } from 'components/molecules/Filters/RadiosFilters';
+import getSearch from '../../../libs/utils/getSearch';
 
 function useContributorsFilters(
-  contributors: StatefulContributor[],
-  categories: Categories
-): [StatefulContributor[], (value: string) => void, (value: string) => void] {
-  const [filteredContributors, setFilteredContributors] = useState<
-    StatefulContributor[]
-  >(contributors);
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  useEffect(() => {
-    if (
-      selectedCategories.length > 0 &&
-      selectedCategories.length < Object.keys(categories).length
-    ) {
-      setFilteredContributors(
-        contributors.filter(({ categories: contributorCategories }) =>
-          contributorCategories.some(
-            cc => selectedCategories.indexOf(cc) !== -1
-          )
-        )
-      );
-    } else {
-      setFilteredContributors(contributors);
-    }
-  }, [selectedCategories, contributors]);
+  contributors: StatefulContributor[]
+): [
+  StatefulContributor[],
+  (value: string) => void,
+  (e: React.ChangeEvent<HTMLInputElement>) => void
+] {
+  const [filteredContributors, setFilteredContributors] = useState<{
+    base: StatefulContributor[];
+    filtered: StatefulContributor[];
+  }>({ base: contributors, filtered: contributors });
 
-  const addFilter = (value: string): void =>
-    setSelectedCategories(selectedCategories.concat(value).filter(distinct));
-  const removeFilter = (value: string): void =>
-    setSelectedCategories(
-      selectedCategories.filter(category => category !== value)
+  const [selectedCategory, setSelectedCategory] = useState<string>();
+  const catFilter = () =>
+    contributors.filter(({ categories: contributorCategories }) =>
+      contributorCategories.some(cc => selectedCategory === cc)
     );
 
-  return [filteredContributors, addFilter, removeFilter];
+  useEffect(() => {
+    if (selectedCategory && selectedCategory !== ALL) {
+      setFilteredContributors({
+        filtered: catFilter(),
+        base: catFilter()
+      });
+    } else {
+      setFilteredContributors({ filtered: contributors, base: contributors });
+    }
+  }, [selectedCategory, contributors]);
+
+  const handleChangeSearchContributors = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    const foundContributors = getSearch(
+      e.target.value,
+      filteredContributors.base
+    );
+    return setFilteredContributors({
+      ...filteredContributors,
+      filtered: foundContributors
+    });
+  };
+
+  return [
+    filteredContributors.filtered,
+    setSelectedCategory,
+    handleChangeSearchContributors
+  ];
 }
 
 export default useContributorsFilters;

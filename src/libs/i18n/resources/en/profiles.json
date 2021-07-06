@@ -115,6 +115,11 @@
       }
     }
   },
+  "form": {
+    "placeholder": {
+      "search": "Your search"
+    }
+  },
   "notice": {
     "screenshot_alt": "Shows the contribution on {{exampleMatchingUrl}} once the extension is installed.",
     "pined_on": "<0>Message pinned on <1>{{exampleMatchingUrl}}</1></0> and other webpages",
