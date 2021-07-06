@@ -1,3 +1,13 @@
+# [3.82.0](https://github.com/dis-moi/extension/compare/v3.81.0...v3.82.0) (2021-07-06)
+
+
+### Features
+
+* **ContributionLarge:** styles subscribers data ([13ed616](https://github.com/dis-moi/extension/commit/13ed616c6ec30b5ef707d0d19555b100bd9829cb))
+* **profiles:** display subscriber count ([d625454](https://github.com/dis-moi/extension/commit/d6254541e8cbad95d91d46d32e340eda132095f1))
+* **profiles:** format numbers, add bold ([01d1dcb](https://github.com/dis-moi/extension/commit/01d1dcb9f30c65d66a6b84b0571ca1f9a809703b))
+* **profiles:** sort contributors by subscribers ([8bab2b1](https://github.com/dis-moi/extension/commit/8bab2b1ef3722f75c24bd4859b6f8d4625a63653))
+
 # [3.81.0](https://github.com/dis-moi/extension/compare/v3.80.0...v3.81.0) (2021-07-01)
 
 
