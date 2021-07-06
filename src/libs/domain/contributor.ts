@@ -36,6 +36,9 @@ export interface BaseContributor {
   noticesUrls: string[];
   categories: string[];
   locale: SupportedLanguage;
+  ratings: {
+    subscribes: number;
+  };
 }
 
 export interface FetchedContributor extends BaseContributor {
@@ -70,7 +73,7 @@ interface LoadableContributorOptions {
 export const createLoadableContributor = ({
   id,
   loading = true
-}: LoadableContributorOptions) => ({
+}: LoadableContributorOptions): LoadableContributor => ({
   id,
   name: '',
   contributions: 0,
@@ -78,7 +81,8 @@ export const createLoadableContributor = ({
   noticesUrls: [],
   loading,
   categories: [],
-  locale: defaultLng
+  locale: defaultLng,
+  ratings: { subscribes: 0 }
 });
 
 export type Contributor =
@@ -95,6 +99,11 @@ type SortSuggestedContributors = (contributors: Contributor[]) => Contributor[];
 export const sortContributorsByContributions: SortSuggestedContributors = R.sortWith(
   [R.descend(R.prop('contributions'))]
 );
+
+export const sortContributorsBySubscribers = (
+  contributors: Contributor[]
+): Contributor[] =>
+  R.sort((a, b) => a.ratings?.subscribes - b.ratings?.subscribes, contributors);
 
 export const sortContributorsAlphabetically: SortSuggestedContributors = R.sortWith(
   [R.ascend(R.prop('name'))]

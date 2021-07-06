@@ -48,7 +48,10 @@ export const generateContributor = ({
   noticesUrls: ['http://backend.dismoi.io/notices/1'],
   website: website || Faker.internet.url(),
   categories: [Faker.random.word()],
-  locale: defaultLng
+  locale: defaultLng,
+  ratings: {
+    subscribes: 0
+  }
 });
 
 export const generateStatefulContributor = ({

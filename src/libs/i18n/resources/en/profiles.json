@@ -2,6 +2,8 @@
   "common": {
     "sources": "Contributors",
     "subscriber": "Followed",
+    "follower": "<strong>{{count, followers}}</strong> subscriber",
+    "follower_plural": "<strong>{{count, followers}}</strong> subscribers",
     "similar_profiles": "Similar profiles",
     "no_more_contribution": "No more contributions",
     "all": "All"
