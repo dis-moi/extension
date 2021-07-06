@@ -92,7 +92,9 @@ const Header = styled(({ className, scrolled }: HeaderProps) => {
           <NavMobileItem href={'#'}>Contribuer</NavMobileItem>
           <NavMobileItem href={'#'}>Aide</NavMobileItem>
           <HeaderCTAButton />
-          <NavMobileItem href={'#'}>fr | en</NavMobileItem>
+          <NavMobileItem href={'#'}>
+            <b>fr</b> | en
+          </NavMobileItem>
         </NavMobile>
       </Modal>
     </>
