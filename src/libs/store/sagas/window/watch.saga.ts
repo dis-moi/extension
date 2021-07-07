@@ -21,7 +21,7 @@ function* watchSaga(
     window,
     targetOrigin,
     (action: StandardAction) =>
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       !(typeof action.meta === 'object' && action.meta?.receiver?.id)
   );

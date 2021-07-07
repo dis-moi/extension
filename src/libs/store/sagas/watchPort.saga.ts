@@ -15,12 +15,12 @@ import createPortChannel from './createPortChannel';
 type MessageSender = browser.runtime.MessageSender;
 type Port = browser.runtime.Port;
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 function* postPortActionSaga(
   port: Port,
   sender?: MessageSender,
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   action: PortAction
 ) {

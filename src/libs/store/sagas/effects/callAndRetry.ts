@@ -50,7 +50,7 @@ export const createCallAndRetry = (givenOptions: Partial<Options>) =>
           );
           return yield call<typeof attempt>(
             attempt,
-            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             attemptNumber + 1,
             ...args
@@ -64,7 +64,7 @@ export const createCallAndRetry = (givenOptions: Partial<Options>) =>
       }
     }
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     return yield call<typeof attempt>(attempt, 1, ...args);
   };

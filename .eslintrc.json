@@ -15,9 +15,6 @@
     },
     "import/resolver": {
       "typescript": {} // this loads <rootdir>/tsconfig.json to eslint
-//      "typescript": {
-//        "project": "."
-//      }
     }
   },
   "globals": {
@@ -25,19 +22,24 @@
     "browser": "readonly",
     "fetch": "readonly",
     "XPathResult": "readonly",
-    "clickInstallHandler": "readonly"
+    "clickInstallHandler": "readonly",
+    "JSX": "readonly",
+    "NodeJS": "readonly"
   },
   "extends": [
     "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
     "plugin:import/typescript",
-    "plugin:prettier/recommended",
-    "prettier-standard/prettier-file",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended"
   ],
-  "plugins": ["react"],
+  "plugins": ["@typescript-eslint", "react", "import", "jsx-a11y"],
   "rules": {
+    // Warning on new or changed rules that have to be fixed
+    "@typescript-eslint/ban-types": 1,
+    "@typescript-eslint/no-var-requires": 1,
+    "no-case-declarations": 1,
+    "no-use-before-define": 1,
+
     "no-console": "warn",
     // Use either @typescript-eslint/no-unused-vars or this one but not both
     "no-unused-vars": 0,
@@ -55,21 +57,20 @@
         ]
       }
     ],
-    // We don't actually set a display name for functional component
+    // We don't currently set a display name for functional component
     "react/display-name": 0,
 
     /* TypeScript */
     // We don't actually set the return type of React functional component
-    "@typescript-eslint/explicit-function-return-type": false,
+    "@typescript-eslint/explicit-function-return-type": 0,
     // We don't actually always explicitly member accessility (componentDidMount ...)
-    "@typescript-eslint/explicit-member-accessibility": false,
+    "@typescript-eslint/explicit-member-accessibility": 0,
     "@typescript-eslint/no-explicit-any": ["error", { "ignoreRestArgs": true }],
-    "@typescript-eslint/no-empty-interface": false,
+    "@typescript-eslint/no-empty-interface": 0,
     "@typescript-eslint/no-unused-vars": [
       "warn",
       { "ignoreRestSiblings": true }
     ],
-    "@typescript-eslint/no-empty-function": false,
-    "@typescript-eslint/camelcase": "off"
+    "@typescript-eslint/no-empty-function": 0
   }
 }

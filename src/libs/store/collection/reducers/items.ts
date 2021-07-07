@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import * as R from 'ramda';
 import { AppAction } from 'libs/store/actions';
 

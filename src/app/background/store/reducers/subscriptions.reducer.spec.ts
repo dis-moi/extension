@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-expressions, @typescript-eslint/ban-ts-ignore */
+/* eslint-disable no-unused-expressions, @typescript-eslint/ban-ts-comment */
 import { expect } from 'chai';
 import { subscribe, SubscribeAction } from 'libs/store/actions';
 import { ContributorId } from 'libs/domain/contributor';
