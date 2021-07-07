@@ -1,3 +1,10 @@
+## [3.83.3](https://github.com/dis-moi/extension/compare/v3.83.2...v3.83.3) (2021-07-07)
+
+
+### Bug Fixes
+
+* include .js extensions in .mjs files imports ([6ac5507](https://github.com/dis-moi/extension/commit/6ac55079e7c71eb2d837f509e690dc0ab476d04e))
+
 ## [3.83.2](https://github.com/dis-moi/extension/compare/v3.83.1...v3.83.2) (2021-07-07)
 
 
