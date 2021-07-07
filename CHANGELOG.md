@@ -1,3 +1,10 @@
+## [3.83.1](https://github.com/dis-moi/extension/compare/v3.83.0...v3.83.1) (2021-07-07)
+
+
+### Bug Fixes
+
+* remove unused file ([d7c3aed](https://github.com/dis-moi/extension/commit/d7c3aedb079c5d91746e8082c45d85a4b461500f))
+
 # [3.83.0](https://github.com/dis-moi/extension/compare/v3.82.0...v3.83.0) (2021-07-06)
 
 
