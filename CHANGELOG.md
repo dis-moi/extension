@@ -1,3 +1,10 @@
+## [3.83.2](https://github.com/dis-moi/extension/compare/v3.83.1...v3.83.2) (2021-07-07)
+
+
+### Bug Fixes
+
+* change --experimental-modules to --experimental-json-modules (Node 12+) ([000fdc0](https://github.com/dis-moi/extension/commit/000fdc02ab72861b37956308d951d5c8da730d51))
+
 ## [3.83.1](https://github.com/dis-moi/extension/compare/v3.83.0...v3.83.1) (2021-07-07)
 
 
