@@ -2,8 +2,8 @@ import path from 'path';
 import fs from 'fs';
 import createWebstore from 'chrome-webstore-upload';
 import packageJson from '../package.json';
-import loadEnv from '../loadEnv';
-import packageNaming from '../webpack/packageNaming';
+import loadEnv from '../loadEnv.js';
+import packageNaming from '../webpack/packageNaming.js';
 
 const { getPackagePath } = packageNaming;
 
@@ -16,7 +16,7 @@ const {
   CHROME_CLIENT_ID,
   CHROME_CLIENT_SECRET,
   CHROME_REFRESH_TOKEN,
-  NODE_ENV
+  NODE_ENV,
 } = process.env;
 
 const packagePath = getPackagePath(version, 'chromium', NODE_ENV);
@@ -25,17 +25,17 @@ const webStore = createWebstore({
   extensionId: CHROME_EXTENSION_ID,
   clientId: CHROME_CLIENT_ID,
   clientSecret: CHROME_CLIENT_SECRET,
-  refreshToken: CHROME_REFRESH_TOKEN
+  refreshToken: CHROME_REFRESH_TOKEN,
 });
 
-webStore.fetchToken().then(token => {
+webStore.fetchToken().then((token) => {
   // token is a string
   const fileStream = fs.createReadStream(packagePath);
-  webStore.uploadExisting(fileStream, token).then(resource => {
+  webStore.uploadExisting(fileStream, token).then((resource) => {
     // https://developer.chrome.com/webstore/webstore_api/items#resource
     const { uploadState } = resource;
     if (uploadState === 'SUCCESS') {
-      webStore.publish(target, token).then(response => {
+      webStore.publish(target, token).then((response) => {
         // https://developer.chrome.com/webstore/webstore_api/items/publish#response
         console.log(response);
       });
