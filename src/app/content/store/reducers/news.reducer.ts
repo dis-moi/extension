@@ -3,7 +3,7 @@ import { SHOW_NEWS } from '../../../../libs/store/actions/news.actions';
 
 export interface NewsState {
   lastShownDate?: null | Date;
-  message: null | string;
+  message?: null | string;
 }
 
 export const initialState: NewsState = {
