@@ -10,33 +10,32 @@ interface NotificationNewsProps {
 }
 
 const defileAnim = keyframes`
-  from {
-    margin-left: 0;
-  } 
-  to {
-    margin-left: -100%;
-  }
-
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
 `;
 
 const Container = styled.div`
-  background: white;
-  border: 1px solid #eeeeee;
   display: flex;
   align-content: space-between;
+  align-items: center;
   padding: 8px;
+  background: white;
+  border: 1px solid #eeeeee;
 `;
 
 const DelifDiv = styled.div`
-  width: 343px;
-  height: calc(1em + 8px);
+  width: calc(100% - 24px);
   overflow: hidden;
+
   p {
-    white-space: nowrap;
     display: inline-block;
+    white-space: nowrap;
+    animation: ${defileAnim} 12s linear infinite;
+    animation-play-state: paused;
   }
+
   p:hover {
-    animation: ${defileAnim} 6s infinite linear;
+    animation-play-state: running;
   }
 `;
 
@@ -49,6 +48,7 @@ const NotificationNews = ({ news }: NotificationNewsProps) => {
       <DelifDiv>
         <Paragraph>{news}</Paragraph>
       </DelifDiv>
+
       <CloseButton onClick={() => setOpen(false)} />
     </Container>
   );
