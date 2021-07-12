@@ -1,3 +1,10 @@
+# [3.84.0](https://github.com/dis-moi/extension/compare/v3.83.3...v3.84.0) (2021-07-12)
+
+
+### Features
+
+* **tracking:** Add browser, platform and devices info ([7f29554](https://github.com/dis-moi/extension/commit/7f29554862dca955fb0ed617cb7e2b7734db7488))
+
 ## [3.83.3](https://github.com/dis-moi/extension/compare/v3.83.2...v3.83.3) (2021-07-07)
 
 
