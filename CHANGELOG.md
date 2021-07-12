@@ -1,3 +1,15 @@
+# [3.85.0](https://github.com/dis-moi/extension/compare/v3.84.0...v3.85.0) (2021-07-12)
+
+
+### Bug Fixes
+
+* **ProfileBanner:** changes image ([#1049](https://github.com/dis-moi/extension/issues/1049)) ([ce0b181](https://github.com/dis-moi/extension/commit/ce0b1812aec44549caec0c3657324d6cdf2ae850)), closes [#1045](https://github.com/dis-moi/extension/issues/1045)
+
+
+### Features
+
+* **profiles:** design tests to improve users's understanding ([84e1f88](https://github.com/dis-moi/extension/commit/84e1f88f3588b87c336b146ff956da186d531ee8))
+
 # [3.84.0](https://github.com/dis-moi/extension/compare/v3.83.3...v3.84.0) (2021-07-12)
 
 
