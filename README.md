@@ -7,7 +7,7 @@
 **Dismoi** is a web extension that allows anyone to post information directly on any web page you browse.
 If you follow an informer, his messages are displayed at the time you visit the pages he has commented on.
 
-To lean more about the uses cases, visit the :fr: [**Dismoi** website](https://www.dismoi.io/).
+To learn more about the uses cases, visit the :fr: [**Dismoi** website](https://www.dismoi.io/).
 
 > At the time of writing, information are stored in database and exposed via the [**Dismoi** Backend](https://github.com/dis-moi/backend).
 
