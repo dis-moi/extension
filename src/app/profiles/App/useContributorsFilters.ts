@@ -30,7 +30,7 @@ function useContributorsFilters(
     } else {
       setFilteredContributors({ filtered: contributors, base: contributors });
     }
-  }, [selectedCategory, contributors]);
+  }, [selectedCategory]);
 
   const handleChangeSearchContributors = (
     e: React.ChangeEvent<HTMLInputElement>

@@ -4,17 +4,23 @@ const getSearch = (
   value: string,
   contributors: StatefulContributor[]
 ): StatefulContributor[] => {
+  const normalizeText = (string: string) =>
+    string
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toUpperCase();
+
   const regex = new RegExp(
     value
       .split(' ')
-      .map(val => val.toUpperCase().replace(/.+/g, '(?=.*$&)'))
+      .map(val => normalizeText(val).replace(/.+/g, '(?=.*$&)'))
       .join(''),
     'g'
   );
 
   let filteredContributor = contributors.filter(contrib => {
     const toTest = contrib.name + ' ' + contrib.intro;
-    return regex.test(toTest.toUpperCase());
+    return regex.test(normalizeText(toTest));
   });
   filteredContributor = value === '' ? contributors : filteredContributor;
   return filteredContributor;

@@ -1,10 +1,10 @@
-import React, { ChangeEvent, MouseEvent, useState } from 'react';
+import React, { MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { ContributorId, StatefulContributor } from 'libs/domain/contributor';
 import { Categories } from 'libs/domain/category';
 import { Button, CenterContainer, Title2 } from 'components/atoms';
-import { Arrow, Search } from 'components/atoms/icons';
+import { Arrow } from 'components/atoms/icons';
 import Link from 'components/atoms/Link/Link';
 import ContributorLarge from 'components/organisms/Contributor/ContributorLarge';
 import ContributorsList from 'components/organisms/Contributor/ContributorsList';
@@ -21,8 +21,7 @@ import NotConnectedPopin, {
 } from '../NotConnectedPopin';
 import onContributorExampleClick from '../../../onContributorExampleClick';
 import { ContextPopinState } from '../../../../store/reducers/contextPopin.reducer';
-import { Input, Select } from '../../../../../../components/atoms/Forms';
-import { ALL } from '../../../../../../components/molecules/Filters/RadiosFilters';
+import Search from '../../../../../../components/molecules/Search/Search';
 
 const Title = styled(Title2)`
   padding-top: 30px;
@@ -76,63 +75,6 @@ export const ContributorProfileListItem = styled(ContributorLarge)`
 
 export const ContributorExampleLink = styled(Link)`
   cursor: pointer;
-`;
-
-const SearchBar = styled.div`
-  display: flex;
-  padding: 0 16px;
-
-  select,
-  input {
-    font-size: 16px;
-    box-shadow: none;
-    border: none;
-  }
-
-  select {
-    margin-right: 24px;
-    margin-bottom: 0;
-    padding: 10px 7px;
-    text-transform: none;
-  }
-
-  input {
-    margin-bottom: 0;
-    padding: 10px 7px;
-  }
-`;
-
-const SearchFilters = styled.div`
-  display: flex;
-  align-items: center;
-
-  label {
-    flex-shrink: 0;
-    margin-right: 8px;
-  }
-`;
-
-const SearchField = styled.div`
-  display: flex;
-
-  input {
-    border-radius: 6px 0 0 6px;
-  }
-`;
-
-const SearchIcon = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 56px;
-  background-color: white;
-  border-radius: 0 6px 6px 0;
-
-  svg {
-    width: 20px;
-    height: 20px;
-    fill: ${props => props.theme.activeColor};
-  }
 `;
 
 export interface ProfileListProps {
@@ -192,11 +134,6 @@ const ProfileList = ({
     handleChangeSearchContributors
   ] = useContributorsFilters(contributors);
 
-  const handleFiltersChange = ({
-    target: { value }
-  }: ChangeEvent<HTMLSelectElement>) => {
-    setFilter(value);
-  };
   return (
     <>
       <LazyOnBoarding />
@@ -205,38 +142,12 @@ const ProfileList = ({
       )}
 
       <ProfileTabs connected={connected} />
-
-      <SearchBar>
-        {!categoriesLoading && (
-          <SearchFilters>
-            <label htmlFor="categories">Filtrer par : </label>
-
-            <Select
-              onChange={handleFiltersChange}
-              placeholder={'Filtrez la recherche'}
-              id="categories"
-            >
-              <option value={ALL}>{t('profiles:common.all')}</option>
-              {Object.keys(categories).map(catId => (
-                <option key={catId} value={catId}>
-                  {categories[catId]}
-                </option>
-              ))}
-            </Select>
-          </SearchFilters>
-        )}
-        <SearchField>
-          <Input
-            type={'text'}
-            placeholder={t('profiles:form.placeholder.search')}
-            onChange={handleChangeSearchContributors}
-          />
-          <SearchIcon>
-            <Search />
-          </SearchIcon>
-        </SearchField>
-      </SearchBar>
-
+      <Search
+        categoriesLoading={categoriesLoading}
+        categories={categories}
+        handleChangeSearchContributors={handleChangeSearchContributors}
+        setFilter={setFilter}
+      />
       {loading ? (
         <Loader />
       ) : (

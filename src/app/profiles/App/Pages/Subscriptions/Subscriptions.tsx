@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import {
@@ -11,7 +11,6 @@ import { TwoColumns } from 'components/atoms';
 import { SlowerMessageBox } from 'components/molecules/SidebarBox';
 import pathToContributor from 'app/profiles/App/pathToContributor';
 import SimilarProfiles from 'app/profiles/App/SimilarProfiles';
-import Filters from 'components/molecules/Filters/RadiosFilters';
 import useContributorsFilters from 'app/profiles/App/useContributorsFilters';
 import {
   ContributorExampleLink,
@@ -20,6 +19,7 @@ import {
 import { Aside, MainCol } from '../Profiles/Profile/Profile';
 import ProfileTabs from '../../ProfileTabs';
 import { Arrow } from '../../../../../components/atoms/icons';
+import Search from '../../../../../components/molecules/Search/Search';
 
 const ContributorsList = styled.div`
   display: grid;
@@ -27,6 +27,9 @@ const ContributorsList = styled.div`
   grid-gap: 24px;
 `;
 
+const TwoColumnsWithMargin = styled(TwoColumns)`
+  margin-top: 20px;
+`;
 export interface SubscriptionsProps {
   subscriptions: StatefulContributor[];
   contributors: StatefulContributor[];
@@ -61,26 +64,24 @@ const Subscriptions = ({
     findContributorIn(contributors)
   );
 
-  const [filteredSubscriptions, setFilter] = useContributorsFilters(
-    subscriptionsToRender
-  );
+  const [
+    filteredSubscriptions,
+    setFilter,
+    handleChangeSearchContributors
+  ] = useContributorsFilters(subscriptionsToRender);
 
-  const handleFiltersChange = ({
-    target: { value }
-  }: ChangeEvent<HTMLInputElement>) => {
-    setFilter(value);
-  };
   return (
     <>
       <ProfileTabs connected={connected} />
       {connected === true && (
-        <Filters
-          onChange={handleFiltersChange}
-          loading={!!categoriesLoading}
-          filters={categories}
+        <Search
+          categoriesLoading={categoriesLoading}
+          categories={categories}
+          handleChangeSearchContributors={handleChangeSearchContributors}
+          setFilter={setFilter}
         />
       )}
-      <TwoColumns>
+      <TwoColumnsWithMargin>
         <MainCol>
           {connected === false ? (
             <Trans i18nKey={'profiles:view.my_subscriptions.disclaimer'}>
@@ -122,7 +123,7 @@ const Subscriptions = ({
           <SlowerMessageBox />
           <SimilarProfiles />
         </Aside>
-      </TwoColumns>
+      </TwoColumnsWithMargin>
     </>
   );
 };
