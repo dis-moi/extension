@@ -17,8 +17,10 @@ import {
   hasServiceMessage,
   isLoaded,
   isNoticeContext,
-  isOpen
+  isOpen,
+  getNews
 } from '../store/selectors';
+import { NewsState } from '../store/reducers/news.reducer';
 import Notice from './Notice';
 import Subscriptions from './Subscriptions';
 import Help from './Help';
@@ -30,6 +32,7 @@ import Question from './Question';
 import ServiceMessage from './ServiceMessage';
 
 const mapStateToProps = (state: ContentState) => ({
+  news: getNews(state),
   open: isOpen(state),
   loaded: isLoaded(state),
   title: getTitle(state),
@@ -48,6 +51,7 @@ interface ConnectProps {
   close: () => void;
   noticeContext: boolean;
   hasServiceMessage: boolean;
+  news?: NewsState['message'];
 }
 
 type UIProps = ConnectProps & RouteComponentProps;
@@ -58,7 +62,8 @@ const UI = ({
   loaded,
   close,
   noticeContext,
-  hasServiceMessage
+  hasServiceMessage,
+  news
 }: UIProps) => {
   if (open) {
     return (
@@ -67,6 +72,7 @@ const UI = ({
         close={close}
         closed={!open}
         hasNotices={noticeContext}
+        news={news}
       >
         {loaded ? (
           <>
