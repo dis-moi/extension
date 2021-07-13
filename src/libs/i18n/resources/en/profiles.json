@@ -5,6 +5,7 @@
     "follower": "<strong>{{count, followers}}</strong> subscriber",
     "follower_plural": "<strong>{{count, followers}}</strong> subscribers",
     "similar_profiles": "Similar profiles",
+    "famous_profiles": "Famous profiles",
     "no_more_contribution": "No more contributions",
     "all": "All"
   },
