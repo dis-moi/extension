@@ -1,3 +1,10 @@
+# [3.86.0](https://github.com/dis-moi/extension/compare/v3.85.1...v3.86.0) (2021-07-13)
+
+
+### Features
+
+* **onboarding:** trigger welcome bulle ([d6aa712](https://github.com/dis-moi/extension/commit/d6aa71280358092a8c4fc3632bf5a1bda34efbfc))
+
 ## [3.85.1](https://github.com/dis-moi/extension/compare/v3.85.0...v3.85.1) (2021-07-13)
 
 
