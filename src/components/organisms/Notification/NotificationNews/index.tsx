@@ -23,14 +23,14 @@ const Container = styled.div`
   border: 1px solid #eeeeee;
 `;
 
-const DelifDiv = styled.div`
+const DelifDiv = styled.div<{ velocity: number }>`
   width: calc(100% - 24px);
   overflow: hidden;
 
   p {
     display: inline-block;
     white-space: nowrap;
-    animation: ${defileAnim} 12s linear infinite;
+    animation: ${defileAnim} ${props => props.velocity}s linear infinite;
     animation-play-state: paused;
   }
 
@@ -43,9 +43,11 @@ const NotificationNews = ({ news }: NotificationNewsProps) => {
   const [open, setOpen] = useState(true);
 
   if (!news || !open) return null;
+  const velocity = news.length / 10;
+
   return (
     <Container>
-      <DelifDiv>
+      <DelifDiv velocity={velocity}>
         <Paragraph>{news}</Paragraph>
       </DelifDiv>
 
