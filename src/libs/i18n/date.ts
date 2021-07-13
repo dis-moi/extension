@@ -5,7 +5,7 @@ export const DEFAULT_FORMAT = 'dd/LL/yyyy';
 
 const availableLocales: Record<string, Locale> = {
   fr,
-  [fallbackLng]: enUS
+  en: enUS
 };
 
 export const getLocale = (locale?: string): Locale => {
