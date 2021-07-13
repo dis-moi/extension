@@ -1,3 +1,10 @@
+## [3.85.1](https://github.com/dis-moi/extension/compare/v3.85.0...v3.85.1) (2021-07-13)
+
+
+### Bug Fixes
+
+* fallback lng not recognized on init ([131dfcf](https://github.com/dis-moi/extension/commit/131dfcf57da61c166ce7be9dee41df2f3f166789))
+
 # [3.85.0](https://github.com/dis-moi/extension/compare/v3.84.0...v3.85.0) (2021-07-12)
 
 
