@@ -45,7 +45,7 @@ export default function* bridgeConnectionSaga(targetOrigin = '*') {
       }
     }
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     if (port !== undefined && connected) {
       Logger.debug('port.postMessage', stripReceiverMeta(windowAction));

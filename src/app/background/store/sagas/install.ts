@@ -5,7 +5,7 @@ import { optionsRequested } from 'libs/store/actions';
 import {
   INSTALLED,
   updateInstallationDetails,
-  InstalledAction
+  InstalledAction,
 } from 'libs/store/actions/install';
 import { getInstallationDate } from 'app/background/store/selectors/installationDetails';
 import { InstallationDetails } from 'libs/domain/installation';
@@ -16,7 +16,7 @@ import { loginSaga } from './user.saga';
 const { UNINSTALL_ORIGIN } = process.env;
 
 export function* installedSaga({
-  payload: { installedDetails }
+  payload: { installedDetails },
 }: InstalledAction): SagaIterator {
   try {
     const extensionId = yield call(loginSaga);
@@ -25,7 +25,7 @@ export function* installedSaga({
         .setUninstallURL(
           `${UNINSTALL_ORIGIN}${buildQueryString({ extensionId })}`
         )
-        .catch(e => e);
+        .catch((e) => e);
     }
 
     const datetime = yield select(getInstallationDate);
@@ -37,7 +37,7 @@ export function* installedSaga({
       ...installedDetails,
       version,
       datetime: datetime || new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
     };
 
     yield put(
@@ -46,7 +46,7 @@ export function* installedSaga({
 
     const { reason } = installedDetails;
     if (reason === 'install') {
-      // eslint-disable-next-line @typescript-eslint/camelcase
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       yield put(optionsRequested({ params: { pk_campaign: 'installed' } }));
     }
   } catch (e) {

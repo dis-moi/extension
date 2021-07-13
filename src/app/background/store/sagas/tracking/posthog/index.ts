@@ -69,7 +69,7 @@ export default (client?: PostHog) =>
         yield takeLatest(LOGIN, trackLoginSaga(client));
         yield takeLatest(TOS_ACCEPTED, function*(action: TosAcceptedAction) {
           const tosAccepted = yield select(areTosAccepted);
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           yield call(client.capture.bind(client), {
             distinctId,

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { SagaIterator } from '@redux-saga/types';
 import { call, put, select } from '@redux-saga/core/effects';
 import PostHog from 'posthog-node';
@@ -9,18 +9,18 @@ import {
   NoticeBadgedAction,
   NoticeDisplayedAction,
   ReceivedOutboundLinkClickedAction,
-  UnfoldNoticeAction
+  UnfoldNoticeAction,
 } from 'libs/store/actions';
 import { createErrorAction } from 'libs/store/actions/helpers';
 import { Level } from 'libs/utils/Logger';
 import {
   getNoticeById,
-  getNumberOfUnreadNoticesOnTab
+  getNumberOfUnreadNoticesOnTab,
 } from 'app/background/store/selectors';
 import {
   getNoticeFieldsToTrack,
   getRelayer,
-  StatefulNoticeWithContributor
+  StatefulNoticeWithContributor,
 } from 'libs/domain/notice';
 import { getSubscriptionsIds } from 'app/background/store/selectors/subscriptions.selectors';
 import { Contributor } from 'libs/domain/contributor';
@@ -35,11 +35,11 @@ export const getPropertiesToTrack = (
   noticeId: notice.id,
   notice: getNoticeFieldsToTrack(notice),
   relayer: getRelayer(subscriptionsIds, notice),
-  $current_url: getURLFromActionMeta(action)
+  $current_url: getURLFromActionMeta(action),
 });
 
 export const trackNoticeBadgedSaga = (client: PostHog) =>
-  function*(action: NoticeBadgedAction): SagaIterator {
+  function* (action: NoticeBadgedAction): SagaIterator {
     try {
       if (action.meta.tab) {
         const distinctId = yield call(loginSaga);
@@ -55,8 +55,8 @@ export const trackNoticeBadgedSaga = (client: PostHog) =>
           event: getEventNameFromAction(action),
           properties: {
             color,
-            ...getPropertiesToTrack(action, notice, subscriptionsIds)
-          }
+            ...getPropertiesToTrack(action, notice, subscriptionsIds),
+          },
         });
       }
     } catch (e) {
@@ -65,7 +65,7 @@ export const trackNoticeBadgedSaga = (client: PostHog) =>
   };
 
 export const trackNoticeDisplayedSaga = (client: PostHog) =>
-  function*(action: NoticeDisplayedAction): SagaIterator {
+  function* (action: NoticeDisplayedAction): SagaIterator {
     try {
       const notice = yield select(getNoticeById(action.payload));
       const subscriptionsIds = yield select(getSubscriptionsIds);
@@ -74,7 +74,7 @@ export const trackNoticeDisplayedSaga = (client: PostHog) =>
       yield call(client.capture.bind(client), {
         distinctId,
         event: getEventNameFromAction(action),
-        properties: getPropertiesToTrack(action, notice, subscriptionsIds)
+        properties: getPropertiesToTrack(action, notice, subscriptionsIds),
       });
     } catch (e) {
       yield put(createErrorAction()(e, { severity: Level.WARN }));
@@ -82,7 +82,7 @@ export const trackNoticeDisplayedSaga = (client: PostHog) =>
   };
 
 export const trackNoticeUnfoldedSaga = (client: PostHog) =>
-  function*(action: UnfoldNoticeAction): SagaIterator {
+  function* (action: UnfoldNoticeAction): SagaIterator {
     try {
       const notice = yield select(getNoticeById(action.payload));
       const subscriptionsIds = yield select(getSubscriptionsIds);
@@ -91,7 +91,7 @@ export const trackNoticeUnfoldedSaga = (client: PostHog) =>
       yield call(client.capture.bind(client), {
         distinctId,
         event: getEventNameFromAction(action),
-        properties: getPropertiesToTrack(action, notice, subscriptionsIds)
+        properties: getPropertiesToTrack(action, notice, subscriptionsIds),
       });
     } catch (e) {
       yield put(createErrorAction()(e, { severity: Level.WARN }));
@@ -99,7 +99,7 @@ export const trackNoticeUnfoldedSaga = (client: PostHog) =>
   };
 
 export const trackNoticeFeedbackSaga = (client: PostHog) =>
-  function*(action: FeedbackOnNoticeAction): SagaIterator {
+  function* (action: FeedbackOnNoticeAction): SagaIterator {
     try {
       const notice = yield select(getNoticeById(action.payload.id));
       const subscriptionsIds = yield select(getSubscriptionsIds);
@@ -110,8 +110,8 @@ export const trackNoticeFeedbackSaga = (client: PostHog) =>
         event: getEventNameFromAction(action),
         properties: {
           interaction: action.payload.feedback,
-          ...getPropertiesToTrack(action, notice, subscriptionsIds)
-        }
+          ...getPropertiesToTrack(action, notice, subscriptionsIds),
+        },
       });
     } catch (e) {
       yield put(createErrorAction()(e, { severity: Level.WARN }));
@@ -119,7 +119,7 @@ export const trackNoticeFeedbackSaga = (client: PostHog) =>
   };
 
 export const trackNoticeOutboundClickSaga = (client: PostHog) =>
-  function*(action: ReceivedOutboundLinkClickedAction): SagaIterator {
+  function* (action: ReceivedOutboundLinkClickedAction): SagaIterator {
     try {
       if (action.meta.tab.url) {
         const notice = yield select(getNoticeById(action.payload.id));
@@ -129,7 +129,7 @@ export const trackNoticeOutboundClickSaga = (client: PostHog) =>
         yield call(client.capture.bind(client), {
           distinctId,
           event: getEventNameFromAction(action),
-          properties: getPropertiesToTrack(action, notice, subscriptionsIds)
+          properties: getPropertiesToTrack(action, notice, subscriptionsIds),
         });
       }
     } catch (e) {

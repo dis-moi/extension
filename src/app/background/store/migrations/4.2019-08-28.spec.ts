@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { expect } from 'chai';
 import { StateV3 } from './StateV3';
 import { migration4 } from './4.2019-08-28';

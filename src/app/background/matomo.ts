@@ -1,10 +1,10 @@
-/* eslint-disable camelcase, @typescript-eslint/camelcase */
+/* eslint-disable camelcase, @typescript-eslint/naming-convention */
 import Tracker, {
   ContentImpression,
   ContentInteraction,
   OutboundLink,
   PageView,
-  TrackingEvent
+  TrackingEvent,
 } from 'types/Tracker';
 import { buildQueryString } from 'libs/api/call';
 import uniqId from 'libs/utils/uniqId';
@@ -152,9 +152,9 @@ export default class MatomoTracker implements Tracker {
         _id: this.userId,
         uid: this.userId,
         _cvar: JSON.stringify({
-          1: ['CGU acceptées', this.tosAccepted ? 'oui' : 'non']
+          1: ['CGU acceptées', this.tosAccepted ? 'oui' : 'non'],
         }),
-        ...parameters
+        ...parameters,
       } as TrackingParameters)}`
     );
   };
@@ -165,7 +165,7 @@ export default class MatomoTracker implements Tracker {
       e_a: action,
       e_n: name,
       e_v: value,
-      url
+      url,
     });
   };
 
@@ -175,7 +175,7 @@ export default class MatomoTracker implements Tracker {
     return this.track({
       url,
       action_name: title,
-      urlref: referrer
+      urlref: referrer,
     });
   };
 
@@ -183,13 +183,13 @@ export default class MatomoTracker implements Tracker {
     name,
     piece,
     target,
-    url
+    url,
   }: ContentImpression) => {
     return this.track({
       c_n: name,
       c_p: piece,
       c_t: target,
-      url
+      url,
     });
   };
 
@@ -198,20 +198,20 @@ export default class MatomoTracker implements Tracker {
     piece,
     target,
     interaction,
-    url
+    url,
   }: ContentInteraction) => {
     return this.track({
       c_n: name,
       c_p: piece,
       c_t: target,
       c_i: interaction,
-      url
+      url,
     });
   };
 
   trackOutboundLink = ({ url }: OutboundLink) => {
     return this.track({
-      link: url
+      link: url,
     });
   };
 

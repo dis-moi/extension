@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { expect } from 'chai';
 import { navigatedToUrl } from 'libs/store/actions';
 import tabsReducer from './tabs.reducer';

@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-expressions, @typescript-eslint/ban-ts-ignore */
+/* eslint-disable no-unused-expressions, @typescript-eslint/ban-ts-comment */
 import { expect } from 'chai';
 import validateContribution from './validate';
 

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { expect } from 'chai';
 import { clearServiceMessage, showServiceMessage } from 'libs/store/actions';
 import serviceMessage, { ServiceMessageState } from './serviceMessage.reducer';
