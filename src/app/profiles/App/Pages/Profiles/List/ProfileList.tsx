@@ -11,9 +11,10 @@ import ContributorsList from 'components/organisms/Contributor/ContributorsList'
 import StatsWrapper from 'components/atoms/Contributor/StatsWrapper';
 import Loader from 'components/atoms/Loader';
 import pathToContributor from 'app/profiles/App/pathToContributor';
-import useContributorsFilters from 'app/profiles/App/useContributorsFilters';
+import useContributorsFilters from 'app/profiles/hooks/useContributorsFilters';
 import LazyOnBoarding from 'app/profiles/App/OnBoarding';
 import { Subscriptions } from 'libs/domain/subscription';
+import Search from 'components/molecules/Search/Search';
 import ProfileTabs from '../../../ProfileTabs';
 import BrowserNotSupportedPopin from '../BrowserNotSupportedPopin';
 import NotConnectedPopin, {
@@ -21,7 +22,6 @@ import NotConnectedPopin, {
 } from '../NotConnectedPopin';
 import onContributorExampleClick from '../../../onContributorExampleClick';
 import { ContextPopinState } from '../../../../store/reducers/contextPopin.reducer';
-import Search from '../../../../../../components/molecules/Search/Search';
 
 const Title = styled(Title2)`
   padding-top: 30px;

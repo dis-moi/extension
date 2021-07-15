@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { StatefulContributor } from '../domain/contributor';
-import getSearch from './getSearch';
+import getSearchResults from './getSearchResults';
 
 const contributors = [
   {
@@ -57,19 +57,19 @@ const contributors = [
 
 describe('Get Search result', function() {
   it('should get one result', function() {
-    const res = getSearch('CaptainFact.io', contributors);
+    const res = getSearchResults('CaptainFact.io', contributors);
     expect(res.length).to.be.equal(1);
   });
   it('should get one result for wrong text formating', function() {
-    const res = getSearch("On N'est PLUS des Pigeons", contributors);
+    const res = getSearchResults("On N'est PLUS des Pigeons", contributors);
     expect(res.length).to.be.equal(1);
   });
   it('should get two result', function() {
-    const res = getSearch('PlAtEforme', contributors);
+    const res = getSearchResults('PlAtEforme', contributors);
     expect(res.length).to.be.equal(2);
   });
   it('should get one result with two word', function() {
-    const res = getSearch('CaptainFact.io PlAtEforme', contributors);
+    const res = getSearchResults('CaptainFact.io PlAtEforme', contributors);
     expect(res[0].name).to.be.equal('CaptainFact.io');
   });
 });
