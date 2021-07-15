@@ -52,6 +52,10 @@ const contributors = [
     name: 'Edouard Colas',
     intro:
       '<p>Spécialiste du droit de l\'immobilier, je propose des analyses complémentaires sur des articles et actus juridiques, notamment sur <a   href="http://legifrance.fr?utm_medium=Dismoi_extension_navigateur" target="_blank" rel="noopener noreferrer">Legifrance.fr</a></p>'
+  },
+  {
+    name: 'grégoire',
+    intro: 'réponse'
   }
 ] as StatefulContributor[];
 
@@ -71,5 +75,13 @@ describe('Get Search result', function() {
   it('should get one result with two word', function() {
     const res = getSearchResults('CaptainFact.io PlAtEforme', contributors);
     expect(res[0].name).to.be.equal('CaptainFact.io');
+  });
+  it('should get one result with accent in title', function() {
+    const res = getSearchResults('gregoire', contributors);
+    expect(res[0].name).to.be.equal('grégoire');
+  });
+  it('should get one result with accent in content', function() {
+    const res = getSearchResults('reponse', contributors);
+    expect(res[0].intro).to.be.equal('réponse');
   });
 });
