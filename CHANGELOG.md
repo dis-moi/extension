@@ -1,3 +1,10 @@
+## [3.86.1](https://github.com/dis-moi/extension/compare/v3.86.0...v3.86.1) (2021-07-15)
+
+
+### Bug Fixes
+
+* **search:** responsive and accent ([97d2957](https://github.com/dis-moi/extension/commit/97d29577d03acbacc3fc9929dca5b0fe406e326c))
+
 # [3.86.0](https://github.com/dis-moi/extension/compare/v3.85.1...v3.86.0) (2021-07-13)
 
 
