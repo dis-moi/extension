@@ -1,25 +1,21 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import {
-  ContributorId,
-  findContributorIn,
-  StatefulContributor
-} from 'libs/domain/contributor';
+import { ContributorId, StatefulContributor } from 'libs/domain/contributor';
 import { Categories } from 'libs/domain/category';
 import { TwoColumns } from 'components/atoms';
 import { SlowerMessageBox } from 'components/molecules/SidebarBox';
+import { Arrow } from 'components/atoms/icons';
+import Search from 'components/molecules/Search/Search';
 import pathToContributor from 'app/profiles/App/pathToContributor';
 import SimilarProfiles from 'app/profiles/App/SimilarProfiles';
-import Filters from 'components/molecules/Filters/RadiosFilters';
-import useContributorsFilters from 'app/profiles/App/useContributorsFilters';
+import useContributorsFilters from 'app/profiles/hooks/useContributorsFilters';
 import {
   ContributorExampleLink,
   ContributorProfileListItem
 } from '../Profiles/List/ProfileList';
 import { Aside, MainCol } from '../Profiles/Profile/Profile';
 import ProfileTabs from '../../ProfileTabs';
-import { Arrow } from '../../../../../components/atoms/icons';
 
 const ContributorsList = styled.div`
   display: grid;
@@ -27,9 +23,11 @@ const ContributorsList = styled.div`
   grid-gap: 24px;
 `;
 
+const TwoColumnsWithMargin = styled(TwoColumns)`
+  margin-top: 20px;
+`;
 export interface SubscriptionsProps {
-  subscriptions: StatefulContributor[];
-  contributors: StatefulContributor[];
+  subscribedContributors: StatefulContributor[];
   subscribe: (id: ContributorId) => void;
   unsubscribe: (id: ContributorId) => void;
   className?: string;
@@ -39,8 +37,7 @@ export interface SubscriptionsProps {
 }
 
 const Subscriptions = ({
-  subscriptions,
-  contributors,
+  subscribedContributors,
   subscribe,
   unsubscribe,
   connected,
@@ -48,39 +45,26 @@ const Subscriptions = ({
   categories,
   categoriesLoading
 }: SubscriptionsProps) => {
-  const [initialSubscriptions, setInitialSubscriptions] = useState(
-    subscriptions
-  );
-
-  useEffect(() => {
-    if (initialSubscriptions.length === 0)
-      setInitialSubscriptions(subscriptions);
-  }, [subscriptions]);
   const { t } = useTranslation();
-  const subscriptionsToRender = initialSubscriptions.map(
-    findContributorIn(contributors)
-  );
 
-  const [filteredSubscriptions, setFilter] = useContributorsFilters(
-    subscriptionsToRender
-  );
+  const [
+    filteredSubscriptions,
+    setFilter,
+    handleChangeSearchContributors
+  ] = useContributorsFilters(subscribedContributors);
 
-  const handleFiltersChange = ({
-    target: { value }
-  }: ChangeEvent<HTMLInputElement>) => {
-    setFilter(value);
-  };
   return (
     <>
       <ProfileTabs connected={connected} />
       {connected === true && (
-        <Filters
-          onChange={handleFiltersChange}
-          loading={!!categoriesLoading}
-          filters={categories}
+        <Search
+          categoriesLoading={categoriesLoading}
+          categories={categories}
+          handleChangeSearchContributors={handleChangeSearchContributors}
+          setFilter={setFilter}
         />
       )}
-      <TwoColumns>
+      <TwoColumnsWithMargin>
         <MainCol>
           {connected === false ? (
             <Trans i18nKey={'profiles:view.my_subscriptions.disclaimer'}>
@@ -122,7 +106,7 @@ const Subscriptions = ({
           <SlowerMessageBox />
           <SimilarProfiles />
         </Aside>
-      </TwoColumns>
+      </TwoColumnsWithMargin>
     </>
   );
 };

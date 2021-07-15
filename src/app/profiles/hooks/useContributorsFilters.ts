@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StatefulContributor } from 'libs/domain/contributor';
+import getSearchResults from 'libs/utils/getSearchResults';
 import { ALL } from 'components/molecules/Filters/RadiosFilters';
-import getSearch from '../../../libs/utils/getSearch';
 
 function useContributorsFilters(
   contributors: StatefulContributor[]
@@ -35,7 +35,7 @@ function useContributorsFilters(
   const handleChangeSearchContributors = (
     e: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    const foundContributors = getSearch(
+    const foundContributors = getSearchResults(
       e.target.value,
       filteredContributors.base
     );

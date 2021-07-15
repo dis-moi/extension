@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { ContributorId } from 'libs/domain/contributor';
+import { ContributorId, findContributorIn } from 'libs/domain/contributor';
 import { subscribe, unsubscribe } from 'libs/store/actions/subscription';
 import { ProfilesState } from 'app/profiles/store/reducers';
 import {
@@ -15,8 +15,9 @@ import {
 import { extensionMessageSender } from 'app/profiles/extensionId';
 
 const mapStateToProps = (state: ProfilesState) => ({
-  subscriptions: getSubscribedContributors(state),
-  contributors: getStatefulContributors(state),
+  subscribedContributors: getSubscribedContributors(state).map(
+    findContributorIn(getStatefulContributors(state))
+  ),
   connected: isConnected(state),
   categories: getCategories(state),
   categoriesLoading: areCategoriesLoading(state)
