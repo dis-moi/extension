@@ -1,3 +1,10 @@
+## [3.86.2](https://github.com/dis-moi/extension/compare/v3.86.1...v3.86.2) (2021-07-16)
+
+
+### Bug Fixes
+
+* **env:** Fix profiles origin in production ([c4a705e](https://github.com/dis-moi/extension/commit/c4a705ebaa3005c6142c410f52199fe6b42295f6))
+
 ## [3.86.1](https://github.com/dis-moi/extension/compare/v3.86.0...v3.86.1) (2021-07-15)
 
 
