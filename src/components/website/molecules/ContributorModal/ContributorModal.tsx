@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { BaseContributor } from 'libs/domain/contributor';
 import Modal from '../../atoms/Modal/Modal';
 import SectionTitle from '../../atoms/Titles/SectionTitle';
-import { BaseContributor } from '../../../../app/lmem/contributor';
 import ContributorAvatar from '../../atoms/ContributorAvatar/ContributorAvatar';
 import GridContainer from '../../atoms/Grid/GridContainer';
 import GridRow from '../../atoms/Grid/GridRow';

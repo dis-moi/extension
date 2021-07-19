@@ -28,7 +28,9 @@
     "verify:quick": "yarn test && yarn typecheck && yarn lint",
     "analyze": "NODE_ENV=production webpack --mode=production --env.PLATFORM=chromium --env.ANALYZE",
     "storybook": "start-storybook -s ./src/assets --ci -p 6007 -c .storybook",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "start:website": "cd src/app/website && yarn start",
+    "website": "cd src/app/website && yarn"
   },
   "husky": {
     "hooks": {
