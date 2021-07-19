@@ -1,3 +1,10 @@
+## [3.86.3](https://github.com/dis-moi/extension/compare/v3.86.2...v3.86.3) (2021-07-19)
+
+
+### Bug Fixes
+
+* **env:** remove semaphore env variable which are already set in project ([e1d8b7d](https://github.com/dis-moi/extension/commit/e1d8b7daeb39cac3682c0f8d8eed9c9a5c64f46c))
+
 ## [3.86.2](https://github.com/dis-moi/extension/compare/v3.86.1...v3.86.2) (2021-07-16)
 
 
