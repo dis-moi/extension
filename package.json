@@ -54,7 +54,9 @@
     "verify:quick": "yarn test && yarn typecheck && yarn lint",
     "analyze": "NODE_ENV=production webpack --mode=production --env.PLATFORM=chromium --env.ANALYZE",
     "storybook": "start-storybook -s ./src/assets --ci -p 6007 -c .storybook",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "start:website": "cd src/app/website && yarn start",
+    "website": "cd src/app/website && yarn"
   },
   "husky": {
     "hooks": {
@@ -246,7 +248,6 @@
     "@storybook/cli": "^6.2.2",
     "chrome-webstore-upload": "^0.2.2",
     "eslint-import-resolver-typescript": "^2.4.0",
-    "gatsby": "^3.9.1",
     "prettier-eslint-cli": "^5.0.1",
     "sign-addon": "^2.0.4",
     "webpack-dev-server": "^3.11.0"
