@@ -246,6 +246,7 @@
     "@storybook/cli": "^6.2.2",
     "chrome-webstore-upload": "^0.2.2",
     "eslint-import-resolver-typescript": "^2.4.0",
+    "gatsby": "^3.9.1",
     "prettier-eslint-cli": "^5.0.1",
     "sign-addon": "^2.0.4",
     "webpack-dev-server": "^3.11.0"

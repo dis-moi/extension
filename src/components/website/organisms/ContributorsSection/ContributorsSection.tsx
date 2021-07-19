@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { BaseContributor } from 'libs/domain/contributor';
 import Section from '../../atoms/Section/Section';
 import SectionTitle from '../../atoms/Titles/SectionTitle';
 import Button from '../../atoms/Button/Button';
 import ContributorAvatar from '../../atoms/ContributorAvatar/ContributorAvatar';
-import { BaseContributor } from '../../../../app/lmem/contributor';
 import ContributorModal from '../../molecules/ContributorModal/ContributorModal';
 
 const StyledSectionTitle = styled(props => <SectionTitle {...props} />)`
