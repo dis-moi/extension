@@ -67,7 +67,7 @@ const ProfileIntroContent = styled.section`
 
     ${ContributorInfos} {
       flex-basis: 100%;
-      align-items: center;
+      align-items: flex-start;
       margin: 0;
 
       ${UserName} {

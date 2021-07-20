@@ -42,7 +42,6 @@ const ContributorIntro = styled.div.attrs<IntroProps>(
 `;
 
 const SubscribersCount = styled(Paragraph)`
-  margin-top: -10px;
   margin-bottom: 8px;
   font-size: 14px;
   color: #808080;
