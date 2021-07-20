@@ -1,3 +1,10 @@
+## [3.86.4](https://github.com/dis-moi/extension/compare/v3.86.3...v3.86.4) (2021-07-20)
+
+
+### Bug Fixes
+
+* **profile:** single profile bannière ([06e7006](https://github.com/dis-moi/extension/commit/06e7006206af23221b8d17f442612c8b41d4286a))
+
 ## [3.86.3](https://github.com/dis-moi/extension/compare/v3.86.2...v3.86.3) (2021-07-19)
 
 
