@@ -1,3 +1,10 @@
+## [3.86.5](https://github.com/dis-moi/extension/compare/v3.86.4...v3.86.5) (2021-07-21)
+
+
+### Bug Fixes
+
+* list contributors ordering ([2ce6186](https://github.com/dis-moi/extension/commit/2ce6186cb12f14098f5ffc0c2e4526dc5ad60d61))
+
 ## [3.86.4](https://github.com/dis-moi/extension/compare/v3.86.3...v3.86.4) (2021-07-20)
 
 
