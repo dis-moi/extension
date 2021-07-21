@@ -103,7 +103,7 @@ export const sortContributorsByContributions: SortSuggestedContributors = R.sort
 export const sortContributorsBySubscribers = (
   contributors: Contributor[]
 ): Contributor[] =>
-  R.sort((a, b) => a.ratings?.subscribes - b.ratings?.subscribes, contributors);
+  R.sort((a, b) => b.ratings?.subscribes - a.ratings?.subscribes, contributors);
 
 export const sortContributorsAlphabetically: SortSuggestedContributors = R.sortWith(
   [R.ascend(R.prop('name'))]
