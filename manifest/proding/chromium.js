@@ -7,15 +7,15 @@ module.exports = {
   name: `${base.name} - proding`,
   content_security_policy: csp({
     directives: {
-      'default-src': ['https://notices.bulles.fr'],
+      'default-src': ['https://api.dismoi.io'],
       'connect-src': [
-        'https://notices.bulles.fr',
+        'https://api.dismoi.io',
         'https://sentry.io',
         'https://stats.lmem.net'
       ],
       'script-src': ["'self'", "'unsafe-eval'"],
       'object-src': ["'self'"],
-      'img-src': ["'self'", 'https://notices.bulles.fr', 'data:'],
+      'img-src': ["'self'", 'https://api.dismoi.io', 'data:'],
       'font-src': ["'self'", 'data:'],
       'style-src': ["'unsafe-inline'"]
     }

@@ -72,7 +72,7 @@ export const WithALink = () => (
   <PreviewScreen
     question={{
       message:
-        "Bonjour @maarten-lmem j'ai entendu dire que cette l'extension https://www.bulles.fr/ était open-source, hors je n'ai pas trouvé le code source. Pourriez-vous m'indiquez ou puis-je le trouver?",
+        "Bonjour @maarten-lmem j'ai entendu dire que l'extension https://www.dismoi.io/ était open-source, hors je n'ai pas trouvé le code source. Pourriez-vous m'indiquez ou puis-je le trouver?",
       url: `https://${WEBSITE_DOMAIN}/`,
       contributor: {
         email: 'johan.dufour@gmail.com',
