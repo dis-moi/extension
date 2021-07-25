@@ -81,7 +81,7 @@ const forbiddenTabs: RegExp[] = [
 ### Restricted contexts
 We also maintain a dynamic list of *restricted contexts*, this list is __actively__ maintained.
 These patterns are fetched from the backend and can be consulted here: 
-http://notices.bulles.fr/api/v3/restricted-contexts
+http://api.dismoi.io/api/v3/restricted-contexts
 
 > In the near future we would like to set up a user's maintained list as well.
 

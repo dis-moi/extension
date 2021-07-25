@@ -7,15 +7,15 @@ module.exports = {
   name: `${base.name} - staging`,
   content_security_policy: csp({
     directives: {
-      'default-src': ['https://staging-notices.bulles.fr'],
+      'default-src': ['https://staging.dismoi.io'],
       'connect-src': [
-        'https://staging-notices.bulles.fr',
+        'https://staging.dismoi.io',
         'https://sentry.io',
         'https://stats.lmem.net'
       ],
       'script-src': ["'self'", "'unsafe-eval'"],
       'object-src': ["'self'"],
-      'img-src': ["'self'", 'https://staging-notices.bulles.fr', 'data:'],
+      'img-src': ["'self'", 'https://staging.dismoi.io', 'data:'],
       'font-src': ["'self'", 'data:'],
       'style-src': ["'unsafe-inline'"]
     }
