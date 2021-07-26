@@ -42,6 +42,10 @@ const Content = styled.div`
   transform: translateX(-50%);
   border-radius: 8px;
   box-shadow: 0 3px 6px #00000029;
+  @media (max-height: ${props => props.theme.breakpoint.md}) {
+    top: 4vh;
+    bottom: 4vh;
+  }
 `;
 
 export default ({ children, open, close }: ModalProps) => {

@@ -71,6 +71,16 @@ export interface Theme {
       display: string;
     };
   };
+
+  // breakpoint
+  breakpoint: {
+    xs: string;
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+    xxl: string;
+  };
 }
 
 export const theme: Theme = {
@@ -148,6 +158,16 @@ export const theme: Theme = {
       left: 'auto',
       display: 'block'
     }
+  },
+
+  // breakpoint
+  breakpoint: {
+    xs: '0',
+    sm: '576px',
+    md: '768px',
+    lg: '992px',
+    xl: '1200px',
+    xxl: '1400px'
   }
 };
 
