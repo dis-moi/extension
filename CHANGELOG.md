@@ -1,3 +1,10 @@
+## [3.86.6](https://github.com/dis-moi/extension/compare/v3.86.5...v3.86.6) (2021-07-26)
+
+
+### Bug Fixes
+
+* **onboarding:** responsive on height ([ccec2cc](https://github.com/dis-moi/extension/commit/ccec2cc92a9e8521916ba772182ca480a6eb3e3b))
+
 ## [3.86.5](https://github.com/dis-moi/extension/compare/v3.86.4...v3.86.5) (2021-07-21)
 
 
