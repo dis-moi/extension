@@ -1,3 +1,10 @@
+## [3.86.7](https://github.com/dis-moi/extension/compare/v3.86.6...v3.86.7) (2021-07-28)
+
+
+### Bug Fixes
+
+* **tracking:** allow PostHog to be loaded in the Chrom* manifest CSP ([45c826f](https://github.com/dis-moi/extension/commit/45c826fe6bc60e76d2f39530069b30679510371d))
+
 ## [3.86.6](https://github.com/dis-moi/extension/compare/v3.86.5...v3.86.6) (2021-07-26)
 
 
