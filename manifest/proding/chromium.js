@@ -11,7 +11,8 @@ module.exports = {
       'connect-src': [
         'https://api.dismoi.io',
         'https://sentry.io',
-        'https://stats.lmem.net'
+        'https://stats.lmem.net',
+        'https://app.posthog.com'
       ],
       'script-src': ["'self'", "'unsafe-eval'"],
       'object-src': ["'self'"],
