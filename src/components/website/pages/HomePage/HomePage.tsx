@@ -6,6 +6,9 @@ import HowItWorksSection from '../../organisms/HowItWorksSection/HowItWorksSecti
 import ContributorsSection, {
   contributorsIds
 } from '../../organisms/ContributorsSection/ContributorsSection';
+import OurCommitmentsSection, {
+  commitmentCards
+} from '../../organisms/OurCommitmentsSection/OurCommitmentsSection';
 
 export interface HomePageProps {
   className?: string;
@@ -17,6 +20,7 @@ const HomePage = styled(({ className }: HomePageProps) => (
     <ExamplesSection />
     <HowItWorksSection />
     <ContributorsSection contributorsIds={contributorsIds} />
+    <OurCommitmentsSection commitmentCards={commitmentCards} />
   </article>
 ))``;
 

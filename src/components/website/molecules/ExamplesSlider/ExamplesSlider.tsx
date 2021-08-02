@@ -210,7 +210,6 @@ const ExamplesSlider = styled(
       }
     }
   }
-
   .fadeOut {
     opacity: 0;
     transition: opacity 0.5s;
