@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const SmallTitle = styled.h3`
-  line-height: 1.2;
+  line-height: 1.15;
   font-family: ${props => props.theme.website.fontFamily};
   font-weight: normal;
   color: ${props => props.theme.website.primaryColor};

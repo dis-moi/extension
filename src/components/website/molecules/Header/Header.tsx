@@ -41,7 +41,6 @@ const MobileButtonsWrapper = styled.div`
 const HeaderCTAButton = () => (
   <Button
     text={'Ajouter DisMoi'}
-    details={'Gratuit'}
     icon={'download'}
     color={'green'}
     handleClick={() =>
@@ -61,12 +60,15 @@ const Header = styled(({ className, scrolled }: HeaderProps) => {
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);
 
   useEffect(() => {
+    window.onload = () => {
+      setOffset(window.pageYOffset);
+    };
     window.onscroll = () => {
       setOffset(window.pageYOffset);
     };
   }, []);
 
-  const isScrolled = scrolled || offset > 100;
+  const isScrolled = scrolled || offset > 0;
 
   return (
     <>
@@ -77,8 +79,8 @@ const Header = styled(({ className, scrolled }: HeaderProps) => {
         <NavDesktop>
           <NavDesktopItem href={'#'}>Tous les profils</NavDesktopItem>
           <NavDesktopItem href={'#'}>Contribuer</NavDesktopItem>
+          <NavDesktopItem href={'#'}>Questions fréquentes</NavDesktopItem>
           {isScrolled && <HeaderCTAButton />}
-          <NavDesktopItem href={'#'}>Aide</NavDesktopItem>
           <NavDesktopItem href={'#'}>fr | en</NavDesktopItem>
         </NavDesktop>
         <MobileButtonsWrapper>
@@ -90,7 +92,7 @@ const Header = styled(({ className, scrolled }: HeaderProps) => {
         <NavMobile>
           <NavMobileItem href={'#'}>Tous les profils</NavMobileItem>
           <NavMobileItem href={'#'}>Contribuer</NavMobileItem>
-          <NavMobileItem href={'#'}>Aide</NavMobileItem>
+          <NavMobileItem href={'#'}>Questions fréquentes</NavMobileItem>
           <HeaderCTAButton />
           <NavMobileItem href={'#'}>
             <b>fr</b> | en

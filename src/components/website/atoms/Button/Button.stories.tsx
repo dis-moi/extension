@@ -1,22 +1,27 @@
 import React, { ReactElement } from 'react';
 import { StoryFn } from '@storybook/addons';
-import Button, { ButtonProps } from './Button';
+import Button, {
+  buttonAppearances,
+  buttonColors,
+  buttonIcons,
+  ButtonProps
+} from './Button';
 
 export default {
   title: 'Website/Atoms/Button',
   argTypes: {
     icon: {
-      options: ['download', 'cheklist', 'coins', 'stats', 'list', 'github'],
+      options: buttonIcons,
       control: { type: 'select' },
       default: null
     },
     appearance: {
-      options: ['solid', 'outline'],
+      options: buttonAppearances,
       control: { type: 'select' },
       default: null
     },
     color: {
-      options: ['blue', 'green', 'greenDarker', 'orange'],
+      options: buttonColors,
       control: { type: 'select' },
       default: null
     },

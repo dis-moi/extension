@@ -69,13 +69,29 @@ const TabButton = styled(
       &.active {
         color: ${props => props.theme.website.primaryColorDarker};
         background-color: rgba(40, 85, 162, 0.2);
+        &:hover {
+          color: white;
+        }
       }
     }
     &.green {
       background-color: rgba(20, 141, 132, 0.05);
       &.active {
         color: ${props => props.theme.website.secondaryColorDarker};
-        background-color: rgba(23, 186, 174, 0.2);
+        background-color: rgba(23, 186, 174, 0.1);
+        &:hover {
+          color: white;
+        }
+      }
+    }
+    &.greenDarker {
+      background-color: rgba(255, 255, 255, 0.5);
+      &.active {
+        color: ${props => props.theme.website.secondaryColorDarker};
+        background-color: rgba(23, 186, 174, 0.1);
+        &:hover {
+          color: white;
+        }
       }
     }
     &.orange {

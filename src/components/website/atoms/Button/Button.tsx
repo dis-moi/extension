@@ -61,7 +61,7 @@ const StyledButton = styled.button`
   }
   &.outline {
     color: ${props => props.theme.website.primaryColor};
-    border: 2px solid;
+    border: 1.5px solid;
     background-color: transparent;
     padding-left: 9px;
     padding-right: 9px;
@@ -109,6 +109,16 @@ const StyledButton = styled.button`
         background-color: ${props => props.theme.website.activeColor};
       }
     }
+    &.grey {
+      color: ${props => props.theme.website.greyColorDarker};
+      border-color: ${props => props.theme.website.greyColorDarker};
+      svg path {
+        fill: ${props => props.theme.website.greyColorDarker};
+      }
+      &:hover {
+        background-color: ${props => props.theme.website.greyColorDarker};
+      }
+    }
     &:hover {
       color: white;
       svg path {
@@ -118,6 +128,7 @@ const StyledButton = styled.button`
   }
   &:hover {
     background-color: ${props => props.theme.website.secondaryColor};
+    border-color: ${props => props.theme.website.secondaryColor};
     cursor: pointer;
   }
   &:active {
@@ -150,6 +161,14 @@ const Detail = styled.span`
   }
 `;
 
+export const buttonIcons = [
+  'download',
+  'checklist',
+  'coins',
+  'stats',
+  'list',
+  'github'
+];
 export type ButtonIcon =
   | 'download'
   | 'checklist'
@@ -157,8 +176,10 @@ export type ButtonIcon =
   | 'stats'
   | 'list'
   | 'github';
+export const buttonAppearances = ['solid', 'outline'];
 export type ButtonAppearance = 'solid' | 'outline';
-export type ButtonColor = 'blue' | 'green' | 'greenDarker' | 'orange';
+export const buttonColors = ['blue', 'green', 'greenDarker', 'orange', 'grey'];
+export type ButtonColor = 'blue' | 'green' | 'greenDarker' | 'orange' | 'grey';
 
 const IconSvg = (icon: ButtonIcon) => {
   if (icon === 'checklist') return <IconCheckList />;
@@ -170,6 +191,7 @@ const IconSvg = (icon: ButtonIcon) => {
 };
 
 export interface ButtonProps {
+  className?: string;
   icon?: ButtonIcon;
   appearance?: ButtonAppearance;
   color?: ButtonColor;
@@ -179,31 +201,35 @@ export interface ButtonProps {
   handleClick: () => void;
 }
 
-const Button = ({
-  icon,
-  appearance,
-  color,
-  text,
-  details,
-  additionalClassName,
-  handleClick
-}: ButtonProps) => {
-  return (
-    <StyledButton
-      className={
-        (appearance === 'outline' ? 'outline' : '') +
-        (color !== undefined ? ' ' + color : '') +
-        (additionalClassName !== undefined ? ' ' + additionalClassName : '')
-      }
-      onClick={() => handleClick()}
-    >
-      {icon && <Icon>{IconSvg(icon)}</Icon>}
-      <Text>
-        {text}
-        {details && <Detail>{details}</Detail>}
-      </Text>
-    </StyledButton>
-  );
-};
+const Button = styled(
+  ({
+    className,
+    icon,
+    appearance,
+    color,
+    text,
+    details,
+    additionalClassName,
+    handleClick
+  }: ButtonProps) => {
+    return (
+      <StyledButton
+        className={
+          (appearance === 'outline' ? 'outline' : '') +
+          (className !== undefined ? ' ' + className : '') +
+          (color !== undefined ? ' ' + color : '') +
+          (additionalClassName !== undefined ? ' ' + additionalClassName : '')
+        }
+        onClick={() => handleClick()}
+      >
+        {icon && <Icon>{IconSvg(icon)}</Icon>}
+        <Text>
+          {text}
+          {details && <Detail>{details}</Detail>}
+        </Text>
+      </StyledButton>
+    );
+  }
+)``;
 
 export default Button;
