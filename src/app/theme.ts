@@ -1,4 +1,4 @@
-import { BadgeTheme } from './lmem/badge';
+import { BadgeTheme } from 'libs/domain/badge';
 
 export interface ButtonTheme {
   default: string;

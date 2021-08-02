@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { LocationDescriptor, LocationState } from 'history';
-import { AvatarSize, StatefulContributor } from 'app/lmem/contributor';
+import { Trans, useTranslation } from 'react-i18next';
+import { AvatarSize, StatefulContributor } from 'libs/domain/contributor';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import UserName from 'components/atoms/UserName/UserName';
 import {
@@ -10,12 +11,14 @@ import {
   ContributorInfos
 } from 'components/atoms/Contributor/index';
 import { As } from 'types';
+import { Paragraph } from '../../atoms';
 import ContributorNameLink from './ContributorNameLink';
 import ContributorButton from './ContributorButton';
 
 interface IntroProps {
   intro: string;
 }
+
 const ContributorIntro = styled.div.attrs<IntroProps>(
   ({ intro }: IntroProps) => ({
     dangerouslySetInnerHTML: { __html: intro }
@@ -36,6 +39,13 @@ const ContributorIntro = styled.div.attrs<IntroProps>(
   @media (max-width: ${props => props.theme.tabletWidth}) {
     font-size: 18px;
   }
+`;
+
+const SubscribersCount = styled(Paragraph)`
+  margin-top: -10px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #808080;
 `;
 
 interface ContributorLargeProps<S = LocationState> {
@@ -62,46 +72,58 @@ const ContributorLarge = ({
   to,
   loading,
   usernameAs
-}: ContributorLargeProps) => (
-  <ContributorCard className={className}>
-    <>
-      <ContributorWrapper>
-        <Avatar
-          size={avatarSize || 'normal'}
-          contributor={contributor}
-          to={to}
-          onClick={onNameClick}
-          loading={loading}
-        />
+}: ContributorLargeProps) => {
+  const { t } = useTranslation('profiles');
 
-        <ContributorInfos>
-          {!loading && contributor && (
-            <>
-              <UserName as={usernameAs}>
-                <ContributorNameLink onClick={onNameClick} to={to}>
-                  {contributor.name}
-                </ContributorNameLink>
-              </UserName>
+  return (
+    <ContributorCard className={className}>
+      <>
+        <ContributorWrapper>
+          <Avatar
+            size={avatarSize || 'normal'}
+            contributor={contributor}
+            to={to}
+            onClick={onNameClick}
+            loading={loading}
+          />
 
-              <ContributorButton
-                loading={contributor?.subscribing === true}
-                subscribed={contributor?.subscribed}
-                onSubscribe={onSubscribe}
-                onUnsubscribe={onUnsubscribe}
-              />
-            </>
-          )}
-        </ContributorInfos>
-      </ContributorWrapper>
+          <ContributorInfos>
+            {!loading && contributor && (
+              <>
+                <UserName as={usernameAs}>
+                  <ContributorNameLink onClick={onNameClick} to={to}>
+                    {contributor.name}
+                  </ContributorNameLink>
+                </UserName>
 
-      {!loading && contributor && (
-        <>
-          <ContributorIntro intro={contributor.intro || ''} />
-          {children}
-        </>
-      )}
-    </>
-  </ContributorCard>
-);
+                <SubscribersCount>
+                  <Trans
+                    t={t}
+                    i18nKey={'common.follower'}
+                    count={contributor.ratings?.subscribes}
+                  />
+                </SubscribersCount>
+
+                <ContributorButton
+                  loading={contributor?.subscribing === true}
+                  subscribed={contributor?.subscribed}
+                  onSubscribe={onSubscribe}
+                  onUnsubscribe={onUnsubscribe}
+                />
+              </>
+            )}
+          </ContributorInfos>
+        </ContributorWrapper>
+
+        {!loading && contributor && (
+          <>
+            <ContributorIntro intro={contributor.intro || ''} />
+            {children}
+          </>
+        )}
+      </>
+    </ContributorCard>
+  );
+};
 
 export default styled(ContributorLarge)``;

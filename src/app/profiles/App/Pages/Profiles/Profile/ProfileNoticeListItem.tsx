@@ -2,17 +2,20 @@ import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { BorderButton, Box, LoadingRotator, Paragraph } from 'components/atoms';
-import { Notice } from 'app/lmem/notice';
+import { Notice } from 'libs/domain/notice';
 import { LoadingBig, Pin } from 'components/atoms/icons';
-import { stripUrlProtocol } from 'app/utils/stripUrlProtocol';
+import { stripUrlProtocol } from 'libs/utils/stripUrlProtocol';
 
 const Loading = styled(LoadingRotator)`
   margin-bottom: 20px;
 `;
 
 const NoticeTopLine = styled.div`
-  margin-top: 20px;
   margin-bottom: 26px;
+
+  &:not(:first-child) {
+    margin-top: 20px;
+  }
 
   & > svg {
     margin-right: 5px;
@@ -38,7 +41,7 @@ const NoticeBottomLine = styled.div`
   font-size: 14px;
 
   & > ${BorderButton} {
-    margin-left: 20px;
+    margin-right: 20px;
   }
 
   @media (max-width: ${props => props.theme.tabletWidth}) {
@@ -65,7 +68,8 @@ export const ProfileNoticeListItem = ({
   loading,
   notice,
   seeInContext,
-  className
+  className,
+  featured
 }: ProfileNoticeListItemProps) => {
   const { t } = useTranslation();
 
@@ -87,7 +91,21 @@ export const ProfileNoticeListItem = ({
   const exampleMatchingUrl =
     notice.exampleMatchingUrl && stripUrlProtocol(notice.exampleMatchingUrl);
   return (
-    <Box className={className}>
+    <Box as="article" className={className}>
+      {featured && exampleMatchingUrl && (
+        <NoticeTopLine>
+          <Pin />
+
+          <Trans i18nKey={'profiles:notice.pined_on'}>
+            <NoticeHighlight>
+              Message épinglé sur
+              <NoticeURL>{{ exampleMatchingUrl }}</NoticeURL>
+            </NoticeHighlight>{' '}
+            et d&apos;autres pages web
+          </Trans>
+        </NoticeTopLine>
+      )}
+
       {notice.screenshot && (
         <img
           style={{ width: '100%' }}
@@ -97,27 +115,33 @@ export const ProfileNoticeListItem = ({
           })}
         />
       )}
+
       <Paragraph dangerouslySetInnerHTML={{ __html: notice.strippedMessage }} />
-      {exampleMatchingUrl && (
+
+      {!featured && exampleMatchingUrl && (
         <NoticeTopLine>
           <Pin />
+
           <Trans i18nKey={'profiles:notice.pined_on'}>
             <NoticeHighlight>
               Message épinglé sur
-              <NoticeURL>{exampleMatchingUrl}</NoticeURL>
+              <NoticeURL>{{ exampleMatchingUrl }}</NoticeURL>
             </NoticeHighlight>{' '}
             et d&apos;autres pages web
           </Trans>
         </NoticeTopLine>
       )}
+
       <NoticeBottomLine>
-        {t('profiles:notice.since', { date: new Date(notice.created) })}
         <BorderButton
           onClick={seeInContext}
           disabled={!notice.exampleMatchingUrl}
         >
           {t('profiles:action.see_context')}
         </BorderButton>
+        {!featured && (
+          <>{t('profiles:notice.since', { date: new Date(notice.created) })}</>
+        )}
       </NoticeBottomLine>
     </Box>
   );

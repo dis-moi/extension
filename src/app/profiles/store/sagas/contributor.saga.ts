@@ -6,9 +6,9 @@ import {
   FETCH_CONTRIBUTOR_REQUEST,
   FETCH_CONTRIBUTOR_SUCCESS,
   FetchContributorSuccessAction
-} from 'app/actions/contributor';
-import fetchContributor from 'api/fetchContributor';
-import { fetchNoticesRequest } from '../../../actions';
+} from 'libs/store/actions/contributor';
+import fetchContributor from 'libs/api/fetchContributor';
+import { fetchNoticesRequest } from 'libs/store/actions';
 
 function* fetchContributorSaga({
   payload: contributorId

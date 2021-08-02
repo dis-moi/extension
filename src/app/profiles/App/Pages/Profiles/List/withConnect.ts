@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { ContributorId } from 'app/lmem/contributor';
-import { subscribe, unsubscribe } from 'app/actions/subscription';
+import { ContributorId } from 'libs/domain/contributor';
+import { subscribe, unsubscribe } from 'libs/store/actions/subscription';
 import { getStatefulContributors } from 'app/profiles/store/selectors';
 import { areContributorsLoading } from 'app/profiles/store/selectors/contributors';
 import { isConnected } from 'app/profiles/store/selectors/connection';

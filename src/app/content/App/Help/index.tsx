@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { List, ExternalLink, Anchor } from 'components/atoms';
-import withTitle from 'app/hocs/withTitle';
-import { WEBSITE_DOMAIN } from 'app/lmem';
+import withTitle from 'app/content/hocs/withTitle';
+import { WEBSITE_DOMAIN } from 'libs/domain';
 import Content from '../Account/About/Content';
 import Container from './Container';
 import ContentTitle from './ContentTitle';

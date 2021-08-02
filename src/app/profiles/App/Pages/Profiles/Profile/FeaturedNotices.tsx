@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { LoadingRotator } from 'components/atoms';
 import { LoadingBig } from 'components/atoms/icons';
-import { Notice } from 'app/lmem/notice';
-import { StatefulContributor } from 'app/lmem/contributor';
+import { Notice } from 'libs/domain/notice';
+import { StatefulContributor } from 'libs/domain/contributor';
 import FeaturedNotice from './FeaturedNotice';
 
 export interface FeaturedNoticesProps {

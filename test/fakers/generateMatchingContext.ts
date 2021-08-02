@@ -1,5 +1,5 @@
 import Faker from 'faker';
-import { MatchingContext } from 'app/lmem/matchingContext';
+import { MatchingContext } from 'libs/domain/matchingContext';
 
 interface Options {
   urlRegex?: string;

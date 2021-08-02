@@ -1,3 +1,193 @@
+## [3.86.2](https://github.com/dis-moi/extension/compare/v3.86.1...v3.86.2) (2021-07-16)
+
+
+### Bug Fixes
+
+* **env:** Fix profiles origin in production ([c4a705e](https://github.com/dis-moi/extension/commit/c4a705ebaa3005c6142c410f52199fe6b42295f6))
+
+## [3.86.1](https://github.com/dis-moi/extension/compare/v3.86.0...v3.86.1) (2021-07-15)
+
+
+### Bug Fixes
+
+* **search:** responsive and accent ([97d2957](https://github.com/dis-moi/extension/commit/97d29577d03acbacc3fc9929dca5b0fe406e326c))
+
+# [3.86.0](https://github.com/dis-moi/extension/compare/v3.85.1...v3.86.0) (2021-07-13)
+
+
+### Features
+
+* **onboarding:** trigger welcome bulle ([d6aa712](https://github.com/dis-moi/extension/commit/d6aa71280358092a8c4fc3632bf5a1bda34efbfc))
+
+## [3.85.1](https://github.com/dis-moi/extension/compare/v3.85.0...v3.85.1) (2021-07-13)
+
+
+### Bug Fixes
+
+* fallback lng not recognized on init ([131dfcf](https://github.com/dis-moi/extension/commit/131dfcf57da61c166ce7be9dee41df2f3f166789))
+
+# [3.85.0](https://github.com/dis-moi/extension/compare/v3.84.0...v3.85.0) (2021-07-12)
+
+
+### Bug Fixes
+
+* **ProfileBanner:** changes image ([#1049](https://github.com/dis-moi/extension/issues/1049)) ([ce0b181](https://github.com/dis-moi/extension/commit/ce0b1812aec44549caec0c3657324d6cdf2ae850)), closes [#1045](https://github.com/dis-moi/extension/issues/1045)
+
+
+### Features
+
+* **profiles:** design tests to improve users's understanding ([84e1f88](https://github.com/dis-moi/extension/commit/84e1f88f3588b87c336b146ff956da186d531ee8))
+
+# [3.84.0](https://github.com/dis-moi/extension/compare/v3.83.3...v3.84.0) (2021-07-12)
+
+
+### Features
+
+* **tracking:** Add browser, platform and devices info ([7f29554](https://github.com/dis-moi/extension/commit/7f29554862dca955fb0ed617cb7e2b7734db7488))
+
+## [3.83.3](https://github.com/dis-moi/extension/compare/v3.83.2...v3.83.3) (2021-07-07)
+
+
+### Bug Fixes
+
+* include .js extensions in .mjs files imports ([6ac5507](https://github.com/dis-moi/extension/commit/6ac55079e7c71eb2d837f509e690dc0ab476d04e))
+
+## [3.83.2](https://github.com/dis-moi/extension/compare/v3.83.1...v3.83.2) (2021-07-07)
+
+
+### Bug Fixes
+
+* change --experimental-modules to --experimental-json-modules (Node 12+) ([000fdc0](https://github.com/dis-moi/extension/commit/000fdc02ab72861b37956308d951d5c8da730d51))
+
+## [3.83.1](https://github.com/dis-moi/extension/compare/v3.83.0...v3.83.1) (2021-07-07)
+
+
+### Bug Fixes
+
+* remove unused file ([d7c3aed](https://github.com/dis-moi/extension/commit/d7c3aedb079c5d91746e8082c45d85a4b461500f))
+
+# [3.83.0](https://github.com/dis-moi/extension/compare/v3.82.0...v3.83.0) (2021-07-06)
+
+
+### Features
+
+* **search:** search without UI ([343a334](https://github.com/dis-moi/extension/commit/343a334f4317d5caf793a9cf8250f4ffc8f1a5c7))
+* **search:** UI ([377f1da](https://github.com/dis-moi/extension/commit/377f1da656c00e87945c9172769416b89a8e502b))
+
+# [3.82.0](https://github.com/dis-moi/extension/compare/v3.81.0...v3.82.0) (2021-07-06)
+
+
+### Features
+
+* **ContributionLarge:** styles subscribers data ([13ed616](https://github.com/dis-moi/extension/commit/13ed616c6ec30b5ef707d0d19555b100bd9829cb))
+* **profiles:** display subscriber count ([d625454](https://github.com/dis-moi/extension/commit/d6254541e8cbad95d91d46d32e340eda132095f1))
+* **profiles:** format numbers, add bold ([01d1dcb](https://github.com/dis-moi/extension/commit/01d1dcb9f30c65d66a6b84b0571ca1f9a809703b))
+* **profiles:** sort contributors by subscribers ([8bab2b1](https://github.com/dis-moi/extension/commit/8bab2b1ef3722f75c24bd4859b6f8d4625a63653))
+
+# [3.81.0](https://github.com/dis-moi/extension/compare/v3.80.0...v3.81.0) (2021-07-01)
+
+
+### Features
+
+* **tracking:** Add notice and contributor fields to tracked properties ([cf0141e](https://github.com/dis-moi/extension/commit/cf0141e13aa052fdccd5dc4ec33ff4cb66481ff1)), closes [#1056](https://github.com/dis-moi/extension/issues/1056)
+
+# [3.80.0](https://github.com/dis-moi/extension/compare/v3.79.1...v3.80.0) (2021-07-01)
+
+
+### Bug Fixes
+
+* **storybook:** import ([4870e02](https://github.com/dis-moi/extension/commit/4870e02bd9a5c83524022bb08e666de0195bad82))
+
+
+### Features
+
+* **i18n:** sort by language contributors and notices ([af36260](https://github.com/dis-moi/extension/commit/af362603be224e3213cb971b83f0542e49cba14a))
+* **tracking:** Add a flag to identify an automatic subscription ([9e93ae2](https://github.com/dis-moi/extension/commit/9e93ae251585027dcc9f98ac2d5283b644ef0d4f))
+* **tracking:** Add list of subscriptions as tracked property ([6c7e50b](https://github.com/dis-moi/extension/commit/6c7e50b3e2126551c0c44d1254f871bb5ff51a5b))
+
+## [3.79.1](https://github.com/dis-moi/extension/compare/v3.79.0...v3.79.1) (2021-06-09)
+
+
+### Bug Fixes
+
+* **popin:** del className bulle-installer ([6796e7c](https://github.com/dis-moi/extension/commit/6796e7c5aafd8899ffaf2f2ada41e1768657191e))
+
+# [3.79.0](https://github.com/dis-moi/extension/compare/v3.78.1...v3.79.0) (2021-06-04)
+
+
+### Features
+
+* **tracking:** Activate posthog on production env ([ec1049e](https://github.com/dis-moi/extension/commit/ec1049eeb2e6e0c7bebfa54c00a64360d833ce1a))
+* **tracking:** Activate posthog tracking on proding ([0f58e0c](https://github.com/dis-moi/extension/commit/0f58e0c034087032c7bb0732bb7a308e5c2dda4a))
+
+## [3.78.1](https://github.com/dis-moi/extension/compare/v3.78.0...v3.78.1) (2021-06-03)
+
+
+### Bug Fixes
+
+* **chunk:** onboarding chunk path ([c843bfc](https://github.com/dis-moi/extension/commit/c843bfce87d27b17e5eb0109abb320c7ec05d020))
+
+# [3.78.0](https://github.com/dis-moi/extension/compare/v3.77.2...v3.78.0) (2021-06-03)
+
+
+### Bug Fixes
+
+* **tracking:** Use outbound link instead of current link ([695db1b](https://github.com/dis-moi/extension/commit/695db1b6f31e32a990f69030db419ce461105a03))
+
+
+### Features
+
+* **tracking:** Setup PostHog tracking ([e66ef35](https://github.com/dis-moi/extension/commit/e66ef35edf032f9ebd829119f528e7583a4cc6d2))
+
+## [3.77.2](https://github.com/dis-moi/extension/compare/v3.77.1...v3.77.2) (2021-06-02)
+
+
+### Bug Fixes
+
+* **newBlocksFirefox:** change test connected in Profile ([a2b5867](https://github.com/dis-moi/extension/commit/a2b58670072902f23db54f5b12a9ef3a113acab1))
+
+## [3.77.1](https://github.com/dis-moi/extension/compare/v3.77.0...v3.77.1) (2021-06-01)
+
+
+### Bug Fixes
+
+* **profiles:** Fix add to browser install trigger ([6c5f9af](https://github.com/dis-moi/extension/commit/6c5f9af0cda69952aea25f837c72fd3dea35270f))
+
+# [3.77.0](https://github.com/dis-moi/extension/compare/v3.76.5...v3.77.0) (2021-05-31)
+
+
+### Features
+
+* **profiles:** Remove old install block when not connected ([99f992b](https://github.com/dis-moi/extension/commit/99f992b5fc7e52b813028f4a82e3a61f21a9b540))
+
+## [3.76.5](https://github.com/dis-moi/extension/compare/v3.76.4...v3.76.5) (2021-05-31)
+
+
+### Bug Fixes
+
+* **subscriptions:** Fix auto subscriptions ([eb3148b](https://github.com/dis-moi/extension/commit/eb3148b2da53647e9752e30bf9776a7d93c8d4dc))
+
+## [3.76.4](https://github.com/dis-moi/extension/compare/v3.76.3...v3.76.4) (2021-05-31)
+
+
+### Bug Fixes
+
+* **youtubeVideoMessage:** use notice state to memoize formated message ([1147c62](https://github.com/dis-moi/extension/commit/1147c629be1e1e1a83519e3ff33d39f54c92e5b4))
+
+## [3.76.3](https://github.com/dis-moi/extension/compare/v3.76.2...v3.76.3) (2021-05-31)
+
+
+### Bug Fixes
+
+* **profile:** display link ([3a6c6d3](https://github.com/dis-moi/extension/commit/3a6c6d37199001dffe68228cd2d843f2bee239ca))
+
+## [3.76.2](https://github.com/dis-moi/extension/compare/v3.76.1...v3.76.2) (2021-05-31)
+
+
+### Bug Fixes
+
+* **storybook:** Allow loading of mp4 as static asset file ([ae4bd5d](https://github.com/dis-moi/extension/commit/ae4bd5d23fc940a0803c2f21cd09c6f18b852a28))
+
 ## [3.76.1](https://github.com/dis-moi/extension/compare/v3.76.0...v3.76.1) (2021-05-26)
 
 

@@ -6,12 +6,12 @@ import {
   FetchingState,
   lastFetched,
   LastFetchedState
-} from 'app/store/collection/reducers';
-import { Categories } from 'app/lmem/category';
+} from 'libs/store/collection/reducers';
+import { Categories } from 'libs/domain/category';
 import actionTypes, {
   FETCH_CATEGORIES_SUCCESS,
   FetchCategoriesSuccessAction
-} from 'app/actions/categories';
+} from 'libs/store/actions/categories';
 
 export interface CategoriesCollection {
   fetched: FetchedState;

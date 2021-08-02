@@ -20,10 +20,7 @@ const ContextPopin = ({ setContextPopin, contextPopin }: ContextPopinProps) => {
     <Popin setOpened={() => setContextPopin(initialState)} opened={opened}>
       <PopinParagraph align={'center'}>{content.text}</PopinParagraph>
       {content.btn && (
-        <BackgroundButton
-          className="bulle-installer"
-          onClick={content.btn?.onClick}
-        >
+        <BackgroundButton onClick={content.btn?.onClick}>
           {content.btn?.label}
         </BackgroundButton>
       )}

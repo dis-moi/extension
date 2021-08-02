@@ -1,0 +1,146 @@
+{
+  "common": {
+    "or": "or",
+    "congratulations": "Congratulations!",
+    "loading": "Loading...",
+    "relayed_by": "Reposted by",
+    "filters": "My filters"
+  },
+  "action": {
+    "post": "Post",
+    "ask": "Ask",
+    "see_more": "See more",
+    "preview": "Preview",
+    "publish": "Publish",
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "go_back": {
+      "back": "back",
+      "messages": "Back to messages",
+      "submissions": "Back to contributions"
+    },
+    "manage_subscription": "Manage my contributors"
+  },
+  "date": {
+    "short": "{{date, LL/dd/yyyy}}",
+    "medium": "{{date, eeee dd MMMM yyyy}}"
+  },
+  "menu": {
+    "my_account": "My account",
+    "my_data": "My data",
+    "help": "FAQ",
+    "about": "About",
+    "contact": "Contact",
+    "privacy": "Privacy",
+    "uninstall": "Uninstall",
+    "subscriptions": "Following",
+    "contributions": "Contributions",
+    "tos": "TOS"
+  },
+  "form": {
+    "field_name": {
+      "placeholder": "Your name"
+    },
+    "field_message": {
+      "placeholder": "Write the message you want to post on this page"
+    },
+    "field_email": {
+      "placeholder": "Your@email.com"
+    },
+    "field_contributor_source": {
+      "label": "Choose the contributor you want to ask"
+    },
+    "field_message_question": {
+      "placeholder": "Indicate your question in relation with the webpage you are now visiting."
+    },
+    "preview_send": "$t(action.preview) and $t(action.publish)"
+  },
+  "error": {
+    "form": {
+      "require_field": "This field is required"
+    },
+    "common": {
+      "title": "Oops!",
+      "message": "Something went wrong. Please try again later."
+    }
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "notices": {
+      "where_appear": "Where do posts appear?",
+      "dont_appear": "I've tested a bunch, and I don't see any posts"
+    },
+    "privacy": {
+      "used_data": "What data do you use?"
+    },
+    "other_questions": {
+      "title": "Other frequently asked questions"
+    }
+  },
+  "notice": {
+    "feedback_dislike": "Thanks for the feedback, this post won't show anymore",
+    "feedback_deleted": "This post won't show anymore!"
+  },
+  "view": {
+    "contributions": {
+      "disclaimer_no_post": "There are no posts on <br/> this webpage",
+      "button_subtext": "some info or tip"
+    },
+    "subscriptions": {
+      "title": "$t(menu.subscriptions)",
+      "followed_sources": "You're following <br/><strong>{{count}}</strong> contributor",
+      "followed_sources_plural": "You're following <br/><strong>{{count}}</strong> contributors",
+      "no_followed_sources": "You're not following any contributor right now.<br />To get the most out of DisMoi, subscribe to some contributors!"
+    },
+    "about": {
+      "description": "When you visit a webpage, DisMoi lets you read messages from your contributors and post messages yourself.",
+      "install_date": "You installed the extension on"
+    },
+    "help": {
+      "contact_support": "Contact DisMoi support",
+      "write_to": "Thank you for writing to"
+    },
+    "submitted": {
+      "confirm": "Your contribution will be posted within 24h, a confirmation will be sent to you via email."
+    },
+    "confirmation": {
+      "thanks": "Thanks for your request.",
+      "message": "It will be transmitted right away to the relevant contributor(s). You'll receive their response via email."
+    }
+  },
+  "title": {
+    "subscriptions": "$t(menu.subscriptions)",
+    "help": "FAQ and support",
+    "filters": "$t(common.filters)",
+    "options": "Options",
+    "about": "$t(menu.about)",
+    "post_form": "Post a message here",
+    "preview": "Preview",
+    "ask_info_form": "Ask for information here",
+    "contribution_details": "Message details"
+  },
+  "path": {
+    "profiles": {
+      "contributors": "/en/guides",
+      "subscriptions": "/en/my-subscription"
+    },
+    "appear": "/apparition",
+    "problem_post_appearing": "/probleme-apparition-bulles",
+    "privacy": "/vie-privee",
+    "help": "/aide",
+    "contact": "/contact",
+    "tos": "/cgu",
+    "about": "/a-propos",
+    "uninstall": "/desinstaller"
+  },
+  "services": {
+    "label": "Choose my contributors",
+    "first_message_none": "To post and receive messages, please finalize your setup.",
+    "first_message_exist": "There is a contribution on this page. To read it, please finalize your configuration."
+  },
+  "tab": {
+    "disabled": "Disabled on this page",
+    "sources_link": "Sources"
+  }
+}

@@ -1,4 +1,4 @@
-import { CloseFunction } from '../index';
+import { CloseFunction } from '../OnBoarding';
 
 export interface StepProps {
   next?: () => void;

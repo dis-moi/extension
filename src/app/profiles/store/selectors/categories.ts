@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { isCollectionLoading } from 'app/store/collection/selectors';
+import { isCollectionLoading } from 'libs/store/collection/selectors';
 import { ProfilesState } from '../reducers';
 
 export const getCategoriesCollection = (state: ProfilesState) =>

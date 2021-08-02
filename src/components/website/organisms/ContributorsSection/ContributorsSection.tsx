@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import Section from '../../atoms/Section/Section';
-import SectionTitle from '../../atoms/Titles/SectionTitle';
-import Button from '../../atoms/Button/Button';
-import ContributorAvatar from '../../atoms/ContributorAvatar/ContributorAvatar';
-import { BaseContributor } from '../../../../app/lmem/contributor';
+import { BaseContributor } from 'libs/domain/contributor';
 import ContributorModal from '../../molecules/ContributorModal/ContributorModal';
+import SectionTitle from '../../atoms/Titles/SectionTitle';
+import ContributorAvatar from '../../atoms/ContributorAvatar/ContributorAvatar';
+import Section from '../../atoms/Section/Section';
+import Button from '../../atoms/Button/Button';
 
 const StyledSectionTitle = styled(props => <SectionTitle {...props} />)`
   color: ${props => props.theme.website.secondaryColorDarker};

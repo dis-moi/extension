@@ -18,8 +18,4 @@ export default styled.input<Props>`
   box-shadow: 0 0 0 2px
     ${props => (props.error ? props.theme.formError : '#fff')};
   resize: none;
-
-  ::placeholder {
-    font-style: italic;
-  }
 `;

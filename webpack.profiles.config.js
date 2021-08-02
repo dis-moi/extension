@@ -48,6 +48,17 @@ module.exports = function webpack(env = {}, argv = {}) {
                 context: 'src/assets'
               }
             },
+            {
+              test: /\.(mp4)$/i,
+              include: path.resolve(__dirname, 'src/'),
+              loader: 'file-loader',
+              options: {
+                outputPath: 'video',
+                publicPath: 'https://profiles.dismoi.io/video/',
+                name: '[path][name].[ext]',
+                context: 'src/assets/video'
+              }
+            },
             ...defaultWebpackConfig.module.rules[0].oneOf
           ]
         }
@@ -65,7 +76,8 @@ module.exports = function webpack(env = {}, argv = {}) {
     },
     output: {
       ...defaultWebpackConfig.output,
-      filename: 'js/profiles.bundle.js'
+      filename: 'js/profiles.bundle.js',
+      chunkFilename: 'js/[name].chunk.js'
     },
     plugins: [
       ...basePlugins(env, argv),

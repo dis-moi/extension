@@ -1,12 +1,12 @@
 import { put } from 'redux-saga/effects';
 import { match as Match } from 'react-router';
-import { refreshContributors } from 'app/actions';
-import { fetchContributorRequest } from 'app/actions/contributor';
-import takeLatestLocationChange from 'app/store/sagas/effects/takeLatestLocationChange';
-import en from 'i18n/resources/en/extension.json';
-import fr from 'i18n/resources/fr/extension.json';
+import { refreshContributors } from 'libs/store/actions';
+import { fetchContributorRequest } from 'libs/store/actions/contributor';
+import takeLatestLocationChange from 'libs/store/sagas/effects/takeLatestLocationChange';
+import en from 'libs/i18n/resources/en/extension.json';
+import fr from 'libs/i18n/resources/fr/extension.json';
+import { ContributorId } from 'libs/domain/contributor';
 import { fetchContributorNotices } from '../actions/notices';
-import { ContributorId } from '../../../lmem/contributor';
 
 function* contributorsLocationSaga() {
   yield put(refreshContributors());

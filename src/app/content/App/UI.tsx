@@ -8,17 +8,17 @@ import {
   Switch,
   withRouter
 } from 'react-router';
-import { close } from 'app/actions';
-import { CloseCause } from 'app/lmem/ui';
+import { close } from 'libs/store/actions';
+import { CloseCause } from 'libs/domain/ui';
 import Notification from 'components/organisms/Notification';
-import { ContentState } from '../store';
+import { ContentState } from '../store/reducers';
 import {
   getTitle,
   hasServiceMessage,
   isLoaded,
   isNoticeContext,
   isOpen
-} from '../selectors';
+} from '../store/selectors';
 import Notice from './Notice';
 import Subscriptions from './Subscriptions';
 import Help from './Help';

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
+import { getExtensionInstallationDate } from 'app/content/store/selectors';
 import { version } from 'app/../../package.json';
-import { getExtensionInstallationDate } from 'app/content/selectors';
-import { ContentState } from '../../../store';
+import { ContentState } from 'app/content/store/reducers';
 
 export interface AboutConnectedProps {
   installationDate?: Date;

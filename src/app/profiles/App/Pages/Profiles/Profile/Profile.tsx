@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import CenterContainer from 'components/atoms/CenterContainer';
 import {
-  AddToBrowserMessageBox,
+  ExplainingVideoMessageBox,
   PrivacyMessageBox
 } from 'components/molecules/SidebarBox';
 import {
@@ -13,8 +13,8 @@ import {
   Title2,
   TwoColumns
 } from 'components/atoms';
-import { Notice, NoticeWithContributor } from 'app/lmem/notice';
-import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
+import { Notice, NoticeWithContributor } from 'libs/domain/notice';
+import { ContributorId, StatefulContributor } from 'libs/domain/contributor';
 import Error from '../../Error';
 import SimilarProfiles from '../../../SimilarProfiles';
 import SubscribePopin from '../SubscribePopin';
@@ -220,7 +220,7 @@ export const Profile = ({
       </MainCol>
 
       <Aside>
-        {connected === false && <AddToBrowserMessageBox />}
+        {!connected && <ExplainingVideoMessageBox contributor={contributor} />}
         {connected && <PrivacyMessageBox />}
 
         <SimilarProfiles

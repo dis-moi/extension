@@ -3,8 +3,10 @@ import { ProfilesState } from 'app/profiles/store/reducers';
 import {
   getIndexedOffset,
   isCollectionLoading
-} from 'app/store/collection/selectors';
-import { ContributorId } from 'app/lmem/contributor';
+} from 'libs/store/collection/selectors';
+import { ContributorId } from 'libs/domain/contributor';
+import sortByLocale from 'libs/utils/sortByLocale';
+import { getCurrentLng } from 'libs/i18n';
 
 export const getNoticesCollection = (state: ProfilesState) => state.notices;
 
@@ -14,7 +16,7 @@ export const areNoticesLoading = createSelector(
 );
 export const getNotices = createSelector(
   [getNoticesCollection],
-  noticesCollection => noticesCollection.items
+  noticesCollection => sortByLocale(noticesCollection.items, getCurrentLng())
 );
 
 export const getNoticesOffset = createSelector(

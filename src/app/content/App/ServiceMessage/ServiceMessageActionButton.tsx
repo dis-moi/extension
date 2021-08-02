@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { BackgroundButton } from 'components/atoms';
-import { LinkType, ServiceMessageAction } from 'app/lmem/ServiceMessage';
+import { LinkType, ServiceMessageAction } from 'libs/domain/ServiceMessage';
 
 const Button = styled(BackgroundButton)`
   margin-left: auto;

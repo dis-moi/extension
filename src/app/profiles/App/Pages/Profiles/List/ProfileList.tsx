@@ -1,8 +1,8 @@
-import React, { ChangeEvent, MouseEvent, useState } from 'react';
+import React, { MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import { ContributorId, StatefulContributor } from 'app/lmem/contributor';
-import { Categories } from 'app/lmem/category';
+import { ContributorId, StatefulContributor } from 'libs/domain/contributor';
+import { Categories } from 'libs/domain/category';
 import { Button, CenterContainer, Title2 } from 'components/atoms';
 import { Arrow } from 'components/atoms/icons';
 import Link from 'components/atoms/Link/Link';
@@ -11,16 +11,16 @@ import ContributorsList from 'components/organisms/Contributor/ContributorsList'
 import StatsWrapper from 'components/atoms/Contributor/StatsWrapper';
 import Loader from 'components/atoms/Loader';
 import pathToContributor from 'app/profiles/App/pathToContributor';
-import Filters from 'components/molecules/Filters/RadiosFilters';
-import useContributorsFilters from 'app/profiles/App/useContributorsRadiosFilters';
-import OnBoarding from 'app/profiles/App/OnBoarding';
+import useContributorsFilters from 'app/profiles/hooks/useContributorsFilters';
+import LazyOnBoarding from 'app/profiles/App/OnBoarding';
+import { Subscriptions } from 'libs/domain/subscription';
+import Search from 'components/molecules/Search/Search';
 import ProfileTabs from '../../../ProfileTabs';
 import BrowserNotSupportedPopin from '../BrowserNotSupportedPopin';
 import NotConnectedPopin, {
   NotConnectedPopinState
 } from '../NotConnectedPopin';
-import onContributorExampleClick from '../../../../../utils/onContributorExampleClick';
-import { Subscriptions } from '../../../../../lmem/subscription';
+import onContributorExampleClick from '../../../onContributorExampleClick';
 import { ContextPopinState } from '../../../../store/reducers/contextPopin.reducer';
 
 const Title = styled(Title2)`
@@ -128,31 +128,26 @@ const ProfileList = ({
     }
   };
 
-  const [filteredContributors, setFilter] = useContributorsFilters(
-    contributors
-  );
-
-  const handleFiltersChange = ({
-    target: { value }
-  }: ChangeEvent<HTMLInputElement>) => {
-    setFilter(value);
-  };
+  const [
+    filteredContributors,
+    setFilter,
+    handleChangeSearchContributors
+  ] = useContributorsFilters(contributors);
 
   return (
     <>
-      <OnBoarding />
+      <LazyOnBoarding />
       {connected === false && (
         <Title as="h1">{t('profiles:common.sources')}</Title>
       )}
 
       <ProfileTabs connected={connected} />
-
-      <Filters
-        onChange={handleFiltersChange}
-        loading={!!categoriesLoading}
-        filters={categories}
+      <Search
+        categoriesLoading={categoriesLoading}
+        categories={categories}
+        handleChangeSearchContributors={handleChangeSearchContributors}
+        setFilter={setFilter}
       />
-
       {loading ? (
         <Loader />
       ) : (

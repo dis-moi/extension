@@ -8,10 +8,10 @@ import {
   select,
   takeEvery
 } from 'redux-saga/effects';
-import { AppAction, AppActionWithMeta } from 'app/actions';
-import { connect } from 'app/store/actions/connection';
-import stripReceiverMeta from 'app/store/stripReceiverMeta';
-import watchWindow from 'app/store/sagas/window/watch.saga';
+import { AppAction, AppActionWithMeta } from 'libs/store/actions';
+import { connect } from 'libs/store/actions/connection';
+import stripReceiverMeta from 'libs/store/stripReceiverMeta';
+import watchWindow from 'libs/store/sagas/window/watch.saga';
 import extensionId, { extensionMessageSender } from 'app/profiles/extensionId';
 import { isConnected } from 'app/profiles/store/selectors/connection';
 

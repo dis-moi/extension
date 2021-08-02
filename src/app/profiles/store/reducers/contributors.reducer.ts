@@ -9,21 +9,21 @@ import {
   UNSUBSCRIBE,
   UNSUBSCRIBED,
   UPDATE_CONTRIBUTORS
-} from 'app/actions';
+} from 'libs/store/actions';
 import {
   createLoadableContributor,
   StatefulContributor
-} from 'app/lmem/contributor';
-import { initialState, ItemsState } from 'app/store/collection/reducers/items';
-import { CollectionState } from 'app/store/collection/reducers';
-import fetched from 'app/store/collection/reducers/fetched';
-import fetching from 'app/store/collection/reducers/fetching';
-import lastFetched from 'app/store/collection/reducers/lastFetched';
+} from 'libs/domain/contributor';
+import { initialState, ItemsState } from 'libs/store/collection/reducers/items';
+import { CollectionState } from 'libs/store/collection/reducers';
+import fetched from 'libs/store/collection/reducers/fetched';
+import fetching from 'libs/store/collection/reducers/fetching';
+import lastFetched from 'libs/store/collection/reducers/lastFetched';
 import {
   FETCH_CONTRIBUTOR_REQUEST,
   FETCH_CONTRIBUTOR_SUCCESS,
   FetchContributorAction
-} from 'app/actions/contributor';
+} from 'libs/store/actions/contributor';
 
 export type ContributorsCollectionState = CollectionState<StatefulContributor>;
 
@@ -35,13 +35,18 @@ export const items = (
     | ReceivedContributorsAction
 ): ItemsState<StatefulContributor> => {
   switch (action.type) {
-    case UNSUBSCRIBE:
-    case SUBSCRIBE: {
+    case SUBSCRIBE:
+    case UNSUBSCRIBE: {
       const index = state.findIndex(item => item.id === action.payload);
+      const count = action.type === UNSUBSCRIBE ? -1 : 1;
       if (index) {
         return [
           ...state.slice(0, index),
-          { ...state[index], subscribing: true },
+          {
+            ...state[index],
+            subscribing: true,
+            ratings: { subscribes: state[index].ratings.subscribes + count }
+          },
           ...state.slice(index + 1)
         ];
       }
@@ -49,25 +54,14 @@ export const items = (
       return state;
     }
 
-    case UNSUBSCRIBED: {
-      const index = state.findIndex(item => item.id === action.payload);
-      if (index) {
-        return [
-          ...state.slice(0, index),
-          { ...state[index], subscribed: false, subscribing: false },
-          ...state.slice(index + 1)
-        ];
-      }
-
-      return state;
-    }
-
+    case UNSUBSCRIBED:
     case SUBSCRIBED: {
       const index = state.findIndex(item => item.id === action.payload);
+      const subscribed = action.type === SUBSCRIBED;
       if (index) {
         return [
           ...state.slice(0, index),
-          { ...state[index], subscribed: true, subscribing: false },
+          { ...state[index], subscribed, subscribing: false },
           ...state.slice(index + 1)
         ];
       }

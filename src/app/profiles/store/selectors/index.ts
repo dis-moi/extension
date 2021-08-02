@@ -1,16 +1,16 @@
 import { createSelector } from 'reselect';
 import * as RA from 'ramda-adjunct';
-import { findItemById } from 'app/utils/findItemById';
+import { findItemById } from 'libs/utils/findItemById';
 import {
   Contributor,
   ContributorId,
   contributorIsSubscribed,
   StatefulContributor
-} from 'app/lmem/contributor';
-import { Subscription, Subscriptions } from 'app/lmem/subscription';
-import { Notice, NoticeWithContributor } from 'app/lmem/notice';
-import { makeGetRouteParam } from 'app/store/selectors';
-import { getIndexedFetchedAll } from 'app/store/collection/selectors';
+} from 'libs/domain/contributor';
+import { Subscription, Subscriptions } from 'libs/domain/subscription';
+import { Notice, NoticeWithContributor } from 'libs/domain/notice';
+import { makeGetRouteParam } from 'libs/store/selectors';
+import { getIndexedFetchedAll } from 'libs/store/collection/selectors';
 import { ProfilesState } from '../reducers';
 import { getSubscriptions } from './subscriptions';
 import { getNotices as getNoticesItems, getNoticesCollection } from './notices';

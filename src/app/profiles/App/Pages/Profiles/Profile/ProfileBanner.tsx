@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import { StatefulContributor } from 'app/lmem/contributor';
-import defaultProfileBannerImage from 'assets/img/profile-banner.jpg';
+import { StatefulContributor } from 'libs/domain/contributor';
+import defaultProfileBannerImage from 'assets/img/profile-banner.png';
 
 const ProfileBannerContainer = styled.div<{
   default: boolean;
@@ -18,7 +18,6 @@ const ProfileBannerContainer = styled.div<{
     bottom: 0;
     margin: auto;
     display: block;
-    opacity: ${props => (props.default ? '0.5' : '1')};
   }
 
   @media (max-width: ${props => props.theme.tabletWidth}) {
@@ -43,7 +42,7 @@ const ProfileBanner = ({ contributor }: ProfileBannerProps) => {
   return (
     <ProfileBannerContainer default={!hasBanner(contributor)}>
       <img
-        style={{ width: '100%' }}
+        style={{ width: '50%' }}
         src={
           contributor && contributor.banner
             ? contributor.banner

@@ -1,12 +1,12 @@
 import createCollectionReducer, {
   CollectionState
-} from 'app/store/collection/reducers';
+} from 'libs/store/collection/reducers';
 import {
   FETCH_NOTICES_FAILURE,
   FETCH_NOTICES_REQUEST,
   NOTICES_FETCHED
-} from 'app/actions';
-import { Notice } from 'app/lmem/notice';
+} from 'libs/store/actions';
+import { Notice } from 'libs/domain/notice';
 
 export type NoticesCollectionState = CollectionState<Notice>;
 

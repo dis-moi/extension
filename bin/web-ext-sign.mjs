@@ -2,19 +2,15 @@ import path from 'path';
 import fs from 'fs';
 import signAddon from 'sign-addon';
 import pjson from '../package.json';
-import loadEnv from '../loadEnv';
-import packageNaming from '../webpack/packageNaming';
+import loadEnv from '../loadEnv.js';
+import packageNaming from '../webpack/packageNaming.js';
 
 const { getPackageDir, getPackagePath } = packageNaming;
 
 loadEnv({ path: path.resolve() });
 
-const {
-  FIREFOX_API_KEY,
-  FIREFOX_API_SECRET,
-  NODE_ENV,
-  FIREFOX_EXTENSION_ID
-} = process.env;
+const { FIREFOX_API_KEY, FIREFOX_API_SECRET, NODE_ENV, FIREFOX_EXTENSION_ID } =
+  process.env;
 const { version } = pjson;
 
 const packageDir = path.resolve(getPackageDir('firefox', NODE_ENV));
@@ -60,12 +56,12 @@ signAddon
     apiJwtExpiresIn: undefined,
     // Optional override to the URL prefix of the signing API.
     // The production instance of the API will be used by default.
-    apiUrlPrefix: 'https://addons.mozilla.org/api/v4'
+    apiUrlPrefix: 'https://addons.mozilla.org/api/v4',
   })
-  .then(result => {
+  .then((result) => {
     if (result.success) {
       console.log('The following signed files were downloaded:');
-      fs.rename(result.downloadedFiles[0], packagePath, error => {
+      fs.rename(result.downloadedFiles[0], packagePath, (error) => {
         if (error) {
           throw error;
         }
@@ -86,6 +82,6 @@ ${packagePath}.`
     }
     console.log(result.success ? 'SUCCESS' : 'FAIL');
   })
-  .catch(error => {
+  .catch((error) => {
     console.error('Signing error:', error);
   });

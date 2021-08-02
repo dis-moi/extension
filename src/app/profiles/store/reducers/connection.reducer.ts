@@ -3,7 +3,7 @@ import {
   CONNECT,
   CONNECTED,
   DISCONNECTED
-} from 'app/store/actions/connection';
+} from 'libs/store/actions/connection';
 
 export type ConnectionState = {
   connecting: number;

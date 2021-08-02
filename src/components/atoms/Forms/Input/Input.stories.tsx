@@ -1,5 +1,5 @@
 import React from 'react';
-import { WEBSITE_DOMAIN } from 'app/lmem';
+import { WEBSITE_DOMAIN } from 'libs/domain';
 import Input from './Input';
 
 export default {

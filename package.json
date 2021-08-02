@@ -1,9 +1,9 @@
 {
   "name": "dismoi-webextension",
-  "version": "3.76.1",
+  "version": "3.86.2",
   "description": "Bulles Recommendations web extensions using React+Redux.",
   "engines": {
-    "node": ">=10.15.0"
+    "node": ">=12"
   },
   "scripts": {
     "start": "webpack --watch --progress --mode=development",
@@ -33,13 +33,13 @@
     "buildVersion:proding": "yarn buildVersion:chromium:proding && yarn buildVersion:firefox:proding",
     "buildVersion:production": "yarn buildVersion:chromium:production && yarn buildVersion:firefox:production",
     "buildVersion": "yarn buildVersion:staging && yarn buildVersion:proding && yarn buildVersion:production",
-    "upload:firefox:_": "node --experimental-modules bin/web-ext-sign.mjs",
+    "upload:firefox:_": "node --experimental-json-modules bin/web-ext-sign.mjs",
     "upload:firefox:staging": "NODE_ENV=staging yarn upload:firefox:_",
     "upload:firefox:proding": "NODE_ENV=proding yarn upload:firefox:_",
     "upload:firefox:production": "NODE_ENV=production yarn upload:firefox:_",
-    "upload:chromium:staging": "NODE_ENV=staging node --experimental-modules bin/chrome-webstore-upload.mjs",
-    "upload:chromium:proding": "NODE_ENV=proding node --experimental-modules bin/chrome-webstore-upload.mjs",
-    "upload:chromium:production": "NODE_ENV=production node --experimental-modules bin/chrome-webstore-upload.mjs",
+    "upload:chromium:staging": "NODE_ENV=staging node --experimental-json-modules bin/chrome-webstore-upload.mjs",
+    "upload:chromium:proding": "NODE_ENV=proding node --experimental-json-modules bin/chrome-webstore-upload.mjs",
+    "upload:chromium:production": "NODE_ENV=production node --experimental-json-modules bin/chrome-webstore-upload.mjs",
     "release": "yarn semantic-release",
     "build": "yarn build:staging && yarn build:production && yarn build:proding",
     "clean": "rm -rf build",
@@ -51,14 +51,17 @@
     "lint:css": "stylelint './src/**/*.{ts,tsx}'",
     "prettier": "prettier-eslint --write src/**/*.{ts,tsx} test/**/*.{ts,tsx,js} manifest/**/*.js webpack/*.js release.*.js",
     "verify": "yarn test && yarn typecheck && yarn lint && yarn build:chromium:production && yarn build-storybook",
+    "verify:quick": "yarn test && yarn typecheck && yarn lint",
     "analyze": "NODE_ENV=production webpack --mode=production --env.PLATFORM=chromium --env.ANALYZE",
     "storybook": "start-storybook -s ./src/assets --ci -p 6007 -c .storybook",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "start:website": "cd src/app/website && yarn start",
+    "website": "cd src/app/website && yarn"
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged ",
-      "pre-push": "yarn verify"
+      "pre-push": "yarn verify:quick"
     }
   },
   "lint-staged": {
@@ -184,6 +187,7 @@
     "lodash-webpack-plugin": "^0.11.5",
     "mocha": "^8.4.0",
     "null-loader": "^0.1.1",
+    "posthog-node": "^1.0.9",
     "prettier": "^1.18.2",
     "prettier-config-standard": "^1.0.1",
     "pug": "^3.0.1",

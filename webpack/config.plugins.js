@@ -28,11 +28,13 @@ const selectEnvVarsToInject = R.pick([
   'TRACKING_URL',
   'TRACKING_SITE_ID',
   'TRACKING_BACKEND',
+  'TRACKING_POSTHOG_API_KEY',
   'SENTRY_ENABLED',
   'PLATFORM',
   'CHROME_EXTENSION_ID',
   'FIREFOX_EXTENSION_ID',
-  'PROFILES_ORIGIN'
+  'PROFILES_ORIGIN',
+  'PRESELECTED_CONTRIBUTORS_IDS'
 ]);
 const formatEnvVars = R.map(value => `"${value}"`);
 

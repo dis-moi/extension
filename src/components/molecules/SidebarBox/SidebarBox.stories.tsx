@@ -1,8 +1,10 @@
 import React from 'react';
+import { generateStatefulContributor } from 'test/fakers/generateContributor';
 import {
   AddToBrowserMessageBox,
   SlowerMessageBox,
-  PrivacyMessageBox
+  PrivacyMessageBox,
+  ExplainingVideoMessageBox
 } from './';
 
 export default {
@@ -25,4 +27,12 @@ export const WithAction = () => <AddToBrowserMessageBox />;
 
 WithAction.story = {
   name: 'with action'
+};
+
+export const WithVideo = () => (
+  <ExplainingVideoMessageBox contributor={generateStatefulContributor()} />
+);
+
+WithVideo.story = {
+  name: 'with video'
 };

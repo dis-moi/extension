@@ -7,13 +7,13 @@ import ThumbDown from 'components/atoms/icons/ThumbDown';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import { Button, ContributorName, Timer } from 'components/atoms';
 import { Relay } from 'components/atoms/icons';
-import { StatefulNoticeWithContributor } from 'app/lmem/notice';
+import { StatefulNoticeWithContributor } from 'libs/domain/notice';
 import {
   CountDownState,
   initialState as countdownInitialState
-} from 'app/lmem/countdown';
-import { Contributor } from 'app/lmem/contributor';
-import { formatMessage } from 'app/lmem/format/message';
+} from 'libs/domain/countdown';
+import { Contributor } from 'libs/domain/contributor';
+import { formatMessage } from 'libs/domain/format/message';
 import Date from './Date';
 import Feedbacks from './Feedbacks';
 import Message from './Message';
@@ -97,15 +97,23 @@ export interface NoticeDetailsMethodsProps {
 export type NoticeDetailsProps = NoticeDetailsDataProps &
   NoticeDetailsMethodsProps & { t: TFunction };
 
-class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
+interface NoticeDetailsState extends CountDownState {
+  message: string;
+}
+const noticeDetailsInitState = { ...countdownInitialState, message: '' };
+
+class NoticeDetails extends PureComponent<
+  NoticeDetailsProps,
+  NoticeDetailsState
+> {
   constructor(props: NoticeDetailsProps) {
     super(props);
-    this.state = countdownInitialState;
+    this.state = noticeDetailsInitState;
   }
 
   startCountdown = () => {
     const intervalID = window.setInterval(this.updateCountdown, 1000);
-    this.setState({ ...countdownInitialState, intervalID });
+    this.setState({ ...noticeDetailsInitState, intervalID });
   };
 
   updateCountdown = () => {
@@ -199,6 +207,11 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
   };
 
   componentDidMount(): void {
+    this.setState({
+      ...noticeDetailsInitState,
+      message: formatMessage(this.props.notice.message)
+    });
+
     const {
       view,
       notice: { id }
@@ -211,7 +224,6 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
   render() {
     const {
       notice: {
-        message,
         modified,
         contributor,
         ratings: { likes, dislikes },
@@ -252,7 +264,7 @@ class NoticeDetails extends PureComponent<NoticeDetailsProps, CountDownState> {
           </DetailsMeta>
 
           <Message onClick={this.handleMessageClick}>
-            {formatMessage(message)}
+            {this.state.message}
           </Message>
 
           <Feedbacks>

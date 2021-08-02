@@ -1,6 +1,6 @@
 import { PersistedState } from 'redux-persist/es/types';
-import { Criteria } from '../../../lmem/criterion';
-import { InstallationDetails } from '../../../lmem/installation';
+import { Criteria } from 'libs/domain/criterion';
+import { InstallationDetails } from 'libs/domain/installation';
 
 export interface StateV0V1orV2 extends PersistedState {
   prefs?: {

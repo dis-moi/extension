@@ -1,13 +1,18 @@
 /* eslint-disable no-console */
 // Early imports with high priority stuff involved, such as event listeners creation
-import { BACKEND_ORIGIN } from 'app/constants/origins';
-import onInstalled from 'webext/onInstalled';
-import onStartup from 'webext/onStartup';
-import { installed, optionsRequested, startup, i18nReady } from 'app/actions';
-import { configureSentryScope, initSentry } from 'app/utils/sentry';
-import { connect } from 'app/store/actions/connection';
-import { OPTIONS_MENU_ITEM_ID } from 'app/lmem/tab';
-import i18n, { options } from 'i18n';
+import { BACKEND_ORIGIN } from 'libs/api/constants/origins';
+import onInstalled from 'libs/webext/onInstalled';
+import onStartup from 'libs/webext/onStartup';
+import {
+  installed,
+  optionsRequested,
+  startup,
+  i18nReady
+} from 'libs/store/actions';
+import { configureSentryScope, initSentry } from 'libs/utils/sentry';
+import { connect } from 'libs/store/actions/connection';
+import { OPTIONS_MENU_ITEM_ID } from 'libs/domain/tab';
+import i18n, { options } from 'libs/i18n';
 import { store } from './store';
 
 type Port = browser.runtime.Port;

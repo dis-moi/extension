@@ -1,7 +1,7 @@
 import React from 'react';
 import { LocationDescriptor, LocationState } from 'history';
 import styled from 'styled-components';
-import { AvatarSize, Avatar as AvatarType } from 'app/lmem/contributor';
+import { AvatarSize, Avatar as AvatarType } from 'libs/domain/contributor';
 import AvatarDefault from 'components/atoms/icons/AvatarDefault';
 import Link from 'components/atoms/Link';
 

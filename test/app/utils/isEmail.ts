@@ -1,5 +1,5 @@
 import chai from 'chai';
-import isEmail from 'app/utils/isEmail';
+import isEmail from 'libs/utils/isEmail';
 
 const expect = chai.expect;
 

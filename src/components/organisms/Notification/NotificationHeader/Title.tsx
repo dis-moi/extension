@@ -1,6 +1,6 @@
 import React from 'react';
-import { truncateButPreserveWords } from '../../../../app/utils/truncate';
-import { stripHtml } from '../../../../app/utils/stripHtml';
+import { truncateButPreserveWords } from 'libs/utils/truncate';
+import { stripHtml } from 'libs/utils/stripHtml';
 import TitleContainer from './TitleContainer';
 
 interface TitleInterface {

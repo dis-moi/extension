@@ -3,11 +3,12 @@ import {
   Contributor,
   ContributorId,
   NewContributor
-} from 'app/lmem/contributor';
+} from 'libs/domain/contributor';
 import {
   generateNoticeItem,
   generatePinnedNotice
 } from 'test/fakers/generateNotice';
+import { defaultLng } from 'libs/i18n';
 
 interface Options {
   id?: number;
@@ -42,11 +43,16 @@ export const generateContributor = ({
     : {
         small: { url: Faker.image.avatar() },
         normal: { url: Faker.image.avatar() },
-        large: { url: Faker.image.avatar() }
+        large: { url: Faker.image.avatar() },
+        extra_large: { url: Faker.image.avatar() }
       },
   noticesUrls: ['http://backend.dismoi.io/notices/1'],
   website: website || Faker.internet.url(),
-  categories: [Faker.random.word()]
+  categories: [Faker.random.word()],
+  locale: defaultLng,
+  ratings: {
+    subscribes: 0
+  }
 });
 
 export const generateStatefulContributor = ({
