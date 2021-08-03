@@ -26,6 +26,13 @@ const PrimaryHeadline = styled.h1`
     font-size: 44px;
     margin-bottom: 18px;
   }
+  span {
+    transition: opacity 0.09s;
+    opacity: 1;
+    &.fade {
+      opacity: 0;
+    }
+  }
 `;
 
 export default PrimaryHeadline;

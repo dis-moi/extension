@@ -1,27 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import CoverSection from '../../organisms/CoverSection/CoverSection';
-import ExamplesSection from '../../organisms/ExamplesSection/ExamplesSection';
-import HowItWorksSection from '../../organisms/HowItWorksSection/HowItWorksSection';
-import ContributorsSection, {
-  contributorsIds
-} from '../../organisms/ContributorsSection/ContributorsSection';
-import OurCommitmentsSection, {
-  commitmentCards
-} from '../../organisms/OurCommitmentsSection/OurCommitmentsSection';
+import ContentPage from '../../organisms/ContentPage/ContentPage';
 
-export interface HomePageProps {
+export interface AboutUsPageProps {
   className?: string;
 }
 
-const HomePage = styled(({ className }: HomePageProps) => (
+const AboutUsPage = styled(({ className }: AboutUsPageProps) => (
   <article className={className}>
-    <CoverSection />
-    <ExamplesSection />
-    <HowItWorksSection />
-    <ContributorsSection contributorsIds={contributorsIds} />
-    <OurCommitmentsSection commitmentCards={commitmentCards} />
+    <ContentPage
+      title="À propos"
+      markdownFilePath={require(`${__dirname}/AboutUsPageFr.md`)}
+    />
   </article>
 ))``;
 
-export default HomePage;
+export default AboutUsPage;

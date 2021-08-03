@@ -1,11 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BaseContributor } from 'libs/domain/contributor';
-import ContributorModal from '../../molecules/ContributorModal/ContributorModal';
 import SectionTitle from '../../atoms/Titles/SectionTitle';
-import ContributorAvatar from '../../atoms/ContributorAvatar/ContributorAvatar';
 import Section from '../../atoms/Section/Section';
-import Button from '../../atoms/Button/Button';
 import GeometricShapeBackground from '../CoverSection/backgrounds/GeometricShapeBackground';
 import PatternBackground from '../CoverSection/backgrounds/PatternBackground';
 import CommitmentCard, {
@@ -65,7 +61,6 @@ export interface OurCommitmentsSectionProps {
 
 const OurCommitmentsSection = styled(
   ({ className, commitmentCards }: OurCommitmentsSectionProps) => {
-    console.log(commitmentCards);
     return (
       <Section className={className}>
         <GeometricShapeBackground />

@@ -119,12 +119,16 @@ const StyledSectionArrow = styled(props => (
     {...props}
   />
 ))`
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  path {
-    fill: white;
+  display: none;
+  @media (min-width: ${props => props.theme.desktopWidth}) {
+    display: block;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    path {
+      fill: white;
+    }
   }
 `;
 
@@ -134,7 +138,7 @@ export interface CoverSectionProps {
 
 const CoverSection = styled((props: CoverSectionProps) => {
   return (
-    <Section {...props}>
+    <Section id="cover" {...props}>
       <GradientBackground />
       <DarkLayoutBackground />
       <GeometricShapeBackground />
@@ -146,7 +150,8 @@ const CoverSection = styled((props: CoverSectionProps) => {
           </StyledGridCol1>
           <StyledGridCol2>
             <PrimaryHeadline>
-              Ne passez plus à côté d’un bon conseil
+              Ne passez plus à côté d’un bon conseil{' '}
+              <span id="variableWords">LALALA</span>
             </PrimaryHeadline>
             <SecondaryHeadline>
               Arnaque, intox, meilleure alternative…

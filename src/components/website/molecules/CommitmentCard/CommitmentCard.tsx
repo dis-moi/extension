@@ -128,21 +128,6 @@ const CommitmentCard = styled(
   .slideUpDown {
     display: none;
   }
-
-  &.open {
-    padding-bottom: 45px;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M85.4 71.2L64.1 50l21.2-21.2c3.9-3.9 3.9-10.2 0-14.1-3.9-3.9-10.2-3.9-14.1 0L50 35.9 28.8 14.6c-3.9-3.9-10.2-3.9-14.1 0s-3.9 10.2 0 14.1L35.9 50 14.6 71.2c-3.9 3.9-3.9 10.2 0 14.1 3.9 3.9 10.2 3.9 14.1 0L50 64.1l21.2 21.2c3.9 3.9 10.2 3.9 14.1 0 4-3.8 4-10.2.1-14.1z" opacity="0.6" fill="rgb(109, 116, 126)"/></svg>');
-    .slideUpDown {
-      display: block;
-      ${Button} {
-        width: calc(100% - 15px);
-        bottom: 7.5px;
-        left: 7.5px;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-      }
-    }
-  }
   @media (min-width: ${props => props.theme.desktopWidth}) {
     .slideUpDown {
       display: block;
@@ -164,6 +149,24 @@ const CommitmentCard = styled(
     padding-bottom: 6.5px;
     @media (min-width: ${props => props.theme.desktopWidth}) {
       padding-bottom: 7px;
+    }
+  }
+  @media (max-width: ${props => props.theme.desktopWidth}) {
+    &.open {
+      padding-bottom: 45px;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M85.4 71.2L64.1 50l21.2-21.2c3.9-3.9 3.9-10.2 0-14.1-3.9-3.9-10.2-3.9-14.1 0L50 35.9 28.8 14.6c-3.9-3.9-10.2-3.9-14.1 0s-3.9 10.2 0 14.1L35.9 50 14.6 71.2c-3.9 3.9-3.9 10.2 0 14.1 3.9 3.9 10.2 3.9 14.1 0L50 64.1l21.2 21.2c3.9 3.9 10.2 3.9 14.1 0 4-3.8 4-10.2.1-14.1z" opacity="0.6" fill="rgb(109, 116, 126)"/></svg>');
+
+      .slideUpDown {
+        display: block;
+
+        ${Button} {
+          width: calc(100% - 15px);
+          bottom: 7.5px;
+          left: 7.5px;
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+        }
+      }
     }
   }
 `;

@@ -65,7 +65,7 @@
     // Calque_1
     this.shape = new cjs.Shape();
     this.shape.graphics
-      .beginFill('rgba(110,116,125,0.8)')
+      .beginFill('rgba(102,107,121,0.8)')
       .beginStroke()
       .moveTo(-111.5, 40.7)
       .curveTo(-112.7, 40.7, -113.6, 39.8)
@@ -1105,91 +1105,109 @@
     this.shape.graphics
       .beginFill('#FFFFFF')
       .beginStroke()
-      .moveTo(3.3, 13.3)
-      .lineTo(-0.5, 9.5)
-      .curveTo(-2, 8, -2, 5.8)
-      .curveTo(-2, 3.6, -0.4, 2)
-      .lineTo(-2, 0.4)
-      .curveTo(-3.6, 2, -5.8, 2)
-      .curveTo(-8, 2, -9.5, 0.5)
-      .lineTo(-13.3, -3.3)
-      .curveTo(-14.8, -4.8, -14.8, -7)
-      .curveTo(-14.8, -9.2, -13.3, -10.7)
-      .lineTo(-10.6, -13.4)
-      .curveTo(-9.1, -14.9, -6.9, -14.8)
-      .curveTo(-4.6, -14.8, -3.2, -13.3)
-      .lineTo(0.6, -9.5)
-      .curveTo(2.1, -8.1, 2.1, -5.8)
-      .curveTo(2.1, -3.6, 0.5, -2.1)
-      .lineTo(2.1, -0.4)
-      .curveTo(3.6, -2, 5.9, -2.1)
-      .curveTo(8, -2, 9.6, -0.5)
-      .lineTo(13.3, 3.3)
-      .curveTo(14.8, 4.8, 14.9, 7)
-      .curveTo(14.8, 9.2, 13.3, 10.6)
-      .lineTo(10.6, 13.3)
-      .curveTo(9.2, 14.9, 7, 14.9)
-      .curveTo(4.8, 14.9, 3.3, 13.3)
+      .moveTo(-3, 32.5)
+      .curveTo(-4.2, 32.5, -5, 31.6)
+      .curveTo(-5.9, 30.7, -5.9, 29.5)
+      .lineTo(-5.9, 26.6)
+      .lineTo(5.9, 26.6)
+      .lineTo(5.9, 29.5)
+      .curveTo(5.9, 30.7, 5.1, 31.6)
+      .curveTo(4.2, 32.5, 3, 32.5)
       .closePath()
-      .moveTo(1.5, 5.8)
-      .curveTo(1.5, 6.5, 1.9, 7)
-      .lineTo(5.7, 10.8)
-      .curveTo(6.3, 11.3, 7, 11.3)
-      .curveTo(7.7, 11.3, 8.2, 10.8)
-      .lineTo(10.8, 8.2)
-      .curveTo(11.4, 7.6, 11.4, 7)
-      .curveTo(11.4, 6.2, 10.8, 5.8)
-      .lineTo(7.1, 1.9)
-      .curveTo(6.6, 1.5, 5.9, 1.5)
-      .curveTo(5.1, 1.5, 4.5, 2)
-      .lineTo(5.5, 3.1)
-      .lineTo(5.8, 3.5)
-      .lineTo(5.9, 4.1)
-      .curveTo(5.9, 4.8, 5.3, 5.3)
-      .curveTo(4.9, 5.8, 4.1, 5.8)
-      .lineTo(3.6, 5.8)
-      .lineTo(2.8, 5.2)
-      .lineTo(2.1, 4.5)
-      .curveTo(1.4, 5.1, 1.5, 5.8)
+      .moveTo(-5.9, 23.6)
+      .curveTo(-7.1, 23.6, -8, 22.7)
+      .curveTo(-8.9, 21.9, -8.9, 20.7)
+      .lineTo(-8.9, 15.3)
+      .curveTo(-12.9, 13, -15.3, 9)
+      .curveTo(-17.7, 4.8, -17.7, 0)
+      .curveTo(-17.7, -7.4, -12.5, -12.6)
+      .curveTo(-7.3, -17.8, 0, -17.8)
+      .curveTo(7.3, -17.8, 12.5, -12.6)
+      .curveTo(17.7, -7.4, 17.7, 0)
+      .curveTo(17.7, 4.8, 15.3, 9)
+      .curveTo(12.9, 13, 8.9, 15.3)
+      .lineTo(8.9, 20.7)
+      .curveTo(8.9, 21.9, 8, 22.7)
+      .curveTo(7.1, 23.6, 5.9, 23.6)
       .closePath()
-      .moveTo(-8.2, -10.9)
-      .lineTo(-10.8, -8.3)
-      .curveTo(-11.4, -7.7, -11.3, -7)
-      .curveTo(-11.4, -6.3, -10.8, -5.7)
-      .lineTo(-7.1, -2)
-      .curveTo(-6.5, -1.5, -5.8, -1.5)
-      .curveTo(-5.1, -1.5, -4.5, -2.1)
-      .lineTo(-5.3, -2.8)
-      .lineTo(-5.7, -3.6)
-      .lineTo(-5.8, -4.1)
-      .curveTo(-5.8, -4.8, -5.3, -5.4)
-      .curveTo(-4.7, -5.8, -4, -5.8)
-      .lineTo(-3.6, -5.8)
-      .lineTo(-3.1, -5.6)
-      .lineTo(-2, -4.6)
-      .curveTo(-1.4, -5.1, -1.4, -5.8)
-      .curveTo(-1.4, -6.5, -1.9, -7.1)
-      .lineTo(-5.6, -10.9)
-      .curveTo(-6.2, -11.4, -6.9, -11.4)
-      .curveTo(-7.5, -11.4, -8.2, -10.9)
+      .moveTo(24.1, 2.9)
+      .curveTo(23.6, 2.9, 23.6, 2.5)
+      .lineTo(23.6, -2.5)
+      .curveTo(23.6, -3, 24.1, -3)
+      .lineTo(32, -3)
+      .curveTo(32.5, -3, 32.5, -2.5)
+      .lineTo(32.5, 2.5)
+      .curveTo(32.5, 2.9, 32, 2.9)
+      .closePath()
+      .moveTo(-32, 2.9)
+      .curveTo(-32.5, 2.9, -32.5, 2.5)
+      .lineTo(-32.5, -2.5)
+      .curveTo(-32.5, -3, -32, -3)
+      .lineTo(-24.1, -3)
+      .curveTo(-23.6, -3, -23.6, -2.5)
+      .lineTo(-23.6, 2.5)
+      .curveTo(-23.6, 2.9, -24.1, 2.9)
+      .closePath()
+      .moveTo(18.5, -15)
+      .lineTo(15, -18.5)
+      .curveTo(14.6, -18.9, 15, -19.2)
+      .lineTo(20.5, -24.7)
+      .curveTo(20.9, -25.2, 21.2, -24.7)
+      .lineTo(24.7, -21.3)
+      .curveTo(25.1, -20.9, 24.7, -20.6)
+      .lineTo(19.2, -15)
+      .curveTo(19.1, -15, 19.1, -14.9)
+      .curveTo(19, -14.9, 19, -14.9)
+      .curveTo(19, -14.8, 18.9, -14.8)
+      .curveTo(18.9, -14.8, 18.8, -14.8)
+      .curveTo(18.8, -14.8, 18.7, -14.8)
+      .curveTo(18.7, -14.8, 18.7, -14.9)
+      .curveTo(18.6, -14.9, 18.6, -14.9)
+      .curveTo(18.5, -15, 18.5, -15)
+      .closePath()
+      .moveTo(-19.2, -15)
+      .lineTo(-24.7, -20.6)
+      .curveTo(-25.1, -20.9, -24.7, -21.3)
+      .lineTo(-21.3, -24.7)
+      .curveTo(-20.9, -25.2, -20.6, -24.7)
+      .lineTo(-15, -19.2)
+      .curveTo(-14.6, -18.9, -15, -18.5)
+      .lineTo(-18.5, -15)
+      .curveTo(-18.5, -15, -18.6, -14.9)
+      .curveTo(-18.6, -14.9, -18.6, -14.9)
+      .curveTo(-18.7, -14.8, -18.7, -14.8)
+      .curveTo(-18.8, -14.8, -18.8, -14.8)
+      .curveTo(-18.9, -14.8, -18.9, -14.8)
+      .curveTo(-19, -14.8, -19, -14.9)
+      .curveTo(-19, -14.9, -19.1, -14.9)
+      .curveTo(-19.1, -15, -19.2, -15)
+      .closePath()
+      .moveTo(-2.5, -23.6)
+      .curveTo(-3, -23.6, -3, -24.2)
+      .lineTo(-3, -32.1)
+      .curveTo(-3, -32.5, -2.5, -32.5)
+      .lineTo(2.5, -32.5)
+      .curveTo(3, -32.5, 3, -32.1)
+      .lineTo(3, -24.2)
+      .curveTo(3, -23.6, 2.5, -23.6)
       .closePath();
-    this.shape.setTransform(25, 25);
+    this.shape.setTransform(24.9875, 25, 0.5, 0.5);
 
     this.shape_1 = new cjs.Shape();
     this.shape_1.graphics
-      .beginFill('#2E559C')
+      .beginFill('#2E559D')
       .beginStroke()
-      .moveTo(-17.6, 17.7)
-      .curveTo(-25, 10.3, -25, 0)
-      .curveTo(-25, -10.4, -17.6, -17.7)
-      .curveTo(-10.4, -25, 0, -25)
-      .curveTo(10.4, -25, 17.7, -17.7)
-      .curveTo(25, -10.4, 25, 0)
-      .curveTo(25, 10.3, 17.7, 17.7)
-      .curveTo(10.4, 25, 0, 25)
-      .curveTo(-10.4, 25, -17.6, 17.7)
+      .moveTo(-35.3, 35.3)
+      .curveTo(-50, 20.7, -50, 0)
+      .curveTo(-50, -20.8, -35.3, -35.3)
+      .curveTo(-20.8, -50, 0, -50)
+      .curveTo(20.7, -50, 35.3, -35.3)
+      .curveTo(50, -20.8, 50, 0)
+      .curveTo(50, 20.7, 35.3, 35.3)
+      .curveTo(20.7, 50, 0, 50)
+      .curveTo(-20.8, 50, -35.3, 35.3)
       .closePath();
-    this.shape_1.setTransform(25, 25);
+    this.shape_1.setTransform(25, 25, 0.5, 0.5);
 
     this.timeline.addTween(
       cjs.Tween.get({})
@@ -1224,64 +1242,64 @@
     this.shape.graphics
       .beginFill('#FFFFFF')
       .beginStroke()
-      .moveTo(-5.7, 14.4)
-      .curveTo(-6.1, 14.4, -6.3, 14.1)
-      .curveTo(-6.6, 13.9, -6.6, 13.6)
-      .lineTo(-6.6, 9.5)
-      .curveTo(-6.6, 9.1, -6.3, 8.9)
-      .curveTo(-6.1, 8.6, -5.7, 8.6)
-      .lineTo(-3.3, 8.6)
-      .lineTo(-3.3, 0.4)
-      .lineTo(-5.7, 0.4)
-      .curveTo(-6.1, 0.4, -6.3, 0.2)
-      .curveTo(-6.6, -0.1, -6.6, -0.4)
-      .lineTo(-6.6, -4.5)
-      .curveTo(-6.6, -4.8, -6.3, -5.1)
-      .curveTo(-6.1, -5.3, -5.7, -5.3)
-      .lineTo(2.5, -5.3)
-      .curveTo(2.8, -5.3, 3.1, -5.1)
-      .curveTo(3.3, -4.9, 3.3, -4.5)
-      .lineTo(3.3, 8.6)
-      .lineTo(5.7, 8.6)
-      .curveTo(6.1, 8.6, 6.3, 8.9)
-      .curveTo(6.6, 9.1, 6.6, 9.5)
-      .lineTo(6.6, 13.6)
-      .curveTo(6.6, 13.9, 6.3, 14.1)
-      .curveTo(6.1, 14.4, 5.7, 14.4)
+      .moveTo(-10.9, 30)
+      .curveTo(-12, 30, -12.9, 29.1)
+      .curveTo(-13.6, 28.4, -13.6, 27.2)
+      .lineTo(-13.6, 21.8)
+      .curveTo(-13.6, 20.7, -12.9, 19.9)
+      .curveTo(-12, 19, -10.9, 19)
+      .lineTo(-8.2, 19)
+      .lineTo(-8.2, 2.7)
+      .lineTo(-10.9, 2.7)
+      .curveTo(-12.1, 2.7, -12.9, 1.9)
+      .curveTo(-13.6, 1, -13.6, 0)
+      .lineTo(-13.6, -5.5)
+      .curveTo(-13.6, -6.5, -12.9, -7.4)
+      .curveTo(-12.1, -8.2, -10.9, -8.2)
+      .lineTo(5.5, -8.2)
+      .curveTo(6.6, -8.2, 7.4, -7.4)
+      .curveTo(8.2, -6.5, 8.2, -5.5)
+      .lineTo(8.2, 19)
+      .lineTo(10.9, 19)
+      .curveTo(12, 19, 12.9, 19.9)
+      .curveTo(13.7, 20.7, 13.7, 21.8)
+      .lineTo(13.7, 27.2)
+      .curveTo(13.7, 28.4, 12.9, 29.1)
+      .curveTo(12, 30, 10.9, 30)
       .closePath()
-      .moveTo(-2.5, -8.6)
-      .curveTo(-2.9, -8.6, -3.1, -8.8)
-      .curveTo(-3.3, -9.1, -3.3, -9.4)
-      .lineTo(-3.3, -13.5)
-      .curveTo(-3.3, -13.9, -3.1, -14.1)
-      .curveTo(-2.8, -14.4, -2.5, -14.4)
-      .lineTo(2.5, -14.4)
-      .curveTo(2.7, -14.4, 3.1, -14.1)
-      .curveTo(3.3, -13.9, 3.3, -13.5)
-      .lineTo(3.3, -9.4)
-      .curveTo(3.3, -9.1, 3.1, -8.8)
-      .curveTo(2.8, -8.6, 2.5, -8.6)
+      .moveTo(-5.4, -16.4)
+      .curveTo(-6.6, -16.4, -7.3, -17.2)
+      .curveTo(-8.2, -18, -8.2, -19.1)
+      .lineTo(-8.2, -27.3)
+      .curveTo(-8.2, -28.4, -7.3, -29.2)
+      .curveTo(-6.6, -30, -5.4, -30)
+      .lineTo(5.5, -30)
+      .curveTo(6.6, -30, 7.4, -29.2)
+      .curveTo(8.2, -28.4, 8.2, -27.3)
+      .lineTo(8.2, -19.1)
+      .curveTo(8.2, -18, 7.4, -17.2)
+      .curveTo(6.6, -16.4, 5.5, -16.4)
       .closePath();
-    this.shape.setTransform(23.475, 23.475);
+    this.shape.setTransform(25.525, 25.0122, 0.5, 0.5002);
 
     this.shape_1 = new cjs.Shape();
     this.shape_1.graphics
-      .beginFill('#2E559C')
+      .beginFill('#2E559D')
       .beginStroke()
-      .moveTo(-20.5, 23.5)
-      .curveTo(-21.7, 23.5, -22.6, 22.6)
-      .curveTo(-23.5, 21.7, -23.5, 20.5)
-      .lineTo(-23.5, -20.5)
-      .curveTo(-23.5, -21.7, -22.6, -22.6)
-      .curveTo(-21.7, -23.5, -20.5, -23.5)
-      .lineTo(20.5, -23.5)
-      .curveTo(21.7, -23.5, 22.6, -22.6)
-      .curveTo(23.5, -21.7, 23.5, -20.5)
-      .lineTo(23.5, 20.5)
-      .curveTo(23.5, 21.7, 22.6, 22.6)
-      .curveTo(21.7, 23.5, 20.5, 23.5)
+      .moveTo(-37.7, 50)
+      .curveTo(-42.7, 50, -46.4, 46.4)
+      .curveTo(-50, 42.8, -50, 37.7)
+      .lineTo(-50, -37.7)
+      .curveTo(-50, -42.8, -46.4, -46.4)
+      .curveTo(-42.7, -50, -37.7, -50)
+      .lineTo(37.7, -50)
+      .curveTo(42.8, -50, 46.4, -46.4)
+      .curveTo(50, -42.8, 50, -37.7)
+      .lineTo(50, 37.7)
+      .curveTo(50, 42.8, 46.4, 46.4)
+      .curveTo(42.8, 50, 37.7, 50)
       .closePath();
-    this.shape_1.setTransform(23.475, 23.475);
+    this.shape_1.setTransform(25, 24.9997, 0.5, 0.5002);
 
     this.timeline.addTween(
       cjs.Tween.get({})
@@ -1292,7 +1310,7 @@
     this._renderFirstFrame();
   }).prototype = getMCSymbolPrototype(
     lib.bubblePicto2,
-    new cjs.Rectangle(0, 0, 47, 47),
+    new cjs.Rectangle(0, 0, 50, 50),
     null
   );
 
@@ -1311,65 +1329,86 @@
     props.reversed = reversed;
     cjs.MovieClip.apply(this, [props]);
 
-    // Calque_1
+    // FlashAICB
     this.shape = new cjs.Shape();
     this.shape.graphics
       .beginFill('#FFFFFF')
       .beginStroke()
-      .moveTo(-2.9, 13.5)
-      .curveTo(-3.3, 13.5, -3.6, 13.2)
-      .curveTo(-3.8, 12.8, -3.8, 12.5)
-      .lineTo(-3.8, 6.8)
-      .curveTo(-3.8, 6.3, -3.6, 6.1)
-      .curveTo(-3.3, 5.8, -2.9, 5.8)
-      .lineTo(2.9, 5.8)
-      .curveTo(3.3, 5.8, 3.6, 6.1)
-      .curveTo(3.8, 6.3, 3.8, 6.8)
-      .lineTo(3.8, 12.5)
-      .curveTo(3.8, 12.9, 3.6, 13.2)
-      .curveTo(3.3, 13.5, 2.9, 13.5)
+      .moveTo(-6, 27.9)
+      .curveTo(-6.8, 27.9, -7.4, 27.3)
+      .curveTo(-8, 26.7, -8, 25.9)
+      .lineTo(-8, 14)
+      .curveTo(-8, 13.2, -7.4, 12.6)
+      .curveTo(-6.8, 12, -6, 12)
+      .lineTo(6, 12)
+      .curveTo(6.8, 12, 7.4, 12.6)
+      .curveTo(8, 13.2, 8, 14)
+      .lineTo(8, 25.9)
+      .curveTo(8, 26.7, 7.4, 27.3)
+      .curveTo(6.8, 27.9, 6, 27.9)
       .closePath()
-      .moveTo(-2.8, 1.9)
-      .curveTo(-3.3, 1.9, -3.5, 1.7)
-      .curveTo(-3.8, 1.5, -3.8, 1.2)
-      .lineTo(-4.3, -12.5)
-      .curveTo(-4.3, -12.9, -4, -13.1)
-      .curveTo(-3.7, -13.5, -3.3, -13.5)
-      .lineTo(3.3, -13.5)
-      .curveTo(3.7, -13.5, 4, -13.1)
-      .curveTo(4.3, -12.9, 4.3, -12.6)
-      .lineTo(3.8, 1.2)
-      .curveTo(3.8, 1.5, 3.5, 1.7)
-      .curveTo(3.2, 1.9, 2.8, 1.9)
+      .moveTo(-5.8, 4)
+      .curveTo(-6.7, 4, -7.3, 3.6)
+      .curveTo(-7.9, 3.2, -7.9, 2.6)
+      .lineTo(-9, -25.9)
+      .curveTo(-9, -26.8, -8.4, -27.2)
+      .curveTo(-7.5, -27.9, -6.9, -27.9)
+      .lineTo(6.8, -27.9)
+      .curveTo(7.5, -27.9, 8.3, -27.2)
+      .curveTo(9, -26.8, 9, -26)
+      .lineTo(7.8, 2.6)
+      .curveTo(7.7, 3.2, 7.2, 3.6)
+      .curveTo(6.6, 4, 5.7, 4)
       .closePath();
-    this.shape.setTransform(24.975, 25.025);
+    this.shape.setTransform(25.0125, 24.9997, 0.5, 0.5002);
 
     this.shape_1 = new cjs.Shape();
     this.shape_1.graphics
-      .beginFill('#2E559C')
+      .beginFill('#2E559D')
       .beginStroke()
-      .moveTo(-6.9, 21)
-      .lineTo(-14.7, 20.3)
-      .lineTo(-17.9, 13)
-      .lineTo(-25, 7.8)
-      .lineTo(-22.1, 0)
-      .lineTo(-25, -7.7)
-      .lineTo(-17.9, -12.9)
-      .lineTo(-14.7, -20.2)
-      .lineTo(-6.9, -20.9)
-      .lineTo(-0, -25)
-      .lineTo(6.8, -20.9)
-      .lineTo(14.7, -20.2)
-      .lineTo(17.9, -12.9)
-      .lineTo(25, -7.7)
-      .lineTo(22, 0)
-      .lineTo(25, 7.8)
-      .lineTo(17.9, 13)
-      .lineTo(14.7, 20.3)
-      .lineTo(6.8, 21)
-      .lineTo(-0, 25)
+      .moveTo(-1.9, 49.2)
+      .lineTo(-12.6, 38.9)
+      .lineTo(-27.3, 41)
+      .curveTo(-28.4, 41.1, -29.4, 40.5)
+      .curveTo(-30.3, 39.8, -30.5, 38.7)
+      .lineTo(-33.1, 24)
+      .lineTo(-46.2, 17.1)
+      .curveTo(-47.2, 16.5, -47.6, 15.5)
+      .curveTo(-47.9, 14.4, -47.4, 13.3)
+      .lineTo(-40.8, -0)
+      .lineTo(-47.4, -13.3)
+      .curveTo(-47.9, -14.4, -47.6, -15.5)
+      .curveTo(-47.2, -16.5, -46.2, -17.1)
+      .lineTo(-33.1, -24)
+      .lineTo(-30.5, -38.6)
+      .curveTo(-30.3, -39.8, -29.4, -40.5)
+      .curveTo(-28.4, -41.1, -27.3, -41)
+      .lineTo(-12.6, -38.9)
+      .lineTo(-1.9, -49.2)
+      .curveTo(-1.1, -50, 0, -50)
+      .curveTo(1.2, -50, 2, -49.2)
+      .lineTo(12.6, -38.9)
+      .lineTo(27.3, -41)
+      .curveTo(28.5, -41.1, 29.4, -40.5)
+      .curveTo(30.4, -39.8, 30.5, -38.6)
+      .lineTo(33.1, -24)
+      .lineTo(46.2, -17.1)
+      .curveTo(47.2, -16.5, 47.6, -15.5)
+      .curveTo(47.9, -14.4, 47.4, -13.3)
+      .lineTo(40.9, -0)
+      .lineTo(47.4, 13.3)
+      .curveTo(47.9, 14.4, 47.6, 15.5)
+      .curveTo(47.2, 16.5, 46.2, 17.1)
+      .lineTo(33.1, 24)
+      .lineTo(30.5, 38.7)
+      .curveTo(30.4, 39.8, 29.4, 40.5)
+      .curveTo(28.5, 41.1, 27.3, 41)
+      .lineTo(12.6, 38.9)
+      .lineTo(2, 49.2)
+      .curveTo(1.2, 50, 0, 50)
+      .curveTo(-1.1, 50, -1.9, 49.2)
       .closePath();
-    this.shape_1.setTransform(25, 25);
+    this.shape_1.setTransform(25, 24.9997, 0.5, 0.5002);
 
     this.timeline.addTween(
       cjs.Tween.get({})
@@ -1380,7 +1419,7 @@
     this._renderFirstFrame();
   }).prototype = getMCSymbolPrototype(
     lib.bubblePicto1,
-    new cjs.Rectangle(0, 0, 50, 50),
+    new cjs.Rectangle(1.2, 0, 47.699999999999996, 50),
     null
   );
 
@@ -1492,6 +1531,21 @@
     // FlashAICB
     this.shape = new cjs.Shape();
     this.shape.graphics
+      .beginFill('rgba(255,255,255,0.949)')
+      .beginStroke()
+      .moveTo(-207.8, 114.3)
+      .curveTo(-212.7, 114.3, -216.2, 110.8)
+      .curveTo(-219.8, 107.3, -219.8, 102.3)
+      .lineTo(-219.8, -114.3)
+      .lineTo(219.8, -114.3)
+      .lineTo(219.8, 102.3)
+      .curveTo(219.8, 107.3, 216.3, 110.8)
+      .curveTo(212.7, 114.3, 207.8, 114.3)
+      .closePath();
+    this.shape.setTransform(220.025, 185.775);
+
+    this.shape_1 = new cjs.Shape();
+    this.shape_1.graphics
       .beginFill('#6E747D')
       .beginStroke()
       .moveTo(-9.7, 9.1)
@@ -1527,10 +1581,10 @@
       .curveTo(11.6, -6.5, 11, -5.9)
       .curveTo(10.5, -5.5, 9.7, -5.5)
       .closePath();
-    this.shape.setTransform(418.825, 47.7);
+    this.shape_1.setTransform(418.825, 47.7);
 
-    this.shape_1 = new cjs.Shape();
-    this.shape_1.graphics
+    this.shape_2 = new cjs.Shape();
+    this.shape_2.graphics
       .beginFill('#9AA3AE')
       .beginStroke()
       .moveTo(-173.5, 11.6)
@@ -1546,22 +1600,7 @@
       .curveTo(178.5, 8.7, 177, 10.2)
       .curveTo(175.5, 11.6, 173.5, 11.6)
       .closePath();
-    this.shape_1.setTransform(186.725, 47.7);
-
-    this.shape_2 = new cjs.Shape();
-    this.shape_2.graphics
-      .beginFill('rgba(255,255,255,0.898)')
-      .beginStroke()
-      .moveTo(-207.8, 114.3)
-      .curveTo(-212.7, 114.3, -216.2, 110.8)
-      .curveTo(-219.8, 107.3, -219.8, 102.3)
-      .lineTo(-219.8, -114.3)
-      .lineTo(219.8, -114.3)
-      .lineTo(219.8, 102.3)
-      .curveTo(219.8, 107.3, 216.3, 110.8)
-      .curveTo(212.7, 114.3, 207.8, 114.3)
-      .closePath();
-    this.shape_2.setTransform(220.025, 185.775);
+    this.shape_2.setTransform(186.725, 47.7);
 
     this.shape_3 = new cjs.Shape();
     this.shape_3.graphics
@@ -1760,6 +1799,7 @@
     // webpageEffect
     this.instance = new lib.webpageEffect();
     this.instance.setTransform(219.8, 114.3, 1, 1, 0, 0, 0, 219.8, 114.3);
+    this.instance.alpha = 0.5;
 
     this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
 
@@ -1897,7 +1937,7 @@
       35,
       22.6
     );
-    var instance_8Filter_1 = new cjs.ColorFilter(0, 0, 0, 1, 51, 51, 52, 0);
+    var instance_8Filter_1 = new cjs.ColorFilter(0, 0, 0, 1, 102, 107, 121, 0);
     this.instance_8.filters = [instance_8Filter_1];
     this.instance_8.cache(-2, -2, 70, 49);
 
@@ -2110,8 +2150,18 @@
 
     // webpageHeader
     this.instance_20 = new lib.webpageHeader();
-    this.instance_20.setTransform(219.8, 29.15, 1, 1.246, 0, 0, 0, 219.8, 23.4);
-    var instance_20Filter_11 = new cjs.ColorFilter(0, 0, 0, 1, 51, 51, 52, 0);
+    this.instance_20.setTransform(
+      219.75,
+      29.15,
+      1.0318,
+      1.246,
+      0,
+      0,
+      0,
+      219.7,
+      23.4
+    );
+    var instance_20Filter_11 = new cjs.ColorFilter(0, 0, 0, 1, 51, 54, 61, 0);
     this.instance_20.filters = [instance_20Filter_11];
     this.instance_20.cache(-2, -2, 444, 51);
 
@@ -2121,7 +2171,7 @@
     this._renderFirstFrame();
   }).prototype = getMCSymbolPrototype(
     lib.webpage3,
-    new cjs.Rectangle(0, 0, 439.6, 277),
+    new cjs.Rectangle(-6.9, 0, 453.5, 277),
     null
   );
 
@@ -2143,6 +2193,7 @@
     // webpageEffect
     this.instance = new lib.webpageEffect();
     this.instance.setTransform(219.8, 114.3, 1, 1, 0, 0, 0, 219.8, 114.3);
+    this.instance.alpha = 0.5;
 
     this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
 
@@ -2404,6 +2455,7 @@
     // webpageEffect
     this.instance = new lib.webpageEffect();
     this.instance.setTransform(219.8, 114.3, 1, 1, 0, 0, 0, 219.8, 114.3);
+    this.instance.alpha = 0.5;
 
     this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
 
@@ -2609,6 +2661,58 @@
     props.reversed = reversed;
     cjs.MovieClip.apply(this, [props]);
 
+    this.actionFrames = [0, 23, 32, 80, 89, 137, 146, 189];
+    // timeline functions:
+    this.frame_0 = function() {
+      var variableWords = document.getElementById('variableWords');
+    };
+    this.frame_23 = function() {
+      if (this.looped) variableWords.classList.add('fade');
+    };
+    this.frame_32 = function() {
+      variableWords.classList.remove('fade');
+      variableWords.textContent = 'LALALA';
+    };
+    this.frame_80 = function() {
+      variableWords.classList.add('fade');
+    };
+    this.frame_89 = function() {
+      variableWords.classList.remove('fade');
+      variableWords.textContent = 'LOLOLO';
+    };
+    this.frame_137 = function() {
+      variableWords.classList.add('fade');
+    };
+    this.frame_146 = function() {
+      variableWords.classList.remove('fade');
+      variableWords.textContent = 'LILILI';
+    };
+    this.frame_189 = function() {
+      if (!this.looped) this.looped = 1;
+      if (this.looped++ === 3) this.stop();
+    };
+
+    // actions tween:
+    this.timeline.addTween(
+      cjs.Tween.get(this)
+        .call(this.frame_0)
+        .wait(23)
+        .call(this.frame_23)
+        .wait(9)
+        .call(this.frame_32)
+        .wait(48)
+        .call(this.frame_80)
+        .wait(9)
+        .call(this.frame_89)
+        .wait(48)
+        .call(this.frame_137)
+        .wait(9)
+        .call(this.frame_146)
+        .wait(43)
+        .call(this.frame_189)
+        .wait(1)
+    );
+
     // bubble1
     this.instance = new lib.bubble1();
     this.instance.setTransform(346.05, 91.25, 1, 1, 0, 0, 0, 78.7, 48.6);
@@ -2756,7 +2860,7 @@
 
     this._renderFirstFrame();
   }).prototype = p = new lib.AnMovieClip();
-  p.nominalBounds = new cjs.Rectangle(220, 151, 219.89999999999998, 196.5);
+  p.nominalBounds = new cjs.Rectangle(213.2, 151, 233.5, 196.5);
   // library properties:
   lib.properties = {
     id: '5ED811F4CA4D4A1082E6963D6B77B249',

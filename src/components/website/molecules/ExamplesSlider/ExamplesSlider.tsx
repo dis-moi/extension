@@ -2,9 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
-import Screenshot1 from 'assets/img/website/screenshots/dismoi-screenshot-le-même-en-local-mounted-website-desktop.jpg';
-import Screenshot2 from 'assets/img/website/screenshots/dismoi-screenshot-selon-que-choisir-mounted-website-desktop.jpg';
-import Screenshot3 from 'assets/img/website/screenshots/dismoi-screenshot-biet-thomas-mounted-website-desktop.jpg';
+import ScreenshotDesktop1 from 'assets/img/website/screenshots/dismoi-screenshot-le-même-en-local-mounted-website-desktop.jpg';
+import ScreenshotMobile1 from 'assets/img/website/screenshots/dismoi-screenshot-le-même-en-local-mounted-website-mobile.jpg';
+import ScreenshotDesktop2 from 'assets/img/website/screenshots/dismoi-screenshot-selon-que-choisir-mounted-website-desktop.jpg';
+import ScreenshotMobile2 from 'assets/img/website/screenshots/dismoi-screenshot-selon-que-choisir-mounted-website-mobile.jpg';
+import ScreenshotDesktop3 from 'assets/img/website/screenshots/dismoi-screenshot-biet-thomas-mounted-website-desktop.jpg';
+import ScreenshotMobile3 from 'assets/img/website/screenshots/dismoi-screenshot-biet-thomas-mounted-website-mobile.jpg';
 import SectionTitle from '../../atoms/Titles/SectionTitle';
 import TabButton from '../../atoms/TabButton/TabButton';
 import { ButtonProps } from '../../atoms/Button/Button';
@@ -12,7 +15,7 @@ import SmallTitle from '../../atoms/Titles/SmallTitle';
 import SectionArrow from '../../atoms/SectionArrow/SectionArrow';
 
 const StyledSmallTitle = styled(props => <SmallTitle {...props} />)`
-  color: ${props => props.theme.website.secondaryColor};
+  color: ${props => props.theme.website.secondaryColorDarker};
 `;
 
 const StyledTabButton = styled(props => <TabButton {...props} />)`
@@ -32,23 +35,28 @@ const StyledSectionArrow = styled(props => <SectionArrow {...props} />)`
 `;
 
 const ArrowPrev = styled(props => <StyledSectionArrow {...props} />)`
-  transform: translateY(-50%) rotate(90deg) scale(0.8);
+  /* transform: translateY(-50%) rotate(90deg) scale(0.8); */
+  display: none;
   left: -12.5px;
   @media (min-width: ${props => props.theme.tabletWidth}) {
+    display: block;
     transform: translateY(-50%) rotate(90deg);
   }
 `;
 
 const ArrowNext = styled(props => <StyledSectionArrow {...props} />)`
-  transform: translateY(-50%) rotate(-90deg) scale(0.8);
+  /* transform: translateY(-50%) rotate(-90deg) scale(0.8); */
+  display: none;
   right: -12.5px;
   @media (min-width: ${props => props.theme.tabletWidth}) {
+    display: block;
     transform: translateY(-50%) rotate(-90deg);
   }
 `;
 
 export interface Example {
-  src: string;
+  srcMobile: string;
+  srcDesktop: string;
   alt: string;
   title: string;
   buttonText: string;
@@ -56,19 +64,22 @@ export interface Example {
 
 export const examples: Example[] = [
   {
-    src: Screenshot1,
+    srcMobile: ScreenshotMobile1,
+    srcDesktop: ScreenshotDesktop1,
     alt: 'Exemple – Le Même en Local',
     title: 'Un guide spécialisé vous suggère une alternative locale',
     buttonText: 'Alternatives conso'
   },
   {
-    src: Screenshot2,
+    srcMobile: ScreenshotMobile2,
+    srcDesktop: ScreenshotDesktop2,
     alt: 'Exemple – Selon Que Choisir',
     title: 'Une association de consommateurs vous signale une arnaque',
     buttonText: 'Alertes Arnaques'
   },
   {
-    src: Screenshot3,
+    srcMobile: ScreenshotMobile3,
+    srcDesktop: ScreenshotDesktop3,
     alt: 'Exemple – Biet Thomas',
     title:
       'Un lecteur vous partage une discussion qui approfondit l’article consulté',
@@ -94,7 +105,7 @@ const ExamplesSlider = styled(
       // lazyLoad: true, // bug ts ?
       slidesToShow: 1,
       slidesToScroll: 1,
-      autoplay: true,
+      autoplay: false,
       speed: 500,
       autoplaySpeed: 3500,
       // pauseOnHover: true,
@@ -133,7 +144,25 @@ const ExamplesSlider = styled(
         window.removeEventListener('resize', getSectionTitleMinHeight);
     }, []);
 
-    let sliderRef: Slider | null;
+    const sliderRef = useRef<Slider | null>(null);
+
+    const setSliderPlaying = () => {
+      if (sliderRef?.current) {
+        const offset = window.pageYOffset;
+        const coverHeight =
+          document.querySelector('#cover')?.getBoundingClientRect().height || 0;
+        const isVisibleEnough = offset > coverHeight / 2;
+        if (isVisibleEnough) {
+          sliderRef.current.slickPlay();
+        } else {
+          sliderRef.current.slickPause();
+        }
+      }
+    };
+    useEffect(() => {
+      window.addEventListener('scroll', setSliderPlaying);
+      return () => window.removeEventListener('scroll', setSliderPlaying);
+    }, []);
 
     return (
       <div className={className}>
@@ -145,24 +174,34 @@ const ExamplesSlider = styled(
           {title}
         </SectionTitle>
         <SliderWrapper>
-          <Slider ref={slider => (sliderRef = slider)} {...settings}>
+          <Slider ref={slider => (sliderRef.current = slider)} {...settings}>
             {examples &&
-              examples.map<React.ReactNode>((exemple, index) => (
+              examples.map<React.ReactNode>((example, index) => (
                 <div key={index}>
-                  <img src={exemple.src.substr(1)} alt={exemple.alt} />
+                  <img
+                    srcSet={
+                      example.srcMobile +
+                      ' 1000w, ' +
+                      example.srcDesktop +
+                      ' 2800w'
+                    }
+                    sizes="(max-width: 768px) 1000px, 2800px"
+                    src={example.srcDesktop}
+                    alt={example.alt}
+                  />
                 </div>
               ))}
           </Slider>
           <ArrowPrev
             handleClick={() => {
               setSettings({ ...settings, autoplay: false });
-              sliderRef && sliderRef.slickPrev();
+              sliderRef?.current && sliderRef.current.slickPrev();
             }}
           />
           <ArrowNext
             handleClick={() => {
               setSettings({ ...settings, autoplay: false });
-              sliderRef && sliderRef.slickNext();
+              sliderRef?.current && sliderRef.current.slickNext();
             }}
           />
         </SliderWrapper>
@@ -174,13 +213,13 @@ const ExamplesSlider = styled(
                 text: example.buttonText,
                 handleClick: () => {
                   setSettings({ ...settings, autoplay: false });
-                  sliderRef && sliderRef.slickGoTo(index);
+                  sliderRef?.current && sliderRef.current.slickGoTo(index);
                 }
               }
             ],
             []
           )}
-          color="green"
+          color="greenDarker"
           activeIndex={tabButtonIndex}
           setActiveIndex={setTabButtonIndex}
         />
@@ -199,9 +238,11 @@ const ExamplesSlider = styled(
       border: 1px solid ${props => props.theme.website.greyColorDarker};
       box-shadow: ${props => props.theme.website.boxShadow};
       display: initial;
-      width: calc(100vw - 100px);
+      width: calc(100vw - 32px);
+      max-width: 600px;
       @media (min-width: ${props => props.theme.tabletWidth}) {
         width: auto;
+        max-width: none;
         height: calc(100vh - 120px);
         max-height: 450px;
       }
@@ -219,8 +260,15 @@ const ExamplesSlider = styled(
     transition: opacity 0.5s;
   }
   ${SectionTitle} {
-    color: ${props => props.theme.website.secondaryColor};
+    color: ${props => props.theme.website.secondaryColorDarker};
     font-weight: normal;
+    margin-bottom: 10px;
+    @media (min-width: ${props => props.theme.tabletWidth}) {
+      margin-bottom: 13px;
+    }
+    @media (min-width: ${props => props.theme.desktopWidth}) {
+      margin-bottom: 15px;
+    }
   }
 `;
 
