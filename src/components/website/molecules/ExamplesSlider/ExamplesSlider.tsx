@@ -64,22 +64,22 @@ export interface Example {
 
 export const examples: Example[] = [
   {
-    srcMobile: ScreenshotMobile1,
-    srcDesktop: ScreenshotDesktop1,
+    srcMobile: ScreenshotMobile1.substr(1),
+    srcDesktop: ScreenshotDesktop1.substr(1),
     alt: 'Exemple – Le Même en Local',
     title: 'Un guide spécialisé vous suggère une alternative locale',
     buttonText: 'Alternatives conso'
   },
   {
-    srcMobile: ScreenshotMobile2,
-    srcDesktop: ScreenshotDesktop2,
+    srcMobile: ScreenshotMobile2.substr(1),
+    srcDesktop: ScreenshotDesktop2.substr(1),
     alt: 'Exemple – Selon Que Choisir',
     title: 'Une association de consommateurs vous signale une arnaque',
     buttonText: 'Alertes Arnaques'
   },
   {
-    srcMobile: ScreenshotMobile3,
-    srcDesktop: ScreenshotDesktop3,
+    srcMobile: ScreenshotMobile3.substr(1),
+    srcDesktop: ScreenshotDesktop3.substr(1),
     alt: 'Exemple – Biet Thomas',
     title:
       'Un lecteur vous partage une discussion qui approfondit l’article consulté',
