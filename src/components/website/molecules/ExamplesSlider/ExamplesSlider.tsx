@@ -35,22 +35,26 @@ const StyledSectionArrow = styled(props => <SectionArrow {...props} />)`
 `;
 
 const ArrowPrev = styled(props => <StyledSectionArrow {...props} />)`
-  /* transform: translateY(-50%) rotate(90deg) scale(0.8); */
   display: none;
-  left: -12.5px;
   @media (min-width: ${props => props.theme.tabletWidth}) {
     display: block;
+    left: -32.5px;
     transform: translateY(-50%) rotate(90deg);
+  }
+  @media (min-width: ${props => props.theme.desktopWidth}) {
+    left: -12.5px;
   }
 `;
 
 const ArrowNext = styled(props => <StyledSectionArrow {...props} />)`
-  /* transform: translateY(-50%) rotate(-90deg) scale(0.8); */
   display: none;
-  right: -12.5px;
   @media (min-width: ${props => props.theme.tabletWidth}) {
     display: block;
+    right: -32.5px;
     transform: translateY(-50%) rotate(-90deg);
+  }
+  @media (min-width: ${props => props.theme.desktopWidth}) {
+    right: -12.5px;
   }
 `;
 
@@ -94,8 +98,6 @@ export interface ExamplesSliderProps {
 
 const ExamplesSlider = styled(
   ({ className, examples }: ExamplesSliderProps) => {
-    const [title, setTitle] = React.useState<string>(examples[0].title);
-    const [titleVisible, setTitleVisible] = React.useState<boolean>(true);
     const [tabButtonIndex, setTabButtonIndex] = React.useState<number>(0);
     const [settings, setSettings] = React.useState({
       dots: false,
@@ -110,39 +112,9 @@ const ExamplesSlider = styled(
       autoplaySpeed: 3500,
       // pauseOnHover: true,
       beforeChange: (current: number, next: number) => {
-        setTitleVisible(false);
         setTabButtonIndex(next);
-        setTimeout(() => {
-          setTitle(examples[next].title);
-          setTitleVisible(true);
-        }, 500);
       }
     });
-
-    // Title height sizing effect :
-    const sectionTitleRef = useRef<HTMLHeadingElement | null>(null);
-    const largerTitle = examples.reduce(function(a, b) {
-      return a.title.length > b.title.length ? a : b;
-    }).title;
-    const getSectionTitleMinHeight = () => {
-      if (sectionTitleRef && sectionTitleRef.current) {
-        sectionTitleRef.current.innerHTML = largerTitle;
-        sectionTitleRef.current.setAttribute('style', '');
-        sectionTitleRef.current.setAttribute(
-          'style',
-          'min-height:' +
-            sectionTitleRef.current.getBoundingClientRect().height +
-            'px'
-        );
-        sectionTitleRef.current.innerHTML = title;
-      }
-    };
-    useEffect(() => {
-      getSectionTitleMinHeight();
-      window.addEventListener('resize', getSectionTitleMinHeight);
-      return () =>
-        window.removeEventListener('resize', getSectionTitleMinHeight);
-    }, []);
 
     const sliderRef = useRef<Slider | null>(null);
 
@@ -167,17 +139,12 @@ const ExamplesSlider = styled(
     return (
       <div className={className}>
         <StyledSmallTitle>Par exemple</StyledSmallTitle>
-        <SectionTitle
-          ref={sectionTitleRef}
-          className={titleVisible ? 'fadeIn' : 'fadeOut'}
-        >
-          {title}
-        </SectionTitle>
         <SliderWrapper>
           <Slider ref={slider => (sliderRef.current = slider)} {...settings}>
             {examples &&
               examples.map<React.ReactNode>((example, index) => (
                 <div key={index}>
+                  <SectionTitle>{example.title}</SectionTitle>
                   <img
                     srcSet={
                       example.srcMobile +
@@ -231,43 +198,45 @@ const ExamplesSlider = styled(
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  div[tabindex] {
-    text-align: center;
-    img {
-      margin-top: 10px;
-      border: 1px solid ${props => props.theme.website.greyColorDarker};
-      box-shadow: ${props => props.theme.website.boxShadow};
-      display: initial;
-      width: calc(100vw - 32px);
-      max-width: 600px;
-      @media (min-width: ${props => props.theme.tabletWidth}) {
-        width: auto;
-        max-width: none;
-        height: calc(100vh - 120px);
-        max-height: 450px;
+
+  .slick-track {
+    display: flex !important;
+    .slick-slide {
+      height: inherit !important;
+      div {
+        height: 100%;
       }
-      @media (min-width: ${props => props.theme.desktopWidth}) {
-        max-height: 500px;
+      div[tabindex] {
+        text-align: center;
+        display: flex !important;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        ${SectionTitle} {
+          color: ${props => props.theme.website.secondaryColorDarker};
+          font-weight: normal;
+          margin: auto 0;
+        }
+        img {
+          margin-top: 15px;
+          border: 1px solid ${props => props.theme.website.greyColorDarker};
+          box-shadow: ${props => props.theme.website.boxShadow};
+          display: initial;
+          width: calc(100vw - 32px);
+          max-width: 600px;
+          @media (min-width: ${props => props.theme.tabletWidth}) {
+            margin-top: 20px;
+            width: auto;
+            max-width: none;
+            height: calc(100vh - 120px);
+            max-height: 450px;
+          }
+          @media (min-width: ${props => props.theme.desktopWidth}) {
+            margin-top: 25px;
+            max-height: 500px;
+          }
+        }
       }
-    }
-  }
-  .fadeOut {
-    opacity: 0;
-    transition: opacity 0.5s;
-  }
-  .fadeIn {
-    opacity: 1;
-    transition: opacity 0.5s;
-  }
-  ${SectionTitle} {
-    color: ${props => props.theme.website.secondaryColorDarker};
-    font-weight: normal;
-    margin-bottom: 10px;
-    @media (min-width: ${props => props.theme.tabletWidth}) {
-      margin-bottom: 13px;
-    }
-    @media (min-width: ${props => props.theme.desktopWidth}) {
-      margin-bottom: 15px;
     }
   }
 `;
