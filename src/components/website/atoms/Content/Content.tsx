@@ -40,7 +40,8 @@ const Content = styled.div`
   }
   [id='sommaire'] {
     color: ${props => props.theme.website.primaryColor};
-    + ol a {
+    + ol a,
+    + ul a {
       color: ${props => props.theme.website.primaryColor};
       &:hover {
         color: black;
