@@ -21,6 +21,19 @@ const Content = styled.div`
       top: 4px;
       background: ${props => props.theme.website.primaryColor};
     }
+    h2 {
+      font-size: 24px;
+      color: ${props => props.theme.website.primaryColor};
+      margin-top: 0;
+      padding-top: 0;
+      margin-bottom: 15px;
+    }
+    a {
+      color: ${props => props.theme.website.primaryColorDarker};
+      &:hover {
+        color: black;
+      }
+    }
   }
   p {
     margin: 0 0 10px 0;
@@ -30,7 +43,7 @@ const Content = styled.div`
     + ol a {
       color: ${props => props.theme.website.primaryColor};
       &:hover {
-        color: ${props => props.theme.website.primaryColorDarker};
+        color: black;
       }
     }
   }
@@ -45,16 +58,18 @@ const Content = styled.div`
     padding-top: 50px;
     margin-top: 0;
     margin-bottom: 20px;
+    font-size: 24px;
   }
   h3 {
     color: ${props => props.theme.website.secondaryColorDarker};
     margin-top: 30px;
     margin-bottom: 15px;
+    font-size: 20px;
   }
   a {
-    color: ${props => props.theme.website.secondaryColor};
+    color: ${props => props.theme.website.secondaryColorDarker};
     &:hover {
-      color: ${props => props.theme.website.secondaryColorDarker};
+      color: black;
     }
   }
   img {
