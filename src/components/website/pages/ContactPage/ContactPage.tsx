@@ -2,17 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import ContentPage from '../../organisms/ContentPage/ContentPage';
 
-export interface AboutUsPageProps {
+export interface ContactPageProps {
   className?: string;
 }
 
-const AboutUsPage = styled(({ className }: AboutUsPageProps) => (
+const ContactPage = styled(({ className }: ContactPageProps) => (
   <article className={className}>
     <ContentPage
-      title="À propos"
-      markdownFilePath={require(`${__dirname}/AboutUsPageFr.md`)}
+      title="Nous contacter"
+      markdownFilePath={require(`${__dirname}/ContactPageFr.md`)}
     />
   </article>
 ))``;
 
-export default AboutUsPage;
+export default ContactPage;
