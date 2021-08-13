@@ -67,6 +67,18 @@ const Content = styled.div`
     margin-bottom: 15px;
     font-size: 20px;
   }
+  h4 {
+    color: ${props => props.theme.website.secondaryColorDarker};
+    margin-top: 20px;
+    margin-bottom: 12px;
+    font-size: 18px;
+  }
+  h5 {
+    color: ${props => props.theme.website.secondaryColorDarker};
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
   a {
     color: ${props => props.theme.website.secondaryColorDarker};
     &:hover {
