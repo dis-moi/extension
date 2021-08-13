@@ -41,7 +41,6 @@ const MobileButtonsWrapper = styled.div`
 const HeaderCTAButton = () => (
   <Button
     text={'Ajouter DisMoi'}
-    details={'Gratuit'}
     icon={'download'}
     color={'green'}
     handleClick={() =>
@@ -61,6 +60,9 @@ const Header = styled(({ className, scrolled }: HeaderProps) => {
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);
 
   useEffect(() => {
+    window.onload = () => {
+      setOffset(window.pageYOffset);
+    };
     window.onscroll = () => {
       setOffset(window.pageYOffset);
     };
