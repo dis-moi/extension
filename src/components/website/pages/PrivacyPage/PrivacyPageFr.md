@@ -1,13 +1,37 @@
 > L’utilisation de l’extension Dismoi est anonyme. La seule donnée personnelle demandée est l’adresse email de l’internaute dans le cas où celui-ci souhaite poster une contribution ou poser une question à la communauté DisMoi. Le service ne comporte pas de publicité et aucune donnée n’est revendue. Le logiciel est disponible en open source.
 
-### Sommaire [À TERMINER]
+### Sommaire
 
-* [Lois directement applicables](#lois-directement-applicables)
-* [Informations obligatoires sur le site web](#informations-obligatoires-sur-le-site-web)
-* [Dénomination sociale](#dénomination-sociale)
-* [Publication du site](#publication-du-site)
-* [Hébergeur du site](#hébergeur-du-site)
-* [Données personnelles](#données-personnelles)
+* **Règles d’or :**<br /><br />
+  * [1. Une utilisation anonyme de l’extension](#1-une-utilisation-anonyme-de-l’extension)
+  * [2. Pas de profilage, ni de revente de données](#2-pas-de-profilage-ni-de-revente-de-données)
+  * [3. Pas de publicité](#3-pas-de-publicité)
+  * [4. Code source ouvert](#4-code-source-ouvert)<br /><br />
+* **Questions fréquentes :**<br /><br />
+  * [1. Quelles données personnelles recueillez-vous ?](#1-quelles-données-personnelles-recueillez-vous-)
+      * [La seule donnée personnelle utilisée est votre e-mail, quand vous contribuez ou posez une question](#la-seule-donnée-personnelle-utilisée-est-votre-e-mail-quand-vous-contribuez-ou-posez-une-question)
+      * [Votre adresse IP ne nous est pas visible](#votre-adresse-ip-ne-nous-est-pas-visible)
+  * [2. Quelles données sont remontées quand j’utilise DisMoi ?](#2-quelles-données-sont-remontées-quand-j’utilise-dismoi-)
+      * [Des données anonymisées remontées pour améliorer le service](#des-données-anonymisées-remontées-pour-améliorer-le-service)
+      * [L’adresse de la page web en cours est remontée en cas d’interaction avec l’extension](#l’adresse-de-la-page-web-en-cours-est-remontée-en-cas-d’interaction-avec-l’extension)
+      * [Cette donnée est anonymisée et filtrée](#cette-donnée-est-anonymisée-et-filtrée)
+      * [Bloquer toute remontée de données de navigation](#bloquer-toute-remontée-de-données-de-navigation)
+  * [3. Ces données sont-elles communiquées à des tiers ?](#3-ces-données-sont-elles-communiquées-à-des-tiers-)
+      * [Les contributeurs ont accès aux statistiques de leurs bulles](#les-contributeurs-ont-accès-aux-statistiques-de-leurs-bulles)
+      * [Aucune autre donnée n’est diffusée à des tiers](#aucune-autre-donnée-n’est-diffusée-à-des-tiers)
+      * [Ni à Google, ni à Facebook, ni aux autres marchands de données](#ni-à-google-ni-à-facebook-ni-aux-autres-marchands-de-données)
+      * [Nous ne vendrons jamais aucune donnée](#nous-ne-vendrons-jamais-aucune-donnée)
+  * [4. Comment fonctionne l’échange de données à partir de mon extension DisMoi ?](#4-comment-fonctionne-l’échange-de-données-à-partir-de-mon-extension-dismoi-)
+      * [i. Au serveur de contributions, l’extension ne communique que des numéros de bulles](#i-au-serveur-de-contributions-l’extension-ne-communique-que-des-numéros-de-bulles)
+      * [ii. À l’outil d’analyse de trafic, l’extension remonte uniquement les URLs des pages pour lesquelles une bulle s’est affichée et les interactions de l’internaute avec l’extension](#ii-à-l’outil-d’analyse-de-trafic-l’extension-remonte-uniquement-les-urls-des-pages-pour-lesquelles-une-bulle-s’est-affichée-et-les-interactions-de-l’internaute-avec-l’extension)
+      * [iii. À l’outil de suivi d’erreurs, l’extension communique des rapports de bugs](#iii-à-l’outil-de-suivi-d’erreurs-l’extension-communique-des-rapports-de-bugs)
+  * [5. Pourquoi Chrome me demande d’accéder à toutes mes données sur les sites Web consultées et de les modifier ?](#5-pourquoi-chrome-me-demande-d’accéder-à-toutes-mes-données-sur-les-sites-web-consultées-et-de-les-modifier-)
+      * [Pour les utilisateurs du navigateur Chrome, il est impossible de réduire le champ d’accès de ces données](#pour-les-utilisateurs-du-navigateur-chrome-il-est-impossible-de-réduire-le-champ-d’accès-de-ces-données)
+      * [Pourquoi l’autorisation de modifier ces données ?!](#pourquoi-l’autorisation-de-modifier-ces-données-)
+      * [Qu’est-ce qui me garantit alors que l’extension n’abuse pas de cette autorisation de Chrome pour utiliser mes données à d’autres fins ?](#qu’est-ce-qui-me-garantit-alors-que-l’extension-n’abuse-pas-de-cette-autorisation-de-chrome-pour-utiliser-mes-données-à-d’autres-fins-)
+      * [Suis-je géolocalisé(e) ?](#suis-je-géolocalisée-)
+  * [6. DisMoi est-il compatible avec les extensions de bloquage de publicité ?](#6-dismoi-est-il-compatible-avec-les-extensions-de-bloquage-de-publicité-)
+
 
 * * *
 
@@ -127,7 +151,7 @@ L’extension a été conçue de façon à ne pas faire remonter les données de
 
 Dans tout ce processus, vous pouvez constater qu’à aucun moment **le serveur de contributions ne connaît la page visitée : ni son contenu, ni son URL**. Il sait seulement que l’extension a reconnu un contexte correspondant à la bulle 1234.
 
-#### ii. A l’outil d’analyse de trafic, l’extension remonte uniquement les URLs des pages pour lesquelles une bulle s’est affichée et les interactions de l’internaute avec l’extension
+#### ii. À l’outil d’analyse de trafic, l’extension remonte uniquement les URLs des pages pour lesquelles une bulle s’est affichée et les interactions de l’internaute avec l’extension
 
 Rappel : Si vous avez choisi l’[option “Do No Track”](https://support.mozilla.org/fr/kb/comment-activer-option-ne-pas-pister) (“ne pas me pister”) de votre navigateur, l’extension ne remonte plus aucune donnée à notre service d’analyse de trafic Matomo.
 
@@ -182,7 +206,53 @@ Les éclaireurs eux-mêmes n’ont pas accès à ces données.
 
 L’équipe technique travaille actuellement pour rendre vérifiable à tout internaute le désirant que la configuration actuelle de notre outil Matomo masque bien son adresse IP. En attendant de solutionner ce point, nous remercions nos utilisateurs de leur confiance.
 
-**[À TERMINER]**
+#### iii. À l’outil de suivi d’erreurs, l’extension communique des rapports de bugs
 
+Pour le suivi des erreurs techniques, nous utilisons la plateforme [Sentry](https://sentry.io/). Ces rapports permettent à notre équipe d’identifier, comprendre et résoudre les bugs rencontrés pendant l’utilisation de l’extension.
 
+* Il n’y a remontée à Sentry qu’en cas de dysfonctionnement de l’extension ;
+* Les adresses IP n’y sont pas stockées ;
+* Les informations remontées ici ne contiennent pas de données relatives au contenu des pages web visitées mais, uniquement certaines informations de contexte lors de la survenue du bug (ex : l’URL de la page web).
+
+### 5. Pourquoi Chrome me demande d’accéder à toutes mes données sur les sites Web consultées et de les modifier ?
+
+Lors de l’installation de DisMoi, Chrome vous demandera d’autoriser l’extension à accéder à toutes vos données sur les sites web consultés.
+
+![Chrome : Demande d'autorisation de l'extension à accéder à toutes vos données sur les sites web consultés](https://www.dismoi.io/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2021/01/dismoi-vie-privee-chrome-store-demande-autorisation.png.webp)
+
+#### Pour les utilisateurs du navigateur Chrome, il est impossible de réduire le champ d’accès de ces données
+
+Avec Chrome c’est un peu du tout ou rien : Nous ne pouvons pas, par exemple, vous demandez d’accéder uniquement aux URLs et aux titres des pages que vous visiterez. Pour accéder à cette donnée URL ou titre, il n’existe qu’une seule autorisation : l’accès à toutes vos données.
+
+Pour les lecteurs avertis, ce message correspond à l’autorisation “Active Tab” du chromestore :
+
+#### Pourquoi l’autorisation de modifier ces données ?!
+
+Pour nous permettre de vous afficher une bulle DisMoi, nous sommes contraints de nous incruster dans la page visitée. Techniquement, cela correspond à une modification de la page.
+
+En revanche, nous nous engageons à ne jamais altérer ni le contenu ni le rendu du reste de la page.
+
+#### Qu’est-ce qui me garantit alors que l’extension n’abuse pas de cette autorisation de Chrome pour utiliser mes données à d’autres fins ?
+
+Factuellement, c’est d’abord le code source de l’extension, ouvert et [consultable ici](https://github.com/dis-moi/extension), permettant à toute personne – compétente en lecture de code informatique – de vérifier nos engagements.
+
+En matière de vie privée, la seule partie qui n’est pas vérifiable – pour l’instant – est l’anonymisation des IP que nous effectuons dans l’outil Analytics Matomo (comme expliqué plus haut). Nous y travaillons !
+
+À l’inverse, vous bénéficiez rarement d’un accès au code source des autres extensions de navigateurs, ni à celui de Chrome. Vous ne savez pas non plus quelles données ils collectent, ce qu’ils en font et avec qui ils les partagent.
+
+Nous espérons pour notre part avoir répondu de façon satisfaisante à ces questions nous concernant.
+
+Nous restons disponibles via notre page contact ou directement sur [GitHub : DisMoi – Extension](https://github.com/dis-moi/extension) si vous souhaitez échanger avec nous après lecture de ce document.
+
+#### Suis-je géolocalisé(e) ?
+
+À ce jour, Dismoi n’utilise pas la position géographique de ces utilisateurs.
+
+C’est une option cependant envisagée à l’avenir pour vous afficher des informations qui ont un caractère local. Le moment venu, l’extension vous demandera d’accepter ou refuser cette nouvelle autorisation.
+
+### 6. DisMoi est-il compatible avec les extensions de bloquage de publicité ?
+
+Absolument. Nous recommandons même d’utiliser ces extensions de blocage de publicité et de pisteur, comme µBlock Origin ([version pour Chrome ici](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm) et [version Firefox là](https://addons.mozilla.org/fr/firefox/addon/ublock-origin/)) ou Disconnect.
+
+Vous pouvez également utiliser votre navigateur en mode incognito (il faut simplement l’autoriser au préalable dans la page dédiée, par exemple [chrome://extensions](https://extensions/) pour le navigateur Chrome).
 
