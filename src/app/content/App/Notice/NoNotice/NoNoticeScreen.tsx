@@ -1,23 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link as ReactRouterDomLink } from 'react-router-dom';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { BackgroundButton } from 'components/atoms';
 import AddNoticeButton from 'components/atoms/Button/AddNoticeButton/AddNoticeButton';
-import { NoNotice } from '../../../../../components/atoms/icons';
 import Title from './Title';
 import ButtonContainer from './ButtonContainer';
+import { Textarea } from 'components/atoms/Forms';
 
-const Image = styled.div`
-  width: 52px;
-  height: auto;
-  margin: 30px auto 12px;
-`;
-
-const Container = styled(ButtonContainer)`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
+const Container = styled.div`
   font-size: 16px;
   padding-right: 40px;
   padding-left: 40px;
@@ -43,30 +34,24 @@ const Paragraph = styled.p`
   margin: 8px 0 0;
   font-size: 15px;
   font-weight: 500;
+  text-align: center;
 `;
 
 export default () => {
   const { t } = useTranslation();
   return (
     <>
-      <Image>
-        <NoNotice />
-      </Image>
-      <Title>
-        <Trans i18nKey={'view.contributions.disclaimer_no_post'} />
-      </Title>
+      <Title>Pas encore de contribution sur cette page</Title>
+      {/*<Title>{t('view.contributions.disclaimer_no_post')}</Title>*/}
+
       <Container>
-        <Content>
-          <AddNoticeButton />
-          <Paragraph>{t('view.contributions.button_subtext')}</Paragraph>
-        </Content>
-        <Separator>{t('common.or')}</Separator>
-        <Content>
-          <BackgroundButton as={ReactRouterDomLink} to="/question">
-            {t('action.ask')}
-          </BackgroundButton>
-          <Paragraph>{t('view.contributions.button_subtext')}</Paragraph>
-        </Content>
+        <Paragraph>
+          Soyez le premier à poster une info, un conseil ici
+        </Paragraph>
+
+        <Textarea />
+
+        <BackgroundButton>Poster</BackgroundButton>
       </Container>
     </>
   );
