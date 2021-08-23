@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StatefulContributor } from 'libs/domain/contributor';
+import { ContributorId, StatefulContributor } from 'libs/domain/contributor';
 import getSearchResults from 'libs/utils/getSearchResults';
 import { ALL } from 'components/molecules/Filters/RadiosFilters';
 
@@ -8,47 +8,79 @@ function useContributorsFilters(
 ): [
   StatefulContributor[],
   (value: string) => void,
-  (e: React.ChangeEvent<HTMLInputElement>) => void
+  (e: React.ChangeEvent<HTMLInputElement>) => void,
+  (id: ContributorId, subscribed: boolean) => void
 ] {
   const [filteredContributors, setFilteredContributors] = useState<{
-    base: StatefulContributor[];
+    all: StatefulContributor[];
     filtered: StatefulContributor[];
-  }>({ base: contributors, filtered: contributors });
+  }>({ all: contributors, filtered: contributors });
 
   const [selectedCategory, setSelectedCategory] = useState<string>();
-  const catFilter = () =>
+
+  const catFilter = (contributors: StatefulContributor[]) =>
     contributors.filter(({ categories: contributorCategories }) =>
       contributorCategories.some(cc => selectedCategory === cc)
     );
 
   useEffect(() => {
-    if (selectedCategory && selectedCategory !== ALL) {
-      setFilteredContributors({
-        filtered: catFilter(),
-        base: catFilter()
+    if (selectedCategory && selectedCategory === ALL) {
+      return setFilteredContributors({
+        filtered: filteredContributors.all,
+        all: filteredContributors.all
       });
-    } else {
-      setFilteredContributors({ filtered: contributors, base: contributors });
     }
-  }, [selectedCategory, contributors]);
+
+    return setFilteredContributors({
+      ...filteredContributors,
+      filtered: catFilter(filteredContributors.all)
+    });
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    if (filteredContributors.all.length === 0)
+      return setFilteredContributors({
+        filtered: contributors,
+        all: contributors
+      });
+  }, [contributors]);
 
   const handleChangeSearchContributors = (
     e: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    const foundContributors = getSearchResults(
-      e.target.value,
-      filteredContributors.base
-    );
     return setFilteredContributors({
       ...filteredContributors,
-      filtered: foundContributors
+      filtered: getSearchResults(e.target.value, filteredContributors.all)
+    });
+  };
+
+  const updateFilteredContributors = (
+    contributorId: ContributorId,
+    subscribed: boolean
+  ) => {
+    const getContrib = (contrib: StatefulContributor) => {
+      if (contrib.id === contributorId) {
+        return {
+          ...contrib,
+          subscribed,
+          ratings: {
+            subscribes: contrib.ratings.subscribes + (subscribed ? 1 : -1)
+          }
+        };
+      }
+      return contrib;
+    };
+    return setFilteredContributors({
+      all: filteredContributors.all.map(getContrib),
+      filtered: filteredContributors.filtered.map(getContrib)
     });
   };
 
   return [
     filteredContributors.filtered,
     setSelectedCategory,
-    handleChangeSearchContributors
+    handleChangeSearchContributors,
+    updateFilteredContributors
   ];
 }
 
