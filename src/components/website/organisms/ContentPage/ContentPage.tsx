@@ -1,5 +1,4 @@
 import React from 'react';
-import MarkdownView from 'react-showdown';
 import styled from 'styled-components';
 import Section from '../../atoms/Section/Section';
 import GridContainer from '../../atoms/Grid/GridContainer';
@@ -11,38 +10,18 @@ import Content from '../../atoms/Content/Content';
 export interface ContentPageProps {
   className?: string;
   title: string;
-  markdownFilePath: string;
+  content: React.ReactElement;
 }
 
 const ContentPage = styled(
-  ({ className, title, markdownFilePath }: ContentPageProps) => {
-    const [content, setContent] = React.useState<string>('Chargement...');
-    fetch(markdownFilePath)
-      .then(response => {
-        return response.text();
-      })
-      .then(text => {
-        setContent(text);
-      });
+  ({ className, title, content }: ContentPageProps) => {
     return (
       <Section className={className}>
         <GridContainer>
           <GridRow>
             <GridCol>
               <PrimaryHeadline>{title}</PrimaryHeadline>
-              <Content>
-                <MarkdownView
-                  markdown={content}
-                  options={{
-                    tables: true,
-                    emoji: true,
-                    ghCompatibleHeaderId: true,
-                    disableForced4SpacesIndentedSublists: true,
-                    simpleLineBreaks: true,
-                    encodeEmails: true
-                  }}
-                />
-              </Content>
+              <Content>{content}</Content>
             </GridCol>
           </GridRow>
         </GridContainer>

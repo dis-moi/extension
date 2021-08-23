@@ -1,10 +1,14 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import MarkdownView from 'react-showdown';
 import { StoryFn } from '@storybook/addons';
-import ContentPage, { ContentPageProps } from './ContentPage';
+import ContentPage, {
+  ContentPageProps
+} from '../../organisms/ContentPage/ContentPage';
+import Header from '../../molecules/Header/Header';
+import Footer from '../../organisms/Footer/Footer';
 
 export default {
-  title: 'Website/Organisms/ContentPage',
+  title: 'Website/Pages/ContentPage',
   argTypes: {
     title: {
       control: { type: 'text' }
@@ -16,7 +20,9 @@ export default {
   decorators: [
     (getStory: StoryFn<ReactElement>) => (
       <div style={{ margin: '-1rem' }}>
+        <Header scrolled={true} />
         <>{getStory()}</>
+        <Footer />
       </div>
     )
   ]

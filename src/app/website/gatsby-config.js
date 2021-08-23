@@ -1,9 +1,10 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`
+    title: `Dismoi website`,
+    description: `Notre projet est de **réinstaurer la liberté d’information partout sur le web**, afin de le rendre plus sûr, plus transparent et plus favorable aux alternatives. DisMoi est un réseau en surcouche du web qui permet aux internautes de **se conseiller et de
+s'éclairer directement sur les pages du web qu’ils visitent**.`,
+    author: `Dismoi Team`,
+    siteUrl: `https://dismoi.io/`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -15,9 +16,18 @@ module.exports = {
         path: `${__dirname}/src/images`
       }
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `contents`,
+        path: `${__dirname}/src/contents`
+      }
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     'gatsby-plugin-typescript',
+    'gatsby-plugin-mdx',
+    'gatsby-plugin-i18n',
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

@@ -50,9 +50,11 @@ const HeaderCTAButton = () => (
   />
 );
 
+export type Scrolled = boolean;
+
 export interface HeaderProps {
   className?: string;
-  scrolled?: boolean;
+  scrolled?: Scrolled;
 }
 
 const Header = styled(({ className, scrolled }: HeaderProps) => {

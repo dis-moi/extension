@@ -16,11 +16,11 @@ module.exports = {
     config.plugins.push(
       new CopyWebpackPlugin([
         {
-          from: 'src/components/website/atoms/BrowserAnimation/animation.js',
+          from: 'src/app/website/script/animation.js',
           to: config.output.path
         },
         {
-          from: 'src/components/website/assets',
+          from: '.storybook/assets',
           to: config.output.path
         }
       ])
