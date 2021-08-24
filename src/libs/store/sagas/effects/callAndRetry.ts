@@ -1,8 +1,9 @@
 import { SagaIterator } from 'redux-saga';
-import { call, delay } from 'redux-saga/effects';
+import { call } from 'redux-saga/effects';
 import * as R from 'ramda';
 import secondsToMilliseconds from 'libs/utils/secondsToMilliseconds';
 import minutesToMilliseconds from 'libs/utils/minutesToMilliseconds';
+import delay from './delay';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyFunction = (...args: any[]) => any;

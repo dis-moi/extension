@@ -1,7 +1,8 @@
-import { fork, delay, put, takeLatest } from 'redux-saga/effects';
+import { fork, put, takeLatest } from 'redux-saga/effects';
 import { REFRESH_CONTRIBUTORS, refreshContributors } from 'libs/store/actions';
 import minutesToMilliseconds from 'libs/utils/minutesToMilliseconds';
 import refreshContributorsSaga from 'libs/store/sagas/refreshContributors.saga';
+import delay from 'libs/store/sagas/effects/delay';
 
 const refreshInterval = minutesToMilliseconds(
   Number(process.env.REFRESH_CONTRIBUTORS_INTERVAL)
