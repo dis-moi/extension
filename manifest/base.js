@@ -54,6 +54,6 @@ module.exports = Object.freeze({
     },
     default_title: 'Dismoi'
   },
-  permissions: ['activeTab', 'storage', 'contextMenus'],
+  permissions: ['activeTab', 'storage', 'contextMenus', 'alarms'],
   web_accessible_resources: ['img/*', 'fonts/*'],
 });
