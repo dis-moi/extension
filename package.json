@@ -15,6 +15,8 @@
     "build:chromium:staging": "NODE_ENV=staging yarn build:chromium",
     "build:chromium:proding": "NODE_ENV=proding yarn build:chromium",
     "build:chromium:production": "NODE_ENV=production yarn build:chromium",
+    "build:safari:production": "NODE_ENV=production webpack --mode=production --env.PLATFORM=safari && yarn convert:safari && ./bin/update-safari-repo.sh",
+    "convert:safari": "xcrun safari-web-extension-converter --bundle-identifier io.dismoi.extension --force --no-prompt --copy-resources --project-location . --app-name DisMoi build/production/safari",
     "build:firefox:staging": "NODE_ENV=staging yarn build:firefox",
     "build:firefox:proding": "NODE_ENV=proding yarn build:firefox",
     "build:firefox:production": "NODE_ENV=production yarn build:firefox",

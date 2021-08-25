@@ -20,6 +20,9 @@ module.exports = function webpack(env = {}, argv = {}) {
   const srcPath = path.resolve(__dirname, 'src');
 
   const { NODE_ENV, PLATFORM } = env;
+  if (!NODE_ENV) {
+    console.warn('/!\\ NODE_ENV is not defined /!\\')
+  }
   const buildPath = path.resolve(__dirname, getBuildPath(PLATFORM, NODE_ENV));
 
   console.info('Building package to: ', buildPath);
