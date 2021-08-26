@@ -81,10 +81,13 @@ const PrimaryHeadlineAnimate = styled(PrimaryHeadline)`
     overflow: hidden;
     vertical-align: bottom;
 
-    & > span {
+    & > #wordList {
       display: block;
       text-align: left;
-      animation: quote 16s ease-in-out infinite;
+
+      &.started {
+        animation: quote 16s ease-in-out infinite;
+      }
     }
   }
 
@@ -206,7 +209,7 @@ const CoverSection = styled((props: CoverSectionStaticV1Props) => {
           <StyledGridCol2>
             <PrimaryHeadlineAnimate>
               <span>
-                <span>
+                <span id="wordList">
                   Signalement de faux avis
                   <br />
                   Avis d&apos;experts de confiance
