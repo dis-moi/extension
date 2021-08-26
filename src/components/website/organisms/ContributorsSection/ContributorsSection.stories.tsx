@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { StoryFn } from '@storybook/addons';
+import { contributorsIds } from '../../../../app/website/src/contents/ContributorsIds';
 import ContributorsSection, {
-  contributorsIds,
   ContributorsSectionProps
 } from './ContributorsSection';
 
