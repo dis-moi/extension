@@ -26,18 +26,21 @@ const PrimaryHeadline = styled.h1`
     font-size: 44px;
     margin-bottom: 18px;
   }
+
   span {
     transition: opacity 0.09s, max-height 0.5s;
     display: block;
     overflow: hidden;
     opacity: 1;
     max-height: 500px;
+
     &.fade {
       opacity: 0;
     }
+
     &.stop {
       opacity: 0;
-      max-height: 0px;
+      // max-height: 0;
     }
   }
 `;
