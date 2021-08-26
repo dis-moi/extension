@@ -4,7 +4,7 @@ import { Arrow, LinkIcon } from '../icons';
 import { Anchor, ExternalLink, Link } from './index';
 
 export default {
-  title: 'Components/Atoms/Links',
+  title: 'Components/Atoms/ListLinks',
   decorators: [withKnobs]
 };
 

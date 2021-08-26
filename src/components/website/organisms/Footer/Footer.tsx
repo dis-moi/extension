@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import NavDesktopItem from '../../atoms/NavDesktopItem/NavDesktopItem';
 import LogoDisMoi from '../../atoms/LogoDisMoi/LogoDisMoi';
 import SocialLink from '../../atoms/SocialButton/SocialLink';
 import Section from '../../atoms/Section/Section';
 import GridContainer from '../../atoms/Grid/GridContainer';
 import GridRow from '../../atoms/Grid/GridRow';
 import GridCol from '../../atoms/Grid/GridCol';
+import ListLinks, { Link } from '../../molecules/Header/ListLinks';
+import NavDesktopItem from '../../atoms/NavDesktopItem/NavDesktopItem';
 
 const FooterWrapper = styled.footer`
   font-family: ${props => props.theme.website.fontFamily};
@@ -106,6 +107,8 @@ const SocialLinkWrapper = styled.div`
 
 export interface FooterProps {
   className?: string;
+  links: Link[];
+  switchLanguage: () => void;
 }
 
 const Footer = (props: FooterProps) => (
@@ -145,18 +148,13 @@ const Footer = (props: FooterProps) => (
           </GridCol1>
           <GridCol2>
             <NavFooter>
-              <NavDesktopItem href="#_">Contact</NavDesktopItem>
-              <NavDesktopItem href="#_">À propos</NavDesktopItem>
-              <NavDesktopItem href="#_">Aide/FAQ</NavDesktopItem>
-              <NavDesktopItem href="#_">Mentions légales</NavDesktopItem>
-              <NavDesktopItem href="#_">CGU</NavDesktopItem>
-              <NavDesktopItem href="#_">Espace presse</NavDesktopItem>
+              <ListLinks links={props.links} />
             </NavFooter>
           </GridCol2>
           <GridCol3>
-            <a href="#_">
-              <b>fr</b> | en
-            </a>
+            <NavDesktopItem onClick={props.switchLanguage}>
+              fr | en
+            </NavDesktopItem>
             <Legals>
               Droits réservés textes et images <br />
               DisMoi © 2021

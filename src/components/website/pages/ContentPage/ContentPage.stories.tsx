@@ -6,6 +6,7 @@ import ContentPage, {
 } from '../../organisms/ContentPage/ContentPage';
 import Header from '../../molecules/Header/Header';
 import Footer from '../../organisms/Footer/Footer';
+import { listLinkFooter, listLinkHeader } from '../dummies/listLinks';
 
 export default {
   title: 'Website/Pages/ContentPage',
@@ -20,9 +21,9 @@ export default {
   decorators: [
     (getStory: StoryFn<ReactElement>) => (
       <div style={{ margin: '-1rem' }}>
-        <Header scrolled={true} />
+        <Header scrolled={true} links={listLinkHeader} />
         <>{getStory()}</>
-        <Footer />
+        <Footer links={listLinkFooter} />
       </div>
     )
   ]

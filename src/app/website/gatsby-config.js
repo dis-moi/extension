@@ -1,3 +1,10 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require('path');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('dotenv').config({
+  path: path.resolve(__dirname, '../../../', `.env.${process.env.NODE_ENV}`)
+});
+
 module.exports = {
   siteMetadata: {
     title: `Dismoi website`,
@@ -23,11 +30,34 @@ s'éclairer directement sur les pages du web qu’ils visitent**.`,
         path: `${__dirname}/src/contents`
       }
     },
+    {
+      resolve: `gatsby-plugin-env-variables`,
+      options: {
+        allowList: ['BACKEND_ORIGIN']
+      }
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     'gatsby-plugin-typescript',
     'gatsby-plugin-mdx',
     'gatsby-plugin-i18n',
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: `${__dirname}/src/components/Layout.tsx`
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-root-import',
+      options: {
+        app: [path.join(__dirname, '../../', 'app')],
+        components: [path.join(__dirname, '../../', 'components')],
+        libs: [path.join(__dirname, '../../', 'libs')],
+        utils: [path.join(__dirname, '../../', 'utils')],
+        assets: [path.join(__dirname, '../../', 'assets')],
+        types: [path.join(__dirname, '../../', 'types')]
+      }
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

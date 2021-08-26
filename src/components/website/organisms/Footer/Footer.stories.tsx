@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import { StoryFn } from '@storybook/addons';
+import { listLinkFooter } from '../../pages/dummies/listLinks';
 import FooterContent from './Footer';
 
 export default {
@@ -13,4 +14,4 @@ export default {
   ]
 };
 
-export const Footer = () => <FooterContent />;
+export const Footer = () => <FooterContent links={listLinkFooter} />;

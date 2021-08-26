@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import NavDesktop from '../../atoms/NavDesktop/NavDesktop';
-import NavDesktopItem from '../../atoms/NavDesktopItem/NavDesktopItem';
 import Button from '../../atoms/Button/Button';
 import LogoDisMoi from '../../atoms/LogoDisMoi/LogoDisMoi';
 import ToggleMenu from '../../atoms/NavMobileButton/ToggleMenu';
 import Modal from '../../atoms/Modal/Modal';
 import NavMobile from '../../atoms/NavMobile/NavMobile';
-import NavMobileItem from '../../atoms/NavMobileItem/NavMobileItem';
+import NavDesktopItem from '../../atoms/NavDesktopItem/NavDesktopItem';
+import ListLinks, { Link } from './ListLinks';
 
 const MobileButtonsWrapper = styled.div`
   display: flex;
@@ -38,7 +38,7 @@ const MobileButtonsWrapper = styled.div`
   }
 `;
 
-const HeaderCTAButton = () => (
+export const HeaderCTAButton = () => (
   <Button
     text={'Ajouter DisMoi'}
     icon={'download'}
@@ -55,55 +55,51 @@ export type Scrolled = boolean;
 export interface HeaderProps {
   className?: string;
   scrolled?: Scrolled;
+  links: Link[];
+  switchLanguage: () => void;
 }
 
-const Header = styled(({ className, scrolled }: HeaderProps) => {
-  const [offset, setOffset] = useState(0);
-  const [modalOpen, setModalOpen] = React.useState<boolean>(false);
+const Header = styled(
+  ({ className, scrolled, links, switchLanguage }: HeaderProps) => {
+    const [offset, setOffset] = useState(0);
+    const [modalOpen, setModalOpen] = React.useState<boolean>(false);
 
-  useEffect(() => {
-    window.onload = () => {
-      setOffset(window.pageYOffset);
-    };
-    window.onscroll = () => {
-      setOffset(window.pageYOffset);
-    };
-  }, []);
+    useEffect(() => {
+      window.onload = () => {
+        setOffset(window.pageYOffset);
+      };
+      window.onscroll = () => {
+        setOffset(window.pageYOffset);
+      };
+    }, []);
 
-  const isScrolled = scrolled || offset > 0;
-
-  return (
-    <>
-      <header className={className + (isScrolled ? ' scrolled' : '')}>
-        <a className="homeLink" href={'/'}>
-          <LogoDisMoi />
-        </a>
-        <NavDesktop>
-          <NavDesktopItem href={'#'}>Tous les profils</NavDesktopItem>
-          <NavDesktopItem href={'#'}>Contribuer</NavDesktopItem>
-          <NavDesktopItem href={'#'}>Questions fréquentes</NavDesktopItem>
-          {isScrolled && <HeaderCTAButton />}
-          <NavDesktopItem href={'#'}>fr | en</NavDesktopItem>
-        </NavDesktop>
-        <MobileButtonsWrapper>
-          {isScrolled && <HeaderCTAButton />}
-          <ToggleMenu handleClick={() => setModalOpen(true)} />
-        </MobileButtonsWrapper>
-      </header>
-      <Modal open={modalOpen} setOpen={setModalOpen}>
-        <NavMobile>
-          <NavMobileItem href={'#'}>Tous les profils</NavMobileItem>
-          <NavMobileItem href={'#'}>Contribuer</NavMobileItem>
-          <NavMobileItem href={'#'}>Questions fréquentes</NavMobileItem>
-          <HeaderCTAButton />
-          <NavMobileItem href={'#'}>
-            <b>fr</b> | en
-          </NavMobileItem>
-        </NavMobile>
-      </Modal>
-    </>
-  );
-})`
+    const isScrolled = scrolled || offset > 0;
+    return (
+      <>
+        <header className={className + (isScrolled ? ' scrolled' : '')}>
+          <a className="homeLink" href={'/'}>
+            <LogoDisMoi />
+          </a>
+          <NavDesktop>
+            <ListLinks links={links} />
+            {isScrolled && <HeaderCTAButton />}
+            <NavDesktopItem onClick={switchLanguage}>fr | en</NavDesktopItem>
+          </NavDesktop>
+          <MobileButtonsWrapper>
+            {isScrolled && <HeaderCTAButton />}
+            <ToggleMenu handleClick={() => setModalOpen(true)} />
+          </MobileButtonsWrapper>
+        </header>
+        <Modal open={modalOpen} setOpen={setModalOpen}>
+          <NavMobile>
+            <ListLinks links={links} />
+            <HeaderCTAButton />
+          </NavMobile>
+        </Modal>
+      </>
+    );
+  }
+)`
   position: fixed;
   top: 0;
   left: 0;

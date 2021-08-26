@@ -1,13 +1,12 @@
 import * as React from 'react';
-import Layout from '../components/Layout';
 import HomePage from '../../../../components/website/pages/HomePage/HomePage';
+import useGetContributors from '../hooks/useGetContributors';
+import { contributorsIds } from '../contents/ContributorsIds';
 
 const IndexPage = () => {
-  return (
-    <Layout pageTitle={"Page d'accueil dis moi"}>
-      <HomePage />
-    </Layout>
-  );
+  const [contributors] = useGetContributors(contributorsIds);
+
+  return <HomePage contributors={contributors} />;
 };
 
 export default IndexPage;
