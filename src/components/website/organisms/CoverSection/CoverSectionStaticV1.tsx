@@ -6,7 +6,7 @@ import GridRow from '../../atoms/Grid/GridRow';
 import GridCol from '../../atoms/Grid/GridCol';
 import PrimaryHeadline from '../../atoms/Titles/PrimaryHeadline';
 import SecondaryHeadline from '../../atoms/Titles/SecondaryHeadline';
-import BrowserAnimation from '../../atoms/BrowserAnimation/BrowserAnimation';
+import BrowserAnimationVar1 from '../../atoms/BrowserAnimation/BrowserAnimationVar1';
 import CTAButton from '../../atoms/CTAButton/CTAButton';
 import SectionArrow from '../../atoms/SectionArrow/SectionArrow';
 import StoreRating from '../../atoms/StoreRating/StoreRating';
@@ -81,7 +81,7 @@ const PrimaryHeadlineAnimate = styled(PrimaryHeadline)`
     overflow: hidden;
     vertical-align: bottom;
 
-    & > #wordList {
+    & > #rotatingWords {
       display: block;
       text-align: left;
 
@@ -204,12 +204,12 @@ const CoverSection = styled((props: CoverSectionStaticV1Props) => {
       <GridContainer>
         <StyledGridRow>
           <StyledGridCol1>
-            <BrowserAnimation />
+            <BrowserAnimationVar1 />
           </StyledGridCol1>
           <StyledGridCol2>
             <PrimaryHeadlineAnimate>
               <span>
-                <span id="wordList">
+                <span id="rotatingWords">
                   Signalement de faux avis
                   <br />
                   Avis d&apos;experts de confiance
