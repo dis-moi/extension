@@ -50,7 +50,8 @@ const Subscriptions = ({
   const [
     filteredSubscriptions,
     setFilter,
-    handleChangeSearchContributors
+    handleChangeSearchContributors,
+    updateFilteredContributors
   ] = useContributorsFilters(subscribedContributors);
 
   return (
@@ -80,8 +81,14 @@ const Subscriptions = ({
                 <ContributorProfileListItem
                   key={contributor.id}
                   contributor={contributor}
-                  onSubscribe={() => subscribe(contributor.id)}
-                  onUnsubscribe={() => unsubscribe(contributor.id)}
+                  onSubscribe={() => {
+                    subscribe(contributor.id);
+                    updateFilteredContributors(contributor.id, true);
+                  }}
+                  onUnsubscribe={() => {
+                    unsubscribe(contributor.id);
+                    updateFilteredContributors(contributor.id, false);
+                  }}
                   to={pathToContributor(contributor)}
                 >
                   {contributor.contribution?.example.exampleMatchingUrl && (
