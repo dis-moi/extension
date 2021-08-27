@@ -1,3 +1,10 @@
+# [3.87.0](https://github.com/dis-moi/extension/compare/v3.86.7...v3.87.0) (2021-08-27)
+
+
+### Features
+
+* **search:** optimistic update filtered contributors on subscribe ([e0f6166](https://github.com/dis-moi/extension/commit/e0f61668ac8ceb181ae5f4bc2cc8bf8114a19bf6))
+
 ## [3.86.7](https://github.com/dis-moi/extension/compare/v3.86.6...v3.86.7) (2021-07-28)
 
 
