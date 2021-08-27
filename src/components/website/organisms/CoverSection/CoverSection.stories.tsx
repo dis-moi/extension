@@ -4,6 +4,9 @@ import CoverSection, { CoverSectionProps } from './CoverSection';
 import CoverSectionStaticV1, {
   CoverSectionStaticV1Props
 } from './CoverSectionStaticV1';
+import CoverSectionAnimatedLeft, {
+  CoverSectionAnimatedLeftProps
+} from './CoverSectionAnimatedLeft';
 
 export default {
   title: 'Website/Organisms/CoverSection',
@@ -23,3 +26,7 @@ export const _CoverSection = (args: CoverSectionProps) => (
 export const _CoverSectionStaticV1 = (args: CoverSectionStaticV1Props) => (
   <CoverSectionStaticV1 {...args} />
 );
+
+export const _CoverSectionAnimatedLeft = (
+  args: CoverSectionAnimatedLeftProps
+) => <CoverSectionAnimatedLeft {...args} />;
