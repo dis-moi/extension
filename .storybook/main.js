@@ -20,6 +20,11 @@ module.exports = {
           to: config.output.path
         },
         {
+          from:
+            'src/components/website/atoms/BrowserAnimation/animationVar1.js',
+          to: config.output.path
+        },
+        {
           from: 'src/components/website/assets',
           to: config.output.path
         }
