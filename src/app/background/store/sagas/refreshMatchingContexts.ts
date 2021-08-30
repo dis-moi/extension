@@ -1,10 +1,11 @@
-import { delay, put, select, takeEvery, fork } from 'redux-saga/effects';
+import { put, select, takeEvery, fork } from 'redux-saga/effects';
 import {
   receivedMatchingContexts,
   refreshMatchingContextsFailed,
   SUBSCRIBE,
   SubscribeAction
 } from 'libs/store/actions';
+import delay from 'libs/store/sagas/effects/delay';
 import { createCallAndRetry } from 'libs/store/sagas/effects/callAndRetry';
 import { getSubscriptions } from 'app/background/store/selectors/subscriptions.selectors';
 import minutesToMilliseconds from 'libs/utils/minutesToMilliseconds';

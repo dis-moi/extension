@@ -2,7 +2,6 @@ import { channel } from 'redux-saga';
 import {
   actionChannel,
   call,
-  delay,
   fork,
   put,
   select,
@@ -12,6 +11,7 @@ import { AppAction, AppActionWithMeta } from 'libs/store/actions';
 import { connect } from 'libs/store/actions/connection';
 import stripReceiverMeta from 'libs/store/stripReceiverMeta';
 import watchWindow from 'libs/store/sagas/window/watch.saga';
+import delay from 'libs/store/sagas/effects/delay';
 import extensionId, { extensionMessageSender } from 'app/profiles/extensionId';
 import { isConnected } from 'app/profiles/store/selectors/connection';
 
