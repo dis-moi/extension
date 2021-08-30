@@ -45,10 +45,15 @@ export const filterContextsMatchingUrl = (
     urlMatchesContext(url, context)
   );
 
-export const doesTabContentMatchExpression = async (tab: Tab, xpath?: string) =>
+export const doesTabContentMatchExpression = async (
+  tab: Tab,
+  xpath: string,
+  matchingContextId: MatchingContext['id']
+) =>
   xpath
     ? sendContentScriptRequest<boolean>(tab, 'doesDocumentMatchExpression', [
-        xpath
+        xpath,
+        matchingContextId
       ])
     : Promise.resolve(true);
 
@@ -57,9 +62,12 @@ export const filterContextsMatchingTabContent = async (
   matchingContexts: MatchingContext[]
 ) => {
   const responses = await Promise.all(
-    matchingContexts.map(({ xpath }: MatchingContext) =>
-      doesTabContentMatchExpression(tab, xpath)
-    )
+    matchingContexts.map(({ xpath, id }: MatchingContext) => {
+      return (
+        typeof xpath === 'undefined' ||
+        doesTabContentMatchExpression(tab, xpath, id)
+      );
+    })
   );
 
   return matchingContexts.filter((_, index) => responses[index]);
