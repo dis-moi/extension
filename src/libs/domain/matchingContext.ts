@@ -37,14 +37,6 @@ export const urlMatchesContext = (
   }
 };
 
-export const filterContextsMatchingUrl = (
-  url: string,
-  matchingContexts: MatchingContext[]
-) =>
-  matchingContexts.filter((context: MatchingContext) =>
-    urlMatchesContext(url, context)
-  );
-
 export const doesTabContentMatchExpression = async (
   tab: Tab,
   xpath: string,
@@ -57,18 +49,28 @@ export const doesTabContentMatchExpression = async (
       ])
     : Promise.resolve(true);
 
-export const filterContextsMatchingTabContent = async (
-  tab: Tab,
-  matchingContexts: MatchingContext[]
-) => {
+export const filterContexts = async (
+  matchingContexts: MatchingContext[],
+  tab: Tab
+): Promise<MatchingContext[]> => {
   const responses = await Promise.all(
-    matchingContexts.map(({ xpath, id }: MatchingContext) => {
-      return (
-        typeof xpath === 'undefined' ||
-        doesTabContentMatchExpression(tab, xpath, id)
-      );
+    matchingContexts.map((matchingContext: MatchingContext):
+      | Promise<MatchingContext | false>
+      | MatchingContext
+      | false => {
+      if (urlMatchesContext(tab.url, matchingContext)) {
+        if (!matchingContext.xpath) return matchingContext;
+
+        return doesTabContentMatchExpression(
+          tab,
+          matchingContext.xpath,
+          matchingContext.id
+        ).then((matchesContent: boolean) =>
+          matchesContent ? matchingContext : false
+        );
+      }
+      return false;
     })
   );
-
-  return matchingContexts.filter((_, index) => responses[index]);
+  return responses.filter(Boolean) as MatchingContext[];
 };
