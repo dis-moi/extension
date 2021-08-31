@@ -1,3 +1,10 @@
+## [3.87.1](https://github.com/dis-moi/extension/compare/v3.87.0...v3.87.1) (2021-08-31)
+
+
+### Bug Fixes
+
+* bad xpath expression breaks matching for everyone ([0a196c6](https://github.com/dis-moi/extension/commit/0a196c62853371e6bccb03774bd511c310ddcf31))
+
 # [3.87.0](https://github.com/dis-moi/extension/compare/v3.86.7...v3.87.0) (2021-08-27)
 
 
