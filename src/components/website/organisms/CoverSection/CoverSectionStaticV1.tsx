@@ -74,10 +74,12 @@ const StyledGridCol2 = styled(props => <GridCol {...props} />)`
 `;
 
 const PrimaryHeadlineAnimate = styled(PrimaryHeadline)`
+  line-height: 1.1365;
+
   & > span {
     position: relative;
     display: inline-block;
-    height: 47px;
+    height: 50px;
     overflow: hidden;
     vertical-align: bottom;
 
@@ -86,7 +88,7 @@ const PrimaryHeadlineAnimate = styled(PrimaryHeadline)`
       text-align: left;
 
       &.started {
-        animation: quote 16s ease-in-out infinite;
+        animation: quote 18s ease-in-out infinite;
       }
     }
   }
@@ -95,35 +97,41 @@ const PrimaryHeadlineAnimate = styled(PrimaryHeadline)`
     0% {
       transform: translateY(0);
     }
-    10% {
+    8%,
+    12% {
       transform: translateY(0);
     }
-    20% {
-      transform: translateY(-47px);
+    18%,
+    22% {
+      transform: translateY(-50px);
     }
-    30% {
-      transform: translateY(calc(-47px * 2));
+    28%,
+    32% {
+      transform: translateY(-100px);
     }
-    40% {
-      transform: translateY(calc(-47px * 3));
+    38%,
+    42% {
+      transform: translateY(-150px);
     }
+    48%,
     50% {
-      transform: translateY(calc(-47px * 4));
+      transform: translateY(-200px);
     }
-    60% {
-      transform: translateY(calc(-47px * 5));
+    58%,
+    62% {
+      transform: translateY(-250px);
     }
-    70% {
-      transform: translateY(calc(-47px * 6));
+    68%,
+    72% {
+      transform: translateY(-300px);
     }
-    80% {
-      transform: translateY(calc(-47px * 7));
+    78%,
+    82% {
+      transform: translateY(-350px);
     }
-    90% {
-      transform: translateY(calc(-47px * 8));
-    }
-    100% {
-      transform: translateY(calc(-47px * 9));
+    88%,
+    92% {
+      transform: translateY(-400px);
     }
     to {
       transform: translateY(0);
