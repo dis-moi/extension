@@ -8,7 +8,9 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const React = require('react');
 
-exports.onRenderBody = ({ setHeadComponents, setPreBodyComponents }) => {
+exports.onRenderBody = ({ setHeadComponents, pathname }) => {
+  console.log('pathname', pathname);
+  console.log(pathname === 'fr/profiles' && 'coucou');
   setHeadComponents([
     <script
       key={1}

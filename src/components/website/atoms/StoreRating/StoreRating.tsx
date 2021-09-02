@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { getPlatform, Platform } from '../../../../utils/website/getPlatform';
-import { Browser, getBrowser } from '../../../../utils/website/getBrowser';
-import { getIsMobile } from '../../../../utils/website/getIsMobile';
-import { getIsBrowserValid } from '../../../../utils/website/getIsBrowserValid';
+import { Platform } from '../../../../utils/website/getPlatform';
+import { Browser } from '../../../../utils/website/getBrowser';
+import useDefineClientSetup from '../../../../libs/hooks/useDefineClientSetup';
 import Stars from './Stars';
 
 const Text = styled.span`
@@ -57,14 +56,18 @@ export interface StoreRatingProps {
 
 const StoreRating = styled(
   ({ platform, browser, storeRatings, className }: StoreRatingProps) => {
-    const currentPlatform = platform || getPlatform;
-    const isMobile = getIsMobile(currentPlatform);
-    const currentBrowser = browser || getBrowser;
-    const isBrowserValid = getIsBrowserValid(currentBrowser);
+    const {
+      currentBrowser,
+      isBrowserValid,
+      currentPlatform,
+      isMobile
+    } = useDefineClientSetup(browser, platform);
+
     if (!isMobile && !isBrowserValid) return null;
     const env = isMobile ? currentPlatform : currentBrowser;
     const currentStoreRatings = storeRatings || getStoreRatings();
     const rating = currentStoreRatings.find(rating => rating.env === env);
+
     if (!rating) return null;
     return (
       <div className={className}>

@@ -15,7 +15,7 @@ export const platformList: Platform[] = [
   'linux'
 ];
 
-export const getPlatform: Platform = (() => {
+export const getPlatform = (window: Window): Platform => {
   const navPlatform = window.navigator.platform;
   const macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'];
   const windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'];
@@ -33,4 +33,4 @@ export const getPlatform: Platform = (() => {
     platform = 'linux';
   }
   return platform;
-})();
+};

@@ -14,7 +14,7 @@ export const browserList: Browser[] = [
   'brave'
 ];
 
-export const getBrowser: Browser = (() => {
+export const getBrowser = (navigator: Navigator): Browser => {
   const ua = navigator.userAgent;
   let tem;
   let M =
@@ -35,5 +35,5 @@ export const getBrowser: Browser = (() => {
   M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
   if ((tem = ua.match(/version\/(\d+)/i)) != null) M.splice(1, 1, tem[1]);
   // return M.join(' ');
-  return M[0].toLowerCase(); // without version
-})();
+  return M[0].toLowerCase() || ''; // without version
+};

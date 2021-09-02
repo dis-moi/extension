@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Browser, getBrowser } from '../../../../utils/website/getBrowser';
-import { getPlatform, Platform } from '../../../../utils/website/getPlatform';
-import { getIsMobile } from '../../../../utils/website/getIsMobile';
-import { getIsBrowserValid } from '../../../../utils/website/getIsBrowserValid';
+import { Browser } from '../../../../utils/website/getBrowser';
+import { Platform } from '../../../../utils/website/getPlatform';
+import useDefineClientSetup from '../../../../libs/hooks/useDefineClientSetup';
 import LogoAndroid from './logos/LogoAndroid';
 import LogoIOs from './logos/LogoIOs';
 import LogoFirefox from './logos/LogoFirefox';
@@ -80,10 +79,13 @@ const CTAButton = ({
   details,
   className
 }: CATButtonProps) => {
-  const currentPlatform = platform || getPlatform;
-  const isMobile = getIsMobile(currentPlatform);
-  const currentBrowser = browser || getBrowser;
-  const isBrowserValid = getIsBrowserValid(currentBrowser);
+  const {
+    currentBrowser,
+    isBrowserValid,
+    currentPlatform,
+    isMobile
+  } = useDefineClientSetup(browser, platform);
+
   const logo = isMobile
     ? currentPlatform
     : isBrowserValid
