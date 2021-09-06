@@ -17,10 +17,10 @@ interface SeoProps {
     | { name: string; content: unknown; property?: undefined }
     | { property: string; content: unknown; name?: undefined }
   >;
-  title: string;
+  title?: string;
 }
 
-function Seo({ description, lang, meta, title }: SeoProps) {
+function Seo({ description, lang, meta, title = 'Dis Moi' }: SeoProps) {
   const { site } = useStaticQuery(
     graphql`
       query {

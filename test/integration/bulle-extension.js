@@ -1,3 +1,14 @@
+const bull_config = {
+  bulle_non_supporte: 'https://www.dismoi.io/navigateur-non-supporte/',
+  bulle_deja_installe: '',
+  bulle_lien_opera: 'https://www.dismoi.io/opera/',
+  bulle_lien_extension_chrome:
+    'https://chrome.google.com/webstore/detail/bulles/fpjlnlnbacohacebkadbbjebbipcknbg',
+  bulle_lien_extension_firefox:
+    'https://addons.mozilla.org/en-US/firefox/addon/dismoi/',
+  bulle_extension_id_chrome: 'fpjlnlnbacohacebkadbbjebbipcknbg'
+};
+
 const LINK_UNAVAILABLE = window.bull_config.bulle_non_supporte;
 const LINK_POPUP_EXTENSION_CHROME =
   window.bull_config.bulle_lien_extension_chrome;
