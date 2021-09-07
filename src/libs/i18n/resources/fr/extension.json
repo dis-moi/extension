@@ -84,8 +84,8 @@
   },
   "view": {
     "contributions": {
-      "disclaimer_no_post": "Pas encore de post sur <br/> cette page web",
-      "button_subtext": "une info, un conseil"
+      "disclaimer_no_post": "Pas encore de post sur <br/> cette page web, n'hésitez pas à contribuez en utilisant le champs ci-dessous",
+      "button_subtext": "Validez votre message"
     },
     "subscriptions": {
       "title": "$t(menu.subscriptions)",

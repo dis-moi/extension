@@ -84,8 +84,8 @@
   },
   "view": {
     "contributions": {
-      "disclaimer_no_post": "There are no posts on <br/> this webpage",
-      "button_subtext": "some info or tip"
+      "disclaimer_no_post": "There are no posts on <br/> this webpage, contribute now",
+      "button_subtext": "Submit your comment"
     },
     "subscriptions": {
       "title": "$t(menu.subscriptions)",

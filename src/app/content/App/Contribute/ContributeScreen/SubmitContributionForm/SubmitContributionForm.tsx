@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { useEffect, useState } from 'react';
 import { Field, InjectedFormProps } from 'redux-form';
 import { Form } from 'components/atoms/Forms';
-import { CenterContainer, BackgroundButton } from 'components/atoms';
-import { InputField, TextareaField } from 'components/organisms/Fields';
+import { InputField } from 'components/organisms/Fields';
 import FormErrors from 'components/molecules/FormErrors';
 import { Contribution } from 'libs/domain/notice';
 import withReduxForm from './withReduxForm';
+import Step1 from './Step1';
+import Step2 from './Step2';
 
 export interface SubmitContributionFormOwnProps {
   onUrlChange: (url: string) => void;
@@ -31,39 +31,19 @@ const SubmitContributionForm = ({
   useEffect(() => {
     onUrlChange(window.location.href);
   }, [window.location.href]);
-
-  const { t } = useTranslation();
+  const [step, setStep] = useState(1);
 
   return (
     <Form onSubmit={handleSubmit}>
       <Field name="url" type="hidden" component={InputField} />
-      <Field
-        name="contributor.name"
-        type="text"
-        placeholder={t('form.field_name.placeholder')}
-        component={InputField}
-      />
-      <Field
-        name="contributor.email"
-        type="email"
-        placeholder={t('form.field_email.placeholder')}
-        component={InputField}
-      />
-      <Field
-        name="message"
-        placeholder={t('form.field_message.placeholder')}
-        rows={5}
-        component={TextareaField}
-      />
-      <CenterContainer>
-        <BackgroundButton
-          type="submit"
+      {step === 1 && <Step1 setStep={setStep} />}
+      {step === 2 && (
+        <Step2
           disabled={!valid || submitting}
-          loading={submitting}
-        >
-          {t('form.preview_send')}
-        </BackgroundButton>
-      </CenterContainer>
+          submitting={submitting}
+          setStep={setStep}
+        />
+      )}
       <FormErrors errors={errors} globalError={error} />
     </Form>
   );
