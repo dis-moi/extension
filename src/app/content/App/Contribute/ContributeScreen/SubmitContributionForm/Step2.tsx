@@ -1,12 +1,8 @@
 import { Field } from 'redux-form';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { InputField } from '../../../../../../components/organisms/Fields';
-import {
-  BackgroundButton,
-  Button,
-  CenterContainer
-} from '../../../../../../components/atoms';
+import { InputField } from 'components/organisms/Fields';
+import { BackgroundButton, Button, CenterContainer } from 'components/atoms';
 
 interface Step2Props {
   disabled: boolean;

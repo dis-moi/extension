@@ -1,11 +1,8 @@
 import { Field } from 'redux-form';
 import React, { ChangeEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TextareaField } from '../../../../../../components/organisms/Fields';
-import {
-  BackgroundButton,
-  CenterContainer
-} from '../../../../../../components/atoms';
+import { TextareaField } from 'components/organisms/Fields';
+import { BackgroundButton, CenterContainer } from 'components/atoms';
 
 interface StepProps {
   setStep: (step: number) => void;
