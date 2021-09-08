@@ -47,7 +47,7 @@ export function* fetchMatchingContextsForContributor(
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore To be typed properly
 export function* refreshMatchingContextsPeriodically() {
   const subscriptions: ReturnType<typeof getSubscriptions> = yield select(

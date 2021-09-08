@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore, no-unused-expressions */
+/* eslint-disable @typescript-eslint/ban-ts-comment, no-unused-expressions */
 import { expect } from 'chai';
 import { isOptionsTab } from './tab';
 

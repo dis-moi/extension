@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { SagaIterator } from '@redux-saga/types';
 import PostHog from 'posthog-node';
 import { call, put, select } from '@redux-saga/core/effects';

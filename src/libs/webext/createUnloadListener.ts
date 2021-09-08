@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Action } from 'redux';
 import Logger from 'libs/utils/Logger';
 import { tabRemoved } from 'libs/store/actions';

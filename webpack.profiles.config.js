@@ -17,9 +17,9 @@ const requiredEnvVarNames = [
   'CHROME_EXTENSION_ID',
   'FIREFOX_EXTENSION_ID',
   'PROFILES_ORIGIN',
-  'POPULAR_CONTRIBUTORS_IDS'
+  'POPULAR_CONTRIBUTORS_IDS',
 ];
-const formatEnvVar = value => `"${value}"`;
+const formatEnvVar = (value) => `"${value}"`;
 
 loadEnv({ path: path.resolve(__dirname) });
 
@@ -27,7 +27,7 @@ module.exports = function webpack(env = {}, argv = {}) {
   env = {
     PLATFORM: 'chromium',
     ...process.env,
-    ...env
+    ...env,
   };
 
   const defaultWebpackConfig = defaultWebpack(env, argv);
@@ -45,8 +45,8 @@ module.exports = function webpack(env = {}, argv = {}) {
               options: {
                 publicPath: env.PROFILES_ASSETS_PATH,
                 name: '[path][name].[ext]',
-                context: 'src/assets'
-              }
+                context: 'src/assets',
+              },
             },
             {
               test: /\.(mp4)$/i,
@@ -56,55 +56,59 @@ module.exports = function webpack(env = {}, argv = {}) {
                 outputPath: 'video',
                 publicPath: 'https://profiles.dismoi.io/video/',
                 name: '[path][name].[ext]',
-                context: 'src/assets/video'
-              }
+                context: 'src/assets/video',
+              },
             },
-            ...defaultWebpackConfig.module.rules[0].oneOf
-          ]
-        }
-      ]
+            ...defaultWebpackConfig.module.rules[0].oneOf,
+          ],
+        },
+      ],
     },
     entry: [
       'core-js/stable',
       'regenerator-runtime/runtime',
-      path.join(path.resolve(__dirname, 'src'), './app/profiles/')
+      path.join(path.resolve(__dirname, 'src'), './app/profiles/'),
     ],
     devServer: {
       historyApiFallback: true,
       stats: 'minimal',
-      contentBase: defaultWebpackConfig.output.path
+      contentBase: defaultWebpackConfig.output.path,
     },
     output: {
       ...defaultWebpackConfig.output,
       filename: 'js/profiles.bundle.js',
-      chunkFilename: 'js/[name].chunk.js'
+      chunkFilename: 'js/[name].chunk.js',
     },
     plugins: [
       ...basePlugins(env, argv),
       new HtmlWebpackPlugin({
         template: './views/profiles.pug',
         filename: 'index.html',
-        inject: false
+        inject: false,
       }),
       new DefinePlugin({
         'process.env': R.pipe(
           R.pick(requiredEnvVarNames),
           R.map(formatEnvVar)
-        )(env)
+        )(env),
       }),
       new CopyWebpackPlugin(
         [
           {
             from: 'src/assets',
-            to: defaultWebpackConfig.output.path
+            to: defaultWebpackConfig.output.path,
           },
           {
             from: 'node_modules/typeface-lato/files/',
-            to: path.join(defaultWebpackConfig.output.path, 'fonts/')
+            to: path.join(defaultWebpackConfig.output.path, 'fonts/'),
+          },
+          {
+            from: 'src/app/profiles/assets',
+            to: defaultWebpackConfig.output.path,
           },
           {
             from: 'node_modules/typeface-sedgwick-ave/files/',
-            to: path.join(defaultWebpackConfig.output.path, 'fonts/')
+            to: path.join(defaultWebpackConfig.output.path, 'fonts/'),
           },
           {
             from: 'test/integration',
@@ -112,15 +116,15 @@ module.exports = function webpack(env = {}, argv = {}) {
               defaultWebpackConfig.output.path,
               'test',
               'integration'
-            )
+            ),
           },
           {
             from: 'etc/profiles/public',
-            to: defaultWebpackConfig.output.path
-          }
+            to: defaultWebpackConfig.output.path,
+          },
         ].filter(Boolean)
       ),
-      new LodashModuleReplacementPlugin()
-    ]
+      new LodashModuleReplacementPlugin(),
+    ],
   };
 };
