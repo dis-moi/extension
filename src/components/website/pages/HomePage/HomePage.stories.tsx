@@ -1,8 +1,6 @@
 import React, { ReactElement } from 'react';
 import { StoryFn } from '@storybook/addons';
-import Header from '../../molecules/Header/Header';
-import { listLinkFooter, listLinkHeader } from '../dummies/listLinks';
-import Footer from '../../organisms/Footer/Footer';
+import Layout from '../../../../app/website/src/components/Layout';
 import HomePage, { HomePageProps } from './HomePage';
 
 export default {
@@ -10,9 +8,12 @@ export default {
   decorators: [
     (getStory: StoryFn<ReactElement>) => (
       <div style={{ margin: '-1rem', backgroundColor: 'white' }}>
-        <Header links={listLinkHeader} />
-        <>{getStory()}</>
-        <Footer links={listLinkFooter} />
+        <Layout
+          pageContext={{ langKey: 'fr', slug: '/fr/slug', title: 'Home' }}
+          path={'/'}
+        >
+          <>{getStory()}</>
+        </Layout>
       </div>
     )
   ]

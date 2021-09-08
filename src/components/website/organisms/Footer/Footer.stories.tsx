@@ -14,4 +14,6 @@ export default {
   ]
 };
 
-export const Footer = () => <FooterContent links={listLinkFooter} />;
+export const Footer = () => (
+  <FooterContent links={listLinkFooter} switchLanguage={() => null} />
+);

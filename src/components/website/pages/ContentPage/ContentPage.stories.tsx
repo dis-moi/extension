@@ -7,6 +7,7 @@ import ContentPage, {
 import Header from '../../molecules/Header/Header';
 import Footer from '../../organisms/Footer/Footer';
 import { listLinkFooter, listLinkHeader } from '../dummies/listLinks';
+import Layout from '../../../../app/website/src/components/Layout';
 
 export default {
   title: 'Website/Pages/ContentPage',
@@ -21,9 +22,12 @@ export default {
   decorators: [
     (getStory: StoryFn<ReactElement>) => (
       <div style={{ margin: '-1rem' }}>
-        <Header scrolled={true} links={listLinkHeader} />
-        <>{getStory()}</>
-        <Footer links={listLinkFooter} />
+        <Layout
+          pageContext={{ langKey: 'fr', slug: '/fr/slug', title: 'Home' }}
+          path={'/'}
+        >
+          <>{getStory()}</>
+        </Layout>
       </div>
     )
   ]
