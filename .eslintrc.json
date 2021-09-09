@@ -31,8 +31,6 @@
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
     "plugin:import/typescript",
-    "plugin:prettier/recommended",
-    "prettier-standard/prettier-file",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended"
   ],

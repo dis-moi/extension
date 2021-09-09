@@ -7,7 +7,6 @@
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
-    "@types/react": "^17.0.19",
     "gatsby": "^3.9.1",
     "gatsby-plugin-env-variables": "^2.1.0",
     "gatsby-plugin-gatsby-cloud": "^2.9.1",
@@ -22,21 +21,14 @@
     "gatsby-plugin-sharp": "^3.9.0",
     "gatsby-plugin-typescript": "^3.9.0",
     "gatsby-source-filesystem": "^3.9.0",
-    "gatsby-transformer-sharp": "^3.9.0",
-    "graphql": "^15.5.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-helmet": "^6.1.0"
+    "gatsby-transformer-sharp": "^3.9.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "2.1.1",
     "@graphql-codegen/introspection": "2.1.0",
     "@graphql-codegen/typescript": "2.1.2",
     "@graphql-codegen/typescript-operations": "2.1.2",
-    "@graphql-codegen/typescript-react-apollo": "3.1.2",
-    "@types/react-helmet": "^6.1.2",
-    "fork-ts-checker-webpack-plugin": "^6.2.12",
-    "prettier": "2.3.2"
+    "@graphql-codegen/typescript-react-apollo": "3.1.2"
   },
   "keywords": [
     "gatsby"
