@@ -16,7 +16,7 @@
     "cancel": "Annuler",
     "submit": "Envoyer",
     "go_back": {
-      "back": "retour",
+      "back": "Retour",
       "messages": "Retour aux messages",
       "submissions": "Retour aux contributions"
     },
@@ -43,7 +43,7 @@
       "placeholder": "Votre nom"
     },
     "field_message": {
-      "placeholder": "Ecrire le message que vous souhaitez publier sur cette page"
+      "placeholder": "Écrire le message que vous souhaitez publier sur cette page"
     },
     "field_email": {
       "placeholder": "Votre@email.fr"
@@ -84,7 +84,7 @@
   },
   "view": {
     "contributions": {
-      "disclaimer_no_post": "Pas encore de post sur <br/> cette page web, n'hésitez pas à contribuez en utilisant le champs ci-dessous",
+      "disclaimer_no_post": "<0>Pas encore de contribution sur cette page</0> <1>Soyez le premier à poster une info, un conseil ici</1>",
       "button_subtext": "Validez votre message"
     },
     "subscriptions": {

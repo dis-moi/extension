@@ -18,7 +18,8 @@ export default styled.textarea<Props>`
     ${props => (props.error ? props.theme.formError : '#fff')};
   resize: none;
 
+  &,
   ::placeholder {
-    font-style: italic;
+    font-family: 'Lato', sans-serif;
   }
 `;
