@@ -1,4 +1,4 @@
-const bull_config = {
+window.bull_config = {
   bulle_non_supporte: 'https://www.dismoi.io/navigateur-non-supporte/',
   bulle_deja_installe: '',
   bulle_lien_opera: 'https://www.dismoi.io/opera/',

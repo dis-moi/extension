@@ -1,4 +1,4 @@
-import { Redirect, Route, Switch } from 'react-router';
+import { Route, Switch } from 'react-router';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import useChangeLanguage from 'app/profiles/hooks/useChangeLanguage';
@@ -13,8 +13,6 @@ const Pages = () => {
   return (
     <>
       <Switch>
-        <Redirect exact path="/" to={t('path.profiles.contributors')} />
-        <Redirect exact path="/en" to={t('path.profiles.contributors')} />
         <Route path={t('path.profiles.contributors')} component={Profiles} />
         <Route
           path={t('path.profiles.subscriptions')}
