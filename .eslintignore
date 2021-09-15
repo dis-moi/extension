@@ -6,3 +6,4 @@ build
 src/app/website/public
 src/app/website/.cache
 src/app/website/node_modules
+src/app/website/src/graphql/**/*

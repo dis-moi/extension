@@ -40,7 +40,7 @@
     // Use either @typescript-eslint/no-unused-vars or this one but not both
     "no-unused-vars": 0,
     "import/order": [
-      "error",
+      "warning",
       {
         "groups": [
           "builtin",

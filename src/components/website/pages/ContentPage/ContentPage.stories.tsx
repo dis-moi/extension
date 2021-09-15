@@ -4,9 +4,6 @@ import { StoryFn } from '@storybook/addons';
 import ContentPage, {
   ContentPageProps
 } from '../../organisms/ContentPage/ContentPage';
-import Header from '../../molecules/Header/Header';
-import Footer from '../../organisms/Footer/Footer';
-import { listLinkFooter, listLinkHeader } from '../dummies/listLinks';
 import Layout from '../../../../app/website/src/components/Layout';
 
 export default {
@@ -47,6 +44,7 @@ export const _ContentPage = (args: ContentPageProps) => {
       {...args}
       content={
         <MarkdownView
+          /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
           // @ts-ignore
           markdown={state}
           options={{

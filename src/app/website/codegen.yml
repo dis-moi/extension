@@ -1,6 +1,9 @@
 overwrite: true
 schema: "http://localhost:8000/___graphql"
-documents: ["src/pages/**/*","src/graphql/**/*,"src/hooks/**/*"]
+documents: ["src/pages/**/*","src/graphql/**/*","src/hooks/**/*"]
+config:
+  namingConvention:
+    enumValues: keep
 generates:
   src/graphql/generated/graphql.ts:
     plugins:

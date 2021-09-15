@@ -36,6 +36,7 @@ export const _ContentPage = (args: ContentPageProps) => {
       {...args}
       content={
         <MarkdownView
+          /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
           // @ts-ignore
           markdown={state}
           options={{
