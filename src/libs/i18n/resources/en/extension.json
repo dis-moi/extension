@@ -84,7 +84,8 @@
   },
   "view": {
     "contributions": {
-      "disclaimer_no_post": "There are no posts on <br/> this webpage, contribute now",
+      "disclaimer_no_post_step1": "There are no posts on this webpage,<1>contribute now</1>",
+      "disclaimer_no_post_step2": "There are no posts on this webpage,<1>please add your name and mail</1> ",
       "button_subtext": "Submit your comment"
     },
     "subscriptions": {

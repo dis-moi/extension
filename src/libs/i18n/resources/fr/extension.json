@@ -84,7 +84,8 @@
   },
   "view": {
     "contributions": {
-      "disclaimer_no_post": "<0>Pas encore de contribution sur cette page</0> <1>Soyez le premier à poster une info, un conseil ici</1>",
+      "disclaimer_no_post_step1": "Pas encore de contribution sur cette page<1>Soyez le premier à poster une info, un conseil ici</1>",
+      "disclaimer_no_post_step2": "Pas encore de contribution sur cette page<1>Veuillez ajouter votre nom et prénom</1>",
       "button_subtext": "Validez votre message"
     },
     "subscriptions": {

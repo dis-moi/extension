@@ -1,16 +1,17 @@
 import { Field } from 'redux-form';
-import React, { ChangeEvent, useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { TextareaField } from 'components/organisms/Fields';
 import { BackgroundButton, CenterContainer } from 'components/atoms';
+import { withMessageValue } from './withReduxForm';
 
 interface StepProps {
   setStep: (step: number) => void;
+  message: string;
 }
 
-const Step1 = ({ setStep }: StepProps) => {
+const Step1 = ({ setStep, message }: StepProps) => {
   const { t } = useTranslation();
-  const [message, setMessage] = useState('');
 
   return (
     <>
@@ -18,9 +19,6 @@ const Step1 = ({ setStep }: StepProps) => {
         name="message"
         placeholder={t('form.field_message.placeholder')}
         rows={5}
-        onChange={(e: ChangeEvent<{ value: string }>) =>
-          setMessage(e.target.value)
-        }
         component={TextareaField}
       />
       <CenterContainer>
@@ -31,4 +29,5 @@ const Step1 = ({ setStep }: StepProps) => {
     </>
   );
 };
-export default Step1;
+
+export default withMessageValue(Step1);
