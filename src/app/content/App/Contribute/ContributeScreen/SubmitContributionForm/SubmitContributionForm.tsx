@@ -12,14 +12,9 @@ import Step1 from './Step1';
 import Step2 from './Step2';
 
 const NoNoticeTitle = styled(Title)`
-  margin-right: 42px;
-  margin-left: 42px;
-
   span {
     display: block;
     margin-top: 16px;
-    margin-right: -20px;
-    margin-left: -20px;
     font-size: 16px;
     font-weight: normal;
   }
