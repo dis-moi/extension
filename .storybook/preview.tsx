@@ -5,6 +5,9 @@ import 'typeface-sedgwick-ave';
 import theme from 'app/theme';
 import 'libs/i18n';
 import { StoryFn } from '@storybook/addons';
+import i18n, { options } from '../src/libs/i18n';
+
+i18n.init(options).then(() => {});
 
 const Global = createGlobalStyle`
   body {
