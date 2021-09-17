@@ -10,6 +10,7 @@ import useGetMenus from '../hooks/useGetMenus';
 import useChangeLanguage from '../hooks/useChangeLanguage';
 import './layout.css';
 import Seo from './seo';
+import { useEffect } from 'react';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -30,18 +31,16 @@ const Layout = ({
   scrolled = false
 }: LayoutProps) => {
   useChangeLanguage(pageContext.langKey as SupportedLanguage);
-  const { footer, header } = useGetMenus(i18n.language as SupportedLanguage);
-  if (path !== '/' && path !== '/en') scrolled = true;
   const [switchLanguage] = useSwitchLanguage(
-    i18n.language as SupportedLanguage,
-    pageContext.slug
+    i18n.language as SupportedLanguage
   );
+  const { footer, header } = useGetMenus(i18n.language as SupportedLanguage);
 
   return (
     <ThemeProvider theme={theme}>
       <Seo title={pageContext.title || 'Dis Moi'} />
       <Header
-        scrolled={scrolled}
+        scrolled={scrolled || (path !== '/' && path !== '/en')}
         links={header}
         switchLanguage={switchLanguage}
       />
