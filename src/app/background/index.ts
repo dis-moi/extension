@@ -30,12 +30,18 @@ if (NODE_ENV !== 'production') {
 console.info(`BACKEND_ORIGIN "${BACKEND_ORIGIN}"`);
 
 onInstalled.then(installedDetails =>
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
   store.dispatch(installed(installedDetails))
 );
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 onStartup.then(() => store.dispatch(startup()));
-
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 i18n.init(options).then(() => store.dispatch(i18nReady()));
-
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 const handleConnect = (port: Port) => store.dispatch(connect(port));
 
 browser.runtime.onConnectExternal.addListener(handleConnect);
@@ -57,6 +63,8 @@ browser.contextMenus
 
 browser.contextMenus.onClicked.addListener(onClickData => {
   if (onClickData.menuItemId === OPTIONS_MENU_ITEM_ID) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
     store.dispatch(optionsRequested());
   }
 });

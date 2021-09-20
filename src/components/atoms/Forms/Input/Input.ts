@@ -16,6 +16,6 @@ export default styled.input<Props>`
     ${props =>
       props.error ? props.theme.formError : props.theme.secondaryColor};
   box-shadow: 0 0 0 2px
-    ${props => (props.error ? props.theme.formError : '#fff')};
+    ${props => (props.error ? props.theme.formError : 'transparent')};
   resize: none;
 `;
