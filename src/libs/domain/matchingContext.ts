@@ -54,23 +54,22 @@ export const filterContexts = async (
   tab: Tab
 ): Promise<MatchingContext[]> => {
   const responses = await Promise.all(
-    matchingContexts.map((matchingContext: MatchingContext):
-      | Promise<MatchingContext | false>
-      | MatchingContext
-      | false => {
-      if (urlMatchesContext(tab.url, matchingContext)) {
-        if (!matchingContext.xpath) return matchingContext;
+    matchingContexts.map(
+      (matchingContext: MatchingContext): Promise<MatchingContext | false> => {
+        if (urlMatchesContext(tab.url, matchingContext)) {
+          if (!matchingContext.xpath) return Promise.resolve(matchingContext);
 
-        return doesTabContentMatchExpression(
-          tab,
-          matchingContext.xpath,
-          matchingContext.id
-        ).then((matchesContent: boolean) =>
-          matchesContent ? matchingContext : false
-        );
+          return doesTabContentMatchExpression(
+            tab,
+            matchingContext.xpath,
+            matchingContext.id
+          ).then((matchesContent: boolean) =>
+            matchesContent ? matchingContext : false
+          );
+        }
+        return Promise.resolve(false);
       }
-      return false;
-    })
+    )
   );
   return responses.filter(Boolean) as MatchingContext[];
 };
