@@ -8,6 +8,7 @@ import OurCommitmentsSection, {
   commitmentCards
 } from '../../organisms/OurCommitmentsSection/OurCommitmentsSection';
 import { BaseContributor } from '../../../../libs/domain/contributor';
+import BecomeAContributorSection from '../../organisms/BecomeAContributor/BecomeAContributorSection';
 
 export interface HomePageProps {
   className?: string;
@@ -21,6 +22,7 @@ const HomePage = styled(({ className, contributors }: HomePageProps) => {
       <ExamplesSection />
       <HowItWorksSection />
       <ContributorsSection contributors={contributors} />
+      <BecomeAContributorSection />
       <OurCommitmentsSection commitmentCards={commitmentCards} />
     </article>
   );

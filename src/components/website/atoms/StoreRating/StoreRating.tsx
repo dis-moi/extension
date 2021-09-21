@@ -4,6 +4,7 @@ import { Platform } from '../../../../utils/website/getPlatform';
 import { Browser } from '../../../../utils/website/getBrowser';
 import useDefineClientSetup from '../../../../libs/hooks/useDefineClientSetup';
 import Stars from './Stars';
+import { useTranslation } from 'react-i18next';
 
 const Text = styled.span`
   display: block;
@@ -56,6 +57,7 @@ export interface StoreRatingProps {
 
 const StoreRating = styled(
   ({ platform, browser, storeRatings, className }: StoreRatingProps) => {
+    const { t } = useTranslation('website');
     const {
       currentBrowser,
       isBrowserValid,
@@ -73,9 +75,22 @@ const StoreRating = styled(
       <div className={className}>
         <Stars />
         <Text>
-          Déjà <b>{rating.feedbackCount} avis</b> sur {rating.storeName}
+          <span
+            dangerouslySetInnerHTML={{
+              __html: t('home.rating.feedbackCount', {
+                feedbackCount: rating.feedbackCount,
+                storeName: rating.storeName
+              })
+            }}
+          />
           <br />
-          <b>{rating.userCount} utilisateurs</b> et c’est pas fini !
+          <span
+            dangerouslySetInnerHTML={{
+              __html: t('home.rating.userCount', {
+                userCount: rating.userCount
+              })
+            }}
+          />
         </Text>
       </div>
     );

@@ -6,6 +6,8 @@ import GridContainer from '../../atoms/Grid/GridContainer';
 import GridRow from '../../atoms/Grid/GridRow';
 import GridCol from '../../atoms/Grid/GridCol';
 import Button from '../../atoms/Button/Button';
+import PosterUneInformation from '../../../../assets/img/website/dismoi-poster-une-information.jpg';
+import { useTranslation } from 'react-i18next';
 
 export interface BecomeAContributorSectionProps {
   className?: string;
@@ -13,37 +15,36 @@ export interface BecomeAContributorSectionProps {
 
 const BecomeAContributorSection = styled(
   ({ className }: BecomeAContributorSectionProps) => {
+    const { t } = useTranslation('website');
     return (
       <Section className={className}>
         <GridContainer>
-          <SectionTitle>
-            Vous aussi, partagez vos conseils et expériences !
-          </SectionTitle>
+          <SectionTitle>{t('home.becomeContributor.title')}</SectionTitle>
           <GridRow>
             <GridCol>
               <ul>
-                <li>Donner votre avis</li>
-                <li>Recommander une alternative</li>
-                <li>Dénoncer une arnaque</li>
+                <li>{t('home.becomeContributor.action1')}</li>
+                <li>{t('home.becomeContributor.action2')}</li>
+                <li>{t('home.becomeContributor.action3')}</li>
               </ul>
             </GridCol>
             <GridCol>
               <img
-                src="img/website/dismoi-poster-une-information.jpg"
-                alt="Poster une information"
+                src={PosterUneInformation.substr(1)}
+                alt={t('home.becomeContributor.imageAlt')}
               />
             </GridCol>
             <GridCol>
               <ul>
-                <li>Corriger une information</li>
-                <li>Signaler un thread sur Twitter</li>
-                <li>Partager un bon plan</li>
+                <li>{t('home.becomeContributor.action4')}</li>
+                <li>{t('home.becomeContributor.action5')}</li>
+                <li>{t('home.becomeContributor.action6')}</li>
               </ul>
             </GridCol>
           </GridRow>
           <GridRow>
             <Button
-              text="Installer l’extension pour devenir contributeur"
+              text={t('home.becomeContributor.buttonText')}
               icon="download"
               handleClick={() => false}
             />

@@ -10,7 +10,7 @@ import useGetMenus from '../hooks/useGetMenus';
 import useChangeLanguage from '../hooks/useChangeLanguage';
 import './layout.css';
 import Seo from './seo';
-import { useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -35,15 +35,17 @@ const Layout = ({
     i18n.language as SupportedLanguage
   );
   const { footer, header } = useGetMenus(i18n.language as SupportedLanguage);
-
+  const eng = new RegExp(/\/en/);
+  const isHome = path === '/' || eng.test(path);
   return (
     <ThemeProvider theme={theme}>
-      <Seo title={pageContext.title || 'Dis Moi'} />
+      <Seo title={pageContext.title || 'DisMoi'} />
       <Header
-        scrolled={scrolled || (path !== '/' && path !== '/en')}
+        scrolled={scrolled || !isHome}
         links={header}
         switchLanguage={switchLanguage}
       />
+      <Helmet htmlAttributes={{ lang: i18n.language }} />
       <main>{children}</main>
       <Footer links={footer} switchLanguage={switchLanguage} />
     </ThemeProvider>

@@ -14,6 +14,8 @@ import DarkLayoutBackground from './backgrounds/DarkLayoutBackground';
 import GradientBackground from './backgrounds/GradientBackground';
 import GeometricShapeBackground from './backgrounds/GeometricShapeBackground';
 import PatternBackground from './backgrounds/PatternBackground';
+import { useTranslation } from 'react-i18next';
+import i18n from '../../../../libs/i18n';
 
 const StyledGridRow = styled(props => <GridRow {...props} />)`
   position: relative;
@@ -137,6 +139,7 @@ export interface CoverSectionProps {
 }
 
 const CoverSection = styled((props: CoverSectionProps) => {
+  const { t } = useTranslation('website');
   return (
     <Section id="cover" {...props}>
       <GradientBackground />
@@ -147,29 +150,23 @@ const CoverSection = styled((props: CoverSectionProps) => {
         <StyledGridRow>
           <StyledGridCol1>
             <BrowserAnimation />
+            <span
+              id="variableWords"
+              data-word1={t('home.coverAnimation.word1')}
+              data-word2={t('home.coverAnimation.word2')}
+              data-word3={t('home.coverAnimation.word3')}
+              data-word4={t('home.coverAnimation.word4')}
+              data-word5={t('home.coverAnimation.word5')}
+              data-word6={t('home.coverAnimation.word6')}
+              data-word7={t('home.coverAnimation.word7')}
+              data-word8={t('home.coverAnimation.word8')}
+              data-word9={t('home.coverAnimation.word9')}
+              data-language={i18n.language}
+            />
           </StyledGridCol1>
           <StyledGridCol2>
-            <PrimaryHeadline>
-              Ne passez plus à côté d’un bon conseil...
-              <span
-                id="variableWords"
-                className="stop fade"
-                data-word1="Signalement de faux avis" // alerte
-                data-word2="Avis d'experts de confiance" // info
-                data-word3="Alternatives moins chères" // idée
-                data-word4="Qualité douteuse" // alerte
-                data-word5="Droits de réponse" // info
-                data-word6="Alternatives locales" // idée
-                data-word7="Infox / Fakenews" // alerte
-                data-word8="Greenwashing" // info
-                data-word9="Vente direct producteurs" // idée
-              >
-                &nbsp;
-              </span>
-            </PrimaryHeadline>
-            <SecondaryHeadline>
-              Soyez alerté directement sur les pages web que vous visitez.
-            </SecondaryHeadline>
+            <PrimaryHeadline>{t('home.primaryHeadline')}</PrimaryHeadline>
+            <SecondaryHeadline>{t('home.secondaryHeadline')}</SecondaryHeadline>
             <CTAAndRatingWrapper>
               <StyledCTAButton />
               <StyledStoreRating />

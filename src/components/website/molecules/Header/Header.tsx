@@ -8,6 +8,7 @@ import Modal from '../../atoms/Modal/Modal';
 import NavMobile from '../../atoms/NavMobile/NavMobile';
 import NavDesktopItem from '../../atoms/NavDesktopItem/NavDesktopItem';
 import ListLinks, { Link } from './ListLinks';
+import { useTranslation } from 'react-i18next';
 
 const MobileButtonsWrapper = styled.div`
   display: flex;
@@ -38,17 +39,20 @@ const MobileButtonsWrapper = styled.div`
   }
 `;
 
-export const HeaderCTAButton = () => (
-  <Button
-    text={'Ajouter DisMoi'}
-    icon={'download'}
-    color={'green'}
-    handleClick={() =>
-      // eslint-disable-next-line no-console
-      console.log('%cGO TO APP STORE!', 'font-weight:bold;color:blue;')
-    }
-  />
-);
+export const HeaderCTAButton = () => {
+  const { t } = useTranslation('website');
+  return (
+    <Button
+      text={t('header.ctaText')}
+      icon={'download'}
+      color={'green'}
+      handleClick={() =>
+        // eslint-disable-next-line no-console
+        console.log('%cGO TO APP STORE!', 'font-weight:bold;color:blue;')
+      }
+    />
+  );
+};
 
 export type Scrolled = boolean;
 
@@ -83,7 +87,9 @@ const Header = styled(
           <NavDesktop>
             <ListLinks links={links} />
             {isScrolled && <HeaderCTAButton />}
-            <NavDesktopItem onClick={switchLanguage}>fr | en</NavDesktopItem>
+            <NavDesktopItem onClick={switchLanguage}>
+              <span title="French">fr</span> | <span title="English">en</span>
+            </NavDesktopItem>
           </NavDesktop>
           <MobileButtonsWrapper>
             {isScrolled && <HeaderCTAButton />}
@@ -151,6 +157,14 @@ const Header = styled(
       }
       &:active svg path {
         fill: ${props => props.theme.website.activeColor};
+      }
+    }
+    nav {
+      a:hover {
+        color: ${props => props.theme.website.activeColor} !important;
+      }
+      a:active {
+        color: white !important;
       }
     }
   }

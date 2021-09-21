@@ -22,10 +22,7 @@ exports.onRenderBody = ({
     pathname === '/en/' ||
     process.env.NODE_ENV !== 'production';
 
-  guidesPages &&
-    setPreBodyComponents([
-      <div key={1} id={'root'} style={{ marginTop: '46px' }} />
-    ]);
+  guidesPages && setPreBodyComponents([<div key={1} id={'root'} />]);
 
   guidesPages &&
     setPostBodyComponents([

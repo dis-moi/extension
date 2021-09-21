@@ -16,7 +16,7 @@ export const options: InitOptions = {
     caches: []
   },
   fallbackLng,
-  ns: ['extension', 'profiles'],
+  ns: ['extension', 'profiles', 'website'],
   defaultNS: 'extension',
   debug: true,
   interpolation: {

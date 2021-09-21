@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
 import { StepItem } from './Steps';
+import { useTranslation } from 'react-i18next';
 
 export interface StepProps extends StepItem {
   className?: string;
@@ -30,6 +31,7 @@ const Detail = styled.span`
 `;
 
 const Step = styled(({ className, index, title, detail }: StepProps) => {
+  const { t } = useTranslation('website');
   return (
     <div className={className}>
       <div>
@@ -37,7 +39,7 @@ const Step = styled(({ className, index, title, detail }: StepProps) => {
       </div>
       <div>
         <Title>
-          {title} <Detail>{detail}</Detail>
+          {t(title)} <Detail>{t(detail)}</Detail>
         </Title>
       </div>
     </div>

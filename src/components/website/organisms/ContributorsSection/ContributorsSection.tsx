@@ -9,6 +9,7 @@ import Button from '../../atoms/Button/Button';
 import useGetContributors, {
   ContributorsIds
 } from '../../../../app/website/src/hooks/useGetContributors';
+import { useTranslation } from 'react-i18next';
 
 const StyledSectionTitle = styled(props => <SectionTitle {...props} />)`
   color: ${props => props.theme.website.secondaryColorDarker};
@@ -250,6 +251,7 @@ export interface ContributorsSectionProps {
 
 const ContributorsSection = styled(
   ({ className, contributors }: ContributorsSectionProps) => {
+    const { t } = useTranslation('website');
     const [modalOpen, setModalOpen] = React.useState<boolean>(false);
     const [
       openedContributor,
@@ -259,11 +261,10 @@ const ContributorsSection = styled(
     return (
       <>
         <Section className={className}>
-          <StyledSectionTitle>+2000 contributions...</StyledSectionTitle>
-          <SubTitle>
-            qui rendent le web plus sûr, plus transparent et plus ouvert aux
-            alternatives
-          </SubTitle>
+          <StyledSectionTitle>
+            {t('home.contributors.title')}
+          </StyledSectionTitle>
+          <SubTitle>{t('home.contributors.subTitle')}</SubTitle>
           <ContributorAvatars>
             {contributors.map<React.ReactNode>((contributor, index) => {
               // eslint-disable-next-line camelcase
@@ -288,7 +289,7 @@ const ContributorsSection = styled(
           </ContributorAvatars>
           <Button
             color="greenDarker"
-            text="Voir tous les contributeurs"
+            text={t('home.contributors.buttonText')}
             icon="list"
             appearance="outline"
             handleClick={() => false}

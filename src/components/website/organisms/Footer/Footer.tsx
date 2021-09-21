@@ -8,6 +8,7 @@ import GridRow from '../../atoms/Grid/GridRow';
 import GridCol from '../../atoms/Grid/GridCol';
 import ListLinks, { Link } from '../../molecules/Header/ListLinks';
 import NavDesktopItem from '../../atoms/NavDesktopItem/NavDesktopItem';
+import { useTranslation } from 'react-i18next';
 
 const FooterWrapper = styled.footer`
   font-family: ${props => props.theme.website.fontFamily};
@@ -111,59 +112,62 @@ export interface FooterProps {
   switchLanguage: () => void;
 }
 
-const Footer = (props: FooterProps) => (
-  <FooterWrapper {...props}>
-    <Section>
-      <GridContainer>
-        <StyledGridRow>
-          <GridCol1>
-            <LogoDisMoi />
-            <SocialLinkWrapper>
-              <SocialLink
-                icon="mastodon"
-                title="Suivez-nous sur Mastodon"
-                href="#"
-              />
-              <SocialLink
-                icon="github"
-                title="Suivez-nous sur GitHub"
-                href="https://github.com/dis-moi"
-              />
-              <SocialLink
-                icon="linkedin"
-                title="Suivez-nous sur LinkedIn"
-                href="https://www.linkedin.com/company/dismoi/mycompany/"
-              />
-              <SocialLink
-                icon="facebook"
-                title="Suivez-nous sur Facebook"
-                href="https://www.facebook.com/DisMoiCompagnon"
-              />
-              <SocialLink
-                icon="twitter"
-                title="Suivez-nous sur Twitter"
-                href="https://twitter.com/dismoicompagnon"
-              />
-            </SocialLinkWrapper>
-          </GridCol1>
-          <GridCol2>
-            <NavFooter>
-              <ListLinks links={props.links} />
-            </NavFooter>
-          </GridCol2>
-          <GridCol3>
-            <NavDesktopItem onClick={props.switchLanguage}>
-              fr | en
-            </NavDesktopItem>
-            <Legals>
-              Droits réservés textes et images <br />
-              DisMoi © 2021
-            </Legals>
-          </GridCol3>
-        </StyledGridRow>
-      </GridContainer>
-    </Section>
-  </FooterWrapper>
-);
+const Footer = (props: FooterProps) => {
+  const { t } = useTranslation('website');
+  return (
+    <FooterWrapper {...props}>
+      <Section>
+        <GridContainer>
+          <StyledGridRow>
+            <GridCol1>
+              <LogoDisMoi />
+              <SocialLinkWrapper>
+                <SocialLink
+                  icon="mastodon"
+                  title={t('footer.followUsOn', { network: 'Mastodon' })}
+                  href="#"
+                />
+                <SocialLink
+                  icon="github"
+                  title={t('footer.followUsOn', { network: 'GitHub' })}
+                  href="https://github.com/dis-moi"
+                />
+                <SocialLink
+                  icon="linkedin"
+                  title={t('footer.followUsOn', { network: 'LinkedIn' })}
+                  href="https://www.linkedin.com/company/dismoi/mycompany/"
+                />
+                <SocialLink
+                  icon="facebook"
+                  title={t('footer.followUsOn', { network: 'Facebook' })}
+                  href="https://www.facebook.com/DisMoiCompagnon"
+                />
+                <SocialLink
+                  icon="twitter"
+                  title={t('footer.followUsOn', { network: 'Twitter' })}
+                  href="https://twitter.com/dismoicompagnon"
+                />
+              </SocialLinkWrapper>
+            </GridCol1>
+            <GridCol2>
+              <NavFooter>
+                <ListLinks links={props.links} />
+              </NavFooter>
+            </GridCol2>
+            <GridCol3>
+              <NavDesktopItem onClick={props.switchLanguage}>
+                <span title="French">fr</span> | <span title="English">en</span>
+              </NavDesktopItem>
+              <Legals>
+                {t('footer.rightsReserved')} <br />
+                DisMoi © 2021
+              </Legals>
+            </GridCol3>
+          </StyledGridRow>
+        </GridContainer>
+      </Section>
+    </FooterWrapper>
+  );
+};
 
 export default Footer;

@@ -6,9 +6,7 @@ const PageContainer = styled.div`
   width: 1032px;
   min-height: 100vh;
   margin: 0 auto;
-  padding-right: 20px;
-  padding-left: 20px;
-  padding-bottom: 70px;
+  padding: 50px 20px 70px 20px;
   font-family: 'Lato', sans-serif;
 
   @media (max-width: ${props => props.theme.desktopWidth}) {

@@ -12,18 +12,18 @@ export interface StepItem {
 export const steps: StepItem[] = [
   {
     index: 1,
-    title: 'Je m’abonne aux profils de mon choix.',
-    detail: 'Eux et eux-seuls pourront me conseiller dans ma navigation !'
+    title: 'home.howItWorks.steps.step1.title',
+    detail: 'home.howItWorks.steps.step1.detail'
   },
   {
     index: 2,
-    title: 'Je navigue sur le web',
-    detail: 'comme à mon habitude : e-commerce, médias, réseaux sociaux…'
+    title: 'home.howItWorks.steps.step2.title',
+    detail: 'home.howItWorks.steps.step2.detail'
   },
   {
     index: 3,
-    title: 'Je bénéficie de leurs conseils',
-    detail: 'directement sur les pages du web que je visite.'
+    title: 'home.howItWorks.steps.step3.title',
+    detail: 'home.howItWorks.steps.step3.detail'
   }
 ];
 

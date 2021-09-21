@@ -9,6 +9,7 @@ import SectionTitle from '../../atoms/Titles/SectionTitle';
 import Steps, { steps } from '../../molecules/Steps/Steps';
 import VideoImage from '../../molecules/VideoImage/VideoImage';
 import VideoModal from '../../molecules/VideoModal/VideoModal';
+import { useTranslation } from 'react-i18next';
 
 const StyledGridRow = styled(props => <GridRow {...props} />)`
   justify-content: center;
@@ -38,6 +39,7 @@ export interface HowItWorksSectionProps {
 }
 
 const HowItWorksSection = styled((props: HowItWorksSectionProps) => {
+  const { t } = useTranslation('website');
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);
   return (
     <>
@@ -45,12 +47,12 @@ const HowItWorksSection = styled((props: HowItWorksSectionProps) => {
         <GridContainer>
           <StyledGridRow>
             <StyledGridCol>
-              <SectionTitle>Comment ça marche ?</SectionTitle>
+              <SectionTitle>{t('home.howItWorks.sectionTitle')}</SectionTitle>
               <ContentWrapper>
                 <Steps steps={steps} />
                 <StyledVideoImage
                   image={Screenshot}
-                  text="Découvrir comment fonctionne DisMoi en 1 minute"
+                  text={t('home.howItWorks.discoverIn1Min')}
                   handleClick={() => setModalOpen(true)}
                 />
               </ContentWrapper>
@@ -60,7 +62,8 @@ const HowItWorksSection = styled((props: HowItWorksSectionProps) => {
       </Section>
       <VideoModal
         src="https://www.youtube.com/embed/y5_qCUhID4Y"
-        title="Comment fonctionne l’extension DisMoi ?"
+        title={t('home.howItWorks.modalTitle')}
+        smallTitle={t('home.howItWorks.modalSmallTitle')}
         open={modalOpen}
         setOpen={setModalOpen}
       />

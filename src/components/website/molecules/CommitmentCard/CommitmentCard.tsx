@@ -7,6 +7,7 @@ import IconFast from './icons/IconFast';
 import IconLock from './icons/IconLock';
 import IconNoShit from './icons/IconNoShit';
 import IconOpenSource from './icons/IconOpenSource';
+import { useTranslation } from 'react-i18next';
 
 const Icon = styled.div`
   display: flex;
@@ -59,6 +60,7 @@ const CommitmentCard = styled(
     buttonIcon,
     href
   }: CommitmentCardProps) => {
+    const { t } = useTranslation('website');
     const [isOpen, setIsOpen] = React.useState<boolean>(false);
     return (
       <Card
@@ -67,13 +69,13 @@ const CommitmentCard = styled(
       >
         <div className="iconTitle">
           <Icon>{IconSvg(icon)}</Icon>
-          <SmallTitle>{title}</SmallTitle>
+          <SmallTitle>{t(title)}</SmallTitle>
         </div>
         <div className="slideUpDown">
-          <p dangerouslySetInnerHTML={{ __html: text }} />
+          <p dangerouslySetInnerHTML={{ __html: t(text) }} />
           <Button
             appearance="outline"
-            text={buttonText}
+            text={t(buttonText)}
             icon={buttonIcon}
             color="grey"
             handleClick={() => (window.location.href = href)}

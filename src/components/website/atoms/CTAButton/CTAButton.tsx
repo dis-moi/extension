@@ -7,6 +7,7 @@ import LogoAndroid from './logos/LogoAndroid';
 import LogoIOs from './logos/LogoIOs';
 import LogoFirefox from './logos/LogoFirefox';
 import LogoChrome from './logos/LogoChrome';
+import { useTranslation } from 'react-i18next';
 
 const Button = styled.button`
   box-sizing: border-box;
@@ -79,6 +80,8 @@ const CTAButton = ({
   details,
   className
 }: CATButtonProps) => {
+  const { t } = useTranslation('website');
+
   const {
     currentBrowser,
     isBrowserValid,
@@ -95,20 +98,21 @@ const CTAButton = ({
   // If text is not forced :
   if (!text) {
     text = isMobile
-      ? 'Installer l’app'
+      ? t('home.cta.installApp')
       : isBrowserValid && currentBrowser
-      ? 'Ajouter à ' +
+      ? t('home.cta.addTo') +
+        ' ' +
         currentBrowser.charAt(0).toUpperCase() +
         currentBrowser.slice(1)
-      : 'Ajouter à mon navigateur';
+      : t('home.cta.addToBrowser');
   }
 
   // If details is not forced :
   if (!details) {
     details = (
       <>
-        Gratuit, sans publicité, <br />
-        respecte votre vie privée
+        {t('home.cta.free')}, {t('home.cta.noAds')}, <br />
+        {t('home.cta.privacy')}
       </>
     );
   }

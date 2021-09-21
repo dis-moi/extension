@@ -43,16 +43,17 @@ export interface VideoModalProps {
   className?: string;
   src: string;
   title?: string;
+  smallTitle?: string;
   open: boolean;
   setOpen: (open: boolean) => void;
 }
 
 const VideoModal = styled(
-  ({ className, src, title, open, setOpen }: VideoModalProps) => {
+  ({ className, src, title, smallTitle, open, setOpen }: VideoModalProps) => {
     return (
       <Modal className={className} open={open} setOpen={setOpen}>
         <StyledSectionTitle>{title}</StyledSectionTitle>
-        <StyledSmallTitle>Explications en video</StyledSmallTitle>
+        <StyledSmallTitle>{smallTitle}</StyledSmallTitle>
         <Wrapper>
           <Iframe
             src={src}

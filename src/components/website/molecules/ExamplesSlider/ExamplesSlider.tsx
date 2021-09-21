@@ -13,6 +13,7 @@ import TabButton from '../../atoms/TabButton/TabButton';
 import { ButtonProps } from '../../atoms/Button/Button';
 import SmallTitle from '../../atoms/Titles/SmallTitle';
 import SectionArrow from '../../atoms/SectionArrow/SectionArrow';
+import { useTranslation } from 'react-i18next';
 
 const StyledSmallTitle = styled(props => <SmallTitle {...props} />)`
   color: ${props => props.theme.website.secondaryColorDarker};
@@ -70,24 +71,23 @@ export const examples: Example[] = [
   {
     srcMobile: ScreenshotMobile1.substr(1),
     srcDesktop: ScreenshotDesktop1.substr(1),
-    alt: 'Exemple – Le Même en Local',
-    title: 'Un guide spécialisé vous suggère une alternative locale',
-    buttonText: 'Alternatives conso'
+    alt: 'home.examples.example1.alt',
+    title: 'home.examples.example1.title',
+    buttonText: 'home.examples.example1.buttonText'
   },
   {
     srcMobile: ScreenshotMobile2.substr(1),
     srcDesktop: ScreenshotDesktop2.substr(1),
-    alt: 'Exemple – Selon Que Choisir',
-    title: 'Une association de consommateurs vous signale une arnaque',
-    buttonText: 'Alertes Arnaques'
+    alt: 'home.examples.example2.alt',
+    title: 'home.examples.example2.title',
+    buttonText: 'home.examples.example2.buttonText'
   },
   {
     srcMobile: ScreenshotMobile3.substr(1),
     srcDesktop: ScreenshotDesktop3.substr(1),
-    alt: 'Exemple – Biet Thomas',
-    title:
-      'Un lecteur vous partage une discussion qui approfondit l’article consulté',
-    buttonText: 'Infos éclairantes'
+    alt: 'home.examples.example3.alt',
+    title: 'home.examples.example3.title',
+    buttonText: 'home.examples.example3.buttonText'
   }
 ];
 
@@ -98,6 +98,7 @@ export interface ExamplesSliderProps {
 
 const ExamplesSlider = styled(
   ({ className, examples }: ExamplesSliderProps) => {
+    const { t } = useTranslation('website');
     const [tabButtonIndex, setTabButtonIndex] = React.useState<number>(0);
     const [settings, setSettings] = React.useState({
       dots: false,
@@ -138,13 +139,13 @@ const ExamplesSlider = styled(
 
     return (
       <div className={className}>
-        <StyledSmallTitle>Par exemple</StyledSmallTitle>
+        <StyledSmallTitle>{t('home.examples.forExample')}</StyledSmallTitle>
         <SliderWrapper>
           <Slider ref={slider => (sliderRef.current = slider)} {...settings}>
             {examples &&
               examples.map<React.ReactNode>((example, index) => (
                 <div key={index}>
-                  <SectionTitle>{example.title}</SectionTitle>
+                  <SectionTitle>{t(example.title)}</SectionTitle>
                   <img
                     srcSet={
                       example.srcMobile +
@@ -154,7 +155,7 @@ const ExamplesSlider = styled(
                     }
                     sizes="(max-width: 768px) 1000px, 2800px"
                     src={example.srcDesktop}
-                    alt={example.alt}
+                    alt={t(example.alt)}
                   />
                 </div>
               ))}
@@ -177,7 +178,7 @@ const ExamplesSlider = styled(
             (acc: ButtonProps[], example: Example, index: number) => [
               ...acc,
               {
-                text: example.buttonText,
+                text: t(example.buttonText),
                 handleClick: () => {
                   setSettings({ ...settings, autoplay: false });
                   sliderRef?.current && sliderRef.current.slickGoTo(index);
