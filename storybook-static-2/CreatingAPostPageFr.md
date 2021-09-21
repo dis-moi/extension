@@ -1,0 +1,25 @@
+
+> ## Contribuer avec l’extension directement sur les pages web visitées
+> 
+> 1.  Avec <a href="https://www.dismoi.io/">DisMoi sur votre navigateur</a>, aller sur la page web où vous souhaitez diffuser un message ;
+> 2.  Cliquer sur « Créer une contribution » et ajouter votre message comme indiqué ci-dessous.
+> 
+> Vos bulles sont visibles de vos abonnés. Ils les voient au moment de visiter les pages web où vous les avez postés.
+
+* * *
+
+## Exemple : Un habitué des déménagements partage son astuce pour trouver des cartons gratuitement
+
+![DisMoi](https://www.dismoi.io/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2020/06/bulle-carton-demenagement.png.webp)
+
+## Diffusez librement vos informations sur les pages web de votre choix
+
+Ni le webmaster, ni propritaire du site web ne peuvent censurer votre information. La seule condition pour qu’elle s’affiche : **l’internaute doit être abonné à votre fil**.
+
+### Exemples de posts
+
+* Recommander une alternative locale à un produit de grande marque ;
+* Signaler une fausse information sur un média ;
+* Prévenir d’une arnaque ou d’une entourloupe ;
+* Demander un conseil aux autres visiteurs de la page ;
+* etc.

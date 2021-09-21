@@ -21,7 +21,7 @@ module.exports = {
         },
         {
           from:
-            'src/components/website/atoms/BrowserAnimation/animationVar1.js',
+            'src/components/website/atoms/BrowserAnimation/animationWithTextV2.js',
           to: config.output.path
         },
         {

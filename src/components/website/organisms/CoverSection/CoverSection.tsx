@@ -150,10 +150,10 @@ const CoverSection = styled((props: CoverSectionProps) => {
           </StyledGridCol1>
           <StyledGridCol2>
             <PrimaryHeadline>
-              Ne passez plus à côté d’un bon conseil...
+              Ce que les sites web ne vous disent pas, vous le saurez
               <span
                 id="variableWords"
-                className="stop fade"
+                className="fade"
                 data-word1="Signalement de faux avis" // alerte
                 data-word2="Avis d'experts de confiance" // info
                 data-word3="Alternatives moins chères" // idée
@@ -163,12 +163,10 @@ const CoverSection = styled((props: CoverSectionProps) => {
                 data-word7="Infox / Fakenews" // alerte
                 data-word8="Greenwashing" // info
                 data-word9="Vente direct producteurs" // idée
-              >
-                &nbsp;
-              </span>
+              ></span>
             </PrimaryHeadline>
             <SecondaryHeadline>
-              Soyez alerté directement sur les pages web que vous visitez.
+              Soyez alertés directement sur les pages web que vous visitez.
             </SecondaryHeadline>
             <CTAAndRatingWrapper>
               <StyledCTAButton />
