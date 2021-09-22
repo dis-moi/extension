@@ -1,17 +1,11 @@
 import { PersistedState } from 'redux-persist';
 import { createSelector } from 'reselect';
 import { InstallationDetails } from 'libs/domain/installation';
-import { filterContextsMatchingUrl } from 'libs/domain/matchingContext';
 import { getNotice } from 'libs/domain/notice';
 import { BackgroundState } from 'app/background/store/reducers';
-import { getMatchingContexts } from './resources';
 import { getInstallationDetails } from './installationDetails';
 import { areTosAccepted, getRead } from './prefs';
 import { getNoticesIdsOnTab } from './tabs';
-
-export const getContextsMatchingUrl = (state: BackgroundState) => (
-  url: string
-) => filterContextsMatchingUrl(url, getMatchingContexts(state));
 
 export const isAnUpdate = createSelector(
   getInstallationDetails,
