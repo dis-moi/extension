@@ -1,3 +1,22 @@
+# [3.88.0](https://github.com/dis-moi/extension/compare/v3.87.1...v3.88.0) (2021-09-22)
+
+
+### Bug Fixes
+
+* storybook ([2e45d22](https://github.com/dis-moi/extension/commit/2e45d22c9f4fb52919cbc5437521dbd08b2abefc))
+* yarn lock ([ffd9e62](https://github.com/dis-moi/extension/commit/ffd9e62c8ef343b0a5b5e3187abb4f931ec597b9))
+
+
+### Features
+
+* **contribution:** new no notice screen ([adeb2bd](https://github.com/dis-moi/extension/commit/adeb2bd6f09843136960baea5c19764e76fb40ea))
+* **NoNoticeScreenContrib:** get value ([70f5dce](https://github.com/dis-moi/extension/commit/70f5dce848952e9f9850aadb873551ec92c705d0))
+
+
+### Performance Improvements
+
+* **matching:** filter matching contexts lists at once ([80aac85](https://github.com/dis-moi/extension/commit/80aac85bfe410134c17098b240729e5f7e570f95))
+
 ## [3.87.1](https://github.com/dis-moi/extension/compare/v3.87.0...v3.87.1) (2021-08-31)
 
 
