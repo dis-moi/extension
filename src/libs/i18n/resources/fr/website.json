@@ -111,5 +111,15 @@
         }
       }
     }
+  },
+  "links": {
+    "about": "/fr/a-propos",
+    "contact": "/fr/contact",
+    "contribuer": "/fr/contribuer",
+    "press": "/fr/espace-presse",
+    "legal": "/fr/mentions-legales",
+    "privacy": "/fr/privacy",
+    "tcu": "/fr/tcu",
+    "home": "/"
   }
 }

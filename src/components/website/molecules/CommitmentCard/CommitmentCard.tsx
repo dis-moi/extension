@@ -48,6 +48,7 @@ export interface CommitmentCardProps {
   buttonText: string;
   buttonIcon: ButtonIcon;
   href: string;
+  externalLink?: boolean;
 }
 
 const CommitmentCard = styled(
@@ -58,7 +59,8 @@ const CommitmentCard = styled(
     text,
     buttonText,
     buttonIcon,
-    href
+    href,
+    externalLink
   }: CommitmentCardProps) => {
     const { t } = useTranslation('website');
     const [isOpen, setIsOpen] = React.useState<boolean>(false);
@@ -78,7 +80,11 @@ const CommitmentCard = styled(
             text={t(buttonText)}
             icon={buttonIcon}
             color="grey"
-            handleClick={() => (window.location.href = href)}
+            handleClick={() =>
+              externalLink
+                ? window.open(href, '_blank')
+                : window.location.assign(t(href))
+            }
           />
         </div>
       </Card>

@@ -30,10 +30,8 @@ const Layout = ({
   path,
   scrolled = false
 }: LayoutProps) => {
-  useChangeLanguage(pageContext.langKey as SupportedLanguage);
-  const [switchLanguage] = useSwitchLanguage(
-    i18n.language as SupportedLanguage
-  );
+  useChangeLanguage(path);
+  const [switchLanguage] = useSwitchLanguage();
   const { footer, header } = useGetMenus(i18n.language as SupportedLanguage);
   const eng = new RegExp(/\/en/);
   const isHome = path === '/' || eng.test(path);

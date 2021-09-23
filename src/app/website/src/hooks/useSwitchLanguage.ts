@@ -1,8 +1,8 @@
 import { navigate } from 'gatsby';
-import i18n, { SupportedLanguage } from '../../../../libs/i18n';
+import i18n from '../../../../libs/i18n';
 
-const useSwitchLanguage = (locale: SupportedLanguage): [() => void] => {
-  const newLocale = locale === 'fr' ? 'en' : 'fr';
+const useSwitchLanguage = (): [() => void] => {
+  const newLocale = i18n.language === 'fr' ? 'en' : 'fr';
   const newSlug = newLocale === 'fr' ? '/' : '/en';
 
   const switchLanguage = () =>

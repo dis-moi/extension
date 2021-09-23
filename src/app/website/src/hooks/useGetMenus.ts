@@ -3,12 +3,15 @@ import { GetLinksQuery } from '../graphql/generated/graphql';
 import { Link } from '../../../../components/website/molecules/Header/ListLinks';
 import { SupportedLanguage } from '../../../../libs/i18n';
 
-const useGetMenus = (
-  locale: SupportedLanguage
-): { header: Link[]; footer: Link[] } => {
+interface GetMenus {
+  header: Link[];
+  footer: Link[];
+}
+
+const useGetMenus = (locale: SupportedLanguage): GetMenus => {
   const data = useStaticQuery<GetLinksQuery>(
     graphql`
-      query GetLinks {
+      query GetMenus {
         allMdx {
           nodes {
             frontmatter {
@@ -30,12 +33,10 @@ const useGetMenus = (
   const FOOTER_LINKS = ['contact', 'about', 'faq', 'legal', 'cgu', 'press'];
   const footer: Link[] = [];
   const header: Link[] = [];
-  const formatLink = (node: GetLinksQuery['allMdx']['nodes'][0]) => {
-    return {
-      href: '/' + node.slug + '/' || '#',
-      label: node.frontmatter?.label || ''
-    };
-  };
+  const formatLink = (node: GetLinksQuery['allMdx']['nodes'][0]) => ({
+    href: node.frontmatter?.name || '#',
+    label: node.frontmatter?.label || ''
+  });
 
   nodes.forEach(node => {
     HEADER_LINKS.some(name => name === node.frontmatter?.name) &&
@@ -43,6 +44,7 @@ const useGetMenus = (
     FOOTER_LINKS.some(name => name === node.frontmatter?.name) &&
       footer.push(formatLink(node));
   });
+
   return {
     header,
     footer

@@ -23,7 +23,7 @@ export const commitmentCards: CommitmentCardProps[] = [
     text: 'home.commitments.cards.card1.text',
     buttonText: 'home.commitments.cards.card1.buttonText',
     buttonIcon: 'checklist',
-    href: '#'
+    href: 'links.privacy'
   },
   {
     icon: 'noShit',
@@ -31,7 +31,7 @@ export const commitmentCards: CommitmentCardProps[] = [
     text: 'home.commitments.cards.card2.text',
     buttonText: 'home.commitments.cards.card2.buttonText',
     buttonIcon: 'coins',
-    href: '#'
+    href: 'links.tcu'
   },
   {
     icon: 'fast',
@@ -39,7 +39,7 @@ export const commitmentCards: CommitmentCardProps[] = [
     text: 'home.commitments.cards.card3.text',
     buttonText: 'home.commitments.cards.card3.buttonText',
     buttonIcon: 'stats',
-    href: '#'
+    href: 'links.tcu'
   },
   {
     icon: 'openSource',
@@ -47,7 +47,8 @@ export const commitmentCards: CommitmentCardProps[] = [
     text: 'home.commitments.cards.card4.text',
     buttonText: 'home.commitments.cards.card4.buttonText',
     buttonIcon: 'github',
-    href: '#'
+    href: 'https://github.com/dis-moi/',
+    externalLink: true
   }
 ];
 
@@ -66,12 +67,11 @@ const OurCommitmentsSection = styled(
         <GridContainer>
           <StyledSectionTitle>{t('home.commitments.title')}</StyledSectionTitle>
           <GridRow>
-            {commitmentCards &&
-              commitmentCards.map<React.ReactNode>((commitmentCard, index) => (
-                <GridCol key={index}>
-                  <CommitmentCard {...commitmentCard} />
-                </GridCol>
-              ))}
+            {commitmentCards.map<React.ReactNode>((commitmentCard, index) => (
+              <GridCol key={index}>
+                <CommitmentCard {...commitmentCard} />
+              </GridCol>
+            ))}
           </GridRow>
         </GridContainer>
       </Section>
