@@ -3,7 +3,8 @@ import i18n from '../../../../libs/i18n';
 
 const useSwitchLanguage = (): [() => void] => {
   const newLocale = i18n.language === 'fr' ? 'en' : 'fr';
-  const newSlug = newLocale === 'fr' ? '/' : '/en';
+  const newSlug = newLocale === 'fr' ? '/' : '/en/';
+  console.log(newLocale, newSlug, '---------');
 
   const switchLanguage = () =>
     i18n.changeLanguage(newLocale).then(() => navigate(newSlug));

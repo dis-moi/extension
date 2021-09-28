@@ -61,38 +61,52 @@ export interface HeaderProps {
   scrolled?: Scrolled;
   links: Link[];
   switchLanguage: () => void;
+  isHome: boolean;
 }
 
 const Header = styled(
-  ({ className, scrolled, links, switchLanguage }: HeaderProps) => {
-    const [offset, setOffset] = useState(0);
+  ({ className, scrolled, links, switchLanguage, isHome }: HeaderProps) => {
+    const [scrolledClass, setScolledClass] = useState('');
+    const [opacity, setOpacity] = useState(0);
     const [modalOpen, setModalOpen] = React.useState<boolean>(false);
 
     useEffect(() => {
-      window.onload = () => {
-        setOffset(window.pageYOffset);
+      setOpacity(100);
+      const setMoove = () => {
+        console.log(1);
+        if (scrolled || !isHome || window.pageYOffset > 0)
+          return setScolledClass('scrolled');
+        console.log(
+          2,
+          isHome,
+          window.pageYOffset <= 0,
+          isHome && window.pageYOffset <= 0
+        );
+        if (isHome && window.pageYOffset <= 0) return setScolledClass('');
+        console.log(3);
+        return setScolledClass('scrolled');
       };
+      setMoove();
       window.onscroll = () => {
-        setOffset(window.pageYOffset);
+        setMoove();
       };
     }, []);
 
-    const isScrolled = scrolled || offset > 0;
     return (
       <>
-        <header className={className + (isScrolled ? ' scrolled' : '')}>
+        <header className={className + ' ' + scrolledClass} style={{ opacity }}>
           <a className="homeLink" href={'/'}>
             <LogoDisMoi />
           </a>
           <NavDesktop>
             <ListLinks links={links} />
-            {isScrolled && <HeaderCTAButton />}
+            {!!scrolledClass && <HeaderCTAButton />}
             <NavDesktopItem onClick={switchLanguage}>
               <span title="French">fr</span> | <span title="English">en</span>
             </NavDesktopItem>
           </NavDesktop>
           <MobileButtonsWrapper>
-            {isScrolled && <HeaderCTAButton />}
+            {!!scrolledClass && <HeaderCTAButton />}
             <ToggleMenu handleClick={() => setModalOpen(true)} />
           </MobileButtonsWrapper>
         </header>

@@ -33,13 +33,14 @@ const Layout = ({
   useChangeLanguage(path);
   const [switchLanguage] = useSwitchLanguage();
   const { footer, header } = useGetMenus(i18n.language as SupportedLanguage);
-  const eng = new RegExp(/\/en/);
+  const eng = new RegExp(/^\/en\/$|^\/en$/);
   const isHome = path === '/' || eng.test(path);
   return (
     <ThemeProvider theme={theme}>
       <Seo title={pageContext.title || 'DisMoi'} />
       <Header
-        scrolled={scrolled || !isHome}
+        isHome={isHome}
+        scrolled={scrolled}
         links={header}
         switchLanguage={switchLanguage}
       />
