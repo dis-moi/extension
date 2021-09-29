@@ -1,10 +1,9 @@
 import React from 'react';
 import NavDesktopItem from '../../atoms/NavDesktopItem/NavDesktopItem';
-import { useTranslation } from 'react-i18next';
 
 export type Link = {
   label: string;
-  href: string;
+  href: () => void;
 };
 
 interface LinksProps {
@@ -12,11 +11,10 @@ interface LinksProps {
 }
 
 const ListLinks = ({ links }: LinksProps) => {
-  const { t } = useTranslation('website');
   return (
     <>
       {links.map((link, i) => (
-        <NavDesktopItem key={i} href={t('links.' + link.href)}>
+        <NavDesktopItem key={i} onClick={link.href}>
           {link.label}
         </NavDesktopItem>
       ))}

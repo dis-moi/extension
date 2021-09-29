@@ -1,7 +1,8 @@
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, navigate, useStaticQuery } from 'gatsby';
 import { GetLinksQuery } from '../graphql/generated/graphql';
 import { Link } from '../../../../components/website/molecules/Header/ListLinks';
 import { SupportedLanguage } from '../../../../libs/i18n';
+import { useTranslation } from 'react-i18next';
 
 interface GetMenus {
   header: Link[];
@@ -26,15 +27,16 @@ const useGetMenus = (locale: SupportedLanguage): GetMenus => {
       }
     `
   );
+  const { t } = useTranslation('website');
   const nodes = data.allMdx.nodes.filter(
     node => node.frontmatter?.locale === locale
   );
-  const HEADER_LINKS = ['contribuer', 'faq'];
+  const HEADER_LINKS = ['contribuer', 'faq', 'guides'];
   const FOOTER_LINKS = ['contact', 'about', 'faq', 'legal', 'cgu', 'press'];
   const footer: Link[] = [];
   const header: Link[] = [];
   const formatLink = (node: GetLinksQuery['allMdx']['nodes'][0]) => ({
-    href: node.frontmatter?.name || '#',
+    href: () => navigate(t('links.' + node.frontmatter?.name)) || '#',
     label: node.frontmatter?.label || ''
   });
 
