@@ -34,7 +34,9 @@ const useGetMenus = (locale: SupportedLanguage): GetMenus => {
   const HEADER_LINKS = ['contribuer', 'faq', 'guides'];
   const FOOTER_LINKS = ['contact', 'about', 'faq', 'legal', 'cgu', 'press'];
   const footer: Link[] = [];
-  const header: Link[] = [];
+  const header: Link[] = [
+    { label: t('header.guides'), href: () => navigate(t('links.guides')) }
+  ];
   const formatLink = (node: GetLinksQuery['allMdx']['nodes'][0]) => ({
     href: () => navigate(t('links.' + node.frontmatter?.name)) || '#',
     label: node.frontmatter?.label || ''

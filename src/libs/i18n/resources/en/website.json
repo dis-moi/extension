@@ -1,6 +1,7 @@
 {
   "header": {
-    "ctaText": "Add DisMoi"
+    "ctaText": "Add DisMoi",
+    "guides": "Guides"
   },
   "footer": {
     "followUsOn": "Follow us on {{network}}",
@@ -113,6 +114,7 @@
     }
   },
   "links": {
+    "guides": "/en/guides",
     "about": "/en/about",
     "contact": "/en/contact",
     "contribuer": "/en/creating-a-post",

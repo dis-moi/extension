@@ -1,6 +1,7 @@
 {
   "header": {
-    "ctaText": "Ajouter DisMoi"
+    "ctaText": "Ajouter DisMoi",
+    "guides": "Eclaireurs"
   },
   "footer": {
     "followUsOn": "Suivez-nous sur {{network}}",
@@ -113,6 +114,7 @@
     }
   },
   "links": {
+    "guides": "/fr/eclaireurs",
     "about": "/fr/a-propos",
     "contact": "/fr/contact",
     "contribuer": "/fr/contribuer",

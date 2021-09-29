@@ -3,7 +3,7 @@ import NavDesktopItem from '../../atoms/NavDesktopItem/NavDesktopItem';
 
 export type Link = {
   label: string;
-  href: () => void;
+  href?: () => void;
 };
 
 interface LinksProps {
