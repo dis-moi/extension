@@ -30,7 +30,8 @@
     "storybook": "start-storybook -s ./src/assets --ci -p 6007 -c .storybook",
     "build-storybook": "build-storybook",
     "website": "cd src/app/website && yarn",
-    "build:website": "yarn build:profiles:production && yarn website build"
+    "build:website": "yarn build:profiles:production && yarn website build",
+    "publish:website": "yarn build:profiles:production && yarn website build && cd src/app/website/public && git push clever master"
   },
   "husky": {
     "hooks": {
