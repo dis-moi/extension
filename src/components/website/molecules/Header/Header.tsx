@@ -58,14 +58,13 @@ export type Scrolled = boolean;
 
 export interface HeaderProps {
   className?: string;
-  scrolled?: Scrolled;
   links: Link[];
   switchLanguage: () => void;
   isHome: boolean;
 }
 
 const Header = styled(
-  ({ className, scrolled, links, switchLanguage, isHome }: HeaderProps) => {
+  ({ className, links, switchLanguage, isHome }: HeaderProps) => {
     const [scrolledClass, setScolledClass] = useState('');
     const [opacity, setOpacity] = useState(0);
     const [modalOpen, setModalOpen] = React.useState<boolean>(false);
@@ -73,24 +72,18 @@ const Header = styled(
     useEffect(() => {
       setOpacity(100);
       const setMoove = () => {
-        console.log(1);
-        if (scrolled || !isHome || window.pageYOffset > 0)
+        if (isHome) {
+          if (window.pageYOffset === 0) return setScolledClass('');
           return setScolledClass('scrolled');
-        console.log(
-          2,
-          isHome,
-          window.pageYOffset <= 0,
-          isHome && window.pageYOffset <= 0
-        );
-        if (isHome && window.pageYOffset <= 0) return setScolledClass('');
-        console.log(3);
-        return setScolledClass('scrolled');
+        } else {
+          return setScolledClass('scrolled');
+        }
       };
       setMoove();
       window.onscroll = () => {
         setMoove();
       };
-    }, []);
+    }, [isHome]);
 
     return (
       <>

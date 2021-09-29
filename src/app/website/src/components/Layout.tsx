@@ -11,12 +11,12 @@ import useChangeLanguage from '../hooks/useChangeLanguage';
 import './layout.css';
 import Seo from './seo';
 import { Helmet } from 'react-helmet';
+import { useEffect, useState } from 'react';
 
 interface LayoutProps {
   children: React.ReactNode;
   pageContext: PageContext;
   path: string;
-  scrolled?: boolean;
 }
 
 i18n
@@ -24,26 +24,18 @@ i18n
   .then(() => null)
   .catch(() => null);
 
-const Layout = ({
-  children,
-  pageContext,
-  path,
-  scrolled = false
-}: LayoutProps) => {
+const Layout = ({ children, pageContext, path }: LayoutProps) => {
   useChangeLanguage(path);
   const [switchLanguage] = useSwitchLanguage();
   const { footer, header } = useGetMenus(i18n.language as SupportedLanguage);
+  const [isHome, setIsHome] = useState(true);
   const eng = new RegExp(/^\/en\/$|^\/en$/);
-  const isHome = path === '/' || eng.test(path);
+  useEffect(() => setIsHome(path === '/' || eng.test(path)), [path]);
+
   return (
     <ThemeProvider theme={theme}>
       <Seo title={pageContext.title || 'DisMoi'} />
-      <Header
-        isHome={isHome}
-        scrolled={scrolled}
-        links={header}
-        switchLanguage={switchLanguage}
-      />
+      <Header isHome={isHome} links={header} switchLanguage={switchLanguage} />
       <Helmet htmlAttributes={{ lang: i18n.language }} />
       <main>{children}</main>
       <Footer links={footer} switchLanguage={switchLanguage} />
