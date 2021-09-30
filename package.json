@@ -31,7 +31,7 @@
     "build-storybook": "build-storybook",
     "website": "cd src/app/website && yarn",
     "build:website": "yarn build:profiles:production && yarn website build",
-    "publish:website": "yarn build:profiles:production && yarn website build && cd src/app/website/public && git push clever master"
+    "publish:website": "yarn build:website && cp -R ./src/app/website/public ./build/production/website"
   },
   "husky": {
     "hooks": {
