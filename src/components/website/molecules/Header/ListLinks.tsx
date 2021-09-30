@@ -1,10 +1,10 @@
 import React from 'react';
 import NavDesktopItem from '../../atoms/NavDesktopItem/NavDesktopItem';
 
-export type Link = {
+export interface Link {
   label: string;
   href?: () => void;
-};
+}
 
 interface LinksProps {
   links: Link[];
