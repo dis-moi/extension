@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import ThumbUp from 'components/atoms/icons/ThumbUp';
 import ThumbDown from 'components/atoms/icons/ThumbDown';
 import Avatar from 'components/molecules/Avatar/Avatar';
-import { Button, ContributorName, Timer } from 'components/atoms';
+import { Button, ContributorName, RelayPart, Timer } from 'components/atoms';
 import { Relay } from 'components/atoms/icons';
 import { StatefulNoticeWithContributor } from 'libs/domain/notice';
 import {
@@ -55,22 +55,9 @@ const ContributorNotice = styled(ContributorName)`
   }
 `;
 
-const RelayPart = styled.div`
-  display: flex;
-  flex: 1;
-  align-items: center;
-  margin-top: 2px;
-  font-size: 13px;
-
-  & > svg {
-    margin-right: 6px;
-  }
-`;
-
 const Relayer = styled(ContributorNotice)`
   max-width: 205px;
   margin-left: 4px;
-  font-size: 13px;
   line-height: 1;
   white-space: nowrap;
   overflow: hidden;

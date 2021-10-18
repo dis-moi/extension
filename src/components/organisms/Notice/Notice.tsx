@@ -3,10 +3,12 @@ import styled from 'styled-components';
 import { withTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import InteractiveAvatar from 'components/molecules/InteractiveAvatar';
+import Relay from 'components/atoms/icons/Relay';
 import {
   Button,
   CenterContainer,
   ContributorName,
+  RelayPart,
   Timer
 } from 'components/atoms';
 import { stripHtml } from 'libs/utils/stripHtml';
@@ -46,6 +48,8 @@ const Description = styled.div`
 
 const NoticeContributorName = styled(ContributorName)`
   display: inline-block;
+  font-weight: bold;
+
   &:hover {
     text-decoration: underline;
     cursor: pointer;
@@ -174,6 +178,10 @@ class Notice extends PureComponent<Props, CountDownState> {
                 size="small"
               />
               <Description>
+                <RelayPart>
+                  <Relay />
+                  Jean-Claude Duss
+                </RelayPart>
                 <NoticeContributorName onClick={this.onContributorClicked}>
                   {contributor.name}
                 </NoticeContributorName>
@@ -190,4 +198,5 @@ class Notice extends PureComponent<Props, CountDownState> {
     );
   }
 }
+
 export default withTranslation()(Notice);
