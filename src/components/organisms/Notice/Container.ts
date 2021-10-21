@@ -3,7 +3,7 @@ import { animated } from 'react-spring';
 
 // for animation purpose
 export const marginBottom = 18;
-export const height = 100;
+export const height = 122;
 
 interface Props {
   details?: boolean;

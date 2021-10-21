@@ -178,7 +178,7 @@ class Notice extends PureComponent<Props, CountDownState> {
               />
               <Description>
                 <Relay
-                  user={'Jean-Claude Duss'}
+                  user={'Le Même en Rhône en alpes'}
                   onClick={this.onContributorClicked}
                 />
                 <NoticeContributorName onClick={this.onContributorClicked}>
