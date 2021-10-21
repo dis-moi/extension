@@ -3,12 +3,10 @@ import styled from 'styled-components';
 import { withTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import InteractiveAvatar from 'components/molecules/InteractiveAvatar';
-import Relay from 'components/atoms/icons/Relay';
 import {
   Button,
   CenterContainer,
   ContributorName,
-  RelayPart,
   Timer
 } from 'components/atoms';
 import { stripHtml } from 'libs/utils/stripHtml';
@@ -18,6 +16,7 @@ import {
   CountDownState,
   initialState as countdownInitialState
 } from 'libs/domain/countdown';
+import Relay from '../../atoms/Relay/Relay';
 import Title from './Title';
 import DeleteButton from './DeleteButton';
 import Deleted from './Deleted';
@@ -178,10 +177,10 @@ class Notice extends PureComponent<Props, CountDownState> {
                 size="small"
               />
               <Description>
-                <RelayPart>
-                  <Relay />
-                  Jean-Claude Duss
-                </RelayPart>
+                <Relay
+                  user={'Jean-Claude Duss'}
+                  onClick={this.onContributorClicked}
+                />
                 <NoticeContributorName onClick={this.onContributorClicked}>
                   {contributor.name}
                 </NoticeContributorName>
