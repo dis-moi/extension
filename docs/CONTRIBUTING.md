@@ -165,17 +165,12 @@ List of environments:
 
 ## Build
 
-To build all production packages (Chromium, Firefox, etc).
-
-```bash
-# build files to './build/{browser}/'
-yarn build:production
-```
+To build production packages
 
 You can build any variations of the extension by playing with environment variables and this `webpack` command:
 
 ```
-NODE_ENV=production|proding|staging webpack --mode=production --env.PLATFORM=firefox|chromium --env.SENTRY_ENABLED
+NODE_ENV=production|proding|staging, FACET=dismoi|lmel webpack --mode=production --env.PLATFORM=firefox|chromium --env.SENTRY_ENABLED
 ```
 
 ## Deployment
@@ -228,13 +223,6 @@ Once built each package is released on [Github](https://github.com/insitu-projec
 ## Chrome store releases & Firefox Production
 
 These deployments process are manual, and are triggered from `Semaphore` once the staging has been functionally validated.
-
-Deploy scripts:
-
-- Firefox production: `yarn buildVersion:firefox:production && yarn upload:firefox:production`
-- Chromium staging: `yarn buildVersion:chromium:staging && yarn upload:chromium:staging`
-- Chromium proding: `yarn buildVersion:chromium:proding && yarn upload:chromium:proding`
-- Chromium production: `yarn buildVersion:chromium:production && yarn upload:chromium:production`
 
 Make you sure have access to semaphore and wait until the last master built is completed with success:
 https://semaphoreci.com/lmem/extension/branches/master

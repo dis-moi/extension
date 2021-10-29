@@ -41,7 +41,7 @@ const formatEnvVars = R.map(value => `"${value}"`);
 const processENVVarsToInject = R.pipe(selectEnvVarsToInject, formatEnvVars);
 
 module.exports = (env = {}, argv = {}, buildPath) => {
-  const { NODE_ENV, SENTRY_SEND_VERSION, PLATFORM, ANALYZE } = env;
+  const { NODE_ENV, SENTRY_SEND_VERSION, PLATFORM, ANALYZE, FACET } = env;
   const copyConfig = [
     { from: 'src/assets', to: buildPath },
     {
@@ -109,7 +109,7 @@ module.exports = (env = {}, argv = {}, buildPath) => {
       new CleanWebpackPlugin(),
       new ZipPlugin({
         path: '..',
-        filename: getPackageName(version, PLATFORM, NODE_ENV),
+        filename: getPackageName(version, PLATFORM, NODE_ENV, FACET),
         extension: getPackageExtension(PLATFORM)
       })
     );

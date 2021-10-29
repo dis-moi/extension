@@ -28,42 +28,80 @@ const release = Object.freeze({
   publish: [
     {
       path: '@semantic-release/exec',
-      cmd: 'yarn run buildVersion'
+      cmd:
+        'NODE_ENV=staging FACET=dismoi SENTRY_SEND_VERSION=true yarn run build:chromium &&' +
+        'NODE_ENV=proding FACET=dismoi SENTRY_SEND_VERSION=true yarn run build:chromium &&' +
+        'NODE_ENV=production FACET=dismoi SENTRY_SEND_VERSION=true yarn run build:chromium &&' +
+        'NODE_ENV=staging FACET=dismoi SENTRY_SEND_VERSION=true yarn run build:firefox &&' +
+        'NODE_ENV=proding FACET=dismoi SENTRY_SEND_VERSION=true yarn run build:firefox &&' +
+        'NODE_ENV=production FACET=dismoi SENTRY_SEND_VERSION=true yarn run build:firefox &&' +
+        'NODE_ENV=staging FACET=lmel SENTRY_SEND_VERSION=true yarn run build:chromium &&' +
+        'NODE_ENV=proding FACET=lmel SENTRY_SEND_VERSION=true yarn run build:chromium &&' +
+        'NODE_ENV=production FACET=lmel SENTRY_SEND_VERSION=true yarn run build:chromium &&' +
+        'NODE_ENV=staging FACET=lmel SENTRY_SEND_VERSION=true yarn run build:firefox &&' +
+        'NODE_ENV=proding FACET=lmel SENTRY_SEND_VERSION=true yarn run build:firefox &&' +
+        'NODE_ENV=production FACET=lmel SENTRY_SEND_VERSION=true yarn run build:firefox'
     },
     {
       path: '@semantic-release/exec',
-      cmd: 'yarn run upload:firefox:staging'
+      cmd:
+        'NODE_ENV=staging FACET=dismoi yarn run upload:firefox && NODE_ENV=staging FACET=lmel yarn run upload:firefox'
     },
     {
       path: '@semantic-release/exec',
-      cmd: 'yarn run upload:firefox:proding'
+      cmd:
+        'NODE_ENV=proding FACET=dismoi yarn run upload:firefox && NODE_ENV=proding FACET=lmel yarn run upload:firefox'
     },
     {
       path: '@semantic-release/github',
       assets: [
         {
-          path: getPackagePath('*', 'firefox', 'staging'),
+          path: getPackagePath('*', 'firefox', 'staging', 'dismoi'),
           label: 'Firefox Package - staging'
         },
         {
-          path: getPackagePath('*', 'firefox', 'proding'),
+          path: getPackagePath('*', 'firefox', 'proding', 'dismoi'),
           label: 'Firefox Package - proding'
         },
         {
-          path: getPackagePath('*', 'firefox', 'production'),
+          path: getPackagePath('*', 'firefox', 'production', 'dismoi'),
           label: 'Firefox Package'
         },
         {
-          path: getPackagePath('*', 'chromium', 'staging'),
+          path: getPackagePath('*', 'chromium', 'staging', 'dismoi'),
           label: 'Chromium Package - staging'
         },
         {
-          path: getPackagePath('*', 'chromium', 'proding'),
+          path: getPackagePath('*', 'chromium', 'proding', 'dismoi'),
           label: 'Chromium Package - proding'
         },
         {
-          path: getPackagePath('*', 'chromium', 'production'),
+          path: getPackagePath('*', 'chromium', 'production', 'dismoi'),
           label: 'Chromium Package'
+        },
+        {
+          path: getPackagePath('*', 'firefox', 'staging', 'lmel'),
+          label: 'Le Même en Local - Firefox Package - staging'
+        },
+        {
+          path: getPackagePath('*', 'firefox', 'proding', 'lmel'),
+          label: 'Le Même en Local - Firefox Package - proding'
+        },
+        {
+          path: getPackagePath('*', 'firefox', 'production', 'lmel'),
+          label: 'Le Même en Local - Firefox Package'
+        },
+        {
+          path: getPackagePath('*', 'chromium', 'staging', 'lmel'),
+          label: 'Le Même en Local - Chromium Package - staging'
+        },
+        {
+          path: getPackagePath('*', 'chromium', 'proding', 'lmel'),
+          label: 'Le Même en Local - Chromium Package - proding'
+        },
+        {
+          path: getPackagePath('*', 'chromium', 'production', 'lmel'),
+          label: 'Le Même en Local - Chromium Package'
         }
       ]
     }
