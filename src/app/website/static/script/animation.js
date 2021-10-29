@@ -844,11 +844,7 @@ if (reversed == null) { reversed = false; }
 	this.bubbleText.name = "bubbleText";
 	this.bubbleText.setTransform(84.65,55.9,1,1,0,0,0,31.7,22.4);
 
-	this.shape = new cjs.Shape();
-	this.shape.graphics.beginFill("#0C52B4").beginStroke().moveTo(-0.3,1.7).lineTo(-1.1,1.4).lineTo(-1.3,1.3).lineTo(-1.5,1).curveTo(-1.9,0,-1.8,-0.5).curveTo(-1.8,-1,-1.2,-1.5).curveTo(-0.6,-1.8,-0,-1.8).curveTo(0.6,-1.6,1,-1.4).curveTo(1.4,-1.2,1.6,-0.7).curveTo(2.2,0.5,1.4,1.1).curveTo(1.1,1.5,0.4,1.7).lineTo(0,1.8).closePath();
-	this.shape.setTransform(170.9436,95);
-
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape},{t:this.bubbleText}]}).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.bubbleText).wait(1));
 
 	// bubbleFormat
 	this.instance = new lib.bubbleFormat();
@@ -858,7 +854,7 @@ if (reversed == null) { reversed = false; }
 
 	this._renderFirstFrame();
 
-}).prototype = getMCSymbolPrototype(lib.bubble, new cjs.Rectangle(-93.1,0,265.9,131.5), null);
+}).prototype = getMCSymbolPrototype(lib.bubble, new cjs.Rectangle(-93.1,0,250.7,131.5), null);
 
 
 // stage content:
@@ -873,7 +869,7 @@ if (reversed == null) { reversed = false; }
 	props.reversed = reversed;
 	cjs.MovieClip.apply(this,[props]);
 
-	this.actionFrames = [0,35,38,80,92,95,137,149,152,189];
+	this.actionFrames = [0,35,38,110,122,125,197,209,212,279];
 	// timeline functions:
 	this.frame_0 = function() {
 		if(!this.looped) {
@@ -965,7 +961,7 @@ if (reversed == null) { reversed = false; }
 		}
 		this.scaleTraits()
 	}
-	this.frame_80 = function() {
+	this.frame_110 = function() {
 		if (this.looped === 3) {
 			this.looped = 1;
 			this.gotoAndPlay(1);
@@ -973,7 +969,7 @@ if (reversed == null) { reversed = false; }
 		this.traitQuiSouligneIci.visible = false;
 		this.traitQuiSouligneLa.visible = false;
 	}
-	this.frame_92 = function() {
+	this.frame_122 = function() {
 		if (this.looped === 1)  {
 			this.currentWords = this.words[1];
 		}
@@ -990,7 +986,7 @@ if (reversed == null) { reversed = false; }
 		this.bubble2.bubbleText.bubbleTextBloc.font = 'bold '+this.currentTextSize+'pt/0.5pt "Lato"';	
 		this.bubble2.bubbleText.bubbleTextBloc.text = this.currentWords;
 	}
-	this.frame_95 = function() {
+	this.frame_125 = function() {
 		if (this.looped === 1)  {
 		}
 		else if (this.looped === 2) {
@@ -1002,11 +998,11 @@ if (reversed == null) { reversed = false; }
 		}
 		this.scaleTraits()
 	}
-	this.frame_137 = function() {
+	this.frame_197 = function() {
 		this.traitQuiSouligneIci.visible = false;
 		this.traitQuiSouligneLa.visible = false;
 	}
-	this.frame_149 = function() {
+	this.frame_209 = function() {
 		if (this.looped === 1)  {
 			this.currentWords = this.words[2];
 		}
@@ -1023,7 +1019,7 @@ if (reversed == null) { reversed = false; }
 		this.bubble3.bubbleText.bubbleTextBloc.font = 'bold '+this.currentTextSize+'pt/0.5pt "Lato"';	
 		this.bubble3.bubbleText.bubbleTextBloc.text = this.currentWords;
 	}
-	this.frame_152 = function() {
+	this.frame_212 = function() {
 		if (this.looped === 1)  {
 		}
 		else if (this.looped === 2) {
@@ -1035,7 +1031,7 @@ if (reversed == null) { reversed = false; }
 		}
 		this.scaleTraits()
 	}
-	this.frame_189 = function() {
+	this.frame_279 = function() {
 		this.looped++;
 		if (this.looped === 4) {
 			this.stop();
@@ -1043,7 +1039,7 @@ if (reversed == null) { reversed = false; }
 	}
 
 	// actions tween:
-	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(35).call(this.frame_35).wait(3).call(this.frame_38).wait(42).call(this.frame_80).wait(12).call(this.frame_92).wait(3).call(this.frame_95).wait(42).call(this.frame_137).wait(12).call(this.frame_149).wait(3).call(this.frame_152).wait(37).call(this.frame_189).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(35).call(this.frame_35).wait(3).call(this.frame_38).wait(72).call(this.frame_110).wait(12).call(this.frame_122).wait(3).call(this.frame_125).wait(72).call(this.frame_197).wait(12).call(this.frame_209).wait(3).call(this.frame_212).wait(67).call(this.frame_279).wait(1));
 
 	// underline
 	this.traitQuiSouligneLa = new lib.traitQuiSouligneLa();
@@ -1054,7 +1050,7 @@ if (reversed == null) { reversed = false; }
 	this.traitQuiSouligneIci.name = "traitQuiSouligneIci";
 	this.traitQuiSouligneIci.setTransform(477.95,298.3,1,1,0,0,0,13.2,1.8);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.traitQuiSouligneIci},{t:this.traitQuiSouligneLa}]}).wait(190));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.traitQuiSouligneIci},{t:this.traitQuiSouligneLa}]}).wait(280));
 
 	// bubble1
 	this.bubble1 = new lib.bubble();
@@ -1063,7 +1059,7 @@ if (reversed == null) { reversed = false; }
 	this.bubble1.alpha = 0;
 	this.bubble1._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.bubble1).wait(35).to({_off:false},0).to({y:108.05,alpha:1},3).to({_off:true},42).wait(110));
+	this.timeline.addTween(cjs.Tween.get(this.bubble1).wait(35).to({_off:false},0).to({y:108.05,alpha:1},3).to({_off:true},72).wait(170));
 
 	// bubble2
 	this.bubble2 = new lib.bubble();
@@ -1072,7 +1068,7 @@ if (reversed == null) { reversed = false; }
 	this.bubble2.alpha = 0;
 	this.bubble2._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.bubble2).wait(92).to({_off:false},0).to({y:108.05,alpha:1},3).to({_off:true},42).wait(53));
+	this.timeline.addTween(cjs.Tween.get(this.bubble2).wait(122).to({_off:false},0).to({y:108.05,alpha:1},3).to({_off:true},72).wait(83));
 
 	// bubble3
 	this.bubble3 = new lib.bubble();
@@ -1081,14 +1077,14 @@ if (reversed == null) { reversed = false; }
 	this.bubble3.alpha = 0;
 	this.bubble3._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.bubble3).wait(149).to({_off:false},0).to({y:108.05,alpha:1},3).wait(38));
+	this.timeline.addTween(cjs.Tween.get(this.bubble3).wait(209).to({_off:false},0).to({y:108.05,alpha:1},3).wait(68));
 
 	// loader
 	this.instance = new lib.loader();
 	this.instance.setTransform(6.05,72.95,0.0271,1,0,0,0,219.8,2.4);
 	this.instance._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.instance).wait(23).to({_off:false},0).to({scaleX:1,x:219.9},6).to({alpha:0},3).wait(48).to({scaleX:0.0271,x:6.05,alpha:1},0).to({scaleX:1,x:219.9},6).to({alpha:0},3).wait(48).to({scaleX:0.0271,x:6.05,alpha:1},0).to({scaleX:1,x:219.9},6).to({alpha:0},3).wait(44));
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(23).to({_off:false},0).to({scaleX:1,x:219.9},6).to({alpha:0},3).wait(78).to({scaleX:0.0271,x:6.05,alpha:1},0).to({scaleX:1,x:219.9},6).to({alpha:0},3).wait(78).to({scaleX:0.0271,x:6.05,alpha:1},0).to({scaleX:1,x:219.9},6).to({alpha:0},3).wait(74));
 
 	// webpage
 	this.instance_1 = new lib.webpage3();
@@ -1105,9 +1101,9 @@ if (reversed == null) { reversed = false; }
 	this.instance_3.alpha = 0;
 	this.instance_3._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_1).to({_off:true},29).wait(114).to({_off:false,alpha:0},0).to({alpha:0.8008},3).wait(44));
-	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(29).to({_off:false},0).to({alpha:0.8008},3).to({_off:true},48).wait(110));
-	this.timeline.addTween(cjs.Tween.get(this.instance_3).wait(86).to({_off:false},0).to({alpha:0.8008},3).to({_off:true},48).wait(53));
+	this.timeline.addTween(cjs.Tween.get(this.instance_1).to({_off:true},29).wait(174).to({_off:false,alpha:0},0).to({alpha:0.8008},3).wait(74));
+	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(29).to({_off:false},0).to({alpha:0.8008},3).to({_off:true},78).wait(170));
+	this.timeline.addTween(cjs.Tween.get(this.instance_3).wait(116).to({_off:false},0).to({alpha:0.8008},3).to({_off:true},78).wait(83));
 	this.instance_1.addEventListener("tick", AdobeAn.handleFilterCache);
 	this.instance_3.addEventListener("tick", AdobeAn.handleFilterCache);
 
@@ -1115,20 +1111,20 @@ if (reversed == null) { reversed = false; }
 	this.instance_4 = new lib.extension();
 	this.instance_4.setTransform(387.05,46.55,1,1,0,0,0,11.6,10.9);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_4).wait(190));
+	this.timeline.addTween(cjs.Tween.get(this.instance_4).wait(280));
 
 	// url
 	this.instance_5 = new lib.url();
 	this.instance_5.setTransform(20.85,47,0.0375,1,0,0,0,122.7,4);
 	this.instance_5._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_5).wait(4).to({_off:false},0).to({regX:122.8,scaleX:0.3583,x:60.2},5).wait(4).to({regX:122.6,scaleX:1,x:138.85},10).wait(37).to({regX:122.7,scaleX:0.0375,x:20.85},0).to({regX:122.8,scaleX:0.3583,x:60.2},3).wait(8).to({regX:122.6,scaleX:0.6589,x:97.05},8).wait(39).to({regX:122.7,scaleX:0.0375,x:20.85},0).to({regX:122.8,scaleX:0.3583,x:60.2},5).wait(3).to({regX:122.7,scaleX:1.3207,x:178.3},11).wait(53));
+	this.timeline.addTween(cjs.Tween.get(this.instance_5).wait(4).to({_off:false},0).to({regX:122.8,scaleX:0.3583,x:60.2},5).wait(4).to({regX:122.6,scaleX:1,x:138.85},10).wait(67).to({regX:122.7,scaleX:0.0375,x:20.85},0).to({regX:122.8,scaleX:0.3583,x:60.2},3).wait(8).to({regX:122.6,scaleX:0.6589,x:97.05},8).wait(69).to({regX:122.7,scaleX:0.0375,x:20.85},0).to({regX:122.8,scaleX:0.3583,x:60.2},5).wait(3).to({regX:122.7,scaleX:1.3207,x:178.3},11).wait(83));
 
 	// browser
 	this.instance_6 = new lib.browser();
 	this.instance_6.setTransform(219.9,149.6,1,1,0,0,0,219.8,149.6);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_6).wait(190));
+	this.timeline.addTween(cjs.Tween.get(this.instance_6).wait(280));
 
 	this._renderFirstFrame();
 

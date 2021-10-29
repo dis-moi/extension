@@ -16,7 +16,7 @@ module.exports = {
     config.plugins.push(
       new CopyWebpackPlugin([
         {
-          from: 'src/app/website/script/animation.js',
+          from: 'src/app/website/static/script/animation.js',
           to: config.output.path
         },
         {
