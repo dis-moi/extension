@@ -27,7 +27,7 @@ For the latest production version of **Dismoi** extension visit the official add
 > 
 > To reach *zero diff* with the submitted addon, the addon must be build with __node version `10.15.0`__.
 > ``` 
-> yarn install && yarn build:firefox:production
+> yarn install && NODE_ENV=production yarn build:firefox
 > ```
 > Or just run the build process with `Docker`:
 > ```
