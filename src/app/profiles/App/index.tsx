@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider } from 'styled-components';
 
-import { dismoiTheme } from 'app/theme';
+import { dismoiTheme } from 'libs/facets/theme';
 import store, { history } from '../store';
 import Background from './Background';
 import PageContainer from './PageContainer';

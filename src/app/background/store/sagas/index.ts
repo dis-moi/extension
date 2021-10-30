@@ -5,7 +5,7 @@ import { asBoolean } from 'libs/utils/env';
 import MatomoTracker from 'app/background/matomo';
 import listenActionsFromMessages from 'libs/store/sagas/listenActionsFromMessages';
 import doNotTrack from 'libs/webext/doNotTrack';
-import { dismoiTheme } from 'app/theme';
+import { dismoiTheme } from 'libs/facets/theme';
 import install from './install';
 import tab from './tab';
 import badge from './badge';

@@ -32,7 +32,7 @@ import {
 } from 'libs/store/actions';
 import { CloseCause } from 'libs/domain/ui';
 import { append, create, hide, show } from 'app/content/extensionIframe';
-import { dismoiTheme } from 'app/theme';
+import { dismoiTheme } from 'libs/facets/theme';
 import App from 'app/content/App';
 import { history } from 'app/content/store';
 import {

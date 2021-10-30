@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import 'typeface-lato';
 import 'typeface-sedgwick-ave';
-import { dismoiTheme } from 'app/theme';
+import { dismoiTheme } from 'libs/facets/theme';
 import 'libs/i18n';
 import { StoryFn } from '@storybook/addons';
 import i18n, { options } from '../src/libs/i18n';
