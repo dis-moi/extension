@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Theme } from '../../../libs/facets/theme';
+import { Theme } from 'libs/facets/theme';
 
 interface H2Props {
   align?: 'right' | 'left' | 'center';

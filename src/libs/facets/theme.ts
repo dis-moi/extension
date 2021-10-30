@@ -176,10 +176,10 @@ export const lmelTheme = R.mergeDeepRight(dismoiTheme, {
   primaryColor: 'red',
   secondaryColor: 'red',
   Button: {
-    default: 'red',
-    hover: 'black',
-    disabled: 'white',
-    action: 'purple',
+    default: '#F00',
+    hover: '#000',
+    disabled: '#FFF',
+    action: '#95F',
     radius: '15px'
   }
 } as Partial<Theme>);
