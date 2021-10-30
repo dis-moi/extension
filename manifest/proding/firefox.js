@@ -1,11 +1,14 @@
 const production = require('../production/firefox');
 const base = require('../base');
 
-module.exports = {
-  ...production,
-  name: `${base.name} - proding`,
-  browser_action: {
-    ...base.browser_action,
-    default_title: `${base.browser_action.default_title} - proding`
-  }
+module.exports = facet => {
+  const facetBase = base(facet);
+  return {
+    ...production(facet),
+    name: `${facetBase.name} - proding`,
+    browser_action: {
+      ...facetBase.browser_action,
+      default_title: `${facetBase.browser_action.default_title} - proding`
+    }
+  };
 };
