@@ -3,8 +3,8 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider, StyleSheetManager } from 'styled-components';
 import FontsStyle from 'components/atoms/FontsStyle';
+import { useTheme } from 'libs/facets/useTheme.hook';
 import { configureSentryScope } from 'libs/utils/sentry';
-import { dismoiTheme } from '../../theme';
 import store, { history } from '../store';
 import UI from './UI';
 import GlobalStyle from './GlobalStyle';
@@ -14,6 +14,7 @@ interface AppProps {
 }
 
 export default ({ contentDocument }: AppProps) => {
+  const theme = useTheme();
   useEffect(() => {
     configureSentryScope(scope => {
       scope.setTag('context', 'iframe');
@@ -25,7 +26,7 @@ export default ({ contentDocument }: AppProps) => {
       <Provider store={store}>
         <FontsStyle getURL={browser.runtime.getURL} />
         <GlobalStyle />
-        <ThemeProvider theme={dismoiTheme}>
+        <ThemeProvider theme={theme}>
           <ConnectedRouter history={history}>
             <UI />
           </ConnectedRouter>

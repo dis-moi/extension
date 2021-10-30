@@ -32,7 +32,7 @@ import {
 } from 'libs/store/actions';
 import { CloseCause } from 'libs/domain/ui';
 import { append, create, hide, show } from 'app/content/extensionIframe';
-import { dismoiTheme } from 'libs/facets/theme';
+import { getTheme } from 'libs/facets/getTheme';
 import App from 'app/content/App';
 import { history } from 'app/content/store';
 import {
@@ -45,7 +45,8 @@ import {
 import { LOADED } from '../../actions/ui/open.actions';
 import { fakeLoadingSaga } from './fakeLoading.saga';
 
-const iframe = create(dismoiTheme.iframe.style);
+const theme = getTheme();
+const iframe = create(theme.iframe.style);
 let contentDocument: Document;
 
 export function* openSaga({ payload: openedFrom }: OpenAction) {
