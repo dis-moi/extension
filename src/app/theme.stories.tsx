@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
-import theme from './theme';
+import { dismoiTheme } from './theme';
 
 const isHexColor = (color: ObjectWithColors | string): boolean =>
   typeof color === 'string' && /^#(?:[0-9a-f]{3}){1,2}$/i.test(color);
@@ -85,5 +85,5 @@ const ColorList = ({ colors }: ColorListProps) => {
 };
 
 storiesOf('Theme', module).add('Colors', () => (
-  <ColorList colors={(theme as unknown) as ObjectWithColors} />
+  <ColorList colors={(dismoiTheme as unknown) as ObjectWithColors} />
 ));

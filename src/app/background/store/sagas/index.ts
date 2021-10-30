@@ -5,7 +5,7 @@ import { asBoolean } from 'libs/utils/env';
 import MatomoTracker from 'app/background/matomo';
 import listenActionsFromMessages from 'libs/store/sagas/listenActionsFromMessages';
 import doNotTrack from 'libs/webext/doNotTrack';
-import theme from 'app/theme';
+import { dismoiTheme } from 'app/theme';
 import install from './install';
 import tab from './tab';
 import badge from './badge';
@@ -43,7 +43,7 @@ export default function* rootSaga() {
     fork(refreshMatchingContexts),
     fork(refreshContributors),
     fork(tab),
-    fork(badge(theme.badge)),
+    fork(badge(dismoiTheme.badge)),
     fork(listenActionsFromMessages('background')),
     fork(watchBrowserAction),
     fork(watchActivatedTab),

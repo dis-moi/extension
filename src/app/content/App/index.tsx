@@ -4,7 +4,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider, StyleSheetManager } from 'styled-components';
 import FontsStyle from 'components/atoms/FontsStyle';
 import { configureSentryScope } from 'libs/utils/sentry';
-import theme from '../../theme';
+import { dismoiTheme } from '../../theme';
 import store, { history } from '../store';
 import UI from './UI';
 import GlobalStyle from './GlobalStyle';
@@ -25,7 +25,7 @@ export default ({ contentDocument }: AppProps) => {
       <Provider store={store}>
         <FontsStyle getURL={browser.runtime.getURL} />
         <GlobalStyle />
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={dismoiTheme}>
           <ConnectedRouter history={history}>
             <UI />
           </ConnectedRouter>
