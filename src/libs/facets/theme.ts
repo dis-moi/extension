@@ -173,5 +173,13 @@ export const dismoiTheme: Theme = {
 };
 
 export const lmelTheme = R.mergeDeepRight(dismoiTheme, {
-  primaryColor: 'red'
-});
+  primaryColor: 'red',
+  secondaryColor: 'red',
+  Button: {
+    default: 'red',
+    hover: 'black',
+    disabled: 'white',
+    action: 'purple',
+    radius: '15px'
+  }
+} as Partial<Theme>);
