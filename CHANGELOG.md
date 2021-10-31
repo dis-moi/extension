@@ -1,3 +1,10 @@
+## [3.88.1](https://github.com/dis-moi/extension/compare/v3.88.0...v3.88.1) (2021-10-31)
+
+
+### Bug Fixes
+
+* **profilesList:** changes list item width ([55c426e](https://github.com/dis-moi/extension/commit/55c426e373e32ce4317ed3a49e40c35e31e70383))
+
 # [3.88.0](https://github.com/dis-moi/extension/compare/v3.87.1...v3.88.0) (2021-09-22)
 
 
