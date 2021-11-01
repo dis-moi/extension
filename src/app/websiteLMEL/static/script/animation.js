@@ -1053,15 +1053,15 @@ if (reversed == null) { reversed = false; }
 			}
 			else {
 				this.words = [
-					"Sur ce site, les avis ne sont pas fiables",
-					"La qualité est douteuse",
-					"Cet article contient une fakenews !",
-					"La personne mise en cause a répondu ici",
-					"Evitez cet intermédiaire commandez ici",
-					"Accédez à du vrai made in France ici",
-					"Il y a moins cher ici et là",
-					"",
-					"",
+					"WORDS 1",
+					"WORDS 2",
+					"WORDS 3",
+					"WORDS 4",
+					"WORDS 5",
+					"WORDS 6",
+					"WORDS 7",
+					"WORDS 8",
+					"WORDS 9",
 				];
 			}
 		}
@@ -1102,17 +1102,17 @@ if (reversed == null) { reversed = false; }
 		if (this.looped === 1) {
 		}
 		else if (this.looped === 2) {
-			this.traitQuiSouligneIci.x = this.language === 'fr' ? 381 : 319;
+			/*this.traitQuiSouligneIci.x = this.language === 'fr' ? 381 : 319;
 			this.traitQuiSouligneIci.y = this.language === 'fr' ? 147.5 : 152;
-			this.traitQuiSouligneIci.visible = true;
+			this.traitQuiSouligneIci.visible = true;*/
 		}
 		else if (this.looped === 3) {
-			this.traitQuiSouligneIci.x = this.language === 'fr' ? 205 : 377;
+			/*this.traitQuiSouligneIci.x = this.language === 'fr' ? 205 : 377;
 			this.traitQuiSouligneIci.y = this.language === 'fr' ? 153 : 121.5;
 			this.traitQuiSouligneIci.visible = true;
 			this.traitQuiSouligneLa.x = this.language === 'fr' ? 274 : 291;
 			this.traitQuiSouligneLa.y = this.language === 'fr' ? 153 : 153;
-			this.traitQuiSouligneLa.visible = true;
+			this.traitQuiSouligneLa.visible = true;*/
 		}
 		this.scaleTraits()
 	}
@@ -1145,13 +1145,17 @@ if (reversed == null) { reversed = false; }
 		if (this.looped === 1)  {
 		}
 		else if (this.looped === 2) {
-			this.traitQuiSouligneIci.x = this.language === 'fr' ? 337 : 215;
+			/*this.traitQuiSouligneIci.x = this.language === 'fr' ? 337 : 215;
 			this.traitQuiSouligneIci.y = this.language === 'fr' ? 178 : 178;
-			this.traitQuiSouligneIci.visible = true;
+			this.traitQuiSouligneIci.visible = true;*/
 		}
 		else if (this.looped === 3) {
 		}
 		this.scaleTraits()
+		
+		if (this.looped === 2) {
+			this.stop();
+		}
 	}
 	this.frame_197 = function() {
 		this.traitQuiSouligneIci.visible = false;
@@ -1178,9 +1182,9 @@ if (reversed == null) { reversed = false; }
 		if (this.looped === 1)  {
 		}
 		else if (this.looped === 2) {
-			this.traitQuiSouligneIci.x = this.language === 'fr' ? 369 : 317;
+			/*this.traitQuiSouligneIci.x = this.language === 'fr' ? 369 : 317;
 			this.traitQuiSouligneIci.y = this.language === 'fr' ? 147.5 : 147.5;
-			this.traitQuiSouligneIci.visible = true;
+			this.traitQuiSouligneIci.visible = true;*/
 		}
 		else if (this.looped === 3) {
 		}
