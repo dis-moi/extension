@@ -1,15 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
-import theme from './theme';
+import { select, withKnobs } from '@storybook/addon-knobs';
+import { dismoiTheme, lmelTheme } from './theme';
 
 const isHexColor = (color: ObjectWithColors | string): boolean =>
   typeof color === 'string' && /^#(?:[0-9a-f]{3}){1,2}$/i.test(color);
 
 const isObject = (
-  object: ObjectWithColors | string
+  object: ObjectWithColors | string | unknown
 ): object is ObjectWithColors =>
-  object !== null && object.constructor.name === 'Object';
+  object !== null &&
+  typeof object === 'object' &&
+  object?.constructor.name === 'Object';
 
 const ColorListItemContainer = styled.li`
   margin: 0;
@@ -57,7 +60,7 @@ const ColorListContainer = styled.ul`
 `;
 
 interface ObjectWithColors {
-  [key: string]: ObjectWithColors | string;
+  [key: string]: ObjectWithColors | string | unknown;
 }
 
 interface ColorListProps {
@@ -84,6 +87,23 @@ const ColorList = ({ colors }: ColorListProps) => {
   );
 };
 
-storiesOf('Theme', module).add('Colors', () => (
-  <ColorList colors={(theme as unknown) as ObjectWithColors} />
-));
+const themes = {
+  dismoi: dismoiTheme,
+  lmel: lmelTheme
+};
+
+storiesOf('Theme', module)
+  .addDecorator(withKnobs)
+  .add('Colors', () => (
+    <ColorList
+      colors={
+        themes[
+          select<keyof typeof themes>(
+            'theme',
+            Object.keys(themes) as (keyof typeof themes)[],
+            'dismoi'
+          )
+        ] as ObjectWithColors
+      }
+    />
+  ));

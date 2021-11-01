@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Theme } from 'app/theme';
+import { Theme } from 'libs/facets/theme';
 
 export const style = ({ theme }: { theme: Theme }) => `
   display: inline-flex;

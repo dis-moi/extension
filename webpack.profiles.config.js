@@ -17,7 +17,8 @@ const requiredEnvVarNames = [
   'CHROME_EXTENSION_ID',
   'FIREFOX_EXTENSION_ID',
   'PROFILES_ORIGIN',
-  'POPULAR_CONTRIBUTORS_IDS'
+  'POPULAR_CONTRIBUTORS_IDS',
+  'FACET'
 ];
 const formatEnvVar = value => `"${value}"`;
 
@@ -26,6 +27,7 @@ loadEnv({ path: path.resolve(__dirname) });
 module.exports = function webpack(env = {}, argv = {}) {
   env = {
     PLATFORM: 'chromium',
+    FACET: 'dismoi',
     ...process.env,
     ...env
   };

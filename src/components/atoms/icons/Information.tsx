@@ -1,6 +1,6 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
-import { Theme } from 'app/theme';
+import { Theme } from 'libs/facets/theme';
 
 interface Props {
   filled?: boolean;

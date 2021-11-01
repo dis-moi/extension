@@ -1,3 +1,4 @@
+import * as R from 'ramda';
 import { BadgeTheme } from 'libs/domain/badge';
 
 export interface ButtonTheme {
@@ -83,7 +84,7 @@ export interface Theme {
   };
 }
 
-export const theme: Theme = {
+export const dismoiTheme: Theme = {
   main: 'purple',
   // colors
   primaryColor: '#404348',
@@ -171,4 +172,14 @@ export const theme: Theme = {
   }
 };
 
-export default theme;
+export const lmelTheme = R.mergeDeepRight(dismoiTheme, {
+  primaryColor: 'red',
+  secondaryColor: 'red',
+  Button: {
+    default: '#F00',
+    hover: '#000',
+    disabled: '#FFF',
+    action: '#95F',
+    radius: '15px'
+  }
+} as Partial<Theme>);

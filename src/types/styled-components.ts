@@ -1,6 +1,6 @@
 import * as styledComponents from 'styled-components';
 
-import { Theme } from '../app/theme';
+import { Theme } from '../libs/facets/theme';
 
 const {
   default: styled,

@@ -1,6 +1,6 @@
 import React, { HTMLAttributes, ReactNode } from 'react';
 import styled from 'styled-components';
-import { Theme } from 'app/theme';
+import { Theme } from 'libs/facets/theme';
 
 import LoadingRotator from 'components/atoms/LoadingRotator/LoadingRotator';
 import Loading from 'components/atoms/icons/Loading';
