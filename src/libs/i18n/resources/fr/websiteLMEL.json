@@ -8,16 +8,16 @@
     "rightsReserved": "Droits réservés textes et images"
   },
   "home": {
-    "primaryHeadline": "Ce que les sites web ne vous disent pas, vous le saurez.",
-    "secondaryHeadline": "Soyez alertés directement sur les pages web que vous visitez.",
+    "primaryHeadline": "S’il existe une alternative locale, vous le saurez.",
+    "secondaryHeadline": "Alternatives de votre région, fabriquées en France ou en circuit court.\nSoyez alerté directement sur les pages web que vous visitez.",
     "coverAnimation": {
-      "word1": "Sur ce site, les avis ne sont pas fiables",
-      "word2": "La qualité est douteuse",
-      "word3": "Cet article contient une fakenews !",
-      "word4": "La personne mise en cause a répondu ici",
-      "word5": "Évitez cet intermédiaire commandez ici",
-      "word6": "Accédez à du vrai made in France ici",
-      "word7": "Il y a moins cher ici et là",
+      "word1": "Ce livre est en librairie près de chez vous",
+      "word2": "Au même prix, ce produit existe en made in France ici",
+      "word3": "Réservez en direct auprès des habitants",
+      "word4": "Dans votre région, un artisan fabrique aussi cet objet.",
+      "word5": "Attention ceci n’est pas vraiment du made in France",
+      "word6": "",
+      "word7": "",
       "word8": "",
       "word9": ""
     },
@@ -36,19 +36,19 @@
     "examples": {
       "forExample": "Par exemple",
       "example1": {
-        "alt": "Exemple – Le Même en Local",
-        "title": "Un guide spécialisé vous suggère une alternative locale",
-        "buttonText": "Alternatives conso"
+        "alt": "Exemple – Amazon",
+        "title": "J’accède à un produit fabriqué en France pour le même prix",
+        "buttonText": "Alternative de ma région"
       },
       "example2": {
-        "alt": "Exemple – Selon Que Choisir",
-        "title": "Une association de consommateurs vous signale une arnaque",
-        "buttonText": "Alertes Arnaques"
+        "alt": "Exemple – Le Même en Alsace",
+        "title": "Je me fais livrer via une coopérative locale de livreurs",
+        "buttonText": "Made in France / Circuit-court"
       },
       "example3": {
-        "alt": "Exemple – Biet Thomas",
-        "title": "Un lecteur vous partage une discussion qui approfondit l’article consulté",
-        "buttonText": "Infos éclairantes"
+        "alt": "Exemple – Made in France",
+        "title": "Je découvre une alternative française au produit que je consulte",
+        "buttonText": "Sans intermédiaire"
       }
     },
     "howItWorks": {
