@@ -1,3 +1,12 @@
+# [3.89.0](https://github.com/dis-moi/extension/compare/v3.88.2...v3.89.0) (2021-11-01)
+
+
+### Features
+
+* add useTheme hook and getTheme function ([6ffef37](https://github.com/dis-moi/extension/commit/6ffef37885782355ad01fbb72567b9b586a788cd))
+* inject process.env.FACET ([f2c8b37](https://github.com/dis-moi/extension/commit/f2c8b37b74c283a87d1109906dc1a5068aca123a))
+* use active theme instead of hardcoded dismoi ([e6f6aa0](https://github.com/dis-moi/extension/commit/e6f6aa06e6c4c9a148278566ba3f56b37db868ba))
+
 ## [3.88.2](https://github.com/dis-moi/extension/compare/v3.88.1...v3.88.2) (2021-11-01)
 
 
