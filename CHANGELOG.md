@@ -1,3 +1,10 @@
+## [3.88.2](https://github.com/dis-moi/extension/compare/v3.88.1...v3.88.2) (2021-11-01)
+
+
+### Bug Fixes
+
+* revert "fix: yarn lock" ([e73d491](https://github.com/dis-moi/extension/commit/e73d491c22a27af5b4fad8b4da99c5bca804c70f))
+
 ## [3.88.1](https://github.com/dis-moi/extension/compare/v3.88.0...v3.88.1) (2021-10-31)
 
 
