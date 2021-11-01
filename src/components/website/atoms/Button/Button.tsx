@@ -18,7 +18,7 @@ const StyledButton = styled.button`
   border-radius: ${props => props.theme.website.radiusSmall};
   transition: color 0.1s, background-color 0.1s;
   line-height: 1;
-  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: ${props => props.theme.website.fontFamily};
   color: white;
   background-color: ${props => props.theme.website.primaryColor};
   font-size: ${props => props.theme.website.textSizeMobile};

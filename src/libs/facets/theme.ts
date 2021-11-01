@@ -213,6 +213,28 @@ export const dismoiTheme: Theme = {
     animationMediumDuration: '0.25s',
     animationFastDuration: '0.1s',
     boxShadow: 'rgba(0, 0, 0, 0.1) 0 0 10px;'
+  },
+
+  websiteLMEL: {
+    radius: '10px',
+    radiusSmall: '6px',
+    primaryColor: '#283a7c',
+    primaryColorDarker: '#172344',
+    secondaryColor: '#fab51a',
+    secondaryColorDarker: '#ec9119',
+    activeColor: '#e42225',
+    activeColorDarker: '#93181e',
+    greyColor: '#DDDDDD',
+    greyColorLighter: '#F5F5F5',
+    greyColorDarker: '#666b79',
+    fontFamily: "'Barlow', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+    textSizeMobile: '16px',
+    textSizeTablet: '17px',
+    textSizeDesktop: '18px',
+    animationSlowDuration: '0.5s',
+    animationMediumDuration: '0.25s',
+    animationFastDuration: '0.1s',
+    boxShadow: 'rgba(0, 0, 0, 0.1) 0 0 10px;'
   }
 };
 

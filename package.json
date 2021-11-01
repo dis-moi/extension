@@ -31,7 +31,10 @@
     "build-storybook": "build-storybook",
     "website": "cd src/app/website && yarn",
     "build:website": "yarn build:profiles:production && yarn website build",
-    "publish:website": "yarn build:website && cp -R ./src/app/website/public ./build/production/website"
+    "publish:website": "yarn build:website && cp -R ./src/app/website/public ./build/production/website",
+    "websiteLMEL": "cd src/app/websiteLMEL && yarn",
+    "build:websiteLMEL": "yarn build:profilesLMEL:production && yarn websiteLMEL build",
+    "publish:websiteLMEL": "yarn build:websiteLMEL && cp -R ./src/app/websiteLMEL/public ./build/production/websiteLMEL"
   },
   "husky": {
     "hooks": {

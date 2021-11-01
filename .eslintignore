@@ -2,8 +2,15 @@ webpack
 src/components/website/atoms/BrowserAnimation/createjs.min.js
 src/components/website/atoms/BrowserAnimation/animation.js
 src/components/website/assets/createjs.min.js
+src/components/websiteLMEL/atoms/BrowserAnimation/createjs.min.js
+src/components/websiteLMEL/atoms/BrowserAnimation/animation.js
+src/components/websiteLMEL/assets/createjs.min.js
 build
 src/app/website/public
 src/app/website/.cache
 src/app/website/node_modules
 src/app/website/src/graphql/**/*
+src/app/websiteLMEL/public
+src/app/websiteLMEL/.cache
+src/app/websiteLMEL/node_modules
+src/app/websiteLMEL/src/graphql/**/*

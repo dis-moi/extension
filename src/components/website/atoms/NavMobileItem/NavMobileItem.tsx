@@ -8,7 +8,7 @@ const NavMobileItem = styled.a`
   cursor: pointer;
   padding: 0 15px;
   line-height: 1;
-  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: ${props => props.theme.website.fontFamily};
   font-size: ${props => props.theme.website.textSizeDesktop};
   &:hover {
     color: ${props => props.theme.website.secondaryColor} !important;

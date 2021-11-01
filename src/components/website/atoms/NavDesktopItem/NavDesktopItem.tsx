@@ -7,7 +7,7 @@ const NavDesktopItem = styled.a`
   white-space: nowrap;
   cursor: pointer;
   line-height: 1;
-  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: ${props => props.theme.website.fontFamily};
   font-size: ${props => props.theme.website.textSizeMobile};
   @media (min-width: ${props => props.theme.tabletWidth}) {
     font-size: ${props => props.theme.website.textSizeTablet};
