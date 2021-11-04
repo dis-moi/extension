@@ -1,3 +1,10 @@
+# [3.90.0](https://github.com/dis-moi/extension/compare/v3.89.0...v3.90.0) (2021-11-04)
+
+
+### Features
+
+* Adapt manifest.json to LMEL facet ([ae41291](https://github.com/dis-moi/extension/commit/ae41291e702f5c8ddd1eef8a351a7ec5090dfce5))
+
 # [3.89.0](https://github.com/dis-moi/extension/compare/v3.88.2...v3.89.0) (2021-11-01)
 
 
