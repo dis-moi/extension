@@ -1,6 +1,9 @@
 const base = require('../base');
 
-module.exports = {
-  ...base,
-  permissions: [...base.permissions, '*://*/*']
+module.exports = facet => {
+  const facetBase = base(facet);
+  return {
+    ...facetBase,
+    permissions: [...facetBase.permissions, '*://*/*']
+  };
 };

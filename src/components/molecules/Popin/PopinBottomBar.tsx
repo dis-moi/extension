@@ -9,6 +9,7 @@ import LogoLesInrocks from 'assets/img/contributors/logo-les-inrocks.png';
 import LogoMicode from 'assets/img/contributors/logo-micode.png';
 import LogoQueChoisir from 'assets/img/contributors/logo-que-choisir.png';
 import { WEBSITE_DOMAIN } from 'libs/domain';
+import { useFacetName } from 'libs/facets/useFacetName.hook';
 
 const Link = styled(ExternalLink)`
   color: ${props => props.theme.text};
@@ -45,33 +46,37 @@ const ContributorItem = styled.li`
   }
 `;
 
-const PopinBottomBar = () => (
-  <PopinBottomBarContainer>
-    <Trans i18nKey={'profiles:action.know_more_dismoi'}>
-      En savoir plus sur <Link href={`https://${WEBSITE_DOMAIN}/`}>DisMoi</Link>{' '}
-      et ses sources
-    </Trans>
-    <ContributorList>
-      <ContributorItem>
-        <img src={LogoQueChoisir} alt="" />
-      </ContributorItem>
-      <ContributorItem>
-        <img src={LogoColibri} alt="" />
-      </ContributorItem>
-      <ContributorItem>
-        <img src={LogoLeMonde} alt="" />
-      </ContributorItem>
-      <ContributorItem>
-        <img src={LogoBordeaux} alt="" />
-      </ContributorItem>
-      <ContributorItem>
-        <img src={LogoLesInrocks} alt="" />
-      </ContributorItem>
-      <ContributorItem>
-        <img src={LogoMicode} alt="" />
-      </ContributorItem>
-    </ContributorList>
-  </PopinBottomBarContainer>
-);
+const PopinBottomBar = () => {
+  const facetName = useFacetName();
+  return (
+    <PopinBottomBarContainer>
+      <Trans i18nKey={'profiles:action.know_more_dismoi'}>
+        En savoir plus sur{' '}
+        <Link href={`https://${WEBSITE_DOMAIN}/`}>{facetName}</Link> et ses
+        sources
+      </Trans>
+      <ContributorList>
+        <ContributorItem>
+          <img src={LogoQueChoisir} alt="" />
+        </ContributorItem>
+        <ContributorItem>
+          <img src={LogoColibri} alt="" />
+        </ContributorItem>
+        <ContributorItem>
+          <img src={LogoLeMonde} alt="" />
+        </ContributorItem>
+        <ContributorItem>
+          <img src={LogoBordeaux} alt="" />
+        </ContributorItem>
+        <ContributorItem>
+          <img src={LogoLesInrocks} alt="" />
+        </ContributorItem>
+        <ContributorItem>
+          <img src={LogoMicode} alt="" />
+        </ContributorItem>
+      </ContributorList>
+    </PopinBottomBarContainer>
+  );
+};
 
 export default PopinBottomBar;

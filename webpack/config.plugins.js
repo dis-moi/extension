@@ -89,7 +89,7 @@ module.exports = (env = {}, argv = {}, buildPath) => {
     plugins.push(
       new AddAssetWebpackPlugin(
         'manifest.json',
-        getManifest(NODE_ENV, PLATFORM)
+        getManifest(NODE_ENV, PLATFORM, FACET)
       )
     );
   }

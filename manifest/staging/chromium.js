@@ -2,27 +2,30 @@ const csp = require('content-security-policy-builder');
 const proding = require('../proding/chromium');
 const base = require('../base');
 
-module.exports = {
-  ...proding,
-  name: `${base.name} - staging`,
-  content_security_policy: csp({
-    directives: {
-      'default-src': ['https://staging.dismoi.io'],
-      'connect-src': [
-        'https://staging.dismoi.io',
-        'https://sentry.io',
-        'https://stats.lmem.net',
-        'https://app.posthog.com'
-      ],
-      'script-src': ["'self'", "'unsafe-eval'"],
-      'object-src': ["'self'"],
-      'img-src': ["'self'", 'https://staging.dismoi.io', 'data:'],
-      'font-src': ["'self'", 'data:'],
-      'style-src': ["'unsafe-inline'"]
+module.exports = facet => {
+  const facetBase = base(facet);
+  return {
+    ...proding(facet),
+    name: `${facetBase.name} - staging`,
+    content_security_policy: csp({
+      directives: {
+        'default-src': ['https://staging.dismoi.io'],
+        'connect-src': [
+          'https://staging.dismoi.io',
+          'https://sentry.io',
+          'https://stats.lmem.net',
+          'https://app.posthog.com'
+        ],
+        'script-src': ["'self'", "'unsafe-eval'"],
+        'object-src': ["'self'"],
+        'img-src': ["'self'", 'https://staging.dismoi.io', 'data:'],
+        'font-src': ["'self'", 'data:'],
+        'style-src': ["'unsafe-inline'"]
+      }
+    }),
+    browser_action: {
+      ...facetBase.browser_action,
+      default_title: `${facetBase.browser_action.default_title} - staging`
     }
-  }),
-  browser_action: {
-    ...base.browser_action,
-    default_title: `${base.browser_action.default_title} - staging`
-  }
+  };
 };
