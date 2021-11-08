@@ -3,6 +3,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { ContributorId, StatefulContributor } from 'libs/domain/contributor';
 import { Categories } from 'libs/domain/category';
+import { useFacetName } from 'libs/facets/useFacetName.hook';
 import { TwoColumns } from 'components/atoms';
 import { SlowerMessageBox } from 'components/molecules/SidebarBox';
 import { Arrow } from 'components/atoms/icons';
@@ -54,6 +55,8 @@ const Subscriptions = ({
     updateFilteredContributors
   ] = useContributorsFilters(subscribedContributors);
 
+  const facetName = useFacetName();
+
   return (
     <>
       <ProfileTabs connected={connected} />
@@ -70,8 +73,8 @@ const Subscriptions = ({
           {connected === false ? (
             <Trans i18nKey={'profiles:view.my_subscriptions.disclaimer'}>
               <p>
-                Vous devez avoir l&apos;extension Dismoi installée et activée
-                pour voir cette partie.
+                Vous devez avoir l&apos;extension {facetName} installée et
+                activée pour voir cette partie.
               </p>
               <p>En cas de problème, merci de nous laisser un message.</p>
             </Trans>
