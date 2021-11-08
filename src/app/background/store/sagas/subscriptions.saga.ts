@@ -1,9 +1,9 @@
-import { all, fork, call, put, select, takeLatest } from 'redux-saga/effects';
+import { all, call, fork, put, select, takeLatest } from 'redux-saga/effects';
 import { SagaIterator } from 'redux-saga';
 import {
+  autoSubscribe,
   ContributorAction,
   STARTUP,
-  autoSubscribe,
   SUBSCRIBE,
   subscribed,
   subscribeFailed,
@@ -25,13 +25,10 @@ import {
 } from 'libs/store/actions/subscriptions';
 import { asArray } from 'libs/utils/env';
 import { ContributorId } from 'libs/domain/contributor';
-import { getFacet } from 'libs/facets/getFacet';
 import { loginSaga } from './user.saga';
 
 const PRESELECTED_CONTRIBUTORS_IDS = asArray<ContributorId>(
-  getFacet() === 'lmel'
-    ? process.env.LMEL_PRESELECTED_CONTRIBUTORS_IDS
-    : process.env.PRESELECTED_CONTRIBUTORS_IDS
+  process.env.PRESELECTED_CONTRIBUTORS_IDS
 );
 
 function* postSubscriptionsSaga() {

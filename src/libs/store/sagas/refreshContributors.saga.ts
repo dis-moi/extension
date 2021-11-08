@@ -5,16 +5,21 @@ import {
   refreshContributorsFailed
 } from 'libs/store/actions';
 import fetchContributors from 'libs/api/fetchContributors';
-import { getFacet } from '../../facets/getFacet';
 import { Contributor, ContributorId } from '../../domain/contributor';
 import { asArray } from '../../utils/env';
 
-const LMEL_CONTRIBUTORS_IDS = asArray<ContributorId>(
-  process.env.LMEL_CONTRIBUTORS_IDS
+const ACCESSIBLE_CONTRIBUTORS_IDS = asArray<ContributorId>(
+  process.env.ACCESSIBLE_CONTRIBUTORS_IDS
 );
 
-const filterLocalContributors = (contributors: Contributor[]): Contributor[] =>
-  contributors.filter(c => LMEL_CONTRIBUTORS_IDS.includes(c.id));
+const filterAccessibleContributors = (
+  contributors: Contributor[]
+): Contributor[] =>
+  ACCESSIBLE_CONTRIBUTORS_IDS &&
+  Array.isArray(ACCESSIBLE_CONTRIBUTORS_IDS) &&
+  ACCESSIBLE_CONTRIBUTORS_IDS.length > 0
+    ? contributors.filter(c => ACCESSIBLE_CONTRIBUTORS_IDS.includes(c.id))
+    : contributors;
 
 export default function* refreshContributorsSaga() {
   const callAndRetry = createCallAndRetry({
@@ -26,10 +31,7 @@ export default function* refreshContributorsSaga() {
   const contributors = yield callAndRetry(fetchContributors);
 
   if (contributors) {
-    const accessibleContributors =
-      getFacet() === 'lmel'
-        ? filterLocalContributors(contributors)
-        : contributors;
+    const accessibleContributors = filterAccessibleContributors(contributors);
 
     yield put(receivedContributors(accessibleContributors));
   }
