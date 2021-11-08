@@ -1,6 +1,7 @@
-import i18n from 'i18next';
+import i18n, { InitOptions } from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
+import { useFacetName } from '../facets/useFacetName.hook';
 import resources from './resources';
 import format from './format';
 
@@ -9,7 +10,7 @@ export const fallbackLng = 'en' as SupportedLanguage;
 export const defaultLng = 'fr' as SupportedLanguage;
 export const getCurrentLng = () => i18n.language as SupportedLanguage;
 
-export const options = {
+export const options: InitOptions = {
   resources,
   detection: {
     caches: []
@@ -20,7 +21,10 @@ export const options = {
   debug: true,
   interpolation: {
     escapeValue: false, // react already safes from xss
-    format
+    format,
+    defaultVariables: {
+      facetName: useFacetName()
+    }
   },
   keySeparator: '.'
 };

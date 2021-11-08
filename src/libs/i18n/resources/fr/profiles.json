@@ -10,10 +10,10 @@
   },
   "action": {
     "real_example": "Voir un exemple réel",
-    "add_dismoi_to_browser": "Ajouter Dismoi à mon navigateur",
+    "add_dismoi_to_browser": "Ajouter {{facetName}} à mon navigateur",
     "add_to_my_browser": "Ajouter à mon navigateur ",
     "follow": "Suivre",
-    "know_more_dismoi": "En savoir plus sur <1>DisMoi</1> et ses contributeurs",
+    "know_more_dismoi": "En savoir plus sur <1>{{facetName}}</1> et ses contributeurs",
     "know_more": "En savoir plus",
     "stop_following": "Ne plus suivre",
     "see_more": "Voir plus",
@@ -36,19 +36,19 @@
   },
   "popin": {
     "browser_not_support": {
-      "disclaimer": "Dismoi est actuellement disponible sur les navigateurs Chrome, Firefox, Edge et Opéra"
+      "disclaimer": "{{facetName}} est actuellement disponible sur les navigateurs Chrome, Firefox, Edge et Opéra"
     },
     "not_connected": {
-      "title": "Pour voir les contributions, veuillez d’abord ajouter Dismoi à votre navigateur.",
-      "title_name": "Pour voir les contributions de {{contributorName}}, veuillez d’abord ajouter Dismoi à votre navigateur.",
+      "title": "Pour voir les contributions, veuillez d’abord ajouter {{facetName}} à votre navigateur.",
+      "title_name": "Pour voir les contributions de {{contributorName}}, veuillez d’abord ajouter {{facetName}} à votre navigateur.",
       "message": "Gratuit, sans publicité, <2>respecte votre vie privée</2>"
     },
     "subscribe": {
       "message": "Veuillez suivre {{contributorName}} pour voir ses contributions."
     },
     "is_not_connected": {
-      "message": "Pour voir les contributions de {{contributorName}} veuillez d'abord ajouter Dismoi à votre navigateur",
-      "btn_text": "Ajouter Dismoi à mon navigateur"
+      "message": "Pour voir les contributions de {{contributorName}} veuillez d'abord ajouter {{facetName}} à votre navigateur",
+      "btn_text": "Ajouter {{facetName}} à mon navigateur"
     },
     "is_not_subscriber": {
       "message": "Veuillez suivre {{contributorName}} pour voir ses contributions.",
@@ -70,14 +70,14 @@
       "banner_contributor": "Bannière de {{contributorName}}"
     },
     "slower_message_box": {
-      "title": "DisMoi ne ralentit pas votre navigateur",
-      "text": "Contrairement à d’autres extensions, Dismoi ne ralentit pas le chargement des pages."
+      "title": "{{facetName}} ne ralentit pas votre navigateur",
+      "text": "Contrairement à d’autres extensions, {{facetName}} ne ralentit pas le chargement des pages."
     },
     "my_subscriptions": {
-      "disclaimer": "<0>Vous devez avoir l'extension Dismoi installée et activée pour voir cette partie.</0> <1>En cas de problème, merci de nous laisser un message.</1>"
+      "disclaimer": "<0>Vous devez avoir l'extension {{facetName}} installée et activée pour voir cette partie.</0> <1>En cas de problème, merci de nous laisser un message.</1>"
     },
     "privacy_box": {
-      "title": "DisMoi respecte votre vie privée",
+      "title": "{{facetName}} respecte votre vie privée",
       "no_collect": "Nous ne collectons ni revendons <strong>aucune donnée personnelle</strong>",
       "no_profiling": "Nous ne faisons <strong>aucun profilage</strong>"
     },
@@ -85,26 +85,26 @@
       "description_dismoi": "Ne passez plus à côté d’un bon conseil : Alerte contre une arnaque, intox, meilleure alternative..."
     },
     "add_follow_box": {
-      "title": "Ajouter DisMoi et suivre",
+      "title": "Ajouter {{facetName}} et suivre",
       "message": "Recevoir les alertes et conseils de {{contributorName}} directement sur les pages web que je visite.",
-      "btn_text": "Ajouter DisMoi à mon navigateur"
+      "btn_text": "Ajouter {{facetName}} à mon navigateur"
     },
     "video_box": {
-      "title": "C'est quoi DisMoi ?",
-      "message": "DisMoi est le 1er réseau social qui vous accompagne sur le web : recevez les conseils et éclairages de vos contributeurs de confiance directement sur les pages web que vous visitez.",
+      "title": "C'est quoi {{facetName}} ?",
+      "message": "{{facetName}} est le 1er réseau social qui vous accompagne sur le web : recevez les conseils et éclairages de vos contributeurs de confiance directement sur les pages web que vous visitez.",
       "btn_text": "Comment ça marche ?"
     },
     "onBoarding": {
       "step1": {
         "loading": "Recherche des mises à jour<br/>  L'extension est à jour",
-        "pin": "Épingler DisMoi"
+        "pin": "Épingler {{facetName}}"
       },
       "step2": {
-        "title": "Épingler DisMoi",
-        "question": "Êtes-vous arrivés à épingler l'extension DisMoi ?",
+        "title": "Épingler {{facetName}}",
+        "question": "Êtes-vous arrivés à épingler l'extension {{facetName}} ?",
         "answer1": "Non, je n'ai pas compris",
         "button1": "Revoir le tuto",
-        "answer2": "Oui, j'ai épinglé DisMoi",
+        "answer2": "Oui, j'ai épinglé {{facetName}}",
         "button2": "Dernière étape"
       },
       "step3": {

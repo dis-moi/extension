@@ -49,11 +49,12 @@ import {
   isTabAuthorized
 } from 'app/background/store/selectors/resources';
 import { getNbSubscriptions } from 'app/background/store/selectors/subscriptions.selectors';
+import { useFacetName } from 'libs/facets/useFacetName.hook';
 import serviceMessageSaga from './serviceMessage.saga';
 import sendToTabSaga from './lib/sendToTab.saga';
 
 export const getExtensionTitle = () =>
-  `Dismoi ${
+  `${useFacetName()} ${
     process.env.NODE_ENV !== 'production' ? `- ${process.env.NODE_ENV}` : ''
   }`;
 

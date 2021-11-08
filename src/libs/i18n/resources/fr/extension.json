@@ -95,11 +95,11 @@
       "no_followed_sources": "Vous ne suivez actuellement aucun contributeur.<br />Pour recevoir des conseils et infos, abonnez-vous !"
     },
     "about": {
-      "description": "Lorsque vous visitez une page du web, Dismoi vous permet de lire les messages de vos contributeurs et en poster à votre tour.",
+      "description": "Lorsque vous visitez une page du web, {{facetName}} vous permet de lire les messages de vos contributeurs et en poster à votre tour.",
       "install_date": "Vous l’avez installé le"
     },
     "help": {
-      "contact_support": "Contacter le support de Dismoi",
+      "contact_support": "Contacter le support de {{facetName}}",
       "write_to": "Merci de nous écrire à"
     },
     "submitted": {

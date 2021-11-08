@@ -92,14 +92,14 @@
       "title": "$t(menu.subscriptions)",
       "followed_sources": "You're following <br/><strong>{{count}}</strong> contributor",
       "followed_sources_plural": "You're following <br/><strong>{{count}}</strong> contributors",
-      "no_followed_sources": "You're not following any contributor right now.<br />To get the most out of DisMoi, subscribe to some contributors!"
+      "no_followed_sources": "You're not following any contributor right now.<br />To get the most out of {{facetName}}, subscribe to some contributors!"
     },
     "about": {
-      "description": "When you visit a webpage, DisMoi lets you read messages from your contributors and post messages yourself.",
+      "description": "When you visit a webpage, {{facetName}} lets you read messages from your contributors and post messages yourself.",
       "install_date": "You installed the extension on"
     },
     "help": {
-      "contact_support": "Contact DisMoi support",
+      "contact_support": "Contact {{facetName}} support",
       "write_to": "Thank you for writing to"
     },
     "submitted": {

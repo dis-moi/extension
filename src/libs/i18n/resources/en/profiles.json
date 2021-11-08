@@ -10,10 +10,10 @@
   },
   "action": {
     "real_example": "See a real example",
-    "add_dismoi_to_browser": "Add DisMoi to my browser",
+    "add_dismoi_to_browser": "Add {{facetName}} to my browser",
     "add_to_my_browser": "Add to my browser ",
     "follow": "Follow",
-    "know_more_dismoi": "Learn more about <1>DisMoi</1> and contributors",
+    "know_more_dismoi": "Learn more about <1>{{facetName}}</1> and contributors",
     "know_more": "Learn more",
     "stop_following": "Stop following",
     "see_more": "See more",
@@ -36,19 +36,19 @@
   },
   "popin": {
     "browser_not_support": {
-      "disclaimer": "DisMoi is currently available on Chrome, Firefox, and Opera web browsers"
+      "disclaimer": "{{facetName}} is currently available on Chrome, Firefox, and Opera web browsers"
     },
     "not_connected": {
-      "title": "To see more posts, please add DisMoi to your browser.",
-      "title_name": "To view posts from {{contributorName}}, please add DisMoi to your browser.",
+      "title": "To see more posts, please add {{facetName}} to your browser.",
+      "title_name": "To view posts from {{contributorName}}, please add {{facetName}} to your browser.",
       "message": "Free, ad-free, <2>respects your privacy</2>"
     },
     "subscribe": {
       "message": "Please follow {{contributorName}} to see their posts."
     },
     "is_not_connected": {
-      "message": "To view posts from {{contributorName}}, please add DisMoi to your browser.",
-      "btn_text": "Add DisMoi to my browser"
+      "message": "To view posts from {{contributorName}}, please add {{facetName}} to your browser.",
+      "btn_text": "Add {{facetName}} to my browser"
     },
     "is_not_subscriber": {
       "message": "Please follow {{contributorName}} to see their contributions",
@@ -70,45 +70,45 @@
       "banner_contributor": "{{contributorName}}'s banner"
     },
     "slower_message_box": {
-      "title": "DisMoi does not slow down your browser",
-      "text": "Unlike other extensions, DisMoi does not slow down your browser."
+      "title": "{{facetName}} does not slow down your browser",
+      "text": "Unlike other extensions, {{facetName}} does not slow down your browser."
     },
     "my_subscriptions": {
-      "disclaimer": "<0>You must have DisMoi installed and activated to view this part.</0><1>Experiencing a problem? Send us a message.</1>"
+      "disclaimer": "<0>You must have {{facetName}} installed and activated to view this part.</0><1>Experiencing a problem? Send us a message.</1>"
     },
     "privacy_box": {
-      "title": "DisMoi respects your privacy",
+      "title": "{{facetName}} respects your privacy",
       "no_collect": "<strong>We never collect or sell</strong> your personal data",
       "no_profiling": "We do <strong>zero profiling or targeting</strong>"
     },
     "add_browser_box": {
-      "description_dismoi": "DisMoi lets people share helpful information directly on the webpages they visit."
+      "description_dismoi": "{{facetName}} lets people share helpful information directly on the webpages they visit."
     },
     "add_follow_box": {
-      "title": "Install DisMoi and follow",
+      "title": "Install {{facetName}} and follow",
       "message": "Get alerts and advices from {{contributorName}} directly on the webpages you visit.",
-      "btn_text": "Install DisMoi on my browser"
+      "btn_text": "Install {{facetName}} on my browser"
     },
     "video_box": {
-      "title": "What is DisMoi ?",
-      "message": "DisMoi est le 1er réseau social qui vous accompagne sur le web : Les contributeurs de DisMoi postent des conseils et éclairages directement sur les pages web que vous visitez.",
+      "title": "What is {{facetName}} ?",
+      "message": "{{facetName}} est le 1er réseau social qui vous accompagne sur le web : Les contributeurs de {{facetName}} postent des conseils et éclairages directement sur les pages web que vous visitez.",
       "btn_text": "How does it work?"
     },
     "onBoarding": {
       "step1": {
         "loading": "Searching for updates<br/>  Everything is up to date",
-        "pin": "Pin DisMoi in your Browser"
+        "pin": "Pin {{facetName}} in your Browser"
       },
       "step2": {
-        "title": "Pin DisMoi",
-        "question": "Did you pin the DisMoi extension in your browser?",
+        "title": "Pin {{facetName}}",
+        "question": "Did you pin the {{facetName}} extension in your browser?",
         "answer1": "Understood",
         "button1": "View the tutorial again",
-        "answer2": "Yes, I pinned DisMoi",
+        "answer2": "Yes, I pinned {{facetName}}",
         "button2": "Final step"
       },
       "step3": {
-        "title": "Welcome to DisMoi",
+        "title": "Welcome to {{facetName}}",
         "paragraph": "<0>If you are new,</0><1>we pre-selected some contributors.</1>",
         "back_button": "View the tutorial again",
         "end_button": "Discover and choose my contributors"
