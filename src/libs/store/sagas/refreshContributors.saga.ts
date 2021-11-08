@@ -5,6 +5,16 @@ import {
   refreshContributorsFailed
 } from 'libs/store/actions';
 import fetchContributors from 'libs/api/fetchContributors';
+import { getFacet } from '../../facets/getFacet';
+import { Contributor, ContributorId } from '../../domain/contributor';
+import { asArray } from '../../utils/env';
+
+const LMEL_CONTRIBUTORS_IDS = asArray<ContributorId>(
+  process.env.LMEL_CONTRIBUTORS_IDS
+);
+
+const filterLocalContributors = (contributors: Contributor[]): Contributor[] =>
+  contributors.filter(c => LMEL_CONTRIBUTORS_IDS.includes(c.id));
 
 export default function* refreshContributorsSaga() {
   const callAndRetry = createCallAndRetry({
@@ -16,6 +26,11 @@ export default function* refreshContributorsSaga() {
   const contributors = yield callAndRetry(fetchContributors);
 
   if (contributors) {
-    yield put(receivedContributors(contributors));
+    const accessibleContributors =
+      getFacet() === 'lmel'
+        ? filterLocalContributors(contributors)
+        : contributors;
+
+    yield put(receivedContributors(accessibleContributors));
   }
 }

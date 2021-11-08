@@ -25,10 +25,13 @@ import {
 } from 'libs/store/actions/subscriptions';
 import { asArray } from 'libs/utils/env';
 import { ContributorId } from 'libs/domain/contributor';
+import { getFacet } from 'libs/facets/getFacet';
 import { loginSaga } from './user.saga';
 
 const PRESELECTED_CONTRIBUTORS_IDS = asArray<ContributorId>(
-  process.env.PRESELECTED_CONTRIBUTORS_IDS
+  getFacet() === 'lmel'
+    ? process.env.LMEL_PRESELECTED_CONTRIBUTORS_IDS
+    : process.env.PRESELECTED_CONTRIBUTORS_IDS
 );
 
 function* postSubscriptionsSaga() {

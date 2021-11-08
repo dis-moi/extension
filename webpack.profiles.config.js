@@ -18,6 +18,7 @@ const requiredEnvVarNames = [
   'FIREFOX_EXTENSION_ID',
   'PROFILES_ORIGIN',
   'POPULAR_CONTRIBUTORS_IDS',
+  'LMEL_CONTRIBUTORS_IDS',
   'FACET'
 ];
 const formatEnvVar = value => `"${value}"`;
