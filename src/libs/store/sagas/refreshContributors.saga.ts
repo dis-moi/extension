@@ -15,8 +15,6 @@ const ACCESSIBLE_CONTRIBUTORS_IDS = asArray<ContributorId>(
 const filterAccessibleContributors = (
   contributors: Contributor[]
 ): Contributor[] =>
-  ACCESSIBLE_CONTRIBUTORS_IDS &&
-  Array.isArray(ACCESSIBLE_CONTRIBUTORS_IDS) &&
   ACCESSIBLE_CONTRIBUTORS_IDS.length > 0
     ? contributors.filter(c => ACCESSIBLE_CONTRIBUTORS_IDS.includes(c.id))
     : contributors;
