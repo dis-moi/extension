@@ -3,7 +3,7 @@
   "version": "3.92.0",
   "description": "Bulles Recommendations web extensions using React+Redux.",
   "engines": {
-    "node": ">=12"
+    "node": ">=12 <17"
   },
   "scripts": {
     "start": "webpack --watch --progress --mode=development",
