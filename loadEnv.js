@@ -7,10 +7,10 @@ function loadEnv({ path, encoding, debug }) {
   const FACET = process.env.FACET || 'dismoi';
 
   const dotenvFiles = [
-    `.env.${FACET}`,
     `.env.${NODE_ENV}.${FACET}.local`,
     `.env.${NODE_ENV}.local`,
     `.env.${NODE_ENV}.${FACET}`,
+    `.env.${FACET}`,
     `.env.${NODE_ENV}`,
     // Don't include `.env.local` for `test` environment
     // since normally you expect tests to produce the same
