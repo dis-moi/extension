@@ -1,3 +1,11 @@
+# [3.92.0](https://github.com/dis-moi/extension/compare/v3.91.1...v3.92.0) (2021-11-09)
+
+
+### Features
+
+* adapt translations to use facet name ([1462393](https://github.com/dis-moi/extension/commit/1462393d656561b1bc4381aaa097046e57110bb8))
+* adapt translations to use facet name ([572c61e](https://github.com/dis-moi/extension/commit/572c61e45ffb77b0262670458e0ce70ae83d449a))
+
 ## [3.91.1](https://github.com/dis-moi/extension/compare/v3.91.0...v3.91.1) (2021-11-09)
 
 
