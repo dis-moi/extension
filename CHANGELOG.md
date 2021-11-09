@@ -1,3 +1,10 @@
+## [3.91.1](https://github.com/dis-moi/extension/compare/v3.91.0...v3.91.1) (2021-11-09)
+
+
+### Bug Fixes
+
+* **useContributorFilter:** reset contributor on change tab ([6a69fdf](https://github.com/dis-moi/extension/commit/6a69fdfdfe479b278ce313c0c216fdbdbdec255a))
+
 # [3.91.0](https://github.com/dis-moi/extension/compare/v3.90.0...v3.91.0) (2021-11-09)
 
 
