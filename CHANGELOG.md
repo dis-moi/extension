@@ -1,3 +1,11 @@
+# [3.91.0](https://github.com/dis-moi/extension/compare/v3.90.0...v3.91.0) (2021-11-09)
+
+
+### Features
+
+* change LMEL preselected contributors ([92905df](https://github.com/dis-moi/extension/commit/92905df7167184d4f248806babb3dede79b3aa76))
+* **lmel:** limit to local contributors ([189c9d8](https://github.com/dis-moi/extension/commit/189c9d80ffd8f9198a5d94b9c973a7bb0ade27e8))
+
 # [3.90.0](https://github.com/dis-moi/extension/compare/v3.89.0...v3.90.0) (2021-11-04)
 
 
