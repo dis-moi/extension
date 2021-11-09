@@ -9,6 +9,28 @@ export interface ButtonTheme {
   radius: string;
 }
 
+interface WebsiteTheme {
+  radius: string;
+  radiusSmall: string;
+  primaryColor: string;
+  primaryColorDarker: string;
+  secondaryColor: string;
+  secondaryColorDarker: string;
+  activeColor: string;
+  activeColorDarker: string;
+  greyColor: string;
+  greyColorLighter: string;
+  greyColorDarker: string;
+  fontFamily: string;
+  textSizeMobile: string;
+  textSizeTablet: string;
+  textSizeDesktop: string;
+  animationSlowDuration: string;
+  animationMediumDuration: string;
+  animationFastDuration: string;
+  boxShadow: string;
+}
+
 export interface Theme {
   main: string;
 
@@ -83,27 +105,8 @@ export interface Theme {
     xxl: string;
   };
 
-  website: {
-    radius: string;
-    radiusSmall: string;
-    primaryColor: string;
-    primaryColorDarker: string;
-    secondaryColor: string;
-    secondaryColorDarker: string;
-    activeColor: string;
-    activeColorDarker: string;
-    greyColor: string;
-    greyColorLighter: string;
-    greyColorDarker: string;
-    fontFamily: string;
-    textSizeMobile: string;
-    textSizeTablet: string;
-    textSizeDesktop: string;
-    animationSlowDuration: string;
-    animationMediumDuration: string;
-    animationFastDuration: string;
-    boxShadow: string;
-  };
+  website: WebsiteTheme;
+  websiteLMEL: WebsiteTheme;
 }
 
 export const dismoiTheme: Theme = {
