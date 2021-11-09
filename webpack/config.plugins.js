@@ -35,6 +35,7 @@ const selectEnvVarsToInject = R.pick([
   'CHROME_EXTENSION_ID',
   'FIREFOX_EXTENSION_ID',
   'PROFILES_ORIGIN',
+  'ACCESSIBLE_CONTRIBUTORS_IDS',
   'PRESELECTED_CONTRIBUTORS_IDS'
 ]);
 const formatEnvVars = R.map(value => `"${value}"`);

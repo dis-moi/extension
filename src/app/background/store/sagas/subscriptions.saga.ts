@@ -1,9 +1,9 @@
-import { all, fork, call, put, select, takeLatest } from 'redux-saga/effects';
+import { all, call, fork, put, select, takeLatest } from 'redux-saga/effects';
 import { SagaIterator } from 'redux-saga';
 import {
+  autoSubscribe,
   ContributorAction,
   STARTUP,
-  autoSubscribe,
   SUBSCRIBE,
   subscribed,
   subscribeFailed,
