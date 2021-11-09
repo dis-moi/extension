@@ -4,6 +4,7 @@ import { compose } from 'redux';
 import withTitle from 'app/content/hocs/withTitle';
 import { ExternalLink, Time } from 'components/atoms';
 import { WEBSITE_DOMAIN } from 'libs/domain';
+import { useFacetName } from 'libs/facets/useFacetName.hook';
 import Title from './Title';
 import Content from './Content';
 import Container from './Container';
@@ -16,9 +17,13 @@ export interface AboutProps {
 
 export const About = ({ installationDate, extensionVersion }: AboutProps) => {
   const { t } = useTranslation();
+  const facetName = useFacetName();
+
   return (
     <Container>
-      <Title>Dismoi V{extensionVersion}</Title>
+      <Title>
+        {facetName} V{extensionVersion}
+      </Title>
       <Content>{t('view.about.description')}</Content>
 
       {installationDate && (
