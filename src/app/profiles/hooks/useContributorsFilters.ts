@@ -24,7 +24,7 @@ function useContributorsFilters(
     );
 
   useEffect(() => {
-    if (selectedCategory && selectedCategory === ALL) {
+    if ((selectedCategory && selectedCategory === ALL) || !selectedCategory) {
       return setFilteredContributors({
         filtered: filteredContributors.all,
         all: filteredContributors.all
