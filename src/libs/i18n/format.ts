@@ -34,7 +34,7 @@ const getFollowersFormat: FormatI18nValueFunction = (value: number) =>
   value > 999 ? (value / 1000).toFixed(1) + 'K' : value;
 
 const getFormat: FormatI18nValueFunction = (value, format, lng) => {
-  if (value instanceof Date) return getDateFormat(value, format, lng);
+  if (parseISO(value) instanceof Date) return getDateFormat(value, format, lng);
   if (format === 'followers') return getFollowersFormat(value);
   return value;
 };
