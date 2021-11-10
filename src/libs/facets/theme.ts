@@ -9,28 +9,6 @@ export interface ButtonTheme {
   radius: string;
 }
 
-interface WebsiteTheme {
-  radius: string;
-  radiusSmall: string;
-  primaryColor: string;
-  primaryColorDarker: string;
-  secondaryColor: string;
-  secondaryColorDarker: string;
-  activeColor: string;
-  activeColorDarker: string;
-  greyColor: string;
-  greyColorLighter: string;
-  greyColorDarker: string;
-  fontFamily: string;
-  textSizeMobile: string;
-  textSizeTablet: string;
-  textSizeDesktop: string;
-  animationSlowDuration: string;
-  animationMediumDuration: string;
-  animationFastDuration: string;
-  boxShadow: string;
-}
-
 export interface Theme {
   main: string;
 
@@ -105,8 +83,27 @@ export interface Theme {
     xxl: string;
   };
 
-  website: WebsiteTheme;
-  websiteLMEL: WebsiteTheme;
+  website: {
+    radius: string;
+    radiusSmall: string;
+    primaryColor: string;
+    primaryColorDarker: string;
+    secondaryColor: string;
+    secondaryColorDarker: string;
+    activeColor: string;
+    activeColorDarker: string;
+    greyColor: string;
+    greyColorLighter: string;
+    greyColorDarker: string;
+    fontFamily: string;
+    textSizeMobile: string;
+    textSizeTablet: string;
+    textSizeDesktop: string;
+    animationSlowDuration: string;
+    animationMediumDuration: string;
+    animationFastDuration: string;
+    boxShadow: string;
+  };
 }
 
 export const dismoiTheme: Theme = {
@@ -216,9 +213,11 @@ export const dismoiTheme: Theme = {
     animationMediumDuration: '0.25s',
     animationFastDuration: '0.1s',
     boxShadow: 'rgba(0, 0, 0, 0.1) 0 0 10px;'
-  },
+  }
+};
 
-  websiteLMEL: {
+export const lmelTheme = R.mergeDeepRight(dismoiTheme, {
+  website: {
     radius: '10px',
     radiusSmall: '6px',
     primaryColor: '#283a7c',
@@ -239,8 +238,5 @@ export const dismoiTheme: Theme = {
     animationFastDuration: '0.1s',
     boxShadow: 'rgba(0, 0, 0, 0.1) 0 0 10px;'
   }
-};
-
-export const lmelTheme = R.mergeDeepRight(dismoiTheme, {
   // Insert any LMEL difference here
 } as Partial<Theme>);

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ThemeProvider } from 'styled-components';
 import i18n, { options, SupportedLanguage } from 'libs/i18n';
-import theme from '../../../theme';
+import { useTheme } from 'libs/facets/useTheme.hook';
 import Header from '../../../../components/website/molecules/Header/Header';
 import Footer from '../../../../components/website/organisms/Footer/Footer';
 import useSwitchLanguage from '../hooks/useSwitchLanguage';
@@ -25,7 +25,9 @@ i18n
   .catch(() => null);
 
 const Layout = ({ children, pageContext, path }: LayoutProps) => {
+  const theme = useTheme();
   useChangeLanguage(path);
+
   const [switchLanguage] = useSwitchLanguage();
   const { footer, header } = useGetMenus(i18n.language as SupportedLanguage);
   const [isHome, setIsHome] = useState(true);
