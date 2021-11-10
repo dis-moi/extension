@@ -248,6 +248,16 @@ export const dismoiTheme: Theme = {
 };
 
 export const lmelTheme = R.mergeDeepRight(dismoiTheme, {
+  activeColor: '#283a7c',
+  // Button colors
+  Button: {
+    default: '#283a7c',
+    hover: '#172344',
+    disabled: '#BAB8B8',
+    action: '#ec9119',
+    radius: '5px'
+  },
+  /* TODO : @Jalil to clean the best you can ;-D */
   website: {
     radius: '10px',
     radiusSmall: '6px',
@@ -267,26 +277,6 @@ export const lmelTheme = R.mergeDeepRight(dismoiTheme, {
     animationSlowDuration: '0.5s',
     animationMediumDuration: '0.25s',
     animationFastDuration: '0.1s',
-    boxShadow: 'rgba(0, 0, 0, 0.1) 0 0 10px;',
-
-    contributorAvatarLinkAfterBackgroundColor: 'rgba(236, 145, 25, 0.8)',
-    modalBackgroundColor: 'rgba(40, 58, 124, 0.95)',
-    modalBackgroundColorBis: `linear-gradient(
-      180deg,
-      rgba(40, 58, 124, 1) 0%,
-      rgba(40, 58, 124, 0.95) 100%
-    )`,
-    secondaryColorDarkerBackground: 'rgba(236, 145, 25, 0.1)',
-    videoImageBackgroundColor: 'rgba(40, 58, 124, 0.95)',
-    videoImageBackgroundHoverColor: 'rgb(236, 145, 25, 0.95)',
-    videoImageBackgroundActiveColor: 'rgb(228, 34, 37, 0.95)',
-    contributorSectionBackgroundColor: 'rgba(236, 145, 25, 0.1)',
-    coverSectionBackgroundColor: 'rgb(23, 35, 68)',
-    coverSectionBackgroundColorBis: `linear-gradient(
-      60deg,
-      rgba(23, 35, 68, 1) 0%,
-      rgba(40, 58, 124, 1) 100%
-    )`
+    boxShadow: 'rgba(0, 0, 0, 0.1) 0 0 10px;'
   }
-  // Insert any LMEL difference here
 } as Partial<Theme>);

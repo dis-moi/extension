@@ -3,12 +3,12 @@
   "short_name": "Dismoi",
   "icons": [
     {
-      "src": "/img/logo/dismoi/192x192.png",
+      "src": "/img/logo/lmel/192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/img/logo/dismoi/512x512.png",
+      "src": "/img/logo/lmel/512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

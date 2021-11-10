@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import LogoDismoi from './icons/LogoDismoi';
+import LogoLMEL from './icons/LogoLMEL';
 
 const LogoWrapper = styled.div`
   height: 42px;
@@ -11,12 +11,12 @@ const LogoWrapper = styled.div`
   }
 `;
 
-const WrappedLogoDismoi = () => {
+const WrappedLogoLMEL = () => {
   return (
     <LogoWrapper>
-      <LogoDismoi />
+      <LogoLMEL />
     </LogoWrapper>
   );
 };
 
-export default WrappedLogoDismoi;
+export default WrappedLogoLMEL;

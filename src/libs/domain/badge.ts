@@ -1,5 +1,6 @@
 import icons from '../../../manifest/icons';
 import greyIcons from '../../../manifest/icons-grey';
+import { getFacet } from '../facets/getFacet';
 
 export interface BadgeTheme {
   backgroundColor: {
@@ -10,7 +11,10 @@ export interface BadgeTheme {
 
 export const resetBadge = (tabId?: number) => {
   browser.browserAction.setBadgeText({ text: '', tabId });
-  browser.browserAction.setIcon({ path: greyIcons });
+  // FIXME : @Jalil
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
+  browser.browserAction.setIcon({ path: greyIcons[getFacet()] });
 };
 
 /**
@@ -29,7 +33,7 @@ export const updateBadge = (
   badgeTheme: BadgeTheme,
   tabId?: number
 ): void => {
-  browser.browserAction.setIcon({ path: icons, tabId });
+  browser.browserAction.setIcon({ path: icons[getFacet()], tabId });
 
   const { backgroundColor } = badgeTheme;
 

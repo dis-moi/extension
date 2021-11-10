@@ -50,9 +50,9 @@ module.exports = facet => {
     ],
     browser_action: {
       default_icon: {
-        '16': 'img/logo/16x16.png',
-        '48': 'img/logo/48x48.png',
-        '128': 'img/logo/128x128.png'
+        '16': 'img/logo/' + facet + '/16x16.png',
+        '48': 'img/logo/' + facet + '/48x48.png',
+        '128': 'img/logo/' + facet + '/128x128.png'
       },
       default_title: facetName
     },

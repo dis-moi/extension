@@ -1,7 +1,8 @@
 import React from 'react';
 import { MemoryHistory } from 'history';
 import { RouteComponentProps, withRouter } from 'react-router';
-import Logo from 'components/atoms/icons/LogoDismoi';
+import WrappedLogoDismoi from 'components/atoms/icons/LogoDismoi';
+import WrappedLogoLMEL from 'components/atoms/icons/LogoLMEL';
 import { useFacetName } from 'libs/facets/useFacetName.hook';
 import Container from './Container';
 import LogoContainer from './LogoContainer';
@@ -31,7 +32,7 @@ const NotificationHeader = ({ title, goBack, close, history }: Props) => {
         <Title>{title}</Title>
       ) : (
         <LogoContainer>
-          {facet === 'lmel' ? <>{facetName}</> : <Logo />}
+          {facet === 'lmel' ? <WrappedLogoLMEL /> : <WrappedLogoDismoi />}
         </LogoContainer>
       )}
       <CloseButton onClick={close} />
