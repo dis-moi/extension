@@ -10,8 +10,4 @@ src/app/website/public
 src/app/website/.cache
 src/app/website/node_modules
 src/app/website/src/graphql/**/*
-src/app/websiteLMEL/public
-src/app/websiteLMEL/.cache
-src/app/websiteLMEL/node_modules
-src/app/websiteLMEL/src/graphql/**/*
-src/app/website/static/script
+src/app/website/static/script/**/*
