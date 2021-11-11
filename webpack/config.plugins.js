@@ -63,6 +63,10 @@ module.exports = (env = {}, argv = {}, buildPath) => {
     {
       from: 'node_modules/typeface-sedgwick-ave/files/',
       to: path.join(buildPath, 'fonts/')
+    },
+    {
+      from: `src/assets/browserconfig-${FACET}.xml`,
+      to: path.join(buildPath, 'browserconfig.xml')
     }
   ];
 
