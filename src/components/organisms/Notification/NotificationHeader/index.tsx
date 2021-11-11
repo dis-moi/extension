@@ -3,7 +3,7 @@ import { MemoryHistory } from 'history';
 import { RouteComponentProps, withRouter } from 'react-router';
 import WrappedLogoDismoi from 'components/atoms/icons/LogoDismoi';
 import WrappedLogoLMEL from 'components/atoms/icons/LogoLMEL';
-import { useFacetName } from 'libs/facets/useFacetName.hook';
+import { getFacet } from 'libs/facets/getFacet';
 import Container from './Container';
 import LogoContainer from './LogoContainer';
 import BackButton from './BackButton';
@@ -20,8 +20,7 @@ type Props = OwnProps & RouteComponentProps;
 const NotificationHeader = ({ title, goBack, close, history }: Props) => {
   const handleGoBack = goBack || history.goBack;
 
-  const facet = process.env.FACET;
-  const facetName = useFacetName();
+  const facet = getFacet();
 
   return (
     <Container>
