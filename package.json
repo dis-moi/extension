@@ -6,6 +6,7 @@
     "node": ">=12 <17"
   },
   "scripts": {
+    "postinstall": "yarn website install",
     "start": "webpack --watch --progress --mode=development",
     "start:profiles": "webpack-dev-server --progress --mode=development --config webpack.profiles.config.js --inline",
     "start:firefox": "webpack --watch --progress --mode=development --env.PLATFORM=firefox",
