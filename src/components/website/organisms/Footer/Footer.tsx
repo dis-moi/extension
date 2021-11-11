@@ -1,5 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { useTranslation } from 'react-i18next';
+import { getFacet } from 'libs/facets/getFacet';
+import { useFacetName } from 'libs/facets/useFacetName.hook';
+import { Facet } from 'libs/facets/facet';
+import LogoLMEL from '../../atoms/LogoLMEL/LogoLMEL';
 import LogoDisMoi from '../../atoms/LogoDisMoi/LogoDisMoi';
 import SocialLink from '../../atoms/SocialButton/SocialLink';
 import Section from '../../atoms/Section/Section';
@@ -8,7 +13,6 @@ import GridRow from '../../atoms/Grid/GridRow';
 import GridCol from '../../atoms/Grid/GridCol';
 import ListLinks, { Link } from '../../molecules/Header/ListLinks';
 import NavDesktopItem from '../../atoms/NavDesktopItem/NavDesktopItem';
-import { useTranslation } from 'react-i18next';
 
 const FooterWrapper = styled.footer`
   font-family: ${props => props.theme.website.fontFamily};
@@ -25,6 +29,15 @@ const FooterWrapper = styled.footer`
     height: 35px;
     @media (min-width: ${props => props.theme.desktopWidth}) {
       height: 40px;
+    }
+    path {
+      fill: white;
+    }
+  }
+  .logoLMEL {
+    height: 20px;
+    @media (min-width: ${props => props.theme.desktopWidth}) {
+      height: 25px;
     }
     path {
       fill: white;
@@ -89,7 +102,13 @@ const NavFooter = styled.nav`
   }
 `;
 
-const Legals = styled.p`
+const Legals = styled.p<{ facet: Facet }>`
+  ${props =>
+    props.facet === 'lmel'
+      ? css`
+          margin-top: 0;
+        `
+      : undefined}
   font-size: 12px;
   text-align: center;
   @media (min-width: ${props => props.theme.desktopWidth}) {
@@ -114,13 +133,17 @@ export interface FooterProps {
 
 const Footer = (props: FooterProps) => {
   const { t } = useTranslation('website');
+  const facet = getFacet();
+  const lmel = facet === 'lmel';
+  const facetName = useFacetName();
+
   return (
     <FooterWrapper {...props}>
       <Section>
         <GridContainer>
           <StyledGridRow>
             <GridCol1>
-              <LogoDisMoi />
+              {facet === 'lmel' ? <LogoLMEL /> : <LogoDisMoi />}
               <SocialLinkWrapper>
                 <SocialLink
                   icon="mastodon"
@@ -155,12 +178,15 @@ const Footer = (props: FooterProps) => {
               </NavFooter>
             </GridCol2>
             <GridCol3>
-              <NavDesktopItem onClick={props.switchLanguage}>
-                <span title="French">fr</span> | <span title="English">en</span>
-              </NavDesktopItem>
-              <Legals>
+              {!lmel && (
+                <NavDesktopItem onClick={props.switchLanguage}>
+                  <span title="French">fr</span> |{' '}
+                  <span title="English">en</span>
+                </NavDesktopItem>
+              )}
+              <Legals facet={facet}>
                 {t('footer.rightsReserved')} <br />
-                DisMoi © 2021
+                {facetName} © 2021
               </Legals>
             </GridCol3>
           </StyledGridRow>

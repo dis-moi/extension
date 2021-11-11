@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
+import { getFacet } from 'libs/facets/getFacet';
 import SectionTitle from '../../atoms/Titles/SectionTitle';
 import Section from '../../atoms/Section/Section';
 import GridContainer from '../../atoms/Grid/GridContainer';
 import GridRow from '../../atoms/Grid/GridRow';
 import GridCol from '../../atoms/Grid/GridCol';
 import Button from '../../atoms/Button/Button';
-import PosterUneInformation from '../../../../assets/img/website/dismoi-poster-une-information.jpg';
-import { useTranslation } from 'react-i18next';
+import PosterUneInformationDisMoi from '../../../../assets/img/website/dismoi-poster-une-information.jpg';
+import PosterUneInformationLMEL from '../../../../assets/img/websiteLMEL/dismoi-poster-une-information.jpg';
 
 export interface BecomeAContributorSectionProps {
   className?: string;
@@ -16,6 +18,7 @@ export interface BecomeAContributorSectionProps {
 const BecomeAContributorSection = styled(
   ({ className }: BecomeAContributorSectionProps) => {
     const { t } = useTranslation('website');
+    const facet = getFacet();
     return (
       <Section className={className}>
         <GridContainer>
@@ -30,7 +33,10 @@ const BecomeAContributorSection = styled(
             </GridCol>
             <GridCol>
               <img
-                src={PosterUneInformation.substr(1)}
+                src={(facet === 'lmel'
+                  ? PosterUneInformationLMEL
+                  : PosterUneInformationDisMoi
+                ).substr(1)}
                 alt={t('home.becomeContributor.imageAlt')}
               />
             </GridCol>

@@ -9,6 +9,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 const requiredEnvVarNames = [
+  'FACET',
+  'FACET_NAME',
+  'WEBSITE_URL',
   'SENTRY_DSN',
   'SENTRY_ENABLED',
   'NODE_ENV',
@@ -17,7 +20,6 @@ const requiredEnvVarNames = [
   'CHROME_EXTENSION_ID',
   'FIREFOX_EXTENSION_ID',
   'PROFILES_ORIGIN',
-  'FACET',
   'POPULAR_CONTRIBUTORS_IDS',
   'ACCESSIBLE_CONTRIBUTORS_IDS'
 ];

@@ -18,7 +18,7 @@ export const options: InitOptions = {
   fallbackLng,
   ns: ['extension', 'profiles', 'website'],
   defaultNS: 'extension',
-  debug: true,
+  debug: false,
   interpolation: {
     escapeValue: false, // react already safes from xss
     format,

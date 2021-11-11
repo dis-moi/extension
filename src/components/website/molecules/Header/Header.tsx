@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { Facet } from 'libs/facets/facet';
 import NavDesktop from '../../atoms/NavDesktop/NavDesktop';
 import Button from '../../atoms/Button/Button';
 import LogoDisMoi from '../../atoms/LogoDisMoi/LogoDisMoi';
+import LogoLMEL from '../../atoms/LogoLMEL/LogoLMEL';
 import ToggleMenu from '../../atoms/NavMobileButton/ToggleMenu';
 import Modal from '../../atoms/Modal/Modal';
 import NavMobile from '../../atoms/NavMobile/NavMobile';
@@ -61,10 +63,11 @@ export interface HeaderProps {
   links: Link[];
   switchLanguage: () => void;
   isHome: boolean;
+  facet: Facet;
 }
 
 const Header = styled(
-  ({ className, links, switchLanguage, isHome }: HeaderProps) => {
+  ({ className, links, switchLanguage, isHome, facet }: HeaderProps) => {
     const [scrolledClass, setScolledClass] = useState('');
     const [opacity, setOpacity] = useState(0);
     const [modalOpen, setModalOpen] = React.useState<boolean>(false);
@@ -89,14 +92,18 @@ const Header = styled(
       <>
         <header className={className + ' ' + scrolledClass} style={{ opacity }}>
           <a className="homeLink" href={'/'}>
-            <LogoDisMoi />
+            {facet === 'lmel' ? <LogoLMEL /> : <LogoDisMoi />}
           </a>
           <NavDesktop>
             <ListLinks links={links} />
             {!!scrolledClass && <HeaderCTAButton />}
-            <NavDesktopItem onClick={switchLanguage}>
-              <span title="French">fr</span> | <span title="English">en</span>
-            </NavDesktopItem>
+            {facet === 'lmel' ? (
+              <> </>
+            ) : (
+              <NavDesktopItem onClick={switchLanguage}>
+                <span title="French">fr</span> | <span title="English">en</span>
+              </NavDesktopItem>
+            )}
           </NavDesktop>
           <MobileButtonsWrapper>
             {!!scrolledClass && <HeaderCTAButton />}
@@ -149,10 +156,15 @@ const Header = styled(
   ${NavDesktop} {
     transform-origin: right center;
     transition: transform ${props => props.theme.website.animationFastDuration};
-    a:last-of-type {
-      transform-origin: center;
-      transform: scale(0.8);
-    }
+    ${props =>
+      props.facet !== 'lmel'
+        ? css`
+            a:last-of-type {
+              transform-origin: center;
+              transform: scale(0.8);
+            }
+          `
+        : undefined}
   }
   &:not(.scrolled) {
     a.homeLink {

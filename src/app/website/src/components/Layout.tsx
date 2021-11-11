@@ -12,6 +12,7 @@ import './layout.css';
 import Seo from './seo';
 import { Helmet } from 'react-helmet';
 import { useEffect, useState } from 'react';
+import { getFacet } from '../../../../libs/facets/getFacet';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -31,13 +32,19 @@ const Layout = ({ children, pageContext, path }: LayoutProps) => {
   const [switchLanguage] = useSwitchLanguage();
   const { footer, header } = useGetMenus(i18n.language as SupportedLanguage);
   const [isHome, setIsHome] = useState(true);
+  const facet = getFacet();
   const eng = new RegExp(/^\/en\/$|^\/en$/);
   useEffect(() => setIsHome(path === '/' || eng.test(path)), [path]);
 
   return (
     <ThemeProvider theme={theme}>
       <Seo title={pageContext.title || 'DisMoi'} />
-      <Header isHome={isHome} links={header} switchLanguage={switchLanguage} />
+      <Header
+        isHome={isHome}
+        links={header}
+        switchLanguage={switchLanguage}
+        facet={facet}
+      />
       <Helmet htmlAttributes={{ lang: i18n.language }} />
       <main>{children}</main>
       <Footer links={footer} switchLanguage={switchLanguage} />

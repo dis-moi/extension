@@ -28,7 +28,7 @@ const ColorBackground = styled.div`
   height: 100%;
   transition: background-color
     ${props => props.theme.website.animationFastDuration};
-  background-color: rgba(40, 85, 162, 0.95);
+  background-color: ${props => props.theme.website.videoImageBackgroundColor};
   &:active {
     background-color: ${props => props.theme.website.activeColor};
   }
@@ -82,12 +82,14 @@ const Wrapper = styled.div`
       transform: scale(1.2);
     }
     ${ColorBackground} {
-      background-color: rgb(23, 186, 174, 0.95);
+      background-color: ${props =>
+        props.theme.website.videoImageBackgroundHoverColor};
     }
   }
   &:active {
     ${ColorBackground} {
-      background-color: rgb(255, 152, 29, 0.95);
+      background-color: ${props =>
+        props.theme.website.videoImageBackgroundActiveColor};
     }
   }
 `;

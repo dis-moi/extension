@@ -49,12 +49,8 @@ const Background = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background: rgba(40, 85, 162, 0.95);
-  background: linear-gradient(
-    180deg,
-    rgba(40, 85, 162, 1) 0%,
-    rgba(40, 85, 162, 0.95) 100%
-  );
+  background: ${props => props.theme.website.modalBackgroundColor};
+  background: ${props => props.theme.website.modalBackgroundColorBis};
   cursor: pointer;
 `;
 

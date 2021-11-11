@@ -88,7 +88,8 @@ const TabButton = styled(
       background-color: rgba(255, 255, 255, 0.5);
       &.active {
         color: ${props => props.theme.website.secondaryColorDarker};
-        background-color: rgba(23, 186, 174, 0.1);
+        background-color: ${props =>
+          props.theme.website.secondaryColorDarkerBackground};
         &:hover {
           color: white;
         }

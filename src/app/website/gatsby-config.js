@@ -1,17 +1,23 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-require('dotenv').config({
-  path: path.resolve(__dirname, '../../../', `.env.${process.env.NODE_ENV}`)
-});
+const loadEnv = require('../../../loadEnv');
+
+process.env.FACET = process.env.FACET || 'dismoi';
+
+loadEnv({ path: path.resolve('../../../') });
+
+process.env.GATSBY_FACET = process.env.FACET;
+process.env.GATSBY_FACET_NAME = process.env.FACET_NAME;
+process.env.GATSBY_WEBSITE_URL = process.env.WEBSITE_URL;
 
 module.exports = {
   siteMetadata: {
-    title: `Dismoi website`,
+    title: process.env.FACET_NAME || 'DisMoi',
     description: `Notre projet est de **réinstaurer la liberté d’information partout sur le web**, afin de le rendre plus sûr, plus transparent et plus favorable aux alternatives. DisMoi est un réseau en surcouche du web qui permet aux internautes de **se conseiller et de
 s'éclairer directement sur les pages du web qu’ils visitent**.`,
     author: `Dismoi Team`,
-    siteUrl: `https://dismoi.io/`
+    siteUrl: process.env.WEBSITE_URL || 'https://'
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

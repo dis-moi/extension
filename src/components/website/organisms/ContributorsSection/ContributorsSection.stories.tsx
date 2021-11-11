@@ -23,5 +23,5 @@ export const _ContributorsSection = (args: ContributorsSectionProps) => (
   <ContributorsSection {...args} />
 );
 _ContributorsSection.args = {
-  contributorsIds: contributorsIds
+  contributorsIds: contributorsIds.dismoi
 };

@@ -6,9 +6,6 @@ import SectionTitle from '../../atoms/Titles/SectionTitle';
 import ContributorAvatar from '../../atoms/ContributorAvatar/ContributorAvatar';
 import Section from '../../atoms/Section/Section';
 import Button from '../../atoms/Button/Button';
-import useGetContributors, {
-  ContributorsIds
-} from '../../../../app/website/src/hooks/useGetContributors';
 import { useTranslation } from 'react-i18next';
 
 const StyledSectionTitle = styled(props => <SectionTitle {...props} />)`
@@ -306,7 +303,8 @@ const ContributorsSection = styled(
     );
   }
 )`
-  background-color: rgba(23, 186, 174, 0.1);
+  background-color: ${props =>
+    props.theme.website.contributorSectionBackgroundColor};
   position: relative;
   display: flex;
   flex-direction: column;
