@@ -1,3 +1,35 @@
+# [3.93.0](https://github.com/dis-moi/extension/compare/v3.92.0...v3.93.0) (2021-11-11)
+
+
+### Bug Fixes
+
+* link with navigate ([e5018e6](https://github.com/dis-moi/extension/commit/e5018e6e3d2f65b0ae747167c7fb2f3efefcfdfc))
+* rollback to i18next-browser-languagedetector 5.x to be compatible with i18next 19.x ([146cd07](https://github.com/dis-moi/extension/commit/146cd0712af2cd4f6669388b923ba6d8eed15973))
+* scrolled ([da11f5f](https://github.com/dis-moi/extension/commit/da11f5f723af515f78e1ae9b6b12f73228f0c37d))
+* **gatsby:** header, nav, logo, layout page interne ([59e3ca5](https://github.com/dis-moi/extension/commit/59e3ca5194aa16cd71a35cb7a6a63217a8c054f4))
+* **gatsby:** ssr with script ([ed40512](https://github.com/dis-moi/extension/commit/ed4051254957bc0bfb8f3b87794f5855c2908dec))
+* **gatsby:** ts errors ([7cefc5b](https://github.com/dis-moi/extension/commit/7cefc5bdc5d67d1852194e88230c1ed40af45ea5))
+* **menu:** i18n ([c94f4ea](https://github.com/dis-moi/extension/commit/c94f4ea069f205d2d79779ae1bac7b2038d9ce05))
+* ts and dependencies issues ([e6a38d3](https://github.com/dis-moi/extension/commit/e6a38d395e1be24785d35856395811387a0ce88a))
+* yarn lock ([6d6321b](https://github.com/dis-moi/extension/commit/6d6321b99b8d7ca4e6dd3470aa0fc9cfaadd17a2))
+* **gatsby:** useDefineClientSetup and build ([99c2e23](https://github.com/dis-moi/extension/commit/99c2e23572d3ce92542c8506d5b123ad34a0b1d0))
+* **gatsby:** wip ([e1b2c33](https://github.com/dis-moi/extension/commit/e1b2c3354e97d5c7709714ff4adbd586c2a84bc7))
+
+
+### Features
+
+* eclaireurs ([01f8c17](https://github.com/dis-moi/extension/commit/01f8c17d610370a33ffe864159c4e4e1169acda6))
+* finalize profiles injection ([e14c7d7](https://github.com/dis-moi/extension/commit/e14c7d739ec6cc980c5e99cf95e0688bee5085bf))
+* publish  website script ([5b718a5](https://github.com/dis-moi/extension/commit/5b718a517a65324fce075a35353ea3d54ccb5083))
+* wip ([0e6e9f5](https://github.com/dis-moi/extension/commit/0e6e9f55785136c580b93e0d2a6b8fe4ce886d51))
+* **gatsby:** add page info ([a37c814](https://github.com/dis-moi/extension/commit/a37c814f62d58450d8335addc28620c3ef4dfedf))
+* **gatsby:** contributor section and get contributors hook ([7efa69a](https://github.com/dis-moi/extension/commit/7efa69af6e672c6904f1092b2d1b995b4387f720))
+* **gatsby:** init and setup folders, clean storybook create all pages ([579496c](https://github.com/dis-moi/extension/commit/579496cd9375003ea1b08064320eed1c827b92cc))
+* **gatsby:** init project, WIP tsconfig ,update eslint config global, ForkTsCheckerWebpackPlugin ([a38d547](https://github.com/dis-moi/extension/commit/a38d547b5c6044c712506ef7375474c5304d06de))
+* **gatsby:** menus, custom layout ([9f5b18e](https://github.com/dis-moi/extension/commit/9f5b18ee5cd9d4bc74cfd3ddbefff27a60bc89fd))
+* **gatsby:** use switch locale ([b215d35](https://github.com/dis-moi/extension/commit/b215d354aa45a1c99659c1838bace15c59d31383))
+* **Website2.0:** starts Footer component ([c465352](https://github.com/dis-moi/extension/commit/c4653528d3b3131ec62432b07a8c3f8160e9b2e2))
+
 # [3.92.0](https://github.com/dis-moi/extension/compare/v3.91.1...v3.92.0) (2021-11-09)
 
 
