@@ -91,7 +91,6 @@
     "@types/firefox-webext-browser": "^70.0.1",
     "@types/flat": "^0.0.28",
     "@types/history": "^4.7.2",
-    "@types/i18next-browser-languagedetector": "^3.0.0",
     "@types/isomorphic-fetch": "^0.0.35",
     "@types/jsdom": "^12.2.3",
     "@types/lodash-es": "^4.17.3",
@@ -161,8 +160,8 @@
     "history": "^4.7.2",
     "html-webpack-plugin": "4",
     "husky": "^3.0.4",
-    "i18next": "^19.9.0",
-    "i18next-browser-languagedetector": "^6.1.2",
+    "i18next": "^19.9.2",
+    "i18next-browser-languagedetector": "^5.0.1",
     "isomorphic-fetch": "^2.2.1",
     "jsdom": "^15.1.1",
     "jsdom-global": "^3.0.2",
@@ -233,8 +232,8 @@
     "@storybook/cli": "^6.3.6",
     "chrome-webstore-upload": "^0.2.2",
     "eslint-import-resolver-typescript": "^2.4.0",
-    "prettier-eslint-cli": "^5.0.1",
     "eslint-plugin-import": "^2.18.2",
+    "prettier-eslint-cli": "^5.0.1",
     "sign-addon": "^2.0.4",
     "webpack-dev-server": "^3.11.0"
   }
