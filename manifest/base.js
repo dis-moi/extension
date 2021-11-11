@@ -17,7 +17,7 @@ module.exports = facet => {
       'Amis, media, experts vous informent directement sur les pages web visitées. ',
     version,
     manifest_version: 2,
-    icons,
+    icons: icons[facet],
     background: {
       page: 'background.html'
     },
