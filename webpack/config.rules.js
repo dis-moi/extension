@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = (env, argv) => {
-  const rules = [
+  return [
     {
       oneOf: [
         // Process application JS with Babel.
@@ -95,10 +95,15 @@ module.exports = (env, argv) => {
             }
           },
           include: [path.resolve(__dirname, '../views/')]
+        },
+        {
+          test: /\.(md)$/,
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]'
+          }
         }
       ]
     }
   ];
-
-  return rules;
 };

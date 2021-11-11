@@ -1,0 +1,127 @@
+{
+  "header": {
+    "ctaText": "Ajouter Le Même en Local",
+    "guides": "Eclaireurs"
+  },
+  "footer": {
+    "followUsOn": "Suivez-nous sur {{network}}",
+    "rightsReserved": "Droits réservés textes et images"
+  },
+  "home": {
+    "primaryHeadline": "S’il existe une alternative locale, vous le saurez.",
+    "secondaryHeadline": "Alternatives de votre région, fabriquées en France ou en circuit court.\nSoyez alerté directement sur les pages web que vous visitez.",
+    "coverAnimation": {
+      "word1": "Ce livre est en librairie près de chez vous",
+      "word2": "Au même prix, ce produit existe en made in France ici",
+      "word3": "Réservez en direct auprès des habitants",
+      "word4": "Dans votre région, un artisan fabrique aussi cet objet.",
+      "word5": "Attention ceci n’est pas vraiment du made in France",
+      "word6": "",
+      "word7": "",
+      "word8": "",
+      "word9": ""
+    },
+    "cta": {
+      "installApp": "Installer l’app",
+      "addTo": "Ajouter à",
+      "addToBrowser": "Ajouter à mon navigateur",
+      "free": "Gratuit",
+      "noAds": "sans publicité",
+      "privacy": "respecte votre vie privée"
+    },
+    "rating": {
+      "feedbackCount": "Déjà <b>{{feedbackCount}} avis</b> sur {{storeName}}",
+      "userCount": "<b>{{userCount}} utilisateurs</b> et c’est pas fini !"
+    },
+    "examples": {
+      "forExample": "Par exemple",
+      "example1": {
+        "alt": "Exemple – Amazon",
+        "title": "J’accède à un produit fabriqué en France pour le même prix",
+        "buttonText": "Alternative de ma région"
+      },
+      "example2": {
+        "alt": "Exemple – Le Même en Alsace",
+        "title": "Je me fais livrer via une coopérative locale de livreurs",
+        "buttonText": "Made in France / Circuit-court"
+      },
+      "example3": {
+        "alt": "Exemple – Made in France",
+        "title": "Je découvre une alternative française au produit que je consulte",
+        "buttonText": "Sans intermédiaire"
+      }
+    },
+    "howItWorks": {
+      "sectionTitle": "Comment ça marche ?",
+      "discoverIn1Min": "Découvrir comment fonctionne DisMoi en 1 minute",
+      "modalTitle": "Comment fonctionne l’extension DisMoi ?",
+      "modalSmallTitle": "Explications en vidéo",
+      "steps": {
+        "step1": {
+          "title": "Je m’abonne aux profils de mon choix.",
+          "detail": "Eux et eux-seuls pourront me conseiller dans ma navigation !"
+        },
+        "step2": {
+          "title": "Je navigue sur le web",
+          "detail": "comme à mon habitude : e-commerce, médias, réseaux sociaux…"
+        },
+        "step3": {
+          "title": "Je bénéficie de leurs conseils",
+          "detail": "directement sur les pages du web que je visite."
+        }
+      }
+    },
+    "contributors": {
+      "title": "+500 alternatives locales...",
+      "subTitle": "issues de ma commune, de ma région, de mon pays et de ses voisins",
+      "buttonText": "Voir toutes les sources d'alternatives"
+    },
+    "becomeContributor": {
+      "title": "Vous aussi, proposez des alternatives locales !",
+      "imageAlt": "Poster une information",
+      "action1": "En direct producteur",
+      "action2": "Artisan",
+      "action3": "Industriel",
+      "action4": "Coopérative",
+      "action5": "Atelier de réparation",
+      "action6": "Boutique spécialisée",
+      "buttonText": "Installer l’extension pour devenir contributeur"
+    },
+    "commitments": {
+      "title": "Nos engagements",
+      "cards": {
+        "card1": {
+          "title": "Respecte votre vie privée",
+          "text": "<b>L’extension ne fait pas de profilage et aucune donnée de nos utilisateurs n’est exploitée ni revendue.</b> L’utilisation de l’extension DisMoi est par défaut anonyme.",
+          "buttonText": "Lire la charte de vie privée"
+        },
+        "card2": {
+          "title": "Sans Publicité",
+          "text": "<b>Le Même en Local ne vous diffusera jamais de publicité.</b> C’est vous qui choisissez de vous abonner à chaque contributeurs, ou inversement de ne plus le suivre si ses contributions vous gênent.",
+          "buttonText": "Comment le projet se finance t-il ?"
+        },
+        "card3": {
+          "title": "Ne ralentit pas votre navigateur",
+          "text": "<b>Contrairement à d’autres extensions, Le Même en Local ne ralentit pas votre navigateur.</b> L’impact de l’extension sur la vitesse de votre navigation est minime et imperceptible.",
+          "buttonText": "Lire les tests de performances"
+        },
+        "card4": {
+          "title": "Transparent & Open Source",
+          "text": "<b>Le code source est consultable depuis notre dépôt GitHub en open source.</b> Chacun peut le réutiliser librement et y contribuer. Participez à la construction d’un internet libre, neutre et ouvert.",
+          "buttonText": "Parcourir le code sur GitHub"
+        }
+      }
+    }
+  },
+  "links": {
+    "guides": "/fr/eclaireurs",
+    "about": "/fr/a-propos",
+    "contact": "/fr/contact",
+    "contribuer": "/fr/contribuer",
+    "press": "/fr/espace-presse",
+    "legal": "/fr/mentions-legales",
+    "privacy": "/fr/privacy",
+    "tcu": "/fr/tcu",
+    "home": "/"
+  }
+}

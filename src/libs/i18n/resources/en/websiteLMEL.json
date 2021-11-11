@@ -1,0 +1,127 @@
+{
+  "header": {
+    "ctaText": "Add DisMoi",
+    "guides": "Guides"
+  },
+  "footer": {
+    "followUsOn": "Follow us on {{network}}",
+    "rightsReserved": "All rights reserved text and images"
+  },
+  "home": {
+    "primaryHeadline": "What the websites don't tell you, you will know.",
+    "secondaryHeadline": "Get advice and alerts directly on the pages you visit.",
+    "coverAnimation": {
+      "word1": "On this website, the reviews are not reliable",
+      "word2": "The quality is doubtful",
+      "word3": "This article contains fakenews!",
+      "word4": "The respondent replied here",
+      "word5": "Avoid this middleman order here",
+      "word6": "Access to real made in France here",
+      "word7": "It's cheaper here and there",
+      "word8": "",
+      "word9": ""
+    },
+    "cta": {
+      "installApp": "Install app",
+      "addTo": "Add to",
+      "addToBrowser": "Add to my browser",
+      "free": "Free",
+      "noAds": "completely ad-free",
+      "privacy": "respects your privacy"
+    },
+    "rating": {
+      "feedbackCount": "Already <b>{{feedbackCount}} reviews</b> on {{storeName}}",
+      "userCount": "<b>{{userCount}} users</b> and still growing!"
+    },
+    "examples": {
+      "forExample": "For example",
+      "example1": {
+        "alt": "Example – Le Même en Local",
+        "title": "A specialist guide suggests a local alternative",
+        "buttonText": "Consumer alternatives"
+      },
+      "example2": {
+        "alt": "Example – Selon Que Choisir",
+        "title": "Consumer association warns of a scam",
+        "buttonText": "Scam alerts"
+      },
+      "example3": {
+        "alt": "Example – Biet Thomas",
+        "title": "A reader shares a discussion that expands on the article viewed",
+        "buttonText": "Insightful information"
+      }
+    },
+    "howItWorks": {
+      "sectionTitle": "How does it work?",
+      "discoverIn1Min": "Find out how DisMoi works in 1 minute",
+      "modalTitle": "How does the DisMoi extension work?",
+      "modalSmallTitle": "Video explanations",
+      "steps": {
+        "step1": {
+          "title": "I subscribe to the profiles of my choice.",
+          "detail": "They, and only they, can advise me in my navigation!"
+        },
+        "step2": {
+          "title": "I browse the web",
+          "detail": "as usual: e-commerce, media, social networks..."
+        },
+        "step3": {
+          "title": "I get their advice",
+          "detail": "directly on the web pages I visit."
+        }
+      }
+    },
+    "contributors": {
+      "title": "+2000 contributions...",
+      "subTitle": "that make the web safer, more transparent and more open to alternatives",
+      "buttonText": "See all contributors"
+    },
+    "becomeContributor": {
+      "title": "You too can share your tips and experiences!",
+      "imageAlt": "Posting information",
+      "action1": "Give your opinion",
+      "action2": "Recommend an alternative",
+      "action3": "Reporting a scam",
+      "action4": "Correcting information",
+      "action5": "Report a thread on Twitter",
+      "action6": "Share a good plan",
+      "buttonText": "Install the extension to become a contributor"
+    },
+    "commitments": {
+      "title": "Our commitments",
+      "cards": {
+        "card1": {
+          "title": "Respects your privacy",
+          "text": "<b>The extension does not do any profiling and no data of our users is exploited or resold.</b> The use of the DisMoi extension is anonymous by default.",
+          "buttonText": "Read the privacy statement"
+        },
+        "card2": {
+          "title": "Advertising free",
+          "text": "<b>DisMoi will never advertise to you.</b> You choose to subscribe to each contributor, or conversely to stop following them if their contributions bother you.",
+          "buttonText": "How do we finance ourselves?"
+        },
+        "card3": {
+          "title": "Does not slow down your browser",
+          "text": "<b>Unlike other extensions, DisMoi does not slow down your browser.</b> The impact of the extension on your browsing speed is minimal and imperceptible.",
+          "buttonText": "Read the performance tests"
+        },
+        "card4": {
+          "title": "Transparent & Open Source",
+          "text": "<b>The source code is searchable from our open source GitHub repository.</b> Anyone can reuse it freely and contribute to it. Take part in building a free, neutral and open internet.",
+          "buttonText": "Browse the code on GitHub"
+        }
+      }
+    }
+  },
+  "links": {
+    "guides": "/en/guides",
+    "about": "/en/about",
+    "contact": "/en/contact",
+    "contribuer": "/en/creating-a-post",
+    "press": "/en/press-room",
+    "legal": "/en/legal-information",
+    "privacy": "/en/privacy",
+    "tcu": "/en/tcu",
+    "home": "/en"
+  }
+}

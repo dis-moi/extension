@@ -13,6 +13,8 @@ interface LinkProps<S = LocationState>
 }
 
 const Link = ({ to, ...props }: LinkProps) =>
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
   to ? <ReactRouterDomLink to={to} {...props} /> : <Anchor {...props} />;
 
 export default styled(Link)`

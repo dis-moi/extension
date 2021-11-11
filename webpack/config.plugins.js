@@ -19,6 +19,9 @@ const { getPackageName, getPackageExtension } = require('./packageNaming');
 // @todo do we still need to maintain this list?
 // I would gladly get rid of it...
 const selectEnvVarsToInject = R.pick([
+  'FACET',
+  'FACET_NAME',
+  'WEBSITE_URL',
   'SENTRY_DSN',
   'NODE_ENV',
   'BACKEND_ORIGIN',
@@ -31,7 +34,6 @@ const selectEnvVarsToInject = R.pick([
   'TRACKING_POSTHOG_API_KEY',
   'SENTRY_ENABLED',
   'PLATFORM',
-  'FACET',
   'CHROME_EXTENSION_ID',
   'FIREFOX_EXTENSION_ID',
   'PROFILES_ORIGIN',

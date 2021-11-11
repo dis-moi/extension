@@ -41,9 +41,8 @@ const withTitle = <TComponentProps extends {}>(title: string | undefined) => (
     // eslint-disable-next-line
     // @ts-ignore
   )(ComponentWithTitleEffect);
-  // eslint-disable-next-line
-  // @ts-ignore
-  return ConnectedComponent as ComponentType<TComponentProps>;
+
+  return (ConnectedComponent as unknown) as ComponentType<TComponentProps>;
 };
 
 export default withTitle;

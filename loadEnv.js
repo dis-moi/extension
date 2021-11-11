@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const nodePath = require('path');
 const fs = require('fs');
 const dotenv = require('dotenv');

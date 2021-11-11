@@ -82,6 +82,40 @@ export interface Theme {
     xl: string;
     xxl: string;
   };
+
+  website: {
+    radius: string;
+    radiusSmall: string;
+    primaryColor: string;
+    primaryColorDarker: string;
+    secondaryColor: string;
+    secondaryColorDarker: string;
+    activeColor: string;
+    activeColorDarker: string;
+    greyColor: string;
+    greyColorLighter: string;
+    greyColorDarker: string;
+    fontFamily: string;
+    textSizeMobile: string;
+    textSizeTablet: string;
+    textSizeDesktop: string;
+    animationSlowDuration: string;
+    animationMediumDuration: string;
+    animationFastDuration: string;
+    boxShadow: string;
+
+    // FIXME find me better names @Antoine
+    contributorAvatarLinkAfterBackgroundColor: string;
+    modalBackgroundColor: string;
+    modalBackgroundColorBis: string;
+    secondaryColorDarkerBackground: string;
+    videoImageBackgroundColor: string;
+    videoImageBackgroundHoverColor: string;
+    videoImageBackgroundActiveColor: string;
+    contributorSectionBackgroundColor: string;
+    coverSectionBackgroundColor: string;
+    coverSectionBackgroundColorBis: string;
+  };
 }
 
 export const dismoiTheme: Theme = {
@@ -169,9 +203,90 @@ export const dismoiTheme: Theme = {
     lg: '992px',
     xl: '1200px',
     xxl: '1400px'
+  },
+
+  website: {
+    radius: '10px',
+    radiusSmall: '6px',
+    primaryColor: '#0C52B4',
+    primaryColorDarker: '#1b386c',
+    secondaryColor: '#17baae',
+    secondaryColorDarker: '#0f6c6c',
+    activeColor: '#ff981d',
+    activeColorDarker: '#ce740f',
+    greyColor: '#DDDDDD',
+    greyColorLighter: '#F5F5F5',
+    greyColorDarker: '#666b79',
+    fontFamily: "'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+    textSizeMobile: '16px',
+    textSizeTablet: '17px',
+    textSizeDesktop: '18px',
+    animationSlowDuration: '0.5s',
+    animationMediumDuration: '0.25s',
+    animationFastDuration: '0.1s',
+    boxShadow: 'rgba(0, 0, 0, 0.1) 0 0 10px;',
+
+    contributorAvatarLinkAfterBackgroundColor: 'rgba(23, 186, 174, 0.8)',
+    modalBackgroundColor: 'rgba(40, 85, 162, 0.95)',
+    modalBackgroundColorBis: `linear-gradient(
+      180deg,
+      rgba(40, 85, 162, 1) 0%,
+      rgba(40, 85, 162, 0.95) 100%
+    )`,
+    secondaryColorDarkerBackground: 'rgba(23, 186, 174, 0.1)',
+    videoImageBackgroundColor: 'rgba(40, 85, 162, 0.95)',
+    videoImageBackgroundHoverColor: 'rgb(23, 186, 174, 0.95)',
+    videoImageBackgroundActiveColor: 'rgb(255, 152, 29, 0.95)',
+    contributorSectionBackgroundColor: 'rgba(23, 186, 174, 0.1)',
+    coverSectionBackgroundColor: 'rgb(12, 82, 180)',
+    coverSectionBackgroundColorBis: `linear-gradient(
+      60deg,
+      rgba(12, 82, 180, 1) 0%,
+      rgba(23, 186, 174, 1) 100%
+    )`
   }
 };
 
 export const lmelTheme = R.mergeDeepRight(dismoiTheme, {
+  website: {
+    radius: '10px',
+    radiusSmall: '6px',
+    primaryColor: '#283a7c',
+    primaryColorDarker: '#172344',
+    secondaryColor: '#fab51a',
+    secondaryColorDarker: '#ec9119',
+    activeColor: '#e42225',
+    activeColorDarker: '#93181e',
+    greyColor: '#DDDDDD',
+    greyColorLighter: '#F5F5F5',
+    greyColorDarker: '#666b79',
+    fontFamily: "'Barlow', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+    textSizeMobile: '16px',
+    textSizeTablet: '17px',
+    textSizeDesktop: '18px',
+    animationSlowDuration: '0.5s',
+    animationMediumDuration: '0.25s',
+    animationFastDuration: '0.1s',
+    boxShadow: 'rgba(0, 0, 0, 0.1) 0 0 10px;',
+
+    contributorAvatarLinkAfterBackgroundColor: 'rgba(236, 145, 25, 0.8)',
+    modalBackgroundColor: 'rgba(40, 58, 124, 0.95)',
+    modalBackgroundColorBis: `linear-gradient(
+      180deg,
+      rgba(40, 58, 124, 1) 0%,
+      rgba(40, 58, 124, 0.95) 100%
+    )`,
+    secondaryColorDarkerBackground: 'rgba(236, 145, 25, 0.1)',
+    videoImageBackgroundColor: 'rgba(40, 58, 124, 0.95)',
+    videoImageBackgroundHoverColor: 'rgb(236, 145, 25, 0.95)',
+    videoImageBackgroundActiveColor: 'rgb(228, 34, 37, 0.95)',
+    contributorSectionBackgroundColor: 'rgba(236, 145, 25, 0.1)',
+    coverSectionBackgroundColor: 'rgb(23, 35, 68)',
+    coverSectionBackgroundColorBis: `linear-gradient(
+      60deg,
+      rgba(23, 35, 68, 1) 0%,
+      rgba(40, 58, 124, 1) 100%
+    )`
+  }
   // Insert any LMEL difference here
 } as Partial<Theme>);

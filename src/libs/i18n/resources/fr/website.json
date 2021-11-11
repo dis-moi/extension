@@ -1,0 +1,127 @@
+{
+  "header": {
+    "ctaText": "Ajouter DisMoi",
+    "guides": "Eclaireurs"
+  },
+  "footer": {
+    "followUsOn": "Suivez-nous sur {{network}}",
+    "rightsReserved": "Droits réservés textes et images"
+  },
+  "home": {
+    "primaryHeadline": "Ce que les sites web ne vous disent pas, vous le saurez.",
+    "secondaryHeadline": "Soyez alertés directement sur les pages web que vous visitez.",
+    "coverAnimation": {
+      "word1": "Sur ce site, les avis ne sont pas fiables",
+      "word2": "La qualité est douteuse",
+      "word3": "Cet article contient une fakenews !",
+      "word4": "La personne mise en cause a répondu ici",
+      "word5": "Évitez cet intermédiaire commandez ici",
+      "word6": "Accédez à du vrai made in France ici",
+      "word7": "Il y a moins cher ici et là",
+      "word8": "",
+      "word9": ""
+    },
+    "cta": {
+      "installApp": "Installer l’app",
+      "addTo": "Ajouter à",
+      "addToBrowser": "Ajouter à mon navigateur",
+      "free": "Gratuit",
+      "noAds": "sans publicité",
+      "privacy": "respecte votre vie privée"
+    },
+    "rating": {
+      "feedbackCount": "Déjà <b>{{feedbackCount}} avis</b> sur {{storeName}}",
+      "userCount": "<b>{{userCount}} utilisateurs</b> et c’est pas fini !"
+    },
+    "examples": {
+      "forExample": "Par exemple",
+      "example1": {
+        "alt": "Exemple – Le Même en Local",
+        "title": "Un guide spécialisé vous suggère une alternative locale",
+        "buttonText": "Alternatives conso"
+      },
+      "example2": {
+        "alt": "Exemple – Selon Que Choisir",
+        "title": "Une association de consommateurs vous signale une arnaque",
+        "buttonText": "Alertes Arnaques"
+      },
+      "example3": {
+        "alt": "Exemple – Biet Thomas",
+        "title": "Un lecteur vous partage une discussion qui approfondit l’article consulté",
+        "buttonText": "Infos éclairantes"
+      }
+    },
+    "howItWorks": {
+      "sectionTitle": "Comment ça marche ?",
+      "discoverIn1Min": "Découvrir comment fonctionne DisMoi en 1 minute",
+      "modalTitle": "Comment fonctionne l’extension DisMoi ?",
+      "modalSmallTitle": "Explications en vidéo",
+      "steps": {
+        "step1": {
+          "title": "Je m’abonne aux profils de mon choix.",
+          "detail": "Eux et eux-seuls pourront me conseiller dans ma navigation !"
+        },
+        "step2": {
+          "title": "Je navigue sur le web",
+          "detail": "comme à mon habitude : e-commerce, médias, réseaux sociaux…"
+        },
+        "step3": {
+          "title": "Je bénéficie de leurs conseils",
+          "detail": "directement sur les pages du web que je visite."
+        }
+      }
+    },
+    "contributors": {
+      "title": "+2000 contributions...",
+      "subTitle": "qui rendent le web plus sûr, plus transparent et plus ouvert aux alternatives",
+      "buttonText": "Voir tous les contributeurs"
+    },
+    "becomeContributor": {
+      "title": "Vous aussi, partagez vos conseils et expériences !",
+      "imageAlt": "Poster une information",
+      "action1": "Donner votre avis",
+      "action2": "Recommander une alternative",
+      "action3": "Dénoncer une arnaque",
+      "action4": "Corriger une information",
+      "action5": "Signaler un thread sur Twitter",
+      "action6": "Partager un bon plan",
+      "buttonText": "Installer l’extension pour devenir contributeur"
+    },
+    "commitments": {
+      "title": "Nos engagements",
+      "cards": {
+        "card1": {
+          "title": "Respecte votre vie privée",
+          "text": "<b>L’extension ne fait pas de profilage et aucune donnée de nos utilisateurs n’est exploitée ni revendue.</b> L’utilisation de l’extension DisMoi est par défaut anonyme.",
+          "buttonText": "Lire la charte de vie privée"
+        },
+        "card2": {
+          "title": "Sans Publicité",
+          "text": "<b>DisMoi ne vous diffusera jamais de publicité.</b> C’est vous qui choisissez de vous abonner à chaque contributeurs, ou inversement de ne plus le suivre si ses contributions vous gênent.",
+          "buttonText": "Comment nous finançons nous ?"
+        },
+        "card3": {
+          "title": "Ne ralentit pas votre navigateur",
+          "text": "<b>Contrairement à d’autres extensions, DisMoi ne ralentit pas votre navigateur.</b> L’impact de l’extension sur la vitesse de votre navigation est minime et imperceptible.",
+          "buttonText": "Lire les tests de performances"
+        },
+        "card4": {
+          "title": "Transparent & Open Source",
+          "text": "<b>Le code source est consultable depuis notre dépôt GitHub en open source.</b> Chacun peut le réutiliser librement et y contribuer. Participez à la construction d’un internet libre, neutre et ouvert.",
+          "buttonText": "Parcourir le code sur GitHub"
+        }
+      }
+    }
+  },
+  "links": {
+    "guides": "/fr/eclaireurs",
+    "about": "/fr/a-propos",
+    "contact": "/fr/contact",
+    "contribuer": "/fr/contribuer",
+    "press": "/fr/espace-presse",
+    "legal": "/fr/mentions-legales",
+    "privacy": "/fr/privacy",
+    "tcu": "/fr/tcu",
+    "home": "/"
+  }
+}

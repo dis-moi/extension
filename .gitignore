@@ -13,8 +13,15 @@ platforms/
 .ftppass
 storybook-static/*
 .sentryclirc
-.env
 .env.development
 *.local
 yarn-error.log
 /.wakatime-project
+/src/app/website/.cache
+/src/app/website/node_modules
+/src/app/website/public
+/src/app/website/static/script/profiles/
+/src/app/websiteLMEL/.cache
+/src/app/websiteLMEL/node_modules
+/src/app/websiteLMEL/public
+/src/app/websiteLMEL/static/script/profiles/
