@@ -1,3 +1,10 @@
+## [3.93.2](https://github.com/dis-moi/extension/compare/v3.93.1...v3.93.2) (2021-11-11)
+
+
+### Bug Fixes
+
+* typo on «Êtes-vous arrivé» ([cbd98b2](https://github.com/dis-moi/extension/commit/cbd98b2258fc9b0fb3983ba92a86b5dc9d93afbc))
+
 ## [3.93.1](https://github.com/dis-moi/extension/compare/v3.93.0...v3.93.1) (2021-11-11)
 
 
