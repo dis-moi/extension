@@ -5,10 +5,7 @@ const InjectProfiles = () => {
   return (
     <>
       <Helmet>
-        <script
-          src="/script/profiles/js/profiles.bundle.js"
-          type="text/javascript"
-        />
+        <script src="/script/profiles.bundle.js" type="text/javascript" />
         <script
           src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"
           type="text/javascript"
