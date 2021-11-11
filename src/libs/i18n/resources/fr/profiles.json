@@ -101,7 +101,7 @@
       },
       "step2": {
         "title": "Épingler {{facetName}}",
-        "question": "Êtes-vous arrivés à épingler l'extension {{facetName}} ?",
+        "question": "Êtes-vous arrivé à épingler l'extension {{facetName}} ?",
         "answer1": "Non, je n'ai pas compris",
         "button1": "Revoir le tuto",
         "answer2": "Oui, j'ai épinglé {{facetName}}",
