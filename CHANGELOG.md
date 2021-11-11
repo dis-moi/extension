@@ -1,3 +1,10 @@
+## [3.93.1](https://github.com/dis-moi/extension/compare/v3.93.0...v3.93.1) (2021-11-11)
+
+
+### Bug Fixes
+
+* add website install as postinstall ([2a0f76c](https://github.com/dis-moi/extension/commit/2a0f76c2ef3679526fe5dfd1378c1465d9bc36ca))
+
 # [3.93.0](https://github.com/dis-moi/extension/compare/v3.92.0...v3.93.0) (2021-11-11)
 
 
