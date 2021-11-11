@@ -14,3 +14,4 @@ src/app/websiteLMEL/public
 src/app/websiteLMEL/.cache
 src/app/websiteLMEL/node_modules
 src/app/websiteLMEL/src/graphql/**/*
+src/app/website/static/script

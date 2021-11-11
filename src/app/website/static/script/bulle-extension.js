@@ -1,3 +1,4 @@
+/* eslint-disable */
 window.bull_config = {
   bulle_non_supporte: 'https://www.dismoi.io/navigateur-non-supporte/',
   bulle_deja_installe: '',

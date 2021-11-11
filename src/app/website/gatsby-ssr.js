@@ -5,7 +5,8 @@
  */
 
 // You can delete this file if you're not using it
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+
+/* eslint-disable @typescript-eslint/no-var-requires */
 const React = require('react');
 const { getFacet } = require('../../libs/facets/getFacet');
 
