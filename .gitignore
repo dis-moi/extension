@@ -13,7 +13,6 @@ platforms/
 .ftppass
 storybook-static/*
 .sentryclirc
-.env
 .env.development
 *.local
 yarn-error.log
