@@ -1,3 +1,10 @@
+## [3.93.5](https://github.com/dis-moi/extension/compare/v3.93.4...v3.93.5) (2021-11-12)
+
+
+### Bug Fixes
+
+* PROFILES_ORIGIN must be base url ([70d143b](https://github.com/dis-moi/extension/commit/70d143be5aae1bd7796b9dc6e482b2f5c13b602d))
+
 ## [3.93.4](https://github.com/dis-moi/extension/compare/v3.93.3...v3.93.4) (2021-11-12)
 
 
