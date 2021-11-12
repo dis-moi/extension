@@ -1,3 +1,10 @@
+## [3.93.4](https://github.com/dis-moi/extension/compare/v3.93.3...v3.93.4) (2021-11-12)
+
+
+### Bug Fixes
+
+* profiles copy to website ([f4b25a4](https://github.com/dis-moi/extension/commit/f4b25a4eb9e7735f880e957009d400ea14938c87))
+
 ## [3.93.3](https://github.com/dis-moi/extension/compare/v3.93.2...v3.93.3) (2021-11-12)
 
 
