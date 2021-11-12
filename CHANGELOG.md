@@ -1,3 +1,10 @@
+## [3.93.3](https://github.com/dis-moi/extension/compare/v3.93.2...v3.93.3) (2021-11-12)
+
+
+### Bug Fixes
+
+* PROFILES_ORIGIN for LMEL ([ca4b827](https://github.com/dis-moi/extension/commit/ca4b827d043d090da2387a4d6c577e1107abd4c4))
+
 ## [3.93.2](https://github.com/dis-moi/extension/compare/v3.93.1...v3.93.2) (2021-11-11)
 
 
