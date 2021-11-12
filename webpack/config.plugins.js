@@ -67,6 +67,14 @@ module.exports = (env = {}, argv = {}, buildPath) => {
     {
       from: `src/assets/browserconfig-${FACET}.xml`,
       to: path.join(buildPath, 'browserconfig.xml')
+    },
+    {
+      from: `src/assets/site-${FACET}.webmanifest`,
+      to: path.join(buildPath, 'site.webmanifest')
+    },
+    {
+      from: `src/assets/favicons/${FACET}/`,
+      to: path.join(buildPath, '/')
     }
   ];
 
