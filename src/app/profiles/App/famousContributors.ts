@@ -1,7 +1,8 @@
-import { ContributorId } from '../../../libs/domain/contributor';
+import { Contributor } from '../../../libs/domain/contributor';
+import { asArray } from '../../../libs/utils/env';
 
-const famousContributors: ContributorId[] | undefined =
-  process.env.FAMOUS_CONTRIBUTORS_PROFILE_SIDEBAR &&
-  JSON.parse(process.env.FAMOUS_CONTRIBUTORS_PROFILE_SIDEBAR);
+const famousContributors = asArray<Contributor['id']>(
+  process.env.FAMOUS_CONTRIBUTORS_PROFILE_SIDEBAR
+);
 
 export default famousContributors;
