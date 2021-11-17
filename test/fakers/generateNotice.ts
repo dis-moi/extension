@@ -13,7 +13,7 @@ interface Options {
   message?: string;
   strippedMessage?: string;
   created?: Date;
-  modified?: Date;
+  modified?: string;
   likes?: number;
   dislikes?: number;
   contributor?: Contributor;
@@ -47,7 +47,7 @@ export const generateStatefulNotice = ({
     url: `http://backend.dismoi.io/notices/${id}`,
     exampleMatchingUrl: exampleMatchingUrl || Faker.internet.url(),
     created: created || subMonths(new Date(), 1),
-    modified: modified || subWeeks(new Date(), 1),
+    modified: modified || subWeeks(new Date(), 1).toDateString(),
     message: message || defaultMessage,
     strippedMessage: strippedMessage || message || defaultMessage,
     ratings: { likes: likes || 42, dislikes: dislikes || 2 },
@@ -76,7 +76,7 @@ export const generateNoticeItem = ({
   strippedMessage: defaultMessage,
   ratings: { likes: 2, dislikes: 2 },
   created: subMonths(new Date(), 1),
-  modified: subWeeks(new Date(), 1),
+  modified: subWeeks(new Date(), 1).toDateString(),
   screenshot: Faker.image.imageUrl(),
   contributorId: 1 as ContributorId,
   relayersIds: [],
