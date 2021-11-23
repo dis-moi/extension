@@ -1,6 +1,12 @@
 import React from 'react';
-import InjectProfiles from '../components/InjectProfiles';
+// import ProfilesApp from 'app/profiles/App';
 
-const ProfilesPage = () => <InjectProfiles />;
+// alert('toto');
+
+console.log('jalil origin', process.env.BACKEND_ORIGIN);
+
+// const ProfilesPage = () => <ProfilesApp />;
+
+const ProfilesPage = () => null;
 
 export default ProfilesPage;

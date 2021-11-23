@@ -32,8 +32,7 @@ const mapStateToProps = (
   notices: getContributorNoticesButFeaturedOnes(state, props),
   fetchedAll: (contributorId: ContributorId) =>
     areContributorNoticesAllFetched(state, contributorId),
-  connected: isConnected(state),
-  addToBrowser: clickInstallHandler
+  connected: isConnected(state)
 });
 
 const mapDispatchToProps = {

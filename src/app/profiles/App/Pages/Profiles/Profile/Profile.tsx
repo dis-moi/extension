@@ -15,7 +15,7 @@ import {
 } from 'components/atoms';
 import { Notice, NoticeWithContributor } from 'libs/domain/notice';
 import { ContributorId, StatefulContributor } from 'libs/domain/contributor';
-import Error from '../../Error';
+import { installExtension } from 'libs/webext/extensionDetectionAndInstall';
 import SimilarProfiles from '../../../SimilarProfiles';
 import SubscribePopin from '../SubscribePopin';
 import NotConnectedPopin, {
@@ -120,7 +120,6 @@ export interface ProfileProps {
   fetchedAll: boolean;
   contributors: StatefulContributor[];
   connected?: boolean;
-  addToBrowser: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 export const Profile = ({
@@ -131,7 +130,6 @@ export const Profile = ({
   featuredNotices,
   notices,
   connected,
-  addToBrowser,
   fetchMoreNotices,
   fetchedAll,
   contributors
@@ -151,7 +149,7 @@ export const Profile = ({
   }
 
   if (!contributor?.loading && !contributor) {
-    return <Error />;
+    return <>Hello</>;
   }
 
   const handleSubscribe = (contributor?: StatefulContributor) => () => {
@@ -238,11 +236,13 @@ export const Profile = ({
           })
         }
         addToBrowser={(e: MouseEvent<HTMLButtonElement>) => {
-          setNotConnectedPopinState({
-            ...notConnectedPopinState,
-            opened: false
+          e.preventDefault();
+          installExtension().then(() => {
+            setNotConnectedPopinState({
+              ...notConnectedPopinState,
+              opened: false
+            });
           });
-          addToBrowser(e);
         }}
         contributors={contributors}
       />
