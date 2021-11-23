@@ -21,21 +21,23 @@
     "gatsby-plugin-sharp": "^3.9.0",
     "gatsby-plugin-typescript": "^3.9.0",
     "gatsby-source-filesystem": "^3.9.0",
-    "gatsby-transformer-sharp": "^3.9.0"
+    "gatsby-transformer-sharp": "^3.9.0",
+    "koa-router": "^10.1.1"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "2.1.1",
     "@graphql-codegen/introspection": "2.1.0",
     "@graphql-codegen/typescript": "2.1.2",
     "@graphql-codegen/typescript-operations": "2.1.2",
-    "@graphql-codegen/typescript-react-apollo": "3.1.2"
+    "@graphql-codegen/typescript-react-apollo": "3.1.2",
+    "@types/koa-router": "^7.4.4"
   },
   "keywords": [
     "gatsby"
   ],
   "license": "0BSD",
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby build && NODE_ENV=production tsc",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",

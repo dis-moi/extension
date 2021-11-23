@@ -36,7 +36,6 @@ export const Normal = () => (
     ]}
     loading={false}
     connected={false}
-    addToBrowser={action('addToBrowser')}
     categories={CATEGORIES}
     categoriesLoading={false}
     setContextPopin={() => null}
@@ -64,7 +63,6 @@ export const Loading = () => (
     ]}
     loading
     connected={false}
-    addToBrowser={action('addToBrowser')}
     categories={CATEGORIES}
     categoriesLoading={false}
     setContextPopin={() => null}

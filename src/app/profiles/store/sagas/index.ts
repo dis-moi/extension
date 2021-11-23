@@ -9,9 +9,10 @@ import locationChangeSaga from './locationChange.saga';
 import contributorSaga from './contributor.saga';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-const connectionSaga = browser?.runtime?.connect
-  ? portConnectionSaga
-  : windowConnectionSaga.bind(null, process.env.PROFILES_ORIGIN);
+const connectionSaga =
+  window && window.browser && browser.runtime?.connect
+    ? portConnectionSaga
+    : windowConnectionSaga.bind(null, process.env.PROFILES_ORIGIN);
 
 export default function* rootSaga() {
   yield all([

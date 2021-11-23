@@ -47,7 +47,6 @@ export const Normal = () => (
       generateStatefulContributor()
     ]}
     connected={false}
-    addToBrowser={action('addToBrowser')}
   />
 );
 
@@ -75,7 +74,6 @@ export const Loading = () => (
       generateStatefulContributor()
     ]}
     connected={false}
-    addToBrowser={action('addToBrowser')}
   />
 );
 
@@ -107,7 +105,6 @@ export const ContributorsLoading = () => (
       generateStatefulContributor()
     ]}
     connected={false}
-    addToBrowser={action('addToBrowser')}
   />
 );
 
@@ -139,7 +136,6 @@ export const NoticesLoading = () => (
       generateStatefulContributor()
     ]}
     connected={false}
-    addToBrowser={action('addToBrowser')}
   />
 );
 
@@ -167,7 +163,6 @@ export const NoFeaturedNotices = () => (
       generateStatefulContributor()
     ]}
     connected={false}
-    addToBrowser={action('addToBrowser')}
   />
 );
 
@@ -195,7 +190,6 @@ export const _1FeaturedNotices = () => (
       generateStatefulContributor()
     ]}
     connected={false}
-    addToBrowser={action('addToBrowser')}
   />
 );
 

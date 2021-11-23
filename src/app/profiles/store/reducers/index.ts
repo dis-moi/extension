@@ -12,9 +12,9 @@ import subscriptions, {
   SubscriptionsCollectionState
 } from './subscriptions.reducer';
 
-export default (history: History) =>
+export default (history?: History) =>
   combineReducers({
-    router: connectRouter(history),
+    ...(history ? { router: connectRouter(history) } : {}),
     categories,
     connection,
     contributors,

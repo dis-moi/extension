@@ -7,10 +7,6 @@ process.env.FACET = process.env.FACET || 'dismoi';
 
 loadEnv({ path: path.resolve('../../../') });
 
-process.env.GATSBY_FACET = process.env.FACET;
-process.env.GATSBY_FACET_NAME = process.env.FACET_NAME;
-process.env.GATSBY_WEBSITE_URL = process.env.WEBSITE_URL;
-
 module.exports = {
   siteMetadata: {
     title: process.env.FACET_NAME || 'DisMoi',
@@ -22,6 +18,14 @@ s'éclairer directement sur les pages du web qu’ils visitent**.`,
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
+    // {
+    //   resolve: 'gatsby-plugin-copy-files-enhanced',
+    //   options: {
+    //     source: `${__dirname}/../../../node_modules/webextension-polyfill/dist/browser-polyfill.js`,
+    //     destination: '/script/',
+    //     purge: true
+    //   }
+    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -39,7 +43,14 @@ s'éclairer directement sur les pages du web qu’ils visitent**.`,
     {
       resolve: `gatsby-plugin-env-variables`,
       options: {
-        allowList: ['BACKEND_ORIGIN']
+        allowList: [
+          'BACKEND_ORIGIN',
+          'FACET',
+          'FACET_NAME',
+          'WEBSITE_URL',
+          'CHROME_STORE_URL',
+          'FIREFOX_STORE_URL'
+        ]
       }
     },
     `gatsby-transformer-sharp`,
