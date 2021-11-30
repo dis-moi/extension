@@ -89,7 +89,8 @@ module.exports = function webpack(env = {}, argv = {}) {
       new HtmlWebpackPlugin({
         template: './views/profiles.pug',
         templateParameters: {
-          facetName: env.FACET === 'lmel' ? 'Le Même en Local' : 'DisMoi'
+          facetName: env.FACET === 'lmel' ? 'Le Même en Local' : 'DisMoi',
+          facet: env.FACET
         },
         filename: 'index.html',
         inject: false

@@ -18,6 +18,8 @@ module.exports = function webpack(env = {}, argv = {}) {
     ...env
   };
 
+  console.log(env.FACET, env.NODE_ENV, env.PLATFORM);
+
   const srcPath = path.resolve(__dirname, 'src');
 
   const { NODE_ENV, PLATFORM, FACET } = env;
