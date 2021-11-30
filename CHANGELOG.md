@@ -1,3 +1,16 @@
+# [3.94.0](https://github.com/dis-moi/extension/compare/v3.93.5...v3.94.0) (2021-11-30)
+
+
+### Bug Fixes
+
+* broken manifest ([23acddb](https://github.com/dis-moi/extension/commit/23acddbd832d5a67a1eec0c5dde2e89831a1075a))
+
+
+### Features
+
+* adapt browserconfig.xml ([902657c](https://github.com/dis-moi/extension/commit/902657c9c5da4c062acfdc0f83d76e6bc6ab21db))
+* adapt favicons and webmanifest to facet ([9b158a3](https://github.com/dis-moi/extension/commit/9b158a387bd5074cd21343f63230039c14798bb1))
+
 ## [3.93.5](https://github.com/dis-moi/extension/compare/v3.93.4...v3.93.5) (2021-11-12)
 
 
