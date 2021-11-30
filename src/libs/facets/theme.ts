@@ -277,6 +277,12 @@ export const lmelTheme = R.mergeDeepRight(dismoiTheme, {
     animationSlowDuration: '0.5s',
     animationMediumDuration: '0.25s',
     animationFastDuration: '0.1s',
-    boxShadow: 'rgba(0, 0, 0, 0.1) 0 0 10px;'
+    boxShadow: 'rgba(0, 0, 0, 0.1) 0 0 10px;',
+    coverSectionBackgroundColor: '#172344',
+    coverSectionBackgroundColorBis: `linear-gradient(
+      60deg,
+      #172344 0%,
+      #283a7c 100%
+    )`
   }
 } as Partial<Theme>);
