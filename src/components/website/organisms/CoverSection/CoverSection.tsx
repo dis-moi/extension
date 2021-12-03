@@ -44,7 +44,7 @@ const StyledGridCol1 = styled(props => <GridCol {...props} />)`
   display: flex;
   justify-content: center;
   padding-top: 30px;
-  margin-bottom: -100px;
+  ${props => (props.dismoi ? 'margin-bottom: -100px;' : '')}
   @media (min-width: ${props => props.theme.tabletWidth}) {
     margin-bottom: 0;
     padding-top: 0;
@@ -60,12 +60,12 @@ const StyledGridCol1 = styled(props => <GridCol {...props} />)`
     padding-right: 25px;
   }
   @media (min-width: ${props =>
-      parseInt(props.theme.desktopWidth) + 100 + 'px'}) {
+    parseInt(props.theme.desktopWidth) + 100 + 'px'}) {
     max-width: 40%;
     padding-right: 30px;
   }
   @media (min-width: ${props =>
-      parseInt(props.theme.desktopWidth) + 200 + 'px'}) {
+    parseInt(props.theme.desktopWidth) + 200 + 'px'}) {
     padding-right: 35px;
   }
 `;
@@ -102,6 +102,13 @@ const StyledStoreRating = styled(props => <StoreRating {...props} />)`
   @media (min-width: ${props => props.theme.desktopWidth}) {
     margin-top: 0;
     margin-left: 20px;
+  }
+`;
+
+const StyledBrowserAnimation = styled(props => <BrowserAnimation {...props} />)`
+  display: none;
+  @media (min-width: ${props => props.theme.tabletWidth}) {
+    display: block;
   }
 `;
 
@@ -155,8 +162,8 @@ const CoverSection = styled((props: CoverSectionProps) => {
       <PatternBackground />
       <GridContainer>
         <StyledGridRow>
-          <StyledGridCol1>
-            <BrowserAnimation />
+          <StyledGridCol1 dismoi={dismoi}>
+            <StyledBrowserAnimation />
             <span
               id="variableWords"
               data-word1={t('home.coverAnimation.word1')}
@@ -176,7 +183,7 @@ const CoverSection = styled((props: CoverSectionProps) => {
             <SecondaryHeadline>{t('home.secondaryHeadline')}</SecondaryHeadline>
             <CTAAndRatingWrapper>
               <StyledCTAButton />
-              <StyledStoreRating />
+              {dismoi && <StyledStoreRating />}
             </CTAAndRatingWrapper>
           </StyledGridCol2>
         </StyledGridRow>

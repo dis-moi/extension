@@ -173,7 +173,7 @@ const ExamplesSlider = styled(
             }}
           />
         </SliderWrapper>
-        <StyledTabButton
+        {/* <StyledTabButton
           buttons={examples.reduce(
             (acc: ButtonProps[], example: Example, index: number) => [
               ...acc,
@@ -190,7 +190,7 @@ const ExamplesSlider = styled(
           color="greenDarker"
           activeIndex={tabButtonIndex}
           setActiveIndex={setTabButtonIndex}
-        />
+        /> */}
       </div>
     );
   }

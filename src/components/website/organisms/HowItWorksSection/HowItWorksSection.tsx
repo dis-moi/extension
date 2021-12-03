@@ -10,6 +10,7 @@ import Steps, { steps } from '../../molecules/Steps/Steps';
 import VideoImage from '../../molecules/VideoImage/VideoImage';
 import VideoModal from '../../molecules/VideoModal/VideoModal';
 import { useTranslation } from 'react-i18next';
+import { getFacet } from '../../../../libs/facets/getFacet';
 
 const StyledGridRow = styled(props => <GridRow {...props} />)`
   justify-content: center;
@@ -41,6 +42,8 @@ export interface HowItWorksSectionProps {
 const HowItWorksSection = styled((props: HowItWorksSectionProps) => {
   const { t } = useTranslation('website');
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);
+  const facet = getFacet();
+  const dismoi = facet === 'dismoi';
   return (
     <>
       <Section {...props}>
@@ -50,11 +53,13 @@ const HowItWorksSection = styled((props: HowItWorksSectionProps) => {
               <SectionTitle>{t('home.howItWorks.sectionTitle')}</SectionTitle>
               <ContentWrapper>
                 <Steps steps={steps} />
-                <StyledVideoImage
-                  image={Screenshot}
-                  text={t('home.howItWorks.discoverIn1Min')}
-                  handleClick={() => setModalOpen(true)}
-                />
+                {dismoi && (
+                  <StyledVideoImage
+                    image={Screenshot}
+                    text={t('home.howItWorks.discoverIn1Min')}
+                    handleClick={() => setModalOpen(true)}
+                  />
+                )}
               </ContentWrapper>
             </StyledGridCol>
           </StyledGridRow>

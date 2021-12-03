@@ -134,7 +134,7 @@ export interface FooterProps {
 const Footer = (props: FooterProps) => {
   const { t } = useTranslation('website');
   const facet = getFacet();
-  const lmel = facet === 'lmel';
+  const dismoi = facet === 'dismoi';
   const facetName = useFacetName();
 
   return (
@@ -144,33 +144,35 @@ const Footer = (props: FooterProps) => {
           <StyledGridRow>
             <GridCol1>
               {facet === 'lmel' ? <LogoLMEL /> : <LogoDisMoi />}
-              <SocialLinkWrapper>
-                <SocialLink
-                  icon="mastodon"
-                  title={t('footer.followUsOn', { network: 'Mastodon' })}
-                  href="#"
-                />
-                <SocialLink
-                  icon="github"
-                  title={t('footer.followUsOn', { network: 'GitHub' })}
-                  href="https://github.com/dis-moi"
-                />
-                <SocialLink
-                  icon="linkedin"
-                  title={t('footer.followUsOn', { network: 'LinkedIn' })}
-                  href="https://www.linkedin.com/company/dismoi/mycompany/"
-                />
-                <SocialLink
-                  icon="facebook"
-                  title={t('footer.followUsOn', { network: 'Facebook' })}
-                  href="https://www.facebook.com/DisMoiCompagnon"
-                />
-                <SocialLink
-                  icon="twitter"
-                  title={t('footer.followUsOn', { network: 'Twitter' })}
-                  href="https://twitter.com/dismoicompagnon"
-                />
-              </SocialLinkWrapper>
+              {dismoi && (
+                <SocialLinkWrapper>
+                  <SocialLink
+                    icon="mastodon"
+                    title={t('footer.followUsOn', { network: 'Mastodon' })}
+                    href="#"
+                  />
+                  <SocialLink
+                    icon="github"
+                    title={t('footer.followUsOn', { network: 'GitHub' })}
+                    href="https://github.com/dis-moi"
+                  />
+                  <SocialLink
+                    icon="linkedin"
+                    title={t('footer.followUsOn', { network: 'LinkedIn' })}
+                    href="https://www.linkedin.com/company/dismoi/mycompany/"
+                  />
+                  <SocialLink
+                    icon="facebook"
+                    title={t('footer.followUsOn', { network: 'Facebook' })}
+                    href="https://www.facebook.com/DisMoiCompagnon"
+                  />
+                  <SocialLink
+                    icon="twitter"
+                    title={t('footer.followUsOn', { network: 'Twitter' })}
+                    href="https://twitter.com/dismoicompagnon"
+                  />
+                </SocialLinkWrapper>
+              )}
             </GridCol1>
             <GridCol2>
               <NavFooter>
@@ -178,7 +180,7 @@ const Footer = (props: FooterProps) => {
               </NavFooter>
             </GridCol2>
             <GridCol3>
-              {!lmel && (
+              {dismoi && (
                 <NavDesktopItem onClick={props.switchLanguage}>
                   <span title="French">fr</span> |{' '}
                   <span title="English">en</span>

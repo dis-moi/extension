@@ -19,6 +19,7 @@ const BecomeAContributorSection = styled(
   ({ className }: BecomeAContributorSectionProps) => {
     const { t } = useTranslation('website');
     const facet = getFacet();
+    const lmel = facet === 'lmel';
     return (
       <Section className={className}>
         <GridContainer>
@@ -33,7 +34,7 @@ const BecomeAContributorSection = styled(
             </GridCol>
             <GridCol>
               <img
-                src={(facet === 'lmel'
+                src={(lmel
                   ? PosterUneInformationLMEL
                   : PosterUneInformationDisMoi
                 ).substr(1)}
@@ -74,6 +75,7 @@ const BecomeAContributorSection = styled(
         max-width: 574px;
       }
       ul {
+        ${lmel => (lmel ? 'display: none;' : '')}
         padding: 0;
         list-style: none;
         li {

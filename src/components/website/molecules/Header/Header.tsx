@@ -19,18 +19,18 @@ const MobileButtonsWrapper = styled.div`
     margin-right: 15px;
     span:nth-child(1) {
       padding-right: 0;
-      @media (min-width: 350px) {
+      @media (min-width: 600px) {
         padding-right: 8px;
       }
     }
     span:nth-child(2) {
       display: none;
-      @media (min-width: 350px) {
+      @media (min-width: 600px) {
         display: block;
       }
       span {
         display: none;
-        @media (min-width: 450px) {
+        @media (min-width: 600px) {
           display: inline-block;
         }
       }
