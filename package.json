@@ -31,7 +31,8 @@
     "storybook": "start-storybook -s ./src/assets --ci -p 6007 -c .storybook",
     "build-storybook": "build-storybook",
     "website": "cd src/app/website && yarn",
-    "website:publish": "NODE_ENV=production yarn build:profiles && NODE_ENV=production yarn website build && cp -R ./src/app/website/public ./build/production/website"
+    "build:website": "yarn build:profiles && tsc && yarn website build",
+    "start:website": "node ./build/src/app/website/server"
   },
   "husky": {
     "hooks": {
