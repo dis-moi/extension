@@ -14,6 +14,7 @@ import pathToContributor from 'app/profiles/App/pathToContributor';
 import useContributorsFilters from 'app/profiles/hooks/useContributorsFilters';
 import LazyOnBoarding from 'app/profiles/App/OnBoarding';
 import { Subscriptions } from 'libs/domain/subscription';
+import { installExtension } from 'libs/webext/extensionDetectionAndInstall';
 import Search from 'components/molecules/Search/Search';
 import ProfileTabs from '../../../ProfileTabs';
 import BrowserNotSupportedPopin from '../BrowserNotSupportedPopin';
@@ -83,7 +84,6 @@ export interface ProfileListProps {
   subscribe: (contributorId: ContributorId) => void;
   unsubscribe: (contributorId: ContributorId) => void;
   connected?: boolean;
-  addToBrowser: (e: MouseEvent<HTMLButtonElement>) => void;
   categoriesLoading?: boolean;
   categories: Categories;
   subscriptions?: Subscriptions;
@@ -96,7 +96,6 @@ const ProfileList = ({
   subscribe,
   unsubscribe,
   connected,
-  addToBrowser,
   categoriesLoading,
   categories,
   subscriptions,
@@ -171,7 +170,6 @@ const ProfileList = ({
                       connected,
                       subscriptions,
                       handleSubscribe,
-                      addToBrowser,
                       setContextPopin
                     )
                   }
@@ -194,11 +192,13 @@ const ProfileList = ({
           })
         }
         addToBrowser={(e: MouseEvent<HTMLButtonElement>) => {
-          setNotConnectedPopinState({
-            ...notConnectedPopinState,
-            opened: false
+          e.preventDefault();
+          installExtension().then(() => {
+            setNotConnectedPopinState({
+              ...notConnectedPopinState,
+              opened: false
+            });
           });
-          addToBrowser(e);
         }}
         contributors={contributors}
       />

@@ -36,6 +36,8 @@ const selectEnvVarsToInject = R.pick([
   'PLATFORM',
   'CHROME_EXTENSION_ID',
   'FIREFOX_EXTENSION_ID',
+  'CHROME_STORE_URL',
+  'FIREFOX_STORE_URL',
   'PROFILES_ORIGIN',
   'ACCESSIBLE_CONTRIBUTORS_IDS',
   'PRESELECTED_CONTRIBUTORS_IDS'
@@ -77,13 +79,6 @@ module.exports = (env = {}, argv = {}, buildPath) => {
       to: path.join(buildPath, '/')
     }
   ];
-
-  if (NODE_ENV !== 'production') {
-    copyConfig.push({
-      from: 'test/integration',
-      to: path.join(buildPath, 'test', 'integration')
-    });
-  }
 
   const plugins = [
     ...basePlugins(env, argv),

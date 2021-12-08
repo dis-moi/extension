@@ -19,6 +19,8 @@ const requiredEnvVarNames = [
   'REFRESH_CONTRIBUTORS_INTERVAL',
   'CHROME_EXTENSION_ID',
   'FIREFOX_EXTENSION_ID',
+  'CHROME_STORE_URL',
+  'FIREFOX_STORE_URL',
   'PROFILES_ORIGIN',
   'POPULAR_CONTRIBUTORS_IDS',
   'ACCESSIBLE_CONTRIBUTORS_IDS'
@@ -114,14 +116,6 @@ module.exports = function webpack(env = {}, argv = {}) {
           {
             from: 'node_modules/typeface-sedgwick-ave/files/',
             to: path.join(defaultWebpackConfig.output.path, 'fonts/')
-          },
-          {
-            from: 'test/integration',
-            to: path.join(
-              defaultWebpackConfig.output.path,
-              'test',
-              'integration'
-            )
           },
           {
             from: 'etc/profiles/public',

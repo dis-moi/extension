@@ -19,7 +19,6 @@ const mapStateToProps = (state: ProfilesState) => ({
   loading: areContributorsLoading(state),
   contributors: getStatefulContributors(state),
   connected: isConnected(state),
-  addToBrowser: clickInstallHandler,
   categories: getCategories(state),
   categoriesLoading: areCategoriesLoading(state),
   subscriptions: getSubscriptions(state)

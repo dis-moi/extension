@@ -3,20 +3,19 @@ import i18n from 'i18next';
 import { Subscriptions } from 'libs/domain/subscription';
 
 import { StatefulContributor } from 'libs/domain/contributor';
+import { installExtension } from 'libs/webext/extensionDetectionAndInstall';
 import {
   ContextPopinState,
   initialState as popinInitialState
 } from 'app/profiles/store/reducers/contextPopin.reducer';
 
 type HandleSubscribe = (contributor: StatefulContributor) => () => void;
-type AddToBrowser = (e: MouseEvent<HTMLButtonElement>) => void;
 
 const onContributorExampleClick = (
   contributor: StatefulContributor,
   connected: boolean | undefined,
   subscriptions: Subscriptions | undefined,
   handleSubscribe: HandleSubscribe,
-  addToBrowser: AddToBrowser,
   setPopin: (payload: ContextPopinState) => void
 ) => {
   if (!connected) {
@@ -28,8 +27,10 @@ const onContributorExampleClick = (
         }),
         btn: {
           onClick: (e?: MouseEvent<HTMLButtonElement>) => {
-            addToBrowser(e as MouseEvent<HTMLButtonElement>);
-            setPopin(popinInitialState);
+            e?.preventDefault();
+            installExtension().then(() => {
+              setPopin(popinInitialState);
+            });
           },
           label: i18n.t('profiles:popin.is_not_connected.btn_text')
         }

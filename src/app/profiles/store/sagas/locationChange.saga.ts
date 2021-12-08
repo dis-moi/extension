@@ -20,19 +20,25 @@ function* contributorLocationSaga(match: Match<{ id: string }>) {
 
 export default function* locationChangeSaga() {
   yield takeLatestLocationChange(
-    [en.path.profiles.contributors, fr.path.profiles.contributors],
+    [
+      '/:lang/' + en.path.profiles.contributors,
+      '/:lang/' + fr.path.profiles.contributors
+    ],
     contributorsLocationSaga
   );
 
   yield takeLatestLocationChange(
-    [en.path.profiles.subscriptions, fr.path.profiles.subscriptions],
+    [
+      '/:lang/' + en.path.profiles.subscriptions,
+      '/:lang/' + fr.path.profiles.subscriptions
+    ],
     contributorsLocationSaga
   );
 
   yield takeLatestLocationChange<{ id: string }>(
     [
-      en.path.profiles.contributors + '/:id/:slug',
-      fr.path.profiles.contributors + '/:id/:slug'
+      '/:lang/' + en.path.profiles.contributors + '/:id/:slug',
+      '/:lang/' + fr.path.profiles.contributors + '/:id/:slug'
     ],
     contributorLocationSaga
   );

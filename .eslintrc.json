@@ -24,8 +24,7 @@
     "chrome": "readonly",
     "browser": "readonly",
     "fetch": "readonly",
-    "XPathResult": "readonly",
-    "clickInstallHandler": "readonly"
+    "XPathResult": "readonly"
   },
   "extends": [
     "plugin:@typescript-eslint/recommended",

@@ -123,8 +123,8 @@
   },
   "path": {
     "profiles": {
-      "contributors": "/en/guides",
-      "subscriptions": "/en/my-subscription"
+      "contributors": "guides",
+      "subscriptions": "my-subscriptions"
     },
     "appear": "/apparition",
     "problem_post_appearing": "/probleme-apparition-bulles",

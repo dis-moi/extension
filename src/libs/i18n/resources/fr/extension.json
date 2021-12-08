@@ -123,8 +123,8 @@
   },
   "path": {
     "profiles": {
-      "contributors": "/fr/eclaireurs",
-      "subscriptions": "/fr/mes-abonnements"
+      "contributors": "eclaireurs",
+      "subscriptions": "mes-abonnements"
     },
     "appear": "/apparition",
     "problem_post_appearing": "/probleme-apparition-bulles",
