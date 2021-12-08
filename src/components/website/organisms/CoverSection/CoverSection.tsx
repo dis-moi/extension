@@ -44,7 +44,7 @@ const StyledGridCol1 = styled(props => <GridCol {...props} />)`
   display: flex;
   justify-content: center;
   padding-top: 30px;
-  ${props => (props.dismoi ? 'margin-bottom: -100px;' : '')}
+  ${props => (props.dismoi ? 'margin-bottom: -100px;' : '')};
   @media (min-width: ${props => props.theme.tabletWidth}) {
     margin-bottom: 0;
     padding-top: 0;
@@ -60,12 +60,12 @@ const StyledGridCol1 = styled(props => <GridCol {...props} />)`
     padding-right: 25px;
   }
   @media (min-width: ${props =>
-    parseInt(props.theme.desktopWidth) + 100 + 'px'}) {
+      parseInt(props.theme.desktopWidth) + 100 + 'px'}) {
     max-width: 40%;
     padding-right: 30px;
   }
   @media (min-width: ${props =>
-    parseInt(props.theme.desktopWidth) + 200 + 'px'}) {
+      parseInt(props.theme.desktopWidth) + 200 + 'px'}) {
     padding-right: 35px;
   }
 `;
@@ -96,8 +96,10 @@ const StyledCTAButton = styled(props => <CTAButton {...props} />)`
 
 const StyledStoreRating = styled(props => <StoreRating {...props} />)`
   margin-top: 10px;
+  margin-bottom: 70px;
   @media (min-width: ${props => props.theme.tabletWidth}) {
     margin-top: 15px;
+    margin-bottom: 0;
   }
   @media (min-width: ${props => props.theme.desktopWidth}) {
     margin-top: 0;

@@ -42,10 +42,11 @@ const MobileButtonsWrapper = styled.div`
   }
 `;
 
-export const HeaderCTAButton = () => {
+export const HeaderCTAButton = styled(({ className }) => {
   const { t } = useTranslation('website');
   return (
     <Button
+      className={className}
       text={t('header.ctaText')}
       details={t('header.ctaDetails')}
       icon={'download'}
@@ -56,7 +57,12 @@ export const HeaderCTAButton = () => {
       }
     />
   );
-};
+})`
+  display: none;
+  @media (min-width: 340px) {
+    display: flex;
+  }
+`;
 
 export type Scrolled = boolean;
 

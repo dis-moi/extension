@@ -14,7 +14,7 @@ const StyledSectionTitle = styled(props => <SectionTitle {...props} />)`
   margin-bottom: 10px;
   max-width: 80vw;
   line-height: 1.1;
-  font-size: 38px;
+  font-size: 32px;
   font-weight: bold;
   @media (min-width: 500px) {
     font-size: ${getFacet() === 'lmel' ? '40' : '50'}px;
