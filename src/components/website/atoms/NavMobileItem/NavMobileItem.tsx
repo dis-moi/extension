@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const NavMobileItem = styled.a`
-  color: white;
+  color: white !important;
   transition: color ${props => props.theme.website.animationFastDuration};
   text-decoration: none;
   white-space: nowrap;

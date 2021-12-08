@@ -11,6 +11,7 @@ import NavMobile from '../../atoms/NavMobile/NavMobile';
 import NavDesktopItem from '../../atoms/NavDesktopItem/NavDesktopItem';
 import ListLinks, { Link } from './ListLinks';
 import { useTranslation } from 'react-i18next';
+import ListLinksMobile from './ListLinksMobile';
 
 const MobileButtonsWrapper = styled.div`
   display: flex;
@@ -46,6 +47,7 @@ export const HeaderCTAButton = () => {
   return (
     <Button
       text={t('header.ctaText')}
+      details={t('header.ctaDetails')}
       icon={'download'}
       color={'green'}
       handleClick={() =>
@@ -112,7 +114,7 @@ const Header = styled(
         </header>
         <Modal open={modalOpen} setOpen={setModalOpen}>
           <NavMobile>
-            <ListLinks links={links} />
+            <ListLinksMobile links={links} />
             <HeaderCTAButton />
           </NavMobile>
         </Modal>

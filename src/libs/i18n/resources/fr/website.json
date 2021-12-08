@@ -1,7 +1,8 @@
 {
   "header": {
-    "ctaText": "Ajouter DisMoi",
-    "guides": "Eclaireurs"
+    "ctaText": "Installer",
+    "ctaDetails": "gratuit",
+    "guides": "Paramètres"
   },
   "footer": {
     "followUsOn": "Suivez-nous sur {{network}}",
