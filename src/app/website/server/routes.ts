@@ -8,18 +8,16 @@ import fr from '../../../libs/i18n/resources/fr/extension.json';
 export const router = new Router();
 
 const serveProfiles = (ctx: ParameterizedContext) => {
-  {
-    const { FACET, ROOT_DIR, NODE_ENV } = process.env;
+  const { FACET, ROOT_DIR, NODE_ENV } = process.env;
 
-    ctx.type = 'html';
-    ctx.status = 200;
-    ctx.body = fs.readFileSync(
-      path.resolve(
-        ROOT_DIR || '/',
-        `build/${NODE_ENV}/profiles/${FACET}/index.html`
-      )
-    );
-  }
+  ctx.type = 'html';
+  ctx.status = 200;
+  ctx.body = fs.readFileSync(
+    path.resolve(
+      ROOT_DIR || '/',
+      `build/${NODE_ENV}/profiles/${FACET}/index.html`
+    )
+  );
 };
 
 router

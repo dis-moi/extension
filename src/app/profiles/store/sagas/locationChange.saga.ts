@@ -6,6 +6,7 @@ import takeLatestLocationChange from 'libs/store/sagas/effects/takeLatestLocatio
 import en from 'libs/i18n/resources/en/extension.json';
 import fr from 'libs/i18n/resources/fr/extension.json';
 import { ContributorId } from 'libs/domain/contributor';
+import { getFacet } from 'libs/facets/getFacet';
 import { fetchContributorNotices } from '../actions/notices';
 
 function* contributorsLocationSaga() {
@@ -18,27 +19,29 @@ function* contributorLocationSaga(match: Match<{ id: string }>) {
   yield put(refreshContributors());
 }
 
+const prefix = getFacet() === 'lmel' ? '/' : '/:lang/';
+
 export default function* locationChangeSaga() {
   yield takeLatestLocationChange(
     [
-      '/:lang/' + en.path.profiles.contributors,
-      '/:lang/' + fr.path.profiles.contributors
+      prefix + en.path.profiles.contributors,
+      prefix + fr.path.profiles.contributors
     ],
     contributorsLocationSaga
   );
 
   yield takeLatestLocationChange(
     [
-      '/:lang/' + en.path.profiles.subscriptions,
-      '/:lang/' + fr.path.profiles.subscriptions
+      prefix + en.path.profiles.subscriptions,
+      prefix + fr.path.profiles.subscriptions
     ],
     contributorsLocationSaga
   );
 
   yield takeLatestLocationChange<{ id: string }>(
     [
-      '/:lang/' + en.path.profiles.contributors + '/:id/:slug',
-      '/:lang/' + fr.path.profiles.contributors + '/:id/:slug'
+      prefix + en.path.profiles.contributors + '/:id/:slug',
+      prefix + fr.path.profiles.contributors + '/:id/:slug'
     ],
     contributorLocationSaga
   );
