@@ -2,6 +2,8 @@ import { ParameterizedContext } from 'koa';
 import Router from 'koa-router';
 import fs from 'fs';
 import path from 'path';
+import en from '../../../libs/i18n/resources/en/extension.json';
+import fr from '../../../libs/i18n/resources/fr/extension.json';
 
 export const router = new Router();
 
@@ -21,5 +23,6 @@ const serveProfiles = (ctx: ParameterizedContext) => {
 };
 
 router
-  .get('/fr/eclaireurs', serveProfiles)
-  .get('/fr/eclaireurs/:id/:name', serveProfiles);
+  .get(`/en/${en.path.profiles.contributors}`, serveProfiles)
+  .get(`/fr/${fr.path.profiles.contributors}`, serveProfiles)
+  .get(`/${fr.path.profiles.contributors}`, serveProfiles);
