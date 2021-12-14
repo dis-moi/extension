@@ -75,7 +75,7 @@ const BecomeAContributorSection = styled(
         max-width: 574px;
       }
       ul {
-        ${lmel => (lmel ? 'display: none;' : '')}
+        ${getFacet() === 'lmel' ? 'display: none;' : ''}
         padding: 0;
         list-style: none;
         li {

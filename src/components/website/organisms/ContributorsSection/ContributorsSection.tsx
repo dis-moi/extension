@@ -7,26 +7,28 @@ import ContributorAvatar from '../../atoms/ContributorAvatar/ContributorAvatar';
 import Section from '../../atoms/Section/Section';
 import Button from '../../atoms/Button/Button';
 import { useTranslation } from 'react-i18next';
+import { getFacet } from '../../../../libs/facets/getFacet';
 
 const StyledSectionTitle = styled(props => <SectionTitle {...props} />)`
   color: ${props => props.theme.website.secondaryColorDarker};
   margin-bottom: 10px;
-  font-size: 38px;
+  font-size: ${getFacet() === 'lmel' ? '28' : '38'}px;
   font-weight: bold;
   @media (min-width: ${props => props.theme.tabletWidth}) {
-    font-size: 60px;
+    font-size: ${getFacet() === 'lmel' ? '50' : '60'}px;
+    max-width: 70%;
     font-weight: normal;
   }
   @media (min-width: ${props => props.theme.desktopWidth}) {
-    font-size: 62px;
+    font-size: ${getFacet() === 'lmel' ? '52' : '62'}px;
   }
   @media (min-width: ${props =>
       parseInt(props.theme.desktopWidth) + 100 + 'px'}) {
-    font-size: 64px;
+    font-size: ${getFacet() === 'lmel' ? '54' : '64'}px;
   }
   @media (min-width: ${props =>
       parseInt(props.theme.desktopWidth) + 200 + 'px'}) {
-    font-size: 66px;
+    font-size: ${getFacet() === 'lmel' ? '56' : '66'}px;
   }
 `;
 

@@ -46,6 +46,7 @@ export const HeaderCTAButton = () => {
   return (
     <Button
       text={t('header.ctaText')}
+      details={t('header.ctaDetails')}
       icon={'download'}
       color={'green'}
       handleClick={() =>
