@@ -37,7 +37,10 @@ s’éclairer directement sur les pages du web qu’ils visitent**.`,
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `contents`,
-        path: `${__dirname}/src/contents`
+        path:
+          process.env.FACET === 'lmel'
+            ? `${__dirname}/src/contentsLeMeme`
+            : `${__dirname}/src/contentsDisMoi`
       }
     },
     {
