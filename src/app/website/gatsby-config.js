@@ -10,8 +10,7 @@ loadEnv({ path: path.resolve('../../../') });
 module.exports = {
   siteMetadata: {
     title: process.env.FACET_NAME || 'DisMoi',
-    description: `Notre projet est de **réinstaurer la liberté d’information partout sur le web**, afin de le rendre plus sûr, plus transparent et plus favorable aux alternatives. DisMoi est un réseau en surcouche du web qui permet aux internautes de **se conseiller et de
-s’éclairer directement sur les pages du web qu’ils visitent**.`,
+    description: `Notre projet est de **réinstaurer la liberté d’information partout sur le web**, afin de le rendre plus sûr, plus transparent et plus favorable aux alternatives. DisMoi est un réseau en surcouche du web qui permet aux internautes de **se conseiller et de s’éclairer directement sur les pages du web qu’ils visitent**.`,
     author: `Dismoi Team`,
     siteUrl: process.env.WEBSITE_URL || 'https://'
   },
