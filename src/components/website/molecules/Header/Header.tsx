@@ -11,6 +11,7 @@ import NavMobile from '../../atoms/NavMobile/NavMobile';
 import NavDesktopItem from '../../atoms/NavDesktopItem/NavDesktopItem';
 import ListLinks, { Link } from './ListLinks';
 import { useTranslation } from 'react-i18next';
+import ListLinksMobile from './ListLinksMobile';
 
 const MobileButtonsWrapper = styled.div`
   display: flex;
@@ -41,11 +42,13 @@ const MobileButtonsWrapper = styled.div`
   }
 `;
 
-export const HeaderCTAButton = () => {
+export const HeaderCTAButton = styled(({ className }) => {
   const { t } = useTranslation('website');
   return (
     <Button
+      className={className}
       text={t('header.ctaText')}
+      details={t('header.ctaDetails')}
       icon={'download'}
       color={'green'}
       handleClick={() =>
@@ -54,7 +57,12 @@ export const HeaderCTAButton = () => {
       }
     />
   );
-};
+})`
+  display: none;
+  @media (min-width: 340px) {
+    display: flex;
+  }
+`;
 
 export type Scrolled = boolean;
 
@@ -112,7 +120,7 @@ const Header = styled(
         </header>
         <Modal open={modalOpen} setOpen={setModalOpen}>
           <NavMobile>
-            <ListLinks links={links} />
+            <ListLinksMobile links={links} />
             <HeaderCTAButton />
           </NavMobile>
         </Modal>

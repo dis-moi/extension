@@ -75,7 +75,7 @@ const BecomeAContributorSection = styled(
         max-width: 574px;
       }
       ul {
-        ${lmel => (lmel ? 'display: none;' : '')}
+        display: none;
         padding: 0;
         list-style: none;
         li {
@@ -102,6 +102,7 @@ const BecomeAContributorSection = styled(
           width: 100%;
         }
         ul {
+          ${getFacet() === 'dismoi' ? 'display: block;' : ''}
           li {
             padding: 22px 0;
           }

@@ -39,7 +39,8 @@ const Step = styled(({ className, index, title, detail }: StepProps) => {
       </div>
       <div>
         <Title>
-          {t(title)} <Detail>{t(detail)}</Detail>
+          {t(title)}
+          {detail !== '' && <Detail>{t(detail)}</Detail>}
         </Title>
       </div>
     </div>

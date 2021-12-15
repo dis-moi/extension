@@ -1,7 +1,8 @@
 {
   "header": {
-    "ctaText": "Ajouter Le Même en Local",
-    "guides": "Eclaireurs"
+    "ctaText": "Installer",
+    "ctaDetails": "gratuit",
+    "guides": "Paramètres"
   },
   "footer": {
     "followUsOn": "Suivez-nous sur {{network}}",
@@ -9,7 +10,7 @@
   },
   "home": {
     "primaryHeadline": "S’il existe une alternative locale, vous le saurez.",
-    "secondaryHeadline": "Alternatives de votre région, fabriquées en France ou en circuit court.\nSoyez alerté directement sur les pages web que vous visitez.",
+    "secondaryHeadline": "Soyez alerté directement sur les pages web que vous visitez.",
     "coverAnimation": {
       "word1": "Ce livre est en librairie près de chez vous",
       "word2": "Au même prix, ce produit existe en made in France ici",
@@ -58,26 +59,26 @@
       "modalSmallTitle": "Explications en vidéo",
       "steps": {
         "step1": {
-          "title": "Je m’abonne aux profils de mon choix.",
-          "detail": "Eux et eux-seuls pourront me conseiller dans ma navigation !"
+          "title": "J’ajoute Le Même en Local sur mon navigateur",
+          "detail": ""
         },
         "step2": {
-          "title": "Je navigue sur le web",
-          "detail": "comme à mon habitude : e-commerce, médias, réseaux sociaux…"
+          "title": "Je consulte des offres e-commerce comme d’habitude",
+          "detail": ""
         },
         "step3": {
-          "title": "Je bénéficie de leurs conseils",
-          "detail": "directement sur les pages du web que je visite."
+          "title": "Je suis alerté s’il existe une alternative locale",
+          "detail": ""
         }
       }
     },
     "contributors": {
-      "title": "+500 alternatives dans 20 régions...",
-      "subTitle": "issues de ma commune, de ma région, de mon pays et de ses voisins",
+      "title": "Des centaines d’alternatives issues de nos régions et territoires",
+      "subTitle": "",
       "buttonText": "Voir toutes les sources d'alternatives"
     },
     "becomeContributor": {
-      "title": "Vous aussi, proposez des alternatives locales !",
+      "title": "Vous aussi, proposez des alternatives locales",
       "imageAlt": "Poster une information",
       "action1": "En direct producteur",
       "action2": "Artisan",
@@ -114,7 +115,7 @@
     }
   },
   "links": {
-    "guides": "/fr/eclaireurs",
+    "guides": "/fr/contributeurs",
     "about": "/fr/a-propos",
     "contact": "/fr/contact",
     "contribuer": "/fr/contribuer",
