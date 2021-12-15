@@ -23,4 +23,7 @@ const serveProfiles = (ctx: ParameterizedContext) => {
 router
   .get(`/en/${en.path.profiles.contributors}`, serveProfiles)
   .get(`/fr/${fr.path.profiles.contributors}`, serveProfiles)
-  .get(`/${fr.path.profiles.contributors}`, serveProfiles);
+  .get(`/en/${en.path.profiles.subscriptions}`, serveProfiles)
+  .get(`/fr/${fr.path.profiles.subscriptions}`, serveProfiles)
+  .get(`/${fr.path.profiles.contributors}`, serveProfiles)
+  .get(`/${fr.path.profiles.subscriptions}`, serveProfiles);
