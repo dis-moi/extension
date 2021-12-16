@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { StoryFn } from '@storybook/addons';
-import { contributorsIds } from '../../../../app/website/src/contents/ContributorsIds';
+import { contributorsIds } from '../../../../app/website/src/contributorsIds';
 import ContributorsSection, {
   ContributorsSectionProps
 } from './ContributorsSection';

@@ -36,7 +36,10 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `contents`,
-        path: `${__dirname}/src/contents`
+        path:
+          process.env.FACET === 'lmel'
+            ? `${__dirname}/src/contentsLeMeme`
+            : `${__dirname}/src/contentsDisMoi`
       }
     },
     {

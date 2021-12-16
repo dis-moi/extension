@@ -9,18 +9,12 @@ import ScreenshotMobile2 from '../../../../assets/img/website/screenshots/dismoi
 import ScreenshotDesktop3 from '../../../../assets/img/website/screenshots/dismoi-screenshot-biet-thomas-mounted-website-desktop.jpg';
 import ScreenshotMobile3 from '../../../../assets/img/website/screenshots/dismoi-screenshot-biet-thomas-mounted-website-mobile.jpg';
 import SectionTitle from '../../atoms/Titles/SectionTitle';
-import TabButton from '../../atoms/TabButton/TabButton';
-import { ButtonProps } from '../../atoms/Button/Button';
 import SmallTitle from '../../atoms/Titles/SmallTitle';
 import SectionArrow from '../../atoms/SectionArrow/SectionArrow';
 import { useTranslation } from 'react-i18next';
 
 const StyledSmallTitle = styled(props => <SmallTitle {...props} />)`
   color: ${props => props.theme.website.secondaryColorDarker};
-`;
-
-const StyledTabButton = styled(props => <TabButton {...props} />)`
-  margin: 35px auto 0 auto;
 `;
 
 const SliderWrapper = styled.div`
@@ -99,7 +93,7 @@ export interface ExamplesSliderProps {
 const ExamplesSlider = styled(
   ({ className, examples }: ExamplesSliderProps) => {
     const { t } = useTranslation('website');
-    const [tabButtonIndex, setTabButtonIndex] = React.useState<number>(0);
+    const [, setTabButtonIndex] = React.useState<number>(0);
     const [settings, setSettings] = React.useState({
       dots: false,
       arrows: false,
