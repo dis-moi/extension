@@ -268,9 +268,7 @@ const ContributorsSection = styled(
           <StyledSectionTitle>
             {t('home.contributors.title')}
           </StyledSectionTitle>
-          {t('home.contributors.subTitle') !== '' && (
-            <SubTitle>{t('home.contributors.subTitle')}</SubTitle>
-          )}
+          <SubTitle>{t('home.contributors.subTitle')}</SubTitle>
           <ContributorAvatars>
             {contributors.map<React.ReactNode>((contributor, index) => {
               // eslint-disable-next-line camelcase
