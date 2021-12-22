@@ -115,14 +115,14 @@
     }
   },
   "links": {
-    "guides": "/fr/contributeurs",
-    "about": "/fr/a-propos",
-    "contact": "/fr/contact",
-    "contribuer": "/fr/contribuer",
-    "press": "/fr/espace-presse",
-    "legal": "/fr/mentions-legales",
-    "privacy": "/fr/privacy",
-    "tcu": "/fr/tcu",
+    "guides": "/profils",
+    "about": "/a-propos",
+    "contact": "/contact",
+    "contribuer": "/contribuer",
+    "press": "/espace-presse",
+    "legal": "/mentions-legales",
+    "privacy": "/privacy",
+    "tcu": "/tcu",
     "home": "/"
   }
 }
