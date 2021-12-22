@@ -4,9 +4,12 @@ import { initReactI18next } from 'react-i18next';
 import { useFacetName } from '../facets/useFacetName.hook';
 import resources from './resources';
 import format from './format';
+import { getFacet } from '../facets/getFacet';
 
 export type SupportedLanguage = 'fr' | 'en' | 'br';
-export const fallbackLng = 'en' as SupportedLanguage;
+export const fallbackLng = (getFacet() === 'lmel'
+  ? 'fr'
+  : 'en') as SupportedLanguage;
 export const defaultLng = 'fr' as SupportedLanguage;
 export const getCurrentLng = () => i18n.language as SupportedLanguage;
 
