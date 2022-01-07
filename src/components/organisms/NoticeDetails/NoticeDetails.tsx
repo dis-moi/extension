@@ -244,7 +244,6 @@ class NoticeDetails extends PureComponent<
               size="small"
               onClick={this.handleContributorClicked}
             />
-
             <DetailsMetaValue>
               <Date>{t('date.medium', { date: modified })}</Date>
               <ContributorNotice onClick={this.handleContributorClicked}>

@@ -17,7 +17,7 @@ export interface BaseNotice {
   exampleMatchingUrl?: string;
   screenshot?: string;
   created: Date;
-  modified: Date;
+  modified: string;
   ratings: Ratings;
   visibility: 'public' | 'private';
   locale: SupportedLanguage;
