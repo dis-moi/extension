@@ -40,7 +40,8 @@ const selectEnvVarsToInject = R.pick([
   'FIREFOX_STORE_URL',
   'PROFILES_ORIGIN',
   'ACCESSIBLE_CONTRIBUTORS_IDS',
-  'PRESELECTED_CONTRIBUTORS_IDS'
+  'PRESELECTED_CONTRIBUTORS_IDS',
+  'FAMOUS_CONTRIBUTORS_PROFILE_SIDEBAR'
 ]);
 const formatEnvVars = R.map(value => `"${value}"`);
 

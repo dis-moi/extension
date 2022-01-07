@@ -12,6 +12,7 @@ import { Notice, NoticeWithContributor } from 'libs/domain/notice';
 import { makeGetRouteParam } from 'libs/store/selectors';
 import { getIndexedFetchedAll } from 'libs/store/collection/selectors';
 import { ProfilesState } from '../reducers';
+import famousContributors from '../../App/famousContributors';
 import { getSubscriptions } from './subscriptions';
 import { getNotices as getNoticesItems, getNoticesCollection } from './notices';
 import { getContributors } from './contributors';
@@ -46,6 +47,21 @@ export const getSimilarContributors = createSelector(
         statefulContributor.id &&
         statefulContributor.id !== Number(id)
     )
+);
+
+export const getFamousContributors = createSelector(
+  getStatefulContributors,
+  statefulContributors => {
+    const ordonedContributors: StatefulContributor[] = [];
+    famousContributors &&
+      famousContributors.forEach(id =>
+        statefulContributors.find(
+          contributor =>
+            id === contributor.id && ordonedContributors.push(contributor)
+        )
+      );
+    return ordonedContributors;
+  }
 );
 
 export const getSubscribedContributors = createSelector(
