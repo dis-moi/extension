@@ -1,3 +1,15 @@
+# [3.96.0](https://github.com/dis-moi/extension/compare/v3.95.0...v3.96.0) (2022-01-12)
+
+
+### Bug Fixes
+
+* **onboarding:** fix onboarding url ([4416527](https://github.com/dis-moi/extension/commit/441652776185db4b6506afb50b2ee3bf30760569))
+
+
+### Features
+
+* **lmel:** update LMEL extension manifest description ([992b321](https://github.com/dis-moi/extension/commit/992b321e445eb1481368ac3571b79e191985c0c6))
+
 # [3.95.0](https://github.com/dis-moi/extension/compare/v3.94.0...v3.95.0) (2022-01-12)
 
 
