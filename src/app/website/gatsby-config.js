@@ -18,14 +18,6 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     'gatsby-plugin-styled-components',
     `gatsby-plugin-image`,
-    // {
-    //   resolve: 'gatsby-plugin-copy-files-enhanced',
-    //   options: {
-    //     source: `${__dirname}/../../../node_modules/webextension-polyfill/dist/browser-polyfill.js`,
-    //     destination: '/script/',
-    //     purge: true
-    //   }
-    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -60,7 +52,7 @@ module.exports = {
     `gatsby-plugin-sharp`,
     'gatsby-plugin-typescript',
     'gatsby-plugin-mdx',
-    'gatsby-plugin-i18n',
+    process.env.FACET !== 'lmel' && 'gatsby-plugin-i18n',
     {
       resolve: `gatsby-plugin-layout`,
       options: {
@@ -93,5 +85,5 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
-  ]
+  ].filter(Boolean)
 };
