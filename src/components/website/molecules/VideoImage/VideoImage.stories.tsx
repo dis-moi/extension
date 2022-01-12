@@ -1,5 +1,5 @@
 import React from 'react';
-import Screenshot from 'assets/img/website/screenshots/dismoi-screenshot-amazon-antidote-mounted-website-desktop.jpg';
+import Screenshot from 'assets/img/website/screenshots/dismoi-screenshot-amazon-antidote-desktop.jpg';
 import VideoImage, { VideoImageProps } from './VideoImage';
 
 export default {

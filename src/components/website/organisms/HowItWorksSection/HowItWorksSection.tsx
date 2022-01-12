@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Screenshot from '../../../../assets/img/website/screenshots/dismoi-screenshot-amazon-antidote-mounted-website-desktop.jpg';
+import Screenshot from '../../../../assets/img/website/screenshots/dismoi-screenshot-amazon-antidote-desktop.jpg';
 import GridContainer from '../../atoms/Grid/GridContainer';
 import GridRow from '../../atoms/Grid/GridRow';
 import GridCol from '../../atoms/Grid/GridCol';

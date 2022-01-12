@@ -2,16 +2,20 @@ import React, { useEffect, useRef } from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
-import ScreenshotDesktop1 from '../../../../assets/img/website/screenshots/dismoi-screenshot-le-même-en-local-mounted-website-desktop.jpg';
-import ScreenshotMobile1 from '../../../../assets/img/website/screenshots/dismoi-screenshot-le-même-en-local-mounted-website-mobile.jpg';
-import ScreenshotDesktop2 from '../../../../assets/img/website/screenshots/dismoi-screenshot-selon-que-choisir-mounted-website-desktop.jpg';
-import ScreenshotMobile2 from '../../../../assets/img/website/screenshots/dismoi-screenshot-selon-que-choisir-mounted-website-mobile.jpg';
-import ScreenshotDesktop3 from '../../../../assets/img/website/screenshots/dismoi-screenshot-biet-thomas-mounted-website-desktop.jpg';
-import ScreenshotMobile3 from '../../../../assets/img/website/screenshots/dismoi-screenshot-biet-thomas-mounted-website-mobile.jpg';
+import DisMoiScreenshotDesktop1 from '../../../../assets/img/website/screenshots/dismoi-screenshot-le-même-en-local-desktop.jpg';
+import DisMoiScreenshotMobile1 from '../../../../assets/img/website/screenshots/dismoi-screenshot-le-même-en-local-mobile.jpg';
+import DisMoiScreenshotDesktop2 from '../../../../assets/img/website/screenshots/dismoi-screenshot-selon-que-choisir-desktop.jpg';
+import DisMoiScreenshotMobile2 from '../../../../assets/img/website/screenshots/dismoi-screenshot-selon-que-choisir-mobile.jpg';
+import DisMoiScreenshotDesktop3 from '../../../../assets/img/website/screenshots/dismoi-screenshot-biet-thomas-desktop.jpg';
+import DisMoiScreenshotMobile3 from '../../../../assets/img/website/screenshots/dismoi-screenshot-biet-thomas-mobile.jpg';
+import LMELScreenshotDesktop1 from '../../../../assets/img/website/screenshots/lmel-screenshot-aubade-desktop.jpg';
+import LMELScreenshotDesktop2 from '../../../../assets/img/website/screenshots/lmel-screenshot-deliveroo-desktop.jpg';
+import LMELScreenshotDesktop3 from '../../../../assets/img/website/screenshots/lmel-screenshot-amazon-desktop.jpg';
 import SectionTitle from '../../atoms/Titles/SectionTitle';
 import SmallTitle from '../../atoms/Titles/SmallTitle';
 import SectionArrow from '../../atoms/SectionArrow/SectionArrow';
 import { useTranslation } from 'react-i18next';
+import { getFacet } from '../../../../libs/facets/getFacet';
 
 const StyledSmallTitle = styled(props => <SmallTitle {...props} />)`
   color: ${props => props.theme.website.secondaryColorDarker};
@@ -63,22 +67,40 @@ export interface Example {
 
 export const examples: Example[] = [
   {
-    srcMobile: ScreenshotMobile1.substr(1),
-    srcDesktop: ScreenshotDesktop1.substr(1),
+    srcMobile: (getFacet() === 'lmel'
+      ? LMELScreenshotDesktop1
+      : DisMoiScreenshotMobile1
+    ).substr(1),
+    srcDesktop: (getFacet() === 'lmel'
+      ? LMELScreenshotDesktop1
+      : DisMoiScreenshotDesktop1
+    ).substr(1),
     alt: 'home.examples.example1.alt',
     title: 'home.examples.example1.title',
     buttonText: 'home.examples.example1.buttonText'
   },
   {
-    srcMobile: ScreenshotMobile2.substr(1),
-    srcDesktop: ScreenshotDesktop2.substr(1),
+    srcMobile: (getFacet() === 'lmel'
+      ? LMELScreenshotDesktop2
+      : DisMoiScreenshotMobile2
+    ).substr(1),
+    srcDesktop: (getFacet() === 'lmel'
+      ? LMELScreenshotDesktop2
+      : DisMoiScreenshotDesktop2
+    ).substr(1),
     alt: 'home.examples.example2.alt',
     title: 'home.examples.example2.title',
     buttonText: 'home.examples.example2.buttonText'
   },
   {
-    srcMobile: ScreenshotMobile3.substr(1),
-    srcDesktop: ScreenshotDesktop3.substr(1),
+    srcMobile: (getFacet() === 'lmel'
+      ? LMELScreenshotDesktop3
+      : DisMoiScreenshotMobile3
+    ).substr(1),
+    srcDesktop: (getFacet() === 'lmel'
+      ? LMELScreenshotDesktop3
+      : DisMoiScreenshotDesktop3
+    ).substr(1),
     alt: 'home.examples.example3.alt',
     title: 'home.examples.example3.title',
     buttonText: 'home.examples.example3.buttonText'
