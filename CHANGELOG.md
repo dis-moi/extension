@@ -1,3 +1,25 @@
+# [3.95.0](https://github.com/dis-moi/extension/compare/v3.94.0...v3.95.0) (2022-01-12)
+
+
+### Bug Fixes
+
+* date format on extension closes [#1105](https://github.com/dis-moi/extension/issues/1105) ([d5e2633](https://github.com/dis-moi/extension/commit/d5e263344522ad34ab2f594f9dc50a016f87247d))
+* lememe.fr loads in english first ([787566f](https://github.com/dis-moi/extension/commit/787566f3cbe42efafc1d4a4c4966f30c676d02ae))
+* **website:** add gatsby-plugin-styled-components to fix missing style ([f23fa2c](https://github.com/dis-moi/extension/commit/f23fa2c986dd5bb56c58282f384186d759209df8))
+* **website:** remove unnecessary check that break Gatsby’s SSR ([fc09b64](https://github.com/dis-moi/extension/commit/fc09b64743ad4a410313720f77f6a2f5e90d0ac4))
+* **website:** serve profiles without lang in url ([274e52d](https://github.com/dis-moi/extension/commit/274e52dbe5e3a31521903dbdb3c33579c3e7621f))
+* **website:** serve profiles without lang in url ([21ee4fe](https://github.com/dis-moi/extension/commit/21ee4fe2b9b18c1ccad45dc0be49d9fddcda5dd4))
+* **website:** serve profiles without lang in url ([91eefba](https://github.com/dis-moi/extension/commit/91eefba8cbd476701fb63ed64d4eca6f2eafafb0))
+* **website:** serve profiles without lang in url ([c3e3352](https://github.com/dis-moi/extension/commit/c3e335255549b4f6e82b404653839ee476b1eb2f))
+* support profiles pages direct access ([3fe51c0](https://github.com/dis-moi/extension/commit/3fe51c020056039a7ec5fb3a7c88fd61a05610bb))
+
+
+### Features
+
+* **lmel:** disable i18n in Gatsby for LMEL ([3c672a4](https://github.com/dis-moi/extension/commit/3c672a47326d972553f6fcd9852376cfd13c8d63))
+* **website:**  change contributors path to /profils in fr ([630a040](https://github.com/dis-moi/extension/commit/630a040431997a0a92885515754966eb9ffac024))
+* content site lmel and dismoi ([244d0c8](https://github.com/dis-moi/extension/commit/244d0c895d38aa793e52cf02dcfec0b7ea623dc4))
+
 # [3.94.0](https://github.com/dis-moi/extension/compare/v3.93.5...v3.94.0) (2021-11-30)
 
 
