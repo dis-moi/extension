@@ -14,7 +14,9 @@ module.exports = facet => {
   return Object.freeze({
     name: facetName,
     description:
-      'Amis, media, experts vous informent directement sur les pages web visitées. ',
+      facet === 'lmel'
+        ? 'La façon la plus simple de trouver des alternatives locales, en un seul clic. Gratuit et sans publicité.'
+        : 'Amis, media, experts vous informent directement sur les pages web visitées. ',
     version,
     manifest_version: 2,
     icons: icons[facet],
