@@ -1,3 +1,10 @@
+## [3.96.1](https://github.com/dis-moi/extension/compare/v3.96.0...v3.96.1) (2022-01-13)
+
+
+### Bug Fixes
+
+* **website:** fix server routes ([aceef07](https://github.com/dis-moi/extension/commit/aceef07c6aea9d404356a7cc356f53c152c4ac49))
+
 # [3.96.0](https://github.com/dis-moi/extension/compare/v3.95.0...v3.96.0) (2022-01-12)
 
 
