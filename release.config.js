@@ -43,16 +43,6 @@ const release = Object.freeze({
         'NODE_ENV=production FACET=lmel SENTRY_SEND_VERSION=true yarn run build:firefox'
     },
     {
-      path: '@semantic-release/exec',
-      cmd:
-        'NODE_ENV=staging FACET=dismoi yarn run upload:firefox && NODE_ENV=staging FACET=lmel yarn run upload:firefox'
-    },
-    {
-      path: '@semantic-release/exec',
-      cmd:
-        'NODE_ENV=proding FACET=dismoi yarn run upload:firefox && NODE_ENV=proding FACET=lmel yarn run upload:firefox'
-    },
-    {
       path: '@semantic-release/github',
       assets: [
         {
