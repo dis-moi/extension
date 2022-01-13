@@ -1,3 +1,10 @@
+## [3.96.2](https://github.com/dis-moi/extension/compare/v3.96.1...v3.96.2) (2022-01-13)
+
+
+### Bug Fixes
+
+* **profiles:** fix routes ([cd8c75b](https://github.com/dis-moi/extension/commit/cd8c75b3d4948a812b9e68f4974a683b13aec9c6))
+
 ## [3.96.1](https://github.com/dis-moi/extension/compare/v3.96.0...v3.96.1) (2022-01-13)
 
 
