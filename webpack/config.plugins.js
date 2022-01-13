@@ -110,7 +110,7 @@ module.exports = (env = {}, argv = {}, buildPath) => {
         include: path.resolve(buildPath, 'js'),
         ignore: ['test.*.js*'],
         urlPrefix: '~/js',
-        release: getRelease(PLATFORM, NODE_ENV)
+        release: getRelease(PLATFORM, NODE_ENV, FACET)
       })
     );
   }

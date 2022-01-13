@@ -31,7 +31,11 @@ export const initSentry = () => {
       init({
         dsn: process.env.SENTRY_DSN,
         environment: process.env.NODE_ENV,
-        release: getRelease(process.env.PLATFORM, process.env.NODE_ENV),
+        release: getRelease(
+          process.env.PLATFORM,
+          process.env.NODE_ENV,
+          process.env.FACET
+        ),
         integrations: integrations =>
           integrations.filter(i => !blacklist.includes(i.name)),
         beforeSend
