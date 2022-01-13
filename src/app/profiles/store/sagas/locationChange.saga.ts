@@ -19,7 +19,7 @@ function* contributorLocationSaga(match: Match<{ id: string }>) {
   yield put(refreshContributors());
 }
 
-const prefix = getFacet() === 'lmel' ? '/' : '/:lang/';
+const prefix = getFacet() === 'lmel' ? '' : '/:lang';
 
 export default function* locationChangeSaga() {
   yield takeLatestLocationChange(

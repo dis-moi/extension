@@ -26,4 +26,5 @@ router
   .get(`/en${en.path.profiles.subscriptions}`, serveProfiles)
   .get(`/fr${fr.path.profiles.subscriptions}`, serveProfiles)
   .get(`${fr.path.profiles.contributors}/:id?/:name?`, serveProfiles)
+  .get(`${fr.path.profiles.contributors}`, serveProfiles)
   .get(`${fr.path.profiles.subscriptions}`, serveProfiles);

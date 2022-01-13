@@ -17,31 +17,31 @@ const Pages = () => {
     <>
       <Switch>
         <Route
-          path={`${prefix}/${t('path.profiles.contributors')}`}
+          path={`${prefix}${t('path.profiles.contributors')}`}
           component={Profiles}
         />
         <Route
-          path={`${prefix}/${t('path.profiles.subscriptions')}`}
+          path={`${prefix}${t('path.profiles.subscriptions')}`}
           component={Subscriptions}
         />
         {getFacet() !== 'lmel' && (
           <Redirect
             exact
-            from={`/${t('path.profiles.contributors')}`}
-            to={`/${i18n.language}/${t('path.profiles.contributors')}`}
+            from={`${t('path.profiles.contributors')}`}
+            to={`/${i18n.language}${t('path.profiles.contributors')}`}
           />
         )}
         {getFacet() !== 'lmel' && (
           <Redirect
             exact
-            from={`/${t('path.profiles.subscriptions')}`}
-            to={`/${i18n.language}/${t('path.profiles.subscriptions')}`}
+            from={`${t('path.profiles.subscriptions')}`}
+            to={`/${i18n.language}${t('path.profiles.subscriptions')}`}
           />
         )}
         <Redirect
           exact
           from="/"
-          to={`${prefix}/${t('path.profiles.contributors')}`}
+          to={`${prefix}${t('path.profiles.contributors')}`}
         />
         <Route render={() => <Error message="Introuvable" />} />
       </Switch>
