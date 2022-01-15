@@ -251,7 +251,7 @@
     "gatsby-plugin-copy-files-enhanced": "^1.1.1",
     "gatsby-plugin-styled-components": "^5.4.0",
     "prettier-eslint-cli": "^5.0.1",
-    "shelljs": "^0.8.4",
+    "shelljs": "^0.8.5",
     "sign-addon": "^2.0.4",
     "ts-node-dev": "^1.1.8",
     "webpack-dev-server": "^3.11.0"
