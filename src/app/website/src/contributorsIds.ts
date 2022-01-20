@@ -37,6 +37,6 @@ export const contributorsIds: Record<Facet, number[]> = {
     161, // Le Même en Bretagne,
     167, // Sans intermédiaire
     140, // Le Même en Rhône-Alpes
-    40 // Le Même dans le Sud Ouest
+    174 // French washing
   ]
 };
