@@ -42,6 +42,7 @@ onStartup.then(() => store.dispatch(startup()));
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 i18n.init(options).then(() => store.dispatch(i18nReady()));
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 const handleConnect = (port: Port) => {
