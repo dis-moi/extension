@@ -7,7 +7,7 @@ export default function* postActionSaga(
   targetOrigin = '*',
   action: StandardAction
 ) {
-  Logger.debug(`window.postMessage`, action);
+  Logger.debug(`window.postMessage`, action, targetOrigin);
 
   yield apply(window, window.postMessage, [action, targetOrigin]);
 }

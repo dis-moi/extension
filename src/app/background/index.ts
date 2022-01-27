@@ -1,18 +1,20 @@
 /* eslint-disable no-console */
 // Early imports with high priority stuff involved, such as event listeners creation
+import { Store } from 'redux';
 import { BACKEND_ORIGIN } from 'libs/api/constants/origins';
 import onInstalled from 'libs/webext/onInstalled';
 import onStartup from 'libs/webext/onStartup';
 import {
+  i18nReady,
   installed,
   optionsRequested,
-  startup,
-  i18nReady
+  startup
 } from 'libs/store/actions';
 import { configureSentryScope, initSentry } from 'libs/utils/sentry';
-import { connect } from 'libs/store/actions/connection';
 import { OPTIONS_MENU_ITEM_ID } from 'libs/domain/tab';
 import i18n, { options } from 'libs/i18n';
+import Logger from 'libs/utils/Logger';
+import { connect } from 'libs/store/actions/connection';
 import { store } from './store';
 
 type Port = browser.runtime.Port;
@@ -42,7 +44,10 @@ onStartup.then(() => store.dispatch(startup()));
 i18n.init(options).then(() => store.dispatch(i18nReady()));
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-const handleConnect = (port: Port) => store.dispatch(connect(port));
+const handleConnect = (port: Port) => {
+  Logger.info('onConnect received, dispatching connect(port)');
+  return (store as Store).dispatch(connect(port));
+};
 
 browser.runtime.onConnectExternal.addListener(handleConnect);
 browser.runtime.onConnect.addListener(handleConnect);

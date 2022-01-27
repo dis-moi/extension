@@ -1,7 +1,8 @@
-import { TakeableChannel, PuttableChannel } from 'redux-saga';
-import { put, call, take, takeLatest } from 'redux-saga/effects';
+import { PuttableChannel, TakeableChannel } from 'redux-saga';
+import { call, put, take, takeLatest } from 'redux-saga/effects';
 import { disconnected } from 'libs/store/actions/connection';
 import { StandardAction } from 'libs/store/types';
+import Logger from 'libs/utils/Logger';
 import createActionChannel from './createActionChannel';
 import postActionSaga from './postAction.saga';
 
@@ -16,6 +17,8 @@ function* watchSaga(
   incomingChannel: PuttableChannel<StandardAction>,
   outgoingChannel: TakeableChannel<StandardAction>
 ) {
+  Logger.info('Initiating watchSaga …');
+
   const windowActionChannel = yield call(
     createActionChannel,
     window,

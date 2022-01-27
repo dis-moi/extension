@@ -8,6 +8,7 @@ import createWatchPortSaga from 'libs/store/sagas/watchPort.saga';
 import { AppActionWithMeta } from 'libs/store/actions';
 import compareMessageSender from 'libs/webext/compareMessageSender';
 import createMessageSender from 'libs/webext/createMessageSender';
+import Logger from 'libs/utils/Logger';
 
 type MessageSender = browser.runtime.MessageSender;
 
@@ -16,7 +17,9 @@ export default function* connectSaga() {
     while (true) {
       const { payload: port } = yield take(CONNECT);
       if (port) {
+        Logger.info(`Creating message sender for id ${browser.runtime.id}`);
         const sender = createMessageSender({ id: browser.runtime.id });
+
         yield fork(
           createWatchPortSaga,
           ({ meta }: AppActionWithMeta) =>

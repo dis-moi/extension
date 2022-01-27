@@ -1,5 +1,5 @@
-import { createStore, applyMiddleware, Action } from 'redux';
-import { persistStore, persistReducer } from 'redux-persist';
+import { applyMiddleware, createStore } from 'redux';
+import { persistReducer, persistStore } from 'redux-persist';
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
 import createBrowserStorage from 'libs/webext/createBrowserStorage';
 import { AppAction } from 'libs/store/actions';
@@ -34,17 +34,7 @@ const enhancer =
   process.env.NODE_ENV !== 'production'
     ? applyMiddleware(
         ...middlewares.concat([
-          require('redux-immutable-state-invariant').default(),
-          require('redux-logger').createLogger({
-            level: 'info',
-            collapsed: true,
-            titleFormatter: (
-              action: Action,
-              time: string,
-              took: number
-            ): string =>
-              `[BACKGROUND] @ ${time} ${action.type} (in ${took.toFixed(2)} ms)`
-          })
+          require('redux-immutable-state-invariant').default()
         ])
       )
     : applyMiddleware(...middlewares);
