@@ -16,24 +16,20 @@ export const createProfilesStore = (history?: History) => {
 
   const middlewares = [
     history && routerMiddleware(history),
-    sagaMiddleware
+    sagaMiddleware,
+    require('redux-logger').createLogger({
+      level: 'info',
+      collapsed: true,
+      titleFormatter: (action: Action, time: string, took: number): string =>
+        `[PROFILES] @ ${time} ${action.type} (in ${took.toFixed(2)} ms)`
+    })
   ].filter(Boolean) as Middleware[];
 
   const applyMiddlewares =
     process.env.NODE_ENV !== 'production'
       ? applyMiddleware(
           ...middlewares.concat([
-            require('redux-immutable-state-invariant').default(),
-            require('redux-logger').createLogger({
-              level: 'info',
-              collapsed: true,
-              titleFormatter: (
-                action: Action,
-                time: string,
-                took: number
-              ): string =>
-                `[PROFILES] @ ${time} ${action.type} (in ${took.toFixed(2)} ms)`
-            })
+            require('redux-immutable-state-invariant').default()
           ])
         )
       : applyMiddleware(...middlewares);
