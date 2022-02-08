@@ -20,7 +20,7 @@ module.exports = facet => ({
     }
   }),
   externally_connectable: {
-    matches: ['https://*.dismoi.io/*'],
+    matches: ['https://*.dismoi.io/*', 'https://*.lememe.fr/*'],
     accepts_tls_channel_id: false
   }
 });
