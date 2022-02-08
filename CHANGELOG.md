@@ -1,3 +1,10 @@
+## [3.96.4](https://github.com/dis-moi/extension/compare/v3.96.3...v3.96.4) (2022-02-08)
+
+
+### Bug Fixes
+
+* profiles and extension communication under Chromium ([53e4301](https://github.com/dis-moi/extension/commit/53e4301bc4635da96ce14d3b9e73821b26bda4f4))
+
 ## [3.96.3](https://github.com/dis-moi/extension/compare/v3.96.2...v3.96.3) (2022-01-27)
 
 
