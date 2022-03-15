@@ -1,3 +1,10 @@
+## [3.97.1](https://github.com/dis-moi/extension/compare/v3.97.0...v3.97.1) (2022-03-15)
+
+
+### Bug Fixes
+
+* **profiles:** getPathToContributor does not include path prefix ([395d220](https://github.com/dis-moi/extension/commit/395d220db92c9a278ee1e3292ebc2d28b6af1cf9))
+
 # [3.97.0](https://github.com/dis-moi/extension/compare/v3.96.4...v3.97.0) (2022-03-15)
 
 
