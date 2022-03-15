@@ -167,6 +167,7 @@
     "i18next": "^19.9.2",
     "i18next-browser-languagedetector": "^5.0.1",
     "isomorphic-fetch": "^2.2.1",
+    "join-url": "^2.0.0",
     "jsdom": "^15.1.1",
     "jsdom-global": "^3.0.2",
     "koa": "^2.13.4",
