@@ -1,3 +1,15 @@
+# [3.97.0](https://github.com/dis-moi/extension/compare/v3.96.4...v3.97.0) (2022-03-15)
+
+
+### Bug Fixes
+
+* **profiles:** remove faulty testExtension from fix/installExtension ([1ab6c20](https://github.com/dis-moi/extension/commit/1ab6c208d1b34127788351cc94e193d29e430715))
+
+
+### Features
+
+* **website:** add install links instead of placeholders ([6221041](https://github.com/dis-moi/extension/commit/622104148ac13829572b8b9eb09b1d973389f250))
+
 ## [3.96.4](https://github.com/dis-moi/extension/compare/v3.96.3...v3.96.4) (2022-02-08)
 
 
