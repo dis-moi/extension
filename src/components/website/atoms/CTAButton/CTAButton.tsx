@@ -1,13 +1,14 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
+import useDefineClientSetup from 'libs/hooks/useDefineClientSetup';
+import { installExtension } from 'libs/webext/extensionDetectionAndInstall';
 import { Browser } from '../../../../utils/website/getBrowser';
 import { Platform } from '../../../../utils/website/getPlatform';
-import useDefineClientSetup from '../../../../libs/hooks/useDefineClientSetup';
 import LogoAndroid from './logos/LogoAndroid';
 import LogoIOs from './logos/LogoIOs';
 import LogoFirefox from './logos/LogoFirefox';
 import LogoChrome from './logos/LogoChrome';
-import { useTranslation } from 'react-i18next';
 
 const Button = styled.button`
   box-sizing: border-box;
@@ -120,10 +121,7 @@ const CTAButton = ({
   return (
     <Button
       className={(className || '') + (isMobile ? ' forMobile' : '')}
-      onClick={() =>
-        // eslint-disable-next-line no-console
-        console.log('%cGO TO APP STORE!', 'font-weight:bold;color:blue;')
-      }
+      onClick={installExtension}
     >
       {logo && <Logo>{logoSvg(logo)}</Logo>}
       <Text>
