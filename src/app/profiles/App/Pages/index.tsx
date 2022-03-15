@@ -7,11 +7,12 @@ import Profiles from './Profiles';
 import Error from './Error';
 import Subscriptions from './Subscriptions';
 import { getFacet } from '../../../../libs/facets/getFacet';
+import { getPathPrefix } from '../../../../libs/facets/getPathPrefix';
 
 const Pages = () => {
   useChangeLanguage();
   const { t, i18n } = useTranslation();
-  const prefix = getFacet() === 'lmel' ? '' : `/${i18n.language}`;
+  const prefix = getPathPrefix(i18n);
 
   return (
     <>
