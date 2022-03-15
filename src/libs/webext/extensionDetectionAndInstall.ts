@@ -10,22 +10,6 @@ const getUserAgent = () => {
   return { isChrome, isFirefox, isOpera } as const;
 };
 
-const checkVersion = async (extensionId: string): Promise<string | null> => {
-  const response = await browser.runtime.sendMessage(extensionId, 'version');
-  if (response && 'version' in response) return response.version as string;
-  return null;
-};
-
-const testExtension = async (): Promise<string | null> => {
-  const { isChrome, isFirefox } = getUserAgent();
-  if (isChrome && chrome && process.env.CHROME_EXTENSION_ID) {
-    return checkVersion(process.env.CHROME_EXTENSION_ID);
-  } else if (isFirefox && process.env.FIREFOX_EXTENSION_ID) {
-    return checkVersion(process.env.FIREFOX_EXTENSION_ID);
-  }
-  return null;
-};
-
 const openRequestedPopup = () => {
   const { isChrome, isFirefox, isOpera } = getUserAgent();
   const windowsHeight = document.body.clientHeight;
@@ -42,21 +26,18 @@ const openRequestedPopup = () => {
     ? `width=480,height=${windowsHeight},left=${windowsLeft},resizable=yes,scrollbars=yes,status=1`
     : `width=${windowsWidth},height=${windowsHeight},resizable=yes,scrollbars=yes,status=1`;
 
-  const openedWindow = window.open(popUpURL, 'Bulle', strWindowFeatures);
+  const openedWindow = window.open(popUpURL, 'DisMoi', strWindowFeatures);
   openedWindow?.focus();
 };
 
 export const installExtension = async () => {
   const { isChrome, isFirefox, isOpera } = getUserAgent();
-  const installedVersion = await testExtension();
 
-  if (!installedVersion) {
-    if (isChrome || isFirefox) {
-      openRequestedPopup();
-    } else if (isOpera) {
-      window.location.href = 'https://www.dismoi.io/opera';
-    } else {
-      window.location.href = 'https://www.dismoi.io/navigateur-non-supporte/';
-    }
+  if (isChrome || isFirefox) {
+    openRequestedPopup();
+  } else if (isOpera) {
+    window.location.href = 'https://www.dismoi.io/opera';
+  } else {
+    window.location.href = 'https://www.dismoi.io/navigateur-non-supporte/';
   }
 };
