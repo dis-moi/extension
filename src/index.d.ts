@@ -6,3 +6,5 @@ declare module '*.mp4' {
 }
 // eslint-disable-next-line import/order
 declare module 'react-adobe-animate';
+
+declare module 'join-url';

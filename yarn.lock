@@ -10923,6 +10923,11 @@ join-component@^1.1.0:
   resolved "https://registry.yarnpkg.com/join-component/-/join-component-1.1.0.tgz#b8417b750661a392bee2c2537c68b2a9d4977cd5"
   integrity sha1-uEF7dQZho5K+4sJTfGiyqdSXfNU=
 
+join-url@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/join-url/-/join-url-2.0.0.tgz#a80b63a58eba5b44abaf793c17c3b5817ef69e1b"
+  integrity sha1-qAtjpY66W0Srr3k8F8O1gX72nhs=
+
 js-string-escape@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/js-string-escape/-/js-string-escape-1.0.1.tgz#e2625badbc0d67c7533e9edc1068c587ae4137ef"
