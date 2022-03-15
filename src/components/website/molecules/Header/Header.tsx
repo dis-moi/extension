@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled, { css } from 'styled-components';
 import { Facet } from 'libs/facets/facet';
+import { installExtension } from 'libs/webext/extensionDetectionAndInstall';
 import NavDesktop from '../../atoms/NavDesktop/NavDesktop';
 import Button from '../../atoms/Button/Button';
 import LogoDisMoi from '../../atoms/LogoDisMoi/LogoDisMoi';
@@ -10,7 +12,6 @@ import Modal from '../../atoms/Modal/Modal';
 import NavMobile from '../../atoms/NavMobile/NavMobile';
 import NavDesktopItem from '../../atoms/NavDesktopItem/NavDesktopItem';
 import ListLinks, { Link } from './ListLinks';
-import { useTranslation } from 'react-i18next';
 import ListLinksMobile from './ListLinksMobile';
 
 const MobileButtonsWrapper = styled.div`
@@ -51,10 +52,7 @@ export const HeaderCTAButton = styled(({ className }) => {
       details={t('header.ctaDetails')}
       icon={'download'}
       color={'green'}
-      handleClick={() =>
-        // eslint-disable-next-line no-console
-        console.log('%cGO TO APP STORE!', 'font-weight:bold;color:blue;')
-      }
+      handleClick={installExtension}
     />
   );
 })`
