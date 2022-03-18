@@ -1,3 +1,10 @@
+## [3.97.2](https://github.com/dis-moi/extension/compare/v3.97.1...v3.97.2) (2022-03-18)
+
+
+### Bug Fixes
+
+* **lmel:** wrong store for LMEL ([7c362fb](https://github.com/dis-moi/extension/commit/7c362fb090e14e3c5a252c7096dcfcde8ea452d4))
+
 ## [3.97.1](https://github.com/dis-moi/extension/compare/v3.97.0...v3.97.1) (2022-03-15)
 
 
