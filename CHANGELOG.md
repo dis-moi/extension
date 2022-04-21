@@ -1,3 +1,10 @@
+## [3.97.3](https://github.com/dis-moi/extension/compare/v3.97.2...v3.97.3) (2022-04-21)
+
+
+### Bug Fixes
+
+* bump version ([c5fadac](https://github.com/dis-moi/extension/commit/c5fadac6e8c54b29e1b2151493d22dc25796f2d0))
+
 ## [3.97.2](https://github.com/dis-moi/extension/compare/v3.97.1...v3.97.2) (2022-03-18)
 
 
