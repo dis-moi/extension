@@ -48,6 +48,7 @@ module.exports = function webpack(env = {}, argv = {}) {
     module: { rules: rules(env, argv) },
     plugins: plugins(env, argv, buildPath),
     optimization: { minimize: false },
+
     node: {
       module: 'empty',
       dgram: 'empty',
