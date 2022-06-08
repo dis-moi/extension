@@ -55,7 +55,9 @@ const ExplainingVideoMessageBox = ({
   return (
     <>
       <Title2 as="h3">
-        {t('profiles:view.add_follow_box.title')} {contributor.name}
+        {t('profiles:view.add_follow_box.title', {
+          contributorName: contributor?.name
+        })}
       </Title2>
 
       <SidebarBox>

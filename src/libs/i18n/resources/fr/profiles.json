@@ -85,7 +85,7 @@
       "description_dismoi": "Ne passez plus à côté d’un bon conseil : Alerte contre une arnaque, intox, meilleure alternative..."
     },
     "add_follow_box": {
-      "title": "Ajouter {{facetName}} et suivre",
+      "title": "Ajouter {{facetName}} et suivre {{contributorName}",
       "message": "Recevoir les alertes et conseils de {{contributorName}} directement sur les pages web que je visite.",
       "btn_text": "Ajouter {{facetName}} à mon navigateur"
     },
