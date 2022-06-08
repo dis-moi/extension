@@ -16,6 +16,7 @@ import {
   CountDownState,
   initialState as countdownInitialState
 } from 'libs/domain/countdown';
+import Relay from '../../atoms/Relay/Relay';
 import Title from './Title';
 import DeleteButton from './DeleteButton';
 import Deleted from './Deleted';
@@ -46,6 +47,8 @@ const Description = styled.div`
 
 const NoticeContributorName = styled(ContributorName)`
   display: inline-block;
+  font-weight: bold;
+
   &:hover {
     text-decoration: underline;
     cursor: pointer;
@@ -174,6 +177,10 @@ class Notice extends PureComponent<Props, CountDownState> {
                 size="small"
               />
               <Description>
+                <Relay
+                  user={'Le Même en Rhône en alpes'}
+                  onClick={this.onContributorClicked}
+                />
                 <NoticeContributorName onClick={this.onContributorClicked}>
                   {contributor.name}
                 </NoticeContributorName>
@@ -190,4 +197,5 @@ class Notice extends PureComponent<Props, CountDownState> {
     );
   }
 }
+
 export default withTranslation()(Notice);
