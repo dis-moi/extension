@@ -64,6 +64,7 @@ import { ShowServiceMessageAction } from './serviceMessage.actions';
 import { TabDiedAction, TabRemovedAction } from './tabsLifecycle';
 import { UpdateRestrictedContextsAction } from './restrictedContexts';
 import { LoginAction } from './user';
+import { ShowNewsAction } from './news.actions';
 
 type MessageSender = browser.runtime.MessageSender;
 
@@ -200,6 +201,7 @@ export type AppAction =
   | LocationChangedAction
   | OutboundLinkClickedAction
   | LoginAction
-  | (LocationChangeAction & { meta?: ActionMeta });
+  | (LocationChangeAction & { meta?: ActionMeta })
+  | ShowNewsAction;
 
 export type AppActionWithMeta = AppAction & BaseAction;
