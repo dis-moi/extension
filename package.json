@@ -158,7 +158,7 @@
     "expect": "^26.6.2",
     "faker": "^4.1.0",
     "file-loader": "^2.0.0",
-    "flat": "^4.1.0",
+    "flat": "^5.0.1",
     "fork-ts-checker-webpack-plugin": "^6.2.12",
     "graphql": "^15.5.1",
     "history": "^4.7.2",
