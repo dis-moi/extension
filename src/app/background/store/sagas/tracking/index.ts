@@ -2,7 +2,7 @@ import { SagaIterator } from 'redux-saga';
 import { call, select, takeEvery, takeLatest } from 'redux-saga/effects';
 import Tracker from 'types/Tracker';
 import {
-  BROWSER_ACTION_CLICKED,
+  ACTION_CLICKED,
   CLOSE,
   INSTALLATION_DETAILS,
   LOCATION_CHANGED,
@@ -61,7 +61,7 @@ export default (tracker?: Tracker) =>
           trackLocationChangeSaga(tracker)
         );
         yield takeEvery(
-          BROWSER_ACTION_CLICKED,
+          ACTION_CLICKED,
           trackBrowserActionClickedSaga(tracker)
         );
         yield takeEvery(NOTICE_BADGED, trackNoticeBadgedSaga(tracker));

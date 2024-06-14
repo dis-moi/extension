@@ -12,9 +12,9 @@ module.exports = facet => {
         'object-src': ["'self'"]
       }
     }),
-    browser_action: {
-      ...facetBase.browser_action,
-      default_title: `${facetBase.browser_action.default_title} - development`
+    action: {
+      ...facetBase.action,
+      default_title: `${facetBase.action.default_title} - development`
     },
     externally_connectable: {
       matches: ['*://localhost/*'],
