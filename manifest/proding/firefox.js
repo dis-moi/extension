@@ -6,9 +6,9 @@ module.exports = facet => {
   return {
     ...production(facet),
     name: `${facetBase.name} - proding`,
-    browser_action: {
-      ...facetBase.browser_action,
-      default_title: `${facetBase.browser_action.default_title} - proding`
+    action: {
+      ...facetBase.action,
+      default_title: `${facetBase.action.default_title} - proding`
     }
   };
 };
