@@ -6,7 +6,7 @@ module.exports = facet => {
   return {
     ...facetBase,
     name: `${facetBase.name} - development`,
-    permissions: [...facetBase.permissions, '*://*/*'],
+    host_permissions: ['*://*/*'],
     content_security_policy: csp({
       directives: {
         'script-src': ["'self'", "'unsafe-eval'"],
