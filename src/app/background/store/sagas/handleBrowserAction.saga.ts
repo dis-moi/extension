@@ -1,7 +1,7 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import { CloseCause } from 'libs/domain/ui';
 import {
-  BROWSER_ACTION_CLICKED,
+  ACTION_CLICKED,
   toggleUI,
   BrowserActionClickedAction
 } from 'libs/store/actions';
@@ -13,5 +13,5 @@ export function* browserActionClickedSaga({
 }
 
 export default function* backgroundRootSaga() {
-  yield takeLatest(BROWSER_ACTION_CLICKED, browserActionClickedSaga);
+  yield takeLatest(ACTION_CLICKED, browserActionClickedSaga);
 }

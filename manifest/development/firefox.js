@@ -6,16 +6,16 @@ module.exports = facet => {
   return {
     ...facetBase,
     name: `${facetBase.name} - development`,
-    permissions: [...facetBase.permissions, '*://*/*'],
+    host_permissions: ['*://*/*'],
     content_security_policy: csp({
       directives: {
         'script-src': ["'self'", "'unsafe-eval'"],
         'object-src': ["'self'"]
       }
     }),
-    browser_action: {
-      ...facetBase.browser_action,
-      default_title: `${facetBase.browser_action.default_title} - development`
+    action: {
+      ...facetBase.action,
+      default_title: `${facetBase.action.default_title} - development`
     }
   };
 };
