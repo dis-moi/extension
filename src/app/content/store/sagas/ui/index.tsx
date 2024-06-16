@@ -5,8 +5,7 @@ import {
   put,
   select,
   takeEvery,
-  takeLatest,
-  delay
+  takeLatest
 } from 'redux-saga/effects';
 import { render } from 'react-dom';
 import { go, replace } from 'connected-react-router';
@@ -30,6 +29,7 @@ import {
   ToggleUIAction,
   CloseAction
 } from 'libs/store/actions';
+import delay from 'libs/store/sagas/effects/delay';
 import { CloseCause } from 'libs/domain/ui';
 import { append, create, hide, show } from 'app/content/extensionIframe';
 import { getTheme } from 'libs/facets/getTheme';

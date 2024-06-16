@@ -21,7 +21,7 @@ module.exports = facet => {
     manifest_version: 3,
     icons: icons[facet],
     background: {
-      page: 'background.html'
+      scripts: ['/js/browser-polyfill.js', 'js/background.bundle.js']
     },
     content_scripts: [
       {
@@ -58,7 +58,7 @@ module.exports = facet => {
       },
       default_title: facetName
     },
-    permissions: ['activeTab', 'storage', 'contextMenus'],
+    permissions: ['activeTab', 'storage', 'contextMenus', 'alarms'],
     web_accessible_resources: [
       {
         "resources": [
