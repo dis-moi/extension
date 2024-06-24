@@ -52,6 +52,7 @@ import { getNbSubscriptions } from 'app/background/store/selectors/subscriptions
 import { useFacetName } from 'libs/facets/useFacetName.hook';
 import serviceMessageSaga from './serviceMessage.saga';
 import sendToTabSaga from './lib/sendToTab.saga';
+import { showNewsSaga } from './news.saga';
 
 export const getExtensionTitle = () =>
   `${useFacetName()} ${
@@ -71,6 +72,8 @@ export function* tabSaga({ meta: { tab } }: TabAction) {
   try {
     const tabAuthorized = yield select(isTabAuthorized(tab));
     if (tabAuthorized) {
+      yield call(showNewsSaga, tab);
+
       yield put(matchContext(tab));
     } else {
       yield call(restrictTabSaga, tab);
