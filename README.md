@@ -136,7 +136,7 @@ It is automatically deployed to https://storybook.lmem.net on every `develop` br
 
 [GNU AGPL V3](LICENSE)
 
-> Copyright (C) 2016-2020 INSITU SAS
+> Copyright (C) 2016-2024 ALTERNATIVES NGO
 >
 > This program is free software: you can redistribute it and/or modify
 > it under the terms of the GNU Affero General Public License as published by
