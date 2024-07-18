@@ -18,7 +18,7 @@ module.exports = facet => {
         ? 'La façon la plus simple de trouver des alternatives locales, en un seul clic. Gratuit et sans publicité.'
         : 'Amis, media, experts vous informent directement sur les pages web visitées. ',
     version,
-    manifest_version: 2,
+    manifest_version: 3,
     icons: icons[facet],
     background: {
       page: 'background.html'
@@ -50,7 +50,7 @@ module.exports = facet => {
         run_at: 'document_end'
       }
     ],
-    browser_action: {
+    action: {
       default_icon: {
         '16': 'img/logo/' + facet + '/16x16.png',
         '48': 'img/logo/' + facet + '/48x48.png',
@@ -59,6 +59,16 @@ module.exports = facet => {
       default_title: facetName
     },
     permissions: ['activeTab', 'storage', 'contextMenus'],
-    web_accessible_resources: ['img/*', 'fonts/*']
+    web_accessible_resources: [
+      {
+        "resources": [
+          'img/*',
+          'fonts/*'
+        ],
+        "matches": [
+          "*://*/*"
+        ]
+      }
+    ]
   });
 };
