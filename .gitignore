@@ -21,7 +21,15 @@ yarn-error.log
 /src/app/website/node_modules
 /src/app/website/public
 /src/app/website/static/script/profiles.bundle.js
-.yarn
 .pnp.js
 /src/app/website/.yarn
 /src/app/website/.pnp.js
+
+#Yarn
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
