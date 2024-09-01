@@ -3,7 +3,7 @@
   "version": "3.97.3",
   "description": "Bulles Recommendations web extensions using React+Redux.",
   "engines": {
-    "node": ">=12 <17"
+    "node": "^16"
   },
   "scripts": {
     "postinstall": "yarn website install",
