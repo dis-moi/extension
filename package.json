@@ -247,6 +247,7 @@
     "app-module-path": "^2.2.0",
     "bowser": "^2.11.0",
     "chrome-webstore-upload": "^0.2.2",
+    "clever-tools": "^3.8.2",
     "eslint-import-resolver-typescript": "^2.4.0",
     "eslint-plugin-import": "^2.18.2",
     "gatsby-plugin-copy-files-enhanced": "^1.1.1",
