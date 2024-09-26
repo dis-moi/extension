@@ -11,7 +11,36 @@ To learn more about the uses cases, visit the :fr: [**Dismoi** website](https://
 
 > At the time of writing, information are stored in database and exposed via the [**Dismoi** Backend](https://github.com/dis-moi/backend).
 
+## Common Use Cases for Dismoi
 
+Dismoi can be used in a variety of ways to enhance your browsing experience. Here are some examples:
+
+1. **Fact-Checking Websites**: Follow trusted informers who fact-check articles. When you visit a website with questionable information, Dismoi will show you their comments and corrections.
+
+2. **Product Reviews**: Use Dismoi to leave reviews or notes on product pages. Share your experience directly on shopping sites and help others make informed decisions.
+
+3. **Collaborative Research**: Dismoi is useful for group research projects. Informers can leave comments on research websites, academic papers, or articles, and share insights with other members of the team.
+
+4. **News Commentary**: Follow journalists or bloggers who provide context or commentary on current events. You’ll see their thoughts on news articles directly while browsing.
+
+## User Onboarding Guide
+
+Follow these steps to get started with Dismoi:
+
+1. **Install the Extension**:
+   - [Firefox Add-on](https://addons.mozilla.org/firefox/addon/dismoi)
+   - [Chrome Add-on](https://chrome.google.com/webstore/detail/dismoi)
+
+2. **Create Your Account**:
+   - After installation, create an account or log in directly from the extension popup.
+
+3. **Start Browsing**:
+   - As you browse websites, you will receive notifications from informers you follow.
+   - You can add comments to any web page by clicking on the Dismoi icon in your browser toolbar.
+
+4. **Follow Informers**:
+   - Visit the Dismoi website and subscribe to informers who match your interests. Their comments will appear when you visit pages they’ve commented on.
+   
 ## User Onboarding Guide
 
 Follow these steps to get started with Dismoi:
