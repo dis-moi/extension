@@ -11,17 +11,6 @@ To learn more about the uses cases, visit the :fr: [**Dismoi** website](https://
 
 > At the time of writing, information are stored in database and exposed via the [**Dismoi** Backend](https://github.com/dis-moi/backend).
 
-## Common Use Cases for Dismoi
-
-Dismoi can be used in a variety of ways to enhance your browsing experience. Here are some examples:
-
-1. **Fact-Checking Websites**: Follow trusted informers who fact-check articles. When you visit a website with questionable information, Dismoi will show you their comments and corrections.
-
-2. **Product Reviews**: Use Dismoi to leave reviews or notes on product pages. Share your experience directly on shopping sites and help others make informed decisions.
-
-3. **Collaborative Research**: Dismoi is useful for group research projects. Informers can leave comments on research websites, academic papers, or articles, and share insights with other members of the team.
-
-4. **News Commentary**: Follow journalists or bloggers who provide context or commentary on current events. You’ll see their thoughts on news articles directly while browsing.
 
 ## User Onboarding Guide
 
@@ -138,6 +127,12 @@ yarn start
 
 > Chrom(e|ium) browser is recommend for development.
 > see https://developer.chrome.com/extensions/getstarted#manifest
+
+## Contributing
+
+You’re welcome to help!
+
+> For further reading, refer to the [**Dismoi** contributing guidelines](docs/CONTRIBUTING.md).
 
 ## Test
 
