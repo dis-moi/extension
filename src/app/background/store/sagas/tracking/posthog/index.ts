@@ -2,7 +2,7 @@ import { SagaIterator } from '@redux-saga/types';
 import { call, select, takeEvery, takeLatest } from '@redux-saga/core/effects';
 import PostHog from 'posthog-node';
 import {
-  BROWSER_ACTION_CLICKED,
+  ACTION_CLICKED,
   CLOSE,
   INSTALLATION_DETAILS,
   LOCATION_CHANGED,
@@ -91,7 +91,7 @@ export default (client?: PostHog) =>
           trackLocationChangeSaga(client)
         );
         yield takeEvery(
-          BROWSER_ACTION_CLICKED,
+          ACTION_CLICKED,
           trackBrowserActionClickedSaga(client)
         );
         yield takeEvery(NOTICE_BADGED, trackNoticeBadgedSaga(client));

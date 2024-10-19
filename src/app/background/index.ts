@@ -63,7 +63,7 @@ browser.contextMenus
     browser.contextMenus.create({
       id: OPTIONS_MENU_ITEM_ID,
       title: i18n.t('tab.sources_link'),
-      contexts: ['browser_action']
+      contexts: ['action']
     });
   });
 
