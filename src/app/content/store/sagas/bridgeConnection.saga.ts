@@ -14,7 +14,11 @@ import stripReceiverMeta from 'libs/store/stripReceiverMeta';
 type Port = browser.runtime.Port;
 
 export default function* bridgeConnectionSaga(targetOrigin = '*') {
-  const extensionId = browser.runtime.id;
+  const extensionId =
+    process.env.NODE_ENV === 'development' &&
+    /firefox/i.test(navigator.userAgent)
+      ? ''
+      : browser.runtime.id;
   const profilesWindowActionMatcher = (action: StandardAction) =>
     (action?.meta as MetaWithReceiver)?.receiver?.id === extensionId &&
     (action?.meta as MetaWithSender)?.sender?.id !== extensionId;
