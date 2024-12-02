@@ -12,6 +12,7 @@ import contributors, {
 import ui, { UIState } from './ui';
 import notices, { NoticesState } from './notices';
 import serviceMessage, { ServiceMessageState } from './serviceMessage.reducer';
+import news, { NewsState } from './news.reducer';
 
 export interface StateWithServiceMessage {
   serviceMessage: ServiceMessageState;
@@ -24,6 +25,7 @@ export type ContentState = StateWithServiceMessage & {
   router: RouterState;
   form: FormStateMap;
   contributors: ContributorsState;
+  news: NewsState;
 };
 
 export default (history: MemoryHistory) =>
@@ -34,5 +36,6 @@ export default (history: MemoryHistory) =>
     router: connectRouter(history),
     form,
     serviceMessage,
-    contributors
+    contributors,
+    news
   });

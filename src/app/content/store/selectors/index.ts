@@ -32,6 +32,7 @@ import sortByLocale from 'libs/utils/sortByLocale';
 import { ContentState } from 'app/content/store/reducers';
 export * from './serviceMessage.selectors';
 export * from './ui.selectors';
+export * from './news.selectors';
 
 export const getNotices = (state: ContentState) => state.notices;
 
