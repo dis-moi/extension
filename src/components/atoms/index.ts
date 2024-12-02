@@ -21,6 +21,7 @@ export { default as Link } from './Link/Link';
 export { default as Anchor } from './Link/Anchor';
 export { default as Title } from './Title';
 export { default as LoadingRotator } from './LoadingRotator/LoadingRotator';
+export { default as Relay } from './Relay/Relay';
 
 export { default as Box } from './Box/Box';
 

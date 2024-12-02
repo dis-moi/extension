@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { LocationDescriptor } from 'history';
 import Avatar from 'components/molecules/Avatar/Avatar';
 import { ContributorName, OpenButton } from 'components/atoms';
+import { RelayPart } from '../../atoms/Relay/Relay';
 import Title from './Title';
 
 interface ContentProps {
@@ -59,7 +60,7 @@ export default styled.div<ContentProps>`
     font-weight: ${props => (props.isRead ? '500' : 'bold')};
   }
 
-  ${ContributorName}, ${Title} {
+  ${RelayPart}, ${ContributorName}, ${Title} {
     opacity: ${props => (props.isRead ? '.5' : '1')};
   }
 `;
