@@ -1,12 +1,12 @@
 const csp = require('content-security-policy-builder');
 const base = require('../base');
 
-module.exports = facet => {
-  const facetBase = base(facet);
+module.exports = () => {
+  const baseManifest = base();
   return {
-    ...facetBase,
-    name: `${facetBase.name} - development`,
-    permissions: [...facetBase.permissions, '*://*/*'],
+    ...baseManifest,
+    name: `${baseManifest.name} - development`,
+    permissions: [...baseManifest.permissions, '*://*/*'],
     content_security_policy: csp({
       directives: {
         'script-src': ["'self'", "'unsafe-eval'"],
@@ -14,8 +14,8 @@ module.exports = facet => {
       }
     }),
     browser_action: {
-      ...facetBase.browser_action,
-      default_title: `${facetBase.browser_action.default_title} - development`
+      ...baseManifest.browser_action,
+      default_title: `${baseManifest.browser_action.default_title} - development`
     }
   };
 };

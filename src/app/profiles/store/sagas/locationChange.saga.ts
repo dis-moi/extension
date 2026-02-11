@@ -6,7 +6,6 @@ import takeLatestLocationChange from 'libs/store/sagas/effects/takeLatestLocatio
 import en from 'libs/i18n/resources/en/extension.json';
 import fr from 'libs/i18n/resources/fr/extension.json';
 import { ContributorId } from 'libs/domain/contributor';
-import { getFacet } from 'libs/facets/getFacet';
 import { fetchContributorNotices } from '../actions/notices';
 
 function* contributorsLocationSaga() {
@@ -19,7 +18,7 @@ function* contributorLocationSaga(match: Match<{ id: string }>) {
   yield put(refreshContributors());
 }
 
-const prefix = getFacet() === 'lmel' ? '' : '/:lang';
+const prefix = '/:lang';
 
 export default function* locationChangeSaga() {
   yield takeLatestLocationChange(

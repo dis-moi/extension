@@ -19,8 +19,6 @@ const { getPackageName, getPackageExtension } = require('./packageNaming');
 // @todo do we still need to maintain this list?
 // I would gladly get rid of it...
 const selectEnvVarsToInject = R.pick([
-  'FACET',
-  'FACET_NAME',
   'WEBSITE_URL',
   'SENTRY_DSN',
   'NODE_ENV',
@@ -47,7 +45,7 @@ const formatEnvVars = R.map(value => `"${value}"`);
 const processENVVarsToInject = R.pipe(selectEnvVarsToInject, formatEnvVars);
 
 module.exports = (env = {}, argv = {}, buildPath) => {
-  const { NODE_ENV, SENTRY_SEND_VERSION, PLATFORM, ANALYZE, FACET } = env;
+  const { NODE_ENV, SENTRY_SEND_VERSION, PLATFORM, ANALYZE } = env;
   const copyConfig = [
     { from: 'src/assets', to: buildPath },
     {
@@ -67,15 +65,15 @@ module.exports = (env = {}, argv = {}, buildPath) => {
       to: path.join(buildPath, 'fonts/')
     },
     {
-      from: `src/assets/browserconfig-${FACET}.xml`,
+      from: 'src/assets/browserconfig-dismoi.xml',
       to: path.join(buildPath, 'browserconfig.xml')
     },
     {
-      from: `src/assets/site-${FACET}.webmanifest`,
+      from: 'src/assets/site-dismoi.webmanifest',
       to: path.join(buildPath, 'site.webmanifest')
     },
     {
-      from: `src/assets/favicons/${FACET}/`,
+      from: 'src/assets/favicons/dismoi/',
       to: path.join(buildPath, '/')
     }
   ];
@@ -99,7 +97,7 @@ module.exports = (env = {}, argv = {}, buildPath) => {
     plugins.push(
       new AddAssetWebpackPlugin(
         'manifest.json',
-        getManifest(NODE_ENV, PLATFORM, FACET)
+        getManifest(NODE_ENV, PLATFORM)
       )
     );
   }
@@ -110,7 +108,7 @@ module.exports = (env = {}, argv = {}, buildPath) => {
         include: path.resolve(buildPath, 'js'),
         ignore: ['test.*.js*'],
         urlPrefix: '~/js',
-        release: getRelease(PLATFORM, NODE_ENV, FACET)
+        release: getRelease(PLATFORM, NODE_ENV)
       })
     );
   }
@@ -120,7 +118,7 @@ module.exports = (env = {}, argv = {}, buildPath) => {
       new CleanWebpackPlugin(),
       new ZipPlugin({
         path: '..',
-        filename: getPackageName(version, PLATFORM, NODE_ENV, FACET),
+        filename: getPackageName(version, PLATFORM, NODE_ENV),
         extension: getPackageExtension(PLATFORM)
       })
     );

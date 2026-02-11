@@ -1,6 +1,5 @@
-import { dismoiTheme, lmelTheme, Theme } from './theme';
-import { getFacet } from './getFacet';
+import { dismoiTheme, Theme } from './theme';
 
 export function getTheme(): Theme {
-  return getFacet() === 'lmel' ? lmelTheme : dismoiTheme;
+  return dismoiTheme;
 }

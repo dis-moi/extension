@@ -7,7 +7,6 @@ import ContributorAvatar from '../../atoms/ContributorAvatar/ContributorAvatar';
 import Section from '../../atoms/Section/Section';
 import Button from '../../atoms/Button/Button';
 import { useTranslation } from 'react-i18next';
-import { getFacet } from '../../../../libs/facets/getFacet';
 
 const StyledSectionTitle = styled(props => <SectionTitle {...props} />)`
   color: ${props => props.theme.website.secondaryColorDarker};
@@ -17,23 +16,23 @@ const StyledSectionTitle = styled(props => <SectionTitle {...props} />)`
   font-size: 32px;
   font-weight: bold;
   @media (min-width: 500px) {
-    font-size: ${getFacet() === 'lmel' ? '40' : '50'}px;
+    font-size: 50px;
   }
   @media (min-width: ${props => props.theme.tabletWidth}) {
-    font-size: ${getFacet() === 'lmel' ? '50' : '60'}px;
+    font-size: 60px;
     font-weight: normal;
   }
   @media (min-width: ${props => props.theme.desktopWidth}) {
-    font-size: ${getFacet() === 'lmel' ? '52' : '62'}px;
+    font-size: 62px;
   }
   @media (min-width: ${props =>
       parseInt(props.theme.desktopWidth) + 100 + 'px'}) {
     max-width: 60vw;
-    font-size: ${getFacet() === 'lmel' ? '54' : '64'}px;
+    font-size: 64px;
   }
   @media (min-width: ${props =>
       parseInt(props.theme.desktopWidth) + 200 + 'px'}) {
-    font-size: ${getFacet() === 'lmel' ? '56' : '66'};
+    font-size: 66;
   }
 `;
 

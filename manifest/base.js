@@ -8,18 +8,14 @@
 const version = require('../package.json').version;
 const icons = require('./icons');
 
-module.exports = facet => {
-  const facetName = facet === 'lmel' ? 'Le Même en Local' : 'Dismoi';
-
+module.exports = () => {
   return Object.freeze({
-    name: facetName,
+    name: 'Dismoi',
     description:
-      facet === 'lmel'
-        ? 'La façon la plus simple de trouver des alternatives locales, en un seul clic. Gratuit et sans publicité.'
-        : 'Amis, media, experts vous informent directement sur les pages web visitées. ',
+      'Amis, media, experts vous informent directement sur les pages web visitées. ',
     version,
     manifest_version: 2,
-    icons: icons[facet],
+    icons: icons,
     background: {
       page: 'background.html'
     },
@@ -52,11 +48,11 @@ module.exports = facet => {
     ],
     browser_action: {
       default_icon: {
-        '16': 'img/logo/' + facet + '/16x16.png',
-        '48': 'img/logo/' + facet + '/48x48.png',
-        '128': 'img/logo/' + facet + '/128x128.png'
+        '16': 'img/logo/dismoi/16x16.png',
+        '48': 'img/logo/dismoi/48x48.png',
+        '128': 'img/logo/dismoi/128x128.png'
       },
-      default_title: facetName
+      default_title: 'Dismoi'
     },
     permissions: ['activeTab', 'storage', 'contextMenus'],
     web_accessible_resources: ['img/*', 'fonts/*']

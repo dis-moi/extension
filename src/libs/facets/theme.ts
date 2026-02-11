@@ -1,4 +1,3 @@
-import * as R from 'ramda';
 import { BadgeTheme } from 'libs/domain/badge';
 
 export interface ButtonTheme {
@@ -247,42 +246,3 @@ export const dismoiTheme: Theme = {
   }
 };
 
-export const lmelTheme = R.mergeDeepRight(dismoiTheme, {
-  activeColor: '#283a7c',
-  // Button colors
-  Button: {
-    default: '#283a7c',
-    hover: '#172344',
-    disabled: '#BAB8B8',
-    action: '#ec9119',
-    radius: '5px'
-  },
-  /* TODO : @Jalil to clean the best you can ;-D */
-  website: {
-    radius: '10px',
-    radiusSmall: '6px',
-    primaryColor: '#283a7c',
-    primaryColorDarker: '#172344',
-    secondaryColor: '#fab51a',
-    secondaryColorDarker: '#ec9119',
-    activeColor: '#e42225',
-    activeColorDarker: '#93181e',
-    greyColor: '#DDDDDD',
-    greyColorLighter: '#F5F5F5',
-    greyColorDarker: '#666b79',
-    fontFamily: "'Barlow', 'Helvetica Neue', Helvetica, Arial, sans-serif",
-    textSizeMobile: '16px',
-    textSizeTablet: '17px',
-    textSizeDesktop: '18px',
-    animationSlowDuration: '0.5s',
-    animationMediumDuration: '0.25s',
-    animationFastDuration: '0.1s',
-    boxShadow: 'rgba(0, 0, 0, 0.1) 0 0 10px;',
-    coverSectionBackgroundColor: '#172344',
-    coverSectionBackgroundColorBis: `linear-gradient(
-      60deg,
-      #172344 0%,
-      #283a7c 100%
-    )`
-  }
-} as Partial<Theme>);

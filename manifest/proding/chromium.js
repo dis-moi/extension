@@ -2,11 +2,11 @@ const csp = require('content-security-policy-builder');
 const production = require('../production/chromium');
 const base = require('../base');
 
-module.exports = facet => {
-  const facetBase = base(facet);
+module.exports = () => {
+  const baseManifest = base();
   return {
-    ...production(facet),
-    name: `${facetBase.name} - proding`,
+    ...production(),
+    name: `${baseManifest.name} - proding`,
     content_security_policy: csp({
       directives: {
         'default-src': ['https://api.dismoi.io'],
@@ -24,8 +24,8 @@ module.exports = facet => {
       }
     }),
     browser_action: {
-      ...facetBase.browser_action,
-      default_title: `${facetBase.browser_action.default_title} - proding`
+      ...baseManifest.browser_action,
+      default_title: `${baseManifest.browser_action.default_title} - proding`
     }
   };
 };

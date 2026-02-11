@@ -1,10 +1,7 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { getFacet } from 'libs/facets/getFacet';
 import { useFacetName } from 'libs/facets/useFacetName.hook';
-import { Facet } from 'libs/facets/facet';
-import LogoLMEL from '../../atoms/LogoLMEL/LogoLMEL';
 import LogoDisMoi from '../../atoms/LogoDisMoi/LogoDisMoi';
 import SocialLink from '../../atoms/SocialButton/SocialLink';
 import Section from '../../atoms/Section/Section';
@@ -102,13 +99,7 @@ const NavFooter = styled.nav`
   }
 `;
 
-const Legals = styled.p<{ facet: Facet }>`
-  ${props =>
-    props.facet === 'lmel'
-      ? css`
-          margin-top: 0;
-        `
-      : undefined}
+const Legals = styled.p`
   font-size: 12px;
   text-align: center;
   @media (min-width: ${props => props.theme.desktopWidth}) {
@@ -133,8 +124,6 @@ export interface FooterProps {
 
 const Footer = (props: FooterProps) => {
   const { t } = useTranslation('website');
-  const facet = getFacet();
-  const dismoi = facet === 'dismoi';
   const facetName = useFacetName();
 
   return (
@@ -143,36 +132,34 @@ const Footer = (props: FooterProps) => {
         <GridContainer>
           <StyledGridRow>
             <GridCol1>
-              {facet === 'lmel' ? <LogoLMEL /> : <LogoDisMoi />}
-              {dismoi && (
-                <SocialLinkWrapper>
-                  <SocialLink
-                    icon="mastodon"
-                    title={t('footer.followUsOn', { network: 'Mastodon' })}
-                    href="#"
-                  />
-                  <SocialLink
-                    icon="github"
-                    title={t('footer.followUsOn', { network: 'GitHub' })}
-                    href="https://github.com/dis-moi"
-                  />
-                  <SocialLink
-                    icon="linkedin"
-                    title={t('footer.followUsOn', { network: 'LinkedIn' })}
-                    href="https://www.linkedin.com/company/dismoi/mycompany/"
-                  />
-                  <SocialLink
-                    icon="facebook"
-                    title={t('footer.followUsOn', { network: 'Facebook' })}
-                    href="https://www.facebook.com/DisMoiCompagnon"
-                  />
-                  <SocialLink
-                    icon="twitter"
-                    title={t('footer.followUsOn', { network: 'Twitter' })}
-                    href="https://twitter.com/dismoicompagnon"
-                  />
-                </SocialLinkWrapper>
-              )}
+              <LogoDisMoi />
+              <SocialLinkWrapper>
+                <SocialLink
+                  icon="mastodon"
+                  title={t('footer.followUsOn', { network: 'Mastodon' })}
+                  href="#"
+                />
+                <SocialLink
+                  icon="github"
+                  title={t('footer.followUsOn', { network: 'GitHub' })}
+                  href="https://github.com/dis-moi"
+                />
+                <SocialLink
+                  icon="linkedin"
+                  title={t('footer.followUsOn', { network: 'LinkedIn' })}
+                  href="https://www.linkedin.com/company/dismoi/mycompany/"
+                />
+                <SocialLink
+                  icon="facebook"
+                  title={t('footer.followUsOn', { network: 'Facebook' })}
+                  href="https://www.facebook.com/DisMoiCompagnon"
+                />
+                <SocialLink
+                  icon="twitter"
+                  title={t('footer.followUsOn', { network: 'Twitter' })}
+                  href="https://twitter.com/dismoicompagnon"
+                />
+              </SocialLinkWrapper>
             </GridCol1>
             <GridCol2>
               <NavFooter>
@@ -180,13 +167,11 @@ const Footer = (props: FooterProps) => {
               </NavFooter>
             </GridCol2>
             <GridCol3>
-              {dismoi && (
-                <NavDesktopItem onClick={props.switchLanguage}>
-                  <span title="French">fr</span> |{' '}
-                  <span title="English">en</span>
-                </NavDesktopItem>
-              )}
-              <Legals facet={facet}>
+              <NavDesktopItem onClick={props.switchLanguage}>
+                <span title="French">fr</span> |{' '}
+                <span title="English">en</span>
+              </NavDesktopItem>
+              <Legals>
                 {t('footer.rightsReserved')} <br />
                 {facetName} © 2021
               </Legals>

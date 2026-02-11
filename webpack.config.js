@@ -13,19 +13,18 @@ loadEnv({ path: path.resolve(__dirname) });
 module.exports = function webpack(env = {}, argv = {}) {
   env = {
     PLATFORM: 'chromium',
-    FACET: 'dismoi',
     ...process.env,
     ...env
   };
 
-  console.log(env.FACET, env.NODE_ENV, env.PLATFORM);
+  console.log(env.NODE_ENV, env.PLATFORM);
 
   const srcPath = path.resolve(__dirname, 'src');
 
-  const { NODE_ENV, PLATFORM, FACET } = env;
+  const { NODE_ENV, PLATFORM } = env;
   const buildPath = path.resolve(
     __dirname,
-    getBuildPath(PLATFORM, NODE_ENV, FACET)
+    getBuildPath(PLATFORM, NODE_ENV)
   );
 
   console.info('Building package to: ', buildPath);

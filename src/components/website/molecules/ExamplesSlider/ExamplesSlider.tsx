@@ -8,14 +8,10 @@ import DisMoiScreenshotDesktop2 from '../../../../assets/img/website/screenshots
 import DisMoiScreenshotMobile2 from '../../../../assets/img/website/screenshots/dismoi-screenshot-selon-que-choisir-mobile.jpg';
 import DisMoiScreenshotDesktop3 from '../../../../assets/img/website/screenshots/dismoi-screenshot-biet-thomas-desktop.jpg';
 import DisMoiScreenshotMobile3 from '../../../../assets/img/website/screenshots/dismoi-screenshot-biet-thomas-mobile.jpg';
-import LMELScreenshotDesktop1 from '../../../../assets/img/website/screenshots/lmel-screenshot-aubade-desktop.jpg';
-import LMELScreenshotDesktop2 from '../../../../assets/img/website/screenshots/lmel-screenshot-deliveroo-desktop.jpg';
-import LMELScreenshotDesktop3 from '../../../../assets/img/website/screenshots/lmel-screenshot-amazon-desktop.jpg';
 import SectionTitle from '../../atoms/Titles/SectionTitle';
 import SmallTitle from '../../atoms/Titles/SmallTitle';
 import SectionArrow from '../../atoms/SectionArrow/SectionArrow';
 import { useTranslation } from 'react-i18next';
-import { getFacet } from '../../../../libs/facets/getFacet';
 
 const StyledSmallTitle = styled(props => <SmallTitle {...props} />)`
   color: ${props => props.theme.website.secondaryColorDarker};
@@ -67,40 +63,22 @@ export interface Example {
 
 export const examples: Example[] = [
   {
-    srcMobile: (getFacet() === 'lmel'
-      ? LMELScreenshotDesktop1
-      : DisMoiScreenshotMobile1
-    ).substr(1),
-    srcDesktop: (getFacet() === 'lmel'
-      ? LMELScreenshotDesktop1
-      : DisMoiScreenshotDesktop1
-    ).substr(1),
+    srcMobile: DisMoiScreenshotMobile1.substr(1),
+    srcDesktop: DisMoiScreenshotDesktop1.substr(1),
     alt: 'home.examples.example1.alt',
     title: 'home.examples.example1.title',
     buttonText: 'home.examples.example1.buttonText'
   },
   {
-    srcMobile: (getFacet() === 'lmel'
-      ? LMELScreenshotDesktop2
-      : DisMoiScreenshotMobile2
-    ).substr(1),
-    srcDesktop: (getFacet() === 'lmel'
-      ? LMELScreenshotDesktop2
-      : DisMoiScreenshotDesktop2
-    ).substr(1),
+    srcMobile: DisMoiScreenshotMobile2.substr(1),
+    srcDesktop: DisMoiScreenshotDesktop2.substr(1),
     alt: 'home.examples.example2.alt',
     title: 'home.examples.example2.title',
     buttonText: 'home.examples.example2.buttonText'
   },
   {
-    srcMobile: (getFacet() === 'lmel'
-      ? LMELScreenshotDesktop3
-      : DisMoiScreenshotMobile3
-    ).substr(1),
-    srcDesktop: (getFacet() === 'lmel'
-      ? LMELScreenshotDesktop3
-      : DisMoiScreenshotDesktop3
-    ).substr(1),
+    srcMobile: DisMoiScreenshotMobile3.substr(1),
+    srcDesktop: DisMoiScreenshotDesktop3.substr(1),
     alt: 'home.examples.example3.alt',
     title: 'home.examples.example3.title',
     buttonText: 'home.examples.example3.buttonText'

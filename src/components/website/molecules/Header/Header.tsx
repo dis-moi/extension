@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Facet } from 'libs/facets/facet';
 import { installExtension } from 'libs/webext/extensionDetectionAndInstall';
 import NavDesktop from '../../atoms/NavDesktop/NavDesktop';
 import Button from '../../atoms/Button/Button';
 import LogoDisMoi from '../../atoms/LogoDisMoi/LogoDisMoi';
-import LogoLMEL from '../../atoms/LogoLMEL/LogoLMEL';
 import ToggleMenu from '../../atoms/NavMobileButton/ToggleMenu';
 import Modal from '../../atoms/Modal/Modal';
 import NavMobile from '../../atoms/NavMobile/NavMobile';
@@ -98,18 +97,14 @@ const Header = styled(
       <>
         <header className={className + ' ' + scrolledClass} style={{ opacity }}>
           <a className="homeLink" href={'/'}>
-            {facet === 'lmel' ? <LogoLMEL /> : <LogoDisMoi />}
+            <LogoDisMoi />
           </a>
           <NavDesktop>
             <ListLinks links={links} />
             {!!scrolledClass && <HeaderCTAButton />}
-            {facet === 'lmel' ? (
-              <> </>
-            ) : (
-              <NavDesktopItem onClick={switchLanguage}>
-                <span title="French">fr</span> | <span title="English">en</span>
-              </NavDesktopItem>
-            )}
+            <NavDesktopItem onClick={switchLanguage}>
+              <span title="French">fr</span> | <span title="English">en</span>
+            </NavDesktopItem>
           </NavDesktop>
           <MobileButtonsWrapper>
             {!!scrolledClass && <HeaderCTAButton />}
@@ -162,15 +157,10 @@ const Header = styled(
   ${NavDesktop} {
     transform-origin: right center;
     transition: transform ${props => props.theme.website.animationFastDuration};
-    ${props =>
-      props.facet !== 'lmel'
-        ? css`
-            a:last-of-type {
-              transform-origin: center;
-              transform: scale(0.8);
-            }
-          `
-        : undefined}
+    a:last-of-type {
+      transform-origin: center;
+      transform: scale(0.8);
+    }
   }
   &:not(.scrolled) {
     a.homeLink {

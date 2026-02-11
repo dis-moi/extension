@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
-import { select, withKnobs } from '@storybook/addon-knobs';
-import { dismoiTheme, lmelTheme } from './theme';
+import { dismoiTheme } from './theme';
 
 const isHexColor = (color: ObjectWithColors | string): boolean =>
   typeof color === 'string' && /^#(?:[0-9a-f]{3}){1,2}$/i.test(color);
@@ -87,23 +86,7 @@ const ColorList = ({ colors }: ColorListProps) => {
   );
 };
 
-const themes = {
-  dismoi: dismoiTheme,
-  lmel: lmelTheme
-};
-
 storiesOf('Theme', module)
-  .addDecorator(withKnobs)
   .add('Colors', () => (
-    <ColorList
-      colors={
-        themes[
-          select<keyof typeof themes>(
-            'theme',
-            Object.keys(themes) as (keyof typeof themes)[],
-            'dismoi'
-          )
-        ] as ObjectWithColors
-      }
-    />
+    <ColorList colors={dismoiTheme as unknown as ObjectWithColors} />
   ));

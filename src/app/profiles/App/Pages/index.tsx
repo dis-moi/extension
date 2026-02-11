@@ -6,7 +6,6 @@ import ConnectedContextPopin from '../ContextPopin/';
 import Profiles from './Profiles';
 import Error from './Error';
 import Subscriptions from './Subscriptions';
-import { getFacet } from '../../../../libs/facets/getFacet';
 import { getPathPrefix } from '../../../../libs/facets/getPathPrefix';
 
 const Pages = () => {
@@ -25,20 +24,16 @@ const Pages = () => {
           path={`${prefix}${t('path.profiles.subscriptions')}`}
           component={Subscriptions}
         />
-        {getFacet() !== 'lmel' && (
-          <Redirect
-            exact
-            from={`${t('path.profiles.contributors')}`}
-            to={`/${i18n.language}${t('path.profiles.contributors')}`}
-          />
-        )}
-        {getFacet() !== 'lmel' && (
-          <Redirect
-            exact
-            from={`${t('path.profiles.subscriptions')}`}
-            to={`/${i18n.language}${t('path.profiles.subscriptions')}`}
-          />
-        )}
+        <Redirect
+          exact
+          from={`${t('path.profiles.contributors')}`}
+          to={`/${i18n.language}${t('path.profiles.contributors')}`}
+        />
+        <Redirect
+          exact
+          from={`${t('path.profiles.subscriptions')}`}
+          to={`/${i18n.language}${t('path.profiles.subscriptions')}`}
+        />
         <Redirect
           exact
           from="/"

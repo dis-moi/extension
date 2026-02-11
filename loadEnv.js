@@ -17,8 +17,6 @@ const findEnvDir = dir => {
 };
 
 function loadEnv({ encoding, debug } = {}) {
-  process.env.FACET = process.env.FACET || 'dismoi';
-  const FACET = process.env.FACET;
   const NODE_ENV = process.env.NODE_ENV || 'development';
 
   const envDir = findEnvDir(__dirname);
@@ -26,10 +24,7 @@ function loadEnv({ encoding, debug } = {}) {
   process.env.ROOT_DIR = envDir;
 
   const dotenvFiles = [
-    `.env.${NODE_ENV}.${FACET}.local`,
     `.env.${NODE_ENV}.local`,
-    `.env.${NODE_ENV}.${FACET}`,
-    `.env.${FACET}`,
     `.env.${NODE_ENV}`,
     // Don't include `.env.local` for `test` environment
     // since normally you expect tests to produce the same

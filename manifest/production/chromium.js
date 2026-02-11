@@ -1,8 +1,8 @@
 const csp = require('content-security-policy-builder');
 const base = require('../base');
 
-module.exports = facet => ({
-  ...base(facet),
+module.exports = () => ({
+  ...base(),
   content_security_policy: csp({
     directives: {
       'default-src': ['https://api.dismoi.io'],

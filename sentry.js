@@ -2,8 +2,8 @@
 const { version } = require('./package.json');
 
 // @ts-ignore : This file is used in plain JS in Webpack config
-const getRelease = (platform, nodeEnv, facet) =>
-  `webext@${version}-${facet}-${platform}-${nodeEnv}`;
+const getRelease = (platform, nodeEnv) =>
+  `webext@${version}-dismoi-${platform}-${nodeEnv}`;
 
 module.exports = {
   getRelease

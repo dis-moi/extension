@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import i18n from 'libs/i18n';
-import { getFacet } from 'libs/facets/getFacet';
 import Section from '../../atoms/Section/Section';
 import GridContainer from '../../atoms/Grid/GridContainer';
 import GridRow from '../../atoms/Grid/GridRow';
@@ -16,7 +15,6 @@ import StoreRating from '../../atoms/StoreRating/StoreRating';
 import DarkLayoutBackground from './backgrounds/DarkLayoutBackground';
 import GradientBackground from './backgrounds/GradientBackground';
 import GeometricShapeBackground from './backgrounds/GeometricShapeBackground';
-import GeometricShapeBackground2 from './backgrounds/GeometricShapeBackground2';
 import PatternBackground from './backgrounds/PatternBackground';
 
 const StyledGridRow = styled(props => <GridRow {...props} />)`
@@ -151,20 +149,16 @@ export interface CoverSectionProps {
 
 const CoverSection = styled((props: CoverSectionProps) => {
   const { t } = useTranslation('website');
-  const facet = getFacet();
-  const lmel = facet === 'lmel';
-  const dismoi = facet === 'dismoi';
 
   return (
     <Section id="cover" {...props}>
       <GradientBackground />
-      {dismoi && <DarkLayoutBackground />}
+      <DarkLayoutBackground />
       <GeometricShapeBackground />
-      {lmel && <GeometricShapeBackground2 />}
       <PatternBackground />
       <GridContainer>
         <StyledGridRow>
-          <StyledGridCol1 dismoi={dismoi}>
+          <StyledGridCol1 dismoi={true}>
             <StyledBrowserAnimation />
             <span
               id="variableWords"
@@ -185,7 +179,7 @@ const CoverSection = styled((props: CoverSectionProps) => {
             <SecondaryHeadline>{t('home.secondaryHeadline')}</SecondaryHeadline>
             <CTAAndRatingWrapper>
               <StyledCTAButton />
-              {dismoi && <StyledStoreRating />}
+              <StyledStoreRating />
             </CTAAndRatingWrapper>
           </StyledGridCol2>
         </StyledGridRow>

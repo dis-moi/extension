@@ -14,8 +14,7 @@ if (process.env.SENTRY_ENABLED === 'true') {
     environment: process.env.NODE_ENV,
     release: getRelease(
       process.env.PLATFORM,
-      process.env.NODE_ENV,
-      process.env.FACET
+      process.env.NODE_ENV
     )
   });
 }

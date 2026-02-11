@@ -9,8 +9,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 const requiredEnvVarNames = [
-  'FACET',
-  'FACET_NAME',
   'WEBSITE_URL',
   'SENTRY_DSN',
   'SENTRY_ENABLED',
@@ -32,7 +30,6 @@ loadEnv({ path: path.resolve(__dirname) });
 module.exports = function webpack(env = {}, argv = {}) {
   env = {
     PLATFORM: 'chromium',
-    FACET: 'dismoi',
     ...process.env,
     ...env
   };
@@ -91,8 +88,8 @@ module.exports = function webpack(env = {}, argv = {}) {
       new HtmlWebpackPlugin({
         template: './views/profiles.pug',
         templateParameters: {
-          facetName: env.FACET === 'lmel' ? 'Le Même en Local' : 'DisMoi',
-          facet: env.FACET
+          facetName: 'DisMoi',
+          facet: 'dismoi'
         },
         filename: 'index.html',
         inject: false

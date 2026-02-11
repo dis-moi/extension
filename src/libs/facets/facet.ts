@@ -1,1 +1,1 @@
-export type Facet = 'dismoi' | 'lmel';
+export type Facet = 'dismoi';

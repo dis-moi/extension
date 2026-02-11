@@ -29,69 +29,39 @@ const release = Object.freeze({
     {
       path: '@semantic-release/exec',
       cmd:
-        'NODE_ENV=staging FACET=dismoi SENTRY_SEND_VERSION=true yarn run build:chromium &&' +
-        'NODE_ENV=proding FACET=dismoi SENTRY_SEND_VERSION=true yarn run build:chromium &&' +
-        'NODE_ENV=production FACET=dismoi SENTRY_SEND_VERSION=true yarn run build:chromium &&' +
-        'NODE_ENV=staging FACET=dismoi SENTRY_SEND_VERSION=true yarn run build:firefox &&' +
-        'NODE_ENV=proding FACET=dismoi SENTRY_SEND_VERSION=true yarn run build:firefox &&' +
-        'NODE_ENV=production FACET=dismoi SENTRY_SEND_VERSION=true yarn run build:firefox &&' +
-        'NODE_ENV=staging FACET=lmel SENTRY_SEND_VERSION=true yarn run build:chromium &&' +
-        'NODE_ENV=proding FACET=lmel SENTRY_SEND_VERSION=true yarn run build:chromium &&' +
-        'NODE_ENV=production FACET=lmel SENTRY_SEND_VERSION=true yarn run build:chromium &&' +
-        'NODE_ENV=staging FACET=lmel SENTRY_SEND_VERSION=true yarn run build:firefox &&' +
-        'NODE_ENV=proding FACET=lmel SENTRY_SEND_VERSION=true yarn run build:firefox &&' +
-        'NODE_ENV=production FACET=lmel SENTRY_SEND_VERSION=true yarn run build:firefox'
+        'NODE_ENV=staging SENTRY_SEND_VERSION=true yarn run build:chromium &&' +
+        'NODE_ENV=proding SENTRY_SEND_VERSION=true yarn run build:chromium &&' +
+        'NODE_ENV=production SENTRY_SEND_VERSION=true yarn run build:chromium &&' +
+        'NODE_ENV=staging SENTRY_SEND_VERSION=true yarn run build:firefox &&' +
+        'NODE_ENV=proding SENTRY_SEND_VERSION=true yarn run build:firefox &&' +
+        'NODE_ENV=production SENTRY_SEND_VERSION=true yarn run build:firefox'
     },
     {
       path: '@semantic-release/github',
       assets: [
         {
-          path: getPackagePath('*', 'firefox', 'staging', 'dismoi'),
+          path: getPackagePath('*', 'firefox', 'staging'),
           label: 'Firefox Package - staging'
         },
         {
-          path: getPackagePath('*', 'firefox', 'proding', 'dismoi'),
+          path: getPackagePath('*', 'firefox', 'proding'),
           label: 'Firefox Package - proding'
         },
         {
-          path: getPackagePath('*', 'firefox', 'production', 'dismoi'),
+          path: getPackagePath('*', 'firefox', 'production'),
           label: 'Firefox Package'
         },
         {
-          path: getPackagePath('*', 'chromium', 'staging', 'dismoi'),
+          path: getPackagePath('*', 'chromium', 'staging'),
           label: 'Chromium Package - staging'
         },
         {
-          path: getPackagePath('*', 'chromium', 'proding', 'dismoi'),
+          path: getPackagePath('*', 'chromium', 'proding'),
           label: 'Chromium Package - proding'
         },
         {
-          path: getPackagePath('*', 'chromium', 'production', 'dismoi'),
+          path: getPackagePath('*', 'chromium', 'production'),
           label: 'Chromium Package'
-        },
-        {
-          path: getPackagePath('*', 'firefox', 'staging', 'lmel'),
-          label: 'Le Même en Local - Firefox Package - staging'
-        },
-        {
-          path: getPackagePath('*', 'firefox', 'proding', 'lmel'),
-          label: 'Le Même en Local - Firefox Package - proding'
-        },
-        {
-          path: getPackagePath('*', 'firefox', 'production', 'lmel'),
-          label: 'Le Même en Local - Firefox Package'
-        },
-        {
-          path: getPackagePath('*', 'chromium', 'staging', 'lmel'),
-          label: 'Le Même en Local - Chromium Package - staging'
-        },
-        {
-          path: getPackagePath('*', 'chromium', 'proding', 'lmel'),
-          label: 'Le Même en Local - Chromium Package - proding'
-        },
-        {
-          path: getPackagePath('*', 'chromium', 'production', 'lmel'),
-          label: 'Le Même en Local - Chromium Package'
         }
       ]
     }
