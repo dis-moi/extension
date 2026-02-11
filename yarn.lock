@@ -4859,10 +4859,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/webextension-polyfill@npm:^0.8.1":
-  version: 0.8.1
-  resolution: "@types/webextension-polyfill@npm:0.8.1"
-  checksum: 4b24da446c7e24331cdd4f927f253fbf591cd55ff40798ffd53e47d22bf6b60ad0524516cd48d271bde7fb2fa9e641b839b634e312e74dd9891e7242c44a9f2c
+"@types/webextension-polyfill@npm:^0.10.0":
+  version: 0.10.7
+  resolution: "@types/webextension-polyfill@npm:0.10.7"
+  checksum: 5ff2a8b9244ce022fb66bcb11174e9e4e9f13018bfb59429d61450207d79770b912db7557dd6711b544c4119a47ab42c2a41ccf676def425ea24aafae96577d1
   languageName: node
   linkType: hard
 
@@ -10030,7 +10030,7 @@ __metadata:
     "@types/sinon": ^10.0.0
     "@types/sinon-chai": ^3.2.5
     "@types/styled-components": 5.1.0
-    "@types/webextension-polyfill": ^0.8.1
+    "@types/webextension-polyfill": ^0.10.0
     "@typescript-eslint/eslint-plugin": ^2.0.0
     "@typescript-eslint/parser": ^2.0.0
     add-asset-webpack-plugin: ^1.0.0
@@ -10156,7 +10156,7 @@ __metadata:
     typeface-sedgwick-ave: ^0.0.54
     typescript: ^3.8.3
     url-loader: ^2.1.0
-    webextension-polyfill: ^0.5.0
+    webextension-polyfill: ^0.10.0
     webpack: ^4.39.2
     webpack-bundle-analyzer: ^3.4.1
     webpack-cli: ^3.1.2
@@ -26862,10 +26862,10 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"webextension-polyfill@npm:^0.5.0":
-  version: 0.5.0
-  resolution: "webextension-polyfill@npm:0.5.0"
-  checksum: eb4ae3ecac2a40bdae44fd7507e8dc9b6ed564f3bfdada1416dc3eedb753bc62ac64bfecce308c7e828154ce0cb38b3aea4aeb299fcaddd6e16bb4bcb15846de
+"webextension-polyfill@npm:^0.10.0":
+  version: 0.10.0
+  resolution: "webextension-polyfill@npm:0.10.0"
+  checksum: b25761d019dfdec441c1ed9c9336b0e2be7d06c0a9d85841137418cb0ed5e980c47745c64149dc637dec1828f3e8a9daa110f841e928b3dafa0acb3b7ae0005a
   languageName: node
   linkType: hard
 
