@@ -1,8 +1,6 @@
 import { all, call, fork } from 'redux-saga/effects';
-import PostHog from 'posthog-node';
-import Logger from 'libs/utils/Logger';
 import { asBoolean } from 'libs/utils/env';
-import MatomoTracker from 'app/background/matomo';
+import PlausibleTracker from 'libs/tracking/plausible';
 import listenActionsFromMessages from 'libs/store/sagas/listenActionsFromMessages';
 import doNotTrack from 'libs/webext/doNotTrack';
 import { getTheme } from 'libs/facets/getTheme';
@@ -22,7 +20,6 @@ import tos from './tos.saga';
 import awaitRehydrationSaga from './lib/awaitRehydration.saga';
 import subscriptionsSaga from './subscriptions.saga';
 import tracking from './tracking';
-import posthog from './tracking/posthog';
 import { fetchRestrictedContextsSaga } from './fetchRestrictedContexts.saga';
 import connectSaga from './connect.saga';
 import installationDetailsSaga from './installationDetails.saga';
@@ -30,8 +27,11 @@ import { loginSaga } from './user.saga';
 import contributionSaga from './contribution';
 
 const tracker =
-  process.env.TRACKING_SITE_ID && process.env.TRACKING_URL && !doNotTrack()
-    ? new MatomoTracker(process.env.TRACKING_SITE_ID, process.env.TRACKING_URL)
+  process.env.PLAUSIBLE_DOMAIN && !doNotTrack()
+    ? new PlausibleTracker(
+        process.env.PLAUSIBLE_DOMAIN,
+        process.env.PLAUSIBLE_API_URL
+      )
     : undefined;
 
 export default function* rootSaga() {
@@ -61,17 +61,5 @@ export default function* rootSaga() {
 
   if (asBoolean(process.env.TRACKING_BACKEND)) {
     yield fork(ratings);
-  }
-
-  if (process.env.TRACKING_POSTHOG_API_KEY) {
-    const client = new PostHog(process.env.TRACKING_POSTHOG_API_KEY as string, {
-      flushInterval: 0,
-      flushAt: 0
-    });
-    yield fork(posthog(client));
-  } else {
-    Logger.info(
-      `PostHog tracking is deactivated configure a TRACKING_POSTHOG_API_KEY env variable.`
-    );
   }
 }

@@ -10,6 +10,8 @@ interface AppEnv extends NodeJS.ProcessEnv {
   PROFILES_ORIGIN: string;
   POPULAR_CONTRIBUTORS_IDS: string;
   TRACKING_BACKEND?: string;
+  PLAUSIBLE_DOMAIN?: string;
+  PLAUSIBLE_API_URL?: string;
 }
 
 // @see https://en.wikipedia.org/wiki/Three-valued_logic
