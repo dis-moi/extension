@@ -1,7 +1,9 @@
-import { Action, applyMiddleware, createStore } from 'redux';
+import { Action, applyMiddleware, createStore, Middleware } from 'redux';
 import { routerMiddleware } from 'connected-react-router';
 import { createMemoryHistory } from 'history';
 import createSagaMiddleware from '@redux-saga/core';
+import immutableStateInvariant from 'redux-immutable-state-invariant';
+import { createLogger } from 'redux-logger';
 import rootReducer from './reducers';
 import rootSaga from './sagas';
 
@@ -9,15 +11,15 @@ export const history = createMemoryHistory();
 
 const sagaMiddleware = createSagaMiddleware();
 
-const middlewares = [sagaMiddleware];
+const middlewares: Middleware[] = [sagaMiddleware];
 
 const enhancer =
   process.env.NODE_ENV !== 'production'
     ? applyMiddleware(
         routerMiddleware(history),
         ...middlewares.concat([
-          require('redux-immutable-state-invariant').default(),
-          require('redux-logger').createLogger({
+          immutableStateInvariant(),
+          createLogger({
             level: 'info',
             collapsed: true,
             titleFormatter: (

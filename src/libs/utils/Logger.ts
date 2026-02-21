@@ -17,7 +17,9 @@ const defaultLevel =
   process.env.NODE_ENV === 'production' ? Level.TRACE : Level.TRACE;
 
 const log = (level: Level, messages: unknown[]) => {
-  const { BULLES_LOG_LEVEL } = window as WindowWithLevel;
+  const { BULLES_LOG_LEVEL } = (typeof window !== 'undefined'
+    ? window
+    : globalThis) as WindowWithLevel;
   const treshold: Level =
     BULLES_LOG_LEVEL === undefined ? defaultLevel : BULLES_LOG_LEVEL;
   if (level >= treshold) {

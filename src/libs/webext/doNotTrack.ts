@@ -1,7 +1,9 @@
 function doNotTrack(): boolean {
-  const doNotTrack = window.doNotTrack || navigator.doNotTrack;
+  const dnt =
+    (typeof window !== 'undefined' && window.doNotTrack) ||
+    navigator.doNotTrack;
 
-  return doNotTrack === '1' || doNotTrack === 'yes';
+  return dnt === '1' || dnt === 'yes';
 }
 
 export default doNotTrack;

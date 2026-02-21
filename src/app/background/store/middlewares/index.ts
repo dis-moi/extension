@@ -1,11 +1,12 @@
 import sagaMiddleware from './saga';
 import { Action } from 'redux';
+import { createLogger } from 'redux-logger';
 
 export { sagaMiddleware };
 
 export default [
   sagaMiddleware,
-  require('redux-logger').createLogger({
+  createLogger({
     level: 'info',
     collapsed: true,
     titleFormatter: (action: Action, time: string, took: number): string =>
