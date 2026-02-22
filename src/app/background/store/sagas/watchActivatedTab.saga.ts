@@ -3,7 +3,7 @@ import { eventChannel } from '@redux-saga/core';
 import createActivatedTabListener from 'libs/webext/createActivatedTabListener';
 import { tabActivated } from 'libs/store/actions';
 import { createErrorAction } from 'libs/store/actions/helpers';
-import { disable } from 'libs/webext/browserAction';
+import { disable } from 'libs/webext/action';
 import { resetBadge } from 'libs/domain/badge';
 import { isOptionsPage } from 'libs/webext/createMessageHandler';
 import { Level } from 'libs/utils/Logger';

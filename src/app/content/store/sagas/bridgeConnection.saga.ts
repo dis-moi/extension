@@ -29,9 +29,9 @@ export default function* bridgeConnectionSaga(targetOrigin = '*') {
     const windowAction = yield take(windowMessageActionChannel);
     if (!connected) {
       try {
-        port = yield call(browser.runtime.connect, extensionId, {
-          name: `profiles_${Date.now()}`
-        });
+        port = yield call(
+          () => browser.runtime.connect(extensionId, { name: `profiles_${Date.now()}` })
+        );
         const portActionChannel = yield call(createPortChannel, port);
         yield takeEvery(
           portActionChannel,

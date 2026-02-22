@@ -3,11 +3,15 @@ import {
   captureException as sentryCaptureException,
   captureMessage as sentryCaptureMessage,
   configureScope,
-  init
+  init,
+  Scope
 } from '@sentry/browser';
-import { Event, EventHint, Scope, Severity } from '@sentry/types';
-import { getRelease } from '../../../sentry';
+import type { Event, EventHint } from '@sentry/types';
+import { Severity } from '@sentry/types';
 import Logger, { Level } from './Logger';
+
+const getRelease = (platform: string | undefined, nodeEnv: string | undefined) =>
+  `webext@${process.env.APP_VERSION}-dismoi-${platform}-${nodeEnv}`;
 
 let sentryInitialized = false;
 

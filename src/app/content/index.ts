@@ -1,51 +1,52 @@
-/* eslint-disable @typescript-eslint/no-var-requires, import/first, import/order */
 import Logger from 'libs/utils/Logger';
-Logger.trace('Content script injected...');
-
-if (window.location.href.match((process.env as AppEnv).PROFILES_ORIGIN)) {
-  window.postMessage(
-    'EXTENSION_INJECTED',
-    (process.env as AppEnv).PROFILES_ORIGIN
-  );
-}
-
 import { Scope } from '@sentry/browser';
-import { AppEnv, CustomWindow } from 'types';
+import { CustomWindow } from 'types';
 import i18n, { options } from 'libs/i18n';
+import {
+  captureException,
+  configureSentryScope,
+  initSentry
+} from 'libs/utils/sentry';
+import store from './store';
+import documentReady from 'libs/utils/documentReady';
+import externalClickHandler from './externalClickHandler';
 
-if (!(window as CustomWindow).__BULLES__CONTENT_SCRIPT_INJECTED__) {
-  Logger.trace('Running content script ...');
-  const {
-    captureException,
-    configureSentryScope,
-    initSentry
-  } = require('libs/utils/sentry');
+export function init() {
+  Logger.trace('Content script injected...');
 
-  try {
-    if ((process.env as AppEnv).PLATFORM !== 'firefox') {
-      initSentry();
-      configureSentryScope((scope: Scope) => {
-        scope.setTag('context', 'content');
+  if (window.location.href.match(process.env.PROFILES_ORIGIN as string)) {
+    window.postMessage(
+      'EXTENSION_INJECTED',
+      process.env.PROFILES_ORIGIN as string
+    );
+  }
+
+  if (!(window as CustomWindow).__BULLES__CONTENT_SCRIPT_INJECTED__) {
+    Logger.trace('Running content script ...');
+
+    try {
+      if (process.env.PLATFORM !== 'firefox') {
+        initSentry();
+        configureSentryScope((scope: Scope) => {
+          scope.setTag('context', 'content');
+        });
+      }
+
+      const handleExternalClick = externalClickHandler(store);
+
+      (window as CustomWindow).__BULLES__CONTENT_SCRIPT_INJECTED__ = true;
+
+      documentReady.then(() => {
+        document.addEventListener('click', handleExternalClick);
+
+        window.addEventListener('unload', () => {
+          document.removeEventListener('click', handleExternalClick);
+        });
       });
+
+      i18n.init(options).then(() => {});
+    } catch (error) {
+      captureException(error);
     }
-
-    const store = require('./store').default;
-    const documentReady = require('libs/utils/documentReady').default;
-    const externalClickHandler = require('./externalClickHandler').default;
-    const handleExternalClick = externalClickHandler(store);
-
-    (window as CustomWindow).__BULLES__CONTENT_SCRIPT_INJECTED__ = true;
-
-    documentReady.then(() => {
-      document.addEventListener('click', handleExternalClick);
-
-      window.addEventListener('unload', () => {
-        document.removeEventListener('click', handleExternalClick);
-      });
-    });
-
-    i18n.init(options).then(() => {});
-  } catch (error) {
-    captureException(error);
   }
 }

@@ -2,8 +2,7 @@
   description = "DisMoi browser extension dev environment";
 
   inputs = {
-    # Pin to nixos-22.11 which still has nodejs-16_x
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
   };
 
   outputs = { self, nixpkgs }:
@@ -17,12 +16,9 @@
         in {
           default = pkgs.mkShell {
             nativeBuildInputs = [
-              pkgs.nodejs-16_x
-              (pkgs.yarn.override { nodejs = pkgs.nodejs-16_x; })
+              pkgs.nodejs_22
+              (pkgs.yarn.override { nodejs = pkgs.nodejs_22; })
             ];
-            shellHook = ''
-              export NODE_OPTIONS="--openssl-legacy-provider"
-            '';
           };
         }
       );

@@ -1,2 +1,6 @@
 export default () =>
-  browser.tabs.getCurrent().then(({ id }) => browser.tabs.remove(id || []));
+  browser.tabs.getCurrent().then(tab => {
+    if (tab?.id) {
+      browser.tabs.remove(tab.id);
+    }
+  });

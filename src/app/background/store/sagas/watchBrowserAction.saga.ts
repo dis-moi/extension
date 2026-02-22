@@ -1,11 +1,11 @@
 import { call, put, take } from '@redux-saga/core/effects';
 import { eventChannel } from '@redux-saga/core';
 import { createErrorAction } from 'libs/store/actions/helpers';
-import createBrowserActionListener from 'libs/webext/createBrowserActionListener';
+import createActionListener from 'libs/webext/createActionListener';
 import { Level } from 'libs/utils/Logger';
 
 function* watchBrowserActionSaga() {
-  const channel = yield call(() => eventChannel(createBrowserActionListener));
+  const channel = yield call(() => eventChannel(createActionListener));
 
   while (true) {
     try {

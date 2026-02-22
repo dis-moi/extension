@@ -25,6 +25,10 @@ yarn-error.log
 /src/app/website/.yarn
 /src/app/website/.pnp.js
 
+# WXT
+.wxt/
+.output/
+
 #Yarn
 .pnp.*
 .yarn/*

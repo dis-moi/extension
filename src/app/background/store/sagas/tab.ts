@@ -33,7 +33,7 @@ import {
   warnIfNoticeInvalid
 } from 'libs/domain/notice';
 import { fetchNoticesByUrls } from 'libs/api/fetchNotice';
-import { disable } from 'libs/webext/browserAction';
+import { disable } from 'libs/webext/action';
 import { resetBadge } from 'libs/domain/badge';
 import Tab from 'libs/domain/tab';
 import { createCallAndRetry } from 'libs/store/sagas/effects/callAndRetry';
@@ -60,7 +60,7 @@ export const getExtensionTitle = () =>
 
 export function* restrictTabSaga(tab: Tab) {
   yield call(disable, tab);
-  yield call(browser.browserAction.setTitle, {
+  yield call(browser.action.setTitle, {
     tabId: tab.id,
     title: `${getExtensionTitle()} - ` + i18n.t('tab.disabled')
   });

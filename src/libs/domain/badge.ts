@@ -1,5 +1,14 @@
-import icons from '../../../manifest/icons';
-import greyIcons from '../../../manifest/icons-grey';
+const icons = {
+  '16': 'img/logo/dismoi/16x16.png',
+  '48': 'img/logo/dismoi/48x48.png',
+  '128': 'img/logo/dismoi/128x128.png',
+};
+
+const greyIcons = {
+  '16': 'img/logo/dismoi/grey/16x16.png',
+  '48': 'img/logo/dismoi/grey/48x48.png',
+  '128': 'img/logo/dismoi/grey/128x128.png',
+};
 
 export interface BadgeTheme {
   backgroundColor: {
@@ -9,8 +18,8 @@ export interface BadgeTheme {
 }
 
 export const resetBadge = (tabId?: number) => {
-  browser.browserAction.setBadgeText({ text: '', tabId });
-  browser.browserAction.setIcon({ path: greyIcons });
+  browser.action.setBadgeText({ text: '', tabId });
+  browser.action.setIcon({ path: greyIcons });
 };
 
 /**
@@ -29,15 +38,15 @@ export const updateBadge = (
   badgeTheme: BadgeTheme,
   tabId?: number
 ): void => {
-  browser.browserAction.setIcon({ path: icons, tabId });
+  browser.action.setIcon({ path: icons, tabId });
 
   const { backgroundColor } = badgeTheme;
 
-  browser.browserAction.setBadgeText({
+  browser.action.setBadgeText({
     text: noticesNumber > 0 ? noticesNumber.toString() : '',
     tabId
   });
-  browser.browserAction.setBadgeBackgroundColor({
+  browser.action.setBadgeBackgroundColor({
     color:
       unreadNoticesNumber > 0
         ? backgroundColor.hasUnreadNotices

@@ -10,9 +10,13 @@ export function* connectSaga() {
   Logger.info(`Connecting to extension ${extensionId}`);
 
   try {
-    const port = yield call(browser.runtime.connect, extensionId, {
-      name: `profiles_${Date.now()}`
-    });
+    if (!extensionId) {
+      throw new Error('Extension ID not configured');
+    }
+    const id = extensionId;
+    const port = yield call(
+      () => browser.runtime.connect(id, { name: `profiles_${Date.now()}` })
+    );
     yield fork(
       watchPortSaga,
       ({ meta }: AppActionWithMeta) => meta?.receiver?.id === extensionId,

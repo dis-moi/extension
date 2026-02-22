@@ -13,7 +13,7 @@ import { buildQueryString } from 'libs/api/call';
 import { version } from '../../../../../package.json';
 import { loginSaga } from './user.saga';
 
-const { UNINSTALL_ORIGIN } = process.env;
+const UNINSTALL_ORIGIN = process.env.UNINSTALL_ORIGIN;
 
 export function* installedSaga({
   payload: { installedDetails }
