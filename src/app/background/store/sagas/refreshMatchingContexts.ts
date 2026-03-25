@@ -1,4 +1,4 @@
-import { delay, put, select, takeEvery, fork } from 'redux-saga/effects';
+import { call, put, select, take, takeEvery } from 'redux-saga/effects';
 import {
   receivedMatchingContexts,
   refreshMatchingContextsFailed,
@@ -7,26 +7,12 @@ import {
 } from 'libs/store/actions';
 import { createCallAndRetry } from 'libs/store/sagas/effects/callAndRetry';
 import { getSubscriptions } from 'app/background/store/selectors/subscriptions.selectors';
-import minutesToMilliseconds from 'libs/utils/minutesToMilliseconds';
 import { ContributorId } from 'libs/domain/contributor';
 import fetchMatchingContexts from 'libs/api/fetchMatchingContexts';
+import createAlarmChannel from 'libs/webext/alarmChannel';
 
-const refreshInterval = minutesToMilliseconds(
-  Number(process.env.REFRESH_MC_INTERVAL)
-);
-
-if (refreshInterval > 0) {
-  // eslint-disable-next-line no-console
-  console.info(
-    `Matching contexts will be refreshed every ${process.env.REFRESH_MC_INTERVAL} minutes.`
-  );
-} else {
-  // eslint-disable-next-line no-console
-  console.warn(
-    'Matching contexts auto-refresh disabled:',
-    'assuming "process.env.REFRESH_MC_INTERVAL" is deliberately not defined.'
-  );
-}
+const ALARM_NAME = 'refresh-matching-contexts';
+const intervalMinutes = Number(process.env.REFRESH_MC_INTERVAL);
 
 const callAndRetry = createCallAndRetry({
   maximumRetryDelayInMinutes: 10,
@@ -47,9 +33,7 @@ export function* fetchMatchingContextsForContributor(
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore To be typed properly
-export function* refreshMatchingContextsPeriodically() {
+function* refreshAllMatchingContexts() {
   const subscriptions: ReturnType<typeof getSubscriptions> = yield select(
     getSubscriptions
   );
@@ -57,10 +41,18 @@ export function* refreshMatchingContextsPeriodically() {
   for (const subscription of subscriptions) {
     yield fetchMatchingContextsForContributor(subscription);
   }
+}
 
-  if (refreshInterval > 0) {
-    yield delay(refreshInterval);
-    yield refreshMatchingContextsPeriodically();
+function* refreshMatchingContextsPeriodically() {
+  yield call(refreshAllMatchingContexts);
+
+  if (intervalMinutes > 0) {
+    browser.alarms.create(ALARM_NAME, { periodInMinutes: intervalMinutes });
+    const channel = createAlarmChannel(ALARM_NAME);
+    while (true) {
+      yield take(channel);
+      yield call(refreshAllMatchingContexts);
+    }
   }
 }
 
@@ -71,6 +63,6 @@ function* fetchNewlySubscribedMatchingContexts(
 }
 
 export default function* refreshMatchingContextsRootSaga() {
-  yield fork(refreshMatchingContextsPeriodically);
+  yield call(refreshMatchingContextsPeriodically);
   yield takeEvery(SUBSCRIBE, fetchNewlySubscribedMatchingContexts);
 }

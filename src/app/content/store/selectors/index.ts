@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { RouteComponentProps } from 'react-router';
-import { getLocation } from 'connected-react-router';
+import { getLocation } from 'libs/store/router';
 import {
   getFormMeta,
   getFormSyncErrors,

@@ -5,7 +5,7 @@ import {
   createStore,
   Middleware
 } from 'redux';
-import { routerMiddleware } from 'connected-react-router';
+import { routerMiddleware } from 'libs/store/router';
 import createSagaMiddleware from '@redux-saga/core';
 import immutableStateInvariant from 'redux-immutable-state-invariant';
 import { createLogger } from 'redux-logger';
@@ -29,11 +29,7 @@ export const createProfilesStore = (history?: History) => {
 
   const applyMiddlewares =
     process.env.NODE_ENV !== 'production'
-      ? applyMiddleware(
-          ...middlewares.concat([
-            immutableStateInvariant()
-          ])
-        )
+      ? applyMiddleware(...middlewares.concat([immutableStateInvariant()]))
       : applyMiddleware(...middlewares);
 
   /* eslint-disable @typescript-eslint/no-explicit-any */

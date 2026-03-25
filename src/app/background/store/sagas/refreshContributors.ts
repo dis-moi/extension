@@ -1,35 +1,25 @@
-import { fork, delay, put, takeLatest } from 'redux-saga/effects';
-import { REFRESH_CONTRIBUTORS, refreshContributors } from 'libs/store/actions';
-import minutesToMilliseconds from 'libs/utils/minutesToMilliseconds';
+import { call, take, takeLatest } from 'redux-saga/effects';
+import { REFRESH_CONTRIBUTORS } from 'libs/store/actions';
 import refreshContributorsSaga from 'libs/store/sagas/refreshContributors.saga';
+import createAlarmChannel from 'libs/webext/alarmChannel';
 
-const refreshInterval = minutesToMilliseconds(
-  Number(process.env.REFRESH_CONTRIBUTORS_INTERVAL)
-);
+const ALARM_NAME = 'refresh-contributors';
+const intervalMinutes = Number(process.env.REFRESH_CONTRIBUTORS_INTERVAL);
 
-if (refreshInterval > 0) {
-  // eslint-disable-next-line no-console
-  console.info(
-    `Contributors will be refreshed every ${process.env.REFRESH_CONTRIBUTORS_INTERVAL} minutes.`
-  );
-} else {
-  // eslint-disable-next-line no-console
-  console.warn(
-    'Contributors auto-refresh disabled:',
-    'assuming "process.env.REFRESH_CONTRIBUTORS_INTERVAL" is deliberately not defined.'
-  );
-}
+function* refreshContributorsPeriodically() {
+  yield call(refreshContributorsSaga);
 
-export function* refreshContributorsPeriodicallySaga() {
-  yield refreshContributorsSaga();
-
-  if (refreshInterval > 0) {
-    yield delay(refreshInterval);
-    yield put(refreshContributors());
+  if (intervalMinutes > 0) {
+    browser.alarms.create(ALARM_NAME, { periodInMinutes: intervalMinutes });
+    const channel = createAlarmChannel(ALARM_NAME);
+    while (true) {
+      yield take(channel);
+      yield call(refreshContributorsSaga);
+    }
   }
 }
 
 export default function*() {
   yield takeLatest(REFRESH_CONTRIBUTORS, refreshContributorsSaga);
-  yield fork(refreshContributorsPeriodicallySaga);
+  yield call(refreshContributorsPeriodically);
 }

@@ -3,7 +3,7 @@ import i18n, { options } from './index';
 
 describe('i18n translation', () => {
   beforeEach(() => {
-    i18n.init(options).then(() => {});
+    i18n.init({ ...options, lng: 'en' }).then(() => {});
   });
   const testCreationDate = new Date(2021, 4 /* may */, 10);
   it('common.or return or', () => {

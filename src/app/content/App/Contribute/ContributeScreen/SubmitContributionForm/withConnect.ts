@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { push } from 'connected-react-router';
+import { push } from 'libs/store/router';
 import { change } from 'redux-form';
 import { getFlatFormErrors } from 'app/content/store/selectors';
 import { ContentState } from 'app/content/store/reducers';

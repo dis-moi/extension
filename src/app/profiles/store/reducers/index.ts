@@ -1,4 +1,4 @@
-import { connectRouter, RouterRootState } from 'connected-react-router';
+import { connectRouter, RouterRootState } from 'libs/store/router';
 import { combineReducers } from 'redux';
 import { History } from 'history';
 import categories, { CategoriesCollection } from './categories.reducer';

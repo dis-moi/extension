@@ -1,4 +1,4 @@
-import { connectRouter, RouterState } from 'connected-react-router';
+import { connectRouter, RouterState } from 'libs/store/router';
 import { combineReducers } from 'redux';
 import { MemoryHistory } from 'history';
 import { FormStateMap, reducer as form } from 'redux-form';

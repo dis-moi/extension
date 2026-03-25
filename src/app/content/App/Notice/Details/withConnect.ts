@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
-import { goBack } from 'connected-react-router';
+import { goBack } from 'libs/store/router';
 import {
   getNoticeFromRoute,
   getNoticeRelayer

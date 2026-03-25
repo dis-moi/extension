@@ -1,6 +1,6 @@
 import { match as Match, matchPath } from 'react-router';
 import { cancel, fork, ForkEffect, take } from 'redux-saga/effects';
-import { LOCATION_CHANGE, LocationChangeAction } from 'connected-react-router';
+import { LOCATION_CHANGE, LocationChangeAction } from 'libs/store/router';
 
 const takeLatestLocationChange = <
   Params extends { [K in keyof Params]?: string } = {}

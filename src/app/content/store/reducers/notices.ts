@@ -1,4 +1,4 @@
-import { LOCATION_CHANGE } from 'connected-react-router';
+import { LOCATION_CHANGE } from 'libs/store/router';
 import * as R from 'ramda';
 import {
   dislikeNotice,

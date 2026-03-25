@@ -29,6 +29,17 @@ yarn-error.log
 .wxt/
 .output/
 
+# Next.js (website-next)
+/src/app/website-next/.next/
+/src/app/website-next/node_modules/
+/src/app/website-next/.yarn/
+
+# direnv
+.direnv/
+
+# Clever Cloud
+.clever.json
+
 #Yarn
 .pnp.*
 .yarn/*

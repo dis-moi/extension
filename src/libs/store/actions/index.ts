@@ -1,4 +1,4 @@
-import { LocationChangeAction } from 'connected-react-router';
+import { LocationChangeAction } from 'libs/store/router';
 import * as R from 'ramda';
 import Tab from 'libs/domain/tab';
 import { StandardAction } from 'libs/store/types';

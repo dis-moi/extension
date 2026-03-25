@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { goBack } from 'connected-react-router';
+import { goBack } from 'libs/store/router';
 import { getQuestion } from 'app/content/store/selectors';
 import { ContentState } from 'app/content/store/reducers';
 import { close } from 'libs/store/actions/ui';

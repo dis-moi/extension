@@ -1,7 +1,4 @@
-import {
-  LocationChangeAction,
-  LocationChangePayload
-} from 'connected-react-router';
+import { LocationChangeAction, LocationChangePayload } from 'libs/store/router';
 import { CloseCause } from 'libs/domain/ui';
 import Tab from 'libs/domain/tab';
 import { Level } from 'libs/utils/Logger';

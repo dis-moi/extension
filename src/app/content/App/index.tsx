@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'connected-react-router';
+import { ConnectedRouter } from 'libs/store/router';
 import { ThemeProvider, StyleSheetManager } from 'styled-components';
 import FontsStyle from 'components/atoms/FontsStyle';
 import { useTheme } from 'libs/facets/useTheme.hook';

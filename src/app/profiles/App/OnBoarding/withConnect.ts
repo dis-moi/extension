@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { push } from 'connected-react-router';
+import { push } from 'libs/store/router';
 import { ProfilesState } from '../../store/reducers';
 
 const SEARCH_PATH = '?pk_campaign=installed';

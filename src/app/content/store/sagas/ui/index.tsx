@@ -8,8 +8,8 @@ import {
   takeLatest,
   delay
 } from 'redux-saga/effects';
-import { render } from 'react-dom';
-import { go, replace } from 'connected-react-router';
+import { createRoot, Root } from 'react-dom/client';
+import { go, replace } from 'libs/store/router';
 import { StatefulNotice } from 'libs/domain/notice';
 import Logger from 'libs/utils/Logger';
 import {
@@ -48,6 +48,7 @@ import { fakeLoadingSaga } from './fakeLoading.saga';
 const theme = getTheme();
 const iframe = create(theme.iframe.style);
 let contentDocument: Document;
+let root: Root | null = null;
 
 export function* openSaga({ payload: openedFrom }: OpenAction) {
   try {
@@ -72,10 +73,12 @@ export function* openSaga({ payload: openedFrom }: OpenAction) {
       } else {
         Logger.trace('Mounting UI !');
         contentDocument = yield call(append, iframe);
-        const root = contentDocument.createElement('div');
-        contentDocument.body.appendChild(root);
-        const renderAppInIframe = () =>
-          render(<App contentDocument={contentDocument} />, root);
+        const rootElement = contentDocument.createElement('div');
+        contentDocument.body.appendChild(rootElement);
+        const renderAppInIframe = () => {
+          root = createRoot(rootElement);
+          root.render(<App contentDocument={contentDocument} />);
+        };
         yield call(renderAppInIframe);
       }
 

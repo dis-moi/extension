@@ -1,5 +1,5 @@
 import { put, race, take, takeLatest, call } from 'redux-saga/effects';
-import { go, replace } from 'connected-react-router';
+import { go, replace } from 'libs/store/router';
 import { reset } from 'redux-form';
 import {
   CONTRIBUTION_SUBMISSION_FAILED,

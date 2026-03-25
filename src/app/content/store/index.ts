@@ -1,5 +1,5 @@
 import { Action, applyMiddleware, createStore, Middleware } from 'redux';
-import { routerMiddleware } from 'connected-react-router';
+import { routerMiddleware } from 'libs/store/router';
 import { createMemoryHistory } from 'history';
 import createSagaMiddleware from '@redux-saga/core';
 import immutableStateInvariant from 'redux-immutable-state-invariant';

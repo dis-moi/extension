@@ -1,12 +1,12 @@
 import './browser';
 import React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import i18n, { options } from 'libs/i18n';
 import { createBrowserHistory } from 'history';
 import { createProfilesStore } from './store';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
-import { ConnectedRouter } from 'connected-react-router';
+import { ConnectedRouter } from 'libs/store/router';
 import Background from './App/Background';
 import PageContainer from './App/PageContainer';
 import Pages from './App/Pages';
@@ -44,4 +44,7 @@ i18n
   .then(() => null)
   .catch(() => null);
 
-render(<App />, document.getElementById('root'));
+const container = document.getElementById('root');
+if (container) {
+  createRoot(container).render(<App />);
+}
