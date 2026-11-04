@@ -2,11 +2,11 @@ import slugify from 'slugify';
 import i18n from 'i18next';
 import join from 'join-url';
 import { Contributor } from '@dismoi/domain/contributor';
-import { getPathPrefix } from 'libs/facets/getPathPrefix';
 
 const pathToContributor = (contributor: Contributor) => {
+  // `path.profiles.contributors` porte déjà la langue (« /fr/profils »,
+  // « /en/guides ») et correspond aux pages servies par le site.
   return join.pathname(
-    getPathPrefix(i18n),
     i18n.t('path.profiles.contributors'),
     contributor.id,
     slugify(contributor.name),

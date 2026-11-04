@@ -6,39 +6,23 @@ import ConnectedContextPopin from '../ContextPopin/';
 import Profiles from './Profiles';
 import Error from './Error';
 import Subscriptions from './Subscriptions';
-import { getPathPrefix } from 'libs/facets/getPathPrefix';
 
 const Pages = () => {
   useChangeLanguage();
-  const { t, i18n } = useTranslation();
-  const prefix = getPathPrefix(i18n);
+  const { t } = useTranslation();
 
+  // Les chemins traduits portent déjà la langue (« /fr/profils »,
+  // « /en/guides ») et sont ceux que sert le site. Y ajouter un préfixe
+  // donnait « /fr/fr/profils », que Next ne connaît pas.
   return (
     <>
       <Switch>
+        <Route path={t('path.profiles.contributors')} component={Profiles} />
         <Route
-          path={`${prefix}${t('path.profiles.contributors')}`}
-          component={Profiles}
-        />
-        <Route
-          path={`${prefix}${t('path.profiles.subscriptions')}`}
+          path={t('path.profiles.subscriptions')}
           component={Subscriptions}
         />
-        <Redirect
-          exact
-          from={`${t('path.profiles.contributors')}`}
-          to={`/${i18n.language}${t('path.profiles.contributors')}`}
-        />
-        <Redirect
-          exact
-          from={`${t('path.profiles.subscriptions')}`}
-          to={`/${i18n.language}${t('path.profiles.subscriptions')}`}
-        />
-        <Redirect
-          exact
-          from="/"
-          to={`${prefix}${t('path.profiles.contributors')}`}
-        />
+        <Redirect exact from="/" to={t('path.profiles.contributors')} />
         <Route render={() => <Error message="Introuvable" />} />
       </Switch>
       <ConnectedContextPopin />
