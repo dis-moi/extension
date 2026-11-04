@@ -8,7 +8,9 @@ interface NotificationFooterProps {
   children?: FooterRoute[];
 }
 
-const NotificationFooter = ({ children }: NotificationFooterProps) => {
+const NotificationFooter = ({
+  children = footerRoutes,
+}: NotificationFooterProps) => {
   const { t } = useTranslation();
   return (
     <FooterContainer>
@@ -20,10 +22,6 @@ const NotificationFooter = ({ children }: NotificationFooterProps) => {
         ))}
     </FooterContainer>
   );
-};
-
-NotificationFooter.defaultProps = {
-  children: footerRoutes,
 };
 
 export default NotificationFooter;

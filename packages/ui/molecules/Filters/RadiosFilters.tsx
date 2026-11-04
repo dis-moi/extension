@@ -21,13 +21,13 @@ const RadioButton = styled.input.attrs({ type: 'radio' })`
 
 interface RadiosCheckboxesProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  filters: Record<number | string, string>;
+  filters?: Record<number | string, string>;
   loading: boolean;
 }
 
 const RadiosFilters = ({
   onChange,
-  filters,
+  filters = {},
   loading,
 }: RadiosCheckboxesProps) => {
   const { t } = useTranslation('profiles');
@@ -61,10 +61,6 @@ const RadiosFilters = ({
       </FiltersList>
     </FiltersBar>
   );
-};
-
-RadiosFilters.defaultProps = {
-  filters: [],
 };
 
 export default RadiosFilters;

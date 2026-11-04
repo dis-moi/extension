@@ -10,8 +10,4 @@ const Time = ({ children, ...props }: Props) => (
   </time>
 );
 
-Time.defaultProps = {
-  children: null,
-};
-
 export default Time;

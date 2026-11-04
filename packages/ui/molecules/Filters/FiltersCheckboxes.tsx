@@ -40,13 +40,13 @@ const Checkbox = styled.input.attrs({ type: 'checkbox' })`
 
 interface FiltersCheckboxesProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  filters: Record<string, string>;
+  filters?: Record<string, string>;
   loading: boolean;
 }
 
 const FiltersCheckboxes = ({
   onChange,
-  filters,
+  filters = {},
   loading,
 }: FiltersCheckboxesProps) => {
   const { t } = useTranslation();
@@ -69,10 +69,6 @@ const FiltersCheckboxes = ({
       </FiltersList>
     </FiltersBar>
   );
-};
-
-FiltersCheckboxes.defaultProps = {
-  filters: [],
 };
 
 export default FiltersCheckboxes;
