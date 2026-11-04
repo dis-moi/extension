@@ -18,30 +18,31 @@ function* contributorLocationSaga(match: Match<{ id: string }>) {
   yield put(refreshContributors());
 }
 
-const prefix = '/:lang';
+// Les chemins traduits portent déjà la langue — « /fr/profils », « /en/guides »
+// — et sont ceux que sert le site. Les préfixer d'un « /:lang » attendrait
+// « /fr/fr/profils » : aucune navigation ne correspondrait, et les
+// contributeurs ne seraient jamais chargés.
+export const contributorsPaths = [
+  en.path.profiles.contributors,
+  fr.path.profiles.contributors,
+];
+
+export const subscriptionsPaths = [
+  en.path.profiles.subscriptions,
+  fr.path.profiles.subscriptions,
+];
+
+export const contributorPaths = contributorsPaths.map(
+  (path) => `${path}/:id/:slug`,
+);
 
 export default function* locationChangeSaga() {
-  yield takeLatestLocationChange(
-    [
-      prefix + en.path.profiles.contributors,
-      prefix + fr.path.profiles.contributors,
-    ],
-    contributorsLocationSaga,
-  );
+  yield takeLatestLocationChange(contributorsPaths, contributorsLocationSaga);
 
-  yield takeLatestLocationChange(
-    [
-      prefix + en.path.profiles.subscriptions,
-      prefix + fr.path.profiles.subscriptions,
-    ],
-    contributorsLocationSaga,
-  );
+  yield takeLatestLocationChange(subscriptionsPaths, contributorsLocationSaga);
 
   yield takeLatestLocationChange<{ id: string }>(
-    [
-      prefix + en.path.profiles.contributors + '/:id/:slug',
-      prefix + fr.path.profiles.contributors + '/:id/:slug',
-    ],
+    contributorPaths,
     contributorLocationSaga,
   );
 }
