@@ -1,0 +1,7 @@
+.wxt/
+.output/
+.next/
+.nx/
+node_modules/
+build/
+dist/

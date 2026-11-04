@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "outDir": "../../dist/packages/extension",
+    "types": [
+      "chrome",
+      "firefox-webext-browser",
+      "mocha"
+    ]
+  },
+  "include": ["./**/*.ts", "./**/*.tsx", "./test/**/*"],
+  "exclude": ["node_modules", ".output"]
+}

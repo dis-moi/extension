@@ -1,0 +1,26 @@
+diff a/src/libs/store/router/actions.ts b/src/libs/store/router/actions.ts	(rejected hunks)
+@@ -26,3 +26,3 @@ interface CallHistoryMethodAction {
+-const updateLocation = (
+-  method: string
+-) => (...args: unknown[]): CallHistoryMethodAction => ({
++const updateLocation = (method: string) => (
++  ...args: unknown[]
++): CallHistoryMethodAction => ({
+@@ -33,3 +33,9 @@ const updateLocation = (
+-export const push = updateLocation('push') as (path: Path) => CallHistoryMethodAction;
+-export const replace = updateLocation('replace') as (path: Path) => CallHistoryMethodAction;
+-export const go = updateLocation('go') as (n: number) => CallHistoryMethodAction;
++export const push = updateLocation('push') as (
++  path: Path
++) => CallHistoryMethodAction;
++export const replace = updateLocation('replace') as (
++  path: Path
++) => CallHistoryMethodAction;
++export const go = updateLocation('go') as (
++  n: number
++) => CallHistoryMethodAction;
+@@ -37 +43,3 @@ export const goBack = updateLocation('goBack') as () => CallHistoryMethodAction;
+-export const goForward = updateLocation('goForward') as () => CallHistoryMethodAction;
++export const goForward = updateLocation(
++  'goForward'
++) as () => CallHistoryMethodAction;

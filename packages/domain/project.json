@@ -1,0 +1,6 @@
+{
+  "name": "domain",
+  "sourceRoot": "packages/domain",
+  "projectType": "library",
+  "tags": ["scope:shared"]
+}

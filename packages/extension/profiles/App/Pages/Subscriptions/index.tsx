@@ -1,0 +1,15 @@
+import React from 'react';
+import { RouteComponentProps } from 'react-router';
+import ScrollToTop from '@dismoi/ui/ScrollToTop';
+import Subscriptions from './Subscriptions';
+import withConnect from './withConnect';
+
+const ConnectedSubscriptions = withConnect(Subscriptions);
+
+export interface RoutedConnectedSubscriptionsProps extends RouteComponentProps {}
+
+export default ({ location }: RoutedConnectedSubscriptionsProps) => (
+  <ScrollToTop location={location}>
+    <ConnectedSubscriptions />
+  </ScrollToTop>
+);

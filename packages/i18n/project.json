@@ -1,0 +1,6 @@
+{
+  "name": "i18n",
+  "sourceRoot": "packages/i18n",
+  "projectType": "library",
+  "tags": ["scope:shared"]
+}

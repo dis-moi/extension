@@ -4,20 +4,17 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "project": "tsconfig.json"
+    "project": ["tsconfig.base.json", "packages/*/tsconfig.json"]
   },
   "env": {
     "mocha": true
   },
   "settings": {
     "react": {
-      "version": "detect" // React version. "detect" automatically picks the version you have installed.
+      "version": "detect"
     },
     "import/resolver": {
-      "typescript": {} // this loads <rootdir>/tsconfig.json to eslint
-      //      "typescript": {
-      //        "project": "."
-      //      }
+      "typescript": {}
     }
   },
   "globals": {
@@ -28,18 +25,17 @@
   },
   "extends": [
     "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
+    "prettier",
     "plugin:import/typescript",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended"
   ],
-  "plugins": ["react"],
+  "plugins": ["react", "react-hooks", "import"],
   "rules": {
     "no-console": "warn",
-    // Use either @typescript-eslint/no-unused-vars or this one but not both
     "no-unused-vars": 0,
     "import/order": [
-      "warning",
+      "warn",
       {
         "groups": [
           "builtin",
@@ -52,13 +48,12 @@
         ]
       }
     ],
-    // We don't actually set a display name for functional component
     "react/display-name": 0,
+    "react/no-unknown-property": ["error", { "ignore": ["jsx", "global"] }],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
 
-    /* TypeScript */
-    // We don't actually set the return type of React functional component
     "@typescript-eslint/explicit-function-return-type": 0,
-    // We don't actually always explicitly member accessility (componentDidMount ...)
     "@typescript-eslint/explicit-member-accessibility": 0,
     "@typescript-eslint/no-explicit-any": ["error", { "ignoreRestArgs": true }],
     "@typescript-eslint/no-empty-interface": 0,
@@ -67,6 +62,8 @@
       { "ignoreRestSiblings": true }
     ],
     "@typescript-eslint/no-empty-function": 0,
-    "@typescript-eslint/camelcase": "off"
+    "@typescript-eslint/ban-types": "warn",
+    "@typescript-eslint/ban-ts-comment": "warn",
+    "@typescript-eslint/no-unnecessary-type-constraint": "warn"
   }
 }

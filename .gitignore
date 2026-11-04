@@ -29,10 +29,11 @@ yarn-error.log
 .wxt/
 .output/
 
-# Next.js (website-next)
-/src/app/website-next/.next/
-/src/app/website-next/node_modules/
-/src/app/website-next/.yarn/
+# Nx
+.nx/
+
+# Next.js
+.next/
 
 # direnv
 .direnv/

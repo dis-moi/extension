@@ -1,25 +1,14 @@
 {
-  "extends": "./.wxt/tsconfig.json",
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "jsx": "react",
-    "baseUrl": "./src",
-    "paths": {
-      "test/*": ["../test/*"]
-    },
-    "types": [
-      "chrome",
-      "firefox-webext-browser",
-      "mocha"
-    ],
-    "outDir": "./build",
-    "sourceRoot": "./src"
+    "noEmit": true
   },
-  "include": ["./src/**/*", "./test/app/**/*", "./.wxt/wxt.d.ts"],
-  "exclude": [
-    "node_modules",
-    ".output",
-    "./**/website/node_modules",
-    "./**/website/.cache",
-    "./src/app/website-next"
+  "include": [],
+  "references": [
+    { "path": "./packages/domain" },
+    { "path": "./packages/ui" },
+    { "path": "./packages/i18n" },
+    { "path": "./packages/extension" },
+    { "path": "./packages/web" }
   ]
 }

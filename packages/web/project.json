@@ -1,0 +1,24 @@
+{
+  "name": "web",
+  "sourceRoot": "packages/web",
+  "projectType": "application",
+  "tags": ["scope:web"],
+  "targets": {
+    "dev": {
+      "command": "next dev",
+      "options": { "cwd": "packages/web" }
+    },
+    "build": {
+      "command": "next build",
+      "options": { "cwd": "packages/web" }
+    },
+    "start": {
+      "command": "next start",
+      "options": { "cwd": "packages/web" }
+    },
+    "test": {
+      "command": "vitest",
+      "options": { "cwd": "packages/web" }
+    }
+  }
+}

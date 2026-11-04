@@ -1,0 +1,147 @@
+{
+  "common": {
+    "or": "ou",
+    "congratulations": "Félicitations !",
+    "loading": "Chargement...",
+    "relayed_by": "relayé par",
+    "filters": "Mes filtres"
+  },
+  "action": {
+    "post": "Poster",
+    "ask": "Demander",
+    "see_more": "Voir tout",
+    "preview": "Prévisualiser",
+    "publish": "Publier",
+    "edit": "Modifier",
+    "cancel": "Annuler",
+    "submit": "Envoyer",
+    "go_back": {
+      "back": "Retour",
+      "messages": "Retour aux messages",
+      "submissions": "Retour aux contributions"
+    },
+    "manage_subscription": "Gérer mes contributeurs"
+  },
+  "date": {
+    "short": "{{date, LL/dd/yyyy}}",
+    "medium": "Le {{date, eeee dd MMMM yyyy}}"
+  },
+  "menu": {
+    "my_account": "Mon compte",
+    "my_data": "Mes données",
+    "help": "Aide",
+    "about": "À propos",
+    "contact": "Contact",
+    "privacy": "Vie privée",
+    "uninstall": "Désinstaller",
+    "subscriptions": "Comptes suivis",
+    "contributions": "Contributions",
+    "tos": "CGU"
+  },
+  "form": {
+    "field_name": {
+      "placeholder": "Votre nom"
+    },
+    "field_message": {
+      "placeholder": "Écrire le message que vous souhaitez publier sur cette page"
+    },
+    "field_email": {
+      "placeholder": "Votre@email.fr"
+    },
+    "field_contributor_source": {
+      "label": "Choix du contributeur"
+    },
+    "field_message_question": {
+      "placeholder": "Indiquez votre question à propos de la cette page"
+    },
+    "preview_send": "$t(action.preview) et $t(action.publish)"
+  },
+  "error": {
+    "form": {
+      "require_field": "Ce champ est obligatoire"
+    },
+    "common": {
+      "title": "Oops !",
+      "message": "Quelque chose s’est mal passé. Veuillez réessayer plus tard."
+    }
+  },
+  "faq": {
+    "title": "Questions fréquentes",
+    "notices": {
+      "where_appear": "Sur quelles pages apparaissent les notices ?",
+      "dont_appear": "J’ai beau tester, les notices n’apparaissent pas"
+    },
+    "privacy": {
+      "used_data": "Quelles sont les données utilisées ?"
+    },
+    "other_questions": {
+      "title": "Autres questions fréquentes"
+    }
+  },
+  "notice": {
+    "feedback_dislike": "Merci pour votre retour, cette contribution ne s’affichera plus",
+    "feedback_deleted": "Cette contribution ne s’affichera plus !"
+  },
+  "view": {
+    "contributions": {
+      "disclaimer_no_post_step1": "Pas encore de contribution sur cette page<1>Soyez le premier à poster une info, un conseil ici</1>",
+      "disclaimer_no_post_step2": "Pas encore de contribution sur cette page<1>Veuillez ajouter votre nom et prénom</1>",
+      "button_subtext": "Validez votre message"
+    },
+    "subscriptions": {
+      "title": "$t(menu.subscriptions)",
+      "followed_sources": "Vous suivez <br/><strong>{{count}}</strong> contributeur",
+      "followed_sources_plural": "Vous suivez <br/><strong>{{count}}</strong> contributeurs",
+      "no_followed_sources": "Vous ne suivez actuellement aucun contributeur.<br />Pour recevoir des conseils et infos, abonnez-vous !"
+    },
+    "about": {
+      "description": "Lorsque vous visitez une page du web, {{facetName}} vous permet de lire les messages de vos contributeurs et en poster à votre tour.",
+      "install_date": "Vous l’avez installé le"
+    },
+    "help": {
+      "contact_support": "Contacter le support de {{facetName}}",
+      "write_to": "Merci de nous écrire à"
+    },
+    "submitted": {
+      "confirm": "Votre contribution sera publiée d’ici 24h, une confirmation vous sera envoyée par email."
+    },
+    "confirmation": {
+      "thanks": "Merci pour votre demande.",
+      "message": "Elle sera très rapidement transmise au(x) source(s) concernée(s). Et vous serez prévenu de la réponse directement par mail."
+    }
+  },
+  "title": {
+    "subscriptions": "$t(menu.subscriptions)",
+    "help": "$t(menu.help)",
+    "filters": "$t(common.filters)",
+    "options": "Options",
+    "about": "$t(menu.about)",
+    "post_form": "Poster sur cette page web",
+    "preview": "Prévisualisation",
+    "ask_info_form": "Demander une contribution ici",
+    "contribution_details": "Détail de la contribution"
+  },
+  "path": {
+    "profiles": {
+      "contributors": "/fr/profils",
+      "subscriptions": "/fr/mes-abonnements"
+    },
+    "appear": "/apparition",
+    "problem_post_appearing": "/probleme-apparition-bulles",
+    "privacy": "/vie-privee",
+    "help": "/aide",
+    "contact": "/contact",
+    "tos": "/cgu",
+    "about": "/a-propos",
+    "uninstall": "/desinstaller"
+  },
+  "services": {
+    "label": "Choisir mes contributeurs",
+    "first_message": "Pour poster et recevoir des messages, veuillez finaliser votre configuration.",
+    "first_message_plural": "Il existe une contribution sur cette page. Pour la visualiser, veuillez finaliser votre configuration."
+  },
+  "tab": {
+    "disabled": "Désactivé sur cette page",
+    "sources_link": "Sources d'informations"
+  }
+}

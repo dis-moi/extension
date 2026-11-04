@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@dismoi/domain": ["packages/domain"],
+      "@dismoi/domain/*": ["packages/domain/*"],
+      "@dismoi/ui/*": ["packages/ui/*"],
+      "@dismoi/i18n": ["packages/i18n"],
+      "@dismoi/i18n/*": ["packages/i18n/*"],
+      "@dismoi/extension/*": ["packages/extension/*"],
+      "@dismoi/web/*": ["packages/web/*"]
+    }
+  },
+  "exclude": ["node_modules", ".output", "build", "dist", ".next"]
+}
