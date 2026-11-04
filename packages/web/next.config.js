@@ -1,10 +1,43 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
+const { loadEnvConfig } = require('@next/env');
+const injectedEnvVars = require('../../injected-env-vars.json');
 
 const packagesRoot = path.resolve(__dirname, '..');
+const repoRoot = path.resolve(__dirname, '../..');
+
+// Next ne cherche les fichiers .env que dans le dossier de l'application,
+// alors qu'ils vivent à la racine du dépôt et sont partagés avec l'extension.
+// Sans ce chargement explicite, le code commun compile avec des variables
+// `undefined` : `BACKEND_ORIGIN + 'contributors'` devient une URL relative et
+// le site interroge /fr/undefinedcontributors au lieu de l'API.
+//
+// forceReload est indispensable : Next a déjà appelé loadEnvConfig sur
+// packages/web, qui ne contient aucun .env, et @next/env renverrait ce
+// résultat vide depuis son cache.
+const { combinedEnv } = loadEnvConfig(
+  repoRoot,
+  process.env.NODE_ENV !== 'production',
+  console,
+  true,
+);
+
+const env = Object.fromEntries(
+  injectedEnvVars
+    .filter((name) => combinedEnv[name] !== undefined)
+    .map((name) => [name, combinedEnv[name]]),
+);
+
+if (!env.BACKEND_ORIGIN) {
+  throw new Error(
+    `BACKEND_ORIGIN est absente ou vide : le site ne peut pas joindre l'API. ` +
+      `Elle est attendue à la racine du dépôt (.env, .env.${process.env.NODE_ENV}) ou dans l'environnement du shell.`,
+  );
+}
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  env,
   reactStrictMode: true,
   output: 'standalone',
   typescript: {

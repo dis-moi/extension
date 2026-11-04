@@ -1,32 +1,19 @@
 import { loadEnv } from 'vite';
+import injectedEnvVars from '../../injected-env-vars.json';
 
 /**
  * Variables d'environnement injectées dans le bundle à la compilation.
- * Une variable absente de cette liste n'est jamais exposée au code de
- * l'extension, même si elle est présente dans un fichier `.env`.
+ * Une variable absente de cette liste n'est jamais exposée au code, même si
+ * elle est présente dans un fichier `.env`.
+ *
+ * La liste vit dans un JSON à la racine parce que le site Next.js la lit
+ * aussi : les deux applications embarquent le même code partagé, donc une
+ * variable oubliée d'un côté produirait la même panne silencieuse que celle
+ * qui a motivé ce module.
  */
-export const INJECTED_ENV_VARS = [
-  'WEBSITE_URL',
-  'SENTRY_DSN',
-  'BACKEND_ORIGIN',
-  'UNINSTALL_ORIGIN',
-  'REFRESH_MC_INTERVAL',
-  'REFRESH_CONTRIBUTORS_INTERVAL',
-  'TRACKING_BACKEND',
-  'PLAUSIBLE_DOMAIN',
-  'PLAUSIBLE_API_URL',
-  'SENTRY_ENABLED',
-  'PLATFORM',
-  'CHROME_EXTENSION_ID',
-  'FIREFOX_EXTENSION_ID',
-  'CHROME_STORE_URL',
-  'FIREFOX_STORE_URL',
-  'PROFILES_ORIGIN',
-  'ACCESSIBLE_CONTRIBUTORS_IDS',
-  'PRESELECTED_CONTRIBUTORS_IDS',
-] as const;
+export const INJECTED_ENV_VARS: readonly string[] = injectedEnvVars;
 
-export type InjectedEnvVar = (typeof INJECTED_ENV_VARS)[number];
+export type InjectedEnvVar = string;
 
 /**
  * Variables sans valeur utilisable desquelles l'extension construite est
