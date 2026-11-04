@@ -5,7 +5,7 @@
   "tags": ["scope:web"],
   "targets": {
     "dev": {
-      "command": "next dev",
+      "command": "next dev -p 3105",
       "options": { "cwd": "packages/web" }
     },
     "build": {
