@@ -24,7 +24,7 @@ const Notification = ({
   closed ? null : (
     <NotificationContainer hasNotices={hasNotices}>
       <NotificationHeader title={title} close={close} goBack={onBack} />
-      <Main hasNotices={hasNotices}>{children}</Main>
+      <Main $hasNotices={hasNotices}>{children}</Main>
       <NotificationFooter />
     </NotificationContainer>
   );
