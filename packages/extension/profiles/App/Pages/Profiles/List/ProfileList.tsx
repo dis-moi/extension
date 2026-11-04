@@ -108,16 +108,11 @@ const ProfileList = ({
   const [browserNotSupportedPopinOpened, setBrowserNotSupportedPopinOpened] =
     useState(false);
 
-  const [
-    filteredContributors,
-    setFilter,
-    handleChangeSearchContributors,
-    updateFilteredContributors,
-  ] = useContributorsFilters(contributors);
+  const { filteredContributors, setFilter, handleChangeSearchContributors } =
+    useContributorsFilters(contributors);
 
   const handleSubscribe = (contributor: StatefulContributor) => () => {
     if (connected) {
-      updateFilteredContributors(contributor.id, true);
       subscribe(contributor.id);
     } else {
       setNotConnectedPopinState({ opened: true, contributor });
@@ -126,7 +121,6 @@ const ProfileList = ({
 
   const handleUnsubscribe = (contributor: StatefulContributor) => () => {
     if (connected) {
-      updateFilteredContributors(contributor.id, false);
       unsubscribe(contributor.id);
     } else {
       setNotConnectedPopinState({ opened: true, contributor });

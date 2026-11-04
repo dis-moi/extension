@@ -48,12 +48,11 @@ const Subscriptions = ({
 }: SubscriptionsProps) => {
   const { t } = useTranslation();
 
-  const [
-    filteredSubscriptions,
+  const {
+    filteredContributors: filteredSubscriptions,
     setFilter,
     handleChangeSearchContributors,
-    updateFilteredContributors,
-  ] = useContributorsFilters(subscribedContributors);
+  } = useContributorsFilters(subscribedContributors);
 
   return (
     <>
@@ -82,14 +81,8 @@ const Subscriptions = ({
                 <ContributorProfileListItem
                   key={contributor.id}
                   contributor={contributor}
-                  onSubscribe={() => {
-                    subscribe(contributor.id);
-                    updateFilteredContributors(contributor.id, true);
-                  }}
-                  onUnsubscribe={() => {
-                    unsubscribe(contributor.id);
-                    updateFilteredContributors(contributor.id, false);
-                  }}
+                  onSubscribe={() => subscribe(contributor.id)}
+                  onUnsubscribe={() => unsubscribe(contributor.id)}
                   to={pathToContributor(contributor)}
                 >
                   {contributor.contribution?.example.exampleMatchingUrl && (

@@ -1,87 +1,55 @@
-import React, { useState, useEffect } from 'react';
-import { ContributorId, StatefulContributor } from '@dismoi/domain/contributor';
+import React, { useState } from 'react';
+import { StatefulContributor } from '@dismoi/domain/contributor';
 import getSearchResults from 'libs/utils/getSearchResults';
 import { ALL } from '@dismoi/ui/molecules/Filters/RadiosFilters';
 
+const inCategory =
+  (category: string) =>
+  ({ categories }: StatefulContributor) =>
+    categories.some((contributorCategory) => contributorCategory === category);
+
+const filterContributors = (
+  contributors: StatefulContributor[],
+  category: string | undefined,
+  search: string,
+): StatefulContributor[] =>
+  getSearchResults(
+    search,
+    category ? contributors.filter(inCategory(category)) : contributors,
+  );
+
+export interface ContributorsFilters {
+  filteredContributors: StatefulContributor[];
+  setFilter: (category: string) => void;
+  handleChangeSearchContributors: (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => void;
+}
+
+/**
+ * Applique les filtres de la page (catégorie, recherche) à la liste de
+ * contributeurs qu'on lui passe.
+ *
+ * Seuls les critères de filtrage sont conservés en état local : la liste,
+ * elle, est recalculée à chaque rendu. La recopier dans un `useState`
+ * figeait la première version reçue, et les abonnements — qui arrivent de
+ * l'extension après les contributeurs, venus de l'API — n'apparaissaient
+ * jamais.
+ */
 function useContributorsFilters(
   contributors: StatefulContributor[],
-): [
-  StatefulContributor[],
-  (value: string) => void,
-  (e: React.ChangeEvent<HTMLInputElement>) => void,
-  (id: ContributorId, subscribed: boolean) => void,
-] {
-  const [filteredContributors, setFilteredContributors] = useState<{
-    all: StatefulContributor[];
-    filtered: StatefulContributor[];
-  }>({ all: contributors, filtered: contributors });
+): ContributorsFilters {
+  const [category, setCategory] = useState<string>();
+  const [search, setSearch] = useState('');
 
-  const [selectedCategory, setSelectedCategory] = useState<string>();
-
-  const catFilter = (contributors: StatefulContributor[]) =>
-    contributors.filter(({ categories: contributorCategories }) =>
-      contributorCategories.some((cc) => selectedCategory === cc),
-    );
-
-  useEffect(() => {
-    if ((selectedCategory && selectedCategory === ALL) || !selectedCategory) {
-      return setFilteredContributors({
-        filtered: filteredContributors.all,
-        all: filteredContributors.all,
-      });
-    }
-
-    return setFilteredContributors({
-      ...filteredContributors,
-      filtered: catFilter(filteredContributors.all),
-    });
-  }, [selectedCategory]);
-
-  useEffect(() => {
-    if (filteredContributors.all.length === 0)
-      return setFilteredContributors({
-        filtered: contributors,
-        all: contributors,
-      });
-  }, [contributors]);
-
-  const handleChangeSearchContributors = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ): void => {
-    return setFilteredContributors({
-      ...filteredContributors,
-      filtered: getSearchResults(e.target.value, filteredContributors.all),
-    });
+  return {
+    filteredContributors: filterContributors(contributors, category, search),
+    // `ALL` est la valeur que le groupe de boutons radio donne à « toutes
+    // les catégories » : elle ne filtre rien.
+    setFilter: (selected: string) =>
+      setCategory(selected === ALL ? undefined : selected),
+    handleChangeSearchContributors: (e) => setSearch(e.target.value),
   };
-
-  const updateFilteredContributors = (
-    contributorId: ContributorId,
-    subscribed: boolean,
-  ) => {
-    const getContrib = (contrib: StatefulContributor) => {
-      if (contrib.id === contributorId) {
-        return {
-          ...contrib,
-          subscribed,
-          ratings: {
-            subscribes: contrib.ratings.subscribes + (subscribed ? 1 : -1),
-          },
-        };
-      }
-      return contrib;
-    };
-    return setFilteredContributors({
-      all: filteredContributors.all.map(getContrib),
-      filtered: filteredContributors.filtered.map(getContrib),
-    });
-  };
-
-  return [
-    filteredContributors.filtered,
-    setSelectedCategory,
-    handleChangeSearchContributors,
-    updateFilteredContributors,
-  ];
 }
 
 export default useContributorsFilters;
