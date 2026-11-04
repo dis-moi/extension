@@ -1,27 +1,14 @@
 import { defineConfig } from 'wxt';
 import path from 'path';
 import { version } from '../../package.json';
+import {
+  assertRequiredEnv,
+  INJECTED_ENV_VARS,
+  resolveInjectedEnv,
+} from './buildEnv';
 
-const envVarsToInject = [
-  'WEBSITE_URL',
-  'SENTRY_DSN',
-  'BACKEND_ORIGIN',
-  'UNINSTALL_ORIGIN',
-  'REFRESH_MC_INTERVAL',
-  'REFRESH_CONTRIBUTORS_INTERVAL',
-  'TRACKING_BACKEND',
-  'PLAUSIBLE_DOMAIN',
-  'PLAUSIBLE_API_URL',
-  'SENTRY_ENABLED',
-  'PLATFORM',
-  'CHROME_EXTENSION_ID',
-  'FIREFOX_EXTENSION_ID',
-  'CHROME_STORE_URL',
-  'FIREFOX_STORE_URL',
-  'PROFILES_ORIGIN',
-  'ACCESSIBLE_CONTRIBUTORS_IDS',
-  'PRESELECTED_CONTRIBUTORS_IDS',
-];
+/** Racine du dépôt : c'est là que vivent les fichiers `.env.*`. */
+const envDir = path.resolve(__dirname, '../..');
 
 export default defineConfig({
   srcDir: '.',
@@ -123,58 +110,61 @@ export default defineConfig({
 
     return manifest;
   },
-  vite: () => ({
-    resolve: {
-      alias: {
-        // Shared packages (new canonical paths)
-        '@dismoi/domain': path.resolve(__dirname, '../domain'),
-        '@dismoi/ui': path.resolve(__dirname, '../ui'),
-        '@dismoi/i18n': path.resolve(__dirname, '../i18n'),
-        '@dismoi/extension': path.resolve(__dirname, '.'),
+  vite: ({ mode }) => {
+    const env = resolveInjectedEnv(mode, envDir);
+    assertRequiredEnv(env, mode);
 
-        // Backward-compat aliases for internal extension imports
-        // (old baseUrl-relative paths that haven't been rewritten yet)
-        'libs/store': path.resolve(__dirname, './store'),
-        'libs/api': path.resolve(__dirname, './api-client'),
-        'libs/tracking': path.resolve(__dirname, './tracking'),
-        'libs/hooks': path.resolve(__dirname, './hooks'),
-        'libs/webext': path.resolve(__dirname, './webext'),
-        'libs/facets': path.resolve(__dirname, './facets'),
-        'libs/utils': path.resolve(__dirname, './utils'),
-        'app/background': path.resolve(__dirname, './background'),
-        'app/content': path.resolve(__dirname, './content'),
-        'app/profiles': path.resolve(__dirname, './profiles'),
-        assets: path.resolve(__dirname, './assets'),
-        types: path.resolve(__dirname, './types'),
-        utils: path.resolve(__dirname, './utils'),
-        test: path.resolve(__dirname, './test'),
-      },
-    },
-    define: {
-      // Inject all known env vars (undefined if not set at build time)
-      ...Object.fromEntries(
-        envVarsToInject.map((key) => [
-          `process.env.${key}`,
-          process.env[key] !== undefined
-            ? JSON.stringify(process.env[key])
-            : 'undefined',
-        ]),
-      ),
-      'process.env.APP_VERSION': JSON.stringify(version),
-      // Catch-all fallback for any remaining process.env references
-      // (e.g. styled-components internals, debug libs)
-      'process.env': '{}',
-    },
-    plugins: [
-      {
-        name: 'shim-module-global',
-        renderChunk(code) {
-          if (code.includes('module')) {
-            return 'if(typeof module==="undefined"){var module={};}\n' + code;
-          }
-          return null;
+    return {
+      resolve: {
+        alias: {
+          // Shared packages (new canonical paths)
+          '@dismoi/domain': path.resolve(__dirname, '../domain'),
+          '@dismoi/ui': path.resolve(__dirname, '../ui'),
+          '@dismoi/i18n': path.resolve(__dirname, '../i18n'),
+          '@dismoi/extension': path.resolve(__dirname, '.'),
+
+          // Backward-compat aliases for internal extension imports
+          // (old baseUrl-relative paths that haven't been rewritten yet)
+          'libs/store': path.resolve(__dirname, './store'),
+          'libs/api': path.resolve(__dirname, './api-client'),
+          'libs/tracking': path.resolve(__dirname, './tracking'),
+          'libs/hooks': path.resolve(__dirname, './hooks'),
+          'libs/webext': path.resolve(__dirname, './webext'),
+          'libs/facets': path.resolve(__dirname, './facets'),
+          'libs/utils': path.resolve(__dirname, './utils'),
+          'app/background': path.resolve(__dirname, './background'),
+          'app/content': path.resolve(__dirname, './content'),
+          'app/profiles': path.resolve(__dirname, './profiles'),
+          assets: path.resolve(__dirname, './assets'),
+          types: path.resolve(__dirname, './types'),
+          utils: path.resolve(__dirname, './utils'),
+          test: path.resolve(__dirname, './test'),
         },
       },
-    ],
-  }),
+      define: {
+        // Inject all known env vars (undefined if not set at build time)
+        ...Object.fromEntries(
+          INJECTED_ENV_VARS.map((name) => [
+            `process.env.${name}`,
+            env[name] !== undefined ? JSON.stringify(env[name]) : 'undefined',
+          ]),
+        ),
+        'process.env.APP_VERSION': JSON.stringify(version),
+        // Catch-all fallback for any remaining process.env references
+        // (e.g. styled-components internals, debug libs)
+        'process.env': '{}',
+      },
+      plugins: [
+        {
+          name: 'shim-module-global',
+          renderChunk(code) {
+            if (code.includes('module')) {
+              return 'if(typeof module==="undefined"){var module={};}\n' + code;
+            }
+            return null;
+          },
+        },
+      ],
+    };
+  },
 });
