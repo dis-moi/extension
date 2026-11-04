@@ -55,13 +55,19 @@ function* refreshMatchingContextsPeriodically() {
   }
 }
 
-function* fetchNewlySubscribedMatchingContexts(
+export function* fetchNewlySubscribedMatchingContexts(
   subscribeAction: SubscribeAction,
 ) {
   yield fetchMatchingContextsForContributor(subscribeAction.payload);
 }
 
 export default function* refreshMatchingContextsRootSaga() {
-  yield call(refreshMatchingContextsPeriodically);
+  // `takeEvery` démarre un watcher en tâche de fond : il doit être enregistré
+  // avant le rafraîchissement périodique, qui attend l'alarme indéfiniment et
+  // ne redonne donc jamais la main. À l'installation, les abonnements aux
+  // contributeurs présélectionnés arrivent après ce démarrage : sans ce
+  // watcher, leurs contextes de ciblage ne sont récupérés qu'à la première
+  // alarme (REFRESH_MC_INTERVAL, soit 30 minutes en production).
   yield takeEvery(SUBSCRIBE, fetchNewlySubscribedMatchingContexts);
+  yield call(refreshMatchingContextsPeriodically);
 }
