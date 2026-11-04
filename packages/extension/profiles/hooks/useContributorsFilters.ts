@@ -8,10 +8,14 @@ const inCategory =
   ({ categories }: StatefulContributor) =>
     categories.some((contributorCategory) => contributorCategory === category);
 
+interface Criteria {
+  category?: string;
+  search: string;
+}
+
 const filterContributors = (
   contributors: StatefulContributor[],
-  category: string | undefined,
-  search: string,
+  { category, search }: Criteria,
 ): StatefulContributor[] =>
   getSearchResults(
     search,
@@ -43,7 +47,10 @@ function useContributorsFilters(
   const [search, setSearch] = useState('');
 
   return {
-    filteredContributors: filterContributors(contributors, category, search),
+    filteredContributors: filterContributors(contributors, {
+      category,
+      search,
+    }),
     // `ALL` est la valeur que le groupe de boutons radio donne à « toutes
     // les catégories » : elle ne filtre rien.
     setFilter: (selected: string) =>

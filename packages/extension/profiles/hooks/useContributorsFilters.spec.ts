@@ -128,6 +128,31 @@ describe('profiles > hooks > useContributorsFilters', function () {
     ).to.deep.equal([24]);
   });
 
+  it('combine la catégorie et la recherche', () => {
+    harness.render([
+      {
+        ...generateStatefulContributor({ id: 16, name: 'Koos' }),
+        categories: ['shopping'],
+      },
+      {
+        ...generateStatefulContributor({ id: 24, name: 'Alertoo' }),
+        categories: ['shopping'],
+      },
+      {
+        ...generateStatefulContributor({ id: 25, name: 'Alertoo bis' }),
+        categories: ['sante'],
+      },
+    ]);
+    act(() => harness.result().setFilter('shopping'));
+    act(() =>
+      harness.result().handleChangeSearchContributors(changeSearch('Alertoo')),
+    );
+
+    expect(
+      harness.result().filteredContributors.map(({ id }) => id),
+    ).to.deep.equal([24]);
+  });
+
   it('applique la recherche aux contributeurs arrivés ensuite', () => {
     harness.render([generateStatefulContributor({ id: 16, name: 'Koos' })]);
     act(() =>
