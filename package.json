@@ -8,7 +8,8 @@
   },
   "scripts": {
     "postinstall": "cd packages/extension && wxt prepare",
-    "dev": "nx run extension:dev",
+    "dev": "nx run-many -t dev -p extension web --parallel=2 --output-style=stream",
+    "dev:extension": "nx run extension:dev",
     "dev:firefox": "nx run extension:dev:firefox",
     "dev:web": "nx run web:dev",
     "build:extension": "nx run extension:build",
