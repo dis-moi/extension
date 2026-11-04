@@ -110,11 +110,20 @@ export default defineConfig({
 
     return manifest;
   },
-  vite: ({ mode }) => {
+  vite: ({ mode, command }) => {
     const env = resolveInjectedEnv(mode, envDir);
     assertRequiredEnv(env, mode);
 
     return {
+      build: {
+        // `wxt dev` ne minifie pas ; `wxt build` si, quel que soit le mode.
+        // Un artefact de développement minifié n'est pas seulement illisible :
+        // Redux compare `isCrushed.name` à son propre nom pour détecter la
+        // minification, et signale alors une erreur à chaque démarrage parce
+        // que NODE_ENV ne vaut pas « production ». Staging et production
+        // restent minifiés.
+        minify: command !== 'serve' && mode !== 'development',
+      },
       resolve: {
         alias: {
           // Shared packages (new canonical paths)
