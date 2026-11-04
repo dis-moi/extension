@@ -5,6 +5,7 @@ import { LocationDescriptor } from 'history';
 // eslint-disable-next-line
 // @ts-ignore
 import Arrow from 'assets/img/arrow.svg';
+import cssUrl from '../../utils/cssUrl';
 
 interface TitleProps {
   to?: LocationDescriptor;
@@ -43,7 +44,7 @@ export default styled(Title)<TitleProps>`
     display: block;
     width: 7px;
     height: 12px;
-    background: url(${Arrow}) 0 0 no-repeat;
+    background: ${cssUrl(Arrow)} 0 0 no-repeat;
     z-index: 2;
   }
 

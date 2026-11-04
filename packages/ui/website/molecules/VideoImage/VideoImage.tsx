@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import cssUrl from '../../../utils/cssUrl';
 import Play from './Play';
 
 export interface ImageBackgroundProps {
@@ -16,7 +17,7 @@ const ImageBackground = styled.div`
   height: 100%;
   transition: transform ${(props) => props.theme.website.animationFastDuration};
   background-size: cover;
-  background-image: url(${(props: ImageBackgroundProps) => props.image});
+  background-image: ${(props: ImageBackgroundProps) => cssUrl(props.image)};
 `;
 
 const ColorBackground = styled.div`
