@@ -6,7 +6,7 @@ import {
   getStoredState,
   purgeStoredState,
 } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage
+import legacyWebStorage from 'libs/webext/legacyWebStorage';
 import { persistConfig } from '../';
 import { migration1 } from './1.2017-01-26';
 import { migration2 } from './2.2019-02-11';
@@ -32,7 +32,8 @@ export const createMigrate = (
 ) => {
   return async (state: PersistedState, currentVersion: number) => {
     // if the sync storage is empty, let's try to restore a previous state from the local storage
-    if (isStateEmpty(state)) {
+    const storage = isStateEmpty(state) ? legacyWebStorage(self) : null;
+    if (storage) {
       const localStoragePersistConfig = {
         ...persistConfig,
         storage,
