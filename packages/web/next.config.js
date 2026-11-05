@@ -35,6 +35,66 @@ if (!env.BACKEND_ORIGIN) {
   );
 }
 
+/**
+ * Les adresses du site WordPress, qui n'avaient pas de préfixe de langue.
+ *
+ * Elles restent indexées par les moteurs et citées depuis l'extérieur —
+ * articles de presse, réseaux sociaux, messages — alors qu'aucune n'existe
+ * côté Next. Les laisser tomber en 404 perdrait le référencement accumulé et
+ * casserait ces liens le jour où WordPress s'arrête.
+ *
+ * L'extension, elle, n'en dépend plus : `packages/i18n/resources/*​/
+ * extension.json` pointe désormais directement sur les routes réelles.
+ */
+const legacyRedirects = [
+  ['/aide', '/fr/aide'],
+  ['/apparition', '/fr/apparition'],
+  ['/probleme-apparition-bulles', '/fr/probleme-apparition-bulles'],
+  ['/vie-privee', '/fr/privacy'],
+  ['/contact', '/fr/contact'],
+  ['/cgu', '/fr/tcu'],
+  ['/a-propos', '/fr/a-propos'],
+  ['/desinstaller', '/fr/desinstaller'],
+  ['/profils', '/fr/profils'],
+  ['/mes-abonnements', '/fr/mes-abonnements'],
+  ['/a-propos-dismoi', '/fr/a-propos'],
+  ['/informer', '/fr/contribuer'],
+  ['/confidentialite', '/fr/confidentialite'],
+  ['/espace-presse', '/fr/espace-presse'],
+  ['/mentions-legales', '/fr/mentions-legales'],
+  ['/application-dismoi', '/fr/application-dismoi'],
+  ['/arnaques', '/fr/arnaques'],
+  ['/comparaison-autres-rs', '/fr/comparaison-autres-rs'],
+  ['/dismoi-en-peril', '/fr/dismoi-en-peril'],
+  [
+    '/dismoi-momentanement-indisponible',
+    '/fr/dismoi-momentanement-indisponible',
+  ],
+  ['/edge', '/fr/edge'],
+  ['/financement', '/fr/financement'],
+  ['/navigateur-non-supporte', '/fr/navigateur-non-supporte'],
+  ['/opera', '/fr/opera'],
+  ['/vitesse-navigation', '/fr/vitesse-navigation'],
+  ['/en/privacy-policy', '/en/privacy'],
+  // Les pages contributeurs ont porté quatre noms successifs ; les trois
+  // premiers restent indexés et partagés.
+  ['/eclaireurs/:path*', '/fr/profils/:path*'],
+  ['/informateurs/:path*', '/fr/profils/:path*'],
+  ['/sources/:path*', '/fr/profils/:path*'],
+  ['/profils/:path*', '/fr/profils/:path*'],
+].map(([source, destination]) => ({ source, destination, permanent: true }));
+
+/**
+ * L'adresse que l'extension ouvre à sa désinstallation (`UNINSTALL_ORIGIN`).
+ * Côté WordPress, la page ne contenait qu'une redirection JavaScript vers ce
+ * formulaire : on redirige directement.
+ */
+legacyRedirects.push({
+  source: '/desinstallation',
+  destination: 'https://form.jotformeu.com/92173584558367',
+  permanent: false,
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env,
@@ -58,6 +118,7 @@ const nextConfig = {
         destination: '/fr',
         permanent: false,
       },
+      ...legacyRedirects,
     ];
   },
 

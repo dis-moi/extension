@@ -126,14 +126,14 @@
       "contributors": "/en/guides",
       "subscriptions": "/en/my-subscriptions"
     },
-    "appear": "/apparition",
-    "problem_post_appearing": "/probleme-apparition-bulles",
-    "privacy": "/vie-privee",
-    "help": "/aide",
-    "contact": "/contact",
-    "tos": "/cgu",
-    "about": "/a-propos",
-    "uninstall": "/desinstaller"
+    "appear": "/fr/apparition",
+    "problem_post_appearing": "/fr/probleme-apparition-bulles",
+    "privacy": "/en/privacy",
+    "help": "/fr/aide",
+    "contact": "/en/contact",
+    "tos": "/en/tcu",
+    "about": "/en/about",
+    "uninstall": "/fr/desinstaller"
   },
   "services": {
     "label": "Choose my contributors",
