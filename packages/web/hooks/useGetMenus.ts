@@ -21,21 +21,32 @@ const menuConfig: Record<
   { header: MenuEntry[]; footer: MenuEntry[] }
 > = {
   fr: {
-    header: [{ label: 'Paramètres', path: '/fr/profils' }],
+    header: [
+      { label: 'Les contributeurs', path: '/fr/profils' },
+      { label: 'Contribuer', path: '/fr/contribuer' },
+      { label: 'Aide', path: '/fr/aide' },
+    ],
     footer: [
       { label: 'Contact', path: '/fr/contact' },
       { label: 'À propos', path: '/fr/a-propos' },
       { label: 'Mentions légales', path: '/fr/mentions-legales' },
       { label: 'Vie privée', path: '/fr/privacy' },
+      { label: 'CGU', path: '/fr/tcu' },
+      { label: 'Espace Presse', path: '/fr/espace-presse' },
     ],
   },
   en: {
-    header: [{ label: 'Guides', path: '/en/guides' }],
+    header: [
+      { label: 'Guides', path: '/en/guides' },
+      { label: 'Creating a post', path: '/en/creating-a-post' },
+    ],
     footer: [
       { label: 'Contact', path: '/en/contact' },
       { label: 'About us', path: '/en/about' },
       { label: 'Legal information', path: '/en/legal-information' },
       { label: 'Privacy', path: '/en/privacy' },
+      { label: 'Terms of use', path: '/en/tcu' },
+      { label: 'Press room', path: '/en/press-room' },
     ],
   },
   br: {
