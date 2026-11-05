@@ -23,16 +23,21 @@ For the latest production version of **Dismoi** extension visit the official add
 ## Build instructions
 
 ### Firefox
-> *To the attention of the __Mozilla__ addon reviewer.*
-> 
-> To reach *zero diff* with the submitted addon, the addon must be build with __node version `10.15.0`__.
-> ``` 
+
+> _To the attention of the **Mozilla** addon reviewer._
+>
+> To reach _zero diff_ with the submitted addon, the addon must be build with **node version `10.15.0`**.
+>
+> ```
 > yarn install && NODE_ENV=production yarn build:firefox
 > ```
+>
 > Or just run the build process with `Docker`:
+>
 > ```
 > yarn build:firefox:production:docker
 > ```
+>
 > https://extensionworkshop.com/documentation/publish/source-code-submission/
 
 ## Permissions
@@ -127,6 +132,36 @@ yarn build-storybook
 
 It is automatically deployed to https://storybook.lmem.net on every `develop` branch update.
 
+## Déploiement du site
+
+Le site et la page des profils sont une seule application Next.js
+(`packages/web`), servie par la sortie `standalone` de Next.
+
+```bash
+yarn build   # nx run web:build — compile et complète le dossier standalone
+yarn start   # nx run web:start — sert le site, écoute $PORT, écoute 0.0.0.0
+```
+
+### Clever Cloud
+
+Application de type **Node.js**. Clever installe les dépendances mais ne
+compile pas : la compilation passe par un hook. Variables à déclarer sur
+l'application :
+
+| Variable             | Valeur                        | Pourquoi                                       |
+| -------------------- | ----------------------------- | ---------------------------------------------- |
+| `CC_POST_BUILD_HOOK` | `./clevercloud/post_build.sh` | Clever ne lance aucune compilation de lui-même |
+| `CC_NODE_BUILD_TOOL` | `yarn-berry`                  | le dépôt est en Yarn 4 (`packageManager`)      |
+| `CC_RUN_COMMAND`     | `yarn start`                  | sinon Clever démarre avec npm                  |
+| `CC_NODE_VERSION`    | `22`                          | prend le pas sur `engines.node`                |
+
+`PORT` est fourni par Clever et le serveur l'honore ; rien à déclarer.
+
+Les variables du site (`BACKEND_ORIGIN`, `PROFILES_ORIGIN`…) sont lues à la
+**compilation** depuis `.env.production`, versionné à la racine. Une valeur
+définie dans l'environnement de l'application a la priorité, ce qui permet de
+pointer une préproduction sans toucher au dépôt.
+
 ## Links
 
 - 🌐 Web: https://www.dismoi.io
@@ -145,7 +180,7 @@ It is automatically deployed to https://storybook.lmem.net on every `develop` br
 >
 > This program is distributed in the hope that it will be useful,
 > but WITHOUT ANY WARRANTY; without even the implied warranty of
-> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
+> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 > GNU AFFERO GENERAL PUBLIC LICENSE for more details.
 >
 > You should have received a copy of the GNU General Public License
