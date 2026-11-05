@@ -16,7 +16,14 @@ export default styled(Avatar)`
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: ${(props) => props.theme.badge};
+      /**
+       * Un voile noir à 29 %, comme à l'origine (0b708139). Un commit sur
+       * tout autre chose (e83e19c6) a remplacé cette valeur par
+       * \`theme.badge\`, qui n'a jamais été une couleur : c'est l'objet des
+       * couleurs de la pastille du bouton de barre d'outils. La déclaration
+       * produite était invalide et le survol n'avait plus aucun effet.
+       */
+      background-color: #000000;
       border-radius: 50%;
       opacity: 0.29;
     }
