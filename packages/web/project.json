@@ -2,23 +2,33 @@
   "name": "web",
   "sourceRoot": "packages/web",
   "projectType": "application",
-  "tags": ["scope:web"],
+  "tags": [
+    "scope:web"
+  ],
   "targets": {
     "dev": {
       "command": "next dev -p 3105",
-      "options": { "cwd": "packages/web" }
+      "options": {
+        "cwd": "packages/web"
+      }
     },
     "build": {
-      "command": "next build",
-      "options": { "cwd": "packages/web" }
+      "command": "next build && node scripts/prepare-standalone.mjs",
+      "options": {
+        "cwd": "packages/web"
+      }
     },
     "start": {
-      "command": "next start",
-      "options": { "cwd": "packages/web" }
+      "command": "node .next/standalone/packages/web/server.js",
+      "options": {
+        "cwd": "packages/web"
+      }
     },
     "test": {
       "command": "vitest",
-      "options": { "cwd": "packages/web" }
+      "options": {
+        "cwd": "packages/web"
+      }
     }
   }
 }
