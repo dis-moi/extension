@@ -39,7 +39,7 @@ export const items = (
     case UNSUBSCRIBE: {
       const index = state.findIndex((item) => item.id === action.payload);
       const count = action.type === UNSUBSCRIBE ? -1 : 1;
-      if (index) {
+      if (index !== -1) {
         return [
           ...state.slice(0, index),
           {
@@ -58,7 +58,7 @@ export const items = (
     case SUBSCRIBED: {
       const index = state.findIndex((item) => item.id === action.payload);
       const subscribed = action.type === SUBSCRIBED;
-      if (index) {
+      if (index !== -1) {
         return [
           ...state.slice(0, index),
           { ...state[index], subscribed, subscribing: false },
