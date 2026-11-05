@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import styled from 'styled-components';
 import { LocationDescriptor } from 'history';
 import Avatar from '@dismoi/ui/molecules/Avatar/Avatar';
-import { ContributorName, OpenButton } from '@dismoi/ui/atoms';
+import { ContributorName } from '@dismoi/ui/atoms';
 import Title from './Title';
 
 interface ContentProps {
@@ -45,10 +45,6 @@ export default styled.div<ContentProps>`
 
   & > p + div {
     width: 100%;
-  }
-
-  & [class^='${OpenButton}'] {
-    height: auto;
   }
 
   &:hover > div:nth-child(3) {
