@@ -1,10 +1,6 @@
 import React from 'react';
 import NavMobileItem from '../../atoms/NavMobileItem/NavMobileItem';
-
-export interface Link {
-  label: string;
-  href?: () => void;
-}
+import { Link } from './ListLinks';
 
 interface LinksProps {
   links: Link[];
@@ -13,8 +9,8 @@ interface LinksProps {
 const ListLinksMobile = ({ links }: LinksProps) => {
   return (
     <>
-      {links.map((link, i) => (
-        <NavMobileItem key={i} onClick={link.href}>
+      {links.map((link) => (
+        <NavMobileItem key={link.href} href={link.href}>
           {link.label}
         </NavMobileItem>
       ))}

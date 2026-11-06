@@ -1,13 +1,27 @@
 import bowser from 'bowser';
 
-const getUserAgent = () => {
-  const userAgent = bowser.getParser(window.navigator.userAgent);
+const NO_BROWSER = { isChrome: false, isFirefox: false, isOpera: false };
 
-  const isChrome = userAgent.satisfies({ chrome: '>20' });
-  const isFirefox = userAgent.satisfies({ firefox: '>31' });
-  const isOpera = userAgent.satisfies({ opera: '>31' });
+/**
+ * Hors navigateur — pendant un rendu serveur — aucune de ces réponses n'est
+ * vraie, et il n'y a personne à qui proposer une installation.
+ */
+export const getUserAgent = (source?: string) => {
+  const agent =
+    source ??
+    (typeof navigator === 'undefined' ? undefined : navigator.userAgent);
 
-  return { isChrome, isFirefox, isOpera } as const;
+  if (!agent) {
+    return NO_BROWSER;
+  }
+
+  const userAgent = bowser.getParser(agent);
+
+  return {
+    isChrome: Boolean(userAgent.satisfies({ chrome: '>20' })),
+    isFirefox: Boolean(userAgent.satisfies({ firefox: '>31' })),
+    isOpera: Boolean(userAgent.satisfies({ opera: '>31' })),
+  } as const;
 };
 
 const openRequestedPopup = () => {

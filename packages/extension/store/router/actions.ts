@@ -44,4 +44,5 @@ export const goForward = updateLocation(
   'goForward',
 ) as () => CallHistoryMethodAction;
 
-export { CALL_HISTORY_METHOD, CallHistoryMethodAction };
+export { CALL_HISTORY_METHOD };
+export type { CallHistoryMethodAction };

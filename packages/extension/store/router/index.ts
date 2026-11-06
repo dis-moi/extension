@@ -20,7 +20,7 @@ export {
 } from './actions';
 export { getLocation } from './selectors';
 
-export {
+export type {
   LocationChangeAction,
   LocationChangePayload,
   RouterRootState,

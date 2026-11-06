@@ -33,7 +33,7 @@ const OnBoarding = ({ triggerWelcomeBulle }: OnBoarding) => {
     <Step2 key={1} prev={prev} next={next} />,
     <Step3 key={2} prev={prev} close={close} />,
   ];
-  if (!isChrome) steps.splice(1, 1);
+  if (!isChrome()) steps.splice(1, 1);
 
   return (
     <Modal open={open} close={close}>

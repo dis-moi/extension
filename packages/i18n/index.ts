@@ -32,4 +32,21 @@ export const options: InitOptions = {
 
 i18n.use(initReactI18next).use(LanguageDetector);
 
+/**
+ * Une instance par rendu, dont la langue est connue dès le premier rendu.
+ *
+ * Le singleton ci-dessus découvre sa langue dans le navigateur, puis en
+ * change dans un effet : sur le serveur il n'en a aucune, et le HTML rendu ne
+ * correspondrait pas à celui que le navigateur produit à l'hydratation. Le
+ * site passe donc par cette fabrique, à laquelle le chemin de l'URL donne la
+ * langue ; l'extension, elle, garde le singleton.
+ */
+export const createI18n = (lng: SupportedLanguage): typeof i18n => {
+  const instance = i18n.createInstance();
+
+  instance.use(initReactI18next).init({ ...options, lng });
+
+  return instance;
+};
+
 export default i18n;

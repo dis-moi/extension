@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useRef } from 'react';
 import { createBrowserHistory } from 'history';
 import { createProfilesStore } from 'app/profiles/store';

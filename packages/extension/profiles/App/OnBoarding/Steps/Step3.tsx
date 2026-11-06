@@ -57,7 +57,7 @@ export default ({ prev, close }: StepProps) => {
         </OnboardingText>
       </Trans>
       <Line>
-        {isChrome && (
+        {isChrome() && (
           <div>
             <OnboardingButton color="inactive" onClick={prev}>
               <Reload />

@@ -25,7 +25,7 @@
       }
     },
     "test": {
-      "command": "vitest",
+      "command": "TS_NODE_PROJECT=../../tsconfig.test.json mocha -r ts-node/register -r tsconfig-paths/register './**/*.spec.ts'",
       "options": {
         "cwd": "packages/web"
       }

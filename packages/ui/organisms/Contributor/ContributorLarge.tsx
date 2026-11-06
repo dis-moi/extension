@@ -16,14 +16,12 @@ import ContributorNameLink from './ContributorNameLink';
 import ContributorButton from './ContributorButton';
 
 interface IntroProps {
-  intro: string;
+  $intro: string;
 }
 
-const ContributorIntro = styled.div.attrs<IntroProps>(
-  ({ intro }: IntroProps) => ({
-    dangerouslySetInnerHTML: { __html: intro },
-  }),
-)<IntroProps>`
+const ContributorIntro = styled.div.attrs<IntroProps>(({ $intro }) => ({
+  dangerouslySetInnerHTML: { __html: $intro },
+}))<IntroProps>`
   margin: 16px 0 10px 0;
   font-size: ${(props) => props.theme.fontSizeDefault};
   color: ${(props) => props.theme.textColor};
@@ -116,7 +114,7 @@ const ContributorLarge = ({
 
         {!loading && contributor && (
           <>
-            <ContributorIntro intro={contributor.intro || ''} />
+            <ContributorIntro $intro={contributor.intro || ''} />
             {children}
           </>
         )}
