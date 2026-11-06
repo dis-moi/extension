@@ -1,0 +1,64 @@
+name: Publication
+
+on:
+  push:
+    branches: [master]
+
+# Une publication à la fois : deux exécutions concurrentes se disputeraient
+# l'étiquette de version et le store refuserait la seconde.
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  publier:
+    name: semantic-release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # semantic-release lit tout l'historique pour déterminer la version.
+          fetch-depth: 0
+          # Il pousse avec GITHUB_TOKEN plutôt qu'avec les identifiants posés
+          # par l'action, comme le recommande sa documentation.
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Activer Yarn 4
+        run: corepack enable
+
+      - name: Cache des paquets
+        uses: actions/cache@v4
+        with:
+          path: .yarn/cache
+          key: yarn-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          restore-keys: yarn-${{ runner.os }}-
+
+      - name: Installer
+        run: yarn install --immutable
+
+      # Une publication part vers des stores : on ne la lance pas sur du code
+      # qui ne passe pas ses propres tests.
+      - name: Lint
+        run: yarn lint
+
+      - name: Tests
+        run: yarn test
+
+      - name: Publier
+        run: yarn semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CHROME_CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
+          CHROME_CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
+          CHROME_REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
+          FIREFOX_JWT_ISSUER: ${{ secrets.FIREFOX_JWT_ISSUER }}
+          FIREFOX_JWT_SECRET: ${{ secrets.FIREFOX_JWT_SECRET }}

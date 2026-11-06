@@ -1,0 +1,85 @@
+name: Intégration
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verifier:
+    name: Tests, lint et compilation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Le binaire Yarn est versionné (`yarnPath` dans .yarnrc.yml) : corepack
+      # ne fait que poser le relais qui le trouve.
+      - name: Activer Yarn 4
+        run: corepack enable
+
+      # `enableGlobalCache` est faux : le cache vit dans le dépôt et n'est pas
+      # versionné. Sans cette étape, chaque exécution retélécharge 287 Mo.
+      - name: Cache des paquets
+        uses: actions/cache@v4
+        with:
+          path: .yarn/cache
+          key: yarn-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          restore-keys: yarn-${{ runner.os }}-
+
+      - name: Installer
+        run: yarn install --immutable
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Tests
+        run: yarn test
+
+      - name: Compiler l'extension (Chrome)
+        run: yarn build:chromium
+
+      - name: Compiler l'extension (Firefox)
+        run: yarn build:firefox
+
+      - name: Compiler le site
+        run: yarn build:web
+
+  typage:
+    name: Typage
+    runs-on: ubuntu-latest
+    # NON BLOQUANT, et c'est un aveu : `yarn typecheck` relève 207 erreurs
+    # préexistantes — surtout des sagas sans type de retour et des `catch (e)`
+    # en `unknown`. Les rendre bloquantes aujourd'hui peindrait la chaîne en
+    # rouge en permanence, ce qui revient à ne pas en avoir. À retirer dès que
+    # le compte atteint zéro.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Activer Yarn 4
+        run: corepack enable
+
+      - name: Cache des paquets
+        uses: actions/cache@v4
+        with:
+          path: .yarn/cache
+          key: yarn-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          restore-keys: yarn-${{ runner.os }}-
+
+      - name: Installer
+        run: yarn install --immutable
+
+      - name: Vérifier les types
+        run: yarn typecheck
