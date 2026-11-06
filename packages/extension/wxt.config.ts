@@ -19,6 +19,56 @@ export default defineConfig({
   // service worker — il sert la même déclaration sous forme de page
   // d'événements —, et c'est WXT qui s'en charge selon la cible.
   manifestVersion: 3,
+  // Le gabarit par défaut ne distingue que le navigateur : les trois canaux
+  // produiraient le même fichier et s'écraseraient l'un l'autre dans
+  // `.output`. Le mode entre donc dans le nom.
+  zip: {
+    // `{{name}}` et `{{packageVersion}}` viennent du `package.json` de ce
+    // dossier, qui n'en porte ni l'un ni l'autre : la version du projet vit à
+    // la racine et c'est elle qui alimente le manifeste. D'où `{{version}}`,
+    // qui lit le manifeste, et un nom donné explicitement.
+    name: 'dismoi',
+    artifactTemplate: '{{name}}-{{version}}-{{mode}}-{{browser}}.zip',
+    sourcesTemplate: '{{name}}-{{version}}-{{mode}}-sources.zip',
+    // AMO exige des sources qui se reconstruisent. Par défaut WXT n'archive
+    // que son propre dossier, d'où il manquait le `package.json` qui porte la
+    // version, `injected-env-vars.json`, les fichiers `.env` dont dépendent
+    // les empreintes des paquets, le binaire Yarn versionné et les trois
+    // paquets partagés : la compilation ne démarrait même pas.
+    sourcesRoot: envDir,
+    // WXT parcourt les sources avec `**/*`, qui ne prend aucun fichier
+    // caché : sans ces motifs explicites, l'archive partait sans le binaire
+    // Yarn versionné ni les `.env`, et les empreintes des paquets produits
+    // ne correspondaient plus. Ces fichiers-là ne portent que des valeurs
+    // publiques — origines d'API, identifiants d'extension, DSN Sentry.
+    includeSources: [
+      '.yarnrc.yml',
+      '.yarn/releases/**',
+      '.env',
+      '.env.staging',
+      '.env.proding',
+      '.env.production',
+    ],
+    excludeSources: [
+      '.git/**',
+      '.direnv/**',
+      '.nx/**',
+      '.yarn/cache/**',
+      '.yarn/install-state.gz',
+      'scratchpad/**',
+      // Le site ne participe pas à la construction de l'extension, et il
+      // pèse à lui seul plusieurs dizaines de méga-octets d'images.
+      'packages/web/**',
+      '**/.output/**',
+      '**/.wxt/**',
+      '**/.next/**',
+      // Non versionné : ce fichier contient les réglages locaux de qui
+      // développe, et n'a donc rien à faire dans une archive publique.
+      '.env.development',
+      '.env.development.local',
+      '**/*.local',
+    ],
+  },
   manifest: ({ browser, mode }) => {
     const isDev = mode === 'development';
     const isStaging = mode === 'staging';
