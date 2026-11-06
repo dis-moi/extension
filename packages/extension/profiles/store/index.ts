@@ -13,11 +13,14 @@ import immutableStateInvariant from 'redux-immutable-state-invariant';
 import { createLogger } from 'redux-logger';
 import { History } from 'history';
 import { SupportedLanguage } from '@dismoi/i18n/language';
+import isBrowser from 'libs/utils/isBrowser';
 import rootReducer, { ProfilesState } from './reducers';
 import rootSaga from './sagas';
 
 export interface ProfilesStore {
   store: Store<ProfilesState>;
+  /** L'historique du store, que le routeur doit partager. */
+  history?: History;
   /**
    * Démarre les sagas et rend la tâche obtenue, pour pouvoir l'annuler.
    *
@@ -29,8 +32,6 @@ export interface ProfilesStore {
    */
   runSagas: () => Task;
 }
-
-const isBrowser = (): boolean => typeof window !== 'undefined';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const reduxDevTools = (): StoreEnhancer => {
@@ -64,15 +65,16 @@ export const createProfilesStore = ({
   const sagaMiddleware = createSagaMiddleware();
 
   // Le journal et le contrôle d'immuabilité s'adressent à quelqu'un qui
-  // regarde une console de navigateur ; sur le serveur ils ne feraient que
-  // remplir les traces du rendu.
+  // regarde une console de navigateur pendant qu'il développe : sur le
+  // serveur ils ne feraient que remplir les traces du rendu, et en
+  // production ils coûtent à chaque action sans que personne ne les lise.
+  const whileDeveloping = isBrowser() && process.env.NODE_ENV !== 'production';
+
   const middlewares = [
     history && routerMiddleware(history),
     sagaMiddleware,
-    isBrowser() && logger(),
-    isBrowser() && process.env.NODE_ENV !== 'production'
-      ? immutableStateInvariant()
-      : null,
+    whileDeveloping && logger(),
+    whileDeveloping && immutableStateInvariant(),
   ].filter(Boolean) as Middleware[];
 
   const store = createStore(
@@ -83,6 +85,7 @@ export const createProfilesStore = ({
 
   return {
     store,
+    history,
     runSagas: () => sagaMiddleware.run(rootSaga),
   };
 };

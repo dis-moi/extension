@@ -7,7 +7,18 @@ export interface ProfilesData {
   categories: Categories;
 }
 
-const fetchJson = async <T>(path: string, fallback: T): Promise<T> => {
+/**
+ * Lit une collection de l'API, ou rend le repli.
+ *
+ * `estValide` garde la frontière : une page d'erreur servie en 200, une
+ * réponse tronquée ou un changement de contrat feraient sinon tomber le
+ * rendu du serveur, et avec lui toute la page.
+ */
+const fetchCollection = async <T>(
+  path: string,
+  fallback: T,
+  estValide: (valeur: unknown) => boolean,
+): Promise<T> => {
   try {
     const response = await fetch(`${BACKEND_ORIGIN}${path}`, {
       // Les contributeurs et les catégories bougent peu ; une heure de cache
@@ -15,11 +26,22 @@ const fetchJson = async <T>(path: string, fallback: T): Promise<T> => {
       next: { revalidate: 3600 },
     });
 
-    return response.ok ? ((await response.json()) as T) : fallback;
+    if (!response.ok) {
+      return fallback;
+    }
+
+    const body: unknown = await response.json();
+
+    return estValide(body) ? (body as T) : fallback;
   } catch {
     return fallback;
   }
 };
+
+const estTableau = (valeur: unknown): boolean => Array.isArray(valeur);
+
+const estObjet = (valeur: unknown): boolean =>
+  typeof valeur === 'object' && valeur !== null && !Array.isArray(valeur);
 
 /**
  * Les données publiques de la page des profils, lues sur le serveur.
@@ -34,8 +56,8 @@ const fetchJson = async <T>(path: string, fallback: T): Promise<T> => {
  */
 export const fetchProfilesData = async (): Promise<ProfilesData> => {
   const [contributors, categories] = await Promise.all([
-    fetchJson<Contributor[]>('contributors', []),
-    fetchJson<Categories>('categories', {}),
+    fetchCollection<Contributor[]>('contributors', [], estTableau),
+    fetchCollection<Categories>('categories', {}, estObjet),
   ]);
 
   return { contributors, categories };
@@ -54,7 +76,13 @@ export const findContributorInPath = async (
     return null;
   }
 
-  const contributors = await fetchJson<Contributor[]>('contributors', []);
+  // Next ne lance qu'une requête : les `fetch` identiques d'un même rendu
+  // sont mémorisés, celui-ci et celui de la page ne font qu'un.
+  const contributors = await fetchCollection<Contributor[]>(
+    'contributors',
+    [],
+    estTableau,
+  );
 
   return contributors.find((contributor) => contributor.id === id) ?? null;
 };

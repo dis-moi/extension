@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { Contributor } from '@dismoi/domain/contributor';
 import { SupportedLanguage } from '@dismoi/i18n/language';
 import { createProfilesStore, ProfilesStore } from 'app/profiles/store';
+import isBrowser from 'libs/utils/isBrowser';
 import { receivedContributors } from 'libs/store/actions';
 import { fetchCategoriesSuccess } from 'libs/store/actions/categories';
 import { Categories } from '@dismoi/domain/category';
@@ -21,8 +22,6 @@ export interface ProfilesAppProps {
   contributors: Contributor[];
   categories: Categories;
 }
-
-const isBrowser = (): boolean => typeof window !== 'undefined';
 
 const createHistory = (initialPath: string): History =>
   isBrowser()
@@ -47,13 +46,10 @@ const ProfilesApp = ({
   categories,
 }: ProfilesAppProps) => {
   const profilesStore = useRef<ProfilesStore | null>(null);
-  const history = useRef<History | null>(null);
 
   if (!profilesStore.current) {
-    history.current = createHistory(initialPath);
-
     const created = createProfilesStore({
-      history: history.current,
+      history: createHistory(initialPath),
       locale,
     });
 
@@ -63,7 +59,7 @@ const ProfilesApp = ({
     profilesStore.current = created;
   }
 
-  const { store, runSagas } = profilesStore.current;
+  const { store, history, runSagas } = profilesStore.current;
 
   useEffect(() => {
     const task = runSagas();
@@ -73,7 +69,7 @@ const ProfilesApp = ({
 
   return (
     <Provider store={store}>
-      <ConnectedRouter history={history.current as History}>
+      <ConnectedRouter history={history as History}>
         <Background>
           <PageContainer>
             <Pages />
