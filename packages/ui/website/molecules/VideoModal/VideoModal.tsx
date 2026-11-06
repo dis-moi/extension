@@ -4,13 +4,13 @@ import Modal from '../../atoms/Modal/Modal';
 import SectionTitle from '../../atoms/Titles/SectionTitle';
 import SmallTitle from '../../atoms/Titles/SmallTitle';
 
-const StyledSectionTitle = styled((props) => <SectionTitle {...props} />)`
+const StyledSectionTitle = styled(SectionTitle)`
   color: white;
   padding: 0 15px;
   margin-bottom: 5px;
 `;
 
-const StyledSmallTitle = styled((props) => <SmallTitle {...props} />)`
+const StyledSmallTitle = styled(SmallTitle)`
   color: white;
   padding: 0 15px;
   margin-bottom: 30px;

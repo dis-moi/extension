@@ -10,6 +10,6 @@ export default class InputField extends Component<WrappedFieldProps> {
       ...props
     } = this.props;
 
-    return <Input {...input} {...props} error={touched && error} />;
+    return <Input {...input} {...props} $error={Boolean(touched && error)} />;
   }
 }

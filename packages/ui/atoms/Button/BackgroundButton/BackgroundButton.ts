@@ -15,7 +15,7 @@ export default styled(BorderButton)`
     }
   }
 
-  :disabled:hover {
+  &:disabled:hover {
     color: #fff;
   }
 

@@ -42,10 +42,10 @@ const OnBoarding = ({ triggerWelcomeBulle }: OnBoarding) => {
           <Top>
             <LogoDisMoiWithD />
             <div>
-              <BulleDisMoi step={currentStep} />
+              <BulleDisMoi $step={currentStep} />
               <Loader>
                 {steps.map((step, i) => (
-                  <ProgressBar key={i} step={currentStep} />
+                  <ProgressBar key={i} $step={currentStep} />
                 ))}
               </Loader>
             </div>

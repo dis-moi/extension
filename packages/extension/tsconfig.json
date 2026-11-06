@@ -9,6 +9,11 @@
       "mocha"
     ]
   },
-  "include": ["./**/*.ts", "./**/*.tsx", "./test/**/*"],
+  "include": [
+    "./**/*.ts",
+    "./**/*.tsx",
+    "./test/**/*",
+    "../../typings/**/*.d.ts"
+  ],
   "exclude": ["node_modules", ".output"]
 }

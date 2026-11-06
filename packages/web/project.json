@@ -29,6 +29,9 @@
       "options": {
         "cwd": "packages/web"
       }
+    },
+    "typecheck": {
+      "command": "tsc -p packages/web/tsconfig.json --noEmit"
     }
   }
 }

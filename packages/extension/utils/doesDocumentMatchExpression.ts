@@ -1,4 +1,4 @@
-import { MatchingContext } from '../domain/matchingContext';
+import { MatchingContext } from '@dismoi/domain/matchingContext';
 
 const doesDocumentMatchExpression = (
   expression: string,

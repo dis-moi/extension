@@ -8,11 +8,11 @@ import GridContainer from '../../atoms/Grid/GridContainer';
 import GridRow from '../../atoms/Grid/GridRow';
 import GridCol from '../../atoms/Grid/GridCol';
 
-const StyledGridRow = styled((props) => <GridRow {...props} />)`
+const StyledGridRow = styled(GridRow)`
   justify-content: center;
 `;
 
-const StyledGridCol = styled((props) => <GridCol {...props} />)`
+const StyledGridCol = styled(GridCol)`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -20,7 +20,7 @@ const StyledGridCol = styled((props) => <GridCol {...props} />)`
   justify-content: center;
 `;
 
-const StyledSectionTitle = styled((props) => <SectionTitle {...props} />)`
+const StyledSectionTitle = styled(SectionTitle)`
   color: white;
   padding: 0 15px;
   margin-bottom: 5px;

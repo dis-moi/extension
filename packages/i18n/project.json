@@ -2,5 +2,16 @@
   "name": "i18n",
   "sourceRoot": "packages/i18n",
   "projectType": "library",
-  "tags": ["scope:shared"]
+  "tags": ["scope:shared"],
+  "targets": {
+    "test": {
+      "command": "TS_NODE_PROJECT=../../tsconfig.test.json mocha -r ts-node/register -r tsconfig-paths/register './**/*.spec.ts'",
+      "options": {
+        "cwd": "packages/i18n"
+      }
+    },
+    "typecheck": {
+      "command": "tsc -p packages/i18n/tsconfig.json --noEmit"
+    }
+  }
 }

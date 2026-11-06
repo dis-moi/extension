@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Cross from './Cross';
 
-const StyledCross = styled((props) => <Cross {...props} />)`
+const StyledCross = styled(Cross)`
   pointer-events: none;
   position: absolute;
   top: 15px;

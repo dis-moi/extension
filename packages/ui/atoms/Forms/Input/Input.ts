@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface Props {
-  error?: boolean;
+  $error?: boolean;
 }
 
 export default styled.input<Props>`
@@ -14,8 +14,8 @@ export default styled.input<Props>`
   border-radius: 6px;
   border: 1px solid
     ${(props) =>
-      props.error ? props.theme.formError : props.theme.secondaryColor};
+      props.$error ? props.theme.formError : props.theme.secondaryColor};
   box-shadow: 0 0 0 2px
-    ${(props) => (props.error ? props.theme.formError : 'transparent')};
+    ${(props) => (props.$error ? props.theme.formError : 'transparent')};
   resize: none;
 `;

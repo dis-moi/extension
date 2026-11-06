@@ -42,7 +42,7 @@ const FooterWrapper = styled.footer`
   }
 `;
 
-const StyledGridRow = styled((props) => <GridRow {...props} />)`
+const StyledGridRow = styled(GridRow)`
   flex-direction: column;
   align-items: center;
   @media (min-width: ${(props) => props.theme.desktopWidth}) {
@@ -51,13 +51,13 @@ const StyledGridRow = styled((props) => <GridRow {...props} />)`
     justify-content: space-between;
   }
 `;
-const GridCol1 = styled((props) => <GridCol {...props} />)`
+const GridCol1 = styled(GridCol)`
   text-align: center;
   @media (min-width: ${(props) => props.theme.desktopWidth}) {
     text-align: left;
   }
 `;
-const GridCol2 = styled((props) => <GridCol {...props} />)`
+const GridCol2 = styled(GridCol)`
   text-align: center;
   margin-top: 30px;
   @media (min-width: ${(props) => props.theme.desktopWidth}) {
@@ -65,7 +65,7 @@ const GridCol2 = styled((props) => <GridCol {...props} />)`
     margin-top: 0;
   }
 `;
-const GridCol3 = styled((props) => <GridCol {...props} />)`
+const GridCol3 = styled(GridCol)`
   text-align: center;
   margin-top: 30px;
   a:first-child {
@@ -125,8 +125,10 @@ export interface FooterProps {
 const Footer = (props: FooterProps) => {
   const { t } = useTranslation('website');
 
+  // Seule la classe revient à la balise : étaler `props` y poussait aussi
+  // `links` et `switchLanguage`, que React refuse sur un `<footer>`.
   return (
-    <FooterWrapper {...props}>
+    <FooterWrapper className={props.className}>
       <Section>
         <GridContainer>
           <StyledGridRow>

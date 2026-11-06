@@ -5,10 +5,10 @@ import Play from './Play';
 
 export interface ImageBackgroundProps {
   className?: string;
-  image: string;
+  $image: string;
 }
 
-const ImageBackground = styled.div`
+const ImageBackground = styled.div<ImageBackgroundProps>`
   position: absolute;
   top: 0;
   bottom: 0;
@@ -17,7 +17,7 @@ const ImageBackground = styled.div`
   height: 100%;
   transition: transform ${(props) => props.theme.website.animationFastDuration};
   background-size: cover;
-  background-image: ${(props: ImageBackgroundProps) => cssUrl(props.image)};
+  background-image: ${(props) => cssUrl(props.$image)};
 `;
 
 const ColorBackground = styled.div`
@@ -35,7 +35,7 @@ const ColorBackground = styled.div`
   }
 `;
 
-const StyledPlay = styled((props) => <Play {...props} />)`
+const StyledPlay = styled(Play)`
   position: relative;
   width: 60px;
   @media (min-width: ${(props) => props.theme.tabletWidth}) {
@@ -110,7 +110,7 @@ const VideoImage = ({
 }: VideoImageProps) => {
   return (
     <Wrapper className={className} onClick={() => handleClick && handleClick()}>
-      <ImageBackground image={image} />
+      <ImageBackground $image={image} />
       <ColorBackground />
       <StyledPlay />
       <Text>{text}</Text>

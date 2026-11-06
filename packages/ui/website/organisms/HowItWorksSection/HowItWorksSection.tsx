@@ -12,11 +12,11 @@ import VideoModal from '../../molecules/VideoModal/VideoModal';
 import { useTranslation } from 'react-i18next';
 import { getFacet } from 'libs/facets/getFacet';
 
-const StyledGridRow = styled((props) => <GridRow {...props} />)`
+const StyledGridRow = styled(GridRow)`
   justify-content: center;
 `;
 
-const StyledGridCol = styled((props) => <GridCol {...props} />)`
+const StyledGridCol = styled(GridCol)`
   width: 100%;
 `;
 
@@ -28,7 +28,7 @@ const ContentWrapper = styled.div`
   }
 `;
 
-const StyledVideoImage = styled((props) => <VideoImage {...props} />)`
+const StyledVideoImage = styled(VideoImage)`
   margin: 10px auto 30px auto;
   @media (min-width: ${(props) => props.theme.tabletWidth}) {
     margin: 30px auto 0 auto;

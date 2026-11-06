@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface CrossProps {
-  className: string;
+  className?: string;
 }
 
 export default ({ className }: CrossProps) => (

@@ -4,9 +4,7 @@ import styled from 'styled-components';
 import { StatefulContributor } from '@dismoi/domain/contributor';
 import defaultProfileBannerImage from 'assets/img/profile-banner.png';
 
-const ProfileBannerContainer = styled.div<{
-  default: boolean;
-}>`
+const ProfileBannerContainer = styled.div`
   position: relative;
   min-height: 200px;
   background-color: #fff;
@@ -30,9 +28,6 @@ const ProfileBannerContainer = styled.div<{
   }
 `;
 
-const hasBanner = (contributor?: StatefulContributor): boolean =>
-  !!contributor && !!contributor.banner;
-
 interface ProfileBannerProps {
   contributor?: StatefulContributor;
 }
@@ -40,7 +35,7 @@ interface ProfileBannerProps {
 const ProfileBanner = ({ contributor }: ProfileBannerProps) => {
   const { t } = useTranslation();
   return (
-    <ProfileBannerContainer default={!hasBanner(contributor)}>
+    <ProfileBannerContainer>
       <img
         style={{ width: '100%' }}
         src={

@@ -157,7 +157,7 @@ class Notice extends PureComponent<Props, CountDownState> {
     return (
       <Container style={style}>
         {!dismissed && !disliked && <DeleteButton onClick={this.onDismiss} />}
-        <Content isRead={read}>
+        <Content $isRead={read}>
           {(dismissed || disliked) && intervalID ? (
             <>
               <Deleted>{t('notice.feedback_deleted')}</Deleted>

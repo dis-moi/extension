@@ -1,8 +1,7 @@
-import React from 'react';
 import styled from 'styled-components';
 import Background from './Background';
 
-const DarkLayoutBackground = styled((props) => <Background {...props} />)`
+const DarkLayoutBackground = styled(Background)`
   background: rgba(0, 0, 0, 0.2);
   background: linear-gradient(
     -60deg,

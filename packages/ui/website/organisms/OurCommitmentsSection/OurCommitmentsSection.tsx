@@ -12,7 +12,7 @@ import GridRow from '../../atoms/Grid/GridRow';
 import GridCol from '../../atoms/Grid/GridCol';
 import { useTranslation } from 'react-i18next';
 
-const StyledSectionTitle = styled((props) => <SectionTitle {...props} />)`
+const StyledSectionTitle = styled(SectionTitle)`
   color: white;
 `;
 

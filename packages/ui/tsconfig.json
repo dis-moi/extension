@@ -3,5 +3,5 @@
   "compilerOptions": {
     "outDir": "../../dist/packages/ui"
   },
-  "include": ["./**/*.ts", "./**/*.tsx"]
+  "include": ["./**/*.ts", "./**/*.tsx", "../../typings/**/*.d.ts"]
 }

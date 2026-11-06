@@ -2,8 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import Background from './Background';
 
-const GeometricShapeBackground = styled((props) => (
-  <Background {...props}>
+interface GeometricShapeProps {
+  className?: string;
+}
+
+const GeometricShape = ({ className }: GeometricShapeProps) => (
+  <Background className={className}>
     <svg
       className="geometricShape"
       xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +31,9 @@ const GeometricShapeBackground = styled((props) => (
       />
     </svg>
   </Background>
-))`
+);
+
+const GeometricShapeBackground = styled(GeometricShape)`
   .geometricShape {
     position: absolute;
     bottom: 0;

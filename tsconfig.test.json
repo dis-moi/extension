@@ -11,29 +11,6 @@
       "firefox-webext-browser",
       "mocha"
     ],
-    "paths": {
-      "@dismoi/domain": ["packages/domain"],
-      "@dismoi/domain/*": ["packages/domain/*"],
-      "@dismoi/ui/*": ["packages/ui/*"],
-      "@dismoi/i18n": ["packages/i18n"],
-      "@dismoi/i18n/*": ["packages/i18n/*"],
-      "@dismoi/extension/*": ["packages/extension/*"],
-      "@dismoi/web/*": ["packages/web/*"],
-      "libs/store/*": ["packages/extension/store/*"],
-      "libs/api/*": ["packages/extension/api-client/*"],
-      "libs/tracking/*": ["packages/extension/tracking/*"],
-      "libs/hooks/*": ["packages/extension/hooks/*"],
-      "libs/webext/*": ["packages/extension/webext/*"],
-      "libs/facets/*": ["packages/extension/facets/*"],
-      "libs/utils/*": ["packages/extension/utils/*"],
-      "app/background/*": ["packages/extension/background/*"],
-      "app/content/*": ["packages/extension/content/*"],
-      "app/profiles/*": ["packages/extension/profiles/*"],
-      "assets/*": ["packages/extension/assets/*"],
-      "types/*": ["packages/extension/types/*"],
-      "utils/*": ["packages/extension/utils/*"],
-      "test/*": ["packages/extension/test/*"]
-    }
   },
   "include": [
     "packages/**/*.ts",

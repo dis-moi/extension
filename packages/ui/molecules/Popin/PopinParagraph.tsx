@@ -2,18 +2,18 @@ import styled from 'styled-components';
 import { BackgroundButton, Paragraph } from '../../atoms';
 
 interface PopinParagraphProps {
-  align?: 'center';
+  $align?: 'center';
 }
 
 const PopinParagraph = styled(Paragraph)<PopinParagraphProps>`
-  align-self: ${(props) => (props.align ? props.align : 'stretch')};
+  align-self: ${(props) => (props.$align ? props.$align : 'stretch')};
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-end;
   padding-right: 20px;
   padding-left: 20px;
-  text-align: ${(props) => (props.align ? props.align : 'left')};
+  text-align: ${(props) => (props.$align ? props.$align : 'left')};
 
   &:not(:last-of-type) {
     margin-bottom: 16px;

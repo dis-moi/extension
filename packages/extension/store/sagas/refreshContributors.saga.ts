@@ -5,7 +5,7 @@ import {
   refreshContributorsFailed,
 } from 'libs/store/actions';
 import fetchContributors from 'libs/api/fetchContributors';
-import { Contributor, ContributorId } from '../../domain/contributor';
+import { Contributor, ContributorId } from '@dismoi/domain/contributor';
 import { asArray } from '../../utils/env';
 
 const ACCESSIBLE_CONTRIBUTORS_IDS = asArray<ContributorId>(

@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 interface ParagraphProps {
-  align?: 'right' | 'left' | 'center';
+  $align?: 'right' | 'left' | 'center';
 }
 
 const Paragraph = styled.p<ParagraphProps>`
   margin: 0;
   font-size: ${(props) => props.theme.fontSizeDefault};
   color: ${(props) => props.theme.textColor};
-  text-align: ${(props) => props.align || 'left'};
+  text-align: ${(props) => props.$align || 'left'};
 
   @media (max-width: ${(props) => props.theme.tabletWidth}) {
     font-size: 18px;

@@ -1,6 +1,6 @@
 import * as R from 'ramda';
 import { Brand } from 'types';
-import { defaultLng, SupportedLanguage } from '../i18n';
+import { defaultLng, SupportedLanguage } from '@dismoi/i18n/language';
 import { NoticeItem } from './notice';
 
 export type AvatarSize = 'small' | 'normal' | 'large' | 'extra_large';

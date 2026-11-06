@@ -49,10 +49,10 @@ export default ({ prev, close }: StepProps) => {
       <MarginTitle>{t('view.onBoarding.step3.title')}</MarginTitle>
 
       <Trans t={t} i18nKey={'view.onBoarding.step3.paragraph'}>
-        <OnboardingText align={'center'}>
+        <OnboardingText $align={'center'}>
           Nous vous avons présélectionné plusieurs contributeurs.
         </OnboardingText>
-        <OnboardingText align={'center'}>
+        <OnboardingText $align={'center'}>
           À vous de compléter et faire les choix définitifs !
         </OnboardingText>
       </Trans>

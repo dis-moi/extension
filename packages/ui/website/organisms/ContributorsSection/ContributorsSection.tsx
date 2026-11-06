@@ -8,7 +8,7 @@ import Section from '../../atoms/Section/Section';
 import Button from '../../atoms/Button/Button';
 import { useTranslation } from 'react-i18next';
 
-const StyledSectionTitle = styled((props) => <SectionTitle {...props} />)`
+const StyledSectionTitle = styled(SectionTitle)`
   color: ${(props) => props.theme.website.secondaryColorDarker};
   margin-bottom: 10px;
   max-width: 80vw;

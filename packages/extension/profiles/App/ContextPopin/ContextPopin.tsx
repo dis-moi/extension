@@ -18,7 +18,7 @@ const ContextPopin = ({ setContextPopin, contextPopin }: ContextPopinProps) => {
   if (!content) return null;
   return (
     <Popin setOpened={() => setContextPopin(initialState)} opened={opened}>
-      <PopinParagraph align={'center'}>{content.text}</PopinParagraph>
+      <PopinParagraph $align={'center'}>{content.text}</PopinParagraph>
       {content.btn && (
         <BackgroundButton onClick={content.btn?.onClick}>
           {content.btn?.label}

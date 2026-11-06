@@ -10,6 +10,8 @@ export default class TextareaField extends Component<WrappedFieldProps> {
       ...props
     } = this.props;
 
-    return <Textarea {...input} {...props} error={touched && error} />;
+    return (
+      <Textarea {...input} {...props} $error={Boolean(touched && error)} />
+    );
   }
 }

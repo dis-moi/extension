@@ -35,7 +35,7 @@ export default ({ next }: StepProps) => {
           <>
             <Line>
               <Bullito />
-              <OnboardingTitle align={'left'}>
+              <OnboardingTitle $align={'left'}>
                 {t('view.onBoarding.step2.question')}
               </OnboardingTitle>
             </Line>

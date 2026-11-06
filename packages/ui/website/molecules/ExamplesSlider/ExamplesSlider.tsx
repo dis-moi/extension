@@ -13,7 +13,7 @@ import SmallTitle from '../../atoms/Titles/SmallTitle';
 import SectionArrow from '../../atoms/SectionArrow/SectionArrow';
 import { useTranslation } from 'react-i18next';
 
-const StyledSmallTitle = styled((props) => <SmallTitle {...props} />)`
+const StyledSmallTitle = styled(SmallTitle)`
   color: ${(props) => props.theme.website.secondaryColorDarker};
 `;
 
@@ -21,7 +21,7 @@ const SliderWrapper = styled.div`
   position: relative;
 `;
 
-const StyledSectionArrow = styled((props) => <SectionArrow {...props} />)`
+const StyledSectionArrow = styled(SectionArrow)`
   position: absolute;
   top: 50%;
   path {
@@ -29,7 +29,7 @@ const StyledSectionArrow = styled((props) => <SectionArrow {...props} />)`
   }
 `;
 
-const ArrowPrev = styled((props) => <StyledSectionArrow {...props} />)`
+const ArrowPrev = styled(StyledSectionArrow)`
   display: none;
   @media (min-width: ${(props) => props.theme.tabletWidth}) {
     display: block;
@@ -41,7 +41,7 @@ const ArrowPrev = styled((props) => <StyledSectionArrow {...props} />)`
   }
 `;
 
-const ArrowNext = styled((props) => <StyledSectionArrow {...props} />)`
+const ArrowNext = styled(StyledSectionArrow)`
   display: none;
   @media (min-width: ${(props) => props.theme.tabletWidth}) {
     display: block;

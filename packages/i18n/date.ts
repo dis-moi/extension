@@ -1,5 +1,5 @@
 import { fr, enUS } from 'date-fns/locale';
-import { fallbackLng } from './index';
+import { fallbackLng } from './language';
 
 export const DEFAULT_FORMAT = 'dd/LL/yyyy';
 

@@ -22,7 +22,7 @@ const Notification = ({
   children,
 }: NotificationProps) =>
   closed ? null : (
-    <NotificationContainer hasNotices={hasNotices}>
+    <NotificationContainer $hasNotices={hasNotices}>
       <NotificationHeader title={title} close={close} goBack={onBack} />
       <Main $hasNotices={hasNotices}>{children}</Main>
       <NotificationFooter />

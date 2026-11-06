@@ -2,35 +2,54 @@
   "name": "extension",
   "sourceRoot": "packages/extension",
   "projectType": "application",
-  "tags": ["scope:extension"],
+  "tags": [
+    "scope:extension"
+  ],
   "targets": {
     "dev": {
       "command": "wxt",
-      "options": { "cwd": "packages/extension" }
+      "options": {
+        "cwd": "packages/extension"
+      }
     },
     "dev:firefox": {
       "command": "wxt -b firefox",
-      "options": { "cwd": "packages/extension" }
+      "options": {
+        "cwd": "packages/extension"
+      }
     },
     "build": {
       "command": "wxt build",
-      "options": { "cwd": "packages/extension" }
+      "options": {
+        "cwd": "packages/extension"
+      }
     },
     "build:firefox": {
       "command": "wxt build -b firefox",
-      "options": { "cwd": "packages/extension" }
+      "options": {
+        "cwd": "packages/extension"
+      }
     },
     "build:staging": {
       "command": "wxt build --mode staging",
-      "options": { "cwd": "packages/extension" }
+      "options": {
+        "cwd": "packages/extension"
+      }
     },
     "build:staging:firefox": {
       "command": "wxt build --mode staging -b firefox",
-      "options": { "cwd": "packages/extension" }
+      "options": {
+        "cwd": "packages/extension"
+      }
     },
     "test": {
       "command": "TS_NODE_PROJECT=../../tsconfig.test.json BACKEND_ORIGIN='' mocha -r ts-node/register -r tsconfig-paths/register -r jsdom-global/register './**/*.spec.ts' './test/**/*.ts'",
-      "options": { "cwd": "packages/extension" }
+      "options": {
+        "cwd": "packages/extension"
+      }
+    },
+    "typecheck": {
+      "command": "tsc -p packages/extension/tsconfig.json --noEmit"
     }
   }
 }

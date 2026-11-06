@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { StatefulContributor } from '../domain/contributor';
+import { StatefulContributor } from '@dismoi/domain/contributor';
 import getSearchResults from './getSearchResults';
 
 const contributors = [

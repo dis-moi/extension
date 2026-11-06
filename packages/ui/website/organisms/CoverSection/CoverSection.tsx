@@ -15,7 +15,7 @@ import GradientBackground from './backgrounds/GradientBackground';
 import GeometricShapeBackground from './backgrounds/GeometricShapeBackground';
 import PatternBackground from './backgrounds/PatternBackground';
 
-const StyledGridRow = styled((props) => <GridRow {...props} />)`
+const StyledGridRow = styled(GridRow)`
   position: relative;
   padding-top: 50px;
   display: flex;
@@ -33,7 +33,7 @@ const StyledGridRow = styled((props) => <GridRow {...props} />)`
   }
 `;
 
-const StyledGridCol = styled((props) => <GridCol {...props} />)`
+const StyledGridCol = styled(GridCol)`
   text-align: center;
   @media (min-width: ${(props) => props.theme.tabletWidth}) {
     text-align: left;
@@ -48,7 +48,7 @@ const CTAAndRatingWrapper = styled.div`
   }
 `;
 
-const StyledCTAButton = styled((props) => <CTAButton {...props} />)`
+const StyledCTAButton = styled(CTAButton)`
   margin-left: auto;
   margin-right: auto;
   @media (min-width: ${(props) => props.theme.tabletWidth}) {
@@ -57,7 +57,7 @@ const StyledCTAButton = styled((props) => <CTAButton {...props} />)`
   }
 `;
 
-const StyledStoreRating = styled((props) => <StoreRating {...props} />)`
+const StyledStoreRating = styled(StoreRating)`
   margin-top: 10px;
   margin-bottom: 70px;
   @media (min-width: ${(props) => props.theme.tabletWidth}) {
@@ -70,24 +70,30 @@ const StyledStoreRating = styled((props) => <StoreRating {...props} />)`
   }
 `;
 
-const StyledSectionArrow = styled((props) => (
-  <SectionArrow
-    handleClick={() => {
-      const firstSection = document.querySelector('section:first-child');
-      const header = document.querySelector('header');
-      if (firstSection && header) {
-        window.scrollTo({
-          top:
-            firstSection.getBoundingClientRect().height -
-            header.getBoundingClientRect().height +
-            2,
-          behavior: 'smooth',
-        });
-      }
-    }}
-    {...props}
-  />
-))`
+const scrollToContent = () => {
+  const firstSection = document.querySelector('section:first-child');
+  const header = document.querySelector('header');
+
+  if (firstSection && header) {
+    window.scrollTo({
+      top:
+        firstSection.getBoundingClientRect().height -
+        header.getBoundingClientRect().height +
+        2,
+      behavior: 'smooth',
+    });
+  }
+};
+
+interface ScrollToContentArrowProps {
+  className?: string;
+}
+
+const ScrollToContentArrow = ({ className }: ScrollToContentArrowProps) => (
+  <SectionArrow className={className} handleClick={scrollToContent} />
+);
+
+const StyledSectionArrow = styled(ScrollToContentArrow)`
   display: none;
   @media (min-width: ${(props) => props.theme.desktopWidth}) {
     display: block;

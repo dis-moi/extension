@@ -1,6 +1,6 @@
-import { SupportedLanguage } from '../i18n';
-import { Contributor } from '../domain/contributor';
-import { Notice } from '../domain/notice';
+import { SupportedLanguage } from '@dismoi/i18n';
+import { Contributor } from '@dismoi/domain/contributor';
+import { Notice } from '@dismoi/domain/notice';
 
 function sortByLocale<Items extends Notice | Contributor>(
   items: Items[],

@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface PlayProps {
-  className: string;
+  className?: string;
 }
 
 export default ({ className }: PlayProps) => (

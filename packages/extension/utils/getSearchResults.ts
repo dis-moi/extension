@@ -1,4 +1,4 @@
-import { StatefulContributor } from '../domain/contributor';
+import { StatefulContributor } from '@dismoi/domain/contributor';
 
 const unaccent = (string: string) =>
   string.normalize('NFD').replace(/[\u0300-\u036f]/g, '');

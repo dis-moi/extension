@@ -1,14 +1,12 @@
 import styled from 'styled-components';
-import { Theme } from 'libs/facets/theme';
 
 interface H2Props {
-  align?: 'right' | 'left' | 'center';
-  theme: Theme;
+  $align?: 'right' | 'left' | 'center';
 }
 
 export default styled.h2<H2Props>`
   font-size: 22px;
   font-weight: bold;
   color: ${(props) => props.theme.secondaryColor};
-  text-align: ${(props) => props.align || 'center'};
+  text-align: ${(props) => props.$align || 'center'};
 `;

@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import { Bullito } from '@dismoi/ui/atoms/icons';
 
 interface BulleDisMoiProps {
-  step: number;
+  $step: number;
 }
 
 const firstStep = keyframes`
@@ -39,5 +39,5 @@ export default styled.div.attrs({ children: <Bullito /> })<BulleDisMoiProps>`
   animation:
     ${firstStep} 750ms linear forwards 2.5s,
     ${secondStep} 750ms linear forwards 5.5s,
-    ${(props) => props.step === 2 && thirdStep} 750ms linear forwards 0s;
+    ${(props) => props.$step === 2 && thirdStep} 750ms linear forwards 0s;
 `;

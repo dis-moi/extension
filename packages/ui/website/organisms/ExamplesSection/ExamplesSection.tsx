@@ -8,15 +8,15 @@ import ExamplesSlider, {
   examples,
 } from '../../molecules/ExamplesSlider/ExamplesSlider';
 
-const StyledGridRow = styled((props) => <GridRow {...props} />)`
+const StyledGridRow = styled(GridRow)`
   justify-content: center;
 `;
 
-const StyledGridCol = styled((props) => <GridCol {...props} />)`
+const StyledGridCol = styled(GridCol)`
   width: 100%;
 `;
 
-const StyledExamplesSlider = styled((props) => <ExamplesSlider {...props} />)``;
+const StyledExamplesSlider = styled(ExamplesSlider)``;
 
 export interface ExamplesSectionProps {
   className?: string;

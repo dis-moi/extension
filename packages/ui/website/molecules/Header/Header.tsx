@@ -42,8 +42,13 @@ const MobileButtonsWrapper = styled.div`
   }
 `;
 
-export const HeaderCTAButton = styled(({ className }) => {
+interface CTAButtonProps {
+  className?: string;
+}
+
+const CTAButton = ({ className }: CTAButtonProps) => {
   const { t } = useTranslation('website');
+
   return (
     <Button
       className={className}
@@ -54,7 +59,9 @@ export const HeaderCTAButton = styled(({ className }) => {
       handleClick={installExtension}
     />
   );
-})`
+};
+
+export const HeaderCTAButton = styled(CTAButton)`
   display: none;
   @media (min-width: 340px) {
     display: flex;

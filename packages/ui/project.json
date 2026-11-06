@@ -2,13 +2,18 @@
   "name": "ui",
   "sourceRoot": "packages/ui",
   "projectType": "library",
-  "tags": ["scope:shared"],
+  "tags": [
+    "scope:shared"
+  ],
   "targets": {
     "test": {
       "command": "TS_NODE_PROJECT=../../tsconfig.test.json mocha -r ts-node/register -r tsconfig-paths/register -r jsdom-global/register './**/*.spec.ts'",
       "options": {
         "cwd": "packages/ui"
       }
+    },
+    "typecheck": {
+      "command": "tsc -p packages/ui/tsconfig.json --noEmit"
     }
   }
 }

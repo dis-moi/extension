@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface Props {
-  error?: boolean;
+  $error?: boolean;
 }
 
 export default styled.textarea<Props>`
@@ -13,13 +13,15 @@ export default styled.textarea<Props>`
   border-radius: 6px;
   border: 1px solid
     ${(props) =>
-      props.error ? props.theme.formError : props.theme.secondaryColor};
+      props.$error ? props.theme.formError : props.theme.secondaryColor};
   box-shadow: inset 0px 0px 0px 2px
-    ${(props) => (props.error ? props.theme.formError : '#fff')};
+    ${(props) => (props.$error ? props.theme.formError : '#fff')};
   resize: none;
 
+  /* styled-components v6 n'ajoute plus l'esperluette implicite : un
+     « ::placeholder » nu deviendrait un sélecteur global. */
   &,
-  ::placeholder {
+  &::placeholder {
     font-family: 'Lato', sans-serif;
   }
 `;

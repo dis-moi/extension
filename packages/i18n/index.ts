@@ -4,10 +4,11 @@ import { initReactI18next } from 'react-i18next';
 import { FACET_NAME } from '@dismoi/domain';
 import resources from './resources';
 import format from './format';
+import { fallbackLng, SupportedLanguage } from './language';
 
-export type SupportedLanguage = 'fr' | 'en' | 'br';
-export const fallbackLng: SupportedLanguage = 'en';
-export const defaultLng = 'fr' as SupportedLanguage;
+export type { SupportedLanguage } from './language';
+export { fallbackLng, defaultLng } from './language';
+
 export const getCurrentLng = () => i18n.language as SupportedLanguage;
 
 export const options: InitOptions = {

@@ -5,11 +5,16 @@ import useNoScrollBody from 'libs/utils/useNoScrollBody';
 import CloseButton from '@dismoi/ui/organisms/Notification/NotificationHeader/CloseButton';
 import { CloseFunction } from '../OnBoarding';
 
+/**
+ * La prop est transitoire : `open` n'a de sens que pour `<details>` et
+ * `<dialog>`, et styled-components v6 la laisserait atteindre ce `<div>`.
+ */
 interface ContainerProps {
-  open: boolean;
+  $open: boolean;
 }
 
-interface ModalProps extends ContainerProps {
+interface ModalProps {
+  open: boolean;
   children: React.ReactElement;
   close: CloseFunction;
 }
@@ -22,7 +27,7 @@ const Container = styled.div<ContainerProps>`
   height: 100vh;
   width: 100%;
   background: rgba(255, 255, 255, 0.65);
-  display: ${(props) => (props.open ? 'block' : 'none')};
+  display: ${(props) => (props.$open ? 'block' : 'none')};
 `;
 
 const Background = styled.section`
@@ -52,7 +57,7 @@ export default ({ children, open, close }: ModalProps) => {
   useNoScrollBody();
 
   return (
-    <Container open={open}>
+    <Container $open={open}>
       <Background>
         <Content>
           <PopinClose>

@@ -1,14 +1,12 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
-import { LocationDescriptor } from 'history';
 import Avatar from '@dismoi/ui/molecules/Avatar/Avatar';
 import { ContributorName } from '@dismoi/ui/atoms';
 import Title from './Title';
 
 interface ContentProps {
-  to?: LocationDescriptor;
   children: ReactNode;
-  isRead: boolean;
+  $isRead: boolean;
 }
 
 export default styled.div<ContentProps>`
@@ -52,10 +50,10 @@ export default styled.div<ContentProps>`
   }
 
   ${Title} {
-    font-weight: ${(props) => (props.isRead ? '500' : 'bold')};
+    font-weight: ${(props) => (props.$isRead ? '500' : 'bold')};
   }
 
   ${ContributorName}, ${Title} {
-    opacity: ${(props) => (props.isRead ? '.5' : '1')};
+    opacity: ${(props) => (props.$isRead ? '.5' : '1')};
   }
 `;
