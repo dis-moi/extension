@@ -7,6 +7,7 @@ import contextPopin, { ContextPopinState } from './contextPopin.reducer';
 import contributors, {
   ContributorsCollectionState,
 } from './contributors.reducer';
+import locale, { LocaleState } from './locale.reducer';
 import notices, { NoticesCollectionState } from './notices.reducer';
 import subscriptions, {
   SubscriptionsCollectionState,
@@ -21,6 +22,7 @@ export default (history?: History) =>
     subscriptions,
     notices,
     contextPopin,
+    locale,
   });
 
 export interface ProfilesState extends RouterRootState {
@@ -30,4 +32,5 @@ export interface ProfilesState extends RouterRootState {
   notices: NoticesCollectionState;
   categories: CategoriesCollection;
   contextPopin: ContextPopinState;
+  locale: LocaleState;
 }

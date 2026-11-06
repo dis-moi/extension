@@ -1,14 +1,17 @@
 import { Redirect, Route, Switch } from 'react-router';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import useChangeLanguage from 'app/profiles/hooks/useChangeLanguage';
 import ConnectedContextPopin from '../ContextPopin/';
 import Profiles from './Profiles';
 import Error from './Error';
 import Subscriptions from './Subscriptions';
 
+// La langue n'est plus décidée ici : elle vient du chemin, que la mise en
+// page de Next connaît, et l'instance i18next fournie par le contexte est
+// déjà réglée dessus. Le crochet qui la changeait pendant le rendu agissait
+// sur l'instance globale — jamais initialisée côté site — et faisait échouer
+// l'hydratation.
 const Pages = () => {
-  useChangeLanguage();
   const { t } = useTranslation();
 
   // Les chemins traduits portent déjà la langue (« /fr/profils »,

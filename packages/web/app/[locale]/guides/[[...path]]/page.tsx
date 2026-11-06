@@ -1,23 +1,54 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import ProfilesLoader from '../../ProfilesLoader';
+import {
+  fetchProfilesData,
+  findContributorInPath,
+} from '../../../../lib/profilesData';
+import ProfilesView from '../../ProfilesView';
 
-export const metadata: Metadata = {
+const LIST: Metadata = {
   title: 'Guides',
   description:
     'Meet the DisMoi contributors and the information they publish across the web.',
   alternates: { canonical: '/en/guides' },
 };
 
-export default function GuidesRoute({
+export const generateMetadata = async ({
   params,
 }: {
-  params: { locale: string };
+  params: { path?: string[] };
+}): Promise<Metadata> => {
+  const contributor = await findContributorInPath(params.path);
+
+  if (!contributor) {
+    return LIST;
+  }
+
+  return {
+    title: contributor.name,
+    description: `The information published by ${contributor.name} on DisMoi.`,
+    alternates: { canonical: `/en/guides/${(params.path ?? []).join('/')}` },
+  };
+};
+
+export default async function GuidesRoute({
+  params,
+}: {
+  params: { locale: string; path?: string[] };
 }) {
   if (params.locale !== 'en') {
     notFound();
   }
 
-  return <ProfilesLoader />;
+  const { contributors, categories } = await fetchProfilesData();
+
+  return (
+    <ProfilesView
+      locale="en"
+      initialPath={['/en/guides', ...(params.path ?? [])].join('/')}
+      contributors={contributors}
+      categories={categories}
+    />
+  );
 }

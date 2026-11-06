@@ -2,19 +2,19 @@ import { createSelector } from 'reselect';
 import { isCollectionLoading } from 'libs/store/collection/selectors';
 import { sortContributorsBySubscribers } from '@dismoi/domain/contributor';
 import { findItemById } from 'libs/utils/findItemById';
-import { getCurrentLng } from '@dismoi/i18n';
 import sortByLocale from 'libs/utils/sortByLocale';
 import { ProfilesState } from '../reducers';
+import { getLocale } from './locale';
 
 export const getContributorsCollection = (state: ProfilesState) =>
   state.contributors;
 
 export const getContributors = createSelector(
-  [getContributorsCollection],
-  (contributorsCollection) =>
+  [getContributorsCollection, getLocale],
+  (contributorsCollection, locale) =>
     sortByLocale(
       sortContributorsBySubscribers(contributorsCollection.items),
-      getCurrentLng(),
+      locale,
     ),
 );
 
