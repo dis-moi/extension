@@ -81,7 +81,10 @@ const SimilarProfiles = ({
               contributor={contributor}
               onSubscribe={subscribe(contributor)}
               onUnsubscribe={unsubscribe(contributor)}
-              to={pathToContributor(contributor)}
+              to={pathToContributor(
+                contributor,
+                t('path.profiles.contributors'),
+              )}
             />
           ))}
       </SidebarBox>

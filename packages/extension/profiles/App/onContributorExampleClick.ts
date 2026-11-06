@@ -1,5 +1,5 @@
 import { MouseEvent } from 'react';
-import i18n from 'i18next';
+import { TFunction } from 'i18next';
 import { Subscriptions } from '@dismoi/domain/subscription';
 
 import { StatefulContributor } from '@dismoi/domain/contributor';
@@ -11,18 +11,25 @@ import {
 
 type HandleSubscribe = (contributor: StatefulContributor) => () => void;
 
+/**
+ * La traduction est celle du composant appelant, qui la tient du fournisseur
+ * React. Le singleton global d'i18next, lu ici auparavant, n'est plus
+ * initialisé depuis que le site crée une instance par rendu : `t()` rendait
+ * `undefined` et la popin s'ouvrait sans un mot.
+ */
 const onContributorExampleClick = (
   contributor: StatefulContributor,
   connected: boolean | undefined,
   subscriptions: Subscriptions | undefined,
   handleSubscribe: HandleSubscribe,
   setPopin: (payload: ContextPopinState) => void,
+  t: TFunction,
 ) => {
   if (!connected) {
     const isNotConnectedPopin: ContextPopinState = {
       opened: true,
       content: {
-        text: i18n.t('profiles:popin.is_not_connected.message', {
+        text: t('profiles:popin.is_not_connected.message', {
           contributorName: contributor.name,
         }),
         btn: {
@@ -32,7 +39,7 @@ const onContributorExampleClick = (
               setPopin(popinInitialState);
             });
           },
-          label: i18n.t('profiles:popin.is_not_connected.btn_text'),
+          label: t('profiles:popin.is_not_connected.btn_text'),
         },
       },
     };
@@ -48,11 +55,11 @@ const onContributorExampleClick = (
     const afterSubscribePopin: ContextPopinState = {
       opened: true,
       content: {
-        text: i18n.t('profiles:popin.just_subscribed.message', {
+        text: t('profiles:popin.just_subscribed.message', {
           contributorName: contributor.name,
         }),
         btn: {
-          label: i18n.t('profiles:popin.just_subscribed.btn_text'),
+          label: t('profiles:popin.just_subscribed.btn_text'),
           onClick: () => {
             window.open(path, '_blank');
             setPopin(popinInitialState);
@@ -63,11 +70,11 @@ const onContributorExampleClick = (
     const isNotSubcriberPopin: ContextPopinState = {
       opened: true,
       content: {
-        text: i18n.t('profiles:popin.is_not_subscriber.message', {
+        text: t('profiles:popin.is_not_subscriber.message', {
           contributorName: contributor.name,
         }),
         btn: {
-          label: i18n.t('profiles:popin.is_not_subscriber.btn_text'),
+          label: t('profiles:popin.is_not_subscriber.btn_text'),
           onClick: () => {
             handleSubscribe(contributor)();
             setPopin(afterSubscribePopin);

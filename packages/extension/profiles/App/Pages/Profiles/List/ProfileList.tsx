@@ -151,7 +151,10 @@ const ProfileList = ({
               contributor={contributor}
               onSubscribe={handleSubscribe(contributor)}
               onUnsubscribe={handleUnsubscribe(contributor)}
-              to={pathToContributor(contributor)}
+              to={pathToContributor(
+                contributor,
+                t('path.profiles.contributors'),
+              )}
             >
               {contributor.contribution?.example.exampleMatchingUrl && (
                 <ContributorExampleLink
@@ -162,6 +165,7 @@ const ProfileList = ({
                       subscriptions,
                       handleSubscribe,
                       setContextPopin,
+                      t,
                     )
                   }
                 >

@@ -83,7 +83,10 @@ const Subscriptions = ({
                   contributor={contributor}
                   onSubscribe={() => subscribe(contributor.id)}
                   onUnsubscribe={() => unsubscribe(contributor.id)}
-                  to={pathToContributor(contributor)}
+                  to={pathToContributor(
+                    contributor,
+                    t('path.profiles.contributors'),
+                  )}
                 >
                   {contributor.contribution?.example.exampleMatchingUrl && (
                     <ContributorExampleLink
