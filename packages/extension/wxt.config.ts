@@ -14,6 +14,11 @@ export default defineConfig({
   srcDir: '.',
   outDir: '.output',
   modules: ['@wxt-dev/module-react'],
+  // WXT vise MV2 pour Firefox et MV3 pour Chrome : sans cette ligne, les deux
+  // navigateurs ne recevaient pas le même manifeste. Firefox n'a pas de
+  // service worker — il sert la même déclaration sous forme de page
+  // d'événements —, et c'est WXT qui s'en charge selon la cible.
+  manifestVersion: 3,
   manifest: ({ browser, mode }) => {
     const isDev = mode === 'development';
     const isStaging = mode === 'staging';
@@ -78,15 +83,17 @@ export default defineConfig({
       };
     }
 
-    // externally_connectable per environment
-    if (isDev) {
+    // `externally_connectable` ouvre le canal entre la page des profils et
+    // l'extension. Firefox ne l'implémente pas — ni `runtime.connect` ni
+    // `runtime.sendMessage` depuis une page web, cf. bogue 1319168 — et la
+    // déclarer lui vaudrait un avertissement à la relecture d'AMO pour une
+    // clé sans effet. La page s'y rabat sur la communication par `window`,
+    // ce que `canConnectToExtension` décide déjà à l'exécution.
+    if (browser !== 'firefox') {
       manifest.externally_connectable = {
-        matches: ['*://localhost/*'],
-        accepts_tls_channel_id: false,
-      };
-    } else if (!isDev) {
-      manifest.externally_connectable = {
-        matches: ['https://*.dismoi.io/*', 'https://*.lememe.fr/*'],
+        matches: isDev
+          ? ['*://localhost/*']
+          : ['https://*.dismoi.io/*', 'https://*.lememe.fr/*'],
         accepts_tls_channel_id: false,
       };
     }
