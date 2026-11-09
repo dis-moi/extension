@@ -216,6 +216,16 @@ export default defineConfig({
           ]),
         ),
         'process.env.APP_VERSION': JSON.stringify(version),
+        // `NODE_ENV` ne figure pas parmi les variables injectées : le repli
+        // ci-dessous le réduisait à `undefined`, et tout le code qui teste
+        // `!== 'production'` prenait la branche de développement jusque dans
+        // un paquet publié — journal Redux déversé dans la console des
+        // utilisateurs, contrôle d'immuabilité exécuté à chaque action, titre
+        // d'extension « DisMoi - undefined », et des rapports Sentry sans
+        // environnement ni version. Le mode de compilation porte exactement
+        // la même valeur que l'ancien NODE_ENV de webpack : staging et
+        // proding gardent donc leurs outils de développement.
+        'process.env.NODE_ENV': JSON.stringify(mode),
         // Catch-all fallback for any remaining process.env references
         // (e.g. styled-components internals, debug libs)
         'process.env': '{}',
