@@ -1,6 +1,6 @@
 {
   "name": "dismoi",
-  "version": "3.98.0",
+  "version": "4.0.0",
   "private": true,
   "description": "DisMoi monorepo — extension navigateur, website, packages partagés.",
   "engines": {
