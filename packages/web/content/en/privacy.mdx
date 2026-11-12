@@ -49,12 +49,12 @@ locale: "en"
 ### 1. Une utilisation anonyme de l’extension
 
 * Pas besoin de compte ni de transmettre des informations personnelles (email, nom…) pour naviguer avec DisMoi.
-* Les adresses IP sont masquées et anonymisées.
+* Les adresses IP ne sont jamais conservées, ni par nous, ni par notre outil de mesure d’audience.
 
 ### 2. Pas de profilage, ni de revente de données
 
 Au contraire de la majorité des réseaux sociaux et du web, DisMoi ne cache aucun système pour profiler son utilisateur (par exemple pour connaître ses goûts, ses derniers achats, etc). Celui-ci ne reçoit des messages qu’en fonction de ses choix d’abonnements et de la page web qu’il consulte.
-Enfin, aucune donnée n’est cédée à un tiers.
+Enfin, aucune donnée n’est vendue ni cédée à un courtier en données. Le seul tiers qui en reçoit est Plausible, notre outil de mesure d’audience, qui agit comme sous-traitant pour notre seul compte.
 
 ### 3. Pas de publicité
 
@@ -91,7 +91,7 @@ Ces données d’usage nous servent à évaluer et améliorer le service rendu *
 
 #### L’adresse de la page web en cours est remontée en cas d’interaction avec l’extension
 
-La seule donnée sensible qui peut parfois être remontée à notre outil de suivi de trafic Matomo (plus de détails plus bas) est l’adresse de la page web visitée, mais uniquement dans les cas suivants :
+La seule donnée sensible qui peut parfois être remontée à notre outil de mesure d’audience Plausible (plus de détails plus bas) est l’adresse de la page web visitée, mais uniquement dans les cas suivants :
 
 * Lorsqu’une bulle est notifiée ;
 * Lorsque l’utilisateur clique sur l’icône DisMoi dans le navigateur ;
@@ -101,16 +101,16 @@ La seule donnée sensible qui peut parfois être remontée à notre outil de sui
 
 Pour éviter que ces adresses web constituent des faisceaux d’indices de reconnaissance d’une personne :
 
-1. Nous masquons toutes les IP des utilisateurs ;
-1. Nous avons mis en place une liste d’exclusion de adresses (URLs) potentiellement sensibles. Par exemple, l’extension ne remonte aucune URL comprenant wp-admin afin de ne pas identifier les administrateurs d’un site web.
+1. Aucune adresse IP n’est conservée. Plausible en dérive un identifiant quotidien haché, dont le sel est renouvelé et détruit toutes les 24 heures ; ni l’adresse IP ni l’agent utilisateur ne sont stockés, et aucun cookie ni stockage local n’est utilisé ;
+1. La partie interrogative des adresses est écartée : Plausible ne conserve que le nom d’hôte et le chemin, à l’exception des paramètres de campagne. Les identifiants, jetons et termes de recherche qui voyagent souvent après le point d’interrogation d’une adresse ne nous parviennent donc pas.
 
 #### Bloquer toute remontée de données de navigation
 
 Certains utilisateurs préfèrent avoir un contrôle complet des données remontées.
 
-Actuellement, l’extension détecte si vous avez choisi l’[option “Do No Track”](https://support.mozilla.org/fr/kb/comment-activer-option-ne-pas-pister) (“ne pas me pister”) de votre navigateur. Si elle est activée, l’extension ne remonte plus aucune donnée à notre service d’analyse de trafic Matomo.
+Actuellement, l’extension détecte si vous avez choisi l’[option “Do No Track”](https://support.mozilla.org/fr/kb/comment-activer-option-ne-pas-pister) (“ne pas me pister”) de votre navigateur. Si elle est activée, l’extension ne remonte plus aucune donnée à notre outil de mesure d’audience : le traceur n’est alors même pas construit au démarrage.
 
-Il sera prochainement possible pour chaque utilisateur de désactiver directement dans l’extension toute remontée de données à notre service d’analyse de trafic Matomo.
+Il sera prochainement possible pour chaque utilisateur de désactiver directement dans l’extension toute remontée de données à notre outil de mesure d’audience.
 
 ### 3. Ces données sont-elles communiquées à des tiers ?
 
@@ -124,13 +124,17 @@ _Exemple de statistiques visibles des contributeurs dans l’outil de contributi
 
 #### Aucune autre donnée n’est diffusée à des tiers
 
-Seules des statistiques de visualisation et d’interaction avec les bulles DisMoi sont donc communiquées à son auteur. Aucune autre donnée n’est partagée avec des tiers.
+Seules des statistiques de visualisation et d’interaction avec les bulles DisMoi sont donc communiquées à son auteur.
+
+Un seul autre tiers reçoit des données : Plausible, l’outil qui mesure ces statistiques pour nous. Il agit comme sous-traitant au sens du RGPD, traite ces données pour notre seul compte et ne les exploite pour personne d’autre. Aucune autre donnée n’est partagée avec qui que ce soit.
 
 #### Ni à Google, ni à Facebook, ni aux autres marchands de données
 
 Contrairement à la majorité du web, nous ne partageons aucune donnée avec Google, Facebook et les autres marchands de données.
 
-Nous utilisons Matomo comme outil technique de suivi de trafic, open source, hébergé par nos soins en France, dont la confidentialité est bien plus sûre que sur d’autres outils comme Google Analytics, utilisé par la majorité des sites Internet que vous visitez tous les jours.
+Nous utilisons Plausible comme outil technique de mesure d’audience. Il est open source, conçu pour se passer de cookies et d’identifiants persistants, et bien plus respectueux de la vie privée que des outils comme Google Analytics, utilisé par la majorité des sites Internet que vous visitez tous les jours.
+
+Plausible est édité par Plausible Insights OÜ, société estonienne, qui l’héberge en Allemagne : les données de visite ne quittent pas l’Union européenne.
 
 De même, nous ne partageons pas nos données avec Facebook ou Twitter ou une filiale de La Poste, contrairement, à nouveau, à la majorité des sites web que vous visitez tous les jours.
 
@@ -143,7 +147,7 @@ Nous avons créé DisMoi pour lutter contre le système publicitaire. Il est év
 Votre extension navigateur DisMoi dialogue avec trois “machines” :
 
 * Le serveur hébergeant toutes les bulles des contributeurs ;
-* L’outil d’analyse de trafic (Analytics)
+* Notre outil de mesure d’audience : [Plausible](https://plausible.io/)
 * Notre outil de de suivi de bugs : [Sentry](https://sentry.io/)
 
 Voici comment l’extension interagit avec ces machines :
@@ -162,11 +166,11 @@ Dans tout ce processus, vous pouvez constater qu’à aucun moment **le serveur 
 
 #### ii. À l’outil d’analyse de trafic, l’extension remonte uniquement les URLs des pages pour lesquelles une bulle s’est affichée et les interactions de l’internaute avec l’extension
 
-Rappel : Si vous avez choisi l’[option “Do No Track”](https://support.mozilla.org/fr/kb/comment-activer-option-ne-pas-pister) (“ne pas me pister”) de votre navigateur, l’extension ne remonte plus aucune donnée à notre service d’analyse de trafic Matomo.
+Rappel : Si vous avez choisi l’[option “Do No Track”](https://support.mozilla.org/fr/kb/comment-activer-option-ne-pas-pister) (“ne pas me pister”) de votre navigateur, l’extension ne remonte plus aucune donnée à Plausible, notre outil de mesure d’audience.
 
 ##### Les données d’affichages et d’interaction sont remontées avec l’URL de la page en cours
 
-Nous avons mis en place un outil Analytics grâce au logiciel open source Matomo (alternative open source de Google Analytics).
+Nous mesurons notre audience grâce au logiciel open source Plausible (alternative à Google Analytics, sans cookie ni identifiant persistant).
 
 Cet outil nous permet de connaître les **données d’affichage et d’interaction relatives à chaque bulle** :
 
@@ -185,35 +189,33 @@ Pour obtenir ces informations, il nous est inutile de disposer de données à ca
 
 ##### Ces URLs sont uniquement remontées en cas d’interaction ou de notification
 
-Ici, Matomo, à l’inverse du serveur de contribution, nous donne donc accès à l’URL des pages visitées **lorsque une bulle est notifiée** ou lorsque l’utilisateur **clique sur l’icône de l’extension** – et uniquement dans ces deux cas.
+Ici, Plausible, à l’inverse du serveur de contribution, nous donne donc accès à l’adresse des pages visitées **lorsqu’une bulle est notifiée**, lorsque l’utilisateur **clique sur l’icône de l’extension**, et lorsqu’il **interagit avec une bulle** : l’ouvrir, la replier, la fermer, donner son avis, suivre un lien qu’elle contient. En dehors de ces moments, la page que vous consultez ne nous est pas communiquée.
 
 L’URL est une donnée précieuse pour les équipes techniques DisMoi car elle nous permet d’ améliorer le service et les contributions. Elle nous permet par exemple d’améliorer le ciblage des bulles en identifiant des pages où elles n’auraient pas dû s’afficher.
 
-##### Anonymisation des données dans Matomo
+##### Votre adresse IP n’est jamais conservée
 
-Nous avons fait le choix de configurer Matomo de manière à ce que [votre IP soit directement anonymisée](https://fr.matomo.org/docs/privacy/#step-1-automatically-anonymize-visitor-ips).
+Plausible [ne stocke ni les adresses IP ni les agents utilisateurs](https://plausible.io/data-policy). Il s’en sert uniquement, au moment de la réception, pour calculer un identifiant quotidien haché avec un sel renouvelé et détruit toutes les 24 heures. Cet identifiant ne permet donc aucun recoupement d’un jour sur l’autre, et aucun cookie ni stockage local n’est posé dans votre navigateur.
 
-##### Exclusion des URLs potentiellement sensibles
+##### Ce qui est retenu d’une adresse, et ce qui ne l’est pas
 
 L’URL de la page sur laquelle la bulle s’est affichée est généralement une donnée non sensible dans le domaine de la vie privée. En effet, ces pages sont souvent banales et visitées par des milliers d’autres internautes.
 
 Par exemple, supposons que vous suiviez le contributeur “Le Même en Local”. Un jour, vous visitez la page du livre” Robinson Crusoé” sur la marketplace Amazon. Dans ce cas, l’URL de cette page [ https://www.amazon.fr/Robinson-Cruso%C3%A9-Daniel-Defoe/dp/2253161152](https://www.amazon.fr/Robinson-Cruso%C3%A9-Daniel-Defoe/dp/2253161152) apparaîtra dans notre outil de suivi des évènements de l’extension.
 
-Cependant, certaines URLs peuvent contenir des données susceptibles de faire partie d’un faisceau d’indice aidant à l’identification d’une personne. L’équipe technique a donc fait le choix de les exclure. Par exemple, l’extension ne remonte aucune URL comprenant wp-admin afin de ne pas permettre l’identification des administrateurs d’un site web.
+Cependant, certaines adresses peuvent contenir des données susceptibles de faire partie d’un faisceau d’indices aidant à l’identification d’une personne. C’est le plus souvent après le point d’interrogation que ces données voyagent : identifiants de session, jetons, termes de recherche. [Plausible écarte cette partie interrogative](https://plausible.io/data-policy) et ne conserve que le nom d’hôte et le chemin, à l’exception des paramètres de campagne.
+
+Nous ne pouvons pas pour autant promettre qu’aucune adresse sensible ne sera jamais enregistrée : un chemin seul peut déjà en dire trop. Nous préférons l’écrire plutôt que de laisser croire à un filtre que nous n’avons pas.
 
 ##### Suppression des données collectées de plus de 12 mois d’ancienneté
 
-Matomo est configuré de façon à supprimer les données de plus de 12 mois d’ancienneté.
+Plausible est configuré de façon à supprimer les données de plus de 12 mois d’ancienneté.
 
 Certes, nous faisons parfois des consolidations à partir de ces données, par exemple pour voir l’évolution du nombre de consultations des bulles d’un éclaireur d’une année sur l’autre. Cette synthèse est donc conservée au-delà des 12 mois. Mais elle est très générique et ne comporte aucune donnée de navigation.
 
-##### Aucune donnée transmise depuis Matomo
+##### Aucune donnée transmise depuis Plausible
 
 Les éclaireurs eux-mêmes n’ont pas accès à ces données.
-
-##### Améliorer la transparence de nos usages Matomo
-
-L’équipe technique travaille actuellement pour rendre vérifiable à tout internaute le désirant que la configuration actuelle de notre outil Matomo masque bien son adresse IP. En attendant de solutionner ce point, nous remercions nos utilisateurs de leur confiance.
 
 #### iii. À l’outil de suivi d’erreurs, l’extension communique des rapports de bugs
 
@@ -245,7 +247,7 @@ En revanche, nous nous engageons à ne jamais altérer ni le contenu ni le rendu
 
 Factuellement, c’est d’abord le code source de l’extension, ouvert et [consultable ici](https://github.com/dis-moi/extension), permettant à toute personne – compétente en lecture de code informatique – de vérifier nos engagements.
 
-En matière de vie privée, la seule partie qui n’est pas vérifiable – pour l’instant – est l’anonymisation des IP que nous effectuons dans l’outil Analytics Matomo (comme expliqué plus haut). Nous y travaillons !
+En matière de vie privée, la partie que vous ne pouvez pas vérifier dans notre code est ce que Plausible fait des données une fois reçues : le traitement des adresses IP, la durée de conservation. Elle relève de [sa propre politique de données](https://plausible.io/data-policy), publique elle aussi, et du contrat de sous-traitance qui nous lie à lui.
 
 À l’inverse, vous bénéficiez rarement d’un accès au code source des autres extensions de navigateurs, ni à celui de Chrome. Vous ne savez pas non plus quelles données ils collectent, ce qu’ils en font et avec qui ils les partagent.
 
