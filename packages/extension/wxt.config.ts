@@ -87,7 +87,12 @@ export default defineConfig({
       description:
         'Amis, media, experts vous informent directement sur les pages web visitées.',
       version,
-      permissions: ['activeTab', 'storage', 'contextMenus', 'alarms'],
+      // `activeTab` était déclarée sans qu'aucun appel n'en dépende : ni
+      // `executeScript`, ni `insertCSS`, ni `captureVisibleTab`. Le script de
+      // contenu est déclaré statiquement et couvert par `host_permissions`.
+      // Une permission que la relecture du store demande de justifier et dont
+      // on ne sait rien dire est un motif de refus.
+      permissions: ['storage', 'contextMenus', 'alarms'],
       host_permissions: ['*://*/*'],
       web_accessible_resources: [
         {
