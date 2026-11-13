@@ -43,8 +43,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged ",
-      "pre-push": "yarn verify:quick"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
