@@ -132,6 +132,34 @@ yarn build-storybook
 
 It is automatically deployed to https://storybook.lmem.net on every `develop` branch update.
 
+## Publication de l'extension
+
+La publication est **manuelle**. Elle n'est pas la conséquence d'une fusion sur
+`master` : envoyer une extension chez Google et Mozilla est irréversible et
+déclenche un examen, ça se décide.
+
+Depuis l'onglet **Actions → Publication → Run workflow**, ou :
+
+```bash
+gh workflow run release.yml                        # publie
+gh workflow run release.yml -f simulation=true     # aperçu seul
+```
+
+Une seule exécution fait tout : semantic-release lit les commits depuis la
+dernière étiquette, en déduit le numéro suivant (Conventional Commits, préréglage
+angular), écrit le `package.json` et le `CHANGELOG.md`, construit les six
+archives, commite, étiquette, pousse, crée la release GitHub et soumet aux deux
+stores.
+
+La case **simulation** passe `--dry-run` : seules les étapes de lecture
+s'exécutent (`verifyConditions`, `analyzeCommits`, `verifyRelease`,
+`generateNotes`). Rien n'est construit, commité, étiqueté ni soumis — le journal
+affiche le numéro calculé et les notes de version.
+
+> Le préréglage angular ne reconnaît pas le `!` de `feat!:` : son
+> `headerPattern` est `/^(\w*)(?:\((.*)\))?: (.*)$/`. Une rupture se déclare par
+> un pied de message `BREAKING CHANGE:`, seul mot-clé de `noteKeywords`.
+
 ## Déploiement du site
 
 Le site et la page des profils sont une seule application Next.js
@@ -161,14 +189,14 @@ La production tourne sur l'application **`dismoi-io`**
 
 Trois variables qu'on serait tenté de poser et qu'il ne faut pas :
 
-- **`PORT`** — « *Clever Cloud sets `PORT` to `8080` for you: don't add it to
-  your environment variables or your code* ». Le serveur l'honore déjà.
+- **`PORT`** — « _Clever Cloud sets `PORT` to `8080` for you: don't add it to
+  your environment variables or your code_ ». Le serveur l'honore déjà.
 - **`CC_NODE_VERSION`** — `engines.node` du `package.json` prime jusqu'au
   1er décembre 2026, donc la variable serait ignorée aujourd'hui. Le dépôt
   déclare `">=22"` : Clever choisit librement dans cette plage, et resserrer
   `engines.node` est le seul moyen de fixer la version avant cette date.
-- **`CC_NODE_DEV_DEPENDENCIES`** — « *has no effect when `CC_NODE_BUILD_TOOL`
-  is set to `yarn2` or `yarn-berry`* ». Yarn 4 installe de toute façon les
+- **`CC_NODE_DEV_DEPENDENCIES`** — « _has no effect when `CC_NODE_BUILD_TOOL`
+  is set to `yarn2` or `yarn-berry`_ ». Yarn 4 installe de toute façon les
   dépendances de développement, dont `nx`, nécessaire à la compilation.
 
 Le build tourne sur une instance dédiée (`clever scale --build-flavor XL`) :

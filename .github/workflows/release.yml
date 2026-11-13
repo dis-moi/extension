@@ -1,8 +1,19 @@
 name: Publication
 
+# Publier, c'est envoyer une extension chez Google et Mozilla : irréversible et
+# soumis à examen. Ça ne peut pas être la conséquence automatique d'une fusion
+# sur la branche par défaut. On le déclenche à la main, depuis l'onglet
+# Actions ou par `gh workflow run release.yml`, quand on décide « cette
+# version-là part ».
 on:
-  push:
-    branches: [master]
+  workflow_dispatch:
+    inputs:
+      simulation:
+        description: >-
+          Calculer la prochaine version et les notes sans rien publier
+          ni étiqueter.
+        type: boolean
+        default: false
 
 # Une publication à la fois : deux exécutions concurrentes se disputeraient
 # l'étiquette de version et le store refuserait la seconde.
@@ -54,7 +65,7 @@ jobs:
         run: yarn test
 
       - name: Publier
-        run: yarn semantic-release
+        run: yarn semantic-release ${{ inputs.simulation && '--dry-run' || '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CHROME_CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
