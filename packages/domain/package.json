@@ -1,0 +1,6 @@
+{
+  "//": "Ce manifeste n'existe que pour `nx release`, qui lit le package.json de chaque dépendance du graphe. Yarn l'ignore : la racine ne déclare pas de workspaces. Voir README, section Publication de l'extension.",
+  "name": "@dismoi/domain",
+  "version": "4.0.0",
+  "private": true
+}

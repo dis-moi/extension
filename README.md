@@ -145,20 +145,59 @@ gh workflow run release.yml                        # publie
 gh workflow run release.yml -f simulation=true     # aperçu seul
 ```
 
-Une seule exécution fait tout : semantic-release lit les commits depuis la
-dernière étiquette, en déduit le numéro suivant (Conventional Commits, préréglage
-angular), écrit le `package.json` et le `CHANGELOG.md`, construit les six
-archives, commite, étiquette, pousse, crée la release GitHub et soumet aux deux
-stores.
+Une seule exécution fait tout : `nx release` lit les commits depuis la dernière
+étiquette, en déduit le numéro suivant (Conventional Commits), l'écrit dans les
+manifestes et le `CHANGELOG.md`, commite, étiquette et pousse ; le workflow
+construit ensuite les six archives et les soumet aux deux stores.
 
-La case **simulation** passe `--dry-run` : seules les étapes de lecture
-s'exécutent (`verifyConditions`, `analyzeCommits`, `verifyRelease`,
-`generateNotes`). Rien n'est construit, commité, étiqueté ni soumis — le journal
-affiche le numéro calculé et les notes de version.
+La case **simulation** passe `--dry-run` : Nx affiche le numéro calculé et
+l'entrée de changelog sans rien écrire, et les étapes de construction et de
+soumission sont sautées.
 
-> Le préréglage angular ne reconnaît pas le `!` de `feat!:` : son
-> `headerPattern` est `/^(\w*)(?:\((.*)\))?: (.*)$/`. Une rupture se déclare par
-> un pied de message `BREAKING CHANGE:`, seul mot-clé de `noteKeywords`.
+### Configuration
+
+Tout tient dans le bloc `release` de `nx.json`. Quatre points méritent une
+explication, parce qu'aucun ne se devine :
+
+- **`projects`** liste `extension`, `domain`, `i18n` et `ui`, pas `web`. Nx ne
+  retient que les commits touchant un fichier des projets du groupe — ou un
+  fichier racine, et seulement si le commit n'a pas de portée
+  (`shared.js:211-218`). Sans les trois bibliothèques, un `fix(ui):` ne
+  déclencherait aucune version alors qu'il change l'extension. Avec `web`, une
+  modification du site en déclencherait une pour rien.
+
+- **`manifestRootsToUpdate: [".", "{projectRoot}"]`** fait écrire la version
+  dans le `package.json` racine — celui que lit `wxt.config.ts` — en plus de
+  celui de chaque paquet. Le jeton `{workspaceRoot}`, qui semblerait naturel,
+  **ne fonctionne pas** : il vaut la chaîne vide, et `_interpolate` teste la
+  valeur avec `!value[...]` (`nx/src/tasks-runner/utils.js:280`), donc le jeton
+  est renvoyé littéralement. D'où le `"."`.
+
+- **Les `package.json` des quatre paquets** n'existent que pour Nx. Ils ne
+  déclarent aucune dépendance et Yarn les ignore (la racine n'a pas de champ
+  `workspaces`). Nx les exige quand même : `getAllNonImplicitDependents` lit le
+  manifeste de chaque dépendance du graphe, sans condition et sans que
+  `updateDependents: "never"` y change quoi que ce soit.
+
+- **`import/internal-regex` dans `.eslintrc.json`** est une conséquence des
+  manifestes : dès qu'ils existent, `eslint-plugin-import` cesse de voir les
+  `@dismoi/*` comme des alias de chemin et les reclasse, ce qui faisait passer
+  les avertissements `import/order` de 62 à 157. Le réglage leur rend leur
+  catégorie « internal ».
+- **La poussée est une étape à part.** `nx release` ne sait pas pousser : la
+  commande globale n'expose pas `--git-push` et `release.git` n'a pas d'option
+  correspondante. Les étiquettes posées sont annotées, d'où `--follow-tags`.
+
+> Quand aucun commit ne justifie de version, `nx release` sort en **code 1**
+> après « No files would be changed ». L'exécution apparaît donc en échec, et
+> les étapes suivantes — poussée, archives, soumission — sont sautées. C'est
+> le comportement voulu : rien ne part. On ne masque pas ce code de retour,
+> qui servirait aussi à cacher un vrai échec.
+> Pour un aperçu en local, sans rien écrire :
+
+```bash
+yarn release:simulation
+```
 
 ## Déploiement du site
 

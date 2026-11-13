@@ -1,5 +1,26 @@
 {
   "$schema": "https://raw.githubusercontent.com/nrwl/nx/master/packages/nx/schemas/nx-schema.json",
+  "release": {
+    "projects": ["extension", "domain", "i18n", "ui"],
+    "releaseTagPattern": "v{version}",
+    "git": {
+      "commit": true,
+      "commitMessage": "chore(release): {version} [skip ci]",
+      "tag": true
+    },
+    "version": {
+      "useLegacyVersioning": false,
+      "conventionalCommits": true,
+      "manifestRootsToUpdate": [".", "{projectRoot}"]
+    },
+    "changelog": {
+      "projectChangelogs": false,
+      "workspaceChangelog": {
+        "file": "CHANGELOG.md",
+        "createRelease": false
+      }
+    }
+  },
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build"],

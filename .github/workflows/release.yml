@@ -23,21 +23,23 @@ concurrency:
 
 permissions:
   contents: write
-  issues: write
-  pull-requests: write
+
+env:
+  # `nx release` commite, et le crochet `pre-commit` lancerait `lint-staged`
+  # dans un environnement où il n'a rien à y faire : les vérifications
+  # tournent déjà en étapes explicites ci-dessous.
+  HUSKY_SKIP_HOOKS: 1
 
 jobs:
   publier:
-    name: semantic-release
+    name: nx release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          # semantic-release lit tout l'historique pour déterminer la version.
+          # `nx release` lit l'historique et les étiquettes pour déterminer la
+          # version courante et la plage de commits à analyser.
           fetch-depth: 0
-          # Il pousse avec GITHUB_TOKEN plutôt qu'avec les identifiants posés
-          # par l'action, comme le recommande sa documentation.
-          persist-credentials: false
 
       - uses: actions/setup-node@v4
         with:
@@ -64,10 +66,35 @@ jobs:
       - name: Tests
         run: yarn test
 
-      - name: Publier
-        run: yarn semantic-release ${{ inputs.simulation && '--dry-run' || '' }}
+      - name: Identité des commits
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      # Déduit la version des messages de commit depuis la dernière étiquette,
+      # l'écrit dans les manifestes, génère le changelog, commite et étiquette.
+      # `--skip-publish` écarte `nx release publish`, qui vise un registre
+      # npm : nos artefacts partent chez Google et Mozilla.
+      - name: Versionner
+        run: yarn nx release --skip-publish ${{ inputs.simulation && '--dry-run' || '' }}
+
+      # `nx release` ne sait pas pousser : la commande globale n'expose pas
+      # `--git-push` et `release.git` n'a pas d'option correspondante. Les
+      # étiquettes qu'elle pose sont annotées, d'où `--follow-tags`.
+      - name: Pousser le commit et l'étiquette
+        if: ${{ !inputs.simulation }}
+        run: git push --follow-tags origin "HEAD:${GITHUB_REF_NAME}"
+
+      # Les archives lisent la version dans le `package.json` racine, que
+      # l'étape précédente vient de mettre à jour.
+      - name: Construire les six archives
+        if: ${{ !inputs.simulation }}
+        run: yarn zip:all
+
+      - name: Soumettre aux stores
+        if: ${{ !inputs.simulation }}
+        run: node bin/submit.mjs staging && node bin/submit.mjs proding && node bin/submit.mjs production
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CHROME_CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
           CHROME_CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
           CHROME_REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
