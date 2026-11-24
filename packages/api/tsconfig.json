@@ -2,12 +2,13 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "../../dist/packages/api",
-    // `moduleResolution: bundler` vient du socle commun et convient : il lit
-    // le champ `exports` des paquets, donc il résout les sous-chemins d'Effect
-    // 4 (`effect/sql`, `effect/http`, `effect/schema`), et il accepte les
-    // imports relatifs sans extension comme le reste du dépôt. Ce code n'est
-    // jamais exécuté par Node directement — Next le compile, Vitest le
-    // transforme — donc la résolution ESM stricte n'apporterait rien.
+    // `moduleResolution: bundler` comes from the shared base and fits: it
+    // reads the `exports` field of the packages, so it resolves the
+    // subpaths of Effect 4 (`effect/sql`, `effect/http`, `effect/schema`),
+    // and it accepts relative imports without an extension like the rest of
+    // the repository. This code is never run by Node directly - Next
+    // compiles it, Vitest transforms it - so strict ESM resolution would
+    // bring nothing.
     "verbatimModuleSyntax": true,
     "types": ["node"],
     "exactOptionalPropertyTypes": true,

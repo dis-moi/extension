@@ -15,7 +15,7 @@ export const GET = async (
   const filter = params.filter;
 
   if (asked === null || !isFilterName(filter)) {
-    return new Response('Image introuvable', { status: 404 });
+    return new Response('Image not found', { status: 404 });
   }
 
   return imageResponse(

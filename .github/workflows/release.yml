@@ -1,22 +1,21 @@
-name: Publication
+name: Release
 
-# Publier, c'est envoyer une extension chez Google et Mozilla : irréversible et
-# soumis à examen. Ça ne peut pas être la conséquence automatique d'une fusion
-# sur la branche par défaut. On le déclenche à la main, depuis l'onglet
-# Actions ou par `gh workflow run release.yml`, quand on décide « cette
-# version-là part ».
+# Publishing means sending an extension to Google and Mozilla: irreversible
+# and subject to review. It cannot be the automatic consequence of a merge on
+# the default branch. It is triggered by hand, from the Actions tab or through
+# `gh workflow run release.yml`, when someone decides that this version ships.
 on:
   workflow_dispatch:
     inputs:
       simulation:
         description: >-
-          Calculer la prochaine version et les notes sans rien publier
-          ni étiqueter.
+          Compute the next version and the notes without publishing
+          or tagging anything.
         type: boolean
         default: false
 
-# Une publication à la fois : deux exécutions concurrentes se disputeraient
-# l'étiquette de version et le store refuserait la seconde.
+# One release at a time: two concurrent runs would fight over the version tag
+# and the store would refuse the second.
 concurrency:
   group: release
   cancel-in-progress: false
@@ -25,73 +24,73 @@ permissions:
   contents: write
 
 env:
-  # `nx release` commite, et le crochet `pre-commit` lancerait `lint-staged`
-  # dans un environnement où il n'a rien à y faire : les vérifications
-  # tournent déjà en étapes explicites ci-dessous.
+  # `nx release` commits, and the `pre-commit` hook would run `lint-staged` in
+  # an environment where it has nothing to do: the checks already run as
+  # explicit steps below.
   HUSKY_SKIP_HOOKS: 1
 
 jobs:
-  publier:
+  release:
     name: nx release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          # `nx release` lit l'historique et les étiquettes pour déterminer la
-          # version courante et la plage de commits à analyser.
+          # `nx release` reads the history and the tags to determine the
+          # current version and the range of commits to analyse.
           fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: Activer Yarn 4
+      - name: Enable Yarn 4
         run: corepack enable
 
-      - name: Cache des paquets
+      - name: Cache the packages
         uses: actions/cache@v4
         with:
           path: .yarn/cache
           key: yarn-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
           restore-keys: yarn-${{ runner.os }}-
 
-      - name: Installer
+      - name: Install
         run: yarn install --immutable
 
-      # Une publication part vers des stores : on ne la lance pas sur du code
-      # qui ne passe pas ses propres tests.
+      # A release leaves for the stores: it is not launched on code that does
+      # not pass its own tests.
       - name: Lint
         run: yarn lint
 
       - name: Tests
         run: yarn test
 
-      - name: Identité des commits
+      - name: Commit identity
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      # Déduit la version des messages de commit depuis la dernière étiquette,
-      # l'écrit dans les manifestes, génère le changelog, commite et étiquette.
-      # `--skip-publish` écarte `nx release publish`, qui vise un registre
-      # npm : nos artefacts partent chez Google et Mozilla.
-      - name: Versionner
+      # Infers the version from the commit messages since the last tag, writes
+      # it into the manifests, generates the changelog, commits and tags.
+      # `--skip-publish` sets aside `nx release publish`, which targets an npm
+      # registry: these artefacts leave for Google and Mozilla.
+      - name: Version
         run: yarn nx release --skip-publish ${{ inputs.simulation && '--dry-run' || '' }}
 
-      # `nx release` ne sait pas pousser : la commande globale n'expose pas
-      # `--git-push` et `release.git` n'a pas d'option correspondante. Les
-      # étiquettes qu'elle pose sont annotées, d'où `--follow-tags`.
-      - name: Pousser le commit et l'étiquette
+      # `nx release` cannot push: the global command exposes no `--git-push`
+      # and `release.git` has no corresponding option. The tags it lays down
+      # are annotated, hence `--follow-tags`.
+      - name: Push the commit and the tag
         if: ${{ !inputs.simulation }}
         run: git push --follow-tags origin "HEAD:${GITHUB_REF_NAME}"
 
-      # Les archives lisent la version dans le `package.json` racine, que
-      # l'étape précédente vient de mettre à jour.
-      - name: Construire les six archives
+      # The archives read the version from the root `package.json`, which the
+      # previous step has just updated.
+      - name: Build the six archives
         if: ${{ !inputs.simulation }}
         run: yarn zip:all
 
-      - name: Soumettre aux stores
+      - name: Submit to the stores
         if: ${{ !inputs.simulation }}
         run: node bin/submit.mjs staging && node bin/submit.mjs proding && node bin/submit.mjs production
         env:

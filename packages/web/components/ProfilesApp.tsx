@@ -17,7 +17,7 @@ import Pages from 'app/profiles/App/Pages';
 
 export interface ProfilesAppProps {
   locale: SupportedLanguage;
-  /** Le chemin demandé, que le serveur connaît et que le navigateur retrouve. */
+  /** The requested path, known to the server and found again by the browser. */
   initialPath: string;
   contributors: Contributor[];
   categories: Categories;
@@ -29,15 +29,15 @@ const createHistory = (initialPath: string): History =>
     : createMemoryHistory({ initialEntries: [initialPath] });
 
 /**
- * Le même arbre se rend des deux côtés. Pour que le navigateur retrouve
- * exactement le HTML du serveur, trois précautions :
+ * The same tree renders on both sides. Three precautions let the browser find
+ * exactly the HTML of the server:
  *
- * - l'historique est en mémoire sur le serveur, où `window` n'existe pas ;
- * - les contributors et les catégories sont versés dans le store pendant le
- *   rendu, à partir des mêmes données ;
- * - les sagas ne démarrent qu'après l'hydratation, car la première d'entre
- *   elles demande les catégories et ferait basculer la collection en
- *   « chargement » d'un côté seulement.
+ * - the history is in memory on the server, where `window` does not exist;
+ * - the contributors and the categories are poured into the store during the
+ *   render, from the same data;
+ * - the sagas only start after the hydration, because the first of them asks
+ *   for the categories and would tip the collection into "loading" on one
+ *   side only.
  */
 const ProfilesApp = ({
   locale,

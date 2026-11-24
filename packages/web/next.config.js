@@ -6,15 +6,15 @@ const injectedEnvVars = require('../../injected-env-vars.json');
 const packagesRoot = path.resolve(__dirname, '..');
 const repoRoot = path.resolve(__dirname, '../..');
 
-// Next ne cherche les fichiers .env que dans le dossier de l'application,
-// alors qu'ils vivent à la racine du dépôt et sont partagés avec l'extension.
-// Sans ce chargement explicite, le code commun compile avec des variables
-// `undefined` : `BACKEND_ORIGIN + 'contributors'` devient une URL relative et
-// le site interroge /fr/undefinedcontributors au lieu de l'API.
+// Next looks for the .env files in the directory of the application only,
+// whereas they live at the root of the repository and are shared with the
+// extension. Without this explicit load, the shared code compiles with
+// `undefined` variables: `BACKEND_ORIGIN + 'contributors'` becomes a relative
+// address and the site queries /fr/undefinedcontributors instead of the API.
 //
-// forceReload est indispensable : Next a déjà appelé loadEnvConfig sur
-// packages/web, qui ne contient aucun .env, et @next/env renverrait ce
-// résultat vide depuis son cache.
+// forceReload is indispensable: Next has already called loadEnvConfig on
+// packages/web, which holds no .env, and @next/env would return that empty
+// result from its cache.
 const { combinedEnv } = loadEnvConfig(
   repoRoot,
   process.env.NODE_ENV !== 'production',
@@ -30,21 +30,21 @@ const env = Object.fromEntries(
 
 if (!env.BACKEND_ORIGIN) {
   throw new Error(
-    `BACKEND_ORIGIN est absente ou vide : le site ne peut pas joindre l'API. ` +
-      `Elle est attendue à la racine du dépôt (.env, .env.${process.env.NODE_ENV}) ou dans l'environnement du shell.`,
+    `BACKEND_ORIGIN is absent or empty: the site cannot reach the API. ` +
+      `It is expected at the root of the repository (.env, .env.${process.env.NODE_ENV}) or in the environment of the shell.`,
   );
 }
 
 /**
- * Les adresses du site WordPress, qui n'avaient pas de préfixe de langue.
+ * The addresses of the WordPress site, which carried no language prefix.
  *
- * Elles restent indexées par les moteurs et citées depuis l'extérieur —
- * articles de presse, réseaux sociaux, messages — alors qu'aucune n'existe
- * côté Next. Les laisser tomber en 404 perdrait le référencement accumulé et
- * casserait ces liens le jour où WordPress s'arrête.
+ * They stay indexed by the engines and quoted from the outside — press
+ * articles, social networks, messages — while none of them exists on the Next
+ * side. Letting them fall into a 404 would lose the accumulated ranking and
+ * break those links the day WordPress stops.
  *
- * L'extension, elle, n'en dépend plus : `packages/i18n/resources/*​/
- * extension.json` pointe désormais directement sur les routes réelles.
+ * The extension no longer depends on them: the resources of packages/i18n
+ * point straight at the real routes.
  */
 const legacyRedirects = [
   ['/aide', '/fr/aide'],
@@ -76,8 +76,8 @@ const legacyRedirects = [
   ['/opera', '/fr/opera'],
   ['/vitesse-navigation', '/fr/vitesse-navigation'],
   ['/en/privacy-policy', '/en/privacy'],
-  // Les pages contributeurs ont porté quatre noms successifs ; les trois
-  // premiers restent indexés et partagés.
+  // The contributor pages have carried four successive names; the first
+  // three stay indexed and shared.
   ['/eclaireurs/:path*', '/fr/profils/:path*'],
   ['/informateurs/:path*', '/fr/profils/:path*'],
   ['/sources/:path*', '/fr/profils/:path*'],
@@ -85,9 +85,9 @@ const legacyRedirects = [
 ].map(([source, destination]) => ({ source, destination, permanent: true }));
 
 /**
- * L'adresse que l'extension ouvre à sa désinstallation (`UNINSTALL_ORIGIN`).
- * Côté WordPress, la page ne contenait qu'une redirection JavaScript vers ce
- * formulaire : on redirige directement.
+ * The address the extension opens when it is uninstalled
+ * (`UNINSTALL_ORIGIN`). On the WordPress side, the page held nothing but a
+ * JavaScript redirection towards this form: the redirection is direct here.
  */
 legacyRedirects.push({
   source: '/desinstallation',
@@ -102,9 +102,9 @@ const nextConfig = {
   output: 'standalone',
 
   experimental: {
-    // Le défaut de Next est 1 Mo, en deçà des images que l'admin téléverse ;
-    // la marge au-dessus de TAILLE_MAXIMALE_OCTETS couvre l'enveloppe
-    // multipart, le refus de l'image trop lourde restant au domaine.
+    // The default of Next is 1 MB, below the images the administration
+    // uploads; the margin above MAX_SIZE_BYTES covers the multipart envelope,
+    // the refusal of an image that is too heavy staying in the domain.
     serverActions: {
       bodySizeLimit: '6mb',
     },

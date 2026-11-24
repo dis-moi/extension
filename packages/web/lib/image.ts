@@ -6,7 +6,7 @@ const CACHE = 'public, max-age=3600';
 
 export const imageResponse = (served: ServedImage | null): Response => {
   if (served === null) {
-    return new Response('Image introuvable', { status: 404 });
+    return new Response('Image not found', { status: 404 });
   }
 
   return new Response(new Uint8Array(served.bytes), {

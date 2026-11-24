@@ -13,7 +13,7 @@ export const GET = async (
   const asked = parseUploadPath(params.path ?? []);
 
   if (asked === null) {
-    return new Response('Image introuvable', { status: 404 });
+    return new Response('Image not found', { status: 404 });
   }
 
   return imageResponse(

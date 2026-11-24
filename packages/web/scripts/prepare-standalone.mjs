@@ -3,13 +3,14 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 /**
- * Complète la sortie `output: 'standalone'` de Next.
+ * Completes the `output: 'standalone'` output of Next.
  *
- * Next y place le serveur et ses dépendances, mais ni les fichiers statiques
- * ni `public/` : il attend qu'on les copie, et sans eux le serveur démarre,
- * répond, et ne sert ni CSS ni images. Ce script fait cette copie pour que
- * `nx run web:build` produise un dossier réellement démarrable — c'est ce que
- * l'hébergeur lance, sans étape manuelle à ne pas oublier.
+ * Next puts the server and its dependencies there, but neither the static
+ * files nor `public/`: it expects them to be copied, and without them the
+ * server starts, answers, and serves neither CSS nor images. This script
+ * makes that copy so that `nx run web:build` produces a directory that is
+ * really startable — that is what the host launches, with no manual step
+ * left to forget.
  *
  * https://nextjs.org/docs/pages/api-reference/config/next-config-js/output
  */
@@ -22,5 +23,5 @@ for (const [from, to] of [
 ]) {
   await rm(to, { recursive: true, force: true });
   await cp(from, to, { recursive: true });
-  console.log(`copié ${path.relative(web, from)} → ${path.relative(web, to)}`);
+  console.log(`copied ${path.relative(web, from)} to ${path.relative(web, to)}`);
 }
