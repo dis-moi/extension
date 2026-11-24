@@ -21,9 +21,8 @@ export const generateStaticParams = ({
 }) => listContentSlugs(params.locale).map((slug) => ({ slug }));
 
 /**
- * Chaque page porte enfin son propre titre et sa propre description. Le site
- * n'en avait qu'une seule, écrite en dur et en français, pour ses
- * trente-quatre routes.
+ * Each page finally carries its own title and its own description. The site
+ * had a single one, hard-coded and in French, for its thirty-four routes.
  */
 export const generateMetadata = ({
   params,
@@ -67,9 +66,9 @@ export default function ContentRoute({
         content={
           <MDXRemote
             source={page.body}
-            // Le contenu vient de WordPress : c'est du Markdown, pas du MDX.
-            // Sans ce mode, « <title> » dans une phrase est lu comme une
-            // balise JSX jamais refermée et la compilation échoue.
+            // The content comes from WordPress: it is Markdown, not MDX.
+            // Without this mode, a `<title>` inside a sentence reads as a
+            // JSX tag that is never closed and the compilation fails.
             options={{ mdxOptions: { format: 'md' } }}
           />
         }

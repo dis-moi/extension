@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../../dist/packages/api",
+    // `moduleResolution: bundler` vient du socle commun et convient : il lit
+    // le champ `exports` des paquets, donc il résout les sous-chemins d'Effect
+    // 4 (`effect/sql`, `effect/http`, `effect/schema`), et il accepte les
+    // imports relatifs sans extension comme le reste du dépôt. Ce code n'est
+    // jamais exécuté par Node directement — Next le compile, Vitest le
+    // transforme — donc la résolution ESM stricte n'apporterait rien.
+    "verbatimModuleSyntax": true,
+    "types": ["node"],
+    "exactOptionalPropertyTypes": true,
+    "noUncheckedIndexedAccess": true
+  },
+  "include": ["./**/*.ts"],
+  "exclude": ["./test/fixtures/**"]
+}

@@ -1,8 +1,8 @@
 'use client';
 
 /**
- * Frontière client de l'application des profils. Elle se rend désormais des
- * deux côtés : plus de `ssr: false`, donc un HTML complet pour les visiteurs
- * sans extension et pour les robots.
+ * Client boundary of the profiles application. It now renders on both
+ * sides: no more `ssr: false`, hence complete HTML for visitors without the
+ * extension and for the crawlers.
  */
 export { default } from '../../components/ProfilesApp';

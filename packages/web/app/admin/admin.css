@@ -1,0 +1,707 @@
+/*
+ * Blue for magnitude, amber for "asks for an action". The DisMoi yellow is
+ * reserved for the brand: it passes no contrast threshold. The blue / amber
+ * pair passes the six checks of the palette validator, colour-blind
+ * separation included.
+ */
+
+.admin {
+  --background: #faf9f7;
+  --card: #ffffff;
+  --border: #e7e3dd;
+  --border-strong: #ddd8d0;
+  --rule: #eeebe5;
+  --muted: #f1efe9;
+
+  --ink: #2a1f1c;
+  --ink-soft: #5f656c;
+
+  --accent: #1552b4;
+  --accent-dark: #0f3d87;
+  --accent-pale: #eef3fb;
+  --accent-border: #cfdcf2;
+
+  --attention: #9a6700;
+  --attention-ink: #7a5200;
+  --attention-pale: #fdf8ec;
+  --attention-border: #e8d9b4;
+
+  --brand: #fff44f;
+  --brand-border: #e0d54a;
+
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--ink);
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.admin *,
+.admin *::before,
+.admin *::after {
+  box-sizing: border-box;
+}
+
+.admin a {
+  color: var(--accent);
+}
+.admin a:hover {
+  color: var(--accent-dark);
+}
+
+/* Figures line up in a column: fixed-width digits. */
+.admin .num {
+  font-variant-numeric: tabular-nums;
+}
+
+.admin .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* — Chrome — */
+
+.admin-header {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+}
+
+.admin-header-inner,
+.admin-body {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.admin-header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 28px;
+  min-height: 60px;
+}
+
+.admin-body {
+  padding: 28px 24px 56px;
+}
+
+.admin-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.admin-brand-token {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: var(--brand);
+  border: 1px solid var(--brand-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.admin-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  flex-grow: 1;
+}
+
+.admin-nav a {
+  padding: 8px 12px;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--ink-soft);
+}
+
+.admin-nav a[aria-current='page'] {
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--muted);
+}
+
+.admin-account {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.admin-chip {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+
+/* — Titles — */
+
+.admin-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.admin-title-row h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.admin-subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: var(--ink-soft);
+  flex-grow: 1;
+}
+
+/* — Cards and tiles — */
+
+.admin-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 22px;
+}
+
+.admin-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.admin-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.admin-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.admin-tile h3 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.admin-tile-value {
+  margin: 0 0 6px;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.admin-tile-detail {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+/* — Pending banner — */
+
+.admin-banner {
+  background: var(--attention-pale);
+  border: 1px solid var(--attention-border);
+  border-left: 4px solid var(--attention);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+}
+
+.admin-banner h2 {
+  margin: 0 0 3px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.admin-banner p {
+  margin: 0;
+  font-size: 13px;
+  color: #6b5f52;
+}
+
+/* — Buttons — */
+
+.admin-button,
+.admin-button-secondary,
+.admin-button-attention {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  min-height: 44px;
+}
+
+.admin-button {
+  border: none;
+  background: var(--accent);
+  color: #ffffff;
+}
+.admin-button:hover {
+  background: var(--accent-dark);
+  color: #ffffff;
+}
+
+.admin-button-secondary {
+  border: 1px solid var(--border-strong);
+  background: var(--card);
+  color: var(--ink);
+  font-weight: 500;
+}
+.admin-button-secondary:hover {
+  border-color: var(--ink-soft);
+  color: var(--ink);
+}
+
+.admin-button-attention {
+  border: none;
+  background: var(--attention);
+  color: #ffffff;
+}
+.admin-button-attention:hover {
+  background: var(--attention-ink);
+  color: #ffffff;
+}
+
+.admin-button[disabled],
+.admin-button-secondary[disabled] {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* — State badges — */
+
+.admin-state {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.admin-state-pending {
+  background: var(--attention-pale);
+  color: var(--attention-ink);
+  border: 1px solid var(--attention-border);
+}
+
+.admin-state-public {
+  background: var(--accent-pale);
+  color: var(--accent-dark);
+  border: 1px solid var(--accent-border);
+}
+
+.admin-state-neutral {
+  background: #f3f1ed;
+  color: var(--ink-soft);
+  border: 1px solid #e2ded6;
+}
+
+/* The account one is signed in with: a mark, not a state. */
+.admin-state-accent {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent-border);
+  font-weight: 500;
+}
+
+/* A state that asks for an action: the same amber as the pending queue. */
+.admin-state-attention {
+  background: #fdf8ec;
+  color: #7a5200;
+  border: 1px solid #e8d9b4;
+}
+
+/* The button column has no visible heading, but a column without a readable
+   th leaves the table with no landmark for keyboard navigation. */
+.admin-invisible {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* — Tabs — */
+
+.admin-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 18px;
+}
+
+.admin-tabs a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.admin-tabs a[aria-current='page'] {
+  font-weight: 600;
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+.admin-pill {
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--muted);
+  color: var(--ink-soft);
+}
+
+.admin-pill-attention {
+  background: var(--attention);
+  color: #ffffff;
+}
+
+/* — Forms — */
+
+.admin-field {
+  width: 100%;
+  padding: 9px 12px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+}
+
+.admin-field:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+textarea.admin-field {
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.admin-mono {
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 13px;
+}
+
+.admin-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-bottom: 5px;
+}
+
+.admin-hint {
+  margin: 5px 0 0;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.admin-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+  align-items: flex-end;
+}
+
+.admin-group {
+  margin: 0;
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.admin-group legend {
+  padding: 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+/* — Tables — */
+
+.admin-table-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.admin-table-scroll {
+  overflow-x: auto;
+}
+
+.admin-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.admin-table caption {
+  text-align: left;
+  padding: 14px 12px 0;
+  font-size: 12px;
+  color: var(--ink-soft);
+  caption-side: top;
+}
+
+.admin-table th,
+.admin-table td {
+  text-align: left;
+  padding: 11px 12px;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+
+.admin-table thead tr {
+  background: var(--background);
+}
+
+.admin-table th {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.admin-table td {
+  font-size: 13px;
+}
+
+.admin-table .right {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.admin-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 14px;
+  border-top: 1px solid var(--rule);
+  background: var(--background);
+}
+
+.admin-pagination p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ink-soft);
+  flex-grow: 1;
+}
+
+/* — Proportion bars — */
+
+.admin-bar-track {
+  flex-grow: 1;
+  height: 10px;
+  background: var(--muted);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.admin-bar {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 5px;
+}
+
+.admin-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* — Sign-in — */
+
+.admin-sign-in {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.admin-sign-in-card {
+  width: 100%;
+  max-width: 380px;
+}
+
+.admin-error {
+  margin: 0 0 16px;
+  padding: 11px 13px;
+  border-radius: 8px;
+  background: #fdf0ed;
+  border: 1px solid #f0cdc5;
+  color: #8a2a16;
+  font-size: 13px;
+}
+
+/* The confirmation of a save, counterpart of the rejection banner. */
+.admin-confirmation {
+  margin: 0 0 18px;
+  padding: 11px 13px;
+  border-radius: 8px;
+  background: var(--accent-pale);
+  border: 1px solid var(--accent-border);
+  color: var(--accent-dark);
+  font-size: 13px;
+}
+
+/* Carried by the sheet and not by each component: the same rule was written
+   twelve times as an inline style. */
+.admin-card > h2 {
+  margin: 0 0 16px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.admin-card > h2:first-child + p {
+  margin-top: -12px;
+}
+
+/* A section title followed by a lead: the lead carries the bottom margin. */
+.admin-card > h2.admin-tight {
+  margin-bottom: 4px;
+}
+
+/* The header row of a card: title, lead, action on the right. */
+.admin-card-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.admin-card-header > h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.admin-card-header > p {
+  flex-grow: 1;
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+/* The lead of a section, under its title. */
+.admin-lead {
+  margin: 0 0 16px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+/* Links and not a select: the window is part of the address, so it can be
+   shared, bookmarked, and reached again with the back button. */
+.admin-windows {
+  display: flex;
+  margin-left: auto;
+  padding: 2px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--background);
+}
+
+.admin-windows a {
+  padding: 5px 11px;
+  border-radius: 7px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.admin-windows a:hover {
+  color: var(--ink);
+}
+
+.admin-windows a[aria-current] {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* — Phone — */
+
+@media (max-width: 760px) {
+  .admin-grid-4,
+  .admin-grid-3,
+  .admin-grid-2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .admin-header-inner,
+  .admin-body {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

@@ -5,3 +5,4 @@
 node_modules/
 build/
 dist/
+packages/web/public/script/

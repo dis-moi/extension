@@ -1,0 +1,23 @@
+{
+  "name": "api",
+  "sourceRoot": "packages/api",
+  "projectType": "library",
+  "tags": ["scope:backend"],
+  "targets": {
+    "test": {
+      "command": "vitest run --passWithNoTests",
+      "options": {
+        "cwd": "packages/api"
+      }
+    },
+    "test:watch": {
+      "command": "vitest",
+      "options": {
+        "cwd": "packages/api"
+      }
+    },
+    "typecheck": {
+      "command": "tsc -p packages/api/tsconfig.json --noEmit"
+    }
+  }
+}

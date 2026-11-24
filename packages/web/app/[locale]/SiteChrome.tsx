@@ -17,9 +17,9 @@ const otherLocale = (locale: ContentLocale): ContentLocale =>
   locale === 'fr' ? 'en' : 'fr';
 
 /**
- * L'en-tête et le pied de page entourent toutes les routes d'une langue.
- * Ils vivent dans le navigateur — défilement, menu mobile, bascule de langue
- * — et ne reçoivent du serveur que la langue, une simple chaîne.
+ * The header and the footer surround every route of a locale. They live in
+ * the browser — scrolling, mobile menu, language switch — and receive from
+ * the server nothing but the locale, a plain string.
  */
 export default function SiteChrome({ locale, children }: SiteChromeProps) {
   const router = useRouter();

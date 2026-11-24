@@ -24,11 +24,8 @@ export const listContentSlugs = (locale: ContentLocale): string[] =>
     .map((file) => file.slice(0, -'.mdx'.length))
     .sort();
 
-/**
- * Retire le balisage d'une ligne de Markdown pour n'en garder que le texte.
- * Les images disparaissent entièrement — leur texte alternatif ne décrit pas
- * la page — tandis que les liens ne laissent que leur libellé.
- */
+// Images disappear entirely, their alternative text not describing the
+// page; links leave only their label.
 const plainText = (line: string): string =>
   line
     .replace(/^>+\s*/, '')
@@ -54,11 +51,8 @@ const truncate = (text: string): string => {
   return `${(lastSpace > 0 ? cut.slice(0, lastSpace) : cut).trimEnd()}…`;
 };
 
-/**
- * Faute de description dans l'entête, on tire la première phrase du corps.
- * C'est un filet, pas une fatalité : une page dont le texte d'ouverture se
- * prête mal au résumé gagne à déclarer sa propre `description`.
- */
+// A net rather than a fate: a page whose opening text lends itself badly to
+// a summary is better off declaring its own description.
 const firstSentence = (body: string): string => {
   const prose = body
     .split('\n')
@@ -75,8 +69,8 @@ export const readContentPage = (
   const dir = contentDir(locale);
   const filePath = path.join(dir, `${slug}.mdx`);
 
-  // Le slug vient de l'URL : il ne doit jamais désigner un fichier hors du
-  // dossier de contenu de la langue demandée.
+  // The slug comes from the URL: it must never point at a file outside the
+  // content folder of the requested language.
   if (path.dirname(path.resolve(filePath)) !== path.resolve(dir)) {
     return null;
   }

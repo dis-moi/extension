@@ -13,10 +13,10 @@ interface ProvidersProps {
 }
 
 /**
- * Le thème et la langue sont fixés dès le premier rendu, serveur compris :
- * la langue vient du chemin, que le serveur connaît, et le thème est une
- * constante. Rien ici ne dépend du navigateur, donc le HTML rendu des deux
- * côtés est le même.
+ * The theme and the locale are settled from the first render, the server one
+ * included: the locale comes from the path, which the server knows, and the
+ * theme is a constant. Nothing here depends on the browser, so the HTML
+ * rendered on both sides is the same.
  */
 export default function Providers({ locale, children }: ProvidersProps) {
   const [i18n] = useState(() => createI18n(locale));

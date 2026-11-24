@@ -12,32 +12,26 @@ export interface NotFoundContent {
   links: NotFoundLink[];
 }
 
-/**
- * En-tête par lequel le middleware transmet la langue du chemin demandé.
- *
- * `not-found.tsx` sert les deux langues mais ne reçoit pas les paramètres de
- * la route, et il doit rester un composant serveur : une frontière client y
- * perd le rendu serveur — le corps de la page n'arrive alors plus dans le
- * HTML, et un visiteur sans JavaScript ne lit rien.
- */
+// not-found.tsx serves both languages but does not receive the route
+// parameters, and has to stay a server component: a client boundary would
+// lose the server rendering, and a visitor without JavaScript would read
+// nothing.
 export const LOCALE_HEADER = 'x-dismoi-locale';
 
 export const localeFromPathname = (pathname: string): ContentLocale =>
   pathname.startsWith('/en/') || pathname === '/en' ? 'en' : 'fr';
 
-/**
- * La valeur de l'en-tête vient d'une requête : elle est validée ici, et non
- * supposée conforme parce que c'est nous qui l'avons posée.
- */
+// The value comes from a request: validated here, not assumed well formed
+// because we are the ones who set it.
 export const localeFromHeader = (value: string | null): ContentLocale =>
   value === 'en' ? 'en' : 'fr';
 
 const contents: Record<ContentLocale, Omit<NotFoundContent, 'locale'>> = {
   fr: {
     title: 'Page introuvable',
-    intro: 'Cette adresse ne correspond à aucune page.',
+    intro: 'Cette address ne correspond à aucune page.',
     links: [
-      { label: 'Les contributeurs', href: '/fr/profils' },
+      { label: 'Les contributors', href: '/fr/profils' },
       { label: 'L’aide', href: '/fr/aide' },
     ],
   },

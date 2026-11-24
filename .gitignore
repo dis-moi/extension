@@ -52,3 +52,16 @@ yarn-error.log
 
 # TypeScript (artéfact de la cible typecheck)
 *.tsbuildinfo
+
+# Dumps de base de données : la sauvegarde de production fait 2,7 Go.
+/*.sql
+/*.sql.gz
+
+# Corpus de référence de l'API V3, capturé par `yarn capture:v3`. Hors dépôt
+# parce qu'il porte le texte de 2 000 notices publiques, dont une dizaine
+# d'adresses de courriel. À versionner sciemment, ou à sauvegarder hors dépôt,
+# AVANT l'arrêt du backend PHP : après, il n'est plus reproductible.
+/packages/api/test/fixtures/v3/
+
+# Les images téléversées, servies à la place du backend PHP
+packages/web/stockage/

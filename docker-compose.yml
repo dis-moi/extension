@@ -1,0 +1,69 @@
+# Bases de développement pour l'API qui remplace le backend PHP.
+#
+# La version est celle de la production, relevée dans l'en-tête du dump
+# (`Version du serveur : 8.0.33-25`) et non celle qu'annonçaient `.env` et le
+# compose du backend, qui parlaient tous deux de MariaDB 10.2. Développer
+# contre le mauvais moteur, c'est découvrir les écarts de dialecte au moment
+# de la bascule.
+#
+#   yarn db:up        démarre les deux bases
+#   yarn db:restore   charge le dump dans la base de développement
+#   yarn db:down      arrête tout, sans effacer les volumes
+
+services:
+  db:
+    container_name: dismoi-api-devdb
+    image: mysql:8.0.33
+    command:
+      # Le dump est en utf8mb3 ; le serveur doit l'accepter sans convertir.
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      # Le `sql_mode` reste celui de MySQL 8 par défaut, `ONLY_FULL_GROUP_BY`
+      # compris. Vérifié : le schéma hérité se charge sans erreur, et la
+      # requête agrégée de `GET /contributors` passe — les colonnes
+      # sélectionnées dépendent fonctionnellement de la clé primaire groupée,
+      # ce que MySQL 8 sait reconnaître. Développer sous le mode le plus
+      # strict garantit que la production, dont le réglage nous est inconnu,
+      # ne refusera rien.
+    ports:
+      - '3310:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: dev
+      MYSQL_DATABASE: dismoi
+      MYSQL_USER: dismoi
+      MYSQL_PASSWORD: dev
+    volumes:
+      - devdb:/var/lib/mysql
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', '127.0.0.1', '-uroot', '-pdev']
+      interval: 3s
+      timeout: 5s
+      retries: 30
+
+  # Base séparée pour les tests : ils tronquent et rechargent des tables, ce
+  # qu'on ne veut pas voir arriver à la base de travail.
+  dbtest:
+    container_name: dismoi-api-testdb
+    image: mysql:8.0.33
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    ports:
+      - '3311:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: dev
+      MYSQL_DATABASE: dismoi_test
+      MYSQL_USER: dismoi
+      MYSQL_PASSWORD: dev
+    # Les tests repartent d'un schéma neuf à chaque fois : pas de volume, donc
+    # pas d'état qui survit à un `db:down`.
+    tmpfs:
+      - /var/lib/mysql
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', '127.0.0.1', '-uroot', '-pdev']
+      interval: 3s
+      timeout: 5s
+      retries: 30
+
+volumes:
+  devdb:

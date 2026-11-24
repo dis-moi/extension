@@ -9,20 +9,20 @@ import {
 import ContentView from './ContentView';
 
 export const metadata: Metadata = {
-  // Les métadonnées d'une page sont statiques et `not-found` ne reçoit pas la
-  // route : le titre du document est le seul élément qui ne peut pas suivre la
-  // langue. Il le dit donc dans les deux.
+  // The metadata of a page is static and `not-found` does not receive the
+  // route: the title of the document is the only element that cannot follow
+  // the locale. It therefore says it in both.
   title: 'Page introuvable · Page not found',
   robots: { index: false, follow: false },
 };
 
 /**
- * Rendue à l'intérieur de la mise en page de la langue : la page garde son
- * en-tête, son pied et l'attribut `lang` du document.
+ * Rendered inside the layout of the locale: the page keeps its header, its
+ * footer and the `lang` attribute of the document.
  *
- * Elle reste un composant serveur, pour que son texte figure dans le HTML
- * servi. La langue lui vient de l'en-tête posé par le middleware, faute de
- * recevoir les paramètres de la route.
+ * It stays a server component, so that its text appears in the HTML served.
+ * The locale reaches it through the header the middleware sets, for want of
+ * receiving the route parameters.
  */
 export default function NotFound() {
   const { intro, links, title } = notFoundContent(
@@ -36,10 +36,10 @@ export default function NotFound() {
         content={
           <p>
             {intro}{' '}
-            {links.map((lien, index) => (
-              <React.Fragment key={lien.href}>
+            {links.map((link, index) => (
+              <React.Fragment key={link.href}>
                 {index > 0 && ', '}
-                <a href={lien.href}>{lien.label}</a>
+                <a href={link.href}>{link.label}</a>
               </React.Fragment>
             ))}
             .

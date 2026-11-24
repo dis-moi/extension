@@ -7,7 +7,7 @@ import {
 } from '../../../../lib/profilesData';
 import ProfilesView from '../../ProfilesView';
 
-const LISTE: Metadata = {
+const LIST: Metadata = {
   title: 'Les contributeurs',
   description:
     'Découvrez les contributeurs DisMoi et les informations qu’ils publient sur le web.',
@@ -22,7 +22,7 @@ export const generateMetadata = async ({
   const contributor = await findContributorInPath(params.path);
 
   if (!contributor) {
-    return LISTE;
+    return LIST;
   }
 
   return {
@@ -39,8 +39,8 @@ export default async function ProfilesRoute({
 }: {
   params: { locale: string; path?: string[] };
 }) {
-  // Le chemin des profils n'existe qu'en français ; son équivalent anglais
-  // est « /en/guides ».
+  // The profiles path exists in French only; its English counterpart is
+  // `/en/guides`.
   if (params.locale !== 'fr') {
     notFound();
   }

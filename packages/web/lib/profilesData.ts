@@ -7,22 +7,17 @@ export interface ProfilesData {
   categories: Categories;
 }
 
-/**
- * Lit une collection de l'API, ou rend le repli.
- *
- * `estValide` garde la frontière : une page d'erreur servie en 200, une
- * réponse tronquée ou un changement de contrat feraient sinon tomber le
- * rendu du serveur, et avec lui toute la page.
- */
+// A guard at the boundary: an error page served as 200, a truncated answer
+// or a change of contract would bring the server rendering down.
 const fetchCollection = async <T>(
   path: string,
   fallback: T,
-  estValide: (valeur: unknown) => boolean,
+  estValide: (value: unknown) => boolean,
 ): Promise<T> => {
   try {
     const response = await fetch(`${BACKEND_ORIGIN}${path}`, {
-      // Les contributeurs et les catégories bougent peu ; une heure de cache
-      // épargne autant d'allers-retours que de pages servies.
+      // Contributors and categories move little; an hour of cache saves as
+      // many round trips as there are pages served.
       next: { revalidate: 3600 },
     });
 
@@ -38,22 +33,14 @@ const fetchCollection = async <T>(
   }
 };
 
-const estTableau = (valeur: unknown): boolean => Array.isArray(valeur);
+const estTableau = (value: unknown): boolean => Array.isArray(value);
 
-const estObjet = (valeur: unknown): boolean =>
-  typeof valeur === 'object' && valeur !== null && !Array.isArray(valeur);
+const estObjet = (value: unknown): boolean =>
+  typeof value === 'object' && value !== null && !Array.isArray(value);
 
-/**
- * Les données publiques de la page des profils, lues sur le serveur.
- *
- * Elles suffisent à rendre la liste complète : seuls les abonnements de
- * l'internaute viennent de l'extension, et eux seuls restent invisibles au
- * serveur. C'est ce qui permet à la page d'exister pour un visiteur sans
- * extension — et pour un robot d'indexation.
- *
- * Un échec de l'API ne doit pas faire tomber la page : elle se rend alors
- * vide, et les sagas rattrapent le chargement dans le navigateur.
- */
+// Only the reader's own subscriptions come from the extension: everything
+// else renders on the server, which makes the page exist for a visitor
+// without the extension and for a crawler.
 export const fetchProfilesData = async (): Promise<ProfilesData> => {
   const [contributors, categories] = await Promise.all([
     fetchCollection<Contributor[]>('contributors', [], estTableau),
@@ -63,10 +50,6 @@ export const fetchProfilesData = async (): Promise<ProfilesData> => {
   return { contributors, categories };
 };
 
-/**
- * Le contributeur désigné par un chemin de la forme « 16/le-meme-en-mieux »,
- * pour que sa page porte son nom plutôt que celui de la liste.
- */
 export const findContributorInPath = async (
   path: string[] | undefined,
 ): Promise<Contributor | null> => {
@@ -76,8 +59,8 @@ export const findContributorInPath = async (
     return null;
   }
 
-  // Next ne lance qu'une requête : les `fetch` identiques d'un même rendu
-  // sont mémorisés, celui-ci et celui de la page ne font qu'un.
+  // Next issues a single request: identical `fetch` calls within one render
+  // are memoised, so this one and the page's are the same.
   const contributors = await fetchCollection<Contributor[]>(
     'contributors',
     [],

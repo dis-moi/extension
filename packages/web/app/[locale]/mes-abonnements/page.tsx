@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: 'Mes abonnements',
   description: 'Les contributeurs DisMoi que vous suivez.',
   alternates: { canonical: '/fr/mes-abonnements' },
-  // Page personnelle : elle n'a rien à faire dans un index.
+  // A personal page: it has no business in an index.
   robots: { index: false, follow: true },
 };
 

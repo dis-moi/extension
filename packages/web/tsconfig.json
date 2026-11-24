@@ -1,11 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "noEmit": true,
     "incremental": true,
@@ -15,8 +11,7 @@
         "name": "next"
       }
     ],
-    "strict": false,
-    "strictNullChecks": true
+    "strict": true
   },
   "include": [
     "next-env.d.ts",
@@ -25,8 +20,5 @@
     "../../typings/**/*.d.ts",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules",
-    ".next"
-  ]
+  "exclude": ["node_modules", ".next"]
 }

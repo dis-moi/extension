@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * Frontière client pour la page d'accueil : elle est écrite en
- * styled-components, qui n'a pas sa place dans un composant serveur.
+ * Client boundary for the home page: it is written in styled-components,
+ * which has no place in a server component.
  */
 export { default } from '@dismoi/ui/website/pages/HomePage/HomePage';

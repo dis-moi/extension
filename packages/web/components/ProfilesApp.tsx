@@ -33,7 +33,7 @@ const createHistory = (initialPath: string): History =>
  * exactement le HTML du serveur, trois précautions :
  *
  * - l'historique est en mémoire sur le serveur, où `window` n'existe pas ;
- * - les contributeurs et les catégories sont versés dans le store pendant le
+ * - les contributors et les catégories sont versés dans le store pendant le
  *   rendu, à partir des mêmes données ;
  * - les sagas ne démarrent qu'après l'hydratation, car la première d'entre
  *   elles demande les catégories et ferait basculer la collection en

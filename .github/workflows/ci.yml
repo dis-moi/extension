@@ -52,13 +52,23 @@ jobs:
       - name: Compiler le site
         run: yarn build:web
 
+      # Bloquant, lui : `packages/api` est à zéro erreur sous `strict`,
+      # `exactOptionalPropertyTypes` et `noUncheckedIndexedAccess`. C'est le
+      # code écrit pour remplacer le backend PHP, et rien ne justifie de le
+      # laisser dériver en attendant que le legacy soit nettoyé.
+      - name: Vérifier les types de l'API
+        run: yarn nx typecheck api
+
   typage:
     name: Typage
     runs-on: ubuntu-latest
-    # NON BLOQUANT, et c'est un aveu : `yarn typecheck` relève 207 erreurs
+    # NON BLOQUANT, et c'est un aveu : `yarn typecheck` relève 220 erreurs
     # préexistantes — surtout des sagas sans type de retour et des `catch (e)`
-    # en `unknown`. Les rendre bloquantes aujourd'hui peindrait la chaîne en
-    # rouge en permanence, ce qui revient à ne pas en avoir. À retirer dès que
+    # en `unknown`, dans packages/extension (135), packages/ui (37) et
+    # packages/domain (2). Les rendre bloquantes aujourd'hui peindrait la
+    # chaîne en rouge en permanence, ce qui revient à ne pas en avoir. Aucune
+    # ne vient de packages/api ni de packages/web : `web` n'en relève que
+    # parce qu'il compile les sources legacy qu'il importe. À retirer dès que
     # le compte atteint zéro.
     continue-on-error: true
     steps:

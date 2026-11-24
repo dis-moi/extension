@@ -1,6 +1,7 @@
 import { SagaIterator } from 'redux-saga';
 import { call, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 import PlausibleTracker from 'libs/tracking/plausible';
+import { screenUrl, siteUrl } from 'libs/tracking/trackedUrl';
 import {
   BROWSER_ACTION_CLICKED,
   CLOSE,
@@ -15,6 +16,7 @@ import {
   UNSUBSCRIBE,
   TOS_ACCEPTED,
   AppAction,
+  BaseAction,
   BrowserActionClickedAction,
   CloseAction,
   ContributorAction,
@@ -38,223 +40,181 @@ import {
 import { getNumberOfNoticesOnTab } from 'app/background/store/selectors/tabs';
 import { Level } from 'libs/utils/Logger';
 
-export default (tracker?: PlausibleTracker) =>
-  function* (): SagaIterator {
+type EventProps = Record<string, string | number | boolean>;
+
+/** The site the action happened on, reduced to what may leave the browser. */
+const siteOf = (action: BaseAction): string =>
+  siteUrl(getURLFromActionMeta(action));
+
+/** Analytics must never break the extension: failures are only reported. */
+const reportingFailures = <A extends BaseAction>(
+  worker: (action: A) => SagaIterator,
+) =>
+  function* (action: A): SagaIterator {
     try {
-      if (!tracker) return;
-
-      yield takeEvery(
-        [NOTICES_FOUND],
-        function* (action: NoticesFoundAction): SagaIterator {
-          try {
-            const url = getURLFromActionMeta(action);
-            yield call([tracker, tracker.trackPageview], url);
-          } catch (e) {
-            yield put(createErrorAction()(e, { severity: Level.WARN }));
-          }
-        },
-      );
-
-      yield takeLatest(
-        (action: AppAction) =>
-          action.type === LOCATION_CHANGED &&
-          action.payload.location.pathname !== '/',
-        function* (action: LocationChangedAction): SagaIterator {
-          try {
-            const url = getURLFromActionMeta(action);
-            yield call([tracker, tracker.trackPageview], url);
-          } catch (e) {
-            yield put(createErrorAction()(e, { severity: Level.WARN }));
-          }
-        },
-      );
-
-      yield takeLatest(
-        INSTALLATION_DETAILS,
-        function* (action: InstallationDetailsAction): SagaIterator {
-          try {
-            const url = getURLFromActionMeta(action);
-            yield call([tracker, tracker.track], {
-              name: 'install',
-              url: url || 'extension://install',
-              props: {
-                reason: action.payload.installationDetails.reason,
-                version: action.payload.installationDetails.version,
-              },
-            });
-          } catch (e) {
-            yield put(createErrorAction()(e, { severity: Level.WARN }));
-          }
-        },
-      );
-
-      yield takeEvery(
-        BROWSER_ACTION_CLICKED,
-        function* (action: BrowserActionClickedAction): SagaIterator {
-          try {
-            const url = getURLFromActionMeta(action);
-            yield call([tracker, tracker.track], {
-              name: 'browser_action_clicked',
-              url: url || 'extension://browser-action',
-            });
-          } catch (e) {
-            yield put(createErrorAction()(e, { severity: Level.WARN }));
-          }
-        },
-      );
-
-      yield takeLatest(CLOSE, function* (action: CloseAction): SagaIterator {
-        try {
-          const url = getURLFromActionMeta(action);
-          yield call([tracker, tracker.track], {
-            name: 'close',
-            url: url || 'extension://close',
-            props: { cause: action.payload.cause.toString() },
-          });
-        } catch (e) {
-          yield put(createErrorAction()(e, { severity: Level.WARN }));
-        }
-      });
-
-      yield takeLatest(
-        TOS_ACCEPTED,
-        function* (action: TosAcceptedAction): SagaIterator {
-          try {
-            const url = getURLFromActionMeta(action);
-            yield call([tracker, tracker.track], {
-              name: 'tos_accepted',
-              url: url || 'extension://tos',
-            });
-          } catch (e) {
-            yield put(createErrorAction()(e, { severity: Level.WARN }));
-          }
-        },
-      );
-
-      yield takeEvery(
-        NOTICE_BADGED,
-        function* (action: NoticeBadgedAction): SagaIterator {
-          try {
-            if (action.meta.tab) {
-              const notice = yield select(getNoticeById(action.payload));
-              const noticesNumber = yield select(
-                getNumberOfNoticesOnTab(action.meta.tab.id),
-              );
-              const unreadNoticesNumber = yield select(
-                getNumberOfUnreadNoticesOnTab(action.meta.tab.id),
-              );
-              const color = unreadNoticesNumber > 0 ? 'blue' : 'grey';
-              const url = getURLFromActionMeta(action);
-              yield call([tracker, tracker.track], {
-                name: 'notice_badged',
-                url: url || 'extension://badge',
-                props: {
-                  notice_id: notice?.id ?? action.payload,
-                  color,
-                  notices_count: noticesNumber,
-                },
-              });
-            }
-          } catch (e) {
-            yield put(createErrorAction()(e, { severity: Level.WARN }));
-          }
-        },
-      );
-
-      yield takeEvery(
-        NOTICE_DISPLAYED,
-        function* (action: NoticeDisplayedAction): SagaIterator {
-          try {
-            const notice = yield select(getNoticeById(action.payload));
-            const url = getURLFromActionMeta(action);
-            yield call([tracker, tracker.track], {
-              name: 'notice_displayed',
-              url: url || 'extension://notice',
-              props: {
-                notice_id: notice?.id ?? action.payload,
-                contributor: notice?.contributor?.name ?? '',
-              },
-            });
-          } catch (e) {
-            yield put(createErrorAction()(e, { severity: Level.WARN }));
-          }
-        },
-      );
-
-      yield takeEvery(
-        NOTICE_UNFOLDED,
-        function* (action: UnfoldNoticeAction): SagaIterator {
-          try {
-            const notice = yield select(getNoticeById(action.payload));
-            const url = getURLFromActionMeta(action);
-            yield call([tracker, tracker.track], {
-              name: 'notice_unfolded',
-              url: url || 'extension://notice',
-              props: {
-                notice_id: notice?.id ?? action.payload,
-                contributor: notice?.contributor?.name ?? '',
-              },
-            });
-          } catch (e) {
-            yield put(createErrorAction()(e, { severity: Level.WARN }));
-          }
-        },
-      );
-
-      yield takeLatest(
-        isFeedBackRatingAction,
-        function* (action: FeedbackOnNoticeAction): SagaIterator {
-          try {
-            const notice = yield select(getNoticeById(action.payload.id));
-            const url = getURLFromActionMeta(action);
-            yield call([tracker, tracker.track], {
-              name: 'notice_feedback',
-              url: url || 'extension://notice',
-              props: {
-                notice_id: notice?.id ?? action.payload.id,
-                feedback: action.payload.feedback,
-              },
-            });
-          } catch (e) {
-            yield put(createErrorAction()(e, { severity: Level.WARN }));
-          }
-        },
-      );
-
-      yield takeLatest(
-        OUTBOUND_LINK_CLICKED,
-        function* (action: ReceivedOutboundLinkClickedAction): SagaIterator {
-          try {
-            if (action.meta.tab?.url) {
-              yield call([tracker, tracker.track], {
-                name: 'outbound_link_clicked',
-                url: action.meta.tab.url,
-              });
-            }
-          } catch (e) {
-            yield put(createErrorAction()(e, { severity: Level.WARN }));
-          }
-        },
-      );
-
-      yield takeEvery(
-        [SUBSCRIBE, UNSUBSCRIBE],
-        function* (action: ContributorAction): SagaIterator {
-          try {
-            const url = getURLFromActionMeta(action);
-            const eventName =
-              action.type === SUBSCRIBE ? 'subscribe' : 'unsubscribe';
-            yield call([tracker, tracker.track], {
-              name: eventName,
-              url: url || 'extension://subscription',
-              props: { contributor_id: action.payload },
-            });
-          } catch (e) {
-            yield put(createErrorAction()(e, { severity: Level.WARN }));
-          }
-        },
-      );
+      yield call(worker, action);
     } catch (e) {
-      createErrorAction()(e, { severity: Level.WARN });
+      yield put(createErrorAction()(e as Error, { severity: Level.WARN }));
     }
   };
+
+const trackWith = (tracker: PlausibleTracker) =>
+  function* (): SagaIterator {
+    function* trackEvent(
+      name: string,
+      action: BaseAction,
+      props?: EventProps,
+    ): SagaIterator {
+      yield call([tracker, tracker.track], {
+        name,
+        url: siteOf(action),
+        ...(props && { props }),
+      });
+    }
+
+    function* trackNoticeEvent(
+      name: string,
+      action: NoticeDisplayedAction | UnfoldNoticeAction,
+    ): SagaIterator {
+      const notice = yield select(getNoticeById(action.payload));
+      yield call(trackEvent, name, action, {
+        notice_id: notice?.id ?? action.payload,
+        contributor: notice?.contributor?.name ?? '',
+      });
+    }
+
+    yield takeEvery(
+      NOTICES_FOUND,
+      reportingFailures(function* (action: NoticesFoundAction): SagaIterator {
+        yield call(trackEvent, 'notices_found', action, {
+          notices_count: action.payload.notices.length,
+        });
+      }),
+    );
+
+    yield takeLatest(
+      (action: AppAction) =>
+        action.type === LOCATION_CHANGED &&
+        action.payload.location.pathname !== '/',
+      reportingFailures(function* (
+        action: LocationChangedAction,
+      ): SagaIterator {
+        yield call(
+          [tracker, tracker.trackPageview],
+          screenUrl(action.payload.location.pathname),
+        );
+      }),
+    );
+
+    yield takeLatest(
+      INSTALLATION_DETAILS,
+      reportingFailures(function* (
+        action: InstallationDetailsAction,
+      ): SagaIterator {
+        const { reason, version } = action.payload.installationDetails;
+        yield call(trackEvent, 'install', action, { reason, version });
+      }),
+    );
+
+    yield takeEvery(
+      BROWSER_ACTION_CLICKED,
+      reportingFailures(function* (
+        action: BrowserActionClickedAction,
+      ): SagaIterator {
+        yield call(trackEvent, 'browser_action_clicked', action);
+      }),
+    );
+
+    yield takeLatest(
+      CLOSE,
+      reportingFailures(function* (action: CloseAction): SagaIterator {
+        yield call(trackEvent, 'close', action, {
+          cause: action.payload.cause.toString(),
+        });
+      }),
+    );
+
+    yield takeLatest(
+      TOS_ACCEPTED,
+      reportingFailures(function* (action: TosAcceptedAction): SagaIterator {
+        yield call(trackEvent, 'tos_accepted', action);
+      }),
+    );
+
+    yield takeEvery(
+      NOTICE_BADGED,
+      reportingFailures(function* (action: NoticeBadgedAction): SagaIterator {
+        if (!action.meta.tab) return;
+        const notice = yield select(getNoticeById(action.payload));
+        const noticesNumber = yield select(
+          getNumberOfNoticesOnTab(action.meta.tab.id),
+        );
+        const unreadNoticesNumber = yield select(
+          getNumberOfUnreadNoticesOnTab(action.meta.tab.id),
+        );
+        yield call(trackEvent, 'notice_badged', action, {
+          notice_id: notice?.id ?? action.payload,
+          color: unreadNoticesNumber > 0 ? 'blue' : 'grey',
+          notices_count: noticesNumber,
+        });
+      }),
+    );
+
+    yield takeEvery(
+      NOTICE_DISPLAYED,
+      reportingFailures(function* (
+        action: NoticeDisplayedAction,
+      ): SagaIterator {
+        yield call(trackNoticeEvent, 'notice_displayed', action);
+      }),
+    );
+
+    yield takeEvery(
+      NOTICE_UNFOLDED,
+      reportingFailures(function* (action: UnfoldNoticeAction): SagaIterator {
+        yield call(trackNoticeEvent, 'notice_unfolded', action);
+      }),
+    );
+
+    yield takeLatest(
+      isFeedBackRatingAction,
+      reportingFailures(function* (
+        action: FeedbackOnNoticeAction,
+      ): SagaIterator {
+        const notice = yield select(getNoticeById(action.payload.id));
+        yield call(trackEvent, 'notice_feedback', action, {
+          notice_id: notice?.id ?? action.payload.id,
+          feedback: action.payload.feedback,
+        });
+      }),
+    );
+
+    yield takeLatest(
+      OUTBOUND_LINK_CLICKED,
+      reportingFailures(function* (
+        action: ReceivedOutboundLinkClickedAction,
+      ): SagaIterator {
+        if (!action.meta.tab?.url) return;
+        yield call(trackEvent, 'outbound_link_clicked', action);
+      }),
+    );
+
+    yield takeEvery(
+      [SUBSCRIBE, UNSUBSCRIBE],
+      reportingFailures(function* (action: ContributorAction): SagaIterator {
+        yield call(
+          trackEvent,
+          action.type === SUBSCRIBE ? 'subscribe' : 'unsubscribe',
+          action,
+          { contributor_id: action.payload },
+        );
+      }),
+    );
+  };
+
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+function* trackNothing(): SagaIterator {}
+
+/** Without a tracker (not configured, or Do Not Track), nothing is sent. */
+export default (tracker?: PlausibleTracker) =>
+  tracker ? trackWith(tracker) : trackNothing;

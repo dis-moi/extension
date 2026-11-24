@@ -6,25 +6,18 @@ export interface Menus {
   footer: Link[];
 }
 
-/**
- * Les routes servies par du code plutôt que par un fichier de contenu. Elles
- * complètent les pages Markdown quand on vérifie qu'une entrée de menu mène
- * quelque part.
- */
 export const APP_ROUTES: Record<ContentLocale, string[]> = {
   fr: ['/fr/profils', '/fr/mes-abonnements'],
   en: ['/en/guides', '/en/my-subscriptions'],
 };
 
-/**
- * Libellés et chemins sont écrits en clair plutôt que tirés d'i18next : les
- * menus se rendent sur le serveur, où une traduction encore en cours de
- * chargement afficherait la clé brute en guise d'adresse.
- */
+// Labels and paths written out rather than taken from i18next: the menus
+// render on the server, where a translation still loading would show the raw
+// key in place of an address.
 const menus: Record<ContentLocale, Menus> = {
   fr: {
     header: [
-      { label: 'Les contributeurs', href: '/fr/profils' },
+      { label: 'Les contributors', href: '/fr/profils' },
       { label: 'Contribuer', href: '/fr/contribuer' },
       { label: 'Aide', href: '/fr/aide' },
     ],

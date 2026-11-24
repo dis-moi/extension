@@ -7,21 +7,15 @@ import {
 import { getMenus } from './menus';
 import { listContentSlugs } from './content';
 
-/**
- * La page introuvable était écrite en dur en français alors qu'elle sert les
- * deux langues. Elle ne reçoit pas les paramètres de la route : la langue lui
- * vient d'un en-tête posé par le middleware, à partir du chemin demandé.
- */
 describe('web > lib > notFoundContent', function () {
   describe('localeFromPathname', function () {
-    it('lit la langue dans le chemin demandé', () => {
+    it('reads the locale from the requested path', () => {
       expect(localeFromPathname('/en/une-page-absente')).to.equal('en');
       expect(localeFromPathname('/en')).to.equal('en');
       expect(localeFromPathname('/fr/une-page-absente')).to.equal('fr');
     });
 
-    it('se rabat sur le français hors de toute langue connue', () => {
-      // Même repli que les métadonnées de la mise en page.
+    it('falls back to French outside any known locale', () => {
       expect(localeFromPathname('/')).to.equal('fr');
       expect(localeFromPathname('/zz/quoi')).to.equal('fr');
       expect(localeFromPathname('/enfant')).to.equal('fr');
@@ -29,13 +23,12 @@ describe('web > lib > notFoundContent', function () {
   });
 
   describe('localeFromHeader', function () {
-    it('accepte la langue transmise', () => {
+    it('accepts the locale that was passed', () => {
       expect(localeFromHeader('en')).to.equal('en');
       expect(localeFromHeader('fr')).to.equal('fr');
     });
 
-    it('n’accorde aucune confiance à la valeur reçue', () => {
-      // L'en-tête voyage dans une requête : un client peut l'écrire.
+    it('places no trust in the received value', () => {
       expect(localeFromHeader(null)).to.equal('fr');
       expect(localeFromHeader('')).to.equal('fr');
       expect(localeFromHeader('../../etc/passwd')).to.equal('fr');
@@ -43,37 +36,37 @@ describe('web > lib > notFoundContent', function () {
     });
   });
 
-  it('répond en anglais à un visiteur anglophone', () => {
-    const contenu = notFoundContent('en');
+  it('answers in English to an English-speaking visitor', () => {
+    const content = notFoundContent('en');
 
-    expect(contenu.title).to.equal('Page not found');
-    expect(contenu.links.map((lien) => lien.href)).to.include('/en/guides');
+    expect(content.title).to.equal('Page not found');
+    expect(content.links.map((link) => link.href)).to.include('/en/guides');
   });
 
-  it('répond en français à un visiteur francophone', () => {
-    const contenu = notFoundContent('fr');
+  it('answers in French to a French-speaking visitor', () => {
+    const content = notFoundContent('fr');
 
-    expect(contenu.title).to.equal('Page introuvable');
-    expect(contenu.links.map((lien) => lien.href)).to.include('/fr/profils');
+    expect(content.title).to.equal('Page introuvable');
+    expect(content.links.map((link) => link.href)).to.include('/fr/profils');
   });
 
-  it('ne propose que des pages qui existent', () => {
-    const existe = (href: string): boolean => {
-      const [, locale, ...reste] = href.split('/');
-      const langue = locale as 'fr' | 'en';
+  it('offers only pages that exist', () => {
+    const exists = (href: string): boolean => {
+      const [, locale, ...rest] = href.split('/');
+      const contentLocale = locale as 'fr' | 'en';
 
       return (
-        listContentSlugs(langue).includes(reste.join('/')) ||
-        getMenus(langue).header.some((lien) => lien.href === href)
+        listContentSlugs(contentLocale).includes(rest.join('/')) ||
+        getMenus(contentLocale).header.some((link) => link.href === href)
       );
     };
 
     (['fr', 'en'] as const).forEach((locale) => {
-      const inconnues = notFoundContent(locale)
-        .links.map((lien) => lien.href)
-        .filter((href) => !existe(href));
+      const unknown = notFoundContent(locale)
+        .links.map((link) => link.href)
+        .filter((href) => !exists(href));
 
-      expect(inconnues, `adresses sans page : ${inconnues.join(', ')}`).to.be
+      expect(unknown, `addresses with no page: ${unknown.join(', ')}`).to.be
         .empty;
     });
   });

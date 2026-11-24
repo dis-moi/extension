@@ -25,8 +25,8 @@ export const generateMetadata = ({
   const locale = isSupported(params.locale) ? params.locale : 'fr';
 
   return {
-    // Le gabarit vaut pour toutes les routes de la langue : chaque page n'a
-    // plus qu'à donner son propre titre.
+    // The template holds for every route of the locale: each page only has
+    // to give its own title.
     title: { default: 'DisMoi', template: '%s | DisMoi' },
     description: descriptions[locale],
     alternates: {
@@ -39,8 +39,8 @@ export const generateMetadata = ({
 };
 
 /**
- * Racine du document. Elle est placée sous `[locale]` pour que l'attribut
- * `lang` du `<html>` soit juste dès le rendu serveur.
+ * Root of the document. It sits under `[locale]` so that the `lang`
+ * attribute of the `<html>` is right from the server render on.
  *
  * @see https://nextjs.org/docs/app/guides/internationalization
  */

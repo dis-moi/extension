@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * Frontière client pour le gabarit des pages de contenu. Le Markdown, lui,
- * est rendu sur le serveur et traverse cette frontière comme enfant.
+ * Client boundary for the template of the content pages. The Markdown
+ * itself is rendered on the server and crosses this boundary as a child.
  */
 export { default } from '@dismoi/ui/website/organisms/ContentPage/ContentPage';

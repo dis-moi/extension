@@ -100,6 +100,16 @@ const nextConfig = {
   env,
   reactStrictMode: true,
   output: 'standalone',
+
+  experimental: {
+    // Le défaut de Next est 1 Mo, en deçà des images que l'admin téléverse ;
+    // la marge au-dessus de TAILLE_MAXIMALE_OCTETS couvre l'enveloppe
+    // multipart, le refus de l'image trop lourde restant au domaine.
+    serverActions: {
+      bodySizeLimit: '6mb',
+    },
+  },
+
   typescript: {
     // The shared code has pre-existing type errors
     // that need to be fixed incrementally. Build should not be blocked.
@@ -131,6 +141,7 @@ const nextConfig = {
     path.resolve(packagesRoot, 'ui'),
     path.resolve(packagesRoot, 'i18n'),
     path.resolve(packagesRoot, 'extension'),
+    path.resolve(packagesRoot, 'api'),
   ],
 
   // Disable Next.js built-in image optimization so that imported images
