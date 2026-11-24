@@ -211,3 +211,241 @@ layer(TestLayer)('a notice saved from the administration', (it) => {
     }),
   );
 });
+
+layer(TestLayer)('a notice created from the administration', (it) => {
+  it.effect('inserts it with its contexts and its relayers', () =>
+    Effect.gen(function* () {
+      yield* seed;
+      const sql = yield* SqlClient.SqlClient;
+      const moderation = yield* Moderation;
+
+      const id = yield* moderation.createNotice(
+        notice({
+          message: 'Une notice écrite depuis l’administration.',
+          relayers: [RELAYER],
+          contexts: [context({ domains: ['neuf.essai'] })],
+        }),
+      );
+
+      const rows = yield* sql<{
+        message: string;
+        visibility: string;
+        contributor_id: number | null;
+        contexts: number;
+        relayers: number;
+      }>`
+        SELECT n.message, n.visibility, n.contributor_id,
+               (SELECT COUNT(*) FROM matching_context c WHERE c.notice_id = n.id) AS contexts,
+               (SELECT COUNT(*) FROM relay r WHERE r.notice_id = n.id) AS relayers
+          FROM notice n WHERE n.id = ${id}
+      `;
+
+      assert.strictEqual(
+        rows[0]?.message,
+        'Une notice écrite depuis l’administration.',
+      );
+      assert.strictEqual(rows[0]?.contributor_id, CONTRIBUTOR);
+      assert.strictEqual(Number(rows[0]?.contexts), 1);
+      assert.strictEqual(Number(rows[0]?.relayers), 1);
+
+      yield* sql`DELETE FROM relay WHERE notice_id = ${id}`;
+      yield* sql`DELETE FROM matching_context WHERE notice_id = ${id}`;
+      yield* sql`DELETE FROM notice WHERE id = ${id}`;
+    }),
+  );
+
+  it.effect('refuses an invalid notice without inserting anything', () =>
+    Effect.gen(function* () {
+      yield* seed;
+      const sql = yield* SqlClient.SqlClient;
+      const moderation = yield* Moderation;
+
+      const before = yield* sql<{
+        total: number;
+      }>`SELECT COUNT(*) AS total FROM notice`;
+
+      const refusal = yield* moderation
+        .createNotice(notice({ message: '' }))
+        .pipe(Effect.flip);
+
+      const after = yield* sql<{
+        total: number;
+      }>`SELECT COUNT(*) AS total FROM notice`;
+
+      assert.strictEqual(refusal._tag, 'InvalidFields');
+      assert.strictEqual(Number(after[0]?.total), Number(before[0]?.total));
+    }),
+  );
+});
+
+layer(TestLayer)('a notice deleted from the administration', (it) => {
+  it.effect('takes its contexts, its relayers and its ratings with it', () =>
+    Effect.gen(function* () {
+      yield* seed;
+      const sql = yield* SqlClient.SqlClient;
+      const moderation = yield* Moderation;
+
+      yield* moderation.saveNotice(NOTICE, notice({ relayers: [RELAYER] }));
+      yield* sql`
+        INSERT INTO rating (notice_id, type, context_timestamp, reason)
+             VALUES (${NOTICE}, 'display', NOW(), '')
+      `;
+
+      yield* moderation.deleteNotice(NOTICE);
+
+      const left = yield* sql<{
+        notices: number;
+        contexts: number;
+        relayers: number;
+        ratings: number;
+      }>`
+        SELECT (SELECT COUNT(*) FROM notice WHERE id = ${NOTICE}) AS notices,
+               (SELECT COUNT(*) FROM matching_context WHERE notice_id = ${NOTICE}) AS contexts,
+               (SELECT COUNT(*) FROM relay WHERE notice_id = ${NOTICE}) AS relayers,
+               (SELECT COUNT(*) FROM rating WHERE notice_id = ${NOTICE}) AS ratings
+      `;
+
+      assert.strictEqual(Number(left[0]?.notices), 0);
+      assert.strictEqual(Number(left[0]?.contexts), 0);
+      assert.strictEqual(Number(left[0]?.relayers), 0);
+      assert.strictEqual(Number(left[0]?.ratings), 0);
+    }),
+  );
+
+  it.effect('gives back the screenshot to remove from the store', () =>
+    Effect.gen(function* () {
+      yield* seed;
+      const sql = yield* SqlClient.SqlClient;
+      const moderation = yield* Moderation;
+
+      yield* sql`UPDATE notice SET screenshot = '81.png' WHERE id = ${NOTICE}`;
+
+      assert.strictEqual(yield* moderation.deleteNotice(NOTICE), '81.png');
+    }),
+  );
+
+  it.effect('refuses to delete a notice a contributor pins', () =>
+    Effect.gen(function* () {
+      yield* seed;
+      const sql = yield* SqlClient.SqlClient;
+      const moderation = yield* Moderation;
+
+      yield* sql`
+        INSERT INTO pin (contributor_id, notice_id, sort)
+             VALUES (${CONTRIBUTOR}, ${NOTICE}, 0)
+      `;
+
+      const refusal = yield* moderation.deleteNotice(NOTICE).pipe(Effect.flip);
+
+      assert.strictEqual(refusal._tag, 'NoticePinned');
+      yield* sql`DELETE FROM pin WHERE notice_id = ${NOTICE}`;
+    }),
+  );
+
+  it.effect('refuses to delete a notice that does not exist', () =>
+    Effect.gen(function* () {
+      yield* seed;
+      const moderation = yield* Moderation;
+
+      const refusal = yield* moderation.deleteNotice(4242).pipe(Effect.flip);
+
+      assert.strictEqual(refusal._tag, 'NoticeMissing');
+    }),
+  );
+});
+
+layer(TestLayer)('a contributor created and deleted', (it) => {
+  const profile = {
+    name: 'Nouvelle venue',
+    title: null,
+    email: 'venue@essai.test',
+    website: null,
+    intro: null,
+    locale: 'fr',
+    categories: ['conso'],
+    enabled: true,
+    pinned: [],
+  };
+
+  it.effect('inserts the contributor with its categories', () =>
+    Effect.gen(function* () {
+      yield* seed;
+      const sql = yield* SqlClient.SqlClient;
+      const moderation = yield* Moderation;
+
+      const id = yield* moderation.createContributor(profile);
+
+      const rows = yield* sql<{
+        name: string;
+        categories: string;
+        total_subscriptions: number;
+      }>`SELECT name, categories, total_subscriptions FROM contributor WHERE id = ${id}`;
+
+      assert.strictEqual(rows[0]?.name, 'Nouvelle venue');
+      assert.strictEqual(rows[0]?.categories, 'conso');
+      assert.strictEqual(Number(rows[0]?.total_subscriptions), 0);
+
+      yield* moderation.deleteContributor(id);
+    }),
+  );
+
+  it.effect('refuses an address that is not one', () =>
+    Effect.gen(function* () {
+      yield* seed;
+      const moderation = yield* Moderation;
+
+      const refusal = yield* moderation
+        .createContributor({ ...profile, email: 'venue(at)essai' })
+        .pipe(Effect.flip);
+
+      assert.strictEqual(refusal._tag, 'InvalidFields');
+    }),
+  );
+
+  it.effect('gives back the images to remove from the store', () =>
+    Effect.gen(function* () {
+      yield* seed;
+      const sql = yield* SqlClient.SqlClient;
+      const moderation = yield* Moderation;
+
+      const id = yield* moderation.createContributor(profile);
+      yield* sql`
+        UPDATE contributor SET image = 'a.png', banner_image = 'b.png'
+         WHERE id = ${id}
+      `;
+
+      const removed = yield* moderation.deleteContributor(id);
+
+      assert.deepStrictEqual(
+        [...removed],
+        ['uploads/avatars/a.png', 'uploads/contributor_banners/b.png'],
+      );
+    }),
+  );
+
+  it.effect('refuses to delete a contributor that still signs notices', () =>
+    Effect.gen(function* () {
+      yield* seed;
+      const moderation = yield* Moderation;
+
+      const refusal = yield* moderation
+        .deleteContributor(CONTRIBUTOR)
+        .pipe(Effect.flip);
+
+      assert.strictEqual(refusal._tag, 'ContributorSignsNotices');
+    }),
+  );
+
+  it.effect('refuses to delete a contributor that does not exist', () =>
+    Effect.gen(function* () {
+      yield* seed;
+      const moderation = yield* Moderation;
+
+      const refusal = yield* moderation
+        .deleteContributor(4242)
+        .pipe(Effect.flip);
+
+      assert.strictEqual(refusal._tag, 'ContributorMissing');
+    }),
+  );
+});

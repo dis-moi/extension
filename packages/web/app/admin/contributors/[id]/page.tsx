@@ -6,7 +6,9 @@ import { Supervision } from '@dismoi/api/application/Supervision';
 import { run } from '../../../../lib/effect';
 import '../../admin.css';
 import { Chrome } from '../../chrome';
+import { RemoveButton } from '../../fields';
 import { requireAccount } from '../../session';
+import { deleteContributor } from './actions';
 import { ContributorForm } from './form';
 
 export const dynamic = 'force-dynamic';
@@ -105,6 +107,21 @@ const ContributorPage = async ({
         contributor={contributor}
         knownCategories={knownCategories}
       />
+
+      <section className="admin-card" style={{ marginTop: 20 }}>
+        <h2>Supprimer</h2>
+        <p className="admin-note">
+          Emporte ses épingles, ses relais et ses abonnements. Un contributeur
+          qui signe encore des notices ne se supprime pas : désactive-le, il
+          disparaît des extensions sans rien perdre.
+        </p>
+        <RemoveButton
+          id={contributor.id}
+          action={deleteContributor}
+          label="Supprimer ce contributeur"
+          confirm={`Supprimer définitivement ${contributor.name} et ses abonnements ?`}
+        />
+      </section>
     </Chrome>
   );
 };

@@ -1,6 +1,6 @@
 import { Context, type Effect } from 'effect';
-import type { RatingTotals } from './Activity';
 import type { Visibility } from '../domain/NoticeVisibility';
+import type { RatingTotals } from './Activity';
 import type { WallClockTime } from './ReadModels';
 
 // The reads of the administration do not go through V3, which only shows

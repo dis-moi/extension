@@ -44,6 +44,10 @@ const moderation = Layer.succeed(
     setVisibility: () => Effect.void,
     saveNotice: () => Effect.void,
     saveContributor: () => Effect.void,
+    createNotice: () => Effect.succeed(0),
+    deleteNotice: () => Effect.succeed(null),
+    createContributor: () => Effect.succeed(0),
+    deleteContributor: () => Effect.succeed([]),
     saveContributorImage: (id, field, fileName) =>
       Effect.sync(() => {
         recorded.push({ id, field, fileName });

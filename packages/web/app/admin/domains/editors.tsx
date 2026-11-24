@@ -7,7 +7,7 @@ import type {
   DomainsSetEntry,
 } from '@dismoi/api/application/Catalogue';
 import { prettyName } from '@dismoi/api/domain/CatalogueSubmission';
-import { Confirmation, Rejection, SubmitButton } from '../fields';
+import { Confirmation, Rejection, RemoveButton, SubmitButton } from '../fields';
 import { number } from '../format';
 import type { SaveResult } from '../form';
 import {
@@ -55,36 +55,6 @@ const Disclosure = ({
     <div style={{ padding: '12px 0 4px' }}>{children}</div>
   </details>
 );
-
-const Removal = ({
-  id,
-  action,
-  label,
-  confirm,
-}: {
-  readonly id: number;
-  readonly action: Action;
-  readonly label: string;
-  readonly confirm: string;
-}) => {
-  const [state, act] = useFormState(action, null);
-
-  return (
-    <form action={act} style={{ marginTop: 12 }}>
-      <input type="hidden" name="id" value={id} />
-      <Feedback state={state} title="Suppression refusée :" done="Supprimé." />
-      <button
-        className="admin-button-secondary"
-        type="submit"
-        onClick={(event) => {
-          if (!window.confirm(confirm)) event.preventDefault();
-        }}
-      >
-        {label}
-      </button>
-    </form>
-  );
-};
 
 const SetFields = ({
   set,
@@ -180,7 +150,7 @@ export const DomainsSets = ({
             <td style={{ fontWeight: 500, whiteSpace: 'nowrap' }}>
               <Disclosure summary={set.name}>
                 <SetFields set={set} action={saveDomainsSet} />
-                <Removal
+                <RemoveButton
                   id={set.id}
                   action={deleteDomainsSet}
                   label="Supprimer ce jeu"
@@ -342,7 +312,7 @@ export const Domains = ({
             >
               <Disclosure summary={prettyName(domain.name, domain.path)}>
                 <DomainFields domain={domain} action={saveDomain} />
-                <Removal
+                <RemoveButton
                   id={domain.id}
                   action={deleteDomain}
                   label="Supprimer ce domaine"

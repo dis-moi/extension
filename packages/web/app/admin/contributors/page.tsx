@@ -91,6 +91,9 @@ const ContributorsPage = async ({
           enregistrés, <span className="num">{number(served)}</span> avec au
           moins une notice publique.
         </p>
+        <Link className="admin-button" href="/admin/contributors/new">
+          Nouveau contributeur
+        </Link>
       </div>
 
       <section

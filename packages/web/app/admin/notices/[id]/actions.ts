@@ -1,12 +1,14 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 import { Effect } from 'effect';
 import type {
   SubmittedContext,
   SubmittedNotice,
 } from '@dismoi/api/application/Moderation';
 import { Moderation } from '@dismoi/api/application/Moderation';
+import { removeNotice } from '@dismoi/api/application/Removal';
 import {
   removeNoticeScreenshot,
   uploadNoticeScreenshot,
@@ -155,4 +157,67 @@ export const saveNotice = async (
   return rejection === null
     ? { saved: true }
     : { saved: true, reasons: [rejection] };
+};
+
+export const createNotice = async (
+  _previous: SaveResult | null,
+  form: FormData,
+): Promise<SaveResult> => {
+  await requireAccount();
+
+  const created = await run(
+    Effect.gen(function* () {
+      const moderation = yield* Moderation;
+      return yield* moderation.createNotice(submittedNotice(form));
+    }).pipe(
+      Effect.map((id) => ({ id })),
+      Effect.catchTag('InvalidFields', (failure) =>
+        Effect.succeed({ reasons: failure.reasons }),
+      ),
+    ),
+  );
+
+  if ('reasons' in created) return { reasons: created.reasons };
+
+  // The screenshot needs the identifier the insert produced, so it is
+  // applied once the notice exists rather than refused for lack of one.
+  const rejection = await applyScreenshot(created.id, form);
+
+  revalidatePath('/admin');
+  revalidatePath('/admin/notices');
+
+  redirect(
+    `/admin/notices/${created.id}${rejection === null ? '' : '?image=refusee'}`,
+  );
+};
+
+export const deleteNotice = async (
+  _previous: SaveResult | null,
+  form: FormData,
+): Promise<SaveResult> => {
+  await requireAccount();
+
+  const id = integerOrNull(form, 'id');
+  if (id === null) return { reasons: ['Notice inconnue.'] };
+
+  const reasons = await run(
+    removeNotice(id).pipe(
+      Effect.as<ReadonlyArray<string> | null>(null),
+      Effect.catchTag('NoticePinned', (failure) =>
+        Effect.succeed([
+          `Épinglée par ${failure.pins} contributeur${failure.pins > 1 ? 's' : ''} : retire l’épingle d’abord, ou archive la notice.`,
+        ]),
+      ),
+      Effect.catchTag('NoticeMissing', () =>
+        Effect.succeed(['Cette notice n’existe plus.']),
+      ),
+    ),
+  );
+
+  if (reasons !== null) return { reasons };
+
+  revalidatePath('/admin');
+  revalidatePath('/admin/notices');
+
+  redirect('/admin/notices');
 };

@@ -11,7 +11,7 @@ import {
   Rejection,
 } from '../../fields';
 import { category, excerpt } from '../../format';
-import { saveContributor } from './actions';
+import { createContributor, saveContributor } from './actions';
 import { IMAGE_SLOTS, type ImageSlot } from './images';
 
 // A client component for one reason: the order of the pinned notices is
@@ -58,15 +58,45 @@ const ImageField = ({
   </div>
 );
 
+// What the form writes. The notices it signs and its subscriber count
+// belong to a contributor that exists, and a creation has neither.
+export type ContributorDraft = Omit<
+  EditableContributor,
+  'id' | 'notices' | 'totalSubscriptions'
+> & { readonly id: number | null };
+
+const BLANK: ContributorDraft = {
+  id: null,
+  name: '',
+  title: null,
+  email: null,
+  website: null,
+  intro: null,
+  locale: 'fr',
+  categories: [],
+  enabled: true,
+  avatar: null,
+  banner: null,
+  preview: null,
+  pinned: [],
+};
+
 export const ContributorForm = ({
   contributor,
   knownCategories,
 }: {
-  readonly contributor: EditableContributor;
+  // null when the contributor is being written for the first time.
+  readonly contributor: EditableContributor | null;
   readonly knownCategories: ReadonlyArray<string>;
 }) => {
-  const [state, act] = useFormState(saveContributor, null);
-  const [pinned, setPinned] = useState(contributor.pinned);
+  const saved = contributor;
+  const draft: ContributorDraft = contributor ?? BLANK;
+
+  const [state, act] = useFormState(
+    saved === null ? createContributor : saveContributor,
+    null,
+  );
+  const [pinned, setPinned] = useState(draft.pinned);
 
   const move = (rank: number, step: number) =>
     setPinned((current) => {
@@ -85,7 +115,7 @@ export const ContributorForm = ({
 
   return (
     <form action={act}>
-      <input type="hidden" name="id" value={contributor.id} />
+      <input type="hidden" name="id" value={draft.id ?? ''} />
       <input
         type="hidden"
         name="pinned"
@@ -116,10 +146,16 @@ export const ContributorForm = ({
           className="admin-hint"
           style={{ margin: 0, flexGrow: 1, minWidth: 200 }}
         >
-          <span className="num">{contributor.notices.public}</span> notices
-          publiques sur <span className="num">{contributor.notices.total}</span>{' '}
-          · <span className="num">{contributor.totalSubscriptions}</span>{' '}
-          abonnements cumulés depuis l’origine.
+          {saved === null ? (
+            'Les images se posent une fois le contributeur créé : elles portent son identifiant.'
+          ) : (
+            <>
+              <span className="num">{saved.notices.public}</span> notices
+              publiques sur <span className="num">{saved.notices.total}</span> ·{' '}
+              <span className="num">{saved.totalSubscriptions}</span>{' '}
+              abonnements cumulés depuis l’origine.
+            </>
+          )}
         </p>
         <SubmitButton label="Enregistrer" pending="Enregistrement…" />
       </div>
@@ -147,7 +183,7 @@ export const ContributorForm = ({
                   id="name"
                   name="name"
                   type="text"
-                  defaultValue={contributor.name}
+                  defaultValue={draft.name}
                   required
                 />
               </div>
@@ -161,7 +197,7 @@ export const ContributorForm = ({
                   id="title"
                   name="title"
                   type="text"
-                  defaultValue={contributor.title ?? ''}
+                  defaultValue={draft.title ?? ''}
                   placeholder="association de consommateurs"
                 />
               </div>
@@ -177,7 +213,7 @@ export const ContributorForm = ({
                   id="email"
                   name="email"
                   type="email"
-                  defaultValue={contributor.email ?? ''}
+                  defaultValue={draft.email ?? ''}
                   aria-describedby="email-aide"
                 />
                 <p className="admin-hint" id="email-aide">
@@ -194,7 +230,7 @@ export const ContributorForm = ({
                   id="website"
                   name="website"
                   type="url"
-                  defaultValue={contributor.website ?? ''}
+                  defaultValue={draft.website ?? ''}
                 />
               </div>
             </div>
@@ -208,7 +244,7 @@ export const ContributorForm = ({
                 id="intro"
                 name="intro"
                 rows={4}
-                defaultValue={contributor.intro ?? ''}
+                defaultValue={draft.intro ?? ''}
                 aria-describedby="intro-aide"
               />
               <p className="admin-hint" id="intro-aide">
@@ -361,7 +397,7 @@ export const ContributorForm = ({
                       type="checkbox"
                       name="categories"
                       value={name}
-                      defaultChecked={contributor.categories.includes(name)}
+                      defaultChecked={draft.categories.includes(name)}
                       style={{
                         width: 16,
                         height: 16,
@@ -382,7 +418,7 @@ export const ContributorForm = ({
                 className="admin-field"
                 id="locale"
                 name="locale"
-                defaultValue={contributor.locale ?? ''}
+                defaultValue={draft.locale ?? ''}
               >
                 <option value="">— aucune —</option>
                 <LanguageOptions />
@@ -402,7 +438,7 @@ export const ContributorForm = ({
                 id="enabled"
                 name="enabled"
                 type="checkbox"
-                defaultChecked={contributor.enabled}
+                defaultChecked={draft.enabled}
                 style={{
                   margin: '2px 0 0',
                   width: 16,
@@ -435,7 +471,7 @@ export const ContributorForm = ({
               <ImageField
                 key={slot.name}
                 slot={slot}
-                current={slot.current(contributor)}
+                current={saved === null ? null : slot.current(saved)}
               />
             ))}
             <p className="admin-hint">

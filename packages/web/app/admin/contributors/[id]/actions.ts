@@ -1,9 +1,11 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 import { Effect } from 'effect';
 import type { SubmittedContributor } from '@dismoi/api/application/Moderation';
 import { Moderation } from '@dismoi/api/application/Moderation';
+import { removeContributor } from '@dismoi/api/application/Removal';
 import { uploadContributorImage } from '@dismoi/api/application/UploadAnImage';
 import { run } from '../../../../lib/effect';
 import {
@@ -102,4 +104,61 @@ export const saveContributor = async (
   return rejections.length > 0
     ? { saved: true, reasons: rejections }
     : { saved: true };
+};
+
+export const createContributor = async (
+  _previous: SaveResult | null,
+  form: FormData,
+): Promise<SaveResult> => {
+  await requireAccount();
+
+  const created = await run(
+    Effect.gen(function* () {
+      const moderation = yield* Moderation;
+      return yield* moderation.createContributor(submittedContributor(form));
+    }).pipe(
+      Effect.map((id) => ({ id })),
+      Effect.catchTag('InvalidFields', (failure) =>
+        Effect.succeed({ reasons: failure.reasons }),
+      ),
+    ),
+  );
+
+  if ('reasons' in created) return { reasons: created.reasons };
+
+  revalidatePath('/admin');
+  revalidatePath('/admin/contributors');
+
+  redirect(`/admin/contributors/${created.id}`);
+};
+
+export const deleteContributor = async (
+  _previous: SaveResult | null,
+  form: FormData,
+): Promise<SaveResult> => {
+  await requireAccount();
+
+  const id = integerOrNull(form, 'id');
+  if (id === null) return { reasons: ['Contributeur inconnu.'] };
+
+  const reasons = await run(
+    removeContributor(id).pipe(
+      Effect.as<ReadonlyArray<string> | null>(null),
+      Effect.catchTag('ContributorSignsNotices', (failure) =>
+        Effect.succeed([
+          `Signe encore ${failure.notices} notice${failure.notices > 1 ? 's' : ''} : supprime-les ou donne-les à un autre contributeur, ou désactive celui-ci.`,
+        ]),
+      ),
+      Effect.catchTag('ContributorMissing', () =>
+        Effect.succeed(['Ce contributeur n’existe plus.']),
+      ),
+    ),
+  );
+
+  if (reasons !== null) return { reasons };
+
+  revalidatePath('/admin');
+  revalidatePath('/admin/contributors');
+
+  redirect('/admin/contributors');
 };

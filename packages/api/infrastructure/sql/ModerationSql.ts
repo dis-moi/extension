@@ -4,13 +4,18 @@ import { InvalidFields } from '../../application/InvalidFields';
 import {
   type SubmittedContext,
   ContributorMissing,
+  ContributorSignsNotices,
   type SubmittedContributor,
   Moderation,
   NoticeMissing,
+  NoticePinned,
   type SubmittedNotice,
 } from '../../application/Moderation';
 import { contributorViolations } from '../../domain/ContributorSubmission';
-import type { ContributorImageField } from '../../domain/UploadedImage';
+import {
+  type ContributorImageField,
+  storagePath,
+} from '../../domain/UploadedImage';
 import { noticeViolations } from '../../domain/NoticeSubmission';
 import type { Visibility } from '../../domain/NoticeVisibility';
 
@@ -136,6 +141,47 @@ export const ModerationSqlLive = Layer.effect(
         return contextId;
       });
 
+    // Shared by the creation and the edition of a notice: the contexts and
+    // the relayers are rewritten whole either way, and an absence is a
+    // deliberate removal.
+    const writeContextsAndRelayers = (id: number, submitted: SubmittedNotice) =>
+      Effect.gen(function* () {
+        const kept = yield* Effect.forEach(submitted.contexts, (context) =>
+          writeContext(id, context),
+        );
+
+        yield* kept.length === 0
+          ? sql`DELETE FROM matching_context WHERE notice_id = ${id}`
+          : sql`
+              DELETE FROM matching_context
+               WHERE notice_id = ${id} AND id NOT IN ${sql.in(kept)}
+            `;
+
+        yield* sql`DELETE FROM relay WHERE notice_id = ${id}`;
+        yield* Effect.forEach(
+          submitted.relayers,
+          (relayerId) => sql`
+            INSERT INTO relay (notice_id, relayed_by_id, relayed_at)
+                 VALUES (${id}, ${relayerId}, NOW())
+          `,
+          { discard: true },
+        );
+      });
+
+    // Likewise for the pins, whose order is the one of the submitted list.
+    const writePins = (id: number, pinned: ReadonlyArray<number>) =>
+      Effect.gen(function* () {
+        yield* sql`DELETE FROM pin WHERE contributor_id = ${id}`;
+        yield* Effect.forEach(
+          pinned.entries(),
+          ([rank, noticeId]) => sql`
+            INSERT INTO pin (contributor_id, notice_id, sort)
+                 VALUES (${id}, ${noticeId}, ${rank})
+          `,
+          { discard: true },
+        );
+      });
+
     return Moderation.of({
       setVisibility: Effect.fn('Moderation.setVisibility')(function* (
         id: number,
@@ -180,30 +226,88 @@ export const ModerationSqlLive = Layer.effect(
               WHERE id = ${id}
             `;
 
-          // Contexts absent from the submission are removed: the form shows
-          // the whole list, so an absence is a deliberate removal.
-          const kept = yield* Effect.forEach(submitted.contexts, (context) =>
-            writeContext(id, context),
-          );
+          yield* writeContextsAndRelayers(id, submitted);
+        }).pipe(sql.withTransaction, Effect.orDie);
+      }),
 
-          yield* kept.length === 0
-            ? sql`DELETE FROM matching_context WHERE notice_id = ${id}`
-            : sql`
-                  DELETE FROM matching_context
-                   WHERE notice_id = ${id} AND id NOT IN ${sql.in(kept)}
-                `;
+      createNotice: Effect.fn('Moderation.createNotice')(function* (
+        submitted: SubmittedNotice,
+      ) {
+        const reasons = noticeViolations(submitted);
+        if (reasons.length > 0) {
+          return yield* new InvalidFields({ reasons });
+        }
 
-          // The same goes for the relayers.
-          yield* sql`DELETE FROM relay WHERE notice_id = ${id}`;
+        return yield* Effect.gen(function* () {
+          yield* sql`
+            INSERT INTO notice
+                 (message, note, visibility, locale, excludeUrlRegex, expires,
+                  unpublished_on_expiration, contributor_id, created, updated)
+                 VALUES (
+                   ${submitted.message}, ${emptyToNull(submitted.note)},
+                   ${submitted.visibility}, ${emptyToNull(submitted.locale)},
+                   ${emptyToNull(submitted.excludeUrlRegex)},
+                   ${emptyToNull(submitted.expires)},
+                   ${submitted.unpublishedOnExpiration ? 1 : 0},
+                   ${submitted.contributorId}, NOW(), NOW()
+                 )
+          `;
+
+          const id = yield* lastInsertId;
+          yield* writeContextsAndRelayers(id, submitted);
+
+          return id;
+        }).pipe(sql.withTransaction, Effect.orDie);
+      }),
+
+      deleteNotice: Effect.fn('Moderation.deleteNotice')(function* (
+        id: number,
+      ) {
+        const rows = yield* sql<{ screenshot: string | null }>`
+          SELECT screenshot FROM notice WHERE id = ${id}
+        `.pipe(Effect.orDie);
+
+        const row = rows[0];
+        if (row === undefined) return yield* new NoticeMissing({ id });
+
+        const pinned = yield* sql<{ total: number }>`
+          SELECT COUNT(*) AS total FROM pin WHERE notice_id = ${id}
+        `.pipe(Effect.orDie);
+
+        const pins = Number(pinned[0]?.total ?? 0);
+        if (pins > 0) return yield* new NoticePinned({ id, pins });
+
+        // What cascade={"remove"} removed on the entity: the contexts, the
+        // ratings and the relays. The pins were not among them, hence the
+        // refusal above rather than a 500 from the foreign key.
+        yield* Effect.gen(function* () {
+          const contexts = yield* sql<{ id: number }>`
+            SELECT id FROM matching_context WHERE notice_id = ${id}
+          `;
+
           yield* Effect.forEach(
-            submitted.relayers,
-            (relayerId) => sql`
-                INSERT INTO relay (notice_id, relayed_by_id, relayed_at)
-                     VALUES (${id}, ${relayerId}, NOW())
-              `,
+            contexts,
+            (context) =>
+              Effect.gen(function* () {
+                yield* sql`
+                  DELETE FROM matching_context_domain_name
+                   WHERE matching_context_id = ${context.id}
+                `;
+                yield* sql`
+                  DELETE FROM matching_context_domains_set
+                   WHERE matching_context_id = ${context.id}
+                `;
+              }),
             { discard: true },
           );
+
+          yield* sql`DELETE FROM matching_context WHERE notice_id = ${id}`;
+          yield* sql`DELETE FROM relay WHERE notice_id = ${id}`;
+          yield* sql`DELETE FROM rating WHERE notice_id = ${id}`;
+          yield* sql`DELETE FROM notice WHERE id = ${id}`;
         }).pipe(sql.withTransaction, Effect.orDie);
+
+        return row.screenshot;
       }),
 
       saveContributor: Effect.fn('Moderation.saveContributor')(function* (
@@ -234,18 +338,84 @@ export const ModerationSqlLive = Layer.effect(
             WHERE id = ${id}
           `;
 
-          // The pins carry an order: they are rewritten whole so that the
-          // rank follows the submitted list.
-          yield* sql`DELETE FROM pin WHERE contributor_id = ${id}`;
-          yield* Effect.forEach(
-            submitted.pinned.entries(),
-            ([rank, noticeId]) => sql`
-              INSERT INTO pin (contributor_id, notice_id, sort)
-                   VALUES (${id}, ${noticeId}, ${rank})
-            `,
-            { discard: true },
-          );
+          yield* writePins(id, submitted.pinned);
         }).pipe(sql.withTransaction, Effect.orDie);
+      }),
+
+      createContributor: Effect.fn('Moderation.createContributor')(function* (
+        submitted: SubmittedContributor,
+      ) {
+        const reasons = contributorViolations(submitted);
+        if (reasons.length > 0) {
+          return yield* new InvalidFields({ reasons });
+        }
+
+        return yield* Effect.gen(function* () {
+          yield* sql`
+            INSERT INTO contributor
+                 (name, title, email, website, intro, locale, categories,
+                  enabled, total_subscriptions, updated_at)
+                 VALUES (
+                   ${submitted.name}, ${emptyToNull(submitted.title)},
+                   ${emptyToNull(submitted.email)},
+                   ${emptyToNull(submitted.website)},
+                   ${emptyToNull(submitted.intro)},
+                   ${emptyToNull(submitted.locale)},
+                   ${submitted.categories.join(',')},
+                   ${submitted.enabled ? 1 : 0}, 0, NOW()
+                 )
+          `;
+
+          const id = yield* lastInsertId;
+          yield* writePins(id, submitted.pinned);
+
+          return id;
+        }).pipe(sql.withTransaction, Effect.orDie);
+      }),
+
+      deleteContributor: Effect.fn('Moderation.deleteContributor')(function* (
+        id: number,
+      ) {
+        const rows = yield* sql<{
+          image: string | null;
+          banner_image: string | null;
+          preview_image: string | null;
+        }>`
+          SELECT image, banner_image, preview_image
+            FROM contributor WHERE id = ${id}
+        `.pipe(Effect.orDie);
+
+        const row = rows[0];
+        if (row === undefined) return yield* new ContributorMissing({ id });
+
+        // notice.contributor_id carried no cascade: a contributor that still
+        // signs a notice could not be removed, and still cannot.
+        const signed = yield* sql<{ total: number }>`
+          SELECT COUNT(*) AS total FROM notice WHERE contributor_id = ${id}
+        `.pipe(Effect.orDie);
+
+        const notices = Number(signed[0]?.total ?? 0);
+        if (notices > 0) {
+          return yield* new ContributorSignsNotices({ id, notices });
+        }
+
+        yield* Effect.gen(function* () {
+          yield* sql`DELETE FROM pin WHERE contributor_id = ${id}`;
+          yield* sql`DELETE FROM relay WHERE relayed_by_id = ${id}`;
+          yield* sql`DELETE FROM subscription WHERE contributor_id = ${id}`;
+          yield* sql`DELETE FROM user_contributor WHERE contributor_id = ${id}`;
+          yield* sql`DELETE FROM contributor WHERE id = ${id}`;
+        }).pipe(sql.withTransaction, Effect.orDie);
+
+        return (
+          [
+            ['imageFile', row.image],
+            ['bannerImageFile', row.banner_image],
+            ['previewImageFile', row.preview_image],
+          ] as ReadonlyArray<readonly [ContributorImageField, string | null]>
+        )
+          .filter(([, fileName]) => fileName !== null && fileName !== '')
+          .map(([field, fileName]) => storagePath(field, fileName ?? ''));
       }),
 
       saveContributorImage: Effect.fn('Moderation.saveContributorImage')(

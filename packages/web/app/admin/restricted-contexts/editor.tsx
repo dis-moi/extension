@@ -3,8 +3,7 @@
 import React, { useState } from 'react';
 import { useFormState } from 'react-dom';
 import type { RestrictedContextEntry } from '@dismoi/api/application/Catalogue';
-import { Confirmation, Rejection, SubmitButton } from '../fields';
-import type { SaveResult } from '../form';
+import { Confirmation, Rejection, RemoveButton, SubmitButton } from '../fields';
 import { deleteRestrictedContext, saveRestrictedContext } from './actions';
 
 // regex_validator.js of the former administration checked the syntax as one
@@ -100,36 +99,6 @@ const Fields = ({
   );
 };
 
-const Removal = ({ entry }: { readonly entry: RestrictedContextEntry }) => {
-  const [state, act] = useFormState(deleteRestrictedContext, null);
-
-  return (
-    <form action={act} style={{ marginTop: 12 }}>
-      <input type="hidden" name="id" value={entry.id} />
-
-      {state?.reasons !== undefined && state.reasons.length > 0 && (
-        <Rejection title="Suppression refusée :" reasons={state.reasons} />
-      )}
-
-      <button
-        className="admin-button-secondary"
-        type="submit"
-        onClick={(event) => {
-          if (
-            !window.confirm(
-              `Supprimer ce contexte ? Les notices redeviendront visibles sur les adresses que « ${entry.urlRegex} » couvrait.`,
-            )
-          ) {
-            event.preventDefault();
-          }
-        }}
-      >
-        Supprimer ce contexte
-      </button>
-    </form>
-  );
-};
-
 export const RestrictedContexts = ({
   entries,
 }: {
@@ -176,7 +145,12 @@ export const RestrictedContexts = ({
                   </summary>
                   <div style={{ padding: '12px 0 4px' }}>
                     <Fields entry={entry} />
-                    <Removal entry={entry} />
+                    <RemoveButton
+                      id={entry.id}
+                      action={deleteRestrictedContext}
+                      label="Supprimer ce contexte"
+                      confirm={`Supprimer ce contexte ? Les notices redeviendront visibles sur les adresses que « ${entry.urlRegex} » couvrait.`}
+                    />
                   </div>
                 </details>
               </td>

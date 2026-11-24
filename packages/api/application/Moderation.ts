@@ -1,7 +1,7 @@
 import { Context, type Effect, Schema } from 'effect';
-import { InvalidFields } from './InvalidFields';
 import type { ContributorImageField } from '../domain/UploadedImage';
 import type { Visibility } from '../domain/NoticeVisibility';
+import { InvalidFields } from './InvalidFields';
 
 // Called by the Next server actions, without going through HTTP: an HTTP
 // hop would only add one more serialisation and a public surface to defend.
@@ -16,6 +16,20 @@ export class NoticeMissing extends Schema.TaggedError<NoticeMissing>()(
 export class ContributorMissing extends Schema.TaggedError<ContributorMissing>()(
   'ContributorMissing',
   { id: Schema.Number },
+) {}
+
+// pin.notice_id and notice.contributor_id are NO ACTION foreign keys, and
+// Doctrine configured no cascade over them: the former administration asked
+// MySQL and got a 500. These two say what holds the removal back instead.
+
+export class NoticePinned extends Schema.TaggedError<NoticePinned>()(
+  'NoticePinned',
+  { id: Schema.Number, pins: Schema.Number },
+) {}
+
+export class ContributorSignsNotices extends Schema.TaggedError<ContributorSignsNotices>()(
+  'ContributorSignsNotices',
+  { id: Schema.Number, notices: Schema.Number },
 ) {}
 
 export interface SubmittedContext {
@@ -70,10 +84,32 @@ export class Moderation extends Context.Service<
       submitted: SubmittedNotice,
     ): Effect.Effect<void, NoticeMissing | InvalidFields>;
 
+    createNotice(
+      submitted: SubmittedNotice,
+    ): Effect.Effect<number, InvalidFields>;
+
+    // Returns the name of the screenshot the caller is responsible for
+    // removing from the store, as saveContributorImage does.
+    deleteNotice(
+      id: number,
+    ): Effect.Effect<string | null, NoticeMissing | NoticePinned>;
+
     saveContributor(
       id: number,
       submitted: SubmittedContributor,
     ): Effect.Effect<void, InvalidFields | ContributorMissing>;
+
+    createContributor(
+      submitted: SubmittedContributor,
+    ): Effect.Effect<number, InvalidFields>;
+
+    // Returns the storage paths of the images it carried.
+    deleteContributor(
+      id: number,
+    ): Effect.Effect<
+      ReadonlyArray<string>,
+      ContributorMissing | ContributorSignsNotices
+    >;
 
     // Returns the name of the replaced image, which the caller is
     // responsible for removing from the store.

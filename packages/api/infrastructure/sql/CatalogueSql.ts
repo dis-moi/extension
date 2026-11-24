@@ -1,4 +1,4 @@
-import { Effect, Layer, Option } from 'effect';
+import { Effect, Layer } from 'effect';
 import { SqlClient } from 'effect/sql';
 import { InvalidFields } from '../../application/InvalidFields';
 import {

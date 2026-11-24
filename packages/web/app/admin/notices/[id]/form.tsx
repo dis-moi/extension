@@ -16,7 +16,7 @@ import {
 } from '../../fields';
 import { STATES } from '../../format';
 import { ContextFields } from './context';
-import { saveNotice } from './actions';
+import { createNotice, saveNotice } from './actions';
 
 // A client component only for the collection of contexts and the live
 // pattern test: saving, validation and writing stay on the server.
@@ -26,22 +26,51 @@ export interface Named {
   readonly name: string;
 }
 
+// What the form writes, as opposed to what the page reads: the counters and
+// the two dates belong to a notice that exists, and a creation has none.
+export type NoticeDraft = Omit<
+  EditableNotice,
+  'id' | 'created' | 'updated' | 'counters'
+> & { readonly id: number | null };
+
+const BLANK: NoticeDraft = {
+  id: null,
+  message: '',
+  note: null,
+  visibility: 'draft',
+  locale: null,
+  screenshot: null,
+  excludeUrlRegex: null,
+  expires: null,
+  unpublishedOnExpiration: false,
+  contributorId: null,
+  relayers: [],
+  contexts: [],
+};
+
 export const NoticeForm = ({
   notice,
   contributors,
   sets,
 }: {
-  readonly notice: EditableNotice;
+  // null when the notice is being written for the first time.
+  readonly notice: EditableNotice | null;
   readonly contributors: ReadonlyArray<Named>;
   readonly sets: ReadonlyArray<Named>;
 }) => {
-  const [state, act] = useFormState(saveNotice, null);
+  const saved = notice;
+  const draft: NoticeDraft = notice ?? BLANK;
+
+  const [state, act] = useFormState(
+    saved === null ? createNotice : saveNotice,
+    null,
+  );
 
   const [contexts, setContexts] = useState<
     ReadonlyArray<EditableContext | null>
-  >(notice.contexts);
+  >(draft.contexts);
 
-  const [message, setMessage] = useState(notice.message);
+  const [message, setMessage] = useState(draft.message);
 
   const remove = (rank: number) =>
     setContexts((current) => current.filter((_, i) => i !== rank));
@@ -50,7 +79,7 @@ export const NoticeForm = ({
 
   return (
     <form action={act}>
-      <input type="hidden" name="id" value={notice.id} />
+      <input type="hidden" name="id" value={draft.id ?? ''} />
 
       {state?.reasons !== undefined && state.reasons.length > 0 && (
         <Rejection
@@ -59,7 +88,15 @@ export const NoticeForm = ({
         />
       )}
 
-      {state?.saved === true && <Confirmation text="Notice enregistrée." />}
+      {state?.saved === true && (
+        <Confirmation
+          text={
+            saved === null
+              ? 'Notice créée. Elle apparaît dans la liste des notices.'
+              : 'Notice enregistrée.'
+          }
+        />
+      )}
 
       <div
         style={{
@@ -72,12 +109,14 @@ export const NoticeForm = ({
       >
         <p style={{ margin: 0, flexGrow: 1, minWidth: 180 }}>
           <span className="admin-label" style={{ marginBottom: 2 }}>
-            Notice #{notice.id}
+            {saved === null ? 'Nouvelle notice' : `Notice #${saved.id}`}
           </span>
-          <span className="admin-note">
-            créée le {notice.created.slice(0, 10)} · modifiée le{' '}
-            {notice.updated.slice(0, 10)}
-          </span>
+          {saved !== null && (
+            <span className="admin-note">
+              créée le {saved.created.slice(0, 10)} · modifiée le{' '}
+              {saved.updated.slice(0, 10)}
+            </span>
+          )}
         </p>
         <SubmitButton label="Enregistrer" pending="Enregistrement…" />
       </div>
@@ -143,19 +182,19 @@ export const NoticeForm = ({
                 Capture d’écran
               </label>
 
-              {notice.screenshot === null ? (
+              {draft.screenshot === null ? (
                 <p className="admin-hint" style={{ margin: 0 }}>
                   Aucune capture.
                 </p>
               ) : (
                 <>
                   <a
-                    href={`/${storagePath('screenshotFile', notice.screenshot)}`}
+                    href={`/${storagePath('screenshotFile', draft.screenshot)}`}
                     target="_blank"
                     rel="noreferrer"
                   >
                     <img
-                      src={`/${storagePath('screenshotFile', notice.screenshot)}`}
+                      src={`/${storagePath('screenshotFile', draft.screenshot)}`}
                       alt="Capture d’écran actuelle"
                       style={{
                         display: 'block',
@@ -266,60 +305,63 @@ export const NoticeForm = ({
                 id="excludeUrlRegex"
                 name="excludeUrlRegex"
                 rows={2}
-                defaultValue={notice.excludeUrlRegex ?? ''}
+                defaultValue={draft.excludeUrlRegex ?? ''}
                 placeholder="motif appliqué en plus de chaque exclusion de contexte"
               />
             </div>
           </section>
 
-          <section className="admin-card" aria-labelledby="title-activity">
-            <h2 id="title-activity">Activité de cette notice</h2>
+          {saved !== null && (
+            <section className="admin-card" aria-labelledby="title-activity">
+              <h2 id="title-activity">Activité de cette notice</h2>
 
-            <div className="admin-grid-4">
-              {[
-                { name: 'Badges', value: notice.counters.badge },
-                { name: 'Affichages', value: notice.counters.displays },
-                { name: 'Dépliements', value: notice.counters.unfolds },
-                {
-                  name: 'Clics sortants',
-                  value: notice.counters.outboundClicks,
-                },
-              ].map((measure) => (
-                <div key={measure.name}>
-                  <h3
-                    style={{
-                      margin: '0 0 2px',
-                      fontSize: 12,
-                      fontWeight: 600,
-                      color: 'var(--ink-soft)',
-                    }}
-                  >
-                    {measure.name}
-                  </h3>
-                  <p
-                    className="num"
-                    style={{
-                      margin: 0,
-                      fontSize: 20,
-                      fontWeight: 700,
-                      lineHeight: 1.1,
-                    }}
-                  >
-                    {measure.value.toLocaleString('fr-FR')}
-                  </p>
-                </div>
-              ))}
-            </div>
+              <div className="admin-grid-4">
+                {[
+                  { name: 'Badges', value: saved.counters.badge },
+                  { name: 'Affichages', value: saved.counters.displays },
+                  { name: 'Dépliements', value: saved.counters.unfolds },
+                  {
+                    name: 'Clics sortants',
+                    value: saved.counters.outboundClicks,
+                  },
+                ].map((measure) => (
+                  <div key={measure.name}>
+                    <h3
+                      style={{
+                        margin: '0 0 2px',
+                        fontSize: 12,
+                        fontWeight: 600,
+                        color: 'var(--ink-soft)',
+                      }}
+                    >
+                      {measure.name}
+                    </h3>
+                    <p
+                      className="num"
+                      style={{
+                        margin: 0,
+                        fontSize: 20,
+                        fontWeight: 700,
+                        lineHeight: 1.1,
+                      }}
+                    >
+                      {measure.value.toLocaleString('fr-FR')}
+                    </p>
+                  </div>
+                ))}
+              </div>
 
-            <p className="admin-hint" style={{ marginTop: 12 }}>
-              Compteurs dénombrés sur la notice, à jour à chaque notation.
-              J’aime <span className="num">{notice.counters.likes}</span> · Je
-              n’aime pas <span className="num">{notice.counters.dislikes}</span>{' '}
-              · Masquages{' '}
-              <span className="num">{notice.counters.dismissals}</span> — ce
-              sont des soldes, retours en arrière déduits.
-            </p>
-          </section>
+              <p className="admin-hint" style={{ marginTop: 12 }}>
+                Compteurs dénombrés sur la notice, à jour à chaque notation.
+                J’aime <span className="num">{saved.counters.likes}</span> · Je
+                n’aime pas{' '}
+                <span className="num">{saved.counters.dislikes}</span> ·
+                Masquages{' '}
+                <span className="num">{saved.counters.dismissals}</span> — ce
+                sont des soldes, retours en arrière déduits.
+              </p>
+            </section>
+          )}
         </div>
 
         <aside
@@ -343,9 +385,9 @@ export const NoticeForm = ({
                 id="contributorId"
                 name="contributorId"
                 defaultValue={
-                  notice.contributorId === null
+                  draft.contributorId === null
                     ? ''
-                    : String(notice.contributorId)
+                    : String(draft.contributorId)
                 }
               >
                 <option value="">— aucun —</option>
@@ -367,7 +409,7 @@ export const NoticeForm = ({
                 name="relayers"
                 multiple
                 size={6}
-                defaultValue={notice.relayers.map((relayeur) =>
+                defaultValue={draft.relayers.map((relayeur) =>
                   String(relayeur.id),
                 )}
               >
@@ -395,7 +437,7 @@ export const NoticeForm = ({
                 className="admin-field"
                 id="visibility"
                 name="visibility"
-                defaultValue={notice.visibility}
+                defaultValue={draft.visibility}
               >
                 {VISIBILITIES.map((visibility) => (
                   <option key={visibility} value={visibility}>
@@ -414,7 +456,7 @@ export const NoticeForm = ({
                 id="expires"
                 name="expires"
                 type="date"
-                defaultValue={notice.expires?.slice(0, 10) ?? ''}
+                defaultValue={draft.expires?.slice(0, 10) ?? ''}
               />
               <p className="admin-hint">
                 Vide : la notice ne cesse jamais de s’afficher.
@@ -426,7 +468,7 @@ export const NoticeForm = ({
                 id="unpublishedOnExpiration"
                 name="unpublishedOnExpiration"
                 type="checkbox"
-                defaultChecked={notice.unpublishedOnExpiration}
+                defaultChecked={draft.unpublishedOnExpiration}
                 style={{
                   margin: '2px 0 0',
                   width: 16,
@@ -464,7 +506,7 @@ export const NoticeForm = ({
                 className="admin-field"
                 id="locale"
                 name="locale"
-                defaultValue={notice.locale ?? ''}
+                defaultValue={draft.locale ?? ''}
               >
                 <option value="">Langue par défaut du contributeur</option>
                 <LanguageOptions />
@@ -480,7 +522,7 @@ export const NoticeForm = ({
                 id="note"
                 name="note"
                 rows={4}
-                defaultValue={notice.note ?? ''}
+                defaultValue={draft.note ?? ''}
                 placeholder="Jamais exposée par l’API."
               />
             </div>

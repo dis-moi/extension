@@ -8,8 +8,10 @@ import { run } from '../../../../lib/effect';
 import '../../admin.css';
 import { setVisibility } from '../../actions';
 import { Chrome } from '../../chrome';
+import { RemoveButton } from '../../fields';
 import { shortDate, state } from '../../format';
 import { requireAccount } from '../../session';
+import { deleteNotice } from './actions';
 import { NoticeForm } from './form';
 
 export const dynamic = 'force-dynamic';
@@ -112,6 +114,21 @@ const NoticePage = async ({
         contributors={contributors}
         sets={sets.map((set) => ({ id: set.id, name: set.name }))}
       />
+
+      <section className="admin-card" style={{ marginTop: 20 }}>
+        <h2>Supprimer</h2>
+        <p className="admin-note">
+          Emporte ses contextes de ciblage, ses relais et ses notations. Pour la
+          retirer sans perdre la mesure, choisis plutôt la visibilité « archivée
+          ».
+        </p>
+        <RemoveButton
+          id={notice.id}
+          action={deleteNotice}
+          label="Supprimer cette notice"
+          confirm={`Supprimer définitivement la notice #${notice.id} et ses notations ?`}
+        />
+      </section>
     </Chrome>
   );
 };

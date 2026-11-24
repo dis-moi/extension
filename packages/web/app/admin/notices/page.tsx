@@ -119,6 +119,9 @@ const NoticesPage = async ({
         <p className="admin-subtitle">
           <span className="num">{number(counts.total)}</span> au total.
         </p>
+        <Link className="admin-button" href="/admin/notices/new">
+          Nouvelle notice
+        </Link>
       </div>
 
       <nav className="admin-tabs" aria-label="État des notices">

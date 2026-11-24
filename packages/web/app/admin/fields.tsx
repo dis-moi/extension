@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useFormStatus } from 'react-dom';
+import { useFormState, useFormStatus } from 'react-dom';
 
 // SUPPORTED_LOCALES of the API. Breton is not decorative: notices really
 // carry it.
@@ -71,3 +71,43 @@ export const Confirmation = ({ text }: { readonly text: string }) => (
     {text}
   </p>
 );
+
+// A removal is a form of its own, with its own feedback: the reasons that
+// hold it back — a pin, a notice still signed, a targeting context — have
+// nothing to do with the fields of the object being edited.
+export const RemoveButton = ({
+  id,
+  action,
+  label,
+  confirm,
+}: {
+  readonly id: number;
+  readonly action: (
+    previous: { readonly reasons?: ReadonlyArray<string> } | null,
+    form: FormData,
+  ) => Promise<{ readonly reasons?: ReadonlyArray<string> }>;
+  readonly label: string;
+  readonly confirm: string;
+}) => {
+  const [state, act] = useFormState(action, null);
+
+  return (
+    <form action={act} style={{ marginTop: 12 }}>
+      <input type="hidden" name="id" value={id} />
+
+      {state?.reasons !== undefined && state.reasons.length > 0 && (
+        <Rejection title="Suppression refusée :" reasons={state.reasons} />
+      )}
+
+      <button
+        className="admin-button-secondary"
+        type="submit"
+        onClick={(event) => {
+          if (!window.confirm(confirm)) event.preventDefault();
+        }}
+      >
+        {label}
+      </button>
+    </form>
+  );
+};
