@@ -53,7 +53,7 @@ const NoticeSubmission = Schema.Struct({
       ),
     ),
   ),
-  contextes: Schema.Array(ContextSubmission).pipe(
+  contexts: Schema.Array(ContextSubmission).pipe(
     Schema.check(
       Schema.isNonEmpty({
         message: 'Une notice a besoin d’au moins un contexte de ciblage.',
@@ -65,7 +65,7 @@ const NoticeSubmission = Schema.Struct({
 const withContextRank = (violation: Violation): string => {
   const [field, rank] = violation.path;
 
-  return field === 'contextes' && typeof rank === 'number'
+  return field === 'contexts' && typeof rank === 'number'
     ? `Contexte ${rank + 1} : ${violation.message}`
     : violation.message;
 };

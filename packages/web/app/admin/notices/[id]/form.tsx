@@ -7,6 +7,7 @@ import type {
   EditableNotice,
 } from '@dismoi/api/application/Supervision';
 import { VISIBILITIES } from '@dismoi/api/domain/NoticeVisibility';
+import { storagePath } from '@dismoi/api/domain/UploadedImage';
 import {
   SubmitButton,
   Confirmation,
@@ -20,15 +21,19 @@ import { saveNotice } from './actions';
 // A client component only for the collection of contexts and the live
 // pattern test: saving, validation and writing stay on the server.
 
+export interface Named {
+  readonly id: number;
+  readonly name: string;
+}
+
 export const NoticeForm = ({
   notice,
   contributors,
+  sets,
 }: {
   readonly notice: EditableNotice;
-  readonly contributors: ReadonlyArray<{
-    readonly id: number;
-    readonly name: string;
-  }>;
+  readonly contributors: ReadonlyArray<Named>;
+  readonly sets: ReadonlyArray<Named>;
 }) => {
   const [state, act] = useFormState(saveNotice, null);
 
@@ -133,25 +138,59 @@ export const NoticeForm = ({
               </p>
             </div>
 
-            {notice.screenshot !== null && (
-              <div style={{ marginTop: 18 }}>
-                <span className="admin-label">Capture d’écran</span>
-                <p
-                  className="admin-mono"
-                  style={{
-                    margin: 0,
-                    fontSize: 12,
-                    color: 'var(--ink-soft)',
-                  }}
-                >
-                  {notice.screenshot}
+            <div style={{ marginTop: 18, display: 'grid', gap: 8 }}>
+              <label htmlFor="screenshot" className="admin-label">
+                Capture d’écran
+              </label>
+
+              {notice.screenshot === null ? (
+                <p className="admin-hint" style={{ margin: 0 }}>
+                  Aucune capture.
                 </p>
-                <p className="admin-hint">
-                  Le téléversement d’images n’est pas encore recâblé : les
-                  fichiers existants restent servis par l’API.
-                </p>
-              </div>
-            )}
+              ) : (
+                <>
+                  <a
+                    href={`/${storagePath('screenshotFile', notice.screenshot)}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img
+                      src={`/${storagePath('screenshotFile', notice.screenshot)}`}
+                      alt="Capture d’écran actuelle"
+                      style={{
+                        display: 'block',
+                        maxWidth: '100%',
+                        maxHeight: 180,
+                        borderRadius: 6,
+                        background: 'var(--background)',
+                      }}
+                    />
+                  </a>
+                  <label
+                    style={{ display: 'flex', alignItems: 'center', gap: 6 }}
+                  >
+                    <input
+                      type="checkbox"
+                      name="removeScreenshot"
+                      value="yes"
+                    />
+                    <span className="admin-note">Retirer cette capture</span>
+                  </label>
+                </>
+              )}
+
+              <input
+                id="screenshot"
+                type="file"
+                name="screenshot"
+                accept="image/png,image/jpeg,image/webp"
+                style={{ fontSize: 13 }}
+              />
+              <p className="admin-hint" style={{ margin: 0 }}>
+                PNG, JPEG ou WebP, 5 Mo au plus. Le fichier porte le numéro de
+                la notice : il remplace le précédent à l’enregistrement.
+              </p>
+            </div>
           </section>
 
           <section className="admin-card" aria-labelledby="title-targeting">
@@ -213,6 +252,7 @@ export const NoticeForm = ({
                 key={context?.id ?? `new-${rank}`}
                 rank={rank}
                 context={context}
+                sets={sets}
                 onRemove={() => remove(rank)}
               />
             ))}

@@ -27,10 +27,12 @@ const APPEARANCES: Record<
 export const ContextFields = ({
   rank,
   context,
+  sets,
   onRemove,
 }: {
   readonly rank: number;
   readonly context: EditableContext | null;
+  readonly sets: ReadonlyArray<{ readonly id: number; readonly name: string }>;
   readonly onRemove: () => void;
 }) => {
   const [exampleUrl, setExampleUrl] = useState(context?.exampleUrl ?? '');
@@ -134,13 +136,33 @@ export const ContextFields = ({
           Séparés par des virgules. Les alias d’un domaine sont inclus
           automatiquement, et les points sont échappés avant l’envoi à
           l’extension.
-          {context !== null && context.domainsSets.length > 0 && (
-            <>
-              {' '}
-              Jeux rattachés :{' '}
-              {context.domainsSets.map((set) => set.name).join(', ')}.
-            </>
+        </p>
+      </div>
+
+      <div style={{ marginTop: 16 }}>
+        <label className="admin-label" htmlFor={`${prefix}.domainsSets`}>
+          Jeux de domaines
+        </label>
+        <select
+          className="admin-field"
+          id={`${prefix}.domainsSets`}
+          name={`${prefix}.domainsSets`}
+          multiple
+          size={Math.min(sets.length, 6)}
+          defaultValue={(context?.domainsSets ?? []).map((set) =>
+            String(set.id),
           )}
+          aria-describedby={`${prefix}.domainsSets-hint`}
+        >
+          {sets.map((set) => (
+            <option key={set.id} value={set.id}>
+              {set.name}
+            </option>
+          ))}
+        </select>
+        <p className="admin-hint" id={`${prefix}.domainsSets-hint`}>
+          S’ajoutent aux domaines saisis ci-dessus. Un jeu réunit les domaines
+          d’une même enseigne, et se modifie dans Domaines.
         </p>
       </div>
 

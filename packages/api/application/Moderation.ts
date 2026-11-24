@@ -31,6 +31,9 @@ export interface SubmittedContext {
   readonly querySelector: string | null;
   readonly xpath: string | null;
   readonly domains: ReadonlyArray<string>;
+  // Identifiers, not names: a set is picked from the list the
+  // administration shows, where a name is only a label.
+  readonly domainsSets: ReadonlyArray<number>;
 }
 
 export interface SubmittedNotice {
@@ -83,5 +86,12 @@ export class Moderation extends Context.Service<
       field: ContributorImageField,
       fileName: string,
     ): Effect.Effect<string | null, ContributorMissing>;
+
+    // Same contract, and `null` clears the column: that is the delete
+    // checkbox Vich showed next to the image.
+    saveNoticeScreenshot(
+      id: number,
+      fileName: string | null,
+    ): Effect.Effect<string | null, NoticeMissing>;
   }
 >()('api/application/Moderation') {}

@@ -49,6 +49,7 @@ const moderation = Layer.succeed(
         recorded.push({ id, field, fileName });
         return previousImage;
       }),
+    saveNoticeScreenshot: () => Effect.succeed(null),
   }),
 );
 

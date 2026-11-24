@@ -10,7 +10,7 @@ const valid = {
   message: 'Ce produit est réparable.',
   visibility: 'public',
   excludeUrlRegex: null,
-  contextes: [context],
+  contexts: [context],
 };
 
 describe('notice submitted by the admin', () => {
@@ -37,7 +37,7 @@ describe('notice submitted by the admin', () => {
   });
 
   it('refuses a notice without any targeting context', () => {
-    expect(noticeViolations({ ...valid, contextes: [] })).toEqual([
+    expect(noticeViolations({ ...valid, contexts: [] })).toEqual([
       'Une notice a besoin d’au moins un contexte de ciblage.',
     ]);
   });
@@ -52,7 +52,7 @@ describe('notice submitted by the admin', () => {
     expect(
       noticeViolations({
         ...valid,
-        contextes: [context, { urlRegex: '(', excludeUrlRegex: null }],
+        contexts: [context, { urlRegex: '(', excludeUrlRegex: null }],
       }),
     ).toEqual(['Contexte 2 : le motif de chemin est invalide.']);
   });
@@ -61,7 +61,7 @@ describe('notice submitted by the admin', () => {
     expect(
       noticeViolations({
         ...valid,
-        contextes: [{ urlRegex: '', excludeUrlRegex: null }],
+        contexts: [{ urlRegex: '', excludeUrlRegex: null }],
       }),
     ).toEqual(['Contexte 1 : le motif de chemin est vide.']);
   });
@@ -70,7 +70,7 @@ describe('notice submitted by the admin', () => {
     expect(
       noticeViolations({
         ...valid,
-        contextes: [{ urlRegex: '^/a', excludeUrlRegex: '*' }],
+        contexts: [{ urlRegex: '^/a', excludeUrlRegex: '*' }],
       }),
     ).toEqual(['Contexte 1 : le motif d’exclusion est invalide.']);
   });
@@ -81,7 +81,7 @@ describe('notice submitted by the admin', () => {
         message: '',
         visibility: 'public',
         excludeUrlRegex: null,
-        contextes: [{ urlRegex: '(', excludeUrlRegex: null }],
+        contexts: [{ urlRegex: '(', excludeUrlRegex: null }],
       }),
     ).toEqual([
       'Le message ne peut pas être vide.',

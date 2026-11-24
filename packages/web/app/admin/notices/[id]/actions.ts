@@ -8,6 +8,10 @@ import type {
 } from '@dismoi/api/application/Moderation';
 import { Moderation } from '@dismoi/api/application/Moderation';
 import {
+  removeNoticeScreenshot,
+  uploadNoticeScreenshot,
+} from '@dismoi/api/application/UploadAnImage';
+import {
   VISIBILITIES,
   type Visibility,
 } from '@dismoi/api/domain/NoticeVisibility';
@@ -19,6 +23,7 @@ import {
   domains,
   integerOrNull,
   integers,
+  submittedFile,
   type SaveResult,
 } from '../../form';
 import { requireAccount } from '../../session';
@@ -60,6 +65,7 @@ const contextAtRank = (form: FormData, rank: string): SubmittedContext => {
     querySelector: fieldOrNull(form, `${prefix}.querySelector`),
     xpath: fieldOrNull(form, `${prefix}.xpath`),
     domains: domains(form, `${prefix}.domains`),
+    domainsSets: integers(form, `${prefix}.domainsSets`),
   };
 };
 
@@ -75,6 +81,44 @@ const submittedNotice = (form: FormData): SubmittedNotice => ({
   relayers: integers(form, 'relayers'),
   contexts: contextRanks(form).map((rank) => contextAtRank(form, rank)),
 });
+
+// The screenshot travels with the rest of the form, as it did in Vich: one
+// file field, and a checkbox to clear it. A refusal is reported without
+// cancelling the fields that are already written.
+const applyScreenshot = async (
+  id: number,
+  form: FormData,
+): Promise<string | null> => {
+  const content = await submittedFile(form, 'screenshot');
+
+  if (content === null) {
+    if (!checkbox(form, 'removeScreenshot')) return null;
+
+    return run(
+      removeNoticeScreenshot(id).pipe(
+        Effect.as<string | null>(null),
+        Effect.catchTag('NoticeMissing', () =>
+          Effect.succeed('Cette notice n’existe plus.'),
+        ),
+      ),
+    );
+  }
+
+  return run(
+    uploadNoticeScreenshot(id, content).pipe(
+      Effect.as<string | null>(null),
+      Effect.catchTag('ImageRefused', (failure) =>
+        Effect.succeed(failure.reason),
+      ),
+      Effect.catchTag('WriteFailed', () =>
+        Effect.succeed('Le stockage a rejeté la capture d’écran.'),
+      ),
+      Effect.catchTag('NoticeMissing', () =>
+        Effect.succeed('Cette notice n’existe plus.'),
+      ),
+    ),
+  );
+};
 
 export const saveNotice = async (
   _previous: SaveResult | null,
@@ -102,9 +146,13 @@ export const saveNotice = async (
 
   if (reasons !== null) return { reasons };
 
+  const rejection = await applyScreenshot(id, form);
+
   revalidatePath('/admin');
   revalidatePath('/admin/notices');
   revalidatePath(`/admin/notices/${id}`);
 
-  return { saved: true };
+  return rejection === null
+    ? { saved: true }
+    : { saved: true, reasons: [rejection] };
 };

@@ -29,16 +29,17 @@ const NoticePage = async ({
 
   if (!Number.isInteger(id)) notFound();
 
-  const { notice, contributors } = await run(
+  const { notice, contributors, sets } = await run(
     Effect.gen(function* () {
       const supervision = yield* Supervision;
 
-      const [notice, contributors] = yield* Effect.all([
+      const [notice, contributors, sets] = yield* Effect.all([
         supervision.notice(id),
         supervision.contributorsForPicking,
+        supervision.domainsSets,
       ]);
 
-      return { notice, contributors };
+      return { notice, contributors, sets };
     }),
   );
 
@@ -104,7 +105,11 @@ const NoticePage = async ({
         )}
       </div>
 
-      <NoticeForm notice={notice} contributors={contributors} />
+      <NoticeForm
+        notice={notice}
+        contributors={contributors}
+        sets={sets.map((set) => ({ id: set.id, name: set.name }))}
+      />
     </Chrome>
   );
 };

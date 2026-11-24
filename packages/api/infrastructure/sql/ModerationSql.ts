@@ -116,6 +116,23 @@ export const ModerationSqlLive = Layer.effect(
           { discard: true },
         );
 
+        // The sets, on the same principle. A set is never created here: it
+        // is picked from those the administration lists.
+        yield* sql`
+          DELETE FROM matching_context_domains_set
+           WHERE matching_context_id = ${contextId}
+        `;
+
+        yield* Effect.forEach(
+          context.domainsSets,
+          (setId) => sql`
+            INSERT IGNORE INTO matching_context_domains_set
+                 (matching_context_id, domains_set_id)
+                 VALUES (${contextId}, ${setId})
+          `,
+          { discard: true },
+        );
+
         return contextId;
       });
 
@@ -257,6 +274,32 @@ export const ModerationSqlLive = Layer.effect(
 
           if (Option.isNone(replaced)) {
             return yield* new ContributorMissing({ id });
+          }
+
+          return replaced.value;
+        },
+      ),
+
+      saveNoticeScreenshot: Effect.fn('Moderation.saveNoticeScreenshot')(
+        function* (id: number, fileName: string | null) {
+          const replaced = yield* Effect.gen(function* () {
+            const rows = yield* sql<{ previous: string | null }>`
+              SELECT screenshot AS previous FROM notice WHERE id = ${id}
+            `;
+
+            const row = rows[0];
+            if (row === undefined) return Option.none<string | null>();
+
+            yield* sql`
+              UPDATE notice SET screenshot = ${fileName}, updated = NOW()
+               WHERE id = ${id}
+            `;
+
+            return Option.some(row.previous);
+          }).pipe(sql.withTransaction, Effect.orDie);
+
+          if (Option.isNone(replaced)) {
+            return yield* new NoticeMissing({ id });
           }
 
           return replaced.value;

@@ -8,7 +8,11 @@ import { afterAll, beforeAll } from 'vitest';
 import { Effect, Layer } from 'effect';
 import { SqlClient } from 'effect/sql';
 import { Moderation } from '../application/Moderation';
-import { uploadContributorImage } from '../application/UploadAnImage';
+import {
+  removeNoticeScreenshot,
+  uploadContributorImage,
+  uploadNoticeScreenshot,
+} from '../application/UploadAnImage';
 import { CryptoRandomnessLive } from '../infrastructure/randomness/CryptoRandomness';
 import { diskLayer } from '../infrastructure/files/DiskFiles';
 import { DatabaseLive } from '../infrastructure/sql/Database';
@@ -23,6 +27,7 @@ const sharp = require_('sharp');
 const root: string = fs.mkdtempSync(paths.join(os.tmpdir(), 'dismoi-upload-'));
 
 let png: Uint8Array;
+let jpeg: Uint8Array;
 
 const TestLayer = Layer.mergeAll(
   ModerationSqlLive,
@@ -40,17 +45,29 @@ const seed = Effect.gen(function* () {
   `;
 });
 
+const seedNotice = Effect.gen(function* () {
+  const sql = yield* SqlClient.SqlClient;
+
+  yield* sql`DELETE FROM notice WHERE id = 71`;
+  yield* sql`
+    INSERT INTO notice (id, message, visibility, unpublished_on_expiration, updated)
+         VALUES (71, 'Notice à copie d''écran', 'public', 0, NOW())
+  `;
+});
+
 beforeAll(async () => {
-  png = await sharp({
-    create: {
-      width: 8,
-      height: 8,
-      channels: 3,
-      background: { r: 1, g: 2, b: 3 },
-    },
-  })
-    .png()
-    .toBuffer();
+  const canvas = () =>
+    sharp({
+      create: {
+        width: 8,
+        height: 8,
+        channels: 3,
+        background: { r: 1, g: 2, b: 3 },
+      },
+    });
+
+  png = await canvas().png().toBuffer();
+  jpeg = await canvas().jpeg().toBuffer();
 });
 
 afterAll(() => {
@@ -192,6 +209,72 @@ layer(TestLayer)('contributor profile saved', (it) => {
       }>`SELECT title FROM contributor WHERE id = 7`;
 
       assert.strictEqual(rows[0]?.title, 'porteur');
+    }),
+  );
+});
+
+layer(TestLayer)('screenshot of a notice', (it) => {
+  const screenshotPath = (fileName: string): string =>
+    paths.join(root, 'uploads/notice_screenshots', fileName);
+
+  it.effect('writes the file under the identifier of the notice', () =>
+    Effect.gen(function* () {
+      yield* seedNotice;
+      const sql = yield* SqlClient.SqlClient;
+
+      const fileName = yield* uploadNoticeScreenshot(71, png);
+
+      assert.strictEqual(fileName, '71.png');
+      assert.isTrue(fs.existsSync(screenshotPath('71.png')));
+
+      const rows = yield* sql<{
+        screenshot: string | null;
+      }>`SELECT screenshot FROM notice WHERE id = 71`;
+
+      assert.strictEqual(rows[0]?.screenshot, '71.png');
+    }),
+  );
+
+  it.effect('removes the file the new format leaves behind', () =>
+    Effect.gen(function* () {
+      yield* seedNotice;
+
+      yield* uploadNoticeScreenshot(71, png);
+      const second = yield* uploadNoticeScreenshot(71, jpeg);
+
+      assert.strictEqual(second, '71.jpg');
+      assert.isFalse(fs.existsSync(screenshotPath('71.png')));
+      assert.isTrue(fs.existsSync(screenshotPath('71.jpg')));
+    }),
+  );
+
+  it.effect('clears the column and the store on a removal', () =>
+    Effect.gen(function* () {
+      yield* seedNotice;
+      const sql = yield* SqlClient.SqlClient;
+
+      yield* uploadNoticeScreenshot(71, png);
+      yield* removeNoticeScreenshot(71);
+
+      assert.isFalse(fs.existsSync(screenshotPath('71.png')));
+
+      const rows = yield* sql<{
+        screenshot: string | null;
+      }>`SELECT screenshot FROM notice WHERE id = 71`;
+
+      assert.strictEqual(rows[0]?.screenshot, null);
+    }),
+  );
+
+  it.effect('refuses a screenshot set on a notice that does not exist', () =>
+    Effect.gen(function* () {
+      yield* seedNotice;
+
+      const refusal = yield* uploadNoticeScreenshot(4242, png).pipe(
+        Effect.flip,
+      );
+
+      assert.strictEqual(refusal._tag, 'NoticeMissing');
     }),
   );
 });
