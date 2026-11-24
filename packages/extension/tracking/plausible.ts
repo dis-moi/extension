@@ -1,6 +1,8 @@
+import { TrackedUrl } from './trackedUrl';
+
 interface PlausibleEvent {
   name: string;
-  url: string;
+  url: TrackedUrl;
   props?: Record<string, string | number | boolean>;
 }
 
@@ -22,7 +24,7 @@ export default class PlausibleTracker {
     }
   }
 
-  trackPageview(url: string): Promise<void> {
+  trackPageview(url: TrackedUrl): Promise<void> {
     return this.track({ name: 'pageview', url });
   }
 }

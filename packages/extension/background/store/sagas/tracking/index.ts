@@ -1,7 +1,7 @@
 import { SagaIterator } from 'redux-saga';
 import { call, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 import PlausibleTracker from 'libs/tracking/plausible';
-import { screenUrl, siteUrl } from 'libs/tracking/trackedUrl';
+import { TrackedUrl, screenUrl, siteUrl } from 'libs/tracking/trackedUrl';
 import {
   BROWSER_ACTION_CLICKED,
   CLOSE,
@@ -43,7 +43,7 @@ import { Level } from 'libs/utils/Logger';
 type EventProps = Record<string, string | number | boolean>;
 
 /** The site the action happened on, reduced to what may leave the browser. */
-const siteOf = (action: BaseAction): string =>
+const siteOf = (action: BaseAction): TrackedUrl =>
   siteUrl(getURLFromActionMeta(action));
 
 /** Analytics must never break the extension: failures are only reported. */
