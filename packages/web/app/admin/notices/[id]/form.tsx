@@ -69,7 +69,7 @@ export const NoticeForm = ({
           <span className="admin-label" style={{ marginBottom: 2 }}>
             Notice #{notice.id}
           </span>
-          <span style={{ fontSize: 12, color: 'var(--ink-soft)' }}>
+          <span className="admin-note">
             créée le {notice.created.slice(0, 10)} · modifiée le{' '}
             {notice.updated.slice(0, 10)}
           </span>

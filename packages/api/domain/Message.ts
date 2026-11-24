@@ -89,8 +89,8 @@ const trimToUrl = (found: string): string => {
 };
 
 const linkInsideText = (text: string): string => {
-  let sortie = '';
-  let curseur = 0;
+  let linked = '';
+  let cursor = 0;
 
   BARE_URL.lastIndex = 0;
   for (
@@ -117,12 +117,12 @@ const linkInsideText = (text: string): string => {
       continue;
     }
 
-    sortie += escape(text.slice(curseur, found.index)) + link(url);
-    curseur = found.index + url.length;
-    BARE_URL.lastIndex = curseur;
+    linked += escape(text.slice(cursor, found.index)) + link(url);
+    cursor = found.index + url.length;
+    BARE_URL.lastIndex = cursor;
   }
 
-  return sortie + escape(text.slice(curseur));
+  return linked + escape(text.slice(cursor));
 };
 
 // linkUrlsInTrustedHtml of urllinker: tags are walked through as they are
@@ -130,20 +130,20 @@ const linkInsideText = (text: string): string => {
 // messages differ.
 const linkBareUrls = (html: string): string => {
   const pieces = html.split(/(<[^>]*>)/);
-  let profondeurLien = 0;
+  let anchorDepth = 0;
 
   return pieces
-    .map((morceau) => {
-      if (morceau.startsWith('<')) {
-        if (/^<a[\s>]/i.test(morceau)) profondeurLien += 1;
-        else if (/^<\/a\s*>/i.test(morceau))
-          profondeurLien = Math.max(0, profondeurLien - 1);
-        return morceau;
+    .map((piece) => {
+      if (piece.startsWith('<')) {
+        if (/^<a[\s>]/i.test(piece)) anchorDepth += 1;
+        else if (/^<\/a\s*>/i.test(piece))
+          anchorDepth = Math.max(0, anchorDepth - 1);
+        return piece;
       }
 
-      if (morceau === '' || profondeurLien > 0) return morceau;
+      if (piece === '' || anchorDepth > 0) return piece;
 
-      return linkInsideText(morceau);
+      return linkInsideText(piece);
     })
     .join('');
 };
@@ -151,13 +151,13 @@ const linkBareUrls = (html: string): string => {
 const rewriteAnchors = (html: string, utmMedium: string): string =>
   html.replace(
     /<a ([^>]*)href="([^"]+)"([^>]*)>([^<]+)<\/a>/g,
-    (_entier, avant: string, href: string, apres: string, text: string) => {
+    (_whole, before: string, href: string, after: string, text: string) => {
       const address = mergeQueryParameter(
         withoutTags(href),
         'utm_medium',
         utmMedium,
       );
-      return `<a ${avant} ${apres} href="${address}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+      return `<a ${before} ${after} href="${address}" target="_blank" rel="noopener noreferrer">${text}</a>`;
     },
   );
 

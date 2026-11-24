@@ -4,17 +4,12 @@
 
 // preg_quote of PHP 7.4. The slash is not in it: of the 3,885 served domain
 // groups, 88 carry a bare one and none is escaped.
-const SPECIAUX = '.\\+*?[^]$(){}=!<>|:-#';
+const SPECIAL_CHARACTER = /[\0.\\+*?[\^\]$(){}=!<>|:#-]/g;
 
-export const pregQuote = (input: string): string => {
-  let sortie = '';
-  for (const caractere of input) {
-    if (caractere === '\0') sortie += '\\000';
-    else if (SPECIAUX.includes(caractere)) sortie += `\\${caractere}`;
-    else sortie += caractere;
-  }
-  return sortie;
-};
+export const pregQuote = (input: string): string =>
+  input.replace(SPECIAL_CHARACTER, (character) =>
+    character === '\0' ? '\\000' : `\\${character}`,
+  );
 
 export interface DomainName {
   readonly name: string;
@@ -31,63 +26,63 @@ export interface DomainAttachments {
   readonly domainNames: ReadonlyArray<DomainName>;
 }
 
-const fullName = (domaine: DomainName): string =>
-  domaine.name + (domaine.path ?? '');
+const fullName = (domain: DomainName): string =>
+  domain.name + (domain.path ?? '');
 
 // An empty simple_array gives [''], and an empty alternative in the pattern
 // accepts every address.
-const aliases = (domaine: DomainName): ReadonlyArray<string> =>
-  domaine.aliases.filter((alias) => alias !== '');
+const aliases = (domain: DomainName): ReadonlyArray<string> =>
+  domain.aliases.filter((alias) => alias !== '');
 
 // getAllRelatedDomains(): sets first, then direct domains, each followed by
 // its aliases. array_unique compares by getFullName(), so two paths on one
 // domain stay two entries.
 export const relatedDomains = (
-  attachements: DomainAttachments,
+  attachments: DomainAttachments,
 ): ReadonlyArray<string> => {
-  const domaines = [
-    ...attachements.domainsSets.flatMap((jeu) => jeu.domains),
-    ...attachements.domainNames,
+  const domains = [
+    ...attachments.domainsSets.flatMap((set) => set.domains),
+    ...attachments.domainNames,
   ];
 
-  const vus = new Set<string>();
-  const sortie: string[] = [];
+  const seen = new Set<string>();
+  const related: string[] = [];
 
-  for (const domaine of domaines) {
-    const complet = fullName(domaine);
-    if (vus.has(complet)) continue;
-    vus.add(complet);
-    sortie.push(complet, ...aliases(domaine));
+  for (const domain of domains) {
+    const full = fullName(domain);
+    if (seen.has(full)) continue;
+    seen.add(full);
+    related.push(full, ...aliases(domain));
   }
 
-  return sortie;
+  return related;
 };
 
 export const fullUrlRegex = (
-  attachements: DomainAttachments,
+  attachments: DomainAttachments,
   urlRegex: string,
 ): string => {
-  const domaines = relatedDomains(attachements);
+  const domains = relatedDomains(attachments);
 
-  return domaines.length === 0
+  return domains.length === 0
     ? urlRegex
-    : `(${domaines.map(pregQuote).join('|')})${urlRegex}`;
+    : `(${domains.map(pregQuote).join('|')})${urlRegex}`;
 };
 
 // The original uses && then ??, which treat the empty string differently:
 // an empty exclusion on the context therefore masks the one of the notice.
 export const completeExcludeUrlRegex = (
-  exclusionDuContexte: string | null,
-  exclusionDeLaNotice: string | null,
+  contextExclusion: string | null,
+  noticeExclusion: string | null,
 ): string | null => {
   if (
-    exclusionDuContexte !== null &&
-    exclusionDuContexte !== '' &&
-    exclusionDeLaNotice !== null &&
-    exclusionDeLaNotice !== ''
+    contextExclusion !== null &&
+    contextExclusion !== '' &&
+    noticeExclusion !== null &&
+    noticeExclusion !== ''
   ) {
-    return `(${exclusionDuContexte}|${exclusionDeLaNotice})`;
+    return `(${contextExclusion}|${noticeExclusion})`;
   }
 
-  return exclusionDuContexte ?? exclusionDeLaNotice;
+  return contextExclusion ?? noticeExclusion;
 };

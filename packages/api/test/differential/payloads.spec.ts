@@ -228,46 +228,52 @@ layer(V3Live)('V3 payloads', (it) => {
     }),
   );
 
-  it.effect('GET /notices/{id} over a sample', () =>
-    Effect.gen(function* () {
-      const reads = yield* V3Reads;
-      const dates = yield* updateDates;
-      const firstPage = JSON.parse(fixture('notices-0.json')) as Array<{
-        id: number;
-      }>;
+  it.effect(
+    'GET /notices/{id} over a sample',
+    () =>
+      Effect.gen(function* () {
+        const reads = yield* V3Reads;
+        const dates = yield* updateDates;
+        const firstPage = JSON.parse(fixture('notices-0.json')) as Array<{
+          id: number;
+        }>;
 
-      const sample = firstPage
-        .slice(0, 24)
-        .filter(({ id }) => !DRIFTED_NOTICES.has(id));
+        const sample = firstPage
+          .slice(0, 24)
+          .filter(({ id }) => !DRIFTED_NOTICES.has(id));
 
-      for (const { id } of sample) {
-        const detail = yield* reads.detailedNotice(id);
-        assert.isNotNull(
-          detail,
-          `notice ${id} missing from the local database`,
-        );
-        if (detail === null) continue;
+        for (const { id } of sample) {
+          const detail = yield* reads.detailedNotice(id);
+          assert.isNotNull(
+            detail,
+            `notice ${id} missing from the local database`,
+          );
+          if (detail === null) continue;
 
-        sameBody(
-          canonicalise(
-            neutraliseSubscribers(fixture(`notice/${id}.json`)),
-            dates,
-          ),
-          canonicalise(
-            neutraliseSubscribers(
-              encodePhpJson(
-                serialiseNotice(ORIGIN, detail.notice, {
-                  with: true,
-                  contributor: detail.contributor,
-                  relayers: detail.relayers,
-                }),
-              ),
+          sameBody(
+            canonicalise(
+              neutraliseSubscribers(fixture(`notice/${id}.json`)),
+              dates,
             ),
-            dates,
-          ),
-          `notice ${id}`,
-        );
-      }
-    }),
+            canonicalise(
+              neutraliseSubscribers(
+                encodePhpJson(
+                  serialiseNotice(ORIGIN, detail.notice, {
+                    with: true,
+                    contributor: detail.contributor,
+                    relayers: detail.relayers,
+                  }),
+                ),
+              ),
+              dates,
+            ),
+            `notice ${id}`,
+          );
+        }
+      }),
+    // Its own timeout: 24 notices, each assembling its contributor and its
+    // relayers, take 26 seconds against the 30 the package sets by default.
+    // A 15% margin fails on nothing but the load of the machine.
+    90_000,
   );
 });

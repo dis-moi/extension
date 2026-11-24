@@ -21,7 +21,7 @@ const paths: {
 } = require_('node:path');
 
 export const filesRoot = Config.String('DISMOI_STORAGE').pipe(
-  Config.withDefault('stockage'),
+  Config.withDefault('storage'),
 );
 
 // A second guard, after parseUploadPath: the layer that touches the disk does

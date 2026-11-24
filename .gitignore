@@ -64,4 +64,4 @@ yarn-error.log
 /packages/api/test/fixtures/v3/
 
 # Les images téléversées, servies à la place du backend PHP
-packages/web/stockage/
+packages/web/storage/

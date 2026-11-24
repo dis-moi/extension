@@ -1,53 +1,48 @@
 #!/usr/bin/env node
 /**
- * Écrit sur la sortie standard un dump filtré, prêt à être redirigé vers un
- * client MySQL. Ce script ne connaît aucune base et n'ouvre aucune connexion :
- * c'est l'appelant qui s'en charge, de sorte qu'aucun identifiant ne traverse
- * ce code.
+ * Writes a filtered dump to standard output, ready to be piped into a MySQL
+ * client. This script knows no database and opens no connection: the caller
+ * takes care of that, so no credential crosses this code.
  *
  *   node bin/db-restore.mjs --mode sample | docker exec -i … mysql … dismoi
  *
- * Le chemin du dump vient de --dump ou de DISMOI_DUMP, et n'a pas de valeur
- * par défaut : une sauvegarde de production n'est pas un fichier qu'on devine.
- *
- * Les règles d'analyse des arguments vivent dans `dbRestoreOptions.mjs` et le
- * filtrage dans `dumpFilter.mjs`, tous deux purs et testés. Il ne reste ici que
- * les entrées-sorties.
+ * The dump path comes from --dump or from DISMOI_DUMP and has no default: a
+ * production backup is not a file to be guessed.
  */
 import { createReadStream } from 'node:fs';
 import { stat } from 'node:fs/promises';
 import { createInterface } from 'node:readline';
 import { pipeline } from 'node:stream/promises';
 import { Readable } from 'node:stream';
-import { filterDump, TABLES_PLAFONNEES } from './dumpFilter.mjs';
-import { lireOptions } from './dbRestoreOptions.mjs';
+import { filterDump, CAPPED_TABLES } from './dumpFilter.mjs';
+import { readOptions } from './dbRestoreOptions.mjs';
 
-const tailleDuDump = async (chemin) => {
-  const infos = await stat(chemin).catch(() => null);
+const dumpSize = async (path) => {
+  const info = await stat(path).catch(() => null);
 
-  if (!infos || !infos.isFile()) {
-    throw new Error(`Le dump « ${chemin} » n'est pas un fichier lisible.`);
+  if (!info || !info.isFile()) {
+    throw new Error(`The dump "${path}" is not a readable file.`);
   }
 
-  return infos.size;
+  return info.size;
 };
 
 const main = async () => {
-  const options = lireOptions(process.argv.slice(2), process.env);
-  const taille = await tailleDuDump(options.dump);
+  const options = readOptions(process.argv.slice(2), process.env);
+  const size = await dumpSize(options.dump);
 
-  // Le compte rendu part sur la sortie d'erreur : la sortie standard ne porte
-  // que du SQL, puisqu'elle est redirigée vers un client MySQL.
+  // The report goes to standard error: standard output carries only SQL,
+  // since it is piped into a MySQL client.
   process.stderr.write(
-    `Dump : ${options.dump} (${(taille / 1024 ** 3).toFixed(2)} Go)\n` +
-      `Mode : ${options.mode}` +
+    `Dump: ${options.dump} (${(size / 1024 ** 3).toFixed(2)} GB)\n` +
+      `Mode: ${options.mode}` +
       (options.mode === 'sample'
-        ? `, ${options.limit} lignes au plus pour ${TABLES_PLAFONNEES.join(' et ')}`
+        ? `, ${options.limit} rows at most for ${CAPPED_TABLES.join(' and ')}`
         : '') +
       '\n',
   );
 
-  const lignes = createInterface({
+  const lines = createInterface({
     input: createReadStream(options.dump, { encoding: 'utf8' }),
     crlfDelay: Infinity,
   });
@@ -55,8 +50,8 @@ const main = async () => {
   await pipeline(
     Readable.from(
       (async function* () {
-        for await (const ligne of filterDump(lignes, options)) {
-          yield `${ligne}\n`;
+        for await (const line of filterDump(lines, options)) {
+          yield `${line}\n`;
         }
       })(),
     ),
@@ -64,7 +59,7 @@ const main = async () => {
   );
 };
 
-main().catch((erreur) => {
-  process.stderr.write(`${erreur.message}\n`);
+main().catch((error) => {
+  process.stderr.write(`${error.message}\n`);
   process.exitCode = 1;
 });

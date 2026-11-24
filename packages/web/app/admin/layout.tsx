@@ -1,4 +1,5 @@
 import React from 'react';
+import AudienceMeasurement from '../../components/AudienceMeasurement';
 
 // /admin has no parent layout, the public site living under app/[locale]:
 // this one is therefore the document itself. lang is French and stays so,
@@ -18,7 +19,10 @@ const DispositionAdmin = ({
   readonly children: React.ReactNode;
 }) => (
   <html lang="fr">
-    <body>{children}</body>
+    <body>
+      <AudienceMeasurement />
+      {children}
+    </body>
   </html>
 );
 

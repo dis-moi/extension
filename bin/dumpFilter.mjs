@@ -1,136 +1,122 @@
 /**
- * Filtre un dump SQL phpMyAdmin pour en faire une base de développement
- * utilisable.
+ * Filters a phpMyAdmin SQL dump into a usable development database.
  *
- * Le dump de production fait 2,7 Go, dont 2,24 pour `rating` (11,6 millions de
- * lignes, dont 90 % de simples affichages de badge) et 414 Mo pour
- * `subscription` (6,2 millions de couples extension – contributeur). Ces deux
- * tables ne sont utiles en entier que pour vérifier les compteurs ; pour tout
- * le reste, un échantillon suffit et charge en quelques secondes au lieu de
- * dizaines de minutes.
- *
- * Le filtre est une fonction pure sur un flux de lignes : il ne connaît ni
- * fichier, ni base, ni identifiants. C'est ce qui le rend testable.
+ * The production dump is 2.7 GB, of which 2.24 is `rating` (11.6 million
+ * rows, 90% of them plain badge impressions) and 414 MB is `subscription`
+ * (6.2 million extension-contributor pairs). Those two tables are only
+ * needed whole to check the counters; for everything else a sample is
+ * enough and loads in seconds instead of tens of minutes.
  */
 
-/** Les deux tables de mesure, seules à mériter un plafond. */
-export const TABLES_PLAFONNEES = ['rating', 'subscription'];
+export const CAPPED_TABLES = ['rating', 'subscription'];
 
 export const MODES = ['schema', 'sample', 'full'];
 
-const DEBUT_INSERT = /^INSERT INTO `([^`]+)`/;
+const INSERT_HEADER = /^INSERT INTO `([^`]+)`/;
 
 /**
- * Une ligne de valeurs d'un dump phpMyAdmin : `(1, 'a'),` ou `(1, 'a');`.
- * L'en-tête de l'instruction se termine par `VALUES` et vit sur sa propre
- * ligne, les valeurs suivent une par ligne.
+ * A values line of a phpMyAdmin dump: `(1, 'a'),` or `(1, 'a');`. The header
+ * of the statement ends with `VALUES` and lives on its own line, the values
+ * following one per line.
  */
-const estLigneDeValeurs = (ligne) => ligne.startsWith('(');
+const isValuesLine = (line) => line.startsWith('(');
 
-const termineInstruction = (ligne) => /;\s*$/.test(ligne);
+const endsStatement = (line) => /;\s*$/.test(line);
 
-/** Transforme `…),` en `…);` pour refermer un INSERT qu'on vient de couper. */
-const refermer = (ligne) => ligne.replace(/,\s*$/, ';');
+const closeStatement = (line) => line.replace(/,\s*$/, ';');
 
-const valider = ({ mode, limit }) => {
+const validate = ({ mode, limit }) => {
   if (!MODES.includes(mode)) {
     throw new Error(
-      `Mode de filtrage inconnu : « ${mode} ». Attendu : ${MODES.join(', ')}.`,
+      `Unknown filter mode: "${mode}". Expected: ${MODES.join(', ')}.`,
     );
   }
   if (!Number.isInteger(limit) || limit < 0) {
     throw new Error(
-      `Limite invalide : « ${limit} ». Attendu un entier positif ou nul.`,
+      `Invalid limit: "${limit}". Expected a positive integer or zero.`,
     );
   }
 };
 
 /**
- * @param {Iterable<string> | AsyncIterable<string>} lignes
- * @param {{ mode: string, limit?: number, plafonnees?: string[] }} options
+ * @param {Iterable<string> | AsyncIterable<string>} lines
+ * @param {{ mode: string, limit?: number, capped?: string[] }} options
  * @returns {AsyncGenerator<string>}
  */
-export async function* filterDump(lignes, options) {
+export async function* filterDump(lines, options) {
   const mode = options?.mode;
   const limit = options?.limit ?? 20000;
-  const plafonnees = options?.plafonnees ?? TABLES_PLAFONNEES;
+  const capped = options?.capped ?? CAPPED_TABLES;
 
-  valider({ mode, limit });
+  validate({ mode, limit });
 
   if (mode === 'full') {
-    for await (const ligne of lignes) yield ligne;
+    for await (const line of lines) yield line;
     return;
   }
 
-  // Table dont on traverse les valeurs, et son plafond courant.
   let table = null;
-  let plafond = 0;
+  let cap = 0;
 
   /**
-   * Lignes déjà émises par table, pour toute la durée du filtrage.
-   *
-   * phpMyAdmin ne produit pas une instruction par table mais une par paquet :
-   * le dump de production porte 46 750 `INSERT INTO `rating`` d'environ 248
-   * lignes. Un compteur remis à zéro à chaque instruction ne plafonnerait
-   * rien.
+   * phpMyAdmin does not produce one statement per table but one per batch:
+   * the production dump carries 46,750 `INSERT INTO `rating`` of about 248
+   * lines each. A counter reset on every statement would cap nothing.
    */
-  const emisesParTable = new Map();
+  const emittedByTable = new Map();
 
-  for await (const ligne of lignes) {
-    const debut = DEBUT_INSERT.exec(ligne);
+  for await (const line of lines) {
+    const header = INSERT_HEADER.exec(line);
 
-    if (debut) {
-      table = debut[1];
-      plafond =
-        mode === 'schema' ? 0 : plafonnees.includes(table) ? limit : Infinity;
+    if (header) {
+      table = header[1];
+      cap = mode === 'schema' ? 0 : capped.includes(table) ? limit : Infinity;
 
-      // Un en-tête sans aucune ligne à suivre laisserait une instruction
-      // incomplète : on le jette avec ses valeurs. C'est le cas du mode
-      // « schema », et celui d'une table dont le plafond est déjà atteint.
-      if ((emisesParTable.get(table) ?? 0) < plafond) yield ligne;
+      // A header with no line to follow would leave an incomplete
+      // statement: it is dropped along with its values. That is the case of
+      // the `schema` mode, and of a table whose cap is already reached.
+      if ((emittedByTable.get(table) ?? 0) < cap) yield line;
 
-      // phpMyAdmin peut, selon ses réglages, poser les premières valeurs sur
-      // la même ligne que l'en-tête. Dans ce cas la ligne porte déjà sa
-      // donnée et on ne sait pas la découper sans parser le SQL : on la laisse
-      // telle quelle et on considère l'instruction consommée.
-      if (termineInstruction(ligne)) table = null;
+      // Depending on its settings, phpMyAdmin may put the first values on
+      // the same line as the header. The line then already carries data and
+      // splitting it would mean parsing the SQL: it is left as it is and the
+      // statement is considered consumed.
+      if (endsStatement(line)) table = null;
       continue;
     }
 
-    if (table !== null && estLigneDeValeurs(ligne)) {
-      const emises = emisesParTable.get(table) ?? 0;
+    if (table !== null && isValuesLine(line)) {
+      const emitted = emittedByTable.get(table) ?? 0;
 
-      if (termineInstruction(ligne)) {
-        if (emises < plafond) {
-          yield ligne;
-          emisesParTable.set(table, emises + 1);
+      if (endsStatement(line)) {
+        if (emitted < cap) {
+          yield line;
+          emittedByTable.set(table, emitted + 1);
         }
         table = null;
         continue;
       }
 
-      if (emises + 1 < plafond) {
-        yield ligne;
-        emisesParTable.set(table, emises + 1);
+      if (emitted + 1 < cap) {
+        yield line;
+        emittedByTable.set(table, emitted + 1);
         continue;
       }
 
-      if (emises + 1 === plafond) {
-        // Dernière ligne retenue : elle doit refermer l'instruction, sinon
-        // MySQL attend la suite et échoue sur l'instruction d'après.
-        yield refermer(ligne);
-        emisesParTable.set(table, emises + 1);
+      if (emitted + 1 === cap) {
+        // The last line kept has to close the statement, or MySQL waits for
+        // the rest and fails on the one after.
+        yield closeStatement(line);
+        emittedByTable.set(table, emitted + 1);
       }
 
-      // Au-delà du plafond, on jette en silence jusqu'à la fin du bloc.
       continue;
     }
 
-    if (table !== null && !estLigneDeValeurs(ligne)) {
-      // Une ligne qui n'est ni l'en-tête ni une valeur clôt le bloc.
+    if (table !== null && !isValuesLine(line)) {
       table = null;
     }
 
-    yield ligne;
+    yield line;
   }
 }

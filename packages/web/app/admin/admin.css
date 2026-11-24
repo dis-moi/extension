@@ -446,6 +446,16 @@ textarea.admin-field {
   font-size: 13px;
 }
 
+.admin-note {
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.admin-note-small {
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+
 .admin-label {
   display: block;
   font-size: 12px;

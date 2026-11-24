@@ -1,4 +1,4 @@
-name: Intégration
+name: Integration
 
 on:
   pull_request:
@@ -10,8 +10,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  verifier:
-    name: Tests, lint et compilation
+  verify:
+    name: Tests, lint and build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,21 +20,21 @@ jobs:
         with:
           node-version: 22
 
-      # Le binaire Yarn est versionné (`yarnPath` dans .yarnrc.yml) : corepack
-      # ne fait que poser le relais qui le trouve.
-      - name: Activer Yarn 4
+      # The Yarn binary is versioned (`yarnPath` in .yarnrc.yml): corepack
+      # only lays down the relay that finds it.
+      - name: Enable Yarn 4
         run: corepack enable
 
-      # `enableGlobalCache` est faux : le cache vit dans le dépôt et n'est pas
-      # versionné. Sans cette étape, chaque exécution retélécharge 287 Mo.
-      - name: Cache des paquets
+      # `enableGlobalCache` is false: the cache lives in the repository and is
+      # not versioned. Without this step, every run downloads 287 MB again.
+      - name: Cache the packages
         uses: actions/cache@v4
         with:
           path: .yarn/cache
           key: yarn-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
           restore-keys: yarn-${{ runner.os }}-
 
-      - name: Installer
+      - name: Install
         run: yarn install --immutable
 
       - name: Lint
@@ -43,33 +43,33 @@ jobs:
       - name: Tests
         run: yarn test
 
-      - name: Compiler l'extension (Chrome)
+      - name: Build the extension (Chrome)
         run: yarn build:chromium
 
-      - name: Compiler l'extension (Firefox)
+      - name: Build the extension (Firefox)
         run: yarn build:firefox
 
-      - name: Compiler le site
+      - name: Build the site
         run: yarn build:web
 
-      # Bloquant, lui : `packages/api` est à zéro erreur sous `strict`,
-      # `exactOptionalPropertyTypes` et `noUncheckedIndexedAccess`. C'est le
-      # code écrit pour remplacer le backend PHP, et rien ne justifie de le
-      # laisser dériver en attendant que le legacy soit nettoyé.
-      - name: Vérifier les types de l'API
+      # This one blocks: `packages/api` is at zero errors under `strict`,
+      # `exactOptionalPropertyTypes` and `noUncheckedIndexedAccess`. It is the
+      # code written to replace the PHP backend, and nothing justifies letting
+      # it drift while the legacy is being cleaned up.
+      - name: Typecheck the API
         run: yarn nx typecheck api
 
-  typage:
-    name: Typage
+  types:
+    name: Types
     runs-on: ubuntu-latest
-    # NON BLOQUANT, et c'est un aveu : `yarn typecheck` relève 220 erreurs
-    # préexistantes — surtout des sagas sans type de retour et des `catch (e)`
-    # en `unknown`, dans packages/extension (135), packages/ui (37) et
-    # packages/domain (2). Les rendre bloquantes aujourd'hui peindrait la
-    # chaîne en rouge en permanence, ce qui revient à ne pas en avoir. Aucune
-    # ne vient de packages/api ni de packages/web : `web` n'en relève que
-    # parce qu'il compile les sources legacy qu'il importe. À retirer dès que
-    # le compte atteint zéro.
+    # NOT BLOCKING, and that is an admission: `yarn typecheck` reports 220
+    # pre-existing errors — mostly sagas with no return type and `catch (e)`
+    # as `unknown`, in packages/extension (135), packages/ui (37) and
+    # packages/domain (2). Making them blocking today would paint the pipeline
+    # red permanently, which amounts to not having one. None comes from
+    # packages/api or packages/web: `web` only reports them because it
+    # compiles the legacy sources it imports. To be removed as soon as the
+    # count reaches zero.
     continue-on-error: true
     steps:
       - uses: actions/checkout@v4
@@ -78,18 +78,18 @@ jobs:
         with:
           node-version: 22
 
-      - name: Activer Yarn 4
+      - name: Enable Yarn 4
         run: corepack enable
 
-      - name: Cache des paquets
+      - name: Cache the packages
         uses: actions/cache@v4
         with:
           path: .yarn/cache
           key: yarn-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
           restore-keys: yarn-${{ runner.os }}-
 
-      - name: Installer
+      - name: Install
         run: yarn install --immutable
 
-      - name: Vérifier les types
+      - name: Typecheck
         run: yarn typecheck

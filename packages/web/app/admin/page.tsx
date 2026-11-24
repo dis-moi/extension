@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { unstable_cache } from 'next/cache';
 import { Effect } from 'effect';
 import { Supervision } from '@dismoi/api/application/Supervision';
+import { Activity } from '@dismoi/api/application/Activity';
 import { run } from '../../lib/effect';
 import './admin.css';
 import { Chrome } from './chrome';
@@ -50,8 +51,8 @@ const cachedSeries = unstable_cache(
   async (type: string, days: number) =>
     run(
       Effect.gen(function* () {
-        const supervision = yield* Supervision;
-        return yield* supervision.dailySeries(type, days);
+        const activity = yield* Activity;
+        return yield* activity.dailySeries(type, days);
       }),
     ),
   ['admin', 'daily-series'],
@@ -66,11 +67,12 @@ const cachedVolumesAndRanking = unstable_cache(
   async () =>
     run(
       Effect.gen(function* () {
+        const activity = yield* Activity;
         const supervision = yield* Supervision;
 
         const [volumes, followed, byCategory] = yield* Effect.all([
-          supervision.volumes,
-          supervision.mostFollowedContributors(5),
+          activity.volumes,
+          activity.mostFollowedContributors(5),
           supervision.contributorsByCategory,
         ]);
 
@@ -100,10 +102,11 @@ const ActivityPage = async ({
     run(
       Effect.gen(function* () {
         const supervision = yield* Supervision;
+        const activity = yield* Activity;
 
         const [counts, totals, queue] = yield* Effect.all([
           supervision.counts,
-          supervision.ratingTotals,
+          activity.ratingTotals,
           supervision.pendingQueue(1),
         ]);
 

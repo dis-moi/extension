@@ -280,7 +280,7 @@ const ContributorsPage = async ({
                     </span>
                   </td>
 
-                  <td style={{ fontSize: 12, color: 'var(--ink-soft)' }}>
+                  <td className="admin-note">
                     {contributor.categories.map(category).join(', ') || '—'}
                   </td>
 

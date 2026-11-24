@@ -77,7 +77,7 @@ const AccountsPage = async () => {
               overflowWrap: 'anywhere',
             }}
           >
-            yarn admin:motdepasse
+            yarn admin:password
           </p>
           <p className="admin-tile-detail">
             Posé en ligne de commande, jamais depuis le navigateur : le mot de
@@ -125,9 +125,7 @@ const AccountsPage = async () => {
                       )}
                     </td>
 
-                    <td style={{ fontSize: 12, color: 'var(--ink-soft)' }}>
-                      {account.email}
-                    </td>
+                    <td className="admin-note">{account.email}</td>
 
                     <td style={{ fontSize: 12 }}>
                       {widestRole(account.roles)}

@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import AudienceMeasurement from '../../components/AudienceMeasurement';
 import { ContentLocale } from '../../lib/content';
 import Providers from './Providers';
 import SiteChrome from './SiteChrome';
@@ -67,6 +68,7 @@ export default function LocaleLayout({
         <meta name="theme-color" content="#2b7cb8" />
       </head>
       <body style={{ margin: 0 }}>
+        <AudienceMeasurement />
         <Providers locale={locale}>
           <SiteChrome locale={locale}>{children}</SiteChrome>
         </Providers>

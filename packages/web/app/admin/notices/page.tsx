@@ -316,15 +316,8 @@ const ReviewQueue = ({
                 <span className={`admin-state ${badge.className}`}>
                   {badge.label}
                 </span>
-                <span
-                  className="num"
-                  style={{ fontSize: 12, color: 'var(--ink-soft)' }}
-                >
-                  #{row.id}
-                </span>
-                <span style={{ fontSize: 12, color: 'var(--ink-soft)' }}>
-                  reçue {since(row.created)}
-                </span>
+                <span className="num admin-note">#{row.id}</span>
+                <span className="admin-note">reçue {since(row.created)}</span>
               </div>
 
               <blockquote
@@ -503,10 +496,7 @@ const NoticesTable = ({
                   >
                     {excerpt(row.message, 110)}
                   </Link>
-                  <span
-                    className="num"
-                    style={{ fontSize: 11, color: 'var(--ink-soft)' }}
-                  >
+                  <span className="num admin-note-small">
                     #{row.id} · {row.locale ?? '—'}
                   </span>
                 </td>

@@ -24,22 +24,22 @@ const URL_MAX = 1000;
 
 // Four count an action, three a balance: liked_count is the number of likes
 // minus the number of times they were taken back.
-const COMPTEURS = [
-  { colonne: 'badged_count', type: 'badge', inverse: null },
-  { colonne: 'displayed_count', type: 'display', inverse: null },
-  { colonne: 'unfolded_count', type: 'unfold', inverse: null },
-  { colonne: 'clicked_count', type: 'outbound-click', inverse: null },
-  { colonne: 'liked_count', type: 'like', inverse: 'unlike' },
-  { colonne: 'disliked_count', type: 'dislike', inverse: 'undislike' },
-  { colonne: 'dismissed_count', type: 'dismiss', inverse: 'undismiss' },
+const COUNTERS = [
+  { column: 'badged_count', type: 'badge', inverse: null },
+  { column: 'displayed_count', type: 'display', inverse: null },
+  { column: 'unfolded_count', type: 'unfold', inverse: null },
+  { column: 'clicked_count', type: 'outbound-click', inverse: null },
+  { column: 'liked_count', type: 'like', inverse: 'unlike' },
+  { column: 'disliked_count', type: 'dislike', inverse: 'undislike' },
+  { column: 'dismissed_count', type: 'dismiss', inverse: 'undismiss' },
 ] as const;
 
-const decomposerUrl = (
-  brut: string,
-): { readonly host: string; readonly chemin: string } | null => {
+const splitUrl = (
+  raw: string,
+): { readonly host: string; readonly path: string } | null => {
   try {
-    const url = new URL(brut);
-    return url.host === '' ? null : { host: url.host, chemin: url.pathname };
+    const url = new URL(raw);
+    return url.host === '' ? null : { host: url.host, path: url.pathname };
   } catch {
     return null;
   }
@@ -48,9 +48,9 @@ const decomposerUrl = (
 // findMostSpecificFromHost tries a.b.c, then b.c, then c, and keeps the
 // first known domain: an unknown subdomain attaches to the parent domain
 // when it exists, instead of creating a duplicate.
-const suffixesDe = (host: string): ReadonlyArray<string> => {
-  const morceaux = host.split('.');
-  return morceaux.map((_, i) => morceaux.slice(i).join('.'));
+const hostSuffixes = (host: string): ReadonlyArray<string> => {
+  const labels = host.split('.');
+  return labels.map((_, rank) => labels.slice(rank).join('.'));
 };
 
 export const V3WritesSqlLive = Layer.effect(
@@ -58,7 +58,7 @@ export const V3WritesSqlLive = Layer.effect(
   Effect.gen(function* () {
     const sql = yield* SqlClient.SqlClient;
     const mailer = yield* Mailer;
-    const lecture = yield* V3Reads;
+    const reads = yield* V3Reads;
 
     // Taken from the `.env` of the PHP backend, overridable by the environment.
     const instanceName = yield* Config.String('DISMOI_INSTANCE_NAME').pipe(
@@ -80,15 +80,13 @@ export const V3WritesSqlLive = Layer.effect(
            OR (n.expires <= NOW() AND n.unpublished_on_expiration = 0))
     `);
 
-    const dernierIdInsere = Effect.gen(function* () {
-      const lignes = yield* sql<{ id: number }>`SELECT LAST_INSERT_ID() AS id`;
-      const id = lignes[0]?.id;
+    const lastInsertId = Effect.gen(function* () {
+      const rows = yield* sql<{ id: number }>`SELECT LAST_INSERT_ID() AS id`;
+      const id = rows[0]?.id;
 
       if (id === undefined || id === 0) {
         return yield* Effect.die(
-          new Error(
-            "Insertion sans identifiant engendré : l'état est douteux.",
-          ),
+          new Error('Insert produced no identifier: the state is doubtful.'),
         );
       }
       return id;
@@ -98,37 +96,44 @@ export const V3WritesSqlLive = Layer.effect(
     // NoticeRatedHandler counts, then the preUpdate hook sets updated again.
     // The cost is reproduced along with the behaviour — seven aggregates
     // over 11.6 million rows, covered by the (notice_id, type) index.
-    const recalculerLesCompteurs = (noticeId: number) =>
+    const recomputeCounters = (noticeId: number) =>
       Effect.gen(function* () {
-        const soldes = yield* Effect.forEach(COMPTEURS, (compteur) =>
+        const balances = yield* Effect.forEach(COUNTERS, (counter) =>
           Effect.gen(function* () {
-            const [faits, defaits] = yield* Effect.all([
+            const [done, undone] = yield* Effect.all([
               sql<{ n: number }>`
                 SELECT COUNT(*) AS n FROM rating
-                 WHERE notice_id = ${noticeId} AND type = ${compteur.type}
+                 WHERE notice_id = ${noticeId} AND type = ${counter.type}
               `,
-              compteur.inverse === null
+              counter.inverse === null
                 ? Effect.succeed([{ n: 0 }])
                 : sql<{ n: number }>`
                     SELECT COUNT(*) AS n FROM rating
                      WHERE notice_id = ${noticeId}
-                       AND type = ${compteur.inverse}
+                       AND type = ${counter.inverse}
                   `,
             ]);
 
-            return (faits[0]?.n ?? 0) - (defaits[0]?.n ?? 0);
+            return [
+              counter.column,
+              (done[0]?.n ?? 0) - (undone[0]?.n ?? 0),
+            ] as const;
           }),
         );
 
+        // Keyed by column rather than by position: the UPDATE below cannot
+        // silently follow a reordering of COUNTERS.
+        const balance: Record<string, number> = Object.fromEntries(balances);
+
         yield* sql`
           UPDATE notice SET
-            badged_count = ${soldes[0] ?? 0},
-            displayed_count = ${soldes[1] ?? 0},
-            unfolded_count = ${soldes[2] ?? 0},
-            clicked_count = ${soldes[3] ?? 0},
-            liked_count = ${soldes[4] ?? 0},
-            disliked_count = ${soldes[5] ?? 0},
-            dismissed_count = ${soldes[6] ?? 0},
+            badged_count = ${balance['badged_count'] ?? 0},
+            displayed_count = ${balance['displayed_count'] ?? 0},
+            unfolded_count = ${balance['unfolded_count'] ?? 0},
+            clicked_count = ${balance['clicked_count'] ?? 0},
+            liked_count = ${balance['liked_count'] ?? 0},
+            disliked_count = ${balance['disliked_count'] ?? 0},
+            dismissed_count = ${balance['dismissed_count'] ?? 0},
             updated = NOW()
           WHERE id = ${noticeId}
         `;
@@ -138,16 +143,16 @@ export const V3WritesSqlLive = Layer.effect(
     // nothing stops anyone from passing themselves off as somebody else.
     // Reproduced as it is — fixing it would be a change of behaviour, not a
     // migration — but it is worth taking up.
-    const contributeurDeLaContribution = (contribution: ReceivedContribution) =>
+    const contributorForContribution = (contribution: ReceivedContribution) =>
       Effect.gen(function* () {
         if (contribution.question) {
           if (contribution.toContributorId === null) return null;
 
-          const trouves = yield* sql<{ id: number }>`
+          const questioned = yield* sql<{ id: number }>`
             SELECT id FROM contributor
              WHERE id = ${contribution.toContributorId}
           `;
-          if (trouves.length === 0) {
+          if (questioned.length === 0) {
             return yield* new InvalidContribution({
               reason: "Questioned contributor doesn't exist.",
             });
@@ -155,51 +160,52 @@ export const V3WritesSqlLive = Layer.effect(
           return contribution.toContributorId;
         }
 
-        const existants = yield* sql<{ id: number }>`
+        const known = yield* sql<{ id: number }>`
           SELECT id FROM contributor
            WHERE email = ${contribution.contributorEmail}
         `;
-        const existant = existants[0];
-        if (existant !== undefined) return existant.id;
+        const existing = known[0];
+        if (existing !== undefined) return existing.id;
 
         yield* sql`
           INSERT INTO contributor (name, email, enabled, total_subscriptions)
                VALUES (${contribution.contributorName},
                        ${contribution.contributorEmail}, 1, 0)
         `;
-        return yield* dernierIdInsere;
+        return yield* lastInsertId;
       });
 
-    const domainePourHote = (host: string) =>
+    const domainIdForHost = (host: string) =>
       Effect.gen(function* () {
-        const suffixes = suffixesDe(host);
-        const connus = yield* sql<{ id: number; name: string }>`
+        const suffixes = hostSuffixes(host);
+        const known = yield* sql<{ id: number; name: string }>`
           SELECT id, name FROM domain_name WHERE name IN ${sql.in(suffixes)}
         `;
 
-        const parNom = new Map(connus.map((ligne) => [ligne.name, ligne.id]));
-        for (const suffixe of suffixes) {
-          const trouve = parNom.get(suffixe);
-          if (trouve !== undefined) return trouve;
-        }
+        const byName = new Map(known.map((row) => [row.name, row.id]));
+        const mostSpecific = suffixes
+          .map((suffix) => byName.get(suffix))
+          .find((id) => id !== undefined);
+
+        if (mostSpecific !== undefined) return mostSpecific;
 
         yield* sql`
           INSERT INTO domain_name (name, aliases, created_at, updated_at)
                VALUES (${host}, '', NOW(), NOW())
         `;
-        return yield* dernierIdInsere;
+        return yield* lastInsertId;
       });
 
     return V3Writes.of({
       rate: Effect.fn('V3Writes.rate')(function* (asked: AskedRating) {
-        const servies = yield* sql<{ id: number }>`
+        const served = yield* sql<{ id: number }>`
           SELECT n.id
             FROM notice n
             JOIN contributor c ON c.id = n.contributor_id
            WHERE ${isServed} AND n.id = ${asked.noticeId}
         `.pipe(Effect.orDie);
 
-        if (servies.length === 0) {
+        if (served.length === 0) {
           return yield* new NoticeNotFound({ id: asked.noticeId });
         }
 
@@ -217,7 +223,7 @@ export const V3WritesSqlLive = Layer.effect(
               ${asked.reason}
             )
           `;
-          yield* recalculerLesCompteurs(asked.noticeId);
+          yield* recomputeCounters(asked.noticeId);
         }).pipe(sql.withTransaction, Effect.orDie);
       }),
 
@@ -227,15 +233,14 @@ export const V3WritesSqlLive = Layer.effect(
           // `DomainException` of the PHP service: better to refuse the list
           // than to apply half of it.
           if (contributors.length > 0) {
-            const connus = yield* sql<{ id: number }>`
+            const known = yield* sql<{ id: number }>`
               SELECT id FROM contributor WHERE id IN ${sql.in(contributors)}
             `.pipe(Effect.orDie);
-            const trouves = new Set(connus.map((ligne) => ligne.id));
+            const found = new Set(known.map((row) => row.id));
+            const missing = contributors.find((id) => !found.has(id));
 
-            for (const id of contributors) {
-              if (!trouves.has(id)) {
-                return yield* new UnknownContributor({ id });
-              }
+            if (missing !== undefined) {
+              return yield* new UnknownContributor({ id: missing });
             }
           }
 
@@ -257,14 +262,16 @@ export const V3WritesSqlLive = Layer.effect(
                      AND contributor_id NOT IN ${sql.in(contributors)}
                 `;
 
-            for (const contributeurId of contributors) {
-              yield* sql`
+            yield* Effect.forEach(
+              contributors,
+              (contributorId) => sql`
                 INSERT INTO subscription
                      (contributor_id, extension_id, created, updated)
-                     VALUES (${contributeurId}, ${extensionId}, NOW(), NOW())
+                     VALUES (${contributorId}, ${extensionId}, NOW(), NOW())
                 ON DUPLICATE KEY UPDATE updated = NOW()
-              `;
-            }
+              `,
+              { discard: true },
+            );
           }).pipe(sql.withTransaction, Effect.orDie);
         },
       ),
@@ -272,8 +279,8 @@ export const V3WritesSqlLive = Layer.effect(
       recordContribution: Effect.fn('V3Writes.recordContribution')(function* (
         contribution: ReceivedContribution,
       ) {
-        const adresse = decomposerUrl(contribution.url);
-        if (adresse === null) {
+        const address = splitUrl(contribution.url);
+        if (address === null) {
           return yield* new InvalidContribution({
             reason: `Unable to parse URL \`${contribution.url}\`.`,
           });
@@ -283,14 +290,13 @@ export const V3WritesSqlLive = Layer.effect(
         // line 110 writes `{$contribution->getContributorEmail()}}>`, and
         // every question notice in the database carries it. Removing it
         // would silently break the parity of the admin's subject lines.
-        const prefixe = contribution.question
+        const prefix = contribution.question
           ? `Question from ${contribution.contributorName}<${contribution.contributorEmail}}>:`
           : '';
-        const message = `${prefixe} ${contribution.message}`;
+        const message = `${prefix} ${contribution.message}`;
 
         const noticeId = yield* Effect.gen(function* () {
-          const contributeurId =
-            yield* contributeurDeLaContribution(contribution);
+          const contributorId = yield* contributorForContribution(contribution);
 
           yield* sql`
               INSERT INTO notice
@@ -298,30 +304,30 @@ export const V3WritesSqlLive = Layer.effect(
                     unpublished_on_expiration)
                    VALUES (
                      ${message},
-                     ${contributeurId},
+                     ${contributorId},
                      ${contribution.question ? 'question' : 'draft'},
                      NOW(), NOW(), 0
                    )
             `;
-          const id = yield* dernierIdInsere;
+          const id = yield* lastInsertId;
 
           yield* sql`
               INSERT INTO matching_context
                    (notice_id, urlRegex, exampleUrl, description)
                    VALUES (
                      ${id},
-                     ${adresse.chemin},
+                     ${address.path},
                      ${contribution.url},
                      ${`Draft posted by ${contribution.contributorName} from the extension.`}
                    )
             `;
-          const contexteId = yield* dernierIdInsere;
-          const domaineId = yield* domainePourHote(adresse.host);
+          const contextId = yield* lastInsertId;
+          const domainId = yield* domainIdForHost(address.host);
 
           yield* sql`
               INSERT INTO matching_context_domain_name
                    (matching_context_id, domain_name_id)
-                   VALUES (${contexteId}, ${domaineId})
+                   VALUES (${contextId}, ${domainId})
             `;
 
           return id;
@@ -333,17 +339,17 @@ export const V3WritesSqlLive = Layer.effect(
         );
 
         // The notice is born a draft: the served read would not see it.
-        const creee = yield* lecture.noticeWhateverItsVisibility(noticeId);
-        if (creee === null) {
+        const created = yield* reads.noticeWhateverItsVisibility(noticeId);
+        if (created === null) {
           return yield* new InvalidContribution({
             reason: 'Notice created but not readable.',
           });
         }
 
         const contributor =
-          creee.contributorId === null
+          created.contributorId === null
             ? null
-            : yield* lecture.contributor(creee.contributorId);
+            : yield* reads.contributor(created.contributorId);
 
         yield* mailer.send({
           from: contribution.contributorEmail,
@@ -359,7 +365,7 @@ export const V3WritesSqlLive = Layer.effect(
           html: contributionBody(message, noticeAdminUrl(siteOrigin, noticeId)),
         });
 
-        return { notice: creee, contributor, relayers: [] };
+        return { notice: created, contributor, relayers: [] };
       }),
     });
   }),

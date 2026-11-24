@@ -1,4 +1,5 @@
 import { Context, type Effect } from 'effect';
+import type { RatingTotals } from './Activity';
 import type { Visibility } from '../domain/NoticeVisibility';
 import type { WallClockTime } from './ReadModels';
 
@@ -11,21 +12,6 @@ export interface Counts {
   readonly byVisibility: { readonly [V in Visibility]: number };
   readonly expired: number;
   readonly unpublishedOnExpiration: number;
-}
-
-export interface RatingTotals {
-  readonly badge: number;
-  readonly displays: number;
-  readonly unfolds: number;
-  readonly outboundClicks: number;
-  readonly likes: number;
-  readonly dislikes: number;
-  readonly dismissals: number;
-}
-
-export interface DailyPoint {
-  readonly day: string;
-  readonly value: number;
 }
 
 export interface PendingNotice {
@@ -150,14 +136,6 @@ export interface ContributorRow {
   readonly avatar: string | null;
 }
 
-export interface FollowedContributor {
-  readonly id: number;
-  readonly name: string;
-  readonly activeSubscribers: number;
-  readonly publicNotices: number;
-  readonly categories: ReadonlyArray<string>;
-}
-
 export interface EditableContributor {
   readonly id: number;
   readonly name: string;
@@ -196,25 +174,6 @@ export class Supervision extends Context.Service<
   {
     readonly counts: Effect.Effect<Counts>;
 
-    // Read from the counted columns of the notices, not from the rating
-    // table: summing 2,340 rows takes 64 ms where aggregating 11.6 million
-    // takes 12 s, for the same result.
-    readonly ratingTotals: Effect.Effect<RatingTotals>;
-
-    readonly volumes: Effect.Effect<{
-      readonly installs: number;
-      readonly subscriptions: number;
-      readonly servedContributors: number;
-      readonly targetingContexts: number;
-    }>;
-
-    // The table has no index on the timestamp: 30 days cost a second and a
-    // half, 90 days four seconds. The caller has to cache.
-    dailySeries(
-      type: string,
-      days: number,
-    ): Effect.Effect<ReadonlyArray<DailyPoint>>;
-
     pendingQueue(limit: number): Effect.Effect<ReadonlyArray<PendingNotice>>;
 
     notices(filters: NoticeFilters): Effect.Effect<RowsPage>;
@@ -230,10 +189,6 @@ export class Supervision extends Context.Service<
     >;
 
     contributor(id: number): Effect.Effect<EditableContributor | null>;
-
-    mostFollowedContributors(
-      limit: number,
-    ): Effect.Effect<ReadonlyArray<FollowedContributor>>;
 
     readonly domainsSets: Effect.Effect<ReadonlyArray<DomainsSetRow>>;
 

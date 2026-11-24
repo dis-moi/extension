@@ -1,69 +1,66 @@
 /**
- * Analyse les arguments du chargement de base.
- *
- * Isolé du script qui lit le fichier et écrit sur la sortie standard, pour que
- * les règles — défauts, formes acceptées, refus — soient vérifiables sans
- * toucher ni au disque ni à une base.
+ * Isolated from the script that reads the file and writes to standard
+ * output, so that the rules — defaults, accepted forms, refusals — can be
+ * checked without touching the disk or a database.
  */
 import { MODES } from './dumpFilter.mjs';
 
-const DEFAUTS = { mode: 'sample', limit: 20000 };
+const DEFAULTS = { mode: 'sample', limit: 20000 };
 
-const exigerValeur = (nom, valeur) => {
-  if (valeur === undefined || valeur.startsWith('--')) {
-    throw new Error(`L'argument ${nom} attend une valeur.`);
+const requireValue = (name, value) => {
+  if (value === undefined || value.startsWith('--')) {
+    throw new Error(`The ${name} argument expects a value.`);
   }
-  return valeur;
+  return value;
 };
 
 /**
- * @param {string[]} argv arguments, sans le binaire ni le script
+ * @param {string[]} argv arguments, without the binary or the script
  * @param {Record<string, string | undefined>} env
  * @returns {{ mode: string, limit: number, dump: string }}
  */
-export const lireOptions = (argv, env = {}) => {
-  const options = { ...DEFAUTS, dump: env.DISMOI_DUMP };
+export const readOptions = (argv, env = {}) => {
+  const options = { ...DEFAULTS, dump: env.DISMOI_DUMP };
 
   for (let i = 0; i < argv.length; i += 1) {
-    const separateur = argv[i].indexOf('=');
-    const nom = separateur === -1 ? argv[i] : argv[i].slice(0, separateur);
-    const collee =
-      separateur === -1 ? undefined : argv[i].slice(separateur + 1);
-    const valeur = collee ?? argv[i + 1];
-    const avance = collee === undefined ? 1 : 0;
+    const separator = argv[i].indexOf('=');
+    const name = separator === -1 ? argv[i] : argv[i].slice(0, separator);
+    const attached = separator === -1 ? undefined : argv[i].slice(separator + 1);
+    const value = attached ?? argv[i + 1];
+    const consumed = attached === undefined ? 1 : 0;
 
-    if (nom === '--mode') {
-      options.mode = exigerValeur(nom, valeur);
-      i += avance;
-    } else if (nom === '--limit') {
-      const brut = exigerValeur(nom, valeur);
-      const nombre = Number(brut);
-      if (!Number.isInteger(nombre) || nombre < 0) {
+    if (name === '--mode') {
+      options.mode = requireValue(name, value);
+      i += consumed;
+    } else if (name === '--limit') {
+      const raw = requireValue(name, value);
+      const limit = Number(raw);
+      if (!Number.isInteger(limit) || limit < 0) {
         throw new Error(
-          `Limite invalide : « ${brut} ». Attendu un entier positif ou nul.`,
+          `Invalid limit: "${raw}". Expected a positive integer or zero.`,
         );
       }
-      options.limit = nombre;
-      i += avance;
-    } else if (nom === '--dump') {
-      options.dump = exigerValeur(nom, valeur);
-      i += avance;
+      options.limit = limit;
+      i += consumed;
+    } else if (name === '--dump') {
+      options.dump = requireValue(name, value);
+      i += consumed;
     } else {
       throw new Error(
-        `Argument inconnu : « ${argv[i]} ». Attendus : --mode, --limit, --dump.`,
+        `Unknown argument: "${argv[i]}". Expected: --mode, --limit, --dump.`,
       );
     }
   }
 
   if (!MODES.includes(options.mode)) {
     throw new Error(
-      `Mode inconnu : « ${options.mode} ». Attendu : ${MODES.join(', ')}.`,
+      `Unknown mode: "${options.mode}". Expected: ${MODES.join(', ')}.`,
     );
   }
 
   if (!options.dump) {
     throw new Error(
-      'Chemin du dump absent. Passe --dump <fichier> ou définis DISMOI_DUMP.',
+      'Dump path missing. Pass --dump <file> or set DISMOI_DUMP.',
     );
   }
 

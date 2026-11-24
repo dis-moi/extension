@@ -1,4 +1,4 @@
-import { Effect, Layer } from 'effect';
+import { Effect, Layer, Option } from 'effect';
 import { SqlClient } from 'effect/sql';
 import {
   InvalidFields,
@@ -19,86 +19,75 @@ import type { Visibility } from '../../domain/NoticeVisibility';
 // Doctrine — the extension uses it to order the notices of a contributor, so
 // forgetting it would change what people see.
 
-const COLONNE_DIMAGE: Readonly<Record<ContributorImageField, string>> = {
+const IMAGE_COLUMN: Readonly<Record<ContributorImageField, string>> = {
   imageFile: 'image',
   bannerImageFile: 'banner_image',
   previewImageFile: 'preview_image',
 };
 
-const videVersNull = (valeur: string | null): string | null =>
-  valeur === null || valeur.trim() === '' ? null : valeur;
+const emptyToNull = (value: string | null): string | null =>
+  value === null || value.trim() === '' ? null : value;
 
 export const ModerationSqlLive = Layer.effect(
   Moderation,
   Effect.gen(function* () {
     const sql = yield* SqlClient.SqlClient;
 
-    const contributeurExiste = (id: number) =>
-      Effect.gen(function* () {
-        const rows = yield* sql<{ id: number }>`
-          SELECT id FROM contributor WHERE id = ${id}
-        `;
-        return rows.length > 0;
-      });
+    const exists = (table: 'contributor' | 'notice', id: number) =>
+      Effect.map(
+        sql<{ id: number }>`SELECT id FROM ${sql(table)} WHERE id = ${id}`,
+        (rows) => rows.length > 0,
+      );
 
-    const noticeExiste = (id: number) =>
-      Effect.gen(function* () {
-        const rows = yield* sql<{ id: number }>`
-          SELECT id FROM notice WHERE id = ${id}
-        `;
-        return rows.length > 0;
-      });
+    const lastInsertId = Effect.map(
+      sql<{ id: number }>`SELECT LAST_INSERT_ID() AS id`,
+      (rows) => rows[0]?.id ?? 0,
+    );
 
-    const domainePourNom = (name: string) =>
+    const domainIdForName = (name: string) =>
       Effect.gen(function* () {
-        const connus = yield* sql<{ id: number }>`
+        const known = yield* sql<{ id: number }>`
           SELECT id FROM domain_name WHERE name = ${name}
         `;
-        const connu = connus[0];
-        if (connu !== undefined) return connu.id;
+        const existing = known[0];
+        if (existing !== undefined) return existing.id;
 
         yield* sql`
           INSERT INTO domain_name (name, aliases, created_at, updated_at)
                VALUES (${name}, '', NOW(), NOW())
         `;
-        const crees = yield* sql<{ id: number }>`
-          SELECT LAST_INSERT_ID() AS id
-        `;
-        return crees[0]?.id ?? 0;
+        return yield* lastInsertId;
       });
 
-    const ecrireLeContexte = (noticeId: number, contexte: SubmittedContext) =>
+    const writeContext = (noticeId: number, context: SubmittedContext) =>
       Effect.gen(function* () {
-        let contexteId = contexte.id;
+        let contextId = context.id;
 
-        if (contexteId === null) {
+        if (contextId === null) {
           yield* sql`
             INSERT INTO matching_context
                  (notice_id, urlRegex, excludeUrlRegex, description,
                   exampleUrl, querySelector, xpath)
                  VALUES (
-                   ${noticeId}, ${contexte.urlRegex},
-                   ${videVersNull(contexte.excludeUrlRegex)},
-                   ${videVersNull(contexte.description)},
-                   ${videVersNull(contexte.exampleUrl)},
-                   ${videVersNull(contexte.querySelector)},
-                   ${videVersNull(contexte.xpath)}
+                   ${noticeId}, ${context.urlRegex},
+                   ${emptyToNull(context.excludeUrlRegex)},
+                   ${emptyToNull(context.description)},
+                   ${emptyToNull(context.exampleUrl)},
+                   ${emptyToNull(context.querySelector)},
+                   ${emptyToNull(context.xpath)}
                  )
           `;
-          const crees = yield* sql<{ id: number }>`
-            SELECT LAST_INSERT_ID() AS id
-          `;
-          contexteId = crees[0]?.id ?? 0;
+          contextId = yield* lastInsertId;
         } else {
           yield* sql`
             UPDATE matching_context SET
-              urlRegex = ${contexte.urlRegex},
-              excludeUrlRegex = ${videVersNull(contexte.excludeUrlRegex)},
-              description = ${videVersNull(contexte.description)},
-              exampleUrl = ${videVersNull(contexte.exampleUrl)},
-              querySelector = ${videVersNull(contexte.querySelector)},
-              xpath = ${videVersNull(contexte.xpath)}
-            WHERE id = ${contexteId} AND notice_id = ${noticeId}
+              urlRegex = ${context.urlRegex},
+              excludeUrlRegex = ${emptyToNull(context.excludeUrlRegex)},
+              description = ${emptyToNull(context.description)},
+              exampleUrl = ${emptyToNull(context.exampleUrl)},
+              querySelector = ${emptyToNull(context.querySelector)},
+              xpath = ${emptyToNull(context.xpath)}
+            WHERE id = ${contextId} AND notice_id = ${noticeId}
           `;
         }
 
@@ -106,22 +95,28 @@ export const ModerationSqlLive = Layer.effect(
         // than a difference, and the table carries only two columns.
         yield* sql`
           DELETE FROM matching_context_domain_name
-           WHERE matching_context_id = ${contexteId}
+           WHERE matching_context_id = ${contextId}
         `;
 
-        for (const name of contexte.domains) {
-          const propre = name.trim();
-          if (propre === '') continue;
+        const names = context.domains
+          .map((name) => name.trim())
+          .filter((name) => name !== '');
 
-          const domaineId = yield* domainePourNom(propre);
-          yield* sql`
-            INSERT IGNORE INTO matching_context_domain_name
-                 (matching_context_id, domain_name_id)
-                 VALUES (${contexteId}, ${domaineId})
-          `;
-        }
+        yield* Effect.forEach(
+          names,
+          (name) =>
+            Effect.gen(function* () {
+              const domainId = yield* domainIdForName(name);
+              yield* sql`
+                INSERT IGNORE INTO matching_context_domain_name
+                     (matching_context_id, domain_name_id)
+                     VALUES (${contextId}, ${domainId})
+              `;
+            }),
+          { discard: true },
+        );
 
-        return contexteId;
+        return contextId;
       });
 
     return Moderation.of({
@@ -129,7 +124,7 @@ export const ModerationSqlLive = Layer.effect(
         id: number,
         visibility: Visibility,
       ) {
-        if (!(yield* noticeExiste(id).pipe(Effect.orDie))) {
+        if (!(yield* exists('notice', id).pipe(Effect.orDie))) {
           return yield* new NoticeMissing({ id });
         }
 
@@ -149,7 +144,7 @@ export const ModerationSqlLive = Layer.effect(
           return yield* new InvalidFields({ reasons });
         }
 
-        if (!(yield* noticeExiste(id).pipe(Effect.orDie))) {
+        if (!(yield* exists('notice', id).pipe(Effect.orDie))) {
           return yield* new NoticeMissing({ id });
         }
 
@@ -157,11 +152,11 @@ export const ModerationSqlLive = Layer.effect(
           yield* sql`
               UPDATE notice SET
                 message = ${submitted.message},
-                note = ${videVersNull(submitted.note)},
+                note = ${emptyToNull(submitted.note)},
                 visibility = ${submitted.visibility},
-                locale = ${videVersNull(submitted.locale)},
-                excludeUrlRegex = ${videVersNull(submitted.excludeUrlRegex)},
-                expires = ${videVersNull(submitted.expires)},
+                locale = ${emptyToNull(submitted.locale)},
+                excludeUrlRegex = ${emptyToNull(submitted.excludeUrlRegex)},
+                expires = ${emptyToNull(submitted.expires)},
                 unpublished_on_expiration = ${submitted.unpublishedOnExpiration ? 1 : 0},
                 contributor_id = ${submitted.contributorId},
                 updated = NOW()
@@ -170,25 +165,27 @@ export const ModerationSqlLive = Layer.effect(
 
           // Contexts absent from the submission are removed: the form shows
           // the whole list, so an absence is a deliberate removal.
-          const gardes = yield* Effect.forEach(submitted.contexts, (contexte) =>
-            ecrireLeContexte(id, contexte),
+          const kept = yield* Effect.forEach(submitted.contexts, (context) =>
+            writeContext(id, context),
           );
 
-          yield* gardes.length === 0
+          yield* kept.length === 0
             ? sql`DELETE FROM matching_context WHERE notice_id = ${id}`
             : sql`
                   DELETE FROM matching_context
-                   WHERE notice_id = ${id} AND id NOT IN ${sql.in(gardes)}
+                   WHERE notice_id = ${id} AND id NOT IN ${sql.in(kept)}
                 `;
 
           // The same goes for the relayers.
           yield* sql`DELETE FROM relay WHERE notice_id = ${id}`;
-          for (const relayeurId of submitted.relayers) {
-            yield* sql`
+          yield* Effect.forEach(
+            submitted.relayers,
+            (relayerId) => sql`
                 INSERT INTO relay (notice_id, relayed_by_id, relayed_at)
-                     VALUES (${id}, ${relayeurId}, NOW())
-              `;
-          }
+                     VALUES (${id}, ${relayerId}, NOW())
+              `,
+            { discard: true },
+          );
         }).pipe(sql.withTransaction, Effect.orDie);
       }),
 
@@ -201,7 +198,7 @@ export const ModerationSqlLive = Layer.effect(
           return yield* new InvalidFields({ reasons });
         }
 
-        if (!(yield* contributeurExiste(id).pipe(Effect.orDie))) {
+        if (!(yield* exists('contributor', id).pipe(Effect.orDie))) {
           return yield* new ContributorMissing({ id });
         }
 
@@ -209,11 +206,11 @@ export const ModerationSqlLive = Layer.effect(
           yield* sql`
             UPDATE contributor SET
               name = ${submitted.name},
-              title = ${videVersNull(submitted.title)},
-              email = ${videVersNull(submitted.email)},
-              website = ${videVersNull(submitted.website)},
-              intro = ${videVersNull(submitted.intro)},
-              locale = ${videVersNull(submitted.locale)},
+              title = ${emptyToNull(submitted.title)},
+              email = ${emptyToNull(submitted.email)},
+              website = ${emptyToNull(submitted.website)},
+              intro = ${emptyToNull(submitted.intro)},
+              locale = ${emptyToNull(submitted.locale)},
               categories = ${submitted.categories.join(',')},
               enabled = ${submitted.enabled ? 1 : 0},
               updated_at = NOW()
@@ -223,46 +220,46 @@ export const ModerationSqlLive = Layer.effect(
           // The pins carry an order: they are rewritten whole so that the
           // rank follows the submitted list.
           yield* sql`DELETE FROM pin WHERE contributor_id = ${id}`;
-          for (const [rang, noticeId] of submitted.pinned.entries()) {
-            yield* sql`
+          yield* Effect.forEach(
+            submitted.pinned.entries(),
+            ([rank, noticeId]) => sql`
               INSERT INTO pin (contributor_id, notice_id, sort)
-                   VALUES (${id}, ${noticeId}, ${rang})
-            `;
-          }
+                   VALUES (${id}, ${noticeId}, ${rank})
+            `,
+            { discard: true },
+          );
         }).pipe(sql.withTransaction, Effect.orDie);
       }),
 
       saveContributorImage: Effect.fn('Moderation.saveContributorImage')(
-        function* (
-          id: number,
-          champ: ContributorImageField,
-          nomDeFichier: string,
-        ) {
-          const colonne = sql(COLONNE_DIMAGE[champ]);
+        function* (id: number, field: ContributorImageField, fileName: string) {
+          const column = sql(IMAGE_COLUMN[field]);
 
-          const precedente = yield* Effect.gen(function* () {
-            const avant = yield* sql<{ precedente: string | null }>`
-            SELECT ${colonne} AS precedente FROM contributor WHERE id = ${id}
-          `;
+          // An image set on an identifier that does not exist would leave a
+          // file in the store and announce a success. None distinguishes
+          // that from a contributor whose column is still empty.
+          const replaced = yield* Effect.gen(function* () {
+            const rows = yield* sql<{ previous: string | null }>`
+              SELECT ${column} AS previous FROM contributor WHERE id = ${id}
+            `;
 
-            // An image set on an identifier that does not exist would leave
-            // a file in the store and announce a success.
-            if (avant[0] === undefined) return null;
+            const row = rows[0];
+            if (row === undefined) return Option.none<string | null>();
 
             yield* sql`
-            UPDATE contributor SET ${colonne} = ${nomDeFichier},
-                   updated_at = NOW()
-             WHERE id = ${id}
-          `;
+              UPDATE contributor SET ${column} = ${fileName},
+                     updated_at = NOW()
+               WHERE id = ${id}
+            `;
 
-            return { remplacee: avant[0].precedente };
+            return Option.some(row.previous);
           }).pipe(sql.withTransaction, Effect.orDie);
 
-          if (precedente === null) {
+          if (Option.isNone(replaced)) {
             return yield* new ContributorMissing({ id });
           }
 
-          return precedente.remplacee;
+          return replaced.value;
         },
       ),
     });

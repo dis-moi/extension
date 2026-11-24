@@ -1,86 +1,85 @@
 #!/usr/bin/env node
 /**
- * Capture les réponses de l'API V3 de production, qui servent de référence aux
- * tests différentiels de `packages/api`.
+ * Captures the answers of the production V3 API, which serve as the
+ * reference of the differential tests of `packages/api`.
  *
- * Ces tests comparent le rendu de la nouvelle API, octet pour octet, avec ce
- * que le backend PHP répond. La référence doit donc être prise **pendant que
- * le PHP tourne encore** : une fois celui-ci décommissionné, elle n'est plus
- * reproductible.
+ * Those tests compare the rendering of the new API, byte for byte, with what
+ * the PHP backend answers. The reference therefore has to be taken **while
+ * the PHP is still running**: once it is decommissioned, it can no longer be
+ * reproduced.
  *
  *   node bin/capture-v3.mjs
  *
- * Le corpus est exclu du dépôt : il porte le texte de 2 000 notices publiques,
- * dont une dizaine d'adresses de courriel. C'est une décision à prendre
- * sciemment avant l'arrêt du PHP — soit on le versionne, soit on garde une
- * copie hors dépôt.
+ * The corpus is excluded from the repository: it carries the text of 2,000
+ * public notices, a dozen email addresses among them. That is a decision to
+ * take knowingly before the PHP is switched off — either it is versioned, or
+ * a copy is kept outside the repository.
  */
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-const ORIGINE = process.env.DISMOI_V3_ORIGIN ?? 'https://api.dismoi.io';
+const ORIGIN = process.env.DISMOI_V3_ORIGIN ?? 'https://api.dismoi.io';
 const DESTINATION =
   process.env.DISMOI_V3_FIXTURES ?? 'packages/api/test/fixtures/v3';
 
-/** Le nombre de notices demandées par page, comme le fait l'extension. */
-const PAR_PAGE = 1000;
+/** The number of notices asked per page, as the extension does. */
+const PER_PAGE = 1000;
 
-/** Combien de notices individuelles capturer, pour la variante détaillée. */
-const NOTICES_DETAILLEES = 24;
+const DETAILED_NOTICES = 24;
 
-const lire = async (chemin) => {
-  const reponse = await fetch(`${ORIGINE}/api/v3/${chemin}`);
+const read = async (path) => {
+  const response = await fetch(`${ORIGIN}/api/v3/${path}`);
 
-  if (!reponse.ok) {
-    throw new Error(`GET /api/v3/${chemin} → ${reponse.status}`);
+  if (!response.ok) {
+    throw new Error(`GET /api/v3/${path} → ${response.status}`);
   }
 
-  // Le corps est gardé tel quel, sans réinterprétation : c'est l'octet servi
-  // qui fait référence, pas sa valeur une fois relue.
-  return reponse.text();
+  // The body is kept as it is, without reinterpretation: the reference is
+  // the byte served, not its value once read back.
+  return response.text();
 };
 
-const ecrire = async (nom, corps) => {
-  const cible = join(DESTINATION, nom);
-  await mkdir(join(cible, '..'), { recursive: true });
-  await writeFile(cible, corps);
+const write = async (name, body) => {
+  const target = join(DESTINATION, name);
+  await mkdir(join(target, '..'), { recursive: true });
+  await writeFile(target, body);
   process.stdout.write(
-    `  ${nom.padEnd(32)} ${(corps.length / 1024).toFixed(0)} Kio\n`,
+    `  ${name.padEnd(32)} ${(body.length / 1024).toFixed(0)} KiB\n`,
   );
 };
 
 const main = async () => {
-  process.stdout.write(`Capture depuis ${ORIGINE} vers ${DESTINATION}\n`);
+  process.stdout.write(`Capturing from ${ORIGIN} into ${DESTINATION}\n`);
 
-  for (const chemin of ['categories', 'contributors', 'restricted-contexts']) {
-    await ecrire(`${chemin}.json`, await lire(chemin));
+  for (const path of ['categories', 'contributors', 'restricted-contexts']) {
+    await write(`${path}.json`, await read(path));
   }
 
-  await ecrire('matching-contexts-all.json', await lire('matching-contexts'));
-  await ecrire(
+  await write('matching-contexts-all.json', await read('matching-contexts'));
+  await write(
     'matching-contexts-13.json',
-    await lire('matching-contexts?contributors=%5B13%5D'),
+    await read('matching-contexts?contributors=%5B13%5D'),
   );
 
-  // Les notices sont paginées : on avance jusqu'à une page incomplète.
-  const identifiants = [];
-  for (let offset = 0; ; offset += PAR_PAGE) {
-    const corps = await lire(`notices?limit=${PAR_PAGE}&offset=${offset}`);
-    await ecrire(`notices-${offset}.json`, corps);
+  // The notices are paginated: advance until a page comes back incomplete.
+  const identifiers = [];
+  for (let offset = 0; ; offset += PER_PAGE) {
+    const body = await read(`notices?limit=${PER_PAGE}&offset=${offset}`);
+    await write(`notices-${offset}.json`, body);
 
-    const page = JSON.parse(corps);
-    identifiants.push(...page.map((notice) => notice.id));
-    if (page.length < PAR_PAGE) break;
+    const page = JSON.parse(body);
+    identifiers.push(...page.map((notice) => notice.id));
+    if (page.length < PER_PAGE) break;
   }
 
-  for (const id of identifiants.slice(0, NOTICES_DETAILLEES)) {
-    await ecrire(`notice/${id}.json`, await lire(`notices/${id}`));
+  for (const id of identifiers.slice(0, DETAILED_NOTICES)) {
+    await write(`notice/${id}.json`, await read(`notices/${id}`));
   }
 
-  process.stdout.write(`${identifiants.length} notices capturées.\n`);
+  process.stdout.write(`${identifiers.length} notices captured.\n`);
 };
 
-main().catch((erreur) => {
-  process.stderr.write(`${erreur.message}\n`);
+main().catch((error) => {
+  process.stderr.write(`${error.message}\n`);
   process.exitCode = 1;
 });

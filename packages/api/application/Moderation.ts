@@ -80,8 +80,8 @@ export class Moderation extends Context.Service<
     // responsible for removing from the store.
     saveContributorImage(
       id: number,
-      champ: ContributorImageField,
-      nomDeFichier: string,
+      field: ContributorImageField,
+      fileName: string,
     ): Effect.Effect<string | null, ContributorMissing>;
   }
 >()('api/application/Moderation') {}
