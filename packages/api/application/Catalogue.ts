@@ -1,5 +1,5 @@
 import { Context, type Effect, Schema } from 'effect';
-import { InvalidFields } from './Moderation';
+import { InvalidFields } from './InvalidFields';
 
 // The targeting catalogue the administration maintains: the domains, the
 // sets that group them, and the contexts where no notice may appear. They

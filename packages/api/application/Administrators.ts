@@ -1,4 +1,5 @@
 import { Context, type Effect, Schema } from 'effect';
+import { InvalidFields } from './InvalidFields';
 
 // The accounts live in fos_user, the FOSUserBundle table, which is left
 // untouched: the 26 existing accounts keep their passwords, bcrypt at cost
@@ -13,6 +14,19 @@ export class AccountMissing extends Schema.TaggedError<AccountMissing>()(
   'AccountMissing',
   { id: Schema.Number },
 ) {}
+
+// username_canonical and email_canonical carry a unique index: without this
+// the insert comes back as a defect rather than as something to correct.
+export class LoginTaken extends Schema.TaggedError<LoginTaken>()('LoginTaken', {
+  login: Schema.String,
+}) {}
+
+export interface SubmittedAccount {
+  readonly username: string;
+  readonly email: string;
+  readonly roles: ReadonlyArray<string>;
+  readonly enabled: boolean;
+}
 
 // config/packages/security.yaml.
 const IMPLIES: Record<string, ReadonlyArray<string>> = {
@@ -72,5 +86,23 @@ export class Administrators extends Context.Service<
       id: number,
       enabled: boolean,
     ): Effect.Effect<void, AccountMissing>;
+
+    // The password travels apart from the rest: it is never read back, so
+    // editing an account must not require retyping it, and setting it must
+    // not require touching anything else.
+    createAccount(
+      submitted: SubmittedAccount,
+      password: string,
+    ): Effect.Effect<number, InvalidFields | LoginTaken>;
+
+    saveAccount(
+      id: number,
+      submitted: SubmittedAccount,
+    ): Effect.Effect<void, InvalidFields | AccountMissing | LoginTaken>;
+
+    setPassword(
+      id: number,
+      password: string,
+    ): Effect.Effect<void, InvalidFields | AccountMissing>;
   }
 >()('api/application/Administrators') {}

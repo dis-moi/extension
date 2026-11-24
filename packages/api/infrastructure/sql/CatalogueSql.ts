@@ -1,5 +1,6 @@
 import { Effect, Layer, Option } from 'effect';
 import { SqlClient } from 'effect/sql';
+import { InvalidFields } from '../../application/InvalidFields';
 import {
   Catalogue,
   type DomainEntry,
@@ -11,7 +12,6 @@ import {
   type SubmittedDomain,
   type SubmittedDomainsSet,
 } from '../../application/Catalogue';
-import { InvalidFields } from '../../application/Moderation';
 import {
   domainsSetViolations,
   domainViolations,

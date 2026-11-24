@@ -1,4 +1,5 @@
 import { Context, type Effect, Schema } from 'effect';
+import { InvalidFields } from './InvalidFields';
 import type { ContributorImageField } from '../domain/UploadedImage';
 import type { Visibility } from '../domain/NoticeVisibility';
 
@@ -15,11 +16,6 @@ export class NoticeMissing extends Schema.TaggedError<NoticeMissing>()(
 export class ContributorMissing extends Schema.TaggedError<ContributorMissing>()(
   'ContributorMissing',
   { id: Schema.Number },
-) {}
-
-export class InvalidFields extends Schema.TaggedError<InvalidFields>()(
-  'InvalidFields',
-  { reasons: Schema.Array(Schema.String) },
 ) {}
 
 export interface SubmittedContext {

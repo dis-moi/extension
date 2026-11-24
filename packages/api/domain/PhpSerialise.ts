@@ -59,3 +59,15 @@ export const readStringArray = (raw: string): ReadonlyArray<string> => {
 
   return values;
 };
+
+// The same shape, written back: an account whose roles are saved must stay
+// readable by the PHP backend for as long as the two coexist. The announced
+// length is a byte count, not a character count — a role name is ASCII, but
+// the rule is the serialisation's, not the vocabulary's.
+export const writeStringArray = (values: ReadonlyArray<string>): string => {
+  const items = values
+    .map((value, rank) => `i:${rank};s:${byteLength(value)}:"${value}";`)
+    .join('');
+
+  return `a:${values.length}:{${items}}`;
+};

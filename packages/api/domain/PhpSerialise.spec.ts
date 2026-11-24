@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { readStringArray } from './PhpSerialise';
+import { readStringArray, writeStringArray } from './PhpSerialise';
 
 describe('reading a serialised PHP array', () => {
   it('reads a single role, as it stands in the database', () => {
@@ -50,5 +50,27 @@ describe('reading a serialised PHP array', () => {
     it('refuses an empty value', () => {
       expect(() => readStringArray('')).toThrow('not an array');
     });
+  });
+});
+
+describe('writing the roles of an account', () => {
+  it('writes the shape FOSUserBundle wrote', () => {
+    expect(writeStringArray(['ROLE_ADMIN'])).toBe(
+      'a:1:{i:0;s:10:"ROLE_ADMIN";}',
+    );
+  });
+
+  it('writes an empty list', () => {
+    expect(writeStringArray([])).toBe('a:0:{}');
+  });
+
+  it('counts the bytes of a value, not its characters', () => {
+    expect(writeStringArray(['rôle'])).toBe('a:1:{i:0;s:5:"rôle";}');
+  });
+
+  it('round trips what it wrote', () => {
+    const roles = ['ROLE_USER', 'ROLE_ADMIN'];
+
+    expect([...readStringArray(writeStringArray(roles))]).toEqual(roles);
   });
 });

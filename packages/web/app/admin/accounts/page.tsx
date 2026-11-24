@@ -7,6 +7,7 @@ import { Chrome } from '../chrome';
 import { shortDate, since, number } from '../format';
 import { requireRole } from '../session';
 import { setAccountEnabled } from './actions';
+import { EditAccount, NewAccount } from './editors';
 
 export const metadata = { title: 'Comptes — Admin DisMoi' };
 export const dynamic = 'force-dynamic';
@@ -80,11 +81,15 @@ const AccountsPage = async () => {
             yarn admin:password
           </p>
           <p className="admin-tile-detail">
-            Posé en ligne de commande, jamais depuis le navigateur : le mot de
-            passe ne traverse alors aucun formulaire.
+            L’équivalent en ligne de commande, pour un compte dont personne ne
+            peut plus ouvrir cette page.
           </p>
         </div>
       </div>
+
+      <section className="admin-card" style={{ marginBottom: 20 }}>
+        <NewAccount />
+      </section>
 
       <div className="admin-table-box">
         <div className="admin-table-scroll">
@@ -114,7 +119,7 @@ const AccountsPage = async () => {
                 return (
                   <tr key={account.id}>
                     <td style={{ fontWeight: 500, whiteSpace: 'nowrap' }}>
-                      {account.username}
+                      <EditAccount account={account} />
                       {isMe && (
                         <span
                           className="admin-state admin-state-accent"

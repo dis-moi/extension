@@ -1,7 +1,7 @@
 import { Effect, Layer, Option } from 'effect';
 import { SqlClient } from 'effect/sql';
+import { InvalidFields } from '../../application/InvalidFields';
 import {
-  InvalidFields,
   type SubmittedContext,
   ContributorMissing,
   type SubmittedContributor,
