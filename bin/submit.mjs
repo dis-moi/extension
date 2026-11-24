@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 /**
- * Soumet un canal aux stores Chrome et Firefox.
+ * Submits a channel to the Chrome and Firefox stores.
  *
- * Les trois canaux partagent un compte de store et un jeu d'identifiants
- * d'API : seule l'identité de l'élément distingue une publication interne de
- * la fiche publique. Ces identités sont publiques et vivent dans les
- * `.env.<canal>` du dépôt ; les secrets d'API, eux, ne viennent que de
- * l'environnement (CHROME_CLIENT_ID, CHROME_CLIENT_SECRET,
- * CHROME_REFRESH_TOKEN, FIREFOX_JWT_ISSUER, FIREFOX_JWT_SECRET) et ne sont ni
- * lus ni affichés ici : `wxt submit` les prend lui-même.
+ * The three channels share one store account and one set of API
+ * credentials: only the identity of the item distinguishes an internal
+ * publication from the public listing. Those identities are public and live
+ * in the `.env.<channel>` files of the repository; the API secrets come only
+ * from the environment (CHROME_CLIENT_ID, CHROME_CLIENT_SECRET,
+ * CHROME_REFRESH_TOKEN, FIREFOX_JWT_ISSUER, FIREFOX_JWT_SECRET) and are
+ * neither read nor displayed here: `wxt submit` takes them itself.
  *
- * Usage : node bin/submit.mjs <staging|proding|production> [--dry-run]
+ * Usage: node bin/submit.mjs <staging|proding|production> [--dry-run]
  */
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -19,61 +19,59 @@ import { fileURLToPath } from 'node:url';
 
 export const MODES = ['staging', 'proding', 'production'];
 
-const racine = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const dossierExtension = path.join(racine, 'packages', 'extension');
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const extensionFolder = path.join(root, 'packages', 'extension');
 
 /**
- * Lit un fichier `.env` sans dépendance : une paire par ligne, `#` en
- * commentaire. La valeur garde ses signes égal — une URL en contient.
+ * Reads an `.env` file with no dependency: one pair per line, `#` as a
+ * comment. The value keeps its equals signs — a URL carries some.
  */
 export const parseEnvFile = (contents) =>
   Object.fromEntries(
     contents
       .split('\n')
-      .map((ligne) => ligne.trim())
-      .filter((ligne) => ligne !== '' && !ligne.startsWith('#'))
-      .map((ligne) => {
-        const separateur = ligne.indexOf('=');
+      .map((line) => line.trim())
+      .filter((line) => line !== '' && !line.startsWith('#'))
+      .map((line) => {
+        const separator = line.indexOf('=');
 
         return [
-          ligne.slice(0, separateur).trim(),
-          ligne
-            .slice(separateur + 1)
+          line.slice(0, separator).trim(),
+          line
+            .slice(separator + 1)
             .trim()
             .replace(/^["']|["']$/g, ''),
         ];
       })
-      .filter(([cle]) => cle !== ''),
+      .filter(([key]) => key !== ''),
   );
 
 /**
- * Le canal d'AMO. « listed » publie sur addons.mozilla.org ; staging et
- * proding sont des builds internes, qui ne doivent apparaître nulle part.
+ * The AMO channel. "listed" publishes on addons.mozilla.org; staging and
+ * proding are internal builds, which must appear nowhere.
  */
 export const firefoxChannel = (mode) =>
   mode === 'production' ? 'listed' : 'unlisted';
 
-const archive = (version, mode, suffixe) =>
-  `.output/dismoi-${version}-${mode}-${suffixe}`;
+const archive = (version, mode, suffix) =>
+  `.output/dismoi-${version}-${mode}-${suffix}`;
 
 /**
- * Construit la ligne de commande de `wxt submit` pour un canal.
- *
- * Les identifiants d'élément sont passés explicitement plutôt que laissés à
- * l'environnement : une variable héritée du shell publierait le mauvais
- * canal sans rien signaler.
+ * The item identifiers are passed explicitly rather than left to the
+ * environment: a variable inherited from the shell would publish the wrong
+ * channel without signalling anything.
  */
 export const submitArgs = ({ mode, version, env, dryRun = false }) => {
   if (!MODES.includes(mode)) {
     throw new Error(
-      `Canal inconnu : « ${mode} ». Attendu : ${MODES.join(', ')}.`,
+      `Unknown channel: "${mode}". Expected: ${MODES.join(', ')}.`,
     );
   }
 
-  ['CHROME_EXTENSION_ID', 'FIREFOX_EXTENSION_ID'].forEach((nom) => {
-    if (!env[nom]) {
+  ['CHROME_EXTENSION_ID', 'FIREFOX_EXTENSION_ID'].forEach((name) => {
+    if (!env[name]) {
       throw new Error(
-        `${nom} est absent de .env.${mode}, publication annulée.`,
+        `${name} is missing from .env.${mode}, publication cancelled.`,
       );
     }
   });
@@ -97,32 +95,31 @@ export const submitArgs = ({ mode, version, env, dryRun = false }) => {
 };
 
 const main = () => {
-  const [mode, ...reste] = process.argv.slice(2);
+  const [mode, ...rest] = process.argv.slice(2);
 
-  // Avant de chercher un fichier d'environnement : sans ce contrôle, un canal
-  // mal orthographié échouait sur un ENOENT qui ne nommait pas la vraie
-  // cause.
+  // Before looking for an environment file: without this check, a
+  // misspelled channel failed on an ENOENT that did not name the real cause.
   if (!MODES.includes(mode)) {
     throw new Error(
-      `Canal inconnu : « ${mode} ». Attendu : ${MODES.join(', ')}.`,
+      `Unknown channel: "${mode}". Expected: ${MODES.join(', ')}.`,
     );
   }
 
-  const dryRun = reste.includes('--dry-run');
+  const dryRun = rest.includes('--dry-run');
   const { version } = JSON.parse(
-    fs.readFileSync(path.join(racine, 'package.json'), 'utf-8'),
+    fs.readFileSync(path.join(root, 'package.json'), 'utf-8'),
   );
   const env = parseEnvFile(
-    fs.readFileSync(path.join(racine, `.env.${mode}`), 'utf-8'),
+    fs.readFileSync(path.join(root, `.env.${mode}`), 'utf-8'),
   );
   const args = submitArgs({ mode, version, env, dryRun });
 
   console.log(
-    `Soumission du canal ${mode} en ${version}${dryRun ? ' (essai à blanc)' : ''}`,
+    `Submitting the ${mode} channel at ${version}${dryRun ? ' (dry run)' : ''}`,
   );
 
   const { status } = spawnSync('npx', ['wxt', ...args], {
-    cwd: dossierExtension,
+    cwd: extensionFolder,
     stdio: 'inherit',
   });
 
@@ -134,11 +131,10 @@ const main = () => {
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   try {
     main();
-  } catch (erreur) {
-    // Une erreur d'usage mérite une phrase, pas une trace de pile : elle sera
-    // lue dans un journal de CI, par quelqu'un qui cherche quel canal a
-    // échoué et pourquoi.
-    console.error(`Publication interrompue : ${erreur.message}`);
+  } catch (error) {
+    // A usage error deserves a sentence, not a stack trace: it will be read
+    // in a CI log, by somebody looking for which channel failed and why.
+    console.error(`Publication interrupted: ${error.message}`);
     process.exit(1);
   }
 }

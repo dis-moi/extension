@@ -1,12 +1,6 @@
 import { expect } from 'chai';
 import { MODES, firefoxChannel, parseEnvFile, submitArgs } from './submit.mjs';
 
-/**
- * Trois canaux partagent un même compte de store et un même jeu d'identifiants
- * d'API : seule l'identité de l'élément distingue une publication interne
- * d'une publication aux 1 237 utilisateurs de la fiche publique. Ces exemples
- * interdisent de croiser les fils.
- */
 describe('bin > submit', () => {
   const env = {
     staging: {
@@ -23,14 +17,14 @@ describe('bin > submit', () => {
     },
   };
 
-  const valeurApres = (args, drapeau) => args[args.indexOf(drapeau) + 1];
+  const valueAfter = (args, flag) => args[args.indexOf(flag) + 1];
 
-  it('connaît exactement trois canaux', () => {
+  it('knows exactly three channels', () => {
     expect(MODES).to.deep.equal(['staging', 'proding', 'production']);
   });
 
   describe('firefoxChannel', () => {
-    it('ne rend « listed » que pour la production', () => {
+    it('returns listed for production alone', () => {
       expect(firefoxChannel('production')).to.equal('listed');
       expect(firefoxChannel('staging')).to.equal('unlisted');
       expect(firefoxChannel('proding')).to.equal('unlisted');
@@ -38,13 +32,13 @@ describe('bin > submit', () => {
   });
 
   describe('parseEnvFile', () => {
-    it('lit les paires, ignore commentaires et lignes vides', () => {
+    it('reads the pairs and ignores comments and empty lines', () => {
       expect(
-        parseEnvFile('# un commentaire\n\nA=1\nB = deux \nC="trois"\n'),
-      ).to.deep.equal({ A: '1', B: 'deux', C: 'trois' });
+        parseEnvFile('# a comment\n\nA=1\nB = two \nC="three"\n'),
+      ).to.deep.equal({ A: '1', B: 'two', C: 'three' });
     });
 
-    it('garde les signes égal d’une valeur', () => {
+    it('keeps the equals signs of a value', () => {
       expect(parseEnvFile('URL=https://x/?a=1&b=2').URL).to.equal(
         'https://x/?a=1&b=2',
       );
@@ -53,39 +47,36 @@ describe('bin > submit', () => {
 
   describe('submitArgs', () => {
     MODES.forEach((mode) => {
-      it(`soumet ${mode} à l’élément de ${mode}, et à nul autre`, () => {
+      it(`submits ${mode} to the ${mode} item, and to no other`, () => {
         const args = submitArgs({ mode, version: '4.0.0', env: env[mode] });
 
-        expect(valeurApres(args, '--chrome-extension-id')).to.equal(
+        expect(valueAfter(args, '--chrome-extension-id')).to.equal(
           env[mode].CHROME_EXTENSION_ID,
         );
-        expect(valeurApres(args, '--firefox-extension-id')).to.equal(
+        expect(valueAfter(args, '--firefox-extension-id')).to.equal(
           env[mode].FIREFOX_EXTENSION_ID,
         );
 
-        const autres = MODES.filter((m) => m !== mode);
-        autres.forEach((autre) => {
-          expect(args.join(' ')).to.not.contain(env[autre].CHROME_EXTENSION_ID);
-          expect(args.join(' ')).to.not.contain(`-${autre}-`);
+        MODES.filter((other) => other !== mode).forEach((other) => {
+          expect(args.join(' ')).to.not.contain(env[other].CHROME_EXTENSION_ID);
+          expect(args.join(' ')).to.not.contain(`-${other}-`);
         });
       });
 
-      it(`n’envoie que les archives de ${mode}`, () => {
+      it(`sends the ${mode} archives alone`, () => {
         const args = submitArgs({ mode, version: '4.0.0', env: env[mode] });
 
         ['--chrome-zip', '--firefox-zip', '--firefox-sources-zip'].forEach(
-          (drapeau) => {
-            expect(valeurApres(args, drapeau)).to.contain(
-              `dismoi-4.0.0-${mode}-`,
-            );
+          (flag) => {
+            expect(valueAfter(args, flag)).to.contain(`dismoi-4.0.0-${mode}-`);
           },
         );
       });
     });
 
-    it('réserve le canal « listed » d’AMO à la production', () => {
+    it('reserves the listed channel of AMO for production', () => {
       expect(
-        valeurApres(
+        valueAfter(
           submitArgs({
             mode: 'production',
             version: '4.0.0',
@@ -95,14 +86,14 @@ describe('bin > submit', () => {
         ),
       ).to.equal('listed');
       expect(
-        valeurApres(
+        valueAfter(
           submitArgs({ mode: 'staging', version: '4.0.0', env: env.staging }),
           '--firefox-channel',
         ),
       ).to.equal('unlisted');
     });
 
-    it('transmet l’essai à blanc', () => {
+    it('passes the dry run along', () => {
       const args = submitArgs({
         mode: 'staging',
         version: '4.0.0',
@@ -113,15 +104,13 @@ describe('bin > submit', () => {
       expect(args).to.contain('--dry-run');
     });
 
-    it('refuse un canal inconnu', () => {
+    it('refuses an unknown channel', () => {
       expect(() =>
         submitArgs({ mode: 'preprod', version: '4.0.0', env: {} }),
       ).to.throw(/preprod/);
     });
 
-    it('refuse de publier sans identifiant d’élément', () => {
-      // Sans identifiant, publish-extension créerait ou viserait autre chose
-      // que ce qu'on croit : mieux vaut interrompre.
+    it('refuses to publish with no item identifier', () => {
       expect(() =>
         submitArgs({ mode: 'production', version: '4.0.0', env: {} }),
       ).to.throw(/CHROME_EXTENSION_ID/);
