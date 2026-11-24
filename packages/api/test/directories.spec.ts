@@ -1,14 +1,14 @@
 import { assert, layer } from '@effect/vitest';
 import { Effect } from 'effect';
 import { Administrators } from '../application/Administrators';
-import { Supervision } from '../application/Supervision';
+import { Catalogue } from '../application/Catalogue';
 import { ApiLive } from '../Live';
 
 layer(ApiLive)('directories of the administration', (it) => {
   it.effect('gives the 70 domains sets with their two counters', () =>
     Effect.gen(function* () {
-      const supervision = yield* Supervision;
-      const sets = yield* supervision.domainsSets;
+      const catalogue = yield* Catalogue;
+      const sets = yield* catalogue.domainsSets;
 
       assert.strictEqual(sets.length, 70);
 
@@ -28,8 +28,8 @@ layer(ApiLive)('directories of the administration', (it) => {
 
   it.effect('sorts the sets by number of contexts served', () =>
     Effect.gen(function* () {
-      const supervision = yield* Supervision;
-      const sets = yield* supervision.domainsSets;
+      const catalogue = yield* Catalogue;
+      const sets = yield* catalogue.domainsSets;
 
       const counts = sets.map((set) => set.contexts);
       assert.deepStrictEqual(

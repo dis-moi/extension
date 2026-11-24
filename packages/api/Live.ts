@@ -11,6 +11,7 @@ import { V3ReadsSqlLive } from './infrastructure/sql/V3ReadsSql';
 import { ModerationSqlLive } from './infrastructure/sql/ModerationSql';
 import { SupervisionSqlLive } from './infrastructure/sql/SupervisionSql';
 import { ActivitySqlLive } from './infrastructure/sql/ActivitySql';
+import { CatalogueSqlLive } from './infrastructure/sql/CatalogueSql';
 
 // provideMerge leaves SqlClient visible: the admin reads the database
 // directly for what the V3 ports do not expose, and without it a second
@@ -24,6 +25,7 @@ export const ApiLive = Layer.mergeAll(
   SupervisionSqlLive,
   ActivitySqlLive,
   ModerationSqlLive,
+  CatalogueSqlLive,
   AdminSession.layer.pipe(Layer.provide(AdministratorsSqlLive)),
   AdministratorsSqlLive,
   ImagesSharpLive.pipe(Layer.provide(DiskFilesLive)),

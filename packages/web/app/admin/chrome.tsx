@@ -13,6 +13,7 @@ export type Section =
   | 'notices'
   | 'contributors'
   | 'domains'
+  | 'restricted'
   | 'accounts';
 
 const ENTRIES: ReadonlyArray<{
@@ -32,6 +33,12 @@ const ENTRIES: ReadonlyArray<{
     section: 'domains',
     label: 'Domaines',
     href: '/admin/domains',
+    reserved: true,
+  },
+  {
+    section: 'restricted',
+    label: 'Contextes interdits',
+    href: '/admin/restricted-contexts',
     reserved: true,
   },
   {

@@ -1,24 +1,14 @@
 import { Schema } from 'effect';
 import { Visibility } from './NoticeVisibility';
-import { isFilled, type Violation, violationsOf } from './validation';
+import {
+  isCompilableRegExp,
+  isFilled,
+  type Violation,
+  violationsOf,
+} from './validation';
 
 // The counter the former admin displayed under the field.
 const MESSAGE_MAX = 500;
-
-// The extension runs these patterns in the browser: an invalid one does not
-// break the API, it breaks the display for the people reading the notice.
-const isCompilableRegExp = (message: string) =>
-  Schema.makeFilter<string>(
-    (value) => {
-      try {
-        new RegExp(value);
-        return true;
-      } catch {
-        return false;
-      }
-    },
-    { message },
-  );
 
 const ContextSubmission = Schema.Struct({
   urlRegex: Schema.String.pipe(

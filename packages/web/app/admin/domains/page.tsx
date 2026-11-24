@@ -1,28 +1,21 @@
 import React from 'react';
-import { unstable_cache } from 'next/cache';
 import { Effect } from 'effect';
-import { Supervision } from '@dismoi/api/application/Supervision';
+import { Catalogue } from '@dismoi/api/application/Catalogue';
 import { run } from '../../../lib/effect';
 import '../admin.css';
 import { Chrome } from '../chrome';
 import { number } from '../format';
 import { type Parameters, textParameter } from '../query';
 import { requireRole } from '../session';
+import { Domains, DomainsSets } from './editors';
 
 export const metadata = { title: 'Domaines — Admin DisMoi' };
 export const dynamic = 'force-dynamic';
 
-const cachedSets = unstable_cache(
-  async () =>
-    run(
-      Effect.gen(function* () {
-        const supervision = yield* Supervision;
-        return yield* supervision.domainsSets;
-      }),
-    ),
-  ['admin', 'domains-sets'],
-  { revalidate: 900 },
-);
+// The search is deliberately shared: a name typed once filters the sets and
+// the domains at the same time, which is how one looks for "amazon" without
+// knowing yet which of the two holds it.
+const SHOWN = 100;
 
 const DomainsPage = async ({
   searchParams,
@@ -34,9 +27,21 @@ const DomainsPage = async ({
   const search = textParameter(searchParams, 'q');
   const term = search.trim().toLowerCase();
 
-  const sets = await cachedSets();
+  const { sets, domains, total } = await run(
+    Effect.gen(function* () {
+      const catalogue = yield* Catalogue;
 
-  const kept =
+      const [sets, domains, total] = yield* Effect.all([
+        catalogue.domainsSets,
+        catalogue.domains(term === '' ? null : term, SHOWN),
+        catalogue.domainCount,
+      ]);
+
+      return { sets, domains, total };
+    }),
+  );
+
+  const keptSets =
     term === ''
       ? sets
       : sets.filter(
@@ -46,7 +51,7 @@ const DomainsPage = async ({
         );
 
   const distinctDomains = new Set(sets.flatMap((set) => set.domains)).size;
-  const servedContexts = sets.reduce((total, set) => total + set.contexts, 0);
+  const servedContexts = sets.reduce((count, set) => count + set.contexts, 0);
   const unused = sets.filter((set) => set.contexts === 0).length;
 
   return (
@@ -55,8 +60,7 @@ const DomainsPage = async ({
         <h1>Domaines</h1>
         <p className="admin-subtitle">
           <span className="num">{number(sets.length)}</span> jeux,{' '}
-          <span className="num">{number(distinctDomains)}</span> domaines
-          distincts.
+          <span className="num">{number(total)}</span> domaines au catalogue.
         </p>
       </div>
 
@@ -80,7 +84,11 @@ const DomainsPage = async ({
         <div className="admin-card admin-tile">
           <h3>Jeux inutilisés</h3>
           <p className="admin-tile-value num">{number(unused)}</p>
-          <p className="admin-tile-detail">rattachés à aucun contexte</p>
+          <p className="admin-tile-detail">
+            rattachés à aucun contexte, sur{' '}
+            <span className="num">{number(distinctDomains)}</span> domaines
+            groupés
+          </p>
         </div>
       </div>
 
@@ -95,7 +103,7 @@ const DomainsPage = async ({
             name="q"
             type="search"
             defaultValue={search}
-            placeholder="nom du jeu ou domaine"
+            placeholder="nom du jeu, domaine ou alias"
           />
         </div>
         <button className="admin-button-secondary" type="submit">
@@ -103,82 +111,8 @@ const DomainsPage = async ({
         </button>
       </form>
 
-      <div className="admin-table-box">
-        <div className="admin-table-scroll">
-          <table className="admin-table">
-            <caption>
-              Un jeu de domaines est partagé : le modifier modifie tous les
-              ciblages qui s’y rattachent. La colonne « Ciblages » dit combien.
-            </caption>
-
-            <thead>
-              <tr>
-                <th scope="col">Jeu</th>
-                <th scope="col">Domaines</th>
-                <th scope="col" className="right">
-                  Nombre
-                </th>
-                <th scope="col" className="right">
-                  Ciblages
-                </th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {kept.map((set) => (
-                <tr key={set.id}>
-                  <td style={{ fontWeight: 500, whiteSpace: 'nowrap' }}>
-                    {set.name}
-                    <span
-                      className="num"
-                      style={{
-                        display: 'block',
-                        fontSize: 11,
-                        fontWeight: 400,
-                        color: 'var(--ink-soft)',
-                      }}
-                    >
-                      #{set.id}
-                    </span>
-                  </td>
-
-                  <td
-                    className="admin-mono"
-                    style={{
-                      maxWidth: 520,
-                      fontSize: 12,
-                      color: 'var(--ink-soft)',
-                      overflowWrap: 'anywhere',
-                    }}
-                  >
-                    {set.domains.join('  ·  ') || '— aucun domaine —'}
-                  </td>
-
-                  <td className="num right">{set.domains.length}</td>
-
-                  <td
-                    className="num right"
-                    style={{
-                      fontWeight: 600,
-                      color: set.contexts === 0 ? 'var(--ink-soft)' : undefined,
-                    }}
-                  >
-                    {number(set.contexts)}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <p className="admin-hint" style={{ marginTop: 14 }}>
-        La modification des jeux n’est pas encore recâblée : seuls les ciblages
-        propres à une notice se modifient, depuis sa fiche. Un jeu partagé comme
-        « Amazon », rattaché à{' '}
-        <span className="num">{number(sets[0]?.contexts ?? 0)}</span> ciblages,
-        demande un écran qui montre d’abord ce qu’on casse.
-      </p>
+      <DomainsSets sets={keptSets} />
+      <Domains domains={domains} total={total} />
     </Chrome>
   );
 };

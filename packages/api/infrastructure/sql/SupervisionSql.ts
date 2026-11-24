@@ -3,7 +3,6 @@ import { SqlClient } from 'effect/sql';
 import {
   type EditableContext,
   type NoticeFilters,
-  type DomainsSetRow,
   type ContributorRow,
   type NoticeRow,
   type EditableNotice,
@@ -500,37 +499,6 @@ export const SupervisionSqlLive = Layer.effect(
           totalSubscriptions: Number(row.subscriptions ?? 0),
         };
       }, Effect.orDie),
-
-      domainsSets: Effect.gen(function* () {
-        const rows = yield* sql<{
-          id: number;
-          name: string;
-          domains: string | null;
-          contexts: number;
-        }>`
-          SELECT ds.id, ds.name AS name,
-                 (SELECT GROUP_CONCAT(dn.name ORDER BY dn.name SEPARATOR ',')
-                    FROM domains_set_domain dsd
-                    JOIN domain_name dn ON dn.id = dsd.domain_name_id
-                   WHERE dsd.domains_set_id = ds.id) AS domains,
-                 (SELECT COUNT(*) FROM matching_context_domains_set mcds
-                   WHERE mcds.domains_set_id = ds.id) AS contexts
-            FROM domains_set ds
-           ORDER BY contexts DESC, ds.name
-        `;
-
-        return rows.map(
-          (row): DomainsSetRow => ({
-            id: row.id,
-            name: row.name,
-            domains:
-              row.domains === null || row.domains === ''
-                ? []
-                : row.domains.split(','),
-            contexts: Number(row.contexts),
-          }),
-        );
-      }).pipe(Effect.orDie),
 
       contributorsForPicking: Effect.gen(function* () {
         const rows = yield* sql<{ id: number; name: string }>`

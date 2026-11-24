@@ -160,15 +160,6 @@ export interface EditableContributor {
   readonly totalSubscriptions: number;
 }
 
-export interface DomainsSetRow {
-  readonly id: number;
-  readonly name: string;
-  readonly domains: ReadonlyArray<string>;
-  // The figure that matters before touching one: "Amazon" serves 633 of
-  // them, and the former administration did not show it.
-  readonly contexts: number;
-}
-
 export class Supervision extends Context.Service<
   Supervision,
   {
@@ -189,8 +180,6 @@ export class Supervision extends Context.Service<
     >;
 
     contributor(id: number): Effect.Effect<EditableContributor | null>;
-
-    readonly domainsSets: Effect.Effect<ReadonlyArray<DomainsSetRow>>;
 
     readonly contributorsByCategory: Effect.Effect<
       ReadonlyArray<{ readonly category: string; readonly number: number }>

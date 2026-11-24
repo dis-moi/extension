@@ -5,6 +5,21 @@ const standardIssues = SchemaIssue.makeFormatterStandardSchemaV1();
 export const isFilled = (message: string) =>
   Schema.makeFilter<string>((value) => value.trim().length > 0, { message });
 
+// The extension runs these patterns in the browser: an invalid one does not
+// break the API, it breaks the display for the people reading the notice.
+export const isCompilableRegExp = (message: string) =>
+  Schema.makeFilter<string>(
+    (value) => {
+      try {
+        new RegExp(value);
+        return true;
+      } catch {
+        return false;
+      }
+    },
+    { message },
+  );
+
 export interface Violation {
   readonly path: ReadonlyArray<PropertyKey>;
   readonly message: string;

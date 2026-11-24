@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Effect } from 'effect';
+import { Catalogue } from '@dismoi/api/application/Catalogue';
 import { Supervision } from '@dismoi/api/application/Supervision';
 import { run } from '../../../../lib/effect';
 import '../../admin.css';
@@ -32,11 +33,12 @@ const NoticePage = async ({
   const { notice, contributors, sets } = await run(
     Effect.gen(function* () {
       const supervision = yield* Supervision;
+      const catalogue = yield* Catalogue;
 
       const [notice, contributors, sets] = yield* Effect.all([
         supervision.notice(id),
         supervision.contributorsForPicking,
-        supervision.domainsSets,
+        catalogue.domainsSets,
       ]);
 
       return { notice, contributors, sets };
