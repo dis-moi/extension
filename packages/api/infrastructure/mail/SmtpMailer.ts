@@ -1,15 +1,9 @@
 import { Config, Effect, Layer, Option, Redacted } from 'effect';
 import nodemailer from 'nodemailer';
 import { Mailer } from '../../application/Mailer';
+import { relayFromDsn, type SmtpRelay } from '../../domain/MailerDsn';
 
-export interface SmtpRelay {
-  readonly host: string;
-  readonly port: number;
-  readonly user: string;
-  readonly password: string;
-  readonly secure: boolean;
-  readonly requireTls: boolean;
-}
+export type { SmtpRelay };
 
 const IMPLICIT_TLS_PORT = 465;
 
@@ -22,26 +16,59 @@ const TIMEOUTS = {
   socketTimeout: 20_000,
 } as const;
 
+// The three switches that apply whichever source named the relay.
+const withOverrides = (relay: SmtpRelay) =>
+  Effect.gen(function* () {
+    const port = yield* Config.Port('DISMOI_SMTP_PORT').pipe(
+      Config.withDefault(relay.port),
+    );
+
+    return {
+      ...relay,
+      port,
+      secure: yield* Config.Boolean('DISMOI_SMTP_SECURE').pipe(
+        Config.withDefault(
+          port === relay.port ? relay.secure : port === IMPLICIT_TLS_PORT,
+        ),
+      ),
+      requireTls: yield* Config.Boolean('DISMOI_SMTP_REQUIRE_TLS').pipe(
+        Config.withDefault(relay.requireTls),
+      ),
+    } satisfies SmtpRelay;
+  });
+
+// Two sources. DISMOI_SMTP_HOST and its companions first, then MAILER_DSN,
+// the address Symfony read in config/packages/mailer.yaml: the PHP
+// application already carries one, and moving it over as it is beats taking
+// it apart into three variables by hand.
 export const configuredRelay = Effect.gen(function* () {
   const host = yield* Config.option(Config.String('DISMOI_SMTP_HOST'));
-  if (Option.isNone(host)) return null;
 
-  const port = yield* Config.Port('DISMOI_SMTP_PORT').pipe(
-    Config.withDefault(587),
-  );
+  if (Option.isSome(host)) {
+    return yield* withOverrides({
+      host: host.value,
+      port: 587,
+      user: yield* Config.String('DISMOI_SMTP_USER'),
+      password: Redacted.value(yield* Config.Redacted('DISMOI_SMTP_PASSWORD')),
+      secure: false,
+      requireTls: true,
+    });
+  }
 
-  return {
-    host: host.value,
-    port,
-    user: yield* Config.String('DISMOI_SMTP_USER'),
-    password: Redacted.value(yield* Config.Redacted('DISMOI_SMTP_PASSWORD')),
-    secure: yield* Config.Boolean('DISMOI_SMTP_SECURE').pipe(
-      Config.withDefault(port === IMPLICIT_TLS_PORT),
-    ),
-    requireTls: yield* Config.Boolean('DISMOI_SMTP_REQUIRE_TLS').pipe(
-      Config.withDefault(true),
-    ),
-  } satisfies SmtpRelay;
+  const dsn = yield* Config.option(Config.Redacted('MAILER_DSN'));
+  if (Option.isNone(dsn)) return null;
+
+  const fromDsn = relayFromDsn(Redacted.value(dsn.value));
+  if (fromDsn === null) {
+    // Named without the address being readable: saying so beats falling
+    // back on the log as though nothing had been configured.
+    yield* Effect.logWarning(
+      'MAILER_DSN names no SMTP relay: emails are logged, not sent',
+    );
+    return null;
+  }
+
+  return yield* withOverrides(fromDsn);
 });
 
 const service = (relay: SmtpRelay) => {
@@ -89,7 +116,7 @@ export const MailerLive = Layer.effect(
     const relay = yield* configuredRelay;
     if (relay === null) {
       yield* Effect.logWarning(
-        'DISMOI_SMTP_HOST absent: emails are logged, not sent',
+        'Neither DISMOI_SMTP_HOST nor MAILER_DSN: emails are logged, not sent',
       );
       return Mailer.log;
     }

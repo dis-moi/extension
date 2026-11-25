@@ -168,4 +168,45 @@ describe('configuration of the relay', () => {
 
     expect(configuration?.secure).toBe(true);
   });
+
+  describe('from the MAILER_DSN of the PHP application', () => {
+    const DSN = `smtp://${encodeURIComponent(USER)}:${PASSWORD}@smtp-relay.brevo.com:587`;
+
+    it('reads the relay off the address alone', async () => {
+      expect(await read({ MAILER_DSN: DSN })).toEqual({
+        host: 'smtp-relay.brevo.com',
+        port: 587,
+        user: USER,
+        password: PASSWORD,
+        secure: false,
+        requireTls: true,
+      });
+    });
+
+    it('gives null, and warns, when the address drives no SMTP relay', async () => {
+      expect(await read({ MAILER_DSN: 'sendmail://default' })).toBeNull();
+    });
+
+    it('lets DISMOI_SMTP_HOST win over it', async () => {
+      const configuration = await read({
+        MAILER_DSN: DSN,
+        DISMOI_SMTP_HOST: 'autre.relais.fr',
+        DISMOI_SMTP_USER: 'ailleurs@dismoi.io',
+        DISMOI_SMTP_PASSWORD: 'autre-cle',
+      });
+
+      expect(configuration?.host).toBe('autre.relais.fr');
+      expect(configuration?.user).toBe('ailleurs@dismoi.io');
+    });
+
+    it('lets DISMOI_SMTP_PORT override the port it names', async () => {
+      const configuration = await read({
+        MAILER_DSN: DSN,
+        DISMOI_SMTP_PORT: '465',
+      });
+
+      expect(configuration?.port).toBe(465);
+      expect(configuration?.secure).toBe(true);
+    });
+  });
 });
