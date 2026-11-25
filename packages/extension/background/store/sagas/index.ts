@@ -27,9 +27,9 @@ import { loginSaga } from './user.saga';
 import contributionSaga from './contribution';
 
 const tracker =
-  process.env.PLAUSIBLE_DOMAIN && !doNotTrack()
+  process.env.PLAUSIBLE_EXTENSION_DOMAIN && !doNotTrack()
     ? new PlausibleTracker(
-        process.env.PLAUSIBLE_DOMAIN,
+        process.env.PLAUSIBLE_EXTENSION_DOMAIN,
         process.env.PLAUSIBLE_API_URL,
       )
     : undefined;

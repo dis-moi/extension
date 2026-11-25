@@ -5992,6 +5992,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@plausible-analytics/tracker@npm:^0.4.7":
+  version: 0.4.7
+  resolution: "@plausible-analytics/tracker@npm:0.4.7"
+  checksum: 10/d0f5c5d543881f28f40809e1e9df809857c9f290e7cf8d6c35b2c4ac6b1f9bc5965d1a7e64e3e390c11712d4e0c64571e449d9398f68d90ddcfdc827da00e435
+  languageName: node
+  linkType: hard
+
 "@pmmmwh/react-refresh-webpack-plugin@npm:^0.4.2":
   version: 0.4.3
   resolution: "@pmmmwh/react-refresh-webpack-plugin@npm:0.4.3"
@@ -14934,6 +14941,7 @@ __metadata:
     "@effect/sql-mysql2": "npm:4.1.4"
     "@effect/vitest": "npm:4.1.4"
     "@nx/next": "npm:^20.0.0"
+    "@plausible-analytics/tracker": "npm:^0.4.7"
     "@sentry/browser": "npm:^5.1.1"
     "@sentry/node": "npm:^5.30.0"
     "@storybook/addon-actions": "npm:6.1.21"

@@ -17,7 +17,7 @@ const startMeasuring = createAudienceMeasurement(init);
 const AudienceMeasurement = () => {
   useEffect(() => {
     startMeasuring({
-      domain: process.env.SITE_PLAUSIBLE_DOMAIN,
+      domain: process.env.PLAUSIBLE_SITE_DOMAIN,
       doNotTrack: doNotTrack(),
     });
   }, []);
