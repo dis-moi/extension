@@ -76,28 +76,46 @@ const failure = (status: number, message: string) =>
         });
   });
 
-const integer = (raw: string | undefined, fallback: number): number => {
-  if (raw === undefined) return fallback;
+// The `(int)` cast of PHP: a string naming no number is zero, and zero is
+// not the same thing as an absent parameter.
+const phpInteger = (raw: string): number => {
   const value = Number.parseInt(raw, 10);
-  return Number.isNaN(value) ? fallback : value;
+  return Number.isNaN(value) ? 0 : value;
 };
 
-// The extension sends contributors=[13], which the PHP backend splits by
-// hand. Unreadable values are dropped rather than failing the request, as
-// the implicit conversion of PHP does.
-const identifierList = (
-  raw: string | undefined,
+// `(int) $request->get('limit', 1000)`: the default answers an absent
+// parameter only. A present one goes through the cast, so `limit=abc` is a
+// limit of zero and returns nothing — not the default page.
+const integer = (raw: string | null | undefined, fallback: number): number => {
+  if (raw === undefined || raw === null) return fallback;
+  return phpInteger(raw);
+};
+
+// `$request->get('contributors')`, which receives two forms.
+//
+// `contributors[]=55&contributors[]=13` is what buildQueryString of the
+// extension builds for an array, and what the mobile application stores;
+// PHP parses it into an array and passes it on untouched. The other form,
+// `contributors=[55,13]`, is a string the controller splits on commas.
+//
+// A piece naming no number is kept rather than dropped: PHP hands the raw
+// string to the query, where MySQL casts `id IN ('abc')` to zero and the
+// filter matches nothing. Dropping it would turn a filter that excludes
+// everything into no filter at all, and answer with the whole table.
+const askedContributors = (
+  parameters: URLSearchParams,
 ): ReadonlyArray<number> | null => {
-  if (raw === undefined || raw === '') return null;
+  const repeated = parameters.getAll('contributors[]');
+  if (repeated.length > 0) return repeated.map(phpInteger);
 
-  const values = raw
-    .replace(/^\[/, '')
-    .replace(/\]$/, '')
+  const raw = parameters.get('contributors');
+  if (raw === null || raw === '') return null;
+
+  return raw
+    .replace(/^\[+/, '')
+    .replace(/\]+$/, '')
     .split(',')
-    .map((piece) => Number.parseInt(piece.trim(), 10))
-    .filter((value) => Number.isInteger(value));
-
-  return values.length === 0 ? null : values;
+    .map((piece) => phpInteger(piece.trim()));
 };
 
 const queryParameters = Effect.gen(function* () {
@@ -129,6 +147,29 @@ function record(value: unknown): Record<string, unknown> {
 const string = (value: unknown, fallback: string): string =>
   typeof value === 'string' ? value : fallback;
 
+// These two answer under two spellings each, hyphenated and not: the PHP
+// actions carried two @Route annotations apiece, and clients exist for both.
+// The extension calls the hyphenated ones, the mobile application the others.
+const restrictedContexts = Effect.gen(function* () {
+  const reads = yield* V3Reads;
+  const contexts = yield* reads.restrictedContexts;
+  return json(contexts.map(serialiseRestrictedContext));
+});
+
+const targetingContexts = Effect.gen(function* () {
+  const reads = yield* V3Reads;
+  const origin = yield* requestOrigin;
+  const parameters = yield* queryParameters;
+
+  const contexts = yield* reads.targetingContexts(
+    askedContributors(parameters),
+  );
+
+  return json(
+    contexts.map((context) => serialiseTargetingContext(origin, context)),
+  );
+});
+
 export const RoutesV3 = Layer.mergeAll(
   // nelmio_cors answered the preflight for every path under `^/api/v3/`,
   // before the controllers were ever reached.
@@ -136,40 +177,11 @@ export const RoutesV3 = Layer.mergeAll(
 
   HttpRouter.add('GET', '/api/v3/categories', Effect.succeed(json(CATEGORIES))),
 
-  HttpRouter.add(
-    'GET',
-    '/api/v3/restricted-contexts',
-    Effect.gen(function* () {
-      const reads = yield* V3Reads;
-      const contexts = yield* reads.restrictedContexts;
-      return json(contexts.map(serialiseRestrictedContext));
-    }),
-  ),
+  HttpRouter.add('GET', '/api/v3/restrictedcontexts', restrictedContexts),
+  HttpRouter.add('GET', '/api/v3/restricted-contexts', restrictedContexts),
 
-  // Both spellings have existed from the start and both are served; the
-  // extension uses the second, the mobile application the first.
-  ...(['/api/v3/matchingcontexts', '/api/v3/matching-contexts'] as const).map(
-    (path) =>
-      HttpRouter.add(
-        'GET',
-        path,
-        Effect.gen(function* () {
-          const reads = yield* V3Reads;
-          const origin = yield* requestOrigin;
-          const parameters = yield* queryParameters;
-
-          const contexts = yield* reads.targetingContexts(
-            identifierList(parameters.get('contributors') ?? undefined),
-          );
-
-          return json(
-            contexts.map((context) =>
-              serialiseTargetingContext(origin, context),
-            ),
-          );
-        }),
-      ),
-  ),
+  HttpRouter.add('GET', '/api/v3/matchingcontexts', targetingContexts),
+  HttpRouter.add('GET', '/api/v3/matching-contexts', targetingContexts),
 
   HttpRouter.add(
     'GET',
@@ -179,16 +191,13 @@ export const RoutesV3 = Layer.mergeAll(
       const origin = yield* requestOrigin;
       const parameters = yield* queryParameters;
 
-      const contributor = integer(
-        parameters.get('contributor') ?? undefined,
-        0,
-      );
+      const contributor = integer(parameters.get('contributor'), 0);
       const page = yield* reads.notices({
         // `(int) $request->get('contributor')` is 0 when the parameter is
         // absent, and the PHP treats 0 as "no filter".
         ...(contributor === 0 ? {} : { contributorId: contributor }),
-        limit: integer(parameters.get('limit') ?? undefined, 1000),
-        offset: integer(parameters.get('offset') ?? undefined, 0),
+        limit: integer(parameters.get('limit'), 1000),
+        offset: integer(parameters.get('offset'), 0),
       });
 
       return json(
